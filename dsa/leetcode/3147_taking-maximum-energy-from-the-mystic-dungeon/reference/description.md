@@ -49,4 +49,4 @@ that when you reach a magician, you *must* take energy from them, whether it is 
 
 - $1 \le k \le \text{energy.length} - 1$
 
-​​​​​​
+

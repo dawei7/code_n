@@ -65,7 +65,7 @@ When the end times are equal, the `else` branch advances `j`. Discarding either 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the current overlap is too short, at least one current sl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The current intersection’s `start` is the earliest time compatible with both c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Already sorted calendars:** The scan alone wou:** - **Already sorted calendars:** The scan alone would be \(O(n+m)\). The exact source sorts unconditionally because chronological order is not guaranteed.
+- **Already sorted calendars:** The scan alone would be \(O(n+m)\). The exact source sorts unconditionally because chronological order is not guaranteed.
 - **Heap over both calendars:** A heap can process slots by start time, but it stores \(O(n+m)\) entries and has a comparable or worse logarithmic cost.
 - **All-pairs comparison:** Checking every slot from one person against every slot from the other costs \(O(nm)\) and ignores the nonoverlap structure.
 - **Touching endpoints:** If `end - start` is zero, there is no positive-duration meeting even if both slots contain that endpoint.
@@ -112,8 +112,8 @@ The current intersection’s `start` is the earliest time compatible with both c
 - **Very large timestamps:** Only comparisons, addition, and subtraction are used; Python integers avoid overflow.
 - **In-place sorting:** Callers needing original order should pass copies or use `sorted`. The current source intentionally mutates both input lists.
 - **Nonoverlap guarantee within one person:** The pointer-discard proof depends on it. Overlapping same-person slots would need merging first or a different argument.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

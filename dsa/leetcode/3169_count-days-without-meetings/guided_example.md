@@ -65,7 +65,7 @@ Inclusive endpoints explain the minus one. If coverage ends on day 3 and next me
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a meeting begins at or before `last`, it overlaps or touc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ When `st <= last`, there is no uncovered gap before this meeting. Extending the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Merge into an explicit interval list:** Sum me:** - **Merge into an explicit interval list:** Sum merged covered lengths and subtract from days. It is equivalent but stores $O(n)$ merged intervals unnecessarily.
+- **Merge into an explicit interval list:** Sum merged covered lengths and subtract from days. It is equivalent but stores $O(n)$ merged intervals unnecessarily.
 - **Difference array by day:** Impossible when days is up to $10^9$.
 - **Sweep events:** Start/end deltas also work after sorting but require care with inclusive endpoints.
 - **Meeting covering every day:** No gaps or tail are added, returning zero.
@@ -128,8 +128,8 @@ When `st <= last`, there is no uncovered gap before this meeting. Extending the 
 - **Meeting ending on final day:** Tail contribution is zero.
 - **Single meeting:** Leading and trailing gaps are both handled.
 - **Input order:** Sorting makes arbitrary original order irrelevant but mutates the list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

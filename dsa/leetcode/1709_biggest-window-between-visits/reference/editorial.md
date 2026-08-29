@@ -1,12 +1,12 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
-​
+
 To find out the largest window of days between each visit and the one right after it, there are several things need to be done:
 
 - for each $\text{user}_{id}$, we need to sort the $\text{visit}_{date}$ in an ascending order to later identify the next $\text{visit}_{date}$
@@ -19,7 +19,7 @@ To find out the largest window of days between each visit and the one right afte
 
 <!-- h4 for sections -->
 #### Algorithm
-​<!-- Describe your approach to solving the problem. -->
+<!-- Describe your approach to solving the problem. -->
 This approach strictly follows the bullets above. We start by sorting the $\text{visit}_{date}$ for each $\text{user}_{id}$.
 
 ```python
@@ -62,10 +62,10 @@ biggest_window = user_visits.groupby(['user_id'], as_index=False).window.max()
 | 3       | 51     |
 
 To get the final output, we also need to rename the column.
-​
+
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 
@@ -152,7 +152,7 @@ biggest_window = df.groupby(['user_id'], as_index=False).window.max()
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 
@@ -172,9 +172,9 @@ def biggest_window(user_visits: pd.DataFrame) -> pd.DataFrame:
 ```
 
 ---
-​
+
 ## Database
-​
+
 To find out the largest window of days between each visit and the one right after it, there are several things need to be done:
 
 - for each $\text{user}_{id}$, we need to sort the $\text{visit}_{date}$ in an ascending order to later identify the next $\text{visit}_{date}$
@@ -242,7 +242,7 @@ WITH all_dates AS (
     SELECT user_id, '2021-01-01' AS visit_date
     FROM UserVisits)
 ```
-​
+
 We then sort all the `visit_dates`s for each `user_id` in an ascending order. Since all `visit_date`s are stored in the same column, we can add a rank for each `visit_date` per `user_id` for later calculation. Both goals can be achieved by the function `RANK()`.
 
 ```sql

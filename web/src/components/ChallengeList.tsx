@@ -2162,6 +2162,7 @@ export function ChallengeList() {
   const [resetNotice, setResetNotice] = useState<SubmissionNotice | null>(null);
   const [showCustomBuilder, setShowCustomBuilder] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const spacedReviews = useAppStore((s) => s.progress?.spaced_reviews || {});
   const completedSet = useMemo(() => new Set(completed), [completed]);
   const submittedSet = useMemo(() => new Set(Object.keys(leetcodeSubmissions)), [leetcodeSubmissions]);
   const activeCustomProblemSets = useMemo(() => {
@@ -2197,7 +2198,13 @@ export function ChallengeList() {
 
   const filteredChallenges = useMemo(() => {
     let baseList = activeSetChallenges;
-    if (isLeetcodeUniverse(activeSet) && difficultyFilter !== 'all') {
+    if (difficultyFilter === 'due_review') {
+      const todayStr = new Date().toISOString().split('T')[0];
+      baseList = baseList.filter((challenge) => {
+        const rev = spacedReviews[challenge.id];
+        return rev && rev.next_due_date && rev.next_due_date <= todayStr;
+      });
+    } else if (isLeetcodeUniverse(activeSet) && difficultyFilter !== 'all') {
       baseList = baseList.filter((challenge) => challenge.difficulty_label === difficultyFilter);
     }
 
@@ -2875,6 +2882,7 @@ export function ChallengeList() {
             className="mt-2 w-full bg-coden-bg border border-coden-border rounded px-3 py-1.5 text-sm text-coden-text focus:outline-none focus:border-coden-accent transition-colors"
           >
             <option value="all">All difficulty levels</option>
+            <option value="due_review">Due for Review (Spaced Repetition)</option>
             <option value="Easy">Easy</option>
             <option value="Medium">Medium</option>
             <option value="Hard">Hard</option>

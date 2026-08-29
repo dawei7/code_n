@@ -53,8 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `(0,0)` becomes `(0,0)` under AND and OR;
-- `(0,1)` or `(1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ In every case, the total number of one-bits across the two numbers is unchanged.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate AND/OR operations:** Searching operat:** - **Simulate AND/OR operations:** Searching operation sequences is enormous and unnecessary because per-bit counts fully characterize the optimum.
+- **Simulate AND/OR operations:** Searching operation sequences is enormous and unnecessary because per-bit counts fully characterize the optimum.
 - **Spread bits evenly:** Squaring is convex, so spreading conserved value loses the concentration benefit.
 - **`k = 1`:** The selected value receives every bit that appears anywhere, equivalent to the OR of all inputs.
 - **`k = n`:** Every conserved bit occurrence is consumed; the greedy still optimally arranges the entire array.
@@ -97,8 +96,8 @@ In every case, the total number of one-bits across the two numbers is unchanged.
 - **Duplicate input values:** They simply add bit occurrences and need no special handling.
 - **Modulo:** Optimize the true integer square sum conceptually; reduce only the accumulated numerical result, not bit counts.
 - **Fixed bit bound:** Thirty-one positions cover every legal positive input value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

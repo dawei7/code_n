@@ -2,7 +2,7 @@
 
 There is an undirected weighted graph with `n` nodes labeled from 0 to $n - 1$.
 
-The graph is represented by a 2D integer array `edges`, where each edge $\text{edges}[i] = [u_{i}, v_{i}, w_​​​​​​​i]$ indicates that there is an undirected edge between nodes $u_{i}$ and $v_{i}$ with weight `w_​​​​​​​i`.
+The graph is represented by a 2D integer array `edges`, where each edge $\text{edges}[i] = [u_{i}, v_{i}, w_i]$ indicates that there is an undirected edge between nodes $u_{i}$ and $v_{i}$ with weight `w_i`.
 
 You are also given integers `source`, `target` and `k`.
 
@@ -34,9 +34,9 @@ Return the minimum integer $T$ for which some `source`-to-`target` path contains
 
 ### 3. Examples
 
-#### Example 1​​​​​​​​​​​​​​
+#### Example 1
 
-​​​​​​​
+
 
 ![](images/g6.png)
 
@@ -80,15 +80,15 @@ Any smaller `threshold` would make it impossible to reach node 3 without exceedi
 
 ### 4. Constraints
 
-- $1 \le n \le 10^{3}​​​​​​​$
+- $1 \le n \le 10^{3}$
 
-- $0 \le \text{edges.length} \le 10^{3}​​​​​​​$
+- $0 \le \text{edges.length} \le 10^{3}$
 
 - $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$
 
-- $0 \le u_{i}, v_{i}​​​​​​​ \le n - 1$
+- $0 \le u_{i}, v_{i} \le n - 1$
 
-- $1 \le w_{i}​​​​​​​ \le 10^{9}$
+- $1 \le w_{i} \le 10^{9}$
 
 - $0 \le source, target \le n - 1$
 

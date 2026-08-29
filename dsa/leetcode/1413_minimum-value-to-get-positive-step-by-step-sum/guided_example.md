@@ -89,11 +89,7 @@ The first line extends the prefix by the current element. The second records the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code starts with:
-
-
-
-`s` is the current prefix sum witho... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +128,7 @@ If a prefix sum equals zero, `1 - t` already equals one. If the minimum prefix i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try start values from one upward:** Simulate t:** - **Try start values from one upward:** Simulate the array for each candidate until one succeeds. It is easy to understand but repeats almost identical prefix work and can take far more than one pass.
+- **Try start values from one upward:** Simulate the array for each candidate until one succeeds. It is easy to understand but repeats almost identical prefix work and can take far more than one pass.
 - **Binary search for the first valid start:** Validity is monotonic, so binary search works with a known safe upper bound. Each guess still scans the array, giving an extra logarithmic factor.
 - **Store all prefix sums:** Building a prefix array and taking its minimum is correct but uses $O(n)$ space when only the current sum and minimum are needed.
 - **Initialize minimum to zero:** This common variant returns `1 - min_prefix` directly because it includes the empty prefix. The stored implementation instead uses infinity and an explicit `max(1, ...)`.
@@ -142,8 +138,8 @@ If a prefix sum equals zero, `1 - t` already equals one. If the minimum prefix i
 - **Lowest point near the end:** The algorithm continues through the whole array because a later negative run can impose a larger required start.
 - **Final sum is not enough:** An array can finish positive after dipping below one earlier. Tracking only the total sum would miss that violation.
 - **Strict interpretation of positive:** The threshold is at least one, not merely nonnegative. That is why the formula uses `1 - t` rather than `-t`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

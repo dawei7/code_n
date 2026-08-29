@@ -51,7 +51,7 @@ Every integer from one through $n$ belongs to exactly one of the two sets. A num
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every integer from one through $n$ belongs to exactly one of... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic formula:** Let $q=\lfloor n/m\rfloo:** - **Arithmetic formula:** Let $q=\lfloor n/m\rfloor$. The total sum is $n(n+1)/2$, and divisible numbers sum to $m q(q+1)/2$. Return $n(n+1)/2-mq(q+1)$ in genuine $O(1)$ time and space.
+- **Arithmetic formula:** Let $q=\lfloor n/m\rfloor$. The total sum is $n(n+1)/2$, and divisible numbers sum to $m q(q+1)/2$. Return $n(n+1)/2-mq(q+1)$ in genuine $O(1)$ time and space.
 - **Two separate accumulators:** Compute `num1` and `num2` independently, then subtract. It is correct but stores more state and still takes $O(n)$ time.
 - **`m = 1`:** Every number is divisible, so the answer is the negative total sum.
 - **`m > n`:** No number is divisible, so the answer is the positive total sum.
@@ -100,8 +100,8 @@ $$
 - **Truthiness:** Zero remainder selects `-i`; nonzero remainder selects `+i`.
 - **Inclusive upper bound:** `n + 1` is necessary because Python's range stop is excluded.
 - **Manifest mismatch:** Constant time belongs to the formula alternative, while the checked-in generator is linear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

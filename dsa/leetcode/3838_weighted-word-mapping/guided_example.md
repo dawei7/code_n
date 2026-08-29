@@ -73,7 +73,7 @@ The exact source computes the full sum before applying modulo. It could reduce a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Only `s % 26` affects the mapped letter.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ This is equivalent to `chr(ord('z') - r)` from the local editorial, but indexing
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character-code subtraction:** `chr(ord('z') - :** - **Character-code subtraction:** `chr(ord('z') - s % 26)` implements the same reverse mapping without `ascii_lowercase`.
+- **Character-code subtraction:** `chr(ord('z') - s % 26)` implements the same reverse mapping without `ascii_lowercase`.
 - **Precompute a character-to-weight dictionary:** This avoids `ord` subtraction but stores redundant mappings for a fixed contiguous alphabet.
 - **Reduce modulo during accumulation:** Updating `s = (s + weight) % 26` keeps the running value bounded and gives the same result, though full sums are already tiny here.
 - **Residue zero:** It maps to `z`, not `a`; this is the most common direction mistake.
@@ -140,8 +140,8 @@ This is equivalent to `chr(ord('z') - r)` from the local editorial, but indexing
 - **One-character word:** Its assigned weight alone determines the residue.
 - **Input order:** Words are never sorted; the returned characters align with their original positions.
 - **Library symbol availability:** The exact source assumes `ascii_lowercase` is supplied or imported from Python's `string` module.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

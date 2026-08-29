@@ -69,11 +69,7 @@ The underscore receives the customer name. Customer identity does not appear in 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code creates:
-
-
-
-`tables` maps a numeric table number to... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ The same loop adds `foodItem` to `items`. After all orders are processed, the ma
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested counters during ingestion:** Use `count:** - **Nested counters during ingestion:** Use `counts[table][food] += 1` in the first pass. This avoids storing repeated food lists and can reduce intermediate memory while preserving the same output construction.
+- **Nested counters during ingestion:** Use `counts[table][food] += 1` in the first pass. This avoids storing repeated food lists and can reduce intermediate memory while preserving the same output construction.
 - **Sort all orders first:** Sorting by table and food can group occurrences, but it adds $O(N\log N)$ work when hash-based collection needs only expected linear ingestion.
 - **Use table strings as keys:** This produces incorrect lexicographic row order for values such as 2 and 10 unless a numeric sort key is supplied.
 - **One table:** The result contains one header and one data row; food columns still sort alphabetically.
@@ -120,8 +116,8 @@ The same loop adds `foodItem` to `items`. After all orders are processed, the ma
 - **Spaces and capitalization in food names:** Python's default string ordering supplies the required lexicographical ordering for the exact names; names are not normalized.
 - **Customer names:** They are irrelevant to aggregation and are intentionally ignored rather than treated as distinct-order filters.
 - **Output types:** Table numbers and counts must be strings in the returned matrix, so both are explicitly converted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

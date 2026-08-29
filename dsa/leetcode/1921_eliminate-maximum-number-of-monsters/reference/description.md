@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are playing a video game where you are defending your city from a group of `n` monsters. You are given a **0-indexed** integer array `dist` of size `n`, where $\text{dist}[i]$ is the **initial distance** in kilometers of the $$i^{\text{th}}$$ monster from the city.
+You are playing a video game where you are defending your city from a group of `n` monsters. You are given a **0-indexed** integer array `dist` of size `n`, where $\text{dist}[i]$ is the **initial distance** in kilometers of the $i^{\text{th}}$ monster from the city.
 
-The monsters walk toward the city at a **constant** speed. The speed of each monster is given to you in an integer array `speed` of size `n`, where $\text{speed}[i]$ is the speed of the $$i^{\text{th}}$$ monster in kilometers per minute.
+The monsters walk toward the city at a **constant** speed. The speed of each monster is given to you in an integer array `speed` of size `n`, where $\text{speed}[i]$ is the speed of the $i^{\text{th}}$ monster in kilometers per minute.
 
 You have a weapon that, once fully charged, can eliminate a **single** monster. However, the weapon takes **one minute** to charge. The weapon is fully charged at the very start.
 

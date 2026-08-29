@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D string array `responses` where each $\text{responses}[i]$ is an array of strings representing survey responses from the $$i^{\text{th}}$$ day.
+You are given a 2D string array `responses` where each $\text{responses}[i]$ is an array of strings representing survey responses from the $i^{\text{th}}$ day.
 
 Return the **most common** response across all days after removing **duplicate** responses within each $\text{responses}[i]$. If there is a tie, return the *lexicographically smallest* response.
 

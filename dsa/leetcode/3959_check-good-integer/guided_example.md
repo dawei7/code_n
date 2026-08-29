@@ -78,11 +78,7 @@ uses `>=` because a difference equal to `50` is good; it does not have to be str
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop uses
-
-
-
-For a nonnegative integer, division by ten ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,9 +123,9 @@ Reassigning the parameter name `n` does not modify an integer owned by the calle
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two separate accumulators:** Summing `x` into :** - **Two separate accumulators:** Summing `x` into one variable and `x^2` into another, then comparing their difference, is correct and has the same asymptotic bounds. The source's single accumulator more directly tracks the only quantity the answer needs.
-- **- **String conversion:** Converting `n` to text an:** - **String conversion:** Converting `n` to text and iterating over characters is also `O(D)` time, but it allocates `O(D)` extra storage for the decimal representation. Arithmetic extraction preserves constant auxiliary space.
-- **- **Precomputed digit contributions:** A ten-entry:** - **Precomputed digit contributions:** A ten-entry table for `d(d-1)` could replace the multiplication. Because there are only ten possible digits, this remains correct, but it adds a collection without changing the asymptotic or practical structure of the solution.
+- **Two separate accumulators:** Summing `x` into one variable and `x^2` into another, then comparing their difference, is correct and has the same asymptotic bounds. The source's single accumulator more directly tracks the only quantity the answer needs.
+- **String conversion:** Converting `n` to text and iterating over characters is also `O(D)` time, but it allocates `O(D)` extra storage for the decimal representation. Arithmetic extraction preserves constant auxiliary space.
+- **Precomputed digit contributions:** A ten-entry table for `d(d-1)` could replace the multiplication. Because there are only ten possible digits, this remains correct, but it adds a collection without changing the asymptotic or practical structure of the solution.
 
 ---
 

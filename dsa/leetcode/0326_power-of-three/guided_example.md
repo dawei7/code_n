@@ -74,9 +74,7 @@ Although the definition says there exists an integer exponent $x$, a negative ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The values at or below `2` can be classified immediately:
-
--... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,9 +126,9 @@ For `n = 6`, one exact division produces `2`. The loop then stops, but the final
 
 ## 6. Traps This Instance Exposes
 
-- **- **Largest-power divisibility:** The greatest pow:** - **Largest-power divisibility:** The greatest power of three within signed 32-bit range is $3^{19}=1162261467$. Because its only positive divisors are powers of three, `n > 0 and 1162261467 % n == 0` gives a constant-work test under this exact numeric bound. This matches the manifest summary but is not the source implementation.
-- **- **Repeated multiplication:** Start at `1` and mu:** - **Repeated multiplication:** Start at `1` and multiply by `3` until reaching or passing `n`. This also takes $O(\log n)$ time and $O(1)$ space, but fixed-width languages must guard against overflow on the final multiplication.
-- **- **Logarithms:** Compute $\log_3 n$ and test whet:** - **Logarithms:** Compute $\log_3 n$ and test whether it is an integer. Floating-point rounding near integral results can cause false classifications, so exact divisibility is safer.
+- **Largest-power divisibility:** The greatest power of three within signed 32-bit range is $3^{19}=1162261467$. Because its only positive divisors are powers of three, `n > 0 and 1162261467 % n == 0` gives a constant-work test under this exact numeric bound. This matches the manifest summary but is not the source implementation.
+- **Repeated multiplication:** Start at `1` and multiply by `3` until reaching or passing `n`. This also takes $O(\log n)$ time and $O(1)$ space, but fixed-width languages must guard against overflow on the final multiplication.
+- **Logarithms:** Compute $\log_3 n$ and test whether it is an integer. Floating-point rounding near integral results can cause false classifications, so exact divisibility is safer.
 
 ---
 

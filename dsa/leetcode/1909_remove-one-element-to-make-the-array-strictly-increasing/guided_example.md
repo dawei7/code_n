@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Only two removals can repair that first violation.** If ne... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Removing `i` means keeping the smaller/right value and reconnecting `nums[i - 1]
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try deleting every index:** Validating all $n$:** - **Try deleting every index:** Validating all $n$ shortened candidates costs $O(n^2)$. The first bad pair proves only two candidates matter.
+- **Try deleting every index:** Validating all $n$ shortened candidates costs $O(n^2)$. The first bad pair proves only two candidates matter.
 - **One-pass modification counter:** A greedy scan can decide which endpoint to ignore based on neighboring values. It also achieves $O(n)$ time but is easier to get wrong at boundaries than two explicit validations.
 - **Physically delete and restore:** This mutates the input and shifts indices. Logical skipping is simpler and constant-space.
 - **Violation from equal values:** Strict increase rejects equality because discovery uses `<` and validation rejects `pre >= x`.
@@ -95,8 +95,8 @@ Removing `i` means keeping the smaller/right value and reconnecting `nums[i - 1]
 - **Already strictly increasing:** Discovery reaches the last index, and removing that last element produces a valid sequence, so true is returned.
 - **Two-element array:** Removing either one leaves a single-element increasing array; the method returns true.
 - **Multiple separated violations:** Removing one endpoint of the first cannot generally fix a later violation, and full `check` correctly rejects both candidates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

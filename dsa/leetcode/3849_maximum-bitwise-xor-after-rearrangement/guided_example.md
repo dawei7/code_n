@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two binary strings `s` and `t`​​​​​​​, each of length `n`.
+You are given two binary strings `s` and `t`, each of length `n`.
 
 The objective is to compute `"110"` from `{"s": "101", "t": "011"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,7 +63,7 @@ The answer list begins as `N` zero characters. During the second loop, `x = int(
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the current bit of `s` be `x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For `s = "101"` and `t = "011"`, the inventory starts with one zero and two ones
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate rearrangements of `t`:** Trying perm:** - **Enumerate rearrangements of `t`:** Trying permutations is infeasible and duplicates enormous amounts of work when bits repeat. There are only `N+1` possible zero/one count profiles but potentially exponentially many position assignments; the greedy rule chooses the best assignment directly.
+- **Enumerate rearrangements of `t`:** Trying permutations is infeasible and duplicates enormous amounts of work when bits repeat. There are only `N+1` possible zero/one count profiles but potentially exponentially many position assignments; the greedy rule chooses the best assignment directly.
 - **Sort `s` or rearrange both strings:** The contract allows rearranging only `t`. Changing `s` would solve a different problem and destroy the significance of its fixed positions.
 - **Build the chosen permutation first:** One can append the selected `t` bit at every step and XOR afterward, but that stores an extra length-`N` string. Writing the XOR bit immediately is simpler and uses the same decision.
 - **Maximum matching formulation:** Positions wanting zero or one could be treated as two matching groups, but a matching that merely maximizes the total number of XOR ones is insufficient. Earlier ones are more valuable than later ones, and the left-to-right greedy already captures those weights exactly.
@@ -121,8 +121,8 @@ For `s = "101"` and `t = "011"`, the inventory starts with one zero and two ones
 - **Leading zero in the result:** It must be preserved because the required return value has length `N`. Returning an integer or stripping zeros would violate the output contract.
 - **Counter safety:** In the fallback branch, `cnt[x]` cannot be zero if the inputs have equal lengths and previous iterations consumed exactly one `t` bit each. If unequal lengths were allowed, that guarantee would fail, but the stated contract rules out that input.
 - **Character conversion:** The source assumes every character is `'0'` or `'1'`, so `int(c)` is well-defined and always indexes one of the two counter cells.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

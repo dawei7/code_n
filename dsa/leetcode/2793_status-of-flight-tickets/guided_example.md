@@ -57,7 +57,7 @@ The data model implies each booking references its flight. If orphan passenger r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Passengers JOIN Flights USING (flight_id)` performs an inne... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The distinct-time guarantee is important. If two passengers could share a bookin
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` instead of `RANK`:** It is the cl:** - **`ROW_NUMBER` instead of `RANK`:** It is the clearest exact seat position and gives the same result because booking times are distinct.
+- **`ROW_NUMBER` instead of `RANK`:** It is the clearest exact seat position and gives the same result because booking times are distinct.
 - **Correlated count of earlier bookings:** Count passengers on the same flight with earlier times for every row. It is logically valid but can be quadratic without strong indexing.
 - **Group by flight:** It loses individual passenger rows and solves the occupancy totals problem instead.
 - **Capacity exactly equals booking count:** Every rank is within capacity, so all passengers are Confirmed.
@@ -112,8 +112,8 @@ The distinct-time guarantee is important. If two passengers could share a bookin
 - **Passenger IDs unrelated to time:** A smaller ID can have a later booking and still be waitlisted.
 - **Inner join:** It assumes every passenger references an existing flight, as the problem data model intends.
 - **Database indexes:** Indexes on flight ID, booking time, and passenger ID can reduce physical sorting or lookup work without changing query semantics.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

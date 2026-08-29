@@ -65,7 +65,7 @@ Checking the entire array after a candidate modification is simple and robust. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `is_sorted(nums)` uses `pairwise` to generate every adjacent... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,9 +111,9 @@ For `[4, 2, 3]`, lowering four to two gives `[2, 2, 3]`, which is non-decreasing
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single-pass greedy repair:** At the first inve:** - **Single-pass greedy repair:** At the first inversion, inspect the previous neighbor to decide immediately whether to lower the left value or raise the right, then continue scanning for a second inversion. This avoids full rescans while retaining `O(N)` time and `O(1)` space.
-- **- **Try modifications on a copy:** Preserves the c:** - **Try modifications on a copy:** Preserves the caller's input but uses `O(N)` additional space.
-- **- **Count inversions only:** This is insufficient :** - **Count inversions only:** This is insufficient because repairing one inversion can create another with an adjacent element, as in `[3, 4, 2, 3]`.
+- **Single-pass greedy repair:** At the first inversion, inspect the previous neighbor to decide immediately whether to lower the left value or raise the right, then continue scanning for a second inversion. This avoids full rescans while retaining `O(N)` time and `O(1)` space.
+- **Try modifications on a copy:** Preserves the caller's input but uses `O(N)` additional space.
+- **Count inversions only:** This is insufficient because repairing one inversion can create another with an adjacent element, as in `[3, 4, 2, 3]`.
 
 ---
 

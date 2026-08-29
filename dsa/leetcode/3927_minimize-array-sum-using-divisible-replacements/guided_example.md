@@ -63,7 +63,7 @@ The set is never empty because $x$ occurs initially and $x\mid x$. This turns th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider a position whose original value is $x$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Equivalently, imagine a preparation phase in which each original donor creates a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every donor for every array position:** Ch:** - **Try every donor for every array position:** Checking whether each input value divides every other input value can take $O(n^2)$ time and repeats identical questions for duplicate values. The value-domain sieve shares the work.
+- **Try every donor for every array position:** Checking whether each input value divides every other input value can take $O(n^2)$ time and repeats identical questions for duplicate values. The value-domain sieve shares the work.
 - **Simulate operation sequences:** The state graph can be enormous, and the order of copies obscures the simple reachability fact. Tracing copied values back to initially present divisors removes the need for state search.
 - **Replace everything by the global minimum:** This is valid only when that minimum divides every original value. Numeric order alone does not satisfy the divisibility precondition.
 - **Use the greatest common divisor of the whole array:** A gcd need not occur in the array, and operations can copy only existing values. A mathematically valid divisor that is absent cannot be introduced.
@@ -116,8 +116,8 @@ Equivalently, imagine a preparation phase in which each original donor creates a
 - **The maximum value indexes the arrays:** Both arrays have length `limit + 1`, making index `limit` valid. Index zero is unused because all input values are positive.
 - **Nonempty positive input:** `max(nums)` relies on the contract's nonempty array guarantee, and value-indexed storage relies on positive bounded integers.
 - **Overflow of the sum:** Python integers grow as needed, so summing many values does not overflow a fixed-width integer type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

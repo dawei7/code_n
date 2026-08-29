@@ -76,7 +76,7 @@ Thus every explored path respects checkpoint order automatically.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The parameter `v` is the next numbered checkpoint that may b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ It cannot begin on checkpoint two or any larger number, because that would visit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Subset dynamic programming:** A state such as :** - **Subset dynamic programming:** A state such as `(visited_mask,last_cell,next_checkpoint)` can avoid revisiting equivalent subproblems but may require `O(V2^V)` or more memory, which is large at `V=25`. Backtracking uses much less memory.
+- **Subset dynamic programming:** A state such as `(visited_mask,last_cell,next_checkpoint)` can avoid revisiting equivalent subproblems but may require `O(V2^V)` or more memory, which is large at `V=25`. Backtracking uses much less memory.
 - **Memoize failed states:** Caching `(st,i,j,v)` can reduce repeated work but may consume exponential space. The source performs no such caching.
 - **Connectivity pruning:** After each move, one could reject states where unvisited cells become disconnected. This can greatly accelerate difficult cases but requires additional checks not present in the exact implementation.
 - **Forced-degree pruning:** Unvisited cells with too few available neighbors can reveal impossibility early. Again, this is a valid enhancement rather than current source behavior.
@@ -127,8 +127,8 @@ It cannot begin on checkpoint two or any larger number, because that would visit
 - **Parameter k:** The exact source does not reference it after entry. Correctness relies on the guarantee that the grid contains exactly the checkpoint values `1` through `k`.
 - **Recursion depth:** At most 25 calls are active, so Python recursion limits are not a concern.
 - **Any valid output:** Direction and start iteration order determine which solution is returned, but the statement permits any valid path.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -10,11 +10,11 @@ Implement the `FoodRatings` class:
 
 - `FoodRatings(String[] foods, String[] cuisines, int[] ratings)` Initializes the system. The food items are described by `foods`, `cuisines` and `ratings`, all of which have a length of `n`.
 
-		- $\text{foods}[i]$ is the name of the $$i^{\text{th}}$$ food,
+		- $\text{foods}[i]$ is the name of the $i^{\text{th}}$ food,
 
-- $\text{cuisines}[i]$ is the type of cuisine of the $$i^{\text{th}}$$ food, and
+- $\text{cuisines}[i]$ is the type of cuisine of the $i^{\text{th}}$ food, and
 
-- $\text{ratings}[i]$ is the initial rating of the $$i^{\text{th}}$$ food.
+- $\text{ratings}[i]$ is the initial rating of the $i^{\text{th}}$ food.
 
 - `void changeRating(String food, int newRating)` Changes the rating of the food item with the name `food`.
 

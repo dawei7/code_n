@@ -51,7 +51,7 @@ cells, and each cell can hold at most one container. Therefore, no loading plan 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | cells, and each cell can hold at most one container.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every container weighs exactly $w$. If $c$ containers are loaded, the weight con
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate filling cells:** Repeating up to $n^2:** - **Simulate filling cells:** Repeating up to $n^2$ placements produces the same minimum but wastes $O(n^2)$ time.
+- **Simulate filling cells:** Repeating up to $n^2$ placements produces the same minimum but wastes $O(n^2)$ time.
 - **Binary-search the number of containers:** Feasibility is monotone, but the exact quotient gives the boundary directly.
 - **Use only `maxWeight // w`:** This can exceed the number of deck cells when the ship has large weight capacity.
 - **Use only `n * n`:** This can violate the ship's weight limit.
@@ -98,8 +98,8 @@ Every container weighs exactly $w$. If $c$ containers are loaded, the weight con
 - **Identical container weights:** This uniformity is why only the count matters; varying weights would require a selection problem.
 - **Positive inputs:** They guarantee meaningful cell count, weight, and safe division.
 - **Equivalent formula:** `min(n*n, maxWeight//w)` may look more direct, while the protected source takes the minimum in weight units before dividing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

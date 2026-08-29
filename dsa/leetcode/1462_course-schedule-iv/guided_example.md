@@ -51,7 +51,7 @@ Because many queries use the same graph, the solution precomputes reachability f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because many queries use the same graph, the solution precom... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The direct prerequisite loop establishes the initial paths of length one by assi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search from every course:** Build an adjacency:** - **Search from every course:** Build an adjacency list and run DFS or BFS from each source, recording reachable courses. This can exploit sparsity and matches the manifest more closely.
+- **Search from every course:** Build an adjacency list and run DFS or BFS from each source, recording reachable courses. This can exploit sparsity and matches the manifest more closely.
 - **Search per query:** It avoids a full closure when there are very few queries, but repeats graph work when queries share sources.
 - **Topological propagation:** Because the graph is acyclic, process courses in topological order and union prerequisite sets into successors. It can be efficient with bitsets.
 - **Bitset Floyd closure:** Store each reachability row as an integer or bitset and union rows when an intermediate is reachable, improving constants substantially.
@@ -101,8 +101,8 @@ The direct prerequisite loop establishes the initial paths of length one by assi
 - **Query order:** The list comprehension preserves the original sequence exactly.
 - **Dense graph:** Floyd–Warshall's fixed cubic work is reasonable for the small course limit and many queries.
 - **Complexity reporting:** Use `O(C^3 + E + Q)` for this exact source, not the sparse-search manifest bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

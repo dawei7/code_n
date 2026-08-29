@@ -62,7 +62,7 @@ On backtracking, a larger value is restored to two and one is restored to one. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` is initialized with value two in every slot, then `cnt... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The base condition `u == n * 2` means every meaningful position one through `2n-
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ascending candidate order:** It would find the:** - **Ascending candidate order:** It would find the lexicographically smallest first solution, not the largest.
+- **Ascending candidate order:** It would find the lexicographically smallest first solution, not the largest.
 - **Generate every solution then compare:** It wastes memory and search after the first descending-order completion is already known to be maximal.
 - **Bitmask availability:** A bitmask can replace `cnt` and make availability copying compact, while preserving the same backtracking.
 - **Choose another empty position:** Filling the earliest empty position gives the direct lexicographic proof and generally stronger pruning.
@@ -113,8 +113,8 @@ The base condition `u == n * 2` means every meaningful position one through `2n-
 - **Successful branch:** Placements are intentionally not undone when true propagates.
 - **Failed branch:** Both positions and availability must be restored before trying another value.
 - **Padding index zero:** It is never returned and exists only to make positions one-based.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

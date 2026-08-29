@@ -28,8 +28,8 @@ answer. A word shorter than `pref` cannot match it.
 **Inputs**
 
 - `words`: an array containing between one and 100 lowercase strings, each
-  with length in $[1,100]$.
-- `pref`: a lowercase string with length in $[1,100]$.
+  with length in `[1,100]`.
+- `pref`: a lowercase string with length in `[1,100]`.
 
 Define
 

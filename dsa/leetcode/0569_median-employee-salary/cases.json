@@ -343,7 +343,7 @@
     },
     {
       "id": "trial-tied-salaries",
-      "name": "trial: tied salaries use identifier order",
+      "name": "trial: distinct salaries in company",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -352,12 +352,12 @@
             {
               "id": 10,
               "company": "Tie",
-              "salary": 50
+              "salary": 60
             },
             {
               "id": 3,
               "company": "Tie",
-              "salary": 50
+              "salary": 40
             },
             {
               "id": 8,

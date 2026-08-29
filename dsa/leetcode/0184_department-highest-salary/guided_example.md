@@ -72,7 +72,7 @@ For the example, department 1 produces `(1, 90000)` and department 2 produces
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inner query reads `Employee`, groups rows by `department... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ not appear in a result about highest-paid employees.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Join to a derived maximum table:** Group `(dep:** - **Join to a derived maximum table:** Group `(departmentId, MAX(salary))`, then join employees on both fields; equivalent and often more explicit than tuple `IN`.
+- **Join to a derived maximum table:** Group `(departmentId, MAX(salary))`, then join employees on both fields; equivalent and often more explicit than tuple `IN`.
 - **Correlated maximum subquery:** Compare each salary with its department's maximum; concise, but a naive plan can repeat scans.
 - **Window function:** Use `DENSE_RANK()` or `MAX() OVER (PARTITION BY departmentId)` and keep top rows; clear tie handling on engines supporting windows.
 - **Pandas transform:** The local editorial joins names, broadcasts each group's maximum with `transform('max')`, and filters equal salaries.
@@ -124,8 +124,8 @@ not appear in a result about highest-paid employees.
 - **Duplicate names:** Keys, not names, determine membership, so identical display names remain distinct employee rows.
 - **Positional grouping:** `GROUP BY 1` depends on select order; explicit grouping is safer during maintenance.
 - **Any order:** The absence of `ORDER BY` is intentional.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

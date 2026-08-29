@@ -2,7 +2,7 @@
 
 There is an undirected weighted connected graph. You are given a positive integer `n` which denotes that the graph has `n` nodes labeled from `1` to `n`, and an array `edges` where each $\text{edges}[i] = [u_{i}, v_{i}, \text{weight}_{i}]$ denotes that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight equal to $\text{weight}_{i}$.
 
-A path from node `start` to node `end` is a sequence of nodes $[z_{0}, z_{1},_ z_{2}, ..., z_{k}]$ such that $z_{0} = start$ and $z_{k} = end$ and there is an edge between $z_{i}$ and $z_{i}+1$ where $0 \le i \le k-1$.
+A path from node `start` to node `end` is a sequence of nodes $[z_{0}, z_{1}, z_{2}, ..., z_{k}]$ such that $z_{0} = start$ and $z_{k} = end$ and there is an edge between $z_{i}$ and $z_{i}+1$ where $0 \le i \le k-1$.
 
 The distance of a path is the sum of the weights on the edges of the path. Let `distanceToLastNode(x)` denote the shortest distance of a path between node `n` and node `x`. A **restricted path** is a path that also satisfies that $distanceToLastNode(z_{i}) > distanceToLastNode(z_{i}+1)$ where $0 \le i \le k-1$.
 

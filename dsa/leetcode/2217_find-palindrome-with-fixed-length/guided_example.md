@@ -75,7 +75,7 @@ There are `end - start + 1 = 9 \cdot 10^{l-1}` possible prefixes and therefore t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An `l`-digit prefix cannot start with zero because the final... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ This also proves there are no gaps or duplicates in the mapping. Every legal pre
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate every integer and test for palindromi:** - **Generate every integer and test for palindromicity:** The numeric range grows exponentially with `L` and contains far more non-palindromes than palindromes. Direct prefix construction jumps immediately to a requested rank.
+- **Generate every integer and test for palindromicity:** The numeric range grows exponentially with `L` and contains far more non-palindromes than palindromes. Direct prefix construction jumps immediately to a requested rank.
 - **Precompute all palindromes:** This can make later query lookup constant-time but may store up to `9 \cdot 10^{l-1}` numbers, far more than needed for the supplied queries. The formula uses only output-sized storage.
 - **Arithmetic mirroring:** One can append reversed digits using division and remainder instead of strings. It has the same `O(L)` per-query complexity but requires careful treatment of the middle digit and is usually less readable.
 - **Binary search for the queried palindrome:** No search is necessary because the prefix-to-rank relationship is a direct arithmetic offset.
@@ -132,8 +132,8 @@ This also proves there are no gaps or duplicates in the mapping. Every legal pre
 - **Repeated or unsorted queries:** Every query is evaluated independently and appended immediately, preserving the input order without sorting.
 - **No leading zeros:** Starting prefixes at `10^{l-1}` guarantees the first digit is nonzero. Prefix zero-padding must not be introduced, because that would create shorter numbers rather than valid fixed-length palindromes.
 - **One-based rank conversion:** The `- 1` in `start + q - 1` is essential. Omitting it would make query one return the second palindrome and shift every result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

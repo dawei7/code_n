@@ -57,7 +57,7 @@ This check does not depend on any other transaction. A record may later also be 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `amount > 1000`, the current index is inserted into `idx`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Grouping by name avoids comparing transactions belonging to different people. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by name and time:** Grouped sorting can o:** - **Sort by name and time:** Grouped sorting can organize nearby comparisons, but differing-city conflicts within a 60-minute window still need data structures or bounded scanning to avoid quadratic work.
+- **Sort by name and time:** Grouped sorting can organize nearby comparisons, but differing-city conflicts within a 60-minute window still need data structures or bounded scanning to avoid quadratic work.
 - **Compare every global pair:** This is also `O(n^2)` but wastes comparisons across different names. The dictionary limits scans to potentially relevant pairs.
 - **Mark only the later transaction:** Both members of a qualifying pair are invalid, so both indices must be added.
 - **Use `< 60` instead of `<= 60`:** The rule includes exactly 60 minutes, so the comparison must be inclusive.
@@ -108,8 +108,8 @@ Grouping by name avoids comparing transactions belonging to different people. Th
 - **Duplicate textual records:** Separate indices remain separate transactions and can both appear in the returned list.
 - **Any output order:** Set iteration is acceptable because ordering is explicitly unrestricted.
 - **Manifest mismatch:** The exact nested same-name scans are quadratic in the worst case, not `O(n log n)`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,7 +74,7 @@ The small denominator addition regularizes the undefined gradient when the candi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a center not exactly equal to customer `i`, that custome... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ The returned `dist` was computed at the position before that final tiny update. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Weiszfeld's algorithm:** A specialized geometr:** - **Weiszfeld's algorithm:** A specialized geometric-median iteration often converges faster, but it needs careful handling when the iterate lands on a customer point.
+- **Weiszfeld's algorithm:** A specialized geometric-median iteration often converges faster, but it needs careful handling when the iterate lands on a customer point.
 - **Nested ternary search:** Convexity can support searches over coordinates with inner and outer iterations, which may explain an $I^2$ style bound but is not the stored method.
 - **Hill climbing over directions:** Repeatedly test neighboring positions while shrinking a spatial step. It is intuitive but also approximate.
 - **One customer:** The exact minimum sum is zero at that customer's location.
@@ -128,8 +128,8 @@ The returned `dist` was computed at the position before that final tiny update. 
 - **Tiny alpha:** It guarantees eventual small updates but not independently certified objective accuracy.
 - **Returned iteration value:** `dist` corresponds to the pre-update point of the terminating iteration.
 - **Required import:** `sqrt` must be available from `math`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

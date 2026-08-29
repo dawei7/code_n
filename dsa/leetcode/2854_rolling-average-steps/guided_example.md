@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ORDER BY steps_date` places that user's recorded days in as... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-way self-join by exact dates:** Join eac:** - **Three-way self-join by exact dates:** Join each row to records one and two days earlier for the same user, then average their counts. It directly enforces calendar adjacency but performs more joins.
+- **Three-way self-join by exact dates:** Join each row to records one and two days earlier for the same user, then average their counts. It directly enforces calendar adjacency but performs more joins.
 - **Calendar range frame:** A date-based range can express time span, but it must also ensure exactly all three daily rows exist; the LAG check is explicit and reliable here.
 - **Fewer than three user records:** `LAG(..., 2)` is null, so no output row is produced.
 - **Three recorded rows with a gap:** Their date difference exceeds two and the row is filtered out even though the row frame has size three.
@@ -97,8 +97,8 @@ We maintain the core conceptual parameters and state variables:
 - **Rounding:** `ROUND` occurs after AVG, not on individual step counts.
 - **Partial internal averages:** They exist in the CTE but are removed by `st = 1`.
 - **Required order:** Ordinal ordering refers to user ID and step date in the outer select list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

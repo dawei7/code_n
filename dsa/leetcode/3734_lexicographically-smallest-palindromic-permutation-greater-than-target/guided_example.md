@@ -63,7 +63,7 @@ The forward scan stops when the next target letter is unavailable or the entire 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `remaining` stores unused first-half letter counts,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If it is equal or smaller, the algorithm must change some position in the first 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate palindromic permutations:** Even hal:** - **Enumerate palindromic permutations:** Even halving the permutation space remains factorial. Frequency-guided pivot construction jumps directly to the smallest successor.
+- **Enumerate palindromic permutations:** Even halving the permutation space remains factorial. Frequency-guided pivot construction jumps directly to the smallest successor.
 - **Find a next permutation of an arbitrary half:** Sorting the half and repeatedly advancing can traverse many permutations. Matching and backtracking locate the successor relative to `target` directly.
 - **Ignore odd frequencies:** More than one odd count makes mirrored pairing impossible, so this feasibility check must precede construction.
 - **Compare only the first half:** When halves match, the middle and mirrored portion can determine whether the palindrome is greater; the source correctly compares the full palindrome.
@@ -114,8 +114,8 @@ If it is equal or smaller, the algorithm must change some position in the first 
 - **Length one:** The sole letter is the only palindrome; it is returned only when strictly greater than the one-character target.
 - **Exact equality with target:** Equality fails the strict condition and triggers backtracking.
 - **Restoring counts:** Every popped match must return to `remaining` or later pivots would search an incomplete multiset.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

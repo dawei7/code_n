@@ -51,7 +51,7 @@ Once a prefix ends with an odd value, the next position must be even, then odd, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Once a prefix ends with an odd value, the next position must... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source precomputes `factorial[r] = r!` for every $r$ through $n$. It stores 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all permutations and filter:** There :** - **Generate all permutations and filter:** There are $n!$ permutations, making enumeration impossible even for moderate $n$.
+- **Generate all permutations and filter:** There are $n!$ permutations, making enumeration impossible even for moderate $n$.
 - **Generate only alternating permutations:** Their count is still the product of odd and even factorials, which is enormous.
 - **Use a generic permutation factorial number system:** It ignores forced parity slots; each prefix block here has `odd! * even!` completions rather than simply `remaining!`.
 - **Cap factorials at \(10^{15}+1\):** This would reduce big-integer work because larger exact counts are indistinguishable for the allowed rank, but the protected source stores exact factorials.
@@ -98,8 +98,8 @@ The source precomputes `factorial[r] = r!` for every $r$ through $n$. It stores 
 - **Unavailable parity:** The remaining-count test prevents selecting a value that would strand too many numbers of one parity.
 - **List mutation:** The chosen value is popped only after its block is selected, and the candidate loop ends immediately afterward.
 - **Out-of-range \(k\):** Failure to select at any position returns `[]` as required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

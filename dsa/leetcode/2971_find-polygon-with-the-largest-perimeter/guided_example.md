@@ -65,7 +65,7 @@ This positive-value argument is essential. If zero or negative side lengths were
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a candidate polygon’s longest chosen side is `nums[t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For `nums = [1, 12, 1, 2, 5, 50, 3]`, sorting gives `[1, 1, 2, 3, 5, 12, 50]`. P
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every subset:** There are exponentially ma:** - **Try every subset:** There are exponentially many subsets. Positivity proves that the best candidate for each longest side is its complete sorted prefix.
+- **Try every subset:** There are exponentially many subsets. Positivity proves that the best candidate for each longest side is its complete sorted prefix.
 - **Running sum without a prefix list:** The editorial-style implementation can keep one scalar sum and achieve the same $O(N\log N)$ time with less explicit storage, but the exact solution materializes `s`.
 - **Only test triples:** A valid polygon may need four or more smaller sides to outweigh a long side, so triangle-only logic misses answers such as the five-side optimum in the example.
 - **Equality:** `sum(other sides) == longest` is degenerate and must be rejected; the comparison is strict.
@@ -115,8 +115,8 @@ For `nums = [1, 12, 1, 2, 5, 50, 3]`, sorting gives `[1, 1, 2, 3, 5, 12, 50]`. P
 - **Duplicate lengths:** They are separate usable sides and all contribute to the prefix sum.
 - **Large sums:** The perimeter can exceed 32-bit integer range; Python’s unbounded integers avoid overflow.
 - **Input mutation:** The array remains sorted after the call.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ If `j`'s degree becomes one after removal, it is now a leaf and is enqueued. Fin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When leaf `i` is popped, it is appended to `seq`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Its residual degree therefore never drops below two during leaf peeling, so it n
 
 ## 6. Traps This Instance Exposes
 
-- **- **Multi-source BFS from cycle nodes:** After pee:** - **Multi-source BFS from cycle nodes:** After peeling, enqueue every residual cycle node at distance zero and expand outward. This matches the manifest and also runs in linear time.
+- **Multi-source BFS from cycle nodes:** After peeling, enqueue every residual cycle node at distance zero and expand outward. This matches the manifest and also runs in linear time.
 - **DFS cycle detection:** Find one back edge, mark the cycle path through parents, then traverse attached trees. It works but recursion depth may be large.
 - **All nodes on the cycle:** No degree-one node enters the queue, `seq` stays empty, and every answer correctly remains zero.
 - **Single long branch:** Peeling records nodes from farthest to nearest; reversal restores distances from nearest to farthest.
@@ -109,8 +109,8 @@ Its residual degree therefore never drops below two during leaf peeling, so it n
 - **No second graph traversal:** Reverse peel order replaces multi-source BFS in the exact source.
 - **Input preservation:** Edge descriptions are read into separate mutable sets.
 - **Manifest discrepancy:** The solution peels plus reverse-propagates; it does not run the summarized BFS.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

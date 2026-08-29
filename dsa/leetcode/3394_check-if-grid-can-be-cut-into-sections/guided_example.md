@@ -51,7 +51,7 @@ The source builds start/end events for both axes. Marker one is a start and mark
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source builds start/end events for both axes.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source builds start/end events for both axes. Marker one is a start and mark
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort intervals by start and merge:** It yields:** - **Sort intervals by start and merge:** It yields the same group count and is the editorial's formulation.
+- **Sort intervals by start and merge:** It yields the same group count and is the editorial's formulation.
 - **Try coordinate cuts directly:** Coordinates may reach $10^9$, so dense scanning is impossible.
 - **Exactly three groups:** Two cuts separate them directly.
 - **More than three groups:** Choose cuts so all three sections remain nonempty; extra groups can share a section.
@@ -102,8 +102,8 @@ The source builds start/end events for both axes. Marker one is a start and mark
 - **Helper name:** `countLineIntersections` actually counts completed projection groups.
 - **Unused `n`:** It is part of the contract but unnecessary to the algorithm.
 - **Input preservation:** Only new event tuples are sorted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

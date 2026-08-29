@@ -77,7 +77,7 @@ representable.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `Trie` node has a 26-position `children` array and an i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ number of board cells used in the current path.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run board DFS once per word:** This avoids a t:** - **Run board DFS once per word:** This avoids a trie but repeats shared-prefix exploration for many candidates. Its cost grows with both the number of words and the board search space, which is especially poor when the dictionary is large.
+- **Run board DFS once per word:** This avoids a trie but repeats shared-prefix exploration for many candidates. Its cost grows with both the number of words and the board search space, which is especially poor when the dictionary is large.
 - **Hash set plus prefix set:** Store complete words and every valid prefix, build the current path string during DFS, and stop when it is not in the prefix set. It recreates trie-like information with duplicated strings and extra path construction.
 - **Delete exhausted trie branches:** After reporting a terminal word, recursively remove nodes that have no terminal reference and no children. The editorial uses this optimization to reduce later searches; it can be faster but requires careful parent bookkeeping and is absent from the exact source.
 - **Separate visited matrix:** It preserves the board without temporary mutation but needs $O(mn)$ extra space or repeated allocation. In-place marking is safe because `'#'` is outside the lowercase board alphabet and every call restores its cell.
@@ -136,8 +136,8 @@ number of board cells used in the current path.
 - **No candidate begins with a cell's letter:** The outer loop still calls DFS, but its first child test returns immediately. No marking or neighbor exploration occurs.
 - **No matches anywhere:** No endpoint reference is reached, `ans` stays empty, and all temporary board marks are restored normally.
 - **Output order:** The nested board scan, neighbor offset order, and trie paths determine discovery order. The contract allows any order, so no sorting step is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

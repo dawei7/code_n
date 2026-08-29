@@ -131,7 +131,7 @@ Thus, the answer is $0 + 1 + 1 + 1 = 3$.
 	</tbody>
 </table>
 
-Thus, the answer is $1 + 0 + 1 = 2$.​​​​​​​
+Thus, the answer is $1 + 0 + 1 = 2$.
 
 #### Example 3
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
+You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $i^{\text{th}}$ point on the Cartesian plane.
 
 The objective is to compute `3` from `{"points": [[1, 0], [2, 0], [3, 0], [2, 2], [3, 2]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ The source stores this count in `t`. Heights containing zero or one point produc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a height contains `v` points, the number of unordered end... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After adding that contribution, `s += t` makes the current segments available to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Double loop over heights:** Compute each segme:** - **Double loop over heights:** Compute each segment count, then multiply every pair. It is correct but can take `O(h^2)` time.
+- **Double loop over heights:** Compute each segment count, then multiply every pair. It is correct but can take `O(h^2)` time.
 - **Prefix sum of segment counts:** This is exactly the role of scalar `s`; no prefix array is necessary.
 - **Enumerate all four-point subsets:** It costs `O(n^4)` and repeats geometry checks.
 - **One point at a height:** It creates no horizontal side and contributes zero.
@@ -118,8 +118,8 @@ After adding that contribution, `s += t` makes the current segments available to
 - **Counter iteration order:** It affects which height is “earlier” but not the total over unordered height pairs.
 - **Input preservation:** The source reads coordinates and never sorts or mutates `points`.
 - **Missing imports:** Standalone use must provide `Counter` and `List`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

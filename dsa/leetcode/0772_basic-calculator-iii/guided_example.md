@@ -59,7 +59,7 @@ The number is not committed immediately because later digits may belong to it. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When a digit is read, `num = num * 10 + digit`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ That value replaces `num`, so the outer level treats the entire parenthesized ex
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shunting-yard algorithm:** Convert to postfix :** - **Shunting-yard algorithm:** Convert to postfix using operator stacks, then evaluate. It is iterative but requires more explicit machinery.
-- **- **Recursive-descent parser by grammar levels:** :** - **Recursive-descent parser by grammar levels:** Separate expression, term, and factor functions. This is very clear and avoids the signed-term trick.
-- **- **Use `//` for division:** It is wrong for negat:** - **Use `//` for division:** It is wrong for negative quotients because it floors instead of truncating toward zero.
+- **Shunting-yard algorithm:** Convert to postfix using operator stacks, then evaluate. It is iterative but requires more explicit machinery.
+- **Recursive-descent parser by grammar levels:** Separate expression, term, and factor functions. This is very clear and avoids the signed-term trick.
+- **Use `//` for division:** It is wrong for negative quotients because it floors instead of truncating toward zero.
 
 ---
 

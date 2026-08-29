@@ -66,7 +66,7 @@ missing cell or invent padding.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each input record, the loop runs `i` from 1 through `NF`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ depending on an unrelated empty variable.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Clear first-row assignment:** Replace `re$i` w:** - **Clear first-row assignment:** Replace `re$i` with `$i`; this removes reliance on an uninitialized variable without changing the algorithm.
+- **Clear first-row assignment:** Replace `re$i` with `$i`; this removes reliance on an uninitialized variable without changing the algorithm.
 - **Store individual cells:** Save `cell[NR,i]` and print later; clearer indexing but still $O(rc)$ storage and more output logic.
 - **Stream by repeated column scans:** Read the file once per column to reduce stored output, but multiplies file I/O and requires knowing the column count.
 - **Single row:** Each input field becomes a one-field output line.
@@ -125,8 +125,8 @@ depending on an unrelated empty variable.
 - **Multiple separator spaces:** Default awk splitting collapses them rather than treating them as empty columns.
 - **Fields containing spaces:** Unsupported because space is the delimiter.
 - **Working directory:** Must contain `file.txt` at the referenced path.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

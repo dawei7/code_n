@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Selecting February 2024.** The `WHERE` clause uses:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Half-open date range:** `tweet_date >= '2024-0:** - **Half-open date range:** `tweet_date >= '2024-02-01' AND tweet_date < '2024-03-01'` usually gives an index-friendlier filter and includes February 29 without hard-coding the month's last day.
+- **Half-open date range:** `tweet_date >= '2024-02-01' AND tweet_date < '2024-03-01'` usually gives an index-friendlier filter and includes February 29 without hard-coding the month's last day.
 - **Regular-expression extraction:** A regex can recognize more separators or validate hashtag characters, but it is unnecessary for the stated one-hashtag, space-delimited input and may cost more.
 - **Multiple hashtags per tweet:** This solution is not designed for that contract. Extracting only the text after the final `#` would lose earlier occurrences; problem 3103 requires a different expansion strategy.
 - **Hashtag at the end:** With no following space, the outer `SUBSTRING_INDEX` simply returns all remaining text, which is the desired token.
@@ -101,8 +101,8 @@ We maintain the core conceptual parameters and state variables:
 - **`GROUP BY 1`:** Positional grouping is concise but less self-documenting than repeating the expression or using a subquery; it still groups by the selected hashtag in MySQL.
 - **`ORDER BY 2, 1`:** The same positional shorthand is correct but becomes fragile if select-list columns are reordered.
 - **No authentication dependency:** The explanation is based solely on the local description and the exact SQL source, as required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

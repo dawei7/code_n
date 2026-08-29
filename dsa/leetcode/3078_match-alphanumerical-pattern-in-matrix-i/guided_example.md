@@ -51,7 +51,7 @@ The outer loops enumerate rows first and columns second. This is exactly lexicog
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loops enumerate rows first and columns second.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If the pattern is larger than the board in either dimension, the corresponding r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Include literals in reverse reservations:** Re:** - **Include literals in reverse reservations:** Recording fixed digit symbols in the reverse mapping would enforce the full distinctness wording and repair the source defect.
+- **Include literals in reverse reservations:** Recording fixed digit symbols in the reverse mapping would enforce the full distinctness wording and repair the source defect.
 - **Canonical encoding:** Convert each pattern and candidate block to equality-class signatures, while separately checking literals; this can make bijection rules explicit.
 - **Repeated letter:** Every occurrence must see the same board digit.
 - **Two different letters:** They must use different digits, enforced by `d2`.
@@ -104,8 +104,8 @@ If the pattern is larger than the board in either dimension, the corresponding r
 - **Input preservation:** Neither matrix is edited; mappings are hypothetical and local.
 - **Literal repetitions:** Two identical literal characters naturally require the same digit because both are compared directly with that literal value.
 - **Dictionary update after checks:** The source verifies existing forward and reverse constraints before assigning, so a conflicting cell cannot overwrite evidence and hide the mismatch.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

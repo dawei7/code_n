@@ -66,9 +66,7 @@ choose `d-k` frequencies with minimum possible sum.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `d` be the current number of distinct letters.
-
-If `d <=... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +107,7 @@ An exchange argument proves this. If a proposed solution deletes a class of freq
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delete arbitrary occurrences greedily:** Remov:** - **Delete arbitrary occurrences greedily:** Removing some copies of a still-present letter cannot lower the distinct count and wastes deletions.
+- **Delete arbitrary occurrences greedily:** Removing some copies of a still-present letter cannot lower the distinct count and wastes deletions.
 - **Keep the k most frequent classes:** This is exactly equivalent and may be implemented by sorting descending and subtracting their sum from `n`.
 - **Use a 26-slot count array:** It avoids hashing and retains the same linear/fixed-space bounds.
 - **Try every subset of letters:** At most 26 makes it theoretically bounded, but frequency sorting gives the optimum directly.
@@ -122,8 +120,8 @@ An exchange argument proves this. If a proposed solution deletes a class of freq
 - **k equals zero:** Not allowed; the compact negative-zero slice would need special handling in a generalized problem.
 - **Lowercase guarantee:** It is what makes the Counter's maximum size a constant 26.
 - **Partial class deletion:** Never useful for the distinct-count objective, which is the key reduction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

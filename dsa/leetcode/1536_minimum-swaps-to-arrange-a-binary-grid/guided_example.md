@@ -63,7 +63,7 @@ It then performs those swaps on `pos` itself. Swapping `pos[k]` with `pos[k - 1]
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The top row is most restrictive: it may contain a one only i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ No sequence of adjacent row swaps can move that row upward using fewer steps, so
 
 ## 6. Traps This Instance Exposes
 
-- **- **Swap complete grid rows:** It produces the sam:** - **Swap complete grid rows:** It produces the same answer but moves $N$ cells per adjacent swap; updating only `pos` is sufficient.
+- **Swap complete grid rows:** It produces the same answer but moves $N$ cells per adjacent swap; updating only `pos` is sufficient.
 - **Recount trailing zeros repeatedly:** It is correct but repeats work that one preprocessing pass avoids.
 - **Choose any eligible row:** Feasibility may survive, but choosing a farther row can add unnecessary adjacent swaps; the nearest eligible row is the minimum-cost greedy choice.
 - **All-zero row:** Its `pos` value is negative one, so it is eligible for every target position.
@@ -112,8 +112,8 @@ No sequence of adjacent row swaps can move that row upward using fewer steps, so
 - **Adjacent-only rule:** The distance `k-i` would not be the correct cost if arbitrary row swaps counted as one operation.
 - **Column swaps:** They are not allowed and are never used.
 - **Last target row:** Every row is eligible there because no column lies to the right of the last diagonal cell.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

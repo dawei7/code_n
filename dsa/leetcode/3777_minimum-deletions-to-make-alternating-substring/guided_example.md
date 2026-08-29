@@ -67,7 +67,7 @@ Index `i` represents the edge between characters `i-1` and `i`. A one means that
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates `nums` of length `n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ For a one-character range, `l=r` and the two prefix queries are equal, correctly
 
 ## 6. Traps This Instance Exposes
 
-- **- **Segment tree:** It can maintain the same edge :** - **Segment tree:** It can maintain the same edge sums with $O(\log N)$ updates and queries, but a Fenwick tree is smaller for point updates plus range sums.
+- **Segment tree:** It can maintain the same edge sums with $O(\log N)$ updates and queries, but a Fenwick tree is smaller for point updates plus range sums.
 - **Recompute each substring:** Scanning every requested range can cost $O(NQ)$.
 - **Maintain characters and recompare neighbors:** This is valid, but the binary toggle property lets the source update indicators directly.
 - **Count equal pairs including edge `(l-1,l)`:** That edge crosses the substring boundary and must be excluded.
@@ -127,8 +127,8 @@ For a one-character range, `l=r` and the two prefix queries are equal, correctly
 - **Binary alphabet dependency:** XOR-toggling equality is guaranteed only because every character has exactly one opposite value.
 - **Output order:** Answers are appended only for type-two queries and retain their relative query order.
 - **Input string:** It remains immutable; `nums` is the maintained state representation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

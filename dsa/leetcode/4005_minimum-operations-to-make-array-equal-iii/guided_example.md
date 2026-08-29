@@ -54,8 +54,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - If `x == t`, the cost is `0`.
-- If `x` divides `t`, multip... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +89,7 @@ The last case is always achievable when both values exceed one. Multiply `x` by 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every integer target:** Targets are unboun:** - **Try every integer target:** Targets are unbounded because multiplication can grow values arbitrarily. The absent-target baseline and exact evaluation of present targets reduce the search to `U` candidates.
+- **Try every integer target:** Targets are unbounded because multiplication can grow values arbitrarily. The absent-target baseline and exact evaluation of present targets reduce the search to `U` candidates.
 - **Compute pairwise transformation costs:** Comparing every value with every target takes `O(U^2)` divisibility checks. Divisor enumeration aggregates both directions more efficiently.
 - **Use a greatest common divisor only:** Sharing a common factor is not the same as one value dividing the other. Unrelated values still need two operations even when their gcd exceeds one.
 - **Prime-factor distance:** One operation may multiply or divide by a composite integer, so counting individual prime additions/removals would overestimate the cost.
@@ -107,8 +106,8 @@ The last case is always achievable when both values exceed one. Multiply `x` by 
 - **Large maximum value:** Only primes through `sqrt V` are sieved. Any leftover factor after trial division is prime.
 - **Input preservation:** The source builds derived counters and never mutates `nums`.
 - **Manifest time bound:** The number-theory terms are correct for the distinct-value work, but a complete bound for the exact source also includes the initial `O(n)` scans.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

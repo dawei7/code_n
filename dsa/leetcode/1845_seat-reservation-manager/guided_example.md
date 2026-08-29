@@ -51,7 +51,7 @@ The single field `q` represents exactly the set of available seat numbers. Reser
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The single field `q` represents exactly the set of available... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The single field `q` represents exactly the set of available seat numbers. Reser
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counter plus returned-seat heap:** Track the s:** - **Counter plus returned-seat heap:** Track the smallest never-reserved number and heap only unreserved seats. This avoids storing all seats initially and often uses less memory.
+- **Counter plus returned-seat heap:** Track the smallest never-reserved number and heap only unreserved seats. This avoids storing all seats initially and often uses less memory.
 - **Balanced ordered set:** It also supports minimum removal and reinsertion in logarithmic time, but Python’s standard library has no built-in tree set.
 - **Boolean array plus linear scan:** Availability flags are simple, but finding the next smallest seat can degrade to `O(n)` after arbitrary unreservations.
 - **Simple increasing counter alone:** It fails when a previously reserved smaller seat is unreserved and must be chosen before new larger seats.
@@ -98,8 +98,8 @@ The single field `q` represents exactly the set of available seat numbers. Reser
 - **Seat bounds:** The constructor and valid calls ensure every stored number remains from one through `n`.
 - **Already-heapified initialization:** The increasing list needs no `heapify` call; adding one would be correct but redundant.
 - **No stored `n`:** The heap fully captures runtime availability, so the constructor parameter need not remain as a field.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

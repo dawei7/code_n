@@ -65,7 +65,7 @@ Applying both operations maps every permitted formatting variation to the same r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Lowercasing alone leaves leading and trailing spaces, so vis... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The fixed-width format also sorts chronologically as text: earlier years compare
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group raw names:** It is incorrect because cas:** - **Group raw names:** It is incorrect because case and outer spaces would split one product into multiple groups.
+- **Group raw names:** It is incorrect because case and outer spaces would split one product into multiple groups.
 - **Normalize after grouping:** It can produce duplicate-looking result rows whose counts were calculated separately; normalization must precede grouping.
 - **Group by month number only:** It incorrectly combines the same month across different years.
 - **Use YEAR and MONTH separately:** It is valid but needs formatting afterward to produce the exact `YYYY-MM` output.
@@ -117,8 +117,8 @@ The fixed-width format also sorts chronologically as text: earlier years compare
 - **Different products in one month:** They remain separate because both key columns participate in grouping.
 - **Chronological text order:** Fixed four-digit year and two-digit month ensure ascending string order matches ascending month order.
 - **CTE execution:** MySQL may inline or materialize `t`, but either physical choice has the same relational meaning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

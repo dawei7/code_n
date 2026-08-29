@@ -59,7 +59,7 @@ The slot semaphore is released only after the item has left the deque. A produce
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dequeue` is the mirror image.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This establishes the capacity and underflow safety properties. A producer must o
 
 ## 6. Traps This Instance Exposes
 
-- **- **One mutex plus two condition variables:** Prot:** - **One mutex plus two condition variables:** Protect the deque with a lock, wait on `not_full` in enqueue, and wait on `not_empty` in dequeue. This is a standard design and makes all state predicates explicit, but requires careful use of loops around condition waits.
+- **One mutex plus two condition variables:** Protect the deque with a lock, wait on `not_full` in enqueue, and wait on `not_empty` in dequeue. This is a standard design and makes all state predicates explicit, but requires careful use of loops around condition waits.
 - **Busy waiting:** Repeatedly checking length until space or data appears wastes CPU and has poor progress behavior. Blocking synchronization primitives are the appropriate tool.
 - **One semaphore only:** An item semaphore prevents underflow but not overflow; a slot semaphore prevents overflow but not underflow. The queue needs both resource counts.
 - **Capacity one:** The design becomes a synchronized single-slot handoff. A second producer blocks until the stored item is removed, and an empty consumer blocks until a producer appends.
@@ -110,8 +110,8 @@ This establishes the capacity and underflow safety properties. A producer must o
 - **Final size:** Each completed enqueue adds one item and each completed dequeue removes one. After all calls finish, `len(q)` equals completed enqueues minus completed dequeues.
 - **Exception safety:** In a more general production implementation, an unexpected exception between acquiring and releasing permits would require cleanup to restore semaphore counts. The judge supplies ordinary integer operations for which these deque actions are expected to complete.
 - **Built-in bounded queue:** A library queue could provide the behavior directly, but the interview constraint explicitly asks for implementing the coordination rather than using that ready-made abstraction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

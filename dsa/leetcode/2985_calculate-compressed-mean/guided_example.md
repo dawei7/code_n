@@ -61,7 +61,7 @@ In the sample, the products are 500, 2,000, 2,400, and 4,000, totaling 8,900 ite
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one compressed row, the total number of items represente... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -77,8 +77,8 @@ is the total expanded order count. The sample denominator is $500+1000+800+1000=
 Dividing the two sums gives the weighted mean:
 
 $$
-\frac{\sum(\texttt{item_count}\cdot\texttt{order_occurrences})}
-{\sum\texttt{order_occurrences}}.
+\frac{\sum(\texttt{item\_count}\cdot\texttt{order\_occurrences})}
+{\sum\texttt{order\_occurrences}}.
 $$
 
 For the sample this is $8900/3300\approx2.696969\ldots$.
@@ -109,7 +109,7 @@ For the sample this is $8900/3300\approx2.696969\ldots$.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`AVG(item_count)`:** This averages compressed :** - **`AVG(item_count)`:** This averages compressed rows equally and is wrong whenever occurrence weights differ.
+- **`AVG(item_count)`:** This averages compressed rows equally and is wrong whenever occurrence weights differ.
 - **Expand every represented order:** It produces the same statistic but can require enormous time and storage; weighted sums are the algebraic compression.
 - **Average row products:** `AVG(item_count * order_occurrences)` divides by compressed-row count rather than represented-order count and is incorrect.
 - **Round intermediate values:** Only the final quotient should be rounded to avoid accumulated rounding error.
@@ -118,8 +118,8 @@ For the sample this is $8900/3300\approx2.696969\ldots$.
 - **Large weights:** Aggregate multiplication and sums should use the database’s promoted numeric types; the query avoids materializing repeated rows.
 - **Empty input:** The exact SQL returns a row containing `NULL` because both global sums are null; no alternative behavior is specified in the source.
 - **Output order:** A single-row result needs no `ORDER BY`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

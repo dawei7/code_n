@@ -68,7 +68,7 @@ For an increasing run such as ratings `[1, 3, 5, 8]`, the required counts become
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every entry begins at one, satisfying the universal minimum.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ For a decreasing rating run `[8, 5, 3, 1]`, the right requirements become `[4, 3
 
 ## 6. Traps This Instance Exposes
 
-- **- **One candy array and two passes:** Build left r:** - **One candy array and two passes:** Build left requirements in one array, then scan right-to-left and raise an entry with `max(current, right-neighbor + 1)` when needed. It uses $O(n)$ space with one array.
+- **One candy array and two passes:** Build left requirements in one array, then scan right-to-left and raise an entry with `max(current, right-neighbor + 1)` when needed. It uses $O(n)$ space with one array.
 - **Slope counting:** Track lengths of increasing and decreasing rating runs and add triangular-number contributions. It achieves $O(1)$ auxiliary space but peak and plateau accounting is easier to get wrong.
 - **Repeated relaxation:** Start everyone at one and repeatedly repair violated neighbor constraints until stable. It is intuitive but can require $O(n^2)$ time.
 - **Priority queue by rating:** Process children from lower to higher ratings so lower-rated neighbor counts are known first. It works but adds $O(n\log n)$ sorting or heap cost.
@@ -122,8 +122,8 @@ For a decreasing rating run `[8, 5, 3, 1]`, the right requirements become `[4, 3
 - **Valleys:** A local low point may remain at one even when both neighbors require larger counts.
 - **Uneven peaks:** Taking the maximum, rather than adding directional counts, prevents double-counting the peak.
 - **Runtime dependency:** The selected source uses `List` in its annotation without importing it. A standalone module needs `from typing import List`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

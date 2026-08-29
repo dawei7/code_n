@@ -51,7 +51,7 @@ The useful factor digits are therefore two through nine. The method repeatedly e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The useful factor digits are therefore two through nine.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The useful factor digits are therefore two through nine. The method repeatedly e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime-factor count construction:** Count twos,:** - **Prime-factor count construction:** Count twos, threes, fives, and sevens, reject any other prime, then pack exponents into digits nine, eight, six, and four. This can make the optimality argument more explicit but requires careful case ordering.
+- **Prime-factor count construction:** Count twos, threes, fives, and sevens, reject any other prime, then pack exponents into digits nine, eight, six, and four. This can make the optimality argument more explicit but requires careful case ordering.
 - **Breadth-first search over numbers:** Generating candidate decimal strings grows exponentially and is unnecessary.
 - **Target one:** Return digit one; an empty string is not a positive integer representation.
 - **Prime target two through seven:** The one-digit target itself is the smallest answer.
@@ -97,8 +97,8 @@ The useful factor digits are therefore two through nine. The method repeatedly e
 - **Ascending final order:** It minimizes the number among all permutations of the chosen digit multiset.
 - **Minimum digit count first:** A lexicographically attractive longer representation can never beat a shorter positive integer.
 - **Large output:** String construction avoids integer overflow or parsing concerns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

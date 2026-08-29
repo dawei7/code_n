@@ -77,7 +77,7 @@ The prefix table depends only on `pattern`, so the source builds it once and reu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Searching naively from every starting position can cost `O(N... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ This fallback is crucial for overlaps. If pattern `"aba"` matches ending at one 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search from every starting cell:** Comparing u:** - **Search from every starting cell:** Comparing up to `P` characters at each of `N` starts can cost `O(NP)`. KMP guarantees linear search.
+- **Search from every starting cell:** Comparing up to `P` characters at each of `N` starts can cost `O(NP)`. KMP guarantees linear search.
 - **Run a two-dimensional matcher:** The wrap definitions are not ordinary rectangular patterns. Flattening precisely follows their one-dimensional traversal and is simpler.
 - **Mark every matched cell with an inner loop:** A pattern like repeated `"a"` can have many overlapping matches, making total marking `O(NP)`. Difference ranges mark each occurrence in constant time.
 - **Use match counts instead of booleans:** Counts are useful only while accumulating interval coverage. The final condition is presence, so `active > 0` is sufficient.
@@ -144,8 +144,8 @@ This fallback is crucial for overlaps. If pattern `"aba"` matches ending at one 
 - **One-row grid:** Horizontal order is the row; vertical order advances one-cell columns, which happens to be the same sequence.
 - **One-column grid:** Both traversals likewise coincide.
 - **No matches in one orientation:** Its coverage array is all false, so the final answer is zero regardless of the other orientation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

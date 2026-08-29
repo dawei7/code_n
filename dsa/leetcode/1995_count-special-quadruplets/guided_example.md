@@ -68,7 +68,7 @@ These bounds avoid invalid access and unnecessary iterations while retaining eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first index must leave room for three later positions, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The answer is four. A value-frequency set would risk collapsing these different 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pair-sum frequency scan:** Rearrange to `nums[:** - **Pair-sum frequency scan:** Rearrange to `nums[a] + nums[b] = nums[d] - nums[c]` and maintain only pairs satisfying the index boundary, achieving $O(N^2)$ time with frequency storage.
+- **Pair-sum frequency scan:** Rearrange to `nums[a] + nums[b] = nums[d] - nums[c]` and maintain only pairs satisfying the index boundary, achieving $O(N^2)$ time with frequency storage.
 - **Triple loops plus value lookup:** Can reduce one index search, but multiplicity and the position-after-$c$ condition must be maintained carefully.
 - **Sort the array:** Incorrect because quadruplets depend on original index order, not only multiset values.
 - **Exactly four elements:** The loops test the sole possible quadruplet once.
@@ -119,8 +119,8 @@ The answer is four. A value-frequency set would risk collapsing these different 
 - **Maximum length 50:** Makes the exact $\binom{N}{4}$ enumeration practical despite its $O(N^4)$ asymptotic class.
 - **Manifest mismatch:** The exact source is exhaustive, not the quadratic pair-count approach.
 - **Input preservation:** The array is neither sorted nor modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

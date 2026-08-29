@@ -72,11 +72,7 @@ Changing the order of these clauses would change the ranking policy. For example
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The table's selected column order is:
-
-
-
-Therefore, `2 DESC`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +115,7 @@ The database does not add medal counts together. Ten gold and zero silver always
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit column names:** `ORDER BY gold_medals:** - **Explicit column names:** `ORDER BY gold_medals DESC, silver_medals DESC, bronze_medals DESC, country ASC` is equivalent and more robust if select-column order changes.
+- **Explicit column names:** `ORDER BY gold_medals DESC, silver_medals DESC, bronze_medals DESC, country ASC` is equivalent and more robust if select-column order changes.
 - **Combined medal total:** Sorting by total medals is wrong because the ranking is lexicographic by medal type, not by sum.
 - **Omit the country key:** Complete medal ties would have unspecified row order and fail the explicit name tie-break.
 - **Country ordered descending:** This reverses the final rule and would put USA before China in the example.
@@ -129,8 +125,8 @@ The database does not add medal counts together. Ten gold and zero silver always
 - **Zero medals:** Zero values sort normally; they do not require null handling.
 - **One row:** It is returned unchanged because no comparison is necessary.
 - **Positional-key fragility:** `2`, `3`, `4`, and `1` rely on the `SELECT *` column order shown by the schema.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

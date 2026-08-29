@@ -61,7 +61,7 @@ If no dictionary word has the target's length, `differences` is empty. Then the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Expanding any valid abbreviation of `target` always accounts... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The constraint that `dictionary` does not contain `target` guarantees that each 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every one of the `2^m` masks:** Test:** - **Enumerate every one of the `2^m` masks:** Test each abbreviation against every relevant word and keep the shortest. This is conceptually simpler and has the same broad exponential ceiling, but it ignores conflict-directed branching and length pruning, so it performs much more unnecessary work in typical inputs.
+- **Enumerate every one of the `2^m` masks:** Test each abbreviation against every relevant word and keep the shortest. This is conceptually simpler and has the same broad exponential ceiling, but it ignores conflict-directed branching and length pruning, so it performs much more unnecessary work in typical inputs.
 - **Breadth-first search by number of kept letters:** The objective is not the number of one bits. Keeping one letter can split a numeric run into several tokens, so masks with the same popcount can have different abbreviation lengths. A correct search must use the problem's token-cost definition.
 - **Generate abbreviation strings directly:** String recursion makes conflict testing and deduplication cumbersome. Bitmasks give constant-time intersection tests and a canonical state representation.
 - **Different-length dictionary words:** They are deliberately ignored because an abbreviation's expanded length is fixed. Comparing their characters would waste work and could produce false restrictions.
@@ -117,8 +117,8 @@ The constraint that `dictionary` does not contain `target` guarantees that each 
 - **No adjacent replaced substrings:** Consecutive zero bits are emitted as one accumulated count, so the result never contains adjacent numeric components.
 - **Identical dictionary entry:** Such an entry would have a zero difference mask and make uniqueness impossible. The contract explicitly guarantees that `target` is absent from `dictionary`.
 - **Letter case and alphabet:** Inputs contain lowercase English letters, and direct character comparison correctly identifies all differing positions without normalization.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

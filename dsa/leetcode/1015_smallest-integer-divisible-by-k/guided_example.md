@@ -69,9 +69,7 @@ For `k = 1`, initialization yields zero and the first iteration immediately retu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `n = 1 % k`
-
-is the remainder of the one-digit repunit.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ No shorter repunit was divisible—otherwise an earlier iteration would already 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit factor check:** Return `-1` immediate:** - **Explicit factor check:** Return `-1` immediately when `k` is divisible by two or five, then run the remainder loop. It saves work on impossible cases but is not required.
+- **Explicit factor check:** Return `-1` immediately when `k` is divisible by two or five, then run the remainder loop. It saves work on impossible cases but is not required.
 - **Seen-remainder set:** Detect a repeated remainder directly. It uses `O(k)` space instead of relying on a fixed `k`-iteration bound.
 - **Construct the full integer:** Repeatedly compute `value = value * 10 + 1`. Arbitrary-precision values become enormous and make arithmetic unnecessarily expensive.
 - **`k = 1`:** The initialized remainder is zero, so length one is returned.
@@ -117,8 +115,8 @@ No shorter repunit was divisible—otherwise an earlier iteration would already 
 - **Repeated nonzero remainder:** It proves the deterministic sequence has entered a cycle that cannot later reach zero.
 - **Large `k`:** Memory remains constant and the loop performs at most one hundred thousand iterations.
 - **Smallest requirement:** Increasing iteration order guarantees the first returned length is minimal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ Converting `tags` to a set makes later membership tests such as `tag in x[2]` ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` begins at one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ No query-time sort is needed.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Task-ID index:** A dictionary from task ID to :** - **Task-ID index:** A dictionary from task ID to record and owner would make completion expected $O(1)$ while keeping per-user ordering separately.
+- **Task-ID index:** A dictionary from task ID to record and owner would make completion expected $O(1)$ while keeping per-user ordering separately.
 - **Sort on every query:** Plain per-user lists simplify insertion but make each retrieval $O(u\log u)$; SortedList pays ordering cost incrementally.
 - **Delete completed tasks:** Removal would shrink scans but loses stored history and requires locating the record in the ordered container.
 - **Unknown user:** Defaultdict supplies an empty SortedList, and query methods return an empty list.
@@ -114,8 +114,8 @@ No query-time sort is needed.
 - **Unique due dates:** They guarantee record ordering never depends on mutable later fields.
 - **Global task IDs:** One shared counter, not a per-user counter, satisfies sequential creation order.
 - **Completed filtering:** Records remain ordered and stored but never appear in either pending-task query.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Computing that count independently for all $n$ roots would repeat almost all wor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Computing that count independently for all $n$ roots would r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,15 +86,15 @@ Computing that count independently for all $n$ roots would repeat almost all wor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative two-pass rerooting:** Build a parent:** - **Iterative two-pass rerooting:** Build a parent and order array with an explicit stack, compute `ans[0]` during that traversal, and then process nodes in parent-before-child order using `ans[child] = ans[parent] + sign`. This avoids the recursion-limit defect while keeping $O(n)$ time and space.
+- **Iterative two-pass rerooting:** Build a parent and order array with an explicit stack, compute `ans[0]` during that traversal, and then process nodes in parent-before-child order using `ans[child] = ans[parent] + sign`. This avoids the recursion-limit defect while keeping $O(n)$ time and space.
 - **Independent search from every root:** Recounting wrong arrows for each start node costs $O(n^2)$ time and discards the one-edge rerooting relationship.
 - **Direction-sign convention:** The formulas depend on storing `+1` in the original arrow direction and `-1` in the reverse adjacency direction. Reversing that convention requires reversing both count and transition formulas.
 - **Two-node tree:** The answers are necessarily `[0,1]` or `[1,0]`; crossing the sole edge changes the count by exactly one.
 - **Already outward from one node:** That node receives answer zero. Rerooting still correctly measures how many arrows become wrong for other starts.
 - **Tree guarantee:** The parent check `j != fa` is sufficient only because the underlying graph is a tree. A general graph would require a visited set and would not have one uniquely required orientation per edge.
 - **Independent answers:** Each `answer[i]` is computed for its own optimal reversal plan. The reroot formula does not claim one fixed set of reversals works for all starts simultaneously.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The final number of dresses in every machine is forced by conservation: moves on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `divmod(sum(machines), n)` returns the quotient `k` and rema... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ When division is exact, `k` is the target dresses per machine.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate individual moves:** Choosing transfer:** - **Simulate individual moves:** Choosing transfers round by round creates a huge state space and obscures the closed-form bottlenecks. The prefix method derives the answer without constructing a schedule.
+- **Simulate individual moves:** Choosing transfers round by round creates a huge state space and obscures the closed-form bottlenecks. The prefix method derives the answer without constructing a schedule.
 - **Use only maximum prefix imbalance:** This fails for `[0, 3, 0]`, where one machine must send twice but every boundary needs net flow only one.
 - **Use only maximum local surplus:** This misses cases such as `[1, 0, 5]`, where several dresses must cross the same boundary over three moves.
 - **Non-divisible total:** Return `-1` immediately because dresses cannot be split fractionally.
@@ -95,8 +95,8 @@ When division is exact, `k` is the target dresses per machine.
 - **Deficit between two suppliers:** It may receive from both sides in one move, explaining why negative local imbalance is not converted with `abs`.
 - **Large counts:** Python integers avoid overflow in totals and prefix balances; fixed-width languages should use a sufficiently wide type.
 - **Final prefix:** It must be zero for feasible normalization, but the maximum earlier absolute prefix determines cross-boundary work.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

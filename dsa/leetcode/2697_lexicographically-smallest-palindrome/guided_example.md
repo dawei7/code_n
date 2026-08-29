@@ -59,7 +59,7 @@ The assignment to `min(cs[i], cs[j])` writes the same existing letter back to bo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `cs[i] == cs[j]`, the pair already satisfies the palindro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Changing both characters to some third letter would cost two operations and cann
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try both choices for every mismatch:** Produce:** - **Try both choices for every mismatch:** Produces exponentially many palindromes even though the smaller local choice is provably optimal.
+- **Try both choices for every mismatch:** Produces exponentially many palindromes even though the smaller local choice is provably optimal.
 - **Build only the left half:** Can reduce explicit assignments but still needs $O(n)$ output construction.
 - **Change both unequal letters to a third value:** Uses two operations where one is sufficient and violates the primary objective.
 - **Length one:** No mirrored pair exists; return the original character.
@@ -109,8 +109,8 @@ Changing both characters to some third letter would cost two operations and cann
 - **Primary versus secondary objective:** Minimum replacements is decided before lexicographic order.
 - **Original string:** It is not mutated because work occurs in `cs`.
 - **Lowercase guarantee:** Python character ordering agrees with alphabetic lexicographic order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

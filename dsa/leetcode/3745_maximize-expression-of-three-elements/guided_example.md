@@ -83,7 +83,7 @@ As a short state trace for `[3,1,3]`, the first three sets `a=3` and leaves `b` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `a` is the largest value seen so far and `b` is the second-l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ For `[-2,0,5,-2,4]`, the two largest occurrences are five and four, and the smal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate ordered triples:** There are $O(n^3):** - **Enumerate ordered triples:** There are $O(n^3)$ choices. Coefficient signs identify the optimal extremes directly.
+- **Enumerate ordered triples:** There are $O(n^3)$ choices. Coefficient signs identify the optimal extremes directly.
 - **Sort the array:** Reading the smallest and two largest positions after sorting costs $O(n\log n)$ and may mutate input. One-pass extrema are sufficient.
 - **Use the maximum twice:** The roles require distinct indices. `a` and `b` track two occurrences, including duplicates when available.
 - **Track only one maximum:** The second positive term needs the second-largest occurrence.
@@ -137,8 +137,8 @@ For `[-2,0,5,-2,4]`, the two largest occurrences are five and four, and the smal
 - **Duplicate minimum:** Any minimum occurrence distinct from the top positions can serve as `c`; values alone are sufficient for the score.
 - **Exactly three elements:** All positions must be used, and the formula assigns their roles optimally.
 - **Input order:** Roles have no positional ordering requirement, so scan order does not constrain the chosen triple.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

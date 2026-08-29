@@ -57,7 +57,7 @@ Python's `and` short-circuits. When `i==j`, concatenation is not evaluated and t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For distinct indices, `nums[i] + nums[j]` creates the string... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The source works by indices, so equal string values are never collapsed. A set w
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency map plus target splits:** Count all :** - **Frequency map plus target splits:** Count all strings, try each nonempty prefix/suffix split, and combine frequencies; avoids $N^2$ pair enumeration.
+- **Frequency map plus target splits:** Count all strings, try each nonempty prefix/suffix split, and combine frequencies; avoids $N^2$ pair enumeration.
 - **Length buckets:** Skip pairs whose lengths cannot sum to target length, improving direct enumeration but remaining potentially quadratic.
 - **Use a set:** Incorrect because duplicate input occurrences create distinct index pairs.
 - **Same index:** Explicitly rejected even if doubling its string equals target.
@@ -106,8 +106,8 @@ The source works by indices, so equal string values are never collapsed. A set w
 - **Temporary strings:** Concatenation allocates on each distinct pair test.
 - **Manifest mismatch:** The exact source is quadratic in $N$.
 - **Input preservation:** Neither the list nor its strings are modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

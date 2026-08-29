@@ -68,7 +68,7 @@ This design avoids special cases such as “if this is the first term.” A lead
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Terms after the first naturally begin after a plus or minus ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,9 +115,9 @@ Because signs are handled outside the term text, integer conversion never has to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Evaluate the entire equation in one pass:** Ma:** - **Evaluate the entire equation in one pass:** Maintain a side multiplier of plus one before `=` and negative one after it, then accumulate all variable coefficients and constants into one reduced equation. This avoids parsing the two sides separately and can avoid side-string copies, but requires careful sign composition.
-- **- **Regular-expression tokenization:** A pattern c:** - **Regular-expression tokenization:** A pattern can extract signed terms concisely. It still takes linear time, but it hides some of the parsing logic, allocates match objects, and is easier to get wrong around omitted coefficients such as `x` and `-x`.
-- **- **Symbolic algebra library:** A general solver i:** - **Symbolic algebra library:** A general solver is far more powerful than needed and introduces substantial overhead. The restricted one-variable linear grammar reduces to two integer totals directly.
+- **Evaluate the entire equation in one pass:** Maintain a side multiplier of plus one before `=` and negative one after it, then accumulate all variable coefficients and constants into one reduced equation. This avoids parsing the two sides separately and can avoid side-string copies, but requires careful sign composition.
+- **Regular-expression tokenization:** A pattern can extract signed terms concisely. It still takes linear time, but it hides some of the parsing logic, allocates match objects, and is easier to get wrong around omitted coefficients such as `x` and `-x`.
+- **Symbolic algebra library:** A general solver is far more powerful than needed and introduces substantial overhead. The restricted one-variable linear grammar reduces to two integer totals directly.
 
 ---
 

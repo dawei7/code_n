@@ -1,8 +1,8 @@
 ### 1. Description
 
-Alice has `n` balloons arranged on a rope. You are given a **0-indexed** string `colors` where $\text{colors}[i]$ is the color of the $$i^{\text{th}}$$ balloon.
+Alice has `n` balloons arranged on a rope. You are given a **0-indexed** string `colors` where $\text{colors}[i]$ is the color of the $i^{\text{th}}$ balloon.
 
-Alice wants the rope to be **colorful**. She does not want **two consecutive balloons** to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it **colorful**. You are given a **0-indexed** integer array `neededTime` where $\text{neededTime}[i]$ is the time (in seconds) that Bob needs to remove the $$i^{\text{th}}$$ balloon from the rope.
+Alice wants the rope to be **colorful**. She does not want **two consecutive balloons** to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it **colorful**. You are given a **0-indexed** integer array `neededTime` where $\text{neededTime}[i]$ is the time (in seconds) that Bob needs to remove the $i^{\text{th}}$ balloon from the rope.
 
 Return *the **minimum time** Bob needs to make the rope **colorful***.
 

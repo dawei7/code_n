@@ -57,7 +57,7 @@ Different roots mean the event connects two previously separate groups. `p[find(
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `p = list(range(n))` initially makes every person their own ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Because events are processed chronologically, this is the first timestamp whose 
 
 ## 6. Traps This Instance Exposes
 
-- **- **DSU with rank or size:** Attach the smaller tr:** - **DSU with rank or size:** Attach the smaller tree under the larger root. Combined with path compression, this supplies the standard $O(\alpha(n))$ amortized operation bound.
+- **DSU with rank or size:** Attach the smaller tree under the larger root. Combined with path compression, this supplies the standard $O(\alpha(n))$ amortized operation bound.
 - **Graph traversal after every event:** Add edges and run BFS or DFS to test connectivity. Repeating a full traversal can be much more expensive than maintaining components incrementally.
 - **Binary search over timestamps:** Test connectivity for prefixes and binary-search the first successful prefix. Each test rebuilds a graph or DSU, so the one-pass chronological method is simpler and faster.
 - **Logs already sorted:** The explicit sort still preserves the order; asymptotically it remains the dominant general step.
@@ -105,8 +105,8 @@ Because events are processed chronologically, this is the first timestamp whose 
 - **Long acquaintance chain:** DSU connectivity naturally handles transitive friendship even when two people never share a direct edge.
 - **Variable reuse:** After parent initialization, local `n` is intentionally a component counter. Code changes must not later treat it as an immutable population length.
 - **Recursive find depth:** Union by rank would also protect against tall intermediate trees and recursion concerns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

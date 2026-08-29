@@ -55,7 +55,7 @@ Using this pair is safe. The smallest value needs a complement equal to `k - num
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `s == k`, the two endpoint values form a legal operation.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Moving `r` instead would be unjustified: the largest value might pair successful
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single-pass frequency map:** For each value, c:** - **Single-pass frequency map:** For each value, consume one previously seen complement if available; otherwise store the value. This gives expected $O(n)$ time and $O(n)$ space and matches the manifest.
+- **Single-pass frequency map:** For each value, consume one previously seen complement if available; otherwise store the value. This gives expected $O(n)$ time and $O(n)$ space and matches the manifest.
 - **Two-pass counter:** Count every value, then consume counts for complements carefully, especially when `value == k-value`. It is also expected linear time but can be easier to double-count incorrectly.
 - **Brute-force pairing:** Trying every pair and marking used elements takes $O(n^2)$ time.
 - **`l == r`:** One remaining element cannot pair with itself because an operation requires two array elements, so the strict loop condition stops.
@@ -110,8 +110,8 @@ Moving `r` instead would be unjustified: the largest value might pair successful
 - **No valid pair:** `ans` remains zero.
 - **Input mutation:** If preserving the original order matters to a caller, use `sorted(nums)` instead, at the cost of an explicit $O(n)$ copy.
 - **Sorting-space nuance:** Calling the algorithm “constant space” based only on `l`, `r`, and `ans` ignores the language runtime’s sorting workspace.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

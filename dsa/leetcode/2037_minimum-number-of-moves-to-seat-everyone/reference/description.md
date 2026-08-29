@@ -1,10 +1,10 @@
 ### 1. Description
 
-There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $$i^{\text{th}}$$ seat. You are also given the array `students` of length `n`, where $\text{students}[j]$ is the position of the $$j^{\text{th}}$$ student.
+There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $i^{\text{th}}$ seat. You are also given the array `students` of length `n`, where $\text{students}[j]$ is the position of the $j^{\text{th}}$ student.
 
 You may perform the following move any number of times:
 
-- Increase or decrease the position of the $$i^{\text{th}}$$ student by `1` (i.e., moving the $$i^{\text{th}}$$ student from position `x` to $x + 1$ or $x - 1$)
+- Increase or decrease the position of the $i^{\text{th}}$ student by `1` (i.e., moving the $i^{\text{th}}$ student from position `x` to $x + 1$ or $x - 1$)
 
 Return *the **minimum number of moves** required to move each student to a seat** such that no two students are in the same seat.*
 

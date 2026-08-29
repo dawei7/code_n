@@ -46,7 +46,7 @@ Consider the alphabet as circular, thus `'a'` comes after `'z'`.
 
 - **Explanation:** 
 
-- The string `"a"` only consists of `'a'`​​​​​​​ characters. Thus, the answer is 0.
+- The string `"a"` only consists of `'a'` characters. Thus, the answer is 0.
 
 ### 5. Constraints
 

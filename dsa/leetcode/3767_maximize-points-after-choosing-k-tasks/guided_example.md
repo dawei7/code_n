@@ -75,9 +75,7 @@ Keeping indices instead of sorting gain values alone preserves access to both or
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source builds all indices and sorts them by
-
-`-(techniqu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +114,7 @@ For example, suppose the gains are `[5,-2,-7]` and `k=2`. Technique 1 must be us
 
 ## 6. Traps This Instance Exposes
 
-- **- **Size-`k` heap:** A bounded heap can track the :** - **Size-`k` heap:** A bounded heap can track the `k` largest mandatory gains while separately accounting for optional positive gains, potentially achieving the manifest's $O(N\log(K+1))$ time and $O(K)$ space. It is not the exact implementation.
+- **Size-`k` heap:** A bounded heap can track the `k` largest mandatory gains while separately accounting for optional positive gains, potentially achieving the manifest's $O(N\log(K+1))$ time and $O(K)$ space. It is not the exact implementation.
 - **Quickselect:** Partitioning around the kth-largest gain can obtain expected linear selection time, followed by a scan, but requires careful duplicate handling.
 - **Dynamic programming by task and quota:** It can model the choices but costs at least $O(NK)$ time and is unnecessary because tasks interact only through a minimum count.
 - **Choose the `k` largest technique-1 values:** The correct comparison is the gain relative to technique 2. A large technique-1 score can still be a poor switch if its technique-2 score is even larger.
@@ -130,8 +128,8 @@ For example, suppose the gains are `[5,-2,-7]` and `k=2`. Technique 1 must be us
 - **Large total:** Python integers avoid fixed-width overflow when many large point values are added.
 - **Input preservation:** The method creates and sorts an index list rather than rearranging either score array.
 - **Source/manifest complexity mismatch:** Performance analysis for this file must use full sorting and $O(N)$ auxiliary storage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

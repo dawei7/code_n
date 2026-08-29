@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have `n` bags numbered from `0` to $n - 1$. You are given two **0-indexed** integer arrays `capacity` and `rocks`. The $$i^{\text{th}}$$ bag can hold a maximum of $\text{capacity}[i]$ rocks and currently contains $\text{rocks}[i]$ rocks. You are also given an integer `additionalRocks`, the number of additional rocks you can place in **any** of the bags.
+You have `n` bags numbered from `0` to $n - 1$. You are given two **0-indexed** integer arrays `capacity` and `rocks`. The $i^{\text{th}}$ bag can hold a maximum of $\text{capacity}[i]$ rocks and currently contains $\text{rocks}[i]$ rocks. You are also given an integer `additionalRocks`, the number of additional rocks you can place in **any** of the bags.
 
 The objective is to compute `3` from `{"capacity": [2, 3, 4, 5], "rocks": [1, 2, 4, 4], "additionalRocks": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,7 +65,7 @@ Therefore, for every possible count `k`, the minimum number of additional rocks 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `capacity.sort()` orders the deficits from smallest to large... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The code checks after subtraction rather than before. On failure, the local budg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate deficit list:** It preserves `capacit:** - **Separate deficit list:** It preserves `capacity` while using explicit `O(n)` additional storage and the same time bound.
+- **Separate deficit list:** It preserves `capacity` while using explicit `O(n)` additional storage and the same time bound.
 - **Min-heap:** Heapifying deficits and repeatedly extracting the cheapest can also find the answer, but sorting is simpler and has the same worst-case order here.
 - **Counting sort:** Capacities reach `10^9`, so a frequency array over all possible deficits is impractical.
 - **Fill bags in original order:** It can spend rocks on a costly bag while several cheaper bags could yield a larger count.
@@ -119,8 +119,8 @@ The code checks after subtraction rather than before. On failure, the local budg
 - **Array-length correspondence:** The source guarantee lets `enumerate(rocks)` safely index the matching capacity entry.
 - **Capacity mutation:** Values are replaced by deficits and then reordered; callers must not expect the original list afterward.
 - **Rocks preservation:** The `rocks` list is never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

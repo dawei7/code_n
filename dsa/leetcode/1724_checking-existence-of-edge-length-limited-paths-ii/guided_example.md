@@ -59,7 +59,7 @@ Parallel edges and redundant edges are harmless. If the endpoints already share 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor sorts `edgeList` in ascending order by weigh... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The opposite orientation uses the same assignments for `pb`. Every nonroot acqui
 
 ## 6. Traps This Instance Exposes
 
-- **- **Offline query sorting:** Sort all queries by l:** - **Offline query sorting:** Sort all queries by limit and use ordinary DSU while adding eligible edges. It is excellent when queries are known together, but this class must answer calls after construction.
+- **Offline query sorting:** Sort all queries by limit and use ordinary DSU while adding eligible edges. It is excellent when queries are known together, but this class must answer calls after construction.
 - **Minimum spanning forest plus binary lifting:** Two vertices are eligible when the maximum edge on their forest path is below the limit. It gives $O(\log n)$ queries with $O(n\log n)$ tables.
 - **Search per query:** DFS or BFS using only light edges can cost $O(n+m)$ for each call.
 - **Weight equal to limit:** The timestamp link is not followed because the condition is strict.
@@ -112,8 +112,8 @@ The opposite orientation uses the same assignments for `pb`. Every nonroot acqui
 - **Input mutation:** Constructor sorting permanently reorders `edgeList`.
 - **No path compression:** This is deliberate to preserve timestamp semantics; rank bounds depth.
 - **Infinity defaults:** They expose the fully built component structure during construction, while finite limits expose history.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

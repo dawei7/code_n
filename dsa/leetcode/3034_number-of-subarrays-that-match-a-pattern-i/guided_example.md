@@ -53,8 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - 0 when `a == b`;
-- 1 when `a < b`, meaning the next value ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute a comparison array:** Convert every:** - **Precompute a comparison array:** Convert every adjacent pair of `nums` into $-1$, 0, or 1, then compare length-$M$ slices. This uses $O(N)$ space and retains the same naive worst-case time if each slice is compared directly.
+- **Precompute a comparison array:** Convert every adjacent pair of `nums` into $-1$, 0, or 1, then compare length-$M$ slices. This uses $O(N)$ space and retains the same naive worst-case time if each slice is compared directly.
 - **KMP on relation signs:** It finds all pattern occurrences in $O(N+M)$ time and $O(M)$ space. That is useful for the larger version but unnecessary for $N\le100$.
 - **Z-function or rolling hash:** Both can accelerate pattern matching after transformation, but they add machinery not needed by this direct implementation.
 - **Materialize the generator:** Building a list of $M$ Booleans before calling `all` wastes $O(M)$ space and loses short-circuiting.
@@ -100,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Overlapping matches:** Each start is counted independently, even when windows share elements.
 - **Early mismatch:** `all` stops at the first false condition, which is a safe optimization because one failure already invalidates the whole candidate.
 - **Input immutability:** The algorithm only indexes `nums` and `pattern` and does not reorder or edit either list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

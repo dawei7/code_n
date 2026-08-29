@@ -1,10 +1,10 @@
 ### 1. Description
 
-There is a supermarket that is frequented by many customers. The products sold at the supermarket are represented as two parallel integer arrays `products` and `prices`, where the $$i^{\text{th}}$$ product has an ID of $\text{products}[i]$ and a price of $\text{prices}[i]$.
+There is a supermarket that is frequented by many customers. The products sold at the supermarket are represented as two parallel integer arrays `products` and `prices`, where the $i^{\text{th}}$ product has an ID of $\text{products}[i]$ and a price of $\text{prices}[i]$.
 
-When a customer is paying, their bill is represented as two parallel integer arrays `product` and `amount`, where the $$j^{\text{th}}$$ product they purchased has an ID of $\text{product}[j]$, and $\text{amount}[j]$ is how much of the product they bought. Their subtotal is calculated as the sum of each $\text{amount}[j] * (price of the $j^{\text{th}}$ product)$.
+When a customer is paying, their bill is represented as two parallel integer arrays `product` and `amount`, where the $j^{\text{th}}$ product they purchased has an ID of $\text{product}[j]$, and $\text{amount}[j]$ is how much of the product they bought. Their subtotal is calculated as the sum of each $\text{amount}[j] * (price of the $j^{\text{th}}$ product)$.
 
-The supermarket decided to have a sale. Every $$n^{\text{th}}$$ customer paying for their groceries will be given a **percentage discount**. The discount amount is given by `discount`, where they will be given `discount` percent off their subtotal. More formally, if their subtotal is `bill`, then they would actually pay $bill * ((100 - discount) / 100)$.
+The supermarket decided to have a sale. Every $n^{\text{th}}$ customer paying for their groceries will be given a **percentage discount**. The discount amount is given by `discount`, where they will be given `discount` percent off their subtotal. More formally, if their subtotal is `bill`, then they would actually pay $bill * ((100 - discount) / 100)$.
 
 Implement the `Cashier` class:
 

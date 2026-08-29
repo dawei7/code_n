@@ -70,9 +70,7 @@ All input values and sums are nonnegative, so Python floor division `//` is exac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left part contains `i + 1` elements, so its average is
-
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +107,7 @@ If `t < mi`, both `ans` and `mi` are updated. A strict comparison is essential f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute both sums per index:** It is direct :** - **Recompute both sums per index:** It is direct but takes `O(n^2)` time.
+- **Recompute both sums per index:** It is direct but takes `O(n^2)` time.
 - **Prefix and suffix arrays:** They give constant-time split sums after preprocessing but use `O(n)` extra space.
 - **Floating-point averages:** They are unnecessary and can disagree with required integer rounding. Floor division must happen before subtraction.
 - **Round the final difference:** That changes the operation order; each average is rounded down separately.
@@ -121,8 +119,8 @@ If `t < mi`, both `ans` and `mi` are updated. A strict comparison is essential f
 - **Large total sum:** Wide integer arithmetic is required in fixed-width languages.
 - **Nonnegative guarantee:** It makes `//` match ordinary truncating integer division for these sums.
 - **Input preservation:** No array element is changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

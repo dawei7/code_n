@@ -75,10 +75,7 @@ The simultaneous-update requirement means both right-hand expressions use the ol
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For old ordered pair `(a,b)`, new pair is:
-
-$$
-(a\mathbin{|}... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +112,7 @@ Therefore, an all-zero source can reach only an all-zero target.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count ones:** Comparing only zero versus posit:** - **Count ones:** Comparing only zero versus positive counts works, but exact counts need not match.
+- **Count ones:** Comparing only zero versus positive counts works, but exact counts need not match.
 - **BFS over strings:** There are exponentially many states and it is unnecessary.
 - **Both all zero:** Return true using zero operations.
 - **Source zero, target nonzero:** A one cannot be created.
@@ -125,8 +122,8 @@ Therefore, an all-zero source can reach only an all-zero target.
 - **Exactly one one:** It can serve as the seed for all transformations.
 - **Simultaneous assignment:** The truth table must use both old bits.
 - **Index order:** It determines which position remains one after `11->10`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

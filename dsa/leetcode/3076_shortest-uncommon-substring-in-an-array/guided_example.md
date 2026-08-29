@@ -51,7 +51,7 @@ This increasing-length order enforces the primary objective. As soon as at least
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This increasing-length order enforces the primary objective.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This increasing-length order enforces the primary objective. As soon as at least
 
 ## 6. Traps This Instance Exposes
 
-- **- **Substring owner sets:** Generate each word's d:** - **Substring owner sets:** Generate each word's distinct substrings, add its index to an owner map, then select owner-count-one candidates. This matches the manifest and avoids repeated scans.
+- **Substring owner sets:** Generate each word's distinct substrings, add its index to an owner map, then select owner-count-one candidates. This matches the manifest and avoids repeated scans.
 - **Suffix automaton or trie:** More advanced structures can share substring information, but constraints $L\le20$ make simpler enumeration reasonable.
 - **Duplicate candidate within one word:** It may be checked repeatedly; ownership should still count the word once conceptually.
 - **Duplicate complete strings:** Neither can own a substring uniquely relative to the other.
@@ -99,8 +99,8 @@ This increasing-length order enforces the primary objective. As soon as at least
 - **Why the current answer gates testing:** After finding `"ab"`, a later candidate `"ca"` of the same length cannot win lexicographically, so proving its uniqueness would be wasted work.
 - **Substring versus subsequence:** Python's `sub in t` checks contiguous occurrence, exactly matching substring semantics; scattered matching characters do not disqualify a candidate.
 - **Array index identity:** The `k == i` exception skips only the current index. Another array element containing the exact same string is still searched and can invalidate every candidate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

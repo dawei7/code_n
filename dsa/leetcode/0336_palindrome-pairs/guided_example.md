@@ -64,7 +64,7 @@ For each split, the source examines two orientations.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a current word `w` of length $L$, the loop tries `j` fro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,9 +115,9 @@ At `j = 0`, `ra` is the empty string. If an empty word exists and `w` itself is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reverse trie with palindrome-remainder lists:*:** - **Reverse trie with palindrome-remainder lists:** Insert reversed words and store indices whose unmatched portions are palindromes. Properly preprocessed palindrome information can approach output-sensitive linear work in total characters. This matches the manifest summary but is not the exact source.
-- **- **Test all ordered word pairs:** Concatenate and:** - **Test all ordered word pairs:** Concatenate and reverse every pair in $O(N^2K)$ time. The split dictionary method replaces the factor of $N$ partners with $O(K)$ structurally forced lookups per word.
-- **- **Precompute palindromic prefixes and suffixes:*:** - **Precompute palindromic prefixes and suffixes:** A table or linear-time palindrome algorithm can avoid repeating slice-reversal comparisons. It adds preprocessing machinery but can reduce the work of deciding which splits have palindromic unmatched pieces.
+- **Reverse trie with palindrome-remainder lists:** Insert reversed words and store indices whose unmatched portions are palindromes. Properly preprocessed palindrome information can approach output-sensitive linear work in total characters. This matches the manifest summary but is not the exact source.
+- **Test all ordered word pairs:** Concatenate and reverse every pair in $O(N^2K)$ time. The split dictionary method replaces the factor of $N$ partners with $O(K)$ structurally forced lookups per word.
+- **Precompute palindromic prefixes and suffixes:** A table or linear-time palindrome algorithm can avoid repeating slice-reversal comparisons. It adds preprocessing machinery but can reduce the work of deciding which splits have palindromic unmatched pieces.
 
 ---
 

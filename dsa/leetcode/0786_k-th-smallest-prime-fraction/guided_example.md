@@ -75,7 +75,7 @@ The heap therefore exposes the smallest not-yet-consumed fraction across all den
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The smallest fraction for denominator `j` uses numerator ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,9 +120,9 @@ If `i + 1 == j`, that denominator list is exhausted. Pushing it would create the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Value binary search with two-pointer counting::** - **Value binary search with two-pointer counting:** Count fractions below a candidate in $O(n)$ time and track the largest qualifying fraction. It can avoid dependence on `k` but needs careful termination and fraction recovery.
-- **- **Generate and sort all pairs:** It is straightf:** - **Generate and sort all pairs:** It is straightforward but costs $O(n^2)$ space and $O(n^2\log n)$ sorting time.
-- **- **Exact cross-multiplication heap comparator:** :** - **Exact cross-multiplication heap comparator:** It avoids floating-point priorities while retaining the same multiway-merge structure and asymptotic bounds.
+- **Value binary search with two-pointer counting:** Count fractions below a candidate in $O(n)$ time and track the largest qualifying fraction. It can avoid dependence on `k` but needs careful termination and fraction recovery.
+- **Generate and sort all pairs:** It is straightforward but costs $O(n^2)$ space and $O(n^2\log n)$ sorting time.
+- **Exact cross-multiplication heap comparator:** It avoids floating-point priorities while retaining the same multiway-merge structure and asymptotic bounds.
 
 ---
 

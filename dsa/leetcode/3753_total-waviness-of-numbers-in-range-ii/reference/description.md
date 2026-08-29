@@ -75,4 +75,4 @@ Thus, total waviness is $1 + 1 + 1 = 3$.
 
 ### 4. Constraints
 
-- $1 \le num1 \le num2 \le 10^{15}$​​​​​​​
+- $1 \le num1 \le num2 \le 10^{15}$

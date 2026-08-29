@@ -22,7 +22,7 @@ The subtree rooted at a node consists of that node and all its descendants. Retu
 
 - `root`: the root of a non-empty binary tree containing $n$ nodes, where $1 \leq n \leq 500$.
 
-Every node value is unique and lies in $[0,500]$. Let $h$ be the tree height measured as the maximum number of nodes on a root-to-leaf path.
+Every node value is unique and lies in `[0,500]`. Let $h$ be the tree height measured as the maximum number of nodes on a root-to-leaf path.
 
 **Return value**
 

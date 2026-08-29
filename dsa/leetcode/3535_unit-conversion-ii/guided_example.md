@@ -79,9 +79,7 @@ Starting from `F[0] = 1`, this correctly computes all reference factors when eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Conversion `[s,t,w]` means:
-
-one unit `s` equals `w` units `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +124,7 @@ The ratio also handles reverse and cross-branch queries without explicitly walki
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct bidirectional iterative traversal:** A:** - **Correct bidirectional iterative traversal:** Add reciprocal weighted edges, track the parent, and compute every reference factor without recursion. This is the direct repair.
+- **Correct bidirectional iterative traversal:** Add reciprocal weighted edges, track the parent, and compute every reference factor without recursion. This is the direct repair.
 - **Walk the tree separately for every query:** Correct but can cost `O(nQ)`. Common reference factors reduce each query to one ratio.
 - **Lowest common ancestor with path products:** Useful in more general dynamic settings, but unnecessary when all factors relative to one root can be precomputed.
 - **Use ordinary integer fractions:** Exact rational numerators and denominators can grow rapidly. Modular factors and inverses match the required output.
@@ -140,8 +138,8 @@ The ratio also handles reverse and cross-branch queries without explicitly walki
 - **Nonzero inverse guarantee:** Listed factors are less than the prime modulus, so valid path factors never become zero modulo `MOD`.
 - **Zero in res:** It signals an unvisited node in this source, not a legitimate conversion factor.
 - **Manifest mismatch:** The advertised bidirectional construction is absent from `solution.py` and must not be assumed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

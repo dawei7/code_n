@@ -59,7 +59,7 @@ The same pair of groups may receive several edges from different item dependenci
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each item `i` and every prerequisite `j` in `beforeItems... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ First, the solution topologically sorts all `n + m` possible group IDs. Empty gr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Topologically sort all items then bucket by gr:** - **Topologically sort all items then bucket by group:** This can also work when combined with a separate group order, but the exact solution avoids storing cross-group edges in the item graph because group ordering already enforces them.
+- **Topologically sort all items then bucket by group:** This can also work when combined with a separate group order, but the exact solution avoids storing cross-group edges in the item graph because group ordering already enforces them.
 - **Deduplicate group edges:** A set of group-pair edges can reduce repeated adjacency entries and indegree counts, potentially improving constants when many item edges connect the same groups.
 - **Treat all ungrouped items as one group:** This is incorrect because it would force unrelated items to be contiguous. Each receives its own group.
 - **Empty original groups:** They appear in group topological order but contribute no items, so they do not affect the final sequence.
@@ -109,8 +109,8 @@ First, the solution topologically sorts all `n + m` possible group IDs. Empty gr
 - **Input mutation:** Ungrouped assignments overwrite `-1` entries in `group`. Copy the list first if caller-visible preservation is required.
 - **Any valid order accepted:** Queue order among simultaneously available nodes only chooses one of potentially many correct topological results.
 - **Unused allocated group slots:** The `n + m` capacity simplifies indexing. Empty unused slots add only linear overhead and append nothing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

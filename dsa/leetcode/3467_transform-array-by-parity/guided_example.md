@@ -51,7 +51,7 @@ For each element, `x % 2 == 0` is `true` exactly when `x` is even. In Python, Bo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each element, `x % 2 == 0` is `true` exactly when `x` is... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Replace each value and call `sort()`:** This f:** - **Replace each value and call `sort()`:** This follows the statement literally but costs $O(n\log n)$ comparison-sort time when a parity count is sufficient.
+- **Replace each value and call `sort()`:** This follows the statement literally but costs $O(n\log n)$ comparison-sort time when a parity count is sufficient.
 - **Build a new list with a comprehension:** `[0] * even + [1] * (n - even)` is also linear, but it allocates $O(n)$ additional output storage instead of reusing `nums`.
 - **Sort the original values first:** Sorting by numeric magnitude is unnecessary; only parity controls the transformed value, and even and odd numbers are interleaved numerically.
 - **Use two counters:** Counting both evens and odds works, but the odd count is always `len(nums) - even` and need not be stored.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Mutation visibility:** The returned object is the original list; callers that require preservation would need to pass a copy or use an allocating version.
 - **Boolean summation:** Python intentionally treats `true` as one and `false` as zero, making the generator count correct rather than producing a list of Boolean objects.
 - **Output-space convention:** The manifest's $O(n)$ and the source-based $O(1)$ auxiliary bound describe different accounting conventions; neither should be confused with an extra hidden list in this implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

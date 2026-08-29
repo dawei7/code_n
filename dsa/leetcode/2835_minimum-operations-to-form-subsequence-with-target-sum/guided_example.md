@@ -51,7 +51,7 @@ Splitting one $2^j$ creates two $2^{j-1}$ pieces and costs one operation. Repeat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Splitting one $2^j$ creates two $2^{j-1}$ pieces and costs o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Splitting one $2^j$ creates two $2^{j-1}$ pieces and costs one operation. Repeat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct exponent lookup:** Use `x.bit_length() :** - **Direct exponent lookup:** Use `x.bit_length() - 1` to increment one bucket per value, reducing the input-counting constant while keeping $O(n)$ time.
+- **Direct exponent lookup:** Use `x.bit_length() - 1` to increment one bucket per value, reducing the input-counting constant while keeping $O(n)$ time.
 - **Standard per-bit greedy loop:** For every bit from zero upward, use a local piece if target needs it; otherwise find the next larger bucket, explicitly propagate split leftovers downward, then carry pairs upward. This is equivalent but often easier to visualize.
 - **Priority queue of pieces:** Repeatedly split selected large values, but deciding which pieces serve target bits is more cumbersome and adds logarithmic overhead.
 - **Total sum below target:** Splitting preserves sum, so negative one is immediately necessary.
@@ -98,8 +98,8 @@ Splitting one $2^j$ creates two $2^{j-1}$ pieces and costs one operation. Repeat
 - **Subsequence order:** Any selected subset of array positions is a subsequence in its original order, so only multiset counts affect attainable sums.
 - **No real merging:** Carry operations represent selecting two smaller pieces for equal total value and do not add to `ans`.
 - **Fixed 32 buckets:** They cover input powers through $2^{30}$, target below $2^{31}$, and one carry level above the input maximum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

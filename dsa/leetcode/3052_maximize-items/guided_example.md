@@ -51,7 +51,7 @@ over prime rows and contains $C_p$ items. The CTE `T` computes `s = S_p`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | over prime rows and contains $C_p$ items.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The number of whole prime batches fitting in 500,000 square feet is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation in one CTE:** Compute :** - **Conditional aggregation in one CTE:** Compute counts and footprints for both types together, then derive both outputs. This can avoid repeated scans and handle missing categories explicitly.
+- **Conditional aggregation in one CTE:** Compute counts and footprints for both types together, then derive both outputs. This can avoid repeated scans and handle missing categories explicitly.
 - **Add final ordering:** Wrapping the union and ordering by `item_count DESC` is necessary for a guaranteed contract-compliant row order.
 - **No prime rows:** The correct logic should allocate the full warehouse to non-prime batches; the exact source mishandles null `s`.
 - **No non-prime rows:** `COALESCE` produces zero for that category, although denominator-null behavior should be handled deliberately.
@@ -99,8 +99,8 @@ The number of whole prime batches fitting in 500,000 square feet is
 - **`UNION ALL` is semantically appropriate:** The two branches deliberately produce different fixed `item_type` labels, so duplicate elimination is unnecessary. Its lack of ordering, however, still requires a final `ORDER BY` for the contract.
 - **Decimal remainder behavior:** MySQL's remainder and floor operations act on the aggregate decimal footprint. Exact whole-batch arithmetic depends on consistent numeric precision; binary floating-point conversion should be avoided.
 - **Count versus category count:** `COUNT(1)` counts inventory rows in one batch, then multiplication counts stocked item copies. It does not count distinct `item_category` values, which could differ if categories repeat.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

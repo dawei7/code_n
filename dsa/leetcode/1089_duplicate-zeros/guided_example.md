@@ -64,7 +64,7 @@ For `[1,0,2,3,0,4,5,0]`, virtual positions grow by one for nonzeros and two for 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop uses two conceptual positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Without this adjustment, the general zero-copy logic would try to write two zero
 
 ## 6. Traps This Instance Exposes
 
-- **- **Extra output array:** Simulate duplication fro:** - **Extra output array:** Simulate duplication from left to right into a new list and copy its first $n$ values back. This is easy to reason about but uses $O(n)$ extra space and misses the in-place objective.
+- **Extra output array:** Simulate duplication from left to right into a new list and copy its first $n$ values back. This is easy to reason about but uses $O(n)$ extra space and misses the in-place objective.
 - **Repeated insertion and deletion:** Insert a zero next to every zero and trim the end. Python list insertion shifts many elements, so the worst-case time becomes $O(n^2)$ even if the final length is restored.
 - **Count duplicable zeros explicitly:** The editorial formulation counts how many duplicates fit and then uses an offset during a backward pass. It is equivalent to tracking the virtual destination length used here.
 - **No zeros:** The first scan advances one virtual position per source element, and the backward loop copies every value onto itself. The array remains unchanged.
@@ -113,8 +113,8 @@ Without this adjustment, the general zero-copy logic would try to write two zero
 - **Values after the surviving prefix:** They are intentionally discarded because duplication of earlier zeros shifts them beyond the fixed array boundary.
 - **Input mutation:** Callers must inspect the original list after the method returns. Assigning the return value is incorrect because the method deliberately returns `null`.
 - **Compact loop condition:** `while ~j` is valid Python but less readable than `while j >= 0`. Both have identical behavior for the integer index used here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

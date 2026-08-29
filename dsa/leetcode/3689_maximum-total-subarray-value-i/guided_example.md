@@ -90,7 +90,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An upper bound is useful only if some legal subarray reaches... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -137,7 +137,7 @@ For `nums = [1, 3, 2]`, $V=3-1=2$. Selecting any value-two subarray twice produc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Computing every sub:** - **Enumerate all subarrays:** Computing every subarray range takes at least $O(n^2)$ candidates and is unnecessary because the entire array already attains the global upper bound.
+- **Enumerate all subarrays:** Computing every subarray range takes at least $O(n^2)$ candidates and is unnecessary because the entire array already attains the global upper bound.
 - **Find the best $k$ distinct subarrays:** That solves the harder follow-up version, not this contract. Here, identical endpoints may be selected repeatedly.
 - **Locate the minimum and maximum indices:** Their positions are unnecessary. The entire array contains both values and is always a legal witness.
 - **Single-pass extrema:** Tracking `low` and `high` together avoids the second scan but remains $O(n)$ time and $O(1)$ space. It is a valid alternative, not the exact source form.
@@ -147,8 +147,8 @@ For `nums = [1, 3, 2]`, $V=3-1=2$. Selecting any value-two subarray twice produc
 - **Multiple global extrema:** Any subarray containing at least one global minimum and one global maximum attains the same best value.
 - **Large `k`:** No additional search is required. Repetition turns the answer into direct multiplication, but the total should use sufficiently wide integer arithmetic.
 - **Overlapping selections:** Overlap is explicitly allowed and selections do not consume elements. Choosing one subarray places no restriction on the next choice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

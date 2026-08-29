@@ -57,7 +57,7 @@ The pathfinder checks only whether `forest[r][c] > 0`. Therefore, leaving the or
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A tree cell has value greater than one and is already walkab... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ These properties let A* prioritize promising cells while preserving shortest-pat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary BFS for each tree:** Every move has u:** - **Ordinary BFS for each tree:** Every move has unit cost, so BFS finds the shortest distance in `O(RC)` time per target without a heap. This is simpler and matches the manifest's time bound.
-- **- **Hadlock's algorithm:** Prioritize moves by how:** - **Hadlock's algorithm:** Prioritize moves by how many detours they make away from the target. It exploits the grid and can use a deque, but is less familiar.
-- **- **Precompute all-pairs distances:** Only distanc:** - **Precompute all-pairs distances:** Only distances between the start and ordered trees are needed. Full all-pairs work and storage are unnecessary.
+- **Ordinary BFS for each tree:** Every move has unit cost, so BFS finds the shortest distance in `O(RC)` time per target without a heap. This is simpler and matches the manifest's time bound.
+- **Hadlock's algorithm:** Prioritize moves by how many detours they make away from the target. It exploits the grid and can use a deque, but is less familiar.
+- **Precompute all-pairs distances:** Only distances between the start and ordered trees are needed. Full all-pairs work and storage are unnecessary.
 
 ---
 

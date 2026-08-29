@@ -36,7 +36,7 @@ No smaller index satisfies the condition, so the answer is 1.
 
 - **Output:** 1
 
-- **Explanation:** ​​​​​​​At index $i = 1$, the two compared positions coincide, so both characters are `'b'`.
+- **Explanation:** At index $i = 1$, the two compared positions coincide, so both characters are `'b'`.
 
 No smaller index satisfies the condition, so the answer is 1.
 
@@ -46,7 +46,7 @@ No smaller index satisfies the condition, so the answer is 1.
 
 - **Output:** -1
 
-- **Explanation:** ​​​​​​​For every index `i`, the characters at positions `i` and $n - i - 1$ are different.
+- **Explanation:** For every index `i`, the characters at positions `i` and $n - i - 1$ are different.
 
 Therefore, no valid index exists, so the answer is -1.
 

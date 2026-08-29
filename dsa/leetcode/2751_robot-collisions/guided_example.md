@@ -55,7 +55,7 @@ Therefore, when scanning left to right, only previously seen unmatched right mov
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two robots with equal speed can approach only when the left ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ A current left mover must collide with that nearest right mover before it could 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate positions over time:** Inefficient an:** - **Simulate positions over time:** Inefficient and difficult because collision times may be fractional.
+- **Simulate positions over time:** Inefficient and difficult because collision times may be fractional.
 - **Queue of right movers:** Incorrect because the nearest, most recently seen right mover collides first.
 - **All move right:** Every index stays on the stack and all healths survive unchanged.
 - **All move left:** The stack stays empty and all survive unchanged.
@@ -102,8 +102,8 @@ A current left mover must collide with that nearest right mover before it could 
 - **Unsorted input:** Sorted indices establish correct physical order without losing original identity.
 - **No survivors:** Final filtering returns an empty list.
 - **Input mutation:** The original `healths` list contains zeros and reduced survivor healths after execution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ The upper bound is not redundant. A future date would create a negative date dif
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The target period ends on `2019-07-27` and includes that dat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Only users with at least one qualifying activity produce a group in `T`. This is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Average raw activity counts:** This overweight:** - **Average raw activity counts:** This overweights sessions that generate many events and does not compute sessions per user.
+- **Average raw activity counts:** This overweights sessions that generate many events and does not compute sessions per user.
 - **Count sessions without `DISTINCT`:** A session with several activity rows would be counted repeatedly. Distinct session identifiers implement the phrase “at least one activity.”
 - **Average globally distinct sessions divided by users:** Because sessions belong to one user, that quotient can match some datasets, but the grouped CTE directly preserves the required per-user definition and safely exposes each user's count.
 - **Include inactive users as zeros:** The input contains activity rows rather than a complete user roster, and the requested average concerns users with qualifying activity. Adding zero-session users would change the denominator.
@@ -120,8 +120,8 @@ Only users with at least one qualifying activity produce a group in `T`. This is
 - **Exactly one active user:** The average equals that user's distinct-session count, rounded to two decimals by the same expression.
 - **Boundary dates:** `2019-06-28` and `2019-07-27` are accepted; the immediately adjacent outside dates are rejected.
 - **Rounding:** The query rounds the final average rather than truncating it, preserving standard MySQL rounding behavior to two decimal places.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

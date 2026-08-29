@@ -68,7 +68,7 @@ Python's `zip` iterator is lazy. It creates one column tuple at a time rather th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The matrix is stored as a list of rows, but the answer is de... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The outer list comprehension collects these maxima in the order `zip` produces c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested row/column loops:** Maintain an $n$-ent:** - **Nested row/column loops:** Maintain an $n$-entry maximum array while scanning rows, avoiding the temporary column tuple and retaining $O(n)$ space.
+- **Nested row/column loops:** Maintain an $n$-entry maximum array while scanning rows, avoiding the temporary column tuple and retaining $O(n)$ space.
 - **Logarithmic digit counting:** Works with special cases but is more error-prone for zero, signs, and numeric boundaries.
 - **Build an explicit transpose:** Correct but wastes $O(mn)$ extra space.
 - **Negative value:** Its minus sign contributes one to width.
@@ -121,8 +121,8 @@ The outer list comprehension collects these maxima in the order `zip` produces c
 - **One-column grid:** The single result is the maximum across all rows.
 - **Jagged rows:** `zip` would truncate, but the rectangular contract excludes them.
 - **Input preservation:** Conversion and iteration are read only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

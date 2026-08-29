@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $$j^{\text{th}}$$ unit in the $$i^{\text{th}}$$ device. Each device contains **exactly** `n` units.
+You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $j^{\text{th}}$ unit in the $i^{\text{th}}$ device. Each device contains **exactly** `n` units.
 
 The objective is to compute `4` from `{"units": [[1, 3], [2, 2]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ Thus `\sum_i b_i` is a natural upper bound if every device could independently r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `n \ge 2`, a source remains nonempty after donating once... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +117,9 @@ This proves that no arrangement can exceed the expression computed by the source
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear scan for the smallest two values:** Eac:** - **Linear scan for the smallest two values:** Each row's first and second order statistics can be found in one pass without sorting. That would achieve `O(U)` time, `O(1)` explicit auxiliary space, and no input mutation. It is a stronger implementation choice, but it is not what the exact stored source does.
-- **- **Simulating all transfers:** Trying source, des:** - **Simulating all transfers:** Trying source, destination, and moved-unit combinations obscures the minimum structure and grows combinatorially. The upper-bound-and-construction argument reduces the optimization to two order statistics per device plus two global minima.
-- **- **Sending donations to several receivers:** Spre:** - **Sending donations to several receivers:** Spreading small donated values risks lowering several device ratings. Concentrating all donated minima in the one deliberately sacrificed sink confines that damage to a single rating.
+- **Linear scan for the smallest two values:** Each row's first and second order statistics can be found in one pass without sorting. That would achieve `O(U)` time, `O(1)` explicit auxiliary space, and no input mutation. It is a stronger implementation choice, but it is not what the exact stored source does.
+- **Simulating all transfers:** Trying source, destination, and moved-unit combinations obscures the minimum structure and grows combinatorially. The upper-bound-and-construction argument reduces the optimization to two order statistics per device plus two global minima.
+- **Sending donations to several receivers:** Spreading small donated values risks lowering several device ratings. Concentrating all donated minima in the one deliberately sacrificed sink confines that damage to a single rating.
 
 ---
 

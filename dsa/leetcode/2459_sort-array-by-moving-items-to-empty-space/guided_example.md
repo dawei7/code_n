@@ -63,7 +63,7 @@ Equivalently, an ordinary item-only cycle needs one entry/exit overhead beyond i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Treat `nums[i]` as a mapping from position `i` to the value ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For multiple nontrivial cycles, only one can contain zero. All other cycles stil
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate greedy swaps for each target:** Maint:** - **Simulate greedy swaps for each target:** Maintain value positions and repeatedly put the needed item into the empty slot. This can achieve linear time but cycle decomposition gives a cleaner move-count proof.
+- **Simulate greedy swaps for each target:** Maintain value positions and repeatedly put the needed item into the empty slot. This can achieve linear time but cycle decomposition gives a cleaner move-count proof.
 - **General minimum-swap count:** Ordinary arbitrary swaps need $L-1$ per cycle, but restricting every swap to involve zero creates the extra $L+1$ cost for cycles without zero.
 - **Already sorted in either layout:** The corresponding identity representation has no nontrivial cycle and returns zero.
 - **Empty fixed for one target:** No subtraction occurs because zero is outside all nontrivial cycles.
@@ -118,8 +118,8 @@ For multiple nontrivial cycles, only one can contain zero. All other cycles stil
 - **Shift transformation:** Adding `n` before modulo keeps original zero mapped correctly to `n-1`.
 - **Permutation guarantee:** Every mapping decomposes into closed cycles; duplicates or missing values would invalidate this reasoning.
 - **One nontrivial two-cycle with empty:** It costs one move, and the formula `L+1-2` gives one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

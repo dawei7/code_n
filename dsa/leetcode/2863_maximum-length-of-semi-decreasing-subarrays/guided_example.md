@@ -51,7 +51,7 @@ The exact solution reorganizes indices by value. The first loop builds `d` so th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution reorganizes indices by value.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The exact solution reorganizes indices by value. The first loop builds `d` so th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic prefix candidates:** Store indices t:** - **Monotonic prefix candidates:** Store indices that set a new prefix maximum, then scan right endpoints from right to left and pop candidates once their values are strictly greater. This obtains the intended $O(n)$ time and $O(n)$ space.
+- **Monotonic prefix candidates:** Store indices that set a new prefix maximum, then scan right endpoints from right to left and pop candidates once their values are strictly greater. This obtains the intended $O(n)$ time and $O(n)$ space.
 - **Sorting index-value pairs:** Sorting all elements by value can express the same idea but still costs $O(n\log n)$ and needs careful equal-value batching to preserve strictness.
 - **All equal values:** No first value can be strictly greater than a last value; equal values are deliberately never added to `k` until after their own candidate, so the answer stays `0`.
 - **Strict inequality:** Processing current value only after querying prevents equal endpoint values from being accepted.
@@ -95,8 +95,8 @@ The exact solution reorganizes indices by value. The first loop builds `d` so th
 - **Single element:** No two ordered endpoints exist, and the sentinel-based candidate leaves the answer at `0`.
 - **Sentinel arithmetic:** Python permits finite integers minus `inf`, producing negative infinity. A language without such a numeric sentinel should explicitly skip the first key.
 - **Worst-case distinct values:** Sorting dominates at $O(n\log n)$; describing this exact source as $O(n)$ would be inaccurate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

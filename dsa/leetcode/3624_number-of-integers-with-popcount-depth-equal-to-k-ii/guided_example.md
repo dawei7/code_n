@@ -65,7 +65,7 @@ It also appends the depth to `depths` using normal zero-based array indexing. `d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `trees = [[0]*(size+1) for _ in range(6)]` creates Fenwick s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Adding the current node's accumulated value to that parent builds the parent's c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Segment tree of depth-count vectors:** Store s:** - **Segment tree of depth-count vectors:** Store six counts per node. It supports the same operations but has larger constants and more code.
+- **Segment tree of depth-count vectors:** Store six counts per node. It supports the same operations but has larger constants and more code.
 - **Ordered index sets per depth:** Updates move an index between sets, while range counts require a structure supporting rank queries.
 - **Scan each query range:** It can degrade to `O(nq)`.
 - **Update to the same depth:** No Fenwick change is needed, even if the numeric value differs.
@@ -120,8 +120,8 @@ Adding the current node's accumulated value to that parent builds the parent's c
 - **One-based Fenwick indexing:** Raw arrays have an unused slot zero; conversion in `add` is essential.
 - **Inclusive query endpoints:** `right+1` turns the right boundary into the needed half-open prefix.
 - **Input query order:** Operations are processed sequentially, so each answer reflects all preceding updates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

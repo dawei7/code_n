@@ -61,7 +61,7 @@ Only after every vertical streak has been calculated does the source reorder row
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The height-construction loops finish for the entire matrix b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Thus the best width-$w$ rectangle uses the $w$ largest heights.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maintain sorted height-column pairs:** Extend :** - **Maintain sorted height-column pairs:** Extend prior heights while preserving order and append new height-one columns, achieving $O(mn)$ time and $O(n)$ space.
+- **Maintain sorted height-column pairs:** Extend prior heights while preserving order and append new height-one columns, achieving $O(mn)$ time and $O(n)$ space.
 - **Counting sort heights:** Heights range from zero to $m$, so frequency counting per row can replace comparison sorting when dimensions make it attractive.
 - **Copy each row before sorting:** It preserves height-column alignment for later accumulation only if done during a one-pass variant, at the cost of $O(n)$ storage.
 - **All zeros:** Every height and area is zero.
@@ -112,8 +112,8 @@ Thus the best width-$w$ rectangle uses the $w$ largest heights.
 - **Global column operation:** Selecting and grouping the winning row's columns realizes its candidate even though other rows were hypothetically sorted differently.
 - **Input mutation:** Both binary values and original column ordering are destroyed.
 - **Area bound:** `j*v` never exceeds $mn$, the total number of cells.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

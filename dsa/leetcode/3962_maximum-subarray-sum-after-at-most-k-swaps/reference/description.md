@@ -33,7 +33,7 @@ Return the maximum possible sum of a nonempty contiguous subarray after performi
 
 - We can swap on indices 1 and 3, resulting in the array `[1, 2, 0, -1]`.
 
-- The subarray `[1, 2]` has a sum of 3, which is the maximum possible subarray sum after at most $k = 1$​​​​​​​ swap.
+- The subarray `[1, 2]` has a sum of 3, which is the maximum possible subarray sum after at most $k = 1$ swap.
 
 #### Example 2
 

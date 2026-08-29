@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` integer grid `accounts` where $\text{accounts}[i][j]$ is the amount of money the $i​​​​​^​​​​​​th​​​​$ customer has in the $j​​​​​^​​​​​​th$​​​​ bank. Return* the **wealth** that the richest customer has.*
+You are given an `m x n` integer grid `accounts` where $\text{accounts}[i][j]$ is the amount of money the $i^th$ customer has in the $j^th$ bank. Return* the **wealth** that the richest customer has.*
 
 The objective is to compute `6` from `{"accounts": [[1, 2, 3], [3, 2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ The constraints guarantee at least one customer, so `max` always receives at lea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There is no need to remember every customer’s total after co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For `[[1, 2, 3], [3, 2, 1]]`, both row sums are six. `max` returns six regardles
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit nested loops:** Maintain `current_wea:** - **Explicit nested loops:** Maintain `current_wealth` for each row and `best` globally. This is longer but exposes the same $O(S)$ time and $O(1)$ space mechanics.
+- **Explicit nested loops:** Maintain `current_wealth` for each row and `best` globally. This is longer but exposes the same $O(S)$ time and $O(1)$ space mechanics.
 - **List comprehension of row sums:** `max([sum(v) for v in accounts])` is correct but allocates an $O(m)$ temporary list that the generator avoids.
 - **Sort customer totals:** Sorting can identify the largest value but costs $O(m\log m)$ after the sums and stores all totals, neither of which is needed for one maximum.
 - **Tied richest customers:** Only the wealth is returned, so equal maximum totals need no tie-breaking rule.
@@ -114,8 +114,8 @@ For `[[1, 2, 3], [3, 2, 1]]`, both row sums are six. `max` returns six regardles
 - **Positive-input guarantee:** It permits an explicit-loop version to initialize a maximum to zero, but the exact built-in expression does not rely on that detail.
 - **Nonempty-grid guarantee:** Without at least one row, `max` would raise an exception; the stated `m >= 1` makes the call safe.
 - **No customer index returned:** Tracking which row produced the maximum would be extra state for information the contract does not request.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

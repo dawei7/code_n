@@ -51,7 +51,7 @@ The query selects both expressions with aliases `points` and `goal_difference`. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query selects both expressions with aliases `points` and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The query selects both expressions with aliases `points` and `goal_difference`. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` instead of `RANK`:** It guarantee:** - **`ROW_NUMBER` instead of `RANK`:** It guarantees unique sequential positions but needs a deterministic final tie-break, such as `team_id`, when names also tie.
+- **`ROW_NUMBER` instead of `RANK`:** It guarantees unique sequential positions but needs a deterministic final tie-break, such as `team_id`, when names also tie.
 - **`DENSE_RANK`:** It would avoid gaps after complete ties but still assign the same position to identical ordering tuples; the statement does not request that behavior specifically.
 - **CTE for derived metrics:** Computing points and goal difference in a CTE can avoid repeating expressions in the window order and improve readability without changing semantics.
 - **Equal points:** Goal difference decides the higher team.
@@ -101,8 +101,8 @@ The query selects both expressions with aliases `points` and `goal_difference`. 
 - **No aggregation:** The unique team-season row already contains totals, so grouping would be redundant.
 - **Team names and collation:** Alphabetical comparison follows the database column's configured collation. Case, accents, and locale rules could affect order outside the example, so SQL “alphabetical” order is not necessarily raw byte order.
 - **Repeated expressions:** Points and goal difference are calculated again inside the window order. This is logically consistent with the displayed aliases, though a CTE would make future formula changes less error-prone.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

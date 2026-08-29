@@ -73,7 +73,7 @@ For `k = 1`, the initial slice `nums[:0]` is empty, so heapifying it is valid. E
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The initial comprehension inserts indices `0` through `k - 2... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ This is safe because only the root is ever used as the answer. If a stale entry 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic decreasing deque:** Store useful ind:** - **Monotonic decreasing deque:** Store useful indices in increasing index order and decreasing value order. Remove expired indices from the front and values dominated by the newcomer from the back. Each index enters and leaves once, giving $O(n)$ time and $O(k)$ auxiliary space; this is the stronger asymptotic solution described by the local editorial and manifest, but it is not what the exact optimal source implements.
+- **Monotonic decreasing deque:** Store useful indices in increasing index order and decreasing value order. Remove expired indices from the front and values dominated by the newcomer from the back. Each index enters and leaves once, giving $O(n)$ time and $O(k)$ auxiliary space; this is the stronger asymptotic solution described by the local editorial and manifest, but it is not what the exact optimal source implements.
 - **Balanced multiset:** Insert the entering value, erase the leaving occurrence, and query the greatest value. This gives $O(n\log k)$ time and $O(k)$ space in languages with an ordered multiset, provided duplicates are represented correctly.
 - **Direct scan of every window:** It uses only constant auxiliary space but costs $O(nk)$ in the worst case because it rediscovers nearly the same maximum repeatedly.
 - **Lazy heap expiration:** Arbitrary expired entries do not need immediate deletion. Only an expired root can corrupt the answer, so root cleanup is sufficient for correctness, though it permits $O(n)$ memory growth.
@@ -120,8 +120,8 @@ This is safe because only the root is ever used as the answer. If a stale entry 
 - **`k = n`:** Initialization loads the first $n-1$ values, the loop adds the last, and exactly one maximum is returned.
 - **Negative values:** Negation still reverses priority correctly. For example, original `-3` is stored as `3`, while original `-1` is stored as `1`, so `-1` is recovered as the larger value.
 - **Expired non-root entries:** Their presence is harmless for correctness but important for complexity analysis. Claiming the heap always contains only the current window would be inaccurate for this implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

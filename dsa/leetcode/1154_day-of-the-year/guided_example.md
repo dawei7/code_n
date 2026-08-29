@@ -68,7 +68,7 @@ The conditional expression stores the February length in `v`: 29 when the leap r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | February has 28 days in an ordinary year and 29 in a leap ye... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Only February depends on the year, so every other entry is a fixed constant. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a date-library day-of-year formatter:** A :** - **Use a date-library day-of-year formatter:** A standard library can solve the task, but its parsing conventions and platform behavior add dependencies to a calculation that needs only twelve fixed month lengths.
+- **Use a date-library day-of-year formatter:** A standard library can solve the task, but its parsing conventions and platform behavior add dependencies to a calculation that needs only twelve fixed month lengths.
 - **Use cumulative month offsets:** Precomputing the number of days before each month avoids the slice and sum. A leap-day adjustment after February would still be needed.
 - **Loop through earlier months:** An explicit loop is equivalent to `sum(days[: m - 1])` and remains constant because there are only twelve months.
 - **Test only divisibility by four:** This incorrectly treats years such as 1900 as leap years. Century years require the 400-year exception.
@@ -119,8 +119,8 @@ Only February depends on the year, so every other entry is a fixed constant. The
 - **Year 2000:** Divisible by 400, so February has 29 days.
 - **Truthiness of `y % 100`:** A nonzero remainder means “not divisible by 100.” Rewriting it as `y % 100 != 0` would be more explicit but not change behavior.
 - **Valid-input guarantee:** The code assumes the calendar date, separators, month, and day are valid because the contract guarantees them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

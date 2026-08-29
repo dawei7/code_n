@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `mass`, which represents the original mass of a planet. You are further given an integer array `asteroids`, where $\text{asteroids}[i]$ is the mass of the $$i^{\text{th}}$$ asteroid.
+You are given an integer `mass`, which represents the original mass of a planet. You are further given an integer array `asteroids`, where $\text{asteroids}[i]$ is the mass of the $i^{\text{th}}$ asteroid.
 
 The objective is to compute `true` from `{"mass": 10, "asteroids": [3, 9, 19, 5, 21]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -62,7 +62,7 @@ The planet cannot destroy any of them, so it has no way to gain additional mass.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the sorted scan reaches `x` with planet mass smaller... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ There is no resource consumed by a collision and no penalty for gaining mass. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly search for any destroyable asteroid:** - **Repeatedly search for any destroyable asteroid:** It may work but can cost $O(n^2)$. Sorting establishes a definitive order once.
+- **Repeatedly search for any destroyable asteroid:** It may work but can cost $O(n^2)$. Sorting establishes a definitive order once.
 - **Max-heap:** Choosing the largest currently destroyable asteroid can also gain mass, but requires maintaining eligibility. The ascending proof is simpler.
 - **Original input order:** It may fail even when another ordering succeeds, so reordering is essential.
 - **Equal mass:** The planet succeeds because the rule is `>=`.
@@ -113,8 +113,8 @@ There is no resource consumed by a collision and no penalty for gaining mass. Th
 - **Early return:** Avoids scanning asteroids after impossibility is established.
 - **Mass invariant:** Before each asteroid, all smaller available gains have already been collected.
 - **Failure in unsorted order:** Would not be conclusive, which is why sorting is essential.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

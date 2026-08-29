@@ -89,11 +89,7 @@ This is exactly the definition of reversing the block.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For block start `i`, the expression
-
-`nums[i : i + m]`
-
-extr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +132,7 @@ The current slice assignment reverses block `b` without affecting the other stat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer swaps:** For each block, swap its :** - **Two-pointer swaps:** For each block, swap its first and last elements, then move inward. This preserves `O(N)` time and uses genuine `O(1)` auxiliary space, matching the manifest summary.
+- **Two-pointer swaps:** For each block, swap its first and last elements, then move inward. This preserves `O(N)` time and uses genuine `O(1)` auxiliary space, matching the manifest summary.
 - **Build a separate result list:** Append each block in reverse order to a new array. This is clear and non-mutating but uses `O(N)` extra space.
 - **Single index-mapping comprehension:** For each output index, compute its block start and mirrored input offset. This is `O(N)` time and produces an `O(N)` new list.
 - **Reverse the entire array:** This also reverses the order of the blocks, which is not requested unless `k=1`.
@@ -149,8 +145,8 @@ The current slice assignment reverses block `b` without affecting the other stat
 - **Slice length preservation:** Both sides contain `m` elements, so assignment cannot grow or shrink the list and subsequent block starts remain valid.
 - **Temporary allocations:** The notation looks in-place because it writes into `nums`, but `nums[i:i+m]` and `[::-1]` allocate. Complexity documentation must account for them.
 - **Step safety:** `m` cannot be zero because `k\le N`. If that guarantee were absent, `range(..., step=0)` would fail.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

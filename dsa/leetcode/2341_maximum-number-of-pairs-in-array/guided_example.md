@@ -63,7 +63,7 @@ These groups produce one, one, and one pair, with one copy of 2 left.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(nums)` creates a mapping from each distinct integer... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This is maximal because each reported pair has two available equal copies. It is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 101-entry frequency array:** Increment b:** - **Fixed 101-entry frequency array:** Increment by value, then sum quotients and remainders. It has the same time and makes constant bounded storage explicit.
+- **Fixed 101-entry frequency array:** Increment by value, then sum quotients and remainders. It has the same time and makes constant bounded storage explicit.
 - **Toggle membership in a set:** Add the first unpaired occurrence; when the same value appears again, remove it and increment the pair count. The final set size is leftovers and storage remains bounded.
 - **Sort the array:** Equal values become consecutive and can be paired in a scan, but sorting costs `O(n \log n)` and may mutate the input.
 - **Physically remove pairs:** Repeated list deletion is unnecessary and can become quadratic.
@@ -114,8 +114,8 @@ This is maximal because each reported pair has two available equal copies. It is
 - **Pair order:** Any two copies of a value are interchangeable, so indices do not affect the count.
 - **Counter hash behavior:** Complexity uses expected constant-time dictionary updates; the tiny integer key domain is especially well behaved.
 - **Input preservation:** Frequencies are counted in separate storage and `nums` is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

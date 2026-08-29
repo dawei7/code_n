@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given a **1-indexed** integer array `prices`, where $\text{prices}[i]$ is the price of a particular stock on the $$i^{\text{th}}$$ day, your task is to select some of the elements of `prices` such that your selection is **linear**.
+Given a **1-indexed** integer array `prices`, where $\text{prices}[i]$ is the price of a particular stock on the $i^{\text{th}}$ day, your task is to select some of the elements of `prices` such that your selection is **linear**.
 
 A selection `indexes`, where `indexes` is a **1-indexed** integer array of length `k` which is a subsequence of the array `[1, 2, ..., n]`, is **linear** if:
 

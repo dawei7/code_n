@@ -63,7 +63,7 @@ This correctly attributes a June chargeback for a May transaction to June while 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second branch joins `Transactions AS t` to `Chargebacks ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Duplicate elimination could matter among chargeback rows if identical entries fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION ALL` two preaggregated streams:** Aggre:** - **`UNION ALL` two preaggregated streams:** Aggregate approved transactions and chargebacks separately, union their metrics, then sum by month and country. This preserves duplicate events and can reduce intermediate rows.
+- **`UNION ALL` two preaggregated streams:** Aggregate approved transactions and chargebacks separately, union their metrics, then sum by month and country. This preserves duplicate events and can reduce intermediate rows.
 - **Full outer join of aggregates:** Combine the two month-country aggregate tables while keeping groups present on only one side. MySQL requires emulating a full outer join.
 - **Chargeback month differs from transaction month:** The synthetic row deliberately uses `c.trans_date`, so the metrics appear in the chargeback month.
 - **Chargeback of a declined transaction:** It still counts because the chargeback branch does not require original approval.
@@ -110,8 +110,8 @@ Duplicate elimination could matter among chargeback rows if identical entries fo
 - **Duplicate chargeback facts:** `UNION` removes identical synthetic rows. Use `UNION ALL` when each duplicate row represents a distinct event.
 - **Column-order dependence:** `SELECT *` must align with the five expressions in the second branch. Explicit columns are safer for schema evolution.
 - **Any output order:** No `ORDER BY` is needed because the contract accepts arbitrary row order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

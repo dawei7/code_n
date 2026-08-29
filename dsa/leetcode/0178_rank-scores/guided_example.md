@@ -73,11 +73,7 @@ different question.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The window clause is:
-
-`OVER (ORDER BY score DESC)`.
-
-This t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +115,7 @@ is precisely why dense rank is selected.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated distinct count:** Compute one plus :** - **Correlated distinct count:** Compute one plus the number of distinct greater scores for each row. It is clear mathematically but can be $O(n^2)$.
+- **Correlated distinct count:** Compute one plus the number of distinct greater scores for each row. It is clear mathematically but can be $O(n^2)$.
 - **Self-join and grouping:** Join each row with scores greater than or equal to it, then count distinct joined values; also potentially quadratic.
 - **`RANK()`:** Incorrect because ties create gaps in later ranks.
 - **`ROW_NUMBER()`:** Incorrect because tied rows receive different numbers.
@@ -129,8 +125,8 @@ is precisely why dense rank is selected.
 - **Required row order:** Add an outer `ORDER BY score DESC`; window ordering alone is insufficient.
 - **MySQL version:** Window functions require MySQL 8.0 or newer.
 - **Alias syntax:** `'rank'` works in MySQL's select alias context but an identifier quote is clearer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

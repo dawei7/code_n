@@ -347,9 +347,9 @@ def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
 
 - Time Complexity : $$O(m \, \log m  n)$$.
 
-    We determined above that Approach #1 and Approach #2 both have the same time complexity. This was $$O(m \cdot n)$$ to calculate the "strengths", and $$O(m \, \log \, m)$$ to get them into sorted order. For this approach though, we calculated the "strengths" using binary search instead of linear search. Calculating each row "strength" cost $$O(\log \,n)$$, and there were $$m$$ rows to calculate. This is, therefore, $$O(m \, \log \, n)$$. The second part will still be $$O(m \, \log \, m)$$.
+    We determined above that Approach #1 and Approach #2 both have the same time complexity. This was $$O(m \cdot n)$$ to calculate the "strengths", and $$O(m \, \log \, m)$$ to get them into sorted order. For this approach though, we calculated the "strengths" using binary search instead of linear search. Calculating each row "strength" cost $$O(\log \,n)$$, and there were $m$ rows to calculate. This is, therefore, $$O(m \, \log \, n)$$. The second part will still be $$O(m \, \log \, m)$$.
 
-    Like before, we don't know whether $$m$$ or $$n$$ is bigger. Therefore, we have to add the time complexities, which gives $$O(m \, \log \,n + m \, \log \, m) = O(m \cdot (\log \, n + \log \, m)) = O(m \, \log \, m n)$$.
+    Like before, we don't know whether $m$ or $n$ is bigger. Therefore, we have to add the time complexities, which gives $$O(m \, \log \,n + m \, \log \, m) = O(m \cdot (\log \, n + \log \, m)) = O(m \, \log \, m n)$$.
 
 - Space Complexity : $$O(m)$$.
 
@@ -365,7 +365,7 @@ def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
 
 Note: This approach is easier to code in Python than in Java/ C++, because it requires the implementation of a [Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html).
 
-The previous approaches use $$O(n)$$ space for gathering up row "strength" data. We then throw away $$n - k$$ of these, returning $$k$$ of them. Is there a way we can reduce this space usage to $$O(k)$$, by only keeping the smallest $$k$$ we've seen so far?
+The previous approaches use $$O(n)$$ space for gathering up row "strength" data. We then throw away $$n - k$$ of these, returning $k$ of them. Is there a way we can reduce this space usage to $$O(k)$$, by only keeping the smallest $k$ we've seen so far?
 
 Problems like this can often be solved using a **Priority Queue**. Recall that a Priority Queue is a data structure that allows us to insert items, and to efficiently remove the *largest* item in the case of a **Max-Priority Queue**, or the *smallest* in the case of a **Min-Priority Queue**.
 
@@ -459,17 +459,17 @@ class Solution:
 
 - Time Complexity : $$O(m \, \log \, nk)$$.
 
-    This approach is very similar to Approach #3. The only difference is that we're putting the "strengths" into a Priority Queue, and storing at most $$k$$ of them at a time.
+    This approach is very similar to Approach #3. The only difference is that we're putting the "strengths" into a Priority Queue, and storing at most $k$ of them at a time.
 
     Calculating the strengths is still $$O(m \, \log \, n)$$.
 
-    Inserting an item into a Priority Queue has a cost of $$O(\log\, x)$$, where $$x$$ is the maximum number of items that will be in the Priority Queue. For this algorithm, the maximum $$x$$ value is $$k$$ (not $$m$$). Therefore, each insertion costs $$log(k)$$. There are $$m$$ of these insertions, giving a total of $$O(m \, \log \,k)$$.
+    Inserting an item into a Priority Queue has a cost of $$O(\log\, x)$$, where $x$ is the maximum number of items that will be in the Priority Queue. For this algorithm, the maximum $x$ value is $k$ (not $m$). Therefore, each insertion costs $$log(k)$$. There are $m$ of these insertions, giving a total of $$O(m \, \log \,k)$$.
 
     Like before, we need to add $$m \, \log \, n + m \, \log \,k$$, and again we can't assume which is bigger out of $$\log \, n$$ and $$\log\,k$$. Therefore, the total time complexity is $$m \, \log \, n + m \, \log \, k = m \cdot (\log \, n + \log \, k) = O(m \,  \log nk)$$.
 
 - Space Complexity : $$O(k)$$.
 
-    We are keeping at most $$k$$ pieces of "strength" data at a time. Therefore, the space complexity is $$O(k)$$.
+    We are keeping at most $k$ pieces of "strength" data at a time. Therefore, the space complexity is $$O(k)$$.
 
 <br />
 

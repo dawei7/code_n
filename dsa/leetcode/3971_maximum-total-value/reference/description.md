@@ -8,7 +8,7 @@ You are given two integer arrays `value` and `decay`, and an integer `m`.
 
 You may select any index **multiple** times. The total number of selections across all indices must not exceed `m`.
 
-If you select index `i` for the $$t^{\text{th}}$$ time, where `t` is 1-indexed, the value gained is $\text{value}[i] - \text{decay}[i] * (t - 1)$.
+If you select index `i` for the $t^{\text{th}}$ time, where `t` is 1-indexed, the value gained is $\text{value}[i] - \text{decay}[i] * (t - 1)$.
 
 Return the **maximum** total value you can obtain. Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
@@ -78,6 +78,6 @@ The total value is $4 + 3 = 7$.
 
 - $1 \le \text{value.length} = \text{decay.length} \le 10^{5}$
 
-- $1 \le \text{value}[i], \text{decay}[i] \le 10^{9}​​​​​​​$
+- $1 \le \text{value}[i], \text{decay}[i] \le 10^{9}$
 
 - $1 \le m \le 10^{9}$

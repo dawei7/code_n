@@ -67,9 +67,7 @@ The gaps that `RANK` may leave after ties do not matter because the outer query 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The window expression is:
-
-`RANK() OVER (PARTITION BY custom... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ Customers with no orders never appear in `T`. This is correct: the output should
 
 ## 6. Traps This Instance Exposes
 
-- **- **`DENSE_RANK` instead of `RANK`:** It selects t:** - **`DENSE_RANK` instead of `RANK`:** It selects the same rank-one ties here because only the first rank is filtered. Later rank numbering would differ but is not returned.
+- **`DENSE_RANK` instead of `RANK`:** It selects the same rank-one ties here because only the first rank is filtered. Later rank numbering would differ but is not returned.
 - **`ROW_NUMBER`:** This is incorrect for ties because it assigns a unique sequence number and would retain only one equally frequent product.
 - **Correlated maximum-count subquery:** One can compare each grouped count with the maximum for that customer, but it is usually more verbose and may repeat aggregation work.
 - **Join `Customers` first:** This is unnecessary because customer names are not returned and customers without orders must be excluded. Starting from `Orders` naturally limits the population.
@@ -125,8 +123,8 @@ Customers with no orders never appear in `T`. This is correct: the output should
 - **Missing product reference:** The source assumes order product identifiers correspond to `Products` rows. An unmatched identifier would be removed by the inner join.
 - **`GROUP BY 1, 2` readability:** It is valid positional shorthand, but naming `customer_id, product_id` explicitly is safer if the select list is later reordered.
 - **Any output order:** Omitting a final `ORDER BY` is correct and avoids promising an order the statement does not require.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

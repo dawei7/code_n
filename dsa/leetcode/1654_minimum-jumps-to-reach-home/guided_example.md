@@ -63,7 +63,7 @@ The visited set begins with `(0, 1)` and stores complete state pairs rather than
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `s = set(forbidden)` converts the forbidden l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The finite upper boundary matters because forward jumps could otherwise generate
 
 ## 6. Traps This Instance Exposes
 
-- **- **Position-only visited set:** This is incorrect:** - **Position-only visited set:** This is incorrect because arriving after a backward jump and arriving after a forward jump allow different next moves. The permission bit must be part of the visited identity.
+- **Position-only visited set:** This is incorrect because arriving after a backward jump and arriving after a forward jump allow different next moves. The permission bit must be part of the visited identity.
 - **Depth-first search:** DFS can determine reachability in a bounded graph, but the first target it finds need not use the fewest jumps. It would need extra distance handling, whereas BFS obtains the minimum directly from its layers.
 - **Distance stored in each queue entry:** A triple such as position, permission, and distance is equivalent to the level loop. It may be easier to read locally, but stores a repeated distance value in every queued state.
 - **A tighter calculated boundary:** One can derive an input-specific ceiling from the largest forbidden position, `x`, `a`, and `b`. That may explore fewer states, but the proof and off-by-one choice must be handled carefully; this source deliberately uses the fixed bound supported by the constraints.
@@ -119,8 +119,8 @@ The finite upper boundary matters because forward jumps could otherwise generate
 - **Backward then backward:** After a backward move the flag is zero, so no second backward candidate is generated. Any forward move changes the flag back to one.
 - **Same coordinate with different history:** Both states are intentionally allowed into `vis` because one may have a legal backward successor that the other lacks.
 - **Unreachable target:** Cycles cannot keep the algorithm alive forever because each bounded state is inserted only once. Exhausting the queue leads to `-1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

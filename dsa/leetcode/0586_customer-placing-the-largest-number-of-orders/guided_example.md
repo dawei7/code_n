@@ -69,7 +69,7 @@ The order in which SQL logically processes these clauses helps make the compact 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After grouping, the logical relation is equivalent to pairs ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For the sample, the four order rows contain customer numbers 1, 2, 3, and 3. Gro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window ranking:** Compute counts in a grouped :** - **Window ranking:** Compute counts in a grouped common table expression and apply `ROW_NUMBER` ordered by count descending. This is explicit but longer for a guaranteed unique winner.
+- **Window ranking:** Compute counts in a grouped common table expression and apply `ROW_NUMBER` ordered by count descending. This is explicit but longer for a guaranteed unique winner.
 - **Maximum-count subquery:** Build customer counts, find their maximum, and return groups equal to it. This naturally solves the tie-inclusive follow-up but usually repeats or layers aggregation.
 - **`RANK` for all leaders:** Use `RANK() OVER (ORDER BY order_count DESC)` and retain rank one. Unlike `LIMIT 1`, this returns every tied maximum.
 - **Correlated count per customer:** Count one customer’s rows repeatedly from a distinct-customer list. Without an index, it can do much more work than one grouping pass.
@@ -118,8 +118,8 @@ For the sample, the four order rows contain customer numbers 1, 2, 3, and 3. Gro
 - **Counting rows:** `COUNT(1)` and `COUNT(*)` are equivalent here. Counting a nullable expression could undercount and should be avoided.
 - **No output ordering requirement beyond selection:** Once exactly one row remains, an additional final order is meaningless.
 - **Follow-up with ties:** Replace top-one selection with a maximum comparison or rank-one filter; do not add an arbitrary customer-ID tie-breaker if the requirement is to return all leaders.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

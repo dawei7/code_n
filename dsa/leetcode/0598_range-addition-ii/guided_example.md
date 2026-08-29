@@ -69,10 +69,7 @@ For `m = 3`, `n = 3`, and operations `[2,2]` and `[3,3]`, the running minima end
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A cell belongs to every rectangle exactly when:
-
-$$
-x < \min... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +114,7 @@ This would not be true with only two arbitrary scalar minima if rectangles could
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit matrix simulation:** Apply every oper:** - **Explicit matrix simulation:** Apply every operation cell by cell, then scan for the maximum. It can take $O(kmn)$ time and $O(mn)$ space and is infeasible at maximum dimensions.
+- **Explicit matrix simulation:** Apply every operation cell by cell, then scan for the maximum. It can take $O(kmn)$ time and $O(mn)$ space and is infeasible at maximum dimensions.
 - **Two-dimensional difference array:** Can apply rectangle updates efficiently and reconstruct values in $O(mn+k)$ time, but still materializes the huge matrix and solves a more general problem than needed.
 - **Track only one minimum:** Incorrect because both row and column membership determine the intersection area.
 - **Sum or average operation sizes:** Irrelevant; maximum cells require membership in *all* rectangles, which is governed by componentwise minima.
@@ -130,8 +127,8 @@ This would not be true with only two arbitrary scalar minima if rectangles could
 - **Half-open bounds:** Operation `[a,b]` affects exactly $a$ rows and $b$ columns because indices run from zero through `a-1` and `b-1`.
 - **Shared-origin assumption:** The minima shortcut depends on every rectangle starting at `(0,0)`. Arbitrarily positioned updates require more information.
 - **Input preservation:** Reassigning local parameters `m` and `n` does not modify `ops` or external matrix data; no matrix exists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

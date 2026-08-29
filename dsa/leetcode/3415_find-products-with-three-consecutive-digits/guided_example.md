@@ -51,7 +51,7 @@ The query expresses the exact-run condition with this regular expression:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query expresses the exact-run condition with this regula... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ It helps to read the expression as three consecutive pieces.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three digits without boundaries:** `[0-9]{3}` :** - **Three digits without boundaries:** `[0-9]{3}` alone incorrectly accepts any run of four or more digits because it can match a three-character portion.
+- **Three digits without boundaries:** `[0-9]{3}` alone incorrectly accepts any run of four or more digits because it can match a three-character portion.
 - **Word-boundary token:** A regex word boundary does not mean “digit versus non-digit”; letters, digits, and underscores are all word characters in common regex rules. Explicit digit negation is the correct boundary.
 - **String-length arithmetic:** Removing non-digits or splitting names can solve the task procedurally, but it is more verbose and easier to mishandle multiple runs than the direct regex.
 - **Leading zeros:** `"007"` is exactly three digit characters and must qualify. Numeric conversion would erase the structural leading zeros and is inappropriate.
@@ -96,8 +96,8 @@ It helps to read the expression as three consecutive pieces.
 - **Several valid runs:** A name such as `"A123B456C"` is returned once, not once per regex occurrence, because `WHERE` filters rows.
 - **Mixed run lengths:** A name qualifies if it has at least one exact three-digit run, even when another part of the same name contains a longer or shorter run.
 - **Ordering syntax:** `ORDER BY 1` is concise but depends on select-list position. Writing `ORDER BY product_id ASC` would be more self-documenting while producing the same result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

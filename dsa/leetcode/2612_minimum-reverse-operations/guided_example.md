@@ -78,7 +78,7 @@ These are exactly the formulas used by the solution. From position $i$, every in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the reversed subarray starts at $l$ and ends at $l+k... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ is an integer and lies between the legal start bounds. Thus the arithmetic range
 
 ## 6. Traps This Instance Exposes
 
-- **- **Successor disjoint set:** Maintain “next unvis:** - **Successor disjoint set:** Maintain “next unvisited index” links separately by parity. Deleting an index unions it with its successor and yields $O(n\alpha(n))$ time, matching the manifest.
+- **Successor disjoint set:** Maintain “next unvisited index” links separately by parity. Deleting an index unions it with its successor and yields $O(n\alpha(n))$ time, matching the manifest.
 - **Balanced ordered sets:** The exact solution is easier to read and supports lower-bound queries directly, at the cost of $O(\log n)$ per discovery.
 - **Try every reversal from every BFS state:** This can revisit the same destinations many times and degrade toward $O(n^2)$.
 - **Banned starting position:** The contract guarantees $p$ is not banned, so its required distance zero is valid.
@@ -131,8 +131,8 @@ is an integer and lies between the legal start bounds. Thus the arithmetic range
 - **Unreachable allowed index:** It remains `-1` even though it was not banned.
 - **Sentinel safety:** Since `mx <= n-1`, sentinel $n$ always terminates the interval loop and is never queued.
 - **Removal timing:** A neighbor must leave its set when discovered, not later when dequeued, or multiple parents could enqueue it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

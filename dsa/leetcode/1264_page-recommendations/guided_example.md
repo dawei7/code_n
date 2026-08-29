@@ -65,7 +65,7 @@ For the example, rows containing user `1` produce friend identifiers `2`, `3`, `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The common table expression named `T` normalizes both orient... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After the join, the query needs only `page_id`. It aliases that column as `recom
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated `EXISTS` and `NOT EXISTS`:** Existe:** - **Correlated `EXISTS` and `NOT EXISTS`:** Existence predicates can express “some friend likes this page” and “user one does not.” They avoid the `NULL` semantics of `NOT IN` and may optimize well, but the current schema already makes `page_id` non-null.
+- **Correlated `EXISTS` and `NOT EXISTS`:** Existence predicates can express “some friend likes this page” and “user one does not.” They avoid the `NULL` semantics of `NOT IN` and may optimize well, but the current schema already makes `page_id` non-null.
 - **`LEFT JOIN` anti-join:** Candidate pages can be left-joined to user `1`'s likes and filtered with `IS NULL`. This is a common equivalent anti-join formulation but requires careful aliases because `Likes` appears twice.
 - **`UNION ALL` instead of `UNION`:** It could preserve duplicate friend rows and rely on final `DISTINCT` for correct output. That may create unnecessary join work and makes the normalized friend relation less clean.
 - **Friend stored in either column:** The two CTE branches are both necessary; omitting either one misses friendships in the opposite orientation.
@@ -115,8 +115,8 @@ After the join, the query needs only `page_id`. It aliases that column as `recom
 - **User one has no likes:** The anti-subquery is empty, so every distinct page liked by a friend is eligible.
 - **No ordering requirement:** Without `ORDER BY`, MySQL may return valid recommendations in any physical order.
 - **Primary-key nullability:** The safety of `NOT IN` depends on `page_id` being non-null, which follows from its participation in the declared primary key.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

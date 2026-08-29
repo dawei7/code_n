@@ -51,7 +51,7 @@ The same `Variables` table must participate twice because one expression refers 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The same `Variables` table must participate twice because on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The same `Variables` table must participate twice because one expression refers 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two correlated scalar subqueries:** The query :** - **Two correlated scalar subqueries:** The query could look up the left and right values with separate subqueries in the `SELECT` list. That can express the same logic, but the two explicit joins make the two operand roles clearer and usually give the optimizer a more direct relational plan.
+- **Two correlated scalar subqueries:** The query could look up the left and right values with separate subqueries in the `SELECT` list. That can express the same logic, but the two explicit joins make the two operand roles clearer and usually give the optimizer a more direct relational plan.
 - **A single occurrence of Variables:** One alias cannot independently match two possibly different operand names. Requiring one joined row to have both names would fail whenever `left_operand` and `right_operand` differ, so two aliases are the natural representation.
 - **Nested CASE branches:** A first `CASE` could choose the operator and a nested expression could perform its comparison. It is valid, but the guarded `OR` terms keep all three legal cases visible in one condition.
 - **MySQL IF expressions:** Chained `IF` calls can produce the required strings, but they are more vendor-specific and tend to obscure the exhaustive three-operator decision.
@@ -99,8 +99,8 @@ The same `Variables` table must participate twice because one expression refers 
 - **SQL NULL values outside the contract:** If operand values could be `NULL`, comparisons would evaluate to unknown rather than true, and `CASE` would return `false`. The stated integer schema does not require a separate null policy.
 - **Output order:** The result may be returned in any order. Tests should compare the required rows according to that contract instead of assuming insertion order.
 - **Exact text casing:** The required results are lowercase `true` and `false`. Returning Boolean values, uppercase words, or numeric `1` and `0` would not faithfully produce the requested output representation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

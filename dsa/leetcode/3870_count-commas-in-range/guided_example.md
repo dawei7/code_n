@@ -86,10 +86,7 @@ If `n-999` is negative, `max` selects zero. If it is positive, it is exactly the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `n\ge1000`, the comma-bearing integers are
-
-$$
-1000,100... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +129,7 @@ Ordinary decimal notation has no leading zeros. A value such as one is `"1"`, no
 
 ## 6. Traps This Instance Exposes
 
-- **- **Format every integer:** Loop from one through :** - **Format every integer:** Loop from one through `n`, call a comma formatter, and count characters. This is direct but takes time proportional to all formatted output instead of constant time.
+- **Format every integer:** Loop from one through `n`, call a comma formatter, and count characters. This is direct but takes time proportional to all formatted output instead of constant time.
 - **Count decimal digits per integer:** Computing `(\text{digits}-1)//3` for every value still takes `O(n)` iterations. The range bound makes a single threshold count sufficient.
 - **General power-of-1000 loop:** Add `n-x+1` for thresholds `x=1000,1000000,\ldots`. It is correct here but performs only the first iteration because later thresholds exceed the domain.
 - **Use `n-1000`:** This misses one endpoint. Inclusive range `[1000,n]` has `n-1000+1` values.
@@ -144,8 +141,8 @@ Ordinary decimal notation has no leading zeros. A value such as one is `"1"`, no
 - **Leading zeros:** They are excluded by ordinary decimal representation. Treating numbers as fixed-width strings would solve a different problem.
 - **Locale-dependent formatting:** The problem defines comma placement explicitly. Do not rely on locale conventions that may use periods, spaces, or different grouping.
 - **Bound dependence:** Extending the constraint to one million or above invalidates the one-comma-per-number simplification; use the threshold-superposition method instead.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

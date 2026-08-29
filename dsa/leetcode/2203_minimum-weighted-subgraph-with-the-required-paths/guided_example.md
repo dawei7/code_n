@@ -60,7 +60,7 @@ All edge weights are positive, satisfying Dijkstra's requirement that once the s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dijkstra(g, src1)` returns array `d1`, where `d1[v]` is the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ Without reversal, one would need a separate Dijkstra run from every possible mee
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run Dijkstra only forward from `dest`:** This :** - **Run Dijkstra only forward from `dest`:** This gives distances from destination to nodes, the wrong direction in a directed graph; reversing edges is essential.
+- **Run Dijkstra only forward from `dest`:** This gives distances from destination to nodes, the wrong direction in a directed graph; reversing edges is essential.
 - **Floyd–Warshall:** All-pairs shortest paths cost $O(n^3)$ and cannot handle $n=10^5$.
 - **Bellman–Ford:** It supports negative weights but is unnecessary and much slower because all weights are positive.
 - **Meeting at `src1` or `src2`:** The formula allows any node; a zero source-to-self distance handles these cases.
@@ -111,8 +111,8 @@ Without reversal, one would need a separate Dijkstra run from every possible mee
 - **Positive weights:** They justify Dijkstra and removal of unnecessary cycles or split branches.
 - **Stale heap entries:** The distance comparison prevents obsolete candidates from being expanded.
 - **Input preservation:** Edges are copied into adjacency structures and not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

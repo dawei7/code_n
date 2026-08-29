@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer `hoursBefore`, the number of hours you have to travel to your meeting. To arrive at your meeting, you have to travel through `n` roads. The road lengths are given as an integer array `dist` of length `n`, where $\text{dist}[i]$ describes the length of the $$i^{\text{th}}$$ road in **kilometers**. In addition, you are given an integer `speed`, which is the speed (in **km/h**) you will travel at.
+You are given an integer `hoursBefore`, the number of hours you have to travel to your meeting. To arrive at your meeting, you have to travel through `n` roads. The road lengths are given as an integer array `dist` of length `n`, where $\text{dist}[i]$ describes the length of the $i^{\text{th}}$ road in **kilometers**. In addition, you are given an integer `speed`, which is the speed (in **km/h**) you will travel at.
 
 After you travel road `i`, you must rest and wait for the **next integer hour** before you can begin traveling on the next road. Note that you do not have to rest after traveling the last road because you are already at the meeting.
 

@@ -51,7 +51,7 @@ The first common table expression, `RankedScores`, keeps every row from `Scores`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first common table expression, `RankedScores`, keeps eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first common table expression, `RankedScores`, keeps every row from `Scores`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate minimum and maximum score:** `MIN(sc:** - **Aggregate minimum and maximum score:** `MIN(score)` and `MAX(score)` do not identify scores on the first and latest dates. A student could peak in the middle and later decline.
+- **Aggregate minimum and maximum score:** `MIN(score)` and `MAX(score)` do not identify scores on the first and latest dates. A student could peak in the middle and later decline.
 - **Aggregate endpoint dates then join:** Finding `MIN(exam_date)` and `MAX(exam_date)` per group and joining those dates back to `Scores` is also correct, but requires additional grouped and keyed joins.
 - **`FIRST_VALUE` and `LAST_VALUE`:** Window endpoint functions can solve the problem, but `LAST_VALUE` is easy to misuse because its default frame often ends at the current row rather than the partition's final row.
 - **Only one exam:** The row receives both endpoint ranks but fails strict improvement, correctly excluding it.
@@ -96,8 +96,8 @@ The first common table expression, `RankedScores`, keeps every row from `Scores`
 - **Unique dates:** The composite primary key removes endpoint ties within a group. Without that guarantee, an additional deterministic tie rule would be required.
 - **Date text format:** Chronological correctness assumes a lexicographically sortable date representation such as `YYYY-MM-DD`. Arbitrary localized date strings should be converted to a date type before ordering.
 - **Output ordering:** `ORDER BY 1, 2` is correct but positional. Naming `student_id, subject` explicitly would be more resistant to future select-list reordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

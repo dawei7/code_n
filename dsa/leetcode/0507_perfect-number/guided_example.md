@@ -51,7 +51,7 @@ If `i` divides `num`, then `num // i` also divides it, and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `i` divides `num`, then `num // i` also divides it, and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every smaller integer:** It directly foll:** - **Test every smaller integer:** It directly follows the definition but takes $O(num)$ time instead of exploiting divisor pairs.
+- **Test every smaller integer:** It directly follows the definition but takes $O(num)$ time instead of exploiting divisor pairs.
 - **Prime factorization formula:** The sum-of-divisors function can be derived from prime exponents, also using square-root factorization. It is more machinery than needed for one equality test.
 - **Euclid–Euler perfect-number table:** Within a fixed numeric range, compare against generated even perfect numbers. This is fast but relies on a deeper theorem and a bounded domain rather than direct verification.
 - **`num = 1`:** It is not perfect because excluding itself leaves no divisors. The explicit guard prevents the initial one from causing a false positive.
@@ -96,8 +96,8 @@ $$
 - **Perfect square:** Its square-root divisor is added once through `i != num // i`.
 - **Exclude the number itself:** Starting at factor two after pre-adding one avoids ever adding the pair `(1, num)`.
 - **Overflow-safe boundary:** `i <= num // i` avoids evaluating `i * i` in a bounded integer type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

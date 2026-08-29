@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D character grid `matrix` of size `m x n`, represented as an array of strings, where $\text{matrix}[i][j]$ represents the cell at the intersection of the $$i^{\text{th}}$$ row and $$j^{\text{th}}$$ column. Each cell is one of the following:
+You are given a 2D character grid `matrix` of size `m x n`, represented as an array of strings, where $\text{matrix}[i][j]$ represents the cell at the intersection of the $i^{\text{th}}$ row and $j^{\text{th}}$ column. Each cell is one of the following:
 
 The objective is to compute `2` from `{"matrix": ["A..", ".A.", "..."]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -57,7 +57,7 @@ The check `c.isalpha()` identifies the portal cells under the stated input alpha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `g` maps each uppercase letter to the coordin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ When `(i, j)` is popped, the source reads `d = dist[i][j]`. It does not store an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra’s algorithm:** A binary-heap shortest:** - **Dijkstra’s algorithm:** A binary-heap shortest-path search correctly handles zero- and one-cost edges and is easier to generalize to larger weights, but it costs `O(mn \log(mn))` here. 0-1 BFS exploits the restricted weights to obtain linear time.
+- **Dijkstra’s algorithm:** A binary-heap shortest-path search correctly handles zero- and one-cost edges and is easier to generalize to larger weights, but it costs `O(mn \log(mn))` here. 0-1 BFS exploits the restricted weights to obtain linear time.
 - **Ordinary BFS:** Treating teleports and grid steps identically would charge the wrong cost, while processing free portal destinations without deque priority can finalize cells in the wrong order. Plain BFS is suitable only when every edge costs the same amount.
 - **Explicit portal-clique edges:** Connecting every pair of equal-letter cells makes the graph conceptually direct, but a group of `k` portals would create `O(k^2)` edges. Storing each group once and expanding it once represents the same useful reachability in linear total work.
 - **State including a used-letter mask:** Such a state is unnecessary and could multiply the search space by `2^{26}`. Any repeated use of one letter can be compressed into a single free jump between the first and final same-letter cells.
@@ -114,8 +114,8 @@ When `(i, j)` is popped, the source reads `d = dist[i][j]`. It does not store an
 - **Multiple shortest routes:** Strict improvement checks avoid rescheduling a cell for an equal distance. Keeping one shortest distance is sufficient; the problem asks only for the minimum count, not for the number or reconstruction of shortest routes.
 - **Large portal groups:** Every coordinate in the group is scanned together only once, which is essential for grids as large as `10^3 x 10^3`.
 - **Portal-letter semantics:** The proof relies on every occurrence of a letter being mutually reachable by one free teleport. If portals instead formed directed pairs or charged different costs, the group-expansion model would need to change.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ The sentinel `-1000000` lies below the allowed minimum, so the first element alw
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ok` begins with one for every index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ An index stays one only when it is a prefix maximum and a suffix minimum in the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix and suffix arrays:** Explicitly store t:** - **Prefix and suffix arrays:** Explicitly store the maximum to each left and minimum to each right, then test every index. It is equivalent but uses two $O(N)$ arrays instead of one flag array.
+- **Prefix and suffix arrays:** Explicitly store the maximum to each left and minimum to each right, then test every index. It is equivalent but uses two $O(N)$ arrays instead of one flag array.
 - **Sort and compare positions:** With unique values, a searchable number occupies the same relative position under certain partition properties, but sorting costs $O(N\log N)$.
 - **Simulate pivot choices:** The number of possible pivot sequences is exponential and unnecessary once the extrema criterion is derived.
 - **Single element:** Both sides are empty, so it is guaranteed and the answer is one.
@@ -119,8 +119,8 @@ An index stays one only when it is a prefix maximum and a suffix minimum in the 
 - **Dangerous pivot first:** A single violating value proves failure because it may be selected before any helpful removal.
 - **Finite progress:** Every non-target pivot removes itself, so a target that is never discarded must eventually be chosen.
 - **Sum of flags:** Flags are integers zero or one, so summation directly returns the count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

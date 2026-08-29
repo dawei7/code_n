@@ -57,9 +57,9 @@ Insert 3 with cost min(1, 0) = 0, now nums = [1,3,3].
 Insert 3 with cost min(1, 0) = 0, now nums = [1,3,3,3].
 Insert 2 with cost min(1, 3) = 1, now nums = [1,2,3,3,3].
 Insert 4 with cost min(5, 0) = 0, now nums = [1,2,3,3,3,4].
-​​​​​​​Insert 2 with cost min(1, 4) = 1, now nums = [1,2,2,3,3,3,4].
-​​​​​​​Insert 1 with cost min(0, 6) = 0, now nums = [1,1,2,2,3,3,3,4].
-​​​​​​​Insert 2 with cost min(2, 4) = 2, now nums = [1,1,2,2,2,3,3,3,4].
+Insert 2 with cost min(1, 4) = 1, now nums = [1,2,2,3,3,3,4].
+Insert 1 with cost min(0, 6) = 0, now nums = [1,1,2,2,3,3,3,4].
+Insert 2 with cost min(2, 4) = 2, now nums = [1,1,2,2,2,3,3,3,4].
 The total cost is 0 + 0 + 0 + 0 + 1 + 0 + 1 + 0 + 2 = 4.
 
 ### 4. Constraints

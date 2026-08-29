@@ -59,7 +59,7 @@ The solution stores precisely these values in a hash set. One is intentionally a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The maximum value is `10^6`, which needs at most 20 binary d... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,9 +94,9 @@ Python excludes the stop value of `range`, so the loop uses `right + 1`. Every i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manually clear the lowest set bit:** Repeatedl:** - **Manually clear the lowest set bit:** Repeatedly apply `x &= x - 1` and count iterations. This is correct but more verbose than `bit_count`.
-- **- **Convert to a binary string:** Count `'1'` char:** - **Convert to a binary string:** Count `'1'` characters. It is readable but allocates a string for every candidate.
-- **- **Run a generic primality test:** Unnecessary be:** - **Run a generic primality test:** Unnecessary because all possible counts are known and bounded.
+- **Manually clear the lowest set bit:** Repeatedly apply `x &= x - 1` and count iterations. This is correct but more verbose than `bit_count`.
+- **Convert to a binary string:** Count `'1'` characters. It is readable but allocates a string for every candidate.
+- **Run a generic primality test:** Unnecessary because all possible counts are known and bounded.
 
 ---
 

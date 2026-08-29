@@ -57,7 +57,7 @@ All masks are collected before union processing begins. Reassigning `p[x] = x` f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `find(x)` follows parent pointers.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ For existing masks, representatives `pa` and `pb` are found. If they differ, `pa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit graph plus DFS:** Generate the same n:** - **Explicit graph plus DFS:** Generate the same neighbors into adjacency lists, then run component search. This stores potentially many edges; DSU merges them online.
+- **Explicit graph plus DFS:** Generate the same neighbors into adjacency lists, then run component search. This stores potentially many edges; DSU merges them online.
 - **Pairwise word comparison:** Testing all pairs costs $O(n^2)$, avoidable because each mask has only a fixed set of one-operation neighbors.
 - **Anagrams:** Identical masks are immediately counted in one weighted component even though no union edge is needed.
 - **One word:** It forms one group of size one.
@@ -109,8 +109,8 @@ For existing masks, representatives `pa` and `pb` are found. If they differ, `pa
 - **Largest duplicate class:** Updating `mx` during mask construction handles many identical words even before any neighbor union.
 - **Dictionary iteration safety:** Union changes parent values but never adds or deletes keys, so iterating over `p.keys()` is safe.
 - **Input preservation:** Words are encoded without being sorted or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

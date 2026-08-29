@@ -81,11 +81,7 @@ Using one is essential. Treating an absent outside piece as zero would make ever
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inside value is
-
-`c = int(l[i:]) + int(r[:j + 1])`.
-
-If ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +122,7 @@ The slices naturally omit empty outside pieces. For example, opening at zero beg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedily make the inside numbers small:** A sm:** - **Greedily make the inside numbers small:** A smaller inside sum may create much larger outside multipliers, so local digit choices do not guarantee the minimum product.
+- **Greedily make the inside numbers small:** A smaller inside sum may create much larger outside multipliers, so local digit choices do not guarantee the minimum product.
 - **Parse expression trees:** The grammar after adding one pair of parentheses is fully determined by two boundaries, making general expression parsing unnecessary.
 - **Generate strings before evaluation:** This is possible, but separately identifying the four numeric parts makes missing-factor handling and value calculation clearer.
 - **Parentheses around the entire expression:** `i = 0` and `j = n - 1` represent this case with both outside factors equal to one.
@@ -138,8 +134,8 @@ The slices naturally omit empty outside pieces. For example, opening at zero beg
 - **Implicit multiplication:** Outside digits adjacent to parentheses multiply the parenthesized sum; they are not concatenated with the inside result.
 - **Nonempty inside operands:** Loop ranges ensure at least one digit remains on both sides of the plus inside the parentheses.
 - **Input preservation:** The original string is only sliced and never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,7 +69,7 @@ Likewise, a purchase before midnight at the start date is outside, while one exa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The procedure parameters `startDate` and `endDate` have type... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This explains the example: user `1` has a sufficiently large amount but its time
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group by user:** Filter rows and use `GROUP BY:** - **Group by user:** Filter rows and use `GROUP BY user_id` instead of `DISTINCT`. It can produce the same IDs, but `DISTINCT` states the intent directly because no aggregate is needed.
+- **Group by user:** Filter rows and use `GROUP BY user_id` instead of `DISTINCT`. It can produce the same IDs, but `DISTINCT` states the intent directly because no aggregate is needed.
 - **Use `EXISTS` over a users table:** This would be useful if a separate user table were required, but the only needed IDs already occur in qualifying purchase rows.
 - **Aggregate each user's total amount:** That changes the contract. One purchase must individually meet `minAmount`.
 - **Use an end-exclusive next-day boundary:** Common reporting logic such as `time_stamp < endDate + INTERVAL 1 DAY` would include the whole end date, contradicting the explicit midnight interpretation here.
@@ -119,8 +119,8 @@ This explains the example: user `1` has a sufficiently large amount but its time
 - **One row meets amount and another meets time:** The user remains ineligible because `AND` applies both requirements to each individual row.
 - **Required ordering:** `ORDER BY user_id` is necessary even after `DISTINCT`.
 - **Null data:** The declared schema does not state nullability here; if a compared value were null, the predicate would not be true under SQL three-valued logic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

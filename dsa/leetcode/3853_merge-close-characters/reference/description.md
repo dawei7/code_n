@@ -39,7 +39,7 @@ Return the stable string in which no equal characters have current-index distanc
 
 - **Explanation:** 
 
-- **​​​​​​​**Characters `'a'` at indices $i = 0$ and $i = 3$ are close as $3 - 0 = 3 \le k$.
+- ****Characters `'a'` at indices $i = 0$ and $i = 3$ are close as $3 - 0 = 3 \le k$.
 
 - Merge them into the left `'a'` and `s = "abc"`.
 

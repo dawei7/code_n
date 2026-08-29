@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(arr)` maps each value to its occurrence count.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source sorts `cnt.values()` ascending. For each frequency `v`, it subtracts 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap frequencies:** Pop cheapest groups un:** - **Min-heap frequencies:** Pop cheapest groups until budget is insufficient. It has similar logarithmic processing.
+- **Min-heap frequencies:** Pop cheapest groups until budget is insufficient. It has similar logarithmic processing.
 - **Frequency-of-frequencies array:** Counts are at most `N`, enabling linear-time bucket processing with `O(N)` space.
 - **Remove largest frequencies first:** This wastes budget and can leave more unique values.
 - **k equals zero:** The first attempted subtraction becomes negative, returning all unique values.
@@ -102,8 +102,8 @@ The source sorts `cnt.values()` ascending. For each frequency `v`, it subtracts 
 - **Partial removals are still required:** They can be spent after the greedy stopping point without decreasing the unique count.
 - **Counter expected complexity:** The analysis assumes standard expected constant-time hashing.
 - **Return zero:** It occurs only after every complete frequency group fits within the original removal budget.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

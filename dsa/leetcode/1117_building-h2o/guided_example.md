@@ -57,7 +57,7 @@ After printing, the code checks `h._value == 0`. The intention is that the hydro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each hydrogen call acquires one `h` permit before invoking `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ After oxygen prints, `h.release(2)` restores two hydrogen permits. The next pair
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reusable barrier:** Admit exactly two hydrogen:** - **Reusable barrier:** Admit exactly two hydrogen threads and one oxygen thread, then release the group together. This directly models molecule formation.
+- **Reusable barrier:** Admit exactly two hydrogen threads and one oxygen thread, then release the group together. This directly models molecule formation.
 - **Mutex-protected counter:** Update hydrogen completion count under a lock and let exactly the transition from one to two release oxygen. Reset only after oxygen completes.
 - **Semaphore choreography without private fields:** Use explicit permits whose acquire/release operations encode which hydrogen is first and which is second.
 - **Private `_value` access:** It is unsupported API and, more importantly, its observation is not atomic with the earlier acquire.
@@ -106,8 +106,8 @@ After oxygen prints, `h.release(2)` restores two hydrogen permits. The next pair
 - **Cross-molecule mixing:** No callback from the next molecule may complete before the current three bond; replenishment timing must enforce this.
 - **Callback exception:** Failure before a release can block progress; normal callback completion is assumed.
 - **Complexity target:** A corrected method should retain constant work per atom and $O(1)$ coordination state.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

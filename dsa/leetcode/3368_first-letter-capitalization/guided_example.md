@@ -53,8 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `word`: the next token to process;
-- `remaining_text`: eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ The non-recursive part creates the first intermediate row. `SUBSTRING_INDEX(cont
 
 ## 6. Traps This Instance Exposes
 
-- **- **Position-based recursive CTE:** Process one ch:** - **Position-based recursive CTE:** Process one character at a time with an “at word start” flag; it can preserve leading, repeated, and trailing spaces exactly.
+- **Position-based recursive CTE:** Process one character at a time with an “at word start” flag; it can preserve leading, repeated, and trailing spaces exactly.
 - **Built-in title-case function:** MySQL has no universally equivalent built-in that also guarantees the required spacing behavior.
 - **Split-and-reassemble:** It is conceptually simple but must retain empty tokens and trailing separators to meet the contract.
 - **One-character word:** The first character is uppercased and the empty remainder is harmless.
@@ -104,8 +103,8 @@ The non-recursive part creates the first intermediate row. `SUBSTRING_INDEX(cont
 - **Ordinal grouping:** `GROUP BY 1,2` refers to `content_id` and `original_text`.
 - **Unique key:** Grouping cannot merge two different source rows with the same text because IDs differ.
 - **Manifest discrepancy:** Exact space preservation and linear character processing are not fully supported by the SQL.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,9 +57,7 @@ Absolute value removes direction: a difference of $k$ and a difference of $-k$ b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each pair, the generator evaluates
-
-`abs(nums[i] - nums[... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +94,7 @@ No explicit answer variable is needed. The generator produces one Boolean at a t
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass frequency counter:** Add counts of `x:** - **One-pass frequency counter:** Add counts of `x-k` and `x+k` among earlier values, then record `x`; expected $O(N)$ time and $O(N)$ space.
+- **One-pass frequency counter:** Add counts of `x-k` and `x+k` among earlier values, then record `x`; expected $O(N)$ time and $O(N)$ space.
 - **Fixed-size frequency array:** Values lie in 1 through 100, enabling $O(N+V)$ time and $O(V)$ space.
 - **Sort plus two pointers:** Possible but must count duplicate multiplicities and costs $O(N\log N)$.
 - **Duplicate values:** Different indices remain distinct pairs and are all enumerated.
@@ -108,8 +106,8 @@ No explicit answer variable is needed. The generator produces one Boolean at a t
 - **Maximum length:** Quadratic enumeration is still only 19,900 checks at $N=200$.
 - **Manifest mismatch:** The exact generator is quadratic, not linear.
 - **Input preservation:** The method reads `nums` without sorting or modifying it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

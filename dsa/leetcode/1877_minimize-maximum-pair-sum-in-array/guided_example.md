@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Sort to expose the extremes.** The source calls `nums.sort... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two explicit pointers:** After sorting, set on:** - **Two explicit pointers:** After sorting, set one pointer at each end, update a running maximum, and move both inward. This avoids the first-half slice and makes the pairing mechanics more direct while retaining $O(n\log n)$ time.
+- **Two explicit pointers:** After sorting, set one pointer at each end, update a running maximum, and move both inward. This avoids the first-half slice and makes the pairing mechanics more direct while retaining $O(n\log n)$ time.
 - **Counting frequencies:** Because values are bounded by $10^5$, counts plus two value pointers can form smallest-largest pairs in $O(n+V)$ time and $O(V)$ space, where $V$ is the value range. It is useful when the range is favorable but more elaborate than sorting.
 - **Binary search on an answer threshold:** One could ask whether all values can be paired with sums at most a candidate limit, then binary-search the limit. After sorting, the feasibility condition still reduces to extreme pairs, so binary search adds unnecessary logarithmic work.
 - **Pairing adjacent sorted values:** This leaves the largest values together and can increase the maximum. For `[1, 1, 2, 3]` it gives maximum `5`, while extreme pairing gives `4`.
@@ -94,8 +94,8 @@ We maintain the core conceptual parameters and state variables:
 - **Duplicate values:** Sorting preserves all occurrences, and equal values can be paired in any occurrence order. The exchange proof uses non-strict inequalities, so duplicates require no special handling.
 - **Even-length guarantee:** The index ranges cover all elements only because `n` is even. An odd-length generalization would need a rule for the unpaired element; the source intentionally assumes the stated contract.
 - **Input preservation:** The exact implementation sorts `nums` in place. Use `sorted(nums)` or pass a copy if an external caller must retain the original ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

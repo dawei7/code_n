@@ -64,7 +64,7 @@ The algorithm can therefore make this greedy choice independently at every suffi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Among prefixes with MEX $m$, the source stops at the first o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ The source finds the current suffix MEX by starting at zero and advancing while 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every prefix recursively:** This explores :** - **Try every prefix recursively:** This explores exponentially many partitions. Lexicographic priority determines the next MEX greedily.
+- **Try every prefix recursively:** This explores exponentially many partitions. Lexicographic priority determines the next MEX greedily.
 - **Choose the whole remaining suffix every time:** It obtains the maximum next MEX but may discard elements that could form valuable later entries. The shortest qualifying prefix gives an equal first value and a better available tail.
 - **Stop after seeing each required value without deduplication:** Repeated copies of one value cannot substitute for another required value. The `seen` set makes `unseen` count distinct requirements.
 - **Track values greater than `n`:** They cannot affect a MEX bounded by the array length and need no frequency slot.
@@ -115,8 +115,8 @@ The source finds the current suffix MEX by starting at zero and advancing while 
 - **Values equal to `n`:** They are tracked because a length-$n$ array can have MEX $n$.
 - **Values larger than `n`:** They are consumed normally but omitted from the count array.
 - **Input is not mutated:** The source advances an index and maintains counts rather than deleting prefixes from `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

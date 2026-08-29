@@ -75,7 +75,7 @@ Although the code is one line, the important reasoning is that the remainder is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | By the division algorithm, there are unique integers `q` and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ The nonnegative solutions are `r, r + k, r + 2k, ...`. The smallest is `r`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate decrements until divisible:** Repeate:** - **Simulate decrements until divisible:** Repeatedly subtracting one from an element and retesting eventually works, but it performs exactly the number of answer operations and obscures the direct formula. The remainder computes the same count immediately after summing.
+- **Simulate decrements until divisible:** Repeatedly subtracting one from an element and retesting eventually works, but it performs exactly the number of answer operations and obscures the direct formula. The remainder computes the same count immediately after summing.
 - **Distance to the next multiple, `(k - r) % k`:** That formula is appropriate when each operation increases the total by one. Here operations decrease it, so for nonzero `r` the reachable previous multiple is `r` steps away.
 - **Dynamic programming over residues:** Residue DP is useful when operations have different costs or selectable changes. Every operation here has identical effect `-1` on the total, leaving no combinatorial choice to optimize.
 - **Choose the largest array value greedily:** The index choice does not affect the number of unit operations. A large value may be convenient for constructing an example, but it does not change the answer.
@@ -145,8 +145,8 @@ The nonnegative solutions are `r, r + k, r + 2k, ...`. The smallest is `r`.
 - **Zero as a divisible sum:** Zero is a valid multiple of `k`. This matters when the initial total is below `k`, as in the third example.
 - **Modulo language differences:** Some languages define a negative remainder differently, but the documented initial values make `S` positive. Python's result is the unique `r` in `[0, k - 1]` used by the proof.
 - **Overflow in other languages:** Although impossible under these particular constraints with 32-bit signed arithmetic, larger variants of the problem should accumulate in 64-bit storage before applying modulo.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

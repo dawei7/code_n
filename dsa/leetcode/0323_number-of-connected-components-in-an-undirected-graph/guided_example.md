@@ -62,7 +62,7 @@ An isolated vertex naturally has an empty neighbor list. It is still present in 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input supplies endpoint pairs rather than an adjacency s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ After all reachable neighbors have been explored, the original fresh call return
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative depth-first search:** Use an explici:** - **Iterative depth-first search:** Use an explicit stack instead of recursive calls. It has the same $O(V+E)$ time and space bounds and follows the same component-counting proof, while avoiding language recursion-depth limits.
-- **- **Breadth-first search:** A queue can explore ev:** - **Breadth-first search:** A queue can explore every vertex reachable from each fresh root. BFS also counts components in $O(V+E)$ time and uses $O(V+E)$ total storage including the graph. Traversal order changes, but the discovered component does not.
-- **- **Disjoint set union:** Begin with $V$ component:** - **Disjoint set union:** Begin with $V$ components and union the endpoints of each edge, decrementing the count only when two different sets merge. With path compression and union by size, this uses $O(V)$ extra space without an adjacency list and takes $O(V + E\alpha(V))$ time. It matches the current manifest summary but is not the exact optimal solution file.
+- **Iterative depth-first search:** Use an explicit stack instead of recursive calls. It has the same $O(V+E)$ time and space bounds and follows the same component-counting proof, while avoiding language recursion-depth limits.
+- **Breadth-first search:** A queue can explore every vertex reachable from each fresh root. BFS also counts components in $O(V+E)$ time and uses $O(V+E)$ total storage including the graph. Traversal order changes, but the discovered component does not.
+- **Disjoint set union:** Begin with $V$ components and union the endpoints of each edge, decrementing the count only when two different sets merge. With path compression and union by size, this uses $O(V)$ extra space without an adjacency list and takes $O(V + E\alpha(V))$ time. It matches the current manifest summary but is not the exact optimal solution file.
 
 ---
 

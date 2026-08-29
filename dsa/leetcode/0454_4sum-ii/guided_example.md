@@ -57,7 +57,7 @@ The outer `sum(...)` adds this count for all $n^2$ second-half pairs. Python's `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every `c` from `nums3` and every `d` from `nums4`, the s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ These two matches correspond exactly to the two index tuples listed in the examp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four nested loops:** It is conceptually direct:** - **Four nested loops:** It is conceptually direct but takes $O(n^4)$ time, which is unnecessary for the separable sum equation.
+- **Four nested loops:** It is conceptually direct but takes $O(n^4)$ time, which is unnecessary for the separable sum equation.
 - **Three loops plus a frequency map for one array:** This reduces lookup cost but still requires $O(n^3)$ time. Pairing the arrays evenly gains another factor of $n$.
 - **Sort both pair-sum lists:** Build all sums for each half, sort them, and use two pointers to count opposite values. It also uses $O(n^2)$ space but costs $O(n^2\log n)$ time because of sorting.
 - **Store a set of sums:** A set loses multiplicities and is incorrect whenever different index pairs produce the same sum.
@@ -113,8 +113,8 @@ These two matches correspond exactly to the two index tuples listed in the examp
 - **No complement:** `Counter` returns zero for a missing key, so such a second-half pair adds nothing.
 - **Negative and positive values:** Negation handles both symmetrically; no ordering assumptions are used.
 - **Input arrays remain unchanged:** The algorithm only iterates over them and stores derived sums.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

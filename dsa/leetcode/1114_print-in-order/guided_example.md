@@ -60,7 +60,7 @@ Releasing `l2` opens exactly the gate on which `second` waits.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `first` does not acquire a gate.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ The method does not release `l2` afterward. Each of the three methods is called 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Semaphores:** Initialize the second and third :** - **Semaphores:** Initialize the second and third stage permits to zero, then release them in sequence. This expresses the same two gates and does not rely on lock ownership semantics.
+- **Semaphores:** Initialize the second and third stage permits to zero, then release them in sequence. This expresses the same two gates and does not rely on lock ownership semantics.
 - **Events:** One event can signal completion of first and another completion of second. Events are readable for one-way, one-use notifications.
 - **Condition variable with stage counter:** Wait until a shared stage reaches the required number, update it, and notify. It is more general but more code for three fixed stages.
 - **Busy waiting on flags:** Repeatedly checking shared booleans wastes CPU and still needs memory-visibility synchronization.
@@ -111,8 +111,8 @@ The method does not release `l2` afterward. Each of the three methods is called 
 - **Exactly one call per method:** The locks are one-use gates and are not reset for repeated cycles.
 - **Callback exception:** It can prevent the next release and cause a wait; the contract assumes normal callbacks.
 - **No final unlock:** Nothing follows third, so leaving `l3` acquired after the successful wait is harmless.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

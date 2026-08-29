@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **(0-indexed)** array of positive integers `candiesCount` where $\text{candiesCount}[i]$ represents the number of candies of the $$i^{\text{th}}$$ type you have. You are also given a 2D array `queries` where $\text{queries}[i] = [\text{favoriteType}_{i}, \text{favoriteDay}_{i}, \text{dailyCap}_{i}]$.
+You are given a **(0-indexed)** array of positive integers `candiesCount` where $\text{candiesCount}[i]$ represents the number of candies of the $i^{\text{th}}$ type you have. You are also given a 2D array `queries` where $\text{queries}[i] = [\text{favoriteType}_{i}, \text{favoriteDay}_{i}, \text{dailyCap}_{i}]$.
 
 You play a game with the following rules:
 

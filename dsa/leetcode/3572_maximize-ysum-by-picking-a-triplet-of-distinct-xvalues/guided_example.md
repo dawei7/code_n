@@ -61,7 +61,7 @@ Tie order among equal `y` values does not matter. Choosing either equal-valued r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `arr.sort(key=lambda x: -x[1])` orders pairs by the negative... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Although it does not explicitly build a dictionary `a -> maximum_y`, the sorted 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary of maximum y per x:** Scan once, up:** - **Dictionary of maximum y per x:** Scan once, update `best[x]=max(best[x],y)`, then find the top three dictionary values. With a three-value tracker, this achieves expected `O(n)` time and `O(u)` space and matches the manifest summary.
+- **Dictionary of maximum y per x:** Scan once, update `best[x]=max(best[x],y)`, then find the top three dictionary values. With a three-value tracker, this achieves expected `O(n)` time and `O(u)` space and matches the manifest summary.
 - **Heap over group maxima:** After building the dictionary, `nlargest(3, best.values())` selects representatives in `O(u\log 3)` time. It is useful when generalizing from three to `k` groups.
 - **Sort group maxima only:** Deduplicate through a dictionary before sorting. This costs `O(n+u\log u)` and may sort far fewer entries than the exact source.
 - **Choose the three largest y values without checking x:** This can select repeated `x` groups and violate the central constraint.
@@ -113,8 +113,8 @@ Although it does not explicitly build a dictionary `a -> maximum_y`, the sorted 
 - **No need to return indices:** Discarding original indices is safe because only the sum is requested. If reconstruction were required, the pair records would need to retain an index.
 - **Early return after three groups:** Sorting has already established that no unseen group can have a larger representative, so scanning the rest is unnecessary.
 - **Input arrays remain unchanged:** Sorting is applied to a new tuple list, not to `x` or `y`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

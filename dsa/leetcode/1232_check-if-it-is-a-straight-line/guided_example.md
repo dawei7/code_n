@@ -85,7 +85,7 @@ This view covers horizontal, vertical, increasing, and decreasing lines uniforml
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The vectors from the first point to the second and from the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Comparing consecutive slopes instead would also work, but it is unnecessary and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index-based cross-product loop:** Iterate indi:** - **Index-based cross-product loop:** Iterate indices from two onward instead of slicing. It keeps the same \(O(n)\) time and reduces auxiliary space to \(O(1)\).
+- **Index-based cross-product loop:** Iterate indices from two onward instead of slicing. It keeps the same \(O(n)\) time and reduces auxiliary space to \(O(1)\).
 - **Floating-point slope comparison:** It is shorter mathematically but requires vertical-line handling and risks precision errors.
 - **Reduced rational slopes:** Normalize each \((\Delta x,\Delta y)\) by its greatest common divisor. This remains exact but does more work than one cross multiplication.
 - **Exactly two points:** The slice is empty and the loop finds no contradiction. Any two distinct points form a straight line, so the method returns true.
@@ -132,8 +132,8 @@ Comparing consecutive slopes instead would also work, but it is unnecessary and 
 - **Early off-line point:** The method returns false immediately because one counterexample is enough.
 - **Duplicate anchor points:** The contract excludes duplicates. If the first two were identical, they could not define the reference direction.
 - **Integer overflow outside Python:** Use a wide enough product type in languages with fixed-width integers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

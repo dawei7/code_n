@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `n` representing an array `colors` of length `n` where all elements are set to 0's meaning **uncolored**. You are also given a 2D integer array `queries` where $\text{queries}[i] = [\text{index}_{i}, \text{color}_{i}]$. For the $$i^{\text{th}}$$ **query**:
+You are given an integer `n` representing an array `colors` of length `n` where all elements are set to 0's meaning **uncolored**. You are also given a 2D integer array `queries` where $\text{queries}[i] = [\text{index}_{i}, \text{color}_{i}]$. For the $i^{\text{th}}$ **query**:
 
 The objective is to compute `[0, 1, 1, 0, 2]` from `{"n": 4, "queries": [[0, 2], [1, 2], [3, 1], [1, 1], [2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,9 +67,7 @@ The solution stores current colors in `nums`. Before a query, `nums[i]` is the o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A pair contributes one precisely when:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ This removal step must happen while `nums[i]` still contains the old color.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rescan every adjacent pair after each query:**:** - **Rescan every adjacent pair after each query:** Simple but costs $O(nq)$ time.
+- **Rescan every adjacent pair after each query:** Simple but costs $O(nq)$ time.
 - **Store a Boolean for every edge:** This can also update two edges per query, but the single total `x` is sufficient and needs less state.
 - **Segment tree:** It can maintain richer interval information, but it is unnecessary because the requested statistic changes locally and constant-time updates are possible.
 - **First color at an index:** No old pair is removed because `nums[i]` is zero.
@@ -126,8 +124,8 @@ This removal step must happen while `nums[i]` still contains the old color.
 - **Two uncolored neighbors:** Equal zeros never count because a contributing pair must be colored.
 - **Positive color guarantee:** It makes direct neighbor comparison with `c` sufficient when adding new pairs.
 - **Repeated queries at one index:** The stored assignment ensures every later query removes contributions of the latest color, not an older one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

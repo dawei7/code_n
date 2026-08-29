@@ -1,10 +1,10 @@
 ### 1. Description
 
-There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\text{artifacts}[i] = [\text{r1}_{i}, \text{c1}_{i}, \text{r2}_{i}, \text{c2}_{i}]$ denotes that the $$i^{\text{th}}$$ artifact is buried in the subgrid where:
+There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\text{artifacts}[i] = [\text{r1}_{i}, \text{c1}_{i}, \text{r2}_{i}, \text{c2}_{i}]$ denotes that the $i^{\text{th}}$ artifact is buried in the subgrid where:
 
-- $(\text{r1}_{i}, \text{c1}_{i})$ is the coordinate of the **top-left** cell of the $$i^{\text{th}}$$ artifact and
+- $(\text{r1}_{i}, \text{c1}_{i})$ is the coordinate of the **top-left** cell of the $i^{\text{th}}$ artifact and
 
-- $(\text{r2}_{i}, \text{c2}_{i})$ is the coordinate of the **bottom-right** cell of the $$i^{\text{th}}$$ artifact.
+- $(\text{r2}_{i}, \text{c2}_{i})$ is the coordinate of the **bottom-right** cell of the $i^{\text{th}}$ artifact.
 
 You will excavate some cells of the grid and remove all the mud from them. If the cell has a part of an artifact buried underneath, it will be uncovered. If all the parts of an artifact are uncovered, you can extract it.
 

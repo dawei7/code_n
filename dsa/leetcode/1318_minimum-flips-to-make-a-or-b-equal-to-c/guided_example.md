@@ -63,9 +63,7 @@ If either `x` or `y` is already one, the condition is satisfied and no flip is n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `z == 1`, the OR result needs at least one input one.
-
-If... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ All higher relevant bits are zero. The total is three.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shift values in a while loop:** Repeatedly ins:** - **Shift values in a while loop:** Repeatedly inspect `a & 1`, `b & 1`, and `c & 1` and right-shift until all become zero. It naturally adapts to bit length but mutates local copies.
+- **Shift values in a while loop:** Repeatedly inspect `a & 1`, `b & 1`, and `c & 1` and right-shift until all become zero. It naturally adapts to bit length but mutates local copies.
 - **Population-count formula:** Count set bits in `(a | b) ^ c`, then add another count for positions where both `a` and `b` are one but `c` is zero. It is concise but less transparent.
 - **Target zero with two ones:** This is the only per-bit case requiring two flips; one remaining one would keep OR equal to one.
 - **Target one with two zeros:** Exactly one flip is enough; the algorithm must not count two.
@@ -118,8 +116,8 @@ All higher relevant bits are zero. The total is three.
 - **Operator precedence:** The exact expressions rely on shifts and bitwise AND producing the selected bit; parentheses can make `(a >> i) & 1` easier to read.
 - **Flips apply only to `a` and `b`:** `c` is a fixed target, and the algorithm never changes it.
 - **Independence:** There are no carries in bitwise OR, unlike addition, so per-position optimization is valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

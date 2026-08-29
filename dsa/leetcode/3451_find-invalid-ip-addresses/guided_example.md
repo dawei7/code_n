@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Count dots to test the octet count.** Replacing every dot ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Parsing CTE:** Extract four octets once, then :** - **Parsing CTE:** Extract four octets once, then reference named columns for all tests. This is clearer and avoids repeated expressions, but the protected query does not do it.
+- **Parsing CTE:** Extract four octets once, then reference named columns for all tests. This is clearer and avoids repeated expressions, but the protected query does not do it.
 - **Full anchored IPv4 regex:** It can enforce digit syntax, count, leading-zero, and range rules, but the range portion becomes difficult to read.
 - **Only count dots:** Three dots do not by themselves guarantee valid numeric octets.
 - **Octet equal to 255:** The condition is strictly greater than $255$, so $255$ remains allowed.
@@ -96,8 +96,8 @@ We maintain the core conceptual parameters and state variables:
 - **Status code:** It is irrelevant to IP validity and is intentionally unused.
 - **Descending tie-break:** Equal counts are ordered by IP text descending, not numerically by octets.
 - **Malformed nonnumeric text:** The exact source lacks a digits-only predicate, so it should not be described as a stricter validator than it is.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

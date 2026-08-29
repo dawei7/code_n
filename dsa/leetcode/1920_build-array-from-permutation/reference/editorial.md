@@ -38,7 +38,7 @@ We can also directly modify the original array $\textit{nums}$.
 
 In order to allow the construction process to proceed completely, we need to enable each element $\textit{nums}[i]$ in $\textit{nums}$ to store both the 'current value' (i.e., $\textit{nums}[i]$) and the 'final value' (i.e., $\textit{nums}[\textit{nums}[i]]$).
 
-We noticed that the range of values of the elements in $\textit{nums}$ is $[0, 999]$ inclusive, which means that both the 'current value' and the 'final value' of each element in $\textit{nums}$ are within the closed interval $[0, 999]$.
+We noticed that the range of values of the elements in $\textit{nums}$ is `[0, 999]` inclusive, which means that both the 'current value' and the 'final value' of each element in $\textit{nums}$ are within the closed interval `[0, 999]`.
 
 Therefore, we can use a concept similar to the "$1000$-based system" to represent the "current value" and "final value" of each element. For each element, we use the quotient when it is divided by $1000$ to represent its "final value," and the remainder to represent its "current value."
 

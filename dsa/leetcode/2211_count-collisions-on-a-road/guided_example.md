@@ -59,7 +59,7 @@ The resulting core `s` contains exactly the cars not eliminated by obvious outwa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `rstrip("R")` then removes only `R` characters from the end ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Stationary cars do not move, but they can become collision points for several in
 
 ## 6. Traps This Instance Exposes
 
-- **- **State simulation:** Track pending right-moving:** - **State simulation:** Track pending right-moving cars and stopped regions in one pass. It also runs in $O(n)$ time but uses more branching.
+- **State simulation:** Track pending right-moving cars and stopped regions in one pass. It also runs in $O(n)$ time but uses more branching.
 - **Two pointers without slicing:** Find the first non-`L` and last non-`R` indices, then count movers between them for constant extra space.
 - **All `L`:** Every car escapes left; trimming leaves empty and returns zero.
 - **All `R`:** Every car escapes right; trimming also leaves empty.
@@ -111,8 +111,8 @@ Stationary cars do not move, but they can become collision points for several in
 - **Same-direction cars:** Equal speeds prevent catching, but an obstruction ahead can stop the whole sequence through successive collisions.
 - **Empty core:** String methods and count handle it naturally.
 - **Input preservation:** Stripping returns new strings; `directions` remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The magical string contains only `1` and `2`, but its defining rule refers to tw
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Seed the self-describing process.** `s` begins as `[1, 2, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The next unread run-length instruction is therefore at index `i = 2`. Its value 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate characters and parse groups afterward:** - **Generate characters and parse groups afterward:** Building a candidate string without using its prior values as instructions does not solve the self-referential construction. The pointer `i` is what turns the definition into a deterministic process.
+- **Generate characters and parse groups afterward:** Building a candidate string without using its prior values as instructions does not solve the self-referential construction. The pointer `i` is what turns the definition into a deterministic process.
 - **Recursive generation:** Recursion can mirror the conceptual dependency, but it adds call-stack overhead and makes the distinction between instruction position and write position harder to maintain. The iterative pointer is direct and bounded.
 - **Count ones while appending:** This can remove the final full-prefix scan, provided only positions below `n` are counted when the last group overshoots. The present solution favors a simple final slice and count while preserving the same $O(n)$ bounds.
 - **Store a textual string:** It is possible, but every run-length instruction must then be converted from `'1'` or `'2'` to an integer. An integer list matches both roles of each element naturally.
@@ -94,8 +94,8 @@ The next unread run-length instruction is therefore at index `i = 2`. Its value 
 - **Overshooting `n`:** A length-two group can extend one position beyond the requested prefix. `s[:n]` prevents that irrelevant position from changing the count.
 - **Toggle correctness:** `3 - pre` relies on `pre` always being exactly `1` or `2`. That guarantee follows from the seed and from appending only values produced by the same toggle.
 - **Do not advance `i` by the group length:** `i` indexes run-length instructions, not generated character positions. Exactly one instruction describes each new group, so it advances by one after every append.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

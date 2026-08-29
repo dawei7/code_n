@@ -84,11 +84,7 @@ The accumulated total is $2+2+1=5$. Digits are visited from right to left, but a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a positive integer `n`, Python's
-
-`divmod(n, 10)`
-
-retur... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +126,7 @@ Integer division by ten shortens a positive decimal integer by one digit. Eventu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a ten-entry frequency array:** Count eac:** - **Build a ten-entry frequency array:** Count each digit, then evaluate the definition literally. This is correct and still $O(D)$ time with $O(1)$ fixed-domain space, but the table is unnecessary because the weighted frequency sum equals the digit sum.
+- **Build a ten-entry frequency array:** Count each digit, then evaluate the definition literally. This is correct and still $O(D)$ time with $O(1)$ fixed-domain space, but the table is unnecessary because the weighted frequency sum equals the digit sum.
 - **Convert to a string:** `sum(int(ch) for ch in str(n))` is concise and linear, but it allocates a $D$-character representation and iterator machinery.
 - **Use a set of digits:** A set would discard repeated occurrences, yet frequency affects the score. For `122`, counting distinct digits only would incorrectly produce $1+2=3$.
 - **Multiply each occurrence by its total frequency again:** Direct iteration already visits the digit once per occurrence. Multiplying during that scan would double-count frequency.
@@ -143,8 +139,8 @@ Integer division by ten shortens a positive decimal integer by one digit. Eventu
 - **Right-to-left processing:** Addition is commutative, so reversing the digit visitation order has no effect.
 - **Caller-visible mutation:** Reassigning the local integer parameter does not modify caller state because integers are immutable.
 - **Out-of-contract zero input:** The loop would return zero naturally, though the formal constraints begin at one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

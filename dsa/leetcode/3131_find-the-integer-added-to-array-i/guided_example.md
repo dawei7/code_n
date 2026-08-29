@@ -77,7 +77,7 @@ Duplicates do not create ambiguity. If `nums1` contains four copies of 1 and `nu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Normally, inferring a transformation from one pair of values... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ This proof also handles tied minima. If several elements equal $a$, all become $
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare maximum values:** `max(nums2) - max(nu:** - **Compare maximum values:** `max(nums2) - max(nums1)` gives the same $x$ because a uniform shift also maps maximum to maximum. It has identical complexity.
+- **Compare maximum values:** `max(nums2) - max(nums1)` gives the same $x$ because a uniform shift also maps maximum to maximum. It has identical complexity.
 - **Sort both arrays:** After sorting, subtract any pair of equal ranks and optionally verify all differences. This takes $O(n\log n)$ time and unnecessary extra storage or mutations.
 - **Frequency-map verification:** Compute the candidate from minima, shift every key frequency, and compare maps. This is useful if the validity guarantee is removed, but unnecessary here.
 - **Sum difference:** Since both arrays have length $n$, $x=(\sum nums2-\sum nums1)/n$. This works under the guarantee, but requires divisibility reasoning and can overflow fixed-width sums in other constraints.
@@ -125,8 +125,8 @@ This proof also handles tied minima. If several elements equal $a$, all become $
 - **Different input order:** Array equality in this problem means multiset equality, so order is intentionally irrelevant.
 - **Missing validity guarantee:** The one-line method would need a second pass or frequency comparison; equal minimum differences alone cannot prove arbitrary multisets match.
 - **Nonempty arrays:** The contract guarantees length at least one, which is required because Python's `min` has no result for an empty sequence.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

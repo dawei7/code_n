@@ -58,7 +58,7 @@ The increasing representation removes permutation duplicates. The subset contain
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Numbers are considered strictly in order: every recursive ca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -95,7 +95,7 @@ Returning at size `k` is also safe. Adding more numbers would create an oversize
 
 ## 6. Traps This Instance Exposes
 
-- **- **Feasibility-pruned backtracking:** Stop when r:** - **Feasibility-pruned backtracking:** Stop when remaining values cannot fill the needed slots, or limit the choice loop to legal starts. This removes dead subtrees and supports the output-sensitive manifest time more closely.
+- **Feasibility-pruned backtracking:** Stop when remaining values cannot fill the needed slots, or limit the choice loop to legal starts. This removes dead subtrees and supports the output-sensitive manifest time more closely.
 - **Increasing-choice DFS:** Loop from the next minimum value through the last feasible choice rather than creating an explicit exclude branch. Its stack depth is bounded by `k`.
 - **Lexicographic index successor:** Start with `[1, ..., k]` and repeatedly advance the rightmost movable index. It is iterative and output-sensitive.
 - **Bitmask enumeration:** Test all $2^n$ subsets and output masks with `k` bits. It is simple for small `n` but explicitly exponential regardless of output count.
@@ -107,8 +107,8 @@ Returning at size `k` is also safe. Adding more numbers would create an oversize
 - **No duplicate combinations:** Strictly increasing decisions create one representation per subset.
 - **Contract excludes `k > n`:** If it occurred, the source would eventually return an empty answer after exploring failure paths.
 - **Manifest discrepancy:** Both time and stack-space declarations require a pruned or different generator, not this exact unpruned binary recursion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

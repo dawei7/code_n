@@ -55,7 +55,7 @@ This lazy deletion avoids searching the heap for arbitrary neighbors, an operati
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `vis[i]` records whether index $i$ has been marked by a prev... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Marked entries deeper in the heap do not matter. A deeper entry cannot be chosen
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort value-index pairs once:** Process sorted :** - **Sort value-index pairs once:** Process sorted pairs and skip marked indices. This also takes $O(n\log n)$ time and often has simpler control flow.
+- **Sort value-index pairs once:** Process sorted pairs and skip marked indices. This also takes $O(n\log n)$ time and often has simpler control flow.
 - **Linear specialized scan:** Monotone-run reasoning can reproduce the deterministic selections in $O(n)$ time, but it is considerably less direct.
 - **Search the array every round:** Repeatedly finding the smallest unmarked value costs $O(n^2)$ in the worst case.
 - **Equal values:** Tuple index ordering implements the mandatory smallest-index tie-break.
@@ -103,8 +103,8 @@ Marked entries deeper in the heap do not matter. A deeper entry cannot be chosen
 - **Marked heap entries:** They are harmless until reaching the root, where lazy cleanup removes them.
 - **Positive values:** The score only increases, though heap correctness does not depend on positivity.
 - **Input preservation:** All marking state is stored separately in `vis`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

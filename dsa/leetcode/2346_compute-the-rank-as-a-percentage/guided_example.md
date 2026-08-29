@@ -64,7 +64,7 @@ This distinction is part of the formula rather than a cosmetic display choice. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `RANK() OVER (PARTITION BY department_id ORDER BY mark DESC)... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Students tied on a mark share a rank and therefore share the same percentage.
 
 ## 6. Traps This Instance Exposes
 
-- **- **MySQL `PERCENT_RANK`:** This window function d:** - **MySQL `PERCENT_RANK`:** This window function directly computes `(rank-1)/(rows-1)` and could be multiplied by 100, often with the single-row case already defined as zero.
+- **MySQL `PERCENT_RANK`:** This window function directly computes `(rank-1)/(rows-1)` and could be multiplied by 100, often with the single-row case already defined as zero.
 - **Correlated subqueries:** Count higher marks and department size per student. This can repeat scans and requires careful tie handling.
 - **`DENSE_RANK`:** It removes gaps after ties and does not match the specified rank formula.
 - **`ROW_NUMBER`:** It gives different ranks to tied marks, violating the tie rule.
@@ -120,8 +120,8 @@ Students tied on a mark share a rank and therefore share the same percentage.
 - **Rounding:** `ROUND(...,2)` is applied after the full percentage calculation.
 - **Any output order:** No final sort is necessary.
 - **Unique student IDs:** Each source row corresponds to one output student.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

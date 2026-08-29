@@ -61,7 +61,7 @@ All input values are positive, so the loop executes at least once. With `v <= 10
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current value `v`, the code copies it into `y` and initi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Updating after evaluating the candidate is important. It ensures the current val
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group all values then sort each group:** The t:** - **Group all values then sort each group:** The top two in every group give candidates, but storing everything uses `O(n)` space and sorting adds `O(n \log n)` time.
+- **Group all values then sort each group:** The top two in every group give candidates, but storing everything uses `O(n)` space and sorting adds `O(n \log n)` time.
 - **Two-element heap per digit sum:** Retain each group's two largest values. This works but stores more state than the streaming maximum needs.
 - **Fixed array indexed by digit sum:** Use 82 entries initialized to a sentinel instead of a dictionary. It provides the same bounded constant space.
 - **Store the smallest prior value:** Pair sums require the largest compatible partner, so this would miss the optimum.
@@ -118,8 +118,8 @@ Updating after evaluating the candidate is important. It ensures the current val
 - **Value `10^9`:** Its digit sum is one and is processed normally.
 - **No string conversion:** Arithmetic digit extraction avoids allocating decimal strings.
 - **Input preservation:** `y` is a local copy, so neither `v` nor `nums` is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ The containment test `s in num` asks whether that exact three-character string o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The range `range(9, -1, -1)` begins at nine, stops before mi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This descending-search argument means the method may stop immediately. Once `"77
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single pass over length-three windows:** Check:** - **Single pass over length-three windows:** Check `num[i] == num[i + 1] == num[i + 2]` and retain the largest matching character. This also takes `O(n)` time and `O(1)` space, but it is not the exact descending-candidate implementation.
+- **Single pass over length-three windows:** Check `num[i] == num[i + 1] == num[i + 2]` and retain the largest matching character. This also takes `O(n)` time and `O(1)` space, but it is not the exact descending-candidate implementation.
 - **Run-length counting:** Track the current digit and consecutive-run length; whenever a run reaches three, update the best digit. This is useful if the required repetition length varies.
 - **Convert windows to integers:** Numeric conversion is unnecessary and mishandles the required representation of `"000"` unless special care is added.
 - **Sort all matching windows:** Collecting and sorting matches uses extra space and time even though only ten different answers are possible.
@@ -117,8 +117,8 @@ This descending-search argument means the method may stop immediately. Once `"77
 - **Loop bounds:** Stopping before minus one is what includes zero while excluding invalid negative candidates.
 - **Early return:** It is valid only because candidates are checked from nine downward; ascending order would return the minimum instead.
 - **Input preservation:** String searches are read-only and create only constant-size candidate strings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

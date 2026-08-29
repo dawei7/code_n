@@ -67,7 +67,7 @@ The true graph distance is `min(a, b, c)`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code subtracts one from `x` and `y` so they match loop i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ An optimal route that uses the extra edge chooses one of its two orientations, g
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the graph and run BFS from every house:*:** - **Build the graph and run BFS from every house:** This costs $O(N^2)$ on the sparse graph too, but the three closed path formulas are simpler and avoid adjacency storage.
+- **Build the graph and run BFS from every house:** This costs $O(N^2)$ on the sparse graph too, but the three closed path formulas are simpler and avoid adjacency storage.
 - **Count only unordered pairs:** The required result counts both directions, so every pair contributes two.
 - **Consider one shortcut orientation:** The closer endpoint depends on the pair; both `b` and `c` are necessary.
 - **Use the shortcut repeatedly:** Positive edge costs make repeated crossings nonoptimal.
@@ -113,8 +113,8 @@ An optimal route that uses the extra edge chooses one of its two orientations, g
 - **Shortcut endpoints at extremes:** It can substantially shorten many pairs; formulas remain unchanged.
 - **Last result entry:** Distance $N$ is impossible between distinct houses, so it remains zero.
 - **Conservation invariant:** Output counts always sum to $N(N-1)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

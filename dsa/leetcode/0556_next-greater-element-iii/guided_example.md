@@ -51,7 +51,7 @@ The code converts the integer to mutable character list `cs`. Digit characters c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code converts the integer to mutable character list `cs`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code converts the integer to mutable character list `cs`. Digit characters c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all digit permutations:** It is facto:** - **Generate all digit permutations:** It is factorial and produces many duplicates when digits repeat.
+- **Generate all digit permutations:** It is factorial and produces many duplicates when digits repeat.
 - **Sort all digits and search:** It discards the useful near-sorted suffix structure and still needs permutation logic.
 - **Choose any greater suffix digit:** Picking one larger than necessary skips closer valid numbers.
 - **Leave the suffix descending:** The result would be greater but not the smallest greater permutation.
@@ -96,8 +96,8 @@ The code converts the integer to mutable character list `cs`. Digit characters c
 - **Zeroes in the suffix:** Reversal places them as early as possible after the pivot, minimizing the result.
 - **Overflow:** A valid permutation above the signed 32-bit maximum returns `-1`.
 - **Input unchanged:** Only the character list is mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

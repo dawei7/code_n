@@ -57,7 +57,7 @@ Some strict SQL configurations express this dependency more clearly by grouping 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY a.person_id` gathers all retained prefix rows for ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For candidate John Cena at turn three in the example, the matching `b` rows are 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window-function running sum:** Compute `SUM(we:** - **Window-function running sum:** Compute `SUM(weight) OVER (ORDER BY turn)` once, filter running totals at most 1000, and choose the greatest turn. This gives a clearer $O(n\log n)$ sort-based plan on modern MySQL.
+- **Window-function running sum:** Compute `SUM(weight) OVER (ORDER BY turn)` once, filter running totals at most 1000, and choose the greatest turn. This gives a clearer $O(n\log n)$ sort-based plan on modern MySQL.
 - **Correlated prefix subquery:** Sum rows with turn no greater than each candidate’s turn. It expresses the same logic but may also become quadratic without optimizer help.
 - **First person exactly reaches 1000:** The inclusive `<=` condition keeps that person, and every later positive weight makes later prefixes infeasible.
 - **First-person guarantee:** It ensures `LIMIT 1` has a surviving row to return.
@@ -108,8 +108,8 @@ For candidate John Cena at turn three in the example, the matching `b` rows are 
 - **Any input row order:** The query uses `turn` values rather than physical table order, so shuffled storage does not change the result.
 - **Capacity equality:** A total of exactly 1000 is allowed and must not be rejected.
 - **Comma join syntax:** It is equivalent here to `CROSS JOIN` followed by the `WHERE` condition, but explicit join syntax is often easier to read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

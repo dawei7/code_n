@@ -71,7 +71,7 @@ The use of `elif` also reflects that one character cannot be both an asterisk an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the current character is `"*"`, the code executes `ans ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Consecutive bars are handled naturally. In `||*`, the first bar enters an empty 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean state instead of integer state:** Use :** - **Boolean state instead of integer state:** Use `outside = true`, toggle with `not outside`, and increment inside an explicit condition. This is equally correct and may be more descriptive; the exact solution uses `0` and `1` so the state can be added directly.
+- **Boolean state instead of integer state:** Use `outside = true`, toggle with `not outside`, and increment inside an explicit condition. This is equally correct and may be more descriptive; the exact solution uses `0` and `1` so the state can be added directly.
 - **Split on vertical bars:** `s.split('|')` creates alternating outside and inside segments, after which only even-indexed segments should be counted. This is concise but allocates `O(n)` total substring storage.
 - **Regular expressions:** Remove paired-bar interiors and count remaining asterisks. This adds parsing machinery, may allocate a new string, and requires careful handling of multiple pairs; a two-state scan is simpler.
 - **Store every bar position:** Pair positions and scan the gaps between them. This uses linear extra memory even though current parity is all the future scan needs.
@@ -125,8 +125,8 @@ Consecutive bars are handled naturally. In `||*`, the first bar enters an empty 
 - **Asterisks immediately beside a bar:** A bar itself is not part of the “between” region. An asterisk just after an opening bar is excluded; one just after a closing bar is counted.
 - **Even-bar guarantee:** It ensures the scan finishes with `ok = 1` and every excluded region has both boundaries. The exact code does not validate this precondition because the problem guarantees it.
 - **Smallest input:** A single lowercase letter or a single asterisk contains zero bars, which is an even count. The method returns zero or one respectively.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

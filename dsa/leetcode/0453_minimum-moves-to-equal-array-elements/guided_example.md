@@ -88,7 +88,7 @@ That is `sum(nums) - min(nums) * len(nums)`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Decrements can only lower values.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +133,7 @@ For `[1,1,1]`, every value already equals the minimum. Each difference is zero, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sum individual gaps:** First find `m`, then ac:** - **Sum individual gaps:** First find `m`, then accumulate `x - m` for each `x`. It has the same $O(n)$ time and $O(1)$ space and may reduce intermediate-overflow risk in fixed-width languages.
+- **Sum individual gaps:** First find `m`, then accumulate `x - m` for each `x`. It has the same $O(n)$ time and $O(1)$ space and may reduce intermediate-overflow risk in fixed-width languages.
 - **Sort the array:** After sorting, sum every difference from the first value. This is correct but wastes $O(n\log n)$ time merely to discover the minimum.
 - **Simulate one move at a time:** Repeatedly incrementing `n - 1` elements can require an enormous number of operations and touches many array positions per move.
 - **Raise everything to the maximum:** That reasoning fits an operation that increments one element, not this operation. Incrementing all but one is relatively equivalent to lowering the excluded element.
@@ -143,8 +143,8 @@ For `[1,1,1]`, every value already equals the minimum. Each difference is zero, 
 - **Negative values:** Subtraction from the minimum still produces nonnegative gaps and the same formula remains valid.
 - **Large magnitudes:** Use wide accumulation in fixed-width languages even though the promised final answer fits 32 bits.
 - **Input preservation:** The one-line calculation only reads `nums`, leaving its order and values unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

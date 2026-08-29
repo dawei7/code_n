@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `arr1 = [nums[0]]` and `arr2 = [nums[1]]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The length constraint is at least three, so both accesses are safe and later pro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store destination labels then assemble:** It s:** - **Store destination labels then assemble:** It still needs linear information and is less direct than appending to the final component arrays.
+- **Store destination labels then assemble:** It still needs linear information and is less direct than appending to the final component arrays.
 - **Use deques:** Append performance is also constant, but final list concatenation becomes less convenient and offers no benefit.
 - **Modify `nums` in place:** It is difficult to preserve both append sequences without extra bookkeeping and would unnecessarily alter input.
 - **Exactly three values:** Only one comparison after initialization determines the final arrangement.
@@ -103,8 +103,8 @@ The length constraint is at least three, so both accesses are safe and later pro
 - **Position terminology:** Although the statement is 1-indexed, Python positions 0 and 1 correspond to its first and second operations; the slice from index 2 begins operation three.
 - **No sorting:** Decisions depend on arrival order and current tails. Sorting would fundamentally change the process and output.
 - **Space is required by the output definition:** Even an implementation avoiding the suffix slice must retain both append sequences or an equivalent destination record before producing `arr1 + arr2`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -87,7 +87,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Swapping two positions both inside the substring does not ch... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -162,7 +162,7 @@ The needed inside one is guaranteed: a balance-$+2$ window has two more ones tha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all swaps:** Trying $O(N^2)$ swaps a:** - **Enumerate all swaps:** Trying $O(N^2)$ swaps and then searching each resulting string is far too slow; the balance-change observation represents all useful swaps implicitly.
+- **Enumerate all swaps:** Trying $O(N^2)$ swaps and then searching each resulting string is far too slow; the balance-change observation represents all useful swaps implicitly.
 - **Longest zero-sum substring only:** Equal-prefix logic without the $\pm2$ cases misses windows that become balanced through one cross-boundary swap.
 - **Store only two prefix positions:** The source stores every occurrence, but its feasibility logic reads only the earliest and second-earliest positions for each balance.
 - **No swap needed:** A balance-zero window is accepted directly; “at most one” does not require changing the string.
@@ -173,8 +173,8 @@ The needed inside one is guaranteed: a balance-$+2$ window has two more ones tha
 - **Second-occurrence fallback:** Equal prefix balances enclose a nonempty balanced block, guaranteeing that shortening past it releases both a zero and a one outside without changing the $\pm2$ imbalance.
 - **Odd-length substring:** It cannot contain equal counts, and it also cannot have balance $\pm2$ because balance parity matches length parity; such a window is never selected.
 - **Swapping equal characters:** It changes nothing and is already covered by the no-swap balance-zero case.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

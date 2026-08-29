@@ -57,7 +57,7 @@ Because `index` only moves forward, whitespace is consumed once. It is not copie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `skipWhitespace` advances while the current character is one... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For the three keywords, the parser advances by the known literal length. It does
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `JSON.parse`:** That is the production-sta:** - **Use `JSON.parse`:** That is the production-standard choice, but the challenge asks for parsing without it. The recursive-descent structure supplies the needed behavior directly.
+- **Use `JSON.parse`:** That is the production-standard choice, but the challenge asks for parsing without it. The recursive-descent structure supplies the needed behavior directly.
 - **Regular-expression-only parsing:** Nested arrays and objects require balanced recursive structure, which a simple flat token replacement cannot reliably model.
 - **Iterative explicit stack:** It can avoid call-stack overflow for extreme nesting, but it requires more bookkeeping for container state, keys, commas, and completed child values.
 - **Direct object assignment:** `result[key] = value` is shorter but mishandles special names such as `"__proto__"` on ordinary objects. Defining an own data property preserves the JSON member faithfully.
@@ -113,8 +113,8 @@ For the three keywords, the parser advances by the known literal length. It does
 - **Malformed input:** Missing delimiters or invalid literals could run the cursor incorrectly. Validation and useful syntax errors are intentionally omitted under the valid-input guarantee.
 - **Deep nesting:** Recursive calls mirror the data and use `O(D)` stack frames; an adversarial depth may exceed the JavaScript engine's call-stack limit.
 - **Duplicate object keys:** Each later `defineProperty` call redefines the configurable own property, so the last occurrence wins, consistent with ordinary practical parsing behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

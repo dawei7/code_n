@@ -2,9 +2,9 @@
 
 You are given a **0-indexed** integer array `nums` consisting of `n` non-negative integers.
 
-You are also given an array `queries`, where $\text{queries}[i] = [x_{i}, y_{i}]$. The answer to the $$i^{\text{th}}$$ query is the sum of all $\text{nums}[j]$ where $x_{i} \le j < n$ and $(j - x_{i})$ is divisible by $y_{i}$.
+You are also given an array `queries`, where $\text{queries}[i] = [x_{i}, y_{i}]$. The answer to the $i^{\text{th}}$ query is the sum of all $\text{nums}[j]$ where $x_{i} \le j < n$ and $(j - x_{i})$ is divisible by $y_{i}$.
 
-Return *an array *`answer`* where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query **modulo** *$10^{9} + 7$.
+Return *an array *`answer`* where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query **modulo** *$10^{9} + 7$.
 
 ### 2. Function Contract
 

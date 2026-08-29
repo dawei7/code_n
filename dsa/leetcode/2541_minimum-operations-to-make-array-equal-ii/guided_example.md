@@ -69,7 +69,7 @@ Every operation matches one surplus unit with one deficit unit. It decreases `b`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `t>0`, `nums1[i]` is too large by `t*k`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Python's modulo test also works for negative differences: a multiple of positive
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare total sums first:** It quickly rejects:** - **Compare total sums first:** It quickly rejects imbalance but does not replace per-index divisibility checks.
+- **Compare total sums first:** It quickly rejects imbalance but does not replace per-index divisibility checks.
 - **Explicit operation simulation:** It is unnecessary and could take time proportional to the potentially huge answer.
 - **`k=0` and arrays equal:** Return zero.
 - **`k=0` with any mismatch:** Return `-1`.
@@ -118,8 +118,8 @@ Python's modulo test also works for negative differences: a multiple of positive
 - **Negative normalized difference:** Its magnitude contributes to deficit `a`.
 - **Positive normalized difference:** It contributes to surplus `b`.
 - **Minimum proof:** One operation can satisfy only one deficit unit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

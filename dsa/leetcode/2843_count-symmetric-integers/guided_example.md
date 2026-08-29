@@ -51,7 +51,7 @@ In Python, `true` behaves numerically as one and `false` as zero. Therefore, `su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In Python, `true` behaves numerically as one and `false` as ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ In Python, `true` behaves numerically as one and `false` as zero. Therefore, `su
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic checks for two and four digits:** T:** - **Arithmetic checks for two and four digits:** Two-digit symmetric numbers are multiples of eleven; four-digit values can compare thousands-plus-hundreds with tens-plus-ones. This avoids strings and is constant work per number.
+- **Arithmetic checks for two and four digits:** Two-digit symmetric numbers are multiples of eleven; four-digit values can compare thousands-plus-hundreds with tens-plus-ones. This avoids strings and is constant work per number.
 - **Precompute all symmetric values:** The small fixed domain permits generating the nine two-digit values and valid four-digit values, then counting those in range. This is useful for many queries but unnecessary for one.
 - **Digit DP:** It can count symmetric values below a huge bound without enumeration, but it is excessive for `high <= 10000`.
 - **One-digit numbers:** Their digit count is odd, so none is symmetric.
@@ -98,8 +98,8 @@ In Python, `true` behaves numerically as one and `false` as zero. Therefore, `su
 - **No leading zeros:** Standard decimal conversion supplies the representation intended by the definition.
 - **Boolean arithmetic:** true contributes one and false contributes zero to the final count.
 - **Temporary slices:** Their size is constant only because the numeric domain has a fixed five-digit ceiling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

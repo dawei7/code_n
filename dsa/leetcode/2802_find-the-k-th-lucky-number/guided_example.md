@@ -51,7 +51,7 @@ Within a fixed length, numeric order is the same as lexicographic order because 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within a fixed length, numeric order is the same as lexicogr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Within a fixed length, numeric order is the same as lexicographic order because 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary representation of `k + 1`:** Remove the:** - **Binary representation of `k + 1`:** Remove the leading binary one, translate each remaining zero to four and each one to seven. This is shorter mathematically and has the same $O(\log k)$ complexity, but the exact source instead performs explicit block unranking.
+- **Binary representation of `k + 1`:** Remove the leading binary one, translate each remaining zero to four and each one to seven. This is shorter mathematically and has the same $O(\log k)$ complexity, but the exact source instead performs explicit block unranking.
 - **Breadth-first generation:** Starting with four and seven and appending both digits emits values in the right order. It requires generating $\Theta(k)$ values before the answer and is infeasible near $10^9$.
 - **Recursive unranking:** Recursively choose the leading half and then solve the suffix rank. It mirrors the proof but uses $O(\log k)$ call-stack space in addition to the output.
 - **First rank:** `k = 1` stays in the one-digit block and selects four.
@@ -97,8 +97,8 @@ Within a fixed length, numeric order is the same as lexicographic order because 
 - **Numeric versus lexicographic order:** They agree only inside a fixed length. The preliminary length-block loop is necessary before lexicographic unranking.
 - **Large rank:** The algorithm never materializes the preceding values. Its work grows with answer length, not with the number of skipped lucky numbers.
 - **Integer shifts:** `1 << n` is exact integer exponentiation by two in Python; there is no floating-point rounding.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

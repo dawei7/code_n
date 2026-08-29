@@ -67,6 +67,6 @@ Return the fewest operations that transform `nums` into `[0, 1, ..., n - 1]`. Re
 
 - $1 \le \text{pre}[i] \le n$
 
-- `​​​​​​​nums` is a permutation of integers from 0 to $n - 1$.
+- `nums` is a permutation of integers from 0 to $n - 1$.
 
 - `pre` consists of **unique** integers.

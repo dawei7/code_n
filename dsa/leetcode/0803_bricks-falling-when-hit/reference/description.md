@@ -8,7 +8,7 @@ You are given an `m x n` binary `grid`, where each `1` represents a brick and `0
 
 You are also given an array `hits`, which is a sequence of erasures we want to apply. Each time we want to erase the brick at the location $\text{hits}[i] = (\text{row}_{i}, \text{col}_{i})$. The brick on that location (if it exists) will disappear. Some other bricks may no longer be stable because of that erasure and will **fall**. Once a brick falls, it is **immediately** erased from the `grid` (i.e., it does not land on other stable bricks).
 
-Return *an array *`result`*, where each *$\text{result}[i]$* is the number of bricks that will **fall** after the *$$i^{\text{th}}$$* erasure is applied.*
+Return *an array *`result`*, where each *$\text{result}[i]$* is the number of bricks that will **fall** after the *$i^{\text{th}}$* erasure is applied.*
 
 ### 2. Function Contract
 

@@ -10,7 +10,7 @@ You are also given a **0-indexed** 2D integer array `queries` where $\text{queri
 
 - Reset each number in `nums` to its original length.
 
-Return *an array *`answer`* of the same length as *`queries`,* where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query.*
+Return *an array *`answer`* of the same length as *`queries`,* where *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query.*
 
 ### 2. Function Contract
 

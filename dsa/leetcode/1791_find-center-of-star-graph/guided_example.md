@@ -62,7 +62,7 @@ This conditional completely identifies the common endpoint without constructing 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Write the first edge as `[a, b]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ This is why checking just one endpoint of the first edge is enough. If it is not
 
 ## 6. Traps This Instance Exposes
 
-- **- **Degree counting:** Count both endpoints of eve:** - **Degree counting:** Count both endpoints of every edge and return the node with degree $n-1$. This works for a valid star but costs $O(n)$ time and $O(n)$ space.
+- **Degree counting:** Count both endpoints of every edge and return the node with degree $n-1$. This works for a valid star but costs $O(n)$ time and $O(n)$ space.
 - **Adjacency list:** Building the full graph also reveals degrees, but it stores information that the star guarantee makes unnecessary.
 - **Set intersection:** Intersecting the endpoint sets of the first two edges finds the center in constant time, though allocating sets is more machinery than the direct membership test.
 - **Compare all four endpoint combinations:** It works, but testing one first-edge endpoint already determines which of the two is common.
@@ -114,8 +114,8 @@ This is why checking just one endpoint of the first edge is enough. If it is not
 - **Invalid arbitrary graph:** The first two edges may share a non-global node or share nothing, so this constant-time rule must not be reused without the star guarantee.
 - **No need to infer `n`:** The center is identified directly; computing `len(edges) + 1` adds no useful information.
 - **Input preservation:** The expression only reads endpoints and never reorders or mutates `edges`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

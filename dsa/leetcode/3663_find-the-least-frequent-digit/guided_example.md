@@ -72,7 +72,7 @@ The constraint `n >= 1` guarantees that the counting loop runs at least once and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The phrase “digit that occurs least frequently in its decima... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ This is equivalent to minimizing the pair `(frequency, digit)` over present digi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string and use `Counter`:** This :** - **Convert to a string and use `Counter`:** This is concise and still `O(d)`, but allocates the decimal text and a mapping.
+- **Convert to a string and use `Counter`:** This is concise and still `O(d)`, but allocates the decimal text and a mapping.
 - **Sort present `(frequency, digit)` pairs:** It produces the right lexicographic minimum but performs unnecessary sorting over a ten-value domain.
 - **Include zero-frequency buckets:** This returns an absent digit and misinterprets “occurs least frequently.”
 - **Replace on equal frequency:** Scanning upward and replacing ties would select the largest tied digit. The source updates only on a strict improvement.
@@ -131,8 +131,8 @@ This is equivalent to minimizing the pair `(frequency, digit)` over present digi
 - **Complete input zero:** It would need special handling, but the constraint `n >= 1` excludes it.
 - **Local mutation of `n`:** Replacing the local integer with its quotient does not mutate caller-owned state.
 - **Missing import:** The stored source uses `inf` without importing it. Standalone Python needs `from math import inf` unless the harness supplies the name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

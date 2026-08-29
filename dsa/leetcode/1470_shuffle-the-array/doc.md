@@ -32,7 +32,7 @@ The pairing is positional: the first item of the first half is matched with the 
 
 - `nums`: an integer array of length exactly $2n$.
 - `n`: the length of either half, where $1 \le n \le 500$.
-- Every value in `nums` lies in the inclusive range $[1,1000]$.
+- Every value in `nums` lies in the inclusive range `[1,1000]`.
 
 **Return value**
 

@@ -102,10 +102,7 @@ The gadgets form a diagonal staircase: two rows downward and one column rightwar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `b<9`, the source opens these five cells:
-
-$$
-(2b,b),\qu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -159,9 +156,9 @@ The two original continuing paths through the diamond remain intact, while the o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search obstacle configurations:** The space of:** - **Search obstacle configurations:** The space of grids is enormous. Binary gadgets encode the desired count deterministically.
-- **- **Use one fully open rectangle:** Its path count:** - **Use one fully open rectangle:** Its path count is one binomial coefficient and cannot represent every `k` from one through one thousand.
-- **- **Create `k` separate corridors:** That would ne:** - **Create `k` separate corridors:** That would need dimensions proportional to `k`, violating the 25-by-25 limit.
+- **Search obstacle configurations:** The space of grids is enormous. Binary gadgets encode the desired count deterministically.
+- **Use one fully open rectangle:** Its path count is one binomial coefficient and cannot represent every `k` from one through one thousand.
+- **Create `k` separate corridors:** That would need dimensions proportional to `k`, violating the 25-by-25 limit.
 
 ---
 

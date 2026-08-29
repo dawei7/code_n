@@ -72,13 +72,7 @@ There are $2^n-1$ such candidates. This exponential enumeration is acceptable on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The value
-
-$$
-m=(1\ll n)-1
-$$
-
-has its lowest $n$ bits set t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +113,7 @@ If the sum is even, the subset still has to pass the induced-connectivity condit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bitmask adjacency traversal:** Store each node:** - **Bitmask adjacency traversal:** Store each node's neighbors as an integer mask and expand a frontier with bit operations. This can avoid scanning excluded adjacency-list entries and better supports the manifest's $O(n2^n)$ characterization.
+- **Bitmask adjacency traversal:** Store each node's neighbors as an integer mask and expand a frontier with bit operations. This can avoid scanning excluded adjacency-list entries and better supports the manifest's $O(n2^n)$ characterization.
 - **Enumerate connected subsets directly:** Frontier-based generation may skip disconnected masks but requires careful duplicate prevention and still has exponential worst-case behavior.
 - **Disjoint-set rebuild per subset:** Unioning selected edges for every mask is more cumbersome and has similar or worse edge-scanning cost.
 - **Empty subset:** It is excluded by starting enumeration at mask 1.
@@ -133,8 +127,8 @@ If the sum is even, the subset still has to pass the induced-connectivity condit
 - **Complete graph:** Every nonempty subset is connected, so counting reduces to even value-sum masks, but the source still scans adjacency lists.
 - **Recursion safety:** DFS depth is at most 13 under the contract, far below Python's normal recursion limit.
 - **Manifest mismatch:** Actual adjacency storage is $O(n+E)$ and dense-graph time is $O((n+E)2^n)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

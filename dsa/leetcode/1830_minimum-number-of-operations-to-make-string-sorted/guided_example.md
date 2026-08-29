@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` (**0-indexed**)​​​​​​. You are asked to perform the following operation on `s`​​​​​​ until you get a sorted string:
+You are given a string `s` (**0-indexed**). You are asked to perform the following operation on `s` until you get a sorted string:
 
 The objective is to compute `5` from `{"s": "cba"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The sorted string is the smallest lexicographic permutation. Therefore, the numb
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The sorted string is the smallest lexicographic permutation.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The sorted string is the smallest lexicographic permutation. Therefore, the numb
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate each operation:** Generating previous:** - **Simulate each operation:** Generating previous permutations is faithful to the statement but can require a factorial number of steps, far beyond the length limit.
+- **Simulate each operation:** Generating previous permutations is faithful to the statement but can require a factorial number of steps, far beyond the length limit.
 - **Fenwick tree for smaller-character counts:** A tree over character ranks can compute `m` in logarithmic alphabet time. With only 26 letters, directly scanning the counter is simpler and remains linear overall.
 - **Recompute multinomial counts separately for every smaller letter:** This is conceptually direct but repeats almost identical denominator work. Factoring out the total `m` yields the compact formula used here.
 - **All characters equal:** There is only one distinct permutation, every `m` is zero, and the result is zero.
@@ -98,8 +98,8 @@ The sorted string is the smallest lexicographic permutation. Therefore, the numb
 - **Single character:** Its only permutation is already sorted, giving zero.
 - **Global precomputation cost:** The exact code computes each inverse factorial using `pow` separately. A reverse recurrence from one final inverse factorial could prepare all inverses in linear time.
 - **Character ordering:** Python’s comparison of lowercase English letters matches their required lexicographic order, so `a < c` is the correct smaller-choice test.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

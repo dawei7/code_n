@@ -59,7 +59,7 @@ Only counts are needed. AND cares whether any false value exists, OR cares wheth
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `c == ')'`, the top of the stack contains the completed... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The resulting character is pushed onto the stack, replacing the whole parenthesi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive descent:** Parse one expression at a:** - **Recursive descent:** Parse one expression at a time and return its Boolean value plus the next index. This follows the grammar directly but can reach deep recursion.
+- **Recursive descent:** Parse one expression at a time and return its Boolean value plus the next index. This follows the grammar directly but can reach deep recursion.
 - **Replace innermost text repeatedly:** Search for closing parentheses and rewrite strings. Immutable string construction and repeated scans can lead to quadratic time.
 - **Store every punctuation token:** A conventional stack parser can push parentheses and commas too, but they carry no information needed by this reduction.
 - **Single literal `t`:** It remains the only stack value and returns true.
@@ -112,8 +112,8 @@ The resulting character is pushed onto the stack, replacing the whole parenthesi
 - **Commas:** They merely separate operands and are safely ignored.
 - **Valid-input guarantee:** The code does not defend against an empty stack, missing operator, or malformed arity; those cases are outside the contract.
 - **Python pattern matching:** Every popped operator is one of the three handled cases, so `c` is always assigned a result before being pushed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

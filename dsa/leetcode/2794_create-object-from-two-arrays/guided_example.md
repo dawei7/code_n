@@ -67,11 +67,7 @@ The written contract specifically says to call `String()`. The exact source uses
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source computes:
-
-`const k = keysArr[i] + '';`
-
-Adding a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ The values array is a valid JSON array. JSON has no undefined value, so an accep
 
 ## 6. Traps This Instance Exposes
 
-- **- **Null-prototype object:** `Object.create(null)`:** - **Null-prototype object:** `Object.create(null)` removes inherited-name collisions. Direct assignment then treats `"toString"` and `"__proto__"` as ordinary data keys.
+- **Null-prototype object:** `Object.create(null)` removes inherited-name collisions. Direct assignment then treats `"toString"` and `"__proto__"` as ordinary data keys.
 - **Separate `Set` of converted keys:** Test `seen.has(k)`, add on first occurrence, and define the property. This matches the manifest and makes duplicate detection independent of stored values.
 - **`Object.hasOwn(ans, k)`:** It distinguishes own properties from inherited ones, fixing ordinary prototype-name skips; safe definition is still preferable for `"__proto__"`.
 - **`Object.defineProperty`:** Defining an enumerable writable configurable own data property safely handles `"__proto__"` without invoking the inherited setter.
@@ -126,8 +122,8 @@ The values array is a valid JSON array. JSON has no undefined value, so an accep
 - **`"__proto__"` key:** The exact code does not create the required own property and needs safe definition or a null prototype.
 - **Nested value:** The output stores the same reference rather than deep-copying it.
 - **Manifest mismatch:** No Set and no safe property-definition API appear in the source; the approach must disclose that difference.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

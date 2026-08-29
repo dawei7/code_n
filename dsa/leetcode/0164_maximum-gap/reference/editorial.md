@@ -144,7 +144,7 @@ For example, a bucket of size $5$ could theoretically hold values from $6$ to $1
 This is why the gap between two occupied buckets, meaning the difference between the maximum value in one bucket and the minimum value in the next occupied bucket, can be larger than the fixed boundary gap of $1$.
 
 + **Then how do you compare adjacent buckets?**
-We do that by comparing their extents. Thus we compare the minimum element of the next bucket to the maximum element of the current bucket. For example: if we have two buckets of size $5$ each, holding elements $[1, 2, 3]$ and $[9, 10]$ respectively, then the gap between the buckets would essentially refer to the value $9 - 3 = 6$ (which is larger than the size of either bucket).
+We do that by comparing their extents. Thus we compare the minimum element of the next bucket to the maximum element of the current bucket. For example: if we have two buckets of size $5$ each, holding elements `[1, 2, 3]` and `[9, 10]` respectively, then the gap between the buckets would essentially refer to the value $9 - 3 = 6$ (which is larger than the size of either bucket).
 
 + **But then aren't we comparing elements again?!**
 We are, yes! But only compare about twice the elements as the number of buckets (i.e. the minimum and maximum elements of each bucket). If you followed the above, you would realize that this amount is certainly less than the actual number of elements in the array, given a suitable bucket size was chosen.

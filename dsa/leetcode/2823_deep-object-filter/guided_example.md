@@ -51,7 +51,7 @@ Each call determines whether its current container is an array with `Array.isArr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each call determines whether its current container is an arr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each call determines whether its current container is an array with `Array.isArr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative postorder traversal:** Use an explic:** - **Iterative postorder traversal:** Use an explicit stack with enter/exit markers to process children before parents. This preserves $O(V)$ work and avoids native call-stack overflow at the cost of more bookkeeping.
+- **Iterative postorder traversal:** Use an explicit stack with enter/exit markers to process children before parents. This preserves $O(V)$ work and avoids native call-stack overflow at the cost of more bookkeeping.
 - **Mutate the input in place:** Deleting rejected object properties and splicing arrays can save output allocations, but it changes caller-owned data and array deletion must be handled carefully to avoid skipped indices.
 - **Call `fn` on containers:** That is a different contract. The exact solution filters only primitive leaves, which is why an array predicate does not preserve arrays by itself.
 - **Null leaf:** The explicit null guard routes it to `fn` rather than attempting `Object.entries(null)`.
@@ -98,8 +98,8 @@ Each call determines whether its current container is an array with `Array.isArr
 - **Undefined input outside JSON:** The return sentinel would be ambiguous with a legitimate undefined leaf, which is why the JSON guarantee matters.
 - **Deep nesting:** Recursive correctness remains valid, but engine stack limits may require an iterative implementation.
 - **Input preservation:** Every surviving container is newly allocated, so structural mutations to the result do not directly mutate the original containers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

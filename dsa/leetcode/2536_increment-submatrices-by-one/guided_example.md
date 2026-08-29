@@ -70,13 +70,7 @@ This is the two-dimensional version of marking an inclusive one-dimensional inte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For rectangle
-
-$$
-[x_1,x_2]\times[y_1,y_2],
-$$
-
-the method a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +116,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct rectangle loops:** They can cost $O(qn^:** - **Direct rectangle loops:** They can cost $O(qn^2)$ in the worst case.
+- **Direct rectangle loops:** They can cost $O(qn^2)$ in the worst case.
 - **Row-wise difference arrays:** Mark each affected row separately, costing $O(qn+n^2)$.
 - **Full-matrix query:** Only the top-left start marker lies inside; its prefix spread covers everything.
 - **Single-cell query:** Four corner updates isolate exactly that cell.
@@ -132,8 +126,8 @@ $$
 - **Diagonal subtraction:** It prevents double-counting the shared upper-left prefix.
 - **In-place reconstruction:** Difference markers become final values.
 - **Query order:** It cannot affect the additive result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -71,9 +71,7 @@ Every character appears once because the two source slices partition `s`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed `k`, the first candidate is
-
-`t1 = s[:k][::-1] +... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +119,7 @@ Negative slicing also behaves correctly at `k = n`. In that case, `s[:-n]` is em
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every substring reversal:** There ar:** - **Enumerate every substring reversal:** There are $\Theta(n^2)$ substrings and $O(n)$ work per constructed result, producing $O(n^3)$ time while considering many operations the problem forbids. Only segments touching an endpoint are legal.
+- **Enumerate every substring reversal:** There are $\Theta(n^2)$ substrings and $O(n)$ work per constructed result, producing $O(n^3)$ time while considering many operations the problem forbids. Only segments touching an endpoint are legal.
 - **Store all `2n` candidates and sort them:** This yields the same answer but uses $O(n^2)$ character storage and $O(n\log n)$ candidate comparisons. A running minimum needs only the current candidates.
 - **Search for a greedy first character:** The smallest reachable first character can help analyze prefix reversals, but suffix reversals leave a prefix unchanged and ties require comparing long arrangements. With `n <= 1000`, exact enumeration avoids complicated tie logic.
 - **Use a specialized string data structure:** Rolling hashes, suffix structures, or longest-common-prefix comparisons could reduce repeated comparison work, but they add substantial complexity beyond what the constraints require. The shown $O(n^2)$ method is the intended clear optimum for this bound.
@@ -134,8 +132,8 @@ Negative slicing also behaves correctly at `k = n`. In that case, `s[:-n]` is em
 - **Already lexicographically smallest among candidates:** Since `s` is a legal `k = 1` result, no reversal is required to improve it. `ans` remains `s` when all constructed candidates are equal or larger.
 - **Improvement from a suffix reversal:** The loop treats suffix and prefix candidates symmetrically at every length, so cases such as `"abba"` are not biased toward front reversals.
 - **Long common prefixes between candidates:** String comparison may scan many characters, which is already accounted for in the $O(n^2)$ time bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

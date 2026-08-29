@@ -65,7 +65,7 @@ Let `q = len(nums)`. After all rows:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested loops visit every row and every integer in that r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Index zero is outside the allowed input value range. Its count stays zero, and s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated set intersection:** Convert rows to s:** - **Repeated set intersection:** Convert rows to sets and intersect them. It is general and matches the manifest summary but uses hash structures instead of the bounded domain.
+- **Repeated set intersection:** Convert rows to sets and intersect them. It is general and matches the manifest summary but uses hash structures instead of the bounded domain.
 - **Sort every row and use pointers:** This avoids hashing but costs sorting time and requires more complicated multi-row coordination.
 - **Count raw occurrences when duplicates are allowed:** That would be incorrect without first deduplicating each row; this solution relies on the stated uniqueness guarantee.
 - **Single row:** All its values are returned in ascending order.
@@ -118,8 +118,8 @@ Index zero is outside the allowed input value range. Its count stays zero, and s
 - **Different row lengths:** Only presence in every row matters, not row size.
 - **Output distinctness:** Each numeric index is considered once, so no duplicate can appear.
 - **Input preservation:** No row is sorted or mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

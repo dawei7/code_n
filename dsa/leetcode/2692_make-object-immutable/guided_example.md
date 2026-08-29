@@ -59,7 +59,7 @@ Functions obtained from normal property reads are not wrapped by this helper bec
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `wrap(value)` returns `null` and primitive values dir... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ JSON input has no cycles, but the same mechanism would also prevent recursive wr
 
 ## 6. Traps This Instance Exposes
 
-- **- **`Object.freeze` only at the root:** Shallow fr:** - **`Object.freeze` only at the root:** Shallow freezing leaves nested objects mutable and does not provide the required custom strings.
+- **`Object.freeze` only at the root:** Shallow freezing leaves nested objects mutable and does not provide the required custom strings.
 - **Recursive deep freeze:** Can protect all descendants eagerly but costs a full traversal and still does not naturally classify errors.
 - **Deep clone then freeze:** Uses more time and space and changes identity relationships unnecessarily.
 - **Assignment to the same value:** Still throws because an attempted modification occurred.
@@ -113,8 +113,8 @@ JSON input has no cycles, but the same mechanism would also prevent recursive wr
 - **Repeated nested access:** WeakMap returns the same proxy.
 - **Deletion and definition:** Explicit traps prevent these alternate writes.
 - **Original external alias:** Direct mutation through the unwrapped original is not prevented by this proxy-only design.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

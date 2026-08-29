@@ -6,7 +6,7 @@ You are given two integers `height` and `width` representing a garden of size `h
 
 - an array `squirrel` where $squirrel = [\text{squirrel}_{r}, \text{squirrel}_{c}]$ is the position of the squirrel in the garden,
 
-- and an array `nuts` where $\text{nuts}[i] = [\text{nut}_{i}<sub>r</sub>, \text{nut}_{i}<sub>c</sub>]$ is the position of the $$i^{\text{th}}$$ nut in the garden.
+- and an array `nuts` where $\text{nuts}[i] = [\text{nut}_{i}<sub>r</sub>, \text{nut}_{i}<sub>c</sub>]$ is the position of the $i^{\text{th}}$ nut in the garden.
 
 The squirrel can only take at most one nut at one time and can move in four directions: up, down, left, and right, to the adjacent cell.
 

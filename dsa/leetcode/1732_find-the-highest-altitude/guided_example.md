@@ -65,7 +65,7 @@ Without the initial value, `accumulate(gain)` would begin after the first moveme
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `accumulate(gain, initial=0)` produces an iterator.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ No list of all altitudes is created. The prefix sums exist one at a time as the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop:** Track `current += gain[i]` an:** - **Explicit loop:** Track `current += gain[i]` and `best = max(best,current)`. It has identical $O(n)$ time and $O(1)$ space and may be easier to debug.
+- **Explicit loop:** Track `current += gain[i]` and `best = max(best,current)`. It has identical $O(n)$ time and $O(1)$ space and may be easier to debug.
 - **Build a prefix-sum list:** It makes every altitude inspectable but uses $O(n)$ extra space unnecessarily.
 - **Take max of gain values:** This is incorrect because gains are changes, not absolute altitudes.
 - **All negative gains:** The starting altitude zero remains the answer.
@@ -117,8 +117,8 @@ No list of all altitudes is created. The prefix sums exist one at a time as the 
 - **Input preservation:** Lazy accumulation reads `gain` without changing it.
 - **Iterator behavior:** It is consumed once by `max`; no second traversal is needed.
 - **Prefix meaning:** After consuming gain `i`, the accumulated value is the altitude at point `i + 1`, so the iterator covers every visited point exactly once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

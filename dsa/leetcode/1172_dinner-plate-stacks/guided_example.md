@@ -60,7 +60,7 @@ The implementation maintains the invariant that `stacks` has no trailing empty s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Internal empty stacks must remain addressable because their ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ If `not_full` is empty, every existing stack is full. The leftmost nonfull posit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan from index zero on every push:** This can:** - **Scan from index zero on every push:** This can take `O(s)` per push when many early stacks are full.
+- **Scan from index zero on every push:** This can take `O(s)` per push when many early stacks are full.
 - **Use a min-heap of nonfull indices:** A heap can find the leftmost hole, but duplicate and stale entries require lazy cleanup. `SortedSet` maintains unique live indices directly.
 - **Use a max-heap for nonempty indices as well:** That can support rightmost pop, but the no-trailing-empty invariant makes a second ordered structure unnecessary.
 - **Capacity one:** Every push creates a full stack, and `not_full` remains empty until internal pops create holes.
@@ -109,8 +109,8 @@ If `not_full` is empty, every existing stack is full. The leftmost nonfull posit
 - **All stacks empty:** Cleanup makes `stacks` empty, and ordinary pop delegates with index negative and returns `-1`.
 - **Duplicate values:** Stack selection depends on positions and capacity, not value uniqueness.
 - **Amortized cleanup:** A single pop can trim many slots, but every trimmed slot was created earlier and is removed only once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

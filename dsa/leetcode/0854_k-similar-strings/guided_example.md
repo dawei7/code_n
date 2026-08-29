@@ -59,7 +59,7 @@ If `s != s2`, an anagram must contain the needed character `s2[i]` somewhere aft
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `next(s)` finds the smallest index `i` for which `s[i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ This pruning makes every produced swap increase the length of the matching prefi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate every possible swap:** BFS remains co:** - **Generate every possible swap:** BFS remains correct but branches into many swaps that do not improve the first mismatch.
-- **- **Depth-first search with branch-and-bound:** It:** - **Depth-first search with branch-and-bound:** It can find good solutions but needs careful lower bounds to prove minimality. BFS gives shortest swap count directly.
-- **- **A* search:** A mismatch-based heuristic can re:** - **A* search:** A mismatch-based heuristic can reduce explored states, but adds priority-queue and admissibility reasoning.
+- **Generate every possible swap:** BFS remains correct but branches into many swaps that do not improve the first mismatch.
+- **Depth-first search with branch-and-bound:** It can find good solutions but needs careful lower bounds to prove minimality. BFS gives shortest swap count directly.
+- **A* search:** A mismatch-based heuristic can reduce explored states, but adds priority-queue and admissibility reasoning.
 
 ---
 

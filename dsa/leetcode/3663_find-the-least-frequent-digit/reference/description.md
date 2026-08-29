@@ -36,4 +36,4 @@ The **frequency** of a digit `x` is the number of times it appears in the decima
 
 ### 4. Constraints
 
-- $1 \le n \le 2^{31}​​​​​​​ - 1$
+- $1 \le n \le 2^{31} - 1$

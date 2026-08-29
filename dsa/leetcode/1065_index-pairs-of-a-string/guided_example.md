@@ -65,11 +65,7 @@ Each complete word is a key. Prefixes that are not themselves words are not pres
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first operation is:
-
-
-
-The local name `words` now refers... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +119,7 @@ All four boundary pairs are returned. The occurrences of `"aba"` overlap at inde
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trie for the manifest target:** Store all word:** - **Trie for the manifest target:** Store all word prefixes as shared paths, scan at most `L` characters from every text start, and stop on the first missing edge. This achieves `O(S + NL)` time and `O(S)` auxiliary space.
+- **Trie for the manifest target:** Store all word prefixes as shared paths, scan at most `L` characters from every text start, and stop on the first missing edge. This achieves `O(S + NL)` time and `O(S)` auxiliary space.
 - **Aho–Corasick automaton:** Build failure links over the trie and find all dictionary matches in `O(S + N + R)` time, where `R` is output size. It is stronger for large dictionaries but more complex than needed here.
 - **Length-grouped hash sets:** Group words by length and test only those lengths at each start. This avoids impossible lengths but Python slicing still copies candidate strings.
 - **Cap the inner loop at L:** Even with the current hash-set approach, no candidate longer than `L` can match. Limiting `j` reduces wasted candidates, though slicing can still add another length factor.
@@ -137,8 +133,8 @@ All four boundary pairs are returned. The occurrences of `"aba"` overlap at inde
 - **Required ordering:** The nested loop order already sorts by start and then end. A separate sort would be redundant.
 - **Inclusive output versus exclusive slicing:** Adding one to `j` is essential. Using `text[i:j]` would omit the character at the reported end.
 - **Local name replacement:** Assigning `words = set(words)` does not mutate the caller's input list; it only rebinds the local variable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

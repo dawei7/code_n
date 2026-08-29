@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-During the NBA playoffs, we always set the rather strong team to play with the rather weak team, like making the rank `1` team play with the rank $$n^{\text{th}}$$ team, which is a good strategy to make the contest more interesting.
+During the NBA playoffs, we always set the rather strong team to play with the rather weak team, like making the rank `1` team play with the rank $n^{\text{th}}$ team, which is a good strategy to make the contest more interesting.
 
 The objective is to compute `"((1,4),(2,3))"` from `{"n": 4}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ So the active entries are team labels `"1"` through `str(n)` in rank order, stro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | So the active entries are team labels `"1"` through `str(n)`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive direct writer:** Derive each team's :** - **Recursive direct writer:** Derive each team's final placement and emit characters into a buffer, potentially avoiding repeated copying.
+- **Recursive direct writer:** Derive each team's final placement and emit characters into a buffer, potentially avoiding repeated copying.
 - **Build explicit tournament nodes:** It makes bracket structure tangible but adds objects when strings already encode the tree.
 - **Pair adjacent groups:** This would make strong teams meet too early and violates strongest-versus-weakest pairing.
 - **Read and write overlapping halves:** The implementation avoids this by reading all opponents from the untouched second half.
@@ -97,8 +97,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Left-right order:** The smaller rank/stronger group stays on the left side of each generated pair.
 - **Final state:** When `n == 1`, `s[0]` is the only active bracket and is returned.
 - **Input size up to 4096:** Repeated string copying explains why output-sensitive complexity matters despite few rounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

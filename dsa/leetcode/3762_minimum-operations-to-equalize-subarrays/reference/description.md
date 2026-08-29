@@ -8,7 +8,7 @@ You are also given a 2D integer array `queries`, where each $\text{queries}[i] =
 
 For each query, find the **minimum** number of operations required to make **all** elements in the **subarray** $nums[l_{i}..r_{i}]$ **equal**. If it is impossible, the answer for that query is `-1`.
 
-Return an array `ans`, where $\text{ans}[i]$ is the answer for the $$i^{\text{th}}$$ query.
+Return an array `ans`, where $\text{ans}[i]$ is the answer for the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 
@@ -131,12 +131,12 @@ Thus, $ans = [-1, 0, 1]$.
 
 - $1 \le n = \text{nums.length} \le 4 × 10^{4}$
 
-- $1 \le \text{nums}[i] \le 10^{9}$​​​​​​​
+- $1 \le \text{nums}[i] \le 10^{9}$
 
 - $1 \le k \le 10^{9}$
 
 - $1 \le \text{queries.length} \le 4 × 10^{4}$
 
-- $^​​​​​​​\text{queries}[i] = [l_{i}, r_{i}]$
+- $^\text{queries}[i] = [l_{i}, r_{i}]$
 
 - $0 \le l_{i} \le r_{i} \le n - 1$

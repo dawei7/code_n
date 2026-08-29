@@ -51,7 +51,7 @@ For any two prime positions $p_a$ and $p_b$, their distance is at most $p_r-p_1$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For any two prime positions $p_a$ and $p_b$, their distance ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source implements exactly this observation with an outer scan from the left 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime lookup set:** Precompute the 25 primes a:** - **Prime lookup set:** Precompute the 25 primes at most 100 and test membership in constant time. This makes the fixed-domain nature explicit.
+- **Prime lookup set:** Precompute the 25 primes at most 100 and test membership in constant time. This makes the fixed-domain nature explicit.
 - **Sieve of Eratosthenes:** Useful for a much larger bounded value domain, but excessive for 100.
 - **Collect every prime index:** Then subtract first from last; correct but uses $O(n)$ space unnecessarily.
 - **One prime occurrence:** The reverse scan reaches the same index and returns zero.
@@ -101,8 +101,8 @@ The source implements exactly this observation with an outer scan from the left 
 - **Floating square root:** Values are at most 100, so `int(sqrt(x))` is exact for the needed small integers.
 - **No input mutation:** The array is only read.
 - **Generalized bound:** Without the value cap, trial division exposes the $O(\sqrt V)$ factor hidden by the manifest's constant domain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

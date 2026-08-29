@@ -55,7 +55,7 @@ The comparison is strict. An event whose end equals the current day is still att
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At day `s`, an event with end day below `s` can no longer be... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ After removal and insertion, the heap contains exactly the unattended events who
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted starts with a pointer:** Sort events by:** - **Sorted starts with a pointer:** Sort events by start day, add all whose start has arrived, and jump over empty calendar gaps. This gives $O(n\log n)$ time without an explicit $D$ term.
+- **Sorted starts with a pointer:** Sort events by start day, add all whose start has arrived, and jump over empty calendar gaps. This gives $O(n\log n)$ time without an explicit $D$ term.
 - **Disjoint-set day assignment:** Sort by end day and use a union-find structure to locate the earliest unused day in each interval. It is useful for very large sparse day coordinates.
 - **Choose latest-ending event first:** This can waste an early deadline and reduce the total; earliest end is the exchange-safe rule.
 - **End equals current day:** The event remains valid because expiration uses `end < day`.
@@ -102,8 +102,8 @@ After removal and insertion, the heap contains exactly the unattended events who
 - **Empty heap:** No event can be attended that day, so the algorithm correctly leaves `ans` unchanged.
 - **Nonempty input:** The constraints guarantee at least one event, so `l` is replaced from infinity before `range` is constructed.
 - **Sparse large span:** The exact source still visits every day and creates empty `defaultdict` buckets; a pointer-based sweep avoids that cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

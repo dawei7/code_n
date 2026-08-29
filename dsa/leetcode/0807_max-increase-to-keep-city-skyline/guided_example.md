@@ -76,9 +76,7 @@ Any higher value would exceed at least one original maximum and visibly raise th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Building `grid[i][j]` belongs to row `i` and column `j`.
-
-To... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +115,9 @@ Thus the computed ceiling is feasible for that cell.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan columns by index:** Avoid `zip` and compu:** - **Scan columns by index:** Avoid `zip` and compute each column maximum with nested indexing. It has the same $O(n^2)$ time and $O(n)$ stored maxima.
-- **- **Try incremental increases:** Repeatedly raisin:** - **Try incremental increases:** Repeatedly raising buildings obscures the direct upper bound and may take time proportional to height differences.
-- **- **Use only row maxima:** It can violate north/so:** - **Use only row maxima:** It can violate north/south skylines.
+- **Scan columns by index:** Avoid `zip` and compute each column maximum with nested indexing. It has the same $O(n^2)$ time and $O(n)$ stored maxima.
+- **Try incremental increases:** Repeatedly raising buildings obscures the direct upper bound and may take time proportional to height differences.
+- **Use only row maxima:** It can violate north/south skylines.
 
 ---
 

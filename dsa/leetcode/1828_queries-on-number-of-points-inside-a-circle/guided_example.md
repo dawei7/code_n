@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ is the coordinates of the $$i^{\text{th}}$$ point on a 2D plane. Multiple points can have the **same** coordinates.
+You are given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ is the coordinates of the $i^{\text{th}}$ point on a 2D plane. Multiple points can have the **same** coordinates.
 
 The objective is to compute `[3]` from `{"points": [[0, 0], [0, 0], [3, 4], [6, 0]], "queries": [[0, 0, 5]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `sqrt((i - x) * (i - x) + (j - y) * (j - y)) <= r`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The implementation checks every supplied point against every supplied circle. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Square-root distance:** Computing the Euclidea:** - **Square-root distance:** Computing the Euclidean distance with `sqrt` is mathematically valid, but it is slower and introduces needless floating-point boundary concerns. Squared integers give the same decision exactly.
+- **Square-root distance:** Computing the Euclidean distance with `sqrt` is mathematically valid, but it is slower and introduces needless floating-point boundary concerns. Squared integers give the same decision exactly.
 - **Axis-aligned bounding-box test only:** This can reject points whose horizontal or vertical offset exceeds the radius, but it cannot accept points safely because square corners lie outside the circle. It can only be an optional prefilter.
 - **Coordinate-frequency compression:** Because duplicate coordinates are allowed, a frequency map could combine them and add the stored multiplicity after one distance test. It helps when many points coincide but adds preprocessing and still checks every distinct coordinate per query.
 - **Grid or spatial index:** Bucketing points spatially can reduce candidate checks for small circles, while tree-based geometric structures can address the follow-up. Their performance and complexity are more involved, and worst-case dense queries may still inspect many points.
@@ -98,8 +98,8 @@ The implementation checks every supplied point against every supplied circle. Th
 - **Negative offsets:** Subtraction may produce negative `dx` or `dy`, but squaring makes their direction irrelevant to distance.
 - **Query order:** Results are appended during the outer traversal, so no sorting should be introduced.
 - **Integer safety:** Python’s arbitrary-precision integers prevent overflow in the squared calculation; fixed-width implementations should choose a type wide enough for the maximum squared sum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

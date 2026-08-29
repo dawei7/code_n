@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where $\text{classes}[i] = [\text{pass}_{i}, \text{total}_{i}]$. You know beforehand that in the $$i^{\text{th}}$$ class, there are $\text{total}_{i}$ total students, but only $\text{pass}_{i}$ number of students will pass the exam.
+There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where $\text{classes}[i] = [\text{pass}_{i}, \text{total}_{i}]$. You know beforehand that in the $i^{\text{th}}$ class, there are $\text{total}_{i}$ total students, but only $\text{pass}_{i}$ number of students will pass the exam.
 
 The objective is to compute `0.7833333333333333` from `{"classes": [[1, 2], [3, 5], [2, 2]], "extraStudents": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -79,7 +79,7 @@ Another view is that each class offers a descending list of marginal gains. Assi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a class has already received $x$ extra students.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ The extra tuple fields also provide deterministic tie-breaking when two floating
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rescan every class per student:** It makes the:** - **Rescan every class per student:** It makes the same greedy choice but costs $O(en)$ time, which is too slow at the maximum constraints.
+- **Rescan every class per student:** It makes the same greedy choice but costs $O(en)$ time, which is too slow at the maximum constraints.
 - **Choose the smallest current ratio:** This ignores class size and may select a class with a smaller marginal improvement.
 - **Assign all students at once to one class:** Marginal gains decrease after every assignment, so another class can become better partway through.
 - **Binary search on a gain threshold:** More advanced resource-allocation methods are possible, but the heap directly implements the discrete choices within the constraints.
@@ -138,8 +138,8 @@ The extra tuple fields also provide deterministic tie-breaking when two floating
 - **Tuple tie-breaking:** Passing and total counts may decide heap order after equal keys, but this cannot harm optimality.
 - **Accepted precision:** The answer is a float and is judged with tolerance rather than exact textual equality.
 - **Input preservation:** The original `classes` rows are not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

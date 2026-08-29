@@ -1,6 +1,6 @@
 ### 1. Description
 
-A company is planning to interview `2n` people. Given the array `costs` where $\text{costs}[i] = [\text{aCost}_{i}, \text{bCost}_{i}]$, the cost of flying the $$i^{\text{th}}$$ person to city `a` is $\text{aCost}_{i}$, and the cost of flying the $$i^{\text{th}}$$ person to city `b` is $\text{bCost}_{i}$.
+A company is planning to interview `2n` people. Given the array `costs` where $\text{costs}[i] = [\text{aCost}_{i}, \text{bCost}_{i}]$, the cost of flying the $i^{\text{th}}$ person to city `a` is $\text{aCost}_{i}$, and the cost of flying the $i^{\text{th}}$ person to city `b` is $\text{bCost}_{i}$.
 
 Return *the minimum cost to fly every person to a city* such that exactly `n` people arrive in each city.
 

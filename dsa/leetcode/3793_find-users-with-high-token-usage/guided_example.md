@@ -66,7 +66,7 @@ For sample user one, the group contains 120, 80, and 200. Its count is three, di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Group-level conditions cannot be applied before aggregation.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For the sample, user three has average 237.5 and user one has 133.33, so user th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct unrounded comparison:** Use `MAX(token:** - **Correct unrounded comparison:** Use `MAX(tokens)>AVG(tokens)` in `HAVING` and keep rounding only in `SELECT`.
+- **Correct unrounded comparison:** Use `MAX(tokens)>AVG(tokens)` in `HAVING` and keep rounding only in `SELECT`.
 - **Correlated existence subquery:** It can test an above-average prompt explicitly but repeats work that maximum and average summarize.
 - **Use `WHERE` for aggregate conditions:** Aggregates are unavailable before grouping; `HAVING` is required.
 - **Exactly three prompts:** The inclusive count condition accepts the group.
@@ -116,8 +116,8 @@ For the sample, user three has average 237.5 and user one has 133.33, so user th
 - **Dialect portability:** Alias references in `HAVING` are MySQL-specific behavior used by the exact source.
 - **Maximum equivalence:** Checking maximum is sufficient for existence because it is at least every individual token value.
 - **Source defect:** The query does not fully satisfy the contract's unrounded-comparison requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

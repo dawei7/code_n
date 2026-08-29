@@ -87,9 +87,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The boolean array `f` has this meaning:
-
-`f[i]` is true exac... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -140,7 +138,7 @@ Again, equality is not allowed because the order must be strict.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every split and rescan both parts:** Valid:** - **Try every split and rescan both parts:** Validating order and recomputing sums at each boundary can take $O(n^2)$ time.
+- **Try every split and rescan both parts:** Validating order and recomputing sums at each boundary can take $O(n^2)$ time.
 - **Constant-space boundary analysis:** One can locate the farthest valid increasing prefix and earliest valid decreasing suffix, then scan sums with a running prefix total. This can achieve $O(1)$ auxiliary space and matches the manifest's intent.
 - **Prefix and suffix sum arrays:** Two sum arrays work, but one prefix-sum array already derives the right sum from the total.
 - **Two-element array:** Both parts contain one element and are vacuously ordered, so the sole split is valid.
@@ -150,8 +148,8 @@ Again, equality is not allowed because the order must be strict.
 - **Difference zero:** A perfectly balanced valid split returns zero, which is distinct from the no-split sentinel.
 - **Positive values:** They make cumulative sums monotone, but the prefix-sum and order logic would also work with arbitrary integers.
 - **Input size:** Storing three linear arrays is feasible for $n\le10^5$, though it does not meet the manifest's claimed constant-space bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

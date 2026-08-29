@@ -69,7 +69,7 @@ The source sums exactly these terms.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | One operation increases one deficient element by one and dec... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The generated term `n - (i << 1 | 1)` is therefore the deficit of that below-ave
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form floor:** Return $\lfloor n^2/4\rfl:** - **Closed-form floor:** Return $\lfloor n^2/4\rfloor$ to realize true $O(1)$ time and $O(1)$ space.
+- **Closed-form floor:** Return $\lfloor n^2/4\rfloor$ to realize true $O(1)$ time and $O(1)$ space.
 - **Explicit array simulation:** Building values and transferring units is unnecessary and can use extra time and space.
 - **Sum upper-half surplus:** It equals lower-half deficit and gives the same answer.
 - **Pair symmetric elements:** Each pair reveals how many unit transfers it needs; this is equivalent to the deficit sum.
@@ -125,8 +125,8 @@ The generated term `n - (i << 1 | 1)` is therefore the deficit of that below-ave
 - **Operation endpoints:** The two selected indices may be chosen to transfer any needed surplus unit directly to any deficit.
 - **Manifest mismatch:** The declared constant-time bound describes the closed-form alternative, not this exact summation loop.
 - **Integer arithmetic:** All formulas are integral for both parity cases, and Python avoids overflow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

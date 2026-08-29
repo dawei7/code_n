@@ -65,7 +65,7 @@ Conversely, any genuine peak lies between indices $1$ and $n-2$ and satisfies th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The definition depends only on immediate neighbors, not on w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This differs from a non-strict local maximum definition. Replacing either compar
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare with the global maximum:** Incorrect; :** - **Compare with the global maximum:** Incorrect; a local peak need not be globally greatest.
+- **Compare with the global maximum:** Incorrect; a local peak need not be globally greatest.
 - **Track rising and falling trends:** It can find peaks, but direct neighbor comparisons are simpler and equally linear.
 - **Sort values:** Sorting destroys index adjacency and cannot answer the question.
 - **First index:** Never a peak because it lacks a left neighbor, even if greater than index one.
@@ -123,8 +123,8 @@ This differs from a non-strict local maximum definition. Replacing either compar
 - **Any-order contract:** Returning sorted indices makes testing and reading deterministic without paying a sorting cost because traversal already has that order.
 - **No mutation:** Comparisons leave the mountain array intact.
 - **Why one pass is optimal:** An unexamined interior position could be changed to exceed both neighbors without affecting distant checks, so worst-case correctness requires considering every candidate index.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `deck`. There is a deck of cards where every card has a unique integer. The integer on the $$i^{\text{th}}$$ card is $\text{deck}[i]$.
+You are given an integer array `deck`. There is a deck of cards where every card has a unique integer. The integer on the $i^{\text{th}}$ card is $\text{deck}[i]$.
 
 The objective is to compute `[2, 13, 3, 11, 5, 17, 7]` from `{"deck": [17, 13, 11, 2, 3, 5, 7]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ After undoing that rotation, the next smaller card is placed at the top with `q.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In the forward direction, after revealing a card, the next t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The input values are unique, so increasing order is strict and each card has one
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate positions forward:** Keep a queue of :** - **Simulate positions forward:** Keep a queue of indices, assign sorted card values to each next revealed index, and rotate the next index. This also takes `O(n log n)` time and `O(n)` space.
+- **Simulate positions forward:** Keep a queue of indices, assign sorted card values to each next revealed index, and rotate the next index. This also takes `O(n log n)` time and `O(n)` space.
 - **Use a list as a deque:** Removing from the end is cheap, but inserting at the front is `O(n)` and makes construction quadratic.
 - **Forward trial and error:** Guessing deck orders explores permutations unnecessarily; reversing deterministic operations gives the answer directly.
 - **One card:** The deque is empty before insertion, so no rotation occurs and the single card is returned.
@@ -119,8 +119,8 @@ The input values are unique, so increasing order is strict and each card has one
 - **Rotation only when nonempty:** Calling `pop` on an empty deque would fail, so the `if q` guard is essential.
 - **Input preservation:** The original deck ordering remains unchanged because `sorted` returns a new list.
 - **Large card values:** Only comparisons matter; magnitude does not affect the algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

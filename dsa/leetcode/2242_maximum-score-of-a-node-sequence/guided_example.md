@@ -53,7 +53,7 @@ For every edge `[a, b]`, the code appends `b` to `g[a]` and `a` to `g[b]`. This 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every edge `[a, b]`, the code appends `b` to `g[a]` and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The same reasoning applies to `d` at endpoint `b`, excluding `a` and `c`. Hence,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try all neighbor pairs:** For each middle edge:** - **Try all neighbor pairs:** For each middle edge, combining full degrees can be too expensive in dense local neighborhoods.
+- **Try all neighbor pairs:** For each middle edge, combining full degrees can be too expensive in dense local neighborhoods.
 - **Keep only the single best neighbor:** It may be the opposite middle endpoint or collide with the other outside node, so one is insufficient.
 - **Keep only two neighbors:** Both can be forbidden by the middle endpoint and other outside choice; the third is the necessary fallback.
 - **Enumerate all four-node permutations:** This ignores graph structure and is infeasible.
@@ -109,8 +109,8 @@ The same reasoning applies to `d` at endpoint `b`, excluding `a` and `c`. Hence,
 - **Undirected insertion:** Both adjacency directions are required.
 - **Positive scores:** Any valid candidate exceeds the `-1` sentinel.
 - **Chained inequality:** Its correctness also relies on no self-edges and distinct middle-edge endpoints supplied by the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

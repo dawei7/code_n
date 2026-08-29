@@ -68,7 +68,7 @@ Each of these conditions must begin a new candidate run.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An inner join would discard every row that begins a streak.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Strictly increasing amounts are enforced by `t1.amount > t2.amount`. Equality is
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` previous date and amount:** Can mark bre:** - **`LAG` previous date and amount:** Can mark breaks directly after ordering each customer, avoiding the self-join.
+- **`LAG` previous date and amount:** Can mark breaks directly after ordering each customer, avoiding the self-join.
 - **Date minus row-number islands alone:** Detects consecutive days but needs an additional break marker for non-increasing amounts.
 - **One transaction:** Forms a one-row island and is filtered out.
 - **Exactly three days:** Qualifies because `HAVING` is inclusive.
@@ -121,8 +121,8 @@ Strictly increasing amounts are enforced by `t1.amount > t2.amount`. Equality is
 - **Unique customer/date guarantee:** Prevents multiple predecessor matches from duplicating rows.
 - **Final ordering:** The exact query lacks explicit start/end tie ordering within one customer.
 - **Source table:** The query reads and groups it without mutation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

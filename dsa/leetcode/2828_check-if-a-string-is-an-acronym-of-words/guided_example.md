@@ -51,7 +51,7 @@ There is no separate explicit length check. String equality already requires equ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There is no separate explicit length check.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct indexed comparison:** Return false when:** - **Direct indexed comparison:** Return false when lengths differ, then verify `words[i][0] == s[i]` for every index. This avoids building an acronym, can stop early, and matches the manifest.
+- **Direct indexed comparison:** Return false when lengths differ, then verify `words[i][0] == s[i]` for every index. This avoids building an acronym, can stop early, and matches the manifest.
 - **`all` with `zip`:** After an explicit length check, `all(w[0] == c for w, c in zip(words, s))` gives lazy early termination with $O(1)$ auxiliary space.
 - **Build a character list first:** It is correct but allocates both an $O(n)$ list and the final $O(n)$ string, using more temporary storage than the exact generator.
 - **Different number of words and target characters:** The full strings have different lengths and equality returns false.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Ordering:** Reordering `words` can change the acronym; iteration preserves the supplied order.
 - **Exact lowercase comparison:** No normalization is performed or needed.
 - **Temporary string:** The joined acronym exists even when the target's length already proves failure, which is the main tradeoff against direct comparison.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

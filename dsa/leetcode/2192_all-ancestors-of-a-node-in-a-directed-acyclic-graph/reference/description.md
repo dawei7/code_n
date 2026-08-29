@@ -4,7 +4,7 @@ You are given a positive integer `n` representing the number of nodes of a **Dir
 
 You are also given a 2D integer array `edges`, where $\text{edges}[i] = [\text{from}_{i}, \text{to}_{i}]$ denotes that there is a **unidirectional** edge from $\text{from}_{i}$ to $\text{to}_{i}$ in the graph.
 
-Return *a list* `answer`*, where *$\text{answer}[i]$* is the **list of ancestors** of the* $$i^{\text{th}}$$ *node, sorted in **ascending order***.
+Return *a list* `answer`*, where *$\text{answer}[i]$* is the **list of ancestors** of the* $i^{\text{th}}$ *node, sorted in **ascending order***.
 
 A node `u` is an **ancestor** of another node `v` if `u` can reach `v` via a set of edges.
 

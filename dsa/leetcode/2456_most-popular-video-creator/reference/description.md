@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given two string arrays `creators` and `ids`, and an integer array `views`, all of length `n`. The $$i^{\text{th}}$$ video on a platform was created by $\text{creators}[i]$, has an id of $\text{ids}[i]$, and has $\text{views}[i]$ views.
+You are given two string arrays `creators` and `ids`, and an integer array `views`, all of length `n`. The $i^{\text{th}}$ video on a platform was created by $\text{creators}[i]$, has an id of $\text{ids}[i]$, and has $\text{views}[i]$ views.
 
 The **popularity** of a creator is the **sum** of the number of views on **all** of the creator's videos. Find the creator with the **highest** popularity and the id of their **most** viewed video.
 

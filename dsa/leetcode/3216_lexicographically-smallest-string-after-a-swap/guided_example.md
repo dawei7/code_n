@@ -51,7 +51,7 @@ One adjacent swap at indices $i$ and $i+1$ changes no position before $i$. At po
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | One adjacent swap at indices $i$ and $i+1$ changes no positi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If the pair is already increasing, swapping makes the string larger. If the digi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a character list:** Scan adjacent d:** - **Convert to a character list:** Scan adjacent digits, swap the first legal inversion in place, and join. It is often easier to read but always allocates an $O(n)$ list.
+- **Convert to a character list:** Scan adjacent digits, swap the first legal inversion in place, and join. It is often easier to read but always allocates an $O(n)$ list.
 - **Try every legal swap and take `min`:** Correct for $n\le100$, but it constructs up to $O(n)$ strings of length $n$, costing $O(n^2)$ time and space traffic.
 - **Swap the largest difference:** Incorrect. Lexicographic order prioritizes the earliest changed index, not the magnitude of a later improvement.
 - **Different parity:** The pair cannot be swapped even when it is descending.
@@ -98,8 +98,8 @@ If the pair is already increasing, swapping makes the string larger. If the digi
 - **Character-code parity:** The trick relies on consecutive decimal digit code points. It should not be generalized blindly to arbitrary characters.
 - **`pairwise` availability:** The exact source assumes an environment providing Python's adjacent-pair iterator and `map`/`ord` built-ins.
 - **Input preservation:** Strings are immutable, so the original value is never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

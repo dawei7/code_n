@@ -98,7 +98,7 @@ starts at 1, which is $131^0$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution scans `s` once and maintains two polynomi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -147,7 +147,7 @@ hash-matching prefix.
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP prefix function:** Build `s + separator + :** - **KMP prefix function:** Build `s + separator + reversed(s)` and use the final prefix-function value as the longest palindromic-prefix length. It is deterministic, runs in $O(n)$ time and $O(n)$ space, and is the technique named by the current manifest even though the exact source instead hashes.
+- **KMP prefix function:** Build `s + separator + reversed(s)` and use the final prefix-function value as the longest palindromic-prefix length. It is deterministic, runs in $O(n)$ time and $O(n)$ space, and is the technique named by the current manifest even though the exact source instead hashes.
 - **Double rolling hash plus verification:** Two independent moduli make collision probability much smaller; directly verifying the final candidate prefix removes the immediate false positive, though finding a fallback after a failed verification needs care to preserve linear time.
 - **Manacher's algorithm:** It deterministically finds all palindrome radii in $O(n)$ time and can select the longest one touching index 0. It is more intricate than necessary for this prefix-only goal.
 - **Check prefixes from longest to shortest:** Compare each prefix with its reversal and stop at the first palindrome. It is simple but repeated slicing and comparison can take $O(n^2)$ time at the maximum length $5 \cdot 10^4$.
@@ -159,8 +159,8 @@ hash-matching prefix.
 - **Separator choice:** The exact rolling-hash source does not concatenate strings and therefore needs no separator. A KMP alternative must use a delimiter outside the lowercase input alphabet to prevent a match from crossing the boundary incorrectly.
 - **Hash collision:** This is a semantic edge case, not merely a performance issue. One modular equality can be a false positive; applications requiring unconditional correctness should prefer deterministic KMP or Manacher rather than relying on the accepted-source probability.
 - **Input preservation:** Strings are immutable in Python. The method creates new strings for the suffix and result but never changes `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ The input is guaranteed legal, so every evaluated variable has an active binding
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `parseVar` records the current index, advances until a space... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ The pointer increments skip the operator word and following space: four characte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Tokenize first, then recursively evaluate toke:** - **Tokenize first, then recursively evaluate tokens:** This separates lexical analysis from grammar handling and can be easier to debug, but stores `O(n)` tokens in addition to scope and recursion state.
-- **- **Build an abstract syntax tree:** A tree is use:** - **Build an abstract syntax tree:** A tree is useful if the expression must be inspected or evaluated repeatedly. For one evaluation it adds objects and a second traversal without improving asymptotic time.
-- **- **Copy the complete environment for nested calls:** - **Copy the complete environment for nested calls:** This makes lexical scoping conceptually simple but can copy many bindings repeatedly and lead to quadratic work. Per-variable stacks update and restore only changed names.
+- **Tokenize first, then recursively evaluate tokens:** This separates lexical analysis from grammar handling and can be easier to debug, but stores `O(n)` tokens in addition to scope and recursion state.
+- **Build an abstract syntax tree:** A tree is useful if the expression must be inspected or evaluated repeatedly. For one evaluation it adds objects and a second traversal without improving asymptotic time.
+- **Copy the complete environment for nested calls:** This makes lexical scoping conceptually simple but can copy many bindings repeatedly and lead to quadratic work. Per-variable stacks update and restore only changed names.
 
 ---
 

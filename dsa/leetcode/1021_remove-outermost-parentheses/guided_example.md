@@ -59,7 +59,7 @@ The algorithm treats opening and closing parentheses in slightly different order
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the current character has been processed, `cnt` equals... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Another way to state the same rule is that an opening parenthesis is copied exac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly split primitive substrings:** Recor:** - **Explicitly split primitive substrings:** Record a start index whenever depth rises from zero, and when it returns to zero append the slice excluding the two endpoints. This is correct but creates slices and requires more boundary bookkeeping than filtering characters during the scan.
+- **Explicitly split primitive substrings:** Record a start index whenever depth rises from zero, and when it returns to zero append the slice excluding the two endpoints. This is correct but creates slices and requires more boundary bookkeeping than filtering characters during the scan.
 - **Use a stack:** Push opening parentheses and pop for closings, using stack size as depth. Since only the number of unmatched openings matters, a full stack stores redundant identical characters and uses unnecessary `O(N)` auxiliary memory.
 - **Track old depth instead:** Append an opening when `cnt > 0` before incrementing, and append a closing when `cnt > 1` before decrementing. That equivalent ordering is correct, but the before and after conventions must not be mixed.
 - **Repeated string concatenation:** Updating `result += c` is easy to read but can repeatedly copy the growing immutable string. Accumulating characters in `ans` and joining once is the reliable linear-time pattern.
@@ -110,8 +110,8 @@ Another way to state the same rule is that an opening parenthesis is copied exac
 - **Empty output:** `''.join([])` correctly returns `""`, so no special case is needed.
 - **Only two character kinds:** The implementation's `else` branch treats every non-opening character as a closing parenthesis. This is safe only because the contract guarantees that `s` contains no other characters.
 - **Invalid input:** The method intentionally does not detect negative depth or a nonzero final depth. Such validation would address a different problem because validity is guaranteed here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

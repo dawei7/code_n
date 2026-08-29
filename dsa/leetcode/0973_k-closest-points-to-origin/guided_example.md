@@ -57,7 +57,7 @@ The answer is guaranteed unique except for order, so no ambiguous tie crosses th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After ascending sort, every point before position `k` has di... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The original point lists are rearranged rather than copied. The lambda reads coo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quickselect:** Expected `O(N)` time and in-pla:** - **Quickselect:** Expected `O(N)` time and in-place partitioning, matching the intended manifest.
+- **Quickselect:** Expected `O(N)` time and in-place partitioning, matching the intended manifest.
 - **Max-heap of size `k`:** `O(N log k)` time and `O(k)` space.
 - **Squared-distance sort:** Same asymptotic time with integer keys.
 - **`k = 1`:** Return one closest point.
@@ -104,8 +104,8 @@ The original point lists are rearranged rather than copied. The lambda reads coo
 - **Equal distances:** Relative order is irrelevant away from the unique boundary.
 - **Input mutation:** Original point order is lost.
 - **Output order:** Sorted-by-distance order is allowed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

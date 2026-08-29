@@ -67,7 +67,7 @@ Because zero is considered separately for all four directions, the exact adjacen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Cell `(i,j)` becomes vertex `i*n+j`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Therefore, when retrograde processing asks which previous player positions could
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoized forward minimax with a turn counter:*:** - **Memoized forward minimax with a turn counter:** It can encode the 1000-turn limit directly but creates a much larger time dimension and delicate cycle handling.
+- **Memoized forward minimax with a turn counter:** It can encode the 1000-turn limit directly but creates a much larger time dimension and delicate cycle handling.
 - **Value iteration:** Repeatedly classify states until convergence. Retrograde degree processing reaches the same fixed point more directly.
 - **No stay move:** That would change the game; jump length zero must be legal for both players.
 - **Duplicate stay destinations:** They are strategy-equivalent but counted consistently in degrees and predecessor lists.
@@ -117,8 +117,8 @@ Therefore, when retrograde processing asks which previous player positions could
 - **Multiple legal winning moves:** Finding the first is enough to classify the predecessor.
 - **All moves losing:** Degree reaches zero only after every listed option has been refuted.
 - **Turn encoding:** Zero is Mouse and one is Cat; the arithmetic `t-1` relies on outcomes one and two.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

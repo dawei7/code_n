@@ -69,7 +69,7 @@ array.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested `reverse(i, j)` helper treats both endpoints as i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ last word backward in the output.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Editorial operation order:** Reverse the whole:** - **Editorial operation order:** Reverse the whole array first, then scan and reverse each resulting word; it has the same $O(n)$ time and $O(1)$ space.
+- **Editorial operation order:** Reverse the whole array first, then scan and reverse each resulting word; it has the same $O(n)$ time and $O(1)$ space.
 - **Split, reverse, and join:** Very concise for immutable strings, but allocates words and a new result, violating the in-place requirement.
 - **Manual shifting of words:** Can preserve spelling but repeated movement may become $O(n^2)$ and is unnecessarily complicated.
 - **Single character:** Both inclusive reversals are empty operations.
@@ -128,8 +128,8 @@ last word backward in the output.
 - **Final word:** Must be handled at `n - 1` because it has no trailing delimiter.
 - **Spacing guarantees:** The exact boundary logic relies on no leading, trailing, or repeated spaces; broader whitespace rules would need additional handling.
 - **Missing typing import:** Add or provide `List` when running the file outside a harness that defines it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

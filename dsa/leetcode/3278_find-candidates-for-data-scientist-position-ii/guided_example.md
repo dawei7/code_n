@@ -51,7 +51,7 @@ CTE `S` joins `Candidates` and `Projects` with `USING (skill)`. A row exists onl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `S` joins `Candidates` and `Projects` with `USING (skill... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ CTE `S` joins `Candidates` and `Projects` with `USING (skill)`. A row exists onl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Relational division with `NOT EXISTS`:** Rejec:** - **Relational division with `NOT EXISTS`:** Reject a candidate when any project skill lacks a candidate match. This expresses “has all skills” directly but scoring still needs matched rows.
+- **Relational division with `NOT EXISTS`:** Reject a candidate when any project skill lacks a candidate match. This expresses “has all skills” directly but scoring still needs matched rows.
 - **Compare counts without unique keys:** It could be unsafe if duplicate skill rows existed. The declared keys make the count equality proof valid.
 - **`ROW_NUMBER`:** It more directly signals one winner and is equivalent because candidate identifier makes the ordering unique.
 - **Rank by score only:** Then all score ties receive rank one and multiple candidates would be returned, violating the lower-ID rule.
@@ -101,8 +101,8 @@ CTE `S` joins `Candidates` and `Projects` with `USING (skill)`. A row exists onl
 - **Score base added once:** The expression places `+ 100` outside `SUM`. Putting one hundred inside the sum would incorrectly add the starting score once per required skill.
 - **Proficiency scale endpoints:** Values one through five need no normalization. The score depends only on greater, equal, or less comparisons, not the magnitude of the difference.
 - **Candidate absent from one skill:** Their group has fewer joined rows than `required_skills` and is removed even if their partial score would otherwise be highest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

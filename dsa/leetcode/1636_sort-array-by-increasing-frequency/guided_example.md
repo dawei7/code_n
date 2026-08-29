@@ -66,7 +66,7 @@ The source then calls `sorted(nums, key=...)`. `sorted` returns a new list and l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(nums)` traverses the input and creates `cnt`, a map... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Within that block, occurrence order does not matter because the values are ident
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count distinct values, sort the keys, then exp:** - **Count distinct values, sort the keys, then expand blocks:** Sort the $k$ unique values by `(frequency, -value)` and append each value its frequency times. This costs $O(n+k\log k)$ and can reduce comparison work when many values repeat.
+- **Count distinct values, sort the keys, then expand blocks:** Sort the $k$ unique values by `(frequency, -value)` and append each value its frequency times. This costs $O(n+k\log k)$ and can reduce comparison work when many values repeat.
 - **Bucket by frequency:** Frequencies range from 1 through $n$. Values in each bucket can be sorted descending, then expanded. This can be useful with a tightly bounded value domain but requires more bookkeeping.
 - **Custom comparator:** Compare counts first and values second. It is equivalent, but a tuple key is shorter and avoids repeatedly looking up comparison operands during sorting.
 - **All values distinct:** Every frequency is one, so the entire output is the input values sorted in decreasing numeric order.
@@ -113,8 +113,8 @@ Within that block, occurrence order does not matter because the values are ident
 - **Zero:** Its secondary key is also zero and participates normally between positive and negative values.
 - **Input preservation:** `sorted` returns a new list. Using `nums.sort` would mutate the caller's array, which the exact source does not do.
 - **Stable sorting is not relied upon:** Equal values have identical keys, and their relative occurrence order is unobservable. Different values are fully distinguished by the secondary component when counts tie.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

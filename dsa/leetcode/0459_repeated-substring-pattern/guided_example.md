@@ -61,7 +61,7 @@ Because `d` is strictly between zero and `n`, $\gcd(n,d)<n$. The block is a prop
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the search returns an offset `d` with $1\le d<n$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every prefix length that divides `n`:** Re:** - **Try every prefix length that divides `n`:** Repeat each candidate prefix and compare with `s`. It is easy to derive but can perform repeated full-string construction and comparison.
+- **Try every prefix length that divides `n`:** Repeat each candidate prefix and compare with `s`. It is easy to derive but can perform repeated full-string construction and comparison.
 - **KMP prefix function:** Let `L` be the longest proper prefix of `s` that is also a suffix. The string repeats exactly when `L > 0` and `n % (n - L) == 0`. This guarantees $O(n)$ time and $O(n)$ space without depending on library substring search.
 - **Rolling hash:** Hashes can test candidate periods efficiently, but collisions require verification or multiple hashes and add needless risk here.
 - **One-character string:** The only later match starts at index one, equal to `n`, so it correctly returns false; a proper nonempty substring cannot exist.
@@ -115,8 +115,8 @@ $$
 - **Overlapping occurrence:** `.index` considers overlapping matches, which is necessary for strings such as `"aaaa"` whose next occurrence starts at one.
 - **Guaranteed nonempty input:** The proof assumes `n > 0`. The source contract supplies that guarantee.
 - **Strict properness:** A match at exactly `n` represents merely the second copy and is intentionally rejected.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -72,7 +72,7 @@ All recursive calls write into the same output. This avoids constructing and rep
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `result` begins empty and is captured by recursive helper `v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The contract specifically describes integers and arrays, so every leaf is a numb
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit stack:** Avoid recursion-depth limits:** - **Explicit stack:** Avoid recursion-depth limits; push elements in reverse order so popping preserves left-to-right output.
+- **Explicit stack:** Avoid recursion-depth limits; push elements in reverse order so popping preserves left-to-right output.
 - **Queue with repeated splicing:** Can preserve order but may shift or copy many elements and become inefficient.
 - **Built-in `Array.flat`:** Direct but explicitly forbidden.
 - **`n = 0`:** No nested array is expanded, though a new outer result array is still produced.
@@ -121,8 +121,8 @@ The contract specifically describes integers and arrays, so every leaf is a numb
 - **Preserved nested reference:** An unflattened subarray is appended without cloning.
 - **Order preservation:** Complete each expanded subarray before continuing with its parent's next item.
 - **Deep nesting:** Recursion uses one call frame per expanded level and may motivate an iterative stack in stricter runtimes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

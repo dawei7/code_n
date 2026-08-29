@@ -51,7 +51,7 @@ Valid centers range from one through `len(nums)-2`. This visits every contiguous
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Valid centers range from one through `len(nums)-2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Valid centers range from one through `len(nums)-2`. This visits every contiguous
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop and counter:** It is equivalent :** - **Explicit loop and counter:** It is equivalent and may be easier for beginners to debug.
+- **Explicit loop and counter:** It is equivalent and may be easier for beginners to debug.
 - **Sliding window object:** Maintaining a queue is unnecessary because direct indexing already exposes all three values.
 - **Floating-point half:** It is avoidable and less exact than multiplication.
 - **Floor division:** It would incorrectly accept some odd-middle cases.
@@ -104,8 +104,8 @@ Valid centers range from one through `len(nums)-2`. This visits every contiguous
 - **Index safety:** Center range guarantees both neighbors exist.
 - **Input preservation:** No element is changed.
 - **Annotation import:** `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -205,38 +205,6 @@
       ]
     },
     {
-      "id": "trial-ext-2",
-      "name": "invalid deletions change nothing",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "operations": [
-          [
-            "addAtTail",
-            5
-          ],
-          [
-            "deleteAtIndex",
-            -1
-          ],
-          [
-            "deleteAtIndex",
-            1
-          ],
-          [
-            "get",
-            0
-          ]
-        ]
-      },
-      "expected": [
-        5
-      ],
-      "tags": [
-        "invalid-delete"
-      ]
-    },
-    {
       "id": "trial-3",
       "name": "delete head and tail",
       "kind": "trial",

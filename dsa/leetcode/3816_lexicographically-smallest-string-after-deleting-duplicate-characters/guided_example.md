@@ -59,7 +59,7 @@ The test `cnt[stk[-1]] > 1` therefore answers exactly the safety question: if th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(s)` starts with the total frequency of every ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The current `c` is then always appended. Unlike the classic “remove duplicate 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Force one copy per distinct letter:** The clas:** - **Force one copy per distinct letter:** The classic monotonic-stack algorithm with a kept set solves a different problem. It would return `"acb"` for `"aaccb"` and miss the smaller legal answer `"aacb"`.
+- **Force one copy per distinct letter:** The classic monotonic-stack algorithm with a kept set solves a different problem. It would return `"acb"` for `"aaccb"` and miss the smaller legal answer `"aacb"`.
 - **Enumerate reachable subsequences:** Every subsequence retaining all distinct letters is a candidate, giving exponentially many possibilities and making brute force infeasible for $N=10^5$.
 - **Dynamic programming over positions and counts:** The state needed to compare arbitrary future suffixes is large; the exchange property captured by the stack eliminates that complexity.
 - **All characters distinct:** Every count is 1, so no pop is legal. The original string is the only reachable result and is returned unchanged.
@@ -118,8 +118,8 @@ The current `c` is then always appended. Unlike the classic “remove duplicate 
 - **Another copy already lies earlier in the stack:** The safety count includes kept occurrences as well as future ones. A duplicated top may be deleted even when no copy remains in the unread suffix.
 - **Trailing duplicates:** They require the second loop; no future character exists to trigger the main comparison, but shortening an equal-prefix result is still lexicographically beneficial.
 - **Counter interpretation:** Counts are decremented only for deletions. Treating them as unread-suffix frequencies and decrementing every scanned character would change the safety condition and no longer match the exact source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

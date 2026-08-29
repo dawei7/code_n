@@ -76,7 +76,7 @@ each revision is valid, so conversion of a single character succeeds.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of each outer iteration, `a` and `b` are reset ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ is protected by `i < m` or `j < n`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split both strings:** Convert dot-separated pi:** - **Split both strings:** Convert dot-separated pieces to integers and compare with zero padding. It is simple but allocates $O(m+n)$ substring storage.
+- **Split both strings:** Convert dot-separated pieces to integers and compare with zero padding. It is simple but allocates $O(m+n)$ substring storage.
 - **Strip trailing `.0` text:** Can normalize some cases, but still requires correct integer comparison and careful handling of leading zeros.
 - **Lexicographic string comparison:** Incorrect for revisions such as two versus ten.
 - **Leading zeros:** Digit accumulation removes their numeric effect automatically.
@@ -134,8 +134,8 @@ is protected by `i < m` or `j < n`.
 - **Single revision:** The same parser works without encountering a dot.
 - **Beyond-end indices:** They are incremented but never dereferenced.
 - **Valid-input guarantee:** The source assumes digit-only nonempty revisions separated by dots.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

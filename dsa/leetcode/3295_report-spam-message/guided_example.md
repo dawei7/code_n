@@ -51,7 +51,7 @@ The source first constructs `s = set(bannedWords)`. A set answers membership que
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source first constructs `s = set(bannedWords)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Python treats `true` as the integer one and `false` as zero when summing. Theref
 
 ## 6. Traps This Instance Exposes
 
-- **- **Early-return loop:** Increment a counter for e:** - **Early-return loop:** Increment a counter for each banned message word and return `true` immediately when it reaches two. This has the same worst-case $O(B+M)$ time and $O(B)$ space but can do less work; it is what the manifest summary describes, not what the exact source executes.
+- **Early-return loop:** Increment a counter for each banned message word and return `true` immediately when it reaches two. This has the same worst-case $O(B+M)$ time and $O(B)$ space but can do less work; it is what the manifest summary describes, not what the exact source executes.
 - **Nested scanning of banned words:** Testing each message word against every list entry costs $O(MB)$ comparisons and is unnecessary at sizes up to $10^5$.
 - **Counter for banned words:** Frequencies in `bannedWords` are irrelevant, so a full counter stores more information than the membership-only set requires.
 - **Sorting both lists:** Sorting and merging can identify matches but complicates the positional multiplicity semantics and costs $O(B\log B+M\log M)$ time.
@@ -100,8 +100,8 @@ Python treats `true` as the integer one and `false` as zero when summing. Theref
 - **Maximum input sizes:** The set prevents the $10^5$-by-$10^5$ comparison explosion; the full generator scan remains comfortably linear.
 - **Empty arrays:** The stated constraints require both arrays to be nonempty. Even outside the contract, an empty message would sum to zero, while an empty banned list would create an empty set and also return false.
 - **Manifest discrepancy:** The stated asymptotic bounds are correct, but the claimed second-match short-circuit is absent from this implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

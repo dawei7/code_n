@@ -70,11 +70,7 @@ This offset is easy to misread. The comparison `nums[i] < x` is exactly the adja
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop is:
-
-`for i, x in enumerate(nums[1:])`.
-
-The slice ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,9 +109,9 @@ The new run length may be the largest seen, so update:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index loop without slicing:** Iterate `for i i:** - **Index loop without slicing:** Iterate `for i in range(1, len(nums))` and compare `nums[i - 1] < nums[i]`. This retains `O(N)` time and achieves literal `O(1)` extra space.
-- **- **Anchor-based sliding window:** Store the start:** - **Anchor-based sliding window:** Store the start index of the current increasing run and reset it after every failed comparison. Compute each length from indices.
-- **- **Dynamic-programming array:** Store the increas:** - **Dynamic-programming array:** Store the increasing-run length ending at every index. It is correct but wastes `O(N)` space because only the previous length is needed.
+- **Index loop without slicing:** Iterate `for i in range(1, len(nums))` and compare `nums[i - 1] < nums[i]`. This retains `O(N)` time and achieves literal `O(1)` extra space.
+- **Anchor-based sliding window:** Store the start index of the current increasing run and reset it after every failed comparison. Compute each length from indices.
+- **Dynamic-programming array:** Store the increasing-run length ending at every index. It is correct but wastes `O(N)` space because only the previous length is needed.
 
 ---
 

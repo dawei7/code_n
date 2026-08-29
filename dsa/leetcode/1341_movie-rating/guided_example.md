@@ -69,7 +69,7 @@ Movie titles are unique, so the title tie-breaker is deterministic. The primary 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second branch joins `MovieRating` to `Movies` with `USIN... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The first branch is complete because every rating belongs to exactly one user gr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation:** Separate common tab:** - **Conditional aggregation:** Separate common table expressions can compute user counts and February movie averages before ranking. This is more verbose but makes the two logical reports explicit.
+- **Conditional aggregation:** Separate common table expressions can compute user counts and February movie averages before ranking. This is more verbose but makes the two logical reports explicit.
 - **Window functions:** `ROW_NUMBER` over count-descending and average-descending rankings can identify each winner. It is useful when more than one ranked row is needed.
 - **Sargable month filter:** Use `created_at >= '2020-02-01' AND created_at < '2020-03-01'`. It expresses the same month and can use a normal date index more effectively.
 - **Plain `UNION`:** This is unsafe because identical user and movie text would be deduplicated. `UNION ALL` preserves both answers.
@@ -120,8 +120,8 @@ The first branch is complete because every rating belongs to exactly one user gr
 - **Users with zero ratings:** The inner join omits them. They cannot win against a positive rating count, but an entirely empty rating table would leave the first branch empty too.
 - **Primary key guarantee:** One user rates a given movie at most once, so `COUNT(1)` is also a count of distinct rated movies without needing `COUNT(DISTINCT movie_id)`.
 - **Average versus total:** Ordering by `SUM(rating)` would favor movies with more reviews and is not equivalent to ordering by `AVG(rating)`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

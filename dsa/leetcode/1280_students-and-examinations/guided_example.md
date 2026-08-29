@@ -57,7 +57,7 @@ If no examination record matches, the left join still emits the student-subject 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query left-joins `Examinations AS e` with `USING (studen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ For Alice and Math in the example, three matching examination rows join and the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate examinations first:** Group `Exa:** - **Pre-aggregate examinations first:** Group `Examinations` by student and subject, cross join the dimension tables, then left join the compact counts and use `IFNULL(..., 0)`. This can reduce intermediate duplicates while producing the same result.
+- **Pre-aggregate examinations first:** Group `Examinations` by student and subject, cross join the dimension tables, then left join the compact counts and use `IFNULL(..., 0)`. This can reduce intermediate duplicates while producing the same result.
 - **Start from `Examinations`:** It omits student-subject pairs with zero attendance and cannot meet the output contract by itself.
 - **Inner join examinations:** It similarly removes every zero-count pair.
 - **`COUNT(*)` after a left join:** It counts the placeholder row and incorrectly reports one instead of zero.
@@ -107,8 +107,8 @@ For Alice and Math in the example, three matching examination rows join and the 
 - **Ordinal grouping:** `GROUP BY 1, 3` depends on select-list positions; explicit column names can be clearer during future query edits.
 - **Functional dependency:** Selecting `student_name` is safe because primary-key `student_id` uniquely determines it.
 - **Required order:** Removing `ORDER BY` would leave row order unspecified and violate this problem's explicit sorting requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

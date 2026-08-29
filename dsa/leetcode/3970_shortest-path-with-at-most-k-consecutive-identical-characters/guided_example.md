@@ -66,7 +66,7 @@ No edge has been taken, so the cost is zero. Initializing the run length to zero
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `distance[u][r]` is the smallest cost discovered so far for ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,9 +112,9 @@ Only the final run length must be remembered. Every earlier run is already compl
 
 ## 6. Traps This Instance Exposes
 
-- **- **One distance per node:** This merges arrivals :** - **One distance per node:** This merges arrivals with different run lengths even though they permit different future edges. It can discard the only valid continuation and is not sufficient.
-- **- **Store the full label string of each route:** F:** - **Store the full label string of each route:** Future validity depends only on the label and length of the final run. The current node supplies the label, so only the run length needs extra state.
-- **- **Breadth-first search:** BFS minimizes edge cou:** - **Breadth-first search:** BFS minimizes edge count, not total weight. The positive weights may differ, so a binary-heap Dijkstra traversal is required.
+- **One distance per node:** This merges arrivals with different run lengths even though they permit different future edges. It can discard the only valid continuation and is not sufficient.
+- **Store the full label string of each route:** Future validity depends only on the label and length of the final run. The current node supplies the label, so only the run length needs extra state.
+- **Breadth-first search:** BFS minimizes edge count, not total weight. The positive weights may differ, so a binary-heap Dijkstra traversal is required.
 
 ---
 

@@ -63,7 +63,7 @@ At entry to `dfs(i)`, exactly `i` entries of `vis` are true, and `t[0:i]` contai
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `vis[j]` records whether input position `j` is already repre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ After setting `vis[j] = true` and writing the value, `dfs(i + 1)` receives a sta
 
 ## 6. Traps This Instance Exposes
 
-- **- **Append/pop path:** Maintain a variable-length :** - **Append/pop path:** Maintain a variable-length list instead of preallocating `t`. This is equally correct and makes filled length visible directly, while the selected source avoids repeated path resizing.
+- **Append/pop path:** Maintain a variable-length list instead of preallocating `t`. This is equally correct and makes filled length visible directly, while the selected source avoids repeated path resizing.
 - **In-place swapping:** At depth `i`, swap each suffix value into position `i`, recurse, and swap back. It removes the visited array but mutates the input temporarily and requires careful restoration.
 - **Pass a sliced remaining list:** Recurse with all elements except the chosen one. The state is intuitive but repeated slicing and path concatenation increase allocation and copying costs.
 - **Iterative next-permutation generation:** Sort the values and repeatedly transform to the next lexicographic permutation. It uses constant path overhead but mutates order and requires a separate snapshot for every result.
@@ -111,8 +111,8 @@ After setting `vis[j] = true` and writing the value, `dfs(i + 1)` receives a sta
 - **Distinctness guarantee:** If duplicate values were allowed, different index paths could produce identical value sequences. That separate problem needs depth-level duplicate suppression.
 - **Input preservation:** The solution reads `nums` without swapping or sorting it, so the caller's array is unchanged.
 - **Any output order:** Depth-first order follows the original input ordering, but the contract accepts any order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

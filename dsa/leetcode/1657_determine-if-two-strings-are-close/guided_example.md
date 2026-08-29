@@ -66,7 +66,7 @@ The return statement joins the conditions with `and`. Python evaluates the sorte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(word1)` creates a mapping from every character pres... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Notice that an explicit length comparison is not required. Equal sorted frequenc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed arrays of length 26:** Count each letter:** - **Fixed arrays of length 26:** Count each letter by `ord(character) - ord("a")`, compare zero-versus-nonzero positions, and compare sorted count arrays. This has the same asymptotic bounds and makes constant alphabet storage explicit.
+- **Fixed arrays of length 26:** Count each letter by `ord(character) - ord("a")`, compare zero-versus-nonzero positions, and compare sorted count arrays. This has the same asymptotic bounds and makes constant alphabet storage explicit.
 - **Bitmask for character support:** A 26-bit integer can record which letters occur, while arrays hold counts. It avoids allocating sets but does not change the algorithmic complexity.
 - **Direct counter equality:** This checks whether the words are anagrams, which is sufficient but not necessary for closeness because global label swaps may reassign frequencies.
 - **Sorted frequencies without key sets:** This is incorrect for words such as `"aabb"` and `"ccdd"`. Matching counts cannot introduce absent labels.
@@ -116,8 +116,8 @@ Notice that an explicit length comparison is not required. Equal sorted frequenc
 - **Same frequencies attached to different shared letters:** This is the main case enabled by operation 2; sorted values match even when the counters themselves differ.
 - **Repeated equal frequencies:** Pairing labels is still possible. If several labels share one count, their assignments are interchangeable, and sorting naturally retains the right multiplicity.
 - **Operation restriction to existing characters:** The support-set equality is precisely what enforces this often-missed rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

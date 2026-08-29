@@ -4,11 +4,11 @@ There are `n` employees, each with a unique id from `0` to $n - 1$.
 
 You are given a 2D integer array `logs` where $\text{logs}[i] = [\text{id}_{i}, \text{leaveTime}_{i}]$ where:
 
-- $\text{id}_{i}$ is the id of the employee that worked on the $$i^{\text{th}}$$ task, and
+- $\text{id}_{i}$ is the id of the employee that worked on the $i^{\text{th}}$ task, and
 
-- $\text{leaveTime}_{i}$ is the time at which the employee finished the $$i^{\text{th}}$$ task. All the values $\text{leaveTime}_{i}$ are **unique**.
+- $\text{leaveTime}_{i}$ is the time at which the employee finished the $i^{\text{th}}$ task. All the values $\text{leaveTime}_{i}$ are **unique**.
 
-Note that the $$i^{\text{th}}$$ task starts the moment right after the $(i - 1)^th$ task ends, and the $0^th$ task starts at time `0`.
+Note that the $i^{\text{th}}$ task starts the moment right after the $(i - 1)^th$ task ends, and the $0^th$ task starts at time `0`.
 
 Return *the id of the employee that worked the task with the longest time.* If there is a tie between two or more employees, return* the **smallest** id among them*.
 

@@ -25,7 +25,7 @@ Return `s[0:k]` in reverse order followed by `s[k:]`.
 
 - **Output:** "bacd"
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 The first $k = 2$ characters `"ab"` are reversed to `"ba"`. The final resulting string is `"bacd"`.
 

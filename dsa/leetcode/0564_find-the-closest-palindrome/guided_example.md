@@ -51,7 +51,7 @@ The solution creates a small candidate set, removes the input itself, and choose
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution creates a small candidate set, removes the inpu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution creates a small candidate set, removes the input itself, and choose
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search outward one integer at a time:** The ne:** - **Search outward one integer at a time:** The nearest palindrome can be far away, making this needlessly slow.
+- **Search outward one integer at a time:** The nearest palindrome can be far away, making this needlessly slow.
 - **Generate every palindrome of the digit length:** There are exponentially many prefixes; only three nearby ones matter.
 - **Mirror only the unchanged prefix:** It fails around values where the nearest palindrome requires a middle carry or borrow.
 - **Omit digit-length boundaries:** Inputs near powers of ten or all-nines values can be answered incorrectly.
@@ -97,8 +97,8 @@ The solution creates a small candidate set, removes the input itself, and choose
 - **Odd length:** The middle prefix digit is not mirrored twice.
 - **Even length:** The complete half is mirrored.
 - **Equal distances:** The smaller candidate wins.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -75,10 +75,7 @@ The runtime helper encapsulates this calculation. Dividing before multiplying is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | LCM is associative:
-
-$$
-\operatorname{lcm}(\operatorname{lcm... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +114,7 @@ For `nums=[3,6,2,7,1]` and `k=6`, starting at 0 produces LCMs 3, 6, 6, 42, and 4
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compressed ending-LCM map:** Carry distinct LC:** - **Compressed ending-LCM map:** Carry distinct LCM values and their start-count multiplicities from the previous endpoint, merge equal new LCMs, and add the count at `k`. This matches the manifest.
+- **Compressed ending-LCM map:** Carry distinct LCM values and their start-count multiplicities from the previous endpoint, merge equal new LCMs, and add the count at `k`. This matches the manifest.
 - **Early break:** Stop a start's inner loop when `k % current_lcm != 0`. No later LCM can become `k`.
 - **Avoid slicing:** Iterate endpoint indices directly to reduce auxiliary space to $O(1)$ while retaining quadratic time.
 - **Singleton:** It qualifies exactly when its value equals `k`.
@@ -127,8 +124,8 @@ For `nums=[3,6,2,7,1]` and `k=6`, starting at 0 produces LCMs 3, 6, 6, 42, and 4
 - **Repeated equal values:** LCM may stay constant across many endpoints, creating multiple distinct qualifying subarrays.
 - **LCM growth:** It is monotone under extension, which justifies pruning alternatives.
 - **Metadata mismatch:** The exact solution enumerates all subarrays and slices suffixes rather than compressing distinct LCM states.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

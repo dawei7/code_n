@@ -65,7 +65,7 @@ For the first example, `[0, 2)` overlaps `[1, 6)` and leaves `[0, 1)`. Interval 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When overlap exists, removing one contiguous interval can le... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For correctness, consider any real value in an appended piece. It was inside the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four explicit overlap cases:** Fully covered, :** - **Four explicit overlap cases:** Fully covered, left overlap, right overlap, and internal removal can be handled separately. The two surviving-piece tests express all cases more compactly.
+- **Four explicit overlap cases:** Fully covered, left overlap, right overlap, and internal removal can be handled separately. The two surviving-piece tests express all cases more compactly.
 - **General sweep-line events:** Sorting all endpoints works but is unnecessary because input intervals are already sorted and only one interval is removed.
 - **Removal completely outside:** Every interval passes the non-overlap test and is copied unchanged.
 - **Removal covers an interval:** Neither residual condition succeeds, so the interval disappears.
@@ -114,8 +114,8 @@ For correctness, consider any real value in an appended piece. It was inside the
 - **Removal shares a right endpoint:** There is no empty right piece because `b > y` is false.
 - **Negative coordinates:** Only ordering matters, so signs have no effect.
 - **Do not use closed-interval logic:** Treating touching endpoints as overlap can create unnecessary or empty fragments.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

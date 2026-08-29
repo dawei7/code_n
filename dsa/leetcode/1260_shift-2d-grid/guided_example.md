@@ -77,7 +77,7 @@ The output grid `ans` is created with the same shape as the input and initially 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Given a flattened destination `t'`, integer division by `n` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ The formula also works when `k` exceeds the row length many times. The flattened
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate one shift at a time:** Rebuilding the:** - **Simulate one shift at a time:** Rebuilding the grid for each of $k$ operations follows the statement literally but costs $O(kN)$ time instead of calculating final destinations directly.
+- **Simulate one shift at a time:** Rebuilding the grid for each of $k$ operations follows the statement literally but costs $O(kN)$ time instead of calculating final destinations directly.
 - **Flatten, rotate, and reshape:** A one-dimensional list can be formed, rotated by `k % N`, and split back into rows. It has the same $O(N)$ time and space but creates an additional flattened representation.
 - **In-place cycle rotation:** The permutation can be executed through cycles with constant auxiliary space. It is harder to implement safely, mutates the input, and the returned grid still occupies $O(N)$ under the normal interface.
 - **Zero shifts:** When `k = 0`, each destination equals its source. The method returns an equal but newly allocated grid.
@@ -126,8 +126,8 @@ The formula also works when `k` exceeds the row length many times. The flattened
 - **Single column:** Every increment advances to the next row, and the bottom value wraps to the top.
 - **Negative and zero values:** Cell contents never participate in index calculations, so all allowed values move identically.
 - **Avoid using `k % n` alone:** Reducing only by the column count loses how many row boundaries were crossed. The modulus must use the total number of cells in the flattened representation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

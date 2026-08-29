@@ -57,7 +57,7 @@ Equal values may start separate chunks because concatenating equal boundary valu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the stack is empty or current value `v` is at least the p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ Finally it pushes `mx` back as the maximum of the combined chunk.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix maximum and suffix minimum arrays:** A :** - **Prefix maximum and suffix minimum arrays:** A boundary after `i` is valid when prefix maximum is no greater than the following suffix minimum. This also gives `O(n)` time and space.
-- **- **Sort and compare prefix multisets:** It is cor:** - **Sort and compare prefix multisets:** It is correct but typically costs `O(n log n)`.
-- **- **Use the permutation-only rule `prefix_max == i:** - **Use the permutation-only rule `prefix_max == i`:** Duplicates and arbitrary values make that rule invalid for this version.
+- **Prefix maximum and suffix minimum arrays:** A boundary after `i` is valid when prefix maximum is no greater than the following suffix minimum. This also gives `O(n)` time and space.
+- **Sort and compare prefix multisets:** It is correct but typically costs `O(n log n)`.
+- **Use the permutation-only rule `prefix_max == i`:** Duplicates and arbitrary values make that rule invalid for this version.
 
 ---
 

@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-a[i]\mathbin{\mathrm{XOR}}b[j]\mathbin{\mathrm{XOR}}c[k]
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ is even. Computing the full XOR for every triplet would require $|a||b||c|$ comb
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed four-term formula:** Compute even and o:** - **Closed four-term formula:** Compute even and odd counts for each array and return `Ea*Eb*Ec + Ea*Ob*Oc + Oa*Eb*Oc + Oa*Ob*Ec`. This avoids the eight-iteration loop but encodes the same four parity patterns.
+- **Closed four-term formula:** Compute even and odd counts for each array and return `Ea*Eb*Ec + Ea*Ob*Oc + Oa*Eb*Oc + Oa*Ob*Ec`. This avoids the eight-iteration loop but encodes the same four parity patterns.
 - **Combine two arrays first:** Count the parity distribution of pairs from `a` and `b` using frequency products, then match it with `c`. This is also constant work after the three scans and generalizes to more arrays.
 - **Enumerate every index triplet:** Directly calculate each XOR and bit count in $O(ABC)$ time. It is simple for tiny arrays but ignores that only two parity classes matter.
 - **Store full XOR frequencies:** This can answer richer XOR questions, but values have more possible XOR results than the two required parity classes and use unnecessary space.
@@ -104,8 +102,8 @@ is even. Computing the full XOR for every triplet would require $|a||b||c|$ comb
 - **Operator readability:** The exact `& 1 ^ 1` condition is correct under Python precedence but easy to misread. Parentheses or an equality comparison would reduce maintenance risk.
 - **Nonnegative guarantee:** `int.bit_count()` counts ones in the absolute binary representation, but all problem values are already nonnegative, so signed interpretation is irrelevant.
 - **Input preservation:** The method reads all three arrays without mutating them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

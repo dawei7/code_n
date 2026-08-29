@@ -65,7 +65,7 @@ Joining only by `id` could attach a value from the wrong year and could multiply
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The schemas define the composite key `(id, year)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This uniqueness is what lets the query avoid grouping or deduplication.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated scalar subquery:** Look up NPV sepa:** - **Correlated scalar subquery:** Look up NPV separately for every Queries row and wrap the subquery in `COALESCE`. It is correct but can perform repeated lookups and is less direct than one join.
+- **Correlated scalar subquery:** Look up NPV separately for every Queries row and wrap the subquery in `COALESCE`. It is correct but can perform repeated lookups and is less direct than one join.
 - **Inner join:** This incorrectly removes requested pairs that have no stored NPV value.
 - **Right join from NPV:** It can be arranged to preserve Queries, but reversing the table roles makes the intent harder to read.
 - **Join by ID only:** This can retrieve a value from the wrong year or duplicate query rows.
@@ -113,8 +113,8 @@ This uniqueness is what lets the query avoid grouping or deduplication.
 - **Unrequested NPV row:** It is absent because no preserved Queries row points to it.
 - **Any-order contract:** No `ORDER BY` is required, and consumers must not infer a stable natural order.
 - **Composite primary keys:** Their uniqueness guarantees at most one match on each side and prevents accidental multiplicative joins.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

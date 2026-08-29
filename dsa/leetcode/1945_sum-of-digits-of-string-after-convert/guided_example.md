@@ -57,7 +57,7 @@ The exact code performs all $k$ iterations even if `s` becomes one digit early. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each of the $k$ iterations, the generator `int(c) for c ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ For `s = "leetcode"`, joining values produces `"12552031545"`. The first loop it
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct first digit sum:** For each letter posi:** - **Direct first digit sum:** For each letter position, add its tens and ones digits, then perform only $k-1$ further transformations. This achieves $O(N)$ time and $O(1)$ auxiliary space.
+- **Direct first digit sum:** For each letter position, add its tens and ones digits, then perform only $k-1$ further transformations. This achieves $O(N)$ time and $O(1)$ auxiliary space.
 - **Build one giant integer:** Repeated multiplication by powers of ten can reproduce concatenation, but string construction is simpler and avoids large-integer digit extraction.
 - **Digital-root shortcut:** Repeated digit sums eventually reach a digital root, but exactly $k$ transformations may stop before then, so applying the shortcut unconditionally is wrong.
 - **One transformation:** The loop performs only the digit sum of the converted letter sequence and returns it.
@@ -105,8 +105,8 @@ For `s = "leetcode"`, joining values produces `"12552031545"`. The first loop it
 - **Repeated letters:** Each occurrence contributes its own alphabet-position digits in order.
 - **Nonempty string:** The converted representation and every digit sum remain positive, so `int(s)` is always valid.
 - **Exact-source space:** The joined string can be twice the input length, so the concrete method is linear-space despite the abstract constant-space alternative.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

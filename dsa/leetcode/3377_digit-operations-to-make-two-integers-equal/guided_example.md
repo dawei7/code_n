@@ -51,7 +51,7 @@ The transformation cost includes the original value and every value reached afte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The transformation cost includes the original value and ever... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The transformation cost includes the original value and every value reached afte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** It minimizes operation:** - **Breadth-first search:** It minimizes operation count rather than the weighted sum and can return the wrong path.
+- **Breadth-first search:** It minimizes operation count rather than the weighted sum and can return the wrong path.
 - **A* search:** A valid lower-bound heuristic could reduce exploration, but Dijkstra is simpler and exact for this small universe.
 - **Share the sieve globally:** It avoids rebuilding the same 100000-entry classification for every object call.
 - **Prime start:** Return `-1` before search.
@@ -102,8 +102,8 @@ The transformation cost includes the original value and every value reached afte
 - **Sieve capacity:** 100000 safely covers all states generated from inputs below 10000.
 - **Positive node costs:** They justify Dijkstra finalization and prevent negative cycles.
 - **Input preservation:** Strings and temporary digit lists are local; numeric inputs are unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

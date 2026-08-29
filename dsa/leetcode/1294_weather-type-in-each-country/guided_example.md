@@ -65,9 +65,7 @@ Conceptually, SQL filters rows before it groups them. This order is crucial: the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `WHERE` clause is
-
-`DATE_FORMAT(day, '%Y-%m') = '2019-11... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ The exact source groups only by `country_name`. The local schema guarantees uniq
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sargable half-open date range:** Replacing the:** - **Sargable half-open date range:** Replacing the formatting predicate with `day >= '2019-11-01' AND day < '2019-12-01'` expresses the same month and can let an index on `day` support a range scan. The half-open upper bound avoids guessing the month's final time value.
+- **Sargable half-open date range:** Replacing the formatting predicate with `day >= '2019-11-01' AND day < '2019-12-01'` expresses the same month and can let an index on `day` support a range scan. The half-open upper bound avoids guessing the month's final time value.
 - **Defensive grouping by identity:** `GROUP BY country_id, country_name` keeps different countries separate even if they share a name. This is safer under only the locally stated key guarantees, although the exact accepted source uses `GROUP BY 1`.
 - **Conditional aggregation:** One could group a broader joined dataset and average a `CASE` expression that returns weather only for November. That is more complicated and needs extra logic to exclude countries whose target-month average is null; filtering first is clearer here.
 - **Correlated subquery:** Computing a separate average subquery per country can be correct, but without strong indexing it may repeatedly scan `Weather` and perform much more work than one join-and-group pass.
@@ -125,8 +123,8 @@ The exact source groups only by `country_name`. The local schema guarantees uniq
 - **Null values outside the contract:** SQL `AVG` ignores null inputs. If `weather_state` could be null, the average would use fewer observations and an all-null group would make every `WHEN` comparison unknown, falling to `Warm`. Such behavior would need an explicit policy, but the given schema supplies integer states.
 - **Output order:** No `ORDER BY` is required, so consumers must not rely on an incidental country ordering produced by one execution plan.
 - **Ordinal grouping readability:** `GROUP BY 1` is concise but becomes fragile if the select-list order changes. `GROUP BY country_name` communicates the grouping key directly while preserving the same result under the accepted data assumption.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

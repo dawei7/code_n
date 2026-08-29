@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are n points on an infinite plane. You are given two integer arrays `xCoord` and `yCoord` where $(\text{xCoord}[i], \text{yCoord}[i])$ represents the coordinates of the $$i^{\text{th}}$$ point.
+There are n points on an infinite plane. You are given two integer arrays `xCoord` and `yCoord` where $(\text{xCoord}[i], \text{yCoord}[i])$ represents the coordinates of the $i^{\text{th}}$ point.
 
 The objective is to compute `4` from `{"xCoord": [1, 1, 3, 3], "yCoord": [1, 3, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Therefore the two corner heights must be adjacent in that column's sorted list. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore the two corner heights must be adjacent in that co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This preprocessing creates only $O(n)$ vertical segments: a column with $p$ poin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cubic scan from version I:** It is simple for :** - **Cubic scan from version I:** It is simple for ten points but impossible for $2\cdot10^5$.
+- **Cubic scan from version I:** It is simple for ten points but impossible for $2\cdot10^5$.
 - **2D prefix grid:** Raw coordinates are too large and sparse.
 - **2D range tree:** It can answer rectangle counts but is more complex than the offline x sweep.
 - **Nonconsecutive vertical corners:** A point between them lies on the side, so they cannot form a valid rectangle.
@@ -103,8 +103,8 @@ This preprocessing creates only $O(n)$ vertical segments: a column with $p$ poin
 - **Count below four:** It is rejected even though candidate construction should prevent it.
 - **Generated source status:** With no local editorial, this derivation follows the exact segment generation, events, and Fenwick queries in `solution.py`.
 - **Input preservation:** New zipped points and dictionaries are built without altering coordinate arrays.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

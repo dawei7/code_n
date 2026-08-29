@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given a C++ program, remove comments from it. The program source is an array of strings `source` where $\text{source}[i]$ is the $$i^{\text{th}}$$ line of the source code. This represents the result of splitting the original source code string by the newline character `'\n'`.
+Given a C++ program, remove comments from it. The program source is an array of strings `source` where $\text{source}[i]$ is the $i^{\text{th}}$ line of the source code. This represents the result of splitting the original source code string by the newline character `'\n'`.
 
 The objective is to compute `["int main() {", "  ", "int x = 1;", "}"]` from `{"source": ["int main() {", "  // declaration", "int x = 1;", "}"]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ This behavior follows the rule that the entire block, including any line breaks 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `t` stores characters for the logical output line c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ The order of the two delimiter checks expresses the available two-character toke
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expressions:** A single simple express:** - **Regular expressions:** A single simple expression is unreliable for comments spanning lines and for the rule that delimiters inside an active block are ignored. A carefully designed tokenizer can work, but the explicit state machine is easier to verify.
-- **- **Concatenate the complete source first:** Joini:** - **Concatenate the complete source first:** Joining lines and scanning one string can simplify block handling, but ordinary newlines must still be preserved or removed according to comment state. It also creates another `O(C)` copy.
-- **- **Separate line-comment and block-comment passes:** - **Separate line-comment and block-comment passes:** Removing `//` first is incorrect when that marker lies inside a block comment. Removing blocks first can also mishandle delimiter precedence unless performed by a syntax-aware scanner. Both forms should be recognized in one stateful pass.
+- **Regular expressions:** A single simple expression is unreliable for comments spanning lines and for the rule that delimiters inside an active block are ignored. A carefully designed tokenizer can work, but the explicit state machine is easier to verify.
+- **Concatenate the complete source first:** Joining lines and scanning one string can simplify block handling, but ordinary newlines must still be preserved or removed according to comment state. It also creates another `O(C)` copy.
+- **Separate line-comment and block-comment passes:** Removing `//` first is incorrect when that marker lies inside a block comment. Removing blocks first can also mishandle delimiter precedence unless performed by a syntax-aware scanner. Both forms should be recognized in one stateful pass.
 
 ---
 

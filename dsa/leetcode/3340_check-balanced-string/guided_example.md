@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `map(int, num)` lazily converts each digit character to its ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After the scan, `f[0] == f[1]` is precisely the balanced-string condition.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Signed difference:** Add digits at even indice:** - **Signed difference:** Add digits at even indices and subtract digits at odd indices; balanced means the final difference is zero.
+- **Signed difference:** Add digits at even indices and subtract digits at odd indices; balanced means the final difference is zero.
 - **String slicing:** Sum `num[::2]` and `num[1::2]` after conversion. It is concise but allocates slice strings and temporary iterables.
 - **Two explicit loops:** Iterate even and odd index ranges separately. It is correct but visits the structure less uniformly.
 - **Leading zeros:** They contribute numeric zero while retaining their index positions, exactly as required.
@@ -103,8 +103,8 @@ After the scan, `f[0] == f[1]` is precisely the balanced-string condition.
 - **Two-bucket invariant:** Each processed digit enters exactly one bucket, so the combined total `f[0] + f[1]` always equals the sum of the processed prefix. This offers a simple debugging check.
 - **Comparison only at the end:** Prefix sums need not balance during the scan. A later digit can restore equality, so returning early on a temporary mismatch would be incorrect.
 - **Maximum totals:** With at most 100 digits, each bucket sum is at most 450, though the algorithm does not rely on this bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

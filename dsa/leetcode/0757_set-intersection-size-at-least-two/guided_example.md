@@ -57,7 +57,7 @@ For current interval `[a, b]`, only three cases exist.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variables `s` and `e` are the second-largest and largest... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,9 +94,9 @@ The interval already contains two selected integers, so nothing is added.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store the complete selected set:** It is unnec:** - **Store the complete selected set:** It is unnecessary; only the two greatest selected points can matter for a later interval under the sorted order.
-- **- **Choose leftmost missing points:** They satisfy:** - **Choose leftmost missing points:** They satisfy the current interval but are less reusable by intervals starting farther right.
-- **- **Sort only by start:** This loses the earliest-:** - **Sort only by start:** This loses the earliest-deadline greedy structure and does not justify rightmost selections.
+- **Store the complete selected set:** It is unnecessary; only the two greatest selected points can matter for a later interval under the sorted order.
+- **Choose leftmost missing points:** They satisfy the current interval but are less reusable by intervals starting farther right.
+- **Sort only by start:** This loses the earliest-deadline greedy structure and does not justify rightmost selections.
 
 ---
 

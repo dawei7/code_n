@@ -65,7 +65,7 @@ Diagonal contacts do not connect islands because DFS never uses diagonal directi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `count(grid)` scans every cell.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The method returns zero immediately in that case. Because `count` restores its t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Tarjan articulation points:** Count initial is:** - **Tarjan articulation points:** Count initial islands and find a removable articulation land cell in one DFS, achieving $O(RC)$ time.
+- **Tarjan articulation points:** Count initial islands and find a removable articulation land cell in one DFS, achieving $O(RC)$ time.
 - **Explicit-stack flood fill:** It preserves brute-force logic while avoiding recursive depth limits.
 - **Pair enumeration:** It is unnecessary because the two-day theorem lets the source return two directly.
 - **Already all water:** Island count zero produces answer zero.
@@ -117,8 +117,8 @@ The method returns zero immediately in that case. Because `count` restores its t
 - **Failed trial:** The removed cell is restored before continuing.
 - **Successful trial mutation:** The exact source returns before restoring that cell.
 - **Temporary marker two:** `count` converts all such markers back to one before returning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

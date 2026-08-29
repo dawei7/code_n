@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **When \(k=1\), windows and positions are identical.** Every... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For `nums = [0,0]` and `k=1`, zero has frequency two, so the generator contains 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count raw occurrences for every \(k\):** A sin:** - **Count raw occurrences for every \(k\):** A single occurrence can lie in several overlapping windows, so frequency alone is insufficient except when `k == 1` or for the endpoint uniqueness test.
+- **Count raw occurrences for every \(k\):** A single occurrence can lie in several overlapping windows, so frequency alone is insufficient except when `k == 1` or for the endpoint uniqueness test.
 - **Enumerate every window and every distinct value in it:** This can require $O(nk)$ work and hides the endpoint structure.
 - **Sliding sets with a per-value window counter:** It is correct but more machinery than needed for this special question.
 - **Interior unique value:** Even one occurrence belongs to at least two windows when $1<k<n$, so uniqueness does not make it a candidate.
@@ -98,8 +98,8 @@ For `nums = [0,0]` and `k=1`, zero has frequency two, so the generator contains 
 - **Value zero:** The sentinel is $-1$, so a qualifying zero is preserved as a valid answer.
 - **No candidate:** Empty counter filtering or two rejected endpoints correctly yields $-1$.
 - **Helper parameter naming:** The nested `f(k)` receives an array index, not the original window size; reading it as an index is necessary to understand the source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

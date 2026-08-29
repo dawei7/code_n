@@ -61,7 +61,7 @@ This is the same ordering logic used by merging sorted lists. Every value is pro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointers `i` and `j` indicate the next unprocessed values in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Assigning the new total to both accumulators means that after visiting the inter
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming table:** It could model po:** - **Dynamic programming table:** It could model positions explicitly but wastes $O(MN)$ work or storage when only intersections matter.
+- **Dynamic programming table:** It could model positions explicitly but wastes $O(MN)$ work or storage when only intersections matter.
 - **Hash common values:** A map can locate intersections but uses extra space and ignores the advantage of sorted arrays.
 - **Segment-sum formulation:** Sum values between intersections separately, add the larger segment at each common value, and add the intersection once. It is equivalent to the two accumulators.
 - **No common values:** The accumulators become the two complete array sums, and the larger is returned.
@@ -117,8 +117,8 @@ Assigning the new total to both accumulators means that after visiting the inter
 - **Large totals:** Exact Python integers avoid overflow; modulo is applied only after optimization is complete.
 - **Modulo during traversal:** It is unsafe because modular residues do not preserve which true sum is larger.
 - **Positive values:** Every remaining suffix value helps its route; there is no decision to skip values within a traversal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

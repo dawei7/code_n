@@ -81,7 +81,7 @@ Each building is inserted exactly once, and `city` never moves backward.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A building `[left, right, height]` contributes at coordinate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +129,7 @@ If no active building remains, the visible height is ground level 0.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`heapq` instead of `PriorityQueue`:** A plain :** - **`heapq` instead of `PriorityQueue`:** A plain heap list provides the same negative-height lazy-deletion algorithm with less synchronization overhead. `PriorityQueue` is thread-safe but the exact source peeks into its internal `.queue` list, so it already relies on implementation details.
+- **`heapq` instead of `PriorityQueue`:** A plain heap list provides the same negative-height lazy-deletion algorithm with less synchronization overhead. `PriorityQueue` is thread-safe but the exact source peeks into its internal `.queue` list, so it already relies on implementation details.
 - **Explicit start/end events with a multiset:** Add a height at every left edge and remove it at every right edge, then read the maximum. A balanced multiset supports arbitrary deletion but Python's standard library lacks a direct built-in version.
 - **Divide and conquer:** Recursively compute skylines for building halves and merge two contour lists by x-coordinate while tracking both current heights. It also achieves $O(n\log n)$ time but requires careful equal-coordinate and redundant-height handling.
 - **Coordinate compression with direct range updates:** Evaluate height on intervals between unique edges. A naive update touches many intervals per building and can degrade to $O(n^2)$ unless paired with a more advanced structure.
@@ -142,8 +142,8 @@ If no active building remains, the visible height is ground level 0.
 - **Gaps between groups:** When the previous active heap empties, a zero key point begins the ground segment. A later left edge raises the height again and creates another point.
 - **Large coordinates and heights:** The algorithm compares Python integers and negates heights without overflow. It never allocates memory proportional to coordinate magnitude.
 - **Input ordering:** The `city` pointer is correct because the reference guarantees non-decreasing left edges. With unsorted buildings, the method would need to sort them by left coordinate first.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

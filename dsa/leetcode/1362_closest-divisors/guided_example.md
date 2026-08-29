@@ -69,7 +69,7 @@ The helper performs a fresh square-root search for each candidate. It cannot reu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `a = f(num + 1)` finds the closest pair for the first candid... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The final strict comparison does not attempt another tie-break such as smaller f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Exact integer square root:** Start from `isqrt:** - **Exact integer square root:** Start from `isqrt(x)`. It preserves the same search and complexity while avoiding floating rounding.
+- **Exact integer square root:** Start from `isqrt(x)`. It preserves the same search and complexity while avoiding floating rounding.
 - **Scan upward from one:** It eventually finds all divisors but does not know the closest pair until reaching the square-root region.
 - **Enumerate every factor pair:** Correct but unnecessary; the first divisor found in the downward search is already optimal for that product.
 - **Prime candidate product:** The helper returns one and the prime.
@@ -120,8 +120,8 @@ The final strict comparison does not attempt another tie-break such as smaller f
 - **Floating start point:** The current constraints make it safe in practice, while `isqrt` is the robust general choice.
 - **Candidate values differ by one:** Being numerically close does not imply their best factor gaps are close; both must be searched independently.
 - **First successful divisor:** Continuing farther downward would only decrease the smaller factor and increase its partner, producing a larger gap.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

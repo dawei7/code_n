@@ -73,11 +73,7 @@ For $n=5$, the loops encounter $(a,b)=(3,4)$ and calculate $x=9+16=25$, then `c 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each pair, the code calculates:
-
-`x = a * a + b * b`
-
-an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +112,7 @@ The maximum possible `x` in the loops is below $2\cdot250^2$. Such small integer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precomputed square set:** Store `c * c` for ev:** - **Precomputed square set:** Store `c * c` for every $1\le c\le n$, then test whether `a * a + b * b` belongs to the set. This keeps $O(n^2)$ time but uses $O(n)$ space and avoids floating-point square roots.
+- **Precomputed square set:** Store `c * c` for every $1\le c\le n$, then test whether `a * a + b * b` belongs to the set. This keeps $O(n^2)$ time but uses $O(n)$ space and avoids floating-point square roots.
 - **Integer square root:** Python's `isqrt` can compute the floor square root exactly with integer arithmetic. It gives the same asymptotic bounds and is safer if constraints become much larger.
 - **Three nested loops:** Enumerating `a`, `b`, and `c` directly is easy to understand but takes $O(n^3)$ time even though $c$ is determined by the first two values.
 - **Generate primitive Pythagorean triples:** Euclid's formula plus scaling can enumerate triples more selectively, but avoiding duplicates and counting ordered legs correctly adds complexity unnecessary for $n\le250$.
@@ -127,8 +123,8 @@ The maximum possible `x` in the loops is below $2\cdot250^2$. Such small integer
 - **Non-square sum:** Flooring the square root does not itself validate a pair. The exact equality `c * c == x` is what rejects it.
 - **Floating-point scope:** The given upper bound keeps all values tiny enough for reliable `sqrt` conversion. With huge integers, replace `sqrt` with an integer square root rather than trusting rounding.
 - **Repeated triples:** Each ordered pair appears exactly once in the nested loops, so the same ordered triple is never counted twice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

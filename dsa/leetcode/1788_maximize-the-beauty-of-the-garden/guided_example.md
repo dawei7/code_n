@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a garden of `n` flowers, and each flower has an integer beauty value. The flowers are arranged in a line. You are given an integer array `flowers` of size `n` and each $\text{flowers}[i]$ represents the beauty of the $$i^{\text{th}}$$ flower.
+There is a garden of `n` flowers, and each flower has an integer beauty value. The flowers are arranged in a line. You are given an integer array `flowers` of size `n` and each $\text{flowers}[i]$ represents the beauty of the $i^{\text{th}}$ flower.
 
 The objective is to compute `8` from `{"flowers": [1, 2, 3, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ Adding `v * 2` then supplies the actual endpoint values. This is important when 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution builds an array `s` where `s[i]` is the sum of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ The solution still evaluates every later occurrence as a possible right endpoint
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every equal pair:** Enumerating all endpoi:** - **Try every equal pair:** Enumerating all endpoint pairs and summing their interiors can take $O(n^3)$ time without prefix sums or $O(n^2)$ with them, both slower than the one-pass first-occurrence argument.
+- **Try every equal pair:** Enumerating all endpoint pairs and summing their interiors can take $O(n^3)$ time without prefix sums or $O(n^2)$ with them, both slower than the one-pass first-occurrence argument.
 - **Keep every interior flower:** This fails when an interior beauty is negative, because removal is optional and can improve the total.
 - **Kadane's algorithm:** Maximum-subarray logic forces a contiguous retained range, while this problem allows arbitrary interior removals and requires equal endpoints.
 - **Store every occurrence:** Lists of positions are unnecessary because the earliest occurrence always dominates later left endpoints for the same value.
@@ -134,8 +134,8 @@ The solution still evaluates every later occurrence as a possible right endpoint
 - **Repeated negative value inside the interval:** An intermediate copy may be removed; equality is required only for the retained first and last flowers.
 - **Guaranteed feasible input:** At least one value repeats, so some candidate replaces negative infinity before the loop ends.
 - **Input preservation:** The algorithm records summaries and never changes the `flowers` array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

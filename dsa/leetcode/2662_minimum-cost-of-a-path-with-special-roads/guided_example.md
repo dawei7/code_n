@@ -71,11 +71,7 @@ All Manhattan distances and special-road costs are nonnegative, so Dijkstra's fi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Heap `q` begins with state:
-
-`(0, startX, startY)`.
-
-Tuple f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ The first pop of $(x,y)$ has minimum possible cost $d$: any undiscovered alterna
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit complete graph of relevant coordinate:** - **Explicit complete graph of relevant coordinates:** Build road transitions first, then run Dijkstra; equivalent but stores edges eagerly.
+- **Explicit complete graph of relevant coordinates:** Build road transitions first, then run Dijkstra; equivalent but stores edges eagerly.
 - **Bellman–Ford-style relaxation:** Nonnegative weights make Dijkstra preferable.
 - **Coordinate-grid search:** Impossible over the large continuous rectangle and unnecessary under Manhattan distance.
 - **No useful special road:** Initial direct-walk candidate remains optimal.
@@ -124,8 +120,8 @@ The first pop of $(x,y)$ has minimum possible cost $d$: any undiscovered alterna
 - **Road cost exceeds walking:** It is dominated but harmless.
 - **Use road multiple times:** Implicit transitions allow it, though positive costs mean useless cycles cannot improve a shortest path.
 - **Start equals an exit:** Duplicate coordinate entries are safely skipped after finalization.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

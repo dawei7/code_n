@@ -14,7 +14,7 @@ Build a new string `result` by processing `s` according to the following rules f
 
 - A `'%'` **reverses** the current `result`.
 
-Return the $$k^{\text{th}}$$ character of the final string `result`. If `k` is out of the bounds of `result`, return `'.'`.
+Return the $k^{\text{th}}$ character of the final string `result`. If `k` is out of the bounds of `result`, return `'.'`.
 
 ### 2. Function Contract
 

@@ -378,7 +378,11 @@ def leetcode_guided_example_path(challenge_id: str) -> Path | None:
 
 def leetcode_optimal_approach_path(challenge_id: str) -> Path | None:
     """Return the canonical Optimal branch's authored approach path."""
-
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is not None:
+        top_approach = package_dir / "approach.md"
+        if top_approach.is_file():
+            return top_approach
     variant_dir = _variant_directory(challenge_id, "optimal")
     return None if variant_dir is None else variant_dir / "approach.md"
 
@@ -393,6 +397,20 @@ def leetcode_editorial_markdown(challenge_id: str) -> str:
     if editorial.is_file():
         try:
             return editorial.read_text(encoding="utf-8")
+        except OSError:
+            pass
+
+    top_approach = package_dir / "approach.md"
+    if top_approach.is_file():
+        try:
+            text = top_approach.read_text(encoding="utf-8")
+            metadata = leetcode_metadata(challenge_id)
+            primary_lang = metadata.get("primary_language", "python")
+            sol_path = leetcode_solution_path(challenge_id, primary_lang)
+            if sol_path and sol_path.is_file():
+                lang_tag = "python" if primary_lang == "python" else primary_lang
+                text += f"\n\n## Reference Implementation\n\n```{lang_tag}\n" + sol_path.read_text(encoding="utf-8") + "\n```\n"
+            return text
         except OSError:
             pass
 
@@ -488,12 +506,32 @@ def leetcode_solution_variant_complexity(
     """Return the selected branch's authored time and space bounds."""
 
     row = _variant_row(challenge_id, variant_id)
-    if row is None:
-        return "", ""
-    return (
-        str(row.get("time_complexity") or "").strip(),
-        str(row.get("space_complexity") or "").strip(),
-    )
+    if row is not None:
+        return (
+            str(row.get("time_complexity") or "").strip(),
+            str(row.get("space_complexity") or "").strip(),
+        )
+
+    approach_path = leetcode_optimal_approach_path(challenge_id)
+    if approach_path is not None and approach_path.is_file():
+        try:
+            content = approach_path.read_text(encoding="utf-8")
+            time_m = re.search(r"-\s*\*\*Time [Cc]omplexity(?:\:|\*\*:?)\s*\$?((?:O|\\Theta|\\Omega|[A-Za-z]+)\([^\)\n]+\))", content)
+            if not time_m:
+                time_m = re.search(r"-\s*\*\*Time [Cc]omplexity(?:\:|\*\*:?)\s*\$?([^$.\n*]+?)\$?(?:\.|\*\*|$)", content)
+            
+            space_m = re.search(r"-\s*\*\*(?:Auxiliary )?Space [Cc]omplexity(?:\:|\*\*:?)\s*\$?((?:O|\\Theta|\\Omega|[A-Za-z]+)\([^\)\n]+\))", content)
+            if not space_m:
+                space_m = re.search(r"-\s*\*\*(?:Auxiliary )?Space [Cc]omplexity(?:\:|\*\*:?)\s*\$?([^$.\n*]+?)\$?(?:\.|\*\*|$)", content)
+                
+            time_str = time_m.group(1).strip() if time_m else ""
+            space_str = space_m.group(1).strip() if space_m else ""
+            if time_str or space_str:
+                return time_str, space_str
+        except OSError:
+            pass
+
+    return "", ""
 
 
 def leetcode_solution_variants_status(challenge_id: str) -> SolutionVariantStatus:
@@ -512,9 +550,13 @@ def leetcode_variant_solution_path(
     variant_id: str,
     language: str | None = "python",
 ) -> Path | None:
+    if variant_id in ("optimal", "canonical", ""):
+        sol = leetcode_solution_path(challenge_id, language)
+        if sol is not None and sol.is_file():
+            return sol
     variant_dir = _variant_directory(challenge_id, variant_id)
     if variant_dir is None:
-        return None
+        return leetcode_solution_path(challenge_id, language)
     language_id = normalize_language(language)
     ext = language_extension(language_id)
     path = variant_dir / f"solution.{ext}"
@@ -530,23 +572,43 @@ def leetcode_variant_solution_path(
     return path
 
 
-def leetcode_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:
-    language_id = normalize_language(language)
-    default_variant = _variant_directory(challenge_id)
-    if default_variant is None:
+def leetcode_solution_path(challenge_id: str, language: str | None = None) -> Path | None:
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None:
         return None
+    if language is None:
+        meta = leetcode_metadata(challenge_id)
+        language = meta.get("primary_language")
+        if not language:
+            for cand in [package_dir / "solution.py", package_dir / "solution.sql", package_dir / "solution.js", package_dir / "solution.sh"]:
+                if cand.is_file():
+                    return cand
+            return package_dir / "solution.py"
+
+    language_id = normalize_language(language)
     ext = language_extension(language_id)
-    path = default_variant / f"solution.{ext}"
-    if path.exists():
+    path = package_dir / f"solution.{ext}"
+    if path.is_file():
         return path
-    nested_path = default_variant / "solutions" / f"solution.{ext}"
-    if nested_path.exists():
+    nested_path = package_dir / "solutions" / f"solution.{ext}"
+    if nested_path.is_file():
         return nested_path
-    for legacy_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
-        legacy_path = default_variant / "solutions" / legacy_name
-        if legacy_path.exists():
-            return legacy_path
-    return path
+
+    # Legacy fallback to variant directory
+    default_variant = _variant_directory(challenge_id)
+    if default_variant is not None:
+        variant_path = default_variant / f"solution.{ext}"
+        if variant_path.is_file():
+            return variant_path
+        variant_nested = default_variant / "solutions" / f"solution.{ext}"
+        if variant_nested.is_file():
+            return variant_nested
+        for legacy_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
+            legacy_path = default_variant / "solutions" / legacy_name
+            if legacy_path.is_file() and legacy_path.name.endswith(f".{ext}"):
+                return legacy_path
+
+    return None
 
 
 def leetcode_template_path(challenge_id: str, language: str | None = "python") -> Path | None:
@@ -606,6 +668,9 @@ def leetcode_submission_manifest_path(
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:
         return None
+    root_candidate = package_dir / "submission.json"
+    if root_candidate.is_file():
+        return root_candidate
     candidate = package_dir / "variants" / (variant_id or "optimal") / "submission.json"
     return candidate if candidate.is_file() else None
 

@@ -64,7 +64,7 @@ Because the query starts from actual purchases, a Friday with no rows never crea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 2` groups by the second selected column, `purchase... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The expression is aliased `week_of_month`, while the sum is aliased `total_amoun
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate a Friday calendar:** That is necessar:** - **Generate a Friday calendar:** That is necessary in version II but would add zero-purchase weeks that this version must omit.
+- **Generate a Friday calendar:** That is necessary in version II but would add zero-purchase weeks that this version must omit.
 - **Use ISO weekday numbers:** MySQL `DAYOFWEEK` is Sunday-based; Friday is six, not five.
 - **Group by week alone:** It works for this fixed month’s one-Friday-per-block layout, but grouping by date directly preserves the requested date column.
 - **Month filter via date range:** It is more index-friendly than `DATE_FORMAT` and equivalent for general data.
@@ -117,8 +117,8 @@ The expression is aliased `week_of_month`, while the sum is aliased `total_amoun
 - **Fifth week block:** November 29–30, 2023 contains no Friday, so no week-five row can appear.
 - **Output order:** `ORDER BY 1` sorts `week_of_month` ascending.
 - **Week-number definition:** `CEIL(DAYOFMONTH(purchase_date) / 7)` maps days 1–7 to week one, 8–14 to week two, and so forth, matching the month's seven-day blocks.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

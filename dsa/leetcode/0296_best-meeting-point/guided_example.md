@@ -73,7 +73,7 @@ The column list is different. After finishing one row, the scan returns to colum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source scans every cell with row index `i`, column index... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ therefore choose an optimal meeting row and an optimal meeting column. Both valu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect columns in column-major order:** Scan :** - **Collect columns in column-major order:** Scan each column from left to right and each row within that column. Then `cols` is already sorted, eliminating `cols.sort()` and achieving $O(mn)$ time with $O(k)$ coordinate storage. This is the linear method described by the manifest, but it is not the exact source's traversal.
+- **Collect columns in column-major order:** Scan each column from left to right and each row within that column. Then `cols` is already sorted, eliminating `cols.sort()` and achieving $O(mn)$ time with $O(k)$ coordinate storage. This is the linear method described by the manifest, but it is not the exact source's traversal.
 - **Pair extremes without selecting a median:** Once a coordinate list is sorted, add `arr[right] - arr[left]` while moving both pointers inward. This directly sums the unavoidable cost of each extreme pair and produces the same minimum.
 - **Sort both coordinate lists:** It is correct but wastes work on `rows`, whose order is already guaranteed by the row-major scan.
 - **Try every grid cell:** Computing distance from every candidate to every home costs $O(mnk)$ time and can reach $O(m^2n^2)$ when most cells contain homes.
@@ -136,8 +136,8 @@ therefore choose an optimal meeting row and an optimal meeting column. Both valu
 - **At least two homes:** The source can also compute a one-home answer, but the contract guarantees two or more, so both coordinate lists are certainly nonempty when the median index is read.
 - **Meeting point on an empty cell:** This is allowed. The problem minimizes travel to a point in the grid; it does not require that point to contain a home.
 - **Manhattan distance specifically:** Axis separation relies on the sum of absolute coordinate differences. Euclidean distance would not permit the same independent median argument.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ This states the two successful cases directly.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A positive integer has a trailing decimal zero exactly when ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Zero has no distinct nonzero prefix whose information can be lost. It is the one
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string and reverse twice:** It ca:** - **Convert to a string and reverse twice:** It can simulate the definition but must carefully remove leading zeros after the first reversal. The divisibility observation is simpler.
+- **Convert to a string and reverse twice:** It can simulate the definition but must carefully remove leading zeros after the first reversal. The divisibility observation is simpler.
 - **Arithmetic digit reversal:** Also correct when implemented twice, but takes work proportional to the number of digits.
 - **Zero:** Returns true despite being divisible by 10.
 - **Positive multiple of ten:** Returns false because at least one trailing zero is lost.
@@ -117,8 +117,8 @@ Zero has no distinct nonzero prefix whose information can be lost. It is the one
 - **Base dependence:** The reasoning is specifically decimal because reversal and trailing zero use decimal digits.
 - **Information-loss viewpoint:** Double reversal succeeds exactly when the first reversal retains every digit.
 - **Several trailing zeros:** They fail for the same reason as one; their exact count need not be computed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

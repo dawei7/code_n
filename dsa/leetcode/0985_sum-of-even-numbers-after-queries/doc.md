@@ -23,7 +23,7 @@ Process the queries in their given order. For query `i`, first perform the execu
 **Inputs**
 
 - `nums`: a list of $N$ integers with $1\le N\le10^4$ and $-10^4\le\texttt{nums[i]}\le10^4$.
-- `queries`: a list of $Q$ pairs `[val_i, index_i]`, where $1\le Q\le10^4$, $-10^4\le\texttt{val_i}\le10^4$, and $0\le\texttt{index_i}<N$.
+- `queries`: a list of $Q$ pairs `[val_i, index_i]`, where $1\le Q\le10^4$, $-10^4\le\texttt{val\_i}\le10^4$, and $0\le\texttt{index\_i}<N$.
 
 **Return value**
 

@@ -51,7 +51,7 @@ The protected solution implements exactly that multiset view. `Counter(nums)` cr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The protected solution implements exactly that multiset view... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,15 +86,15 @@ The protected solution implements exactly that multiset view. `Counter(nums)` cr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted-run formula:** Because `nums` is alread:** - **Sorted-run formula:** Because `nums` is already non-decreasing, scan once to find the maximum run length $m$, then return $\max(n\bmod 2,2m-n)$. This genuinely achieves $O(n)$ time and $O(1)$ auxiliary space and is the best match for the manifest.
+- **Sorted-run formula:** Because `nums` is already non-decreasing, scan once to find the maximum run length $m$, then return $\max(n\bmod 2,2m-n)$. This genuinely achieves $O(n)$ time and $O(1)$ auxiliary space and is the best match for the manifest.
 - **Two-pointer pairing:** Pair elements from the first half with sufficiently larger elements from the second half. This also exploits sorted order, but the frequency formula is shorter and makes the unavoidable remainder more explicit.
 - **Only one distinct value:** The heap starts with one entry, the loop never executes, and the answer remains $n$. No two equal values form a legal pair.
 - **Perfectly balanceable even length:** When the largest frequency is at most $n/2$, every item can be removed and the result is `0`.
 - **Perfectly balanceable odd length:** Pair removals always change the length by two, so an odd array cannot become empty. The best possible remainder is `1`.
 - **Large majority:** If one value occurs more often than all other values combined, every minority copy is consumed as a partner and exactly $2m-n$ majority copies remain.
 - **Input ordering:** The heap solution does not actually use the promised sorted order; it remains correct for an unsorted array. The constant-space formula alternative does rely on sorted runs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

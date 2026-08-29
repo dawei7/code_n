@@ -63,7 +63,7 @@ All branches return the same number of columns in the same semantic order. SQL s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first branch selects the source `product_id`, the string... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The predicate must use `IS NOT NULL`. SQL null represents unknown or missing inf
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION ALL`:** The source primary key and dist:** - **`UNION ALL`:** The source primary key and distinct store literals guarantee no duplicate triples, so this avoids unnecessary distinct elimination while returning the same rows.
+- **`UNION ALL`:** The source primary key and distinct store literals guarantee no duplicate triples, so this avoids unnecessary distinct elimination while returning the same rows.
 - **Native `UNPIVOT`:** Engines that support it can express wide-to-long conversion directly, but MySQL compatibility and null behavior must be checked.
 - **JSON or dynamic SQL unpivoting:** Useful for a dynamic number of store columns, but unnecessary for the fixed three-column schema.
 - **Application-side transformation:** It moves simple relational work out of the database and transfers a wider result than needed.
@@ -117,8 +117,8 @@ The predicate must use `IS NOT NULL`. SQL null represents unknown or missing inf
 - **Fixed store schema:** The three explicit branches must be updated if the table later gains another store column.
 - **Output-sensitive storage:** Distinct processing can retain up to $K$ triples even though the source scans are linear.
 - **Source table unchanged:** The query only projects and filters data; it performs no updates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

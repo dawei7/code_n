@@ -53,7 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `values` is the rectangular matrix of current integer valu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The forward formula answers “what does this target read?” The reverse graph 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Topological recomputation:** After a change, c:** - **Topological recomputation:** After a change, collect affected cells and evaluate each once in dependency order. This gives a firmer $O(N+F)$ affected-subgraph bound and avoids repeated work from converging paths.
+- **Topological recomputation:** After a change, collect affected cells and evaluate each once in dependency order. This gives a firmer $O(N+F)$ affected-subgraph bound and avoids repeated work from converging paths.
 - **Lazy formula evaluation:** Store formulas but calculate on `get`. It simplifies updates but can repeatedly traverse large dependency graphs and needs cycle protection.
 - **Scan all formulas after every change:** The editorial approach can discover dependents without reverse edges, but repeated whole-sheet scans are expensive.
 - **Overlapping ranges:** Counter multiplicities ensure a cell included twice contributes twice.
@@ -100,8 +100,8 @@ The forward formula answers “what does this target read?” The reverse graph 
 - **Circular formulas:** The contract forbids them. Without that guarantee, recursive propagation could loop forever and values would be ill-defined.
 - **Inclusive rectangles:** Both endpoint rows and columns are included by the `+ 1` loop bounds.
 - **Multi-digit rows:** `reference[1:]` correctly parses rows such as `A26` rather than assuming one digit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

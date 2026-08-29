@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -35,7 +35,7 @@ With the number of participants for each activity, we can identify the maximum a
 ```python
 max_min = df.agg({'id': ['max', 'min']})
 ```
-​
+
 Both the maximum and minimum number of participants from all activities are stored in this new DataFrame $\text{max}_{min}$:
 
 | id |
@@ -51,10 +51,10 @@ df = df[~df['id'].isin(max_min['id'])][['activity']]
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
-​
+
 def activity_participants(friends: pd.DataFrame, activities: pd.DataFrame) -> pd.DataFrame:
     df = friends.groupby('activity', as_index=False)['id'].count()
 
@@ -115,10 +115,10 @@ df2= df[df['_merge']=='left_only'][['activity']]
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
-​
+
 def activity_participants(friends: pd.DataFrame, activities: pd.DataFrame) -> pd.DataFrame:
     df = friends.groupby('activity', as_index=False)['id'].count()
 
@@ -136,7 +136,7 @@ def activity_participants(friends: pd.DataFrame, activities: pd.DataFrame) -> pd
 ## Database
 
 <!-- h3 for approaches -->
-### Approach 1: NOT IN/EXISTS​
+### Approach 1: NOT IN/EXISTS
 <!-- h4 for sections -->
 #### Algorithm
 
@@ -193,9 +193,9 @@ FROM user_by_activity
 WHERE user_cnts NOT IN (SELECT MAX(user_cnts) FROM user_by_activity)
 AND user_cnts NOT IN (SELECT MIN(user_cnts) FROM user_by_activity)
 ```
-​
 
-### Approach 2: Using RANK() to Identify the Maximum and Minimum​
+
+### Approach 2: Using RANK() to Identify the Maximum and Minimum
 <!-- h4 for sections -->
 #### Algorithm
 
@@ -237,7 +237,7 @@ FROM
     )t0
 WHERE rank_asc != 1 AND rank_desc != 1
 ```
-​
+
 
 <br>
 

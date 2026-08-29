@@ -16,7 +16,7 @@
 
 Design a time-based key-value data structure that can retain several values for the same key at different timestamps and retrieve the value that was current at a requested time.
 
-The `TimeMap()` constructor creates an empty store. Calling `set(key, value, timestamp)` records `value` for `key` at that timestamp. Calling `get(key, timestamp)` returns the value recorded for that key at the greatest previous timestamp satisfying $\texttt{timestamp_prev}\le\texttt{timestamp}$. If the key has no record at or before the requested time, return the empty string `""`. All timestamps supplied to `set` are strictly increasing across the operation sequence.
+The `TimeMap()` constructor creates an empty store. Calling `set(key, value, timestamp)` records `value` for `key` at that timestamp. Calling `get(key, timestamp)` returns the value recorded for that key at the greatest previous timestamp satisfying $\texttt{timestamp\_prev}\le\texttt{timestamp}$. If the key has no record at or before the requested time, return the empty string `""`. All timestamps supplied to `set` are strictly increasing across the operation sequence.
 
 ### Function Contract
 

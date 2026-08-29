@@ -51,7 +51,7 @@ Each `Trie` node contains a 26-slot child array and one Boolean. `__slots__` pre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `Trie` node contains a 26-slot child array and one Bool... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each `Trie` node contains a 26-slot child array and one Boolean. `__slots__` pre
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort plus valid-word set:** Process words in l:** - **Sort plus valid-word set:** Process words in lexicographic order and accept a word when its immediate prefix is already valid. It is simpler but includes sorting cost.
+- **Sort plus valid-word set:** Process words in lexicographic order and accept a word when its immediate prefix is already valid. It is simpler but includes sorting cost.
 - **Check every prefix in a hash set:** Straightforward slicing can repeat character copying and lead to quadratic work per long word.
 - **One-letter word:** Its only nonempty prefix is itself, which is marked after insertion, so it is valid.
 - **Missing immediate prefix:** Search fails at that prefix node even if longer structural trie nodes exist.
@@ -98,8 +98,8 @@ Each `Trie` node contains a 26-slot child array and one Boolean. `__slots__` pre
 - **Short-circuit optimization:** Noncompetitive lengths or ties are not searched because they cannot change `ans`.
 - **Fixed lowercase alphabet:** Direct 26-slot arrays trade memory for constant child access.
 - **Input order:** Insert-all-first design makes prefix validation independent of order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

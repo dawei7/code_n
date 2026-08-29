@@ -69,9 +69,7 @@ Both conditions are necessary. Equal counts alone are insufficient when their sq
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source increments `ans` only when
-
-`vowels == consonants... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ Subtracting from length counts every other lowercase letter as a consonant, matc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix balance plus period:** Count equal vowe:** - **Prefix balance plus period:** Count equal vowel-minus-consonant prefix balances with compatible index residues to achieve near-linear time, as used by version II.
+- **Prefix balance plus period:** Count equal vowel-minus-consonant prefix balances with compatible index residues to achieve near-linear time, as used by version II.
 - **Prefix vowel counts with pair enumeration:** It still takes $O(n^2)$ time but derives each count from two prefix values instead of incrementing.
 - **All consonants:** No nonempty substring has equal positive vowel and consonant counts, so answer zero.
 - **All vowels:** The same reasoning gives zero.
@@ -127,8 +125,8 @@ Subtracting from length counts every other lowercase letter as a consonant, matc
 - **Fixed vowel set construction:** Creating `set("aeiou")` once outside both loops avoids rebuilding it per character while remaining constant-space.
 - **Incremental versus repeated counting:** Extending the right endpoint reuses the previous window's vowel total. Calling `count` on each substring would add another linear factor and make the method cubic.
 - **Endpoint order:** The inner loop begins at `j=i`, so it includes every length-one substring before extending to longer ranges.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

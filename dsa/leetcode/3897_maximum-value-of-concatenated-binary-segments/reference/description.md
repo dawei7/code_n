@@ -2,9 +2,9 @@
 
 You are given two integer arrays `nums1` and `nums0`, each of size `n`.
 
-- $\text{nums1}[i]$ represents the number of `'1'`s in the $$i^{\text{th}}$$ segment.
+- $\text{nums1}[i]$ represents the number of `'1'`s in the $i^{\text{th}}$ segment.
 
-- $\text{nums0}[i]$ represents the number of `'0'`s in the $$i^{\text{th}}$$ segment.
+- $\text{nums0}[i]$ represents the number of `'0'`s in the $i^{\text{th}}$ segment.
 
 For each index `i`, construct a binary segment consisting of:
 

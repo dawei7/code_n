@@ -64,7 +64,7 @@ For an off-diagonal pair such as `(20,21)` and `(21,20)`, their IDs are naturall
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE `P` selects every input row and assigns `ROW_NUMBER(... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Diagonal duplicates also create multiple ordered ID pairs, and `DISTINCT` simila
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate by `x,y` first:** Store `COUNT(*)` f:** - **Aggregate by `x,y` first:** Store `COUNT(*)` for each coordinate, join one distinct row to its reverse, and require count at least two for diagonals. This avoids duplicate cross products and matches the manifest summary.
+- **Aggregate by `x,y` first:** Store `COUNT(*)` for each coordinate, join one distinct row to its reverse, and require count at least two for diagonals. This avoids duplicate cross products and matches the manifest summary.
 - **Use `EXISTS`:** A correlated existence test can stop after finding one partner, but it still needs a distinct output and an explicit different-row mechanism for diagonal values.
 - **Omit row IDs:** Then a single `(x,x)` row can join itself and be incorrectly reported.
 - **Omit `x <= y`:** Both `(x,y)` and `(y,x)` would appear for off-diagonal pairs.
@@ -110,8 +110,8 @@ Diagonal duplicates also create multiple ordered ID pairs, and `DISTINCT` simila
 - **Two or more diagonal rows:** At least one different-ID pairing exists, and the coordinate appears exactly once after `DISTINCT`.
 - **Heavy duplicates:** The result remains correct, but the exact row-level join may have quadratic intermediate cardinality.
 - **Unordered `ROW_NUMBER`:** Deterministic numbering is unnecessary because only ID inequality matters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

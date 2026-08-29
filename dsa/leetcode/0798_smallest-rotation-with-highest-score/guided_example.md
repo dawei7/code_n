@@ -73,7 +73,7 @@ Thus its scoring rotations form one consecutive interval on the circular rotatio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | As `k` increases by one, the element's new index decreases b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,9 +116,9 @@ This is the code's `l`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute every score:** Applying each of $n$ :** - **Recompute every score:** Applying each of $n$ rotations to all $n$ elements costs $O(n^2)$ time.
-- **- **Explicit circular range updates:** Add the mis:** - **Explicit circular range updates:** Add the missing baseline for wrapped intervals and initialize the score exactly. It is easier to interpret numerically but not necessary for finding the argmax.
-- **- **Event sweep from rotation zero's actual score::** - **Event sweep from rotation zero's actual score:** Compute score zero, then record which elements gain or lose as rotation advances. This gives another $O(n)$ difference formulation.
+- **Recompute every score:** Applying each of $n$ rotations to all $n$ elements costs $O(n^2)$ time.
+- **Explicit circular range updates:** Add the missing baseline for wrapped intervals and initialize the score exactly. It is easier to interpret numerically but not necessary for finding the argmax.
+- **Event sweep from rotation zero's actual score:** Compute score zero, then record which elements gain or lose as rotation advances. This gives another $O(n)$ difference formulation.
 
 ---
 

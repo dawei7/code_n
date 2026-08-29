@@ -68,7 +68,7 @@ If it is odd, the method returns \(-1\).
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To make the strings equal, each final position must contain ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ These swaps are also minimal: one cross-string swap can fix at most two mismatch
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit character conditions:** Test `a == 'x:** - **Explicit character conditions:** Test `a == 'x' and b == 'y'` rather than lexical comparison. It is more verbose but does not rely on character ordering.
+- **Explicit character conditions:** Test `a == 'x' and b == 'y'` rather than lexical comparison. It is more verbose but does not rely on character ordering.
 - **Construct an actual swap sequence:** Store mismatch indices by orientation and pair them. This uses \(O(n)\) space but can output concrete operations.
 - **No mismatches:** Both counts are zero and the method returns zero.
 - **Odd mismatch count:** Equality is impossible, so \(-1\) is returned before the cost formula.
@@ -117,8 +117,8 @@ These swaps are also minimal: one cross-string swap can fix at most two mismatch
 - **Equal-length guarantee:** `zip` would silently stop at the shorter input, but the contract guarantees lengths match.
 - **Two-character alphabet:** The lexical comparison trick depends on every unequal pair being one of the two recognized orientations.
 - **Swaps must cross strings:** Allowing swaps within one string would change the operation model and could reduce some examples.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

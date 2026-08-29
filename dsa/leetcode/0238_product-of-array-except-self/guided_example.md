@@ -72,7 +72,7 @@ Thus the intermediate output is `[1, 1, 2, 6]`, precisely the exclusive prefix p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before processing index `i`, `left` equals the product of al... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ The result is `[24, 12, 8, 6]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Total product followed by division:** This can:** - **Total product followed by division:** This can be linear time for arrays without zero, but division is explicitly forbidden. It also needs special counting logic for zero values and is therefore not the intended formulation.
+- **Total product followed by division:** This can be linear time for arrays without zero, but division is explicitly forbidden. It also needs special counting logic for zero values and is therefore not the intended formulation.
 - **One multiplication loop per output:** For each index, multiplying every other element is simple but repeats almost all work. It takes $O(n^2)$ time and is too slow for up to $10^5$ elements.
 - **Separate prefix and suffix arrays:** Building `left[i]` and `right[i]` arrays makes the same identity visually explicit and still runs in $O(n)$ time, but it consumes $O(n)$ auxiliary space. The implemented solution compresses one side into the output and the other into one scalar.
 - **One zero:** Only the zero's own position can have a nonzero result; the two-pass multiplication obtains this without detecting the zero explicitly.
@@ -136,8 +136,8 @@ The result is `[24, 12, 8, 6]`.
 - **Values equal to one or minus one:** They do not break either invariant. They merely preserve or flip the accumulated product as ordinary multiplication dictates.
 - **Overflow assumptions:** The statement guarantees that the relevant products fit in a 32-bit integer. Python integers can grow beyond that anyway, but implementations in fixed-width languages may rely on the stated guarantee rather than introducing division or floating-point arithmetic.
 - **In-place overwrite of `nums`:** Reusing the input array would destroy original values still needed by the backward pass unless they were saved elsewhere. Using the required output array as prefix storage avoids that dependency and preserves the input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

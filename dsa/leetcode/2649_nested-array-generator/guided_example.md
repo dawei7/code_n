@@ -68,10 +68,7 @@ This explicitly models the call stack that a recursive DFS would otherwise use.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each frame has:
-
-- `array`: the current nested array;
-- `ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +113,7 @@ An empty nested array is handled immediately: its new frame has index zero and l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive generator with `yield*`:** Elegant b:** - **Recursive generator with `yield*`:** Elegant but risks call-stack overflow at depth $10^5$.
+- **Recursive generator with `yield*`:** Elegant but risks call-stack overflow at depth $10^5$.
 - **`flat(Infinity)`:** Simple but creates a full flattened array and defeats the no-copy follow-up.
 - **Stack of raw values in reverse order:** Also iterative, but may push many siblings at once and use width-dependent rather than depth-only space.
 - **Empty root array:** Its only frame pops and the generator finishes without yielding.
@@ -126,8 +123,8 @@ An empty nested array is handled immediately: its new frame has index zero and l
 - **Early consumer stop:** Unrequested values are never visited.
 - **Index increment timing:** It must occur before descent or yield to prevent duplication.
 - **Input preservation:** Frames hold references and indices but never modify arrays.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

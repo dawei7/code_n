@@ -69,7 +69,7 @@ For $x=2$ or $x=3$, the range is empty. Python's `all` of an empty iterable is t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An integer $x$ is prime only if $x\ge2$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The upper endpoint includes the square root. This matters for perfect squares su
 
 ## 6. Traps This Instance Exposes
 
-- **- **Skip non-improving candidates:** Test primalit:** - **Skip non-improving candidates:** Test primality only when a diagonal value exceeds `ans`; smaller values cannot change the maximum.
+- **Skip non-improving candidates:** Test primality only when a diagonal value exceeds `ans`; smaller values cannot change the maximum.
 - **Sieve of Eratosthenes:** Precompute primality through the largest candidate. This can help with many repeated tests but may allocate millions of booleans.
 - **Test only odd divisors:** Handle two separately, then check three, five, and so on to halve trial work while preserving $O(\sqrt M)$ complexity.
 - **Scan the whole matrix:** This wastes $O(n^2)$ cell visits and may incorrectly include an off-diagonal prime if the diagonal restriction is forgotten.
@@ -118,8 +118,8 @@ The upper endpoint includes the square root. This matters for perfect squares su
 - **Odd-size center:** The same cell is tested twice but cannot change the final maximum incorrectly.
 - **No diagonal prime:** The initialized zero is returned.
 - **Off-diagonal larger prime:** It is irrelevant and must never influence the result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

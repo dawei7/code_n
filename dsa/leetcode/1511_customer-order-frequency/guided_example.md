@@ -62,7 +62,7 @@ Applying `YEAR` to the column can make an ordinary date index less useful. A hal
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `WHERE YEAR(order_date) = 2020` removes orders outside 2020 ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Customers with no orders form no group because the query begins from `Orders` an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Half-open June-to-August range:** Filter `orde:** - **Half-open June-to-August range:** Filter `order_date` from June 1 inclusive to August 1 exclusive, then conditionally aggregate June and July. This is more index-friendly and excludes irrelevant 2020 months early.
+- **Half-open June-to-August range:** Filter `order_date` from June 1 inclusive to August 1 exclusive, then conditionally aggregate June and July. This is more index-friendly and excludes irrelevant 2020 months early.
 - **Two monthly subqueries:** Aggregate June and July separately and inner join qualifying customer IDs. It makes the dual requirement explicit but scans or structures orders twice unless optimized.
 - **Grouping by customer and month:** Produce monthly totals first, then require two qualifying month rows. This is flexible for more months but needs a second aggregation or pivot.
 - **Exactly one hundred:** Greater-than-or-equal correctly includes the customer.
@@ -112,8 +112,8 @@ Customers with no orders form no group because the query begins from `Orders` an
 - **No matching product or customer:** Inner joins discard the orphaned order.
 - **Functional dependency of name:** MySQL can infer name from unique customer ID; stricter SQL may require both in `GROUP BY`.
 - **Unrestricted order:** No output sort is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

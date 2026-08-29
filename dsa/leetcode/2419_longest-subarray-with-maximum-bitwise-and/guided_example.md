@@ -63,7 +63,7 @@ The original bitwise problem has now become a simple sequence problem: find the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Knowing the target value is `mx` is only half of the problem... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For `nums = [1, 2, 3, 3, 2, 2]`, `mx` is 3. The counters remain zero for 1 and 2
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Compute an AND for :** - **Enumerate all subarrays:** Compute an AND for every start and end position. Even with a running AND per start, this takes $O(n^2)$ time and ignores the decisive fact that a singleton maximum establishes the target immediately.
+- **Enumerate all subarrays:** Compute an AND for every start and end position. Even with a running AND per start, this takes $O(n^2)$ time and ignores the decisive fact that a singleton maximum establishes the target immediately.
 - **Track distinct subarray AND values:** A common technique maintains the small set of AND results for subarrays ending at each position. It is useful when the target or number of distinct results matters, but it is unnecessary here because the maximum target collapses to the array maximum.
 - **One-pass maximum and streak tracking:** When a larger value appears, replace the known maximum and reset the best and current streaks; handle equal and smaller values appropriately. This remains $O(n)$ and $O(1)$, but the exact two-pass solution is easier to verify.
 - **Binary search on a length:** Testing whether a qualifying subarray of length $L$ exists would still reduce to finding a run of `mx` and would add needless logarithmic searches.
@@ -118,8 +118,8 @@ For `nums = [1, 2, 3, 3, 2, 2]`, `mx` is 3. The counters remain zero for 1 and 2
 - **Bit patterns that seem compatible:** A smaller number may contain many of the maximum's 1-bits, but it is still numerically below `mx`, and the subarray AND is at most that operand. It therefore cannot keep the target value.
 - **Positive-value constraint:** The proof uses the ordinary ordering property of bitwise AND for non-negative integers. The given values are positive, so signed negative-integer behavior never enters the problem.
 - **Maximum constraint size:** With up to $10^5$ elements, the linear scan is suitable, while quadratic subarray enumeration would be far too slow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -66,7 +66,7 @@ Each stored index represents a candidate endpoint that has not yet encountered a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The stack stores pairs `(value, index)` with values strictly... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ One new large value can pop several entries. Each popped entry defines a differe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Checking interior m:** - **Enumerate all subarrays:** Checking interior maxima directly costs at least `O(n^2)` and often `O(n^3)` without preprocessing.
+- **Enumerate all subarrays:** Checking interior maxima directly costs at least `O(n^2)` and often `O(n^3)` without preprocessing.
 - **Range-maximum queries for every endpoint pair:** A sparse table makes each test fast but still leaves `O(n^2)` pairs.
 - **Nearest-greater arrays:** Precompute first greater to the right and nearest greater to the left, then count qualifying distances. This is equivalent monotonic-stack reasoning with extra arrays.
 - **Use an increasing stack:** It tracks the wrong dominance relationship for endpoints that must exceed interiors.
@@ -129,8 +129,8 @@ One new large value can pop several entries. Each popped entry defines a differe
 - **Nearest greater on the left:** Only the nearest can pair with a smaller right endpoint; any farther candidate contains that nearer greater value inside.
 - **Distinct-value guarantee:** It ensures every endpoint pair has one uniquely smaller value and avoids equality cases.
 - **Input preservation:** The source stores value-index pairs without modifying `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -2,7 +2,7 @@
 
 Given an array `arr` of positive integers sorted in a **strictly increasing order**, and an integer `k`.
 
-Return *the* $$k^{\text{th}}$$ ***positive** integer that is **missing** from this array.*
+Return *the* $k^{\text{th}}$ ***positive** integer that is **missing** from this array.*
 
 ### 2. Function Contract
 

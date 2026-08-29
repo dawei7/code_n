@@ -8,7 +8,7 @@ You are also given a 2D integer array `queries` of length `q`, where each $\text
 
 - `[2, x]` – **Compute** the **shortest** path distance from the root node 1 to node `x`.
 
-Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** path distance from node 1 to `x` for the $$i^{\text{th}}$$ query of `[2, x]`.
+Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** path distance from node 1 to `x` for the $i^{\text{th}}$ query of `[2, x]`.
 
 ### 2. Function Contract
 

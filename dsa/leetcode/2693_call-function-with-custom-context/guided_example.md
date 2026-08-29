@@ -59,7 +59,7 @@ Using that symbol as a property key guarantees it cannot collide with any existi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To make `context` become `this` inside `fn` without using bu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This reproduces the central behavior of `call` without invoking the forbidden bu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `call`:** Directly solves context bin:** - **Built-in `call`:** Directly solves context binding but is explicitly forbidden.
+- **Built-in `call`:** Directly solves context binding but is explicitly forbidden.
 - **Built-in `apply`:** Could pass the argument array and context, but bypasses the intended polyfill mechanism.
 - **`bind(context)(...args)`:** Creates a bound function and works for regular functions, but relies on another built-in binding facility.
 - **Temporary string key:** Risks overwriting an existing context property.
@@ -118,8 +118,8 @@ This reproduces the central behavior of `call` without invoking the forbidden bu
 - **Frozen or non-extensible context:** Cannot accept the temporary property and is outside the guaranteed JSON-object use.
 - **Arrow function target:** Its lexical `this` cannot be rebound by JavaScript call syntax.
 - **Prototype modification:** Appropriate for this challenge but should be used cautiously in shared production environments.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

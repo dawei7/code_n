@@ -67,7 +67,7 @@ When sizes tie, either direction is safe. The source's `else` branch chooses `pb
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `UnionFind(n + 1)` creates entries for labels 0 through `n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This also captures indirect paths automatically. If one divisor group overlaps a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check `gcd(a,b)` for every query only:** This :** - **Check `gcd(a,b)` for every query only:** This detects direct roads but misses indirect connectivity. Two cities can be connected through intermediate cities even when their own greatest common divisor does not exceed the threshold.
+- **Check `gcd(a,b)` for every query only:** This detects direct roads but misses indirect connectivity. Two cities can be connected through intermediate cities even when their own greatest common divisor does not exceed the threshold.
 - **Build every city pair:** Testing all $\binom n2$ pairs and running graph search is $O(n^2)$ just to discover edges and can use quadratic space. Grouping multiples avoids materializing the dense graph.
 - **Prime-factor grouping:** Cities could be connected through qualifying factors found by a sieve. Composite divisors and the strict threshold make bookkeeping more involved; iterating all divisors directly is simple and bounded by a harmonic series.
 - **Breadth-first search per query:** Even with an adjacency graph, repeating traversal for up to $10^5$ queries is expensive. DSU preprocesses the components once and answers each query almost constantly.
@@ -119,8 +119,8 @@ This also captures indirect paths automatically. If one divisor group overlaps a
 - **Unused DSU index zero:** It is an indexing convenience only. No union or query touches city 0.
 - **Already-unioned multiples:** `union` detects equal representatives and returns false. Repeated evidence of the same connectivity is harmless.
 - **Recursive path compression:** Each successful find rewrites traversed parent links toward the root, preventing long chains from being repeatedly walked.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

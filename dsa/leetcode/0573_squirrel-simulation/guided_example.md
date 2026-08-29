@@ -51,7 +51,7 @@ Movement is horizontal and vertical on an obstacle-free grid, so distance betwee
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Movement is horizontal and vertical on an obstacle-free grid... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every complete nut order:** There are $n!$:** - **Try every complete nut order:** There are $n!$ orders, but only the first choice affects cost.
+- **Try every complete nut order:** There are $n!$ orders, but only the first choice affects cost.
 - **Always choose the nut nearest the squirrel:** The correct comparison is `b-a`; a slightly farther nut may save a much longer tree outbound leg.
 - **Always choose the nut farthest from the tree:** Squirrel distance also matters.
 - **One nut:** The formula becomes squirrel-to-nut plus nut-to-tree.
@@ -98,8 +98,8 @@ $$
 - **Several optimal first nuts:** Minimum total is the same; only the distance is returned.
 - **Garden boundaries:** Manhattan routes between valid coordinates need no explicit boundary simulation.
 - **One-nut carrying limit:** It is what makes later trips independent tree round trips.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

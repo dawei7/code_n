@@ -59,7 +59,7 @@ The `defaultdict(list)` also gives an unseen arrival airport an empty outgoing l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates a dictionary `g` mapping each departure a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ The exact source still explores the smallest edge first, but it does not immedia
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative Hierholzer traversal:** Maintain an :** - **Iterative Hierholzer traversal:** Maintain an explicit airport stack, push the smallest unused destination while possible, and move dead ends into the result. This has the same $O(E\log E)$ preprocessing and $O(E)$ space, avoids recursion, and matches the manifest wording.
-- **- **Min-heaps per departure:** Push destinations i:** - **Min-heaps per departure:** Push destinations into a heap and pop the smallest during traversal. This avoids globally sorting tickets but makes edge removal $O(\log d)$ for outdegree $d$; the total remains $O(E\log E)$.
-- **- **Backtracking over tickets:** Try destinations :** - **Backtracking over tickets:** Try destinations in sorted order and undo choices that cannot finish. It is conceptually direct but may explore exponentially many partial routes. Hierholzer uses the Eulerian structure to avoid that search.
+- **Iterative Hierholzer traversal:** Maintain an explicit airport stack, push the smallest unused destination while possible, and move dead ends into the result. This has the same $O(E\log E)$ preprocessing and $O(E)$ space, avoids recursion, and matches the manifest wording.
+- **Min-heaps per departure:** Push destinations into a heap and pop the smallest during traversal. This avoids globally sorting tickets but makes edge removal $O(\log d)$ for outdegree $d$; the total remains $O(E\log E)$.
+- **Backtracking over tickets:** Try destinations in sorted order and undo choices that cannot finish. It is conceptually direct but may explore exponentially many partial routes. Hierholzer uses the Eulerian structure to avoid that search.
 
 ---
 

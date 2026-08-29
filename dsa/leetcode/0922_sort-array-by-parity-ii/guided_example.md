@@ -51,7 +51,7 @@ Pointer `j` scans odd indices and begins at 1.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `j` scans odd indices and begins at 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two output arrays or one new result:** Place e:** - **Two output arrays or one new result:** Place evens at even result indices and odds at odd indices. This is linear but uses $O(n)$ space.
+- **Two output arrays or one new result:** Place evens at even result indices and odds at odd indices. This is linear but uses $O(n)$ space.
 - **Two mismatch pointers:** Advance one pointer over even indices looking for odd values and one over odd indices looking for even values, then swap. This is an equivalent in-place method.
 - **Sort numerically:** Numerical order does not directly enforce index parity and costs extra time.
 - **Scan every odd index from the beginning:** Correct but can repeat work and become quadratic.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Any answer order:** Values within parity classes may be rearranged freely.
 - **Input mutation:** Pass a copy if original order must be preserved.
 - **Follow-up:** The exact solution meets the in-place requirement with constant auxiliary storage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

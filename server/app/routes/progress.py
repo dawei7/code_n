@@ -16,6 +16,7 @@ from server.app.schemas import (
     ProgressOut,
     ProgressResetRequest,
     ProgressUpdate,
+    RecordReviewRequest,
     VerifyLeetCodeRequest,
     VerifyLeetCodeResponse,
 )
@@ -144,3 +145,23 @@ def verify_leetcode(body: VerifyLeetCodeRequest) -> VerifyLeetCodeResponse:
         unlocked_leetcode=list(progress.unlocked_leetcode),
         milestones=list(progress.milestones),
     )
+
+
+@router.post("/progress/record-review")
+def record_review(body: RecordReviewRequest) -> ProgressOut:
+    """Record a spaced repetition review result and recalculate SM-2 interval."""
+    return _to_out(progress_store.record_review(body.challenge_id, body.quality))
+
+
+@router.get("/progress/review-queue")
+def review_queue() -> dict:
+    """Return all challenges currently due for spaced repetition review."""
+    from datetime import date
+    today_str = date.today().isoformat()
+    progress = progress_store.load()
+    due = []
+    for cid, rev in progress.spaced_reviews.items():
+        next_due = str(rev.get("next_due_date") or "")
+        if next_due and next_due <= today_str:
+            due.append(rev)
+    return {"due_count": len(due), "due_items": due}

@@ -65,7 +65,7 @@ When they differ, `ans += 1` starts a suffix flip at this position. That immedia
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The initial source bit at every position is zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For an all-zero target, there is no transition from the initial zero and the ans
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count explicit transitions:** Prefix the targe:** - **Count explicit transitions:** Prefix the target conceptually with zero and count adjacent unequal bits. This is the same algorithm in a different expression.
+- **Count explicit transitions:** Prefix the target conceptually with zero and count adjacent unequal bits. This is the same algorithm in a different expression.
 - **Simulate the full string:** Toggling each suffix can cost $O(N^2)$ time.
 - **Maintain a Boolean flipped flag:** Toggle it on each mismatch and increment a separate count. It is equivalent to using answer parity.
 - **All zeros:** No operations are required.
@@ -116,8 +116,8 @@ For an all-zero target, there is no transition from the initial zero and the ans
 - **Single one:** One suffix flip at zero is necessary.
 - **Previous prefix:** Starting a later suffix never changes earlier fixed positions, which is why the greedy invariant holds.
 - **No competitive variant:** This package's manifest exposes only the Optimal branch, and the approach follows that exact source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

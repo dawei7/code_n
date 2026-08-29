@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of the $$i^{\text{th}}$$ tree in the garden.
+You are given a 2D integer array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of the $i^{\text{th}}$ tree in the garden.
 
 You are asked to fence the entire garden using the minimum length of rope possible. The garden is well-fenced only if **all the trees are enclosed** and the rope used **forms a perfect circle**. A tree is considered enclosed if it is inside or on the border of the circle.
 

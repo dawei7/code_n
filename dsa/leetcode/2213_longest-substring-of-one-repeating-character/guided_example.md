@@ -63,7 +63,7 @@ The implementation uses one-based interval positions but stores characters in a 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `SegmentTree` constructor converts the immutable input s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The merge accounts for every possible longest run. Runs contained in one child a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rescan after every query:** Replace the charac:** - **Rescan after every query:** Replace the character and scan the string while counting consecutive equal characters. This is simple and uses little auxiliary space, but it costs `O(nq)` time in the worst case because every query revisits the entire string.
+- **Rescan after every query:** Replace the character and scan the string while counting consecutive equal characters. This is simple and uses little auxiliary space, but it costs `O(nq)` time in the worst case because every query revisits the entire string.
 - **Store only one maximum per segment-tree node:** Child maxima alone cannot describe a run that crosses the midpoint. The prefix and suffix lengths are necessary connection information; omitting either makes an exact constant-time merge impossible.
 - **Balanced ordered set of run boundaries:** One can maintain maximal equal-character intervals in an ordered structure, splitting and merging near an update while separately tracking run lengths. This can also be efficient, but it requires more intricate bookkeeping than the three-field segment-tree summary.
 - **A Fenwick tree:** Fenwick trees are excellent when an aggregate has an invertible prefix operation such as addition. Longest equal-character runs need boundary-aware merging and cannot be recovered from a single scalar prefix aggregate, so a standard Fenwick tree is not a natural match.
@@ -124,8 +124,8 @@ The merge accounts for every possible longest run. Runs contained in one child a
 - **Index conversion:** Query indices are zero-based while tree positions are one-based. The exact `x + 1` on entry and `x - 1` when accessing `s` are both required; dropping either conversion would update the wrong character.
 - **Whole-range query only:** The provided `query` is sufficient for this method's exact call `query(1, 1, len(s))`. It should not be reused as a general arbitrary-range longest-run query without adding a richer return summary and explicit cross-boundary merge.
 - **Output order:** One result is appended immediately after each update. Even when multiple queries target the same index, the list records the state after each operation in the original order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

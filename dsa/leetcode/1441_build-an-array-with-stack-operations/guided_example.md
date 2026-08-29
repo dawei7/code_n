@@ -51,7 +51,7 @@ The target is strictly increasing. Therefore its elements appear in exactly the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The target is strictly increasing.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The algorithm processes target values from left to right. For a current desired 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate a physical stack:** Keeping an additi:** - **Simulate a physical stack:** Keeping an additional stack and executing every generated operation on it can help during debugging, but it does not help choose operations. It adds `O(target.length)` redundant state.
+- **Simulate a physical stack:** Keeping an additional stack and executing every generated operation on it can help during debugging, but it does not help choose operations. It adds `O(target.length)` redundant state.
 - **Use membership testing for every stream value:** One could iterate from `1` through the final target and ask whether each number is in the target. A set makes that linear but stores extra data; searching the target list directly can become quadratic. The two-pointer interpretation needs no membership structure.
 - **Use an index into target:** Iterating over stream values while maintaining the next target index is equally valid. The stored solution instead iterates over target values and lets `cur` consume gaps, which makes the keep-versus-discard reasoning especially direct.
 - **Consume all values through n:** This would still build the target at some intermediate moment, but continuing afterward violates the instruction to stop once the target is obtained and produces unnecessary operations.
@@ -99,8 +99,8 @@ The algorithm processes target values from left to right. For a current desired 
 - **Pop safety:** A `Pop` is emitted only immediately after pushing an unwanted value, so the stack is certainly nonempty and the pop removes that temporary top rather than a previously kept target element.
 - **Parameter n appears unused:** This is intentional, not an omission. The constraints use `n` to guarantee availability; the generated operations depend only on how far the target requires the stream to advance.
 - **Exact output literals:** Operation strings must be `"Push"` and `"Pop"` with the specified case. Different spelling or casing describes neither of the allowed operations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

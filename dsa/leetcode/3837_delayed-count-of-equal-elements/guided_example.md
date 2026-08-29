@@ -85,7 +85,7 @@ That lookup counts exactly the eligible positions whose value equals the current
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | As `i` decreases by one, the eligibility boundary also decre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +136,7 @@ Every index greater than `n - k - 2` has an empty eligible suffix and must recei
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct nested counting:** For each `i`, scan f:** - **Direct nested counting:** For each `i`, scan from `i + k + 1` to the end. This is simple but costs $O(N^2)$ when `k` is small.
+- **Direct nested counting:** For each `i`, scan from `i + k + 1` to the end. This is simple but costs $O(N^2)$ when `k` is small.
 - **Positions list plus binary search:** Store sorted occurrence indices for each value, then binary-search the first index greater than `i + k`. This costs $O(N\log N)$ total and can answer arbitrary delayed queries.
 - **Full suffix-frequency snapshots:** Building a map for every starting point supports lookup but can consume $O(N^2)$ copied state. The rolling Counter stores only the current suffix.
 - **k equals zero:** Every equal occurrence strictly to the right is counted.
@@ -147,8 +147,8 @@ Every index greater than `n - k - 2` has an empty eligible suffix and must recei
 - **All values distinct:** Every Counter lookup for the current value returns zero.
 - **One element:** The loop is empty for the only allowed `k = 0`, and the answer is `[0]`.
 - **Missing Counter key:** It evaluates to zero naturally, matching “no eligible equal value.”
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

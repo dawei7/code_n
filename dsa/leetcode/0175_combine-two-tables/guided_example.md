@@ -82,9 +82,7 @@ silently choosing one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The optimal query writes:
-
-`LEFT JOIN Address USING (personI... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +131,7 @@ required for this schema.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `ON` condition:** `LEFT JOIN Address :** - **Explicit `ON` condition:** `LEFT JOIN Address ON Person.personId = Address.personId` is equivalent and works even when key names differ.
+- **Explicit `ON` condition:** `LEFT JOIN Address ON Person.personId = Address.personId` is equivalent and works even when key names differ.
 - **Right join with reversed tables:** Can preserve `Person`, but is less direct and less portable in style.
 - **Inner join:** Incorrect because it drops people without addresses.
 - **Correlated subqueries:** Could fetch each address column separately, but duplicate work and multirow semantics are awkward.
@@ -143,8 +141,8 @@ required for this schema.
 - **Column projection:** Omitting identifiers is required by the output schema.
 - **Any order:** No `ORDER BY` is necessary.
 - **Physical complexity:** Actual runtime depends on indexes, statistics, optimizer choices, and output cardinality.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are `n` persons on a social media website. You are given an integer array `ages` where $\text{ages}[i]$ is the age of the $$i^{\text{th}}$$ person.
+There are `n` persons on a social media website. You are given an integer array `ages` where $\text{ages}[i]$ is the age of the $i^{\text{th}}$ person.
 
 A Person `x` will not send a friend request to a person `y` ($x \neq y$) if any of the following conditions is true:
 

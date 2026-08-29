@@ -60,7 +60,7 @@ If `cnt1 + cnt2` is odd, Alice makes both the first and last moves. On the final
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `cnt1 + cnt2` is odd, Alice makes both the first and last... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ That is precisely the equality tested by the code. The return value is true for 
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass counter implementation:** Inspect eac:** - **One-pass counter implementation:** Inspect each character with its index and update the appropriate half's sum or question-mark count. This preserves $O(N)$ time while achieving true $O(1)$ auxiliary space in Python.
+- **One-pass counter implementation:** Inspect each character with its index and update the appropriate half's sum or question-mark count. This preserves $O(N)$ time while achieving true $O(1)$ auxiliary space in Python.
 - **Minimax search:** Trying every question mark and all ten digits creates an exponential game tree and is infeasible for length up to $10^5$.
 - **Neutral-value interpretation:** Treating each unknown as an average contribution of $4.5$ leads to the doubled equation `2 * (s1 - s2) == 9 * (cnt2 - cnt1)`. This avoids division and is algebraically equivalent.
 - **Odd total question marks:** Alice owns the final move and can always avoid the single digit, if any, that would make the sums equal.
@@ -134,8 +134,8 @@ That is precisely the equality tested by the code. The return value is true for 
 - **Digit zero:** Zero is a legal choice. Within a same-half pair its complement is nine; across halves Bob copies zero.
 - **Repeated slicing:** It does not change the linear time bound, but it does make the exact implementation's peak space linear rather than constant.
 - **Return meaning:** The expression returns `true` for Alice and `false` for Bob. The equality case is negated because equality is Bob's objective.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

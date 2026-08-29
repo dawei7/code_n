@@ -69,7 +69,7 @@ By repeatedly finalizing the smaller frontier in this way, the loop considers en
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Assume `a[i] <= b[j]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ For `shortest("coding", "practice")`, each list contains one position: `[3]` and
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rescan `wordsDict` for every query:** The one-:** - **Rescan `wordsDict` for every query:** The one-pass method from Shortest Word Distance uses $O(1)$ extra space and $O(n)$ time per call. It may be reasonable for one query, but repeated calls waste the opportunity to preprocess the fixed array.
+- **Rescan `wordsDict` for every query:** The one-pass method from Shortest Word Distance uses $O(1)$ extra space and $O(n)$ time per call. It may be reasonable for one query, but repeated calls waste the opportunity to preprocess the fixed array.
 - **Compare all occurrence pairs:** After indexing, testing every pair costs $O(ab)$ per query. The sorted two-pointer merge reduces this to $O(a+b)$.
 - **Binary search the larger occurrence list:** For every position in the smaller list, find neighboring insertion positions in the larger list. This costs $O(\min(a,b)\log\max(a,b))$ and can be attractive when one word is extremely rare, though the implemented merge has a clean linear bound.
 - **Cache query results:** If identical word pairs are requested repeatedly, an additional cache could return later answers in $O(1)$ expected time. It would require canonicalizing pair order and using extra space; the exact solution does not assume repeated queries.
@@ -123,8 +123,8 @@ For `shortest("coding", "practice")`, each list contains one position: `[3]` and
 - **Equal query words:** The contract forbids this. Supporting it would require the minimum gap between consecutive distinct entries within one occurrence list; comparing a list with itself would otherwise permit distance zero at the same occurrence.
 - **Sortedness dependency:** The merge proof relies on each posting list being sorted. Appending indices during a left-to-right constructor pass guarantees that property without explicit sorting.
 - **Input mutation after construction:** The class stores indices derived from the original snapshot. The interface provides no mutation operation; if the external array later changed, the index would not automatically update.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -62,7 +62,7 @@ The source nevertheless follows `indices` in its given order, making the simulat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each update only adds one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ The direct loops produce exactly this total. At an operation targeting both row 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Row and column parity arrays:** Toggle one Boo:** - **Row and column parity arrays:** Toggle one Boolean for row `r` and column `c` per operation. If \(a\) rows and \(b\) columns are odd, the answer is \(a(n-b)+(m-a)b\). This achieves \(O(m+n+k)\) time and \(O(m+n)\) space.
+- **Row and column parity arrays:** Toggle one Boolean for row `r` and column `c` per operation. If \(a\) rows and \(b\) columns are odd, the answer is \(a(n-b)+(m-a)b\). This achieves \(O(m+n+k)\) time and \(O(m+n)\) space.
 - **Sets of odd rows and columns:** Add or remove an index on every toggle, then use the same counting formula. It stores only currently odd indices.
 - **Repeated identical operation:** Two identical operations add two to every cell in that row or column contribution pattern, cancelling parity effects.
 - **Intersection cell:** It is incremented twice for one operation, once through each required rule.
@@ -113,8 +113,8 @@ The direct loops produce exactly this total. At an operation targeting both row 
 - **Large exact counts:** Python integers handle them, though constraints keep counts small.
 - **Input order:** Addition commutes, so order cannot change the result.
 - **Manifest mismatch:** The parity method is the asymptotically optimal alternative; it is not what the exact source executes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,7 +74,7 @@ Only a strict improvement replaces `distances[neighbor]` and enters the heap. Si
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one `start` and one carrying mode, `shortest` creates a ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ This symmetry would not be valid for directed roads or direction-dependent taxes
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use one shared weight per road:** This loses t:** - **Use one shared weight per road:** This loses the distinction between empty travel and loaded travel. The two shortest paths must be computed under their respective edge costs.
+- **Use one shared weight per road:** This loses the distinction between empty travel and loaded travel. The two shortest paths must be computed under their respective edge costs.
 - **Force the return to reverse the forward path:** That can be more expensive than choosing separate routes because taxes change the relative desirability of roads. The source minimizes the two directions independently.
 - **Run Floyd-Warshall twice:** Two all-pairs dynamic programs would take $O(n^3)$ time and $O(n^2)$ space. Repeated Dijkstra benefits from the limit of at most $2000$ roads and keeps memory linear in the graph size.
 - **Use breadth-first search:** BFS minimizes the number of roads only when all relevant edge weights are equal. Here both base costs and loaded costs vary.
@@ -129,8 +129,8 @@ This symmetry would not be valid for directed roads or direction-dependent taxes
 - **Stale heap entries:** A vertex can appear in the heap more than once. The equality check skips older distances and is necessary for the usual efficient Dijkstra behavior.
 - **Large monetary totals:** Python integers do not overflow when edge costs, multipliers, path costs, and prices are added.
 - **Single shop and no roads:** Both shortest-path calls return distance zero to the only shop, so the answer is its local price.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

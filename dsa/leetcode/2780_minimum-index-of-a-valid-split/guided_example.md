@@ -66,7 +66,7 @@ This differs from the manifest description, which names Boyer–Moore voting and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution constructs `Counter(nums)` and calls `mos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ When both hold, the split after a prefix of length `i` has zero-based split inde
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boyer–Moore majority vote:** It identifies the:** - **Boyer–Moore majority vote:** It identifies the guaranteed dominant value in `O(n)` time and `O(1)` space, followed by a count and split scan. This matches the manifest but is not the exact code.
+- **Boyer–Moore majority vote:** It identifies the guaranteed dominant value in `O(n)` time and `O(1)` space, followed by a count and split scan. This matches the manifest but is not the exact code.
 - **Two frequency maps:** Moving values from a suffix map to a prefix map works but tracks far more information than the single dominant candidate needs.
 - **Check every boundary:** It is still `O(n)` and avoids the surplus proof for guarded checking. The exact code tests only after occurrences of `x`.
 - **Strict majority:** Counts exactly equal to half fail because both comparisons use `>` rather than `>=`.
@@ -130,8 +130,8 @@ When both hold, the split after a prefix of length `i` has zero-based split inde
 - **Unique dominant guarantee:** The code does not need to verify the Counter winner exceeds half, because the contract proves it.
 - **No valid split:** The total array can have a dominant element while every proper boundary fails on at least one side, producing `-1`.
 - **Manifest mismatch:** Actual storage is linear in distinct values, not constant, because `Counter(nums)` is part of the exact source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

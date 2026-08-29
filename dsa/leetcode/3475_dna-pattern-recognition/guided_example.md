@@ -51,7 +51,7 @@ Because the schema states that DNA sequences use `A`, `T`, `G`, and `C`, the lit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because the schema states that DNA sequences use `A`, `T`, `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because the schema states that DNA sequences use `A`, `T`, `G`, and `C`, the lit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Put pattern conditions in `WHERE`:** That woul:** - **Put pattern conditions in `WHERE`:** That would remove nonmatching samples, but the required output includes every sample with zero indicators.
+- **Put pattern conditions in `WHERE`:** That would remove nonmatching samples, but the required output includes every sample with zero indicators.
 - **Use `LIKE '%ATG%'` for `has_start`:** A leading wildcard would incorrectly accept `ATG` in the middle.
 - **Omit the stop-codon end anchors:** Sequences containing `TAA`, `TAG`, or `TGA` internally would be false positives.
 - **Anchor only the final alternative:** A pattern such as `TAA|TAG|TGA$` leaves the first two alternatives unanchored; the source correctly anchors all three.
@@ -99,8 +99,8 @@ Because the schema states that DNA sequences use `A`, `T`, `G`, and `C`, the lit
 - **Case sensitivity:** The schema declares uppercase DNA characters. If mixed-case data were allowed under a case-insensitive collation, explicit binary or case-sensitive matching might be needed.
 - **`NULL` DNA sequence:** Pattern expressions evaluate to SQL null rather than zero; the reference schema does not specify null rows, so the query follows the declared data model.
 - **`ORDER BY 1` maintainability:** It is correct while `sample_id` is the first selected column, though naming the column directly can be clearer during later query edits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

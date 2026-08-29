@@ -74,7 +74,7 @@ The equality of the three gender counts is what lets every occurrence rank form 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The common table expression named `t` starts from every row ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ It would also be correct to use `1`, `2`, and `3`, but starting at zero is conci
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three filtered queries with explicit row numbe:** - **Three filtered queries with explicit row numbers:** Rank female, other, and male rows separately and join them by row number, then unpivot or combine the columns. This can express the pattern but is much longer and risks dropping rows through an incorrect join; one partitioned window handles all categories uniformly.
+- **Three filtered queries with explicit row numbers:** Rank female, other, and male rows separately and join them by row number, then unpivot or combine the columns. This can express the pattern but is much longer and risks dropping rows through an incorrect join; one partitioned window handles all categories uniformly.
 - **`ROW_NUMBER` instead of `RANK`:** It produces the same result under the primary-key guarantee because `user_id` values cannot tie. `RANK` is safe here, but `ROW_NUMBER` would communicate the idea of a sequential position somewhat more directly.
 - **Sorting by gender before occurrence rank:** `ORDER BY rk2, rk1` would output all female rows, then all other rows, then all male rows. The order of the two keys is essential: cycle number must be the primary key.
 - **Sorting by `user_id` globally:** A globally small male ID could appear before the first female row, violating the mandated gender cycle. IDs are ordered only within their own gender groups.
@@ -132,8 +132,8 @@ It would also be correct to use `1`, `2`, and `3`, but starting at zero is conci
 - **Unknown or null gender:** The enum contract excludes both. Under invalid input, the `ELSE` branch would treat an unknown non-female, non-other value like male, which is another reason correctness relies on the declared schema.
 - **Helper columns in the result:** `rk1` and `rk2` exist only to control order. The outer `SELECT user_id, gender` correctly prevents them from leaking into the required output.
 - **SQL result order without `ORDER BY`:** Table storage and CTE evaluation do not guarantee presentation order. The final `ORDER BY` is mandatory even though the window function itself contains an ordering clause.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

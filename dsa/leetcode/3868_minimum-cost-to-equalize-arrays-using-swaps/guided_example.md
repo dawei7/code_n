@@ -86,7 +86,7 @@ For example, if `nums1` contains five copies of `x` and `nums2` contains one, on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source begins with `cnt2 = Counter(nums2)` and an empty ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ This parity test is sufficient as well as necessary. When every total can be hal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare sorted arrays only:** If sorting makes:** - **Compare sorted arrays only:** If sorting makes the arrays equal, cost zero. Otherwise sorting alone cannot determine how many cross-array transfers are needed unless frequency differences are then analyzed.
+- **Compare sorted arrays only:** If sorting makes the arrays equal, cost zero. Otherwise sorting alone cannot determine how many cross-array transfers are needed unless frequency differences are then analyzed.
 - **Build full frequency counters for both arrays:** Compute `A_x-B_x` directly for every key. This is equally correct and perhaps more algebraic; cancellation during the scan stores only unmatched copies.
 - **Simulate indices and swaps:** Free permutations make particular indices irrelevant. Searching positional swap sequences adds unnecessary state and can become exponential.
 - **Check only total multiset size:** Both arrays already have equal length, but each individual value's combined count must be even. A globally even number of elements is not enough.
@@ -144,8 +144,8 @@ This parity test is sufficient as well as necessary. When every total can be hal
 - **Counter zero entries:** Decrementing matched counts may leave stored zeros. They neither affect parity nor the answer.
 - **Hash-table complexity:** Counter operations are expected constant time. A fixed array indexed by values could give deterministic linear behavior under the bounded value domain.
 - **Source mutation:** The method changes only its counters. Both input arrays remain untouched.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

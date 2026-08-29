@@ -64,9 +64,7 @@ A path from the trie root spells a prefix. Several keys with the same beginning 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each node has:
-
-- a 26-element `children` array for lowercas... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +107,9 @@ After computing `x`, it stores the new full-key value in `d` and adds only `x` t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force dictionary scan:** Store full key-:** - **Brute-force dictionary scan:** Store full key-value pairs and test `key.startswith(prefix)` for every query. Insert is simple, but a query can inspect every key and character.
-- **- **Prefix hash map:** During insertion, update a :** - **Prefix hash map:** During insertion, update a hash-map total for every prefix using the same delta. Queries become expected `O(P)` to hash the prefix or effectively constant after string hashing, but repeated prefix strings consume storage.
-- **- **Trie with descendant traversal at query time:*:** - **Trie with descendant traversal at query time:** Store values only at terminal nodes and sum descendants for each query. This makes queries proportional to the matching subtree instead of prefix length.
+- **Brute-force dictionary scan:** Store full key-value pairs and test `key.startswith(prefix)` for every query. Insert is simple, but a query can inspect every key and character.
+- **Prefix hash map:** During insertion, update a hash-map total for every prefix using the same delta. Queries become expected `O(P)` to hash the prefix or effectively constant after string hashing, but repeated prefix strings consume storage.
+- **Trie with descendant traversal at query time:** Store values only at terminal nodes and sum descendants for each query. This makes queries proportional to the matching subtree instead of prefix length.
 
 ---
 

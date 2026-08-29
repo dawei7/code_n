@@ -79,7 +79,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 - $1 \le n = \text{nums.length} \le 1000$
 
-- $-10^{9} \le \text{nums}[i] \le 10^{9}​​​​​​​$
+- $-10^{9} \le \text{nums}[i] \le 10^{9}$
 
 - $1 \le m \le n$
 

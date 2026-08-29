@@ -87,9 +87,7 @@ The first branch means the left neighbor is closer or wins the tie, so the best 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider departure index $i-1$ and destination $i$.
-
-If $i-1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -147,7 +145,7 @@ This exactly encodes the asymmetric tie rule.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra per query:** Model every allowed move:** - **Dijkstra per query:** Model every allowed move explicitly, but the complete direct-jump graph is dense and repeated shortest-path searches are unnecessary on the ordered line.
+- **Dijkstra per query:** Model every allowed move explicitly, but the complete direct-jump graph is dense and repeated shortest-path searches are unnecessary on the ordered line.
 - **Use only absolute differences:** This misses closest-neighbor moves whose cost 1 is cheaper than the adjacent gap.
 - **One undirected edge cost:** Incorrect because closest status belongs to the departure index; the two directions may have different costs.
 - **Tie at an interior index:** The smaller adjacent index wins, making a left move special and a right move ordinary.
@@ -158,8 +156,8 @@ This exactly encodes the asymmetric tie rule.
 - **Negative values:** Strict ordering keeps every adjacent gap positive; absolute move costs depend on differences, not signs.
 - **Direct long jump:** Its cost decomposes into adjacent gaps and can always be matched or improved by adjacent traversal.
 - **Input preservation:** The source only reads `nums` and `queries` while constructing separate prefixes and output.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

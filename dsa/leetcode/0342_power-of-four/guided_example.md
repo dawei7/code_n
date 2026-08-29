@@ -83,7 +83,7 @@ Python's `and` short-circuits from left to right. If `n` is nonpositive, later b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression begins with `n > 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -138,9 +138,9 @@ After the positivity and zero-AND checks, `n` is known to be $2^p$ for some nonn
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated division by four:** While the positiv:** - **Repeated division by four:** While the positive value is divisible by four, divide it by four; accept only if the result reaches one. This is exact and easy to understand, but takes $O(\log_4 n)$ time and does not meet the constant-work follow-up.
-- **- **Power-of-two test plus modulo three:** Even po:** - **Power-of-two test plus modulo three:** Even powers of two satisfy $2^{2x}\bmod3=1$, while odd powers satisfy $2^{2x+1}\bmod3=2$. Thus a positive power of two is a power of four exactly when `n % 3 == 1`. It is also constant time under fixed-width arithmetic.
-- **- **Precomputed valid set:** Only sixteen powers f:** - **Precomputed valid set:** Only sixteen powers from $4^0$ through $4^{15}$ fit in the signed 32-bit positive range. Membership in a constant set works but hides the bit-position structure.
+- **Repeated division by four:** While the positive value is divisible by four, divide it by four; accept only if the result reaches one. This is exact and easy to understand, but takes $O(\log_4 n)$ time and does not meet the constant-work follow-up.
+- **Power-of-two test plus modulo three:** Even powers of two satisfy $2^{2x}\bmod3=1$, while odd powers satisfy $2^{2x+1}\bmod3=2$. Thus a positive power of two is a power of four exactly when `n % 3 == 1`. It is also constant time under fixed-width arithmetic.
+- **Precomputed valid set:** Only sixteen powers from $4^0$ through $4^{15}$ fit in the signed 32-bit positive range. Membership in a constant set works but hides the bit-position structure.
 
 ---
 

@@ -19,7 +19,7 @@ Notice that $\text{length}$ here represents the answer to **Longest Increasing S
 
 !?!../Documents/673/slideshow.json:1000,500!?!
 
-For instance, given $\text{nums} = [1, 3, 2, 4]$, we can illustrate the purpose of these arrays. Here, $\text{length}[0] = 1$ because the longest increasing subsequence ending at index $0$ is the number $1$ itself. Similarly, $\text{length}[1] = 2$ as the LIS ending at index $1$ is $[1, 3]$. Continuing, $\text{length}[2] = 2$ since the LIS ending at index $2$ is $[1, 2]$. Finally, $\text{length}[3] = 3$ as the LIS ending at index $3$ is either $[1, 3, 4]$ or $[1, 2, 4]$.
+For instance, given $\text{nums} = [1, 3, 2, 4]$, we can illustrate the purpose of these arrays. Here, $\text{length}[0] = 1$ because the longest increasing subsequence ending at index $0$ is the number $1$ itself. Similarly, $\text{length}[1] = 2$ as the LIS ending at index $1$ is `[1, 3]`. Continuing, $\text{length}[2] = 2$ since the LIS ending at index $2$ is `[1, 2]`. Finally, $\text{length}[3] = 3$ as the LIS ending at index $3$ is either `[1, 3, 4]` or `[1, 2, 4]`.
 
 In addition, we use $\text{count}$ to keep track of the count of the longest increasing subsequences. In the example above, $\text{count}[0] = 1$ because only one LIS ends at index $0$. Similarly, $\text{count}[1] = 1$ and $\text{count}[2] = 1$ since one LIS is ending at each of those indices. $\text{count}[3] = 2$ because there are two LISs ending at index $3$.
 

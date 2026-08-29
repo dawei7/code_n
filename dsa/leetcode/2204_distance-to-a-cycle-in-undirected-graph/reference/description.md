@@ -6,7 +6,7 @@ You are also given a 2D integer array `edges`, where $\text{edges}[i] = [\text{n
 
 The distance between two nodes `a` and `b` is defined to be the **minimum** number of edges that are needed to go from `a` to `b`.
 
-Return *an integer array `answer`** of size *`n`*, where *$\text{answer}[i]$* is the **minimum** distance between the *$$i^{\text{th}}$$* node and **any** node in the cycle.*
+Return *an integer array `answer`** of size *`n`*, where *$\text{answer}[i]$* is the **minimum** distance between the *$i^{\text{th}}$* node and **any** node in the cycle.*
 
 ### 2. Function Contract
 

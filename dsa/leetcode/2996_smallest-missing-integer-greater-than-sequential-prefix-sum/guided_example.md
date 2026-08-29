@@ -61,11 +61,7 @@ For `[3,4,5,1,12,14,13]`, the loop includes three, four, and five, making `s = 1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop condition is:
-
-`nums[j] == nums[j - 1] + 1`.
-
-This ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +98,7 @@ Notice that `vis` includes elements after the sequential prefix. In the example,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear membership scans:** Testing each candid:** - **Linear membership scans:** Testing each candidate with `x in nums` can repeat an $O(N)$ scan and become quadratic when many consecutive candidates are present.
+- **Linear membership scans:** Testing each candidate with `x in nums` can repeat an $O(N)$ scan and become quadratic when many consecutive candidates are present.
 - **Sort a copy:** It can find the missing value after prefix computation but costs $O(N\log N)$ time and $O(N)$ copy space.
 - **Continue after a prefix break:** This would form a subsequence or later run, not the longest prefix required by the definition.
 - **One-element array:** Its sole value is the sequential-prefix sum; return it if absent is impossible because it is present, so the search advances to the next missing integer.
@@ -111,8 +107,8 @@ Notice that `vis` includes elements after the sequential prefix. In the example,
 - **Values after the prefix:** They still matter to missingness and are included in `vis`.
 - **Infinite iterator safety:** Finiteness of `vis` guarantees termination even though `count` itself has no endpoint.
 - **Input preservation:** Neither the scan nor set construction modifies `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

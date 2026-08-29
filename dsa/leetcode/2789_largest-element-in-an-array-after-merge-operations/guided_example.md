@@ -63,7 +63,7 @@ The source stores the conceptual block sum at its leftmost original index even t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At index `i + 1`, after the right-to-left processing already... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ This monotonicity is what makes the greedy right-to-left consolidation safe.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly delete and merge:** It follows the :** - **Explicitly delete and merge:** It follows the operation statement literally but can shift array contents repeatedly and degrade to quadratic time.
+- **Explicitly delete and merge:** It follows the operation statement literally but can shift array contents repeatedly and degrade to quadratic time.
 - **Separate DP array:** Store block sums without mutating input, using `O(n)` additional space.
 - **Left-to-right greed:** A current right neighbor may later become much larger through suffix merges, information a forward pass does not yet know.
 - **All boundaries merge:** The leftmost stored sum becomes the total of the entire array.
@@ -117,8 +117,8 @@ This monotonicity is what makes the greedy right-to-left consolidation safe.
 - **Input mutation:** Callers needing the original array must pass a copy; the exact solution intentionally reuses it as DP storage.
 - **Conceptual position:** Stored sums sit at left block starts for computation, even though literal operations leave sums at right endpoints.
 - **Largest block not at zero:** Final `max` considers every block start.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

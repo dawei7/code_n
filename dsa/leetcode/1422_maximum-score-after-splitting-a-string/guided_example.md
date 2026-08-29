@@ -70,11 +70,7 @@ That imaginary split is not legal because the left substring is empty. The algor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code starts with:
-
-
-
-Before processing any character, im... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +107,7 @@ If the last character were processed, the right substring would become empty, wh
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit character branches:** Replace the XOR:** - **Explicit character branches:** Replace the XOR arithmetic with `if x == "0"` and `else`. It is more immediately readable and has identical complexity.
+- **Explicit character branches:** Replace the XOR arithmetic with `if x == "0"` and `else`. It is more immediately readable and has identical complexity.
 - **Prefix and suffix arrays:** Precompute zero counts from the left and one counts from the right. This answers each split quickly but uses $O(n)$ extra storage for information two counters can maintain.
 - **Recount each split:** Scanning both substrings for every boundary takes $O(n^2)$ time.
 - **One-pass algebraic variant:** Maximize left zeros minus left ones, then add total ones. It can avoid the separate initial count but needs careful handling of the final character.
@@ -121,8 +117,8 @@ If the last character were processed, the right substring would become empty, wh
 - **Score zero:** For `"10"`, neither the left contains a zero nor the right a one, so zero is correctly returned.
 - **Nonempty constraint:** Excluding the final source character from the loop is essential; scoring after it would use an illegal empty right substring.
 - **Binary-input guarantee:** The XOR trick relies on `int(x)` being exactly zero or one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

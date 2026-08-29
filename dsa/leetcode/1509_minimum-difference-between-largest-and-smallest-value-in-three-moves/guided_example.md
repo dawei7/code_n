@@ -57,7 +57,7 @@ Zero is the smallest possible difference, so returning immediately is optimal. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `n < 5`, there are at most four elements.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ After removing those extremes from range consideration, the smallest unchanged v
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track four smallest and four largest:** Mainta:** - **Track four smallest and four largest:** Maintain only the extreme candidates during one scan, then evaluate the same four differences. This achieves the manifest's $O(N)$ time and $O(1)$ space.
+- **Track four smallest and four largest:** Maintain only the extreme candidates during one scan, then evaluate the same four differences. This achieves the manifest's $O(N)$ time and $O(1)$ space.
 - **Partial selection:** Selection algorithms can find the necessary order statistics without fully sorting, but are more complex than the four-extreme scan.
 - **Fewer than five values:** Three moves can make all values equal, so the answer is zero.
 - **Exactly five values:** Each three-move scenario leaves two unchanged endpoint candidates.
@@ -119,8 +119,8 @@ After removing those extremes from range consideration, the smallest unchanged v
 - **At most versus exactly three:** Extra useful endpoint changes cannot enlarge the best achievable range.
 - **Input mutation:** The sorted order remains visible to the caller.
 - **Positive infinity:** `inf` must be available in the module environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

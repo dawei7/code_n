@@ -59,7 +59,7 @@ Strings are immutable and hashable, so they work safely as visited-set keys and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `gets` reads rows in row-major order and writes e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ This avoids storing a separate matrix for every queued state. The queue remains 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute zero-index adjacency:** String posi:** - **Precompute zero-index adjacency:** String positions can be swapped directly using a fixed neighbor table, avoiding repeated matrix restoration and zero scans.
-- **- **Bidirectional BFS:** Searching from both start:** - **Bidirectional BFS:** Searching from both start and target can reduce the explored frontier.
-- **- **Depth-first search:** It may find a solution b:** - **Depth-first search:** It may find a solution but does not guarantee the fewest moves.
+- **Precompute zero-index adjacency:** String positions can be swapped directly using a fixed neighbor table, avoiding repeated matrix restoration and zero scans.
+- **Bidirectional BFS:** Searching from both start and target can reduce the explored frontier.
+- **Depth-first search:** It may find a solution but does not guarantee the fewest moves.
 
 ---
 

@@ -66,7 +66,7 @@ For an ordinary index `i`, the helper divides all possibilities into two disjoin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $n$ be `len(word)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ For instance, if the current suffix is `cd` and the recursive results for `d` ar
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character-by-character backtracking with a pen:** - **Character-by-character backtracking with a pending count:** At each index, either keep the character or increase a counter for the current abbreviated run. When a character is kept, flush any positive counter before that character. This is a common $O(n2^n)$ method and usually uses only $O(n)$ auxiliary stack space beyond the output. The exact source instead chooses an entire run endpoint at once and forces its separator explicitly.
-- **- **Bitmask enumeration:** Use each integer from `:** - **Bitmask enumeration:** Use each integer from `0` through $2^n - 1$ as a keep-or-abbreviate pattern. Scan its bits, count consecutive abbreviated positions, and flush the count before each kept character and at the end. This has the same $O(n2^n)$ time and output space, but constructs each answer independently rather than sharing recursive suffix logic.
-- **- **Memoizing `dfs(i)`:** Caching all suffix resul:** - **Memoizing `dfs(i)`:** Caching all suffix result lists avoids recomputing the same index, but the cache itself contains exponentially many strings across suffixes. It can improve constants for this particular recursive structure, yet it cannot improve the asymptotic output bound and may keep more intermediate data alive.
+- **Character-by-character backtracking with a pending count:** At each index, either keep the character or increase a counter for the current abbreviated run. When a character is kept, flush any positive counter before that character. This is a common $O(n2^n)$ method and usually uses only $O(n)$ auxiliary stack space beyond the output. The exact source instead chooses an entire run endpoint at once and forces its separator explicitly.
+- **Bitmask enumeration:** Use each integer from `0` through $2^n - 1$ as a keep-or-abbreviate pattern. Scan its bits, count consecutive abbreviated positions, and flush the count before each kept character and at the end. This has the same $O(n2^n)$ time and output space, but constructs each answer independently rather than sharing recursive suffix logic.
+- **Memoizing `dfs(i)`:** Caching all suffix result lists avoids recomputing the same index, but the cache itself contains exponentially many strings across suffixes. It can improve constants for this particular recursive structure, yet it cannot improve the asymptotic output bound and may keep more intermediate data alive.
 
 ---
 

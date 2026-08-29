@@ -60,7 +60,7 @@ Deduplication ensures each directed friendship is counted once. This aligns the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query uses `UNION` rather than `UNION ALL`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The scalar subquery `(SELECT cnt FROM T)` supplies this common denominator to ev
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION ALL` plus `COUNT(DISTINCT user2)`:** Al:** - **`UNION ALL` plus `COUNT(DISTINCT user2)`:** Also handles duplicate directions, but the total-user computation and numerator must both preserve distinct semantics explicitly.
+- **`UNION ALL` plus `COUNT(DISTINCT user2)`:** Also handles duplicate directions, but the total-user computation and numerator must both preserve distinct semantics explicitly.
 - **Group by normalized user:** `GROUP BY user1` with a friend count can replace the window plus outer `DISTINCT` and may express the one-row-per-user intent more directly.
 - **Count only original `user1` values:** Incorrect because users appearing solely in `user2` would disappear from both results and denominator.
 - **Treat friendships as directed:** Incorrect for the stated mutual relationship; both endpoints must receive credit.
@@ -111,8 +111,8 @@ The scalar subquery `(SELECT cnt FROM T)` supplies this common denominator to ev
 - **Rounding:** `ROUND(..., 2)` is necessary; returning the unrounded repeating decimal would violate the contract.
 - **Output order:** `ORDER BY 1` means ascending `user1` because it is the first selected column.
 - **Window duplication:** `SELECT DISTINCT` is essential in this exact formulation because the window count is repeated once per friendship row.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

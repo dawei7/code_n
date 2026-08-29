@@ -71,7 +71,7 @@ If a neighbor is already colored `-c`, neither route applies. That edge is consi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Function `dfs(a, c)` assigns color `c` to vertex `a`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ If two different paths later force contradictory colors for one vertex, the grap
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first coloring:** A queue can propagat:** - **Breadth-first coloring:** A queue can propagate the same opposite-color rule iteratively in $O(V + E)$ time and $O(V)$ space, avoiding recursion-depth concerns.
-- **- **Union-find with doubled sets:** Represent each:** - **Union-find with doubled sets:** Represent each vertex and its opposite side, then union edge constraints. It works but is more elaborate than direct traversal.
-- **- **Check only one component:** Incorrect because :** - **Check only one component:** Incorrect because an unvisited component may contain an odd cycle.
+- **Breadth-first coloring:** A queue can propagate the same opposite-color rule iteratively in $O(V + E)$ time and $O(V)$ space, avoiding recursion-depth concerns.
+- **Union-find with doubled sets:** Represent each vertex and its opposite side, then union edge constraints. It works but is more elaborate than direct traversal.
+- **Check only one component:** Incorrect because an unvisited component may contain an odd cycle.
 
 ---
 

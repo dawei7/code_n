@@ -67,7 +67,7 @@ Path compression never changes component membership. Every rewritten parent is t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested `find(x)` function follows parent links until it ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,9 +112,9 @@ If `pa == pb`, both endpoints already have the same representative. Earlier acce
 
 ## 6. Traps This Instance Exposes
 
-- **- **Union-find with rank or size:** Keep a second :** - **Union-find with rank or size:** Keep a second array recording each root's rank or component size, attach the smaller or shallower tree beneath the larger one, and retain path compression. This preserves the same correctness reasoning and gives the conventional `O(n\alpha(n))` amortized time bound at the cost of another `O(n)` array.
-- **- **Depth-first search before every insertion:** M:** - **Depth-first search before every insertion:** Maintain an adjacency list and, before adding `[a, b]`, search whether `b` is already reachable from `a`. This mirrors the same cycle-closing idea but can take `O(n)` per edge and `O(n^2)` overall.
-- **- **Build the full graph and identify the cycle:**:** - **Build the full graph and identify the cycle:** A traversal can find the unique cycle and then scan the input backward to select its last-listed edge. This can be linear, but it needs more graph bookkeeping than the streaming union-find solution.
+- **Union-find with rank or size:** Keep a second array recording each root's rank or component size, attach the smaller or shallower tree beneath the larger one, and retain path compression. This preserves the same correctness reasoning and gives the conventional `O(n\alpha(n))` amortized time bound at the cost of another `O(n)` array.
+- **Depth-first search before every insertion:** Maintain an adjacency list and, before adding `[a, b]`, search whether `b` is already reachable from `a`. This mirrors the same cycle-closing idea but can take `O(n)` per edge and `O(n^2)` overall.
+- **Build the full graph and identify the cycle:** A traversal can find the unique cycle and then scan the input backward to select its last-listed edge. This can be linear, but it needs more graph bookkeeping than the streaming union-find solution.
 
 ---
 

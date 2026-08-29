@@ -51,7 +51,7 @@ CTE `t` preserves every Employee column and adds:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `t` preserves every Employee column and adds:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ CTE `t` preserves every Employee column and adds:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct deterministic window order:** Use `ORD:** - **Correct deterministic window order:** Use `ORDER BY salary ASC, id ASC` to satisfy the explicit tie-break.
+- **Correct deterministic window order:** Use `ORDER BY salary ASC, id ASC` to satisfy the explicit tie-break.
 - **Aggregate then join:** Compute company counts and compare each row's relative rank through joins; it is more complex and may be slower.
 - **Average the middle salaries:** That returns a numeric median, not the requested employee rows.
 - **One employee:** That sole row is the median.
@@ -97,8 +97,8 @@ CTE `t` preserves every Employee column and adds:
 - **Multiple companies:** Partitioning resets both row numbers and counts.
 - **Output order:** No final sort is required.
 - **Primary-key ID:** It provides a unique deterministic secondary key when included.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

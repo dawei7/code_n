@@ -77,7 +77,7 @@ Roots have parity zero to themselves.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `parent[v]` and `size[v]` have their ordinary disjoint-set m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The source saves `previous_parent` before changing the parent pointer, recursive
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rebuild the graph and search cycles after ever:** - **Rebuild the graph and search cycles after every proposal:** Correct but can take quadratic or worse total time. Weighted DSU checks only the newly imposed parity relation.
+- **Rebuild the graph and search cycles after every proposal:** Correct but can take quadratic or worse total time. Weighted DSU checks only the newly imposed parity relation.
 - **Ordinary union-find without parity:** It knows whether endpoints are connected but not the XOR weight of their existing path, so it cannot judge a same-component edge.
 - **BFS coloring per proposal:** Maintain or recompute binary potentials with graph traversal. This is conceptually direct but costs linear component work per query.
 - **Duplicate-vertex expansion:** Represent each vertex's two parity states in a `2N`-node DSU. It can enforce XOR constraints but uses more nodes than weighted parity storage.
@@ -134,8 +134,8 @@ The source saves `previous_parent` before changing the parent pointer, recursive
 - **Undirected symmetry:** XOR root relation is identical whichever root becomes parent.
 - **Path-compression update order:** Save the old parent and combine its compressed parity; overwriting too early loses the intermediate relation.
 - **AI-generated source comment:** The weighted-union invariant independently establishes correctness regardless of provenance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

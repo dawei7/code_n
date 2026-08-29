@@ -59,7 +59,7 @@ So every legal triple is visited. Conversely, the loop bounds ensure every visit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any legal index triple with `i < j < k`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The `and` operators make the combined expression true only when every restrictio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-frequency optimization:** Enumerate `j,:** - **Prefix-frequency optimization:** Enumerate `j,k` pairs and query how many earlier values fall in the intersection of two allowed intervals. It can reach $O(N^2+NS)$ with value bound $S$, but needs an $O(S)$ structure and is not the stored source.
+- **Prefix-frequency optimization:** Enumerate `j,k` pairs and query how many earlier values fall in the intersection of two allowed intervals. It can reach $O(N^2+NS)$ with value bound $S$, but needs an $O(S)$ structure and is not the stored source.
 - **Fenwick tree with coordinate compression:** It can support prefix value counts more generally, but adds substantial machinery for an input of at most one hundred elements.
 - **Sort the array:** Sorting alone is invalid because the original index ordering is part of the triplet definition.
 - **Exactly three elements:** There is exactly one candidate triple, which is counted if and only if all conditions hold.
@@ -114,8 +114,8 @@ The `and` operators make the combined expression true only when every restrictio
 - **Threshold association:** `a` belongs to the `i,j` pair, `b` to `j,k`, and `c` to `i,k`.
 - **Boolean arithmetic:** The direct addition is Python-specific; in a language without numeric Booleans, use an explicit conditional increment.
 - **Integer safety:** Python integers do not overflow, and the maximum legal triplet count is small in any case.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ The query aliases `author_id` as `id` because the required result column is name
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | One author may view the same self-authored article many time... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The order step occurs after duplicate elimination in the conceptual result. It t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `GROUP BY author_id`:** Filtering self-vie:** - **Use `GROUP BY author_id`:** Filtering self-view rows and grouping by author can also return one row per person. `DISTINCT` is more direct because no aggregate value is needed.
+- **Use `GROUP BY author_id`:** Filtering self-view rows and grouping by author can also return one row per person. `DISTINCT` is more direct because no aggregate value is needed.
 - **Use a self-join:** All necessary fields are already in one row. A join would create needless row combinations and make duplicate handling harder.
 - **Select every matching row without `DISTINCT`:** Authors with repeated self-views or duplicate source rows would appear several times, violating the one-row-per-author result.
 - **Compare `article_id` with `viewer_id`:** Those columns represent different kinds of identifiers. Self-view status is defined by equality between author and viewer.
@@ -113,8 +113,8 @@ The order step occurs after duplicate elimination in the conceptual result. It t
 - **No self-views:** The filter leaves no rows, and the query returns an empty one-column result.
 - **Ordering:** Ascending order is mandatory here, unlike SQL tasks that permit any order. `ORDER BY 1` supplies it explicitly.
 - **Null considerations:** The stated schema does not introduce a special null rule. If null identifiers existed, SQL equality with null would not evaluate true, so such a row would not prove a known self-view.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

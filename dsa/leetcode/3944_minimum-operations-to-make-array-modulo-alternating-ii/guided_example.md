@@ -70,7 +70,7 @@ This costs $O(k)$ and gives a starting point for rotating the target from zero t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For $t=0$, the circular distance from remainder $r$ is $\min... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ That is the source's update:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every distinct residue pair and resc:** - **Enumerate every distinct residue pair and rescan the array:** This is the straightforward problem-I method but costs $O(NK^2)$, which is infeasible when both $N$ and $K$ reach $10^5$.
+- **Enumerate every distinct residue pair and rescan the array:** This is the straightforward problem-I method but costs $O(NK^2)$, which is infeasible when both $N$ and $K$ reach $10^5$.
 - **Precompute costs with a nested residue loop:** Computing every $C(t)$ directly from all frequency entries costs $O(K^2)$. The rotating recurrence reduces it to $O(K)$.
 - **Use ordinary absolute difference:** Residues live on a cycle. Near zero and `k - 1`, wrapping can be much cheaper.
 - **Choose the independently cheapest even and odd targets without checking equality:** If their residues match, the result violates the modulo-alternating definition.
@@ -140,8 +140,8 @@ That is the source's update:
 - **Distance exactly `k / 2` for even `k`:** Both directions are equally short. The initial formula and recurrence count that distance correctly.
 - **Large original values:** Only `value % k` enters the frequency arrays, avoiding dependence on magnitude.
 - **Residue groups with no elements:** Their cost array is all zero, and two-minimum selection remains well-defined because $K\ge2$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

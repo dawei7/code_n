@@ -87,7 +87,7 @@ preserves true once such an interval has been found.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one paired position, let its original value be `a` and t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -139,7 +139,7 @@ Therefore, after the scan:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate all operation sequences:** The order :** - **Simulate all operation sequences:** The order of increments, decrements, and the append creates a huge branching search. The interval model summarizes every useful append time along a minimum path.
+- **Simulate all operation sequences:** The order of increments, decrements, and the append creates a huge branching search. The interval model summarizes every useful append time along a minimum path.
 - **Always append an original value immediately:** This considers only distance from `nums1[i]` to `z` and can miss a free copy obtained later while that element moves toward `nums2[i]`.
 - **Always append after all transformations:** This considers only target endpoints and can likewise miss an intermediate or original value. Both endpoints and the full interval matter.
 - **Add the closest endpoint distance even when `z` lies inside:** The interval distance is zero in that case. The `ok` flag prevents adding a positive endpoint distance when an intermediate value supplies an exact free copy.
@@ -152,8 +152,8 @@ Therefore, after the scan:
 - **Extra target outside all intervals on the same side:** `d` finds the globally nearest endpoint. Moving an appended copy from that endpoint gives the optimal extra cost.
 - **Exactly one append:** The baseline begins at one, and no branch adds another append. Numeric adjustments to the copy are counted separately.
 - **Input mutation:** The local swap does not change `nums1` or `nums2`, which is useful because the endpoints' original positional meaning remains intact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

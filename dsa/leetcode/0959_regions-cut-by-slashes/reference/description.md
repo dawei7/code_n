@@ -22,21 +22,21 @@ Note that backslash characters are escaped, so a `'\'` is represented as `'\\'`.
 
 ![](images/1.png)
 
-- **Input:** $grid = [" /","/ "]$
+- **Input:** `grid = [" /","/ "]`
 - **Output:** `2`
 
 #### Example 2
 
 ![](images/2.png)
 
-- **Input:** $grid = [" /"," "]$
+- **Input:** `grid = [" /"," "]`
 - **Output:** `1`
 
 #### Example 3
 
 ![](images/4.png)
 
-- **Input:** $grid = ["/\\","\\/"]$
+- **Input:** `grid = ["/\\","\\/"]`
 - **Output:** `5`
 - **Explanation:** Recall that because \ characters are escaped, "\\/" refers to \/, and "/\\" refers to /\.
 

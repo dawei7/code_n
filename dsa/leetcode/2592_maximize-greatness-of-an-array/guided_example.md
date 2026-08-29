@@ -65,7 +65,7 @@ At the end, `i` equals the number of successful pairs and therefore the maximum 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After `nums.sort()`, pointer `i` identifies the smallest tar... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Repeating the argument at each successful scan proves immediate matching cannot 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maximum-frequency formula:** Count occurrences:** - **Maximum-frequency formula:** Count occurrences and return $n-\maxFrequency$ in expected $O(n)$ time and $O(n)$ space, matching the manifest summary.
+- **Maximum-frequency formula:** Count occurrences and return $n-\text{maxFrequency}$ in expected $O(n)$ time and $O(n)$ space, matching the manifest summary.
 - **Two explicit pointers:** Scan a small-target pointer and a large-candidate pointer over the sorted array; it is equivalent to the compact loop.
 - **Try permutations:** There are $n!$ arrangements, far beyond feasible.
 - **All values equal:** No strict comparison can succeed, and the answer is zero.
@@ -116,8 +116,8 @@ Repeating the argument at each successful scan proves immediate matching cannot 
 - **Single element:** It cannot be greater than itself after permutation, so the result is zero.
 - **Input mutation:** `nums.sort()` destroys original ordering.
 - **Manifest distinction:** The code is sorting-based $O(n\log n)$ matching, not linear frequency counting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

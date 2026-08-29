@@ -62,7 +62,7 @@ Both return the initial `ans = -1` as required.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The deque comprehension scans all `n^2` coordinates and inse... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Changing the grid at discovery time is the visited marker. Immediate marking is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS from every water cell:** This repeats sear:** - **BFS from every water cell:** This repeats searches and can take `O(n^4)` time on an `n` by `n` grid.
+- **BFS from every water cell:** This repeats searches and can take `O(n^4)` time on an `n` by `n` grid.
 - **Dynamic programming in directional passes:** Distances can be propagated with forward and backward scans in `O(n^2)` time. Multi-source BFS more directly matches unweighted Manhattan layers.
 - **Use a separate visited set:** It preserves the input but adds another `O(n^2)` structure. The exact solution intentionally marks the grid.
 - **Mark cells when dequeued:** Several parents could enqueue the same water cell before its first dequeue. Marking at discovery prevents duplicates.
@@ -118,8 +118,8 @@ Changing the grid at discovery time is the visited marker. Immediate marking is 
 - **One-cell grid:** It is either all land or all water, so the early condition returns `-1`.
 - **Input mutation:** Every visited water cell becomes one. A caller needing the original grid would have to pass a copy, adding `O(n^2)` space.
 - **Only orthogonal movement:** Diagonal steps are not explored because Manhattan distance counts horizontal and vertical moves only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

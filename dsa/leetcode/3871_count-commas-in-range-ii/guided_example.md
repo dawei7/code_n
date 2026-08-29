@@ -104,13 +104,7 @@ This is exactly what the source loop computes.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The requested total is
-
-$$
-\sum_{y=1}^{n}c(y).
-$$
-
-Substitut... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -149,7 +143,7 @@ Numbers below 1000 appear in no threshold suffix and contribute zero.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Format every number:** Correct but requires it:** - **Format every number:** Correct but requires iterating through `n` values and processing their digits, which is infeasible for `10^{15}`.
+- **Format every number:** Correct but requires iterating through `n` values and processing their digits, which is infeasible for `10^{15}`.
 - **Group by digit length:** Count how many 4–6 digit values have one comma, 7–9 digit values have two, and so on. This works but requires more boundary case arithmetic than threshold superposition.
 - **Closed geometric formula:** Determine `K` and evaluate `K(n+1)-1000(1000^K-1)/999`. It is constant-form arithmetic but needs exact integer logarithm handling at thresholds.
 - **String length of `n` only:** The largest number's comma count does not tell how many commas all smaller numbers contribute. Each threshold suffix size must be included.
@@ -162,8 +156,8 @@ Numbers below 1000 appear in no threshold suffix and contribute zero.
 - **Ordinary notation:** Leading zeros are absent, so threshold membership matches actual digit groups.
 - **Maximum input:** Thresholds through `10^{15}` are included; the next `10^{18}` threshold is excluded.
 - **Relationship to ID 3870:** The earlier bounded problem never reaches the second threshold, so this loop collapses to `max(0,n-999)` there.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

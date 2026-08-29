@@ -39,7 +39,7 @@ Two ways differ if **at least** one sheet is painted with a different color.
 
 - **Output:** 6
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 For each ordered pair `(i, j)`, where color `i` is used for the first segment and color `j` for the second segment ($i \neq j$), a split of `x` and $4 - x$ is valid if $1 \le x \le \text{limit}[i]$ and $1 \le 4 - x \le \text{limit}[j]$.
 

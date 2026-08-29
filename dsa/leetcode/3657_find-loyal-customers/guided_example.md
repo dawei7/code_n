@@ -87,11 +87,7 @@ A customer at exactly twenty percent does not qualify.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`transaction_type = 'refund'`
-
-evaluates to ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -148,7 +144,7 @@ would express the requirement more directly and remain correct even if new trans
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count purchases explicitly:** `SUM(transaction:** - **Count purchases explicitly:** `SUM(transaction_type = 'purchase') >= 3` states the requirement directly and is more robust if transaction types ever expand. Under the current two-type guarantee and refund filter, it is equivalent to the source’s conjunction.
+- **Count purchases explicitly:** `SUM(transaction_type = 'purchase') >= 3` states the requirement directly and is more robust if transaction types ever expand. Under the current two-type guarantee and refund filter, it is equivalent to the source’s conjunction.
 - **Conditional `CASE` expressions:** `SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END)` is more portable than MySQL Boolean arithmetic.
 - **Correlated subqueries:** Separately querying counts and dates for every customer can repeatedly scan the table. One grouped aggregation computes all metrics together.
 - **Filter refunds in `WHERE`:** Removing refund rows before grouping would force every observed refund rate to zero and corrupt total counts and date endpoints.
@@ -164,8 +160,8 @@ would express the requirement more directly and remain correct even if new trans
 - **Ordinal column references:** `GROUP BY 1` and `ORDER BY 1` are valid MySQL shorthand but less self-documenting than naming `customer_id`.
 - **Potential nulls:** The reference presents valid transaction types and dates. If nulls were allowed, Boolean sums, `MIN`, and `MAX` would need an explicit null policy.
 - **Ascending result order:** `ORDER BY 1` defaults to ascending; adding `DESC` would contradict the requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

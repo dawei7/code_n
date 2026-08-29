@@ -73,7 +73,7 @@ Any sorting segment must start no later than `l`. Leaving `nums[l]` outside woul
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the same time, `p = j - t + i` moves in the opposite dire... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Initial values `mx = -inf` and `mi = inf` make the first comparison in each dire
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort a copy of every window:** Comparing each :** - **Sort a copy of every window:** Comparing each window with its sorted copy can locate changed boundaries, but it costs `O(k \log k)` time and `O(k)` space per window instead of the source’s linear scan and constant working state.
+- **Sort a copy of every window:** Comparing each window with its sorted copy can locate changed boundaries, but it costs `O(k \log k)` time and `O(k)` space per window instead of the source’s linear scan and constant working state.
 - **Find a local inversion core and expand by extrema:** The standard multi-stage method first finds adjacent disorder, computes the middle minimum and maximum, then expands boundaries. It reaches the same result, but the prefix-maximum and suffix-minimum tests encode those expansions directly in two scans.
 - **Reuse state across sliding windows:** More advanced data structures might maintain order information as one value leaves and another enters. However, deriving the exact shortest unsorted segment under deletions and insertions is substantially more complex, and the current `O((n-k+1)k)` method fits `n \le 1000`.
 - **Window length one:** A single value is already non-decreasing. No forward violation occurs, so the answer is zero.
@@ -127,8 +127,8 @@ Initial values `mx = -inf` and `mi = inf` make the first comparison in each dire
 - **Overlapping windows:** They are evaluated independently. A position may belong to many windows, but the algorithm never mutates it, so one result cannot affect another.
 - **Input preservation:** The phrase “must be sorted” asks for a minimum length, not for the rearranged arrays. The source intentionally computes lengths without changing `nums`.
 - **Maximum window length:** When `k == n`, there is exactly one helper call covering the entire array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

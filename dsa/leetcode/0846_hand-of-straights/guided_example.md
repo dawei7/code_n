@@ -55,7 +55,7 @@ The algorithm iterates through `sorted(hand)`, which includes duplicates in nond
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(hand)` records how many unused copies of each... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ This forced-choice property is the greedy proof.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap of distinct values:** Repeatedly take:** - **Min-heap of distinct values:** Repeatedly take the smallest remaining key and consume a group. It avoids sorting all duplicate occurrences but requires heap cleanup and logarithmic operations.
-- **- **Ordered map:** Process counts by ascending key:** - **Ordered map:** Process counts by ascending key and propagate required group starts. It can be efficient but is more involved than the direct greedy scan.
-- **- **Backtracking over group assignments:** The sma:** - **Backtracking over group assignments:** The smallest-card argument makes choices forced, so exponential search is unnecessary.
+- **Min-heap of distinct values:** Repeatedly take the smallest remaining key and consume a group. It avoids sorting all duplicate occurrences but requires heap cleanup and logarithmic operations.
+- **Ordered map:** Process counts by ascending key and propagate required group starts. It can be efficient but is more involved than the direct greedy scan.
+- **Backtracking over group assignments:** The smallest-card argument makes choices forced, so exponential search is unnecessary.
 
 ---
 

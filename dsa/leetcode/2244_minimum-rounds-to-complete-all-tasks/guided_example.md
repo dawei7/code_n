@@ -60,7 +60,7 @@ This is the only impossible positive frequency. Every integer `v >= 2` can be fo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `v = 1`, neither an allowed pair nor an allowed triple ca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ In Python, the Boolean comparison contributes one when the remainder is nonzero 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and count runs:** Sorting exposes equal d:** - **Sort and count runs:** Sorting exposes equal difficulties together but costs `O(n \log n)` time; hashing counts directly in expected linear time.
+- **Sort and count runs:** Sorting exposes equal difficulties together but costs `O(n \log n)` time; hashing counts directly in expected linear time.
 - **Dynamic programming for each frequency:** A coin-change DP with group sizes two and three works but repeats a pattern captured by the remainder formula.
 - **Always take triples:** A remainder of one would be stranded; one triple must effectively become two pairs.
 - **Always take pairs:** It works only for even frequencies and uses more rounds than triples when possible.
@@ -119,8 +119,8 @@ In Python, the Boolean comparison contributes one when the remainder is nonzero 
 - **Interleaved difficulty values:** Their positions in `tasks` do not constrain which tasks can share a round.
 - **Round ordering:** Changing the order of independently formed rounds never changes how many rounds are required.
 - **Input order and value size:** Neither matters; only equal-value counts are used.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

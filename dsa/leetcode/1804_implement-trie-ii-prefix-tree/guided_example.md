@@ -61,7 +61,7 @@ The lowercase-only input contract is essential: it guarantees every character ma
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For lowercase character `c`, `ord(c) - ord('a')` produces an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ After the final character, `node.v += 1` records one additional exact occurrence
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary children:** A hash map per node sto:** - **Dictionary children:** A hash map per node stores only present edges and may save sparse-node memory, but child lookup has hashing overhead.
+- **Dictionary children:** A hash map per node stores only present edges and may save sparse-node memory, but child lookup has hashing overhead.
 - **Subtree counting on demand:** Traversing every descendant for a prefix query can be proportional to the entire stored dataset; `pv` makes the answer immediate after the path lookup.
 - **Store a Boolean terminal flag:** It cannot represent duplicate word instances; integer `v` is required.
 - **Physically prune on erase:** Nodes whose prefix count reaches zero can be unlinked, but the exact source deliberately retains them for simpler updates and possible reuse.
@@ -115,8 +115,8 @@ After the final character, `node.v += 1` records one additional exact occurrence
 - **Lowercase alphabet:** It justifies fixed 26-way arrays and ordinal indexing.
 - **Helper visibility:** `search` is an implementation helper; required public operations call it without changing trie state.
 - **Object reuse:** Zero-count retained nodes can be populated again by later insertion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

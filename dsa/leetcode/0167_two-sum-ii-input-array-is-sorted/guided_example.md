@@ -77,7 +77,7 @@ matching pair is found is the required one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `bisect_left(numbers, x, lo=i + 1)` returns the first index ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ definition. Moving the outer loop to `i + 1` is therefore safe.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers:** Start at both ends; move the l:** - **Two pointers:** Start at both ends; move the left pointer for a sum below target and the right pointer for a sum above target. It achieves the required $O(n)$ time and $O(1)$ space.
+- **Two pointers:** Start at both ends; move the left pointer for a sum below target and the right pointer for a sum above target. It achieves the required $O(n)$ time and $O(1)$ space.
 - **Hash map:** Finds complements in expected $O(n)$ time but uses $O(n)$ storage, violating the constant-space requirement.
 - **Brute force:** Tests every index pair in $O(n^2)$ time.
 - **Duplicate values:** Searching from `i + 1` permits two equal values at distinct indices.
@@ -129,8 +129,8 @@ definition. Moving the outer loop to `i + 1` is therefore safe.
 - **Same-element prohibition:** The lower search boundary enforces it.
 - **Manifest mismatch:** Repeated binary searches are $O(n\log n)$, not linear.
 - **Missing imports:** Both `bisect_left` and `List` must be provided for standalone execution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

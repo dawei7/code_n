@@ -63,7 +63,7 @@ The input consists of decimal digits from `'1'` through `'9'`, so removing a cha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `max` compares strings lexicographically.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For example, suppose two copies of the target occur at positions `i < j`. Deleti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy first improving deletion:** Scan target:** - **Greedy first improving deletion:** Scan target occurrences from left to right and remove the first one whose following digit is larger than `digit`; if none exists, remove the last occurrence. This can run in `O(n)` time, but it is an alternative to the submitted enumeration, not what the exact solution executes.
+- **Greedy first improving deletion:** Scan target occurrences from left to right and remove the first one whose following digit is larger than `digit`; if none exists, remove the last occurrence. This can run in `O(n)` time, but it is an alternative to the submitted enumeration, not what the exact solution executes.
 - **Build a list of every candidate:** A list comprehension would make the same choice but retain all generated strings, increasing peak space to `O(kn)`.
 - **Convert every candidate to an integer:** Numeric conversion is unnecessary because all candidates have equal length. It adds work and obscures the useful ordering argument.
 - **Delete a globally smallest digit:** The removable character is fixed by `digit`, and position affects the remaining place values. Choosing by digit magnitude alone does not solve the problem.
@@ -116,8 +116,8 @@ For example, suppose two copies of the target occur at positions `i < j`. Deleti
 - **Lexicographic ordering:** It is safe specifically because all candidates contain exactly `n - 1` decimal digits. Comparing arbitrary unequal-length numeric strings lexicographically would not generally be valid.
 - **No leading-zero complication:** The stated characters range from `'1'` to `'9'`, so every candidate remains an ordinary length-`n - 1` decimal representation.
 - **Small input bound:** With `n \le 100`, the enumeration's quadratic worst case is modest, which supports the solution's preference for transparency.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

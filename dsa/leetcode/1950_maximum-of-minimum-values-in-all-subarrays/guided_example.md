@@ -61,7 +61,7 @@ The code records `nums[i]` as a candidate for answer index `m - 1`, because resu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left scan maintains indices whose values are strictly in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Both scans pop equal values. This may let several equal elements claim overlappi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Maintaining minima:** - **Enumerate every subarray:** Maintaining minima for all $O(N^2)$ windows is too slow.
+- **Enumerate every subarray:** Maintaining minima for all $O(N^2)$ windows is too slow.
 - **Sliding minimum for each length:** A deque can solve one fixed length in $O(N)$, but repeating it for all $N$ lengths is quadratic.
 - **Use one strict and one non-strict boundary:** This is a common way to assign duplicate spans uniquely. The exact source uses non-strict popping on both sides; overlapping equal claims remain harmless for maximum values.
 - **Single element:** Both sentinels bound a span of one, and the result is that element.
@@ -106,8 +106,8 @@ Both scans pop equal values. This may let several equal elements claim overlappi
 - **Zeros:** Zero is a valid minimum and also the initialization value; propagation still works because no true answer is negative.
 - **Missing direct length:** The backward monotonicity pass supplies it from a longer achievable span.
 - **Nearest strictly smaller:** Equal values must not terminate the region where the current value remains a minimum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

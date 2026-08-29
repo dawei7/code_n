@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer `n`. Consider an equilateral triangle of side length `n`, broken up into $n^{2}$ unit equilateral triangles. The triangle has `n` **1-indexed** rows where the $$i^{\text{th}}$$ row has $2i - 1$ unit equilateral triangles.
+You are given an integer `n`. Consider an equilateral triangle of side length `n`, broken up into $n^{2}$ unit equilateral triangles. The triangle has `n` **1-indexed** rows where the $i^{\text{th}}$ row has $2i - 1$ unit equilateral triangles.
 
 The objective is to compute `[[1, 1], [2, 1], [2, 3], [3, 1], [3, 5]]` from `{"n": 3}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ All produced coordinates lie in their row: the range endpoints and the single po
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `k` cycles through zero, one, two, and three as row... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ This fully seeded odd row acts as support for neighboring rows in the four-row m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search all initial subsets:** Exponential in $:** - **Search all initial subsets:** Exponential in $n^2$ and infeasible.
+- **Search all initial subsets:** Exponential in $n^2$ and infeasible.
 - **Simulate after choosing the pattern:** Useful for verification but unnecessary to construct the proven percolating set.
 - **Different optimal pattern:** Allowed if it meets the same lower bound and percolates.
 - **`n = 1`:** The fixed root is the complete answer.
@@ -115,8 +115,8 @@ This fully seeded odd row acts as support for neighboring rows in the four-row m
 - **Minimum proof:** Sufficiency alone is not enough; the global edge-count lower bound establishes optimality.
 - **Output order:** It does not affect which triangles start red.
 - **Large `n`:** The output itself is quadratic, matching the algorithm's time and space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

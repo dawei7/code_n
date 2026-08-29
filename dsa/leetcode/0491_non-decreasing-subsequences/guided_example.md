@@ -51,7 +51,7 @@ A subsequence keeps the original index order but may skip any elements. At each 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(u, last, t)` carries three pieces of state:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ A subsequence keeps the original index order but may skip any elements. At each 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking plus a global set:** Generate eve:** - **Backtracking plus a global set:** Generate every legal index subsequence, convert each result to a tuple, and deduplicate. It is easier to derive but spends time and memory constructing duplicate paths.
+- **Backtracking plus a global set:** Generate every legal index subsequence, convert each result to a tuple, and deduplicate. It is easier to derive but spends time and memory constructing duplicate paths.
 - **Per-recursion-level used set:** At one depth, skip trying the same value twice as the next appended element. This is another standard duplicate-control method and can be easier to prove locally.
 - **Bitmask enumeration:** Iterate through all $2^n$ subsets of indices, build each sequence, test non-decreasing order, and insert tuples into a set. It has similar asymptotic cost but less direct pruning.
 - **Equal adjacent values:** Equality is legal for non-decreasing order. The include branch must use `>=`, not `>`.
@@ -96,8 +96,8 @@ A subsequence keeps the original index order but may skip any elements. At each 
 - **Sentinel safety:** `-1000` is below the guaranteed minimum `-100`. If the value constraints changed, a true negative-infinity sentinel would be safer.
 - **Mutable result aliasing:** `t[:]` must be stored. Appending `t` would let later backtracking mutate previously recorded answers.
 - **Fewer than two elements:** The leaf check excludes the empty sequence and every singleton, even though both are vacuously non-decreasing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

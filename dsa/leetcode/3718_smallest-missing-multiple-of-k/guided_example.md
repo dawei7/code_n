@@ -75,7 +75,7 @@ The membership test `if x not in s` asks whether the current multiple is absent 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop `for i in count(1)` uses an increasing counter begi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Returning immediately is important. Continuing the loop could find many other mi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated linear scans of `nums`:** Testing `x :** - **Repeated linear scans of `nums`:** Testing `x in nums` directly for each candidate costs $O(n)$ per membership query. With up to $n + 1$ candidates, that can require $O(n^2)$ time. The set performs the same logical search with expected constant-time membership.
+- **Repeated linear scans of `nums`:** Testing `x in nums` directly for each candidate costs $O(n)$ per membership query. With up to $n + 1$ candidates, that can require $O(n^2)$ time. The set performs the same logical search with expected constant-time membership.
 - **Sort the array first:** Sorting can group duplicates and allow a scan of relevant multiples, but it costs $O(n\log n)$ time and requires careful handling of non-multiples. Hash membership gives a simpler linear expected-time method.
 - **Boolean presence array:** Because input values are bounded by 100, a fixed Boolean table can mark them in $O(n)$ time and constant domain-sized space. Candidates larger than the table are automatically absent. This is valid, but the set expresses membership without coupling the implementation to the numeric bound.
 - **Collect and sort only divisible values:** Dividing each multiple of `k` by `k` converts it to its multiplier, after which one could search for the first missing positive multiplier. It still needs a set or sorting; checking `k * i` directly is more immediate.
@@ -131,8 +131,8 @@ Returning immediately is important. Continuing the loop could find many other mi
 - **Array length one:** The first candidate is checked normally. The answer is either `k` if it is absent or `2k` if the sole array value is `k`.
 - **Why zero is never considered:** The problem asks for a positive multiple. Starting `count` at one deliberately excludes `0 * k = 0`.
 - **Why positivity of `k` matters:** Strictly increasing candidate order and the termination argument use `k > 0`, which the constraints guarantee. No handling for zero or negative `k` is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

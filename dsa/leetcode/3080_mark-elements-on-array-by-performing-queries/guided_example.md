@@ -51,7 +51,7 @@ Boolean list `mark` records whether each index has already been removed from tha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Boolean list `mark` records whether each index has already b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Boolean list `mark` records whether each index has already been removed from tha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap:** Store all value-index pairs and po:** - **Min-heap:** Store all value-index pairs and pop until finding unmarked entries. It also works in $O((N+M)\log N)$ but pays logarithmic cost per automatic marking.
+- **Min-heap:** Store all value-index pairs and pop until finding unmarked entries. It also works in $O((N+M)\log N)$ but pays logarithmic cost per automatic marking.
 - **Re-sort remaining elements per query:** It can become quadratic or worse and repeats a fixed global ordering.
 - **Recompute unmarked sum:** Scanning `nums` after every query costs $O(MN)$.
 - **Explicit index already marked:** It is skipped without subtracting twice.
@@ -104,8 +104,8 @@ Boolean list `mark` records whether each index has already been removed from tha
 - **Output size:** One sum is appended per query, so `len(ans)==len(queries)` even after all elements are marked.
 - **Why cursor order remains valid after explicit marks:** Removing arbitrary elements from a fixed total order leaves the relative priority of every surviving element unchanged.
 - **Index tie-break is encoded once:** Sorting tuples eliminates the need to compare indices inside every query loop.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

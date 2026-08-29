@@ -28,7 +28,7 @@ Return a string with the same words and spacing structure, except that each word
 
 - **Output:** "cat dna mice"
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - The first word `"cat"` has 1 vowel.
 

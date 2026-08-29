@@ -71,7 +71,7 @@ When the loop stops, one of two things is true: `j` is already the final array i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An alternating subarray can begin anywhere, but it cannot be... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Likewise, merely alternating parity is not enough. Values 2 and 5 have opposite 
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass dynamic tracking:** Carry the length :** - **One-pass dynamic tracking:** Carry the length of the valid alternating run ending at each position, continue it when the expected difference matches, and restart at length two on a new `+1` pair. That yields `O(n)` time and matches the manifest, but it is not the exact implementation.
+- **One-pass dynamic tracking:** Carry the length of the valid alternating run ending at each position, continue it when the expected difference matches, and restart at length two on a new `+1` pair. That yields `O(n)` time and matches the manifest, but it is not the exact implementation.
 - **Compare values to the start:** Checking whether each even offset equals `nums[i]` and each odd offset equals `nums[i] + 1` is correct, but adjacent differences plus a sign flip express the same rule more directly.
 - **Parity-only test:** Alternating even and odd values is insufficient because the required numerical difference must be exactly one in magnitude.
 - **No `+1` adjacent pair:** No start reaches length two, so the initial `-1` is returned.
@@ -120,8 +120,8 @@ Likewise, merely alternating parity is not enough. Values 2 and 5 have opposite 
 - **Length-one candidate:** It is deliberately ignored due to the strict `> 1` definition.
 - **Minimum input length two:** One comparison decides between answer two and `-1`.
 - **Input mutation:** The method never changes the array, so later starts see the original values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

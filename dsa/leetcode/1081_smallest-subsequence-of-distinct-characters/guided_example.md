@@ -61,11 +61,7 @@ When processing position `i`, the condition `last[x] > i` means character `x` wi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary is:
-
-
-
-The comprehension processes indices fr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +102,7 @@ The set makes the exactly-once rule efficient. Membership lookup avoids scanning
 
 ## 6. Traps This Instance Exposes
 
-- **- **Remaining-count array:** Decrement a character:** - **Remaining-count array:** Decrement a character's remaining frequency while scanning and allow a pop when that frequency stays positive. It is equivalent to comparing with the last index.
+- **Remaining-count array:** Decrement a character's remaining frequency while scanning and allow a pop when that frequency stays positive. It is equivalent to comparing with the last index.
 - **Recursive greedy selection:** Repeatedly choose the smallest character whose suffix still contains all remaining distinct characters. It is correct but can rescan and slice the string many times.
 - **Enumerate subsequences:** Testing every subsequence is exponential and unnecessary.
 - **All characters distinct and increasing:** Nothing is popped and the input is returned.
@@ -119,8 +115,8 @@ The set makes the exactly-once rule efficient. Membership lookup avoids scanning
 - **Last-occurrence dictionary:** Absolute positions remove the need to decrement frequency counters.
 - **Lowercase constraint:** Fixed alphabet size justifies constant auxiliary-space notation.
 - **Input preservation:** The immutable source is only scanned; result state is separate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

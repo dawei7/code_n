@@ -63,7 +63,7 @@ These bills are especially valuable because every ten-dollar customer requires o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A five-dollar payment requires no change.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ The received ten cannot be used as change in the same transaction because the cu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking over change choices:** Only twent:** - **Backtracking over change choices:** Only twenty-dollar payments offer two combinations, but the greedy exchange proof makes branching unnecessary.
-- **- **Use three fives before a ten:** This can stran:** - **Use three fives before a ten:** This can strand future ten-dollar customers and is never better.
-- **- **First customer pays ten or twenty:** No five e:** - **First customer pays ten or twenty:** No five exists, the count becomes negative, and false is returned.
+- **Backtracking over change choices:** Only twenty-dollar payments offer two combinations, but the greedy exchange proof makes branching unnecessary.
+- **Use three fives before a ten:** This can strand future ten-dollar customers and is never better.
+- **First customer pays ten or twenty:** No five exists, the count becomes negative, and false is returned.
 
 ---
 

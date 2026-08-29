@@ -73,7 +73,7 @@ Although a seven-letter set has $2^7=128$ subsets, only half contain a specified
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every puzzle contains exactly seven distinct letters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The answer list receives one completed total per puzzle, in the same order as th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate only the optional six puzzle letters:** - **Enumerate only the optional six puzzle letters:** Keep the first-letter bit permanently set and enumerate submasks of the other six bits. This performs 64 lookups rather than walking 127 nonempty submasks and filtering, but both approaches have the same asymptotic bound for fixed seven-letter puzzles.
+- **Enumerate only the optional six puzzle letters:** Keep the first-letter bit permanently set and enumerate submasks of the other six bits. This performs 64 lookups rather than walking 127 nonempty submasks and filtering, but both approaches have the same asymptotic bound for fixed seven-letter puzzles.
 - **Compare every word with every puzzle:** Direct set tests are easy to understand, but up to $10^5$ words and $10^4$ puzzles create as many as $10^9$ pairs before character-checking costs are considered.
 - **Trie of distinct sorted letters:** A trie can share prefixes between normalized word sets and search along puzzle letters. It is more elaborate to implement and reason about than the compact mask-frequency table.
 - **Repeated letters inside a word:** Repetition sets an already-set bit again. The mask deliberately forgets multiplicity because validity depends only on which letters occur.
@@ -124,12 +124,12 @@ The answer list receives one completed total per puzzle, in the same order as th
 - **The empty submask:** The `while j` loop does not process zero. No valid word can have an empty letter set or contain the required first letter with a zero mask, so skipping it is correct.
 - **Counter lookup for an absent mask:** Python’s `Counter` returns zero for a missing key. The loop can query every submask without separate membership checks.
 - **Input order:** Word preprocessing may combine masks freely, but puzzle results are appended one at a time, preserving the exact order requested by the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O\left(W+m\left(L+2^L\right)$. Let $W$ be the sum of the lengths of all strings in `words`, let $m$ be the number of puzzles, and let each puzzle length be $L=7$.
+- **Time Complexity:** $O\left(W+m\left(L+2^L\right)\right)$. Let $W$ be the sum of the lengths of all strings in `words`, let $m$ be the number of puzzles, and let each puzzle length be $L=7$.
 - **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

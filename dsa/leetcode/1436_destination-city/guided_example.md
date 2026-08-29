@@ -61,11 +61,7 @@ Expected set membership is constant time, replacing a repeated scan through all 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The set comprehension:
-
-
-
-unpacks every pair, keeps the depa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +104,7 @@ The city does not have to appear in the final input row. Paths may be listed in 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested scan:** For each arrival, scan all depa:** - **Nested scan:** For each arrival, scan all departures to see whether it leaves again. It uses constant space but takes $O(n^2)$ time.
+- **Nested scan:** For each arrival, scan all departures to see whether it leaves again. It uses constant space but takes $O(n^2)$ time.
 - **Set difference:** Build both arrival and departure sets, then return the sole member of `arrivals - departures`. It is concise but stores a second set that the generator avoids.
 - **Degree counting:** Record incoming and outgoing degrees for every city, then select outdegree zero. This generalizes to richer graphs but stores more information than needed.
 - **Follow the chain:** Build a map from departure to arrival, find the start, and walk until no next city exists. It works but requires identifying and traversing the entire line.
@@ -118,8 +114,8 @@ The city does not have to appear in the final input row. Paths may be listed in 
 - **Intermediate arrival:** It is rejected because it also occurs as a departure.
 - **Uniqueness guarantee:** `next` safely returns the first match because exactly one destination exists.
 - **No fallback return:** Malformed input without a destination would raise generator exhaustion, but the contract rules that case out.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

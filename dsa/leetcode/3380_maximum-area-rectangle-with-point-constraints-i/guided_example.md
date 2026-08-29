@@ -51,7 +51,7 @@ For a pair, the source normalizes bounds:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a pair, the source normalizes bounds:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Corner hash set:** It can test the other two c:** - **Corner hash set:** It can test the other two corners in expected $O(1)$, but forbidden-point scanning still remains unless extra geometry structures are used.
+- **Corner hash set:** It can test the other two corners in expected $O(1)$, but forbidden-point scanning still remains unless extra geometry structures are used.
 - **Enumerate two x-levels and two y-levels:** It generates coordinate boxes but can examine many combinations absent from the points.
 - **Prefix grid:** Coordinates are small enough for a dense count grid, though coordinate compression is more general.
 - **Fewer than four points:** No check can reach corner count four, so return `-1`.
@@ -104,8 +104,8 @@ $$
 - **No hash lookup:** The exact source discovers all corners during the scan.
 - **Sentinel `-1`:** Every valid area is positive.
 - **Input preservation:** Slices copy references; point coordinates are unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

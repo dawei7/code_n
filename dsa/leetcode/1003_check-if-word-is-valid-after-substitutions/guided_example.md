@@ -59,7 +59,7 @@ rejects every length that cannot result from any number of insertions. Divisible
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each insertion adds exactly three characters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Slice assignment `t[-3:] = []` removes the matched suffix in place.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string replacement:** Repeatedly eval:** - **Repeated string replacement:** Repeatedly evaluate `s.replace("abc", "")` until unchanged. It is conceptually simple but repeatedly copies and scans the string, potentially taking `O(N^2)` time.
+- **Repeated string replacement:** Repeatedly evaluate `s.replace("abc", "")` until unchanged. It is conceptually simple but repeatedly copies and scans the string, potentially taking `O(N^2)` time.
 - **Direct three-character stack comparison:** Check `t[-3] == 'a'`, `t[-2] == 'b'`, and `t[-1] == 'c'` after ensuring length three. This avoids the tiny join but uses the same invariant.
 - **Recursive deletion search:** Try every current `"abc"` occurrence. The pattern's nonconflicting reductions make branching unnecessary, and recursion would repeat states.
 - **Character counts only:** Equal counts are necessary but cannot detect wrong order.
@@ -113,8 +113,8 @@ Slice assignment `t[-3:] = []` removes the matched suffix in place.
 - **Only `a` characters or wrong order:** No suffix reduction occurs, so the nonempty stack rejects the string.
 - **Empty string:** Although the stated input is nonempty, the method would accept empty because zero insertions are allowed by the construction definition.
 - **Input preservation:** The immutable source string is never changed; reductions occur in the separate list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

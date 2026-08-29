@@ -51,7 +51,7 @@ The graph persists across queries because every query adds a road and no road is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The graph persists across queries because every query adds a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each query `[u,v]`, the code appends `v` to `g[u]`. The road is available no
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bottom-up DAG dynamic programming:** Because a:** - **Bottom-up DAG dynamic programming:** Because all edges point to larger identifiers, compute distances to `n - 1` from right to left after every query. It has the same $O(q(n+q))$ total worst-case time and avoids a queue.
+- **Bottom-up DAG dynamic programming:** Because all edges point to larger identifiers, compute distances to `n - 1` from right to left after every query. It has the same $O(q(n+q))$ total worst-case time and avoids a queue.
 - **Top-down memoized recursion:** The DAG permits a shortest-distance recurrence over outgoing neighbors. Reinitializing memoization after each query is necessary, and a long chain risks Python recursion depth.
 - **Incremental distance relaxation:** When a new edge improves `dist[v]`, propagate improvements forward through outgoing edges. This may do less work in practice but needs more careful cumulative analysis.
 - **Direct BFS after each query:** This is the exact source approach. Its simplicity is well matched to the version-I limit of five hundred nodes and queries.
@@ -97,8 +97,8 @@ For each query `[u,v]`, the code appends `v` to `g[u]`. The road is available no
 - **No repeated query roads:** The constraint avoids duplicate adjacency entries, although BFS correctness would survive duplicates because `vis` prevents duplicate enqueues.
 - **Guaranteed reachability:** The original chain means `while 1` always reaches `n - 1`. Without that guarantee, the helper would need an empty-queue condition and a value representing no path.
 - **Forward-only roads:** They make the graph acyclic and ensure `u <= n - 3` under the required gap, so the compact `g` with no destination row is safe.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

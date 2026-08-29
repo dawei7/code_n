@@ -51,7 +51,7 @@ One operation appends a transformed copy of the complete current word. For every
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | One operation appends a transformed copy of the complete cur... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ builds exactly that transformed copy. `word.extend(...)` then appends it to the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set-bit count:** Return the letter shifted by :** - **Set-bit count:** Return the letter shifted by `(k - 1).bit_count() % 26`. This derives the transformation path directly and achieves the manifest's $O(\log k)$ bit-processing time and $O(1)$ auxiliary space.
+- **Set-bit count:** Return the letter shifted by `(k - 1).bit_count() % 26`. This derives the transformation path directly and achieves the manifest's $O(\log k)$ bit-processing time and $O(1)$ auxiliary space.
 - **Recursive half mapping:** Find the containing power-of-two block. If the position lies in a second half, map it to the first half and add one shift. This also uses $O(\log k)$ time, with recursion-stack space unless written iteratively.
 - **Build strings instead of integers:** It mirrors the statement but repeatedly allocating and joining characters is less direct than numeric shifts and can add conversion overhead.
 - **`k = 1`:** The loop never runs, `word[0]` is zero, and the answer is `"a"`.
@@ -98,8 +98,8 @@ builds exactly that transformed copy. `word.extend(...)` then appends it to the 
 - **Constraint dependence:** With $k\le500$, simulation uses fewer than 1,000 stored integers. For enormous $k$, the bit-count method is decisively preferable.
 - **Manifest discrepancy:** Complexity and data-flow explanations must follow the exact list simulation: $O(k)$ time and $O(k)$ space.
 - **One-based indexing:** Forgetting the `-1` would return the following character and can also go out of range when $k$ equals the current length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

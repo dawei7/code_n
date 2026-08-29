@@ -51,7 +51,7 @@ visits every row and returns the maximum original value in that column. The refe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | visits every row and returns the maximum original value in t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Copy the matrix first:** A deep row-by-row cop:** - **Copy the matrix first:** A deep row-by-row copy would preserve the input and use $O(MN)$ extra space, matching the manifest summary. The protected source instead chooses in-place mutation.
+- **Copy the matrix first:** A deep row-by-row copy would preserve the input and use $O(MN)$ extra space, matching the manifest summary. The protected source instead chooses in-place mutation.
 - **Precompute all column maxima:** Store an $N$-element maxima array, then scan the matrix once for replacement. This also takes $O(MN)$ time but uses $O(N)$ extra space; computing one column at a time avoids it.
 - **Row-wise processing:** A row maximum is irrelevant because replacements depend on columns. Any row-oriented approach must still maintain separate information for every column.
 - **Replace while searching:** A sentinel encountered before the true maximum cannot be filled correctly yet. The exact two-pass-per-column structure avoids that ordering problem.
@@ -97,8 +97,8 @@ Synthesize the final answer directly from validated sub-states.
 - **All but one cell are $-1$:** The one non-negative entry is the maximum and is copied into every sentinel position in that column.
 - **Input mutation:** Any outside reference to `matrix` observes the replacements, and `result is matrix` would be true in Python.
 - **Column independence:** Changes already made in earlier columns cannot affect the maximum in the current column.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

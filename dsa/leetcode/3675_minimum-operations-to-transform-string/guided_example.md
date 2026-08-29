@@ -71,7 +71,7 @@ This merging is why the answer is not the sum of individual distances. For `"yz"
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All equal letters are transformed together.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Therefore any valid strategy needs at least `D` operations.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate all operations:** It can reproduce a :** - **Simulate all operations:** It can reproduce a witness sequence but may repeatedly scan or rebuild the string. The maximum-distance formula is sufficient.
+- **Simulate all operations:** It can reproduce a witness sequence but may repeatedly scan or rebuild the string. The maximum-distance formula is sufficient.
 - **Sum distances of distinct letters:** It overcounts because groups merge and share later operations.
 - **Use the minimum distance:** The farthest group still needs more transitions and sets the lower bound.
 - **Include `a` in `26 - index`:** This assigns a false distance of 26 to an already finished character.
@@ -122,8 +122,8 @@ Therefore any valid strategy needs at least `D` operations.
 - **Order of characters in the string:** It has no effect because operations select values globally, not positions.
 - **Circular alphabet:** The final `z -> a` step is essential; without circularity, transformation would be impossible for non-`a` letters.
 - **Input preservation:** The method reads `s` and returns a count without constructing the transformed string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

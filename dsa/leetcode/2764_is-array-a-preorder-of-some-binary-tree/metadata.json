@@ -3,7 +3,7 @@
   "source": "leetcode",
   "frontend_id": "2764",
   "slug": "is-array-a-preorder-of-some-binary-tree",
-  "title": "Is Array a Preorder of Some ‌Binary Tree",
+  "title": "Is Array a Preorder of Some \u200cBinary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 67.62092793682132,
   "frequency": 0.0,
@@ -44,10 +44,6 @@
   ],
   "primary_language": "python",
   "runnable_in_coden": true,
-  "solution_variants": {
-    "manifest": "solution_variants.json",
-    "default": "optimal"
-  },
   "subsets": [
     "leetcode_all",
     "leetcode_category:algorithms",

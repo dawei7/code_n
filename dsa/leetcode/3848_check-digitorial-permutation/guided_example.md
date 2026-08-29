@@ -81,7 +81,7 @@ The candidate `S` is therefore `145`, and its digits match the input digits, so 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(x)` computes `x!` recursively.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ This comparison also enforces the requirement that a rearrangement may not start
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate every permutation:** Testing all dist:** - **Generate every permutation:** Testing all distinct arrangements is conceptually direct but can require factorially many candidates, and most work is redundant because every arrangement has the same digit-factorial sum. The invariant reduces that entire search to one candidate.
+- **Generate every permutation:** Testing all distinct arrangements is conceptually direct but can require factorially many candidates, and most work is redundant because every arrangement has the same digit-factorial sum. The invariant reduces that entire search to one candidate.
 - **Ten-entry digit-frequency arrays:** Count each digit in `n` and in `S` instead of sorting their strings. This preserves the same reasoning while giving genuine `O(D)` time and `O(1)` auxiliary space because the decimal alphabet has size ten; it also matches the complexity advertised by the manifest more closely than the protected source does.
 - **Compare only the numeric sum:** Checking whether `S == n` would detect when `n` itself is a digitorial, but it would miss cases in which another ordering of the same digits is the digitorial. The multiset comparison is what permits rearrangement.
 - **Zeros in the input:** A zero contributes `0!=1`, not zero. It must also appear equally often in `S`. The string of `S` cannot begin with zero, so a successful equality automatically gives a legal no-leading-zero arrangement.
@@ -128,8 +128,8 @@ This comparison also enforces the requirement that a rearrangement may not start
 - **Smallest positive input:** For `n=1`, the loop computes `1!=1` and returns true. The special case is already covered by the same invariant and needs no branch.
 - **Integer safety and language behavior:** Python integers grow automatically, and the stated limit makes `S` very small in any event. In a fixed-width language, `D\cdot9!` is the relevant upper bound to check before choosing the integer type.
 - **Helper availability:** The exact solution requires `functools.cache`. If the execution environment does not pre-import it, the solution needs `from functools import cache`; this is an integration requirement rather than an algorithmic step.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

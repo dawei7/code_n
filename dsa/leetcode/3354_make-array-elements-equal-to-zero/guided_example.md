@@ -51,7 +51,7 @@ Each unit of value represents one decrement the moving process must eventually p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each unit of value represents one decrement the moving proce... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each unit of value represents one decrement the moving process must eventually p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct simulation:** Copy the array and simula:** - **Direct simulation:** Copy the array and simulate both directions from every zero. It follows the statement literally but can require $O(n^2m)$ time when values are as large as $m$.
+- **Direct simulation:** Copy the array and simulate both directions from every zero. It follows the statement literally but can require $O(n^2m)$ time when values are as large as $m$.
 - **Prefix-sum array:** It provides $L$ and $R$ in constant time per zero but spends $O(n)$ space; the running sum is sufficient.
 - **Equal side sums:** Both starting directions are distinct valid selections and contribute two.
 - **Right side heavier by one:** Only starting right is valid.
@@ -100,8 +100,8 @@ Each unit of value represents one decrement the moving process must eventually p
 - **Nonnegative constraint:** The mass interpretation relies on values never being negative.
 - **Input preservation:** Using arithmetic conditions avoids the copies and mutations required by simulation.
 - **At least one zero:** The contract guarantees a possible starting position to inspect, though it does not guarantee any valid selection.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,7 +55,7 @@ Dictionary `seen` maps each state to the remaining `n` when it was encountered. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input list becomes `state = tuple(cells)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The current state is then recorded with its possibly reduced remaining-day count
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every day:** Correct for small `n` bu:** - **Simulate every day:** Correct for small `n` but infeasible near one billion.
+- **Simulate every day:** Correct for small `n` but infeasible near one billion.
 - **Hard-code a fourteen-day cycle:** This problem has a familiar short cycle, but general detection is clearer and self-verifying.
 - **Bitmask state:** Eight bits can encode the cells compactly while preserving the same cycle logic.
 - **In-place left-to-right update:** Incorrect because new values would influence other cells during the same day.
@@ -108,8 +108,8 @@ The current state is then recorded with its possibly reduced remaining-day count
 - **Different neighbors:** The new value is zero.
 - **Cycle remainder zero:** Break without applying an extra day.
 - **Input preservation:** Tuple conversion leaves the caller's list unchanged and the function returns a new list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

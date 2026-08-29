@@ -51,7 +51,7 @@ The source converts `s` to `cs = list(s)` because Python strings are immutable. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source converts `s` to `cs = list(s)` because Python str... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source converts `s` to `cs = list(s)` because Python strings are immutable. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute the target directly:** First test the :** - **Compute the target directly:** First test the cyclic distance to `a`. If affordable, choose `a`; otherwise direct backward movement by the remaining budget gives the smallest reachable lower letter. This can avoid the 26-character scan.
+- **Compute the target directly:** First test the cyclic distance to `a`. If affordable, choose `a`; otherwise direct backward movement by the remaining budget gives the smallest reachable lower letter. This can avoid the 26-character scan.
 - **Dynamic programming over position and budget:** It is correct but unnecessary because lexicographic prefix priority makes the greedy choice decisive.
 - **`k = 0`:** No strictly smaller character has distance zero, so the original string is returned.
 - **Character `a`:** The inner loop stops immediately at equality, correctly leaving it unchanged.
@@ -101,8 +101,8 @@ The source converts `s` to `cs = list(s)` because Python strings are immutable. 
 - **Input immutability:** The original string remains unchanged while `cs` stores the result.
 - **Fixed alphabet:** The linear time claim treats 26 as a constant; a generalized alphabet of size $A$ would give $O(nA)$.
 - **Prefix proof:** A smaller current character outweighs every possible suffix, which is why saving budget for later cannot beat the greedy choice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

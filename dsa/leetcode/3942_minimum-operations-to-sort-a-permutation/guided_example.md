@@ -77,11 +77,7 @@ If neither direction passes, sorted order is neither a rotation of `nums` nor a 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The sorted target is
-
-`[0, 1, 2, ..., n - 1]`.
-
-Because `num... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +132,7 @@ The source compares both. Even though the direct route is often cheaper, the sec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Required annotation import:** `List` must be d:** - **Required annotation import:** `List` must be defined, commonly by importing it from `typing` or by using the built-in `list` annotation. Otherwise the module cannot finish defining `Solution`.
+- **Required annotation import:** `List` must be defined, commonly by importing it from `typing` or by using the built-in `list` annotation. Otherwise the module cannot finish defining `Solution`.
 - **Required infinity definition:** `inf` must also be supplied before the method can track a best candidate. The approach does not edit either defect.
 - **Breadth-first search over arrays:** BFS proves shortest paths for tiny inputs but can explore permutations and is infeasible for $N=10^5$. The two operations actually generate at most two cyclic orientations, which the source recognizes directly.
 - **Check only rotations of the original:** A reversal can make a backward cyclic ordering sortable, so both `step = 1` and `step = -1` are necessary.
@@ -150,8 +146,8 @@ The source compares both. Even though the direct route is often cheaper, the sec
 - **Length two:** Forward and backward cyclic orientations coincide, so considering both merely adds equivalent candidates and the minimum remains correct.
 - **Zero near the final index:** A reversal-assisted simulated right rotation can be much cheaper than many direct left rotations.
 - **Input preservation:** Modular index calculations inspect the permutation without rearranging it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ This distinction is the heart of the problem. The number of boundary pairs is al
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Different boundary pairs can spell the same text.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Finally, set equality is based on the characters and their order, not on the ori
 
 ## 6. Traps This Instance Exposes
 
-- **- **Suffix automaton:** Build automaton states for:** - **Suffix automaton:** Build automaton states for all substring end-position classes. The sum of `len[state] - len[link[state]]` over noninitial states counts distinct substrings in $O(n)$ time and $O(n)$ space, matching the follow-up and manifest, but it is substantially harder to derive and implement.
+- **Suffix automaton:** Build automaton states for all substring end-position classes. The sum of `len[state] - len[link[state]]` over noninitial states counts distinct substrings in $O(n)$ time and $O(n)$ space, matching the follow-up and manifest, but it is substantially harder to derive and implement.
 - **Suffix array with longest common prefixes:** The total possible substrings minus the sum of adjacent suffix LCP values gives the distinct count. Typical implementations take $O(n\log n)$ time and $O(n)$ space.
 - **Trie of all suffixes:** Insert every suffix and count newly created nodes. It makes shared prefixes explicit but takes $O(n^2)$ time and space in the worst case.
 - **Rolling hashes:** Store hashes rather than full substring strings, potentially reducing copied content, but collision handling is necessary for exact correctness and there are still $\Theta(n^2)$ candidates.
@@ -116,8 +116,8 @@ Finally, set equality is based on the characters and their order, not on the ori
 - **Equal text at different positions:** Set semantics merge it regardless of where each occurrence begins.
 - **Lowercase alphabet:** The algorithm does not rely on the alphabet size; it would behave identically for any hashable Python string characters.
 - **Off-by-one at the end:** The inner upper bound must be `n + 1` because Python's `range` omits its stop and slicing omits the end index.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

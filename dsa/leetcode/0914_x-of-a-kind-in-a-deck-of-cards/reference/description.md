@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `deck` where $\text{deck}[i]$ represents the number written on the $$i^{\text{th}}$$ card.
+You are given an integer array `deck` where $\text{deck}[i]$ represents the number written on the $i^{\text{th}}$ card.
 
 Partition the cards into **one or more groups** such that:
 

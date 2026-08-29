@@ -66,7 +66,7 @@ The loop skips `x=0` because zero cannot be part of a valid pair and should upda
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The only relevant nonzero values are one and two.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ No older index can improve the candidate for this fixed `i`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every one-two index pair:** If both :** - **Enumerate every one-two index pair:** If both values occur many times, this takes `O(N^2)`. The latest-opposite observation reduces it to one pass.
+- **Enumerate every one-two index pair:** If both values occur many times, this takes `O(N^2)`. The latest-opposite observation reduces it to one pass.
 - **Store all positions of one and two:** Two sorted position lists can be merged with two pointers in `O(N)` time but require `O(N)` space.
 - **Two explicit variables:** `last_one` and `last_two` are equivalent and may be clearer than the `3-x` trick in a generalized language.
 - **Check only one ordering:** A one may appear before a two or after it. Processing whichever endpoint is later handles both.
@@ -126,8 +126,8 @@ No older index can improve the candidate for this fixed `i`.
 - **Sentinel comparison:** Testing `ans>n` is safe because real distances are at most `n-1`.
 - **Negative infinity arithmetic:** Python produces positive infinity for `i-(-inf)`. A language without infinities can use minus one latest indices plus an explicit presence check.
 - **Return distance, not indices:** The algorithm discards endpoint identities after updating the minimum because only the numeric distance is requested.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

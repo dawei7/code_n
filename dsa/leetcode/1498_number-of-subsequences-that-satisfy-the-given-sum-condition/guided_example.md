@@ -61,7 +61,7 @@ The value $2^m$ appears because each of $m$ optional indices has two independent
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `f` has length `n + 1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The lower bound `i + 1` may look surprising because a valid subsequence can cont
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers after sorting:** Move the right b:** - **Two pointers after sorting:** Move the right boundary left when the endpoint sum is too large and the left boundary right after counting. This makes the post-sort scan linear, though overall time remains $O(N \log N)$ because of sorting.
+- **Two pointers after sorting:** Move the right boundary left when the endpoint sum is too large and the left boundary right after counting. This makes the post-sort scan linear, though overall time remains $O(N \log N)$ because of sorting.
 - **Binary search with modular pow:** Compute `pow(2, j - i, mod)` per minimum instead of storing powers. It saves the power array but adds logarithmic exponentiation work to each iteration.
 - **Enumerating subsequences:** It requires exponential time and is infeasible for $N$ up to one hundred thousand.
 - **Singleton:** It is valid only when twice its value is at most target; `f[0]` counts it as one.
@@ -110,8 +110,8 @@ The lower bound `i + 1` may look surprising because a valid subsequence can cont
 - **Modulo requirement:** Every power and running sum is reduced modulo $10^9+7$, preventing enormous stored counts.
 - **Input mutation:** `nums.sort()` changes the caller's list order.
 - **Nonempty requirement:** Every counted choice includes the fixed index `i`, so the empty subsequence is never counted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

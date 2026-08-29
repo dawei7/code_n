@@ -57,7 +57,7 @@ This is not an optimization that weakens the rules. It exactly reflects the defi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper loops through people `i` and their statement row.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Statements with value two are skipped. The diagonal is always two, but the same 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking with propagation:** Assign people:** - **Backtracking with propagation:** Assign people one by one and propagate statements from those declared good. Contradiction pruning can reduce practical work but requires more mutable state.
+- **Backtracking with propagation:** Assign people one by one and propagate statements from those declared good. Contradiction pruning can reduce practical work but requires more mutable state.
 - **Precompute row masks:** Encode each person’s good and bad claims into bitsets, then validate a candidate with bitwise operations. This can improve constants while keeping exponential subset enumeration.
 - **Assume bad people always lie:** This is wrong; bad people may tell the truth or lie, so their rows must be ignored rather than inverted.
 - **All-good mask:** It is valid only if every explicit statement made by every person labels everyone consistently with good status.
@@ -115,8 +115,8 @@ Statements with value two are skipped. The diagonal is always two, but the same 
 - **Early return value zero:** Zero serves both invalid-mask signaling and the size of the omitted all-bad assignment; only the maximum count is needed, so this ambiguity is harmless.
 - **Generator memory:** `max(check(i) for i in ...)` streams results rather than allocating an exponential list.
 - **Input preservation:** Validation reads the statement matrix and never changes it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

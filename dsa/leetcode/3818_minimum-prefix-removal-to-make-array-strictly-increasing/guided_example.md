@@ -69,11 +69,7 @@ If `nums[i - 1] >= nums[i]`, extension is impossible. Equality is included in th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source loops with
-
-`range(len(nums) - 1, 0, -1)`.
-
-At a ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +116,7 @@ This argument also explains why an earlier failure farther left does not matter.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward scan for the last failure:** Scan left:** - **Forward scan for the last failure:** Scan left to right and remember `j + 1` whenever `nums[j] >= nums[j + 1]`. The last recorded boundary is the required suffix start and gives the same $O(N)$ time and $O(1)$ space.
+- **Forward scan for the last failure:** Scan left to right and remember `j + 1` whenever `nums[j] >= nums[j + 1]`. The last recorded boundary is the required suffix start and gives the same $O(N)$ time and $O(1)$ space.
 - **Construct every suffix:** Testing `nums[k:]` for increasing order from each possible `k` can take $O(N^2)$ time and creates unnecessary slices.
 - **Precompute a suffix-validity array:** Mark whether each suffix is increasing, then find the first true entry. This works in $O(N)$ time but spends $O(N)$ space when the right-to-left scan needs only one implicit Boolean fact.
 - **Already strictly increasing:** No boundary fails, so removing the empty prefix and returning 0 is required.
@@ -130,8 +126,8 @@ This argument also explains why an earlier failure farther left does not matter.
 - **Negative values:** Their sign is irrelevant; ordinary integer comparison determines whether each adjacent step increases.
 - **Multiple descents:** Only the rightmost failing boundary determines the longest increasing suffix. Every earlier failure lies inside the removed prefix once that boundary is excluded.
 - **Do not remove the whole array:** A length-one suffix is always valid, so the optimal prefix length never reaches $N$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

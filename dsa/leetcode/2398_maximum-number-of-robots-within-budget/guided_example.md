@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have `n` robots. You are given two **0-indexed** integer arrays, `chargeTimes` and `runningCosts`, both of length `n`. The $$i^{\text{th}}$$ robot costs $\text{chargeTimes}[i]$ units to charge and costs $\text{runningCosts}[i]$ units to run. You are also given an integer `budget`.
+You have `n` robots. You are given two **0-indexed** integer arrays, `chargeTimes` and `runningCosts`, both of length `n`. The $i^{\text{th}}$ robot costs $\text{chargeTimes}[i]$ units to charge and costs $\text{runningCosts}[i]$ units to run. You are also given an integer `budget`.
 
 The objective is to compute `3` from `{"chargeTimes": [3, 6, 1, 3, 4], "runningCosts": [2, 1, 3, 4, 5], "budget": 25}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ All running costs are positive. Therefore, removing a left endpoint never increa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s` is the sum of `runningCosts[l..r]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ When `l` leaves the window, the code removes the deque front only if that stored
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search window length:** For each candid:** - **Binary search window length:** For each candidate length, use sliding sums and maxima to test feasibility. It can work in $O(n\log n)$ but is slower than the direct variable window.
+- **Binary search window length:** For each candidate length, use sliding sums and maxima to test feasibility. It can work in $O(n\log n)$ but is slower than the direct variable window.
 - **Heap for maximum charge:** Lazy deletion can maintain maxima in $O(\log n)$ operations, while the monotonic deque gives amortized $O(1)$.
 - **No single robot fits:** Every window shrinks to empty and the answer remains zero.
 - **Exactly budget:** The while condition uses `>`, so equal cost is correctly accepted.
@@ -116,8 +116,8 @@ When `l` leaves the window, the code removes the deque front only if that stored
 - **All windows fit:** `l` stays zero and the answer grows to `n`.
 - **Positive costs:** They supply the monotonicity that makes shrinking safe.
 - **Empty current window:** The `q and ...` guard avoids reading a missing maximum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

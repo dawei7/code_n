@@ -2,7 +2,7 @@
 
 There is an undirected tree with `n` nodes labeled from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree. The root of the tree is the node labeled `0`.
 
-Each node has an associated **value**. You are given an array `values` of length `n`, where $\text{values}[i]$ is the **value** of the $$i^{\text{th}}$$ node.
+Each node has an associated **value**. You are given an array `values` of length `n`, where $\text{values}[i]$ is the **value** of the $i^{\text{th}}$ node.
 
 Select any two **non-overlapping** subtrees. Your **score** is the bitwise XOR of the sum of the values within those subtrees.
 

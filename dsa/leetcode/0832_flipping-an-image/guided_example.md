@@ -72,7 +72,7 @@ XOR with 1 toggles a binary value: `0 ^ 1 = 1` and `1 ^ 1 = 0`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `a == b`, reversing the pair has no visible effect becaus... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +114,9 @@ This may look surprising because the task says to reverse every row, but the two
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reverse then invert explicitly:** Reverse ever:** - **Reverse then invert explicitly:** Reverse every row and then scan again to toggle all bits. It is clear and still `O(n^2)`, but it performs two logical passes where the pair rule combines them.
-- **- **Construct a new matrix with a comprehension:**:** - **Construct a new matrix with a comprehension:** Reading `1 - row[n-1-j]` directly is concise and nonmutating, but allocates `O(n^2)` new storage.
-- **- **Unequal mirrored pair:** It must be left uncha:** - **Unequal mirrored pair:** It must be left unchanged in the combined operation; swapping alone would be incorrect.
+- **Reverse then invert explicitly:** Reverse every row and then scan again to toggle all bits. It is clear and still `O(n^2)`, but it performs two logical passes where the pair rule combines them.
+- **Construct a new matrix with a comprehension:** Reading `1 - row[n-1-j]` directly is concise and nonmutating, but allocates `O(n^2)` new storage.
+- **Unequal mirrored pair:** It must be left unchanged in the combined operation; swapping alone would be incorrect.
 
 ---
 

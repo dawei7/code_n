@@ -57,7 +57,7 @@ This prevents a purchase join from duplicating a visit. Within one member group,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `visit_id` is unique in `Visits`, and it is also unique in `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Using `COUNT(*)` would be wrong for Bronze detection because the left join still
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate visits first:** Compute visit and pu:** - **Aggregate visits first:** Compute visit and purchase counts per member in a subquery, then left join that compact result to `Members`.
+- **Aggregate visits first:** Compute visit and purchase counts per member in a subquery, then left join that compact result to `Members`.
 - **Conditional aggregation:** Count purchases with `SUM(p.visit_id IS NOT NULL)` instead of `COUNT(charged_amount)`.
 - **Cross-multiplied thresholds:** Compare `100 * purchases >= 80 * visits` and similarly for Gold to avoid division.
 - **No visits:** Bronze, detected with `COUNT(v.visit_id)=0`.
@@ -107,8 +107,8 @@ Using `COUNT(*)` would be wrong for Bronze detection because the left join still
 - **`COUNT(*)`:** Incorrect for no-visit detection because left joins create a placeholder row.
 - **Any output order:** No sort is needed.
 - **Functional dependency:** Unique `member_id` determines `name` within each group.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

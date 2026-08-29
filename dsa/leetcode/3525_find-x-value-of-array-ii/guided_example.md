@@ -75,9 +75,7 @@ There is no non-empty prefix of an empty segment, but its multiplicative identit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a non-empty segment `A`, store:
-
-- `product(A)`: the pro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +127,7 @@ Although multiplication of integers is commutative, the summary operation is ord
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute from start after every query:** A ro:** - **Recompute from start after every query:** A rolling product would answer one query in `O(n-start)`, but up to `2*10^4` queries make this too slow.
+- **Recompute from start after every query:** A rolling product would answer one query in `O(n-start)`, but up to `2*10^4` queries make this too slow.
 - **Fenwick tree of products:** Point updates and range products are possible only with invertibility assumptions, and one range product does not reveal the distribution of every prefix product. The richer segment summary is necessary.
 - **Store all prefix products at each node:** That would use total linear length per tree level, or `O(n log n)` space. Grouping by only `k` remainders reduces every node to `O(k)`.
 - **Merge right accumulator in append order:** This reverses the logical order of right-side chunks. Noncommutative prefix summaries require prepending selected right nodes.
@@ -144,8 +142,8 @@ Although multiplication of integers is commutative, the summary operation is ord
 - **Padding leaves:** Their identity product and zero counts make them neutral. They never introduce an empty prefix as a counted choice.
 - **Non-empty requirement:** Count arrays contain only non-empty prefixes; the identity summary contributes zero choices.
 - **Large values:** Every leaf reduces its value modulo `k` immediately, so full products never grow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

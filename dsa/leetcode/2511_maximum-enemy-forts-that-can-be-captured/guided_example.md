@@ -65,7 +65,7 @@ The algorithm scans precisely these consecutive boundary pairs.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ignore zeroes temporarily and look at the nonzero markers in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The number of zeroes strictly between them is `j-i-1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track last nonzero index:** In one simple `for:** - **Track last nonzero index:** In one simple `for` loop, compare each new nonzero marker with the previous one and measure their gap.
+- **Track last nonzero index:** In one simple `for` loop, compare each new nonzero marker with the previous one and measure their gap.
 - **Brute-force endpoint pairs:** It repeats zero-run checks and can cost $O(n^2)$.
 - **No owned fort:** No move can begin, so return zero.
 - **No empty position:** No legal destination exists.
@@ -117,8 +117,8 @@ The number of zeroes strictly between them is `j-i-1`.
 - **Movement direction:** Both leftward and rightward moves are accepted by the same sum-zero test.
 - **Consecutive nonzero requirement:** Any intervening marker would violate the all-zero interior rule.
 - **Nested-loop appearance:** Forward jumps ensure linear total work.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

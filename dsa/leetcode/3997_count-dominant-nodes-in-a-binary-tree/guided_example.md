@@ -53,9 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the node itself;
-- every node in its left subtree;
-- every... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Consequently, the information needed at `x` is just the maximum from each child 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute every subtree separately:** Scanning:** - **Recompute every subtree separately:** Scanning a node's entire subtree to find its maximum and repeating that work at every node is correct but redundant. On a complete tree it can take `O(n \log n)` time, whereas postorder reuses each child maximum and takes `O(n)`.
+- **Recompute every subtree separately:** Scanning a node's entire subtree to find its maximum and repeating that work at every node is correct but redundant. On a complete tree it can take `O(n \log n)` time, whereas postorder reuses each child maximum and takes `O(n)`.
 - **Return both maximum and count:** Instead of a `nonlocal` counter, `dfs` could return a pair containing the subtree maximum and number of dominant nodes. That is equally asymptotic and can make the data flow more explicit, but it is not the structure used by the exact source.
 - **Iterative postorder traversal:** An explicit stack can avoid recursion. It needs a visited marker or another way to recognize when both children have been processed, so it is more verbose while retaining `O(n)` time.
 - **Breadth-first traversal:** Level order visits nodes before their descendants' maxima are known. It would need stored per-node information and a later reverse pass, while postorder produces the needed summaries directly.
@@ -103,8 +101,8 @@ Consequently, the information needed at `x` is just the maximum from each child 
 - **Not a binary search tree:** Completeness describes shape, not value order. Neither the left nor right subtree can be skipped based on the current value.
 - **Undefined `inf` dependency:** The solution explanation and complexity describe the intended Optimal algorithm. They do not erase the exact source defect; a valid execution environment must provide `inf` or the source must be corrected separately.
 - **Platform-provided `TreeNode`:** The annotation and child fields rely on the standard harness type. Users are not expected to recreate that helper inside the solution method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

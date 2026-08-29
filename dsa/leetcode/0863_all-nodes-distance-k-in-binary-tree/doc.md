@@ -24,7 +24,7 @@ Return the values of all qualifying nodes in any order. Every node value is uniq
 - `target`: the target node. Authored app cases identify it by its unique value; the native LeetCode entrypoint receives the corresponding `TreeNode` object.
 - `k`: the required edge distance, where $0 \leq k \leq 1000$.
 
-Every node value is unique and lies in $[0,500]$.
+Every node value is unique and lies in `[0,500]`.
 
 **Return value**
 

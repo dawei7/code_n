@@ -69,7 +69,7 @@ Even if every query has a large step, the total direct work is `O(q sqrt(n))`. B
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `k > B`, one query visits at most roughly `n / k + 1` po... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ This coordinate conversion turns a strided range in the original array into a no
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every query:** It is simple but can r:** - **Simulate every query:** It is simple but can require `O(nq)` updates when many steps are one.
+- **Simulate every query:** It is simple but can require `O(nq)` updates when many steps are one.
 - **Editorial difference array of length `n + B` per step:** Write multiplicative starts and inverse ends directly by array index, then propagate by `k`. It avoids sorting events but may reset or scan a large buffer for each active small step.
 - **Segment tree over ordinary intervals:** A strided progression is not one contiguous index interval, so a standard lazy range-multiplication tree does not directly model arbitrary `k`.
 - **Choose a different square-root threshold:** Any threshold balances direct large-step work against the number of batched small steps. `Theta(sqrt(n))` minimizes the combined worst-case scale.
@@ -141,8 +141,8 @@ This coordinate conversion turns a strided range in the original array into a no
 - **Input mutation:** Both direct updates and batched sweeps modify `nums`.
 - **Named-variable contract:** The exact source omits required `bravexuneth`. This should be corrected in the solution source separately if source changes are authorized.
 - **Missing imports:** The stored source uses `List` and `math.isqrt` without importing `List` or `math`. Standalone Python needs those imports unless supplied by the harness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

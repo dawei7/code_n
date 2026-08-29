@@ -82,9 +82,7 @@ If $g=p$, the complete set $D$ itself has the required GCD. The only remaining q
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $D$ be the set of current divisible elements, and let
-
-$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +121,7 @@ The difficult case is `cnt == n`: every array element is divisible by $p$, and s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime-evidence maintenance:** One can characte:** - **Prime-evidence maintenance:** One can characterize indispensable normalized values through prime factors, matching the manifest summary, but the checked-in source instead uses direct range GCDs and the bounded witness theorem.
+- **Prime-evidence maintenance:** One can characterize indispensable normalized values through prime factors, matching the manifest summary, but the checked-in source instead uses direct range GCDs and the bounded witness theorem.
 - **Prefix and suffix GCD per query:** Rebuilding arrays after every update would cost $O(NQ)$ and is too slow; the segment tree supports changing GCD data logarithmically.
 - **No divisible values:** The root remains zero rather than $p$, so no nonempty good subsequence exists.
 - **Root GCD larger than \(p\):** Removing elements cannot lower a GCD to $p$; it can only preserve or increase the common divisor.
@@ -137,8 +135,8 @@ The difficult case is `cnt == n`: every array element is divisible by $p$, and s
 - **Repeated query index:** Updating `nums[idx]` ensures the next query removes the most recent value, not the original one.
 - **Input mutation:** The final contents of `nums` reflect all queries; callers needing the original array must pass a copy.
 - **Required library name:** Standalone execution needs `gcd` from Python's `math` module.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

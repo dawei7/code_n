@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `piles`, where $\text{piles}[i]$ represents the number of stones in the $$i^{\text{th}}$$ pile, and an integer `k`. You should apply the following operation **exactly** `k` times:
+You are given a **0-indexed** integer array `piles`, where $\text{piles}[i]$ represents the number of stones in the $i^{\text{th}}$ pile, and an integer `k`. You should apply the following operation **exactly** `k` times:
 
 - Choose any $\text{piles}[i]$ and **remove** $floor(\text{piles}[i] / 2)$ stones from it.
 

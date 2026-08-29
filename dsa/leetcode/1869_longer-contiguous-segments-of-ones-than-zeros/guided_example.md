@@ -51,7 +51,7 @@ Inside the helper, `cnt` is the length of the current run ending at the most rec
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside the helper, `cnt` is the length of the current run en... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Inside the helper, `cnt` is the length of the current run ending at the most rec
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass dual tracking:** Maintain the current:** - **One-pass dual tracking:** Maintain the current character, current run length, and maxima for zero and one in one traversal.
+- **One-pass dual tracking:** Maintain the current character, current run length, and maxima for zero and one in one traversal.
 - **Split on the opposite bit:** Maximum token length after splitting can work, but creates substring lists and uses `O(n)` space.
 - **Regular expressions:** They can find runs but add unnecessary machinery and allocation.
 - **All ones:** Longest one run is `n` and longest zero run is zero.
@@ -102,8 +102,8 @@ Inside the helper, `cnt` is the length of the current run ending at the most rec
 - **Historical maximum after reset:** Resetting `cnt` never resets `mx`, so a strong early segment remains recorded.
 - **Strict comparison direction:** The method asks whether the one-run is longer than the zero-run, so reversing operands would solve the opposite question.
 - **No integer conversion:** Direct character comparison avoids parsing and exactly matches the binary symbols supplied.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

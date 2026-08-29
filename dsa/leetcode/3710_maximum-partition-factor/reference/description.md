@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
+You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $i^{\text{th}}$ point on the Cartesian plane.
 
 The **Manhattan distance** between two points $\text{points}[i] = [x_{i}, y_{i}]$ and $\text{points}[j] = [x_{j}, y_{j}]$ is $|x_{i} - x_{j}| + |y_{i} - y_{j}|$.
 
@@ -44,7 +44,7 @@ The partition factor of this split is $min(4, 4) = 4$, which is maximal.
 
 - **Output:** 11
 
-- **Explanation:** ​​​​​​​**
+- **Explanation:** **
 
 We split the points into two groups: ${[0, 1], [10, 0]}$ and ${[0, 0]}$.
 

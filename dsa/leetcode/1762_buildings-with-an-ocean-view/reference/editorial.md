@@ -26,7 +26,7 @@ for current = 0 to N
         add current index to answer array
 ```
 
-However, this approach requires $$O(N^2)$$ time because, for all $$N$$ buildings, we check every building to its right to see if any are of equal height or taller, which requires $$O(N)$$ time per building.  Intuitively, we will need to visit every building at least once to determine if it has an ocean view, but let's see if we can find a way to do so without repeatedly visiting all of the buildings to the right.
+However, this approach requires $$O(N^2)$$ time because, for all $N$ buildings, we check every building to its right to see if any are of equal height or taller, which requires $$O(N)$$ time per building.  Intuitively, we will need to visit every building at least once to determine if it has an ocean view, but let's see if we can find a way to do so without repeatedly visiting all of the buildings to the right.
 <br />
 
 ---
@@ -84,7 +84,7 @@ class Solution:
 
 **Complexity Analysis**
 
-Here $$N$$ is the size of the given array.
+Here $N$ is the size of the given array.
 
 * Time complexity: $$O(N)$$.
 - We iterate over the given array once.
@@ -92,8 +92,8 @@ Here $$N$$ is the size of the given array.
 - In Java, copying the elements from an array list to an integer array will take an additional $$O(N)$$ time.
 
 * Space complexity: $$O(N)$$.
-- There is no auxiliary space used other than the output. The output does not count towards the space complexity. However, in the worst-case scenario, `answer` may contain as many as $$N - 1$$ indices, and then the very last building is the tallest, so the output will reduce to one index. In this scenario, the algorithm must store $$N - 1$$ elements at some point, but only $$1$$ element is included in the output.
-- In Java, in order to maintain a dynamic size array, we created an extra Array List that supports fast $$O(1)$$ push/pop operation. Array List can contain at most $$N$$ elements. Hence in Java, an additional $$O(N)$$ space is used.
+- There is no auxiliary space used other than the output. The output does not count towards the space complexity. However, in the worst-case scenario, `answer` may contain as many as $$N - 1$$ indices, and then the very last building is the tallest, so the output will reduce to one index. In this scenario, the algorithm must store $$N - 1$$ elements at some point, but only $1$ element is included in the output.
+- In Java, in order to maintain a dynamic size array, we created an extra Array List that supports fast $$O(1)$$ push/pop operation. Array List can contain at most $N$ elements. Hence in Java, an additional $$O(N)$$ space is used.
 
 <br/>
 
@@ -109,11 +109,11 @@ Let's take these two ideas from the first approach and use them as the foundatio
 
 So we can convert this problem into finding the next element to the right that is greater than or equal to the current element. If there is no element to the right that is greater than or equal to the current element, it means the view is not blocked. For clarity, let's consider an example where we traverse from right to left and look right to check if the current building's ocean view is blocked by any building to its right.
 
-> Assume we have $$6$$ buildings with heights, $$[5, 2, 1, 3, 4, 2]$$.
-> Now, we can see the buildings at indices $$5$$ and $$4$$ do not have any next greater or equal height building to their right. Hence their views are not blocked.
-> The building at index $$3$$ has the next greater or equal height building at index $$4$$. Hence its view is blocked by the building at index $$4$$.
-> Similarly, the buildings at indices $$2$$ and $$1$$ have their next greater or equal height building at index $$3$$ to their right. Hence their views are blocked.
-> The building at index $$0$$ does not have any next greater or equal building. Hence its view is not blocked.
+> Assume we have $6$ buildings with heights, $`[5, 2, 1, 3, 4, 2]`$.
+> Now, we can see the buildings at indices $5$ and $4$ do not have any next greater or equal height building to their right. Hence their views are not blocked.
+> The building at index $3$ has the next greater or equal height building at index $4$. Hence its view is blocked by the building at index $4$.
+> Similarly, the buildings at indices $2$ and $1$ have their next greater or equal height building at index $3$ to their right. Hence their views are blocked.
+> The building at index $0$ does not have any next greater or equal building. Hence its view is not blocked.
 
 But how can we efficiently check if any building to the right is taller than the current building? In the previous approach, for each building, we would pop all buildings whose view would be blocked by the current building from the answer array (which was effectively a stack). Here, we can adopt a very similar approach and use a stack to store the buildings to the right in decreasing order. Just like before, for each building, we can pop all buildings from the stack that are strictly shorter than the current building and then add the current building to the stack.
 
@@ -184,7 +184,7 @@ class Solution:
 
 **Complexity Analysis**
 
-Here $$N$$ is the size of the given array.
+Here $N$ is the size of the given array.
 
 * Time complexity: $$O(N)$$.
 - We iterate over the given array once.
@@ -194,7 +194,7 @@ Here $$N$$ is the size of the given array.
 
 * Space complexity: $$O(N)$$.
 - An extra stack is created, which can take at most $$O(N)$$ space.
-- In Java, in order to maintain a dynamic size array (since we don't know the size of the output array at the beginning), we created an extra Array List that supports fast $$O(1)$$ push operation. The Array List may contain at most $$N$$ elements.
+- In Java, in order to maintain a dynamic size array (since we don't know the size of the output array at the beginning), we created an extra Array List that supports fast $$O(1)$$ push operation. The Array List may contain at most $N$ elements.
 
 <br/>
 

@@ -51,7 +51,7 @@ At index `i`, that pattern’s expected bit is `c XOR (i mod 2)`. Even indices k
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At index `i`, that pattern’s expected bit is `c XOR (i mod 2... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ At index `i`, that pattern’s expected bit is `c XOR (i mod 2)`. Even indices k
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct both target strings:** It simplifies:** - **Construct both target strings:** It simplifies visual comparison but allocates `O(n)` extra space.
+- **Construct both target strings:** It simplifies visual comparison but allocates `O(n)` extra space.
 - **Track the two mismatch types separately:** Counting misplaced zeros alone gives the swap count, but total mismatches divided by two is more symmetric.
 - **Count difference above one:** No alternating arrangement exists because one symbol lacks enough separating copies.
 - **Equal counts:** Both zero-starting and one-starting patterns must be tested.
@@ -102,8 +102,8 @@ At index `i`, that pattern’s expected bit is `c XOR (i mod 2)`. Even indices k
 - **Odd-length position counts:** The starting bit owns one extra position because indices zero, two, and so on include both ends. The majority character must therefore be the starting bit.
 - **Pairing construction:** Collect mismatched zero positions and mismatched one positions in corresponding pairs. Swapping each pair independently reaches the target in exactly the mismatch-count-halved total, demonstrating achievability rather than only a lower bound.
 - **Why adjacent order is irrelevant:** Since a permitted swap can connect any two positions, the physical distance between complementary mismatches never changes its cost; every paired correction costs one swap.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,9 +67,7 @@ For `[1, 2, 3, 1, 1, 3]`, the second one adds one, the third one adds two, and t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider three occurrences of value one:
-
-- The first sees z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +109,7 @@ By induction, the returned `ans` counts all good pairs in the complete array.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count all frequencies first:** Sum `f * (f - 1:** - **Count all frequencies first:** Sum `f * (f - 1) // 2` for every value. It has the same $O(N)$ time and $O(U)$ space but uses two conceptual phases.
+- **Count all frequencies first:** Sum `f * (f - 1) // 2` for every value. It has the same $O(N)$ time and $O(U)$ space but uses two conceptual phases.
 - **Check every index pair:** Nested loops are simple but take $O(N^2)$ time.
 - **Fixed frequency array:** Because values lie from one through one hundred, a small list can replace the hash counter.
 - **All values distinct:** Every lookup sees zero earlier matches, so the answer remains zero.
@@ -121,8 +119,8 @@ By induction, the returned `ans` counts all good pairs in the complete array.
 - **Repeated values far apart:** Position distance is irrelevant; every earlier equal value forms a valid pair.
 - **Index order:** Left-to-right processing ensures only pairs with the earlier index first are counted.
 - **Required import:** `Counter` must be available from `collections`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

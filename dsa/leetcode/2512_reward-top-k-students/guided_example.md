@@ -67,7 +67,7 @@ Student IDs are unique, so every report corresponds to a distinct ranking entry.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `zip(student_id,report)` pairs corresponding entries.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ No stemming, punctuation removal, or case conversion is needed because the input
 
 ## 6. Traps This Instance Exposes
 
-- **- **One weight dictionary:** Map positive words to:** - **One weight dictionary:** Map positive words to 3 and negative words to $-1$, then use a default zero lookup.
+- **One weight dictionary:** Map positive words to 3 and negative words to $-1$, then use a default zero lookup.
 - **Size-`k` heap:** It can avoid sorting all students when `k` is much smaller than `n`, but tie ordering must be encoded carefully.
 - **Repeated feedback word:** Score every occurrence, not only the first.
 - **Neutral word:** It contributes zero.
@@ -114,8 +114,8 @@ No stemming, punctuation removal, or case conversion is needed because the input
 - **Unique IDs:** They eliminate a remaining sort tie.
 - **Disjoint vocabularies:** The `if/elif` precedence never faces a contradictory word.
 - **Report splitting:** The single-space guarantee makes tokens exact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

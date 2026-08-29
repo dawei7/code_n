@@ -34,7 +34,7 @@ Return the maximum length among all balanced substrings. Any non-empty one-chara
 
 - **Output:** 4
 
-- **Explanation:** The longest balanced substring is `"zabc"` because the distinct characters `'z'`, `'a'`, `'b'`, and `'c'` each appear exactly 1 time.​​​​​​​
+- **Explanation:** The longest balanced substring is `"zabc"` because the distinct characters `'z'`, `'a'`, `'b'`, and `'c'` each appear exactly 1 time.
 
 #### Example 3
 
@@ -44,7 +44,7 @@ Return the maximum length among all balanced substrings. Any non-empty one-chara
 
 - **Explanation:** 
 
-**​​​​​​​**One of the longest balanced substrings is `"ab"` because both distinct characters `'a'` and `'b'` each appear exactly 1 time. Another longest balanced substring is `"ba"`.
+****One of the longest balanced substrings is `"ab"` because both distinct characters `'a'` and `'b'` each appear exactly 1 time. Another longest balanced substring is `"ba"`.
 
 ### 4. Constraints
 

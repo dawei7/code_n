@@ -53,7 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ Call these categories low, middle, and high. The order of two values inside the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Actually performing adjacent swaps:** Bubble s:** - **Actually performing adjacent swaps:** Bubble sorting the three categories reaches a good array, but explicitly moving elements can take `O(n^2)` time. Counting the swaps through inversions obtains the same minimum in one pass.
+- **Actually performing adjacent swaps:** Bubble sorting the three categories reaches a good array, but explicitly moving elements can take `O(n^2)` time. Counting the swaps through inversions obtains the same minimum in one pass.
 - **Merge-sort inversion counting:** A general inversion counter works in `O(n \log n)` time and `O(n)` extra space. It is unnecessary here because there are only three ordered categories, so two counters capture every possible inversion.
 - **Fenwick tree over category ranks:** A frequency tree could count earlier larger ranks, but a structure for three ranks is needless overhead. `middle` and `high` are the only frequencies each branch needs.
 - **Already-good input:** No low ever appears after a middle or high, and no middle appears after a high. Every addition is zero, so the algorithm returns `0`.
@@ -100,8 +100,8 @@ Call these categories low, middle, and high. The order of two values inside the 
 - **Modulo arithmetic:** The minimum is determined using the full inversion count. Returning `swaps % MOD` satisfies the output contract; the modulo must not be used as a comparison criterion for alternative arrangements.
 - **Large inversion totals:** A reverse category arrangement can have billions of inversions at the maximum input size. Use 64-bit accumulation outside Python.
 - **Input preservation:** The source only reads `nums`. This is useful when callers expect the original ordering to remain available after the method returns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ For the sample, follower three generates evidence for pairs $(1,2)$, $(1,7)$, an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The join output is grouped by `r1.user_id, r2.user_id`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The outer query selects the two IDs from rank-one rows. The ordering is already 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dense rank:** `DENSE_RANK` would also assign o:** - **Dense rank:** `DENSE_RANK` would also assign one to all maximum groups. Differences in later rank gaps do not matter when filtering only rank one.
+- **Dense rank:** `DENSE_RANK` would also assign one to all maximum groups. Differences in later rank gaps do not matter when filtering only rank one.
 - **Maximum subquery:** Compute counts in one CTE, compute their maximum in another, and join or filter for equality. It is more verbose but expresses the same logic.
 - **Row number:** `ROW_NUMBER` is incorrect because it selects only one row among tied maximum pairs.
 - **Missing order predicate:** Without `r1.user_id < r2.user_id`, self-pairs and reversed duplicates appear.
@@ -107,8 +107,8 @@ The outer query selects the two IDs from rank-one rows. The ordering is already 
 - **Any output order:** The outer query deliberately omits ordering.
 - **Positive-group scope:** The self-join cannot materialize pairs with zero common followers; a separate user universe would be required for that different interpretation.
 - **Why `COUNT(1)` is sufficient:** The relation key makes each joined witness a distinct common follower for that canonical user pair, so counting joined rows equals counting common followers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

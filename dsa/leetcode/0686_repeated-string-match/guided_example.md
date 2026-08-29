@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given two strings `a` and `b`, return *the minimum number of times you should repeat string *`a`* so that string* `b` *is a substring of it*. If it is impossible for `b`​​​​​​ to be a substring of `a` after repeating it, return `-1`.
+Given two strings `a` and `b`, return *the minimum number of times you should repeat string *`a`* so that string* `b` *is a substring of it*. If it is impossible for `b` to be a substring of `a` after repeating it, return `-1`.
 
 The objective is to compute `3` from `{"a": "abcd", "b": "cdabcdab"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -79,11 +79,7 @@ The exact code loops three times, so it checks repeat counts `q`, `q+1`, and `q+
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The infinitely repeated string
-
-`aaaa...`
-
-is periodic with ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,9 +126,9 @@ The final increment and append after the third failed test are never examined. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP over a virtual repeated string:** Build th:** - **KMP over a virtual repeated string:** Build the prefix table for `b` and scan characters of repeated `a` by modular indexing. This gives an explicit deterministic `O(m+n)` search guarantee and avoids materializing every candidate, but its prefix-function logic is longer.
-- **- **Rabin–Karp rolling hash:** Rolling hashes can :** - **Rabin–Karp rolling hash:** Rolling hashes can test all periodic alignments efficiently. A direct character verification is needed after a hash match to eliminate collision risk.
-- **- **Only two attempts:** Testing `q` and `q+1` is :** - **Only two attempts:** Testing `q` and `q+1` is sufficient by periodicity. The exact three-iteration loop performs one unnecessary final test without changing correctness.
+- **KMP over a virtual repeated string:** Build the prefix table for `b` and scan characters of repeated `a` by modular indexing. This gives an explicit deterministic `O(m+n)` search guarantee and avoids materializing every candidate, but its prefix-function logic is longer.
+- **Rabin–Karp rolling hash:** Rolling hashes can test all periodic alignments efficiently. A direct character verification is needed after a hash match to eliminate collision risk.
+- **Only two attempts:** Testing `q` and `q+1` is sufficient by periodicity. The exact three-iteration loop performs one unnecessary final test without changing correctness.
 
 ---
 

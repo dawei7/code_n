@@ -59,7 +59,7 @@ The `direction` and `carId` parameters do not affect synchronization. Both direc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside the critical section, the code compares `road` with t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ After `crossCar()` finishes, `lock.release()` lets one waiting arrival proceed. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Release before `crossCar()`:** This is unsafe :** - **Release before `crossCar()`:** This is unsafe because another road may turn green while the current car is still crossing.
+- **Release before `crossCar()`:** This is unsafe because another road may turn green while the current car is still crossing.
 - **Separate lock per road:** That can allow cars from different roads into the intersection simultaneously unless another shared intersection lock coordinates them.
 - **Condition variables:** They can support more elaborate scheduling or batches of same-road cars, but a single mutex is sufficient for correctness.
 - **Context-manager locking:** `with lock:` guarantees release if a callback raises and is safer general Python style while preserving the same algorithm.
@@ -109,8 +109,8 @@ After `crossCar()` finishes, `lock.release()` lets one waiting arrival proceed. 
 - **Unused direction:** Directions one and two share Road A, while three and four share Road B, so `roadId` is sufficient.
 - **Callback exception:** Outside the judge's normal contract, an exception can prevent explicit release; `try/finally` would harden the implementation.
 - **Fairness:** Python's basic lock does not promise strict arrival-order fairness, but with finite judge calls and ordinary scheduling the method provides the required deadlock-free progression.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

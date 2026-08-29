@@ -2,7 +2,7 @@
 
 Given an integer `n`, return `true` *if and only if it is an **Armstrong number***.
 
-The `k`-digit number `n` is an Armstrong number if and only if the $$k^{\text{th}}$$ power of each digit sums to `n`.
+The `k`-digit number `n` is an Armstrong number if and only if the $k^{\text{th}}$ power of each digit sums to `n`.
 
 ### 2. Function Contract
 

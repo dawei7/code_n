@@ -51,7 +51,7 @@ This length ordering reduces the search direction: the code never needs to compa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This length ordering reduces the search direction: the code ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This length ordering reduces the search direction: the code never needs to compa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Digit trie:** Mark terminal nodes while insert:** - **Digit trie:** Mark terminal nodes while inserting and detect a terminal before a number ends or children after it ends. This matches the manifest and runs in $O(S)$ time.
+- **Digit trie:** Mark terminal nodes while inserting and detect a terminal before a number ends or children after it ends. This matches the manifest and runs in $O(S)$ time.
 - **Lexicographically sort strings:** After lexicographic sorting, only adjacent strings need prefix comparison, giving $O(S\log p)$-style sorting work and linear adjacent checks.
 - **Compare every unordered pair without sorting:** It is correct but must test prefix direction based on lengths; sorting simplifies that direction.
 - **Duplicate numbers:** Equal strings are prefixes and correctly make the answer false.
@@ -98,8 +98,8 @@ This length ordering reduces the search direction: the code never needs to compa
 - **Early conflict:** `any` and the outer return stop immediately.
 - **Input mutation:** Length sorting changes the caller-provided list order.
 - **Manifest fidelity:** The protected pairwise source should not be described as trie insertion or linear total-character processing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

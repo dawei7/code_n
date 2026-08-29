@@ -67,9 +67,7 @@ In `nums = [1,1]`, the array length is two, so the candidate domain is `{1,2}`. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`[x for x in range(1, len(nums) + 1) if x no... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ The same reasoning handles several duplicates or several missing values. If the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **In-place sign marking:** For each value `v`, u:** - **In-place sign marking:** For each value `v`, use index `abs(v) - 1` as its presence slot and make that slot negative. A final scan reports positive slots. This satisfies the follow-up in $O(n)$ time and $O(1)$ auxiliary space, but it mutates `nums` and requires `abs` because earlier visits may have changed signs.
+- **In-place sign marking:** For each value `v`, use index `abs(v) - 1` as its presence slot and make that slot negative. A final scan reports positive slots. This satisfies the follow-up in $O(n)$ time and $O(1)$ auxiliary space, but it mutates `nums` and requires `abs` because earlier visits may have changed signs.
 - **Cyclic placement:** Repeatedly swap each value `v` toward index `v - 1`; positions that do not contain their canonical values reveal missing numbers. It also uses $O(1)$ auxiliary space and $O(n)$ total swaps, but its duplicate stopping condition is easier to get wrong.
 - **Boolean presence array:** A length-`n` Boolean list makes indexing explicit and has deterministic $O(n)$ time, but still consumes $O(n)$ auxiliary space.
 - **Sort first:** Sorting allows gaps to be detected, but comparison sorting costs $O(n\log n)$ time and may mutate the input. It provides no advantage over a set for the exact implementation's goals.
@@ -115,8 +113,8 @@ The same reasoning handles several duplicates or several missing values. If the 
 - **Many copies of one value:** Duplicates collapse into one set entry; every other candidate is returned once, in increasing order.
 - **Output order:** The set itself is unordered, but the solution never iterates over it. Iterating over `range(1, n + 1)` guarantees ascending output.
 - **Out-of-range input:** The exact code would ignore an extra out-of-range value when scanning candidates, but the contract guarantees such values never occur; correctness relies on that domain guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

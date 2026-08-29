@@ -66,11 +66,7 @@ Once the timer becomes eligible and the runtime executes its callback, `r` is ca
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`new Promise(r => setTimeout(r, millis))`
-
-c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ For the challenge's values from one through 1000 milliseconds, ordinary timer sc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Normal function returning a Promise:** Removin:** - **Normal function returning a Promise:** Removing `async` preserves behavior because the body already returns a Promise.
+- **Normal function returning a Promise:** Removing `async` preserves behavior because the body already returns a Promise.
 - **Callback-only API:** A timer callback can delay work, but it does not provide the requested awaitable Promise interface.
 - **Busy waiting:** It blocks the event loop and wastes CPU, so it is not an acceptable asynchronous sleep.
 - **Exact timing expectation:** The callback may run later than requested because `setTimeout` specifies an earliest eligible time.
@@ -125,8 +121,8 @@ For the challenge's values from one through 1000 milliseconds, ordinary timer sc
 - **Positive delay:** Constraints exclude negative values and require at least one millisecond.
 - **No cancellation:** Sleep always resolves; the returned API exposes no timer handle.
 - **No thread blocking:** Other JavaScript work can run while the Promise is pending.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

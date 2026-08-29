@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `deck`. There is a deck of cards where every card has a unique integer. The integer on the $$i^{\text{th}}$$ card is $\text{deck}[i]$.
+You are given an integer array `deck`. There is a deck of cards where every card has a unique integer. The integer on the $i^{\text{th}}$ card is $\text{deck}[i]$.
 
 You can order the deck in any order you want. Initially, all the cards start face down (unrevealed) in one deck.
 

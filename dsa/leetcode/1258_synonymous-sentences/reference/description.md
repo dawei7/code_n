@@ -35,7 +35,7 @@ Return every possible synonymous sentence in lexicographically ascending order. 
 
 - $\text{synonyms}[i].length = 2$
 
-- $1 \le s_{i}.length,_ t_{i}.length \le 10$
+- $1 \le s_{i}.\text{length}, t_{i}.\text{length} \le 10$
 
 - $s_{i} \neq t_{i}$
 

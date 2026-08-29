@@ -72,7 +72,7 @@ After the loop, `busy` is sorted, non-overlapping, non-touching, and maximal. No
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the last merged component be `[s,e]` and the next sorted... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,9 +130,9 @@ The `-1` and `+1` are required because endpoints are inclusive. The free endpoin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every occupied integer:** Endpoint v:** - **Enumerate every occupied integer:** Endpoint values can span up to `10^9`, so point-by-point sets are infeasible. Interval arithmetic depends only on the number of intervals.
-- **- **Subtract before merging:** This can produce ov:** - **Subtract before merging:** This can produce overlapping or touching fragments from different inputs and requires another merge anyway. Merging first yields canonical components.
-- **- **Merge overlaps but not touching intervals:** T:** - **Merge overlaps but not touching intervals:** That would return more intervals than necessary under the problem's integer-touch definition. The `end+1` comparison is essential.
+- **Enumerate every occupied integer:** Endpoint values can span up to `10^9`, so point-by-point sets are infeasible. Interval arithmetic depends only on the number of intervals.
+- **Subtract before merging:** This can produce overlapping or touching fragments from different inputs and requires another merge anyway. Merging first yields canonical components.
+- **Merge overlaps but not touching intervals:** That would return more intervals than necessary under the problem's integer-touch definition. The `end+1` comparison is essential.
 
 ---
 

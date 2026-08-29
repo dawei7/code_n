@@ -59,7 +59,7 @@ Together, the character-to-substring map and used-substring set enforce a biject
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Dictionary `d` maps an assigned pattern character to its cho... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Testing the joint-success case first matters: when both indices reach their ends
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct jump for mapped characters:** Retrieve :** - **Direct jump for mapped characters:** Retrieve the one mapped word, check `s.startswith(word, j)`, and recurse once. This avoids constructing every longer candidate when the character is already assigned and is the main local optimization missing from the exact source.
+- **Direct jump for mapped characters:** Retrieve the one mapped word, check `s.startswith(word, j)`, and recurse once. This avoids constructing every longer candidate when the character is already assigned and is the main local optimization missing from the exact source.
 - **Stronger remaining-length pruning:** Sum the known mapped lengths for remaining pattern occurrences and one for each unknown occurrence. This can cap candidate endpoints much earlier than the source's simple `n - j < m - i` check.
 - **Map without a used set:** Incorrect because two pattern characters could receive the same substring, violating bijectivity.
 - **Used set without a map:** It cannot force repeated occurrences of one pattern character to reuse the same substring.
@@ -113,8 +113,8 @@ Testing the joint-success case first matters: when both indices reach their ends
 - **Failed assignment restoration:** Both `d` and `vis` must be restored. Removing only one would leave the two bijection structures inconsistent.
 - **Early success:** Because the return value is Boolean rather than all mappings, the source stops at the first valid assignment.
 - **Lowercase alphabet:** At most 26 distinct character keys can occur, though repeated positions still determine recursion depth.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

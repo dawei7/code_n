@@ -76,7 +76,7 @@ second range.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the beginning of each outer-loop iteration, `i` is the fi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ formats as `"7"`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track endpoint values instead of indices:** Sa:** - **Track endpoint values instead of indices:** Save `start = nums[i]`, advance one pointer to the run end, and format `start` with the final value. It is equivalent; the exact helper uses indices to access both endpoints uniformly.
+- **Track endpoint values instead of indices:** Save `start = nums[i]`, advance one pointer to the run end, and format `start` with the final value. It is equivalent; the exact helper uses indices to access both endpoints uniformly.
 - **Build ranges incrementally in the answer:** Start a new mutable range at each gap and update its endpoint for consecutive values. This can work but mixes detection with string formatting and may require revising earlier output.
 - **Set-based expansion:** Put all values in a set and grow from values lacking predecessors. It loses the useful sorted-input order and uses $O(n)$ extra space for a task solvable by one scan.
 - **Empty input:** The outer condition `i < n` is false immediately, so the method returns an empty list.
@@ -136,8 +136,8 @@ formats as `"7"`.
 - **Minimum and maximum 32-bit values:** Python arithmetic and formatting handle both endpoints without overflow.
 - **Uniqueness guarantee:** If duplicates were allowed, equality would fail the `+1` test and the same value could appear in separate output ranges, violating exact-cover intent. The algorithm correctly relies on the stated unique-input contract.
 - **Input preservation:** Only indices and output strings change; `nums` remains sorted and untouched.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

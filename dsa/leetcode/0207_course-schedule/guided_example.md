@@ -68,7 +68,7 @@ and indegree increments, but the graph would then contain redundant constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `g` is an adjacency list with one list per course.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ An empty prerequisite list places every course into `q` immediately.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque-based Kahn algorithm:** Use `popleft()` :** - **Deque-based Kahn algorithm:** Use `popleft()` for explicit queue semantics; equally linear and less reliant on list-iterator growth knowledge.
+- **Deque-based Kahn algorithm:** Use `popleft()` for explicit queue semantics; equally linear and less reliant on list-iterator growth knowledge.
 - **Indexed list queue:** Maintain an integer cursor into `q`; makes appended-element processing explicit without front removal.
 - **DFS coloring:** Mark nodes unvisited, active, or complete; encountering an active node proves a cycle but recursion can reach depth $V$.
 - **No prerequisites:** Every course starts at indegree zero and the answer is true.
@@ -120,8 +120,8 @@ An empty prerequisite list places every course into `q` immediately.
 - **Several initial courses:** Any processing order among them is valid.
 - **Unique pair guarantee:** Avoids redundant edges but is not required for the count-based mechanics if duplicates are represented consistently.
 - **Missing typing import:** Supply `List` in standalone Python execution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

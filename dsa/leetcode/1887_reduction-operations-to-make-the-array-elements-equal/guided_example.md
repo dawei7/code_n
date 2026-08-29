@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Sort values into a staircase.** After `nums.sort()`, equal... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Variable `cnt` records how many distinct-value boundaries have been crossed so f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Descending frequency accumulation:** Sort desc:** - **Descending frequency accumulation:** Sort descending or count frequencies, maintain how many elements are currently above the next distinct level, and add that count at each boundary. This derives the same total from group sizes rather than per-occurrence levels.
+- **Descending frequency accumulation:** Sort descending or count frequencies, maintain how many elements are currently above the next distinct level, and add that count at each boundary. This derives the same total from group sizes rather than per-occurrence levels.
 - **Counting array:** Values are bounded by $5\cdot10^4$, so a frequency array can scan the value domain in $O(n+V)$ time and $O(V)$ space. It can outperform comparison sorting when the bounded range is exploited.
 - **Simulate every operation:** Repeatedly finding and lowering one maximum directly performs the requested process but can be quadratic or worse without careful structures. Counting inevitable level crossings avoids mutation per operation.
 - **All elements equal:** Sorting leaves no unequal adjacent pair, `cnt` remains zero, and the answer is zero.
@@ -95,8 +95,8 @@ Variable `cnt` records how many distinct-value boundaries have been crossed so f
 - **Large gaps between values:** Reducing from `100` to `2` is one operation if `2` is the next smaller distinct value. Numeric distance is irrelevant; only the number of represented levels matters.
 - **Smallest-index tie rule:** It determines the sequence of indices in a simulation but not the total count. No index tracking is required.
 - **Input preservation:** The exact method sorts `nums` in place. Replace it with `sorted(nums)` if external code must observe the original ordering afterward.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

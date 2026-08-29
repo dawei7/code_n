@@ -54,9 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-(\texttt{nums}[0],\texttt{nums}[1]),\ldots,
-(\texttt{nums... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,7 +91,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit wrap-around initialization:** Start w:** - **Explicit wrap-around initialization:** Start with `abs(nums[-1] - nums[0])` and scan indices $0$ through $n-2$. This preserves $O(n)$ time while using $O(1)$ auxiliary space.
+- **Explicit wrap-around initialization:** Start with `abs(nums[-1] - nums[0])` and scan indices $0$ through $n-2$. This preserves $O(n)$ time while using $O(1)$ auxiliary space.
 - **Modulo indexing:** Evaluate `abs(nums[i] - nums[(i + 1) % n])` for every $i$. It is concise and avoids copying, though it performs a modulo operation per pair.
 - **Compare every pair:** Considering all $\binom n2$ pairs is wrong as well as slower; only circular neighbors are eligible.
 - **Two elements:** The internal and wrap-around pairs contain the same two values in opposite order, so both differences are equal and `max` returns the correct value.
@@ -103,8 +101,8 @@ $$
 - **Input preservation:** `nums + [...]` allocates a new list and leaves `nums` unchanged, despite the extra memory.
 - **Non-empty guarantee:** Accessing `nums[0]` is safe because the constraints require at least two elements.
 - **Iterator import:** The source relies on `pairwise` being available from the execution environment's imports; its algorithmic behavior is consecutive overlapping pairing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

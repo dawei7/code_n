@@ -64,7 +64,7 @@ This CTE does not collapse rows. It preserves the original row values and merely
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first common table expression, `user_with_last_event`, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Likewise, the duration endpoints come from the full history. `start_date` and `l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated latest-event subquery:** A subquery:** - **Correlated latest-event subquery:** A subquery can search for the maximum date and event identifier for every user, but it may repeat work and becomes cumbersome when several current columns must come from the same row. `ROW_NUMBER` selects that row once and keeps its columns aligned.
+- **Correlated latest-event subquery:** A subquery can search for the maximum date and event identifier for every user, but it may repeat work and becomes cumbersome when several current columns must come from the same row. `ROW_NUMBER` selects that row once and keeps its columns aligned.
 - **Aggregate current columns with `MAX`:** Taking `MAX(plan_name)` or `MAX(monthly_amount)` does not mean “value from the latest event.” Different aggregates could even come from different historical rows, so this shortcut breaks the current-state semantics.
 - **Join on maximum date alone:** If a user has two events on the latest date, this can return duplicate rows or choose no unique current state. The descending `event_id` tie-breaker provides the required single row.
 - **Use `LAG` to detect a downgrade:** A downgrade is already represented by `event_type = 'downgrade'`. Counting those rows directly is simpler and matches the stated condition; inferring price movement could disagree with the event label.
@@ -124,8 +124,8 @@ Likewise, the duration endpoints come from the full history. `start_date` and `l
 - **Events exactly 60 days apart:** `DATEDIFF` returns 60, and `>= 60` includes the user if all other conditions pass.
 - **Ties in `days_as_subscriber`:** The ascending user-id key determines the requested order and prevents database-dependent tie ordering.
 - **Null values:** The query follows ordinary SQL three-valued logic: comparisons involving `NULL` do not evaluate to true. The stated schema and problem contract are expected to provide the required non-null event fields; adding `COALESCE` would invent semantics not present in the exact Optimal source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

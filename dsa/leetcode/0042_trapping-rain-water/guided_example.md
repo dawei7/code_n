@@ -67,7 +67,7 @@ For example, heights `[4, 2, 0, 3, 2, 5]` produce left maxima `[4, 4, 4, 4, 4, 5
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `left` has length `n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ For the same example, right maxima are `[5, 5, 5, 5, 5, 5]` because the final he
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers with running maxima:** Move inwar:** - **Two pointers with running maxima:** Move inward from both ends and process the side with the smaller boundary. It computes the same per-column depths in $O(n)$ time and genuinely $O(1)$ auxiliary space, but its correctness invariant is subtler than explicit boundary arrays.
+- **Two pointers with running maxima:** Move inward from both ends and process the side with the smaller boundary. It computes the same per-column depths in $O(n)$ time and genuinely $O(1)$ auxiliary space, but its correctness invariant is subtler than explicit boundary arrays.
 - **Monotonic decreasing stack:** When a taller bar arrives, pop basin bottoms and calculate horizontally bounded layers. It runs in $O(n)$ time and uses $O(n)$ stack space, with more involved width and bounded-height calculations.
 - **Split at a global maximum:** Scan toward the tallest bar from each side, maintaining the best wall seen. The global maximum guarantees closure for both directional scans and uses constant extra space.
 - **Brute-force boundaries:** For each index, rescan left and right for maxima. It implements the formula directly but costs $O(n^2)$ time.
@@ -123,8 +123,8 @@ For the same example, right maxima are `[5, 5, 5, 5, 5, 5]` because the final he
 - **Single bar:** Both arrays contain that height and the only contribution is zero.
 - **Empty list outside the contract:** Accessing `height[0]` would fail. The documented constraint starts at one element, so the selected source intentionally relies on that precondition.
 - **Input preservation:** The method reads `height` and creates separate maximum arrays; it does not modify the elevation map.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

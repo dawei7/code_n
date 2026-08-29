@@ -61,7 +61,7 @@ Likewise, the algorithm does not restrict starting lengths based on the digit co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After every appended digit, the code checks `low <= x <= hig... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Conversely, every constructed `x` begins at `i` and appends consecutive increasi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sliding windows over `"123456789"`:** Every se:** - **Sliding windows over `"123456789"`:** Every sequential number is a substring. Enumerating window lengths and starts can produce values directly by length and often already in sorted order.
+- **Sliding windows over `"123456789"`:** Every sequential number is a substring. Enumerating window lengths and starts can produce values directly by length and often already in sorted order.
 - **Precompute all 36 values:** Store the fixed universe once and filter it for each query. This is useful for many calls but unnecessary for one.
 - **Breadth-first digit extension:** Seed digits one through nine and append the next digit. It is more general but adds queue machinery.
 - **Inclusive boundaries:** Values equal to `low` or `high` are retained by the chained comparison.
@@ -108,8 +108,8 @@ Conversely, every constructed `x` begins at `i` and appends consecutive increasi
 - **Starting digit nine:** It cannot extend and is correctly omitted from the outer range.
 - **Generation order:** A final numerical sort is required because grouping by first digit is not globally ascending.
 - **No duplicates:** First digit plus length uniquely determines each generated number.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

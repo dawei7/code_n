@@ -59,7 +59,7 @@ For frequency two or three, the divisor range is empty and `all(empty)` is true,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `is_prime(x)` rejects every count below two.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ If the generator finishes, every distinct value’s frequency was tested and non
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute prime counts:** Since frequencies a:** - **Precompute prime counts:** Since frequencies are at most 100, a small sieve can mark all possible prime frequencies once. This also yields linear time but is unnecessary for one call.
+- **Precompute prime counts:** Since frequencies are at most 100, a small sieve can mark all possible prime frequencies once. This also yields linear time but is unnecessary for one call.
 - **Hard-code primes through 100:** It works under current bounds but is less adaptable and obscures the definition.
 - **Test array values for primality:** This answers the wrong question; only counts matter.
 - **All frequencies one:** One is not prime, so false.
@@ -117,8 +117,8 @@ If the generator finishes, every distinct value’s frequency was tested and non
 - **No need to identify the element:** The method returns only a Boolean. Counter keys are retained for grouping, but once frequencies exist, `any` consumes only their counts and does not reconstruct which key caused success.
 - **Expected hash behavior:** Counter construction and value access use expected constant-time hashing. The `O(n)` statement follows the standard hash-table model; adversarial hash behavior is outside the conventional bound.
 - **Early success and complexity:** Short-circuiting often saves work, but the worst-case analysis assumes every stored frequency is nonprime and therefore every group is inspected.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

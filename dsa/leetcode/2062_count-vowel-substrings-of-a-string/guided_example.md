@@ -59,7 +59,7 @@ This pruning separates the string into vowel-only runs implicitly.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A valid vowel substring may contain only vowels.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The outer set `s = set("aeiou")` provides constant-time membership testing.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Last-occurrence linear scan:** Track all five :** - **Last-occurrence linear scan:** Track all five latest vowel indices and the last consonant to count valid starts per endpoint in $O(N)$ time.
+- **Last-occurrence linear scan:** Track all five latest vowel indices and the last consonant to count valid starts per endpoint in $O(N)$ time.
 - **Index-based nested loop:** Avoid suffix allocations but still takes $O(N^2)$ time.
 - **Fewer than five characters:** Cannot contain all five vowels, so answer is zero.
 - **All consonants:** Every inner scan breaks on its first character.
@@ -110,8 +110,8 @@ The outer set `s = set("aeiou")` provides constant-time membership testing.
 - **Manifest mismatch:** Exact source is quadratic time with linear peak slice space.
 - **Input preservation:** The string is immutable; slices are new strings.
 - **Small constraint:** $N\le100$ makes the exhaustive implementation practical despite the mismatch.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

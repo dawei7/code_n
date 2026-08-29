@@ -63,8 +63,7 @@ There is no equality branch to define because the distinct-values guarantee prev
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` records the current champion's consecutive victories.
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +102,7 @@ For `k = 1`, the first comparison immediately identifies the winner: either the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal deque simulation:** It mirrors the rul:** - **Literal deque simulation:** It mirrors the rules directly but uses $O(N)$ queue space; stopping when the maximum becomes champion is necessary to avoid dependence on huge $k$.
+- **Literal deque simulation:** It mirrors the rules directly but uses $O(N)$ queue space; stopping when the maximum becomes champion is necessary to avoid dependence on huge $k$.
 - **Rotate a Python list:** Removing and appending can make rounds expensive because front deletion shifts elements.
 - **Index-based champion pass:** It is algorithmically identical and avoids the linear list slice, achieving true $O(1)$ auxiliary space.
 - **k equals one:** The winner of the first comparison is returned immediately.
@@ -116,8 +115,8 @@ For `k = 1`, the first comparison immediately identifies the winner: either the 
 - **Count reset:** A new champion starts at one, not zero, because becoming champion happened by winning the current round.
 - **No explicit maximum call:** Completing the running comparisons computes the maximum naturally, so a separate `max(arr)` pass is unnecessary.
 - **Guaranteed winner:** Once the maximum is champion, repeated victories ensure termination for every positive finite $k$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

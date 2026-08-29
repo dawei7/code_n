@@ -85,7 +85,7 @@ remove one item from each list without counting duplicates or comparing values.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `push(val)`, the source first appends `val` to `stk1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ result, the actual list never underflows, and the sentinel is never removed.
 
 ## 6. Traps This Instance Exposes
 
-- **- **One stack of pairs:** Store `(value, minimum_s:** - **One stack of pairs:** Store `(value, minimum_so_far)` at every depth. It expresses the same invariant with one container and the same $O(n)$ storage.
+- **One stack of pairs:** Store `(value, minimum_so_far)` at every depth. It expresses the same invariant with one container and the same $O(n)$ storage.
 - **Two stacks with change points:** Keep all values in one stack and push onto a minimum stack only when a value is at most the current minimum. Equal minima must also be tracked, or counted, so popping one duplicate does not lose the remaining minimum.
 - **Difference encoding:** Store differences relative to the current minimum and restore the previous minimum algebraically when a negative marker is popped. It uses one list but requires more careful arithmetic.
 - **Scan during `getMin`:** Uses no minimum history, but a query becomes $O(n)$ and violates the contract.
@@ -141,8 +141,8 @@ result, the actual list never underflows, and the sentinel is never removed.
 - **Pop to empty:** The actual list becomes empty while the tracker returns to `[inf]`; the contract prevents `top()` or `getMin()` at that moment.
 - **Full integer range:** Comparing an allowed integer with mathematical infinity is safe in Python.
 - **Undefined sentinel name:** Standalone use must define `inf`; otherwise even construction fails before any stack operation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

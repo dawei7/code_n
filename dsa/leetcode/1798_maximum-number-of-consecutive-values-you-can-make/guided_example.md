@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `coins` of length `n` which represents the `n` coins that you own. The value of the $$i^{\text{th}}$$ coin is $\text{coins}[i]$. You can **make** some value `x` if you can choose some of your `n` coins such that their values sum up to `x`.
+You are given an integer array `coins` of length `n` which represents the `n` coins that you own. The value of the $i^{\text{th}}$ coin is $\text{coins}[i]$. You can **make** some value `x` if you can choose some of your `n` coins such that their values sum up to `x`.
 
 The objective is to compute `2` from `{"coins": [1, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -75,7 +75,7 @@ The first missing value therefore advances by $v$, implemented as `ans += v`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution iterates through `sorted(coins)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The gap is permanent, so the loop can `break` immediately. Values larger than th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Subset-sum dynamic programming:** It records m:** - **Subset-sum dynamic programming:** It records many individual sums and can depend on the potentially large total coin value, while the interval invariant needs only one frontier.
+- **Subset-sum dynamic programming:** It records many individual sums and can depend on the potentially large total coin value, while the interval invariant needs only one frontier.
 - **Enumerate all subsets:** There are $2^n$ subsets and the constraints make enumeration impossible.
 - **Process unsorted coins:** Breaking on a large coin would be unsafe if a smaller helpful coin appeared later; sorting makes the gap proof valid.
 - **Maximum-heap order:** Large coins first reveal no useful information about the smallest missing value.
@@ -128,8 +128,8 @@ The gap is permanent, so the loop can `break` immediately. Values larger than th
 - **Positive-value guarantee:** The gap proof relies on adding an unprocessed coin never reducing a sum.
 - **Meaning of the return value:** `ans` is the first missing integer and also the count of integers from zero through `ans - 1`.
 - **Input preservation:** `sorted` returns a new list instead of reordering `coins`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

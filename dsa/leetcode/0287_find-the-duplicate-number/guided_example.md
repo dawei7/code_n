@@ -63,7 +63,7 @@ The special contract that only one distinct number repeats makes the first overl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are exactly $x$ possible values in the range `[1, x]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Some values in `[1, x]` may be missing from the array, making the count strictly
 
 ## 6. Traps This Instance Exposes
 
-- **- **Floyd cycle detection:** Interpret each value :** - **Floyd cycle detection:** Interpret each value as the next array index, find a cycle intersection, then find its entrance. It achieves the manifest's $O(n)$ time and $O(1)$ space without mutation, but it is not the exact source.
+- **Floyd cycle detection:** Interpret each value as the next array index, find a cycle intersection, then find its entrance. It achieves the manifest's $O(n)$ time and $O(1)$ space without mutation, but it is not the exact source.
 - **Hash set:** Return the first value seen twice. Expected time is $O(n)$, but the set needs $O(n)$ additional space.
 - **Sort then scan:** Adjacent equal values reveal the duplicate in $O(n\log n)$ time, but in-place sorting violates the non-modification requirement and sorting a copy uses $O(n)$ space.
 - **Negative marking or cyclic placement:** These can use constant auxiliary space but mutate `nums`, which is explicitly forbidden.
@@ -120,8 +120,8 @@ Some values in `[1, x]` may be missing from the array, making the count strictly
 - **Only one distinct repeated value:** The proof relies on this guarantee. With several different duplicate values, the first overloaded prefix could identify the smallest repeated region but would not satisfy the stated single-answer contract.
 - **Array values outside `[1, n]`:** Zero or larger values would invalidate the sentinel and pigeonhole arguments. The implementation intentionally trusts the range constraint.
 - **Read-only behavior:** Repeated full scans may be slower than Floyd's method, but they preserve every input byte and need no auxiliary collection.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

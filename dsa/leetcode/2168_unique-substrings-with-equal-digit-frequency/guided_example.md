@@ -65,7 +65,7 @@ Every tested substring is nonempty because `j` starts at `i`. Therefore, at leas
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `check(i, j)` examines the inclusive substring fr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For each pair, the filter calls `check(i, j)`. Only when that helper succeeds do
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rolling hash:** Maintain a hash while extendin:** - **Rolling hash:** Maintain a hash while extending each start position and store only hashes for valid intervals, as the editorial and manifest describe. This can reach expected $O(n^2)$ time and $O(n^2)$ space, but a single modular hash has a collision risk unless collision handling is added.
+- **Rolling hash:** Maintain a hash while extending each start position and store only hashes for valid intervals, as the editorial and manifest describe. This can reach expected $O(n^2)$ time and $O(n^2)$ space, but a single modular hash has a collision risk unless collision handling is added.
 - **Trie of substrings:** Insert digit paths into a prefix tree and mark valid terminal nodes. This avoids probabilistic hash collisions but can allocate many nodes and has a larger constant factor.
 - **Incremental ten-count array:** For each fixed start, extend the end and update one digit count. This removes the prefix table and still checks each interval in constant alphabet time, although storing real slices retains the cubic worst-case copying cost.
 - **Naively recount every slice:** Scanning all characters again for every endpoint pair takes cubic time even before accounting for set insertion, so prefix counts are a meaningful local improvement.
@@ -114,8 +114,8 @@ For each pair, the filter calls `check(i, j)`. Only when that helper succeeds do
 - **Early helper exit:** Once two different positive counts are found, later digits cannot make those existing counts equal, so returning false immediately is safe.
 - **Input preservation:** The prefix table and slices are new objects; the original string is never modified.
 - **Manifest discrepancy:** The branch metadata describes paired rolling hashes, but the protected source uses prefix counts and full strings. Complexity and mechanics must be judged from that source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

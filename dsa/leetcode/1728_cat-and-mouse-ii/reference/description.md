@@ -56,7 +56,7 @@ Given a `rows x cols` matrix `grid` and two integers `catJump` and `mouseJump`, 
 
 ![](images/sample_111_1955.png)
 
-- **Input:** $grid = ["####F","#C...","M...."], catJump = 1, mouseJump = 2$
+- **Input:** `grid = ["####F","#C...","M...."], catJump = 1, mouseJump = 2$
 - **Output:** `true`
 - **Explanation:** Cat cannot catch Mouse on its turn nor can it get the food before Mouse.
 
@@ -80,7 +80,7 @@ Given a `rows x cols` matrix `grid` and two integers `catJump` and `mouseJump`, 
 
 - $1 \le rows, cols \le 8$
 
-- $\text{grid}[i][j]$ consist only of characters `'C'`, `'M'`, `'F'`, `'.'`, and `'#'`.
+- $\text{grid}[i][j]` consist only of characters `'C'`, `'M'`, `'F'`, `'.'`, and `'#'`.
 
 - There is only one of each character `'C'`, `'M'`, and `'F'` in `grid`.
 

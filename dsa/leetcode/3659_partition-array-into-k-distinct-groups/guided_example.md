@@ -73,7 +73,7 @@ This detects the only remaining obstruction after divisibility.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All entries within one group must be distinct.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Another formal view is a bipartite assignment between distinct values and groups
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct groups greedily with a heap:** Repea:** - **Construct groups greedily with a heap:** Repeatedly choose distinct high-frequency values for each group. This can work but costs `O(n log d)` and is unnecessary once the sufficiency condition is known.
+- **Construct groups greedily with a heap:** Repeatedly choose distinct high-frequency values for each group. This can work but costs `O(n log d)` and is unnecessary once the sufficiency condition is known.
 - **Round-robin construction:** It provides a witness in `O(n)` after grouping equal values, but the source needs only the feasibility test.
 - **Check only `n % k == 0`:** Divisibility does not prevent one value from occurring more times than there are groups.
 - **Check only the number of distinct values:** It misses excessive multiplicity and is not sufficient by itself.
@@ -131,8 +131,8 @@ Another formal view is a bipartite assignment between distinct values and groups
 - **Duplicate occurrences are separate elements:** Every occurrence must be assigned, but copies of one value must go to different groups.
 - **Input preservation:** `Counter` reads `nums` without sorting or modifying it.
 - **Missing imports:** The stored source uses `List` and `Counter` without importing them. Standalone Python requires imports from `typing` and `collections` unless provided by the harness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ For example, actions `confirmed`, `timeout`, and `confirmed` contribute $1+0+1=2
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In MySQL, the expression `action = 'confirmed'` evaluates to... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ An alternative expression such as `COUNT(action)` would return zero for the plac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional average:** In MySQL, `AVG(action =:** - **Conditional average:** In MySQL, `AVG(action = 'confirmed')` directly averages ones and zeroes for users with requests. It still needs `COALESCE` for users whose only joined action is null.
+- **Conditional average:** In MySQL, `AVG(action = 'confirmed')` directly averages ones and zeroes for users with requests. It still needs `COALESCE` for users whose only joined action is null.
 - **Conditional count:** `SUM(CASE WHEN action = 'confirmed' THEN 1 ELSE 0 END)` is more portable across SQL systems that do not coerce Boolean expressions to numbers.
 - **Inner join:** This is wrong because users with no confirmation requests would disappear instead of receiving rate zero.
 - **Count of `action`:** It excludes the null placeholder and accurately counts real actions, but the zero-request case then needs `NULLIF` or a separate branch to avoid dividing by zero.
@@ -113,8 +113,8 @@ An alternative expression such as `COUNT(action)` would return zero for the plac
 - **Rounding:** `ROUND` is applied to the quotient with two requested decimal places; result display formatting can still be client-dependent, but its numeric value is rounded.
 - **Duplicate signup users:** The schema says `user_id` is unique, so grouping cannot merge distinct signup records for one identifier.
 - **Result order:** No ordering clause is needed because any order is accepted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

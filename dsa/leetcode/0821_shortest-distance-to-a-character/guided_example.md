@@ -57,7 +57,7 @@ The Reference guarantees that `c` occurs at least once, so every placeholder wil
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `n = len(s)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ After this pass, every position at or after the first occurrence holds its exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect occurrence indices and binary-search e:** - **Collect occurrence indices and binary-search each position:** This works in `O(n\log m)` time for `m` occurrences. Two directional scans are simpler and linear.
-- **- **Expand outward from every index:** Searching l:** - **Expand outward from every index:** Searching left and right independently for each position can take `O(n^2)` on long gaps.
-- **- **Multi-source BFS on indices:** Starting from e:** - **Multi-source BFS on indices:** Starting from every `c` and spreading distances left and right also gives `O(n)` time, but the two-pass method needs no queue.
+- **Collect occurrence indices and binary-search each position:** This works in `O(n\log m)` time for `m` occurrences. Two directional scans are simpler and linear.
+- **Expand outward from every index:** Searching left and right independently for each position can take `O(n^2)` on long gaps.
+- **Multi-source BFS on indices:** Starting from every `c` and spreading distances left and right also gives `O(n)` time, but the two-pass method needs no queue.
 
 ---
 

@@ -2,7 +2,7 @@
 
 You are given a binary string `s` and two integers `encCost` and `flatCost`.
 
-For each index `i`, $s[i] = '1'$ indicates that the $$i^{\text{th}}$$ element is sensitive, and $s[i] = '0'$ indicates that it is not.
+For each index `i`, $s[i] = '1'$ indicates that the $i^{\text{th}}$ element is sensitive, and $s[i] = '0'$ indicates that it is not.
 
 The string must be partitioned into **segments**. Initially, the entire string forms a single segment.
 
@@ -60,7 +60,7 @@ recursive equal-halving partition.
 
 - Splitting both segments into four single-character segments yields the segments `"1"`, `"0"`, `"1"`, and `"0"`. A segment containing `"1"` has length 1 and exactly one sensitive element, giving a cost of $1 * 1 * 2 = 2$, while a segment containing `"0"` has no sensitive elements and therefore costs $flatCost = 1$.
 
-- ​​​​​​​The total cost is thus $2 + 1 + 2 + 1 = 6$, which is the minimum possible total cost.
+- The total cost is thus $2 + 1 + 2 + 1 = 6$, which is the minimum possible total cost.
 
 #### Example 2
 

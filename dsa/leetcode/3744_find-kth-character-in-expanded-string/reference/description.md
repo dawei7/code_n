@@ -10,7 +10,7 @@ For example, if `s = "hello world"`, then $t = "heelllllllooooo woorrrllllddddd"
 
 You are also given an integer `k`, representing a **valid** index of the string `t`.
 
-Return the $$k^{\text{th}}$$ character of the string `t`.
+Return the $k^{\text{th}}$ character of the string `t`.
 
 ### 2. Function Contract
 

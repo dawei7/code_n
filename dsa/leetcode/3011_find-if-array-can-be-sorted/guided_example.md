@@ -61,7 +61,7 @@ If `pre_mx <= mi`, every value in the earlier sorted prefix is at most every val
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting every block internally, the smallest value of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ After checking the block, `i = j` jumps directly to the next label block.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bubble-sort with legality checks:** It can sim:** - **Bubble-sort with legality checks:** It can simulate valid swaps but takes $O(N^2)$ time and may mutate or copy the input.
+- **Bubble-sort with legality checks:** It can simulate valid swaps but takes $O(N^2)$ time and may mutate or copy the input.
 - **Sort each block explicitly:** This is constructive but costs $O(N\log N)$ total; minima and maxima suffice for feasibility.
 - **Group all equal-popcount values globally:** Noncontiguous blocks cannot cross intervening labels, so they must not be merged.
 - **Already sorted array:** Every boundary range is compatible, and the method returns true without swaps.
@@ -109,8 +109,8 @@ After checking the block, `i = j` jumps directly to the next label block.
 - **Equal values across a boundary:** Nondecreasing order permits equality; failure uses strict `pre_mx > mi`.
 - **Positive input guarantee:** It makes zero a valid initial previous maximum.
 - **Input preservation:** Only range summaries are computed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

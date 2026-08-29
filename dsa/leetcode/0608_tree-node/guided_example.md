@@ -55,7 +55,7 @@ The subquery includes the root row’s null `p_id`. SQL `IN` with a null-contain
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The subquery lists every parent reference used by any node.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ For the sample, node 1 has null parent and is Root. Node 2 appears as `p_id` for
 
 ## 6. Traps This Instance Exposes
 
-- **- **Left join to children and grouping:** Join eac:** - **Left join to children and grouping:** Join each node to rows whose `p_id` equals its ID, then classify based on null parent and child count. Works but may multiply rows before grouping.
+- **Left join to children and grouping:** Join each node to rows whose `p_id` equals its ID, then classify based on null parent and child count. Works but may multiply rows before grouping.
 - **`EXISTS`:** `EXISTS (SELECT 1 FROM Tree child WHERE child.p_id = Tree.id)` directly tests for a child and avoids `IN` null semantics.
 - **Three `UNION` branches:** Query roots, inner nodes, and leaves separately. More verbose and repeats table logic.
 - **Root checked after parent membership:** Risky for a one-node tree or any root with children; root status must have priority.
@@ -108,8 +108,8 @@ For the sample, node 1 has null parent and is Root. Node 2 appears as `p_id` for
 - **Repeated parent IDs:** Merely mean multiple children and do not change membership.
 - **Any output order:** No sort is required.
 - **Valid-tree guarantee:** Ensures the categories cover the structure consistently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -72,11 +72,7 @@ Trying slices that extend beyond the end is safe in Python. `text[i:j]` simply s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At each position, the inner loop tries:
-
-
-
-Python's upper ra... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +113,7 @@ The code checks lengths from shortest to longest. This is safe for this fixed di
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check for ampersand first:** Copy ordinary cha:** - **Check for ampersand first:** Copy ordinary characters immediately and test entities only when `text[i] == '&'`. This reduces constant work while keeping the same $O(n)$ complexity and semantics.
+- **Check for ampersand first:** Copy ordinary characters immediately and test entities only when `text[i] == '&'`. This reduces constant work while keeping the same $O(n)$ complexity and semantics.
 - **Trie of entity tokens:** A trie can consume characters until a token matches or fails. It becomes attractive with a large or extensible entity vocabulary, but six tokens of maximum length seven do not require that machinery.
 - **Repeated global replacement:** Calling `replace` once per entity is concise but scans the full string several times and can accidentally introduce ordering questions when one replacement produces text resembling another entity.
 - **Regular expression:** A pattern can find supported tokens and use a callback dictionary. It is valid but hides the straightforward consumption invariant behind regex behavior.
@@ -129,8 +125,8 @@ The code checks lengths from shortest to longest. This is safe for this fixed di
 - **Longest entity:** `&frasl;` is found when `l == 7`; using `range(1, 7)` would miss it because the upper bound is exclusive.
 - **Quotes and apostrophes:** The dictionary values use appropriate Python quoting but each represents a single literal output character.
 - **All ASCII input:** Characters outside the six supported source sequences pass through unchanged, regardless of whether they have special meaning in broader HTML standards.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

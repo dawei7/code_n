@@ -61,7 +61,7 @@ The statement guarantees that a customer has at most one order on any date. Cons
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ROW_NUMBER() OVER (...)` assigns consecutive integers one, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For Winston in the example, the dates sort as August 3, July 31, July 15, and Ju
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated count:** Count, for each order, how:** - **Correlated count:** Count, for each order, how many newer orders the same customer has and retain counts below three. It can be correct but is often more expensive and harder to read than a window rank.
+- **Correlated count:** Count, for each order, how many newer orders the same customer has and retain counts below three. It can be correct but is often more expensive and harder to read than a window rank.
 - **RANK or DENSE_RANK:** These can return more than three rows when ranking values tie; `ROW_NUMBER` expresses a row limit directly.
 - **Global LIMIT 3:** It returns only three orders overall and is therefore wrong for a per-customer requirement.
 - **Customers with no orders:** The inner join omits them because there is no order row to report.
@@ -112,8 +112,8 @@ For Winston in the example, the dates sort as August 3, July 31, July 15, and Ju
 - **Unused cost:** It participates in the intermediate wildcard row but is omitted from the final projection.
 - **Positional ordering:** `ORDER BY 1, 2, 4 DESC` is concise but depends on select-column order; spelling out column names would be more robust to projection changes.
 - **General most recent n:** Replace the literal three in the rank filter with the desired positive limit; the partitioning and ranking logic remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

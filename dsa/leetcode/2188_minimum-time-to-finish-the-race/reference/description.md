@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** 2D integer array `tires` where $\text{tires}[i] = [f_{i}, r_{i}]$ indicates that the $$i^{\text{th}}$$ tire can finish its $$x^{\text{th}}$$ successive lap in $f_{i} * r_{i}^(x-1)$ seconds.
+You are given a **0-indexed** 2D integer array `tires` where $\text{tires}[i] = [f_{i}, r_{i}]$ indicates that the $i^{\text{th}}$ tire can finish its $x^{\text{th}}$ successive lap in $f_{i} * r_{i}^(x-1)$ seconds.
 
 - For example, if $f_{i} = 3$ and $r_{i} = 2$, then the tire would finish its $1^st$ lap in `3` seconds, its $2^nd$ lap in $3 * 2 = 6$ seconds, its $3^rd$ lap in $3 * 2^{2} = 12$ seconds, etc.
 

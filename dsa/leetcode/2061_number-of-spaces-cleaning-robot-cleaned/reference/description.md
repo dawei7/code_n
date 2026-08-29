@@ -22,7 +22,7 @@ Return *the number of **clean** spaces in the room if the robot runs indefinitel
 
 - **Explanation:** 
 
-- ​​​​​​​The robot cleans the spaces at (0, 0), (0, 1), and (0, 2).
+- The robot cleans the spaces at (0, 0), (0, 1), and (0, 2).
 
 - The robot is at the edge of the room, so it turns 90 degrees clockwise and now faces down.
 
@@ -62,7 +62,7 @@ Return *the number of **clean** spaces in the room if the robot runs indefinitel
 
 - **Input:** room = [[0,0,0],[0,0,0],[0,0,0]]
 
-- **Output:** 8​​​​​​​
+- **Output:** 8
 
 ### 4. Constraints
 

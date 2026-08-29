@@ -55,7 +55,7 @@ Therefore the code advances `i` while `s[i] == "a"`. The optimal operation must 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `s` begins with one or more `'a'` characters and lat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ Starting before `i` would include a leading `'a'` and change that earlier charac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every substring:** There are $O(n^2)$ choi:** - **Try every substring:** There are $O(n^2)$ choices and comparing or constructing each result is far slower than the greedy boundary proof.
+- **Try every substring:** There are $O(n^2)$ choices and comparing or constructing each result is far slower than the greedy boundary proof.
 - **Decrement the whole string:** Incorrect when an `'a'` appears after a useful block because wrapping it to `'z'` worsens the first such position.
 - **Skip only one leading a:** Incorrect when the leading run contains several `'a'` characters; all must remain unchanged if a later non-`'a'` exists.
 - **All a characters:** Change only the last one to `'z'` because an operation is mandatory.
@@ -102,8 +102,8 @@ Starting before `i` would include a leading `'a'` and change that earlier charac
 - **Single-character `"a"`:** The all-a branch returns `"z"`.
 - **Single-character non-a:** It is replaced by its predecessor.
 - **Contiguity:** Stopping at the first interior `'a'` is required; the operation cannot skip it and resume later.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

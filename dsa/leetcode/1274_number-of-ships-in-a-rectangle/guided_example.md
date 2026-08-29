@@ -64,7 +64,7 @@ When one dimension has length one, two quadrant descriptions become invalid. The
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a nonempty rectangle containing more than one point, mid... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ The method never tries to inspect hidden ship coordinates directly. `Point` obje
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every coordinate:** It is exact but may :** - **Check every coordinate:** It is exact but may require about a million API calls and violates the limit.
+- **Check every coordinate:** It is exact but may require about a million API calls and violates the limit.
 - **Split into two rectangles:** Binary partitioning is also possible; four-way splitting halves both dimensions together and matches the sparse two-dimensional geometry well.
 - **Call API before validating bounds:** This can send reversed rectangles created by thin quadrants and must be avoided.
 - **Empty target rectangle:** Public corners are ordered, but recursive empty quadrants correctly return zero without an API call.
@@ -113,8 +113,8 @@ The method never tries to inspect hidden ship coordinates directly. `Point` obje
 - **One-row or one-column region:** Invalid quadrants vanish, and valid halves continue reducing the remaining dimension.
 - **Ships on outer boundaries:** `hasShips` includes rectangle boundaries, and the partition covers them.
 - **API call limit:** Pruning empty regions is essential; recursion without the initial existence query would still explore every point.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

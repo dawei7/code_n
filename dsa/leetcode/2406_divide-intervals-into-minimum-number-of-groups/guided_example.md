@@ -63,7 +63,7 @@ If the earliest-ending group is not free, no other group can be free because eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `sorted(intervals)` orders pairs first by `left` and then by... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This is why returning `len(q)` is meaningful: heap size is the number of groups 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Line sweep with endpoint events:** Add one at :** - **Line sweep with endpoint events:** Add one at starts and subtract after inclusive ends, then take maximum overlap. It also solves the problem in $O(n\log n)$.
+- **Line sweep with endpoint events:** Add one at starts and subtract after inclusive ends, then take maximum overlap. It also solves the problem in $O(n\log n)$.
 - **Difference array:** With endpoints bounded by `10^6`, mark starts and `right + 1` removals, then scan the domain. This costs $O(n+V)$ time and $O(V)$ space.
 - **Pop all free groups:** Unnecessary and would lose the one-entry-per-created-group representation unless their availability were stored elsewhere.
 - **Touching endpoints:** Inclusive intervals intersect, so reuse needs `end < start`, not `end <= start`.
@@ -111,8 +111,8 @@ This is why returning `len(q)` is meaningful: heap size is the number of groups 
 - **Identical intervals:** Each requires a separate group.
 - **One interval:** One group is created and returned.
 - **Sorted copy:** The original input list is not reordered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

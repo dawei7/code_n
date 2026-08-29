@@ -51,7 +51,7 @@ The number of buildings can be one billion, so calculating a limit for every ind
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The number of buildings can be one billion, so calculating a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The number of buildings can be one billion, so calculating a limit for every ind
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every building:** Propagating a full:** - **Enumerate every building:** Propagating a full length-`n` limit array is impossible when `n` reaches one billion.
+- **Enumerate every building:** Propagating a full length-`n` limit array is impossible when `n` reaches one billion.
 - **Binary search a global height:** One could test whether some building can reach a candidate height, but interval peak formulas provide the exact answer more directly.
 - **No explicit restrictions:** The default anchors yield the increasing sequence with maximum `n - 1`.
 - **Restriction already at building `n`:** It serves as the final anchor, so the harmless `[n, n - 1]` row is not added.
@@ -97,8 +97,8 @@ The number of buildings can be one billion, so calculating a limit for every ind
 - **Fixed first building:** Appending `[1, 0]` makes its rule participate in the same propagation logic.
 - **Input mutation:** The exact source appends rows, sorts the list, and rewrites height fields. Callers needing preservation must pass a deep enough copy.
 - **Large indices and heights:** Python integer arithmetic safely handles sums near billions; fixed-width implementations should use a wide integer type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

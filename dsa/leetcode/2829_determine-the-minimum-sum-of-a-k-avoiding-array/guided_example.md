@@ -51,7 +51,7 @@ For every selected value $a$, its only conflicting partner is $k-a$. The stateme
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every selected value $a$, its only conflicting partner i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For every selected value $a$, its only conflicting partner is $k-a$. The stateme
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic two-block formula:** Select one thr:** - **Arithmetic two-block formula:** Select one through $\lfloor k/2\rfloor$, then continue from `k` upward for any remaining slots. Sum both arithmetic progressions directly in $O(1)$ time and space.
+- **Arithmetic two-block formula:** Select one through $\lfloor k/2\rfloor$, then continue from `k` upward for any remaining slots. Sum both arithmetic progressions directly in $O(1)$ time and space.
 - **Chosen-value set:** Instead of storing forbidden complements, test whether `k - i` has already been chosen. This is equally correct and may be more intuitive, with the same expected bounds.
 - **Brute-force combinations:** Enumerating candidate arrays is unnecessary because every value conflicts with at most one complement.
 - **Even `k`:** Value `k/2` is safe once because a second equal value is disallowed by distinctness; the greedy code selects it.
@@ -97,8 +97,8 @@ For every selected value $a$, its only conflicting partner is $k-a$. The stateme
 - **Minimum sum versus arbitrary validity:** Choosing the smallest allowed candidate is what proves optimality; many larger valid arrays exist.
 - **Hash-set assumptions:** Expected constant operations give the stated time; adversarial hashing is not material for small Python integers.
 - **Manifest mismatch:** The closed-form constant bound belongs to the alternative, while the exact source explicitly loops and allocates `vis`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

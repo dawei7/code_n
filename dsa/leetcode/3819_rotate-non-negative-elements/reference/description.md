@@ -33,7 +33,7 @@ Return the array produced by rotating and reinserting only the non-negative valu
 
 - **Output:** [3,-2,1,-4]
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - The non-negative elements, in order, are `[1, 3]`.
 

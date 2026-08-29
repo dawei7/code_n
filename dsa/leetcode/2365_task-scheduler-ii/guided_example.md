@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** array of positive integers `tasks`, representing tasks that need to be completed **in order**, where $\text{tasks}[i]$ represents the **type** of the $$i^{\text{th}}$$ task.
+You are given a **0-indexed** array of positive integers `tasks`, representing tasks that need to be completed **in order**, where $\text{tasks}[i]$ represents the **type** of the $i^{\text{th}}$ task.
 
 The objective is to compute `9` from `{"tasks": [1, 2, 1, 2, 3, 1], "space": 3}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ For example, if a task runs on day `2` and `space = 3`, days `3`, `4`, and `5` m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `day` maps a task type to the earliest day on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ This prepares the exact legal boundary for the next occurrence.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Day-by-day simulation:** It can produce the sa:** - **Day-by-day simulation:** It can produce the same schedule, but long cooling gaps cause runtime proportional to the answer rather than the number of tasks.
+- **Day-by-day simulation:** It can produce the same schedule, but long cooling gaps cause runtime proportional to the answer rather than the number of tasks.
 - **Store last completion days:** One can save `last[task]` and compute `max(ans + 1, last[task] + space + 1)`. This is equivalent; storing the next legal day makes the lookup directly usable.
 - **Reordering with a priority queue:** That solves a different task-scheduling problem. Here the input order is mandatory, so no choice of another ready task is allowed.
 - **First occurrence of a type:** Its default availability is zero, so it runs on the next chronological day.
@@ -122,8 +122,8 @@ This prepares the exact legal boundary for the next occurrence.
 - **All task types distinct:** No stored availability blocks anything, and the answer is exactly `len(tasks)`.
 - **Every task has the same type:** Each consecutive execution is `space + 1` days apart, and direct jumping handles the large total efficiently.
 - **Large task identifiers:** They are dictionary keys, so their numeric magnitude does not require a value-sized array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

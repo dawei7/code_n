@@ -51,7 +51,7 @@ Let the original dimensions be `m` rows and `n` columns. The original element co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the original dimensions be `m` rows and `n` columns.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let the original dimensions be `m` rows and `n` columns. The original element co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flatten then regroup:** Building a separate on:** - **Flatten then regroup:** Building a separate one-dimensional list is clear but adds another $O(mn)$ temporary buffer.
+- **Flatten then regroup:** Building a separate one-dimensional list is clear but adds another $O(mn)$ temporary buffer.
 - **Nested source loops with destination pointers:** It is equivalent but requires manually updating row and column counters.
 - **Different element counts:** Return the original matrix without partial allocation.
 - **Same shape:** The code creates an equivalent new matrix because the reshape is legal.
@@ -97,8 +97,8 @@ Let the original dimensions be `m` rows and `n` columns. The original element co
 - **Independent destination rows:** The list comprehension avoids shared-row aliasing.
 - **Input immutability:** Legal reshaping copies references/values into a new outer structure.
 - **Row-major guarantee:** One flat index is the invariant connecting both coordinate systems.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

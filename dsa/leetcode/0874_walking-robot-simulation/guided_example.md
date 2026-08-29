@@ -51,7 +51,7 @@ The only potential performance trap is obstacle lookup. Before processing comman
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The only potential performance trap is obstacle lookup.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Membership testing such as `(nx, ny) in s` then takes $O(1)$ expected time. Scan
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan all obstacles for every step:** This can :** - **Scan all obstacles for every step:** This can cost $O(bS)$ and is unnecessary; the coordinate set gives expected constant-time membership.
+- **Scan all obstacles for every step:** This can cost $O(bS)$ and is unnecessary; the coordinate set gives expected constant-time membership.
 - **Jump directly to a command endpoint:** This misses obstacles between the current position and endpoint and violates the one-unit-at-a-time rule.
 - **Group obstacles by row and column:** Sorted coordinate maps plus binary search can jump across long distances efficiently in a generalized problem with huge commands. Here each command is at most nine, so unit simulation is simpler and already optimal.
 - **Encode coordinates as one integer:** A collision-free numeric encoding can replace tuple keys. Python tuple hashing is direct and avoids choosing a multiplier based on coordinate bounds.
@@ -100,8 +100,8 @@ Membership testing such as `(nx, ny) in s` then takes $O(1)$ expected time. Scan
 - **Maximum at an intermediate step:** Updating after each successful unit captures a maximum that occurs before the end of a command or before later commands reverse direction.
 - **Blocked movement and distance:** When the first attempted step is blocked, position and distance do not change, so no additional maximum update is needed.
 - **Squared distance bound:** Python integers do not overflow, and the problem guarantees the returned answer is below $2^{31}$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

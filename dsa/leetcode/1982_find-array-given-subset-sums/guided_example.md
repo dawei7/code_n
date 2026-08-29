@@ -61,7 +61,7 @@ The shifted multiset contains zero for the empty magnitude subset. The source re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Subset sums can repeat, especially when elements are equal o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This scheme handles duplicates correctly because removal is by multiset occurren
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive partition by a candidate magnitude:*:** - **Recursive partition by a candidate magnitude:** Split sorted sums into pairs differing by that magnitude and recurse on the half containing zero; this is another standard $O(N2^N)$ strategy.
+- **Recursive partition by a candidate magnitude:** Split sorted sums into pairs differing by that magnitude and recurse on the half containing zero; this is another standard $O(N2^N)$ strategy.
 - **Plain set:** Incorrect because repeated subset sums carry essential multiplicity.
 - **Recover signs during magnitude extraction:** Possible, but the shift cleanly separates magnitude recovery from one final subset-sum sign choice.
 - **All elements nonnegative:** The minimum sum is zero, $m=0$, and the empty sign subset succeeds without negating anything.
@@ -116,8 +116,8 @@ This scheme handles duplicates correctly because removal is by multiset occurren
 - **Exponential input size:** $O(2^N)$ space is unavoidable merely to receive all supplied sums.
 - **Imported data structure:** The exact source assumes `SortedList` is provided by the execution environment.
 - **Input preservation:** It creates shifted values rather than sorting or changing `sums` itself.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

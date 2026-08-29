@@ -61,7 +61,7 @@ Calling the helper for `hFences` with boundary `m` produces `hs`, every possible
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Nested helper `f(nums, k)` extends the supplied internal-fen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For example, with horizontal coordinates `[1, 2, 3, 4]` and vertical coordinates
 
 ## 6. Traps This Instance Exposes
 
-- **- **Only adjacent-fence gaps:** This misses square:** - **Only adjacent-fence gaps:** This misses squares formed by removing one or more fences between nonadjacent retained boundaries.
+- **Only adjacent-fence gaps:** This misses squares formed by removing one or more fences between nonadjacent retained boundaries.
 - **Compare every horizontal pair with every vertical pair:** Direct cross-comparison can take $O(H^2V^2)$ time. Sets reduce shared-length lookup to expected linear work in the generated distances.
 - **Store distances in lists:** Lists retain duplicates and make intersection slower; multiplicity has no meaning here.
 - **No shared distance:** The intersection is empty, `default=0` supplies the sentinel, and the function returns `-1`.
@@ -109,8 +109,8 @@ For example, with horizontal coordinates `[1, 2, 3, 4]` and vertical coordinates
 - **Modulo timing:** Select and square the actual maximum side first; never maximize modulo-reduced areas.
 - **Large coordinates:** Python integers safely square side lengths up to the stated bounds before applying the modulus.
 - **Input mutation:** Both fence arrays gain boundary values and are sorted in place; callers needing preservation must pass copies.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

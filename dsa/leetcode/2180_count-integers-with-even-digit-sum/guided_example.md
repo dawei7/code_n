@@ -61,7 +61,7 @@ The order of extraction does not matter because addition is commutative. Reading
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the current candidate `x`, the local sum `s` starts at z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Integers are immutable, so these assignments also do not modify `num` or any cal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Endpoint parity formula:** Count the balanced :** - **Endpoint parity formula:** Count the balanced pairs in the prefix and inspect the digit sum of `num` for the final correction. This matches the manifest's $O(\log N)$ intent.
+- **Endpoint parity formula:** Count the balanced pairs in the prefix and inspect the digit sum of `num` for the final correction. This matches the manifest's $O(\log N)$ intent.
 - **Convert each number to a string:** Summing converted digit characters is easy to read but allocates temporary strings and digit objects.
 - **Precompute digit sums:** Use `digitSum[x] = digitSum[x // 10] + x % 10` for every candidate. This gives $O(N)$ time but uses $O(N)$ space.
 - **`num = 1`:** Its only candidate has digit sum one, so the answer is zero.
@@ -112,8 +112,8 @@ Integers are immutable, so these assignments also do not modify `num` or any cal
 - **Decimal definition:** Modulo and division by ten implement exactly the base-ten digit sum requested.
 - **Input preservation:** `num` is never reassigned, and integer candidates are local immutable values.
 - **Manifest discrepancy:** The branch metadata describes a logarithmic formula, while the stored source enumerates all candidates and digits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ This differs from the manifest summary, which says the repeated vector is inferr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `d` maps each difference tuple to a list of w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For `["aaa","bob","ccc","ddd"]`, the constant-letter words all produce `(0,0)`. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Infer from the first three signatures:** At le:** - **Infer from the first three signatures:** At least two of the first three must belong to the common group. Determine the repeated signature, then scan for the word that differs. This matches the manifest and uses $O(m)$ auxiliary space.
+- **Infer from the first three signatures:** At least two of the first three must belong to the common group. Determine the repeated signature, then scan for the word that differs. This matches the manifest and uses $O(m)$ auxiliary space.
 - **Count signatures only:** Map each tuple to a frequency, then perform a second pass to find the word whose tuple has count one. This avoids storing word lists but recomputes or stores signatures.
 - **Normalize words by their first character:** Transform every character relative to the first. This is related, but consecutive differences match the statement directly and avoid modular-wrap assumptions.
 - **Negative differences:** They are meaningful and must not be replaced by absolute values.
@@ -119,8 +119,8 @@ For `["aaa","bob","ccc","ddd"]`, the constant-letter words all produce `(0,0)`. 
 - **String length two:** Each signature has one difference value, and the same grouping logic applies.
 - **Library availability:** `pairwise` must be available from the runtime's iterator utilities; an explicit index loop is an equivalent fallback.
 - **Metadata mismatch:** The exact source groups all words and uses $O(p+m)$ storage rather than inferring a common signature with only $O(m)$ extra space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

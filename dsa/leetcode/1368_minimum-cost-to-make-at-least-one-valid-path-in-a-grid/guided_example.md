@@ -57,7 +57,7 @@ This front-versus-back rule keeps pending states ordered by nondecreasing cost i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The deque stores triples `(row, column, distance)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Once the bottom-right cell is removed for the first time, `d` is its shortest di
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra with a heap:** General shortest-path :** - **Dijkstra with a heap:** General shortest-path logic also works because weights are nonnegative, but it costs $O(RC\log(RC))$ rather than exploiting the zero-or-one weights.
+- **Dijkstra with a heap:** General shortest-path logic also works because weights are nonnegative, but it costs $O(RC\log(RC))$ rather than exploiting the zero-or-one weights.
 - **Distance-grid 0–1 BFS:** Store the best cost per cell and enqueue only genuine improvements. This avoids some duplicates and makes relaxation explicit; the exact code instead finalizes the first deque removal with `vis`.
 - **Layered DFS plus BFS:** Follow all free arrows to fill one cost layer, then pay one modification to seed the next layer. It can also be linear but requires coordinating two traversal styles.
 - **One-cell grid:** The start is already the target. Its initial triple is removed and returns zero before examining neighbors.
@@ -107,8 +107,8 @@ Once the bottom-right cell is removed for the first time, `d` is its shortest di
 - **Cycles of free arrows:** The visited set prevents infinite traversal. Removing a cycle never hurts a minimum-cost route.
 - **Input mutation:** The method reads direction values but never changes `grid`; the returned number describes the minimum hypothetical modifications.
 - **Direction numbering:** The unused `dirs[0]` is deliberate. Removing it without subtracting one from grid values would map every arrow incorrectly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

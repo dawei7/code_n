@@ -59,7 +59,7 @@ This is the array-and-matrix form of Dijkstra for nonnegative active weights.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dijkstra` builds an $n$ by $n$ adjacency matrix initialized... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The same sentinel is also a legal final unknown-edge weight because the allowed 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap-based adjacency-list reruns:** Reduces ea:** - **Heap-based adjacency-list reruns:** Reduces each Dijkstra run but can still repeat it for many unknown edges.
+- **Heap-based adjacency-list reruns:** Reduces each Dijkstra run but can still repeat it for many unknown edges.
 - **Two carefully designed Dijkstra passes:** Can assign weights during relaxation and achieve the manifest's near-linearithmic target, but it is not the exact source.
 - **Fixed-only distance below target:** Impossible because that immutable path cannot be lengthened.
 - **Fixed-only distance equal target:** Set every unknown edge to `2 * 10**9`.
@@ -109,8 +109,8 @@ The same sentinel is also a legal final unknown-edge weight because the allowed 
 - **Later unknown edges:** Must receive legal values and are neutralized with the maximum weight.
 - **Known edges:** Never modified.
 - **Failure mutation:** A failed late attempt may leave the supplied edge list partially rewritten.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

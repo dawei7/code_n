@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `routes` representing bus routes where $\text{routes}[i]$ is a bus route that the $$i^{\text{th}}$$ bus repeats forever.
+You are given an array `routes` representing bus routes where $\text{routes}[i]$ is a bus route that the $i^{\text{th}}$ bus repeats forever.
 
 The objective is to compute `2` from `{"routes": [[1, 2, 7], [3, 6, 7]], "source": 1, "target": 6}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -57,7 +57,7 @@ This special case matters even if the shared stop does not appear in any route. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `source == target`, the traveler is already at the destin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ If either `source` or `target` is absent from `g`, no bus can depart from the so
 
 ## 6. Traps This Instance Exposes
 
-- **- **Route-node BFS:** Treat each route as a graph :** - **Route-node BFS:** Treat each route as a graph node and connect routes sharing a stop. A direct all-pairs route graph can be expensive to construct. The stop-to-routes index discovers exactly the needed transfers without materializing every route pair.
-- **- **Stop-node graph with all pairwise edges:** Con:** - **Stop-node graph with all pairwise edges:** Connecting every pair of stops on the same route may require quadratic edges for one long route. Expanding a route only once represents the same reachability in linear total input size.
-- **- **Dijkstra's algorithm:** Every bus boarding cos:** - **Dijkstra's algorithm:** Every bus boarding costs one, so the graph is unweighted at the relevant level. BFS is sufficient and simpler.
+- **Route-node BFS:** Treat each route as a graph node and connect routes sharing a stop. A direct all-pairs route graph can be expensive to construct. The stop-to-routes index discovers exactly the needed transfers without materializing every route pair.
+- **Stop-node graph with all pairwise edges:** Connecting every pair of stops on the same route may require quadratic edges for one long route. Expanding a route only once represents the same reachability in linear total input size.
+- **Dijkstra's algorithm:** Every bus boarding costs one, so the graph is unweighted at the relevant level. BFS is sufficient and simpler.
 
 ---
 

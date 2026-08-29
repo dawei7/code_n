@@ -61,7 +61,7 @@ If `i == n`, all digits have been consumed. This is a valid completion only when
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(i)` asks whether the suffix `num[i:]` can complete the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ Each iteration treats `num[i:j+1]` as one candidate piece.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate only the first two substring endpoin:** - **Enumerate only the first two substring endpoints, then verify greedily:** This makes the “later values are forced” structure explicit and has the same bounded behavior.
-- **- **Memoize by index alone:** It is invalid becaus:** - **Memoize by index alone:** It is invalid because feasibility at an index depends on the previous two selected values. The exact bounded search does not need memoization.
-- **- **Leading zero first number:** Only the single c:** - **Leading zero first number:** Only the single character `"0"` may be chosen; longer pieces beginning there are rejected.
+- **Enumerate only the first two substring endpoints, then verify greedily:** This makes the “later values are forced” structure explicit and has the same bounded behavior.
+- **Memoize by index alone:** It is invalid because feasibility at an index depends on the previous two selected values. The exact bounded search does not need memoization.
+- **Leading zero first number:** Only the single character `"0"` may be chosen; longer pieces beginning there are rejected.
 
 ---
 

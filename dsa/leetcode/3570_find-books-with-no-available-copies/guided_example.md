@@ -61,7 +61,7 @@ Books with no active record have no row in `T`. That is desirable because a book
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE groups active records by `book_id` and evaluates `CO... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ The inner join naturally excludes:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Join then group:** Joining active borrowing ro:** - **Join then group:** Joining active borrowing rows to the catalog before grouping can produce the same answer, but it repeats book metadata across every active record during aggregation. Pre-aggregating keeps the intermediate relation compact.
+- **Join then group:** Joining active borrowing rows to the catalog before grouping can produce the same answer, but it repeats book metadata across every active record during aggregation. Pre-aggregating keeps the intermediate relation compact.
 - **Correlated count subquery:** Counting active records separately for every catalog row is readable but may repeat work without an effective book-indexed plan.
 - **Conditional aggregation:** Grouping all borrowing history and summing `return_date IS NULL` can work, but filtering active rows first avoids carrying returned transactions into grouping.
 - **Use COUNT(*) instead of COUNT(1):** In MySQL these are equivalent for counting group rows here; neither depends on nullable column values.
@@ -117,8 +117,8 @@ The inner join naturally excludes:
 - **Null comparison:** `IS NULL` is required; `return_date = NULL` would not select active rows.
 - **Positional ordering:** `ORDER BY 6 DESC, 2` is concise but sensitive to select-list reordering. Naming the columns explicitly would be more maintainable without changing behavior.
 - **Inventory interpretation:** Each active record is treated as one borrowed copy; `quantity` does not exist in this schema, so transaction-row count is the appropriate measure.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

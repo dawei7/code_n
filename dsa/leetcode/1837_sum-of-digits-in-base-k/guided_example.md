@@ -51,7 +51,7 @@ where `q = n // k` and `r = n % k`, with `0 <= r < k`. In the base-`k` represent
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | where `q = n // k` and `r = n % k`, with `0 <= r < k`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution repeatedly uses this quotient-remainder fact. `ans` begins at zero.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a digit list:** Appending every remainde:** - **Build a digit list:** Appending every remainder and then summing works, but stores `O(log_k n)` digits that can instead be added immediately.
+- **Build a digit list:** Appending every remainder and then summing works, but stores `O(log_k n)` digits that can instead be added immediately.
 - **Construct a base-`k` string:** Conversion followed by character parsing is more complicated and introduces representation issues without improving the result.
 - **Recursive extraction:** Recursing on `n // k` mirrors the numeral structure, but adds one stack frame per digit and is unnecessary for a sum.
 - **Base ten:** The same modulo and division steps simply extract ordinary decimal digits.
@@ -98,8 +98,8 @@ The solution repeatedly uses this quotient-remainder fact. `ans` begins at zero.
 - **Minimum base two:** Division still strictly decreases positive `n` and guarantees termination.
 - **Maximum base ten:** Every remainder remains a decimal digit from zero through nine.
 - **No caller mutation:** Reassigning local `n` does not modify the integer argument outside the method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

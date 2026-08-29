@@ -61,7 +61,7 @@ The `cnt` field records how many inserted words pass through that node. Importan
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `Trie` class has two fields.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ After all insertions, consider any trie node representing a prefix `p`. A word i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary of materialized prefix strings:** C:** - **Dictionary of materialized prefix strings:** Count every slice such as `word[:i]` and then sum the stored counts. It is easy to describe, but constructing and hashing each growing prefix can copy or inspect $O(i)$ characters, making the total work potentially quadratic in word lengths rather than linear in $S$.
+- **Dictionary of materialized prefix strings:** Count every slice such as `word[:i]` and then sum the stored counts. It is easy to describe, but constructing and hashing each growing prefix can copy or inspect $O(i)$ characters, making the total work potentially quadratic in word lengths rather than linear in $S$.
 - **Dictionary keyed by incremental immutable strings:** Building a prefix one character at a time still creates new Python strings because strings are immutable. A trie avoids those repeated full-prefix objects and compares only the next character.
 - **Sparse child dictionaries:** Replacing every 26-slot child array with a dictionary stores only edges that exist. It can use less memory when nodes have few children, at the cost of hashing and larger per-edge overhead. The fixed lowercase alphabet makes the array representation straightforward and predictable.
 - **Sorting adjacent words:** Lexicographic sorting can expose shared prefixes between neighbors, but converting those relationships into the score of every prefix requires extra bookkeeping. The trie expresses the needed prefix groups directly.
@@ -111,8 +111,8 @@ After all insertions, consider any trie node representing a prefix `p`. A word i
 - **A word that is a prefix of another:** Its complete path is shared with the longer word. No terminal-node logic should stop traversal or prevent the longer word from increasing those counts.
 - **Completely different first letters:** Such words immediately occupy different root children and share no non-empty prefix, which is exactly why the root's count is excluded.
 - **Maximum lengths:** The total-character bound, rather than only the number of words or maximum individual length, is the right measure because every character is processed twice and can create at most one node.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

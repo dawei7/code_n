@@ -69,7 +69,7 @@ If `i` is no faster than `j`, it cannot catch `j` before `j` changes into some f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For candidate car `j` ahead, car `i` can catch it while both... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Equality is accepted: if `i` reaches `j` at the exact moment `j` hits its next f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate continuous motion events:** A priorit:** - **Simulate continuous motion events:** A priority queue can process fleet collisions but requires complex invalidation and is slower than the monotonic stack.
+- **Simulate continuous motion events:** A priority queue can process fleet collisions but requires complex invalidation and is slower than the monotonic stack.
 - **Check every car ahead:** It can take $O(n^2)$ time.
 - **Equal speeds:** The rear car cannot close the distance, so the candidate is popped.
 - **Rear car slower:** It cannot catch the candidate before that candidate changes fleet state.
@@ -126,8 +126,8 @@ Equality is accepted: if `i` reaches `j` at the exact moment `j` hits its next f
 - **One car:** The stack starts empty for it and answer is `[-1]`.
 - **Answer initialization:** Minus one distinguishes never colliding from every nonnegative time.
 - **Input preservation:** Cars are read in place and never reordered or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

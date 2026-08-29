@@ -51,7 +51,7 @@ The exact solution then modifies this sorted list in place. First, `arr[0] = 1`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution then modifies this sorted list in place.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact solution then modifies this sorted list in place. First, `arr[0] = 1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting by capped value:** Since no final max:** - **Counting by capped value:** Since no final maximum can exceed `n`, count each original value as `min(value, n)` and process capacities in linear time with `O(n)` space.
+- **Counting by capped value:** Since no final maximum can exceed `n`, count each original value as `min(value, n)` and process capacities in linear time with `O(n)` space.
 - **Track only the endpoint after sorting:** A scalar answer can replace rewriting every later array entry, but the exact source stores the full valid witness.
 - **Already valid ascending array:** Every minimum keeps the original value, and the existing maximum is returned.
 - **No original one:** The smallest positive value is decreased to one, satisfying the required first element.
@@ -98,8 +98,8 @@ The exact solution then modifies this sorted list in place. First, `arr[0] = 1`.
 - **Absolute difference:** The produced sequence is nondecreasing with rises at most one, which is a sufficient stronger structure.
 - **Input mutation:** Sorting and overwriting values permanently transform `arr`. Use a copy if the caller needs the original data.
 - **Positive-value guarantee:** Setting the first sorted entry to one is always a decrease or no-op; zero or negative inputs would require separate reasoning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

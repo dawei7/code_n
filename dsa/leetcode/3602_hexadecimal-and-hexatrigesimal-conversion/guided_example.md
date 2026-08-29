@@ -72,9 +72,7 @@ The digits are discovered from least significant to most significant. Appending 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | While `x` is nonzero, the helper does the following:
-
-- comp... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +113,7 @@ For values 10 and above, the solution calculates:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in hexadecimal formatting:** Python can :** - **Built-in hexadecimal formatting:** Python can format `n**2` as hexadecimal, but it would need uppercase conversion and a separate base-36 implementation. The shared helper keeps both conversions governed by identical rules.
+- **Built-in hexadecimal formatting:** Python can format `n**2` as hexadecimal, but it would need uppercase conversion and a separate base-36 implementation. The shared helper keeps both conversions governed by identical rules.
 - **Recursive conversion:** Recurse on `x // k` and append the remainder while unwinding. It is correct but uses call-stack space and is less robust than the iterative loop.
 - **Predefined digit alphabet:** Indexing `"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[v]` is a clear alternative to the numeric/letter branch; the source instead constructs letters from `A`.
 - **Convert by powers from the left:** Finding the largest power of the base and extracting digits in forward order works, but repeated division is simpler and naturally avoids floating-point logarithms.
@@ -130,8 +128,8 @@ For values 10 and above, the solution calculates:
 - **No `0x` prefix:** Only numeral digits belong in the result, so the helper emits no language-specific hexadecimal marker.
 - **Maximum input:** `n = 1000` gives positive finite powers well within Python's exact integer capabilities and requires only a small number of loop iterations.
 - **Input preservation:** Integers are immutable. The helper repeatedly changes only its local `x` parameter and does not alter the caller's `n`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

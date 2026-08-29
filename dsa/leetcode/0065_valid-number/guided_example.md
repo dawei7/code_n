@@ -57,7 +57,7 @@ Signs appearing later are not accepted by the ordinary-character branch because 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ If a dot is first but followed by a digit, forms such as `".9"` remain possible.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deterministic finite automaton:** Classify eac:** - **Deterministic finite automaton:** Classify each character and transition between grammar states. It is systematic and linear but requires a carefully verified state table.
+- **Deterministic finite automaton:** Classify each character and transition between grammar states. It is systematic and linear but requires a carefully verified state table.
 - **Split around `e` or `E`:** Validate a decimal/integer mantissa and integer exponent separately. This can be readable but must reject multiple markers and avoid substring-allocation assumptions.
 - **Regular expression:** A complete anchored expression can encode the grammar concisely, though it is harder for beginners to debug and may obscure why cases fail.
 - **Built-in numeric conversion:** It may accept whitespace, infinity, or other implementation-specific formats and should not define this exact grammar.
@@ -105,8 +105,8 @@ If a dot is first but followed by a digit, forms such as `".9"` remain possible.
 - **Exponent sign:** Legal only immediately after `e` or `E` and only when followed by a digit.
 - **Whitespace:** This scanner rejects it; whitespace is absent from the stated input alphabet.
 - **Unicode numerics outside the contract:** `isnumeric()` may accept them even though the formal grammar names only ASCII digits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

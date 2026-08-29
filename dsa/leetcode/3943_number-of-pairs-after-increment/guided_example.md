@@ -71,7 +71,7 @@ Initially every lazy value is zero, so counters can be built directly from slice
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `length = len(nums2)`, the source selects a block size c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Rebuilding the whole boundary counter is necessary: changing individual position
 
 ## 6. Traps This Instance Exposes
 
-- **- **Update every element in the range:** This make:** - **Update every element in the range:** This makes type-1 queries $O(N)$ in the worst case. Lazy whole blocks avoid touching their entries.
+- **Update every element in the range:** This makes type-1 queries $O(N)$ in the worst case. Lazy whole blocks avoid touching their entries.
 - **Use one global frequency counter:** A range addition affects an arbitrary subset, so updating the global frequencies still requires knowing every changed old value. Per-block counters localize reconstruction.
 - **Push all lazy blocks before every count query:** This restores a literal array but wastes $O(N)$ work. Adjusting the target gives the same counts without materialization.
 - **Iterate every `nums1` position instead of distinct values:** It remains bounded by five but repeats identical counter lookups. Multiplicity compression is cleaner and counts index pairs correctly.
@@ -125,8 +125,8 @@ Rebuilding the whole boundary counter is necessary: changing individual position
 - **One-element `nums2`:** There is one block. Every update is a boundary update and every count query uses its one counter.
 - **Large update totals:** Python integers safely hold values after many positive range additions.
 - **No type-2 queries:** The returned answer is empty even though type-1 updates are still processed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

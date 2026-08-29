@@ -61,7 +61,7 @@ Appending places it at the end of the record and makes it available to future co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `op` is not one of the three command strings, it represen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ It is important that the expression is evaluated before the append. Both negativ
 
 ## 6. Traps This Instance Exposes
 
-- **- **List of records with validity flags:** Keep ca:** - **List of records with validity flags:** Keep canceled entries and search backward for valid scores. This complicates commands and can make repeated lookups slower than stack removal.
-- **- **Stack plus running total:** Update a total on :** - **Stack plus running total:** Update a total on every append and subtract the popped value on `C`. This avoids the final linear sum but still needs the stack for `+` and `D`.
-- **- **Recompute the record from the beginning for ea:** - **Recompute the record from the beginning for each command:** This repeats work and is unnecessary because stack state is incremental.
+- **List of records with validity flags:** Keep canceled entries and search backward for valid scores. This complicates commands and can make repeated lookups slower than stack removal.
+- **Stack plus running total:** Update a total on every append and subtract the popped value on `C`. This avoids the final linear sum but still needs the stack for `+` and `D`.
+- **Recompute the record from the beginning for each command:** This repeats work and is unnecessary because stack state is incremental.
 
 ---
 

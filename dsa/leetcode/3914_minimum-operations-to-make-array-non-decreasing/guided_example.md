@@ -77,13 +77,7 @@ This is exactly the quantity returned by the source.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose
-
-$$
-d_i=\texttt{nums}[i]-\texttt{nums}[i+1]>0.
-$$
-
-T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -146,7 +140,7 @@ Thus the constructed final array is non-decreasing and costs exactly the lower b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate the suffix construction:** Actually m:** - **Simulate the suffix construction:** Actually modifying every suffix proves feasibility but can cost $O(N^2)$; only the summed drop values are needed for the answer.
+- **Simulate the suffix construction:** Actually modifying every suffix proves feasibility but can cost $O(N^2)$; only the summed drop values are needed for the answer.
 - **Raise each element to the previous final value:** A left-to-right greedy can compute final values, but counting element increments individually overcharges because one subarray operation raises many elements for one cost.
 - **Count operations instead of total \(x\):** This solves a different objective; one large increment and many unit increments have different operation counts but identical requested cost.
 - **Already non-decreasing array:** Every adjacent difference is nonpositive, so the sum is zero.
@@ -158,8 +152,8 @@ Thus the constructed final array is non-decreasing and costs exactly the lower b
 - **Positive \(x\) requirement:** Zero-drop boundaries simply receive no operation; every constructed operation has strictly positive $d_i$.
 - **Required helper:** Standalone execution needs `pairwise` from Python's `itertools` module.
 - **Input preservation:** The source evaluates differences without changing `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

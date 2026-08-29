@@ -51,7 +51,7 @@ The outer loop visits hours from 11 down to 0. For each hour, the inner loop vis
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop visits hours from 11 down to 0.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because every formatted time has the same five-character `HH:MM` shape, chronolo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Digit-by-digit greedy:** Choose the largest le:** - **Digit-by-digit greedy:** Choose the largest legal hour tens, hour ones, minute tens, and minute ones digits with dependency checks. It is also $O(1)$ but easier to get wrong.
+- **Digit-by-digit greedy:** Choose the largest legal hour tens, hour ones, minute tens, and minute ones digits with dependency checks. It is also $O(1)$ but easier to get wrong.
 - **Enumerate upward and retain the last match:** Correct, but it cannot return early and is less direct.
 - **No question marks:** Exactly one valid time matches; the descending search eventually returns the input.
 - **All question marks:** The first candidate `11:59` matches immediately.
@@ -101,8 +101,8 @@ Because every formatted time has the same five-character `HH:MM` shape, chronolo
 - **Descending type order:** Hours dominate minutes, so nested descending loops yield globally descending times.
 - **Input immutability:** `s` is only compared, never edited.
 - **Manifest method mismatch:** The source enumerates 720 valid strings rather than greedily filling four positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

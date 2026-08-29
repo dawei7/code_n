@@ -8,7 +8,7 @@ Initially, no one is friends with each other. You are given a list of friend req
 
 A friend request is **successful **if $u_{j}$ and $v_{j}$ can be **friends**. Each friend request is processed in the given order (i.e., $\text{requests}[j]$ occurs before $requests[j + 1]$), and upon a successful request, $u_{j}$ and $v_{j}$ **become direct friends** for all future friend requests.
 
-Return *a **boolean array** *`result`,* where each *$\text{result}[j]$* is *`true`* if the *$$j^{\text{th}}$$* friend request is **successful** or *`false`* if it is not*.
+Return *a **boolean array** *`result`,* where each *$\text{result}[j]$* is *`true`* if the *$j^{\text{th}}$* friend request is **successful** or *`false`* if it is not*.
 
 ### 2. Function Contract
 

@@ -1,6 +1,6 @@
 # Guided Example: Reverse Linked List II
 
-We will reverse a specific interior subsegment $[2, 4]$ of a singly linked list in a single pass:
+We will reverse a specific interior subsegment `[2, 4]` of a singly linked list in a single pass:
 
 - **Input:** `head = [1, 2, 3, 4, 5]`, `left = 2`, `right = 4`
 - **Required output:** `[1, 4, 3, 2, 5]`

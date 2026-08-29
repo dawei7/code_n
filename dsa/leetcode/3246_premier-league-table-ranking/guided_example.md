@@ -51,7 +51,7 @@ The query selects each team's identifier and name, evaluates that expression as 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query selects each team's identifier and name, evaluates... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The query selects each team's identifier and name, evaluates that expression as 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`DENSE_RANK`:** This also gives equal numbers :** - **`DENSE_RANK`:** This also gives equal numbers to tied teams but removes gaps after ties. It would produce positions one, one, two in the example and therefore does not match the shown competition ranking.
+- **`DENSE_RANK`:** This also gives equal numbers to tied teams but removes gaps after ties. It would produce positions one, one, two in the example and therefore does not match the shown competition ranking.
 - **`ROW_NUMBER`:** This always gives distinct positions, so equal-point teams would not share a rank.
 - **Correlated rank count:** Position can be calculated as one plus the number of teams with strictly more points. It reproduces `RANK` but repeats the points expression and is usually less clear and potentially slower.
 - **Compute points in a CTE:** A CTE can name `points` once, then rank and sort that column. This avoids textual repetition, while the compact source repeats the simple expression only in the window definition.
@@ -97,8 +97,8 @@ The query selects each team's identifier and name, evaluates that expression as 
 - **Name collation:** MySQL sorts `team_name` according to the column or connection collation, which controls case and accent behavior. The query follows the database's ascending text semantics.
 - **Null statistics:** If `wins` or `draws` were null, the points expression would be null and MySQL's null ordering would apply. The intended sports-statistics contract assumes usable integer counts; the source does not coalesce nulls to zero.
 - **Ordinal `ORDER BY` references:** `3` and `2` are concise but depend on select-column order. Writing `ORDER BY points DESC, team_name` would be more resilient to column reordering while producing the same result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

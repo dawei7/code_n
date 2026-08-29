@@ -64,11 +64,7 @@ As a general Python predicate, `isalpha` accepts alphabetic Unicode characters a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first branch is:
-
-`if c.isalpha(): result.append(c)`.
-
-T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +103,7 @@ Its running time and additional list capacity are proportional to the current re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque with orientation flag:** Appends, remova:** - **Deque with orientation flag:** Appends, removals, and reversals can use opposite deque ends depending on orientation. Duplication still has to materialize copied output, but repeated `%` operations become constant-time.
+- **Deque with orientation flag:** Appends, removals, and reversals can use opposite deque ends depending on orientation. Duplication still has to materialize copied output, but repeated `%` operations become constant-time.
 - **Rope or expression tree:** Represent duplication and reversal lazily for much larger inputs, then materialize only once; this is unnecessary under `n <= 20`.
 - **Immutable string simulation:** It is concise, but repeated concatenation, slicing, and reversal allocate new strings and can add copying overhead.
 - **Empty result and `*`:** The guarded pop makes the operation a no-op instead of raising `IndexError`.
@@ -124,8 +120,8 @@ Its running time and additional list capacity are proportional to the current re
 - **Broader Unicode input:** `isalpha` would accept letters outside lowercase English, but the stated input guarantee excludes them.
 - **Manifest mismatch:** The source has no deque or orientation flag; its reverse operation is linear, and its time is not generally `O(n+L_{\text{final}})`.
 - **Input preservation:** The string `s` is immutable; all mutations affect only the local result list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

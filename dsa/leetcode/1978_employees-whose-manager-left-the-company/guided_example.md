@@ -61,7 +61,7 @@ This pattern is called an anti-join: keep left-side rows for which no right-side
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An inner join would retain only employees whose manager row ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The three predicates together express the contract exactly: low salary, an actua
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS` correlated subquery:** Expresses :** - **`NOT EXISTS` correlated subquery:** Expresses the anti-join directly and is often optimized to a similar execution plan.
+- **`NOT EXISTS` correlated subquery:** Expresses the anti-join directly and is often optimized to a similar execution plan.
 - **`NOT IN` subquery:** It is concise but can have surprising three-valued-logic behavior when nulls are possible; `NOT EXISTS` or left anti-join is clearer.
 - **Inner join:** Incorrectly preserves managers who still exist and discards employees whose manager left.
 - **Missing `manager_id IS NOT NULL` check:** Would misclassify employees who never had a manager as having a departed manager.
@@ -114,8 +114,8 @@ The three predicates together express the contract exactly: low salary, an actua
 - **Null comparison:** Use `IS NOT NULL` and `IS NULL`; equality comparisons with SQL `NULL` do not evaluate to true.
 - **Required ordering:** `ORDER BY 1` sorts the sole result column in ascending order by default.
 - **No table mutation:** The query only reads `Employees`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

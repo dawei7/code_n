@@ -76,7 +76,7 @@ At this point, `rounds` covers every matchup without home/away direction. A matc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The circle method works most naturally with an even number o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Simply concatenating these blocks in their current list order would not be enoug
 
 ## 6. Traps This Instance Exposes
 
-- **- **Naively concatenate circle rounds:** The circl:** - **Naively concatenate circle rounds:** The circle method guarantees disjoint games within a round, but the last game of one round may overlap the first game of the next. Boundary ordering is still required.
+- **Naively concatenate circle rounds:** The circle method guarantees disjoint games within a round, but the last game of one round may overlap the first game of the next. Boundary ordering is still required.
 - **Backtrack over every match permutation:** Trying arbitrary orders among all $n(n-1)$ directed games creates an enormous factorial search space. Grouping games into disjoint round blocks reduces the only choices that matter to block boundaries.
 - **Search every previous ending:** It is valid to compare a current first game with all reachable previous endings, but unnecessary for blocks of at least three games. A two-team current match can conflict with at most two pairwise disjoint previous games, so three candidates suffice.
 - **Use a separately derived closed-form order:** A direct constructive formula could avoid parent dictionaries, but it would require its own careful boundary derivation for even and odd $n$. The exact source uses the more explicit reachable-state reconstruction.
@@ -128,8 +128,8 @@ Simply concatenating these blocks in their current list order would not be enoug
 - **Different home and away days:** The reversed fixture is placed in a separate block. The two directions of a matchup both appear exactly once; they are not treated as interchangeable.
 - **First block:** It has no preceding match, so only distinct first and last indices matter. The initialization uses indices $0$ and $1$ to ensure that distinction.
 - **Output lower bound:** Because every ordered pair must be written, no valid algorithm can run in asymptotically less than $\Omega(n^2)$ time when output construction is included.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

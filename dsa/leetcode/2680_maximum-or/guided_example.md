@@ -63,7 +63,7 @@ Thus a distributed allocation cannot beat every concentrated candidate. It is su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider any allocation of the $k$ operations among several ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Computing the unchanged OR from scratch for every index would make the algorithm
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every index and recompute all other ORs:**:** - **Try every index and recompute all other ORs:** Correct but $O(n^2)$.
+- **Try every index and recompute all other ORs:** Correct but $O(n^2)$.
 - **Prefix and suffix arrays both:** Also $O(n)$ time, but one running prefix is enough.
 - **Bit-frequency counts:** Counts can maintain the OR excluding one index with constant bounded-bit work and reduce range storage.
 - **Distribute shifts greedily by current value:** Not justified by bitwise interactions; the concentration theorem is the needed argument.
@@ -126,8 +126,8 @@ Computing the unchanged OR from scratch for every index would make the algorithm
 - **Use exactly all operations:** Positive inputs and the leading-bit argument ensure an optimum need not leave shifts unused.
 - **Do not mutate `nums`:** Candidates are evaluated algebraically, so each starts from the original array.
 - **Update prefix too early:** This would include the chosen number both unshifted and shifted and produce an invalid candidate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -72,7 +72,7 @@ not an exact length.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A run of exactly three produces one qualifying window.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ The alias `ConsecutiveNums` exactly matches the required output column.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` window functions:** Compare each row wit:** - **`LAG` window functions:** Compare each row with the preceding two rows in ID order; this directly expresses sequence and handles row-order adjacency with gaps.
+- **`LAG` window functions:** Compare each row with the preceding two rows in ID order; this directly expresses sequence and handles row-order adjacency with gaps.
 - **Run-length grouping:** Detect value changes with window functions, assign run IDs, group, and keep counts at least three.
 - **User variables:** Can track a running count in older MySQL, but evaluation order is fragile and requires explicit ordering.
 - **Exactly three:** Produces one window and one output value.
@@ -129,8 +129,8 @@ The alias `ConsecutiveNums` exactly matches the required output column.
 - **Alternating values:** Equality joins reject every window.
 - **ID gaps:** Direct `id + 1` logic assumes challenge-style consecutive identifiers.
 - **Any order:** No final sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

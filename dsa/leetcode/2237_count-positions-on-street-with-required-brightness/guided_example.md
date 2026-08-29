@@ -68,7 +68,7 @@ The extra sentinel position at index `n` makes `j + 1` valid even when `j = n - 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `d` has length `n + 1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Only clipped endpoints create events. Light outside the represented street contr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Increment every illuminated position per lamp::** - **Increment every illuminated position per lamp:** This direct simulation can take `O(nm)` time when many lamps cover most of the street.
+- **Increment every illuminated position per lamp:** This direct simulation can take `O(nm)` time when many lamps cover most of the street.
 - **Sweep sorted interval endpoints:** A general event map can work, but positions are already a dense range from zero to `n - 1`, making an array simpler.
 - **Segment tree:** Range additions and point queries are supported, but all updates occur before one full scan, so a difference array is lighter and faster.
 - **Lamp with zero range:** It creates events at `p` and `p + 1` and contributes only at its own position.
@@ -117,8 +117,8 @@ Only clipped endpoints create events. Light outside the represented street contr
 - **Range extending left or right:** Endpoint clipping prevents invalid indices without losing any on-street illumination.
 - **Sentinel value:** It is needed to terminate final-position intervals but is intentionally not paired with a requirement.
 - **Input preservation:** Neither source array is changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

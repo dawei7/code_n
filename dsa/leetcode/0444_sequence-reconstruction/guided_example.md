@@ -67,7 +67,7 @@ The loop condition `while len(q) == 1` encodes the first two cases directly. The
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A topological ordering lists every graph vertex while respec... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ By contrast, with `[[1, 2], [1, 3]]`, processing `1` makes both `2` and `3` avai
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerating all supersequences:** Generating p:** - **Enumerating all supersequences:** Generating permutations or recursively trying every available next value can detect uniqueness, but the search may explore exponentially many orders. Kahn's algorithm detects the first branch point directly.
+- **Enumerating all supersequences:** Generating permutations or recursively trying every available next value can detect uniqueness, but the search may explore exponentially many orders. Kahn's algorithm detects the first branch point directly.
 - **Checking only whether `nums` satisfies every row:** That proves `nums` is a valid supersequence, which is already guaranteed, but it does not prove that it is shortest or unique. The graph must show that every next value is forced.
 - **Comparing consecutive pairs of `nums` against a set of observed relations:** Under this problem's guarantees, requiring every adjacent pair of `nums` to be implied can support another linear approach, but the graph formulation expresses transitive constraints and uniqueness uniformly and matches the exact solution.
 - **Duplicate adjacent relations:** Repeated edges are harmless because indegree increments and decrements remain paired. Deduplicating them is optional and would require extra set storage.
@@ -118,8 +118,8 @@ By contrast, with `[[1, 2], [1, 3]]`, processing `1` makes both `2` and `3` avai
 - **A single value:** With `n = 1`, the only vertex is initially available, is processed, and leaves the deque empty, so the method returns true under the nonempty valid-sequence contract.
 - **Cycles outside the stated contract:** In an unrestricted graph, a cycle could make `q` empty before all vertices were processed, and this exact final check would incorrectly accept it. Here every row is guaranteed to be a subsequence of the permutation `nums`, so all edges point forward in `nums` and a cycle is impossible.
 - **Values outside `[1, n]`:** The code intentionally performs no validation before converting values to zero-based indices. The range guarantee is therefore part of the implementation's correctness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -72,7 +72,7 @@ When `x` is zero, the source performs neither update. This is exactly the remova
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After some least significant digits have been removed from t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ If `k` were multiplied by ten for a skipped zero, the algorithm would preserve a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string and filter characters:** `:** - **Convert to a string and filter characters:** `int("".join(c for c in str(n) if c != "0"))` is direct and also takes $O(D)$ time and $O(D)$ string space. The arithmetic method avoids conversion while preserving the same order.
+- **Convert to a string and filter characters:** `int("".join(c for c in str(n) if c != "0"))` is direct and also takes $O(D)$ time and $O(D)$ string space. The arithmetic method avoids conversion while preserving the same order.
 - **Build the result while scanning left to right:** A string naturally supports this. Arithmetically, one could first reverse digits or use a highest power of ten; the exact right-to-left scan instead prepends retained digits with `k`.
 - **Multiply `ans` by ten when a digit is retained:** That pattern appends digits and is appropriate when reading left to right. Used during this right-to-left scan, it would reverse the retained digit order.
 - **Advance `k` for zero digits:** This would keep zero positions rather than remove them. `k` counts retained digits only.
@@ -133,8 +133,8 @@ If `k` were multiplied by ten for a skipped zero, the algorithm would preserve a
 - **Leading zeros:** A positive integer's decimal representation has none. The algorithm operates on the canonical numeric representation automatically.
 - **Maximum input `10^15`:** The one followed by fifteen zeros is processed safely and reduces to one.
 - **Relative order:** Prepending each newly discovered left-side nonzero digit is the crucial step. Sorting or merely summing digits would violate the required sequence.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

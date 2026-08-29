@@ -51,7 +51,7 @@ A left join emits every row from `Users`. When matching ride rows exist, it emit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A left join emits every row from `Users`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ An inner join would lose users without rides and could never later recover their
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate rides before joining:** Group `R:** - **Pre-aggregate rides before joining:** Group `Rides` by user first, then left-join the smaller totals table to `Users`. This can reduce join volume when users have many rides and still requires null replacement.
+- **Pre-aggregate rides before joining:** Group `Rides` by user first, then left-join the smaller totals table to `Users`. This can reduce join volume when users have many rides and still requires null replacement.
 - **Correlated scalar subquery:** Compute one sum for each user. It is concise but may be slower without optimizer decorrelation or an index.
 - **Inner join:** It is incorrect because users without rides disappear.
 - **No rides for a user:** `SUM` is null over the null-extended group, and `COALESCE` changes it to zero.
@@ -97,8 +97,8 @@ An inner join would lose users without rides and could never later recover their
 - **Functional dependency of name:** The unique user ID determines one name. Explicitly grouping both columns improves portability.
 - **Alias with spaces:** MySQL accepts the quoted alias; other SQL dialects may prefer double quotes.
 - **Required ordering:** Without `ORDER BY`, relational result order is unspecified even if an execution plan happens to emit sorted rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -23,7 +23,7 @@ Write a solution to find the missing customer IDs. The missing IDs are ones that
 
 **Return value**
 
-Return a table with single column `ids` (int) containing all missing integers in $[1, \max(\text{customer\\_id})]$ sorted ascending.
+Return a table with single column `ids` (int) containing all missing integers in $[1, \max(\text{customer\_id})]$ sorted ascending.
 
 ### 3. Notice
 

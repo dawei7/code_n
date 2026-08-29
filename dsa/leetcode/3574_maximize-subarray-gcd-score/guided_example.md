@@ -67,7 +67,7 @@ Those `t` elements are the bottlenecks. If even one remains undoubled, its expon
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For subarray `[l,r]`, the exponent of two in its GCD is the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Thus the best GCD for a fixed subarray is:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply operations greedily before choosing a su:** - **Apply operations greedily before choosing a subarray:** A global modification choice can favor one interval and hurt flexibility for another. Enumerating intervals and optimizing each is the safe interpretation because only the selected interval’s score matters.
+- **Apply operations greedily before choosing a subarray:** A global modification choice can favor one interval and hurt flexibility for another. Enumerating intervals and optimizing each is the safe interpretation because only the selected interval’s score matters.
 - **Recompute each subarray GCD from scratch:** This adds another linear factor. Incremental `gcd` reduces each right extension to one update.
 - **Track only the minimum exponent:** Its frequency `t` is essential because every element attaining the minimum must be doubled.
 - **Odd-only subarray:** Every exponent is zero. Its GCD doubles only if the number of elements is at most `k`.
@@ -129,8 +129,8 @@ Thus the best GCD for a fixed subarray is:
 - **Original array preservation:** The valuation loop divides a copied scalar, not `nums[i]`.
 - **Large scores:** Python integers safely hold length-times-GCD products.
 - **Manifest space mismatch:** `cnt=[0]*n` is an explicit linear allocation and must be counted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

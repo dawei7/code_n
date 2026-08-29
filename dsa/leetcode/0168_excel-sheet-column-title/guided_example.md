@@ -80,7 +80,7 @@ them like an absent digit rather than `Z`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before taking a remainder, the method decrements `columnNumb... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -139,7 +139,7 @@ must happen during each loop iteration, not just once at the beginning.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive conversion:** Recursively convert `(:** - **Recursive conversion:** Recursively convert `(n - 1) // 26` and append the current letter; it avoids explicit reversal but uses $O(\log n)$ call-stack space.
+- **Recursive conversion:** Recursively convert `(n - 1) // 26` and append the current letter; it avoids explicit reversal but uses $O(\log n)$ call-stack space.
 - **String prepending:** Conceptually simple, but immutable strings can cause quadratic copying in the output length.
 - **Ordinary base 26 without decrement:** Incorrect at every multiple of 26 because Excel has no zero digit.
 - **Column one:** Produces `"A"` in one iteration.
@@ -149,8 +149,8 @@ must happen during each loop iteration, not just once at the beginning.
 - **Positive-input guarantee:** Zero has no Excel column title and is outside the contract.
 - **Character arithmetic:** Offsets must be added to `ord('A')`, not treated as direct character codes.
 - **Output order:** Extracted letters are least significant first and must be reversed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

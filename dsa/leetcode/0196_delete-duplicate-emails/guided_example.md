@@ -69,7 +69,7 @@ although actual SQL string comparison still follows the column's collation.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The innermost `SELECT * FROM Person` reads a snapshot-like d... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ delete structure acceptable to the target SQL engine.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join delete:** Delete a row whenever anot:** - **Self-join delete:** Delete a row whenever another row has the same email and smaller ID; concise MySQL syntax but can generate many matching pairs.
+- **Self-join delete:** Delete a row whenever another row has the same email and smaller ID; concise MySQL syntax but can generate many matching pairs.
 - **Window function:** Rank rows by `id` within each email and delete ranks above one through an engine-supported writable relation.
 - **Pandas grouping:** The local editorial broadcasts each email's minimum ID and drops nonminimum DataFrame rows in place.
 - **Single row per email:** Its ID is the group minimum and it remains.
@@ -121,8 +121,8 @@ delete structure acceptable to the target SQL engine.
 - **Duplicate letter case:** Input is lowercase, while database collation still defines equality.
 - **Empty table:** The keeper set and deletion target are empty, so nothing changes.
 - **Final ordering:** Not specified and not controlled by `DELETE`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

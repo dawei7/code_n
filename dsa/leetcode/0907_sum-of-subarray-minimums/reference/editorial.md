@@ -51,7 +51,7 @@ In fact, let's go one step further. Assume that we know the range in which each 
 
 Let's figure out how to get the number of subarrays that contain a specific element in a given range.
 
-We are given an array of integers - $[0, 3, 4, 5, 2, 3, 4, 1, 4]$. We need to find the number of subarrays where $2$ is the smallest integer. We can see that $2$ is the smallest integer in the range $[1, 6]$ denoted by the subarray $[3, 4, 5, 2, 3, 4]$. So, all the subarrays of this range that contain $2$ will also have $2$ as the smallest integer. As a result, the question has been reduced to - "In the given range, find the count of subarrays which contain $2$".
+We are given an array of integers - `[0, 3, 4, 5, 2, 3, 4, 1, 4]`. We need to find the number of subarrays where $2$ is the smallest integer. We can see that $2$ is the smallest integer in the range `[1, 6]` denoted by the subarray `[3, 4, 5, 2, 3, 4]`. So, all the subarrays of this range that contain $2$ will also have $2$ as the smallest integer. As a result, the question has been reduced to - "In the given range, find the count of subarrays which contain $2$".
 
 Each subarray is a continuous series of elements that contains $2$ from the given range. So to count them, we can count every subarray that starts before $2$ or at $2$, and ends after $2$ or at $2$. As explained in the diagram below, there is an easy way of counting them.
 
@@ -59,7 +59,7 @@ Each subarray is a continuous series of elements that contains $2$ from the give
 
 <br />
 
-As explained above, we can get the total count by multiplying two numbers - the count of elements before (and including) $2$ and the count of elements after (and including) $2$. There are $4$ elements before (and including) $2$ - $[3, 4, 5, 2]$ and $3$ elements are after (and including) $2$ - $[2, 3, 4]$. So the total is $3 * 4 = 12$.
+As explained above, we can get the total count by multiplying two numbers - the count of elements before (and including) $2$ and the count of elements after (and including) $2$. There are $4$ elements before (and including) $2$ - `[3, 4, 5, 2]` and $3$ elements are after (and including) $2$ - `[2, 3, 4]`. So the total is $3 * 4 = 12$.
 
 So, if we know the count of subarrays where each element is the smallest, we can deduce the amount each element will contribute to the final summation. For an element, it will be $element * count of subarrays where it is smallest$. We can sum this amount for every element to get the answer.
 
@@ -209,9 +209,9 @@ $3$ is the smallest element here. So the sum contributed by all subarrays ending
 
 Now, let's look at the next element, $5$. Four subarrays end at $5$. We can get them by concatenating $5$ at the end of the subarrays ending at the previous element. One subarray will consist of $5$ as the only element.
 
-$[8, 6, 3], [6, 3]$ and $[3]$ are clubbed with $5$ to get $[8, 6, 3, 5], [6, 3, 5], [3, 5]$ and one subarray with $5$ as the only element - $[5]$
+$[8, 6, 3], [6, 3]$ and `[3]` are clubbed with $5$ to get $[8, 6, 3, 5], [6, 3, 5], [3, 5]$ and one subarray with $5$ as the only element - `[5]`
 
-The current element $5$ is greater than the previous element $3$. So we can see that in all the subarrays made by concatenating $5$ with previously seen subarrays, $5$ is not going to be the minimum element. There is only one subarray where it is the minimum element, $[5]$. So $5$ will contribute its value to the summation $\text{dp}[3]$ with just one subarray where it is the only element.
+The current element $5$ is greater than the previous element $3$. So we can see that in all the subarrays made by concatenating $5$ with previously seen subarrays, $5$ is not going to be the minimum element. There is only one subarray where it is the minimum element, `[5]`. So $5$ will contribute its value to the summation $\text{dp}[3]$ with just one subarray where it is the only element.
 
 Subarray minimums' sum for subarray ending at index $3$:
 
@@ -235,7 +235,7 @@ $\text{dp}[4] = \text{dp}[2] + 2 * \text{arr}[4]$
 
 $\text{dp}[4] = 9 + 2 * 4 = 17$
 
-(the $2$ above comes from the two subarrays $[5, 4]$ and $[4]$, in other words, the difference between indices $4$ and $2$)
+(the $2$ above comes from the two subarrays `[5, 4]` and `[4]`, in other words, the difference between indices $4$ and $2$)
 
 We should be able to see a pattern emerging here. Take any element $i$ in the array $arr$. As we walk toward the left from $i$, we look for the index $j$ of the first element smaller than or equal to $\text{arr}[i]$. We find $i - j$ subarrays with $\text{arr}[i]$ as the minimum element. For the rest, $\text{dp}[j]$ contains the answer, so we sum both the values to get $\text{dp}[i]$.
 

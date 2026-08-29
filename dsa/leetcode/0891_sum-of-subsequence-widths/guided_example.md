@@ -51,7 +51,7 @@ Sorting `nums` places values in nondecreasing order. Subsequences are defined by
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting `nums` places values in nondecreasing order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Consider sorted position $i$ with value `nums[i]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subsequences:** This takes $O(2^:** - **Enumerate all subsequences:** This takes $O(2^n)$ subsets and is impossible for $n=10^5$.
+- **Enumerate all subsequences:** This takes $O(2^n)$ subsets and is impossible for $n=10^5$.
 - **Precompute all powers of two:** It simplifies indexing but uses $O(n)$ extra storage. The running `p` avoids that array.
 - **Use the direct coefficient formula:** Add `nums[i] * (pow2[i] - pow2[n-1-i])`. It is equivalent to the mirrored-pair loop.
 - **Do not sort:** The number of smaller and larger eligible values cannot be inferred from position without sorted order.
@@ -98,8 +98,8 @@ Consider sorted position $i$ with value `nums[i]`.
 - **Large power counts:** Reducing `p` after every doubling prevents enormous intermediate powers while preserving the result.
 - **Input mutation:** `nums.sort()` changes the caller's array. Sorting a copy would preserve it at linear additional storage.
 - **Subsequence order:** Sorting is used only for combinatorial counting. Width ignores the selected order, so original-order constraints do not change a selected set's width.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

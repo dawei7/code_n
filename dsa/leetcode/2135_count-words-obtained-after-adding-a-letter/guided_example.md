@@ -55,7 +55,7 @@ The set comprehension converts every string in `startWords` and stores its mask 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The set comprehension converts every string in `startWords` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ If none of the target’s deletions produces a stored start mask, no conversion 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort every word:** Sorting converts each word :** - **Sort every word:** Sorting converts each word to an order-independent canonical string, after which every one-letter deletion can be tested. This is simpler conceptually but costs $O(\ell\log\ell)$ per word instead of linear mask construction.
+- **Sort every word:** Sorting converts each word to an order-independent canonical string, after which every one-letter deletion can be tested. This is simpler conceptually but costs $O(\ell\log\ell)$ per word instead of linear mask construction.
 - **Store sorted start words by length:** This can narrow candidates but still requires building deletion strings or sorting target variants. Bit removal is constant time after the target mask is built.
 - **Try adding letters to every start word:** Each start has up to 26 possible additions, and generated results could be stored. This can work, but reversing the operation from each target tests only its own at most 26 letters and directly enforces the one-letter difference.
 - **Bitwise OR instead of sum:** OR is the conventional mask construction and would produce the same result. Summation is safe only because no word contains a repeated letter.
@@ -112,8 +112,8 @@ If none of the target’s deletions produces a stored start mask, no conversion 
 - **Missing predecessor:** Exhausting all target letters proves failure because every legal conversion has exactly one added letter that could be reversed.
 - **Start words remain reusable:** The algorithm never removes masks from `s`. This matches the note that checking one target does not consume or modify a start word.
 - **Letter order:** Masks deliberately erase order because the conversion permits arbitrary rearrangement after appending.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

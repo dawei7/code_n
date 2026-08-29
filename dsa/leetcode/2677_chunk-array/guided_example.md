@@ -71,7 +71,7 @@ That slice becomes one independent subarray in `ans`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop initializes `i = 0` and advances with `i += size`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ The result follows the contract without padding and without reading nonexistent 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested loops with `push`:** Also $O(n)$ and av:** - **Nested loops with `push`:** Also $O(n)$ and avoids `slice`, but requires more manual boundary bookkeeping.
+- **Nested loops with `push`:** Also $O(n)$ and avoids `slice`, but requires more manual boundary bookkeeping.
 - **Use `reduce`:** It can append to the latest chunk or create a new one, though the stride formulation exposes boundaries more directly.
 - **Use `splice`:** It can remove chunks from the front, but it mutates the input and front removals can be costly.
 - **Lodash `_.chunk`:** Explicitly disallowed by the problem.
@@ -126,8 +126,8 @@ The result follows the contract without padding and without reading nonexistent 
 - **Object elements:** References are copied shallowly; nested objects are not cloned.
 - **Input preservation:** `slice` leaves `arr` and its ordering unchanged.
 - **Positive-size guarantee:** It ensures the loop advances and terminates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

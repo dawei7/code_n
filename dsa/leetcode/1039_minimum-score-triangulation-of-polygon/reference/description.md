@@ -1,6 +1,6 @@
 ### 1. Description
 
-You have a convex `n`-sided polygon where each vertex has an integer value. You are given an integer array `values` where $\text{values}[i]$ is the value of the $$i^{\text{th}}$$ vertex in **clockwise order**.
+You have a convex `n`-sided polygon where each vertex has an integer value. You are given an integer array `values` where $\text{values}[i]$ is the value of the $i^{\text{th}}$ vertex in **clockwise order**.
 
 **Polygon** **triangulation** is a process where you divide a polygon into a set of triangles and the vertices of each triangle must also be vertices of the original polygon. Note that no other shapes other than triangles are allowed in the division. This process will result in $n - 2$ triangles.
 
@@ -52,7 +52,7 @@ The minimum score is 144.
 
 ![](images/ex2.png)
 
-​​​​​​​**
+**
 
 - **Input:** values = [1,3,1,4,1,5]
 

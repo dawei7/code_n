@@ -79,7 +79,7 @@ For `"cabcaab"`, the first occurrences are `c` at zero, `a` at one, and `b` at t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The character `s[0]` necessarily starts the first substring.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ It would be incorrect to demand that every piece itself contain distinct charact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over cut positions:** The :** - **Dynamic programming over cut positions:** The first-occurrence construction proves no optimization state is needed.
+- **Dynamic programming over cut positions:** The first-occurrence construction proves no optimization state is needed.
 - **Greedily cut at every new character while scanning:** This explicitly realizes the proof and gives the same count, but storing substrings is unnecessary.
 - **Count character runs:** A character may reappear after other letters, but it can start at most one piece. Runs can greatly exceed distinct characters.
 - **Cut before every occurrence:** Repeated occurrences would create pieces with duplicate starting characters and violate the rule.
@@ -131,8 +131,8 @@ It would be incorrect to demand that every piece itself contain distinct charact
 - **Complete partition requirement:** First-occurrence cuts cover every source position; no suffix is discarded.
 - **Nonempty pieces:** Distinct cut positions ensure every piece has at least one character.
 - **Construction versus return value:** The partition proves the count is attainable, but the source correctly returns only that count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

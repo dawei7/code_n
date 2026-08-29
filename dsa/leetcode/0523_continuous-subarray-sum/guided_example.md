@@ -51,7 +51,7 @@ Let `P(i)` be the sum of `nums[0]` through `nums[i]`. The sum of the subarray fr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `P(i)` be the sum of `nums[0]` through `nums[i]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ That difference is a multiple of `k` exactly when the two prefix sums have the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Even with prefix su:** - **Enumerate all subarrays:** Even with prefix sums making each sum query constant time, there are $O(n^2)$ subarrays, which is too slow.
+- **Enumerate all subarrays:** Even with prefix sums making each sum query constant time, there are $O(n^2)$ subarrays, which is too slow.
 - **Store full prefix sums:** A set of sums cannot directly recognize differences that are arbitrary multiples of `k`; grouping by remainder captures exactly the needed equivalence.
 - **Overwrite remainder indices:** Keeping a later occurrence shortens future candidate subarrays and can miss a valid length-two-or-more segment.
 - **One-element divisible value:** A repeated remainder at distance one is rejected by `> 1`.
@@ -97,8 +97,8 @@ That difference is a multiple of `k` exactly when the two prefix sums have the s
 - **Large `k`:** The dictionary is still bounded by the number of observed prefixes rather than allocating an array of size `k`.
 - **Nonnegative input values:** They are guaranteed, although the equal-remainder identity itself also works with negative values under a consistent modulo definition.
 - **No repeated usable remainder:** Completing the scan and returning false is correct because every divisible subarray would force such a repeat.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

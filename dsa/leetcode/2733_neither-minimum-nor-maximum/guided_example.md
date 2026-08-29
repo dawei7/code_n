@@ -63,9 +63,7 @@ The contract accepts any valid interior value, so stopping at the first one is o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator expression:
-
-`(x for x in nums if x != mi and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ Positivity is not needed for this reasoning, but it makes `-1` a safe failure se
 
 ## 6. Traps This Instance Exposes
 
-- **- **Median of the first three distinct values:** T:** - **Median of the first three distinct values:** The median of any three distinct array values cannot be a global minimum or maximum, giving an $O(1)$ solution when $n\ge3$.
+- **Median of the first three distinct values:** The median of any three distinct array values cannot be a global minimum or maximum, giving an $O(1)$ solution when $n\ge3$.
 - **Sort the array:** Any interior sorted element works, but sorting costs $O(n\log n)$ and may mutate the input.
 - **Track min, max, and candidate in one pass:** Can reduce the number of traversals while preserving $O(n)$ time.
 - **Length one:** Its sole value is both extremes, so return `-1`.
@@ -118,8 +116,8 @@ Positivity is not needed for this reasoning, but it makes `-1` a safe failure se
 - **Example permits several answers:** Returning three instead of the sample's two is still correct.
 - **Positive values:** Ensure the failure sentinel `-1` cannot collide with a valid returned number.
 - **Input preservation:** Neither `min`, `max`, nor the generator changes `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

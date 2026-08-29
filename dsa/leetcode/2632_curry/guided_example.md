@@ -62,7 +62,7 @@ The problem guarantees explicitly defined parameters and a total supplied argume
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a function with explicitly declared parameters, `fn.leng... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Every returned stage closes over its own `previous` and `count`. This makes its 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated array concatenation:** Simpler but ca:** - **Repeated array concatenation:** Simpler but can take $O(n^2)$ total copying when arguments arrive one at a time.
+- **Repeated array concatenation:** Simpler but can take $O(n^2)$ total copying when arguments arrive one at a time.
 - **One mutable collection:** Linear for a single chain but makes branching from a partial curried function unsafe.
 - **`Function.bind` accumulation:** Can implement partial application but may obscure arity and batching behavior.
 - **Empty argument batch:** It advances the call chain without increasing the collected count.
@@ -114,8 +114,8 @@ Every returned stage closes over its own `previous` and `count`. This makes its 
 - **Branched partial application:** Immutable linked nodes let branches share history safely.
 - **Argument order:** Backward node traversal must be reversed before invoking `fn`.
 - **Receiver context:** The exact `fn(...args)` call does not forward the curried wrapper's `this` because the contract is argument-based.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

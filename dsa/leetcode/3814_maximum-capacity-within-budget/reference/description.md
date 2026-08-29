@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $$i^{\text{th}}$$ machine and $\text{capacity}[i]$ represents its performance capacity.
+You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $i^{\text{th}}$ machine and $\text{capacity}[i]$ represents its performance capacity.
 
 You are also given an integer `budget`.
 

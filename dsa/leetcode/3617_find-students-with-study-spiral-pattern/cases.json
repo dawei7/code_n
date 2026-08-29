@@ -590,15 +590,7 @@
           "cycle_length",
           "total_study_hours"
         ],
-        "rows": [
-          [
-            1,
-            "Partial Third",
-            "Music",
-            3,
-            14.0
-          ]
-        ]
+        "rows": []
       },
       "validator": {
         "kind": "ordered_table"

@@ -63,7 +63,7 @@ Therefore index `i` is a valid chunk boundary precisely when the maximum value s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a chunk ends at index `i` and all earlier chunks alr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ If `mx == i`, the prefix contains exactly the values that belong in the first `i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort each candidate prefix:** This repeats wor:** - **Sort each candidate prefix:** This repeats work and can cost `O(n^2 log n)`.
-- **- **Prefix sum comparison:** For a permutation, co:** - **Prefix sum comparison:** For a permutation, comparing prefix sums with `0 + ... + i` also identifies boundaries, but maximum is simpler and avoids larger arithmetic.
-- **- **General stack method:** It handles duplicates :** - **General stack method:** It handles duplicates and arbitrary values as in problem 768, but the permutation guarantee permits this smaller state.
+- **Sort each candidate prefix:** This repeats work and can cost `O(n^2 log n)`.
+- **Prefix sum comparison:** For a permutation, comparing prefix sums with `0 + ... + i` also identifies boundaries, but maximum is simpler and avoids larger arithmetic.
+- **General stack method:** It handles duplicates and arbitrary values as in problem 768, but the permutation guarantee permits this smaller state.
 
 ---
 

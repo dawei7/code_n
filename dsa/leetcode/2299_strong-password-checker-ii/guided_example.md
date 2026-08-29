@@ -62,7 +62,7 @@ All four bits set produce `1+2+4+8=15`, so the final comparison `mask == 15` req
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mask` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Checking adjacency before category classification is safe: once a violation exis
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four Boolean variables:** They express the sam:** - **Four Boolean variables:** They express the same state and complexity; the bit mask packages them compactly.
+- **Four Boolean variables:** They express the same state and complexity; the bit mask packages them compactly.
 - **Regular expressions:** Separate searches can verify categories and adjacency but may scan the string multiple times and obscure the one-pass invariant.
 - **Set of categories:** It works but allocates a dynamic object for four fixed facts.
 - **Explicit special-character membership:** It is safer if arbitrary input characters are allowed; the source guarantee makes the `else` branch exact.
@@ -120,8 +120,8 @@ Checking adjacency before category classification is safe: once a violation exis
 - **Mask cannot exceed 15:** Only the four designated bits are ORed, so equality with 15 is a complete all-flags test.
 - **Failure order:** Length and adjacency may return early; the method is not required to report which or how many rules failed.
 - **Digit classification:** Each allowed decimal digit sets bit four regardless of its numeric value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $$i^{\text{th}}$$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $$n^{\text{th}}$$ friend brings you to the $1^st$ friend.
+There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $i^{\text{th}}$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $n^{\text{th}}$ friend brings you to the $1^st$ friend.
 
 The objective is to compute `[4, 5]` from `{"n": 5, "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ After calculating the next holder, `p` increments so the following pass uses the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `i` is the index of the friend currently holding th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This ordering matches the rule that the game finishes when someone receives the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set of recipients:** Also supports $O(1)$:** - **Hash set of recipients:** Also supports $O(1)$ expected membership checks, but the dense Boolean array is simpler and helps enumerate losers.
+- **Hash set of recipients:** Also supports $O(1)$ expected membership checks, but the dense Boolean array is simpler and helps enumerate losers.
 - **Search prior positions after every move:** Avoids extra visited storage but can take $O(n^2)$ time.
 - **Attempt a closed-form cycle analysis:** Possible number theory may characterize visits, but direct simulation is clearer within $n \le 50$.
 - **One friend:** Friend 1 is marked, receives the ball again after wrapping, and there are no losers.
@@ -111,8 +111,8 @@ This ordering matches the rule that the game finishes when someone receives the 
 - **Ascending output:** Scanning indices in order removes the need to sort.
 - **One-based versus zero-based labels:** Convert only at output; modulo arithmetic stays zero-based.
 - **Turn counter placement:** Increment after using `p` so the first pass is exactly `k` steps.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

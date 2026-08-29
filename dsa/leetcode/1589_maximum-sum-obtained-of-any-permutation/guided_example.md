@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-We have an array of integers, `nums`, and an array of `requests` where $\text{requests}[i] = [\text{start}_{i}, \text{end}_{i}]$. The $$i^{\text{th}}$$ request asks for the sum of $nums[\text{start}_{i}] + nums[\text{start}_{i} + 1] + ... + nums[\text{end}_{i} - 1] + nums[\text{end}_{i}]$. Both $\text{start}_{i}$ and $\text{end}_{i}$ are *0-indexed*.
+We have an array of integers, `nums`, and an array of `requests` where $\text{requests}[i] = [\text{start}_{i}, \text{end}_{i}]$. The $i^{\text{th}}$ request asks for the sum of $nums[\text{start}_{i}] + nums[\text{start}_{i} + 1] + ... + nums[\text{end}_{i} - 1] + nums[\text{end}_{i}]$. Both $\text{start}_{i}$ and $\text{end}_{i}$ are *0-indexed*.
 
 The objective is to compute `19` from `{"nums": [1, 2, 3, 4, 5], "requests": [[1, 3], [0, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ For requests `[[1,3],[0,1]]` over five positions, the final frequencies are `[1,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Incrementing every covered index separately would cost propo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ Therefore, assigning the larger value to the larger frequency is never worse. If
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply every request directly:** Incrementing c:** - **Apply every request directly:** Incrementing coverage throughout each interval can take $O(RN)$ time. Difference markers reduce each interval to constant work.
+- **Apply every request directly:** Incrementing coverage throughout each interval can take $O(RN)$ time. Difference markers reduce each interval to constant work.
 - **Sort requests or sweep endpoints as events:** This can also recover coverage frequencies, but a fixed-index difference array is simpler because the domain is exactly zero through $N-1$.
 - **Assign values greedily without sorting frequencies:** Repeatedly selecting the current largest value and largest count can be correct with heaps, but sorting both arrays is simpler and has the same dominant asymptotic cost.
 - **Keep original index identities:** One can sort pairs of `(frequency, index)` to construct an actual optimal permutation. The checked-in method needs only the maximum sum, so identities are unnecessary.
@@ -133,8 +133,8 @@ Therefore, assigning the larger value to the larger frequency is never worse. If
 - **Modulo timing:** Python safely sums the full value before reducing. Fixed-width languages should reduce during accumulation or use a sufficiently wide type.
 - **Input mutation:** `nums.sort()` changes the original list. Pass a copy if later code needs the source ordering.
 - **Inclusive endpoints:** The decrement occurs at `r + 1`, not `r`, because position `r` is part of the request.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -147,13 +147,13 @@ As trivial as this modification might seem to be, it actually reduces the runtim
 
 **Complexity Analysis**
 
-- Time Complexity: $$\mathcal{O}(N)$$ where $$N$$ is the number of cells in the board. In the worst case where it contains only the `O` cells on the board, we would traverse each cell twice: once during the DFS traversal and the other time during the cell reversion in the last step.
+- Time Complexity: $$\mathcal{O}(N)$$ where $N$ is the number of cells in the board. In the worst case where it contains only the `O` cells on the board, we would traverse each cell twice: once during the DFS traversal and the other time during the cell reversion in the last step.
 
-- Space Complexity: $$\mathcal{O}(N)$$ where $$N$$ is the number of cells in the board. There are mainly two places that we consume some additional memory.
+- Space Complexity: $$\mathcal{O}(N)$$ where $N$ is the number of cells in the board. There are mainly two places that we consume some additional memory.
 
-- We keep a list of border cells as starting points for our traversal. We could consider the number of border cells is proportional to the total number ($$N$$) of cells.
+- We keep a list of border cells as starting points for our traversal. We could consider the number of border cells is proportional to the total number ($N$) of cells.
 
-- During the recursive calls of `DFS()` function, we would consume some space in the function call stack, _i.e._ the call stack will pile up along with the depth of recursive calls. And the maximum depth of recursive calls would be $$N$$ as in the worst scenario mentioned in the time complexity.
+- During the recursive calls of `DFS()` function, we would consume some space in the function call stack, _i.e._ the call stack will pile up along with the depth of recursive calls. And the maximum depth of recursive calls would be $N$ as in the worst scenario mentioned in the time complexity.
 
 - As a result, the overall space complexity of the algorithm is $$\mathcal{O}(N)$$.
 <br/>

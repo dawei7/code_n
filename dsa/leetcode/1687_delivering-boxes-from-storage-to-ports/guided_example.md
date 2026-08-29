@@ -69,7 +69,7 @@ is the total weight of boxes `j` through `i-1`. This makes a load’s weight che
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ws` begins with zero and stores cumulative box weights.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Boxes for the same consecutive port are delivered during one visit, so their zer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic prefix DP:** Evaluate every prior `j:** - **Quadratic prefix DP:** Evaluate every prior `j` for every endpoint `i`. It is easier to derive but costs $O(n^2)$ and fails the large constraint.
+- **Quadratic prefix DP:** Evaluate every prior `j` for every endpoint `i`. It is easier to derive but costs $O(n^2)$ and fails the large constraint.
 - **Segment tree over DP keys:** It can query minimum feasible ranges, but weight and count define a sliding window that a monotonic deque handles more simply in linear time.
 - **Consecutive boxes for one port:** They add no internal port-change trip and can all be delivered during one port visit if capacity allows.
 - **Alternating ports:** Every adjacent change adds one trip inside a load, exactly as counted by `cs`.
@@ -134,8 +134,8 @@ Boxes for the same consecutive port are delivered during one visit, so their zer
 - **Return to storage:** The `+2` includes both the first outward trip and mandatory return for every load.
 - **Unused `portsCount`:** Equality of adjacent IDs fully determines route changes; the total number of possible labels does not change the optimum.
 - **Final candidate insertion:** Skipping `i == n` saves useless deque work because no later DP state exists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

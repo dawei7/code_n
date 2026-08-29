@@ -63,7 +63,7 @@ Popping only removes a previous choice. Appending the current character after th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Characters are appended while scanning `s` from left to righ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This skip also prevents equal letters from appearing twice in the stack. The sta
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive smallest-feasible-first-letter selec:** - **Recursive smallest-feasible-first-letter selection:** Find the smallest character whose suffix still contains every needed letter, choose it, remove later duplicates, and recurse. It is correct and linear under the fixed 26-letter alphabet, but repeated slicing is less direct than the stack.
+- **Recursive smallest-feasible-first-letter selection:** Find the smallest character whose suffix still contains every needed letter, choose it, remove later duplicates, and recurse. It is correct and linear under the fixed 26-letter alphabet, but repeated slicing is less direct than the stack.
 - **Sort the distinct letters:** This ignores subsequence order. The alphabetically sorted set may not be obtainable from `s` while preserving indices.
 - **Keep the first occurrence of every letter:** It guarantees uniqueness but can be lexicographically suboptimal when a larger early letter safely appears later.
 - **Keep the last occurrence of every letter:** It may also produce a larger prefix and does not greedily optimize the order of selected occurrences.
@@ -117,8 +117,8 @@ This skip also prevents equal letters from appearing twice in the stack. The sta
 - **A smaller letter arrives late:** Larger suffix letters are popped only when each has another future occurrence; mandatory letters form a barrier.
 - **Repeated smallest letter:** Once selected, later copies are skipped. Earlier larger letters may already have been removed when its first useful occurrence appeared.
 - **Lowercase guarantee:** Lexicographic character comparisons match alphabetical order directly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

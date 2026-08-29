@@ -61,7 +61,7 @@ Thus a two-platform user contributes one combined record to both rather than one
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `T` groups by `user_id` and `spend_date`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Counting a column from `T` rather than `COUNT(*)` is essential. A left join alwa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cross join dates with a three-row platform tab:** - **Cross join dates with a three-row platform table:** This explicitly constructs the same skeleton and can be clearer than three UNION branches.
+- **Cross join dates with a three-row platform table:** This explicitly constructs the same skeleton and can be clearer than three UNION branches.
 - **Conditional aggregation:** Classify user-date rows first, then aggregate CASE expressions. A skeleton is still needed to emit zero categories.
 - **Separate queries per category:** Compute desktop-only, mobile-only, and both, then union them with missing-row handling. It is more repetitive.
 - **User spends on both platforms:** Their two amounts combine and the user counts once in both.
@@ -116,8 +116,8 @@ Counting a column from `T` rather than `COUNT(*)` is essential. A left join alwa
 - **Amount zero:** The user still counts, while total amount may remain zero.
 - **ONLY_FULL_GROUP_BY:** The unaggregated platform reference in `T` may require a portable rewrite.
 - **Any result order:** No final sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -76,7 +76,7 @@ Here `a` is Person 1's distance and `b` is Person 2's distance. These short vari
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The distance between coordinates `p` and `q` is `abs(p - q)`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ These cases are mutually exclusive and exhaustive for two integers. Exactly one 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Step-by-step movement simulation:** Moving bot:** - **Step-by-step movement simulation:** Moving both people toward `z` until one arrives is intuitive but unnecessary. Absolute distance summarizes the number of equal-speed steps immediately.
+- **Step-by-step movement simulation:** Moving both people toward `z` until one arrives is intuitive but unnecessary. Absolute distance summarizes the number of equal-speed steps immediately.
 - **Compare `x - z` with `y - z` without absolute values:** Signed differences encode direction as well as distance and can rank a farther person as “smaller” merely for being left of `z`.
 - **Compare x directly with y:** Their closeness to each other says nothing about their separate distances to `z`.
 - **Square the distances:** Comparing `(x-z)^2` and `(y-z)^2` would give the same ordering for nonnegative distances, but absolute values are simpler and avoid needless multiplication.
@@ -135,8 +135,8 @@ These cases are mutually exclusive and exhaustive for two integers. Exactly one 
 - **Symmetric positions around z:** If `x = z-d` and `y = z+d`, both distances are `d` and the result is zero.
 - **Nested conditional readability:** Expanding the expression into `if`, `elif`, and `else` branches would be equivalent. The protected one-line return evaluates equality first and then resolves the only two unequal cases.
 - **Equal speed assumption:** If speeds differed, distance comparison alone would be insufficient; one would need compare `distance/speed`. The problem explicitly guarantees equal speed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

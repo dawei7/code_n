@@ -20,7 +20,7 @@ You are given an instance of the class `FizzBuzz` that has four functions: `fizz
 
 - **Thread D:** calls `number()` that should only output the integers.
 
-Modify the given class to output the series `[1, 2, "fizz", 4, "buzz", ...]` where the $$i^{\text{th}}$$ token (**1-indexed**) of the series is:
+Modify the given class to output the series `[1, 2, "fizz", 4, "buzz", ...]` where the $i^{\text{th}}$ token (**1-indexed**) of the series is:
 
 - `"fizzbuzz"` if `i` is divisible by `3` and `5`,
 

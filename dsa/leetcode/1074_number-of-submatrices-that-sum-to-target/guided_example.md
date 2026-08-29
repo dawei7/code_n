@@ -75,11 +75,7 @@ Negative numbers cause no difficulty. Prefix sums need not be monotonic because 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(nums)` begins:
-
-
-
-`s` is the running prefix su... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +126,7 @@ The code reuses the previous band rather than recomputing all rows from `i` thro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Choose the smaller paired dimension:** Transpo:** - **Choose the smaller paired dimension:** Transpose or branch so the squared dimension is `min(R, C)`. This guarantees the manifest's `O(S^2L)` time and `O(L)` space.
+- **Choose the smaller paired dimension:** Transpose or branch so the squared dimension is `min(R, C)`. This guarantees the manifest's `O(S^2L)` time and `O(L)` space.
 - **Two-dimensional prefix sums plus four boundaries:** Constant-time rectangle queries still leave `O(R^2C^2)` boundary combinations, much slower than the reduction.
 - **Column-pair compression:** Fix left and right columns, compress row sums, and run the same prefix-map helper. It is symmetric and preferable when columns are fewer.
 - **Target zero:** The initial zero-prefix frequency correctly counts zero-sum intervals, including those created by cancellations.
@@ -143,8 +139,8 @@ The code reuses the previous band rather than recomputing all rows from `i` thro
 - **Nonempty submatrices:** Recording the current prefix after the lookup prevents pairing a prefix with itself.
 - **Large count:** Python integers avoid overflow when many boundary combinations match.
 - **Input preservation:** Compression accumulates into `col` and never modifies `matrix`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

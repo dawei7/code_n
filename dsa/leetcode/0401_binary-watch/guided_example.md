@@ -65,7 +65,7 @@ Leading zero bits do not need to be written by `bin`. Omitting them does not cha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The four hour LEDs represent binary place values, and the si... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +114,9 @@ Calling `i.bit_count() + j.bit_count()` would express the same calculation witho
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all 1024 LED masks:** Split each ten:** - **Enumerate all 1024 LED masks:** Split each ten-bit mask into four hour bits and six minute bits, reject hour values at least 12 or minute values at least 60, and keep masks with the requested population count. This is also constant time but requires explicit validity checks.
-- **- **Generate combinations of lit LEDs:** Choose ex:** - **Generate combinations of lit LEDs:** Choose exactly `turnedOn` positions among ten LEDs, convert them to hour/minute values, and reject invalid displays. It may examine fewer states for some counts but is more complicated than 720 direct checks.
-- **- **Use `int.bit_count`:** `i.bit_count() + j.bit_:** - **Use `int.bit_count`:** `i.bit_count() + j.bit_count()` avoids binary strings and states the population-count operation directly. It is an equivalent implementation detail.
+- **Enumerate all 1024 LED masks:** Split each ten-bit mask into four hour bits and six minute bits, reject hour values at least 12 or minute values at least 60, and keep masks with the requested population count. This is also constant time but requires explicit validity checks.
+- **Generate combinations of lit LEDs:** Choose exactly `turnedOn` positions among ten LEDs, convert them to hour/minute values, and reject invalid displays. It may examine fewer states for some counts but is more complicated than 720 direct checks.
+- **Use `int.bit_count`:** `i.bit_count() + j.bit_count()` avoids binary strings and states the population-count operation directly. It is an equivalent implementation detail.
 
 ---
 

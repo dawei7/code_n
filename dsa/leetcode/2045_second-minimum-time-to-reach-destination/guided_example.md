@@ -64,7 +64,7 @@ Both inequalities are strict. An equal-length route does not count as a second m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dist[v][0]` and `dist[v][1]` are used to retain the two sma... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For all ordinarily discovered vertices, the two acceptance tests retain increasi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Time-aware Dijkstra:** Store the two smallest :** - **Time-aware Dijkstra:** Store the two smallest arrival times directly; correct but more machinery than step-count BFS under synchronized equal edges.
+- **Time-aware Dijkstra:** Store the two smallest arrival times directly; correct but more machinery than step-count BFS under synchronized equal edges.
 - **Enumerate simple paths:** Incorrectly excludes useful revisits and is computationally infeasible.
 - **Duplicate shortest routes:** They share one minimum time and do not count as the second distinct value.
 - **Return through vertex one:** Explicitly permitted; the source's revisit handling supports it.
@@ -116,8 +116,8 @@ For all ordinarily discovered vertices, the two acceptance tests retain increasi
 - **Strict second distance:** Equal edge counts are rejected by the strict inequalities.
 - **Synchronized signals:** This is what makes elapsed time a function only of edge count.
 - **Input preservation:** The source builds separate adjacency sets.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

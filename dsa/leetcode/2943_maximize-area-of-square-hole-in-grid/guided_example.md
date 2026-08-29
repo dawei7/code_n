@@ -68,7 +68,7 @@ If one direction permits a much longer opening, extra removals there do not incr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $H=f(\texttt{hBars})$ and $V=f(\texttt{vBars})$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The large values of `n` and `m` do not require constructing the grid. Only the a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash-set run starts:** Insert indices into a s:** - **Hash-set run starts:** Insert indices into a set and expand only from values whose predecessor is absent. Expected $O(H_c+V_c)$ time, matching the manifest but not the source.
+- **Hash-set run starts:** Insert indices into a set and expand only from values whose predecessor is absent. Expected $O(H_c+V_c)$ time, matching the manifest but not the source.
 - **Construct the grid:** Impossible when $n$ or $m$ reaches $10^9$ and unnecessary because only bar runs matter.
 - **Remove nonconsecutive bars:** Their openings remain separated by fixed bars and cannot create one larger side.
 - **One removable bar in each direction:** Each opening spans two cells, giving area four.
@@ -122,8 +122,8 @@ The large values of `n` and `m` do not require constructing the grid. Only the a
 - **Bar indices versus cell indices:** Consecutiveness is tested on bar numbers, not on coordinates of cells. Adjacent removable bar numbers correspond to neighboring internal dividers.
 - **Why independent directions combine:** Horizontal removals determine vertical extent and vertical removals determine horizontal extent. Their choices cross without interfering, so the two maxima can be computed separately.
 - **Nonempty lists:** The helper's initialization to one relies on both removable-bar arrays containing at least one index, which the constraints guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

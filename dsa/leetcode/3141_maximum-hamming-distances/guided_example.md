@@ -69,7 +69,7 @@ Duplicate values in `nums` appear more than once in the initial frontier, but `d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The initial frontier `q = nums` contains all source values.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +136,7 @@ For each query value $x$, the complement identity holds independently for every 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair:** Compute `(a ^ b).bit_cou:** - **Compare every pair:** Compute `(a ^ b).bit_count()` for all pairs. It is simple but costs $O(n^2)$ time.
+- **Compare every pair:** Compute `(a ^ b).bit_count()` for all pairs. It is simple but costs $O(n^2)$ time.
 - **Run BFS from each input separately:** This repeats the same hypercube work $n$ times. Multi-source BFS combines all nearest-source computations in one traversal.
 - **Bitwise trie search:** A trie can greedily prefer opposite bits to seek large Hamming distance, but maximizing total differing positions is not always captured by a single greedy path without richer state.
 - **Subset transforms:** Min-plus or Boolean transforms over masks can propagate distance information, but BFS is the direct shortest-path interpretation.
@@ -148,8 +148,8 @@ For each query value $x$, the complement identity holds independently for every 
 - **Source list is nonempty:** The constraint has at least two entries, so BFS has sources and every hypercube vertex is eventually reached.
 - **Frontier level value:** `k` starts at 1 because neighbors of source vertices are exactly one bit flip away.
 - **Input preservation:** `q` initially references `nums`, but neither `pop` nor other mutation is used, so the caller's list remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ If there are fewer than four distinct points, every point is on the boundary: on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `trees.sort()` orders coordinate lists first by $x$, then by... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The value `m = len(stk)` records where the first chain ends in the combined stac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Jarvis march:** Repeatedly choose the most cou:** - **Jarvis march:** Repeatedly choose the most counterclockwise next point and explicitly include collinear points. It uses $O(hn)$ time for $h$ hull points and can be attractive when $h$ is very small.
+- **Jarvis march:** Repeatedly choose the most counterclockwise next point and explicitly include collinear points. It uses $O(hn)$ time for $h$ hull points and can be attractive when $h$ is very small.
 - **Graham scan:** Sort by polar angle around an anchor and maintain a turn stack. Handling all collinear points on the final ray requires special care.
 - **Quickhull:** Recursively split points by their distance from candidate edges. Average behavior can be good, but worst-case time is quadratic and collinear-boundary inclusion needs attention.
 - **Pop on `<= 0`:** Incorrect here because it removes points collinear on fence edges. Strict `< 0` is the key inclusion rule.
@@ -118,8 +118,8 @@ The value `m = len(stk)` records where the first chain ends in the combined stac
 - **Any output order:** Hull traversal order is acceptable; no final sorting is required.
 - **Visibility bookkeeping:** A point popped from the first chain must have its marker reset so it can still belong to the second chain.
 - **Closing endpoint:** The starting point is appended at the end of the reverse scan and then removed once, preventing a duplicate coordinate in the answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,11 +61,7 @@ This is intended to enforce that all content stays inside one root. However, the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of every iteration, the source checks:
-
-
-
-Once ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +102,7 @@ Inside an already-open tag, CDATA handling is correct. A malformed `<!...` that 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add `seen_root`:** Set it on the first valid o:** - **Add `seen_root`:** Set it on the first valid opening tag, reject CDATA or text while the stack is empty, and return `seen_root and not stk`. This repairs the exact source’s root-presence defect.
+- **Add `seen_root`:** Set it on the first valid opening tag, reject CDATA or text while the stack is empty, and return `seen_root and not stk`. This repairs the exact source’s root-presence defect.
 - **Require `code[0] == '<'` plus an opener parse:** An explicit initial-root check can also prevent standalone text and CDATA, provided it distinguishes `<TAG>` from `</TAG>` and `<![CDATA[`.
 - **Recursive-descent parser:** Parse one closed tag and recursively parse nested content. It can closely match the grammar but must still special-case CDATA and depth limits.
 - **Regular expressions alone:** Backreferences and arbitrary nesting make a single regex fragile or expensive. A stack expresses nesting more reliably.
@@ -124,8 +120,8 @@ Inside an already-open tag, CDATA handling is correct. A malformed `<!...` that 
 - **Ordinary `>`:** Allowed as text because only `<` starts special syntax.
 - **Name length:** Empty and ten-character names fail; lengths one through nine pass only with uppercase letters.
 - **Unicode nuance:** `isupper()` recognizes more than ASCII in general, but the input alphabet is restricted to English letters and listed symbols, so this does not expand accepted test characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

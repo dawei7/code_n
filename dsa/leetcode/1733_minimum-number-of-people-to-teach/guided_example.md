@@ -61,7 +61,7 @@ The implementation deliberately compares lists directly rather than converting t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested helper `check(u,v)` iterates every language `x` o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Users appearing only in already communicative friendships are absent from `s` an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert each language list to a set:** Friends:** - **Convert each language list to a set:** Friendship intersection can iterate the smaller set with expected constant-time membership, reducing repeated comparison work at $O(S)$ preprocessing space.
+- **Convert each language list to a set:** Friendship intersection can iterate the smaller set with expected constant-time membership, reducing repeated comparison work at $O(S)$ preprocessing space.
 - **Boolean language matrix:** With both users and languages at most 500, bitsets can make intersections and counts fast and predictable.
 - **Teach per friendship independently:** It can teach the same user several times or choose conflicting languages; one global language must be optimized over the affected-user union.
 - **All friendships already communicate:** `s` and `cnt` stay empty, and the default maximum returns zero.
@@ -112,8 +112,8 @@ Users appearing only in already communicative friendships are absent from `s` an
 - **One-indexed IDs:** Subtracting one for list access is required.
 - **Nontransitive friendships:** Only listed pairs are checked.
 - **Input preservation:** No language list or friendship is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

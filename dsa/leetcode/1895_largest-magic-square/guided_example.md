@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Precompute row and column prefix sums.** `rowsum[i][j]` us... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Both arrays have `(m + 1)` rows and `(n + 1)` columns filled initially with zero
 
 ## 6. Traps This Instance Exposes
 
-- **- **Diagonal prefix sums:** Two additional diagona:** - **Diagonal prefix sums:** Two additional diagonal-prefix tables can make each diagonal sum $O(1)$, but checking all $k$ rows and columns still costs $O(k)$ per candidate, so the overall asymptotic bound remains unchanged.
+- **Diagonal prefix sums:** Two additional diagonal-prefix tables can make each diagonal sum $O(1)$, but checking all $k$ rows and columns still costs $O(k)$ per candidate, so the overall asymptotic bound remains unchanged.
 - **Brute-force all cells per candidate:** Recomputing each line from scratch costs $O(k^2)$ per square and raises the total bound substantially.
 - **Check only total row and column sums:** Equal totals across the whole square do not prove each individual row and column is equal. Every line must be tested.
 - **Single row or column grid:** No side length above one is enumerated, and the method returns one.
@@ -95,8 +95,8 @@ Both arrays have `(m + 1)` rows and `(n + 1)` columns filled initially with zero
 - **Rectangular grid:** Candidate side is bounded by `min(m, n)`, and placement loops independently respect both dimensions.
 - **Early mismatch:** The helper returns as soon as a row, column, or diagonal differs. This is safe because one failed required equality disproves the candidate.
 - **Prefix off-by-one:** Stored coordinates are shifted by one, while helper corners are zero-based and inclusive. The `+1` endpoints and unshifted subtraction boundaries are essential.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

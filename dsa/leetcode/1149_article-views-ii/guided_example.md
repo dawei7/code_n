@@ -59,7 +59,7 @@ Within each viewer-date group, `COUNT(DISTINCT article_id)` measures the number 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The table may contain duplicate rows, and one person may gen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The alias `id` gives the single output column its required name. `ORDER BY 1` so
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `COUNT(*) > 1`:** Duplicate views of the s:** - **Use `COUNT(*) > 1`:** Duplicate views of the same article would create a false qualification. The count must be over distinct `article_id` values.
+- **Use `COUNT(*) > 1`:** Duplicate views of the same article would create a false qualification. The count must be over distinct `article_id` values.
 - **Group only by viewer:** That combines articles viewed on different dates and can qualify someone who never viewed two articles on one day.
 - **Group only by date:** That mixes different people and answers how many articles everyone viewed collectively.
 - **Self-join `Views`:** Joining rows on equal viewer and date with different article IDs can prove that a qualifying pair exists. It is valid but can create many row pairs and demands careful deduplication.
@@ -109,8 +109,8 @@ The alias `id` gives the single output column its required name. `ORDER BY 1` so
 - **Self-views:** They count exactly like any other article view; author identity does not affect this task.
 - **No qualifying viewer-date group:** The result is an empty table with the column named `id`.
 - **Required ordering:** `ORDER BY 1` sorts the final distinct viewer identifiers, not the underlying events.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

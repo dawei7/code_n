@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given an integer array `nums` of length `n` and an integer `k`, return *the *$$k^{\text{th}}$$ ***smallest subarray sum**.*
+Given an integer array `nums` of length `n` and an integer `k`, return *the *$k^{\text{th}}$ ***smallest subarray sum**.*
 
 A **subarray** is defined as a **non-empty** contiguous sequence of elements in an array. A **subarray sum** is the sum of all elements in the subarray.
 

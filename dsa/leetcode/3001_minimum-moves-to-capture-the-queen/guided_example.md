@@ -63,7 +63,7 @@ Equality cannot occur because the bishop occupies neither the rook nor queen squ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The rook at `(a,b)` and queen at `(e,f)` share a row when `a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The vertical case is symmetric. `b == f` aligns rook and queen. The bishop can b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over board states:** It c:** - **Breadth-first search over board states:** It can find the answer but is unnecessary when direct geometry proves the result is one or two.
+- **Breadth-first search over board states:** It can find the answer but is unnecessary when direct geometry proves the result is one or two.
 - **Ignore blockers:** Collinearity alone is insufficient because neither rook nor bishop can jump over the other white piece.
 - **Use slopes with division:** Integer diagonal identities avoid division-by-zero and floating-point comparisons.
 - **Bishop on the rook line outside the segment:** It does not block; the positive product correctly permits capture.
@@ -109,8 +109,8 @@ The vertical case is symmetric. `b == f` aligns rook and queen. The bishop can b
 - **Both pieces attack the queen:** The first satisfied branch returns one, which remains the minimum.
 - **No immediate attack:** Returning two relies on the fixed open board and only one possible friendly blocker.
 - **One-indexed coordinates:** Equality and difference tests work directly; no conversion to zero-based coordinates is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

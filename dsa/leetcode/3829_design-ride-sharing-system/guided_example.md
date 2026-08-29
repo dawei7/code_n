@@ -63,7 +63,7 @@ The rider-ID guarantee says each rider is added at most once, so one ID never ha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `addRider` records the current timestamp in `d`, inserts `(t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Rider IDs and driver IDs live in separate namespaces for system behavior. The sa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque plus active rider set:** Append arrivals:** - **Deque plus active rider set:** Append arrivals to deques, mark active riders in a set, and lazily pop canceled rider IDs from the front before matching. Each entry is removed at most once, giving $O(Q)$ total expected time. This matches the manifest summary.
+- **Deque plus active rider set:** Append arrivals to deques, mark active riders in a set, and lazily pop canceled rider IDs from the front before matching. Each entry is removed at most once, giving $O(Q)$ total expected time. This matches the manifest summary.
 - **Linked FIFO queue with ID-to-node map:** Directly unlink canceled riders in $O(1)$ while keeping FIFO ends, but implementing a robust linked structure is more complex.
 - **Ordinary list queues:** Appending is cheap, but removing index 0 and arbitrary cancellations can be linear, leading to $O(Q^2)$ total time.
 - **No rider available:** A waiting driver must remain queued; the early return mutates neither collection.
@@ -112,8 +112,8 @@ Rider IDs and driver IDs live in separate namespaces for system behavior. The sa
 - **Equal rider and driver IDs:** They are stored in separate collections and can be matched together without ambiguity.
 - **Unique additions:** The contract prevents duplicate waiting tuples for one rider or driver ID.
 - **Ordered result pair:** The method returns `[driverId, riderId]`, not the reverse.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

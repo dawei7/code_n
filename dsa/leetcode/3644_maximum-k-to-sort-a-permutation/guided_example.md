@@ -69,7 +69,7 @@ Any feasible `k` can contain only bits present in `K`; in bitmask language, `k` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An allowed swap exchanges two current values `a` and `b` onl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ This remains useful even when `K` began in its correct position. Correct element
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the misplaced set explicitly:** Collecti:** - **Build the misplaced set explicitly:** Collecting all `nums[i]` with `nums[i] != i` and reducing them afterward yields the same answer, but it spends `O(n)` extra space that the streaming AND does not need.
+- **Build the misplaced set explicitly:** Collecting all `nums[i]` with `nums[i] != i` and reducing them afterward yields the same answer, but it spends `O(n)` extra space that the streaming AND does not need.
 - **Binary search the numeric value of `k`:** Feasibility is not monotone in ordinary numeric order, because changing bits can create or destroy exact-AND edges unpredictably. The common-bit argument derives the unique maximum directly.
 - **Build an allowed-swap graph:** For a candidate `k`, one could connect pairs whose AND equals `k` and analyze whether permutation cycles can be resolved. Considering all pairs is quadratic, and the value-`K` pivot proves connectivity without constructing the graph.
 - **AND every array value:** Correctly placed values impose no necessary swap condition. Including them can erase bits and produce an answer smaller than the true maximum.
@@ -125,8 +125,8 @@ This remains useful even when `K` began in its correct position. Correct element
 - **Why `K` stays in range:** A bitwise AND of non-negative operands cannot introduce a bit absent from an operand, so `K` is no larger than each misplaced value and is one of the permutation’s legal value-domain integers.
 - **Python’s `-1` sentinel:** The identity `-1 & x = x` is language-specific bitwise behavior. In a fixed-width unsigned implementation, initialize with all bits set over the value domain or handle the first misplaced value separately.
 - **Missing type import:** The stored source uses `List` without importing it. The judge may provide that typing symbol, while standalone Python would require `from typing import List`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ If all 26 candidates fail, execution reaches `return ''`. Exhausting the complet
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ascii_uppercase` denotes the ordered sequence `ABCDEFGHIJKL... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For a string containing uppercase `A` and lowercase `b`, the checks remain lette
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two 26-entry boolean arrays:** Record lowercas:** - **Two 26-entry boolean arrays:** Record lowercase and uppercase presence separately by alphabet index, then scan indices from 25 down to 0. This has the same `O(n)` time and `O(1)` space but requires explicit character-to-index arithmetic.
+- **Two 26-entry boolean arrays:** Record lowercase and uppercase presence separately by alphabet index, then scan indices from 25 down to 0. This has the same `O(n)` time and `O(1)` space but requires explicit character-to-index arithmetic.
 - **Two bit masks:** Use one bit per lowercase letter and one per uppercase letter, intersect the masks, and locate the highest set bit. This is compact and fast but less immediately readable to beginners than direct set membership.
 - **Scan candidates upward while saving the latest match:** This is correct but cannot return early; it needs an extra result variable and must finish all 26 candidates. Descending order states the priority directly.
 - **Sort the input:** Sorting all `n` characters is unnecessary and costs `O(n \log n)` time. The answer depends on presence and alphabetic priority, not on the positions or multiplicities of characters.
@@ -120,8 +120,8 @@ For a string containing uppercase `A` and lowercase `b`, the checks remain lette
 - **Smallest possible input:** With one character, its opposite-case form cannot also occur, so the loop finds no match and returns `''`.
 - **Return casing:** The loop variable is always uppercase, so a successful return automatically obeys the requirement without another conversion.
 - **Non-English characters:** The source constraints exclude them. Even if they appeared, they would be inserted into `ss` but never considered as candidates because the loop intentionally covers only English uppercase letters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

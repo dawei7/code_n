@@ -16,7 +16,7 @@ Implement the `WordDistance` class:
 
 **Methods**
 
-- $__init__(wordsDict: \text{List}[str])$: Initializes object with words array.
+- `__init__(...)`: Initializes object with words array.
 - `shortest(word1: str, word2: str) -> int`: Returns shortest distance between `word1` and `word2` in `wordsDict`.
 
 ### 3. Examples

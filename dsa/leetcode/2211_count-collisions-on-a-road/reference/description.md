@@ -2,7 +2,7 @@
 
 There are `n` cars on an infinitely long road. The cars are numbered from `0` to $n - 1$ from left to right and each car is present at a **unique** point.
 
-You are given a **0-indexed** string `directions` of length `n`. $\text{directions}[i]$ can be either `'L'`, `'R'`, or `'S'` denoting whether the $$i^{\text{th}}$$ car is moving towards the **left**, towards the **right**, or **staying** at its current point respectively. Each moving car has the **same speed**.
+You are given a **0-indexed** string `directions` of length `n`. $\text{directions}[i]$ can be either `'L'`, `'R'`, or `'S'` denoting whether the $i^{\text{th}}$ car is moving towards the **left**, towards the **right**, or **staying** at its current point respectively. Each moving car has the **same speed**.
 
 The number of collisions can be calculated as follows:
 

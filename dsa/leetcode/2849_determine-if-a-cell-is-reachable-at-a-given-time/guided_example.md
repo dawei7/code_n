@@ -54,9 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-d_x=|\texttt{sx}-\texttt{fx}|,\qquad
-d_y=|\texttt{sy}-\te... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -91,7 +89,7 @@ At least `max(dx, dy)` moves are necessary because the larger coordinate differe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** It can solve small bou:** - **Breadth-first search:** It can solve small bounded coordinates but is impossible on an infinite grid with billion-scale positions and time.
+- **Breadth-first search:** It can solve small bounded coordinates but is impossible on an infinite grid with billion-scale positions and time.
 - **Simulate a shortest path:** This would take $O(t)$ time despite the direct distance formula.
 - **Same cell, zero seconds:** No movement is needed, so true is correct.
 - **Same cell, one second:** Mandatory movement makes it the unique false exception when distance is within time.
@@ -103,8 +101,8 @@ At least `max(dx, dy)` moves are necessary because the larger coordinate differe
 - **No parity restriction:** Eight-direction movement permits odd or even extra time for distinct endpoints.
 - **Infinite grid:** Detours never encounter boundaries or obstacles.
 - **Mandatory move each second:** This creates the same-cell one-second exception and forbids simply waiting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

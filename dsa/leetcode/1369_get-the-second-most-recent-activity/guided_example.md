@@ -62,7 +62,7 @@ The use of `RANK` deserves precision. Rows with equal `startdate` receive the sa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ORDER BY startdate DESC` places later starting activities b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ The final condition is `a.rk = 2 OR a.cnt = 1`. A multi-row user contributes the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deduplicate before ranking:** Apply `SELECT DI:** - **Deduplicate before ranking:** Apply `SELECT DISTINCT` to the four logical activity columns, then compute both windows. This is required to honor the local duplicate-row semantics exactly, at the cost of an additional distinct operation.
+- **Deduplicate before ranking:** Apply `SELECT DISTINCT` to the four logical activity columns, then compute both windows. This is required to honor the local duplicate-row semantics exactly, at the cost of an additional distinct operation.
 - **`ROW_NUMBER`:** It guarantees one sequential row number even when dates tie, but without a complete tie breaker it arbitrarily chooses among tied rows and does not solve logical duplicates by itself.
 - **Correlated subquery:** Count how many later activities exist for each row. It avoids window syntax but is usually harder to read and can be quadratic without effective indexing.
 - **Self-join and aggregation:** Join each activity to later activities and select those with exactly one later period. This can work but tends to create a large intermediate result.
@@ -110,8 +110,8 @@ The final condition is `a.rk = 2 OR a.cnt = 1`. A multi-row user contributes the
 - **Duplicate rows:** The exact code treats them as multiple stored activities for `COUNT` and tied ranking. A distinct-input layer is necessary when duplicates are genuinely legal.
 - **Result order:** Any order is accepted. The absence of an outer `ORDER BY` is intentional.
 - **Column-name casing:** MySQL treats the referenced `startdate` and `enddate` names case-insensitively in the usual setup, corresponding to the Reference's `startDate` and `endDate`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

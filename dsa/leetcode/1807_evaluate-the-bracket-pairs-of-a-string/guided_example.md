@@ -59,7 +59,7 @@ Slice `s[i + 1:j]` is the nonempty key. The dictionary value or `"?"` is appende
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Index `i` moves from left to right through `s`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This argument depends on the source guarantees. Arbitrary nested or malformed pa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly concatenate strings:** It is easy t:** - **Repeatedly concatenate strings:** It is easy to write but can copy an ever-growing result and become quadratic.
+- **Repeatedly concatenate strings:** It is easy to write but can copy an ever-growing result and become quadratic.
 - **Scan knowledge per bracket:** It costs up to $O(N\cdot|\texttt{knowledge}|)$; a dictionary makes lookup expected $O(1)$.
 - **Regular-expression replacement:** It can work but still needs a callback and dictionary, while the direct parser follows the simple grammar clearly.
 - **Stack parser:** Useful for nested brackets, but nesting is explicitly absent here.
@@ -115,8 +115,8 @@ This argument depends on the source guarantees. Arbitrary nested or malformed pa
 - **Unique knowledge keys:** Dictionary construction never faces conflicting values.
 - **Output length:** Replacements may change length, so complexity should include produced characters.
 - **Input preservation:** The method creates a dictionary and result string without modifying `s` or `knowledge`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

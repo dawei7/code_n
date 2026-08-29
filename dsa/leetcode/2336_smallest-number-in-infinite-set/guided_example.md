@@ -65,7 +65,7 @@ The implementation relies on `SortedSet` from the execution environment. Unlike 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A set must contain each number at most once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The set cannot be empty during any valid call. Emptying the initial 1000 values 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frontier plus min-heap and membership set:** S:** - **Frontier plus min-heap and membership set:** Store the next never-popped positive integer and only restored smaller values. This represents a truly unbounded set and uses space proportional to add-backs, but needs two structures to deduplicate heap entries.
+- **Frontier plus min-heap and membership set:** Store the next never-popped positive integer and only restored smaller values. This represents a truly unbounded set and uses space proportional to add-backs, but needs two structures to deduplicate heap entries.
 - **Frontier plus ordered set:** An ordered set of restored values removes the separate heap-membership set while retaining a truly infinite suffix frontier.
 - **Built-in unordered set of 1 through 1000:** Membership is easy, but finding the minimum would require `O(Q)` scanning per pop.
 - **Boolean presence array:** With the 1000 bound, scan from one upward for every pop and mark entries. This is simple but can make repeated minimum searches quadratic unless a frontier and restored-value handling are added.
@@ -118,8 +118,8 @@ The set cannot be empty during any valid call. Emptying the initial 1000 values 
 - **Empty-set indexing:** A valid call sequence cannot request the 1001st removal within the total 1000-call cap.
 - **Constraint dependence:** If total calls could exceed 1000, the finite initialization would no longer faithfully represent infinity.
 - **External type availability:** The exact implementation requires `SortedSet` to be supplied or imported from its supporting library.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

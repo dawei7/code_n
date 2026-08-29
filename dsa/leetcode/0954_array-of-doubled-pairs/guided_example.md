@@ -65,7 +65,7 @@ For example, `-2` is processed before `-4`, so the algorithm consumes `-4` as it
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For positive values, the base `x` is smaller than `2x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Counter returns zero for a missing key, so absent doubles naturally fail the com
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort every array occurrence by absolute value::** - **Sort every array occurrence by absolute value:** Pair each occurrence greedily with its double using counts. This has the same asymptotic bounds but may sort more items than distinct-key sorting.
+- **Sort every array occurrence by absolute value:** Pair each occurrence greedily with its double using counts. This has the same asymptotic bounds but may sort more items than distinct-key sorting.
 - **Ordinary ascending sort:** It mishandles negative bases because a more negative double appears before its half.
 - **Backtracking:** Trying pair assignments is exponential and unnecessary once absolute-value order reveals forced choices.
 - **Odd number of zeros:** Always false because zeros pair only with zeros.
@@ -120,8 +120,8 @@ Counter returns zero for a missing key, so absent doubles naturally fail the com
 - **Negative left shift:** In Python, `x << 1` equals `2x` for negative and positive integers.
 - **Even input length:** It is necessary but not sufficient; factor relationships must also match.
 - **Missing Counter key:** It behaves as count zero, allowing a direct shortage check.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

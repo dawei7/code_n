@@ -51,7 +51,7 @@ A matching substring must contain an occurrence of $A$, followed without overlap
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A matching substring must contain an occurrence of $A$, foll... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source first finds every start position of each fixed piece in `s`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every substring:** There are $O(n^2)$ cand:** - **Try every substring:** There are $O(n^2)$ candidates before pattern checking.
+- **Try every substring:** There are $O(n^2)$ candidates before pattern checking.
 - **Repeated `str.find` calls:** They can be concise but worst-case behavior and overlapping-occurrence management are less explicit than KMP.
 - **Binary search occurrence lists:** It gives $O(n\log n)$ combination time; monotone pointers exploit ordered middle starts for linear time.
 - **Empty fixed piece:** It occurs at all $n+1$ boundaries, not only character positions.
@@ -96,8 +96,8 @@ The source first finds every start position of each fixed piece in `s`.
 - **No last occurrence:** Breaking is safe because later middle endings only move right.
 - **Pattern `"**"`:** The empty substring is found with length zero.
 - **No match:** The untouched sentinel maps to `-1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

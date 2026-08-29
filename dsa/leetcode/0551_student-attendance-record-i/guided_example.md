@@ -52,8 +52,7 @@ Award eligibility requires both independent rules to hold:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the total number of absences is less than two;
-- no substr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ The implementation expresses those rules almost word for word:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single-pass counters:** Track absence count an:** - **Single-pass counters:** Track absence count and current late streak, returning false as soon as either limit is reached. It has the same asymptotic bounds and may stop earlier.
+- **Single-pass counters:** Track absence count and current late streak, returning false as soon as either limit is reached. It has the same asymptotic bounds and may stop earlier.
 - **Regular expression:** A pattern can reject two absences or a triple-late run, but it is less direct than the two conditions.
 - **Check `"AA"` only:** This is wrong because two absences need not be adjacent.
 - **Count all late days:** This is wrong because only consecutive late days matter.
@@ -99,8 +98,8 @@ The implementation expresses those rules almost word for word:
 - **Four or more consecutive late days:** Every such run contains `"LLL"` and is rejected.
 - **Present day inside late runs:** `P` breaks consecutiveness.
 - **Length one:** Any legal single character cannot violate the three-late rule; only one absence is also allowed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

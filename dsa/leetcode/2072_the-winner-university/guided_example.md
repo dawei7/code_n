@@ -64,7 +64,7 @@ The aliases `n1` and `n2` name these two one-row derived tables. Their columns a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An aggregate query containing `COUNT` and no `GROUP BY` summ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The expression is aliased as `winner` because that is the required output column
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation after combining the ta:** - **Conditional aggregation after combining the tables:** One could label and combine both universities' rows and then compute conditional counts in one larger aggregate. That introduces unnecessary union and labeling work when two small scalar subqueries express the two independent totals directly.
+- **Conditional aggregation after combining the tables:** One could label and combine both universities' rows and then compute conditional counts in one larger aggregate. That introduces unnecessary union and labeling work when two small scalar subqueries express the two independent totals directly.
 - **Joining students by an identifier:** A regular join would be conceptually wrong because the task does not compare corresponding students. It compares two population counts, and there may be no meaningful cross-university key relationship.
 - **Sorting qualifying scores:** Sorting cannot help decide which university has more qualifying rows. Counting alone is sufficient, so sorting would add avoidable $O(N\log N)$ work in a typical comparison-based implementation.
 - **Using an average or maximum score:** The winner is based solely on how many scores meet the threshold. A university can have the highest individual score or the higher average and still lose by having fewer qualifying students.
@@ -117,8 +117,8 @@ The expression is aliased as `winner` because that is the required output column
 - **Empty input tables:** Each ungrouped aggregate still returns one row containing 0, so the cross join and outer `SELECT` continue to return exactly one answer row.
 - **Exact output literals:** The three strings and the `winner` column alias must be preserved exactly because SQL result schemas and string values are judged as part of the answer.
 - **Database execution details:** An optimizer may rewrite the cross join of scalar aggregates internally. That does not change the reasoning: each table contributes one exact count, and one three-way comparison selects the result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

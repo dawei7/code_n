@@ -69,7 +69,7 @@ Multiplying these factors over all nonzero counts telescopes to the multinomial 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the remaining half contains `R` letters with counts `f_0,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Every intermediate result is an integer binomial coefficient. As soon as `value 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate and sort every palindromic permutatio:** - **Generate and sort every palindromic permutation:** The number of distinct half permutations can be factorial, so enumeration is infeasible for length `10^4`.
+- **Generate and sort every palindromic permutation:** The number of distinct half permutations can be factorial, so enumeration is infeasible for length `10^4`.
 - **Use exact factorial multinomials:** Mathematically direct, but factorials become enormous. Capped incremental combinations compute only the information needed for rank comparisons.
 - **Use the editorial's trial-character recount:** Trying every candidate and recomputing its suffix count is valid. The protected source instead computes the current total once and derives each first-letter block as `T * frequency / remaining`.
 - **Cap total merely at k:** Knowing `T >= k` does not imply the first character block has `k` items. The stronger cap `k * remaining` guarantees even a frequency-one first block is large enough.
@@ -128,8 +128,8 @@ Every intermediate result is an integer binomial coefficient. As soon as `value 
 - **k equals a block boundary:** The test keeps `k` in the current block when `k <= block`. Thus the last permutation of one block is not incorrectly moved to the next.
 - **Multiple odd counts:** The source chooses only the first odd letter, but the input guarantee excludes this case. Without that guarantee, feasibility validation would be necessary.
 - **Alphabet order:** Iterating indices zero through 25 maps exactly to `a` through `z`, so block order matches lexicographic order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

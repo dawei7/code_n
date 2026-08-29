@@ -2,9 +2,9 @@
 
 You have `n` flower seeds. Every seed must be planted first before it can begin to grow, then bloom. Planting a seed takes time and so does the growth of a seed. You are given two **0-indexed** integer arrays `plantTime` and `growTime`, of length `n` each:
 
-- $\text{plantTime}[i]$ is the number of **full days** it takes you to **plant** the $$i^{\text{th}}$$ seed. Every day, you can work on planting exactly one seed. You **do not** have to work on planting the same seed on consecutive days, but the planting of a seed is not complete **until** you have worked $\text{plantTime}[i]$ days on planting it in total.
+- $\text{plantTime}[i]$ is the number of **full days** it takes you to **plant** the $i^{\text{th}}$ seed. Every day, you can work on planting exactly one seed. You **do not** have to work on planting the same seed on consecutive days, but the planting of a seed is not complete **until** you have worked $\text{plantTime}[i]$ days on planting it in total.
 
-- $\text{growTime}[i]$ is the number of **full days** it takes the $$i^{\text{th}}$$ seed to grow after being completely planted. **After** the last day of its growth, the flower **blooms** and stays bloomed forever.
+- $\text{growTime}[i]$ is the number of **full days** it takes the $i^{\text{th}}$ seed to grow after being completely planted. **After** the last day of its growth, the flower **blooms** and stays bloomed forever.
 
 From the beginning of day `0`, you can plant the seeds in **any** order.
 

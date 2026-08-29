@@ -51,7 +51,7 @@ The code computes that successor as `"a" if c == "z" else chr(ord(c) + 1)`. The 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code computes that successor as `"a" if c == "z" else ch... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code computes that successor as `"a" if c == "z" else chr(ord(c) + 1)`. The 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-index while loop:** Track explicit indices:** - **Two-index while loop:** Track explicit indices in both strings and stop as soon as either ends. This can return early after matching all of `str2` and uses the same greedy proof.
+- **Two-index while loop:** Track explicit indices in both strings and stop as soon as either ends. This can return early after matching all of `str2` and uses the same greedy proof.
 - **Dynamic programming:** Record whether each target prefix can be formed from each source prefix. It is correct but costs $O(nm)$ time and space unnecessarily because earliest compatible matching dominates.
 - **Enumerate increment subsets:** There are $2^n$ possible sets, so brute force is impossible at $n=10^5$.
 - **Wraparound z to a:** The explicit special case is required; incrementing the character code alone would produce a non-letter.
@@ -98,8 +98,8 @@ The code computes that successor as `"a" if c == "z" else chr(ord(c) + 1)`. The 
 - **Repeated characters:** Greedy uses the earliest compatible occurrences and leaves later copies available.
 - **All matched positions require increments:** They can all be selected together because the operation accepts a set of indices.
 - **Input preservation:** The algorithm simulates choices without allocating or mutating a transformed source string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

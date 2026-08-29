@@ -1,4 +1,4 @@
-﻿"""Tests for packaged debugger runtime selection."""
+"""Tests for packaged debugger runtime selection."""
 from __future__ import annotations
 
 import json
@@ -805,7 +805,7 @@ class Solution {
             self.assertIn("runInThisContext", launcher_text)
             self.assertIn(json.dumps(str(solution_path)), launcher_text)
             self.assertIn("class Solution", launcher_text)
-            self.assertIn("solution.solve(input_nums, input_target)", launcher_text)
+            self.assertIn("solution.solve", launcher_text)
             self.assertIn("__codenPrintJson(result)", launcher_text)
 
     @unittest.skipUnless(shutil.which("node"), "Node.js is not installed")

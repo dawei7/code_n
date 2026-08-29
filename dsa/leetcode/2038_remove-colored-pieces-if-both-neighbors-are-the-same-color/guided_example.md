@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` pieces arranged in a line, and each piece is colored either by `'A'` or by `'B'`. You are given a string `colors` of length `n` where $\text{colors}[i]$ is the color of the $$i^{\text{th}}$$ piece.
+There are `n` pieces arranged in a line, and each piece is colored either by `'A'` or by `'B'`. You are given a string `colors` of length `n` where $\text{colors}[i]$ is the color of the $i^{\text{th}}$ piece.
 
 The objective is to compute `true` from `{"colors": "AAABABB"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ Therefore a run can be reduced from length $L$ to length two in exactly $L-2$ mo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A removable piece must have a same-colored neighbor on both ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ No choice can preserve more or fewer long-term moves. The only state that matter
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan triples:** Count indices whose character :** - **Scan triples:** Count indices whose character equals both neighbors; the number of `AAA` and `BBB` centers gives the same move totals in $O(N)$ time and $O(1)$ space.
+- **Scan triples:** Count indices whose character equals both neighbors; the number of `AAA` and `BBB` centers gives the same move totals in $O(N)$ time and $O(1)$ space.
 - **Track run length without a list:** Consume each group with a counter or scan manually to achieve the manifest's constant-space target.
 - **Simulate removals:** Correct but unnecessary and potentially quadratic if string deletion shifts characters.
 - **Run length one or two:** It contributes no legal move.
@@ -111,8 +111,8 @@ No choice can preserve more or fewer long-term moves. The only state that matter
 - **Interior-choice order:** It cannot change the remaining count within a run.
 - **Manifest mismatch:** `list(v)` makes exact worst-case auxiliary space $O(N)$, not $O(1)$.
 - **Input preservation:** The immutable string is only traversed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

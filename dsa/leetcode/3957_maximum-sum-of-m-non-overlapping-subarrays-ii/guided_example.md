@@ -72,9 +72,7 @@ The empty selection initializes `values[0] = 0` and `counts[0] = 0`. Other entri
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed $\lambda=$ `penalty`:
-
-- `values[end]` is the gr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +127,7 @@ Starts smaller than `end - r` are removed from the front. The remaining front gi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reuse problem I's exact-count layers:** That c:** - **Reuse problem I's exact-count layers:** That costs $O(mn)$ and is too slow when both values reach $10^5$.
+- **Reuse problem I's exact-count layers:** That costs $O(mn)$ and is too slow when both values reach $10^5$.
 - **Binary search without a consistent tie rule:** Counts at equal penalized values could fluctuate at the boundary. Comparing `(value, -count)` deliberately prefers fewer intervals.
 - **Return the penalty-zero empty solution:** At least one subarray is mandatory; `best_single` supplies the correct negative or zero fallback.
 - **Omit `best_single`:** When all valid intervals have negative sums, penalized DP selects nothing and cannot by itself satisfy the contract.
@@ -142,8 +140,8 @@ Starts smaller than `end - r` are removed from the front. The remaining front gi
 - **Unrestricted optimum already uses at most `m`:** It is globally optimal and is returned without binary search.
 - **`l = r`:** Candidate windows reduce to one fixed-length start per end; penalty logic is unchanged.
 - **At most rather than exactly `m`:** The early unrestricted branch can return fewer. When the unconstrained optimum exceeds `m`, the positive-gain boundary is recovered at $m$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

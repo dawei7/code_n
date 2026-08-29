@@ -59,11 +59,7 @@ The `Items` table is not needed. The report does not ask for an item brand or an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The relationship is
-
-`u.user_id = o.buyer_id`.
-
-Using `selle... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +100,7 @@ With the predicate in `ON`, a user who has only 2018 orders behaves exactly like
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use an inner join:** Users with zero 2019 purc:** - **Use an inner join:** Users with zero 2019 purchases disappear, violating the one-row-per-user report.
+- **Use an inner join:** Users with zero 2019 purchases disappear, violating the one-row-per-user report.
 - **Put the year condition in `WHERE`:** Null-extended rows fail the condition and are removed. Keeping it in `ON` preserves zero-order users.
 - **Use `COUNT(*)`:** The outer join creates one placeholder row for an unmatched user, so `COUNT(*)` would incorrectly return one instead of zero.
 - **Count `item_id`:** It is non-null for real orders under the foreign-key model and could count them, but the primary order key states the intended unit most clearly.
@@ -115,8 +111,8 @@ With the predicate in `ON`, a user who has only 2018 orders behaves exactly like
 - **Multiple 2019 orders:** Each unique order ID contributes one to the aggregate.
 - **Year boundaries:** `YEAR(order_date) = 2019` includes every date from January 1 through December 31 of 2019.
 - **Any output order:** The solution intentionally omits `ORDER BY` because the contract does not require it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

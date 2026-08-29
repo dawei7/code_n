@@ -68,7 +68,7 @@ The tuple order is time first and station second. `checkOut` unpacks it as `t0, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ts[id] = (t, stationName)` records the two facts that a lat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ For two trips lasting 12 and 10 minutes, the route entry evolves from absent to 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Remove check-ins on checkout:** Use `pop` to k:** - **Remove check-ins on checkout:** Use `pop` to keep only active journeys. This improves long-running memory without changing expected operation time.
+- **Remove check-ins on checkout:** Use `pop` to keep only active journeys. This improves long-running memory without changing expected operation time.
 - **Store all trip durations:** It preserves raw data but uses space per journey and makes naive average queries slower.
 - **Store a running average:** It saves neither the need for a count nor much space and introduces compounded floating-point error.
 - **Nested route dictionaries:** Map start station to a dictionary of end stations. It is equivalent but more verbose than a tuple key.
@@ -125,8 +125,8 @@ For two trips lasting 12 and 10 minutes, the route entry evolves from absent to 
 - **Invalid checkout:** The contract guarantees consistency; otherwise missing `id` would raise a key error.
 - **Chronological events:** Positive duration follows from `t0 < t` and no timestamp sorting is needed.
 - **Real-world persistence:** In-memory dictionaries satisfy the coding contract but would need durable, concurrent storage in a production transit system.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

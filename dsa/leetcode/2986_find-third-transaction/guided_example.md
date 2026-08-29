@@ -62,7 +62,7 @@ This uniqueness matters. Without it, `RANK` could assign the same rank to tied t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `RANK() OVER (PARTITION BY user_id ORDER BY transaction_date... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The first transaction has no previous row, and the second has no row two positio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join transaction numbers:** Ranking in a :** - **Self-join transaction numbers:** Ranking in a CTE and joining ranks one, two, and three can work, but `LAG` expresses predecessor access more directly.
+- **Self-join transaction numbers:** Ranking in a CTE and joining ranks one, two, and three can work, but `LAG` expresses predecessor access more directly.
 - **Use `MAX` of the first two spends:** Comparing the third spend with `MAX(first,second)` is equivalent, but the exact source performs the two strict comparisons separately.
 - **Use `ROW_NUMBER`:** It would also identify the third row because per-user timestamps are unique.
 - **Tied timestamps without the schema guarantee:** `RANK` would need a deterministic tie-breaker; the current query relies on the stated composite uniqueness.
@@ -114,8 +114,8 @@ The first transaction has no previous row, and the second has no row two positio
 - **Equal spend:** “Lower” is strict; if either previous spend equals the third, `st` is false.
 - **Missing output order:** The query should end with `ORDER BY user_id` to satisfy the reference contract, but the protected source does not.
 - **Window `NULL` values:** Missing predecessors produce unknown comparisons only on early ranks, which are filtered out.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

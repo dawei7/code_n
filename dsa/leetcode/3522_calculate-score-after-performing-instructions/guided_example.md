@@ -70,11 +70,7 @@ It also stops when `vis[i]` is already true. Since the body is not entered, the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source allocates:
-
-`vis = [false] * n`.
-
-`vis[i]` means ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ More generally, every executed index is recorded before any transition that may 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set of visited indices:** This matches th:** - **Hash set of visited indices:** This matches the manifest wording and can store only reached indices. A boolean list is faster and simpler for the dense known index range, though it always allocates `O(n)` space.
+- **Hash set of visited indices:** This matches the manifest wording and can store only reached indices. A boolean list is faster and simpler for the dense known index range, though it always allocates `O(n)` space.
 - **Floyd cycle detection:** Two pointers could detect cycles with constant memory, but score accumulation and the rule to stop at the first repeated execution make bookkeeping more awkward. The direct visited array is clearer.
 - **Recursive simulation:** It risks recursion-depth failure for a path of length `10^5` and provides no benefit over the loop.
 - **Execute before checking visited:** That would incorrectly apply a revisited add instruction one extra time. The loop condition must reject the index first.
@@ -130,8 +126,8 @@ More generally, every executed index is recorded before any transition that may 
 - **Instruction string test:** Checking the first letter is safe only because the contract restricts values to `"add"` and `"jump"`.
 - **Equal array lengths:** The source takes `n = len(values)` and indexes `instructions` with the same `i`. Correctness relies on the guaranteed equal sizes.
 - **No mutation:** The source changes neither input array; all execution state lives in `i`, `ans`, and `vis`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

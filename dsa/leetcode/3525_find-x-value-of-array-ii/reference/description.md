@@ -12,7 +12,7 @@ For each query in `queries` you need to determine the **x-value** of `nums` for 
 
 - **Remove** the prefix $nums[0..(\text{start}_{i} - 1)]$ (where `nums[0..(-1)]` will be used to represent the **empty** prefix).
 
-Return an array `result` of size `queries.length` where $\text{result}[i]$ is the answer for the $$i^{\text{th}}$$ query.
+Return an array `result` of size `queries.length` where $\text{result}[i]$ is the answer for the $i^{\text{th}}$ query.
 
 A **prefix** of an array is a subarray that starts from the beginning of the array and extends to any point within it.
 

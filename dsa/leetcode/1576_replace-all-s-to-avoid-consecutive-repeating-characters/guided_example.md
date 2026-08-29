@@ -65,7 +65,7 @@ This asymmetry is important. The algorithm never needs to predict what a future 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Whether the character at index `i` is valid depends only on ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ There is no fallback after that loop because the three-candidate argument proves
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking over all lowercase letters:** Try:** - **Backtracking over all lowercase letters:** Trying a letter, recursing, and undoing choices can eventually find a valid string, but it solves a much larger search problem than necessary. Adjacency is local, and three candidates always leave a valid choice, so the greedy decision never needs to be reconsidered.
+- **Backtracking over all lowercase letters:** Trying a letter, recursing, and undoing choices can eventually find a valid string, but it solves a much larger search problem than necessary. Adjacency is local, and three candidates always leave a valid choice, so the greedy decision never needs to be reconsidered.
 - **Trying all 26 lowercase letters:** This is correct but unnecessary. At most two neighboring letters are forbidden, so `a`, `b`, and `c` already provide the mathematical guarantee the algorithm needs.
 - **Copying only the previous character:** A method that avoids the left neighbor but ignores a fixed right neighbor can create an invalid pair. For example, choosing `a` for the middle of `"b?a"` would conflict with the right side. The checked-in implementation tests both existing neighbors.
 - **Treating a right-side question mark as a fixed restriction:** A question mark has no chosen letter yet and should not forbid a candidate. It will avoid the current letter when its own turn arrives.
@@ -114,8 +114,8 @@ There is no fallback after that loop because the three-candidate argument proves
 - **Fixed letters outside `a`, `b`, and `c`:** They do not cause difficulty. A fixed `z`, for example, forbids none of the three candidates unless a candidate actually equals it, so `a` is immediately usable.
 - **Two different fixed neighbors:** Even if the neighbors forbid two of the three candidates, the third remains. This is the tight reason that a three-letter candidate set is sufficient.
 - **Input guarantee about original letters:** The algorithm cannot repair an equal adjacent pair made of two non-question-mark characters because it intentionally never changes fixed letters. Correctness therefore relies on the stated guarantee that such a conflict is absent from the input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

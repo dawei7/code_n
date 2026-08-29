@@ -64,7 +64,7 @@ Python's `while ... else` executes the `else` block only when the loop ends norm
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a candidate starting at `left`, the initial right bounda... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The starting character requires both endpoints initially, and every later bounda
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate intervals then sort by end:** Build e:** - **Generate intervals then sort by end:** Build every valid minimal character interval and run standard earliest-finish interval scheduling. It is equivalent but uses an explicit candidate list.
+- **Generate intervals then sort by end:** Build every valid minimal character interval and run standard earliest-finish interval scheduling. It is equivalent but uses an explicit candidate list.
 - **Dynamic programming over positions:** It can optimize count and total length but is more state than the fixed-alphabet greedy structure needs.
 - **One repeated character:** Its only minimal valid substring spans all occurrences.
 - **Unique character:** Its candidate can be the one-character substring, maximizing count and minimizing length.
@@ -111,8 +111,8 @@ The starting character requires both endpoints initially, and every later bounda
 - **Adjacent intervals:** They are nonoverlapping because the next left is greater than the previous end.
 - **Substring copying:** Python slices allocate new strings even though the index algorithm uses constant fixed state.
 - **Lowercase alphabet:** The constant 26 factor is essential to the linear-time bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

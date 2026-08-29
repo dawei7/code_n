@@ -61,7 +61,7 @@ That separation implements the note that accepted requests count even when absen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The numerator subquery reads only `RequestAccepted`, while t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ If there are requests but no accepted pairs, the numerator is zero and the calcu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Distinct subqueries then `COUNT(*)`:** Select :** - **Distinct subqueries then `COUNT(*)`:** Select distinct pairs in derived tables and count their rows. More verbose but portable to systems without multi-column `COUNT(DISTINCT ...)` syntax.
+- **Distinct subqueries then `COUNT(*)`:** Select distinct pairs in derived tables and count their rows. More verbose but portable to systems without multi-column `COUNT(DISTINCT ...)` syntax.
 - **Concatenating IDs:** Avoid `COUNT(DISTINCT CONCAT(...))` because ambiguous formatting can merge different pairs unless carefully encoded.
 - **Joining acceptances to requests:** Incorrect under this contract because accepted pairs not present in `FriendRequest` must still count.
 - **Counting raw rows:** Incorrect because repeated request or acceptance events count only once per pair.
@@ -118,8 +118,8 @@ If there are requests but no accepted pairs, the numerator is zero and the calcu
 - **Potential null IDs:** MySQL’s multi-column distinct count ignores combinations containing `NULL`. The intended event model uses user IDs; if nullable IDs were valid data, their counting policy would need explicit handling.
 - **One-row guarantee:** Scalar subqueries let the outer query return an `accept_rate` row even for empty inputs.
 - **Monthly/daily follow-ups:** They require grouping by time periods and possibly running aggregates; this whole-table scalar query intentionally answers only the overall rate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,9 +69,7 @@ Another way to verify the formula is to follow one cell from each region. A cell
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The prefix ending at `(i,j)` consists of:
-
-- the prefix endi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ The same recurrence therefore handles `(0,0)`, edge coordinates, and interior co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort all values:** It costs $O(C\log C)$ time :** - **Sort all values:** It costs $O(C\log C)$ time and $O(C)$ value storage, simple but slower when $k$ is small.
+- **Sort all values:** It costs $O(C\log C)$ time and $O(C)$ value storage, simple but slower when $k$ is small.
 - **Streaming size-k heap:** Keep one prefix row and immediately update a heap, achieving $O(n+k)$ auxiliary space.
 - **Quickselect:** Select the desired rank in expected $O(C)$ time after materializing all values, but has more complex worst-case behavior.
 - **`k=1`:** `nlargest` returns only the maximum coordinate value.
@@ -120,8 +118,8 @@ The same recurrence therefore handles `(0,0)`, edge coordinates, and interior co
 - **Padded table:** It prevents edge-specific recurrence branches.
 - **Input preservation:** The matrix is read but not modified.
 - **XOR overlap:** The diagonal prefix must be included once after left/up cancellation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

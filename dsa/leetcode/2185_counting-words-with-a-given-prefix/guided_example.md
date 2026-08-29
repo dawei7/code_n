@@ -62,7 +62,7 @@ Using the built-in avoids manual boundary checks and makes the code's intent exp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `w.startswith(pref)` returns true exactly when `pref` matche... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Every word occurrence is evaluated separately. If the same matching string appea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual two-pointer comparison:** Check length :** - **Manual two-pointer comparison:** Check length and compare characters from index zero. It has the same complexity but requires more code and boundary handling.
+- **Manual two-pointer comparison:** Check length and compare characters from index zero. It has the same complexity but requires more code and boundary handling.
 - **Slice then compare:** `w[:len(pref)] == pref` is concise, but slicing may allocate a temporary substring for every word.
 - **Trie:** Build prefix counts when many queries reuse the same words. For one query, its construction and memory are unnecessary.
 - **Hash prefixes:** Hashing can help repeated queries but introduces collision considerations and preprocessing.
@@ -116,8 +116,8 @@ Every word occurrence is evaluated separately. If the same matching string appea
 - **Lowercase alphabet:** Comparison is direct and case-sensitive; no normalization is needed.
 - **Generator memory:** Results are consumed lazily instead of stored in a boolean list.
 - **Input preservation:** Strings are immutable and the word array is read only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

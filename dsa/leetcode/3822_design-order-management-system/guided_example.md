@@ -70,7 +70,7 @@ After these two writes, lookup by ID can recover the order, and lookup by type a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `addOrder` writes the type and price under the new ID, then ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ If `newPrice == price`, the old and new bucket keys are identical. The source re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a set per bucket:** Replacing each list wi:** - **Use a set per bucket:** Replacing each list with a hash set gives expected $O(1)$ addition, modification removal, and cancellation. A query converts the set to a list in $O(R)$ time, matching the manifest's intended $O(Q+T)$ aggregate bound.
+- **Use a set per bucket:** Replacing each list with a hash set gives expected $O(1)$ addition, modification removal, and cancellation. A query converts the set to a list in $O(R)$ time, matching the manifest's intended $O(Q+T)$ aggregate bound.
 - **Return a defensive copy:** `list(t.get(key, ()))` prevents callers from mutating internal state and avoids creating an empty key for a missing query. It costs $O(R)$, which is already proportional to the returned data.
 - **Delete empty buckets:** After removal, deleting a key whose container is empty keeps storage tied more closely to active state. Using `dict.get` for queries then avoids reintroducing empty keys.
 - **Unique order IDs:** The guarantee prevents one ID from appearing as two different active orders and makes `list.remove(orderId)` unambiguous within its bucket.
@@ -131,8 +131,8 @@ If `newPrice == price`, the old and new bucket keys are identical. The source re
 - **Returned order is unspecified:** The source can return insertion order, and same-price modification can move an ID to the end. Both are valid because the contract imposes no ordering.
 - **Guaranteed active mutation targets:** Invalid repeated cancellation or modification of a canceled ID may raise an exception, but such calls are excluded by the contract.
 - **Large prices:** Prices are used only as dictionary-key integers, so values up to $10^9$ require no special arithmetic handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

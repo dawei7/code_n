@@ -77,7 +77,7 @@ Path compression and union by size together make repeated connectivity operation
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `p[x]` stores the parent of union-find slot `x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ The algorithm attempts a union only when the neighboring coordinate is in bounds
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sparse dictionary union-find:** Create parent :** - **Sparse dictionary union-find:** Create parent and size entries only when a position first becomes land. This avoids $O(mn)$ initialization and uses $O(u)$ state for $u\le k$ unique added cells, matching the manifest's sparse summary.
+- **Sparse dictionary union-find:** Create parent and size entries only when a position first becomes land. This avoids $O(mn)$ initialization and uses $O(u)$ state for $u\le k$ unique added cells, matching the manifest's sparse summary.
 - **Recount islands after every operation:** Run DFS or BFS over the entire grid each time. This can cost $O(kmn)$ and repeats almost all connectivity work.
 - **Flood-fill only from the new cell:** It can discover connected land, but maintaining and relabeling components across many additions is less efficient than union-find.
 - **Decrement for every land neighbor:** This is wrong when two neighboring cells already belong to the same island. Only a union of different roots reduces the component count.
@@ -133,8 +133,8 @@ The algorithm attempts a union only when the neighboring coordinate is in bounds
 - **Shifted union-find indices:** Subtracting one works here only because every valid flattened ID receives the same bijective Python-index transformation. Reusing this class with arbitrary IDs, zero-length arrays, or a language without negative indexing would be unsafe.
 - **Recursive `find`:** Union by size limits tree height before compression, and compression flattens paths further. An iterative implementation could avoid recursion entirely but would preserve the same component logic.
 - **Maximum grid product:** Dense storage is feasible under the stated $mn\le10^4$ constraint, even though it does not achieve the sparse follow-up bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

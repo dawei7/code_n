@@ -51,7 +51,7 @@ For a cell `(i, j)` away from middle lines, horizontal reflection gives `(i, n -
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a cell `(i, j)` away from middle lines, horizontal refle... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first nested loop visits one representative `(i,j)` from the top-left quarte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every orbit with a visited matrix:**:** - **Enumerate every orbit with a visited matrix:** Applying both reflections from every unvisited cell is a general symmetry technique, but it requires $O(mn)$ extra space. The regular rectangle structure lets the source enumerate four-cells, pairs, and center directly.
+- **Enumerate every orbit with a visited matrix:** Applying both reflections from every unvisited cell is a general symmetry technique, but it requires $O(mn)$ extra space. The regular rectangle structure lets the source enumerate four-cells, pairs, and center directly.
 - **Make the grid palindromic, then repair parity arbitrarily:** A careless second phase can break palindrome symmetry by flipping one cell. Parity repairs must operate on an entire size-two or size-four orbit; the source incorporates this into the cost analysis.
 - **Dynamic programming over modulo four:** One could treat every orbit as an item with zero-or-one final choices and maintain four residue states. It is correct but unnecessary because four-cell groups are neutral and middle pairs admit the simple residue-two case analysis.
 - **All dimensions even:** There are only four-cell orbits. Every orbit contributes zero or four ones, so choosing `min(k,4-k)` for each automatically satisfies divisibility and the center/pair loops do nothing.
@@ -99,8 +99,8 @@ The first nested loop visits one representative `(i,j)` from the top-left quarte
 - **No mismatches but residue two:** Symmetry alone is already satisfied, yet two flips are unavoidable to change one matching pair's contribution by two. This is the subtle case captured by the final `else 2`.
 - **Ties in a four-cell orbit:** With two zeros and two ones, either uniform value costs two flips and both produce a valid multiple-of-four contribution. No global look-ahead is needed.
 - **Input mutation:** The method counts an optimal set of changes but does not apply them. This is sufficient because only the minimum number, not a resulting grid, is requested.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

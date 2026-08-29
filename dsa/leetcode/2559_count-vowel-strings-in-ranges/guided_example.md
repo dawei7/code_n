@@ -71,7 +71,7 @@ The code computes this difference directly without creating the slice.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `bisect_left(nums, l)` returns the first position in `nums` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ This method also works when no words qualify. Both binary searches return zero f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix sum:** Store a cumulative qualifying co:** - **Prefix sum:** Store a cumulative qualifying count for every prefix. Then query $[l,r]$ is answered in $O(1)$ by subtracting two prefix entries, giving $O(n+q)$ time and $O(n)$ auxiliary space.
+- **Prefix sum:** Store a cumulative qualifying count for every prefix. Then query $[l,r]$ is answered in $O(1)$ by subtracting two prefix entries, giving $O(n+q)$ time and $O(n)$ auxiliary space.
 - **Scan every range:** This needs no preprocessing beyond the vowel set but can take $O(nq)$ time across many large queries.
 - **Sorted qualifying indices:** The implemented method uses only $O(v)$ preprocessing storage and can be preferable when qualifying words are sparse, at the cost of $O(\log v)$ per query.
 - **One-letter word:** A word such as `"a"` starts and ends with the same vowel and must count; a word such as `"b"` does not.
@@ -120,8 +120,8 @@ This method also works when no words qualify. Both binary searches return zero f
 - **No qualifying words:** `nums` is empty, both bisections return zero, and every answer is zero.
 - **Single-index query:** When $l=r$, the difference is one exactly when that one index appears in `nums`.
 - **Nonempty-string guarantee:** Direct accesses `w[0]` and `w[-1]` rely on every word having length at least one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

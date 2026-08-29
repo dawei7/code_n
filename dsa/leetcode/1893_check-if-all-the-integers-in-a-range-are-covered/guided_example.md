@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Why subtraction belongs at `r + 1`.** The endpoint `r` its... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean marking:** Mark every integer in each :** - **Boolean marking:** Mark every integer in each interval as covered, then scan `left` through `right`. With maximum coordinate 50 this is simple, but its generalized time is proportional to total interval lengths rather than two events per interval.
+- **Boolean marking:** Mark every integer in each interval as covered, then scan `left` through `right`. With maximum coordinate 50 this is simple, but its generalized time is proportional to total interval lengths rather than two events per interval.
 - **Sort and merge intervals:** Merge overlapping or adjacent ranges and see whether their union covers the target. This costs $O(N\log N)$ and is useful for large sparse coordinates, but unnecessary for the tiny bounded domain.
 - **Test every target against every range:** This direct method costs $O(NV)$ and repeats interval comparisons.
 - **Single-point target:** The scan checks that one coordinate's active count is positive; inclusive endpoints work without special handling.
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **Endpoint 50:** The removal event is stored safely at index 51 because the array has length 52.
 - **Ranges outside the requested interval:** They still contribute events, but the method ignores uncovered coordinates outside `left` through `right`.
 - **Inclusive semantics:** Moving the decrement from `r + 1` to `r` would incorrectly mark the right endpoint uncovered and is the main off-by-one trap.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

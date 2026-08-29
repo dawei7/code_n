@@ -63,7 +63,7 @@ After this pop, the heap contains the largest at most `ladders` climbs seen so f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop examines each edge from building `i` to `i+1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The same code handles both cases. No explicit “is the current climb larger?”
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap of brick-paid climbs:** Initially pay:** - **Max-heap of brick-paid climbs:** Initially pay every climb with bricks. When bricks become negative, replace the largest brick payment with a ladder. This is the symmetric greedy solution with similar complexity.
+- **Max-heap of brick-paid climbs:** Initially pay every climb with bricks. When bricks become negative, replace the largest brick payment with a ladder. This is the symmetric greedy solution with similar complexity.
 - **Binary search the reachable building:** For a candidate prefix, select its largest ladder-covered climbs and test brick cost. Repeating prefix checks adds complexity and usually more total work.
 - **Sort all climbs for every prefix:** It can identify optimal allocation but repeatedly sorting produces excessive time. The heap updates the allocation incrementally.
 - **No ladders:** Every positive climb is immediately popped and paid with bricks; the heap remains empty after each iteration.
@@ -113,8 +113,8 @@ The same code handles both cases. No explicit “is the current climb larger?”
 - **Failure on edge `i`:** Building `i` is reachable but `i+1` is not, so returning `i` is the correct zero-based index.
 - **Single building:** The sliced loop is empty and the only building, index 0, is returned.
 - **Python slice storage:** `heights[:-1]` is an avoidable $O(n)$ copy that makes the exact space usage larger than the abstract heap algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

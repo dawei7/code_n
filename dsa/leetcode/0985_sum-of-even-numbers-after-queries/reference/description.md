@@ -4,7 +4,7 @@ You are given an integer array `nums` and an array `queries` where $\text{querie
 
 For each query `i`, first, apply $nums[\text{index}_{i}] = nums[\text{index}_{i}] + \text{val}_{i}$, then print the sum of the even values of `nums`.
 
-Return *an integer array *`answer`* where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
+Return *an integer array *`answer`* where *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

@@ -57,7 +57,7 @@ Every recursive call compares possible neighbors with this same `oc`. The target
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The search decision for a neighbor is whether its value equa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ Before reading a neighbor, the solution verifies that its row and column lie ins
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search with a queue:** Recolor o:** - **Breadth-first search with a queue:** Recolor on enqueue and process neighbors iteratively. It has the same `O(mn)` worst-case time and space and avoids recursion-depth limits.
-- **- **Explicit visited set:** Track coordinates sepa:** - **Explicit visited set:** Track coordinates separately instead of using the changed color. This works even when colors match but uses extra storage. The early equality check makes it unnecessary here.
-- **- **Scan every matching pixel globally:** This is :** - **Scan every matching pixel globally:** This is incorrect because equal-colored pixels in disconnected components must remain unchanged.
+- **Breadth-first search with a queue:** Recolor on enqueue and process neighbors iteratively. It has the same `O(mn)` worst-case time and space and avoids recursion-depth limits.
+- **Explicit visited set:** Track coordinates separately instead of using the changed color. This works even when colors match but uses extra storage. The early equality check makes it unnecessary here.
+- **Scan every matching pixel globally:** This is incorrect because equal-colored pixels in disconnected components must remain unchanged.
 
 ---
 

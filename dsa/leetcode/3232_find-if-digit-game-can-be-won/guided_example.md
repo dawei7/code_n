@@ -51,7 +51,7 @@ Let $A$ be the sum of all single-digit numbers and let $B$ be the sum of all dou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $A$ be the sum of all single-digit numbers and let $B$ b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ These are the only two choices. Combining them, Alice can win when
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass accumulation:** A single loop can add:** - **One-pass accumulation:** A single loop can add `x` to one of two totals using an `if` statement. It has the same $O(n)$ time and $O(1)$ space and avoids the second traversal, but the two generator sums express the two mathematical groups very directly.
+- **One-pass accumulation:** A single loop can add `x` to one of two totals using an `if` statement. It has the same $O(n)$ time and $O(1)$ space and avoids the second traversal, but the two generator sums express the two mathematical groups very directly.
 - **Compare each choice separately:** Returning `a > b or b > a` is logically correct, but `a != b` is the simpler equivalent after recognizing that there are only two totals.
 - **Compute the total and one group:** One may calculate a total sum and the single-digit sum, then derive the double-digit sum by subtraction. This remains linear and constant-space, though it does not make the partition as visually explicit.
 - **Subset search or dynamic programming:** Alice cannot select an arbitrary subset; she must take an entire digit-length category. Knapsack or subset-sum reasoning solves a different and much harder problem.
@@ -96,8 +96,8 @@ These are the only two choices. Combining them, Alice can win when
 - **Repeated numbers:** Each occurrence contributes separately to its category sum, as it should. No uniqueness assumption is required.
 - **Single-element input:** Exactly one group has a positive sum and the other has zero, so Alice takes the element's category and wins.
 - **Illegal values outside the constraints:** The implementation's first predicate would group zero or negative integers with single-digit positives, and values above `99` with the double-digit group. Correctness is guaranteed for the documented domain, not for an expanded game with additional digit lengths.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

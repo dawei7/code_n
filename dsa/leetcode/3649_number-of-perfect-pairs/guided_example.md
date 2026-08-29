@@ -87,7 +87,7 @@ This is the entire mathematical core of the solution. Once the magnitudes are so
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Under `x <= y`, the smaller input magnitude is `x` and the l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +136,7 @@ The two-pointer loop maintains `left` as the first position in this suffix.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair directly:** Evaluating both o:** - **Check every pair directly:** Evaluating both original inequalities for all `i < j` is straightforward but costs `O(n^2)`, which is too slow for `n = 10^5`.
+- **Check every pair directly:** Evaluating both original inequalities for all `i < j` is straightforward but costs `O(n^2)`, which is too slow for `n = 10^5`.
 - **Binary search per right endpoint:** After sorting, binary-search the first magnitude at least half of the current one. This gives `O(n log n)` counting after the sort; the monotone two-pointer scan improves that phase to `O(n)`.
 - **Frequency map over magnitudes:** One could count repeated magnitudes and process sorted distinct keys with multiplicities. It may reduce scanning when duplicates are common but requires careful combination counting and does not improve the worst-case sorting bound.
 - **Keep the original signs:** Signs do not affect the minimum and maximum of `|a-b|` and `|a+b|`. Retaining them obscures the one ratio condition without adding information.
@@ -149,8 +149,8 @@ The two-pointer loop maintains `left` as the first position in this suffix.
 - **Negative values:** Applying `abs` is mathematically exact, not an approximation. A positive and negative value with the same magnitude behaves like any equal-magnitude pair.
 - **Original index order:** The requirement `i < j` chooses one representation of each unordered index pair. Since the relation is symmetric, sorting occurrences and counting each pair once preserves the requested count.
 - **Input preservation:** The generator computes new magnitudes and `sorted` returns a new list; `nums` itself is not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

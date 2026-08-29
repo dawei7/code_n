@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a ​​​​​​​circular integer array​​​​​​​ `nums` of length `n`.
+You are given a circular integer array `nums` of length `n`.
 
 An index `i` is a **peak** if its value is **strictly greater** than its neighbors:
 
@@ -73,4 +73,4 @@ Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if
 
 - $-10^{5} \le \text{nums}[i] \le 10^{5}$
 
-- $0 \le k \le n$​​​​​​​
+- $0 \le k \le n$

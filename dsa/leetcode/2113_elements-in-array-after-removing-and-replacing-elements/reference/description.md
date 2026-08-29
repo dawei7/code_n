@@ -4,13 +4,13 @@ You are given a **0-indexed** integer array `nums`. Initially on minute `0`, the
 
 - For example, the array `[0,1,2]` would change as follows: $[0,1,2] → [1,2] → [2] → [] → [0] → [0,1] → [0,1,2] → [1,2] → [2] → [] → [0] → [0,1] → [0,1,2] → ...$
 
-You are also given a 2D integer array `queries` of size `n` where $\text{queries}[j] = [\text{time}_{j}, \text{index}_{j}]$. The answer to the $$j^{\text{th}}$$ query is:
+You are also given a 2D integer array `queries` of size `n` where $\text{queries}[j] = [\text{time}_{j}, \text{index}_{j}]$. The answer to the $j^{\text{th}}$ query is:
 
 - $nums[\text{index}_{j}]$ if $\text{index}_{j} < \text{nums.length}$ at minute $\text{time}_{j}$
 
 - `-1` if $\text{index}_{j} \ge \text{nums.length}$ at minute $\text{time}_{j}$
 
-Return *an integer array `ans` of size *`n` *where *$\text{ans}[j]$* is the answer to the *$$j^{\text{th}}$$* query*.
+Return *an integer array `ans` of size *`n` *where *$\text{ans}[j]$* is the answer to the *$j^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

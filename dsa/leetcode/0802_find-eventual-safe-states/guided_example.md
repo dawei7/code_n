@@ -63,7 +63,7 @@ Thus `rg[j]` is the list of original predecessors that may become safe after `j`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input graph lists outgoing neighbors.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ Calling it a remaining-outdegree counter makes the algorithm easier to understan
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-color depth-first search:** Mark nodes u:** - **Three-color depth-first search:** Mark nodes unvisited, active, or confirmed safe. It also takes $O(V+E)$ but uses recursion or an explicit stack.
-- **- **Run cycle detection independently from every n:** - **Run cycle detection independently from every node:** It repeats work and can become quadratic without memoized states.
-- **- **Return queue order:** Incorrect for the requir:** - **Return queue order:** Incorrect for the required ascending output; scan node indices afterward.
+- **Three-color depth-first search:** Mark nodes unvisited, active, or confirmed safe. It also takes $O(V+E)$ but uses recursion or an explicit stack.
+- **Run cycle detection independently from every node:** It repeats work and can become quadratic without memoized states.
+- **Return queue order:** Incorrect for the required ascending output; scan node indices afterward.
 
 ---
 

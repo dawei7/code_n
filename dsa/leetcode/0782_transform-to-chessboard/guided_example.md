@@ -71,7 +71,7 @@ At the same time, `sameRow` counts how many rows equal `rowMask`, and `sameCol` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The algorithm stores the first row in `rowMask` and the firs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +117,9 @@ The first measure validates the pattern distribution along one dimension; the se
 
 ## 6. Traps This Instance Exposes
 
-- **- **Tuple counters for rows and columns:** Count c:** - **Tuple counters for rows and columns:** Count complete line tuples, verify two complementary patterns, then count mismatches. It is conceptually direct but stores $O(n^2)$ tuple data unless carefully shared.
-- **- **Try row and column permutations:** There are $:** - **Try row and column permutations:** There are $n!$ possibilities per dimension, far beyond the limit and unnecessary once the invariants are known.
-- **- **Even dimension:** Both alternating starting bi:** - **Even dimension:** Both alternating starting bits are possible, so take the smaller of two swap counts.
+- **Tuple counters for rows and columns:** Count complete line tuples, verify two complementary patterns, then count mismatches. It is conceptually direct but stores $O(n^2)$ tuple data unless carefully shared.
+- **Try row and column permutations:** There are $n!$ possibilities per dimension, far beyond the limit and unnecessary once the invariants are known.
+- **Even dimension:** Both alternating starting bits are possible, so take the smaller of two swap counts.
 
 ---
 

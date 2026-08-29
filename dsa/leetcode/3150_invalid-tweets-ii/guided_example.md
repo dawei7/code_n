@@ -68,7 +68,7 @@ This counts marker characters, not semantic social-media tokens. For example, co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | MySQL's `REPLACE(content, '@', '')` removes every at-sign.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The disjunction is true exactly when at least one invalidity criterion is met. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `CHAR_LENGTH`:** This is the correct choic:** - **Use `CHAR_LENGTH`:** This is the correct choice when “140 characters” must include multibyte text accurately.
+- **Use `CHAR_LENGTH`:** This is the correct choice when “140 characters” must include multibyte text accurately.
 - **Regular-expression counting:** It can count markers but is heavier and less transparent than replacement-length difference.
 - **Recursive string parsing:** Unnecessary for counting single-character markers.
 - **Precomputed metadata columns:** Stored character and marker counts could make queries faster, but they require schema and write-path changes outside this task.
@@ -123,8 +123,8 @@ The disjunction is true exactly when at least one invalidity criterion is met. T
 - **Empty content:** Its lengths and marker counts are zero, so it is valid under all three criteria.
 - **Output order:** `ORDER BY 1` is positional shorthand for ascending `tweet_id`.
 - **Null content:** The schema excerpt does not explicitly discuss nullability. If null were allowed, all predicates become unknown and the row is not selected; handling it would require a stated business rule and `COALESCE`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

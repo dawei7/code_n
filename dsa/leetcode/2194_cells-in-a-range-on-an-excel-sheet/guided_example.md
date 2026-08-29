@@ -65,7 +65,7 @@ The guarantee `s[0] <= s[3]` ensures this interval moves forward and is nonempty
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ord(s[0])` returns the character code of the first column l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Since rows are restricted to characters `'1'` through `'9'`, each conversion is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested explicit loops:** Append each label in :** - **Nested explicit loops:** Append each label in ordinary loop statements. This is behaviorally identical and may be easier to debug, but more verbose.
+- **Nested explicit loops:** Append each label in ordinary loop statements. This is behaviorally identical and may be easier to debug, but more verbose.
 - **Parse around the colon:** Splitting into two endpoint strings is more general and would help if rows could have several digits; fixed indexing is sufficient here.
 - **Sort generated cells afterward:** It is unnecessary because loop nesting already establishes the required order.
 - **Single cell:** Equal column and row endpoints produce one outer and one inner iteration.
@@ -117,8 +117,8 @@ Since rows are restricted to characters `'1'` through `'9'`, each conversion is 
 - **Colon ignored:** Its fixed role is structural; the algorithm needs only the four endpoint characters.
 - **Input preservation:** The immutable range string is only indexed.
 - **Output order:** Outer column and inner row loops implement column-major order exactly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

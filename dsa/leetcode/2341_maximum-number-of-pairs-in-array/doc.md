@@ -28,7 +28,7 @@ integers left after all possible pairs have been removed.
 **Inputs**
 
 - `nums`: An integer array of length $n$, where $1 \le n \le 100$ and every
-  value lies in $[0,100]$.
+  value lies in `[0,100]`.
 
 **Return value**
 

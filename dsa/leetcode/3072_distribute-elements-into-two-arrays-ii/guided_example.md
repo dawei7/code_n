@@ -51,7 +51,7 @@ The exact source uses coordinate compression and one Binary Indexed Tree, also c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source uses coordinate compression and one Binary ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source uses coordinate compression and one Binary Indexed Tree, also c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan both arrays per insertion:** It directly :** - **Scan both arrays per insertion:** It directly computes greater counts but costs $O(N^2)$ worst-case time.
+- **Scan both arrays per insertion:** It directly computes greater counts but costs $O(N^2)$ worst-case time.
 - **Two sorted multisets:** They support rank queries, but Python has no standard logarithmic ordered multiset; Fenwick trees are explicit and predictable.
 - **Segment tree:** It provides the same asymptotic operations with more code and memory constants.
 - **Equal values:** Prefix query includes them, so they are not mistakenly counted as strictly greater.
@@ -100,8 +100,8 @@ The exact source uses coordinate compression and one Binary Indexed Tree, also c
 - **Duplicate frequency:** Updating by one for every occurrence means trees store multiplicities, not merely presence. This is required because `greaterCount` counts elements.
 - **Final list order:** Fenwick ranks determine destinations only; values are appended to `arr1` and `arr2` in arrival order, which the final concatenation preserves.
 - **Binary search always succeeds:** Every processed value came from `nums` and therefore appears in compressed set `st`, so `bisect_left` returns its exact rank.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

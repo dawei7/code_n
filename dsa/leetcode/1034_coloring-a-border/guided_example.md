@@ -62,9 +62,7 @@ A cell can trigger the assignment several times through different neighbors. Rep
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source gives two independent border conditions:
-
-- At le... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ If it is in bounds and unvisited, its value decides what happens. Original color
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** Discover the component:** - **Breadth-first search:** Discover the component with a queue and evaluate the same border conditions. It has identical `O(P)` bounds and avoids recursion-depth limits.
+- **Breadth-first search:** Discover the component with a queue and evaluate the same border conditions. It has identical `O(P)` bounds and avoids recursion-depth limits.
 - **Collect border coordinates first:** Traverse without changing colors, store every border cell, then recolor them afterward. This makes mutation reasoning simpler but needs an additional border list of up to `O(P)`.
 - **Use a special temporary color as visited state:** Negate or otherwise encode visited cells in `grid`, then restore interiors and apply the final color. This can avoid a Boolean matrix but becomes delicate when colors and target values overlap.
 - **Copy the grid:** Writing into a separate output matrix preserves the caller's input but adds another `O(P)` allocation.
@@ -119,8 +117,8 @@ If it is in bounds and unvisited, its value decides what happens. Original color
 - **Different-color neighbor:** It remains untouched; only the current selected-component cell is recolored.
 - **Input mutation:** The exact method changes `grid` in place. Callers needing the original values afterward must pass a copy.
 - **Recursive depth:** A component containing up to 2500 cells can create a deep call chain in an unfavorable shape; iterative BFS or DFS is safer when the runtime has a low recursion limit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

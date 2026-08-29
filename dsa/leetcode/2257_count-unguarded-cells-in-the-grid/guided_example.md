@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two integers `m` and `n` representing a **0-indexed** `m x n` grid. You are also given two 2D integer arrays `guards` and `walls` where $\text{guards}[i] = [\text{row}_{i}, \text{col}_{i}]$ and $\text{walls}[j] = [\text{row}_{j}, \text{col}_{j}]$ represent the positions of the $$i^{\text{th}}$$ guard and $$j^{\text{th}}$$ wall respectively.
+You are given two integers `m` and `n` representing a **0-indexed** `m x n` grid. You are also given two 2D integer arrays `guards` and `walls` where $\text{guards}[i] = [\text{row}_{i}, \text{col}_{i}]$ and $\text{walls}[j] = [\text{row}_{j}, \text{col}_{j}]$ represent the positions of the $i^{\text{th}}$ guard and $j^{\text{th}}$ wall respectively.
 
 The objective is to compute `7` from `{"m": 4, "n": 6, "guards": [[0, 0], [1, 1], [2, 3]], "walls": [[0, 1], [2, 2], [1, 4]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,9 +61,7 @@ These are north, east, south, and west. No diagonal direction is generated.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dirs = (-1, 0, 1, 0, -1)` and `pairwise(dirs)` produce:
-
-`(... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ The loop stops at the boundary or before a value-two cell. It never overwrites g
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four whole-grid sweeps:** Carry active visibil:** - **Four whole-grid sweeps:** Carry active visibility across rows and columns, resetting at walls and guards. It is also `O(mn)` and matches the manifest summary.
+- **Four whole-grid sweeps:** Carry active visibility across rows and columns, resetting at walls and guards. It is also `O(mn)` and matches the manifest summary.
 - **Cast rays without treating guards as blockers:** That violates the contract; value two stops at both object types.
 - **Stop at already guarded cells:** Guarded emptiness is not an obstruction. Stopping there would miss cells farther along the same line.
 - **Use a visibility set:** It can work but still needs obstacle handling and has more hashing overhead than a state grid.
@@ -117,8 +115,8 @@ The loop stops at the boundary or before a value-two cell. It never overwrites g
 - **Occupied cells:** Both guards and walls use state two and never count as unguarded.
 - **No line of sight to an empty cell:** It remains zero and contributes one.
 - **Input preservation:** Only the newly allocated state grid is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

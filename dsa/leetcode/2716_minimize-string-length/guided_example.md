@@ -57,7 +57,7 @@ This is stronger than merely observing that the operations preserve character va
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An operation deletes an occurrence of character `c` only by ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ After $r-1$ deletions, exactly one `c` remains. Performing this independently fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency array:** Count the 26 lowercase lett:** - **Frequency array:** Count the 26 lowercase letters and return how many counts are positive; it has the same $O(n)$ time and fixed $O(1)$ space but is more verbose than a set.
+- **Frequency array:** Count the 26 lowercase letters and return how many counts are positive; it has the same $O(n)$ time and fixed $O(1)$ space but is more verbose than a set.
 - **Repeated deletion simulation:** Can reproduce a valid operation sequence, but mutable-string deletions and searches add unnecessary work because only distinctness affects the answer.
 - **Sort and count changes:** Sorting the characters and counting new groups works in $O(n\log n)$ time, which is slower than hashing.
 - **Single-character string:** Its only occurrence cannot be deleted, so the set size and answer are one.
@@ -105,8 +105,8 @@ After $r-1$ deletions, exactly one `c` remains. Performing this independently fo
 - **Separated duplicates:** Equal characters need not be adjacent. The closest-equal rule still permits deleting one copy because intervening different letters do not matter.
 - **Changing indices:** Indices shift after conceptual deletions, but the set computation deliberately avoids depending on them.
 - **Lowercase guarantee:** The fixed 26-letter alphabet is what turns $O(D)$ set storage into the manifest's $O(1)$ bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

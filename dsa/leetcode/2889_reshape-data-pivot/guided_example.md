@@ -51,7 +51,7 @@ In long format, city and month repeat across rows. The requested wide format use
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In long format, city and month repeat across rows.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact solution states those three roles directly:
 
 ## 6. Traps This Instance Exposes
 
-- **- **`pivot_table`:** Use it only when duplicate mo:** - **`pivot_table`:** Use it only when duplicate month-city pairs require an explicit aggregation; plain `pivot` correctly rejects ambiguity.
+- **`pivot_table`:** Use it only when duplicate month-city pairs require an explicit aggregation; plain `pivot` correctly rejects ambiguity.
 - **Group then unstack:** `groupby` or `set_index(...).unstack()` can reproduce the reshape but is more verbose for unique keys.
 - **Duplicate key pair:** The exact source raises instead of choosing one temperature.
 - **Missing month-city combination:** The wide cell becomes missing.
@@ -94,8 +94,8 @@ The exact solution states those three roles directly:
 - **One month:** The result has one row and one column per distinct city.
 - **Month order:** The source does not enforce chronological order; add categorical ordering only if explicitly required.
 - **Index versus ordinary column:** `month` becomes the named row index, which renders like the leftmost table field but is not a regular data column.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

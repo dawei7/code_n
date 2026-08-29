@@ -51,7 +51,7 @@ The solution first converts labels 1 through `n` to zero-based indices 0 through
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution first converts labels 1 through `n` to zero-bas... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The solution first converts labels 1 through `n` to zero-based indices 0 through
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first coloring:** A queue can assign a:** - **Breadth-first coloring:** A queue can assign alternating colors level by level. It has the same $O(n+m)$ bounds and avoids recursion-depth concerns.
+- **Breadth-first coloring:** A queue can assign alternating colors level by level. It has the same $O(n+m)$ bounds and avoids recursion-depth concerns.
 - **Union-find:** For each person, union all disliked neighbors into the opposite side and detect contradictions. This works but is less direct than two-color traversal.
 - **Try all two-group assignments:** There are $2^n$ assignments, while graph coloring resolves forced choices in linear time.
 - **Check only one connected component:** This can miss an odd cycle elsewhere. The outer `all(...)` must cover every uncolored vertex.
@@ -102,8 +102,8 @@ The solution first converts labels 1 through `n` to zero-based indices 0 through
 - **One-based input labels:** Subtracting one before adjacency construction is required because `color` uses zero-based indexing.
 - **Unique pairs:** The contract prevents duplicate dislikes, though duplicates would not change coloring correctness.
 - **Deep graph:** Iterative BFS or DFS is preferable if the runtime's recursion limit is below the maximum component depth.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Assume from now on that every value is at least `k`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Assume from now on that every value is at least `k`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Assume from now on that every value is at least `k`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store only values greater than `k`:** Then the:** - **Store only values greater than `k`:** Then the answer is simply that set's size; the exact source stores all values and conditionally excludes `k`.
+- **Store only values greater than `k`:** Then the answer is simply that set's size; the exact source stores all values and conditionally excludes `k`.
 - **Sort distinct values:** It makes the constructive order explicit but costs $O(n\log n)$ rather than expected linear time.
 - **Simulate array replacements:** It repeats work across elements and is unnecessary once distinct levels are understood.
 - **Any value below `k`:** Return `-1` immediately.
@@ -101,8 +101,8 @@ Assume from now on that every value is at least `k`.
 - **Infinity initialization:** `mi` is always replaced because the array is nonempty.
 - **Input preservation:** Only a set and minimum are built; `nums` is unchanged.
 - **Import requirements:** `inf` and `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

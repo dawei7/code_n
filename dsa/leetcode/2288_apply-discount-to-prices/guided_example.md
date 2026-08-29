@@ -68,9 +68,7 @@ The test describes the full token rather than searching for a price-shaped subst
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition has two parts:
-
-`w[0] == '$' and w[1:].isdigit... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +115,7 @@ Python's `/` produces a floating-point value. The multiplication therefore also 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Integer cents:** Compute `price * (100-discoun:** - **Integer cents:** Compute `price * (100-discount)` as an integer number of cents, then divide by 100 for formatting. This avoids binary floating-point rounding and more closely matches the manifest summary.
+- **Integer cents:** Compute `price * (100-discount)` as an integer number of cents, then divide by 100 for formatting. This avoids binary floating-point rounding and more closely matches the manifest summary.
 - **Regular expression:** A full-token pattern such as a dollar sign followed by one or more digits can recognize prices, but the two direct string checks are sufficient.
 - **Character-by-character reconstruction:** It can avoid a separate split list but requires careful token-boundary and spacing management.
 - **A bare dollar sign:** Its suffix is empty, `isdigit()` is false, and it remains unchanged.
@@ -131,8 +129,8 @@ Python's `/` produces a floating-point value. The multiplication therefore also 
 - **Canonical spaces:** Split and join preserve the sentence's separators only because the contract guarantees exactly one space.
 - **Nonempty words:** The spacing guarantees make `w[0]` safe.
 - **Input preservation:** New token and result strings are built; `sentence` is not mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

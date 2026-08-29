@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given an integer `n`, return the $$n^{\text{th}}$$ digit of the infinite integer sequence `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...]`.
+Given an integer `n`, return the $n^{\text{th}}$ digit of the infinite integer sequence `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...]`.
 
 ### 2. Function Contract
 

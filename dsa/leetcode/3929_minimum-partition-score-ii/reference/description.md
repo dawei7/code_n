@@ -53,7 +53,7 @@ Return an integer equal to the minimum possible sum of $T(s)=s(s+1)/2$ over the 
 
 - Since we must partition the array into $k = 1$ subarray, all elements belong to the same subarray: `[1, 2, 3, 4]`.
 
-- This subarray has $sum = 1 + 2 + 3 + 4 = 10$ and $value = 10 * 11 / 2 = 55$.​​​​​​​
+- This subarray has $sum = 1 + 2 + 3 + 4 = 10$ and $value = 10 * 11 / 2 = 55$.
 
 - The score of this partition is 55, which is the minimum possible score.
 

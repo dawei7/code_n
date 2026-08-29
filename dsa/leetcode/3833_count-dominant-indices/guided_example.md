@@ -81,7 +81,7 @@ This ordering is essential. Adding `nums[i]` before the comparison would incorre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The scan begins at `i = N - 2`, the second-to-last index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ For a one-element array, `range(n - 2, -1, -1)` is empty. The answer stays zero,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Exact cross multiplication:** Test `nums[i] * :** - **Exact cross multiplication:** Test `nums[i] * (n - i - 1) > suf`. It preserves strictness and avoids floating-point division while retaining $O(N)$ time.
+- **Exact cross multiplication:** Test `nums[i] * (n - i - 1) > suf`. It preserves strictness and avoids floating-point division while retaining $O(N)$ time.
 - **Suffix-sum array:** Precompute every suffix sum and query each average in constant time. This is also $O(N)$ time but uses unnecessary $O(N)$ space.
 - **Recompute every average:** Summing `nums[i + 1:]` for every index costs $O(N^2)$ time and creates repeated slice work in Python.
 - **One element:** It is the rightmost element and is explicitly not dominant, so the answer is zero.
@@ -128,8 +128,8 @@ For a one-element array, `range(n - 2, -1, -1)` is empty. The answer stays zero,
 - **All equal values:** Every eligible value equals its suffix average, so none is dominant.
 - **Strictly decreasing values:** Every value except the rightmost exceeds every value to its right and therefore exceeds their average.
 - **Positive suffix count:** Every checked index has at least one right-side value, so the division denominator is never zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

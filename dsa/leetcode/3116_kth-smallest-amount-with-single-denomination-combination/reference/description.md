@@ -4,7 +4,7 @@ You are given an integer array `coins` representing coins of different denominat
 
 You have an infinite number of coins of each denomination. However, you are **not allowed** to combine coins of different denominations.
 
-Return the $$k^{\text{th}}$$ **smallest** amount that can be made using these coins.
+Return the $k^{\text{th}}$ **smallest** amount that can be made using these coins.
 
 ### 2. Function Contract
 

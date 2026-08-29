@@ -60,7 +60,7 @@ Looking directly at `d[v - 1]` therefore finds exactly the eligible chains. Grou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A current number `v` can extend only a subsequence ending at... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,9 +99,9 @@ For example, suppose chains of lengths two and three both end at two, and the cu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Remaining-frequency and tails maps:** First co:** - **Remaining-frequency and tails maps:** First count unused values. For each number, extend an existing chain ending at the previous value if possible; otherwise reserve the next two values to start a valid length-three chain. This gives expected `O(N)` time and matches the manifest.
-- **- **Global heap of start/end pairs:** Store all su:** - **Global heap of start/end pairs:** Store all subsequences ordered by endpoint and length. It works but is more complicated than separate heaps keyed directly by endpoint.
-- **- **Store complete subsequence lists:** This uses :** - **Store complete subsequence lists:** This uses unnecessary memory and copying. Endpoint plus length is sufficient metadata for decisions and validation.
+- **Remaining-frequency and tails maps:** First count unused values. For each number, extend an existing chain ending at the previous value if possible; otherwise reserve the next two values to start a valid length-three chain. This gives expected `O(N)` time and matches the manifest.
+- **Global heap of start/end pairs:** Store all subsequences ordered by endpoint and length. It works but is more complicated than separate heaps keyed directly by endpoint.
+- **Store complete subsequence lists:** This uses unnecessary memory and copying. Endpoint plus length is sufficient metadata for decisions and validation.
 
 ---
 

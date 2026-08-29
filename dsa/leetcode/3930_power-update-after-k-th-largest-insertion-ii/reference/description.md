@@ -12,7 +12,7 @@ For each query:
 
 - **Update** `p` to $p^x \% (10^{9} + 7)$.
 
-Return an array `ans` where the $\text{ans}[i]$ represents the value of `p` after processing the $$i^{\text{th}}$$ query.
+Return an array `ans` where the $\text{ans}[i]$ represents the value of `p` after processing the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 
@@ -91,7 +91,7 @@ Thus, $ans = [64, 4096]$.
 		<tr>
 			<th>`i`</th>
 			<th>$\text{val}_{i}$</th>
-			<th>Current​​​​​​​
+			<th>Current
 
 			`nums`</th>
 			<th>$k_{i}$</th>
@@ -132,10 +132,10 @@ Thus, $ans = [1296, 220296870]$
 
 - $1 \le \text{nums}[i] \le 10^{9}$
 
-- $​​​​​​​1 \le p \le 10^{9}$
+- $1 \le p \le 10^{9}$
 
 - $1 \le \text{queries.length} \le 2 * 10^{4}$
 
-- $^​​​​​​​1 \le \text{val}_{i} \le 10^{9}$
+- $^1 \le \text{val}_{i} \le 10^{9}$
 
-- $1 \le k_{i} \le n + i + 1$​​​​​​​
+- $1 \le k_{i} \le n + i + 1$

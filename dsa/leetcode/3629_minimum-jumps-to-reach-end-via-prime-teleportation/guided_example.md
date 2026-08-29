@@ -67,7 +67,7 @@ If `nums[i]` is composite, `g[nums[i]]` is normally an empty newly created list 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each array value `x` and each `p in factors[x]`, index `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ After the whole level, `q=nq` and `ans` increments.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test primality during BFS and scan nums:** Sca:** - **Test primality during BFS and scan nums:** Scanning all destinations per reached prime can become quadratic.
+- **Test primality during BFS and scan nums:** Scanning all destinations per reached prime can become quadratic.
 - **Reverse BFS:** The editorial describes factor-based reverse edges; forward BFS in the exact source is equally shortest-path correct.
 - **Do not clear groups:** Correctness remains, but the same large list may be scanned many times.
 - **One-element array:** Index 0 is already the destination, so answer is zero.
@@ -124,8 +124,8 @@ After the whole level, `q=nq` and `ans` increments.
 - **Right boundary:** The destination is returned before `i+1` is appended.
 - **Missing imports:** Standalone use must supply `defaultdict` and `List`.
 - **Input preservation:** The source mutates only group lists, not `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

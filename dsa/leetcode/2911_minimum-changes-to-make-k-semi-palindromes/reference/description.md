@@ -4,7 +4,7 @@ Given a string `s` and an integer `k`, partition `s` into `k` **substrings** suc
 
 Return the ***minimum** number of letter changes* required*.*
 
-A **semi-palindrome** is a special type of string that can be divided into **palindromes** based on a repeating pattern. To check if a string is a semi-palindrome:​
+A **semi-palindrome** is a special type of string that can be divided into **palindromes** based on a repeating pattern. To check if a string is a semi-palindrome:
 
 - Choose a positive divisor `d` of the string's length. `d` can range from `1` up to, but not including, the string's length. For a string of length `1`, it does not have a valid divisor as per this definition, since the only divisor is its length, which is not allowed.
 

@@ -68,9 +68,7 @@ When all four comparisons pass, the role-ordered list `[top,left,right,bottom]` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Once four distinct words are chosen, the source tests:
-
-- `t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +111,7 @@ The sort mutates the caller-provided `words` array, an observable property of th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boundary-letter index:** Mapping required firs:** - **Boundary-letter index:** Mapping required first/last letters to candidate words can reduce enumeration toward the manifest's bound, but it is not the exact source.
+- **Boundary-letter index:** Mapping required first/last letters to candidate words can reduce enumeration toward the manifest's bound, but it is not the exact source.
 - **Permutations of four words:** This is conceptually equivalent to the nested distinct-index loops.
 - **Check interior letters:** Only four corners are constrained; interior checks would solve a different word-square problem.
 - **Reuse one word:** All four roles must use distinct entries.
@@ -125,8 +123,8 @@ The sort mutates the caller-provided `words` array, an observable property of th
 - **Manifest mismatch:** The source is exhaustive $O(W^4)$ enumeration rather than indexed lookup.
 - **Loop pruning:** Distinctness guards improve concrete work without changing the asymptotic bound.
 - **No valid square:** Exhaustion simply leaves `ans` empty.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -64,7 +64,7 @@ The factor need not be prime. Connecting through composite factors is still corr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The Union-Find structure has one index for every integer fro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For a perfect square, both expressions may be equal. The second union is then re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime-factorize each value:** Divide out each :** - **Prime-factorize each value:** Divide out each discovered prime and union values through a map from prime to representative. This avoids a Union-Find array sized by `M` but requires careful factorization.
+- **Prime-factorize each value:** Divide out each discovered prime and union values through a map from prime to representative. This avoids a Union-Find array sized by `M` but requires careful factorization.
 - **Compare every pair with gcd:** It directly follows the graph definition but costs `O(N^2 log M)` time.
 - **Sieve smallest prime factors:** Preprocessing through `M` makes repeated factorization fast and is useful for many values.
 - **All values prime:** Unless one prime divides another input composite, primes remain singleton components.
@@ -113,8 +113,8 @@ For a perfect square, both expressions may be equal. The second union is then re
 - **Unique inputs:** Counter entries count different input values without duplicate-value complications.
 - **Large maximum with few values:** The `O(M)` parent array may be wasteful; a dictionary-backed factor Union-Find is an alternative.
 - **No union by size:** Path compression keeps operations efficient, though adding rank or size would provide the standard strongest bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

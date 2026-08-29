@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are playing a simplified PAC-MAN game on an infinite 2-D grid. You start at the point `[0, 0]`, and you are given a destination point $target = [x_{target}, y_{target}]$ that you are trying to get to. There are several ghosts on the map with their starting positions given as a 2D array `ghosts`, where $\text{ghosts}[i] = [x_{i}, y_{i}]$ represents the starting position of the $$i^{\text{th}}$$ ghost. All inputs are **integral coordinates**.
+You are playing a simplified PAC-MAN game on an infinite 2-D grid. You start at the point `[0, 0]`, and you are given a destination point $target = [x_{target}, y_{target}]$ that you are trying to get to. There are several ghosts on the map with their starting positions given as a 2D array `ghosts`, where $\text{ghosts}[i] = [x_{i}, y_{i}]$ represents the starting position of the $i^{\text{th}}$ ghost. All inputs are **integral coordinates**.
 
 The objective is to compute `true` from `{"ghosts": [[1, 0], [0, 3]], "target": [0, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,7 +71,7 @@ Thus every successful strategy requires the player to have strictly smaller targ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At first, it may seem necessary to simulate every possible p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -142,9 +142,9 @@ This proves that comparing only target distances is sufficient; no grid search o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search on the grid:** The grid i:** - **Breadth-first search on the grid:** The grid is infinite and obstacles do not exist, so BFS replaces a constant-time distance formula with an unbounded search.
-- **- **Simulate simultaneous turns:** There are many :** - **Simulate simultaneous turns:** There are many possible adversarial moves, but the direct-to-target proof makes simulation unnecessary.
-- **- **Check collision only on one chosen path:** Tar:** - **Check collision only on one chosen path:** Target-distance comparison is stronger and proves safety for a shortest path through triangle inequality.
+- **Breadth-first search on the grid:** The grid is infinite and obstacles do not exist, so BFS replaces a constant-time distance formula with an unbounded search.
+- **Simulate simultaneous turns:** There are many possible adversarial moves, but the direct-to-target proof makes simulation unnecessary.
+- **Check collision only on one chosen path:** Target-distance comparison is stronger and proves safety for a shortest path through triangle inequality.
 
 ---
 

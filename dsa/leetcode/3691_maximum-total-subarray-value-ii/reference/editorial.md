@@ -11,7 +11,7 @@ For each left endpoint $l$, this gives us a monotonically increasing sequence of
 The problem can therefore be reformulated as follows:
 > Given $n$ monotonically increasing sequences, find the sum of the largest $k$ elements across all sequences.
 
-For example, if $\textit{nums} = [3,1,4,1]$, then the sequence corresponding to $l = 1$ is $[0,3,3]$ (representing the values of subarrays $[1]$, $[1,4]$, and $[1,4,1]$). Similarly, the sequence corresponding to $l = 2$ is $[0,3]$, and so on.
+For example, if $\textit{nums} = [3,1,4,1]$, then the sequence corresponding to $l = 1$ is `[0,3,3]` (representing the values of subarrays `[1]`, `[1,4]`, and `[1,4,1]`). Similarly, the sequence corresponding to $l = 2$ is `[0,3]`, and so on.
 
 Since the last element of each sequence is its maximum value, we can efficiently extract the global maximum using a max heap. Whenever we remove the current maximum element from a sequence, the next candidate from that sequence is simply the previous element.
 

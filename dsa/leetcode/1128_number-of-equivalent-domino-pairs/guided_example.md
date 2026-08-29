@@ -59,7 +59,7 @@ Examples `[1,2]` and `[2,1]` both map to twelve. Domino `[1,3]` maps to thirteen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every endpoint lies from one through nine.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ At the beginning of each loop iteration, `ans` equals the number of equivalent p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Tuple key:** Use `(min(a,b), max(a,b))`. It ge:** - **Tuple key:** Use `(min(a,b), max(a,b))`. It generalizes beyond one-digit endpoints and makes canonicalization visually explicit.
+- **Tuple key:** Use `(min(a,b), max(a,b))`. It generalizes beyond one-digit endpoints and makes canonicalization visually explicit.
 - **Sort each domino:** Sorting a two-element list creates the same identity but adds avoidable allocation or mutation.
 - **Compare every pair:** Directly test equivalence in $O(n^2)$ time.
 - **Count frequencies then combine:** Build all canonical counts, then sum `q * (q - 1) // 2`. It is equally correct but needs a second pass over keys.
@@ -114,8 +114,8 @@ At the beginning of each loop iteration, `ans` equals the number of equivalent p
 - **Different unordered pairs:** The decimal encoding cannot collide under digits one through nine.
 - **Self-pair prevention:** Incrementing after adding ensures an index never pairs with itself.
 - **Index order:** Each unordered pair is counted once at its later index, satisfying `i < j`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

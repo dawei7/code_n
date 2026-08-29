@@ -71,7 +71,7 @@ When the array itself has one element, the outer range is empty and the method r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop stops at `n - 2`, and the inner loop begins a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Duplicates require no special treatment. In `[1, 3, 3]`, extending over the seco
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic contribution stacks:** Count each va:** - **Monotonic contribution stacks:** Count each value's subarrays as maximum and minimum to achieve $O(n)$ time and $O(n)$ space. This is the follow-up solution described by the manifest, not the exact source.
+- **Monotonic contribution stacks:** Count each value's subarrays as maximum and minimum to achieve $O(n)$ time and $O(n)$ space. This is the follow-up solution described by the manifest, not the exact source.
 - **Recompute min and max for every subarray:** This adds another scan inside the endpoint loops and can cost $O(n^3)$. Carrying `mi` and `mx` avoids it.
 - **Prefix sums:** They answer subarray sums, not subarray minima and maxima, so they do not directly solve range queries.
 - **One element:** The only range is zero, and empty loops return zero.
@@ -125,8 +125,8 @@ Duplicates require no special treatment. In `[1, 3, 3]`, extending over the seco
 - **Input preservation:** `nums` is read but never sorted or changed.
 - **Manifest mismatch:** Complexity must follow the nested loops actually executed: $O(n^2)$ time and $O(1)$ auxiliary space.
 - **Follow-up scope:** The source solves the required output correctly while not implementing the optional linear-time challenge.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

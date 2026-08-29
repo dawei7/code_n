@@ -76,7 +76,7 @@ which operation remains possible.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After normalization, let `m = len(s)` and `n = len(t)`, with... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ needed.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-index scan without slicing:** Advance thro:** - **Two-index scan without slicing:** Advance through the common prefix, skip one position according to the length gap, and compare the remainder. It preserves $O(m+n)$ time and achieves $O(1)$ space.
+- **Two-index scan without slicing:** Advance through the common prefix, skip one position according to the length gap, and compare the remainder. It preserves $O(m+n)$ time and achieves $O(1)$ space.
 - **Full edit-distance dynamic programming:** Solves a much more general problem in $O(mn)$ time and space, which is unnecessary when only distance exactly one matters.
 - **Count mismatches only:** Works for equal-length replacement, but fails for insertion/deletion because later positions are shifted.
 - **Equal strings:** Must return false because the requirement is exactly one edit.
@@ -129,8 +129,8 @@ needed.
 - **Both strings empty:** They are zero edits apart and correctly return false.
 - **Argument swap:** It occurs at most once and converts insertion reasoning into deletion reasoning.
 - **Python slices:** They are a material space cost even though they make the suffix condition concise.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Each choice prevents a different class of bug.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Date` objects are mutable.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The method advances a calendar day, not simply a label inside the same month. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate `this` directly:** This can compute the:** - **Mutate `this` directly:** This can compute the date but introduces an observable side effect. The exact solution clones first so the original Date remains intact.
+- **Mutate `this` directly:** This can compute the date but introduces an observable side effect. The exact solution clones first so the original Date remains intact.
 - **Add `24 * 60 * 60 * 1000` milliseconds:** For a UTC-oriented result this can often work, but field-based UTC calendar arithmetic states the intent directly and avoids reasoning about local daylight-saving day lengths.
 - **Use local `getDate` and `setDate`:** Combining local calendar operations with `toISOString` can return an unexpected UTC date near timezone boundaries. The exact code keeps all stages in UTC.
 - **Manual month-length table:** It adds branching for thirty-day months, February, leap years, and year rollover. JavaScript Date normalization already owns those rules.
@@ -112,8 +112,8 @@ The method advances a calendar day, not simply a label inside the same month. Th
 - **Invalid Date receiver:** `toISOString` throws for an invalid Date. The exact code assumes a valid Date under the problem contract and does not add recovery behavior.
 - **Subclass or borrowed call:** The method expects `this` to be a valid Date-compatible value. Calling it with an unrelated object is outside the intended prototype contract.
 - **Timezone expectations:** The returned date is explicitly the next UTC date. A caller expecting the next date in some named local timezone would need a different contract and timezone-aware logic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

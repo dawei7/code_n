@@ -51,7 +51,7 @@ Think of each matrix cell as a graph vertex. Two vertices share an edge when the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Think of each matrix cell as a graph vertex.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Think of each matrix cell as a graph vertex. Two vertices share an edge when the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pass dynamic programming:** A top-left pas:** - **Two-pass dynamic programming:** A top-left pass uses top and left neighbors, then a bottom-right pass uses bottom and right. It also runs in $O(RC)$ time.
+- **Two-pass dynamic programming:** A top-left pass uses top and left neighbors, then a bottom-right pass uses bottom and right. It also runs in $O(RC)$ time.
 - **BFS from every one:** Repeating a search for each cell can become quadratic in the number of cells.
 - **BFS from one zero at a time:** It repeats overlapping exploration; multi-source initialization merges all waves.
 - **Use the input as visited storage:** It can reduce one separate state structure but mutates the caller's matrix and requires safe sentinel choices.
@@ -97,8 +97,8 @@ Think of each matrix cell as a graph vertex. Two vertices share an edge when the
 - **No diagonal movement:** The direction pairs include only common-edge neighbors.
 - **Boundary cells:** Coordinate checks prevent invalid accesses.
 - **At least one zero:** This guarantee ensures every cell has a finite answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

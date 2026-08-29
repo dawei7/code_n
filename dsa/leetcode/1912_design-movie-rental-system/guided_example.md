@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Store immutable prices separately.** `price_map` maps a co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The constructor parameter `n` is not otherwise needed because entries explicitly
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heaps with lazy deletion:** Per-movie and glob:** - **Heaps with lazy deletion:** Per-movie and global heaps can return cheapest entries, but rent/drop state changes require stale-entry filtering and careful synchronization.
+- **Heaps with lazy deletion:** Per-movie and global heaps can return cheapest entries, but rent/drop state changes require stale-entry filtering and careful synchronization.
 - **Sort on every search/report:** Correct but can repeatedly cost $O(E\log E)$ rather than maintaining order incrementally.
 - **Ordinary sets:** Support membership changes but not cheapest-five ordering.
 - **Fewer than five matches:** Slicing naturally returns the available count without padding.
@@ -96,8 +96,8 @@ The constructor parameter `n` is not otherwise needed because entries explicitly
 - **Search for unknown movie:** The default dictionary returns an empty list but also stores that empty key, explaining possible $O(Q)$ extra space.
 - **Composite-key safety:** The low 30 bits are sufficient for every allowed movie ID; changing constraints beyond that range would require tuple keys or a wider reservation.
 - **Valid-operation guarantee:** The source uses strict `remove` rather than defensive discard. Invalid rent/drop calls would raise, but tests exclude them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

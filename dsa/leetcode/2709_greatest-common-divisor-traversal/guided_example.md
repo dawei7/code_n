@@ -66,7 +66,7 @@ Removing repeated powers is correct because connectivity needs to know only whet
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Global dictionary `p` maps each value up to `mx = 100010` to... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ If roots already match, no work is needed because the nodes are already connecte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Smallest-prime-factor sieve:** Builds factors :** - **Smallest-prime-factor sieve:** Builds factors in near $O(M\log\log M)$ preprocessing and realizes the manifest's intended bound.
+- **Smallest-prime-factor sieve:** Builds factors in near $O(M\log\log M)$ preprocessing and realizes the manifest's intended bound.
 - **Compare every pair gcd:** Can require $O(n^2\log M)$ time and materialize a dense graph.
 - **Map each prime to its first index:** Can union indices directly without allocating auxiliary prime nodes.
 - **Single index:** Always connected, even when its value is one.
@@ -116,8 +116,8 @@ If roots already match, no work is needed because the nodes are already connecte
 - **Indirect bridge:** A composite value can connect groups sharing different factors.
 - **Prime exponents:** Repeated powers are irrelevant; each distinct factor is stored once.
 - **Global preprocessing:** Its cost is paid at module import and reused by calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

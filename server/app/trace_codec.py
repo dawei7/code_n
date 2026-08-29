@@ -23,10 +23,14 @@ def _tree_node_to_list(root: Any) -> list[Any]:
     if root is None:
         return []
     res: list[Any] = []
+    seen: set[int] = set()
     queue = [root]
     while queue:
         node = queue.pop(0)
         if node is not None:
+            if id(node) in seen:
+                break
+            seen.add(id(node))
             res.append(getattr(node, "val", None))
             queue.append(getattr(node, "left", None))
             queue.append(getattr(node, "right", None))

@@ -61,7 +61,7 @@ This deliberate double visit is correct because the contribution in each visit i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a key `k` whose two letters differ, `k[::-1]` is a diffe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The expression `v & 1` is `1` exactly when $v$ is odd and `0` when it is even. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **A 26 by 26 frequency table:** Map each letter :** - **A 26 by 26 frequency table:** Map each letter to an index and store counts in a fixed matrix. This gives the same $O(n)$ time and explicit $O(26^2)$ space, avoiding hashing at the cost of more indexing code.
+- **A 26 by 26 frequency table:** Map each letter to an index and store counts in a fixed matrix. This gives the same $O(n)$ time and explicit $O(26^2)$ space, avoiding hashing at the cost of more indexing code.
 - **Match online while scanning:** Keep unmatched counts and immediately consume a reverse when it is available. This can also be linear, but center handling for equal-letter words is easier to reason about after complete counts are known.
 - **Generate concatenation orders:** Trying permutations and subsets is exponential and ignores the central symmetry rule that reduces the problem to independent frequency matches.
 - **Process each reverse pair only once:** One may impose an ordering such as `k < k[::-1]` and add four characters per match. The exact code instead visits both keys and adds two per visit; both accounting styles reach the same total.
@@ -119,8 +119,8 @@ The expression `v & 1` is `1` exactly when $v$ is odd and `0` when it is even. T
 - **Intentional double accounting:** For differing letters, each complete reverse pair is encountered under both keys. The factor `2` per encounter is therefore correct; changing it to `4` without also restricting the loop would double the answer incorrectly.
 - **Character length versus word count:** `ans` is already measured in characters. The method must not multiply the final result by two again.
 - **Original order:** The counter discards positions safely because the problem explicitly permits concatenating selected words in any order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

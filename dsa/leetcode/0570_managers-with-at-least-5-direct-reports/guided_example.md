@@ -51,7 +51,7 @@ The table contains employee rows and a self-reference `managerId` pointing to an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Group employees by their immediate manager.** The derived ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ and uses `GROUP BY 1`. Positional group one refers to the first selected express
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join then group manager rows:** Join mana:** - **Self-join then group manager rows:** Join managers to reports and group by manager ID/name. It is valid but can carry wider rows through aggregation.
+- **Self-join then group manager rows:** Join managers to reports and group by manager ID/name. It is valid but can carry wider rows through aggregation.
 - **Correlated count subquery:** Count reports for every employee separately; an optimizer may decorrelate it, but the grouped form states shared work directly.
 - **Count indirect descendants:** That would require recursion and answers a different question.
 - **Exactly five reports:** `>= 5` includes the manager.
@@ -97,8 +97,8 @@ and uses `GROUP BY 1`. Positional group one refers to the first selected express
 - **Manager absent from Employee:** The schema's logical relationship would be broken; the inner join would omit that identifier.
 - **No qualifying manager:** The query returns an empty result.
 - **Output order:** No sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

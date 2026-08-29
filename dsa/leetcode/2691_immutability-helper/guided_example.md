@@ -68,7 +68,7 @@ These states belong only to the current call. A later `produce` begins again fro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `produce` call creates a root state whose `base` is `th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ This distinction is essential for code such as `proxy.val = proxy.val + 1`: the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deep-clone before every mutator:** Simple and :** - **Deep-clone before every mutator:** Simple and correct, but copies the entire object even for one small edit or no edit.
+- **Deep-clone before every mutator:** Simple and correct, but copies the entire object even for one small edit or no edit.
 - **Mutate then restore the original:** Fragile in the presence of exceptions and aliases, and it violates immutability during execution.
 - **Eagerly proxy and clone every node:** Preserves behavior but loses lazy work proportional to actual access and change.
 - **No writes:** Returns the exact original object reference.
@@ -121,8 +121,8 @@ This distinction is essential for code such as `proxy.val = proxy.val + 1`: the 
 - **Null and primitives:** Returned directly because no deeper mutation is possible.
 - **Repeated `produce` calls:** Each starts from `this.obj`, so results are independent.
 - **Contract restrictions:** Deletion, mutating array methods, and assigning new object values are intentionally outside the supported mutator behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

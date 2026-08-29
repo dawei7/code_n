@@ -71,7 +71,7 @@ The statement guarantees globally consecutive contest IDs with no skipped ID. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `T` partitions medal events by `user_id` and orders each... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The second branch groups `T` by `user_id, diff`. Each group is one consecutive r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three self-joins for streaks of exactly three::** - **Three self-joins for streaks of exactly three:** It can detect a three-contest window but becomes awkward for the follow-up parameter $n$; gaps-and-islands naturally supports arbitrary streak length.
+- **Three self-joins for streaks of exactly three:** It can detect a three-contest window but becomes awkward for the follow-up parameter $n$; gaps-and-islands naturally supports arbitrary streak length.
 - **`LAG` comparisons:** Checking previous IDs can mark streak continuations, but run-length aggregation still needs additional logic.
 - **`UNION ALL` in `S`:** Valid medal events are already distinct, so it can avoid set deduplication.
 - **Inner join to Users:** It is sufficient when every candidate ID is guaranteed to exist and avoids null detail rows.
@@ -128,8 +128,8 @@ The second branch groups `T` by `user_id, diff`. Each group is one consecutive r
 - **Any result order:** No final sorting is necessary.
 - **Parameterized streak length:** Replace the second `HAVING COUNT(1) >= 3` threshold with the procedure parameter.
 - **Participation-only follow-up:** The normalized medal events would need to be aligned with a participation table before defining consecutive considered contests.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

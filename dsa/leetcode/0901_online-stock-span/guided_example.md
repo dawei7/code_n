@@ -51,7 +51,7 @@ Each stack entry is a pair `(price, span)`. Its span tells how many consecutive 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each stack entry is a pair `(price, span)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The stack's prices are strictly decreasing from bottom to top. When a new price 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan stored prices backward per call:** This i:** - **Scan stored prices backward per call:** This is simple but can cost $O(q^2)$ total on increasing sequences.
+- **Scan stored prices backward per call:** This is simple but can cost $O(q^2)$ total on increasing sequences.
 - **Store all prices with a previous-greater index:** It can also answer spans, but the monotonic stack is the direct compressed representation.
 - **Segment tree:** Supports more general historical queries but is unnecessary for this one-sided online span and has logarithmic operation cost.
 - **First price:** No stack entry exists, so its span is one.
@@ -98,8 +98,8 @@ The stack's prices are strictly decreasing from bottom to top. When a new price 
 - **No explicit day indices:** The stored block sizes contain exactly the distance information needed for the result.
 - **Positive price bounds:** Comparisons are ordinary integer comparisons; magnitude does not change the method.
 - **Amortized versus worst case:** Claiming every call literally executes constant work is inaccurate; constant time is an amortized guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

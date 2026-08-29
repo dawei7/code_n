@@ -51,7 +51,7 @@ To maximize how many point operations a fixed amount of energy can buy, repeated
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To maximize how many point operations a fixed amount of ener... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code sorts `enemyEnergies`, making `enemyEnergies[0]` the minimum $m$. That 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear formula:** Find `m = min(enemyEnergies):** - **Linear formula:** Find `m = min(enemyEnergies)` and `total = sum(enemyEnergies)` in one pass. Return zero if initial energy is below $m$; otherwise return `(currentEnergy + total - m) // m`. This is $O(n)$ time and $O(1)$ space and matches the manifest.
+- **Linear formula:** Find `m = min(enemyEnergies)` and `total = sum(enemyEnergies)` in one pass. Return zero if initial energy is below $m$; otherwise return `(currentEnergy + total - m) // m`. This is $O(n)$ time and $O(1)$ space and matches the manifest.
 - **Priority-based simulation:** A min-heap for fights and max-heap for sacrifices resembles other token problems, but repeated fights and nondecreasing points make full heap machinery unnecessary.
 - **Fight a more expensive enemy:** It earns the same one point while spending more energy, so replacing it with a minimum-enemy fight never worsens a strategy.
 - **Initial energy below the minimum:** No point can be obtained, so the sacrifice prerequisite can never be unlocked.
@@ -99,8 +99,8 @@ The code sorts `enemyEnergies`, making `enemyEnergies[0]` the minimum $m$. That 
 - **Large values:** The total energy may exceed 32-bit range; Python handles it without overflow.
 - **Input mutation:** Sorting permanently reorders `enemyEnergies`, including when the method returns zero immediately afterward.
 - **Manifest mismatch:** The exact source is sort-based $O(n\log n)$ time with Python sorting workspace, while the formula alternative is the claimed linear constant-space method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

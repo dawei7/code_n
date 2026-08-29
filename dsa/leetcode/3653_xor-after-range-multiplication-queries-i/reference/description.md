@@ -39,7 +39,7 @@ Return the **bitwise XOR** of all elements in `nums` after processing all querie
 
 - The array changes from `[1, 1, 1]` to `[4, 4, 4]`.
 
-- The XOR of all elements is $4 ^ 4 ^ 4 = 4$.
+- The XOR of all elements is `4 ^ 4 ^ 4 = 4`.
 
 #### Example 2
 
@@ -53,7 +53,7 @@ Return the **bitwise XOR** of all elements in `nums` after processing all querie
 
 - The second query `[0, 2, 1, 2]` multiplies the elements at indices 0, 1, and 2 by 2, resulting in `[4, 18, 2, 15, 4]`.
 
-- Finally, the XOR of all elements is $4 ^ 18 ^ 2 ^ 15 ^ 4 = 31$.​​​​​​​**​​​​​​​**
+- Finally, the XOR of all elements is `4 ^ 18 ^ 2 ^ 15 ^ 4 = 31`.****
 
 ### 4. Constraints
 

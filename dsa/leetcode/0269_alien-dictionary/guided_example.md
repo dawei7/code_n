@@ -55,7 +55,7 @@ It is enough to compare adjacent words. If the entire list is sorted, every adja
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Seeing a word such as `"wrt"` does not imply `w < r < t`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ For example, comparing `"wrt"` with `"wrf"` gives no rule from the shared `w` an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sparse adjacency sets:** Store only actual out:** - **Sparse adjacency sets:** Store only actual outgoing neighbors and increment indegree when a set gains a new edge. This gives the manifest's $O(c+e)$ time and $O(a+e)$ space for arbitrary alphabets, but the 26-by-26 matrix is straightforward and safely deduplicates edges under the fixed contract.
+- **Sparse adjacency sets:** Store only actual outgoing neighbors and increment indegree when a set gains a new edge. This gives the manifest's $O(c+e)$ time and $O(a+e)$ space for arbitrary alphabets, but the 26-by-26 matrix is straightforward and safely deduplicates edges under the fixed contract.
 - **DFS topological sort:** Three-state graph coloring can detect a back edge and append vertices after exploring their dependencies. It has the same sparse asymptotic bounds, but its cycle reasoning and reversed finishing order differ from the exact queue-based source.
 - **Compare every pair of words:** Nonadjacent comparisons are unnecessary because adjacent sortedness is sufficient and graph transitivity captures implied relations. Comparing every pair increases work and complicates extraction.
 - **Infer rules from characters within one word:** This is invalid. A word's spelling does not say that each character precedes the next in the alphabet; only the first mismatch between ordered words carries comparison information.
@@ -108,8 +108,8 @@ For example, comparing `"wrt"` with `"wrf"` gives no rule from the shared `w` an
 - **Multiple valid orders:** When several letters have indegree zero, queue order selects one valid answer. The problem does not require the lexicographically smallest ordinary-English representation.
 - **Single word:** There are no adjacent comparisons, so every distinct letter in that word is isolated. The source returns them in its zero-indegree initialization order, with each distinct letter appearing once.
 - **Single distinct letter:** Repeated occurrences create only one graph vertex, no self-edge, and the result is that one letter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

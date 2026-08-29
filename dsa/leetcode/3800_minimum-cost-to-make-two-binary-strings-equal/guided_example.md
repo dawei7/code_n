@@ -66,7 +66,7 @@ These effects reduce the problem to deciding how many opposite pairs to swap, ho
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A flip at a mismatched position fixes that one mismatch for ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ repairs each mismatch independently. This candidate is necessary when swaps or c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shortest path over full strings:** The state s:** - **Shortest path over full strings:** The state space is exponential; orientation counts capture everything relevant.
+- **Shortest path over full strings:** The state space is exponential; orientation counts capture everything relevant.
 - **Cross swap as a direct repair:** It only reverses mismatch orientation and must be followed by pairing or flipping.
 - **Swap two same-orientation mismatches:** Within-string swapping equal source bits changes nothing.
 - **Use only swaps:** An odd total mismatch count necessarily leaves one mismatch for a flip.
@@ -120,8 +120,8 @@ repairs each mismatch independently. This candidate is necessary when swaps or c
 - **Input preservation:** The method counts orientations without constructing modified strings.
 - **No adjacency restriction:** Arbitrary distinct indices validate count-based pairing.
 - **Large costs:** Python integers safely hold count-price products.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

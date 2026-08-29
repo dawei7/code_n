@@ -52,8 +52,7 @@ Every value must receive either $+k$ or $-k$. After sorting, the key structural 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - a prefix of smaller values receives $+k$;
-- the remaining ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ Every value must receive either $+k$ or $-k$. After sorting, the key structural 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all sign assignments:** There are $2:** - **Enumerate all sign assignments:** There are $2^n$ possibilities. The sorted breakpoint theorem reduces them to $n+1$ cases.
+- **Enumerate all sign assignments:** There are $2^n$ possibilities. The sorted breakpoint theorem reduces them to $n+1$ cases.
 - **Greedily move every value toward the original midpoint:** Local choices can miss the best final extremes; testing breakpoints is the proven global method.
 - **Reuse Smallest Range I formula:** That problem allows any adjustment in `[-k,k]`, while this one requires exactly `+k` or `-k`. The answers can differ.
 - **One value:** Original range is zero and the split loop is empty.
@@ -100,8 +99,8 @@ Every value must receive either $+k$ or $-k$. After sorting, the key structural 
 - **Breakpoint extremes:** Use `nums[i - 1]` for the raised prefix maximum and `nums[i]` for the lowered suffix minimum; mixing these indices changes the candidate.
 - **Input mutation:** Sort a copy if the caller needs the original order.
 - **Any operation at every index:** Unlike Smallest Range I, no element may remain unchanged unless $k=0$; the split assigns a sign to all elements.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

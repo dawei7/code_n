@@ -66,7 +66,7 @@ While continuation bytes are expected, the code does not reinterpret a byte begi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `cnt > 0`, the byte must have form `10xxxxxx`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ For example, decimal `1` is binary `00000001`. Shifting it right seven positions
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary-string conversion:** Format each byte a:** - **Binary-string conversion:** Format each byte as eight bits and inspect textual prefixes. This can be easier to visualize but allocates temporary strings and performs unnecessary conversion. Bit shifts express the same fixed-prefix tests directly.
-- **- **Leading-one count:** Starting from mask `10000:** - **Leading-one count:** Starting from mask `10000000`, count consecutive leading one bits, reject one or more than four, then validate the required continuations. This is equivalent; the exact solution enumerates the only four legal leaders explicitly.
-- **- **Regular expression over a bit string:** A rege:** - **Regular expression over a bit string:** A regex can describe the patterns after conversion, but constructing the full bit string costs extra memory and obscures the simple streaming state.
+- **Binary-string conversion:** Format each byte as eight bits and inspect textual prefixes. This can be easier to visualize but allocates temporary strings and performs unnecessary conversion. Bit shifts express the same fixed-prefix tests directly.
+- **Leading-one count:** Starting from mask `10000000`, count consecutive leading one bits, reject one or more than four, then validate the required continuations. This is equivalent; the exact solution enumerates the only four legal leaders explicitly.
+- **Regular expression over a bit string:** A regex can describe the patterns after conversion, but constructing the full bit string costs extra memory and obscures the simple streaming state.
 
 ---
 

@@ -51,7 +51,7 @@ The solution finds that interval for every index with monotonic stacks, calculat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution finds that interval for every index with monoto... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution finds that interval for every index with monotonic stacks, calculat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand from every index:** Walking left and ri:** - **Expand from every index:** Walking left and right separately for each possible minimum can take `O(n^2)` time.
+- **Expand from every index:** Walking left and right separately for each possible minimum can take `O(n^2)` time.
 - **Divide and conquer:** Splitting around minimum values can solve related problems, but efficient minimum selection and sum handling are more complex than the stack method.
 - **All values equal:** The asymmetric equality rule lets one occurrence represent the full array, which has the greatest positive sum.
 - **Single element:** Both boundaries are sentinels, and its product is the value squared.
@@ -98,8 +98,8 @@ The solution finds that interval for every index with monotonic stacks, calculat
 - **64-bit statement guarantee:** Other languages still need a 64-bit type for products; Python integers avoid overflow.
 - **Prefix indexing:** `right[i]` is exclusive, and `left[i] + 1` is inclusive, matching the subtraction formula.
 - **Non-empty requirement:** Every index represents at least its own one-element interval.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -72,7 +72,7 @@ Thus two cells of value `v` belong to the same component exactly when the equali
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Equal-valued cells in the same row or column must have equal... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ This gathering pass happens before any current-value rank is written into `row_m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fresh Union-Find per value:** This simplifies :** - **Fresh Union-Find per value:** This simplifies reset reasoning but repeatedly allocates $m+n$ arrays. With many distinct values, initialization could become unnecessarily expensive.
+- **Fresh Union-Find per value:** This simplifies reset reasoning but repeatedly allocates $m+n$ arrays. With many distinct values, initialization could become unnecessarily expensive.
 - **BFS or DFS on row-column graphs:** For each value, treat occurrences as row-to-column edges and traverse connected components. This has the same high-level $O(V\log V)$ bound when adjacency is built efficiently.
 - **Update each equal cell immediately:** This can wrongly let one occurrence of a value raise the rank of another or assign different ranks inside a connected equality group. Component constraints must be gathered before assignment.
 - **Sort every cell and ignore equality components:** Equal cells connected transitively can require revising ranks already written. Grouping them first prevents inconsistent assignments.
@@ -128,8 +128,8 @@ This gathering pass happens before any current-value rank is written into `row_m
 - **Repeated reset calls:** Resetting a touched identifier to itself several times is idempotent and occurs only after all roots for the current value have been used.
 - **Column identifier offset:** Using `j + m` keeps all columns distinct from row IDs. Without the offset, an unrelated row and column with the same numeric index would be merged.
 - **Union-Find reuse across values:** Resetting is mandatory. Leaving one old parent link would falsely force cells of different values into an equality component.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

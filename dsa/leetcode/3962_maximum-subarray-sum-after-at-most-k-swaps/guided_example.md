@@ -70,7 +70,7 @@ This mechanism finds the sum of several smallest items in `O(\log M)` time; it d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source builds two Fenwick trees over the complete array:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -143,9 +143,9 @@ so it never uses more than `k` swaps and never spends a swap on a zero or negati
 
 ## 6. Traps This Instance Exposes
 
-- **- **Re-sort inside and outside for every subarray::** - **Re-sort inside and outside for every subarray:** The fixed-boundary greedy rule could be implemented by materializing both sides and sorting them each time, but doing so repeats substantial work and pushes the running time well beyond the required quadratic-logarithmic approach.
-- **- **Enumerate swap sequences:** Exploring actual i:** - **Enumerate swap sequences:** Exploring actual index-pair sequences branches explosively and treats different operation orders as different even when they produce the same inside multiset. Choosing removed and inserted order statistics captures exactly what affects the sum.
-- **- **Use heaps for each fixed left endpoint:** Two :** - **Use heaps for each fixed left endpoint:** Two heaps can expose extremes, but deletions, duplicate management, and reconstructing the outside complement for every moving right endpoint are delicate. The paired count-and-sum Fenwick trees support both multiplicity and prefix sums uniformly.
+- **Re-sort inside and outside for every subarray:** The fixed-boundary greedy rule could be implemented by materializing both sides and sorting them each time, but doing so repeats substantial work and pushes the running time well beyond the required quadratic-logarithmic approach.
+- **Enumerate swap sequences:** Exploring actual index-pair sequences branches explosively and treats different operation orders as different even when they produce the same inside multiset. Choosing removed and inserted order statistics captures exactly what affects the sum.
+- **Use heaps for each fixed left endpoint:** Two heaps can expose extremes, but deletions, duplicate management, and reconstructing the outside complement for every moving right endpoint are delicate. The paired count-and-sum Fenwick trees support both multiplicity and prefix sums uniformly.
 
 ---
 

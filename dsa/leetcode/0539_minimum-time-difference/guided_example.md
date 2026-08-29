@@ -51,7 +51,7 @@ Clock times wrap after midnight, so they are points on a circle of 1440 minutes 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Use the fixed clock domain first.** A day contains only:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ distinct minute values. If `len(timePoints) > 1440`, at least two entries must r
 
 ## 6. Traps This Instance Exposes
 
-- **- **1440-entry presence array:** Detect duplicates:** - **1440-entry presence array:** Detect duplicates while marking minutes, then scan occupied buckets. It achieves the manifest's $O(n)$ time and $O(1)$ domain-fixed space.
+- **1440-entry presence array:** Detect duplicates while marking minutes, then scan occupied buckets. It achieves the manifest's $O(n)$ time and $O(1)$ domain-fixed space.
 - **Compare every pair:** It handles wraparound but costs $O(n^2)$ time.
 - **Omit the wrap gap:** This fails for times near opposite ends of the textual day, such as `"23:59"` and `"00:00"`.
 - **More than 1440 entries:** A duplicate minute is guaranteed, so zero is returned.
@@ -97,8 +97,8 @@ distinct minute values. If `len(timePoints) > 1440`, at least two entries must r
 - **`"00:00"`:** It maps to zero.
 - **`"23:59"`:** It maps to 1439, the largest legal minute.
 - **Input immutability:** Only a newly created numeric list is sorted and extended.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

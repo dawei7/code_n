@@ -19,7 +19,7 @@ For each subarray of `nums`, you can apply **up to** `k` operations on it. In ea
 
 that each subarray is considered independently, meaning changes made to one subarray do not persist to another.
 
-Return the number of subarrays that you can make **non-decreasing** ​​​​​after performing at most `k` operations.
+Return the number of subarrays that you can make **non-decreasing** after performing at most `k` operations.
 
 An array is said to be **non-decreasing** if each element is greater than or equal to its previous element, if it exists.
 

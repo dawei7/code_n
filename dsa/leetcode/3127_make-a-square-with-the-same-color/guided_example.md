@@ -87,7 +87,7 @@ After four visits, `cnt1` is $W$ and `cnt2` is $B$. If they differ, the current 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loops choose the top-left corner `(i, j)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ If all four candidates are inspected and none returns early, every candidate has
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count only one color:** Since every candidate :** - **Count only one color:** Since every candidate has four cells, counting black cells alone is enough; counts 0, 1, 3, or 4 succeed, while count 2 fails. The exact code counts both colors, which makes the equality test especially direct.
+- **Count only one color:** Since every candidate has four cells, counting black cells alone is enough; counts 0, 1, 3, or 4 succeed, while count 2 fails. The exact code counts both colors, which makes the equality test especially direct.
 - **Enumerate offsets explicitly:** A tuple such as `((0,0),(0,1),(1,0),(1,1))` is easier for many beginners to recognize. The `pairwise` sequence is compact but requires understanding how adjacent pairs are formed.
 - **Check every possible changed grid:** One could try leaving the grid unchanged and flipping each of its nine cells, then scan for a uniform square. It is still constant time here, but it does more work and hides the central 3-of-4 observation.
 - **Convolution or prefix sums:** Those tools can count colors in many larger rectangles, but they are unnecessary for four fixed-size candidates.
@@ -134,8 +134,8 @@ If all four candidates are inspected and none returns early, every candidate has
 - **Overlapping candidates:** A cell can belong to several squares, but candidates are existential alternatives. They do not need to be made monochromatic simultaneously.
 - **Boundary safety:** Top-left coordinates stop at 1, and offsets are at most 1, so every accessed row and column is in the valid range 0 through 2.
 - **Input alphabet:** The correctness of `cnt1 + cnt2 = 4` depends on the contract that each cell is exactly `"W"` or `"B"`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

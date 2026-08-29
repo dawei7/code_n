@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are n points on an infinite plane. You are given two integer arrays `xCoord` and `yCoord` where $(\text{xCoord}[i], \text{yCoord}[i])$ represents the coordinates of the $$i^{\text{th}}$$ point.
+There are n points on an infinite plane. You are given two integer arrays `xCoord` and `yCoord` where $(\text{xCoord}[i], \text{yCoord}[i])$ represents the coordinates of the $i^{\text{th}}$ point.
 
 Your task is to find the **maximum **area of a rectangle that:
 

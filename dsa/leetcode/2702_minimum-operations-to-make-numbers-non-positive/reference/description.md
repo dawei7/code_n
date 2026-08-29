@@ -4,7 +4,7 @@ You are given a **0-indexed** integer array `nums` and two integers `x` and `y`.
 
 - Decrement $\text{nums}[i]$ by `x`.
 
-- Decrement values by `y` at all indices except the $$i^{\text{th}}$$ one.
+- Decrement values by `y` at all indices except the $i^{\text{th}}$ one.
 
 Return *the minimum number of operations to make all the integers in *`nums` ***less than or equal to zero.***
 

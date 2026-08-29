@@ -66,7 +66,7 @@ If not present, `vis.add(x)` remembers it for all later starts.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise(nums)` yields each consecutive value pair `(a, b)`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Hash sets support expected constant-time membership and insertion for integer ke
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested comparison of pair sums:** It uses no s:** - **Nested comparison of pair sums:** It uses no set but takes $O(n^2)$ time in the worst case.
+- **Nested comparison of pair sums:** It uses no set but takes $O(n^2)$ time in the worst case.
 - **Sort all pair sums:** Sorting can detect adjacent equal sums in $O(n\log n)$ time and $O(n)$ space, but hashing is faster on average.
 - **Fixed frequency array:** Value sums range from $-2\cdot10^9$ to $2\cdot10^9$, making a direct domain array impractical.
 - **Exactly two input elements:** There is only one length-two subarray, so the method stores one sum and returns false.
@@ -113,8 +113,8 @@ Hash sets support expected constant-time membership and insertion for integer ke
 - **Negative sums:** They are ordinary set keys.
 - **Early return:** The first repeated sum is sufficient; later candidates cannot change the Boolean answer.
 - **No repetition:** Exhausting the iterator proves every start has a distinct sum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

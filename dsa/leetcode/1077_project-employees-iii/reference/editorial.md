@@ -6,7 +6,7 @@
 This is a typical **“TOP N”** problem, and we need to retrieve the TOP value for each category ($\text{project}_{id}$). Using window functions or not, the underlying logic remains the same: we want to first find the top values for each category, and then join the result to the original table to get only the matched records.
 
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -34,7 +34,7 @@ The DataFrame only_max looks like this:
 | 1          | 3                |
 | 2          | 3                |
 
-​Lastly, we join the two DataFrames created in the previous steps,  so only the employees with the most experience in the project will be returned. We also want to make sure the final output includes only the columns $\text{project}_{id}$ and $\text{employee}_{id}$ as per requested.
+Lastly, we join the two DataFrames created in the previous steps,  so only the employees with the most experience in the project will be returned. We also want to make sure the final output includes only the columns $\text{project}_{id}$ and $\text{employee}_{id}$ as per requested.
 
 ```python
 df = project_and_employee.merge(only_max, on = ['project_id', 'experience_years'])[['project_id', 'employee_id']]

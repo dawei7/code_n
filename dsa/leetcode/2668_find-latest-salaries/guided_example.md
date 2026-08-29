@@ -67,11 +67,7 @@ The query assumes name and department fields are stable across all historical ro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The output projects:
-
-- `emp_id`;
-- `firstname`;
-- `lastname... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +114,7 @@ The query uses this inference rather than attempting to infer row insertion orde
 
 ## 6. Traps This Instance Exposes
 
-- **- **Numeric cast inside `MAX`:** Safer because `sa:** - **Numeric cast inside `MAX`:** Safer because `salary` is declared `varchar` and numeric order may differ from text order.
+- **Numeric cast inside `MAX`:** Safer because `salary` is declared `varchar` and numeric order may differ from text order.
 - **Window function `ROW_NUMBER`:** Rank rows per employee by numeric salary descending and keep rank one; useful when row-specific changing attributes must come from the winning record.
 - **Aggregate subquery plus join:** Portable way to retrieve the row corresponding to each maximum salary.
 - **One record for an employee:** It is automatically current.
@@ -128,8 +124,8 @@ The query uses this inference rather than attempting to infer row insertion orde
 - **Strict SQL mode:** May require grouping additional columns or a join.
 - **Composite primary key:** Prevents the same employee-salary pair from repeating.
 - **Output order:** Bare `ORDER BY emp_id` means ascending by default.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

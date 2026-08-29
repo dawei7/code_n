@@ -67,9 +67,7 @@ For `a=12` and `b=6`, `gcd(12, 6)` is 6. Testing 1 through 6 accepts 1, 2, 3, an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The return expression is
-
-`sum(g % x == 0 for x in range(1, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ Computing the gcd is not strictly necessary for the small constraints; one could
 
 ## 6. Traps This Instance Exposes
 
-- **- **Complementary divisor pairs:** Scan $x$ only w:** - **Complementary divisor pairs:** Scan $x$ only while $x^2 \le g$. When $x$ divides $g$, count both $x$ and $g/x$, except count one when they are equal. This is the genuine $O(\sqrt g)$ method described by the manifest.
+- **Complementary divisor pairs:** Scan $x$ only while $x^2 \le g$. When $x$ divides $g$, count both $x$ and $g/x$, except count one when they are equal. This is the genuine $O(\sqrt g)$ method described by the manifest.
 - **Prime factorization formula:** If $g = p_1^{e_1}\cdots p_t^{e_t}$, then its divisor count is $\prod_{r=1}^{t}(e_r+1)$. Trial factorization takes $O(\sqrt g)$ time and generalizes well, but is more code than needed here.
 - **Test both inputs directly:** Scan through `min(a, b)` and check `a % x == 0 and b % x == 0`. It is correct but may scan farther than `g` and repeats two modulo operations per candidate.
 - **One input divides the other:** The gcd is the smaller input, so the answer is simply the divisor count of that smaller value.
@@ -117,8 +115,8 @@ Computing the gcd is not strictly necessary for the small constraints; one could
 - **Positive inputs:** There is no need to define factors of zero or normalize signs because both values are at least 1.
 - **Boolean summation:** Python's `true == 1` and `false == 0` make the compact expression valid; in another language an explicit conditional increment may be clearer.
 - **Manifest mismatch:** The protected solution is a linear scan through $g$, not a square-root divisor-pair scan. Its explanation and performance expectations should follow the source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

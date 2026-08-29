@@ -67,9 +67,7 @@ After these checks, converting the two slices with `int` gives valid first value
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A multi-digit number cannot begin with zero.
-
-If the first n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +114,7 @@ If a recursive match eventually consumes everything, success propagates immediat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct forced-sum matching:** Compute `expecte:** - **Direct forced-sum matching:** Compute `expected = str(a + b)` and require the remaining suffix to start with exactly that text. Then advance by `len(expected)`. This removes the prefix loop, enforces the zero representation automatically, and realizes the intended polynomial verification.
+- **Direct forced-sum matching:** Compute `expected = str(a + b)` and require the remaining suffix to start with exactly that text. Then advance by `len(expected)`. This removes the prefix loop, enforces the zero representation automatically, and realizes the intended polynomial verification.
 - **Index-based verification:** Keep one original string plus a current offset instead of passing `num[i:]` slices. It avoids retaining copied suffixes and makes space usage closer to the recursion depth.
 - **Manual decimal-string addition:** In a language with fixed-width integer overflow, add the two previous terms digit by digit as strings and compare the resulting text. Python integers already grow as needed, so the exact source needs no overflow workaround.
 - **Backtrack every boundary:** Choosing a cut or no cut at every digit gap explores exponentially many partitions even when most later values are already forced. Enumerating only the first two cuts is the central reduction.
@@ -132,8 +130,8 @@ If a recursive match eventually consumes everything, success propagates immediat
 - **Second number begins with zero:** Only the one-digit second term zero is legal; longer choices are skipped.
 - **At least three numbers:** Because `j < n`, every initial candidate leaves a nonempty suffix that must match at least one sum.
 - **Return on first witness:** The problem asks only whether a partition exists, so the source safely stops when any boundary pair succeeds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -89,9 +89,7 @@ After this routing step, every value left in `maxq` is no larger than every valu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The compact line
-
-`heappush(minq, -heappushpop(maxq, -num))`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +128,7 @@ No opposite rebalance is required. The first routing line always sends one candi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort on every median query:** Appending is che:** - **Sort on every median query:** Appending is cheap, but each query can cost $O(n\log n)$. It repeats ordering work and is poor when medians are requested frequently.
+- **Sort on every median query:** Appending is cheap, but each query can cost $O(n\log n)$. It repeats ordering work and is poor when medians are requested frequently.
 - **Keep one sorted list:** Binary search finds an insertion index in $O(\log n)$ time, but inserting into a Python list can shift $O(n)$ elements. Median lookup is then $O(1)$, with slower updates than the two-heap method.
 - **Balanced search tree with order statistics:** Such a tree can support logarithmic insertion and median selection, but Python has no built-in order-statistic tree, and implementing one is substantially more complex.
 - **Frequency buckets for values in `[0, 100]`:** Under the first follow-up's narrow value range, store 101 counts and scan the buckets for the middle rank. Updates become $O(1)$ and queries take $O(101)$, which is constant with respect to stream length.
@@ -146,8 +144,8 @@ No opposite rebalance is required. The first routing line always sends one candi
 - **Even number of values:** Both heaps have equal sizes, so the mean of their boundary roots is required even when that result is fractional.
 - **Large positive and negative bounds:** The inputs lie between $-10^5$ and $10^5$. Their sum and negation are safe in Python integers, and `/ 2` produces a floating-point result as the return contract expects.
 - **Query before insertion:** The source does not guard against empty roots because the problem explicitly guarantees at least one stored element before `findMedian` is called.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

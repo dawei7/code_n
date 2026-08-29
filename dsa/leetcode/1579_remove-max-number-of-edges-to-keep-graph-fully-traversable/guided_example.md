@@ -57,7 +57,7 @@ There is a precise reason the code checks only `ufa.union(u, v)` in the conditio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Type 3 edges are more valuable than private edges because on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If the representatives are already equal, the edge cannot reduce the component c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Processing edges in input order:** This can re:** - **Processing edges in input order:** This can retain private edges before discovering shared replacements, losing the opportunity for one type 3 edge to serve both users. Shared edges must receive priority for the greedy maximum-removal argument.
+- **Processing edges in input order:** This can retain private edges before discovering shared replacements, losing the opportunity for one type 3 edge to serve both users. Shared edges must receive priority for the greedy maximum-removal argument.
 - **One union-find for both users:** After shared edges, Alice and Bob can gain different connections from types 1 and 2. A single partition cannot represent both states, so two structures are necessary.
 - **Graph traversal after every proposed removal:** Removing an edge and running DFS or BFS for both users can test validity, but repeated connectivity checks are far more expensive and complicate restoration. Union-find identifies cycle edges incrementally.
 - **Building two graphs and taking arbitrary spanning trees:** Separate spanning trees may choose two private edges where one shared edge could serve both. Any such approach still needs a rule that maximizes shared participation; the shared-first DSU does this directly.
@@ -116,8 +116,8 @@ If the representatives are already equal, the edge cannot reduce the component c
 - **One-based endpoints:** The subtraction inside `union` is required. Omitting it would leave node `n` outside a length-$N$ array and would misalign every other node.
 - **Recursive `find` depth:** Union by size prevents tall adversarial trees, and path compression flattens them further. The combination supports the stated amortized bound and keeps recursion shallow in practice.
 - **Disconnected final graph:** Returning the number of cycle edges would be misleading when full traversal was never achievable. The final `-1` check takes precedence over `ans`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The source scans `nums` once with `enumerate`, obtaining index `i` and value `x`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source scans `nums` once with `enumerate`, obtaining ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source scans `nums` once with `enumerate`, obtaining index `i` and value `x`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Create shifted arrays:** Comparing zipped left:** - **Create shifted arrays:** Comparing zipped left/right shifts works but allocates unnecessary lists and complicates boundaries.
+- **Create shifted arrays:** Comparing zipped left/right shifts works but allocates unnecessary lists and complicates boundaries.
 - **Nested search:** Looking at all other elements is incorrect and slower; only indices exactly $k$ away matter.
 - **Use `<` in rejection:** That would allow equality, violating the strict-greater requirement. Rejection must use `<=`.
 - **No left neighbor:** The left condition is omitted, not treated as failure.
@@ -96,8 +96,8 @@ The source scans `nums` once with `enumerate`, obtaining index `i` and value `x`
 - **Duplicate values:** Equal comparison neighbors make both involved values fail that directional strict test.
 - **Positive values:** The sum starts at zero safely; the comparison logic would also work for negative values.
 - **Input preservation:** The algorithm only reads `nums` and returns a separate integer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

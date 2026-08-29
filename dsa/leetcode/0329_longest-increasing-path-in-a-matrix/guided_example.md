@@ -77,10 +77,7 @@ The source realizes this by starting `ans = 0`, maximizing it with each eligible
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The cached helper has the meaning
-
-$$
-\operatorname{dfs}(i,j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,9 +120,9 @@ For each direction `(a, b)`, the candidate neighbor is `(i + a, j + b)`. The com
 
 ## 6. Traps This Instance Exposes
 
-- **- **Topological layer peeling:** Compute each cell:** - **Topological layer peeling:** Compute each cell's number of outgoing edges to larger neighbors, enqueue local maxima, and remove the graph layer by layer. The number of layers equals the longest increasing path. This also runs in $O(mn)$ time and space, avoids recursion, and matches the manifest summary, but it is not the exact source.
-- **- **Naive DFS from every cell:** The recurrence is:** - **Naive DFS from every cell:** The recurrence is correct without caching, but shared suffix paths are recalculated many times and can cause exponential work. Memoization is the essential optimization.
-- **- **Sort cells by value:** Process coordinates in :** - **Sort cells by value:** Process coordinates in descending value order and fill a DP table from larger neighbors. This makes the dependency order explicit but adds an $O(mn\log(mn))$ sorting cost.
+- **Topological layer peeling:** Compute each cell's number of outgoing edges to larger neighbors, enqueue local maxima, and remove the graph layer by layer. The number of layers equals the longest increasing path. This also runs in $O(mn)$ time and space, avoids recursion, and matches the manifest summary, but it is not the exact source.
+- **Naive DFS from every cell:** The recurrence is correct without caching, but shared suffix paths are recalculated many times and can cause exponential work. Memoization is the essential optimization.
+- **Sort cells by value:** Process coordinates in descending value order and fill a DP table from larger neighbors. This makes the dependency order explicit but adds an $O(mn\log(mn))$ sorting cost.
 
 ---
 

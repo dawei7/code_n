@@ -41,7 +41,7 @@ The array $\text{big}_{nums}$ is created by concatenating the **powerful arrays*
 
 You are given a 2D integer matrix `queries`, where for $\text{queries}[i] = [\text{from}_{i}, \text{to}_{i}, \text{mod}_{i}]$ you should calculate $(\text{big}_{nums}[\text{from}_{i}] * \text{big}_{nums}[\text{from}_{i} + 1] * ... * \text{big}_{nums}[\text{to}_{i}]) \% \text{mod}_{i}$<!-- notionvc: a71131cc-7b52-4786-9a4b-660d6d864f89 -->.
 
-Return an integer array `answer` such that $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
+Return an integer array `answer` such that $\text{answer}[i]$ is the answer to the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 

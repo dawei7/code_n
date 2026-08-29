@@ -69,9 +69,7 @@ This encoding is the reverse of another common convention that uses `-1` for liv
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source uses this transition encoding:
-
-| Original state ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ Thus scan order cannot contaminate neighbor counts: temporary transitions preser
 
 ## 6. Traps This Instance Exposes
 
-- **- **Copy the board:** Read every old state from a :** - **Copy the board:** Read every old state from a full copy and write new states into the original. It is straightforward and $O(mn)$ time but requires $O(mn)$ additional space.
+- **Copy the board:** Read every old state from a full copy and write new states into the original. It is straightforward and $O(mn)$ time but requires $O(mn)$ additional space.
 - **Bit encoding:** Store the old state in one bit and the new state in another, then shift every cell. This is another clean $O(1)$-space technique; the signed-marker source uses comparison and explicit cleanup instead.
 - **Different marker convention:** Using `-1` for live-to-dead and `2` for dead-to-live works only if old liveness is tested with `abs(value) == 1`. Mixing that rule with this source's `> 0` test would be incorrect.
 - **Corner cell:** Only three neighbor coordinates are in bounds; all others are skipped.
@@ -124,8 +122,8 @@ Thus scan order cannot contaminate neighbor counts: temporary transitions preser
 - **Huge board stored externally:** Because one row's update depends only on itself and adjacent rows, a streaming design can retain a small rolling window of rows, though writing results requires careful separation from unread original data.
 - **Rectangular dimensions:** Separate `m` and `n` bounds support all legal non-square boards.
 - **Original binary constraint:** The marker logic assumes first-pass unprocessed cells begin only as 0 or 1. Other initial values would collide with the temporary-state interpretation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

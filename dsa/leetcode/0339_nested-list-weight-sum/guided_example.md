@@ -60,7 +60,7 @@ Inside a call, `depth_sum` begins at zero and accumulates the contributions of t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(nestedList, depth)` returns the complete weighted sum o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ The interface check must happen before calling `getInteger()`. The contract says
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first traversal:** Put all top-level o:** - **Breadth-first traversal:** Put all top-level objects in a queue, process one depth layer at a time, and enqueue child-list elements for the next layer. This also takes $O(N)$ time but can require $O(N)$ queue space for a wide level rather than the DFS stack's $O(D)$.
-- **- **Explicit depth stack:** Store `(object, depth):** - **Explicit depth stack:** Store `(object, depth)` pairs and iteratively process them. It avoids recursion and retains $O(N)$ worst-case storage, which can be helpful if nesting exceeds the language's call-stack limit.
-- **- **Flatten first:** Producing a list of `(integer:** - **Flatten first:** Producing a list of `(integer, depth)` pairs and summing afterward works, but stores information that the recursive accumulation can consume immediately.
+- **Breadth-first traversal:** Put all top-level objects in a queue, process one depth layer at a time, and enqueue child-list elements for the next layer. This also takes $O(N)$ time but can require $O(N)$ queue space for a wide level rather than the DFS stack's $O(D)$.
+- **Explicit depth stack:** Store `(object, depth)` pairs and iteratively process them. It avoids recursion and retains $O(N)$ worst-case storage, which can be helpful if nesting exceeds the language's call-stack limit.
+- **Flatten first:** Producing a list of `(integer, depth)` pairs and summing afterward works, but stores information that the recursive accumulation can consume immediately.
 
 ---
 

@@ -67,7 +67,7 @@ For `G()()`, the first pass yields `Goo`. All occurrences are handled, not merel
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `replace('()', 'o')` finds every nonoverlapping literal occu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The character `G` is not mentioned in either search pattern, so it survives unch
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single left-to-right parser:** Inspect the cur:** - **Single left-to-right parser:** Inspect the current character; append `G` directly, use the next character to distinguish `()` from `(al)`, and advance by the token length. This is also $O(n)$ and can build one output list.
+- **Single left-to-right parser:** Inspect the current character; append `G` directly, use the next character to distinguish `()` from `(al)`, and advance by the token length. This is also $O(n)$ and can build one output list.
 - **Dictionary-driven tokenization:** Mapping each token to its output is conceptually clear but still needs a scanner to identify token lengths.
 - **Regular expressions:** They are unnecessary for three fixed literals and introduce more syntax and engine overhead.
 - **Only `G` tokens:** Neither replacement finds a match, so the command is returned unchanged in value.
@@ -117,8 +117,8 @@ The character `G` is not mentioned in either search pattern, so it survives unch
 - **Potential replacement interference:** `o` and `al` contain no parentheses, so an interpreted output can never be mistaken for a later command token.
 - **Malformed input:** A string such as `"(a)"` would remain partly uninterpreted, but the grammar guarantee excludes it and the exact source intentionally performs no validation.
 - **Empty command outside the constraint:** Both replacements would return the empty string, which is a natural generalized result even though `n >= 1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

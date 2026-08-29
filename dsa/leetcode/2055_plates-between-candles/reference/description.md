@@ -6,7 +6,7 @@ You are also given a **0-indexed** 2D integer array `queries` where $\text{queri
 
 - For example, `s = "||**||**|*"`, and a query `[3, 8]` denotes the substring `"*||**<u>**</u>**|"`. The number of plates between candles in this substring is `2`, as each of the two plates has at least one candle **in the substring** to its left **and** right.
 
-Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to the* $$i^{\text{th}}$$ *query*.
+Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to the* $i^{\text{th}}$ *query*.
 
 ### 2. Function Contract
 

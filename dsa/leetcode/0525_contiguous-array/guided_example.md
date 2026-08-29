@@ -52,8 +52,7 @@ The condition “equal numbers of zeroes and ones” becomes easier to track aft
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - treat each `1` as `+1`;
-- treat each `0` as `-1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ Under this transformation, a subarray has equal counts exactly when its transfor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Maintaining counts :** - **Enumerate all subarrays:** Maintaining counts while extending each start avoids a third loop but still takes $O(n^2)$ time.
+- **Enumerate all subarrays:** Maintaining counts while extending each start avoids a third loop but still takes $O(n^2)$ time.
 - **Build an explicit transformed array:** It makes the plus-one/minus-one model visible but costs an unnecessary additional $O(n)$ array; the implementation transforms values during the scan.
 - **Overwrite a repeated balance:** This loses the farthest-left boundary and can produce a shorter answer.
 - **Subarray starting at index zero:** The `0: -1` sentinel gives its full length without special handling.
@@ -99,8 +98,8 @@ Under this transformation, a subarray has equal counts exactly when its transfor
 - **Several maximum intervals:** Only their common maximum length is requested.
 - **Boolean conditional:** It is safe here because the input domain contains only zero and one.
 - **Negative balances:** Dictionary keys may be negative; they carry the same prefix-state meaning as positive balances.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

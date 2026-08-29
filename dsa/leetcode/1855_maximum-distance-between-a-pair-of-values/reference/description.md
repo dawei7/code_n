@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given two **non-increasing 0-indexed **integer arrays `nums1`​​​​​​ and `nums2`​​​​​​.
+You are given two **non-increasing 0-indexed **integer arrays `nums1` and `nums2`.
 
-A pair of indices `(i, j)`, where $0 \le i < \text{nums1.length}$ and $0 \le j < \text{nums2.length}$, is **valid** if both $i \le j$ and $\text{nums1}[i] \le \text{nums2}[j]$. The **distance** of the pair is $j - i$​​​​.
+A pair of indices `(i, j)`, where $0 \le i < \text{nums1.length}$ and $0 \le j < \text{nums2.length}$, is **valid** if both $i \le j$ and $\text{nums1}[i] \le \text{nums2}[j]$. The **distance** of the pair is $j - i$.
 
 Return *the **maximum distance** of any **valid** pair *`(i, j)`*. If there are no valid pairs, return *`0`.
 

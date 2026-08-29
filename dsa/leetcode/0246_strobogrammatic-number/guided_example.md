@@ -61,7 +61,7 @@ After a successful pair, `i` moves one step right and `j` moves one step left. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `i` starts at `0`, and pointer `j` starts at `len(nu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The valid mapping is involutive: rotating twice restores the original digit. In 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the full rotated copy:** Traverse the st:** - **Build the full rotated copy:** Traverse the string backward, map each digit, join the result, and compare it with the input. This is straightforward and $O(n)$ time, but it uses $O(n)$ additional space that the two-pointer check avoids.
+- **Build the full rotated copy:** Traverse the string backward, map each digit, join the result, and compare it with the input. This is straightforward and $O(n)$ time, but it uses $O(n)$ additional space that the two-pointer check avoids.
 - **Hash-map rotation table:** A dictionary such as `{'0':'0', '1':'1', '6':'9', '8':'8', '9':'6'}` can make the valid pairs self-documenting. It has the same asymptotic bounds; the exact solution uses a ten-entry integer array with `-1` sentinels.
 - **Explicit valid-pair set:** Check whether `(num[i], num[j])` belongs to `{('0','0'), ('1','1'), ('6','9'), ('8','8'), ('9','6')}`. This is equivalent but represents pairs rather than the rotation function.
 - **One digit:** The pointers meet immediately. `0`, `1`, and `8` return `true`; every other digit returns `false`.
@@ -107,8 +107,8 @@ The valid mapping is involutive: rotating twice restores the original digit. In 
 - **Leading zeros:** The input contract excludes them except for the number `"0"`. The pair logic itself would still test a string such as `"00"` as visually strobogrammatic, but numeric-format validity is supplied by the caller's contract.
 - **Long input:** Keeping the number as a string avoids overflow. The algorithm's behavior depends on digit positions, not on the numeric magnitude.
 - **Empty input:** The documented minimum length is one. If given an empty string outside the contract, the loop would not run and the source would return `true`; callers requiring different semantics should validate input explicitly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

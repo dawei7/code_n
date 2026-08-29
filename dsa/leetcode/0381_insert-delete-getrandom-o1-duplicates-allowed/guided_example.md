@@ -68,7 +68,7 @@ The return value is `len(idx_set) == 1`, evaluated after insertion. A size of on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method obtains the existing index set with `m.get(val, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ There is an important implementation-level complexity detail here: constructing 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct set `pop` for the index:** Removing an :** - **Direct set `pop` for the index:** Removing an arbitrary index from `idx_set` directly avoids the exact source’s `list(idx_set)` copy and gives the intended expected-$O(1)$ removal. The subsequent moved-last-index updates remain necessary.
-- **- **Linear search in the occurrence list:** A list:** - **Linear search in the occurrence list:** A list alone already gives correct weighted random selection, but locating `val` for removal costs $O(n)$. The dictionary of index sets exists specifically to avoid that search.
-- **- **Dictionary of counts only:** Counts can suppor:** - **Dictionary of counts only:** Counts can support insertion and removal, but cannot select an occurrence-weighted random value in constant time without an additional sampling structure. Choosing a random dictionary key would weight distinct values equally instead of by multiplicity.
+- **Direct set `pop` for the index:** Removing an arbitrary index from `idx_set` directly avoids the exact source’s `list(idx_set)` copy and gives the intended expected-$O(1)$ removal. The subsequent moved-last-index updates remain necessary.
+- **Linear search in the occurrence list:** A list alone already gives correct weighted random selection, but locating `val` for removal costs $O(n)$. The dictionary of index sets exists specifically to avoid that search.
+- **Dictionary of counts only:** Counts can support insertion and removal, but cannot select an occurrence-weighted random value in constant time without an additional sampling structure. Choosing a random dictionary key would weight distinct values equally instead of by multiplicity.
 
 ---
 

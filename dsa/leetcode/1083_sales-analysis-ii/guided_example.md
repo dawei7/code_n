@@ -67,11 +67,7 @@ Repeated sales remain inside the group but cannot create repeated result rows. G
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query selects `buyer_id` and uses:
-
-
-
-One refers to the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +120,7 @@ Purchases of G4 or any other product contribute zero to both sums and do not aff
 
 ## 6. Traps This Instance Exposes
 
-- **- **NOT EXISTS:** Select distinct S8 buyers and re:** - **NOT EXISTS:** Select distinct S8 buyers and reject any for whom an iPhone purchase exists. This often expresses the English condition directly.
+- **NOT EXISTS:** Select distinct S8 buyers and reject any for whom an iPhone purchase exists. This often expresses the English condition directly.
 - **NOT IN:** It works because `buyer_id` is guaranteed non-null, but `NOT EXISTS` is generally safer when nulls are possible.
 - **Set difference:** Build the set of S8 buyers and subtract the set of iPhone buyers.
 - **Conditional CASE aggregates:** `SUM(CASE WHEN ... THEN 1 ELSE 0 END)` is more portable across SQL dialects than MySQL Boolean arithmetic.
@@ -137,8 +133,8 @@ Purchases of G4 or any other product contribute zero to both sums and do not aff
 - **Non-null buyer identifier:** Every grouped row has a real buyer key.
 - **Any output order:** No `ORDER BY` is required.
 - **GROUP BY 1:** It refers to selected `buyer_id`; naming the column explicitly would be equivalent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

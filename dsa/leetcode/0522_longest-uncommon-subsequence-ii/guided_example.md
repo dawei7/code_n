@@ -51,7 +51,7 @@ Suppose some deletion-produced subsequence `u` of `strs[i]` is uncommon. If the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose some deletion-produced subsequence `u` of `strs[i]` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The algorithm therefore evaluates each `strs[i]` as a full candidate `s` and ask
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by decreasing length:** The first full ca:** - **Sort by decreasing length:** The first full candidate not contained in another string gives the answer, but sorting adds $O(k\log k)$ organization and does not eliminate the pairwise containment checks.
+- **Sort by decreasing length:** The first full candidate not contained in another string gives the answer, but sorting adds $O(k\log k)$ organization and does not eliminate the pairwise containment checks.
 - **Count exact duplicates first:** Duplicate values can be ruled out quickly, yet unique candidates must still be tested as subsequences of longer strings.
 - **Enumerate all subsequences:** Each short string has exponentially many deletion patterns; the full-candidate transitivity proof makes this unnecessary.
 - **Identical strings at different indices:** `i != j` still compares them, and each duplicate correctly disqualifies the other.
@@ -97,8 +97,8 @@ The algorithm therefore evaluates each `strs[i]` as a full candidate `s` and ask
 - **No valid candidate:** `ans` is never updated and remains `-1`.
 - **Several valid candidates with equal maximum length:** Only the length is requested, so `max` needs no tie-breaking.
 - **Greedy earliest match:** Choosing the earliest usable character in `t` cannot block a solution that a later choice would enable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

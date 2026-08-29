@@ -70,9 +70,7 @@ Why does each decrease by one? The chosen low endpoint increases by one whenever
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For exactly `k` iterations:
-
-- on even iteration `i`, append... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,9 +114,9 @@ Thus the entire second phase contributes only the distinct difference one.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Increasing prefix plus alternating suffix:** W:** - **Increasing prefix plus alternating suffix:** Write `1` through `n - k - 1` in order, then alternate endpoints of the remaining `k + 1` values. This is the editorial construction and also gives `O(N)` time.
-- **- **Backtracking over permutations:** It can test :** - **Backtracking over permutations:** It can test difference counts but has factorial search space and ignores the direct construction.
-- **- **Random shuffling:** Finding a valid permutatio:** - **Random shuffling:** Finding a valid permutation by chance offers no guarantee and makes correctness difficult to prove.
+- **Increasing prefix plus alternating suffix:** Write `1` through `n - k - 1` in order, then alternate endpoints of the remaining `k + 1` values. This is the editorial construction and also gives `O(N)` time.
+- **Backtracking over permutations:** It can test difference counts but has factorial search space and ignores the direct construction.
+- **Random shuffling:** Finding a valid permutation by chance offers no guarantee and makes correctness difficult to prove.
 
 ---
 

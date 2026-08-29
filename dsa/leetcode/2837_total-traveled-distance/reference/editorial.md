@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -39,7 +39,7 @@ df = users.merge(total_distance, on='user_id', how='left').fillna(0).sort_values
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 
@@ -54,8 +54,8 @@ def get_total_distance(users: pd.DataFrame, rides: pd.DataFrame) -> pd.DataFrame
 
 <!-- an empty line to separate approaches -->
 ----
-​
-​
+
+
 ## Database
 
 <!-- h3 for approaches -->
@@ -80,7 +80,7 @@ ON u.user_id = r.user_id
 GROUP BY user_id, name
 ORDER BY user_id
 ```
-​
+
 <!-- an empty line to separate approaches -->
 
 ----

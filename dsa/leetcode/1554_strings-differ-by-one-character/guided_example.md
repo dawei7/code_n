@@ -63,7 +63,7 @@ This distinctness guarantee is an essential part of the proof, not merely a data
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Matching signatures prove the two words differ in at most on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Otherwise, it adds `t` and continues. If all word-position combinations finish w
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rolling hash per omitted position:** It can bu:** - **Rolling hash per omitted position:** It can build signatures in $O(1)$ per position after preprocessing, realizing expected $O(Q\ell)$ time with collision safeguards.
+- **Rolling hash per omitted position:** It can build signatures in $O(1)$ per position after preprocessing, realizing expected $O(Q\ell)$ time with collision safeguards.
 - **Compare every pair of words:** Direct Hamming comparisons cost $O(Q^2\ell)$.
 - **Sort wildcard signatures:** It can detect equal neighbors but requires materializing and sorting all signatures.
 - **Duplicate words:** They would create collisions despite Hamming distance zero, but uniqueness excludes them.
@@ -115,8 +115,8 @@ Otherwise, it adds `t` and continues. If all word-position combinations finish w
 - **Equal lengths:** They ensure signatures align position by position and retain the same length.
 - **Early return:** The first proven pair is sufficient; no pair identities need to be returned.
 - **Hash-set behavior:** Membership is expected constant time after the signature is built, subject to normal hash-table assumptions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

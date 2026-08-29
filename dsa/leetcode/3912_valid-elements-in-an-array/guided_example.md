@@ -91,7 +91,7 @@ Updating before the test would be wrong: `left` would then be at least `x`, prev
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `left` is updated after the current element is ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ For earlier positions, the third term compares `x` against the precomputed maxim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan both sides for every element:** This mirr:** - **Scan both sides for every element:** This mirrors the definition directly but costs $O(N^2)$ because the same ranges are repeatedly examined.
+- **Scan both sides for every element:** This mirrors the definition directly but costs $O(N^2)$ because the same ranges are repeatedly examined.
 - **Two record-marker arrays:** Mark left records in one pass and right records in another, then emit their union. It also costs $O(N)$ space but stores more state than the source.
 - **Use a right-to-left result set:** Combining valid indices in a set can lose ordering unless a final forward pass is added; the source emits in order directly.
 - **Single element:** It is both first and last and is appended exactly once.
@@ -145,8 +145,8 @@ For earlier positions, the third term compares `x` against the precomputed maxim
 - **Positive-value assumption:** Initializing `left` to zero relies on all values being at least one. Negative inputs would require negative infinity or separate first-index handling.
 - **Original order:** Appending during the forward scan guarantees the result is not sorted by value or discovery direction.
 - **Input preservation:** Suffix information is stored separately; the original array remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

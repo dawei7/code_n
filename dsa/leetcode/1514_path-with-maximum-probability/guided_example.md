@@ -57,7 +57,7 @@ The source creates one empty neighbor list per node. For each paired edge and pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates one empty neighbor list per node.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Equality is not stale. Processing an equal entry is harmless, although under nor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Negative logarithms:** Transform probability p:** - **Negative logarithms:** Transform probability p to cost `-log(p)` and run ordinary shortest-path Dijkstra. Zero-probability edges need special handling.
+- **Negative logarithms:** Transform probability p to cost `-log(p)` and run ordinary shortest-path Dijkstra. Zero-probability edges need special handling.
 - **Bellman-Ford relaxation:** Repeatedly scan all edges for $O(NE)$ time. It is simpler conceptually but slower.
 - **Queue-based relaxation:** It may work well on some graphs but has $O(NE)$ worst-case time.
 - **Unreachable destination:** Its stored probability stays zero.
@@ -108,8 +108,8 @@ Equality is not stale. Processing an equal entry is harmless, although under nor
 - **Stale heap entry:** The source skips it when a better array value exists.
 - **Undirected edge:** Both adjacency directions must be inserted.
 - **Required imports:** `heappop` and `heappush` must be available from `heapq`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

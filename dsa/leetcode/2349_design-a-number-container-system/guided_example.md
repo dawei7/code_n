@@ -66,7 +66,7 @@ If the new number equals the old number, the method removes the index and immedi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `index in d`, the index already contains `old_number = d[... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ After these steps, the following invariant holds:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heaps with lazy deletion:** Push every cha:** - **Min-heaps with lazy deletion:** Push every changed index into the new number's heap and use `d` to discard stale heap tops during find. Change avoids eager removal, but heaps may accumulate stale entries.
+- **Min-heaps with lazy deletion:** Push every changed index into the new number's heap and use `d` to discard stale heap tops during find. Change avoids eager removal, but heaps may accumulate stale entries.
 - **Unordered sets:** Replacement is easy, but finding the minimum requires scanning all indices for that number.
 - **One global scan of `d` per find:** This uses less reverse structure but makes every query `O(q)`.
 - **Change an unused index:** No old removal occurs; both new associations are inserted.
@@ -121,8 +121,8 @@ After these steps, the following invariant holds:
 - **Duplicate reverse membership:** Sorted-set uniqueness prevents it.
 - **External dependency:** The exact source requires `SortedSet` from its supporting library.
 - **Persistent state:** Internal maps are intentionally mutated across API calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

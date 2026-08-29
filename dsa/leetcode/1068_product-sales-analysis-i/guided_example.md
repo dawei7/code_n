@@ -74,11 +74,7 @@ Together, those constraints establish a one-to-one relationship from each sale r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query's source is:
-
-
-
-In MySQL, bare `JOIN` means `INNER... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +123,7 @@ Adding `DISTINCT` would be a semantic bug because it could collapse separate sal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit ON syntax:** `JOIN Product ON Sales.p:** - **Explicit ON syntax:** `JOIN Product ON Sales.product_id = Product.product_id` is semantically equivalent and can be clearer when key names differ or table aliases are used.
+- **Explicit ON syntax:** `JOIN Product ON Sales.product_id = Product.product_id` is semantically equivalent and can be clearer when key names differ or table aliases are used.
 - **Correlated scalar subquery:** Looking up the product name separately for each sale can produce the same result, but it is less direct and may lead to repeated index probes.
 - **Left join:** It is unnecessary because every sale has a valid product foreign key. Starting from products with a left join could also introduce catalog rows with no sale.
 - **DISTINCT:** Do not add it. Separate sale rows may project to identical visible values and must remain separate.
@@ -139,8 +135,8 @@ Adding `DISTINCT` would be a semantic bug because it could collapse separate sal
 - **Any result order:** Omitting `ORDER BY` is correct and avoids implying an unsupported ordering contract.
 - **USING column behavior:** `USING (product_id)` requires the same key name in both tables and merges that key in the joined namespace.
 - **Null key concerns:** The foreign-key description supplies referenced product identifiers. Under the stated schema, every sale has its corresponding product.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

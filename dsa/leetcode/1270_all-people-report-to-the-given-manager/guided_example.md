@@ -75,7 +75,7 @@ This behavior is visible in the example. Employee `2` directly reports to one an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The head's row reports `manager_id = 1`, so once a chain rea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Employees whose manager identifier does not match a row disappear at an inner jo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive common table expression:** Start fro:** - **Recursive common table expression:** Start from the head's direct reports and repeatedly join subordinates. This handles arbitrary depth and is more robust if the three-manager guarantee is removed, but is more machinery than the exact contract requires.
+- **Recursive common table expression:** Start from the head's direct reports and repeatedly join subordinates. This handles arbitrary depth and is more robust if the three-manager guarantee is removed, but is more machinery than the exact contract requires.
 - **Three `OR` checks with fewer joins:** One could separately test direct, two-level, and three-level reporting. The padded self-loop formulation expresses all three with one chain and one final condition.
 - **Only one join:** That finds direct reports but misses employees two or three links below the head.
 - **Head employee:** The self-referential manager row would qualify, so `e1.employee_id != 1` is essential.
@@ -125,8 +125,8 @@ Employees whose manager identifier does not match a row disappear at an inner jo
 - **Missing manager row:** Inner joins discard that broken chain, so it cannot be reported as reaching the head.
 - **Any output order:** No sorting is necessary or promised.
 - **Head self-reference assumption:** Padding shorter chains works because employee `1` has `manager_id = 1` in this data model.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

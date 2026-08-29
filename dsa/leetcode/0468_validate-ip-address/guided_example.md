@@ -77,7 +77,7 @@ Checking length before character membership guarantees an empty field fails even
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s.split(":")` must produce exactly eight fields.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ For IPv6, exact field count establishes eight colon-separated parts. Length and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expressions:** Fully anchored IPv4 and:** - **Regular expressions:** Fully anchored IPv4 and IPv6 patterns can encode the grammar, but range and leading-zero details make them harder to audit than explicit field checks.
+- **Regular expressions:** Fully anchored IPv4 and IPv6 patterns can encode the grammar, but range and leading-zero details make them harder to audit than explicit field checks.
 - **Networking-library parser:** Real-world parsers may accept IPv6 compression or alternate IPv4 forms that this simplified problem rejects, so they are not authoritative here.
 - **Try integer conversion first:** Exception-based validation is possible, but explicit digit checks avoid exceptions as control flow and make the grammar visible.
 - **IPv4 field `"0"`:** Valid; only multi-character fields beginning with zero are rejected.
@@ -125,8 +125,8 @@ For IPv6, exact field count establishes eight colon-separated parts. Length and 
 - **IPv6 `::` compression:** Rejected because all eight nonempty fields are required by this problem.
 - **Mixed delimiters:** Such a string fails both exact field grammars and returns `"Neither"`.
 - **Evaluation order:** IPv4 is tested first, but no valid IPv6 string can satisfy the four decimal-dot-field grammar, so classification is unambiguous.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

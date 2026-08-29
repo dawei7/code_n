@@ -62,9 +62,7 @@ For each unvisited neighbor, recursion returns that neighbor subtree's pair, and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper returns a pair:
-
-- `x`, the number of vertices in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +105,7 @@ The solution intentionally uses this doubled count, avoiding division and keepin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair inside each component:** Corr:** - **Check every pair inside each component:** Correct but can require $O(a^2)$ work per component.
+- **Check every pair inside each component:** Correct but can require $O(a^2)$ work per component.
 - **Verify every vertex degree equals component size minus one:** Also linear after collecting component vertices and is equivalent for a simple connected graph.
 - **Breadth-first search:** Can gather the same vertex and degree totals iteratively, avoiding recursion depth.
 - **Disjoint-set union:** Can group vertices and then compare component sizes with edge counts, but requires more bookkeeping.
@@ -119,8 +117,8 @@ The solution intentionally uses this doubled count, avoiding division and keepin
 - **No self-loops:** Ensures degrees correspond only to distinct-vertex pairs.
 - **Recursive depth:** Small repository constraints are safe; iterative traversal is more robust for a much larger graph.
 - **Boolean arithmetic:** Python converts true to one and false to zero in `ans += condition`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

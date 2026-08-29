@@ -57,7 +57,7 @@ Consider `nums1 = [4, 3, 2, 3]` and `nums2 = [3, 3, 5, 4]`. The sets are `s1 = {
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation constructs `s1 = set(nums1)` and `s2 = se... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The same argument applies after exchanging the two arrays, which establishes the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested scans:** For every occurrence in one ar:** - **Nested scans:** For every occurrence in one array, searching the other array linearly uses no hash table but can take $O(NM)$ time. It repeats the same membership work and is unnecessary under these constraints.
+- **Nested scans:** For every occurrence in one array, searching the other array linearly uses no hash table but can take $O(NM)$ time. It repeats the same membership work and is unnecessary under these constraints.
 - **Frequency maps:** A dictionary of occurrence counts also supports membership and gives the same answer, but the stored counts are never used. Sets express the exact need more directly.
 - **Intersection size:** Computing `len(set(nums1) & set(nums2))` counts distinct common values, not qualifying indices. It is wrong whenever a common value is repeated in either original array.
 - **One-to-one matching:** Decrementing frequencies after matches would count matched pairs and cap a value’s contribution by the smaller multiplicity. The problem imposes no such cap.
@@ -102,8 +102,8 @@ The same argument applies after exchanging the two arrays, which establishes the
 - **No common values:** Every membership test is false, so the method naturally returns `[0, 0]`.
 - **All values common:** Every position in both arrays qualifies, so the result is `[N, M]` even when the arrays have different lengths or multiplicities.
 - **Input preservation:** The implementation creates new sets and never sorts or modifies either input list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

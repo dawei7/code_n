@@ -48,4 +48,4 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $1 \le \text{nums}[i] \le 10^​​​​​​​5$
+- $1 \le \text{nums}[i] \le 10^5$

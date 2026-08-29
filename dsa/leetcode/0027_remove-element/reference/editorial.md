@@ -48,7 +48,7 @@ Assume the array has a total of $n$ elements, both $i$ and $j$ traverse at most 
 
 **Intuition**
 
-Now consider cases where the array contains few elements to remove. For example, $nums = [1,2,3,5,4], val = 4$. The previous algorithm will do unnecessary copy operation of the first four elements. Another example is $nums = [4,1,2,3,5], val = 4$. It seems unnecessary to move elements $[1,2,3,5]$ one step left as the problem description mentions that the order of elements could be changed.
+Now consider cases where the array contains few elements to remove. For example, $nums = [1,2,3,5,4], val = 4$. The previous algorithm will do unnecessary copy operation of the first four elements. Another example is $nums = [4,1,2,3,5], val = 4$. It seems unnecessary to move elements `[1,2,3,5]` one step left as the problem description mentions that the order of elements could be changed.
 
 **Algorithm**
 

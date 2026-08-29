@@ -142,6 +142,6 @@ Return the **minimum** **total** **travel time** (in minutes) to travel from 0 t
 
 - $\text{time.length} = n$
 
-- $1 \le \text{time}[i] \le 100​$
+- $1 \le \text{time}[i] \le 100$
 
-- $1 \le sum(time) \le 100$​​​​​​
+- $1 \le sum(time) \le 100$

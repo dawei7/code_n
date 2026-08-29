@@ -59,7 +59,7 @@ This matches the problem's explicit requirement that repeated equal strings coun
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method iterates the list, not a set.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If `w == s`, every character matches and it is a valid prefix. A prefix is allow
 
 ## 6. Traps This Instance Exposes
 
-- **- **Slice the target manually:** `s[:len(w)] == w`:** - **Slice the target manually:** `s[:len(w)] == w` is correct, but may allocate a substring; `startswith` expresses the intent directly.
+- **Slice the target manually:** `s[:len(w)] == w` is correct, but may allocate a substring; `startswith` expresses the intent directly.
 - **Build a trie from words:** It adds nodes and setup for a single short target and is unnecessary here.
 - **Convert words to a set:** It would lose duplicate occurrences that must be counted separately.
 - **Use substring membership:** `w in s` accepts occurrences away from the beginning and is incorrect.
@@ -118,8 +118,8 @@ If `w == s`, every character matches and it is a valid prefix. A prefix is allow
 - **Lowercase guarantee:** No case folding or locale behavior is needed.
 - **Many words sharing a long prefix:** Each is still checked independently because every list occurrence contributes separately.
 - **Empty words:** The constraints exclude them, so the special convention that an empty string is a prefix never enters the method's inputs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

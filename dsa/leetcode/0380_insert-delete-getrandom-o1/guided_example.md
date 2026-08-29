@@ -68,7 +68,7 @@ Recording the index immediately before appending is safe: `len(q)` is precisely 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method first tests `if val in d`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ The class does not promise to preserve insertion order. Therefore, it can fill t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set alone:** Insert and removal are expec:** - **Hash set alone:** Insert and removal are expected $O(1)$, but selecting a uniformly random member requires converting or traversing the set, which costs $O(n)$. It cannot satisfy all three operation bounds simultaneously.
-- **- **List alone:** Random selection and appending a:** - **List alone:** Random selection and appending are constant time, but checking for an existing value and locating a requested value for removal require a linear search. Stable removal would also shift elements.
-- **- **List with tombstones:** Marking removed positi:** - **List with tombstones:** Marking removed positions as empty avoids immediate shifting, but random selection could land on holes. Retrying can become arbitrarily slow when most entries are deleted, while periodic compaction introduces linear work. The dense swap-with-last design avoids holes entirely.
+- **Hash set alone:** Insert and removal are expected $O(1)$, but selecting a uniformly random member requires converting or traversing the set, which costs $O(n)$. It cannot satisfy all three operation bounds simultaneously.
+- **List alone:** Random selection and appending are constant time, but checking for an existing value and locating a requested value for removal require a linear search. Stable removal would also shift elements.
+- **List with tombstones:** Marking removed positions as empty avoids immediate shifting, but random selection could land on holes. Retrying can become arbitrarily slow when most entries are deleted, while periodic compaction introduces linear work. The dense swap-with-last design avoids holes entirely.
 
 ---
 

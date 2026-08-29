@@ -1,10 +1,10 @@
 ### 1. Description
 
-You and a gang of thieves are planning on robbing a bank. You are given a **0-indexed** integer array `security`, where $\text{security}[i]$ is the number of guards on duty on the $$i^{\text{th}}$$ day. The days are numbered starting from `0`. You are also given an integer `time`.
+You and a gang of thieves are planning on robbing a bank. You are given a **0-indexed** integer array `security`, where $\text{security}[i]$ is the number of guards on duty on the $i^{\text{th}}$ day. The days are numbered starting from `0`. You are also given an integer `time`.
 
-The $$i^{\text{th}}$$ day is a good day to rob the bank if:
+The $i^{\text{th}}$ day is a good day to rob the bank if:
 
-- There are at least `time` days before and after the $$i^{\text{th}}$$ day,
+- There are at least `time` days before and after the $i^{\text{th}}$ day,
 
 - The number of guards at the bank for the `time` days **before** `i` are **non-increasing**, and
 

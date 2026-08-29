@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `employee_id, manager_id, level = 1, salary`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Its recursive term joins the current row's `manager_id` to that manager's employ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive traversal once per manager:** It rep:** - **Recursive traversal once per manager:** It repeats subtree work and can be far more expensive than sharing one ancestor closure.
+- **Recursive traversal once per manager:** It repeats subtree work and can be far more expensive than sharing one ancestor closure.
 - **Start only from the CEO and traverse downward:** This also computes levels, but additional path information is needed to aggregate every manager's complete subtree.
 - **Count only direct reports:** Grouping the base table by `manager_id` misses indirect descendants; recursive CTE rows supply all ancestor relationships.
 - **Include the manager in `COUNT(*)`:** Team size excludes the manager, and the closure naturally counts descendants only.
@@ -99,8 +99,8 @@ Its recursive term joins the current row's `manager_id` to that manager's employ
 - **Management cycle:** Recursive expansion would not reach null; the organizational-tree contract implicitly excludes cycles.
 - **Long chain:** The closure becomes quadratic in employee count, which is why complexity is expressed in terms of $a$ rather than only $n$.
 - **Comma join syntax:** The `WHERE a.employee_id = b.employee_id` condition makes it an inner join despite the older notation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

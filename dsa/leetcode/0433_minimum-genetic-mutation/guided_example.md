@@ -57,7 +57,7 @@ Because the queue is first-in, first-out, all states at depth $d$ are removed be
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The queue begins with `(startGene, 0)`, and `vis` initially ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The loop does not generate arbitrary strings. Every discovered next state comes 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all one-character mutations:** For ea:** - **Generate all one-character mutations:** For each of $L$ positions, try the other three bases and test membership in a bank set. This reaches $O(BL)$ expected time after set construction and matches the manifest bound.
+- **Generate all one-character mutations:** For each of $L$ positions, try the other three bases and test membership in a bank set. This reaches $O(BL)$ expected time after set construction and matches the manifest bound.
 - **Wildcard-pattern buckets:** Map patterns such as `AACCGGT*` to genes, then retrieve neighbors through shared patterns. This is useful for larger banks but adds preprocessing machinery.
 - **Depth-first search:** It can determine reachability but does not naturally guarantee the first found path is shortest; it would need exhaustive distance tracking.
 - **Bidirectional BFS:** Search simultaneously from start and target to reduce explored layers in larger graphs. The bank limit is tiny, so ordinary BFS is simpler.
@@ -113,8 +113,8 @@ The loop does not generate arbitrary strings. Every discovered next state comes 
 - **Difference zero:** A gene is not a one-mutation neighbor of itself and is not enqueued by `diff == 1`.
 - **Difference greater than one:** It cannot be traversed in a single step, though intermediate bank genes may eventually connect it.
 - **Mark on enqueue:** This prevents multiple shortest-path parents from creating duplicate queue entries while preserving the first, minimal depth.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

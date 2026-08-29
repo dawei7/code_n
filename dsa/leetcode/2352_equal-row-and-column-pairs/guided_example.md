@@ -66,10 +66,7 @@ The Boolean result is added directly to `ans`. In Python, `true` has integer val
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator
-
-`grid[i][k] == grid[k][j] for k in range(n)`
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +105,7 @@ For the second example, rows two and three are identical and both equal column t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Row-frequency hash map:** Convert every row to:** - **Row-frequency hash map:** Convert every row to a tuple, then build each column tuple and add its row frequency. This improves time to `O(n^2)` at the cost of `O(n^2)` stored tuple data.
+- **Row-frequency hash map:** Convert every row to a tuple, then build each column tuple and add its row frequency. This improves time to `O(n^2)` at the cost of `O(n^2)` stored tuple data.
 - **Trie of rows:** Insert every row sequence and query each column sequence. It also uses `O(n^2)` time and space but has more implementation overhead.
 - **Transpose then compare:** Materialize columns as rows and count matching sequences. This still needs a frequency strategy to avoid quadratic sequence comparisons.
 - **One-by-one matrix:** Its only row equals its only column, so the answer is one.
@@ -120,8 +117,8 @@ For the second example, rows two and three are identical and both equal column t
 - **Short-circuit behavior:** An early mismatch saves work but does not change correctness.
 - **Boolean arithmetic:** `true` adds one and `false` adds zero in Python; other languages may require an explicit conditional.
 - **Input preservation:** Only indexed reads occur.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

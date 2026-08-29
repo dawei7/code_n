@@ -51,7 +51,7 @@ Skills such as Java or PowerBI do not help satisfy the requirement and do not ne
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Skills such as Java or PowerBI do not help satisfy the requi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Skills such as Java or PowerBI do not help satisfy the requirement and do not ne
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation:** Group all rows and :** - **Conditional aggregation:** Group all rows and require three separate sums such as `SUM(skill='Python')>0`. It works and does not rely as directly on filtered count, but is more verbose.
+- **Conditional aggregation:** Group all rows and require three separate sums such as `SUM(skill='Python')>0`. It works and does not rely as directly on filtered count, but is more verbose.
 - **Three self-joins:** Joining one row per required skill proves presence, but repeats the table and can create more complex plans.
 - **Relational division with `NOT EXISTS`:** It can express “no required skill is missing,” though it is heavier for a fixed three-item requirement.
 - **Candidate has extra skills:** They are removed by `WHERE` and do not disqualify the candidate.
@@ -101,8 +101,8 @@ Skills such as Java or PowerBI do not help satisfy the requirement and do not ne
 - **Group alias by ordinal:** `GROUP BY 1` is accepted MySQL shorthand for the first select expression. Writing `GROUP BY candidate_id` would improve readability without changing execution.
 - **Exact-match requirement:** `IN` compares complete skill values. A value such as `'Python Programming'` does not qualify unless collation or data normalization explicitly makes it equal to `'Python'`.
 - **Stable result shape:** Aggregation emits only `candidate_id`, so the requested table contains no repeated skill rows and no accidental extra columns from the source schema.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

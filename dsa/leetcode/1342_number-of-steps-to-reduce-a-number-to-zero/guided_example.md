@@ -64,7 +64,7 @@ At the start of every loop iteration, `ans` equals the number of required operat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every iteration strictly decreases a positive `num`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The zero input is handled naturally. `while num` is false immediately, so the in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modulo parity test:** Use `num % 2` instead of:** - **Modulo parity test:** Use `num % 2` instead of `num & 1` and integer division by two instead of a shift. It has the same logic and asymptotic bounds and may be more immediately readable to beginners.
+- **Modulo parity test:** Use `num % 2` instead of `num & 1` and integer division by two instead of a shift. It has the same logic and asymptotic bounds and may be more immediately readable to beginners.
 - **Direct bit-count formula:** For positive input, return the population count plus bit length minus one. This can be concise with language built-ins but needs a separate zero case and hides the step-by-step process.
 - **Binary string counting:** Count ones and total digits in `bin(num)`. It takes $O(\log x)$ extra space for the string, unlike the constant-state simulation.
 - **Recursive simulation:** Recurse on `num - 1` or `num // 2` and add one. It mirrors the recurrence but consumes $O(\log x)$ call-stack space unnecessarily.
@@ -117,8 +117,8 @@ The zero input is handled naturally. `while num` is false immediately, so the in
 - **Odd value greater than one:** Subtracting one makes it even, guaranteeing that the next iteration can halve it.
 - **Right shift semantics:** The equivalence to division by two relies on nonnegative input. The stated constraints guarantee that condition.
 - **Deterministic operations:** There is no greedy choice. Each parity has exactly one permitted operation, so faithful simulation is automatically optimal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

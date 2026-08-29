@@ -6,7 +6,7 @@
 Every element will have some frequency of occurrence in the array, i.e., the number of times it occurs in the array. Let us try to rephrase the problem in these terms. We want to end up with the least possible number of unique elements after `k` removals. In other words, we want to maximize the number of elements we can remove wholly (all occurrences of the element) in at most `k` removals. Let us figure out what is the most optimal way to do this.
 
 Say we had to remove all occurrences of one element from an array such that it took the least number of removals. In this case, we'd remove the element with the least frequency! If there are multiple elements with the least frequency of occurrence, we could remove any.
-Therefore, to maximize the number of unique elements removed, the initial focus should be on elements with the lowest frequencies. By starting with the removal of the least frequent element and progressing to the next least frequent ones iteratively until we have at most 'k' removals, we would end up removing the maximum number of elements we could remove wholly!​
+Therefore, to maximize the number of unique elements removed, the initial focus should be on elements with the lowest frequencies. By starting with the removal of the least frequent element and progressing to the next least frequent ones iteratively until we have at most 'k' removals, we would end up removing the maximum number of elements we could remove wholly!
 
 To summarize the idea, we need to greedily remove elements starting with the element with the lowest frequency. This way, we will ensure that we remove the maximum number of elements wholly and end up with the least number of unique elements.
 
@@ -33,7 +33,7 @@ Let us summarize the algorithm.
 7. When `elementsRemoved` becomes greater than `k`, we can stop iterating and return the remaining number of integers in `frequencies` (including the present index).
 8. Return `0` if we iterated over the entire `frequencies` array. This means that we removed all elements from the original array `arr`.
 
-!?!../Documents/1481/slideshow1.json:960,540!?!​
+!?!../Documents/1481/slideshow1.json:960,540!?!
 
 #### Implementation
 
@@ -68,11 +68,11 @@ class Solution:
 ```
 
 #### Complexity Analysis
-​Let $n$ be the length of `arr` and $m$ be the number of unique elements in it. $k$ represents the number of elements to be removed.
-​
+Let $n$ be the length of `arr` and $m$ be the number of unique elements in it. $k$ represents the number of elements to be removed.
+
 * Time complexity: $O(n \log n)$
   +  We traverse `arr` once and populate `map`. Since inserting in a hashmap takes $O(1)$ time, the entire operation takes $O(n)$. Since there are $m$ unique elements in `arr`, `frequencies` will be of size $m$, and sorting it would take $O(m \log m)$. Finally, traversing `frequencies` and removing at most $k$ elements will take $O(k)$ time (since we break from the loop once we have removed $k$ elements). This makes the total complexity $O(n + m \log m + k)$. However, in the worst case, where all elements are unique, $m = n$. Also, in the case where we're asked to remove all elements, $k = n$. This makes the complexity $O(n + n \log n + n)$. The dominating term is $O(n \log n)$.
-​
+
 * Space complexity: $O(n)$
   + We use auxiliary space in creating `map` and `frequencies`, both of which will have $m$ elements. As discussed, in the worst case, $m = n$. This results in a space complexity of $O(n)$. Note that some extra space is used when we sort `frequencies` in place. The space complexity of the sorting algorithm depends on the programming language.
 - In Python, the `sort` method sorts a list using the Timsort algorithm which is a combination of Merge Sort and Insertion Sort and has $O(n)$ additional space.
@@ -80,7 +80,7 @@ class Solution:
 - In C++, the sort() function is implemented as a hybrid of Quick Sort, Heap Sort, and Insertion Sort, with a worse-case space complexity of $O( \log n )$.
 
 ---
-​
+
 ### Approach 2: Min-heap
 
 #### Intuition
@@ -135,16 +135,16 @@ class Solution:
 ```
 
 #### Complexity Analysis
-​Let $n$ be the length of `arr` and $m$ be the number of unique elements in it. $k$ represents the number of elements to be removed.
-​
+Let $n$ be the length of `arr` and $m$ be the number of unique elements in it. $k$ represents the number of elements to be removed.
+
 * Time complexity: $O(n \log n)$
   +  We traverse `arr` once and populate `map`. Since inserting in a hashmap takes $O(1)$ time, the entire operation takes $O(n)$. Since there are $m$ unique elements in `arr` and inserting and removing elements from a min-heap of size $m$ takes $O( \log m)$ time, inserting $m$ elements will take $O(m \log m)$. Finally, traversing `frequencies` and removing at most $k$ elements will take $O(k \log k)$ time (since we break from the loop once we have removed $k$ elements). This makes the total complexity $O(n + m \log m + k \log k)$. However, in the worst case, where all elements are unique, $m = n$. Also, in the case where we're asked to remove all elements, $k = n$. This makes the complexity $O(n + n \log n + n \log n)$, where the dominating term is $O(n \log n)$.
-​
+
 * Space complexity: $O(n)$
   + We use auxiliary space in creating `map` and `frequencies`, both of which will have $m$ elements. As discussed, in the worst case, $m = n$. This results in a space complexity of $O(n)$.
 
 ---
-​
+
 ### Approach 3: Counting Sort
 
 #### Intuition
@@ -220,11 +220,11 @@ class Solution:
 ```
 
 #### Complexity Analysis
-​Let $n$ be the length of `arr`.
+Let $n$ be the length of `arr`.
 
 * Time complexity: $O(n)$
   +  We traverse `arr` once and populate `map`, which is a linear operation. Then we traverse `map` and populate `countOfFrequencies`. `map` can have a maximum size of $n$ so this is also a linear operation. Finally, traversing `countOfFrequencies` is also a linear operation since the size of `countOfFrequencies` is $n + 1$.
-​
+
 * Space complexity: $O(n)$
   + We create a hashmap that can have a maximum size of $n$ and an array with size $n + 1$.
 ---

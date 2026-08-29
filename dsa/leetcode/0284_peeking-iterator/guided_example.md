@@ -61,11 +61,7 @@ Although the current problem uses positive integers, the exact design already co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor initializes
-
-
-
-The Boolean is the authoritat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +100,7 @@ This distinction between physical underlying position and logical wrapper positi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefetch in the constructor:** Always store th:** - **Prefetch in the constructor:** Always store the next element immediately and refill after every `next()`. This can simplify method branches, but construction must handle an empty iterator and performs work even if no method is called. The exact source fetches lazily.
+- **Prefetch in the constructor:** Always store the next element immediately and refill after every `next()`. This can simplify method branches, but construction must handle an empty iterator and performs work even if no method is called. The exact source fetches lazily.
 - **Copy all remaining values:** Materializing the iterator into a list makes peeking easy but uses $O(n)$ space, fails for infinite streams, and defeats the iterator abstraction.
 - **Use `null` as the only sentinel:** This works only if `null` can never be a real element. The explicit `has_peeked` flag is safer and supports generic value types.
 - **Repeated peeks:** Only the first fills the cache. Every later peek returns the same pending value without advancing anything further.
@@ -116,8 +112,8 @@ This distinction between physical underlying position and logical wrapper positi
 - **Generic values:** Replacing integer-specific annotations with a type parameter is sufficient for storage and returns. The existing Boolean occupancy flag already permits falsey values such as `0`, `false`, empty strings, and even `null`.
 - **External use of the wrapped iterator:** The wrapper assumes exclusive control of the supplied iterator after construction. Advancing it separately would desynchronize the cached logical view and is outside the intended design.
 - **Thread safety:** Concurrent method calls could race on the cache fields. The interview design is single-threaded; a shared concurrent wrapper would need synchronization.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -44,4 +44,4 @@ The longest non-decreasing subarray is [1, 2, 3, 3], which has a length of 4.
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $-10^{9} \le \text{nums}[i] \le 10^{9}$​​​​​​​
+- $-10^{9} \le \text{nums}[i] \le 10^{9}$

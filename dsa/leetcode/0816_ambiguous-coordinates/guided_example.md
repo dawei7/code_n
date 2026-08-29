@@ -60,7 +60,7 @@ Starting at 2 guarantees at least one left digit: index 1 belongs to the left pa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `n = len(s)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ There is always at least one digit in `l`, so the algorithm never creates forbid
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking over punctuation characters:** A :** - **Backtracking over punctuation characters:** A recursive generator can choose comma and decimal positions, but it must still enforce the same zero rules. Separating comma selection from a reusable one-number helper makes the constraints easier to verify.
-- **- **Convert candidates to numbers:** Numeric conve:** - **Convert candidates to numbers:** Numeric conversion can lose the original spelling and makes it harder to distinguish forbidden redundant zeroes. Validity is fundamentally textual, so string checks are safer.
-- **- **Memoize helper calls:** The right-side helper :** - **Memoize helper calls:** The right-side helper is called repeatedly for different `x` values at one comma split. Caching by `(i, j)` can reduce repeated construction, though the small input bound makes the direct comprehension acceptable.
+- **Backtracking over punctuation characters:** A recursive generator can choose comma and decimal positions, but it must still enforce the same zero rules. Separating comma selection from a reusable one-number helper makes the constraints easier to verify.
+- **Convert candidates to numbers:** Numeric conversion can lose the original spelling and makes it harder to distinguish forbidden redundant zeroes. Validity is fundamentally textual, so string checks are safer.
+- **Memoize helper calls:** The right-side helper is called repeatedly for different `x` values at one comma split. Caching by `(i, j)` can reduce repeated construction, though the small input bound makes the direct comprehension acceptable.
 
 ---
 

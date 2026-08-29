@@ -94,7 +94,7 @@ overlap length unchanged.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Rectangle A spans horizontally from `ax1` to `ax2`, while B ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -149,7 +149,7 @@ product would be spuriously positive even though the rectangles do not meet.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit overlap branch:** Test whether `width:** - **Explicit overlap branch:** Test whether `width > 0 and height > 0`, set overlap to their product only then, and otherwise use zero. It is equivalent to separately clamping both dimensions but needs more control flow.
+- **Explicit overlap branch:** Test whether `width > 0 and height > 0`, set overlap to their product only then, and otherwise use zero. It is equivalent to separately clamping both dimensions but needs more control flow.
 - **Plane partitioning:** Split the plane at all rectangle edges and sum covered cells. It can work but is unnecessary for only two rectangles and introduces much more machinery than inclusion-exclusion.
 - **No overlap on one axis:** A horizontal or vertical gap makes one clamped dimension zero, so the intersection area is zero regardless of the other dimension.
 - **Touching edges:** Candidate width or height is exactly zero. A shared boundary line has zero area, so subtracting zero is correct.
@@ -161,8 +161,8 @@ product would be spuriously positive even though the rectangles do not meet.
 - **Large coordinate products:** Python has arbitrary-precision integers. In a fixed-width language, an adequately wide integer type should be used for multiplication.
 - **Axis mix-up:** Horizontal overlap must use only x-coordinates and vertical overlap only y-coordinates. Combining an x endpoint with a y endpoint has no geometric meaning.
 - **Input preservation:** All coordinates are immutable numbers, and the method computes derived values without changing any input object.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

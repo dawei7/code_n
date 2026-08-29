@@ -65,7 +65,7 @@ It may help to separate an index from an element count. Python uses zero-based i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Duplicates are the reason an ordinary successful search is n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For each original `x`, it searches the same sorted copy and appends the count. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency array and prefix counts:** Because e:** - **Frequency array and prefix counts:** Because every value lies between zero and one hundred, count each value and convert frequencies into counts of smaller values. This achieves the manifest's $O(n+U)$ time and $O(U)$ space, but it is tied to a small known universe.
+- **Frequency array and prefix counts:** Because every value lies between zero and one hundred, count each value and convert frequencies into counts of smaller values. This achieves the manifest's $O(n+U)$ time and $O(U)$ space, but it is tied to a small known universe.
 - **Brute-force comparisons:** For every position, scan the whole array and count smaller values. It is easy to derive but costs $O(n^2)$ time.
 - **First-rank dictionary:** Sort once and record the index only when a value is first encountered, then look up each original value. This has the same $O(n\log n)$ sorting cost and can avoid $n$ binary searches, at the price of a dictionary.
 - **Duplicate values:** Every equal value receives the same answer because `bisect_left` always returns the shared first position, never an arbitrary duplicate position.
@@ -115,8 +115,8 @@ For each original `x`, it searches the same sorted copy and appends the count. T
 - **Input mutation:** `sorted` creates a copy, so the method leaves `nums` unchanged. Using `nums.sort()` without retaining the original order would make constructing the correctly ordered result harder.
 - **Import expectation:** The code calls `bisect_left` directly, so the execution environment must make that name available, commonly through `from bisect import bisect_left`.
 - **Values outside the stated range:** The sort-and-binary-search method still works for arbitrary mutually comparable numbers; unlike the frequency-array alternative, it does not depend on the zero-to-one-hundred constraint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

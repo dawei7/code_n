@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\operatorname{lcm}(a,b)\ge a>\texttt{threshold}.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ No graph edge can touch that input value. Because all `nums` values are unique, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every input pair:** Computing all LCM edg:** - **Test every input pair:** Computing all LCM edges costs $O(n^2)$ and is infeasible.
+- **Test every input pair:** Computing all LCM edges costs $O(n^2)$ and is infeasible.
 - **Factor-based connection processing:** It can avoid some multiple enumeration but requires more involved divisor bookkeeping.
 - **Input value above threshold:** It is necessarily an isolated component.
 - **Input value equal to threshold:** It can connect to divisors through itself as a witness.
@@ -104,8 +102,8 @@ No graph edge can touch that input value. Because all `nums` values are unique, 
 - **Shared multiple:** Any bounded shared multiple implies the pair's LCM is also bounded.
 - **No bounded shared multiple:** The values cannot have a direct LCM-valid edge.
 - **Input preservation:** `nums` is never sorted or changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

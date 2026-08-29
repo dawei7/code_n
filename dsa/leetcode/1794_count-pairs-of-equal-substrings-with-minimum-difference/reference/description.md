@@ -6,7 +6,7 @@ You are given two strings `firstString` and `secondString` that are **0-indexed*
 
 - $0 \le a \le b < \text{secondString.length}$
 
-- The substring of `firstString` that starts at the $$i^{\text{th}}$$ character and ends at the $$j^{\text{th}}$$ character (inclusive) is **equal** to the substring of `secondString` that starts at the $$a^{\text{th}}$$ character and ends at the $$b^{\text{th}}$$ character (inclusive).
+- The substring of `firstString` that starts at the $i^{\text{th}}$ character and ends at the $j^{\text{th}}$ character (inclusive) is **equal** to the substring of `secondString` that starts at the $a^{\text{th}}$ character and ends at the $b^{\text{th}}$ character (inclusive).
 
 - $j - a$ is the **minimum** possible value among all quadruples that satisfy the previous conditions.
 

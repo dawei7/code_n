@@ -2,9 +2,9 @@
 
 A newly designed keypad was tested, where a tester pressed a sequence of `n` keys, one at a time.
 
-You are given a string `keysPressed` of length `n`, where $\text{keysPressed}[i]$ was the $$i^{\text{th}}$$ key pressed in the testing sequence, and a sorted list `releaseTimes`, where $\text{releaseTimes}[i]$ was the time the $$i^{\text{th}}$$ key was released. Both arrays are **0-indexed**. The $0^th$ key was pressed at the time `0`, and every subsequent key was pressed at the **exact** time the previous key was released.
+You are given a string `keysPressed` of length `n`, where $\text{keysPressed}[i]$ was the $i^{\text{th}}$ key pressed in the testing sequence, and a sorted list `releaseTimes`, where $\text{releaseTimes}[i]$ was the time the $i^{\text{th}}$ key was released. Both arrays are **0-indexed**. The $0^th$ key was pressed at the time `0`, and every subsequent key was pressed at the **exact** time the previous key was released.
 
-The tester wants to know the key of the keypress that had the **longest duration**. The $$i^{\text{th}}$$^ keypress had a **duration** of $\text{releaseTimes}[i] - releaseTimes[i - 1]$, and the $0^th$ keypress had a duration of $\text{releaseTimes}[0]$.
+The tester wants to know the key of the keypress that had the **longest duration**. The $i^{\text{th}}$^ keypress had a **duration** of $\text{releaseTimes}[i] - releaseTimes[i - 1]$, and the $0^th$ keypress had a duration of $\text{releaseTimes}[0]$.
 
 Note that the same key could have been pressed multiple times during the test, and these multiple presses of the same key **may not** have had the same **duration**.
 

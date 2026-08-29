@@ -51,7 +51,7 @@ The two-dimensional list `cnt` has one row per player and eleven columns for col
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The two-dimensional list `cnt` has one row per player and el... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The set `s` stores player identifiers that have already satisfied the winning co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count with a dictionary:** A map keyed by `(pl:** - **Count with a dictionary:** A map keyed by `(player, color)` supports arbitrary color identifiers and uses space only for observed pairs. It has the same expected $O(p)$ time but more hashing overhead than the tiny fixed table.
+- **Count with a dictionary:** A map keyed by `(player, color)` supports arbitrary color identifiers and uses space only for observed pairs. It has the same expected $O(p)$ time but more hashing overhead than the tiny fixed table.
 - **Count first, inspect later:** Build all frequencies, then test whether `max(cnt[i]) > i` for every player. This is also correct and remains $O(p+n)$ because there are only eleven colors, but the source recognizes winners during the input scan.
 - **Track only total picks per player:** This is incorrect because picks of different colors cannot be combined. The winning threshold must be reached within one color.
 - **Increment a numeric answer at every qualifying record:** This overcounts a player after they have already won. A Boolean winner array or a set is needed to preserve one contribution per player.
@@ -97,8 +97,8 @@ The set `s` stores player identifiers that have already satisfied the winning co
 - **Color zero and color ten:** Both are valid endpoints and directly index the first and last columns of the eleven-entry row.
 - **Repeated identical records:** Each represents another picked ball and must increment the frequency. Duplicates are data, not records to deduplicate.
 - **Small fixed player limit:** Although $n$ is at most ten, the algorithm does not brute-force subsets or outcomes. It scales linearly in the number of pick records and makes the threshold logic transparent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

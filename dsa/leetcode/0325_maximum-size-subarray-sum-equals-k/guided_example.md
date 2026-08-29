@@ -83,7 +83,7 @@ Repeated prefix sums are common when the array contains positive and negative va
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `d` maps each prefix-sum value to the earlies... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,9 +128,9 @@ This initialization is also important when `k = 0`. A zero-sum prefix ending at 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all starts and ends:** There are $n(:** - **Enumerate all starts and ends:** There are $n(n+1)/2$ subarrays. Prefix sums can make each sum query $O(1)$, but enumerating all pairs still takes $O(n^2)$ time, which is too large for $n$ up to $2\cdot10^5$.
-- **- **Sliding window:** A two-pointer window works w:** - **Sliding window:** A two-pointer window works when all numbers are nonnegative because expanding cannot decrease the sum and shrinking cannot increase it. Here negative values break that monotonic behavior, so a window can skip valid answers. Prefix differences impose no positivity requirement.
-- **- **Store the latest prefix index:** This is appro:** - **Store the latest prefix index:** This is appropriate for some minimum-length objectives, but it is wrong here. The earliest matching prefix always yields the longest subarray for a fixed end.
+- **Enumerate all starts and ends:** There are $n(n+1)/2$ subarrays. Prefix sums can make each sum query $O(1)$, but enumerating all pairs still takes $O(n^2)$ time, which is too large for $n$ up to $2\cdot10^5$.
+- **Sliding window:** A two-pointer window works when all numbers are nonnegative because expanding cannot decrease the sum and shrinking cannot increase it. Here negative values break that monotonic behavior, so a window can skip valid answers. Prefix differences impose no positivity requirement.
+- **Store the latest prefix index:** This is appropriate for some minimum-length objectives, but it is wrong here. The earliest matching prefix always yields the longest subarray for a fixed end.
 
 ---
 

@@ -57,7 +57,7 @@ Finally, the intermediate result is a set, so it cannot contain duplicate entrie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider any value `x` that appears in the returned list.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,9 +92,9 @@ Sets are not used here to preserve the arrays' encounter order. Their iteration 
 
 ## 6. Traps This Instance Exposes
 
-- **- **One set from the smaller input:** Store the di:** - **One set from the smaller input:** Store the distinct values of the shorter array, scan the other array, and add matches to a result set or remove each match after output. This can use $O(\min(n,m))$ membership storage plus output, matching the manifest summary, but it is not the checked-in source.
-- **- **Sort and use two pointers:** Sort both arrays,:** - **Sort and use two pointers:** Sort both arrays, advance the pointer at the smaller value, and emit equal values while skipping duplicates. This avoids hash assumptions but costs $O(n\log n+m\log m)$ time and may mutate the inputs if sorting is done in place.
-- **- **Boolean presence table:** Because values lie f:** - **Boolean presence table:** Because values lie from `0` to `1000`, a fixed table can record membership from one array and a second state can prevent duplicate output. It provides deterministic linear scanning time and bounded storage, but it relies on the small value range and generalizes poorly to arbitrary integers.
+- **One set from the smaller input:** Store the distinct values of the shorter array, scan the other array, and add matches to a result set or remove each match after output. This can use $O(\min(n,m))$ membership storage plus output, matching the manifest summary, but it is not the checked-in source.
+- **Sort and use two pointers:** Sort both arrays, advance the pointer at the smaller value, and emit equal values while skipping duplicates. This avoids hash assumptions but costs $O(n\log n+m\log m)$ time and may mutate the inputs if sorting is done in place.
+- **Boolean presence table:** Because values lie from `0` to `1000`, a fixed table can record membership from one array and a second state can prevent duplicate output. It provides deterministic linear scanning time and bounded storage, but it relies on the small value range and generalizes poorly to arbitrary integers.
 
 ---
 

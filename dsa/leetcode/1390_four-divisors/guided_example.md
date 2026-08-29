@@ -66,7 +66,7 @@ For $x=4$, candidate 2 is the square root. It is counted once, producing three d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `while i <= x // i` is an integer-safe form of $i^2\le x$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ It could stop early once `cnt > 4` because the count can never decrease, but the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime-factor classification:** Factor $x$ and :** - **Prime-factor classification:** Factor $x$ and test whether its exponent pattern is either three or one-plus-one. It reaches a similar square-root bound but requires careful prime bookkeeping.
+- **Prime-factor classification:** Factor $x$ and test whether its exponent pattern is either three or one-plus-one. It reaches a similar square-root bound but requires careful prime bookkeeping.
 - **Sieve preprocessing:** Precompute divisor counts and sums for every value through $V$, then answer each array element in constant time. It can help for many inputs but uses $O(V)$ space.
 - **Precompute $p^3$ and $pq$ forms:** Generate primes and map all four-divisor values to their sums. It leverages the classification but is more elaborate for a single array.
 - **Early exit after count exceeds four:** Safe because divisor count only grows, though the exact code scans the full range.
@@ -115,8 +115,8 @@ It could stop early once `cnt > 4` because the count can never decrease, but the
 - **More than four divisors:** Full enumeration raises `cnt` beyond four, and the entire sum is discarded.
 - **Duplicate array values:** Each occurrence contributes separately.
 - **Integer loop bound:** `i <= x // i` avoids floating-point rounding and fixed-width multiplication overflow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

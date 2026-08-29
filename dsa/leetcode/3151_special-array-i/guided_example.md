@@ -68,9 +68,7 @@ If the generator reaches the end without a false value, every adjacency has been
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise(nums)` produces
-
-`(nums[0], nums[1])`, `(nums[1], ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +105,7 @@ This is not an accidental special case. It is exactly why the example with one e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index loop:** Iterate `i` from 1 and compare `:** - **Index loop:** Iterate `i` from 1 and compare `nums[i-1] % 2` with `nums[i] % 2`. It is equivalent and works on Python versions without `pairwise`.
+- **Index loop:** Iterate `i` from 1 and compare `nums[i-1] % 2` with `nums[i] % 2`. It is equivalent and works on Python versions without `pairwise`.
 - **Bitwise parity:** Compare `(a & 1) != (b & 1)`. This avoids modulo and directly reads the low bit.
 - **Expected parity by index:** Determine the first parity and require each index to alternate. It checks the same condition but is slightly less local.
 - **Build a parity list:** Mapping every value to 0 or 1 first uses $O(n)$ extra space without simplifying the one-pass check.
@@ -119,8 +117,8 @@ This is not an accidental special case. It is exactly why the example with one e
 - **First violation:** Returning immediately is safe because the definition requires every adjacency to pass.
 - **Empty array outside the contract:** `all(pairwise([]))` would also return true vacuously, though the source guarantees at least one element.
 - **Input preservation:** Lazy comparison reads values only and does not reorder or overwrite them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

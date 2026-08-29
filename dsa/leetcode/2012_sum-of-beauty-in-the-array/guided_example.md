@@ -73,7 +73,7 @@ There is no need to store a matching prefix-maximum array. The forward loop enco
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `right[i]` stores the minimum of `nums[i:]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ After testing index `i`, the update `l = max(l, nums[i])` prepares the prefix ma
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-max and suffix-min arrays:** Store both:** - **Prefix-max and suffix-min arrays:** Store both sides explicitly; still $O(N)$ time but uses another $O(N)$ array instead of rolling `l`.
+- **Prefix-max and suffix-min arrays:** Store both sides explicitly; still $O(N)$ time but uses another $O(N)$ array instead of rolling `l`.
 - **Scan all left and right values per index:** Direct but takes $O(N^2)$ time.
 - **Monotonic structures:** Unnecessary because static prefix and suffix extrema are simpler.
 - **Strictly increasing array:** Every eligible index has beauty two, so total is $2(N-2)$.
@@ -123,8 +123,8 @@ After testing index `i`, the update `l = max(l, nums[i])` prepares the prefix ma
 - **Update order:** Test with current excluded from `l`, then incorporate it.
 - **Right index:** Use `right[i+1]`, not `right[i]`.
 - **Input preservation:** The method creates a separate suffix array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{word}[i:n]=\texttt{word}[0:n-i].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ If they match, the missing final $i$ characters can be chosen during append oper
 
 ## 6. Traps This Instance Exposes
 
-- **- **Z-function:** It computes the exact longest pr:** - **Z-function:** It computes the exact longest prefix match beginning at every offset in $O(N)$ time and $O(N)$ space. Testing multiples of $k$ then has no collision risk and matches the algorithm described by the manifest, but it is not the protected implementation.
+- **Z-function:** It computes the exact longest prefix match beginning at every offset in $O(N)$ time and $O(N)$ space. Testing multiples of $k$ then has no collision risk and matches the algorithm described by the manifest, but it is not the protected implementation.
 - **KMP prefix function:** Borders can also be derived deterministically in linear time, though mapping them to the first reachable multiple of $k$ requires care.
 - **Direct slicing:** Comparing `word[i:]` with `word[:-i]` is simple but can take $O(N^2)$ total time when $k$ is small, which is unsuitable for $N$ up to one million.
 - **Double hashing:** Using two independent moduli makes collision probability dramatically smaller but still does not produce a mathematical equality proof.
@@ -101,8 +99,8 @@ If they match, the missing final $i$ characters can be chosen during append oper
 - **Offsets not divisible by $k$:** They are irrelevant because no whole number of operations removes that many leading positions.
 - **Length-one word:** With $k=1$, the loop is empty and the correct answer is one.
 - **Highly repetitive word:** Many hashes may match, but increasing offset order guarantees the earliest reachable candidate is returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

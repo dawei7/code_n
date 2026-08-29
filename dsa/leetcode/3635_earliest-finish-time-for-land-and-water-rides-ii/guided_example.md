@@ -69,7 +69,7 @@ Therefore, among all first rides, only the one with earliest completion can be p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix a second ride with opening `a` and duration `t`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The best second ride is not necessarily the one opening earliest or lasting shor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all ride pairs:** Correct but `O(nm):** - **Enumerate all ride pairs:** Correct but `O(nm)`, infeasible at 50,000 rides per category.
+- **Enumerate all ride pairs:** Correct but `O(nm)`, infeasible at 50,000 rides per category.
 - **Sort by completion time:** Unnecessary because a linear minimum scan suffices.
 - **Precompute all finishes:** It uses extra arrays without improving the result.
 - **One ride per category:** The method compares the two possible orders.
@@ -124,8 +124,8 @@ The best second ride is not necessarily the one opening earliest or lasting shor
 - **Paired arrays:** Equal lengths make `zip` preserve every ride.
 - **Input preservation:** No array is sorted or modified.
 - **Missing `List` import:** A standalone module must provide it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

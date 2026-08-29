@@ -64,11 +64,7 @@ No separate reversal of `ans` is needed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source calls
-
-`nums.sort()`
-
-which mutates `nums` into n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +116,7 @@ The result is `[100, 93, 84]`, already strictly descending.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deduplicate with a set, then sort:** `sorted(s:** - **Deduplicate with a set, then sort:** `sorted(set(nums), reverse=true)[:k]` implements the manifest summary in expected $O(n + U \log U)$ time and $O(U)$ explicit space. It avoids sorting duplicate positions but creates a hash set.
+- **Deduplicate with a set, then sort:** `sorted(set(nums), reverse=true)[:k]` implements the manifest summary in expected $O(n + U \log U)$ time and $O(U)$ explicit space. It avoids sorting duplicate positions but creates a hash set.
 - **Keep a size-$k$ min-heap:** After deduplication, retain only the largest $k$ values in $O(n + U \log k)$ expected time. This can help when $k \ll U$, but the final heap still must be sorted descending for the required output.
 - **Repeatedly search for the next maximum:** Performing a fresh scan for every chosen value can cost $O(nk)$ time and needs additional logic to exclude duplicates.
 - **All values distinct:** No duplicate check succeeds. The algorithm returns the last $k$ sorted values in reverse order.
@@ -130,8 +126,8 @@ The result is `[100, 93, 84]`, already strictly descending.
 - **Duplicate boundary:** Comparing with `nums[i+1]` is safe only because of the `i + 1 < n` guard. At the rightmost index there is no already-scanned neighbor.
 - **Input mutation:** Callers that need the original array order would have to pass a copy or use a nonmutating sorted expression. The exact method sorts `nums` in place.
 - **Hypothetical nonpositive values:** Choosing all available slots would no longer be automatically optimal. The current reasoning is valid because the contract guarantees every element is positive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

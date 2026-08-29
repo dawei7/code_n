@@ -71,7 +71,7 @@ The constructor establishes this with `p = 0` and positive counts. `next` preser
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `p` is the index of the first run that may still have output... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Under the pointer invariant, an in-range current run always has positive count, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Demand parsing:** Keep an index into the compr:** - **Demand parsing:** Keep an index into the compressed string and parse the next run only when the current count reaches zero. Uses constant iterator state beyond the stored input.
+- **Demand parsing:** Keep an index into the compressed string and parse the next run only when the current count reaches zero. Uses constant iterator state beyond the stored input.
 - **Fully uncompress:** Makes `next` simple but takes $O(E)$ time and space and fails for counts near $10^9$.
 - **Regex precomputation:** Split letters and counts into parallel arrays. Similar $O(C)$ storage, with more parsing machinery.
 - **Multi-digit count:** Decimal accumulation must read all consecutive digits; treating digits individually is incorrect.
@@ -125,8 +125,8 @@ Under the pointer invariant, an in-range current run always has positive count, 
 - **Positive-count guarantee:** Prevents constructor-created empty runs from violating the pointer invariant.
 - **Short-circuit bound check:** Pointer range is tested before indexing the current pair.
 - **Space fidelity:** Run precomputation is $O(C)$, not $O(1)$, even though it is exponentially smaller than a possible $O(E)$ expansion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

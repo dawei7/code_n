@@ -57,7 +57,7 @@ After every string has been processed, each dictionary value is one complete ana
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `d` maps each signature to the list of original strings havi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ If two strings are anagrams, their character multisets are equal, sorting produc
 
 ## 6. Traps This Instance Exposes
 
-- **- **26-letter frequency tuple:** Count each lowerc:** - **26-letter frequency tuple:** Count each lowercase English letter and use the 26 counts as a tuple key. It avoids per-string sorting and achieves expected $O(C)$ time, matching the manifest's intended bound.
+- **26-letter frequency tuple:** Count each lowercase English letter and use the 26 counts as a tuple key. It avoids per-string sorting and achieves expected $O(C)$ time, matching the manifest's intended bound.
 - **Prime-product signature:** Assign primes to letters and multiply. It risks enormous integers or overflow in fixed-width languages and is less transparent than a count tuple.
 - **Compare every pair:** Testing anagram equality between strings leads to roughly quadratic comparisons and redundant character work.
 - **Empty string:** Its canonical sorted key is the empty string, so all empty inputs group together automatically.
@@ -106,8 +106,8 @@ If two strings are anagrams, their character multisets are equal, sorting produc
 - **Lowercase guarantee:** A count-signature alternative can use exactly 26 slots. The sorting method itself would also work for broader comparable characters.
 - **Input preservation:** Neither the outer list nor its immutable strings are modified.
 - **Missing standalone import:** `defaultdict` must be supplied by the runtime or imported from `collections` for this exact file to execute.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

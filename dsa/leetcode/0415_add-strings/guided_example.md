@@ -61,7 +61,7 @@ Converting one character such as `'7'` to the small integer `7` is not convertin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The two strings need not have equal lengths.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The digit is converted back to text with `str(v)` before being appended. As a re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert both full strings to integers:** This :** - **Convert both full strings to integers:** This violates the explicit contract and may rely on arbitrary-precision library behavior the exercise asks the solution to implement.
+- **Convert both full strings to integers:** This violates the explicit contract and may rely on arbitrary-precision library behavior the exercise asks the solution to implement.
 - **Prepend each new digit to a string:** It mirrors written order but is inefficient with immutable strings because every prepend can copy the accumulated result. A list plus one reversal is linear.
 - **Pad the shorter input with leading zeros:** This can simplify indexing and still be correct, but it allocates extra strings unnecessarily. Conditional zero digits provide the same alignment in constant auxiliary state beyond the result.
 - **Use character-code subtraction instead of `int` per digit:** `ord(ch) - ord('0')` is equivalent and avoids the digit conversion helper. Both respect the prohibition on converting the complete input.
@@ -117,8 +117,8 @@ The digit is converted back to text with `str(v)` before being appended. As a re
 - **Long chains of carries:** Inputs such as `"9999" + "1"` propagate `c = 1` across every column; the invariant handles each independently.
 - **Normalized input guarantee:** Except for `"0"`, inputs have no leading zeros. The algorithm would still compute the numeric sum if leading zeros were present, but normalization of the returned representation relies on the stated contract.
 - **Maximum-length inputs:** Work and storage grow linearly with the number of digits; no recursion or whole-number conversion risks numeric overflow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -71,7 +71,7 @@ If both tests succeed, `left + x + right[j + 1]` is the minimum mountain-triplet
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `left` starts at positive infinity.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The forward loop examines every index as a possible middle. Consequently, it eva
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all triples:** Three nested loops ma:** - **Enumerate all triples:** Three nested loops match the definition directly and take $O(n^3)$ time. This can work for very small inputs, but it repeatedly rechecks the same left and right values.
+- **Enumerate all triples:** Three nested loops match the definition directly and take $O(n^3)$ time. This can work for very small inputs, but it repeatedly rechecks the same left and right values.
 - **Fix the middle and scan both sides:** For every $j$, scan the prefix for a valid minimum and the suffix for another. This improves the structure of the reasoning but still takes $O(n^2)$ time because the side scans are repeated.
 - **Prefix and suffix arrays on both sides:** Storing a complete prefix-minimum array as well as `right` also gives $O(n)$ time, but it uses another $O(n)$ array. The running `left` variable supplies the needed prefix information with constant extra storage.
 - **Equal values around the peak:** Conditions such as `left <= x` would be wrong. A side equal to the middle violates the strict mountain inequalities, so the implementation correctly uses `<` twice.
@@ -122,8 +122,8 @@ The forward loop examines every index as a possible middle. Consequently, it eva
 - **Duplicate minima:** The algorithm stores values rather than indices, but this is safe. Any occurrence contributing to `left` is strictly before the middle, and any occurrence contributing to `right[j + 1]` is strictly after it.
 - **No valid triplet:** Monotone arrays and arrays without a value having smaller elements on both sides leave `ans` unchanged, producing the required `-1`.
 - **Negative infinity is unnecessary:** Array values are finite and the task minimizes sums, so positive infinity is the correct marker for “no value seen” and “no answer found.”
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

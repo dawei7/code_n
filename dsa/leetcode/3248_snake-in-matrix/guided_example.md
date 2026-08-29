@@ -51,7 +51,7 @@ The snake starts at identifier zero, which corresponds to coordinates `(0,0)`. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The snake starts at identifier zero, which corresponds to co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each legal command changes exactly one coordinate by one:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track the identifier directly:** Add minus $n$:** - **Track the identifier directly:** Add minus $n$, plus $n$, minus one, or plus one for up, down, left, and right. This uses one scalar and exactly matches the manifest summary, with the same $O(c)$ time and $O(1)$ space.
+- **Track the identifier directly:** Add minus $n$, plus $n$, minus one, or plus one for up, down, left, and right. This uses one scalar and exactly matches the manifest summary, with the same $O(c)$ time and $O(1)$ space.
 - **Direction dictionary:** Map each complete command to a coordinate pair or identifier delta. This can make the transition table data-driven, though four match cases are already clear.
 - **Simulate an actual matrix:** Allocating cell values or marking visited locations is unnecessary because only the final position matters.
 - **Count commands by direction:** Summing the number of ups, downs, lefts, and rights also yields the final coordinates under legal input. Sequential processing is simpler and remains linear.
@@ -97,8 +97,8 @@ Each legal command changes exactly one coordinate by one:
 - **First-character dispatch:** It is safe only because the four legal command strings have distinct initial letters. If new commands with shared initials were added, full-string matching would be necessary.
 - **Illegal command:** No match case would run, effectively treating it as no movement. The contract guarantees this situation never occurs; the source does not validate or raise an error.
 - **Illegal out-of-bounds path:** The exact code would allow negative or oversized coordinates and return an invalid identifier. Correctness is scoped to the explicit boundary guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

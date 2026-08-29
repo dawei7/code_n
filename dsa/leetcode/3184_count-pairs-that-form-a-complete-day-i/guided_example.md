@@ -73,7 +73,7 @@ This order enforces $i<j$ and prevents pairing an element with itself.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` stores frequencies of remainders among values already ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ For 72, 48, and 24, all remainders are zero. Their successive contributions are 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** $O(n^2)$ is feasible for l:** - **Check every pair:** $O(n^2)$ is feasible for length 100 but unnecessary.
+- **Check every pair:** $O(n^2)$ is feasible for length 100 but unnecessary.
 - **Fixed array of 24 counts:** Avoids hash overhead and makes constant space explicit.
 - **Count classes after one pass:** Combine $cnt[r]cnt[24-r]$ and use combinations for 0 and 12; correct but needs careful double-counting.
 - **Remainder zero:** Complements itself.
@@ -130,8 +130,8 @@ For 72, 48, and 24, all remainders are zero. Their successive contributions are 
 - **Update order:** Querying before increment prevents self-pairing.
 - **i less than j:** Streaming order enforces it automatically.
 - **Exact multiple:** Any positive multiple of 24 qualifies, not only 24.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

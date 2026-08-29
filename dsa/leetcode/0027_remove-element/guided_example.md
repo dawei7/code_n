@@ -63,7 +63,7 @@ The value is appended to the logical prefix and the next destination advances. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes `k = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The loop variable `x` receives the current value before the body writes anything
 
 ## 6. Traps This Instance Exposes
 
-- **- **Swap with the active tail:** On an unwanted va:** - **Swap with the active tail:** On an unwanted value, replace it with the final unchecked value and shrink the active range. This can reduce writes when removals are rare but does not preserve order.
+- **Swap with the active tail:** On an unwanted value, replace it with the final unchecked value and shrink the active range. This can reduce writes when removals are rare but does not preserve order.
 - **List comprehension or filtering:** It is concise but allocates $O(n)$ additional storage and does not implement the requested in-place prefix contract by itself.
 - **Repeated deletion:** Removing individual Python-list elements shifts suffixes and can require $O(n^2)$ total time.
 - **Empty input:** The loop performs no work and returns zero.
@@ -110,8 +110,8 @@ The loop variable `x` receives the current value before the body writes anything
 - **`val` outside the array's value range:** No element matches, so the full array remains meaningful.
 - **Order:** This exact source preserves relative order even though the judge does not require it.
 - **Tail:** Never inspect positions at or beyond the returned `k` as part of the filtered result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

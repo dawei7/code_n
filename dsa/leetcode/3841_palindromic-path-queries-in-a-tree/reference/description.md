@@ -10,7 +10,7 @@ You are also given a string array `queries`, where each $\text{queries}[i]$ is e
 
 - $"query u_{i} v_{i}"$: Determine whether the string formed by the characters on the **unique** path from $u_{i}$ to $v_{i}$ (inclusive) can be **rearranged** into a **palindrome**.
 
-Return a boolean array `answer`, where $\text{answer}[j]$ is `true` if the $$j^{\text{th}}$$ query of type $"query u_{i} v_{i}"​​​​​​​$ can be rearranged into a **palindrome**, and `false` otherwise.
+Return a boolean array `answer`, where $\text{answer}[j]$ is `true` if the $j^{\text{th}}$ query of type $"query u_{i} v_{i}"$ can be rearranged into a **palindrome**, and `false` otherwise.
 
 ### 2. Function Contract
 
@@ -88,7 +88,7 @@ Thus, $answer = [false, false, true]$.
 
 - The input is generated such that `edges` represents a valid tree.
 
-- $1 \le \text{queries.length} \le 5 * 10^{4}$​​​​​​​
+- $1 \le \text{queries.length} \le 5 * 10^{4}$
 
 		- $\text{queries}[i] = "update u_{i} c"$ or
 

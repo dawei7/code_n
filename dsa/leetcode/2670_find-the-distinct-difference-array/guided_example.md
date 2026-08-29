@@ -70,7 +70,7 @@ Repeated occurrences do not increase set size, which is precisely the meaning of
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Set `s` begins empty.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ This sentinel-style entry makes the same formula valid at every index.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Suffix frequency map updated forward:** Start :** - **Suffix frequency map updated forward:** Start with all counts, remove current value, and track distinct suffix size while building prefix set; also $O(n)$.
+- **Suffix frequency map updated forward:** Start with all counts, remove current value, and track distinct suffix size while building prefix set; also $O(n)$.
 - **Rebuild prefix and suffix sets per index:** Correct but $O(n^2)$.
 - **Frequency arrays:** Values are bounded by 50, so fixed arrays can replace sets.
 - **Single element:** Prefix distinct count is one, empty suffix count zero, result `[1]`.
@@ -119,8 +119,8 @@ This sentinel-style entry makes the same formula valid at every index.
 - **Negative difference:** It is valid and must not be clamped.
 - **Repeated prefix value:** Set size remains unchanged.
 - **Input preservation:** No mutation or sorting occurs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

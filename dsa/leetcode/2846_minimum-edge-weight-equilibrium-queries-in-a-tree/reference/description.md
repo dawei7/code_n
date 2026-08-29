@@ -24,7 +24,7 @@ that:
 
 - The path from $a_{i}$ to $b_{i}$ is a sequence of **distinct** nodes starting with node $a_{i}$ and ending with node $b_{i}$ such that every two adjacent nodes in the sequence share an edge in the tree.
 
-Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the answer to the* $$i^{\text{th}}$$ *query.*
+Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the answer to the* $i^{\text{th}}$ *query.*
 
 ### 4. Examples
 

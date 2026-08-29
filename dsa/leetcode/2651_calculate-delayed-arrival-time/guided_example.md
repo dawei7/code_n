@@ -83,7 +83,7 @@ If the sum is 30, remainder produces six, representing 06:00 on the following da
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an arrival at 15 delayed by five hours, the sum is 20, a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ Python's `% 24` returns exactly this $r$ for the positive input sum.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional subtraction:** Add the inputs and :** - **Conditional subtraction:** Add the inputs and subtract 24 if the sum is at least 24; correct under current bounds but less general.
+- **Conditional subtraction:** Add the inputs and subtract 24 if the sum is at least 24; correct under current bounds but less general.
 - **Repeated subtraction loop:** Handles arbitrary delays but takes time proportional to crossed days, unlike modulo.
 - **Date/time library:** Unnecessary because the problem contains only whole-hour cyclic arithmetic.
 - **Exact sum below 24:** Modulo leaves it unchanged.
@@ -137,8 +137,8 @@ Python's `% 24` returns exactly this $r$ for the positive input sum.
 - **Arrival 23 plus one:** Wraps to zero.
 - **Output range:** Remainder guarantees a value from zero through 23.
 - **Positive inputs:** Python modulo has the straightforward nonnegative-remainder behavior used by the proof.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

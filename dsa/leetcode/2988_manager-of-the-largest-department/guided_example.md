@@ -61,7 +61,7 @@ The CTE gives the maximum subquery a relation whose rows are already department 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The scalar subquery `SELECT MAX(cnt) FROM T` calculates the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Logically, the join is evaluated for all departments before the `WHERE` maximum 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Filter managers before counting:** This counts:** - **Filter managers before counting:** This counts manager rows rather than all employees and is incorrect.
+- **Filter managers before counting:** This counts manager rows rather than all employees and is incorrect.
 - **`ORDER BY COUNT(*) DESC LIMIT 1`:** It returns only one department and loses ties.
 - **`DENSE_RANK` over department counts:** Ranking grouped counts and filtering rank one is an equivalent tie-preserving design.
 - **Correlated count per manager:** It can work but may repeat department-count work for multiple rows.
@@ -112,8 +112,8 @@ Logically, the join is evaluated for all departments before the `WHERE` maximum 
 - **Multiple managers in one department:** The exact query returns multiple names because it performs no deduplication or tie-break.
 - **Exact position spelling:** Only `'Manager'` matches; other position strings are not treated as managers.
 - **Output order:** `ORDER BY 2` means ascending `dep_id`, not manager name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

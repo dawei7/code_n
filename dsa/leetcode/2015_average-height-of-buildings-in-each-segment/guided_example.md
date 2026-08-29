@@ -64,7 +64,7 @@ If one building ends exactly where another begins, the interval before the coord
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `m` is the number of buildings active immediately to the rig... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ This retained gap boundary later prevents equal-average occupied regions on oppo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate-by-coordinate simulation:** Impossi:** - **Coordinate-by-coordinate simulation:** Impossible when endpoints reach $10^8$; only event coordinates matter.
+- **Coordinate-by-coordinate simulation:** Impossible when endpoints reach $10^8$; only event coordinates matter.
 - **Store active heights in a multiset:** Unnecessary because only their sum and count determine the average.
 - **Sort explicit start/end events:** Equivalent to difference maps but must combine simultaneous events before describing the next interval.
 - **Several events at one coordinate:** Dictionary accumulation applies their net effect together.
@@ -114,8 +114,8 @@ This retained gap boundary later prevents equal-average occupied regions on oppo
 - **Integer division:** `s // m` implements the specified truncation for positive heights.
 - **Any output order:** The source returns sorted street order, which is valid.
 - **Input preservation:** It builds event maps without sorting or modifying `buildings`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

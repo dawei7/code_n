@@ -59,7 +59,7 @@ After either branch, `ans += 1` records the single operation just performed. The
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `num1 >= num2`, the problem requires subtracting `num2`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ When one number is much larger, the same branch may run many times. Starting fro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Batched Euclidean divisions:** Add `larger // :** - **Batched Euclidean divisions:** Add `larger // smaller` to the answer and replace the larger number by its remainder. This computes the same count in $O(\log M)$ iterations and is the approach described by the editorial and manifest.
+- **Batched Euclidean divisions:** Add `larger // smaller` to the answer and replace the larger number by its remainder. This computes the same count in $O(\log M)$ iterations and is the approach described by the editorial and manifest.
 - **Recursive subtraction:** A recursive call after each operation mirrors the simulation but may require linear call-stack depth and can exceed Python's recursion limit.
 - **Breadth-first search:** There is only one legal successor for each nonterminal state, so graph search adds machinery without creating useful choices.
 - **One input starts at zero:** The answer is zero because the loop condition fails immediately.
@@ -109,8 +109,8 @@ When one number is much larger, the same branch may run many times. Starting fro
 - **Large answer safety:** Under the given upper bound of $10^5$, the counter easily fits ordinary integer ranges; Python integers are unbounded in any case.
 - **Input variables are local:** The method reassigns its integer parameters, but integers are immutable, so it does not mutate caller-owned objects.
 - **Manifest discrepancy:** The label says Optimal and summarizes batching, but the stored branch performs individual subtractions. The approach and bound above intentionally describe what the code actually executes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ For candidate 282, `cnt1` records two copies of digit 2 and one copy of digit 8.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one candidate `x`, the code copies it to `y` and repeate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The same digit may therefore be reused only through distinct occurrences in `dig
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate three array indices:** This directly:** - **Enumerate three array indices:** This directly constructs arrangements but costs $O(n^3)$ before deduplication. Candidate enumeration exploits the fixed result domain.
+- **Enumerate three array indices:** This directly constructs arrangements but costs $O(n^3)$ before deduplication. Candidate enumeration exploits the fixed result domain.
 - **Backtracking over digit counts:** It can generate hundreds, tens, and even units positions without reusing unavailable digits, but needs a set or careful ordering to avoid duplicates.
 - **Store generated numbers in a set:** A set removes duplicates from index enumeration, followed by sorting. The exact method produces each numeric candidate only once and needs neither.
 - **No even digit:** Every candidate frequency test fails because its units digit is even, so the result is empty.
@@ -116,8 +116,8 @@ The same digit may therefore be reused only through distinct occurrences in `dig
 - **Missing counter keys:** Both counters treat missing digit counts as zero, making the ten-way comparison safe.
 - **Exactly three input elements:** The same logic applies; a candidate passes only if its multiset matches available elements.
 - **Fixed-domain assumption:** The $O(n)$ analysis relies on exactly three decimal digits and ten possible digit values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

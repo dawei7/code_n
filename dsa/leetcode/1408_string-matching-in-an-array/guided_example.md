@@ -72,7 +72,7 @@ The `and` operator short-circuits from left to right. When `i == j`, Python does
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the current candidate, this expression examines the arra... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ When the condition is true, `ans.append(s)` stores the original string. The algo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit nested loops:** Two ordinary loops pl:** - **Explicit nested loops:** Two ordinary loops plus `break` implement exactly the same method and may be easier for a beginner to debug. The generator with `any` is a concise version of that control flow.
+- **Explicit nested loops:** Two ordinary loops plus `break` implement exactly the same method and may be easier for a beginner to debug. The generator with `any` is a concise version of that control flow.
 - **Knuth-Morris-Pratt search:** Building an LPS table for each candidate makes each pairwise substring search linear in the text length. It improves the character-comparison bound but adds preprocessing code and state for the short maximum word length of 30.
 - **Suffix trie:** Inserting every suffix of every word allows candidates to be queried through trie paths. It avoids checking every pair directly but can use $O(nL^2)$ nodes in the worst case and is substantially more complex.
 - **Sort by length:** Processing shorter words first and comparing them only with longer words can skip impossible pairs. The uniqueness guarantee means equal-length distinct words cannot contain one another.
@@ -122,8 +122,8 @@ When the condition is true, `ans.append(s)` stores the original string. The algo
 - **Several containing words:** `any` stops at the first successful one, and the candidate is appended only once.
 - **Substring at an edge:** Matches at position zero or ending at the final character are ordinary valid substring matches and are recognized by `in`.
 - **Character order without contiguity:** Merely finding the same letters in order is insufficient. The use of `s in t` enforces adjacency.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

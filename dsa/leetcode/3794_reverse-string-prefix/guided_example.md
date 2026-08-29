@@ -70,7 +70,7 @@ For `s="abcdef"` and `k=4`, the original prefix positions are zero through three
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s[:k]` starts at the beginning and stops before index `k`, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The constraint `1<=k<=len(s)` guarantees both slices are valid. Python would tol
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a character list and swap:** Two po:** - **Convert to a character list and swap:** Two pointers can reverse the prefix, but conversion and joining still use $O(N)$ space in Python.
+- **Convert to a character list and swap:** Two pointers can reverse the prefix, but conversion and joining still use $O(N)$ space in Python.
 - **Reverse the suffix too:** Only `s[:k]` changes order.
 - **Use `s[:k+1]`:** Slice stops are exclusive; this would reverse one extra character.
 - **Drop `s[k:]`:** That would return only the prefix rather than the full string.
@@ -121,8 +121,8 @@ The constraint `1<=k<=len(s)` guarantees both slices are valid. Python would tol
 - **Lowercase constraint:** The slicing logic is independent of letter identity.
 - **Input preservation:** The original immutable string remains unchanged.
 - **Temporary allocations:** Concise slicing still has linear space cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

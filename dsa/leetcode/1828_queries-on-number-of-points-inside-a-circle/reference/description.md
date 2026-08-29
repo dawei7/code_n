@@ -1,12 +1,12 @@
 ### 1. Description
 
-You are given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ is the coordinates of the $$i^{\text{th}}$$ point on a 2D plane. Multiple points can have the **same** coordinates.
+You are given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ is the coordinates of the $i^{\text{th}}$ point on a 2D plane. Multiple points can have the **same** coordinates.
 
 You are also given an array `queries` where $\text{queries}[j] = [x_{j}, y_{j}, r_{j}]$ describes a circle centered at $(x_{j}, y_{j})$ with a radius of $r_{j}$.
 
-For each query $\text{queries}[j]$, compute the number of points **inside** the $$j^{\text{th}}$$ circle. Points **on the border** of the circle are considered **inside**.
+For each query $\text{queries}[j]$, compute the number of points **inside** the $j^{\text{th}}$ circle. Points **on the border** of the circle are considered **inside**.
 
-Return *an array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$$j^{\text{th}}$$* query*.
+Return *an array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$j^{\text{th}}$* query*.
 
 ### 2. Function Contract
 
@@ -45,7 +45,7 @@ queries[0] is green, queries[1] is red, queries[2] is blue, and queries[3] is pu
 
 - $\text{points}[i].length = 2$
 
-- $0 \le x_​​​​​​i, y_​​​​​​i \le 500$
+- $0 \le x_i, y_i \le 500$
 
 - $1 \le \text{queries.length} \le 500$
 

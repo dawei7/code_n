@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` people standing in a queue, and they numbered from `0` to $n - 1$ in **left to right** order. You are given an array `heights` of **distinct** integers where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ person.
+There are `n` people standing in a queue, and they numbered from `0` to $n - 1$ in **left to right** order. You are given an array `heights` of **distinct** integers where $\text{heights}[i]$ represents the height of the $i^{\text{th}}$ person.
 
 The objective is to compute `[3, 1, 2, 1, 1, 0]` from `{"heights": [10, 6, 8, 5, 11, 9]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ Distinct heights remove equality complications: each comparison is strictly shor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider a shorter height at the stack top.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ This explains the two contributions exactly: all popped shorter heights, plus at
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** For each viewer, scan righ:** - **Check every pair:** For each viewer, scan rightward while tracking intervening maxima. This can take $O(N^2)$ time.
+- **Check every pair:** For each viewer, scan rightward while tracking intervening maxima. This can take $O(N^2)$ time.
 - **Next-greater links:** One can precompute blocking relationships and follow visibility chains, but the monotonic stack computes counts directly in one pass.
 - **Strictly increasing heights left to right:** Each person sees every person until the first taller sequence behavior permits; the stack repeatedly pops shorter suffix heights, producing the correct growing counts.
 - **Strictly decreasing heights left to right:** Each person sees only the immediate next person, because that nearer person blocks all shorter people behind.
@@ -115,8 +115,8 @@ This explains the two contributions exactly: all popped shorter heights, plus at
 - **Distinct-height guarantee:** The exact comparisons rely on no equal heights. With duplicates, equality visibility and stack handling would need explicit policy.
 - **Amortized loop:** A person may pop many heights in one iteration, but those heights never reenter, keeping the full scan linear.
 - **Stack stores heights only:** Indices are unnecessary because the result is assigned to the current index and only height comparisons determine blocking.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

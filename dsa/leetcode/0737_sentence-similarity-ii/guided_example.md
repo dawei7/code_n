@@ -61,7 +61,7 @@ Unused positions are harmless. When there are no pairs, the array is empty and n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Union-find arrays are indexed by integers, while the problem... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ This path compression makes later lookups of the same component faster. The repr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Union by size or rank:** Store a size or rank :** - **Union by size or rank:** Store a size or rank per root and attach the smaller tree below the larger while retaining path compression. This preserves the same logic and gives the standard near-constant `alpha(w)` amortized operations.
-- **- **Graph plus DFS or BFS per sentence position:**:** - **Graph plus DFS or BFS per sentence position:** Build an adjacency list and search for a path whenever words differ. It is correct but may traverse much of the graph repeatedly, leading to `O(np)` work.
-- **- **Precompute graph components once:** DFS or BFS:** - **Precompute graph components once:** DFS or BFS each component and assign a component number to every word. This gives linear preprocessing and constant expected comparison lookups, and is an excellent alternative.
+- **Union by size or rank:** Store a size or rank per root and attach the smaller tree below the larger while retaining path compression. This preserves the same logic and gives the standard near-constant `alpha(w)` amortized operations.
+- **Graph plus DFS or BFS per sentence position:** Build an adjacency list and search for a path whenever words differ. It is correct but may traverse much of the graph repeatedly, leading to `O(np)` work.
+- **Precompute graph components once:** DFS or BFS each component and assign a component number to every word. This gives linear preprocessing and constant expected comparison lookups, and is an excellent alternative.
 
 ---
 

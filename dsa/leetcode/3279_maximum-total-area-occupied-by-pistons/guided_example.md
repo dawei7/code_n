@@ -51,7 +51,7 @@ At time zero, `res` is the sum of all positions. `diff` is the total slope: add 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At time zero, `res` is the sum of all positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Dictionary `delta` stores how the total slope changes at future event times with
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every second:** The period can be $2\:** - **Simulate every second:** The period can be $2\cdot10^6$ and there can be $10^5$ pistons, making direct simulation far too costly.
+- **Simulate every second:** The period can be $2\cdot10^6$ and there can be $10^5$ pistons, making direct simulation far too costly.
 - **Evaluate every piston at every event:** There are $O(n)$ events and pistons, causing $O(n^2)$ work. Slope deltas update the total in constant time per event.
 - **Use trigonometric formulas:** Motion is a triangular, not sinusoidal, wave; piecewise-linear events are exact and simpler.
 - **All pistons move up:** Initial slope is positive until the earliest top event, which the sweep reaches directly.
@@ -102,8 +102,8 @@ Dictionary `delta` stores how the total slope changes at future event times with
 - **Slope update ordering:** `res` advances using the old slope up to `cur`, then `diff` changes. Applying the delta first would incorrectly use the post-bounce direction during the interval before the bounce.
 - **Initial maximum:** `ans` is initialized before sweeping because a strictly decreasing total can be greatest at time zero, which may not otherwise appear as a positive-time event.
 - **Dictionary cancellation:** Opposite slope changes from different pistons at the same time can sum to zero. Keeping the event is harmless; the value is still checked at a legitimate linear-segment boundary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,11 +61,7 @@ For a one-character string, `pairwise(s)` produces no pairs and `all` of the emp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`all(a <= b for a, b in pairwise(s))`
-
-check... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +98,7 @@ For every length at least three, sorting is possible in at most three operations
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over strings:** Generate :** - **Breadth-first search over strings:** Generate every proper-substring sort until the target appears. This proves small cases but the state space and `O(N^2)` operations per state are far too large for `N=10^5`.
+- **Breadth-first search over strings:** Generate every proper-substring sort until the target appears. This proves small cases but the state space and `O(N^2)` operations per state are far too large for `N=10^5`.
 - **Try every single substring:** This can test whether one operation works but does not efficiently classify two or three operations. The endpoint necessity condition gives the one-operation answer directly.
 - **Compare with a sorted copy:** It detects the zero case and mismatch positions, but constructing the full target uses `O(N)` extra space and still does not by itself prove the operation count.
 - **First character is a minimum:** Sorting the suffix is legal even when other copies of the minimum occur later. The resulting sequence remains non-descending.
@@ -115,8 +111,8 @@ For every length at least three, sorting is possible in at most three operations
 - **All characters equal:** Every adjacent comparison succeeds, so zero is returned.
 - **Operation count versus performing operations:** The method proves the minimum and returns it; it intentionally does not mutate `s` or produce witness intervals.
 - **Import dependency:** The protected source relies on `itertools.pairwise`, which requires an execution environment where that name is imported and supported.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

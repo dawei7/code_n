@@ -51,7 +51,7 @@ A character beginning at an even position can never reach an odd position, and v
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A character beginning at an even position can never reach an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A character beginning at an even position can never reach an odd position, and v
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four fixed frequency arrays:** Count even and :** - **Four fixed frequency arrays:** Count even and odd characters in each string without slicing. This gives $O(n)$ time and $O(1)$ space and matches the manifest.
+- **Four fixed frequency arrays:** Count even and odd characters in each string without slicing. This gives $O(n)$ time and $O(1)$ space and matches the manifest.
 - **Two signed-difference arrays:** Increment for `s1` and decrement for `s2` in the parity-appropriate 26-slot array, then check for all zeros.
 - **Sort parity slices:** Comparing sorted groups is correct but takes $O(n\log n)$ time rather than linear counting.
 - **Strings already equal:** Their parity counters necessarily match, so zero operations is allowed.
@@ -97,8 +97,8 @@ A character beginning at an even position can never reach an odd position, and v
 - **Duplicate characters:** Counters retain multiplicity and do not confuse a repeated character with distinct values.
 - **Operations on both strings:** They do not alter the invariant or the reachability criterion.
 - **Slice space:** The fixed lowercase alphabet limits Counter size but does not eliminate the $O(n)$ temporary strings in the exact source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

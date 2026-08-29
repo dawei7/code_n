@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{i}]$ represents the center $(x_{i}, y_{i})$ and radius $r_{i}$ of the $$i^{\text{th}}$$ circle drawn on a grid, return *the **number of lattice points** **that are present inside **at least one** circle*.
+Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{i}]$ represents the center $(x_{i}, y_{i})$ and radius $r_{i}$ of the $i^{\text{th}}$ circle drawn on a grid, return *the **number of lattice points** **that are present inside **at least one** circle*.
 
 ### 2. Function Contract
 

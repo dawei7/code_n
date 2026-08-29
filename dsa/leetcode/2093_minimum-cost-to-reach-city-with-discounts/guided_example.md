@@ -66,7 +66,7 @@ The implementation does not perform decrease-key operations. It may push multipl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The heap `q` starts with `(0, 0, 0)`: zero cost, city 0, zer... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ This creates some useless heap entries but never treats an invalid path as an an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary Dijkstra by city only:** This discard:** - **Ordinary Dijkstra by city only:** This discards how many discounts remain and can prune a route that is more valuable later. The discount count must be part of the state.
+- **Ordinary Dijkstra by city only:** This discards how many discounts remain and can prune a route that is more valuable later. The discount count must be part of the state.
 - **Bellman-Ford:** All costs are nonnegative, so repeated global relaxation is unnecessary. Dijkstra is the natural shortest-path method.
 - **Dynamic programming by discount layers:** Repeated shortest-path passes can work but are less direct than one expanded-state Dijkstra.
 - **Push discounted edges conditionally:** Checking `k < discounts` before pushing avoids invalid layer `K + 1` entries while preserving the algorithm.
@@ -115,8 +115,8 @@ This creates some useless heap entries but never treats an invalid path as an an
 - **Multiple routes to one state:** The heap may contain duplicates, but only a strictly improving pop expands neighbors.
 - **Undirected highways:** Both adjacency directions are required because travel is allowed either way.
 - **Early destination return:** It occurs only after rejecting `k > discounts`, so an illegally over-discounted path can never be returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

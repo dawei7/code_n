@@ -65,7 +65,7 @@ The combined Boolean is added to `ans`. Python converts true to 1 and false to 0
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Three values are pairwise distinct only when all three pair ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Consider frequencies $a$, $b$, and $c$ for three distinct numeric values. Choosi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency-group formula:** Process distinct va:** - **Frequency-group formula:** Process distinct value groups of size `c` while tracking elements in earlier and later groups; add `left*c*right`. This matches the manifest and runs in $O(n)$ expected time after counting.
+- **Frequency-group formula:** Process distinct value groups of size `c` while tracking elements in earlier and later groups; add `left*c*right`. This matches the manifest and runs in $O(n)$ expected time after counting.
 - **Sort and group:** Sorting values makes group sizes contiguous, then the same combinatorial formula runs in $O(n\log n)$ time.
 - **Only two distinct values:** No pairwise-distinct triplet exists, so the answer is zero.
 - **All values distinct:** Every index triple qualifies, yielding $\binom{n}{3}$.
@@ -118,8 +118,8 @@ Consider frequencies $a$, $b$, and $c$ for three distinct numeric values. Choosi
 - **Index order:** The loops generate only increasing indices, so no division by $3!$ or duplicate-order correction is needed.
 - **Positive-value constraint:** It is irrelevant to comparisons; the same method would work for arbitrary comparable integers.
 - **Metadata mismatch:** The source is cubic brute-force enumeration, not linear grouping by value counts.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

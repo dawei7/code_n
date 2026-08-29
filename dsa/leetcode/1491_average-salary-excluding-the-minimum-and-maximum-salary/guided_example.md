@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of **unique** integers `salary` where $\text{salary}[i]$ is the salary of the $$i^{\text{th}}$$ employee.
+You are given an array of **unique** integers `salary` where $\text{salary}[i]$ is the salary of the $i^{\text{th}}$ employee.
 
 The objective is to compute `2500` from `{"salary": [4000, 3000, 1000, 2000]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,7 +71,7 @@ The function does not sort, overwrite, or otherwise mutate `salary`. The three b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `sum(salary)` iterates through the list and adds every integ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Even if duplicate extreme values were allowed, the formula would still subtract 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single explicit pass:** Maintain running total:** - **Single explicit pass:** Maintain running total, minimum, and maximum together, then apply the same formula. It has identical asymptotic bounds and one traversal, but more source code and initialization details.
+- **Single explicit pass:** Maintain running total, minimum, and maximum together, then apply the same formula. It has identical asymptotic bounds and one traversal, but more source code and initialization details.
 - **Sorting:** Sort salaries and average the middle slice. This is easy to visualize but takes $O(N \log N)$ time and may mutate the input or allocate a copy.
 - **Filtering by value:** Find both extremes, then sum values unequal to them. It is correct under uniqueness but requires additional passes and can become semantically wrong if a future contract allows tied extremes but excludes only one employee at each end.
 - **Smallest valid length:** With three salaries, one middle employee remains. The denominator is one, so the result is exactly that employee's salary as a float.
@@ -119,8 +119,8 @@ Even if duplicate extreme values were allowed, the formula would still subtract 
 - **Floating-point tolerance:** A repeating or non-binary-exact average is acceptable within the stated tolerance; rounding the result to an integer would not be acceptable.
 - **Hypothetical fewer than three values:** The denominator could be zero or negative, but those inputs are excluded by the contract.
 - **Large numeric total:** The bounded data is safe, and Python integer summation does not overflow fixed-width storage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

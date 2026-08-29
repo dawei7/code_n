@@ -68,7 +68,7 @@ For a prefix `"((("`, the depth values after the openings are one, two, and thre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `c == '('`, the source increments `d` because the scan ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The input is guaranteed to be a valid parentheses string. Consequently, `d` neve
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit stack:** Push each opening and pop ea:** - **Explicit stack:** Push each opening and pop each closing, tracking maximum stack size. It is correct but uses $O(N)$ space when one counter suffices.
+- **Explicit stack:** Push each opening and pop each closing, tracking maximum stack size. It is correct but uses $O(N)$ space when one counter suffices.
 - **Recursive expression parser:** It could derive nesting through call depth but solves much more than the problem asks and may use linear stack space.
 - **Count total parentheses only:** Total pairs do not reveal nesting; `()()()` has three pairs but depth one.
 - **Update before incrementing:** This would lag one level and undercount. The source increments `d` before comparing with `ans`.
@@ -118,8 +118,8 @@ The input is guaranteed to be a valid parentheses string. Consequently, `d` neve
 - **Valid-string guarantee:** It ensures depth never becomes negative and ends at zero.
 - **Malformed input:** The source does not validate it; that behavior lies outside the contract.
 - **Maximum length:** A linear scan and constant state easily handle the bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

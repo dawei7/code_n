@@ -60,7 +60,7 @@ For `s = "RLRRLLRLRL"`, the balance values are \(-1,0,-1,-2,-1,0,-1,0,-1,0\). Ze
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because the balance is zero whenever a piece ends, it can be... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The algorithm cuts at every such zero prefix. Consecutive zero boundaries define
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two explicit counters:** Track counts of `L` a:** - **Two explicit counters:** Track counts of `L` and `R` separately and cut when they are equal. This remains \(O(n)\) time and \(O(1)\) space, but the signed difference expresses the condition with one state variable.
+- **Two explicit counters:** Track counts of `L` and `R` separately and cut when they are equal. This remains \(O(n)\) time and \(O(1)\) space, but the signed difference expresses the condition with one state variable.
 - **Stack simulation:** Push one symbol and cancel it with the other. It can detect balance but uses up to \(O(n)\) memory for information a single integer already captures.
 - **Dynamic programming over cut positions:** Testing every balanced substring would be much more expensive. The zero-prefix characterization makes such optimization unnecessary.
 - **One balanced piece only:** If the running difference returns to zero only at the final character, the maximum is one.
@@ -111,8 +111,8 @@ The algorithm cuts at every such zero prefix. Consecutive zero boundaries define
 - **Even length:** Every balanced string has equal counts and therefore even length. The constraints need not state this separately because it follows from the guarantee.
 - **Invalid characters:** The exact `else` branch treats anything other than `L` as `R`. This is correct only because the input alphabet is guaranteed to be exactly those two characters.
 - **Returning boundaries:** If the task required the actual split, record the current index whenever `l` becomes zero. That would use \(O(ans)\) output space but would not change the greedy reasoning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

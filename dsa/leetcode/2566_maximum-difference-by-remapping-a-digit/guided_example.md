@@ -61,7 +61,7 @@ For `num = 11891`, replacing all ones with zero produces string `"00890"`, inter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The most significant digit `s[0]` is nonzero because `num` i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For `11891`, the first non-nine digit is `'1'`. Replacing every one by nine give
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every source and destination digit:** Test:** - **Try every source and destination digit:** Testing all 100 mappings for each endpoint is still constant in digit-alphabet size, but it repeats full scans and hides the simple place-value greedy rule.
+- **Try every source and destination digit:** Testing all 100 mappings for each endpoint is still constant in digit-alphabet size, but it repeats full scans and hides the simple place-value greedy rule.
 - **Arithmetic digit rebuilding:** Digits can be extracted and reconstructed numerically, but string replacement expresses “all occurrences” more directly.
 - **All digits are nine:** The maximum cannot increase; remapping nine to itself keeps `num` valid under the exactly-one-remapping rule.
 - **Leading zeros in the minimum:** They are explicitly allowed, and `int` discards them naturally when computing the numeric value.
@@ -113,8 +113,8 @@ For `11891`, the first non-nine digit is `'1'`. Replacing every one by nine give
 - **Single-digit number:** A digit below nine can become nine for the maximum and zero for the minimum; digit nine keeps nine as its maximum.
 - **Digit absent from the number:** Remapping an absent digit changes nothing and is allowed conceptually, but it cannot beat the greedy maximum or minimum.
 - **Different mappings:** The maximum and minimum constructions intentionally choose source digits independently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

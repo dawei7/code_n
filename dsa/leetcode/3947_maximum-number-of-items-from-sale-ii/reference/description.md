@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $$i^{\text{th}}$$ item. You are also given an integer `budget`.
+You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $i^{\text{th}}$ item. You are also given an integer `budget`.
 
 There are unlimited copies of each item available for purchase. You may buy any number of copies of any items such that the total cost of the purchased copies is at most `budget`.
 

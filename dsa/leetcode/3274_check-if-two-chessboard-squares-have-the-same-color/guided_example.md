@@ -51,7 +51,7 @@ The code does not explicitly convert each coordinate to a zero-based pair. Inste
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code does not explicitly convert each coordinate to a ze... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code does not explicitly convert each coordinate to a zero-based pair. Inste
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute each parity separately:** Convert colu:** - **Compute each parity separately:** Convert columns to indices and compare `(column + row) % 2` values. This is equally correct but uses a few more explicit steps.
+- **Compute each parity separately:** Convert columns to indices and compare `(column + row) % 2` values. This is equally correct but uses a few more explicit steps.
 - **Manhattan-distance parity:** Return whether `abs(dx) + abs(dy)` is even. It expresses the color-flip-per-step interpretation.
 - **Hard-coded color table:** An eight-by-eight Boolean table works but wastes space and obscures the general parity rule.
 - **Compare only rows or columns:** Either coordinate can flip color; both differences must be combined.
@@ -105,8 +105,8 @@ The code does not explicitly convert each coordinate to a zero-based pair. Inste
 - **Character subtraction before conversion:** Column letters need no dictionary because their code points are consecutive. Rows are digit characters, so converting them numerically makes their difference match board steps rather than code-point semantics by coincidence.
 - **Modulo rather than bitwise parity:** `(x+y) % 2` works for positive and negative sums. A bit test `((x+y)&1)==0` would also work in Python but can be less immediately readable for signed values.
 - **Validation omitted intentionally:** Indexing positions zero and one assumes two-character legal coordinates. The constraints prove that precondition, so defensive branches would not improve results on accepted inputs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

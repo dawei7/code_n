@@ -79,13 +79,7 @@ The rotation `"cdeab"` begins at index two of the doubled string.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Write the doubled string as:
-
-$$
-s+s=P+Q+P+Q.
-$$
-
-The length... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,9 +122,9 @@ Thus, among equal-length strings, substring membership in `s+s` is equivalent to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit KMP search:** Search `goal` in `s+s` :** - **Explicit KMP search:** Search `goal` in `s+s` with a longest-prefix-suffix table, guaranteeing $O(n)$ time and using $O(n)$ table space without relying on library search behavior.
-- **- **Two-Way string matching:** It can provide line:** - **Two-Way string matching:** It can provide linear worst-case search with constant auxiliary matching state, though implementation is more involved.
-- **- **Simulate every shift:** Construct and compare :** - **Simulate every shift:** Construct and compare up to `n` rotations, costing $O(n^2)$ time for immutable strings.
+- **Explicit KMP search:** Search `goal` in `s+s` with a longest-prefix-suffix table, guaranteeing $O(n)$ time and using $O(n)$ table space without relying on library search behavior.
+- **Two-Way string matching:** It can provide linear worst-case search with constant auxiliary matching state, though implementation is more involved.
+- **Simulate every shift:** Construct and compare up to `n` rotations, costing $O(n^2)$ time for immutable strings.
 
 ---
 

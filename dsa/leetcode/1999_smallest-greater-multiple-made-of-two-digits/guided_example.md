@@ -57,7 +57,7 @@ If the digits are equal, only one child is enqueued, avoiding two identical bran
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `digit1 > digit2`, the method recursively calls itself wi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ A visited set or special handling of leading zero could eliminate duplication, b
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS over remainders modulo `k`:** Tracks at mo:** - **BFS over remainders modulo `k`:** Tracks at most $k$ states and can reconstruct the smallest digit string, avoiding duplicate full-number generation; the strict-greater and 32-bit conditions need careful handling.
+- **BFS over remainders modulo `k`:** Tracks at most $k$ states and can reconstruct the smallest digit string, avoiding duplicate full-number generation; the strict-greater and 32-bit conditions need careful handling.
 - **Enumerate multiples of `k`:** Test $2k,3k,\ldots$ until the limit, which can require roughly $2^{31}/k$ checks.
 - **Depth-first generation:** Does not naturally visit values in numeric order and may find a larger answer first.
 - **Both digits zero:** Immediate -1 because only zero can be formed.
@@ -108,8 +108,8 @@ A visited set or special handling of leading zero could eliminate duplication, b
 - **Boundary value $2^{31}-1$:** Allowed because rejection uses strictly greater than the limit.
 - **Duplicate queue values:** They affect efficiency, not correctness.
 - **Imported deque:** The exact source assumes `deque` is available in the execution environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

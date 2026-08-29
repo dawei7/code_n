@@ -6,7 +6,7 @@ First, observe that the prime factors of $t$ can only be $2$, $3$, $5$, and $7$,
 
 Now consider how to construct the answer.
 
-The problem requires finding the smallest number that is **greater than or equal to** the given string $\textit{num}$. For example, suppose $\textit{num} = 111$. If we keep the most significant digit equal to $1$, then the second digit cannot be smaller than its original value; otherwise, the constructed number would become smaller than $\textit{num}$. However, once we increase a digit, all subsequent digits can be chosen arbitrarily from $[1, 9]$.
+The problem requires finding the smallest number that is **greater than or equal to** the given string $\textit{num}$. For example, suppose $\textit{num} = 111$. If we keep the most significant digit equal to $1$, then the second digit cannot be smaller than its original value; otherwise, the constructed number would become smaller than $\textit{num}$. However, once we increase a digit, all subsequent digits can be chosen arbitrarily from `[1, 9]`.
 
 Next, consider how to determine whether the constructed number is divisible by $t$.
 

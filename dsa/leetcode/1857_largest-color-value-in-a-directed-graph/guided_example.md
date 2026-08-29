@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dp[i][k]` has 26 entries because colors are lowercase Engli... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search with memoization:** It can :** - **Depth-first search with memoization:** It can compute the same color vectors and detect recursion-stack cycles, but recursion depth near 100,000 is risky in Python.
+- **Depth-first search with memoization:** It can compute the same color vectors and detect recursion-stack cycles, but recursion depth near 100,000 is risky in Python.
 - **One DP value per node:** Tracking only the node’s own color loses paths where another color becomes dominant later; all 26 counts are required.
 - **No edges:** Every node is a one-node path, all are sources, and the answer is one.
 - **Self-loop:** Its node never reaches indegree zero, so `cnt < n` and minus one is returned.
@@ -98,8 +98,8 @@ We maintain the core conceptual parameters and state variables:
 - **Answer initialization:** One is valid because `n >= 1`, including an isolated graph.
 - **Topological timing:** A node is enqueued only after all predecessor contributions have been applied.
 - **Fixed alphabet:** The factor 26 is constant but remains explicit in memory and operation counts.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

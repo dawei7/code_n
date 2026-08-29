@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Sweep indices from left to right.** When processing index ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ At the beginning of an index, `s += d[i]` removes selections whose right endpoin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Select shortest-reaching intervals:** This can:** - **Select shortest-reaching intervals:** This can satisfy the current index but waste future coverage and force additional retained queries later.
+- **Select shortest-reaching intervals:** This can satisfy the current index but waste future coverage and force additional retained queries later.
 - **Check every removal subset:** There are $2^q$ subsets and no feasible exhaustive approach at the given limit.
 - **Difference-array feasibility after each deletion:** Repeated checking is far slower and does not identify the greedy dominance relation.
 - **Zero-demand index:** No new interval is selected, but queries whose left endpoint has arrived are still inserted for possible future use.
@@ -103,8 +103,8 @@ At the beginning of an index, `s += d[i]` removes selections whose right endpoin
 - **Input mutation:** `queries.sort()` changes the caller-visible query order, although it does not change interval contents.
 - **Lexicographic sort:** Only left-endpoint order is required; the secondary right-endpoint order does not affect correctness because the heap reorders by right endpoint.
 - **Heap sign convention:** Negated endpoints turn Python's min-heap into a max-right-endpoint structure.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

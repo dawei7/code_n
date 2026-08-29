@@ -63,11 +63,7 @@ Although the final answer needs only two identifiers, experience must remain ava
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE is named `T`:
-
-
-
-The wildcard carries the joined col... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ Without `PARTITION BY`, the query would rank employees globally and fail to retu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group maximum plus join:** Compute maximum exp:** - **Group maximum plus join:** Compute maximum experience per project and join it back on both `project_id` and `experience_years`. This also preserves every tie.
+- **Group maximum plus join:** Compute maximum experience per project and join it back on both `project_id` and `experience_years`. This also preserves every tie.
 - **Correlated maximum:** Keep an assignment when its employee experience equals a project-local scalar maximum. It is correct but may be harder for readers and optimizers.
 - **DENSE_RANK:** Filtering dense rank one is equivalent because ties receive the same first rank.
 - **ROW_NUMBER:** It is incorrect for this contract because it discards tied maximum employees.
@@ -122,8 +118,8 @@ Without `PARTITION BY`, the query would rank employees globally and fail to retu
 - **Composite assignment key:** It prevents duplicate project-employee output pairs.
 - **Window filter level:** The CTE is necessary so `rk` exists before the outer `WHERE`.
 - **Any output order:** No `ORDER BY` is required in the final result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

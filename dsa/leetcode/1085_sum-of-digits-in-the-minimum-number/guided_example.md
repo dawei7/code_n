@@ -64,7 +64,7 @@ All input numbers are positive. That guarantee matters because it means the orig
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `s` begins at zero and accumulates the digit su... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Python evaluates bitwise AND before bitwise XOR, so `s & 1 ^ 1` means `(s & 1) ^
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** Convert the minimum to te:** - **String conversion:** Convert the minimum to text, transform each character back to an integer, and sum them. This is easy to read but allocates a string and temporary iteration state, whereas arithmetic digit extraction keeps auxiliary space constant.
+- **String conversion:** Convert the minimum to text, transform each character back to an integer, and sum them. This is easy to read but allocates a string and temporary iteration state, whereas arithmetic digit extraction keeps auxiliary space constant.
 - **Sum digits for every number:** This eventually finds the right answer if it also tracks the minimum, but it wastes work on values that cannot affect the result. Its cost can grow toward the total number of digits across the whole array.
 - **Use `divmod`:** `x, digit = divmod(x, 10)` obtains the shortened prefix and last digit together. It expresses the same mathematics and can make the relationship between the two values explicit.
 - **Parity with modulo:** `1 if s % 2 == 0 else 0` is longer but immediately readable. `1 - s % 2` is compact and avoids relying on bitwise precedence knowledge.
@@ -117,8 +117,8 @@ Python evaluates bitwise AND before bitwise XOR, so `s & 1 ^ 1` means `(s & 1) ^
 - **Even digit sum:** Values such as `11` produce sum two, so the parity bit is zero and XOR with one returns `1`.
 - **Odd digit sum:** Values such as `12` produce sum three, so the parity bit is one and XOR with one returns `0`.
 - **Zero or negative values outside the contract:** Zero would happen to produce the even answer, but negative values would require a deliberate absolute-value rule. The positive-value constraint is why the solution needs no such handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

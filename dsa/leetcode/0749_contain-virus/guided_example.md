@@ -72,7 +72,7 @@ DFS marks the infected cell visited, adds it to the area, and inspects its four 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of each day, `vis` is reset because the active ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +109,9 @@ However, every shared side needs its own wall. The counter `c` increments for ev
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute walls from only distinct boundary ce:** - **Recompute walls from only distinct boundary cells:** This undercounts when one zero cell touches several infected sides. Threat size uses unique cells; wall cost uses edges.
-- **- **Spread newly infected cells immediately:** Tha:** - **Spread newly infected cells immediately:** That would allow multiple layers in one night. Spread only from the areas recorded before mutation.
-- **- **Build a separate next-grid copy:** It makes si:** - **Build a separate next-grid copy:** It makes simultaneous spread visually explicit but uses another `O(mn)` matrix. Fixed pre-spread area lists make in-place mutation safe.
+- **Recompute walls from only distinct boundary cells:** This undercounts when one zero cell touches several infected sides. Threat size uses unique cells; wall cost uses edges.
+- **Spread newly infected cells immediately:** That would allow multiple layers in one night. Spread only from the areas recorded before mutation.
+- **Build a separate next-grid copy:** It makes simultaneous spread visually explicit but uses another `O(mn)` matrix. Fixed pre-spread area lists make in-place mutation safe.
 
 ---
 

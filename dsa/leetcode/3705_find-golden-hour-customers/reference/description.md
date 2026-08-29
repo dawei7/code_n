@@ -29,7 +29,7 @@ Write a solution to find **golden hour customers** - customers who consistently 
 
 - Have rated **at least** `50%` of their orders.
 
-Return *the result table ordered by* $\text{average}_{rating}$ *in **descending** order, then by* $\text{customer}_{id}$​​​​​​​ *in **descending** order*.
+Return *the result table ordered by* $\text{average}_{rating}$ *in **descending** order, then by* $\text{customer}_{id}$ *in **descending** order*.
 
 The result format is in the following example.
 

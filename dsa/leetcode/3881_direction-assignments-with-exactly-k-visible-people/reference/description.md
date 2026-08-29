@@ -42,7 +42,7 @@ Return the number of complete `L`/`R` assignments that make exactly `k` of those
 
 - **Output:** 2
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Index 0 is to the left of $pos = 1$, and index 2 is to the right of $pos = 1$.
 

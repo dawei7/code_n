@@ -2,7 +2,7 @@
 
 You are given two 2D integer arrays, `items1` and `items2`, representing two sets of items. Each array `items` has the following properties:
 
-- $\text{items}[i] = [\text{value}_{i}, \text{weight}_{i}]$ where $\text{value}_{i}$ represents the **value** and $\text{weight}_{i}$ represents the **weight **of the $$i^{\text{th}}$$ item.
+- $\text{items}[i] = [\text{value}_{i}, \text{weight}_{i}]$ where $\text{value}_{i}$ represents the **value** and $\text{weight}_{i}$ represents the **weight **of the $i^{\text{th}}$ item.
 
 - The value of each item in `items` is **unique**.
 

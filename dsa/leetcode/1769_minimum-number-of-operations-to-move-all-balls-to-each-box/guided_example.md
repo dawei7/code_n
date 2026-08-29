@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have `n` boxes. You are given a binary string `boxes` of length `n`, where $\text{boxes}[i]$ is `'0'` if the $$i^{\text{th}}$$ box is **empty**, and `'1'` if it contains **one** ball.
+You have `n` boxes. You are given a binary string `boxes` of length `n`, where $\text{boxes}[i]$ is `'0'` if the $i^{\text{th}}$ box is **empty**, and `'1'` if it contains **one** ball.
 
 The objective is to compute `[1, 1, 3]` from `{"boxes": "110"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ For example, if three balls lie to the left, shifting the destination right by o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `left[0]` is zero because no box lies to the left of index z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The loop moves from `n - 2` down to zero so the needed state `right[i + 1]` is a
 
 ## 6. Traps This Instance Exposes
 
-- **- **One combined bidirectional loop:** Accumulate :** - **One combined bidirectional loop:** Accumulate left and right costs into one answer list in a single outer loop, reducing the number of full arrays while retaining $O(n)$ time.
+- **One combined bidirectional loop:** Accumulate left and right costs into one answer list in a single outer loop, reducing the number of full arrays while retaining $O(n)$ time.
 - **Brute-force every target and ball:** Direct distance summation takes $O(n^2)$ time.
 - **Prefix counts and position sums:** Mathematical prefix formulas also answer each target in $O(1)$ after linear preprocessing, but use similar storage.
 - **No balls:** Both arrays remain zero and every answer is zero.
@@ -123,8 +123,8 @@ The loop moves from `n - 2` down to zero so the needed state `right[i + 1]` is a
 - **Binary characters:** Comparing with `'1'` directly determines whether to increment the count.
 - **Elementwise sum:** `zip(left, right)` aligns contributions for the same target index.
 - **Input preservation:** No actual balls are moved and `boxes` is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

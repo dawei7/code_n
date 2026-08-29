@@ -61,7 +61,7 @@ Characters encountered inside that extension may themselves have later occurrenc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `j` is the current part’s start.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ The length is `i - j + 1`. The next part begins at `i + 1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand each partition with repeated searches:*:** - **Expand each partition with repeated searches:** Repeatedly finding last positions can become quadratic. Precompute them once.
-- **- **Cut after a character’s first occurrence:** La:** - **Cut after a character’s first occurrence:** Later copies would cross the boundary and invalidate the partition.
-- **- **Delay a valid cut:** This remains valid but re:** - **Delay a valid cut:** This remains valid but reduces or preserves, never increases, the number of parts.
+- **Expand each partition with repeated searches:** Repeatedly finding last positions can become quadratic. Precompute them once.
+- **Cut after a character’s first occurrence:** Later copies would cross the boundary and invalidate the partition.
+- **Delay a valid cut:** This remains valid but reduces or preserves, never increases, the number of parts.
 
 ---
 

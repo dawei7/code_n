@@ -95,11 +95,7 @@ Internal zero digits are handled naturally. For `x=350`, extraction visits zero,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before scanning one number, the source sets:
-
-
-
-`a` is the s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -157,9 +153,9 @@ These cases preserve the invariant. Once the final array value has been processe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert each integer to a string:** Taking `mi:** - **Convert each integer to a string:** Taking `min` and `max` over digit characters also costs `O(S)` time but creates temporary strings. The exact source uses arithmetic extraction and constant auxiliary space.
-- **- **Store every digit range:** This permits a late:** - **Store every digit range:** This permits a later maximum and sum pass but uses `O(n)` extra space. Maintaining `mx` and `ans` online is sufficient.
-- **- **Two passes without storage:** One pass can fin:** - **Two passes without storage:** One pass can find the maximum range and another can recompute ranges to sum values. This keeps constant space but scans every digit twice.
+- **Convert each integer to a string:** Taking `min` and `max` over digit characters also costs `O(S)` time but creates temporary strings. The exact source uses arithmetic extraction and constant auxiliary space.
+- **Store every digit range:** This permits a later maximum and sum pass but uses `O(n)` extra space. Maintaining `mx` and `ans` online is sufficient.
+- **Two passes without storage:** One pass can find the maximum range and another can recompute ranges to sum values. This keeps constant space but scans every digit twice.
 
 ---
 

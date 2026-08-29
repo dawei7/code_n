@@ -54,10 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-s[p]\ne s[n-1-p]
-\quad\text{for every }0\le p<n/2.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +89,7 @@ The characters may be rearranged, and among all valid rearrangements the lexicog
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency-count construction:** With only lowe:** - **Frequency-count construction:** With only lowercase English letters, counts can avoid sorting and achieve $O(n)$ time, but careful lexicographic placement is still required.
+- **Frequency-count construction:** With only lowercase English letters, counts can avoid sorting and achieve $O(n)$ time, but careful lexicographic placement is still required.
 - **Try arbitrary swaps:** It may find a valid permutation, but choosing a larger replacement too early can lose lexicographic minimality.
 - **Maximum-frequency test first:** Checking whether any count exceeds $n/2$ can reject impossible inputs early; the exact source discovers the same shortage through `i >= n`.
 - **Already sorted anti-palindrome:** If the two middle characters differ, the sorted permutation is valid and is globally lexicographically smallest.
@@ -106,8 +103,8 @@ The characters may be rearranged, and among all valid rearrangements the lexicog
 - **Duplicate replacement characters:** They can be used for consecutive repairs because each is still different from the dominant mirrored character.
 - **No mutation of the input string:** Strings are immutable; the algorithm works on the new list `cs`.
 - **Source/manifest mismatch:** The implementation is sorting-based $O(n\log n)$, even though the manifest summarizes the fixed-alphabet linear possibility.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

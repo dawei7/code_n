@@ -65,7 +65,7 @@ Because parity group sizes match, zipping the two fully parity-key-sorted arrays
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within one parity group, suppose source values $a\le b$ are ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ That is exactly the source's final `// 4`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate explicit odd and even lists:** Filter:** - **Separate explicit odd and even lists:** Filter each array into two groups, sort each group, and compare corresponding entries. This makes the parity invariant visible but allocates additional lists.
+- **Separate explicit odd and even lists:** Filter each array into two groups, sort each group, and compare corresponding entries. This makes the parity invariant visible but allocates additional lists.
 - **Frequency balancing over the bounded value domain:** Count occurrences and route surplus values to deficits of the same parity. It can avoid comparison sorting with a large count array but is more involved.
 - **Match without parity separation:** An odd value can never reach an even target using steps of two, so arbitrary sorted pairing can be invalid.
 - **Already similar arrays:** Sorted sequences are identical, the discrepancy is zero, and the method returns zero.
@@ -122,8 +122,8 @@ That is exactly the source's final `// 4`.
 - **Why not divide by two:** One operation changes two aligned discrepancies by two each, reducing the total absolute sum by four.
 - **Distinct indices:** A surplus and deficit belong to different current occurrences whenever a transfer remains necessary; an element cannot simultaneously need to increase and decrease.
 - **Input mutation:** In-place sorting changes caller-visible order even though similarity ignores order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ It runs Dijkstra from node zero because all weights are positive. `dist[v]` beco
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | It runs Dijkstra from node zero because all weights are posi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If `dist[n - 1]` remains infinity, no path from zero to the destination exists. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add a visited set to reverse traversal:** Proc:** - **Add a visited set to reverse traversal:** Process each tight-reachable node once, yielding $O(n+m)$ reverse work while marking all its tight incoming edges.
+- **Add a visited set to reverse traversal:** Process each tight-reachable node once, yielding $O(n+m)$ reverse work while marking all its tight incoming edges.
 - **Two Dijkstra runs:** Compute distances from zero and destination, then test both edge orientations against the global shortest distance. This matches the manifest.
 - **Destination unreachable:** Return all false before reverse traversal.
 - **Several shortest paths:** Every edge in their union should be true.
@@ -101,8 +101,8 @@ If `dist[n - 1]` remains infinity, no path from zero to the destination exists. 
 - **One direct shortest edge:** Destination processing marks it and reaches node zero.
 - **Disconnected side components:** Their distances remain infinity and they are never reverse-reached.
 - **Source/manifest mismatch:** Exact source uses one Dijkstra and has an exponential revisit risk absent from the claimed bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You have `n` robots. You are given two **0-indexed** integer arrays, `chargeTimes` and `runningCosts`, both of length `n`. The $$i^{\text{th}}$$ robot costs $\text{chargeTimes}[i]$ units to charge and costs $\text{runningCosts}[i]$ units to run. You are also given an integer `budget`.
+You have `n` robots. You are given two **0-indexed** integer arrays, `chargeTimes` and `runningCosts`, both of length `n`. The $i^{\text{th}}$ robot costs $\text{chargeTimes}[i]$ units to charge and costs $\text{runningCosts}[i]$ units to run. You are also given an integer `budget`.
 
 The **total cost** of running `k` chosen robots is equal to $max(chargeTimes) + k * sum(runningCosts)$, where `max(chargeTimes)` is the largest charge cost among the `k` robots and `sum(runningCosts)` is the sum of running costs among the `k` robots.
 

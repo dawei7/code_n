@@ -2,9 +2,9 @@
 
 You are given a **0-indexed binary** string `floor`, which represents the colors of tiles on a floor:
 
-- $\text{floor}[i] = '0'$ denotes that the $$i^{\text{th}}$$ tile of the floor is colored **black**.
+- $\text{floor}[i] = '0'$ denotes that the $i^{\text{th}}$ tile of the floor is colored **black**.
 
-- On the other hand, $\text{floor}[i] = '1'$ denotes that the $$i^{\text{th}}$$ tile of the floor is colored **white**.
+- On the other hand, $\text{floor}[i] = '1'$ denotes that the $i^{\text{th}}$ tile of the floor is colored **white**.
 
 You are also given `numCarpets` and `carpetLen`. You have `numCarpets` **black** carpets, each of length `carpetLen` tiles. Cover the tiles with the given carpets such that the number of **white** tiles still visible is **minimum**. Carpets may overlap one another.
 

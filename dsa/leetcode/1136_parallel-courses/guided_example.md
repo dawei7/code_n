@@ -57,7 +57,7 @@ Capturing the queue length is essential. While a course is processed, each outgo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There is no upper bound on the number of courses taken in on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ The parameter `n` initially holds the total number of courses. The solution reus
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search with three visitation state:** - **Depth-first search with three visitation states:** A DFS can detect a cycle and memoize the longest path beginning at every course, also achieving `O(n + r)` time and space. It is a valid optimal alternative, but the layered breadth-first method maps semesters directly to queue layers and avoids recursion-depth concerns for as many as 5,000 courses.
+- **Depth-first search with three visitation states:** A DFS can detect a cycle and memoize the longest path beginning at every course, also achieving `O(n + r)` time and space. It is a valid optimal alternative, but the layered breadth-first method maps semesters directly to queue layers and avoids recursion-depth concerns for as many as 5,000 courses.
 - **Repeatedly scan all courses for newly available ones:** This can simulate semesters without a queue, but rescanning every course after each layer can require quadratic time on a long prerequisite chain. Maintaining indegrees and a queue records exactly what changed.
 - **Take only one available course per semester:** That is legal but not generally minimal. Because there is no per-semester course limit, all eligible courses should be taken together.
 - **No initial zero-indegree course:** With at least one course, this means every course has a remaining prerequisite. The graph contains a directed cycle, the loop never starts, and the result must be `-1`.
@@ -102,8 +102,8 @@ The parameter `n` initially holds the total number of courses. The solution reus
 - **Independent courses:** Every course begins in the queue, all are processed in the first layer, and the answer is `1`.
 - **A single long chain:** Exactly one course becomes available per layer. The algorithm returns `n`, which is unavoidable because every course after the first depends on a course from the preceding layer.
 - **Unique relations:** The input guarantee prevents duplicate edges from artificially inflating indegrees. The implementation relies on the relations representing distinct prerequisite requirements.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

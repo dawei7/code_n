@@ -64,7 +64,7 @@ At the start of each iteration, `t` contains only indices strictly before `i` be
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are `i` elements before index `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ That is exactly right sum minus the target total for the right-side count.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full prefix-sum array:** It provides left and :** - **Full prefix-sum array:** It provides left and right sums by indexing and is easy to derive, but uses $O(n)$ auxiliary space beyond the output.
+- **Full prefix-sum array:** It provides left and right sums by indexing and is easy to derive, but uses $O(n)$ auxiliary space beyond the output.
 - **Brute force per index:** Summing all absolute differences independently takes $O(n^2)$ time and ignores sorted structure.
 - **Unsorted input:** The signed-side formulas become invalid. Sorting first would cost $O(n\log n)$ and would also lose original output positions unless indices are tracked.
 - **All values equal:** Both side formulas cancel to zero at every index, returning an all-zero result.
@@ -139,8 +139,8 @@ That is exactly right sum minus the target total for the right-side count.
 - **Update prefix after calculation:** Moving `t += x` before the formula would include the current value in the left prefix and break the count relationship.
 - **Large total sums:** Python integers avoid overflow. Fixed-width languages should use a sufficiently wide integer type because up to $10^5$ values contribute.
 - **Output-space convention:** The manifest’s $O(1)$ space excludes the required result array; the implementation necessarily returns $O(n)$ values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

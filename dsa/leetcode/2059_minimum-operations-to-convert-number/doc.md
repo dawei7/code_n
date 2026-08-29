@@ -26,7 +26,7 @@ An operation may produce a value outside the allowed range, and that operation c
 - `start`: the initial value, satisfying $0 \le start \le 1000$.
 - `goal`: a target from $-10^9$ through $10^9$, distinct from `start`.
 
-Let $R$ be the number of reachable values in the expandable range $[0,1000]$, so $R\le1001$.
+Let $R$ be the number of reachable values in the expandable range `[0,1000]`, so $R\le1001$.
 
 **Return value**
 

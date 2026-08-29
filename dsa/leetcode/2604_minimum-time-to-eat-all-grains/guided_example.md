@@ -59,7 +59,7 @@ Thus each hen should consume the longest feasible prefix beginning at `grains[j]
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `j` identifies the leftmost grain not yet assigned.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If $d\le t$, every unassigned grain between $y$ and $x$ is eaten along a trip th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit assignment search:** Distributing gra:** - **Explicit assignment search:** Distributing grains among hens combinatorially is unnecessary because sorted noncrossing greedy assignment is optimal.
+- **Explicit assignment search:** Distributing grains among hens combinatorially is unnecessary because sorted noncrossing greedy assignment is optimal.
 - **Simulate movement per second:** Time coordinates can be huge; route formulas evaluate reach directly.
 - **All grains on one side:** Each hen uses a one-direction distance check with no reversal.
 - **Hen on a grain:** Eating costs no time, and the grain is consumed by the `<= x` loop.
@@ -111,8 +111,8 @@ If $d\le t$, every unassigned grain between $y$ and $x$ is eaten along a trip th
 - **Duplicate grain positions:** Pointer advancement consumes every occurrence at that coordinate.
 - **Input mutation:** Both position arrays are sorted.
 - **Exclusive search endpoint:** Adding one ensures the constructive all-grains route is present in `range(r)`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -41,7 +41,7 @@ The knight reaches the target in 4 moves, which is even. Thus, the answer is `tr
 
 - **Output:** false
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 It is impossible to reach $target = [6, 6]$ from $start = [4, 5]$ in an even number of moves. Thus, the answer is `false`.
 

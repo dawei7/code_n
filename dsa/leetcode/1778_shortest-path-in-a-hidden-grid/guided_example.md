@@ -71,7 +71,7 @@ Moving the robot and applying the same delta keeps the invented coordinate consi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The start is labeled coordinate `(0, 0)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The opposite direction is `s[(k + 2) % 4]`: up pairs with down, and right pairs 
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS directly through GridMaster:** A queue can:** - **BFS directly through GridMaster:** A queue cannot freely jump the physical robot between frontier cells, so interactive movement and restoration become difficult.
+- **BFS directly through GridMaster:** A queue cannot freely jump the physical robot between frontier cells, so interactive movement and restoration become difficult.
 - **DFS distance only:** The first target discovery is not necessarily the shortest path.
 - **Build an explicit adjacency map:** It is unnecessary because discovered coordinates and four-direction geometry determine adjacency.
 - **Target adjacent to start:** DFS records it, and BFS returns one.
@@ -130,8 +130,8 @@ The opposite direction is `s[(k + 2) % 4]`: up pairs with down, and right pairs 
 - **Relative coordinates:** Absolute hidden-grid dimensions and start location are never needed.
 - **Recursion depth:** A long corridor is a practical Python stack risk.
 - **Master position after DFS:** Balanced descent and opposite moves restore it to the start.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

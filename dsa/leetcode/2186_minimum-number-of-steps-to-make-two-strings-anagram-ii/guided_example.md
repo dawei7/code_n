@@ -67,7 +67,7 @@ Python's `Counter` returns zero for a missing key. Therefore, when `t` contains 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop over `t` executes `cnt[c] -= 1` for each character.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Appending some different letter cannot repair this imbalance. Character counts a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two fixed arrays:** Count each lowercase lette:** - **Two fixed arrays:** Count each lowercase letter in separate 26-entry arrays and sum absolute differences. This has the same bounds and makes the constant alphabet explicit.
+- **Two fixed arrays:** Count each lowercase letter in separate 26-entry arrays and sum absolute differences. This has the same bounds and makes the constant alphabet explicit.
 - **One signed array:** Increment for `s` and decrement for `t`, mirroring the Counter solution without hashing.
 - **Sort both strings:** Sorting reveals count groups but costs $O(n\log n+m\log m)$ time and still requires reconciling unmatched runs.
 - **Already anagrams:** Every difference is zero, so no append is needed even if the character order differs.
@@ -119,8 +119,8 @@ Appending some different letter cannot repair this imbalance. Character counts a
 - **Nonempty inputs:** The contract guarantees both strings contain at least one character, though the same logic would also handle empties.
 - **Input preservation:** Strings are immutable, and all mutations occur in the separate Counter.
 - **No double counting:** Each absolute difference represents operations for one letter coordinate exactly once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

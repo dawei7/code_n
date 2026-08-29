@@ -4,7 +4,7 @@
 
 From the problem statement, we know that the hour is represented using 4 bits and the minute is represented using 6 bits. A bit value of `0` indicates that the light is off, while a bit value of `1` indicates that the light is on.
 
-We can enumerate all possible hour values in the range $[0, 11]$ and all possible minute values in the range $[0, 59]$. For each combination, we compute the total number of `1`s in their binary representations. If this total equals $\textit{turnedOn}$, we add the corresponding time to the answer.
+We can enumerate all possible hour values in the range `[0, 11]` and all possible minute values in the range `[0, 59]`. For each combination, we compute the total number of `1`s in their binary representations. If this total equals $\textit{turnedOn}$, we add the corresponding time to the answer.
 
 #### Implementation
 

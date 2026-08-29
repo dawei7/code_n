@@ -4,7 +4,7 @@ You are given a 2D `matrix` of size `m x n`, consisting of non-negative integers
 
 The **value** of coordinate `(a, b)` of the matrix is the XOR of all $\text{matrix}[i][j]$ where $0 \le i \le a < m$ and $0 \le j \le b < n$ **(0-indexed)**.
 
-Find the $$k^{\text{th}}$$ largest value **(1-indexed)** of all the coordinates of `matrix`.
+Find the $k^{\text{th}}$ largest value **(1-indexed)** of all the coordinates of `matrix`.
 
 ### 2. Function Contract
 

@@ -63,7 +63,7 @@ At the end, a valid complete expression leaves exactly one value. The source ret
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After processing any prefix of `tokens`, `s` contains the va... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ A more conventional implementation would pop `y` first and then `x`. This source
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit conditionals:** Pop right then left a:** - **Explicit conditionals:** Pop right then left and use `if` branches for each operator. It is longer but makes operand order highly visible.
+- **Explicit conditionals:** Pop right then left and use `if` branches for each operator. It is longer but makes operand order highly visible.
 - **Integer-only truncating division:** Compute `abs(x) // abs(y)` and apply the sign. It avoids floating-point conversion and generalizes beyond 32-bit values.
 - **Reduce tokens in place:** Replace each operator and its preceding operands inside the input list. Repeated middle deletions make it $O(n^2)$ time.
 - **Recursive parser from the end:** Read tokens backward, recursively evaluate the left and right operands in the correct reversed order. It uses $O(n)$ call-stack space.
@@ -128,8 +128,8 @@ A more conventional implementation would pop `y` first and then `x`. This source
 - **Division by zero:** The Reference guarantees it never occurs, so no check is needed.
 - **Malformed RPN:** Too few operands would raise on `pop`, and surplus operands would violate the final-one-value assumption; the source trusts validity.
 - **Runtime dependency:** The source uses `List` without importing it. Standalone Python needs `from typing import List`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

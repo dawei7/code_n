@@ -97,7 +97,7 @@ Thus, the answer is `[6, 3]`.
 
 - **Explanation:** ![](images/screenshot-2025-08-23-at-23736-am.png)
 
-**​​​​​​​**
+****
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<thead>
@@ -164,7 +164,7 @@ Thus, the answer is `[8, 4, 6]`.
 
 - **Explanation:** 
 
-**​​​​​​​​​​​​​​**
+****
 
 ![](images/screenshot-2025-08-23-at-24644-am.png)
 
@@ -243,6 +243,6 @@ Thus, the answer is `[5, 11, 1]`.
 
 - $1 \le \text{cost}_{i} \le 10^{9}$
 
-- $​​​​​​​1 \le tax_​​​​​​​i \le 100$​​​​​​​
+- $1 \le tax_i \le 100$
 
 - There are no **repeated** edges.

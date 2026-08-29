@@ -65,9 +65,7 @@ The second check ensures the proposed class is callable as a JavaScript function
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition is:
-
-`obj == null || typeof classFunctio... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ The code handles null and undefined before `Object(obj)` because their special c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Native `instanceof`:** Concise for objects, bu:** - **Native `instanceof`:** Concise for objects, but it rejects primitives such as five against `Number` and therefore does not meet this contract.
+- **Native `instanceof`:** Concise for objects, but it rejects primitives such as five against `Number` and therefore does not meet this contract.
 - **Compare `constructor` properties:** A constructor property can be overwritten or inherited and does not reliably prove prototype-chain membership.
 - **Recursive prototype walk:** Correct but uses $O(h)$ call-stack space without improving clarity.
 - **`null` and `undefined` object input:** Both return false before boxing.
@@ -124,8 +122,8 @@ The code handles null and undefined before `Object(obj)` because their special c
 - **Constructor passed as object:** A constructor function follows `Function.prototype`, not its own instance prototype.
 - **Null-prototype object:** Its chain ends immediately and returns false.
 - **Prototype identity:** Structurally similar prototype objects are not interchangeable; strict identity is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

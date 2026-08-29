@@ -60,7 +60,7 @@ The start remains `st` during a merge because sorting guarantees `s >= st`. A ne
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `st` and `ed` represent the union of the current connected c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +97,7 @@ That is why the gap test is `ed < s`, not `ed <= s`. Equality belongs to the mer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Append the first interval and merge into the r:** - **Append the first interval and merge into the result tail:** This removes separate `st`/`ed` state, but mutating the tail may alias input interval objects unless copies are made.
+- **Append the first interval and merge into the result tail:** This removes separate `st`/`ed` state, but mutating the tail may alias input interval objects unless copies are made.
 - **Sweep-line events:** Sort starts and ends as events to reconstruct covered components. It is more machinery than needed when whole intervals can be sorted directly.
 - **Graph connected components:** Treat overlaps as edges and combine components. Building pairwise edges can cost $O(n^2)$ and ignores the order structure.
 - **Already disjoint intervals:** Every new start creates a gap, so each interval is copied into the answer separately.
@@ -107,8 +107,8 @@ That is why the gap test is `ed < s`, not `ed <= s`. Equality belongs to the mer
 - **Single interval:** The loop is empty, and the final append returns a fresh copy of that interval.
 - **Empty list outside the contract:** Accessing the first interval would fail; the documented constraint guarantees at least one.
 - **Caller-visible ordering:** The outer input list is sorted in place, even though its inner pairs are not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,11 +63,7 @@ This property eliminates the need to examine every possible `x`. Lexicographic p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sets
-
-`x = min(cnt.keys())`.
-
-This deserves justi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +104,7 @@ If no key has a frequency different from `cnt[x]`, `min_y` remains `inf` and the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed frequency array of length 101:** Because:** - **Fixed frequency array of length 101:** Because values are restricted to `[1,100]`, an integer array can replace `Counter`. Scanning the domain first finds the smallest positive-count value and then the first larger value with a different positive count. This gives deterministic `O(N+100)` time and `O(100)`, hence `O(1)`, space.
+- **Fixed frequency array of length 101:** Because values are restricted to `[1,100]`, an integer array can replace `Counter`. Scanning the domain first finds the smallest positive-count value and then the first larger value with a different positive count. This gives deterministic `O(N+100)` time and `O(100)`, hence `O(1)`, space.
 - **Sort the distinct values:** Sorting counter keys and scanning from the smallest one is easy to reason about, but it adds `O(U\log U)` time. The source obtains the same minima with two linear scans.
 - **Enumerate every ordered pair:** Checking all `O(U^2)` value pairs and taking the minimum is correct but ignores the proof that the smallest present value must be the first component of any solution.
 - **Choose the two smallest distinct values:** They are valid only if their frequencies differ. If their counts are equal, the second component may need to skip several values, as in the first example.
@@ -121,8 +117,8 @@ If no key has a frequency different from `cnt[x]`, `min_y` remains `inf` and the
 - **Repeated copies of the returned values:** The output contains values, not indices or occurrences. Counting multiplicity determines eligibility, but the result still contains each chosen value once.
 - **Bounded-domain complexity:** Calling the source `O(1)` space relies on the fixed upper bound of one hundred for values. In a generalized version with arbitrary integers, the counter grows with `U` and must be reported as `O(U)`.
 - **Sentinel imports:** The exact source requires `Counter` and `inf` to be available. Replacing `inf` with `null` would avoid the second dependency but would require a different comparison condition.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

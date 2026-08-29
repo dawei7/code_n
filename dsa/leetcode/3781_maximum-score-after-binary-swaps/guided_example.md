@@ -71,7 +71,7 @@ The heap contains score positions already encountered but not yet assigned to a 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source scans `nums` and `s` together from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The heap can never be empty at a one: the current position was pushed before the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate adjacent swaps:** Exploring or perfor:** - **Simulate adjacent swaps:** Exploring or performing swaps directly can be quadratic and hides the assignment structure.
+- **Simulate adjacent swaps:** Exploring or performing swaps directly can be quadratic and hides the assignment structure.
 - **Choose the globally largest values:** A large value to the right of an early one's deadline may be unreachable for that one.
 - **Min-cost matching:** The nested prefix constraints form a special deadline problem that the heap solves greedily.
 - **Process from right to left:** A dual formulation is possible, but the source treats original ones as left-to-right deadlines.
@@ -127,8 +127,8 @@ The heap can never be empty at a one: the current position was pushed before the
 - **Positive scores:** The algorithm still respects reachability; positivity means using all fixed ones is naturally required.
 - **Ones never cross:** Sorted deadline-to-position matching preserves their order.
 - **Input preservation:** The heap stores negated values without changing `nums` or `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

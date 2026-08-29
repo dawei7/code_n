@@ -59,7 +59,7 @@ Grouping is necessary because the condition concerns whether any order in the en
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY seller_id` collects a seller’s joined order rows i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The exact order count is not requested; only whether the count is zero matters.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS` anti-join:** Select sellers for w:** - **`NOT EXISTS` anti-join:** Select sellers for whom no correlated order has a 2020 date. It directly expresses absence and avoids aggregation.
+- **`NOT EXISTS` anti-join:** Select sellers for whom no correlated order has a 2020 date. It directly expresses absence and avoids aggregation.
 - **`NOT IN` subquery:** It can exclude seller IDs found in 2020 orders, but nullable subquery values can create three-valued-logic hazards unless the key is guaranteed non-null.
 - **Left join only 2020 orders and test null:** Put the date predicate in the join condition, then keep sellers with a null joined order ID. This is another clean anti-join formulation.
 - **Filter non-2020 rows in `WHERE`:** This is incorrect for sellers having both 2020 and other-year orders, because it removes evidence of the disqualifying sale while leaving another row.
@@ -115,8 +115,8 @@ The exact order count is not requested; only whether the count is zero matters.
 - **Functional dependency:** Unique `seller_id` determines `seller_name`. Stricter portable SQL can group by both columns explicitly.
 - **Required ordering:** `ORDER BY 1` sorts the only selected column ascending; no tie-breaking is necessary for identical names unless the schema permits them.
 - **Unused customer table:** Customer data cannot change whether a seller made a 2020 sale, so excluding it is intentional.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

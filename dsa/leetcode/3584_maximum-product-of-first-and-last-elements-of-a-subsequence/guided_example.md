@@ -65,7 +65,7 @@ Checking both `x*mi` and `x*mx` covers every sign without branching. No interior
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For fixed last value `x`, the product `x*y` is a linear func... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If the gap is smaller, there are not enough positions. The eligibility boundary 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate endpoint pairs:** Testing all `p,i` :** - **Enumerate endpoint pairs:** Testing all `p,i` costs `O(n^2)`; the eligible extrema summarize every useful first value.
+- **Enumerate endpoint pairs:** Testing all `p,i` costs `O(n^2)`; the eligible extrema summarize every useful first value.
 - **Sort eligible values:** Maintaining a sorted prefix is unnecessary because a linear product needs only two extremes.
 - **All positive values:** The running maximum first value determines every endpoint’s best product.
 - **All negative values:** Pairing a negative last value with the minimum eligible first value can produce the largest positive product.
@@ -118,8 +118,8 @@ If the gap is smaller, there are not enough positions. The eligibility boundary 
 - **Why middle values never affect the objective:** Once endpoint indices leave enough room, the remaining positions can be selected solely to reach size `m`. Their numeric values are not multiplied into the score, so optimizing or sorting them would solve a condition the problem never asks about.
 - **Order-preserving endpoints:** The first index must precede the last, which is why only a growing prefix is summarized. A global minimum or maximum from the entire array could lie after `i` and would produce an invalid subsequence orientation.
 - **Two extreme products:** Evaluating both is constant work and avoids fragile sign cases. It remains correct when an extreme is zero or when minimum and maximum are the same single eligible value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

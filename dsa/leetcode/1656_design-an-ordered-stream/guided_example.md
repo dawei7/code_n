@@ -70,7 +70,7 @@ The second condition, `data[ptr]`, uses the stored value’s truthiness to disti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Immediately before and after every call, `ptr` satisfies a p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ After appending an item, `ptr` moves past it. Consequently every ID smaller than
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort all received pairs after every insertion::** - **Sort all received pairs after every insertion:** This can recover ID order but repeatedly performs unnecessary work and still needs logic to know which prefix has already been emitted. Direct indexing plus the frontier pointer is simpler and gives linear total work.
+- **Sort all received pairs after every insertion:** This can recover ID order but repeatedly performs unnecessary work and still needs logic to know which prefix has already been emitted. Direct indexing plus the frontier pointer is simpler and gives linear total work.
 - **Min-heap of arrived IDs:** A heap can reveal the smallest stored ID, but IDs are already bounded and unique, and output must wait for one exact next ID. Heap operations add $O(\log n)$ overhead without improving the decision.
 - **Hash map instead of an array:** A dictionary keyed by ID also works and may suit sparse unbounded IDs, but here every ID from `1` to `n` arrives exactly once, so the direct array is smaller conceptually and has predictable indexing.
 - **Insertion before the current gap:** Under the unique-ID contract, this cannot happen because every ID below `ptr` was already inserted and emitted. Without uniqueness, the class would need a policy for duplicate IDs.
@@ -119,8 +119,8 @@ After appending an item, `ptr` moves past it. Consequently every ID smaller than
 - **`n == 1`:** The array has indices zero and one. The only insertion fills `data[1]`, returns its value, and advances `ptr` to the array length.
 - **End-of-stream boundary:** After ID `n` is emitted, `ptr == len(data)`. The left side of the short-circuit condition fails, so the code never indexes beyond the array.
 - **Empty values outside the contract:** The truthiness test would mistake `""` for a missing slot. The stated fixed length of five makes the implementation correct; a generalized class should test `is not null`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

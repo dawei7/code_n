@@ -61,7 +61,7 @@ Therefore `heights[i] == mx` must not qualify. The strict `>` comparison impleme
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The definition says every building to the right must have a ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If heights could be zero or negative, zero would not be a universally safe senti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Suffix-maximum array:** Precompute the maximum:** - **Suffix-maximum array:** Precompute the maximum to the right of every index. It also gives $O(n)$ time but uses $O(n)$ extra storage beyond the result.
+- **Suffix-maximum array:** Precompute the maximum to the right of every index. It also gives $O(n)$ time but uses $O(n)$ extra storage beyond the result.
 - **Monotonic stack:** Scan left to right and remove previously recorded buildings blocked by the current one. It is linear but more stateful than a single suffix maximum.
 - **Check every right suffix:** Directly testing all blockers for each building costs $O(n^2)$ time.
 - **Strictly decreasing heights:** Every building is a new suffix maximum, so all indices are returned.
@@ -114,8 +114,8 @@ If heights could be zero or negative, zero would not be a universally safe senti
 - **Reversed slice:** It creates a new list rather than reversing `ans` in place.
 - **No building identity changes:** Only indices are stored; heights remain in the original array.
 - **Large height values:** Only comparisons are used, so magnitude does not affect complexity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

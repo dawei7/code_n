@@ -61,7 +61,7 @@ Both working values are now zero or negative, and the full negative 32-bit range
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Signed 32-bit integers range from $-2^{31}$ through $2^{31}-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The earlier `if b == 1: return a` is also safe and fast. Division by positive on
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute all safe doubles:** Build divisor m:** - **Precompute all safe doubles:** Build divisor multiples once, then scan from largest to smallest. This guarantees $O(\log D)$ time but uses $O(\log D)$ storage.
+- **Precompute all safe doubles:** Build divisor multiples once, then scan from largest to smallest. This guarantees $O(\log D)$ time but uses $O(\log D)$ storage.
 - **Find the largest double once and shift downward:** Reuse powers in descending order for $O(\log D)$ time and $O(1)$ auxiliary space.
 - **Repeated single subtraction:** Correct but takes $O(D)$ time when the divisor magnitude is one.
 - **Binary search for the quotient:** Possible with overflow-safe product checks, but those checks are more complex under the operator restrictions.
@@ -115,8 +115,8 @@ The earlier `if b == 1: return a` is also safe and fast. Division by positive on
 - **Opposite signs:** The accumulated magnitude is negated, implementing truncation toward zero.
 - **Remainder:** It is deliberately ignored when its magnitude becomes smaller than the divisor.
 - **No multiplication or division:** Shifts perform doubling, and subtraction removes chunks; the mathematical multiplication notation is explanatory only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

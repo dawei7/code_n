@@ -34,7 +34,7 @@ Return the greatest intersection score attainable by any valid pair of paths.
 
 ![](images/image.png)
 
-​​​​​​​​​​​​​​​​​​​​​
+
 
 - **Input:** grid = [[1,2,0,-3],[1,-2,1,0],[-4,2,-1,3],[3,-3,3,-2],[-1,-5,0,1]]
 

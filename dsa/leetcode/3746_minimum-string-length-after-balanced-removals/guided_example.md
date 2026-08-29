@@ -85,7 +85,7 @@ Thus the invariant lower bound is attainable, and the minimum is exactly `|A-B|`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If both character types remain, the current string must cont... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ For `"aaaa"`, the difference is four. No `b` exists, so no valid substring can b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate removal choices recursively:** Many b:** - **Simulate removal choices recursively:** Many balanced substrings can overlap, creating exponential branching. Count difference makes all choices unnecessary.
+- **Simulate removal choices recursively:** Many balanced substrings can overlap, creating exponential branching. Count difference makes all choices unnecessary.
 - **Use a stack to cancel unlike adjacent characters:** It can reach the same remaining magnitude but uses $O(n)$ space. Counts alone suffice because order does not affect the optimum.
 - **Remove only the largest balanced substring:** This may work in some cases but locating it is extra work and is not needed for optimality.
 - **Assume equal total counts imply only pairwise removals:** The entire string is directly removable, but either route reaches zero.
@@ -141,8 +141,8 @@ For `"aaaa"`, the difference is four. No `b` exists, so no valid substring can b
 - **Long homogeneous runs:** A boundary pair exists whenever both types occur, even if they are grouped into two large runs.
 - **Concatenation after removal:** It cannot change the invariant and may only expose another removable boundary.
 - **Binary-alphabet guarantee:** Computing `b=len(s)-a` relies on every character being one of the two allowed letters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

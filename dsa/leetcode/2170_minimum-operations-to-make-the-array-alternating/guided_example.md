@@ -61,7 +61,7 @@ If a parity group has only one distinct value, the second result remains sentine
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The local variables `k1` and `k2` hold the current best and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Every subtracted term counts a position left unchanged. All remaining positions 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort each parity group:** Sorting reveals the :** - **Sort each parity group:** Sorting reveals the most frequent values but costs $O(n\log n)$ time, while counters obtain the needed frequencies in expected $O(n)$ time.
+- **Sort each parity group:** Sorting reveals the most frequent values but costs $O(n\log n)$ time, while counters obtain the needed frequencies in expected $O(n)$ time.
 - **Fixed frequency arrays:** Because values are at most $10^5$, two arrays can replace the counters. This preserves linear time but allocates space based on the value bound rather than only encountered keys.
 - **Try every distinct pair:** Comparing all even candidates with all odd candidates can become quadratic in the number of distinct values and is unnecessary because only the top two frequencies matter.
 - **Length one:** The odd group is empty, the sole even value can stay, and the formula returns zero operations.
@@ -117,8 +117,8 @@ Every subtracted term counts a position left unchanged. All remaining positions 
 - **New values are allowed:** If a group lacks a usable existing second value, choosing any positive value different from the other parity preserves zero positions, exactly what the sentinel count represents.
 - **Input remains unchanged:** `nums[i::2]` copies the parity elements, and `Counter` only reads those copies.
 - **Operation independence:** Each mismatching position can be changed directly to any positive integer, so there is no extra transition cost beyond one operation per changed index.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

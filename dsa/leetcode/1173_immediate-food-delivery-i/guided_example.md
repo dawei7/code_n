@@ -59,7 +59,7 @@ This is equivalent to a longer conditional aggregate such as `SUM(CASE WHEN ... 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SUM(order_date = customer_pref_delivery_date)` adds one for... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The denominator must count orders, not distinct customers. A customer who placed
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a `CASE` expression:** `SUM(CASE WHEN cond:** - **Use a `CASE` expression:** `SUM(CASE WHEN condition THEN 1 ELSE 0 END)` is more portable across SQL dialects and computes the same numerator.
+- **Use a `CASE` expression:** `SUM(CASE WHEN condition THEN 1 ELSE 0 END)` is more portable across SQL dialects and computes the same numerator.
 - **Use `AVG` of the Boolean:** `AVG(order_date = customer_pref_delivery_date) * 100` directly averages the zero-one indicators and is equivalent on non-null dates.
 - **Count distinct customers:** That changes the denominator and answers a different question.
 - **Group by customer:** This would produce per-customer percentages rather than the required global value.
@@ -106,8 +106,8 @@ The denominator must count orders, not distinct customers. A customer who placed
 - **Dates exactly equal:** The indicator is one; no time-of-day issue exists because both columns are dates.
 - **Round only the fraction first:** Premature rounding can distort the percentage. The exact query rounds after multiplying by 100.
 - **Empty table:** The exact expression yields null because of division by zero; it does not define a fallback.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

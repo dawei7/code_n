@@ -65,7 +65,7 @@ The tolerance is necessary because real division can produce repeating binary fl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(nums)` receives the current multiset of floating-point ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ The selected pair is combined, and its result is appended to `nxt` for the recur
 
 ## 6. Traps This Instance Exposes
 
-- **- **Exact rational arithmetic:** Use fractions rep:** - **Exact rational arithmetic:** Use fractions represented by numerator and denominator. This avoids floating-point tolerance and division-rounding concerns, at the cost of larger integer arithmetic.
-- **- **Subset dynamic programming:** For every subset:** - **Subset dynamic programming:** For every subset of cards, store every reachable value by splitting the subset into two parts. It systematically removes duplicate recomputation but is more machinery for four cards.
-- **- **Enumerate permutations, operators, and parenth:** - **Enumerate permutations, operators, and parenthesis shapes:** This is finite and workable for four cards but easier to omit a shape or mishandle noncommutative operations.
+- **Exact rational arithmetic:** Use fractions represented by numerator and denominator. This avoids floating-point tolerance and division-rounding concerns, at the cost of larger integer arithmetic.
+- **Subset dynamic programming:** For every subset of cards, store every reachable value by splitting the subset into two parts. It systematically removes duplicate recomputation but is more machinery for four cards.
+- **Enumerate permutations, operators, and parenthesis shapes:** This is finite and workable for four cards but easier to omit a shape or mishandle noncommutative operations.
 
 ---
 

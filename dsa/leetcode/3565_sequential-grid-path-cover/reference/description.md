@@ -8,7 +8,7 @@ You can start at any cell, and move from a cell to its neighbors (up, down, left
 
 - Visits the cells with values from 1 to `k` **in order**.
 
-Return a 2D array `result` of size $(m * n) x 2$, where $\text{result}[i] = [x_{i}, y_{i}]$ represents the $$i^{\text{th}}$$ cell visited in the path. If there are multiple such paths, you may return **any** one.
+Return a 2D array `result` of size $(m * n) x 2$, where $\text{result}[i] = [x_{i}, y_{i}]$ represents the $i^{\text{th}}$ cell visited in the path. If there are multiple such paths, you may return **any** one.
 
 If no such path exists, return an **empty** array.
 

@@ -51,7 +51,7 @@ The exact source uses `k = 1` when the next action is odd and `k = 0` when it is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source uses `k = 1` when the next action is odd an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The starting state is `(0, 0, 1)` because action `1` is odd. Its distance is ini
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store one distance per cell:** This incorrectl:** - **Store one distance per cell:** This incorrectly merges odd-next-action and even-next-action arrivals, which can have different optimal continuations.
+- **Store one distance per cell:** This incorrectly merges odd-next-action and even-next-action arrivals, which can have different optimal continuations.
 - **Ordinary breadth-first search:** Edges have unequal costs because entrance values and penalties vary. BFS minimizes action count, not total cost.
 - **Zero-one BFS:** Some waits cost zero, but movement costs can be much larger than one, so the edge weights do not satisfy zero-one BFS's requirement.
 - **Bellman-Ford relaxation:** It would handle the weights but wastes time because all weights are non-negative. Dijkstra gives the required near-linear heap bound.
@@ -100,8 +100,8 @@ The starting state is `(0, 0, 1)` because action `1` is odd. Its distance is ini
 - **Out-of-bounds moves:** Each neighbor is range-checked before relaxation, so thin grids such as one row or one column work without special cases.
 - **Stale destination entry:** A smaller tuple for the same state would have been popped first, making the early destination return safe even before the stale check.
 - **Missing dependencies:** The complexity and path reasoning describe the algorithm encoded by the method. Actual execution requires `List`, `inf`, `heappop`, and `heappush` to be supplied.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

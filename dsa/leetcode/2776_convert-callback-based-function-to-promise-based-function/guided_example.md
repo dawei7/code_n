@@ -59,7 +59,7 @@ The wrapper does not interpret, reorder, or copy the semantic contents of the ar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The returned regular function declares a rest parameter `...... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ On success, the first callback argument becomes the Promise fulfillment value. O
 
 ## 6. Traps This Instance Exposes
 
-- **- **Node.js error-first adapter:** Many Node APIs :** - **Node.js error-first adapter:** Many Node APIs call `callback(error, result)`. This problem uses result first and error second, so an error-first implementation would reverse the outcomes.
+- **Node.js error-first adapter:** Many Node APIs call `callback(error, result)`. This problem uses result first and error second, so an error-first implementation would reverse the outcomes.
 - **Truthy error test:** `if (error)` would treat zero, false, an empty string, or null as success. The exact `error !== undefined` test recognizes every supplied error value.
 - **Preserve method receiver:** Invoking `fn.call(this, callback, ...args)` can forward the wrapper's receiver. The exact implementation calls `fn` plainly and therefore does not preserve method context.
 - **Synchronous callback:** The Promise settles during executor execution, while consumer handlers still follow normal microtask scheduling.
@@ -113,8 +113,8 @@ On success, the first callback argument becomes the Promise fulfillment value. O
 - **Concurrent wrapper invocations:** Each call creates new resolver functions and a new callback closure, preventing cross-settlement.
 - **Argument order:** Rest gathering and spread preserve the exact left-to-right order expected by `fn`.
 - **Work inside `fn`:** Its own time, memory, side effects, and cancellation behavior are outside the adapter's `O(a)` overhead.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

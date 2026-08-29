@@ -59,7 +59,7 @@ When no match exists, all projected `c` columns are null while the box row remai
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `LEFT JOIN Chests AS c USING (chest_id)` joins rows whose `c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The box columns are also wrapped in `COALESCE(b.apple_count, 0)` and `COALESCE(b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner join:** It would discard boxes whose `ch:** - **Inner join:** It would discard boxes whose `chest_id` is null or unmatched, losing their own fruit counts.
+- **Inner join:** It would discard boxes whose `chest_id` is null or unmatched, losing their own fruit counts.
 - **Start from Chests:** It risks including unreferenced chests and does not naturally preserve chestless boxes.
 - **Correlated subqueries:** Looking up chest apples and oranges separately per box repeats work and is less clear than one join.
 - **`IFNULL` instead of `COALESCE`:** MySQL's two-argument `IFNULL` can supply the same zeros; `COALESCE` is standard and handles multiple fallbacks.
@@ -115,8 +115,8 @@ The box columns are also wrapped in `COALESCE(b.apple_count, 0)` and `COALESCE(b
 - **No grouping:** A single total row is intended; grouping by box or chest would change the output shape.
 - **Empty Boxes table outside stated examples:** Standard SQL `SUM` over no rows returns null rather than zero; an outer `COALESCE(SUM(...),0)` would be needed if a zero row were required.
 - **Independent fruit totals:** Apples and oranges are summed with parallel expressions, so neither category affects the other.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

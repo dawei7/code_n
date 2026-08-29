@@ -51,7 +51,7 @@ For equal-length digit strings, numeric order is determined by the first positio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For equal-length digit strings, numeric order is determined ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For equal-length digit strings, numeric order is determined by the first positio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate every half permutation:** Sorting all:** - **Generate every half permutation:** Sorting all possible palindromes is factorial and infeasible for 100,000 digits.
+- **Generate every half permutation:** Sorting all possible palindromes is factorial and infeasible for 100,000 digits.
 - **Frequency-based successor construction:** One can locate a pivot and rebuild the minimal suffix from digit counts, but the standard next-permutation reversal is simpler because the suffix is already ordered.
 - **Even length:** Every digit belongs to a mirrored pair, and the entire palindrome is determined by the first half.
 - **Odd length:** The middle digit is the only unpaired digit and remains unchanged.
@@ -98,8 +98,8 @@ For equal-length digit strings, numeric order is determined by the first positio
 - **Leading zeros:** All candidates have equal length, so lexicographic comparison still matches their fixed-width digit-string order, though the local description does not separately define leading-zero inputs.
 - **Input preservation:** Converting to a list creates a copy; the original string is immutable and unchanged.
 - **Suffix slices:** The exact reversal syntax allocates temporary storage even though an in-place two-pointer reversal could avoid that extra slice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

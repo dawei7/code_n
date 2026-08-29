@@ -63,7 +63,7 @@ The date format string has no separator: `%Y` emits the four-digit year and `%m`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After joining, the `WHERE` clause keeps only rows satisfying... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The result has no `ORDER BY` clause because output order is unrestricted. SQL re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Half-open date range:** Use a lower bound at `:** - **Half-open date range:** Use a lower bound at `2020-06-01` and an exclusive upper bound at `2020-07-01`. This handles timestamps precisely and can use a normal date index more effectively than `DATE_FORMAT`.
+- **Half-open date range:** Use a lower bound at `2020-06-01` and an exclusive upper bound at `2020-07-01`. This handles timestamps precisely and can use a normal date index more effectively than `DATE_FORMAT`.
 - **YEAR and MONTH functions:** Testing year 2020 and month 6 is readable but remains a function-based filter that may inhibit an ordinary index seek.
 - **EXISTS subquery:** Select qualifying content titles and test whether a June program row exists. This can avoid generating multiple joined rows before deduplication, depending on indexes and optimizer choices.
 - **Missing content match:** An inner join drops the program row, which is appropriate because its title and classification cannot be established.
@@ -114,8 +114,8 @@ The result has no `ORDER BY` clause because output order is unrestricted. SQL re
 - **No qualifying movies:** The query correctly returns an empty result set.
 - **Unrestricted order:** Adding an order is unnecessary; without `ORDER BY`, consumers must not rely on a stable row sequence.
 - **Mismatched join-key types:** Implicit conversion may work in MySQL but can hurt portability and index use. Consistent schema types are preferable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

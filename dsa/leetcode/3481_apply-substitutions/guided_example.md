@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(s)` searches for the first percent sign.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The key is extracted with `s[i + 1:j]`. Before inserting its value, the code rec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoize expansion by key:** This matches the m:** - **Memoize expansion by key:** This matches the manifest summary and avoids recomputing shared dependencies, but the protected source does not do it.
+- **Memoize expansion by key:** This matches the manifest summary and avoids recomputing shared dependencies, but the protected source does not do it.
 - **Topologically expand the dependency graph:** A dependency order can resolve each key once without recursion and detect cycles explicitly.
 - **Repeated global string replacement:** Repeatedly scanning all keys and all text may do unnecessary work and requires careful termination logic.
 - **Cycle detection:** It is unnecessary only because the input guarantees no cyclic dependencies; the source would otherwise recurse indefinitely.
@@ -99,8 +99,8 @@ The key is extracted with `s[i + 1:j]`. Before inserting its value, the code rec
 - **Unmatched percent sign:** The source returns the current string unchanged; valid inputs never require this fallback.
 - **Output growth:** Branching replacements can make the result much larger than the raw input, so output size must appear in realistic complexity analysis.
 - **Input preservation:** The mapping is copied into `d` and the immutable input text is never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -75,7 +75,7 @@ for these repeated factors.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every multiple of five contributes at least one factor five.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ is $\lfloor n/5\rfloor$; after two it is $\lfloor n/25\rfloor$, and so on.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit powers of five:** Maintain `power = 5:** - **Explicit powers of five:** Maintain `power = 5`, add `n // power`, and multiply the power by five. It computes the same series without changing local `n`.
+- **Explicit powers of five:** Maintain `power = 5`, add `n // power`, and multiply the power by five. It computes the same series without changing local `n`.
 - **Compute the factorial:** Produces enormous integers and does far more work than necessary.
 - **Inspect every multiple of five:** Count repeated factors in each multiple; correct but takes $O(n)$ total time.
 - **Count both twos and fives:** Correct but redundant because twos are never the limiting factor.
@@ -134,8 +134,8 @@ is $\lfloor n/5\rfloor$; after two it is $\lfloor n/25\rfloor$, and so on.
 - **Nonnegative guarantee:** `while n` and floor division rely on the specified domain.
 - **Integer division:** `//` is essential; fractional division does not count multiples.
 - **No factorial storage:** The algorithm's memory stays constant even when `n!` has many digits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

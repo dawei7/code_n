@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-m=\left\lfloor\frac{\texttt{target}}{2}\right\rfloor.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ The first safe block is every value from one through $m$.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy set scan:** Try positive integers in or:** - **Greedy set scan:** Try positive integers in order and skip complements of selected values. It is intuitive and correct but takes $O(n+\texttt{target})$ time and $O(n)$ space, impossible for $n=10^9$.
+- **Greedy set scan:** Try positive integers in order and skip complements of selected values. It is intuitive and correct but takes $O(n+\texttt{target})$ time and $O(n)$ space, impossible for $n=10^9$.
 - **Explicitly build the two blocks:** This takes $O(n)$ time and space merely to sum values whose formula is known.
 - **`target = 1`:** `m = 0`, so the entire minimum array is the high block starting at one; the formula yields one through `n`.
 - **`n <= m`:** No high values are needed, and the ordinary first $n$ positive integers are already beautiful.
@@ -101,8 +99,8 @@ The first safe block is every value from one through $m$.
 - **Modulo timing:** Reduce the final exact sum, not individual choices made according to residue.
 - **Distinctness:** Both arithmetic blocks contain consecutive nonoverlapping values, so no duplicates occur.
 - **Positive values:** Starting the first block at one and the second at target respects positivity even when target is one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,9 +61,7 @@ The aliased output column is also called `transaction_date`, but it is no longer
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `s` selects `customer_id` and:
-
-`DATE_SUB(transaction_da... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +98,7 @@ If duplicate dates existed, row number would increase while date did not, splitt
 
 ## 6. Traps This Instance Exposes
 
-- **- **LAG plus running group number:** Detect date g:** - **LAG plus running group number:** Detect date gaps explicitly, cumulatively label islands, then group; more verbose but equally valid.
+- **LAG plus running group number:** Detect date gaps explicitly, cumulatively label islands, then group; more verbose but equally valid.
 - **Recursive date walking:** Unnecessary and often slower than window-based islands and gaps.
 - **Single transaction:** Forms a streak of length one.
 - **Several customers tied:** All maximum streak rows pass the equality filter.
@@ -110,8 +108,8 @@ If duplicate dates existed, row number would increase while date did not, splitt
 - **Large gap:** Changes the derived key and starts a new island.
 - **Amount values:** Do not affect streak membership or length.
 - **Output order:** Ascending customer ID is explicit, but uniqueness is not.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

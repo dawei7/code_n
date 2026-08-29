@@ -62,9 +62,7 @@ It begins at `-1` to mean “not computed.”
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans[i]` is the person with minimum quiet value among:
-
-- pe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +99,9 @@ This assignment also marks the state as started/computed before exploring richer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Topological propagation:** Process people from:** - **Topological propagation:** Process people from richer to poorer while propagating quietest representatives. It is iterative and has the same linear complexity.
-- **- **DFS separately without caching:** It may revis:** - **DFS separately without caching:** It may revisit the same richer region for many people and become quadratic or worse.
-- **- **Reverse edge direction:** Storing richer-to-po:** - **Reverse edge direction:** Storing richer-to-poorer edges is useful for propagation, but this exact DFS needs poorer-to-richer edges to answer one person's query.
+- **Topological propagation:** Process people from richer to poorer while propagating quietest representatives. It is iterative and has the same linear complexity.
+- **DFS separately without caching:** It may revisit the same richer region for many people and become quadratic or worse.
+- **Reverse edge direction:** Storing richer-to-poorer edges is useful for propagation, but this exact DFS needs poorer-to-richer edges to answer one person's query.
 
 ---
 

@@ -61,7 +61,7 @@ For example, consider `[1, 1, 2, 1, 3]`. Initially `ans = 0`, so the first value
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After `ans` successful earlier tests, the stated battery val... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ At the end there are no unprocessed devices, and the first meaning says `ans` is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal suffix decrements:** This follows the :** - **Literal suffix decrements:** This follows the wording directly but can take quadratic time and mutates the input. The accumulated-success invariant makes every write unnecessary.
+- **Literal suffix decrements:** This follows the wording directly but can take quadratic time and mutates the input. The accumulated-success invariant makes every write unnecessary.
 - **Difference array:** Range decrements could be represented with prefix differences, but every successful operation affects the entire remaining suffix, so a single scalar count is the simplest possible lazy representation.
 - **Computing `max(0, x - ans)`:** This is correct but more work than needed because only positivity matters; `x > ans` is exactly equivalent.
 - **A zero battery:** It can never be tested because `0 > ans` is false for every nonnegative `ans`.
@@ -112,8 +112,8 @@ At the end there are no unprocessed devices, and the first meaning says `ans` is
 - **No device succeeds:** If all starting values are zero, the answer remains zero. More generally, failure does not create a decrement, so it cannot make later devices weaker.
 - **Unsorted percentages:** Sorting would change which suffixes receive decrements and is therefore invalid. The solution preserves the given order.
 - **Input preservation:** All process effects are represented in `ans`; the original list remains untouched.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

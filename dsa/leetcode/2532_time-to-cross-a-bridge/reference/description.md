@@ -2,7 +2,7 @@
 
 There are `k` workers who want to move `n` boxes from the right (old) warehouse to the left (new) warehouse. You are given the two integers `n` and `k`, and a 2D integer array `time` of size `k x 4` where $\text{time}[i] = [\text{right}_{i}, \text{pick}_{i}, \text{left}_{i}, \text{put}_{i}]$.
 
-The warehouses are separated by a river and connected by a bridge. Initially, all `k` workers are waiting on the left side of the bridge. To move the boxes, the $$i^{\text{th}}$$ worker can do the following:
+The warehouses are separated by a river and connected by a bridge. Initially, all `k` workers are waiting on the left side of the bridge. To move the boxes, the $i^{\text{th}}$ worker can do the following:
 
 - Cross the bridge to the right side in $\text{right}_{i}$ minutes.
 
@@ -12,7 +12,7 @@ The warehouses are separated by a river and connected by a bridge. Initially, al
 
 - Put the box into the left warehouse in $\text{put}_{i}$ minutes.
 
-The $$i^{\text{th}}$$ worker is **less efficient** than the j$^th$ worker if either condition is met:
+The $i^{\text{th}}$ worker is **less efficient** than the j$^th$ worker if either condition is met:
 
 - $\text{left}_{i} + \text{right}_{i} > \text{left}_{j} + \text{right}_{j}$
 

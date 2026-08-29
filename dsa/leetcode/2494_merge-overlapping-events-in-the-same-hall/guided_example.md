@@ -61,9 +61,7 @@ This running reach captures chained overlap. Even if an intermediate short inter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every event, `cur_max_end_day` is calculated with
-
-`MAX(... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ It is important that `LAG` is applied to the running maximum, not directly to th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Immediate previous end only:** This fails when:** - **Immediate previous end only:** This fails when a long earlier interval bridges over a short nested interval; use the previous running maximum.
+- **Immediate previous end only:** This fails when a long earlier interval bridges over a short nested interval; use the previous running maximum.
 - **Recursive interval expansion:** It can merge chains but is more complicated and less natural than window-based gaps and islands.
 - **Touching dates:** `start_day == prior maximum end` is overlap because the shared date counts.
 - **One-day event:** Its start equals its end and it merges with any same-hall interval containing that date.
@@ -116,8 +114,8 @@ It is important that `LAG` is applied to the running maximum, not directly to th
 - **First row per hall:** A `NULL` lag causes the start marker to be one.
 - **Transitive overlap:** A chain of pairwise overlaps belongs to one island.
 - **Output order:** No ordering clause is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -53,8 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - append 1 when the new value is larger;
-- append 0 when the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ A subarray `nums[i..i+M]` matches the length-$M$ pattern exactly when
 
 ## 6. Traps This Instance Exposes
 
-- **- **Naive comparison at every start:** It takes $O:** - **Naive comparison at every start:** It takes $O((N-M)M)$ worst-case time and is too slow for $N$ up to one million.
+- **Naive comparison at every start:** It takes $O((N-M)M)$ worst-case time and is too slow for $N$ up to one million.
 - **Z-function:** Concatenating pattern, a separator, and the relation array also finds matches in linear time, but still normally stores a linear auxiliary array.
 - **Rolling hash:** It can compare windows quickly but introduces collision risk unless equality is independently verified.
 - **Streaming KMP count:** Relations can be fed directly into the KMP state and a scalar count incremented on matches. It would preserve linear time and use $O(M)$ space, unlike the exact source's materialized arrays.
@@ -99,8 +98,8 @@ A subarray `nums[i..i+M]` matches the length-$M$ pattern exactly when
 - **Large values:** Only comparisons are performed; magnitudes up to $10^9$ do not affect matching.
 - **Input preservation:** Neither `nums` nor `pattern` is mutated.
 - **Manifest mismatch:** Its $O(M)$ space claim describes a streaming KMP design, while the protected source uses $O(N+M)$ storage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

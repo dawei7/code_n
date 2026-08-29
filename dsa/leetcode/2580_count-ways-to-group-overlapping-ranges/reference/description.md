@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `ranges` where $\text{ranges}[i] = [\text{start}_{i}, \text{end}_{i}]$ denotes that all integers between $\text{start}_{i}$ and $\text{end}_{i}$ (both **inclusive**) are contained in the $$i^{\text{th}}$$ range.
+You are given a 2D integer array `ranges` where $\text{ranges}[i] = [\text{start}_{i}, \text{end}_{i}]$ denotes that all integers between $\text{start}_{i}$ and $\text{end}_{i}$ (both **inclusive**) are contained in the $i^{\text{th}}$ range.
 
 You are to split `ranges` into **two** (possibly empty) groups such that:
 

@@ -64,9 +64,7 @@ Using an exclusive chain matters. A character must contribute one category weigh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `if`/`elif` chain assigns exactly one category:
-
-- `ch.i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ The result begins at zero and increases by a positive category weight for every 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Score every input position:** This overcounts :** - **Score every input position:** This overcounts repeated characters because the rule is based on distinct identities.
+- **Score every input position:** This overcounts repeated characters because the rule is based on distinct identities.
 - **Use four bitmasks:** One bit per lowercase letter, uppercase letter, digit, and special character can deduplicate using fixed integer state and gives a more literal $O(1)$ representation.
 - **Use one 66-entry Boolean table:** Map every allowed character to an index, mark presence, and total marked category weights. This avoids hashing but requires explicit mapping logic.
 - **Count category diversity rather than character diversity:** Two different lowercase letters each earn one point. The score is not merely one point for the lowercase category being present.
@@ -118,8 +116,8 @@ The result begins at zero and increases by a positive category weight for every 
 - **Set iteration order:** It may vary between executions, but integer addition yields the same total.
 - **Invalid punctuation:** The source's `else` would score it as special. Correctness relies on the documented restriction to `!@#$`.
 - **Non-ASCII characters:** Python classification may accept some, but they are outside the input contract and need no special handling here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -77,7 +77,7 @@ Finally, `dfs(0)` evaluates the entire tree and returns the root's finish time.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested function `dfs(i)` returns the finish time of task... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,9 +116,9 @@ For a node with only one child whose finish time is `a`, both `earliest` and `la
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative preorder plus reversed order:** Buil:** - **Iterative preorder plus reversed order:** Build an order in which every parent precedes its children, then process that list backward. This preserves `O(n)` time and space while safely supporting a chain of `10^5` tasks. It would also match the manifest's reverse-traversal summary, but it is not what the stored source currently does.
-- **- **Memoized recursion:** Memoization is unnecessa:** - **Memoized recursion:** Memoization is unnecessary on a tree because every non-root node has one parent and is requested once. It would not repair missing imports or the call-stack limit.
-- **- **Recompute each subtree repeatedly:** Evaluatin:** - **Recompute each subtree repeatedly:** Evaluating descendants anew for every ancestor can become quadratic on a chain. Returning each subtree's finish time once gives the linear traversal.
+- **Iterative preorder plus reversed order:** Build an order in which every parent precedes its children, then process that list backward. This preserves `O(n)` time and space while safely supporting a chain of `10^5` tasks. It would also match the manifest's reverse-traversal summary, but it is not what the stored source currently does.
+- **Memoized recursion:** Memoization is unnecessary on a tree because every non-root node has one parent and is requested once. It would not repair missing imports or the call-stack limit.
+- **Recompute each subtree repeatedly:** Evaluating descendants anew for every ancestor can become quadratic on a chain. Returning each subtree's finish time once gives the linear traversal.
 
 ---
 

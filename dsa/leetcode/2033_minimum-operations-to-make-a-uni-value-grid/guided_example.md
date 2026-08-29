@@ -59,7 +59,7 @@ The original nested row lists are not modified. Only the new flattened list is s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The operation acts on one element independently, and the fin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The total cost is the sum of these distances over every cell. Since division by 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quickselect median:** Find a median in expecte:** - **Quickselect median:** Find a median in expected $O(P)$ time and retain the same $O(P)$ flattened storage, though implementation is more involved.
+- **Quickselect median:** Find a median in expected $O(P)$ time and retain the same $O(P)$ flattened storage, though implementation is more involved.
 - **Counting frequencies:** Because values are bounded, a frequency array can find the weighted median without comparison sorting.
 - **Choose the arithmetic mean:** The mean minimizes squared distance, not absolute operation count, so it can be suboptimal.
 - **Try every grid value as target:** Correct but potentially quadratic without prefix-sum optimization.
@@ -113,8 +113,8 @@ The total cost is the sum of these distances over every cell. Since division by 
 - **Large gaps:** Dividing the exact divisible difference by `x` counts the necessary repeated operations.
 - **Remainder representative:** Using the first cell is sufficient because all values must agree with one common class.
 - **Input preservation:** Only the separate flattened list is sorted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

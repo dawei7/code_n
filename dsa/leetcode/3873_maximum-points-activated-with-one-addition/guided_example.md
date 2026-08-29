@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point. All coordinates in `points` are **distinct**.
+You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $i^{\text{th}}$ point. All coordinates in `points` are **distinct**.
 
 The objective is to compute `4` from `{"points": [[1, 1], [1, 2], [2, 2]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ The union-find `size` field counts coordinate nodes, not points. A component can
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The numerical coordinate `5` used as an x-coordinate is not ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ It is important that counting occurs after all unions. Roots may change while la
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a point-to-point graph:** Connect every :** - **Build a point-to-point graph:** Connect every pair sharing x or y, then find components. A coordinate with many points creates quadratically many explicit edges; coordinate-node union avoids that explosion.
+- **Build a point-to-point graph:** Connect every pair sharing x or y, then find components. A coordinate with many points creates quadratically many explicit edges; coordinate-node union avoids that explosion.
 - **Breadth-first activation for every possible new point:** The coordinate domain is infinite and repeated graph traversal is too expensive. Component compression reduces every choice to selecting at most two sizes.
 - **Use raw numeric coordinates for both axes:** This falsely merges x-value `v` with y-value `v` even without a point connecting them. Separate types or a safe offset are mandatory.
 - **Use union-find node sizes as point counts:** Coordinate-node count is not edge count. The separate `Counter` correctly counts actual points.
@@ -113,8 +113,8 @@ It is important that counting occurs after all unions. Roots may change while la
 - **Distinct point guarantee:** It ensures each input edge is unique. Multiple points may still share one coordinate and are correctly joined.
 - **Negative coordinates:** The offset keeps shifted y nodes disjoint even at the extreme negative bound.
 - **Added point count:** The final plus one is essential because the return includes the newly inserted and initially activated point.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

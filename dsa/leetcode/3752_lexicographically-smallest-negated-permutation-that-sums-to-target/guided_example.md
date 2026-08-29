@@ -81,7 +81,7 @@ More precisely, before processing `v` the invariant is that the current remainde
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source scans `value=n,n-1,...,1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +133,7 @@ For `n=4` and target zero, `T=10` and `N=5`. Greedy selects four, skips three an
 
 ## 6. Traps This Instance Exposes
 
-- **- **General subset-sum DP:** It would be far too e:** - **General subset-sum DP:** It would be far too expensive for totals near $n^2$. Consecutive magnitudes make descending greedy exact.
+- **General subset-sum DP:** It would be far too expensive for totals near $n^2$. Consecutive magnitudes make descending greedy exact.
 - **Choose small negatives first:** It may reach the sum but produces lexicographically larger arrays because large negative values are smaller numeric prefixes.
 - **Emit values in magnitude order:** Lexicographic minimum requires ordinary signed numeric order, with large-magnitude negatives first.
 - **Target above `T` or below `-T`:** No sign assignment can reach it.
@@ -144,8 +144,8 @@ For `n=4` and target zero, `T=10` and `N=5`. Greedy selects four, skips three an
 - **Duplicate values:** Absolute values are a permutation, so magnitudes are unique; the Boolean array maps one-to-one.
 - **Remainder after greedy:** The complete-sequence invariant guarantees it is zero once feasibility passes.
 - **Lexicographic comparison:** A more negative first unequal element is smaller, which is why the algorithm prioritizes large negative magnitudes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

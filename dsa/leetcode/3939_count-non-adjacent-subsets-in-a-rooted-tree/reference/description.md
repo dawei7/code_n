@@ -44,7 +44,7 @@ Return the number of valid node subsets modulo $1{,}000{,}000{,}007$.
 
 ![](images/image1.png)
 
-​​​​​​​**
+**
 
 The only valid subset is `{2}`. It contains node 2 with value 3, which is divisible by 3.
 
@@ -60,7 +60,7 @@ The only valid subset is `{2}`. It contains node 2 with value 3, which is divisi
 
 ![](images/image2.png)
 
-​​​​​​​**​​​​​​​
+**
 
 The valid subsets are:
 
@@ -84,6 +84,6 @@ No other subset satisfies both conditions. Therefore, the answer is 2.
 
 - $1 \le \text{nums}[i] \le 10^{9}$
 
-- $1 \le k \le 100$​​​​​​​​​​​​​​`​​​​​​​`
+- $1 \le k \le 100$``
 
 - `parent` describes a valid rooted tree.

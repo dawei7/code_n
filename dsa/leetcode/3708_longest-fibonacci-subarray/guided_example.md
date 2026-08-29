@@ -85,7 +85,7 @@ For `[1, 1, 1, 1, 2, 3, 5, 1]`, the early triples of ones fail because $1\ne1+1$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the current value does not equal the sum of the previous ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ This local state is sufficient because a future extension depends only on the mo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every subarray:** Extending from every l:** - **Check every subarray:** Extending from every left boundary repeats the same recurrence checks and can take $O(n^2)$ time.
+- **Check every subarray:** Extending from every left boundary repeats the same recurrence checks and can take $O(n^2)$ time.
 - **Dynamic-programming array:** Storing the ending length for every index also works in $O(n)$ time but wastes $O(n)$ space because only the previous length is needed.
 - **Treat it as a subsequence problem:** Skipping elements solves a different problem and can report a length that is not contiguous.
 - **No valid triple:** The answer remains two, matching the note that every pair is Fibonacci.
@@ -136,8 +136,8 @@ This local state is sufficient because a future extension depends only on the mo
 - **Large values:** Only exact integer addition and comparison are used, with no floating-point behavior.
 - **Minimum allowed length:** For a three-element input, one recurrence test decides whether the answer is three or two.
 - **Positive-value guarantee:** The rolling argument depends on the recurrence and contiguity, not positivity, though positivity is part of the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

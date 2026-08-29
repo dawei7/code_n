@@ -61,7 +61,7 @@ If the scan ends first, `t * k` is not a subsequence and check returns false.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `check(t,k)` scans `s` once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This pruning is safe. If `nxt * k` is not a subsequence, no longer string beginn
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every string over 26 letters:** Vast:** - **Enumerate every string over 26 letters:** Vastly larger; frequency filtering and valid-prefix pruning are essential.
+- **Enumerate every string over 26 letters:** Vastly larger; frequency filtering and valid-prefix pruning are essential.
 - **Generate candidates in descending order and stop:** Possible with careful depth handling, but the ascending overwrite policy is straightforward.
 - **Materialize `t * k`:** Simpler subsequence checking but allocates up to $kL$ characters; the helper cycles through `t` instead.
 - **Character frequency below `k`:** Cannot appear in any valid answer.
@@ -112,8 +112,8 @@ This pruning is safe. If `nxt * k` is not a subsequence, no longer string beginn
 - **Valid-prefix pruning:** Any invalid prefix makes every extension invalid.
 - **Queue initialization:** Empty string seeds all one-letter candidates but is not itself checked.
 - **Environment imports:** The source assumes `Counter`, `ascii_lowercase`, and `deque` are available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

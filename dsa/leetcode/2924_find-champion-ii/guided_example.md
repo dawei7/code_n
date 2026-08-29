@@ -61,7 +61,7 @@ For edges `[[0,1],[1,2]]`, indegrees are `[0,1,1]`. Only team $0$ is unmarked an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `indeg.count(0)` scans the array and obtains the number of s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ If a unique champion exists, it cannot have an incoming edge and therefore appea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Topological sort:** It also begins with indegr:** - **Topological sort:** It also begins with indegrees but maintaining a queue and removing nodes is unnecessary when only the number of initial sources matters.
+- **Topological sort:** It also begins with indegrees but maintaining a queue and removing nodes is unnecessary when only the number of initial sources matters.
 - **Build an adjacency list:** Useful for reachability questions, but redundant here; every required update is determined directly by an edge destination.
 - **Transitive closure:** Computing all strength relationships would cost much more and does not change which vertices have incoming edges.
 - **No edges:** Every team has indegree zero. Return the sole team only when $n=1$; otherwise return `-1`.
@@ -115,8 +115,8 @@ If a unique champion exists, it cannot have an incoming edge and therefore appea
 - **Why outgoing edges are unnecessary:** A champion may be connected to weaker teams indirectly. Its defining feature is absence of a stronger predecessor, which incoming-edge marking captures without counting victories.
 - **Disconnected components:** A DAG with multiple disconnected components has at least one source in each, so it cannot have a unique champion unless only one component supplies all nodes through reachability.
 - **Two linear scans of indegree:** `count` followed by `index` is still $O(n)$; combining them in one loop would only improve a constant factor.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

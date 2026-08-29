@@ -4,7 +4,7 @@ You are given a sorted integer array `arr` containing `1` and **prime** numbers,
 
 For every `i` and `j` where $0 \le i < j < \text{arr.length}$, we consider the fraction $\text{arr}[i] / \text{arr}[j]$.
 
-Return *the* $$k^{\text{th}}$$ *smallest fraction considered*. Return your answer as an array of integers of size `2`, where $\text{answer}[0] = \text{arr}[i]$ and $\text{answer}[1] = \text{arr}[j]$.
+Return *the* $k^{\text{th}}$ *smallest fraction considered*. Return your answer as an array of integers of size `2`, where $\text{answer}[0] = \text{arr}[i]$ and $\text{answer}[1] = \text{arr}[j]$.
 
 ### 2. Function Contract
 

@@ -64,7 +64,7 @@ Variables that appear only in queries are deliberately not inserted. The problem
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop over `equations` assigns each encountered var... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,9 +129,9 @@ That is exactly why the code saves `origin`, recursively updates the parent, and
 
 ## 6. Traps This Instance Exposes
 
-- **- **Weighted graph plus DFS:** Add edges `a -> b` :** - **Weighted graph plus DFS:** Add edges `a -> b` with weight `v` and `b -> a` with weight `1/v`. For each query, search a path and multiply weights. This is simpler to derive but can revisit the graph for every query, costing $O(eq)$ in the worst case.
-- **- **Weighted graph plus BFS:** Uses the same ratio:** - **Weighted graph plus BFS:** Uses the same ratio-product idea with an explicit queue instead of recursion. It has similar per-query complexity.
-- **- **Union by rank or size:** Tracking component ra:** - **Union by rank or size:** Tracking component rank/size while retaining the weight algebra would prevent tall trees and, together with path compression, support the manifest’s inverse-Ackermann amortized bound.
+- **Weighted graph plus DFS:** Add edges `a -> b` with weight `v` and `b -> a` with weight `1/v`. For each query, search a path and multiply weights. This is simpler to derive but can revisit the graph for every query, costing $O(eq)$ in the worst case.
+- **Weighted graph plus BFS:** Uses the same ratio-product idea with an explicit queue instead of recursion. It has similar per-query complexity.
+- **Union by rank or size:** Tracking component rank/size while retaining the weight algebra would prevent tall trees and, together with path compression, support the manifest’s inverse-Ackermann amortized bound.
 
 ---
 

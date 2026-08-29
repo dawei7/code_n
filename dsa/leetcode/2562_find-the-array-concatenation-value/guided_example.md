@@ -67,7 +67,7 @@ The manifest summary describes arithmetic concatenation, but the checked-in solu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current values `nums[i]` and `nums[j]`, the code evaluat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ For an even-length array, the pointers cross after the final pair and the condit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic concatenation:** Compute the power :** - **Arithmetic concatenation:** Compute the power of ten determined by the right value's digit count, then add `left * power + right`. This avoids strings but needs careful digit counting.
+- **Arithmetic concatenation:** Compute the power of ten determined by the right value's digit count, then add `left * power + right`. This avoids strings but needs careful digit counting.
 - **Physically pop endpoints:** Repeated `pop(0)` shifts the list and can cost $O(n^2)$ overall; it also destroys the input.
 - **Deque simulation:** A deque supports removal from both ends in $O(1)$ time, but copying the array into it uses $O(n)$ extra space when two indices suffice.
 - **One element:** The loop never runs, the pointers are equal, and the sole value is added once.
@@ -120,8 +120,8 @@ For an even-length array, the pointers cross after the final pair and the condit
 - **Different digit lengths:** String joining naturally handles cases such as $7$ followed by $52$, producing $752$.
 - **Positive-input guarantee:** Since zero and negative values are absent, there are no sign characters or meaningful leading zeros to complicate numeral concatenation.
 - **Input preservation:** Pointer movement reads `nums` only; the caller's array retains its original elements and order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

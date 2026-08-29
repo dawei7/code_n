@@ -59,7 +59,7 @@ The solution temporarily installs `target` as such a property, invokes it as a m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | JavaScript determines a regular function's `this` from its c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Creating the symbol inside the returned function also makes simultaneous or nest
 
 ## 6. Traps This Instance Exposes
 
-- **- **Function.call:** `target.call(obj, ...args)` i:** - **Function.call:** `target.call(obj, ...args)` is simpler if built-in context-setting methods are allowed.
+- **Function.call:** `target.call(obj, ...args)` is simpler if built-in context-setting methods are allowed.
 - **Function.apply:** Naturally accepts the collected argument array but is likewise a built-in helper.
 - **Permanent Symbol property:** Sets context correctly but leaves an unnecessary mutation on `obj`.
 - **Normal string key:** Risks overwriting user data.
@@ -108,8 +108,8 @@ Creating the symbol inside the returned function also makes simultaneous or nest
 - **Target returns a promise:** The promise is returned; deleting the property does not change the already established call context.
 - **Nested invocation:** Fresh symbols prevent key collisions.
 - **Frozen object:** Temporary assignment may fail; such objects are outside the normal extensible-object assumption.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

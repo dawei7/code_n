@@ -71,7 +71,7 @@ but the `IN` form expresses the combined relevant-action count directly.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In MySQL, the expression `action = 'Clicked'` evaluates to o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional `CASE` aggregation:** `SUM(CASE WH:** - **Conditional `CASE` aggregation:** `SUM(CASE WHEN action = 'Clicked' THEN 1 ELSE 0 END)` is portable across more SQL engines.
+- **Conditional `CASE` aggregation:** `SUM(CASE WHEN action = 'Clicked' THEN 1 ELSE 0 END)` is portable across more SQL engines.
 - **Separate click and view subqueries:** Joining independent counts can work but is longer and must preserve ads missing one action type.
 - **Only ignored actions:** The denominator is zero, division yields null, and `COALESCE` returns zero.
 - **Clicks but no views:** Numerator equals denominator, so CTR is 100.
@@ -125,8 +125,8 @@ $$
 - **Ordinal clauses:** `GROUP BY 1` and `ORDER BY 2 DESC, 1` are concise but fragile if the select list changes.
 - **Every ad remains represented:** Grouping starts from all `Ads` rows, so an ignored-only ad is not lost.
 - **MySQL Boolean sums:** A different SQL dialect may require explicit `CASE` expressions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

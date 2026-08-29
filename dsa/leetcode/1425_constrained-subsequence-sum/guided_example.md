@@ -76,7 +76,7 @@ Because of the second property, `q[0]` always identifies the largest DP value am
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Naively scanning up to `k` predecessor states for every `i` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ correctly becomes `nums[0]`. The later back-cleaning removes the placeholder cop
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max heap:** Store DP values with indices and l:** - **Max heap:** Store DP values with indices and lazily remove an expired maximum. This gives $O(n\log n)$ time and can retain stale nonmaximum entries.
+- **Max heap:** Store DP values with indices and lazily remove an expired maximum. This gives $O(n\log n)$ time and can retain stale nonmaximum entries.
 - **Balanced ordered multiset:** Maintain all DP values in the last `k` indices with frequencies. Maximum lookup and updates cost $O(\log k)$.
 - **Direct window scan:** Evaluate the last `k` states for every index in $O(nk)$ time.
 - **Deque of value-index pairs:** Store `(f[i], i)` directly and omit the full `f` array, realizing $O(k)$ auxiliary space.
@@ -129,8 +129,8 @@ correctly becomes `nums[0]`. The later back-cleaning removes the placeholder cop
 - **Equal DP values:** The older index is removed because the newer one stays valid longer.
 - **Negative bridge:** A negative state can be worth extending if it still leaves a positive accumulated sum that connects profitable elements within the gap bound.
 - **Nonempty requirement:** Initializing `ans` to negative infinity and always adding `x` prevents an empty zero-sum answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

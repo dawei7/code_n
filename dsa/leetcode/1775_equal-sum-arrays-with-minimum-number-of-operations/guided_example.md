@@ -67,7 +67,7 @@ Each capacity lies from zero through five. Capacity zero represents an element a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an element `v` in the lower-sum `nums1`, increasing it a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Thus each array position contributes at most one useful action whose greatest ga
 
 ## 6. Traps This Instance Exposes
 
-- **- **Six gain buckets:** Count capacities zero thro:** - **Six gain buckets:** Count capacities zero through five and consume from five downward, achieving $O(n+m)$ time and $O(1)$ auxiliary space under the fixed value domain.
+- **Six gain buckets:** Count capacities zero through five and consume from five downward, achieving $O(n+m)$ time and $O(1)$ auxiliary space under the fixed value domain.
 - **Max heap:** Repeatedly take the largest gain, but heap construction and pops are more expensive than six counters.
 - **Change arbitrary elements:** Without prioritizing capacity, extra operations may be used unnecessarily.
 - **Already equal sums:** The early return gives zero before building capacities.
@@ -119,8 +119,8 @@ Thus each array position contributes at most one useful action whose greatest ga
 - **Negative gap avoided:** Swapping ensures `d` begins positive in the main greedy path.
 - **One operation per position:** Direct assignment to any allowed value makes repeated edits to one element unnecessary.
 - **Input preservation:** Capacities are derived into a new list; neither input array is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

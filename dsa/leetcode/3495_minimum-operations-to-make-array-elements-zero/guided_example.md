@@ -54,8 +54,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - $1$ through $3$ need one selection;
-- $4$ through $15$ nee... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +89,7 @@ Call this required count the number's workload. An operation processes two array
 
 ## 6. Traps This Instance Exposes
 
-- **- **Materialize every integer in every interval:**:** - **Materialize every integer in every interval:** Endpoints reach $10^9$, so range enumeration is impossible.
+- **Materialize every integer in every interval:** Endpoints reach $10^9$, so range enumeration is impossible.
 - **Simulate division operations:** Workload bands determine selection counts directly; simulation repeats predictable steps.
 - **Use only \(\lceil s/2\rceil\):** One very large element cannot receive two selections in one operation, so its individual workload is a second lower bound.
 - **Use only the maximum workload:** Many moderate workloads may require more than twice that number of total slots.
@@ -102,8 +101,8 @@ Call this required count the number's workload. An operation processes two array
 - **Inclusive interval:** Prefix subtraction `f(r)-f(l-1)` includes both endpoints.
 - **At least two elements:** The constraint `l < r` ensures a second array element exists for every pair operation, even after it becomes zero.
 - **Repeated helper calls:** They change only a constant factor; precomputing band endpoints could share small work but is unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

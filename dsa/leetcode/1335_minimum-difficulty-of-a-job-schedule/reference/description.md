@@ -1,10 +1,10 @@
 ### 1. Description
 
-You want to schedule a list of jobs in `d` days. Jobs are dependent (i.e To work on the $$i^{\text{th}}$$ job, you have to finish all the jobs `j` where $0 \le j < i$).
+You want to schedule a list of jobs in `d` days. Jobs are dependent (i.e To work on the $i^{\text{th}}$ job, you have to finish all the jobs `j` where $0 \le j < i$).
 
 You have to finish **at least** one task every day. The difficulty of a job schedule is the sum of difficulties of each day of the `d` days. The difficulty of a day is the maximum difficulty of a job done on that day.
 
-You are given an integer array `jobDifficulty` and an integer `d`. The difficulty of the $$i^{\text{th}}$$ job is $\text{jobDifficulty}[i]$.
+You are given an integer array `jobDifficulty` and an integer `d`. The difficulty of the $i^{\text{th}}$ job is $\text{jobDifficulty}[i]$.
 
 Return *the minimum difficulty of a job schedule*. If you cannot find a schedule for the jobs return `-1`.
 

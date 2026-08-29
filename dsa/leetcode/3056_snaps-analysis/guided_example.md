@@ -51,7 +51,7 @@ This is an inner join. An activity whose user has no `Age` row is excluded, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This is an inner join.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This is an inner join. An activity whose user has no `Age` row is excluded, and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate each activity type separately:** Two:** - **Aggregate each activity type separately:** Two grouped subqueries plus a join can produce the same columns but repeat scans and require careful handling of buckets missing one type.
+- **Aggregate each activity type separately:** Two grouped subqueries plus a join can produce the same columns but repeat scans and require careful handling of buckets missing one type.
 - **Average per-user percentages:** This is generally wrong because it weights users equally rather than weighting every duration in the bucket.
 - **Use `CASE` instead of `IF`:** `SUM(CASE WHEN ... THEN time_spent ELSE 0 END)` is standard SQL and has the same logic.
 - **Bucket has only sends:** Send percentage is 100.00 and open percentage is 0.00, provided total time is positive.
@@ -98,8 +98,8 @@ This is an inner join. An activity whose user has no `Age` row is excluded, and 
 - **Any result order:** Group order is unspecified, which is allowed by the contract.
 - **Percentage type behavior:** Multiplying by 100 before division makes the intended scale obvious. Because `time_spent` is decimal, MySQL performs decimal-style division rather than accidental integer truncation.
 - **Shared denominator:** Both output percentages divide by the same total activity time for the age bucket, so under the declared send/open activity domain their unrounded values sum to 100 percent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

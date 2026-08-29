@@ -55,7 +55,7 @@ At this point `(x, y)` is only a proposed new head. The source first checks whet
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every call begins from the current head `q[0]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,9 +94,9 @@ On an ordinary move, the snake's length stays fixed. The source removes `q.pop()
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque without an occupancy set:** The body ord:** - **Deque without an occupancy set:** The body order remains efficient, but checking whether the proposed head overlaps a body coordinate requires scanning up to $L$ cells, making one move $O(L)$.
-- **- **Occupancy set without ordered body storage:** :** - **Occupancy set without ordered body storage:** Collision checks are fast, but the algorithm no longer knows which coordinate is the tail that must leave on a non-food move. Both representations serve distinct needs.
-- **- **Grid occupancy array:** A Boolean `height * wi:** - **Grid occupancy array:** A Boolean `height * width` matrix gives deterministic constant-time membership but consumes $O(height\cdot width)$ space, potentially enormous compared with the at-most-`f + 1` snake cells.
+- **Deque without an occupancy set:** The body order remains efficient, but checking whether the proposed head overlaps a body coordinate requires scanning up to $L$ cells, making one move $O(L)$.
+- **Occupancy set without ordered body storage:** Collision checks are fast, but the algorithm no longer knows which coordinate is the tail that must leave on a non-food move. Both representations serve distinct needs.
+- **Grid occupancy array:** A Boolean `height * width` matrix gives deterministic constant-time membership but consumes $O(height\cdot width)$ space, potentially enormous compared with the at-most-`f + 1` snake cells.
 
 ---
 

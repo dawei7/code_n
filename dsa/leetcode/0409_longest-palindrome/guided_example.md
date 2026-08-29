@@ -72,7 +72,7 @@ Consider `s = "abccccdd"`. Its frequencies are `a:1`, `b:1`, `c:4`, and `d:2`. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution begins with `cnt = Counter(s)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ For the running example, `ans` is `6` while `len(s)` is `8`, so one leftover bec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set of currently unmatched characters:** Scan :** - **Set of currently unmatched characters:** Scan `s`; add a character when it is unmatched, and remove it while adding two to the answer when its mate appears. One remaining set member may become the center. This is also $O(n)$ time and constant space for this alphabet, but the frequency formula in the chosen solution states the pair count more directly.
+- **Set of currently unmatched characters:** Scan `s`; add a character when it is unmatched, and remove it while adding two to the answer when its mate appears. One remaining set member may become the center. This is also $O(n)$ time and constant space for this alphabet, but the frequency formula in the chosen solution states the pair count more directly.
 - **Odd-frequency counter maintained during counting:** Track how many frequencies are currently odd, then compute `len(s) - odd_count + 1` when at least one odd frequency exists. It has the same bounds, although updating parity after every occurrence is somewhat less immediate than summing complete pairs after counting.
 - **Sort all characters:** Equal characters become adjacent after sorting, making pairs easy to count. Sorting costs $O(n \log n)$ time and is unnecessary when the alphabet can be counted directly.
 - **Try to build candidate palindromes:** Generating arrangements solves a much harder problem than requested and can create an enormous search space. The answer depends only on frequencies, not on which valid arrangement is selected.
@@ -122,8 +122,8 @@ For the running example, `ans` is `6` while `len(s)` is `8`, so one leftover bec
 - **A one-character string:** There are no pairs, but the sole character becomes the center, producing length `1`.
 - **Case-sensitive letters:** `Counter` naturally keeps `A` and `a` as different keys, exactly matching the contract.
 - **Repeated use of a high-frequency character:** A frequency such as `7` contributes `6` paired copies and may also provide the center. The integer-division expression handles this without a special branch.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

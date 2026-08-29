@@ -77,7 +77,7 @@ the reference, but the query remains semantically sensible.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Employees with no manager have `managerId = NULL`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ comparison to the one designated manager.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated scalar subquery:** Fetch the manage:** - **Correlated scalar subquery:** Fetch the manager salary for each employee and compare it; clear but may repeat lookup work.
+- **Correlated scalar subquery:** Fetch the manager salary for each employee and compare it; clear but may repeat lookup work.
 - **Left join:** A later manager-salary predicate removes null matches, making it effectively inner; direct inner join better states intent.
 - **Cartesian product plus `WHERE`:** Logically equivalent when both join and salary predicates are present, but explicit join syntax is clearer.
 - **No manager:** The employee is excluded.
@@ -131,8 +131,8 @@ comparison to the one designated manager.
 - **Broken manager reference:** Inner join produces no output for that row.
 - **Null salary:** The comparison is unknown and does not qualify.
 - **Any order:** No sorting clause is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

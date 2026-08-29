@@ -72,11 +72,7 @@ The generator expression produces those signed values, and `sum` adds them.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The factor
-
-`(-1)**i`
-
-equals one when `i` is even and negat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +113,7 @@ The sum is $5-2+1=4$.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic right-to-left recurrence:** Repeate:** - **Arithmetic right-to-left recurrence:** Repeatedly extract a digit and update `answer=digit-answer`; it can use $O(1)$ space.
+- **Arithmetic right-to-left recurrence:** Repeatedly extract a digit and update `answer=digit-answer`; it can use $O(1)$ space.
 - **Explicit sign variable:** Start at one and multiply it by $-1$ after every digit.
 - **Single digit:** Return it positively.
 - **Even number of digits:** The least significant digit is negative.
@@ -127,8 +123,8 @@ The sum is $5-2+1=4$.
 - **No leading zeroes:** Index zero is the true most significant digit.
 - **Generator scope:** Terms are not materialized as a list.
 - **Manifest mismatch:** The exact implementation allocates and scans a string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

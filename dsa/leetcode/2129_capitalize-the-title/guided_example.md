@@ -59,7 +59,7 @@ It is important to normalize the entire word rather than merely lowercasing its 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a word of length one or two, `w.lower()` converts every ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The transformed results are stored in `words`. At this point, an invariant holds
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual character scan:** One can locate each w:** - **Manual character scan:** One can locate each word boundary, measure the word, and append transformed characters to a buffer. This is also $O(n)$ time and $O(n)$ output space, but requires more indexing logic and creates more opportunities for off-by-one errors.
+- **Manual character scan:** One can locate each word boundary, measure the word, and append transformed characters to a buffer. This is also $O(n)$ time and $O(n)$ output space, but requires more indexing logic and creates more opportunities for off-by-one errors.
 - **Lowercase the entire title first:** After `title.lower()`, the first character of every word of length at least three could be uppercased. This is correct with careful boundary and length tracking, but it still needs a second pass and does not simplify the exact split-and-transform solution.
 - **Using `title.title()`:** This capitalizes every word regardless of length, so it incorrectly turns short words such as `"of"` and `"i"` into `"Of"` and `"I"`.
 - **Uppercasing only the first character:** This fails to lowercase the remaining letters of a long mixed-case word. The `"capiTalIze"` example demonstrates why full normalization is required.
@@ -111,8 +111,8 @@ The transformed results are stored in `words`. At this point, an invariant holds
 - **Maximum-length title:** The same linear passes apply when the title has length 100; there is no combinatorial behavior or nested scan over all words.
 - **Whitespace semantics:** Python’s no-argument `split()` would also collapse repeated whitespace, but the contract guarantees exactly one space and no leading or trailing spaces. The implementation’s output therefore preserves the required separator format for every legal input.
 - **Input immutability:** Neither string methods nor `join()` modify `title`; each creates a new string, which matches Python’s immutable string model.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

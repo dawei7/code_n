@@ -65,7 +65,7 @@ A more robust key would use a Monday week-start date or a compatible `YEARWEEK` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE pairs `WEEK(meeting_date, 1)` with the calendar valu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Exactly 20 hours is 50 percent, not more than 50 percent. Therefore, the non-str
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct the heavy predicate:** The required co:** - **Correct the heavy predicate:** The required comparison is `hours > 20`. The source's `>= 20` incorrectly includes exactly-half weeks.
+- **Correct the heavy predicate:** The required comparison is `hours > 20`. The source's `>= 20` incorrectly includes exactly-half weeks.
 - **Group by Monday start date:** Compute the date of each week's Monday and group by that single value, avoiding calendar-year boundary splits.
 - **Use compatible `YEARWEEK`:** A properly chosen MySQL mode can provide one combined Monday-based week key; mixing `YEAR` with `WEEK` is less robust.
 - **Conditional employee aggregation:** Weekly totals still require a first grouping, but a second grouped query with `HAVING COUNT(*) >= 2` can replace the outer CTE filter.
@@ -128,8 +128,8 @@ Exactly 20 hours is 50 percent, not more than 50 percent. Therefore, the non-str
 - **Tied heavy-week counts:** Employee name breaks the tie in ascending order.
 - **Duplicate employee names:** Their remaining relative order is unspecified unless `employee_id` is added as a final key.
 - **Read-only behavior:** The CTEs aggregate and select data; they do not modify either table.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

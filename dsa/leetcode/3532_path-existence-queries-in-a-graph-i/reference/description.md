@@ -8,7 +8,7 @@ An **undirected **edge exists between nodes `i` and `j` if the **absolute** diff
 
 You are also given a 2D integer array `queries`. For each $\text{queries}[i] = [u_{i}, v_{i}]$, determine whether there exists a path between nodes $u_{i}$ and $v_{i}$.
 
-Return a boolean array `answer`, where $\text{answer}[i]$ is `true` if there exists a path between $u_{i}$ and $v_{i}$ in the $$i^{\text{th}}$$ query and `false` otherwise.
+Return a boolean array `answer`, where $\text{answer}[i]$ is `true` if there exists a path between $u_{i}$ and $v_{i}$ in the $i^{\text{th}}$ query and `false` otherwise.
 
 ### 2. Function Contract
 

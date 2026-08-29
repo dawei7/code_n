@@ -35,15 +35,15 @@ part is just figuring out how to generate all possible
 increasing subsequences, and to do this using a standard
 backtracking algorithm template.
 
-**Example**. $nums = [1, 5, 2, 4, 8, 5, 4, 7, 9]$. Consider
+**Example**. `nums = [1, 5, 2, 4, 8, 5, 4, 7, 9]`. Consider
 the first $7$ elements of the array $nums$ and the
-subsequence $[1, 2, 4, 4]$. Then we look at the next element
+subsequence `[1, 2, 4, 4]`. Then we look at the next element
 $\text{nums}[7] = 7$. We have two options: either append this element to
-the sequence and obtain a new sequence $[1, 2, 4, 4, 7]$ or
-skip it and proceed with the original sequence. By skipping it, at the next element, we can create a new subsequence $[1, 2, 4, 4, 9]$. By taking it, we can create $[1, 2, 4, 4, 7, 9]$ as well, so we should try both options.
+the sequence and obtain a new sequence `[1, 2, 4, 4, 7]` or
+skip it and proceed with the original sequence. By skipping it, at the next element, we can create a new subsequence `[1, 2, 4, 4, 9]`. By taking it, we can create `[1, 2, 4, 4, 7, 9]` as well, so we should try both options.
 
 And what if $\text{nums}[7]$ is $3$ instead of $7$? Then we do not have an
-option to append because the sequence $[1, 2, 4, 4, 3]$ is not
+option to append because the sequence `[1, 2, 4, 4, 3]` is not
 increasing. In this case, we must skip the element.
 
 Each time we have two options: add the current element to the sequence
@@ -155,8 +155,8 @@ represents the set $\{1, 3, 6\}$.
 In this problem, we use bitmasks to represent sets of (0-based)
 indices of the array $nums$.
 
-For example, let $nums=[4, 6, 7, 7]$. The set of indices $\{0, 1, 3\}$
-corresponds to the subsequence $[4, 6, 7]$. The bitmask
+For example, let `nums = [4, 6, 7, 7]`. The set of indices $\{0, 1, 3\}$
+corresponds to the subsequence `[4, 6, 7]`. The bitmask
 $11=1+2+8=$2^{0}$+$2^{1}$+$2^{3}$=1011_2$ represents this set.
 
 Let $n = \text{nums.length}$. The bitmask $2^0+$2^{1}$+\dots+2^{n-1}=2^n-1$

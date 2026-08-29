@@ -71,7 +71,7 @@ If any check fails, the method returns `false` immediately. If all existing cell
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For coordinate `(i,j)`, three conditions can make the square... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ This symmetry argument means there is no need to compute a maximum width, pad ro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct every column string:** Generate colu:** - **Construct every column string:** Generate column words and compare them with the row list. This is correct but uses $O(C)$ additional space and repeats data already available through mirrored indexing.
+- **Construct every column string:** Generate column words and compare them with the row list. This is correct but uses $O(C)$ additional space and repeats data already available through mirrored indexing.
 - **Pad rows into a rectangle:** Padding introduces sentinel characters and requires careful comparison semantics; direct existence checks are simpler and avoid extra memory.
 - **Check only overlapping coordinates:** Comparing characters only when both sides exist is insufficient because an extra unmirrored character must invalidate the square. The two bounds checks are essential.
 - **Require all rows to have equal length:** This is too strict. Valid word squares can be ragged, as the second example demonstrates.
@@ -121,8 +121,8 @@ This symmetry argument means there is no need to compute a maximum width, pad ro
 - **Diagonal characters:** Coordinates `(i,i)` mirror themselves and necessarily compare equal when they exist.
 - **Early mismatch:** The method may finish before scanning all $C$ characters, but $O(C)$ remains the worst-case bound.
 - **Lowercase-only guarantee:** Character equality needs no normalization or case folding.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

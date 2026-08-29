@@ -61,9 +61,7 @@ If an arithmetic method returned the numeric result instead of `this`, the next 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider:
-
-`new Calculator(10).add(5).subtract(7).getResult(... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ The state after each call becomes the input to the next call. Operations are not
 
 ## 6. Traps This Instance Exposes
 
-- **- **Return numbers from arithmetic methods:** Perf:** - **Return numbers from arithmetic methods:** Performs the calculation but breaks method chaining because the next calculator method is no longer available.
+- **Return numbers from arithmetic methods:** Performs the calculation but breaks method chaining because the next calculator method is no longer available.
 - **Create a new Calculator per operation:** Can provide immutable chaining, but allocates $O(q)$ objects over a chain instead of mutating one instance.
 - **Store an operation list and evaluate later:** Adds unnecessary memory and postpones errors such as division by zero.
 - **Division by zero:** Throws before changing `result`.
@@ -112,8 +110,8 @@ The state after each call becomes the input to the next call. Operations are not
 - **Zero exponent:** A finite nonzero current result becomes one; JavaScript's precise edge semantics govern special values.
 - **Repeated getResult:** Merely reads the state and returns the same number until another operation mutates it.
 - **Aliased instance:** Every reference observes updates because methods return and mutate the same object.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Reject an impossible string before building anything.** A ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This is a pigeonhole argument: every occurrence can contribute at most one disti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rolling binary mask:** Shift the previous code:** - **Rolling binary mask:** Shift the previous code, mask to the lowest `k` bits, and add the new bit. This avoids slicing and reaches the manifest bounds.
+- **Rolling binary mask:** Shift the previous code, mask to the lowest `k` bits, and add the new bit. This avoids slicing and reaches the manifest bounds.
 - **Set of rolling integers:** Store integer window codes in a hash set rather than a Boolean array. It can use space proportional only to observed codes while retaining linear expected time.
 - **Generate all binary strings:** Building the entire universe and removing observed strings is possible but performs unnecessary generation; the observed-set size already proves coverage.
 - **Stop once all codes are found:** A loop can return true when the seen count reaches `m`. The stored comprehension always processes all windows after the feasibility check.
@@ -101,8 +101,8 @@ This is a pigeonhole argument: every occurrence can contribute at most one disti
 - **String slicing:** Slices are copies in Python, so they affect both time and memory.
 - **Hash collisions:** Python sets resolve collisions and preserve correctness; complexity uses expected hashing behavior.
 - **Complexity reporting:** Use `O(nk)`-style time for this source and reserve `O(n)` for an implemented rolling code.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

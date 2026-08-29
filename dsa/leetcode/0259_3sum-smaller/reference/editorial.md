@@ -83,9 +83,9 @@ Note that in the above binary search we choose the upper middle element $(\frac{
 
 **Intuition**
 
-Let us try sorting the array first. For example, $nums = [3,5,2,8,1]$ becomes $[1,2,3,5,8]$.
+Let us try sorting the array first. For example, `nums = [3,5,2,8,1]` becomes `[1,2,3,5,8]`.
 
-Let us look at an example $nums = [1,2,3,5,8]$, and $target = 7$.
+Let us look at an example `nums = [1,2,3,5,8]`, and $target = 7$.
 
     [1, 2, 3, 5, 8]
      ↑           ↑

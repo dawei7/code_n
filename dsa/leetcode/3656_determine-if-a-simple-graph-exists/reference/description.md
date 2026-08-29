@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `degrees`, where $\text{degrees}[i]$ represents the desired degree of the $$i^{\text{th}}$$ vertex.
+You are given an integer array `degrees`, where $\text{degrees}[i]$ represents the desired degree of the $i^{\text{th}}$ vertex.
 
 Your task is to determine if there exists an **undirected simple** graph with **exactly** these vertex degrees.
 
@@ -22,7 +22,7 @@ Return `true` if such a graph exists, otherwise return `false`.
 
 - **Explanation:** ![](images/screenshot-2025-08-13-at-24347-am.png)
 
-​​​​​​​
+
 
 One possible undirected simple graph is:
 
@@ -36,7 +36,7 @@ One possible undirected simple graph is:
 
 - **Output:** false
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - $\text{degrees}[1] = 3$ and $\text{degrees}[2] = 3$ means they must be connected to all other vertices.
 
@@ -46,6 +46,6 @@ One possible undirected simple graph is:
 
 ### 4. Constraints
 
-- $1 \le n = \text{degrees.length} \le 10^​​​​​​​5$
+- $1 \le n = \text{degrees.length} \le 10^5$
 
 - $0 \le \text{degrees}[i] \le n - 1$

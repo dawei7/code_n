@@ -39,7 +39,7 @@ Given two strings `str1` and `str2`, return *the largest string *`x`* such that 
 
 - **Input:** str1 = "AAAAAB", str2 = "AAA"
 
-- **Output:** ""​​​​​​​
+- **Output:** ""
 
 ### 4. Constraints
 

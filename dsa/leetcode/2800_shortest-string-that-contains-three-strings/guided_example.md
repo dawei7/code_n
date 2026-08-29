@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Merge two strings as tightly as their order permits.** The... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Its first two checks are containment checks. If `s in t`, returning `t` already 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bitmask shortest-superstring dynamic programmi:** - **Bitmask shortest-superstring dynamic programming:** This is the standard generalization for many strings. It tracks the best result for each subset and last string, but for exactly three inputs it adds machinery without improving the practical bound.
+- **Bitmask shortest-superstring dynamic programming:** This is the standard generalization for many strings. It tracks the best result for each subset and last string, but for exactly three inputs it adds machinery without improving the practical bound.
 - **Precompute pair overlaps:** Computing all directed overlaps first can make the six-order evaluation concise. It must still account for containment and lexicographic ties carefully.
 - **KMP or Z-algorithm overlaps:** These can find each maximum suffix-prefix overlap in linear time. They are useful for long strings, but the simple descending checks are clearer under the length-$100$ constraint.
 - **One string contains another:** The helper returns the containing string immediately, preventing duplicated characters and allowing containment in the middle rather than only at an edge.
@@ -99,8 +99,8 @@ Its first two checks are containment checks. If `s in t`, returning `t` already 
 - **Empty strings outside the constraints:** Containment would make an empty string disappear naturally, but the problem guarantees each input has at least one character.
 - **Lowercase ordering:** Python's ordinary string comparison agrees with lexicographic order for the constrained lowercase English letters.
 - **Greedy choice without permutations:** Merging whichever pair has the largest immediate overlap can miss the global best arrangement. Exhausting all six orders avoids that local-choice trap at negligible cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

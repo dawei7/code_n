@@ -59,7 +59,7 @@ The grouped subquery begins from `Vote`, so a candidate with no ballots never ap
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The grouped subquery begins from `Vote`, so a candidate with... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ It helps to trace the sample. The vote IDs point to candidates 2, 4, 3, 2, and 5
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate first, then use `MAX`:** A second ag:** - **Aggregate first, then use `MAX`:** A second aggregation can compute the largest count, after which another join selects the group with that count. This avoids `LIMIT` but usually makes the query longer. It must still rely on the unique-winner guarantee or intentionally return every tied winner.
+- **Aggregate first, then use `MAX`:** A second aggregation can compute the largest count, after which another join selects the group with that count. This avoids `LIMIT` but usually makes the query longer. It must still rely on the unique-winner guarantee or intentionally return every tied winner.
 - **Join names before grouping:** Joining `Vote` to `Candidate` first and grouping by candidate ID and name can also work. It carries name data through aggregation even though only the winning name is needed, so selecting the ID first keeps the intermediate relation narrower.
 - **Window-function ranking:** A count per candidate followed by `ROW_NUMBER` or `RANK` can express the ranking explicitly. It is valuable when tied winners need special handling, but it is more machinery than this unique-winner contract requires.
 - **Correlated count per candidate:** Counting votes separately for every candidate is easy to imagine but may repeatedly scan `Vote`, producing much more work than one grouped pass.
@@ -109,8 +109,8 @@ It helps to trace the sample. The vote IDs point to candidates 2, 4, 3, 2, and 5
 - **Foreign-key integrity:** The inner join assumes every voted-for `CandidateId` exists in `Candidate`, exactly as the schema guarantees. Without that guarantee, an invalid winning ID could disappear during the join.
 - **Counting the right column:** `COUNT(id)` is safe because `Vote.id` is a non-`NULL` primary key. Counting a nullable column could undercount rows; `COUNT(*)` is the clearer general choice when nullability is uncertain.
 - **Output order:** Only one row is returned, so no final ordering is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

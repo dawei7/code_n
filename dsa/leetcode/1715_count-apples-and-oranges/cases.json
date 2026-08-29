@@ -118,7 +118,14 @@
               "orange_count": 6
             }
           ],
-          "Chests": []
+          "Chests": {
+            "columns": [
+              "chest_id",
+              "apple_count",
+              "orange_count"
+            ],
+            "rows": []
+          }
         }
       },
       "expected": {

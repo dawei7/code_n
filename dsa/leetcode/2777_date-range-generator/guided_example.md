@@ -67,11 +67,7 @@ Date-only strings and ISO output are both UTC-oriented here. That makes fixed 24
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constant
-
-`millisecondsPerDay = 24 * 60 * 60 * 1000`
-
-is... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ This means a caller can consume only the first few dates without paying to creat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute an array:** It has the same total g:** - **Precompute an array:** It has the same total generation time but stores all `k` strings even when the caller consumes only part of the range.
+- **Precompute an array:** It has the same total generation time but stores all `k` strings even when the caller consumes only part of the range.
 - **Use local `getDate` and `setDate`:** Local timezone and daylight-saving transitions can complicate fixed intervals. The exact timestamp approach stays in UTC.
 - **Manual date arithmetic:** It requires month-length, leap-year, and year-rollover rules that the Date engine already implements.
 - **Manual formatting:** It must pad month and day and account for zero-based month APIs. ISO slicing already gives the requested shape.
@@ -122,8 +118,8 @@ This means a caller can consume only the first few dates without paying to creat
 - **Generator created but never consumed:** Its body does not run, demonstrating true lazy evaluation.
 - **Several generator instances:** Each invocation has an independent suspended `currentTime` and does not interfere with the others.
 - **Invalid date string or nonpositive step:** The local contract excludes both. Invalid parsing would produce `NaN`, while a zero step could prevent termination.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

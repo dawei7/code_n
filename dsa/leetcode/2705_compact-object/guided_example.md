@@ -63,9 +63,7 @@ The parent container decides whether a falsy child is retained, so returning it 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition is:
-
-`if (!obj || typeof obj !== "object... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ For an array, the exact expression is:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate containers in place:** Can reduce alloc:** - **Mutate containers in place:** Can reduce allocations but risks index-shift bugs and violates input preservation.
+- **Mutate containers in place:** Can reduce allocations but risks index-shift bugs and violates input preservation.
 - **Iterative explicit stack:** Avoids call-stack overflow for extremely deep JSON while keeping $O(n)$ work.
 - **Delete empty containers:** Incorrect because empty arrays and objects are truthy.
 - **Zero:** Removed wherever it is a child value.
@@ -118,8 +116,8 @@ For an array, the exact expression is:
 - **Array removal:** Survivors shift left into a packed array.
 - **Object removal:** Other property names remain unchanged.
 - **Valid JSON guarantee:** Excludes functions, symbols, undefined, and cyclic structures.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

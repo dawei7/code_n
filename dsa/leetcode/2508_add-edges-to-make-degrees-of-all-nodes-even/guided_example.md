@@ -65,7 +65,7 @@ Nodes absent from `g` have degree zero, which is already even, so omitting them 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each edge `[a,b]`, the code inserts `b` into `g[a]` and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The code handles precisely these cases and returns false for every other count.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Degree array plus edge hash set:** Store degre:** - **Degree array plus edge hash set:** Store degrees separately and encode edges in one global set; it gives the same asymptotic bounds.
+- **Degree array plus edge hash set:** Store degrees separately and encode edges in one global set; it gives the same asymptotic bounds.
 - **Already all even:** Return true without adding anything.
 - **Two nonadjacent odd nodes:** One direct edge is sufficient.
 - **Two adjacent odd nodes:** A third node must be nonadjacent to both endpoints for the two-edge path.
@@ -119,8 +119,8 @@ The code handles precisely these cases and returns false for every other count.
 - **Repeated edge restriction:** Every proposed pair must be absent from the adjacency sets.
 - **Self-loops:** They are never proposed by a successful tested arrangement.
 - **Disconnected input:** Component boundaries do not limit which legal new edges may be added.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ After grouping, all rows with the same `teacher_id` are processed together, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | SQL aggregate functions turn several input rows into a summa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ because the output contract requires the count column to be called `cnt`. An ali
 
 ## 6. Traps This Instance Exposes
 
-- **- **Plain `COUNT(subject_id)`:** This counts rows :** - **Plain `COUNT(subject_id)`:** This counts rows rather than unique subjects and fails whenever the same teacher teaches one subject in more than one department.
+- **Plain `COUNT(subject_id)`:** This counts rows rather than unique subjects and fails whenever the same teacher teaches one subject in more than one department.
 - **Distinct teacher-subject subquery:** One can first select distinct `(teacher_id, subject_id)` pairs and then count rows per teacher. It is logically correct but adds an unnecessary query layer because `COUNT(DISTINCT subject_id)` expresses the operation directly.
 - **Grouping by `teacher_id, subject_id`:** This produces one row per teacher-subject pair rather than the required one row per teacher unless another aggregation stage is added.
 - **Including `dept_id` in the count:** Departments do not define uniqueness in the requested answer. Counting subject-department pairs would overcount subjects taught across multiple departments.
@@ -119,8 +119,8 @@ because the output contract requires the count column to be called `cnt`. An ali
 - **Repeated subject across departments:** All occurrences share a `subject_id` and collapse to one value before counting, which is the central edge case.
 - **Different teachers teaching the same subject:** Grouping separates their rows first, so each teacher independently receives credit for that subject.
 - **Output order:** Without `ORDER BY`, database row order is unspecified, but the statement explicitly accepts any order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

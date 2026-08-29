@@ -6,7 +6,7 @@ You are given an encoded string `s`. To decode the string to a tape, the encoded
 
 - If the character read is a digit `d`, the entire current tape is repeatedly written $d - 1$ more times in total.
 
-Given an integer `k`, return *the *$$k^{\text{th}}$$* letter (**1-indexed)** in the decoded string*.
+Given an integer `k`, return *the *$k^{\text{th}}$* letter (**1-indexed)** in the decoded string*.
 
 ### 2. Function Contract
 

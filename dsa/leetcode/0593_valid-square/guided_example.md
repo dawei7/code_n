@@ -73,7 +73,7 @@ For ordinary clarity, `and d1 != 0` would express the same nondegeneracy conditi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In a right isosceles triangle, the two legs have equal posit... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Omitting each of the square’s four vertices still leaves such a triangle, so a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the four points:** Lexicographic order gi:** - **Sort the four points:** Lexicographic order gives a known side/diagonal arrangement that can be checked. Sorting four items is still $O(1)$, but the geometric indexing proof is less immediately obvious.
+- **Sort the four points:** Lexicographic order gives a known side/diagonal arrangement that can be checked. Sorting four items is still $O(1)$, but the geometric indexing proof is less immediately obvious.
 - **Six-distance multiset:** Compute all pairwise squared distances. A square has four equal positive small values and two equal values twice as large. This is often the simplest order-independent alternative.
 - **Three possible vertex cycles:** Fix one point and explicitly test the three ways to pair the remaining points as adjacent/opposite. Constant work, but more arrangement-oriented.
 - **Vector dot products:** Choose a candidate corner and require two equal nonzero adjacent vectors with dot product zero, then verify the fourth point. Requires testing possible corners.
@@ -122,8 +122,8 @@ Omitting each of the square’s four vertices still leaves such a triangle, so a
 - **Arbitrary input order:** Every triple and every possible right-angle position is checked, so ordering is irrelevant.
 - **Truthy distance idiom:** `and d1` rejects zero but returns an integer within the list expression; `any` intentionally interprets it as Boolean.
 - **Avoid square roots:** Squared distances preserve all equalities and Pythagorean relations exactly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

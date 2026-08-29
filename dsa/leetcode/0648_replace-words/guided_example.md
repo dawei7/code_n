@@ -64,7 +64,7 @@ It is important to distinguish “this prefix exists” from “this prefix is a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The root trie node represents the empty prefix.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +109,9 @@ Inserting the same root more than once simply sets the same Boolean to true agai
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set of roots:** Put all roots in a set an:** - **Hash set of roots:** Put all roots in a set and test every prefix of each word from shortest to longest. The logic is simple, but Python slicing constructs progressively longer strings, which can make processing one long word quadratic in its length.
-- **- **Sort roots by length and test each against eac:** - **Sort roots by length and test each against each word:** This guarantees that the first match is shortest but may compare many unrelated roots for every word, performing much more work than following one trie path.
-- **- **Dictionary child maps:** A hash map per trie n:** - **Dictionary child maps:** A hash map per trie node stores only existing edges and may use less space for sparse nodes. The 26-slot array offers direct indexing and predictable behavior for the fixed alphabet.
+- **Hash set of roots:** Put all roots in a set and test every prefix of each word from shortest to longest. The logic is simple, but Python slicing constructs progressively longer strings, which can make processing one long word quadratic in its length.
+- **Sort roots by length and test each against each word:** This guarantees that the first match is shortest but may compare many unrelated roots for every word, performing much more work than following one trie path.
+- **Dictionary child maps:** A hash map per trie node stores only existing edges and may use less space for sparse nodes. The 26-slot array offers direct indexing and predictable behavior for the fixed alphabet.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `values` where values[i] represents the value of the $$i^{\text{th}}$$ sightseeing spot. Two sightseeing spots `i` and `j` have a **distance** $j - i$ between them.
+You are given an integer array `values` where values[i] represents the value of the $i^{\text{th}}$ sightseeing spot. Two sightseeing spots `i` and `j` have a **distance** $j - i$ between them.
 
 The score of a pair (`i < j`) of sightseeing spots is $\text{values}[i] + \text{values}[j] + i - j$: the sum of the values of the sightseeing spots, minus the distance between them.
 

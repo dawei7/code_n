@@ -67,7 +67,7 @@ For `tasks = [[100, 100], [100, 100], [100, 100]]`, every generated value is $20
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every row, the generator expression yields `s + t`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The algorithm does not need to compare start times separately. A task that start
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort all finishing times:** Sorting would plac:** - **Sort all finishing times:** Sorting would place the earliest completion first, but it costs $O(n \log n)$ time and may require $O(n)$ additional storage. A single minimum scan is sufficient.
+- **Sort all finishing times:** Sorting would place the earliest completion first, but it costs $O(n \log n)$ time and may require $O(n)$ additional storage. A single minimum scan is sufficient.
 - **Build a list and call `min`:** `min([s + t for s, t in tasks])` produces the same value but materializes $n$ sums. The generator used by the source preserves $O(1)$ auxiliary space.
 - **Choose the earliest start time:** The earliest-starting task is not necessarily the earliest-finishing task because durations differ. The relevant quantity is always `s + t`.
 - **Choose the shortest duration:** A short task may begin much later than a longer one. Duration alone also cannot determine the earliest absolute finish time.
@@ -121,8 +121,8 @@ The algorithm does not need to compare start times separately. A task that start
 - **Identical tasks:** Repeated rows generate repeated completion values, which do not change the minimum and require no deduplication.
 - **Largest permitted values:** With `s = 100` and `t = 100`, the sum is $200$. Python integers handle this directly, and the constraints make overflow irrelevant in any standard integer type.
 - **No task interaction:** The statement does not say tasks run sequentially or compete for a resource. Introducing such a restriction would solve a different scheduling problem.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

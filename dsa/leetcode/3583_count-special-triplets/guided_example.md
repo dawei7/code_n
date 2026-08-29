@@ -60,7 +60,7 @@ After adding the contribution, `left[x]` increments, making the current position
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `left[x*2]` is the number of choices for `i`, and `right[x*2... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +97,7 @@ Decrementing `right[x]` first excludes it. Incrementing `left[x]` only after cou
 
 ## 6. Traps This Instance Exposes
 
-- **- **Triple enumeration:** Checking all index tripl:** - **Triple enumeration:** Checking all index triples costs `O(n^3)` and ignores the fixed-middle counting structure.
+- **Triple enumeration:** Checking all index triples costs `O(n^3)` and ignores the fixed-middle counting structure.
 - **Position lists plus binary search:** Store indices per value and count positions on each side in `O(\log n)` per middle, yielding `O(n\log n)`.
 - **One total map plus prefix counts:** Right count can be derived as total minus processed occurrences, but the explicit two-map invariant is easy to verify.
 - **All zeros:** Each middle contributes zeros-left times zeros-right, summing to `\binom{n}{3}` modulo the modulus.
@@ -114,8 +114,8 @@ Decrementing `right[x]` first excludes it. Incrementing `left[x]` only after cou
 - **Why values, not positions, belong in the maps:** Position order is already encoded by when an occurrence moves between `right` and `left`. The maps need only aggregate equal values within each side; storing complete index lists would duplicate information the scan already provides.
 - **Modulo placement:** Reducing the product before adding and reducing the sum afterward is algebraically equivalent to reducing the complete integer answer once. It also prevents a language with bounded integers from accumulating an unnecessarily large intermediate, even though Python itself would remain safe.
 - **One pass after initialization:** The only preliminary work is the complete `right` count. No second positional preprocessing is hidden; every occurrence crosses from the future map to the past map exactly once during the main loop.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ Only the latest invalid position matters. Starting after it automatically exclud
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `nums[k]` lies outside `[minK,maxK]`, any subarray contai... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The number of integers in that interval is `min(j1,j2) - k` when positive, and z
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Maintain minimum a:** - **Enumerate every subarray:** Maintain minimum and maximum while extending each start. This still takes $O(n^2)$ time and is too slow at $10^5$ elements.
+- **Enumerate every subarray:** Maintain minimum and maximum while extending each start. This still takes $O(n^2)$ time and is too slow at $10^5$ elements.
 - **Two independent window counts:** Count subarrays whose values stay in a range and use inclusion-exclusion on bounds. It can work but is less direct than tracking the latest required positions.
 - **Segment tree or sparse table:** Range minimum and maximum queries become fast, yet there remain quadratically many subarrays to classify unless additional counting logic is added.
 - **Invalid current value:** Setting `k=i` makes the contribution zero because no subarray ending there can exclude that endpoint.
@@ -128,8 +128,8 @@ The number of integers in that interval is `min(j1,j2) - k` when positive, and z
 - **Equal bounds:** Both latest positions move together, and only runs of that single value contribute.
 - **Values exactly at a bound:** They are allowed and update the corresponding required position.
 - **Contiguity:** The start interval counts contiguous slices ending at `i`; no elements can be skipped around an invalid position.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

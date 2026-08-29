@@ -22,7 +22,7 @@ Return the number of index pairs `(i, j)` satisfying $0 \le i < j < n$ for which
 
 **Inputs**
 
-- `dominoes`: an array of $n$ two-element integer arrays, where $1 \le n \le 4 \times 10^4$ and every half value lies in $[1,9]$.
+- `dominoes`: an array of $n$ two-element integer arrays, where $1 \le n \le 4 \times 10^4$ and every half value lies in `[1,9]`.
 
 **Return value**
 

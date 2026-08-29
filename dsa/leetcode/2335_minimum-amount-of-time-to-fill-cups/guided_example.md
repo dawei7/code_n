@@ -57,7 +57,7 @@ The difficult case is always a type that could be left with many cups after the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a schedule fills the largest type together with a sm... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Selecting the two largest types maintains exactly the conditions needed for this
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form bound:** Return `max(max(amount), :** - **Closed-form bound:** Return `max(max(amount), (sum(amount) + 1) // 2)`. This is the simplest true `O(1)` implementation and follows directly from the two lower bounds.
+- **Closed-form bound:** Return `max(max(amount), (sum(amount) + 1) // 2)`. This is the simplest true `O(1)` implementation and follows directly from the two lower bounds.
 - **Max heap:** Repeatedly pop the two largest positive counts, decrement, and reinsert. This generalizes to more types but adds unnecessary machinery for exactly three.
 - **Pair arbitrary positive types:** It can waste pairing capacity and leave a dominant type to be filled alone longer. Choosing the two largest prevents that imbalance.
 - **Fill one cup even when two types remain:** This can never improve the schedule because filling a second different cup in the same second is free.
@@ -120,8 +120,8 @@ Selecting the two largest types maintains exactly the conditions needed for this
 - **Repeated sorting:** It restores the meaning of indices one and two after decrements; fixed water-type identities are irrelevant to the count.
 - **Input mutation:** The source consumes and reorders `amount` until it becomes three zeros.
 - **Fixed constraints:** Calling the simulation `O(1)` relies on the numeric cap. In terms of total cups `S`, its literal complexity is linear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

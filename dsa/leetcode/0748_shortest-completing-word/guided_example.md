@@ -67,7 +67,7 @@ This is multiset containment, not ordinary set containment. Checking only whethe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a candidate word `w`, `t = Counter(w)` records its lower... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ Only a strictly shorter word is tested after an answer exists.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-element arrays:** Convert letters to :** - **Fixed 26-element arrays:** Convert letters to indices and compare counts. This avoids hash maps and has the same linear time and constant alphabet space.
-- **- **Sort plate letters and candidate letters:** A :** - **Sort plate letters and candidate letters:** A two-pointer containment check can work, but sorting every word adds unnecessary logarithmic factors.
-- **- **Use sets instead of counters:** This loses mul:** - **Use sets instead of counters:** This loses multiplicity and fails when a plate letter appears more than once.
+- **Fixed 26-element arrays:** Convert letters to indices and compare counts. This avoids hash maps and has the same linear time and constant alphabet space.
+- **Sort plate letters and candidate letters:** A two-pointer containment check can work, but sorting every word adds unnecessary logarithmic factors.
+- **Use sets instead of counters:** This loses multiplicity and fails when a plate letter appears more than once.
 
 ---
 

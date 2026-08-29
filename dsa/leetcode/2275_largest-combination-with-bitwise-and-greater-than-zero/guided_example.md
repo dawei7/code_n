@@ -55,7 +55,7 @@ Their other bits do not matter. They may disagree everywhere else, yet the share
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix a bit position `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The maximum over all `c_i` is both attainable and an upper bound on every answer
 
 ## 6. Traps This Instance Exposes
 
-- **- **24-entry bit-count array:** Traverse candidate:** - **24-entry bit-count array:** Traverse candidates once and increment every set-bit counter, then return the maximum. It uses `O(\log M)` counters, still constant under the fixed bound.
+- **24-entry bit-count array:** Traverse candidates once and increment every set-bit counter, then return the maximum. It uses `O(\log M)` counters, still constant under the fixed bound.
 - **Enumerate combinations:** There are exponentially many subsets and almost all are unnecessary once the shared-bit criterion is known.
 - **Repeatedly compute full ANDs:** Even pruning subset searches cannot match the direct per-bit upper-bound argument.
 - **Use binary strings:** Character inspection works but adds conversions and allocations that bit shifts avoid.
@@ -110,8 +110,8 @@ The maximum over all `c_i` is both attainable and an upper bound on every answer
 - **Operator precedence:** `x >> i & 1` extracts one bit; parentheses can make the intended grouping more obvious.
 - **Large input count:** Work scales with about 24 passes over the list, not with the number of possible combinations.
 - **Input preservation:** Counting bits performs no mutation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ The price is constant for a product because it comes from the unique Product row
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 1, 2` groups by the first and second selected expr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Using `DENSE_RANK` would behave identically for the only rank the query later se
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate in one CTE, then use `MAX` in anothe:** - **Aggregate in one CTE, then use `MAX` in another:** Compute spend per user-product, compute each user's maximum, and join on equal totals. This is correct and explicit but requires an additional aggregation or join stage.
+- **Aggregate in one CTE, then use `MAX` in another:** Compute spend per user-product, compute each user's maximum, and join on equal totals. This is correct and explicit but requires an additional aggregation or join stage.
 - **`DENSE_RANK` instead of `RANK`:** Both retain every maximum tie under `rk = 1`. Their treatment of later ranks differs but is irrelevant here.
 - **`ROW_NUMBER` instead of `RANK`:** This would keep only one arbitrarily ordered product from a maximum tie and violate the requirement to return all tied products.
 - **Rank raw sale rows:** Multiple purchases of one product must be combined. Ranking before grouping can choose a large individual sale rather than the largest total spend.
@@ -127,8 +127,8 @@ Using `DENSE_RANK` would behave identically for the only rank the query later se
 - **No required output order:** Omitting a final sort is correct. Consumers must not infer a stable order from CTE or window processing.
 - **Ordinal `GROUP BY`:** It is valid for the current select list but less robust to column reordering than explicit names.
 - **Helper rank column:** It controls filtering inside the CTE and is intentionally absent from the final result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

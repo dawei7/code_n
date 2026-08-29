@@ -51,7 +51,7 @@ There are $j-i$ unit boundaries between those indices. Think of the hop as earni
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are $j-i$ unit boundaries between those indices.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For the boundary immediately after index $b$, any landing $j>b$ is possible. To 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Right-to-left suffix maximum:** Start from the:** - **Right-to-left suffix maximum:** Start from the last value, move boundaries right to left, update a running maximum, and add it. This is $O(n)$ time and $O(1)$ space and matches the manifest exactly.
+- **Right-to-left suffix maximum:** Start from the last value, move boundaries right to left, update a running maximum, and add it. This is $O(n)$ time and $O(1)$ space and matches the manifest exactly.
 - **Quadratic DP:** For each index, try every later landing and memoize the best suffix score. It is correct but costs $O(n^2)$, as in the smaller version of the problem.
 - **Greedy jump to the next larger value only:** A merely larger value may be dominated by an even larger later one; suffix maxima provide the actual criterion.
 - **Strictly increasing array:** Earlier indices are repeatedly popped, leaving only the last index; one direct hop is optimal.
@@ -97,8 +97,8 @@ For the boundary immediately after index $b$, any landing $j>b$ is possible. To 
 - **Positive values:** The upper-bound interpretation is direct. The stated domain excludes negative values that could change whether extra boundaries should share a landing.
 - **Input preservation:** The stack stores indices and never reorders `nums`.
 - **Manifest mismatch:** Time is linear, but exact auxiliary space is $O(n)$ because of `stk`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ Since the next place value is negative two times the current place value, a posi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the current position has weight `(-2)^p`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Given input bits and possible carry values, `x` lies between minus one and three
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to an integer and back:** It is concep:** - **Convert to an integer and back:** It is conceptually simple in arbitrary-precision languages but abandons digitwise constraints and requires careful negative-base conversion.
+- **Convert to an integer and back:** It is conceptually simple in arbitrary-precision languages but abandons digitwise constraints and requires careful negative-base conversion.
 - **Use divmod with base minus two:** One can normalize each column total through arithmetic division, but language remainder rules for negative divisors can be less transparent than the explicit three cases.
 - **Both inputs zero:** One zero bit is appended, cleanup keeps it, and the result is `[0]`.
 - **One input zero:** The algorithm reproduces the other value, subject to normal carry processing and canonical cleanup.
@@ -122,8 +122,8 @@ Given input bits and possible carry values, `x` lies between minus one and three
 - **Maximum lengths:** Work remains linear and does not depend on the potentially large numeric value represented.
 - **Input preservation:** The arrays are read from right to left and never modified.
 - **Bit constraint:** The case range relies on input digits being only zero or one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

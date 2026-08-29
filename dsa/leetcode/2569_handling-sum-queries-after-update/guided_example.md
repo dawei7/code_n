@@ -73,7 +73,7 @@ The tree list has about four nodes per input element, a conventional safe capaci
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A node represents an inclusive one-based interval `[l, r]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ The field `lazy` records whether the descendants still need to receive a pending
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flip every element directly:** Range updates c:** - **Flip every element directly:** Range updates can cost $O(n)$ each, leading to $O(nq)$ time.
+- **Flip every element directly:** Range updates can cost $O(n)$ each, leading to $O(nq)$ time.
 - **Fenwick tree:** A standard Fenwick tree handles point updates and range sums well, but range bit complementation is not a simple additive update without more structure.
 - **Store actual `nums2` values:** Type 2 would update many elements even though only the total is ever queried. Maintaining `s` avoids that work.
 - **Read the root directly:** Since type 2 always needs the whole-array one count, `tree.tr[1].s` would replace the general full-range query.
@@ -132,8 +132,8 @@ The field `lazy` records whether the descendants still need to receive a pending
 - **No type 3 queries:** The returned answer list is empty, while updates are still processed correctly.
 - **Index conversion:** Both inclusive endpoints receive plus one; forgetting either conversion would update the wrong tree positions.
 - **Large totals:** Repeated multipliers can produce sums beyond 32-bit range, so fixed-width implementations need 64-bit accumulation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

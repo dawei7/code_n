@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
+You are given a 2D integer array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $i^{\text{th}}$ point on the Cartesian plane.
 
 The objective is to compute `2` from `{"points": [[-3, 2], [3, 0], [2, 3], [3, 2], [2, -3]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -77,7 +77,7 @@ Pairs from the same supporting line are deliberately excluded because four colli
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt1[k][b]` counts how many point-pair segments lie on supp... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ The first phase counts the same four-point parallelogram twice, while the proble
 
 ## 6. Traps This Instance Exposes
 
-- **- **Exact normalized slope:** Divide `(dy,dx)` by :** - **Exact normalized slope:** Divide `(dy,dx)` by their gcd and normalize sign, avoiding float-key concerns.
+- **Exact normalized slope:** Divide `(dy,dx)` by their gcd and normalize sign, avoiding float-key concerns.
 - **Tuple midpoint key:** Use `(x1+x2,y1+y2)` directly, eliminating the base-4000 collision.
 - **Base 4001 encoding:** It also distinguishes every legal offset pair, though a tuple is clearer.
 - **Only one parallel-side pair:** The quadrilateral is counted once in `cnt1` and not subtracted.
@@ -134,8 +134,8 @@ The first phase counts the same four-point parallelogram twice, while the proble
 - **Duplicate points:** The constraints exclude them; zero-length segments need no handling.
 - **Missing imports:** Standalone use must provide `defaultdict` and `List`.
 - **Input preservation:** The algorithm only reads `points` and stores derived segment statistics.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

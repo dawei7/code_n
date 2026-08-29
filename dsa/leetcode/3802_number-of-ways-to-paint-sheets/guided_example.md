@@ -71,7 +71,7 @@ Let `threshold=n-1` and effective capacities be $a$ and $b$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | No segment can exceed `n-1` because the other color must rec... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ The task becomes summing this expression over all ordered pairs of distinct colo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all color pairs and splits:** This c:** - **Enumerate all color pairs and splits:** This can cost $O(M^2N)$, impossible for the constraints.
+- **Enumerate all color pairs and splits:** This can cost $O(M^2N)$, impossible for the constraints.
 - **Enumerate ordered pairs only:** Using the closed formula gives $O(M^2)$, still too slow.
 - **Treat equal capacities as one color:** Colors are distinct by index even when limits tie.
 - **Count unordered pairs:** Segment order matters, so $(i,j)$ and $(j,i)$ are separate.
@@ -135,8 +135,8 @@ The task becomes summing this expression over all ordered pairs of distinct colo
 - **Large `n`:** The algorithm never iterates over split positions.
 - **Duplicate limits:** Each occurrence remains a distinct color.
 - **Forced coloring:** One valid ordered pair and split corresponds to one painting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

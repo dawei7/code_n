@@ -91,10 +91,7 @@ For example, suppose the filtered prefix before `l` is 12 and the query's filter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For inclusive query `[l,r]`, let:
-
-$$
-n_0=\texttt{cnt\_n0}[r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,7 +132,7 @@ Digit sums are stored without taking the modulus, but their maximum is only nine
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan each query substring:** This can require :** - **Scan each query substring:** This can require $O(mq)$ total work. Prefix summaries make queries constant time.
+- **Scan each query substring:** This can require $O(mq)$ total work. Prefix summaries make queries constant time.
 - **Use ordinary source length in the power:** Removed zeros do not occupy digits in `B`; the exponent must be the nonzero count.
 - **Prefix only digit sums:** The concatenated value requires its own modular prefix recurrence.
 - **Construct enormous integers exactly:** Query values can have $10^5$ digits. Modular prefixes avoid materializing them.
@@ -148,8 +145,8 @@ Digit sums are stored without taking the modulus, but their maximum is only nine
 - **Independent queries:** Prefix arrays remain immutable; one query never changes indices for another.
 - **Repeated nonzero digits:** Concatenation is positional, so duplicates are appended separately and `cnt_n0` counts both.
 - **Digit-sum prefix:** Ordinary subtraction works because digit sums are additive, unlike concatenated values which require the power adjustment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

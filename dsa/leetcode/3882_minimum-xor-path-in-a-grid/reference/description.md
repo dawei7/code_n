@@ -74,4 +74,4 @@ The XOR value of this path is 0, which is the minimum possible.
 
 - $m * n \le 1000$
 
-- $0 \le \text{grid}[i][j] \le 1023​$
+- $0 \le \text{grid}[i][j] \le 1023$

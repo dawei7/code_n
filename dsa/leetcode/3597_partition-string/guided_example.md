@@ -61,7 +61,7 @@ The set stores content rather than positions, matching uniqueness by segment str
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A segment is appended only after `t not in vis`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The source neither searches ahead nor optimizes segment count; it directly simul
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trie of emitted segments:** Traversing existin:** - **Trie of emitted segments:** Traversing existing prefixes character by character can avoid rebuilding and rehashing candidates, realizing the manifest’s intended `O(n)` behavior with `O(n)` nodes.
+- **Trie of emitted segments:** Traversing existing prefixes character by character can avoid rebuilding and rehashing candidates, realizing the manifest’s intended `O(n)` behavior with `O(n)` nodes.
 - **String builder plus hash:** Rolling hashes can reduce repeated membership cost but require collision handling and a way to materialize emitted strings.
 - **All characters initially different:** Every one-character candidate is unseen and emits immediately.
 - **Repeated one character:** Segment lengths grow as needed to find unseen strings; a final seen suffix may remain omitted.
@@ -112,8 +112,8 @@ The source neither searches ahead nor optimizes segment count; it directly simul
 - **Input preservation:** Strings are immutable and `s` is never changed.
 - **Manifest mismatch:** The source’s set contains full strings, not prefix nodes, and `t += c` rebuilds candidate content.
 - **Expected hashing:** Set operations are expected constant-time after a hash exists, but every newly constructed `t` still needs its content hash computed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

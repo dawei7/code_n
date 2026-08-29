@@ -67,7 +67,7 @@ When $n$ is odd, the middle row is not swapped, which is correct because it mirr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first nested loop swaps row `i` with row `n - i - 1`, on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Applied to the row-reversed example, transposition produces `[[7,4,1],[8,5,2],[9
 
 ## 6. Traps This Instance Exposes
 
-- **- **Transpose first, then reverse each row:** Main:** - **Transpose first, then reverse each row:** Main-diagonal transposition followed by a left-to-right reversal also maps `(r,c)` to `(c,n-1-r)`. It is the most common equivalent decomposition.
+- **Transpose first, then reverse each row:** Main-diagonal transposition followed by a left-to-right reversal also maps `(r,c)` to `(c,n-1-r)`. It is the most common equivalent decomposition.
 - **Four-cell cyclic swaps:** Process one quadrant and rotate top, left, bottom, and right values in groups of four. It performs one direct rotation pass but has more intricate index formulas.
 - **Allocate a new matrix:** Write each original value directly to `out[c][n-1-r]`. This is very easy to verify but violates the in-place requirement and uses $O(n^2)$ extra space.
 - **Anti-diagonal reflection plus top/bottom flip:** This is another valid composition. Its reflection coordinates differ, so mixing formulas between decompositions would rotate or reflect incorrectly.
@@ -116,8 +116,8 @@ Applied to the row-reversed example, transposition produces `[[7,4,1],[8,5,2],[9
 - **Negative or repeated values:** Rotation depends only on positions, so value magnitude and equality have no effect.
 - **Calling the method twice:** Two clockwise rotations produce a $180^\circ$ rotation; each call is an independent in-place coordinate transformation.
 - **Return behavior:** The absence of `return` is intentional. Callers inspect the same matrix object after the method completes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

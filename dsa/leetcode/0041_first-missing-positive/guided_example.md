@@ -55,7 +55,7 @@ This is a cycle-placement or cyclic-sort idea, but the goal is not to sort arbit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Instead of allocating a set, the solution rearranges the inp... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ For `[3, 4, -1, 1]`, index 0 initially contains `3`, so it swaps with index 2 an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set:** Insert every positive value, then :** - **Hash set:** Insert every positive value, then test `1, 2, 3, ...`. This is simple and linear-time on average, but it uses $O(n)$ extra space and misses the constant-space requirement.
+- **Hash set:** Insert every positive value, then test `1, 2, 3, ...`. This is simple and linear-time on average, but it uses $O(n)$ extra space and misses the constant-space requirement.
 - **Boolean presence array:** Mark indices for values in $[1,n]$ and scan for the first unmarked entry. It makes the home-index idea explicit but still allocates $O(n)$ auxiliary memory.
 - **Sign marking:** After normalizing unusable values, use the sign at index `v - 1` to mark value `v` present. This also achieves $O(n)$ time and $O(1)$ space, but requires care with repeated values and absolute values.
 - **Sorting normally:** Sorting followed by a scan is straightforward and can be in place, but comparison sorting costs $O(n \log n)$ time.
@@ -102,8 +102,8 @@ For `[3, 4, -1, 1]`, index 0 initially contains `3`, so it swaps with index 2 an
 - **Negative, zero, and oversized values:** The range condition ignores them safely. They do not need to be deleted or replaced.
 - **A value already in place:** If `nums[i] == i + 1`, its computed destination is the same index and the equality guard prevents a pointless self-swap.
 - **Input mutation:** The final order generally differs from the original. This is the tradeoff that supplies constant auxiliary space; callers needing the original order must pass a copy, which would itself use $O(n)$ space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

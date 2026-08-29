@@ -53,9 +53,7 @@ There are exactly three accepted capitalization patterns:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - every letter is uppercase;
-- every letter is lowercase;
-- ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Instead of checking those patterns with three separate scans, the solution summa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inspect the first two characters:** For length:** - **Inspect the first two characters:** For length at least two, their cases determine whether all later characters must be uppercase or lowercase. This also runs in $O(n)$ time but needs a separate one-character branch.
+- **Inspect the first two characters:** For length at least two, their cases determine whether all later characters must be uppercase or lowercase. This also runs in $O(n)$ time but needs a separate one-character branch.
 - **Three direct pattern scans:** Check all-uppercase, all-lowercase, and title-style forms separately. It remains $O(n)$ because three is constant, but repeats traversal logic.
 - **Built-in whole-string methods:** `word.isupper()`, `word.islower()`, and `word.istitle()` can express the three cases compactly, though their exact language semantics should be understood.
 - **Regular expression:** A full match against uppercase, lowercase, or first-capital patterns works, but introduces regex machinery for a simple linear property.
@@ -101,8 +99,8 @@ Instead of checking those patterns with three separate scans, the solution summa
 - **All-uppercase and one character:** More than one condition may describe it, but logical OR still produces the correct boolean result.
 - **Nonempty guarantee:** It makes the direct first-character check safe.
 - **English-letter guarantee:** It ensures every character is classified as either lowercase or uppercase; digits or punctuation would require more careful semantics.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

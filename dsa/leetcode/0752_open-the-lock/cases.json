@@ -111,22 +111,6 @@
       ]
     },
     {
-      "id": "trial-ext-2",
-      "name": "target itself is blocked",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "deadends": [
-          "0001"
-        ],
-        "target": "0001"
-      },
-      "expected": -1,
-      "tags": [
-        "blocked-target"
-      ]
-    },
-    {
       "id": "trial-3",
       "name": "turns required on every wheel",
       "kind": "trial",

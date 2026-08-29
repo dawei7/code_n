@@ -57,7 +57,7 @@ The deque remains sorted because values arrive in ascending order and are append
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | During inorder traversal, the first `k` encountered values a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ If the new value is at least as far as `q[0]`, the source returns from that DFS 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Predecessor and successor iterators:** Build t:** - **Predecessor and successor iterators:** Build two stacks around the target, then repeatedly take the closer next predecessor or successor. This achieves $O(h+k)$ time and $O(h)$ iterator space, satisfies the balanced-tree follow-up, and is the algorithm described by the manifest rather than the exact source.
+- **Predecessor and successor iterators:** Build two stacks around the target, then repeatedly take the closer next predecessor or successor. This achieves $O(h+k)$ time and $O(h)$ iterator space, satisfies the balanced-tree follow-up, and is the algorithm described by the manifest rather than the exact source.
 - **Inorder array plus two pointers:** Materialize all $n$ sorted values, locate the target insertion point, and expand toward the closer side until `k` values are chosen. It is easy to understand but requires $O(n)$ array space and $O(n+k)$ time.
 - **Size-`k` max heap:** Traverse every node and retain the closest `k` values by distance. It works for any binary tree in $O(n\log k)$ time and $O(k+h)$ space, but it does not exploit sorted inorder order.
 - **Sort all values by distance:** Collecting and sorting costs $O(n\log n)$ time and $O(n)$ storage, more than needed.
@@ -112,8 +112,8 @@ If the new value is at least as far as `q[0]`, the source returns from that DFS 
 - **Skewed tree:** Recursion depth can reach $n$ and may exceed Python's interpreter recursion limit at the largest constraint. An iterative inorder traversal preserves the window logic while replacing call-stack risk with an explicit $O(h)$ stack.
 - **Nonempty-tree guarantee:** The algorithm assumes `root` contains at least one node and `k >= 1`. An empty tree would return too few values and is outside the contract.
 - **No global stop flag:** A local early return is sufficient because every ancestor and later inorder value lies still farther to the right and will also be rejected. Adding a propagated Boolean could avoid the small number of ancestor comparisons but would not change the worst-case bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

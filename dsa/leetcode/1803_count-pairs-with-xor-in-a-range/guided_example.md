@@ -67,7 +67,7 @@ Sixteen positions are sufficient for the valid domain. Input numbers and limits 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `Trie` node has two children, for bit zero and bit one,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ After all bits, paths exactly equal to `limit` have not been added, which is cor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** Direct XOR testing takes $:** - **Check every pair:** Direct XOR testing takes $O(n^2)$ time and is too slow for 20,000 values.
+- **Check every pair:** Direct XOR testing takes $O(n^2)$ time and is too slow for 20,000 values.
 - **Frequency table over the bounded domain:** Iterating all possible partners per number can depend on the full value range; the trie uses only $B$ prefix decisions.
 - **Count `<= limit` directly:** It is possible but introduces equality handling; strict `<` naturally yields `F(high + 1) - F(low)`.
 - **Insert before searching:** That would allow the current element to pair with itself and violate $i<j$.
@@ -129,8 +129,8 @@ After all bits, paths exactly equal to `limit` have not been added, which is cor
 - **Bitwise precedence:** Parenthesized conceptual expressions clarify that shifts, masks, and XOR choose individual bits.
 - **No modulo:** The problem requests the exact pair count.
 - **Input preservation:** Numbers are inserted into a separate trie and `nums` is never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

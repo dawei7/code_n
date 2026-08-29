@@ -72,10 +72,7 @@ Only after this test succeeds does the source update the position and increment 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The fixed map `mp` assigns:
-
-- `L -> [0, -1]`;
-- `R -> [0, 1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +111,7 @@ If all instructions through the end are legal, the inner loop ends naturally and
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate prefix sums with range queries:** O:** - **Coordinate prefix sums with range queries:** One can analyze when a suffix's relative row or column displacement first exceeds grid margins, but the implementation is substantially more complex.
+- **Coordinate prefix sums with range queries:** One can analyze when a suffix's relative row or column displacement first exceeds grid margins, but the implementation is substantially more complex.
 - **Carry position between suffixes:** Incorrect because every suffix restarts at `startPos`.
 - **Count the failing instruction:** Incorrect; the robot stops before executing it.
 - **One-cell grid:** Every possible move leaves immediately, so all answers are zero.
@@ -128,8 +125,8 @@ If all instructions through the end are legal, the inner loop ends naturally and
 - **Input preservation:** `startPos` is unpacked but never changed.
 - **Fresh counter per suffix:** `t` must reset to zero together with coordinates.
 - **Valid instruction alphabet:** Guarantees every character has a delta in `mp`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

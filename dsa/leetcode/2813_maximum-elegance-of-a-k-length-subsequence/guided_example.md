@@ -51,7 +51,7 @@ Although the statement says subsequence, only the chosen indices matter to the s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Although the statement says subsequence, only the chosen ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Although the statement says subsequence, only the chosen indices matter to the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap of duplicate profits:** A min-heap can re:** - **Heap of duplicate profits:** A min-heap can retrieve the cheapest duplicate even if processing order does not guarantee stack ordering. Here descending profit order makes `dup.pop()` sufficient and slightly simpler.
+- **Heap of duplicate profits:** A min-heap can retrieve the cheapest duplicate even if processing order does not guarantee stack ordering. Here descending profit order makes `dup.pop()` sufficient and slightly simpler.
 - **Enumerate all subsets:** This examines exponentially many size-$k$ choices and is impossible at $n=10^5$.
 - **Greedy only by profit:** Taking the first $k$ and stopping can miss a large increase in the squared category bonus.
 - **Greedy only by category count:** Maximizing distinct categories can sacrifice too much profit. Recording the score after every exchange balances both terms.
@@ -98,8 +98,8 @@ Although the statement says subsequence, only the chosen indices matter to the s
 - **Selection size remains fixed:** Every accepted new item is paired with exactly one `dup.pop()`, so the number of selected items never changes.
 - **Cheapest removable item:** Only redundant representatives may be removed without losing a category. Removing a sole representative would defeat the intended category-count increase.
 - **In-place sorting:** Copy `items` first if caller-visible order must be preserved; the exact method does not.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

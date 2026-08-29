@@ -57,7 +57,7 @@ An inner join would discard it completely. `LEFT JOIN` instead retains one synth
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Some school may be too small even for the highest recorded c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ For capacity 99 in the example, scores 975, 966, 844, and 749 are feasible, whil
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subquery:** Select `MIN(score)` fro:** - **Correlated subquery:** Select `MIN(score)` from `Exam` under each school's capacity and coalesce null to -1; this states the per-school search directly.
+- **Correlated subquery:** Select `MIN(score)` from `Exam` under each school's capacity and coalesce null to -1; this states the per-school search directly.
 - **Cross join then filter:** Correct but materializes or reasons about all $SE$ pairs before filtering.
 - **Rank by student count then score:** More general if monotonicity were absent, but unnecessary under the guaranteed ordering relationship.
 - **Inner join:** Incorrectly removes schools that have no feasible score.
@@ -109,8 +109,8 @@ For capacity 99 in the example, scores 975, 966, 844, and 749 are feasible, whil
 - **Monotone exam data:** Makes minimum feasible score consistent with maximizing possible applicants.
 - **Any output order:** No `ORDER BY` is required.
 - **No table mutation:** The query only joins and aggregates existing rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

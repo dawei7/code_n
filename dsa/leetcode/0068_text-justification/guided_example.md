@@ -59,7 +59,7 @@ For example, with width 16 and the words `"This"`, `"is"`, `"an"`, and `"example
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `cnt` is the width the selected words would occ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The construction `left = ' '.join(t)` gives the meaningful left-aligned content.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Helper-based design:** A `get_words` helper an:** - **Helper-based design:** A `get_words` helper and a separate `create_line` helper can make the two phases even more explicit. It has the same greedy reasoning and asymptotic cost, at the price of additional calls and parameters.
+- **Helper-based design:** A `get_words` helper and a separate `create_line` helper can make the two phases even more explicit. It has the same greedy reasoning and asymptotic cost, at the price of additional calls and parameters.
 - **Cycle through gaps:** Repeatedly add one space to gap $0,1,\ldots,k-2$ until the line is full. This is intuitive but can perform more operations than quotient-and-remainder distribution and is easier to make quadratic with immutable strings.
 - **Precompute prefix character sums:** Prefix sums can answer the letter total for any candidate range, but the one-pass scan already maintains exactly the needed total and is simpler.
 - **One word on a nonfinal line:** It must be followed entirely by right padding; attempting to divide spaces among zero gaps would fail.
@@ -108,8 +108,8 @@ The construction `left = ' '.join(t)` gives the meaningful left-aligned content.
 - **No trailing spaces on ordinary multiword lines:** Their complete space budget is placed inside gaps. Only left-justified lines may place padding after their content.
 - **Input order and content:** Words are only read and appended; the source list and the word strings are not modified.
 - **Width accounting:** The greedy check counts one required separator before a candidate, whereas justification later replaces those minimum separators with the complete calculated gap widths.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

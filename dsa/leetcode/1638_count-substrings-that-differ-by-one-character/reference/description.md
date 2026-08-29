@@ -34,7 +34,7 @@ A **substring** is a contiguous sequence of characters within a string.
 ("a<u>b</u>a", "bab<u>a</u>")
 The underlined portions are the substrings that are chosen from s and t.
 
-​​**Example 2:**
+**Example 2:**
 
 - **Input:** `s = "ab", t = "bb"`
 - **Output:** `3`
@@ -42,7 +42,7 @@ The underlined portions are the substrings that are chosen from s and t.
 ("<u>a</u>b", "<u>b</u>b")
 ("<u>a</u>b", "b<u>b</u>")
 ("<u>ab</u>", "<u>bb</u>")
-​​​​The underlined portions are the substrings that are chosen from s and t.
+The underlined portions are the substrings that are chosen from s and t.
 
 ### 4. Constraints
 

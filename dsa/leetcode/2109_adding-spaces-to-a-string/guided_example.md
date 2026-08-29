@@ -64,7 +64,7 @@ For `s = "EnjoyYourCoffee"` and `spaces = [5, 9]`, `i = 5` still refers to `"Y"`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The algorithm compares `spaces` against `i` from the origina... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ This makes construction linear in the output size.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string slicing and concatenation:** I:** - **Repeated string slicing and concatenation:** Inserting one space at a time shifts later positions and can repeatedly copy large strings, leading to quadratic behavior.
+- **Repeated string slicing and concatenation:** Inserting one space at a time shifts later positions and can repeatedly copy large strings, leading to quadratic behavior.
 - **Build whole string segments:** Appending `s[previous:index]` and a space for each insertion is also linear and may use fewer list elements. The character-wise merge is direct.
 - **Use a set of insertion indices:** Membership checks work, but ignore the useful sorted guarantee and require extra $O(m)$ storage.
 - **Space before index zero:** The space is appended before the first character correctly.
@@ -117,8 +117,8 @@ This makes construction linear in the output size.
 - **Join once:** Avoids repeated immutable-string copying.
 - **Every character retained:** The unconditional `ans.append(c)` ensures insertion never replaces or drops the character at that index.
 - **Instruction pointer exhausted:** The bounds test stops reading `spaces[j]` after the final instruction while remaining characters continue normally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

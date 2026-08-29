@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the main diagonal and diagonals starting on the left edge ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Single-cell corner diagonals already satisfy either order and need not be proces
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group cells by `row - column`:** A dictionary :** - **Group cells by `row - column`:** A dictionary of all diagonals is simpler conceptually but stores $O(n^2)$ values at once. This source reuses one $O(n)$ list.
+- **Group cells by `row - column`:** A dictionary of all diagonals is simpler conceptually but stores $O(n^2)$ values at once. This source reuses one $O(n)$ list.
 - **Use the same write direction for both triangles:** It would sort both the same way. The reversed top-right traversal is what changes the effective order.
 - **Main diagonal:** It belongs to the bottom-left group and is processed by `k = 0` in the first loop.
 - **Singleton diagonals:** They are skipped because sorting cannot change them.
@@ -97,8 +97,8 @@ Single-cell corner diagonals already satisfy either order and need not be proces
 - **Square-matrix assumption:** Both bounds use the same `n`, relying on the stated square shape.
 - **Top-right indexing:** Starting on the right edge and moving up-left is equivalent to starting on the top edge and moving down-right.
 - **Pop cost:** Popping from the end of a Python list is $O(1)$; popping from the front would add avoidable shifting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

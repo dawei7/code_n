@@ -67,7 +67,7 @@ The return expression `i == n - 1` distinguishes exactly these cases. The pointe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The question is specifically whether the last bit is a one-b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ This invariant is what makes reading `bits[i]` safe and meaningful. Without it, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count consecutive ones immediately before the :** - **Count consecutive ones immediately before the final zero:** The last zero is standalone exactly when that run of ones has even length. This can also run in `O(n)` time and `O(1)` space, and it may scan backward only through a suffix. The forward parser is usually easier to justify because it follows the encoding definition directly and never depends on deriving a parity rule.
-- **- **Dynamic programming over positions:** One coul:** - **Dynamic programming over positions:** One could mark which indices are reachable character boundaries. That is unnecessary because every reachable boundary has only one legal next move; there is no branching to resolve. It would add `O(n)` storage without improving the time bound or clarity.
-- **- **Recursive decoding:** Recursively consume one :** - **Recursive decoding:** Recursively consume one or two bits according to the leading bit. This expresses the same deterministic walk but uses up to `O(n)` call-stack space and risks recursion-depth limits on large input.
+- **Count consecutive ones immediately before the final zero:** The last zero is standalone exactly when that run of ones has even length. This can also run in `O(n)` time and `O(1)` space, and it may scan backward only through a suffix. The forward parser is usually easier to justify because it follows the encoding definition directly and never depends on deriving a parity rule.
+- **Dynamic programming over positions:** One could mark which indices are reachable character boundaries. That is unnecessary because every reachable boundary has only one legal next move; there is no branching to resolve. It would add `O(n)` storage without improving the time bound or clarity.
+- **Recursive decoding:** Recursively consume one or two bits according to the leading bit. This expresses the same deterministic walk but uses up to `O(n)` call-stack space and risks recursion-depth limits on large input.
 
 ---
 

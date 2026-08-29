@@ -80,7 +80,7 @@ The current multiplier decreases after every step regardless of whether multipli
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The selected values must also be assigned to the coefficient... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,9 +135,9 @@ Once the multiplier reaches one, all remaining coefficients stay one even though
 
 ## 6. Traps This Instance Exposes
 
-- **- **Size-`k` min-heap:** Scanning all values while:** - **Size-`k` min-heap:** Scanning all values while retaining only the largest `k` gives `O(n\log k)` time and `O(k)` space. That matches the manifest description but is not the stored source.
-- **- **Selection algorithm plus partial sort:** One c:** - **Selection algorithm plus partial sort:** One can find the top `k` values in linear expected time and then sort only those `k` values, but the implementation is more involved and still differs from the exact code.
-- **- **Try all subsets and orders:** There are expone:** - **Try all subsets and orders:** There are exponentially many selections and up to `k!` orders. Exchange arguments determine both choices directly.
+- **Size-`k` min-heap:** Scanning all values while retaining only the largest `k` gives `O(n\log k)` time and `O(k)` space. That matches the manifest description but is not the stored source.
+- **Selection algorithm plus partial sort:** One can find the top `k` values in linear expected time and then sort only those `k` values, but the implementation is more involved and still differs from the exact code.
+- **Try all subsets and orders:** There are exponentially many selections and up to `k!` orders. Exchange arguments determine both choices directly.
 
 ---
 

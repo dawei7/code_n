@@ -67,7 +67,7 @@ Each separate call to `memoize` creates a separate map. Memoizing two different 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Calling `memoize(fn)` creates `const cache = new Map()` and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The wrapper does not reverse, sort, or otherwise normalize arguments. This prese
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested maps by argument:** Avoid serialization:** - **Nested maps by argument:** Avoid serialization and support identity-based objects, but add structure unnecessary for bounded integer tuples.
+- **Nested maps by argument:** Avoid serialization and support identity-based objects, but add structure unnecessary for bounded integer tuples.
 - **Concatenate with a delimiter:** Easy to implement incorrectly because signs, lengths, or delimiters can create collisions; JSON supplies unambiguous tuple syntax.
 - **Cache by result:** Incorrect because different inputs may produce the same output and still require separate first calls.
 - **Reversed sum arguments:** They serialize differently and must be cached separately.
@@ -119,8 +119,8 @@ The wrapper does not reverse, sort, or otherwise normalize arguments. This prese
 - **Separate memoized functions:** Each owns an independent closure cache.
 - **Recursive work inside `fn`:** The wrapper caches the top-level result; it does not rewrite internal recursive calls.
 - **Arbitrary objects:** Outside this problem's numeric scope, JSON serialization would not preserve strict identity and should not be used.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

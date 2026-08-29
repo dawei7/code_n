@@ -59,7 +59,7 @@ When `cnt[i]` was already zero, `x` is zero and the code appends an empty string
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop visits `i` from 25 down to zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ After one breaker, the consecutive run of `i` has ended. The inner loop can appe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max heap:** Repeatedly pop the largest letter :** - **Max heap:** Repeatedly pop the largest letter and a breaker. This generalizes to large alphabets but adds $O(\log A)$ heap operations for alphabet size $A$.
+- **Max heap:** Repeatedly pop the largest letter and a breaker. This generalizes to large alphabets but adds $O(\log A)$ heap operations for alphabet size $A$.
 - **Sort all characters:** Sorting descending costs $O(n\log n)$ and still needs repair logic for repeat-limit violations.
 - **Use a smaller breaker than necessary:** The result remains valid but becomes lexicographically smaller at that breaker position.
 - **Use several breakers together:** One is enough to reset the run, and extra smaller characters unnecessarily delay a larger letter.
@@ -114,8 +114,8 @@ After one breaker, the consecutive run of `i` has ended. The inner loop can appe
 - **Fixed lowercase alphabet:** Array indexing and `ascii_lowercase` are valid because every input character is `a` through `z`.
 - **Output length tie:** If one valid string is a prefix of another, the longer is larger; the greedy only stops when no legal extension exists.
 - **Input preservation:** Counts are stored separately, and the immutable source string is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Every horizontal cut increases `h` by one and thereby makes all later vertical b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every horizontal cut increases `h` by one and thereby makes ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every horizontal cut increases `h` by one and thereby makes all later vertical b
 
 ## 6. Traps This Instance Exposes
 
-- **- **One globally sorted tagged array:** Combine ho:** - **One globally sorted tagged array:** Combine horizontal and vertical costs with tags, sort descending, then update counts. It is correct but allocates an explicit $O(m+n)$ combined structure.
+- **One globally sorted tagged array:** Combine horizontal and vertical costs with tags, sort descending, then update counts. It is correct but allocates an explicit $O(m+n)$ combined structure.
 - **Frequency counting by cost:** Costs are bounded by $1000$. Count horizontal and vertical occurrences at each cost and scan costs downward, potentially reducing sorting to $O(m+n+1000)$ time. The exact source does not exploit this bound.
 - **Priority queues:** Repeatedly pop the larger next cost from two max-heaps. This matches the greedy order but adds heap overhead when arrays can simply be sorted once.
 - **Dynamic programming:** Dimension limits make state-based cut-order search infeasible; the exchange proof supplies the scalable structure.
@@ -100,8 +100,8 @@ Every horizontal cut increases `h` by one and thereby makes all later vertical b
 - **Input mutation:** The arrays are returned to the caller in descending order rather than their original order.
 - **Short-circuit condition:** Reordering its terms carelessly can index an exhausted list.
 - **Cake I versus II:** The algorithm is identical, but II's large limits make the $O(m\log m+n\log n)$ bound particularly important.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

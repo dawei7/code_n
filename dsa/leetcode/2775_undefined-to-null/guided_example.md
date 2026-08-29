@@ -57,7 +57,7 @@ Traversal order does not affect the result. Because `stack.pop()` uses last-in, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Nested data naturally suggests recursion, but a deeply neste... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Strings, numbers, booleans, and other non-object primitives contain no nested pr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive deep copy:** Recursively map arrays :** - **Recursive deep copy:** Recursively map arrays and rebuild objects for concise immutable-style code, but it allocates `O(n)` output and may overflow the call stack on deep input.
+- **Recursive deep copy:** Recursively map arrays and rebuild objects for concise immutable-style code, but it allocates `O(n)` output and may overflow the call stack on deep input.
 - **Recursive in-place traversal:** It preserves identity like the exact method but uses call-stack space proportional to nesting depth.
 - **JSON stringify/parse round trip:** A replacer can sometimes convert undefined values, but serialization has special rules, loses object identity, and is unnecessary for direct traversal.
 - **Existing `null`:** The explicit guard leaves it unchanged and prevents `Object.keys(null)` from throwing.
@@ -115,8 +115,8 @@ Strings, numbers, booleans, and other non-object primitives contain no nested pr
 - **Symbol or non-enumerable property:** It is not visited by this exact implementation and is outside the stated JSON data model.
 - **Root identity:** The returned object is strictly the original `obj` after mutation, not a clone.
 - **Primitive nested value:** It is neither undefined nor a non-null object, so it remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

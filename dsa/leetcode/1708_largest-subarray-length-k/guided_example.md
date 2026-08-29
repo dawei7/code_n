@@ -69,7 +69,7 @@ This is the central reason the solution can avoid comparing entire subarrays.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every candidate has the same length $k$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The chosen position is stored in `i`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan valid start indices:** Track the index wi:** - **Scan valid start indices:** Track the index with the greatest `nums[i]` for `i <= n-k`. This keeps $O(n)$ time and reduces non-output auxiliary space to $O(1)$.
+- **Scan valid start indices:** Track the index with the greatest `nums[i]` for `i <= n-k`. This keeps $O(n)$ time and reduces non-output auxiliary space to $O(1)$.
 - **Compare every candidate list:** Materializing and comparing all length-$k$ slices can cost $O(nk)$ time and unnecessary allocation.
 - **Non-distinct follow-up:** Equal starting values require comparing later positions; the exact max-start rule is insufficient.
 - **`k = 1`:** Every element can start, so the maximum element alone is returned. The exact source still allocates the full prefix slice.
@@ -119,8 +119,8 @@ The chosen position is stored in `i`.
 - **Output copying:** Python slicing returns a new list rather than a view.
 - **Off-by-one boundary:** The `+1` in the prefix stop is required to include the last valid start.
 - **Input preservation:** Neither `max`, `index`, nor slicing changes `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

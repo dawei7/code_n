@@ -51,7 +51,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force pairs:** Version I's small limit p:** - **Brute-force pairs:** Version I's small limit permits $O(n^2)$ testing, but the extrema method is simpler to scale.
+- **Brute-force pairs:** Version I's small limit permits $O(n^2)$ testing, but the extrema method is simpler to scale.
 - **Index difference larger than array:** The loop is empty and failure is returned.
 - **Both differences zero:** Equal indices are legal, so `[0,0]` is returned.
 - **Duplicate extrema:** Keeping any index with the minimum or maximum value is sufficient because any valid answer is accepted.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Return order:** `[earlier,current]` satisfies the absolute condition even though the reverse order would also be valid.
 - **Why only two eligible values matter:** If the current value differs sufficiently from any earlier eligible value, it must also differ sufficiently from either the eligible minimum or maximum. Values strictly between those extrema can never witness a larger absolute difference.
 - **First valid answer is enough:** The task does not optimize the indices or their values. Returning immediately after either comparison succeeds avoids needless later work without changing correctness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

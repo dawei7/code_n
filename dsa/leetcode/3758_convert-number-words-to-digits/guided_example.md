@@ -57,7 +57,7 @@ No two distinct English digit words are identical, so at most one candidate can 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `d` stores words in numeric order, so list index `j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For `"zeero"`, the failed `z` position advances to the first `e`, then each late
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trie matching:** A trie can share prefix compa:** - **Trie matching:** A trie can share prefix comparisons, but ten words of bounded length make the simple constant scan sufficient.
+- **Trie matching:** A trie can share prefix comparisons, but ten words of bounded length make the simple constant scan sufficient.
 - **Regular expression extraction:** It may obscure the mandated one-character fallback and overlapping-start semantics.
 - **Skip an entire failed fragment:** This can miss a word starting one position later. Failure advances exactly one.
 - **Advance only `m-1` total after a match:** The unconditional increment must be included; the source's net movement is `m`.
@@ -116,8 +116,8 @@ For `"zeero"`, the failed `z` position advances to the first `e`, then each late
 - **An apparent word that begins inside a consumed word:** It is ignored because parsing resumes after the entire successful token.
 - **Large input:** The parser is iterative and does not risk recursion depth.
 - **Output digits including zero:** `str(0)` appends the character `'0'` normally when `"zero"` matches.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

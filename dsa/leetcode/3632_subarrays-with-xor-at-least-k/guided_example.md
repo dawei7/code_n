@@ -63,7 +63,7 @@ Using `array` stores fixed-width integers more compactly than Python objects. Si
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every value is represented by 30 bits, positions 29 down to ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ After insertion, each node count equals the number of stored values sharing that
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force subarrays:** Updating XOR for ever:** - **Brute-force subarrays:** Updating XOR for every start/end pair costs `O(n^2)` time.
+- **Brute-force subarrays:** Updating XOR for every start/end pair costs `O(n^2)` time.
 - **Hash map of prefix XORs:** It efficiently counts exact XOR targets but does not directly count numeric inequality `>=k`.
 - **Count directly at least k in the trie:** Possible, but counting strict less and taking the complement gives simpler bit rules.
 - **k equals zero:** Every subarray qualifies, and `count_less` returns zero.
@@ -115,8 +115,8 @@ After insertion, each node count equals the number of stored values sharing that
 - **Missing trie branch:** Traversal stops because no stored value can match the required equal prefix.
 - **Compact array types:** Node indices remain within the signed 32-bit range for the stated n, and counts fit unsigned storage.
 - **Input preservation:** The source maintains a separate prefix and trie without modifying `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

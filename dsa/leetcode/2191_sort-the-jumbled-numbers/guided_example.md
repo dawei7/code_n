@@ -68,7 +68,7 @@ The special return `mapping[0]` applies the rule to that single digit. This matt
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The decimal representation of zero contains one digit, zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Lower internal or trailing positions are still preserved through their powers of
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** Convert each number to te:** - **String conversion:** Convert each number to text, replace characters through `mapping`, then parse the result. It is easy to visualize but creates temporary strings.
+- **String conversion:** Convert each number to text, replace characters through `mapping`, then parse the result. It is easy to visualize but creates temporary strings.
 - **Stable sort with key only:** Python's stable `sorted(nums, key=f)` would preserve equal-key order automatically and avoid explicit indices, though `f` might be recomputed only once by Python's key decoration.
 - **Counting sort by mapped value:** The numeric key range approaches $10^9$, so a direct counting array is impractical.
 - **Original value zero:** It maps to `mapping[0]`, not automatically to zero.
@@ -120,8 +120,8 @@ Lower internal or trailing positions are still preserved through their powers of
 - **Place-value update:** `k *= 10` is necessary to reconstruct digits in their original positions while scanning backward.
 - **Input preservation:** `nums` and `mapping` are read only; `x` inside `f` is a local integer.
 - **Tuple ordering:** The second component matters only when mapped keys tie.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

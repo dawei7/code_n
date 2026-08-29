@@ -66,7 +66,7 @@ Using a visible placeholder character would be wrong because it would enter the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `word1 = "ab"` and `word2 = "pqrs"`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ It preserves the required starting order because `a` always comes from `word1` a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two explicit pointers:** Append from word one :** - **Two explicit pointers:** Append from word one and word two while each remains. It has the same asymptotic cost and may be more familiar to beginners.
+- **Two explicit pointers:** Append from word one and word two while each remains. It has the same asymptotic cost and may be more familiar to beginners.
 - **One index with bounds checks:** Iterate to the longer length, conditionally appending each word's character.
 - **Ordinary zip plus slices:** Merge the shared prefix, then append both leftover suffixes. It is correct but requires separately calculating the common length.
 - **Repeated string concatenation:** It is concise but can repeatedly copy growing immutable strings and become quadratic.
@@ -121,8 +121,8 @@ It preserves the required starting order because `a` always comes from `word1` a
 - **Generator laziness:** It avoids an explicitly authored intermediate list, though join may internally gather pieces.
 - **Every input character:** Iterator traversal emits each once and never drops a longer word's suffix.
 - **Input preservation:** Both strings remain unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

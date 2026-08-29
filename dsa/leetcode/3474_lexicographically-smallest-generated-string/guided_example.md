@@ -51,7 +51,7 @@ The parallel Boolean array `fixed` records positions forced by a `T` window. For
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The parallel Boolean array `fixed` records positions forced ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If no conflict occurs, every `T` window equals `t`, and every position it covers
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking over all free letters:** Up to $2:** - **Backtracking over all free letters:** Up to $26^{n+m-1}$ words are possible, so exhaustive construction is infeasible.
+- **Backtracking over all free letters:** Up to $26^{n+m-1}$ words are possible, so exhaustive construction is infeasible.
 - **KMP automaton plus suffix feasibility:** This supports a general lexicographic state search and matches the manifest summary, but it is not present in the protected source.
 - **Process `F` before `T`:** A later forced overlay could undo an inequality repair; equality constraints must be fixed first.
 - **Change the leftmost free character:** It breaks equality but produces a lexicographically larger word than changing a later available position.
@@ -98,8 +98,8 @@ If no conflict occurs, every `T` window equals `t`, and every position it covers
 - **Pattern length one:** A `T` fixes one character; an `F` leaves default `a` when it differs or changes a free `a` to `b` when `t == "a"`.
 - **All positions free:** The word begins entirely as `a` and only the minimum necessary rightmost repairs are made.
 - **Input preservation:** The method stores a separate character list and does not modify either input string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

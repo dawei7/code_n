@@ -59,7 +59,7 @@ For `nums = [5, 4, 2, 3]`, heap extraction yields two and then three, so the fir
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A Python min-heap guarantees that `heappop` returns a smalle... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The manifest summary describes that sort-and-swap perspective, but the exact pro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and swap adjacent pairs:** Sorting once a:** - **Sort and swap adjacent pairs:** Sorting once and emitting `nums[1], nums[0], nums[3], nums[2], ...` is equally correct and also takes $O(N\log N)$ time. It matches the manifest summary more literally than this heap source.
+- **Sort and swap adjacent pairs:** Sorting once and emitting `nums[1], nums[0], nums[3], nums[2], ...` is equally correct and also takes $O(N\log N)$ time. It matches the manifest summary more literally than this heap source.
 - **Repeated linear minimum search:** Removing the minimum twice per round from an ordinary list can take $O(N^2)$ time.
 - **Counting frequencies:** Since values have a small stated range, a counting array can generate minima in $O(N+V)$ time, but it relies on that bound and needs extra range storage.
 - **Duplicate minima:** Equal values can be popped in any internal order because only values, not identities, appear in the answer.
@@ -111,8 +111,8 @@ The manifest summary describes that sort-and-swap perspective, but the exact pro
 - **Input mutation:** The exact implementation empties `nums`. Copying before `heapify` would preserve the caller’s list but require $O(N)$ additional space.
 - **No adversarial strategy:** Names of players do not imply choices; both minimum removals are mandatory.
 - **Pair order:** Appending `a` before `b` would return the removal order, not the required Bob-before-Alice append order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

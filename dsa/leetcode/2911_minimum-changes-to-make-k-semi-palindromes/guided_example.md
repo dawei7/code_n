@@ -75,7 +75,7 @@ Lengths with no proper divisor remain at infinity. In particular, a substring of
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every mirrored pair of positions $l$ and $r$, no change ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The palindrome requirements partition positions into disjoint mirror pairs, plus
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all partitions first:** There are co:** - **Enumerate all partitions first:** There are combinatorially many ways to place $k-1$ cuts. Prefix dynamic programming collapses partitions with the same prefix length and piece count into one best state.
+- **Enumerate all partitions first:** There are combinatorially many ways to place $k-1$ cuts. Prefix dynamic programming collapses partitions with the same prefix length and piece count into one best state.
 - **Recompute substring repair costs inside the partition DP:** This gives the right answer but repeats expensive divisor and mirror work whenever multiple partition states use the same final substring. The `g` table computes each interval once.
 - **Use only divisor $1$:** That would force every substring itself to be an ordinary palindrome. A different proper divisor can require fewer changes because it asks several interleaved sequences to be palindromes instead.
 - **Length-one pieces:** They are not semi-palindromes because they have no proper divisor. The infinity initialization of `g` and the cut range prevent them from being used.
@@ -121,8 +121,8 @@ The palindrome requirements partition positions into disjoint mirror pairs, plus
 - **One-based table indices:** `g[h + 1][i]` corresponds to Python slice `s[h:i]`. Confusing these coordinate systems would shift substring boundaries.
 - **Impossible intermediate states:** Infinity is a deliberate sentinel, not a large guessed number. It lets minimum and addition operations preserve impossibility without risking collision with a legal cost.
 - **Simultaneous character requirements:** For a fixed divisor, residue classes are disjoint and every position has one mirror partner at most. Therefore repairing one pair never invalidates another pair's equality.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

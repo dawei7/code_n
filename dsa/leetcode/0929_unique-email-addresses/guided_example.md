@@ -57,7 +57,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expressions:** They can remove dots an:** - **Regular expressions:** They can remove dots and plus suffixes but add complexity and must still avoid altering domains.
+- **Regular expressions:** They can remove dots and plus suffixes but add complexity and must still avoid altering domains.
 - **Normalize the full email string:** Incorrect because dots and plus signs in the domain do not use local-name rules.
 - **Split local on plus first, then remove dots:** This is an equivalent concise formulation.
 - **No dots or plus:** Canonical form equals the original email.
@@ -108,8 +108,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Local plus near the end:** Even a one-character suffix after plus is fully discarded.
 - **Periods only in the domain:** They are preserved, so domains remain distinguishable.
 - **Canonical set strings:** Including `@` makes the local/domain boundary explicit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

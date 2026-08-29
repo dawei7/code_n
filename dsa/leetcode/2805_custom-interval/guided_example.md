@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Give each custom interval its own identity and state.** A ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The state contains `count`, `handle`, and `active`. `count` is the number of cal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Native `setInterval`:** It repeats a fixed del:** - **Native `setInterval`:** It repeats a fixed delay and therefore cannot directly express a delay that grows by `period` after every callback.
+- **Native `setInterval`:** It repeats a fixed delay and therefore cannot directly express a delay that grows by `period` after every callback.
 - **Recursive `setTimeout` without a map:** This handles one interval but provides no stable custom ID lookup for cancelling among multiple active intervals.
 - **Absolute-deadline scheduling:** Compute each desired cumulative deadline from the original start time and subtract the current time before scheduling. That can reduce drift from timer lateness, but it differs from the exact after-callback chaining behavior.
 - **Cancellation before the first firing:** Native `clearTimeout` removes the pending handle, the active flag is false, and no callback should execute.
@@ -100,8 +100,8 @@ The state contains `count`, `handle`, and `active`. `count` is the number of cal
 - **Thrown callback:** Rescheduling is skipped and the map entry is retained. A production implementation could use `try...finally` and define an explicit error policy.
 - **Timer clamping:** Browsers and Node.js may delay or clamp timers. The algorithm controls requested delays but cannot promise exact wall-clock execution.
 - **ID growth:** IDs increase monotonically and are not reused. Ordinary challenge workloads cannot approach Number precision limits, but a permanent service might need wraparound handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

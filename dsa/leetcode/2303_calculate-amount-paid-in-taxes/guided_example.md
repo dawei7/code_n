@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $$i^{\text{th}}$$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
+You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $i^{\text{th}}$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
 
 The objective is to compute `2.65` from `{"brackets": [[3, 50], [7, 10], [12, 25]], "income": 10}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ This one expression handles full, partial, and untouched brackets.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `min(income,upper)` is the highest earned dollar boundary th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Delaying division avoids repeated floating operations inside the loop.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Break after reaching income:** Once `upper>=in:** - **Break after reaching income:** Once `upper>=income`, later brackets contribute zero; an early return can reduce practical work.
+- **Break after reaching income:** Once `upper>=income`, later brackets contribute zero; an early return can reduce practical work.
 - **Divide per bracket:** It is mathematically equivalent but introduces more floating-point operations.
 - **Apply one marginal rate to all income:** That is not progressive taxation and overtaxes lower slices.
 - **Zero income:** Every taxable width is zero.
@@ -118,8 +118,8 @@ Delaying division avoids repeated floating operations inside the loop.
 - **Partial first bracket:** `min(income,upper)` taxes only the earned amount rather than the entire first upper bound.
 - **No deductions or credits:** The source model contains only progressive slices; no other adjustment belongs in the computation.
 - **Unsorted extension:** The formula assumes the guaranteed increasing bounds; arbitrary order could make `prev` invalid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ The temporary list contains exactly three items, so membership testing is consta
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `num`, the condition `num in [m1, m2, m3]` checks w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Strict `>` comparisons are correct because equality was already handled by the d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort in descending order:** After sorting, sca:** - **Sort in descending order:** After sorting, scan past duplicates until the third distinct value is reached. This is straightforward but costs $O(n\log n)$ time and may mutate the input.
+- **Sort in descending order:** After sorting, scan past duplicates until the third distinct value is reached. This is straightforward but costs $O(n\log n)$ time and may mutate the input.
 - **Convert the whole input to a set:** Distinctness becomes automatic, after which sorting or repeated maximum selection finds the answer. The set can require $O(n)$ extra space, unlike the three-slot solution.
 - **Min-heap of at most three values plus a set:** Keep the three largest distinct values and discard the smallest when a larger contender arrives. Because the heap never exceeds size three, time remains $O(n)$, but coordinating heap membership is more machinery than three variables.
 - **Use a legal integer as the empty sentinel:** This is unsafe. The minimum allowed value, $-2^{31}$, can genuinely be the third maximum. `-inf` cannot collide with any input integer.
@@ -126,8 +126,8 @@ Strict `>` comparisons are correct because equality was already handled by the d
 - **Strictly increasing input:** Each new value shifts the previous first and second maxima down one rank, leaving the correct last three distinct values.
 - **Negative-only input:** Negative infinity remains smaller than every real value, so comparisons and fallback logic work without a special case.
 - **Simultaneous assignment semantics:** Performing the shifts as separate assignments in the wrong order could lose an old maximum. Python's tuple assignment preserves all old right-hand values before updating any slot.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

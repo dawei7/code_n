@@ -59,7 +59,7 @@ If `g > 1`, the pair is non-coprime and must be replaced.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After pushing, the loop reads `x, y = stk[-2:]` and computes... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Python integers prevent overflow during `x * y`. In a fixed-width language, divi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated full-array scans:** Finding and repla:** - **Repeated full-array scans:** Finding and replacing one pair at a time is direct but can shift arrays and revisit long prefixes, leading to quadratic behavior.
+- **Repeated full-array scans:** Finding and replacing one pair at a time is direct but can shift arrays and revisit long prefixes, leading to quadratic behavior.
 - **Linked list simulation:** Deletions are cheaper than array shifts, but finding newly invalid neighbors still needs careful management; the stack is simpler.
 - **Recursive reduction:** Recursively merge with the previous result, but deep chains risk call-stack limits.
 - **All adjacent pairs coprime:** Every value remains on the stack and the output equals the input.
@@ -115,8 +115,8 @@ Python integers prevent overflow during `x * y`. In a fixed-width language, divi
 - **Order-independent guarantee:** It justifies using this deterministic left-to-right merge order.
 - **Potential multiplication overflow elsewhere:** Python is safe; fixed-width implementations should compute `x // g * y`.
 - **Input preservation:** The exact source reads `nums` and builds a separate stack, leaving the input list unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -68,7 +68,7 @@ The two repaired sums are `ans - mi1 + mx1` and `ans - mi2 + mx2`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the top-$k$ sum is odd, its parity must be flipped.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Because all input values are nonnegative, every feasible even sum is at least ze
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming by chosen count and parity:** - **Dynamic programming by chosen count and parity:** It can track best sums but costs $O(nk)$ without further optimization. Sorting reduces the repair to boundary candidates.
+- **Dynamic programming by chosen count and parity:** It can track best sums but costs $O(nk)$ without further optimization. Sorting reduces the repair to boundary candidates.
 - **Heaps for top values by parity:** Possible, but more complex than sorting and scanning.
 - **Top-$k$ sum already even:** Return immediately; any exchange cannot increase the unconstrained maximum.
 - **All values odd:** A feasible sum exists exactly when $k$ is even; otherwise no opposite-parity replacement is available.
@@ -120,8 +120,8 @@ Because all input values are nonnegative, every feasible even sum is at least ze
 - **Input mutation:** `nums.sort()` leaves the caller's list sorted.
 - **Subsequence wording:** Only the sum is returned, so restoring original positional order is unnecessary.
 - **Both repair types impossible:** This means no size-$k$ selection can change the odd parity to even; the sentinel candidate `-1` is returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

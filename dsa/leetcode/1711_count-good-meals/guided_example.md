@@ -63,7 +63,7 @@ If several earlier indices share the complement value, `Counter` stores their mu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any two indices `i < j`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ When `s - d` is negative, no nonnegative earlier value can match it. Python's `C
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** Test all $n(n-1)/2$ index :** - **Check every pair:** Test all $n(n-1)/2$ index pairs directly. It is simple but costs $O(n^2)$ time.
+- **Check every pair:** Test all $n(n-1)/2$ index pairs directly. It is simple but costs $O(n^2)$ time.
 - **Sort and use two pointers per power:** It can count pairs but requires careful duplicate multiplicities and repeats a scan for each target power.
 - **Precompute power list:** Store all relevant powers once instead of shifting `s` inside each outer iteration. It uses constant bounded extra space and similar complexity.
 - **Two equal values:** They can form a meal when twice the value is a power of two; insertion after counting ensures distinct indices.
@@ -117,8 +117,8 @@ When `s - d` is negative, no nonnegative earlier value can match it. Python's `C
 - **Single item:** No earlier partner exists, so the answer remains zero.
 - **Modulo arithmetic:** Reducing after every addition preserves the required final remainder.
 - **Power uniqueness:** A pair's sum can match at most one power, preventing duplication across inner-loop iterations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

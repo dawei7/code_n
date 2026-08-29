@@ -34,7 +34,7 @@ Return the minimum numerical value of the combined bitwise OR among all selectio
 
 - Choose 1 from the first row and 2 from the second row.
 
-- The bitwise OR of $1 | 2 = 3$​​​​​​​, which is the minimum possible.
+- The bitwise OR of $1 | 2 = 3$, which is the minimum possible.
 
 #### Example 2
 
@@ -46,7 +46,7 @@ Return the minimum numerical value of the combined bitwise OR among all selectio
 
 - Choose 5 from the first row and 4 from the second row.
 
-- The bitwise OR of $5 | 4 = 5$​​​​​​​, which is the minimum possible.
+- The bitwise OR of $5 | 4 = 5$, which is the minimum possible.
 
 #### Example 3
 
@@ -66,4 +66,4 @@ Return the minimum numerical value of the combined bitwise OR among all selectio
 
 - $m * n \le 10^{5}$
 
-- $1 \le \text{grid}[i][j] \le 10^{5}​​​​​​​$
+- $1 \le \text{grid}[i][j] \le 10^{5}$

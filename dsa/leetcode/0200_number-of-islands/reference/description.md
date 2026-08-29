@@ -18,7 +18,7 @@ Return the number of horizontally or vertically connected land components.
 
 #### Example 1
 
-- **Input:** $grid = [$
+- **Input:** `grid = [$
 ["1","1","1","1","0"],
 ["1","1","0","1","0"],
 ["1","1","0","0","0"],
@@ -44,4 +44,4 @@ Return the number of horizontally or vertically connected land components.
 
 - $1 \le m, n \le 300$
 
-- $\text{grid}[i][j]$ is `'0'` or `'1'`.
+- $\text{grid}[i][j]` is `'0'` or `'1'`.

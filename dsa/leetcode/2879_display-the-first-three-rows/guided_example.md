@@ -51,7 +51,7 @@ The exact solution is `employees.head(3)`. Argument three says that at most row 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution is `employees.head(3)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact solution is `employees.head(3)`. Argument three says that at most row 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`iloc[:3]`:** This is also positional and corr:** - **`iloc[:3]`:** This is also positional and correct, but `head(3)` communicates “first rows” more directly.
+- **`iloc[:3]`:** This is also positional and correct, but `head(3)` communicates “first rows” more directly.
 - **`employees[:3]`:** It often works as row slicing, yet explicit `head` avoids indexing-semantics ambiguity.
 - **Sorting by identifier first:** That would change the meaning of “first” and produce the wrong output when input order differs from identifier order.
 - **Fewer than three rows:** `head(3)` returns every available row without error.
@@ -94,8 +94,8 @@ The exact solution is `employees.head(3)`. Argument three says that at most row 
 - **Custom index labels:** Labels are preserved; the method selects by position and does not reset the index.
 - **Duplicate index labels:** They do not affect positional prefix selection.
 - **All columns retained:** The task asks to display rows, not project a subset of columns, so no column selection should be added.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ Therefore, only the multiset of characters in each component matters; their orig
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Along one graph edge, the two endpoint characters can swap d... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Each list is sorted with `reverse=true`, putting its largest character first and
 
 ## 6. Traps This Instance Exposes
 
-- **- **Balanced DSU:** Track rank or size and attach :** - **Balanced DSU:** Track rank or size and attach the smaller tree beneath the larger. Together with path compression, this provides the inverse-Ackermann amortized bound.
+- **Balanced DSU:** Track rank or size and attach the smaller tree beneath the larger. Together with path compression, this provides the inverse-Ackermann amortized bound.
 - **DFS or BFS components:** Build an adjacency list, traverse each component, sort its indices and characters, and assign them together. This uses $O(n+p)$ graph storage.
 - **No swap pairs:** Every index is a singleton component. Each list contains one character, so the original string is returned.
 - **One fully connected component:** All characters can be permuted, and the result is the globally sorted string.
@@ -106,8 +106,8 @@ Each list is sorted with `reverse=true`, putting its largest character first and
 - **Input string immutability:** The method constructs a new string and does not attempt to modify `s` in place.
 - **Representative stability:** Character grouping occurs only after all unions, so later path compression cannot move a component to a different root.
 - **Recursive `find` depth:** Arbitrary unbalanced linking can create deep parent chains before compression. A balanced union or iterative find can reduce operational recursion risk.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

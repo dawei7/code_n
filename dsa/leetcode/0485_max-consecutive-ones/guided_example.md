@@ -51,7 +51,7 @@ The two variables have distinct meanings:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The two variables have distinct meanings:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The two variables have distinct meanings:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split a converted string on zero:** Converting:** - **Split a converted string on zero:** Converting all values to text, splitting, and taking the longest segment can be concise, but it allocates several linear-size objects and obscures the simple streaming invariant.
+- **Split a converted string on zero:** Converting all values to text, splitting, and taking the longest segment can be concise, but it allocates several linear-size objects and obscures the simple streaming invariant.
 - **Store every run length:** Appending completed counts to a list and taking their maximum later works, but retains $O(n)$ unnecessary data. Only the best previous run and current run matter.
 - **Two nested loops:** One loop could locate a one and another could consume its entire run. With careful index movement this can still be linear, but the single loop is easier to verify and has fewer boundary conditions.
 - **Update only at zeros:** This requires a final `max(ans, cnt)` so that an all-one suffix is not missed. Updating when a one arrives removes that special ending case.
@@ -96,8 +96,8 @@ The two variables have distinct meanings:
 - **Alternating values:** Every run has length one, and resets prevent separate ones from being combined.
 - **Single element:** The general loop returns `1` for `[1]` and `0` for `[0]` without branching on the array length.
 - **Binary-input guarantee:** `if x` is correct only because values are guaranteed to be zero or one. For a more general array, the explicit condition `x == 1` would be required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

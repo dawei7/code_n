@@ -69,7 +69,7 @@ The latest row `rn=1` has no previous row in this descending order, so its lag a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The window order is newest to oldest.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Older reviews beyond the latest three are ignored, even if they break or strengt
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation after row numbering:**:** - **Conditional aggregation after row numbering:** One can place latest, second, and third ratings into columns with CASE expressions, then compare them. The delta method is compact and makes the score telescope naturally.
+- **Conditional aggregation after row numbering:** One can place latest, second, and third ratings into columns with CASE expressions, then compare them. The delta method is compact and makes the score telescope naturally.
 - **Self-join reviews by dates:** Repeatedly finding the three latest rows per employee is more complex and can multiply rows.
 - **Exactly three reviews:** Both required delta rows exist and are evaluated normally.
 - **Fewer than three reviews:** COUNT is below two, so the employee is excluded.
@@ -122,8 +122,8 @@ Older reviews beyond the latest three are ignored, even if they break or strengt
 - **Null ratings:** The schema narrative implies integer ratings; if null were allowed, MIN and SUM null behavior would need explicit handling.
 - **Group by employee_id:** Name is functionally determined by the unique employee row; MySQL can permit selecting it under functional-dependency rules.
 - **Latest-row delta:** It is null but filtered out through `rn>1` before aggregation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

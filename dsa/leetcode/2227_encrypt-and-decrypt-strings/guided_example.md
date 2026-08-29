@@ -65,7 +65,7 @@ Different dictionary words may collide intentionally. In the example, both `"abc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Several different keys may map to the same two-character val... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Counting pre-encrypted dictionary words is therefore equivalent to enumerating a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtrack through reverse mappings:** Build co:** - **Backtrack through reverse mappings:** Build code-to-possible-characters lists and enumerate all plaintext combinations for `word2`. This can grow exponentially with the number of ambiguous pairs and wastes work on strings absent from the dictionary.
+- **Backtrack through reverse mappings:** Build code-to-possible-characters lists and enumerate all plaintext combinations for `word2`. This can grow exponentially with the number of ambiguous pairs and wastes work on strings absent from the dictionary.
 - **Decrypt every dictionary word per query:** Encrypt each dictionary entry and compare it to `word2` on every call. It is correct but repeats fixed work; preprocessing makes subsequent queries a lookup.
 - **Store encrypted dictionary strings in a set:** A set loses collision multiplicity and cannot report how many distinct dictionary words decrypt from one ciphertext.
 - **Build one reverse character per code:** Choosing only one key for a repeated value misses other valid plaintexts. Pre-encryption naturally accounts for all dictionary words.
@@ -119,8 +119,8 @@ Counting pre-encrypted dictionary words is therefore equivalent to enumerating a
 - **Even ciphertext length:** The contract guarantees legal pair boundaries. Lookup does not need to validate or split the string.
 - **Empty encryption key in the counter:** It can arise only from an invalid dictionary word; legal decrypt inputs have length at least two and cannot match it.
 - **Input preservation:** The constructor builds new mapping and counter objects; the supplied arrays and dictionary strings are not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

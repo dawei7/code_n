@@ -90,7 +90,7 @@ Suppose two indices `i<j` were both balanced. Then `L_i<L_j`, while `R_i\ge R_j`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method returns immediately when it finds a balanced inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -144,7 +144,7 @@ Equality is impossible for all remaining indices, so terminating the loop cannot
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix sums plus suffix products:** Precompute:** - **Prefix sums plus suffix products:** Precompute both sides for every index and scan for equality. This is straightforward but uses `O(N)` space that scalar accumulators avoid.
+- **Prefix sums plus suffix products:** Precompute both sides for every index and scan for equality. This is straightforward but uses `O(N)` space that scalar accumulators avoid.
 - **Recompute both sides at every index:** Directly summing and multiplying slices gives `O(N^2)` time. The rolling state reuses previous work.
 - **Compute one total product and divide:** Positivity means division is defined, but values equal to one and enormous products still require care, and a full product can become huge before any useful comparison. Reverse accumulation with early stopping is safer.
 - **Scan left to right:** A prefix sum is easy, but maintaining the right product by division needs the full product. The reverse direction builds the product naturally and uses a subtractive total sum.
@@ -157,8 +157,8 @@ Equality is impossible for all remaining indices, so terminating the loop cannot
 - **Zero or negative values:** They are excluded. Allowing them would invalidate both the early-break inequality and potentially the uniqueness argument.
 - **Product overflow:** Python is safe. Fixed-width implementations should compare before multiplication or saturate above the maximum possible left sum rather than permit overflow to reverse the inequality.
 - **Break on `p >= s`:** Equality after the post-check multiplication does not indicate a balanced current index; `p` is already the next index's right product while `s` is still the current left sum. It only proves strict dominance for all farther-left indices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

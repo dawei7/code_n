@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $$i^{\text{th}}$$ node. You are also given a **0-indexed** 2D integer array `edges`, where each $\text{edges}[j] = [u_{j}, v_{j}, \text{time}_{j}]$ indicates that there is an undirected edge between the nodes $u_{j}$ and $v_{j}$,_ and it takes $\text{time}_{j}$ seconds to travel between the two nodes. Finally, you are given an integer `maxTime`.
+There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $i^{\text{th}}$ node. You are also given a **0-indexed** 2D integer array `edges`, where each $\text{edges}[j] = [u_{j}, v_{j}, \text{time}_{j}]$ indicates that there is an undirected edge between the nodes $u_{j}$ and $v_{j}$,_ and it takes $\text{time}_{j}$ seconds to travel between the two nodes. Finally, you are given an integer `maxTime`.
 
 The objective is to compute `75` from `{"values": [0, 32, 10, 43], "edges": [[0, 1, 10], [1, 2, 15], [0, 3, 10]], "maxTime": 49}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -55,7 +55,7 @@ This permits travel in both directions with the same cost, matching the graph co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For edge `[u,v,t]`, the source appends `(v,t)` to `g[u]` and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The method does not require using all available time. Any return to zero within 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shortest-return pruning:** Precompute shortest:** - **Shortest-return pruning:** Precompute shortest time from each node to zero and stop branches that cannot return; improves actual search but is absent from the source.
+- **Shortest-return pruning:** Precompute shortest time from each node to zero and stop branches that cannot return; improves actual search but is absent from the source.
 - **Simple-path DFS:** Incorrect because revisiting nodes and edges is allowed and often required.
 - **Disconnected nodes:** Never reached from zero and correctly contribute nothing.
 - **Zero-value node:** Visiting it changes no quality but may enable routes.
@@ -106,8 +106,8 @@ The method does not require using all available time. Any return to zero within 
 - **Backtracking:** New-node flags must be reset between sibling walks.
 - **Bounded degree and edge count:** Make exhaustive walk enumeration practical.
 - **Input preservation:** The method builds a separate adjacency list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

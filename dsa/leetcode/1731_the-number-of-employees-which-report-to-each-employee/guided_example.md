@@ -62,7 +62,7 @@ No separate `HAVING COUNT > 0` is needed because every output group is created f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An employee is a manager for this problem only if at least o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ No separate `HAVING COUNT > 0` is needed because every output group is created f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group by `reports_to` then join:** Aggregate r:** - **Group by `reports_to` then join:** Aggregate report counts and ages first, then join the smaller manager summary to Employees for names. It is logically equivalent.
+- **Group by `reports_to` then join:** Aggregate report counts and ages first, then join the smaller manager summary to Employees for names. It is logically equivalent.
 - **Correlated subqueries:** Count and average reports separately for every employee. Without good indexing, this repeats work.
 - **Left self-join:** It would include nonmanagers unless filtered with `HAVING COUNT(e1.employee_id)>0`; the inner join naturally excludes them.
 - **One direct report:** Count is one and average age equals that report's age.
@@ -112,8 +112,8 @@ No separate `HAVING COUNT > 0` is needed because every output group is created f
 - **Invalid manager reference outside the stated relational model:** An inner join would omit that reporting row because no manager identity exists.
 - **Ordinal clauses:** `GROUP BY 1` and `ORDER BY 1` rely on manager ID remaining the first select expression.
 - **Functional dependency:** Manager name is fixed by unique employee ID, allowing it to be selected with that group key.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

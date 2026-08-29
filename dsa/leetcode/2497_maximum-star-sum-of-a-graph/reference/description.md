@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is an undirected graph consisting of `n` nodes numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $$i^{\text{th}}$$ node.
+There is an undirected graph consisting of `n` nodes numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $i^{\text{th}}$ node.
 
 You are also given a 2D integer array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ denotes that there exists an **undirected** edge connecting nodes $a_{i}$ and $b_{i}.$
 

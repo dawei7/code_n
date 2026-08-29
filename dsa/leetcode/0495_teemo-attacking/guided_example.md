@@ -51,7 +51,7 @@ The array is already sorted in non-decreasing order, so poison intervals appear 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The array is already sorted in non-decreasing order, so pois... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The array is already sorted in non-decreasing order, so poison intervals appear 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit interval merging:** Construct `[t, t :** - **Explicit interval merging:** Construct `[t, t + duration)` intervals and merge overlaps. It works but stores unnecessary interval data when chronological gaps alone determine the union length.
+- **Explicit interval merging:** Construct `[t, t + duration)` intervals and merge overlaps. It works but stores unnecessary interval data when chronological gaps alone determine the union length.
 - **Simulate every second:** Marking poisoned timestamps can require work proportional to the numeric timeline rather than the number of attacks, which is wasteful for large times and durations.
 - **Unsorted input:** The one-pass gap reasoning depends on non-decreasing times. Without that guarantee, sort first at $O(n\log n)$ cost.
 - **Overlapping attacks:** Add only the gap to the next attack, preventing overlap from being counted twice.
@@ -95,8 +95,8 @@ The array is already sorted in non-decreasing order, so poison intervals appear 
 - **Zero duration:** Every contribution is zero and the result is zero.
 - **Single attack:** `pairwise` yields nothing, and the initialized `duration` is exactly the answer.
 - **Inclusive seconds:** `b - a` already counts the integer seconds from `a` through `b - 1`; no extra one belongs in the formula.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

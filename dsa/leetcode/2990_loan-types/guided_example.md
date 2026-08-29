@@ -70,7 +70,7 @@ Because each group yields at most one output row, `user_id` values are automatic
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `WHERE` can filter individual loan rows but cannot by itself... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Repeated loans of a target type contribute multiple ones, but the predicate only
 
 ## 6. Traps This Instance Exposes
 
-- **- **`COUNT(DISTINCT loan_type) = 2` after filterin:** - **`COUNT(DISTINCT loan_type) = 2` after filtering:** This is equivalent if a `WHERE loan_type IN (...)` filter is added, but the exact query uses two Boolean sums.
+- **`COUNT(DISTINCT loan_type) = 2` after filtering:** This is equivalent if a `WHERE loan_type IN (...)` filter is added, but the exact query uses two Boolean sums.
 - **Self-join Loans:** Joining one Mortgage row to one Refinance row per user proves existence but can multiply duplicates and then require `DISTINCT`.
 - **Two correlated `EXISTS` tests:** They are readable and can use indexes, but grouping scans all user evidence in one relation.
 - **Only one required type:** One sum is zero, so the conjunction correctly rejects the user.
@@ -116,8 +116,8 @@ Repeated loans of a target type contribute multiple ones, but the predicate only
 - **Null loan type:** It contributes to neither sum under MySQL’s three-valued logic.
 - **Dialect portability:** Replace Boolean sums with `CASE` expressions outside MySQL.
 - **Output order:** `ORDER BY 1` provides ascending distinct user IDs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

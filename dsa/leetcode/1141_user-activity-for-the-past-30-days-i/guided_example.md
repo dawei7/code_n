@@ -67,7 +67,7 @@ The alias `day` gives the output column its required name. Since the result may 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After filtering, the requested output has one row per date t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The `session_id` column is also irrelevant for this report. Sessions matter only
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count all rows per day:** `COUNT(*)` overcount:** - **Count all rows per day:** `COUNT(*)` overcounts users who perform multiple activities or whose rows are duplicated. The required unit is a distinct `user_id` within each day.
+- **Count all rows per day:** `COUNT(*)` overcounts users who perform multiple activities or whose rows are duplicated. The required unit is a distinct `user_id` within each day.
 - **Count distinct sessions:** `COUNT(DISTINCT session_id)` answers a different question. One user may own multiple sessions yet should contribute only one active user for a date.
 - **Use only the `DATEDIFF` predicate:** Future dates yield negative differences and would incorrectly satisfy `< 30`. The explicit upper date bound prevents that leak.
 - **Use `DATEDIFF <= 30`:** That includes 31 calendar dates because differences zero through 30 are all accepted. The correct inclusive 30-day window uses differences zero through 29.
@@ -119,8 +119,8 @@ The `session_id` column is also irrelevant for this report. Sessions matter only
 - **No qualifying activity at all:** No groups are formed, so the query returns an empty result table, which is consistent with omitting zero-activity days.
 - **Boundary dates:** Activities on `2019-06-28` and `2019-07-27` are included; activities on `2019-06-27` and `2019-07-28` are excluded.
 - **Output ordering:** The contract permits any order. If a consumer later requires chronological output, an `ORDER BY day` could be added, but it is unnecessary here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

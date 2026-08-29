@@ -59,7 +59,7 @@ If `r` is the last valid index, there is no later array position at which the ef
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The update interval includes index `r`, so subtracting at `r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ Converting the `accumulate` iterator to a list produces the required concrete re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply every range directly:** Loop from `l` th:** - **Apply every range directly:** Loop from `l` through `r` for each update. This is simple but takes $O(nq)$ time in the worst case when ranges are large.
-- **- **One extra sentinel slot:** Allocate `length + :** - **One extra sentinel slot:** Allocate `length + 1` difference entries and always subtract at `r + 1`. This removes the boundary branch, after which only the first `length` prefix sums are returned.
-- **- **Fenwick tree:** Supports interleaved range upd:** - **Fenwick tree:** Supports interleaved range updates and point queries efficiently. It is unnecessary when every update arrives before one final full-array read.
+- **Apply every range directly:** Loop from `l` through `r` for each update. This is simple but takes $O(nq)$ time in the worst case when ranges are large.
+- **One extra sentinel slot:** Allocate `length + 1` difference entries and always subtract at `r + 1`. This removes the boundary branch, after which only the first `length` prefix sums are returned.
+- **Fenwick tree:** Supports interleaved range updates and point queries efficiently. It is unnecessary when every update arrives before one final full-array read.
 
 ---
 

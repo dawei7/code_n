@@ -59,7 +59,7 @@ Thus, the method finds an extra occurrence, not merely a new distinct character.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The answer is not necessarily a character absent from `s`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ A nonnegative count means the processed copies of that character can still be ma
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bitwise XOR:** XOR the character codes from bo:** - **Bitwise XOR:** XOR the character codes from both strings. Equal occurrences cancel because $x \mathbin{\oplus} x = 0$, leaving the extra code. This also achieves $O(n)$ time and $O(1)$ space and is elegant for this exact one-extra-item contract, but frequency counting is often easier for beginners to generalize and audit.
-- **- **Sum character codes:** Subtract the code-point:** - **Sum character codes:** Subtract the code-point sum of `s` from that of `t`. The difference is the added character code. Python avoids overflow, but fixed-width languages may need a wider type; XOR avoids arithmetic overflow.
-- **- **Sort both strings:** Sorting aligns matching c:** - **Sort both strings:** Sorting aligns matching characters so the first mismatch reveals the extra one, but costs $O(n\log n)$ time and $O(n)$ storage in Python.
+- **Bitwise XOR:** XOR the character codes from both strings. Equal occurrences cancel because $x \mathbin{\oplus} x = 0$, leaving the extra code. This also achieves $O(n)$ time and $O(1)$ space and is elegant for this exact one-extra-item contract, but frequency counting is often easier for beginners to generalize and audit.
+- **Sum character codes:** Subtract the code-point sum of `s` from that of `t`. The difference is the added character code. Python avoids overflow, but fixed-width languages may need a wider type; XOR avoids arithmetic overflow.
+- **Sort both strings:** Sorting aligns matching characters so the first mismatch reveals the extra one, but costs $O(n\log n)$ time and $O(n)$ storage in Python.
 
 ---
 

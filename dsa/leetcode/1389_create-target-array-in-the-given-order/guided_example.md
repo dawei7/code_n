@@ -59,7 +59,7 @@ The guarantee `0 <= index[i] <= i` makes every operation valid. Before step $i$ 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `i == 0`, the new value becomes the first element and all... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ No value is overwritten. Insertion increases list length by one, unlike assignme
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linked list:** Finding the requested index cos:** - **Linked list:** Finding the requested index costs $O(i)$ even if insertion itself is constant after locating it, so total time remains quadratic and Python implementation becomes more complex.
+- **Linked list:** Finding the requested index costs $O(i)$ even if insertion itself is constant after locating it, so total time remains quadratic and Python implementation becomes more complex.
 - **Balanced indexed tree:** An order-statistics tree can support insertions in $O(\log n)$, but it is excessive for $n\le100$ and not built into Python's standard list.
 - **Reverse placement with free slots:** Process operations backward and locate the appropriate empty position using a Fenwick tree. This can reach $O(n\log n)$ but requires a nontrivial inversion argument.
 - **Assignment instead of insertion:** It overwrites rather than shifts and cannot build the specified sequence.
@@ -108,8 +108,8 @@ No value is overwritten. Insertion increases list length by one, unlike assignme
 - **All indices zero:** Every operation shifts the full current list, realizing the quadratic worst case and reversing arrival order.
 - **Equal input lengths:** The contract guarantees `zip` does not silently drop an unmatched tail.
 - **Input mutation:** Neither `nums` nor `index` is changed; only the new `target` list is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

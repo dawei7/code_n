@@ -71,9 +71,7 @@ limit. The result is again 200 rather than another 300.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `LIMIT 1, 1` is MySQL's comma form:
-
-`LIMIT offset, row_coun... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +120,7 @@ The alias gives that one column the exact required name
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maximum below the maximum:** Select `MAX(salar:** - **Maximum below the maximum:** Select `MAX(salary)` where salary is less than the global `MAX(salary)`. This naturally returns one null aggregate row when no candidate exists.
+- **Maximum below the maximum:** Select `MAX(salary)` where salary is less than the global `MAX(salary)`. This naturally returns one null aggregate row when no candidate exists.
 - **`DENSE_RANK`:** Rank distinct salary levels and select rank two; portable across modern SQL engines but may require similar sorting.
 - **`IFNULL` wrapper:** Can turn an empty scalar result into null explicitly, though a scalar subquery already does so.
 - **Duplicate maximum:** `DISTINCT` prevents it from occupying both rank positions.
@@ -132,8 +130,8 @@ The alias gives that one column the exact required name
 - **Descending order:** Required before applying the offset.
 - **Nullable salary:** A production query should define whether nulls are excluded.
 - **Physical cost:** Indexes and optimizer strategy determine whether an explicit sort is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

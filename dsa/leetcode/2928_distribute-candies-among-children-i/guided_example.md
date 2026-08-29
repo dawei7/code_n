@@ -61,10 +61,7 @@ The two selected separator positions divide $n$ identical candies into three lab
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Without upper bounds, stars and bars gives
-
-$$
-\#\{(x,y,z)\m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +104,7 @@ Any of the three children might be the excessive one, so subtract three times th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate $x$ and $y$:** Small version-I const:** - **Enumerate $x$ and $y$:** Small version-I constraints permit it, but the inclusion–exclusion formula is both faster and the exact checked-in approach.
+- **Enumerate $x$ and $y$:** Small version-I constraints permit it, but the inclusion–exclusion formula is both faster and the exact checked-in approach.
 - **Enumerate only $x$:** Derive an interval for $y$ after fixing the first child. This takes $O(\min(n,\texttt{limit}))$ time.
 - **Unordered partitions:** They would merge assignments to different children. The problem counts ordered triples because children are distinct.
 - **$n > 3limit$:** Combined capacity is insufficient, so returning zero before calling combinations is necessary.
@@ -122,8 +119,8 @@ Any of the three children might be the excessive one, so subtract three times th
 - **Combination meaning at a boundary:** When the residual candy count is zero, `comb(2, 2) == 1` represents assigning zero residual candies to every child.
 - **Formula versus example listing:** The computation counts distributions without constructing them, but every listed ordered triple corresponds to exactly one stars-and-bars separator placement.
 - **Exact return value:** The source performs no modulo reduction because this version asks for the complete number of valid assignments.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

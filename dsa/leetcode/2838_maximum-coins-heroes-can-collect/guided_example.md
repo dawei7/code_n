@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. $\text{heroes}[i]$ is the power of $$i^{\text{th}}$$ hero, and $\text{monsters}[i]$ is the power of $$i^{\text{th}}$$ monster.
+There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. $\text{heroes}[i]$ is the power of $i^{\text{th}}$ hero, and $\text{monsters}[i]$ is the power of $i^{\text{th}}$ monster.
 
 The objective is to compute `[5, 16, 10]` from `{"heroes": [1, 4, 2], "monsters": [1, 1, 5, 2, 3], "coins": [2, 3, 4, 5, 6]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The question for each hero is simply: after ordering monsters by power, how many
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The question for each hero is simply: after ordering monster... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The question for each hero is simply: after ordering monsters by power, how many
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort heroes with original indices and sweep:**:** - **Sort heroes with original indices and sweep:** As hero power rises, add newly defeatable monster coins once and write the running total to the hero's original position. This matches the manifest and replaces $n$ binary searches with one linear merge after sorting.
+- **Sort heroes with original indices and sweep:** As hero power rises, add newly defeatable monster coins once and write the running total to the hero's original position. This matches the manifest and replaces $n$ binary searches with one linear merge after sorting.
 - **Sort monster-coin tuples:** This is more explicit than sorting indices and has the same asymptotic cost, at the price of allocating tuple pairs.
 - **Brute force per hero:** Testing all monsters takes $O(nm)$ time and is too slow at $10^5$ by $10^5$.
 - **No defeatable monster:** Upper bound returns zero, and prefix sum `s[0]` is zero.
@@ -97,8 +97,8 @@ The question for each hero is simply: after ordering monsters by power, how many
 - **Large coin sum:** Python's arbitrary-precision integers preserve the full result.
 - **Input preservation:** Sorting the index list leaves `heroes`, `monsters`, and `coins` unchanged.
 - **Keyed bisect availability:** The exact code relies on a Python version whose `bisect_right` supports `key`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

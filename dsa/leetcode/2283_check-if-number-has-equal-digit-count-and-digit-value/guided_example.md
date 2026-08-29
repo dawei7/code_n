@@ -60,7 +60,7 @@ There are only ten possible decimal digit keys, so the counter has fixed maximum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(int(x) for x in num)` scans each character, convert... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For example, at index three of `"1210"`, `cnt[3]` is zero because digit three is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated** `str.count` **calls:** They are sim:** - **Repeated** `str.count` **calls:** They are simple but can take `O(n^2)` time by rescanning the string for every index.
+- **Repeated** `str.count` **calls:** They are simple but can take `O(n^2)` time by rescanning the string for every index.
 - **Ten-entry list:** A fixed frequency array indexed by digit is an equally suitable replacement for `Counter`.
 - **Character-keyed counter:** It works only if lookups also use `str(i)`; mixing characters and integers silently produces wrong zeros.
 - **Sort the digits:** Sorting can derive frequencies but costs extra work and obscures indexed requirements.
@@ -118,8 +118,8 @@ For example, at index three of `"1210"`, `cnt[3]` is zero because digit three is
 - **Integer conversion:** Converting each one-character digit is exact and never interprets the entire string as one number.
 - **Counter default:** Missing integer keys read as zero rather than raising an error.
 - **Input preservation:** The string is scanned but never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ Assume now that the array is not fully increasing. A retained prefix can end at 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `i` advances from zero while adjacent values satisfy... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ This separate initialization makes the later loop responsible only for removals 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all removals:** There are $O(N^2)$ i:** - **Enumerate all removals:** There are $O(N^2)$ intervals before even checking whether the remainder is increasing, which is too slow for $N=10^5$.
+- **Enumerate all removals:** There are $O(N^2)$ intervals before even checking whether the remainder is increasing, which is too slow for $N=10^5$.
 - **Prefix/suffix arrays plus binary search:** Precomputing validity and binary-searching a bridge can reach $O(N\log N)$ with $O(N)$ space, but monotone pointers achieve $O(N)$ time and $O(1)$ space.
 - **Already strictly increasing:** All $N(N+1)/2$ nonempty removals work, including removal of the whole array.
 - **Strict equality trap:** Equal adjacent retained values are invalid; `>=` correctly rejects them.
@@ -103,8 +103,8 @@ This separate initialization makes the later loop responsible only for removals 
 - **Empty retained suffix:** These cases are counted in the initial `i + 2`, not the suffix loop.
 - **One retained element:** Any one-element remainder is strictly increasing and arises naturally from the boundary counting.
 - **Input preservation:** Both pointers only read `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

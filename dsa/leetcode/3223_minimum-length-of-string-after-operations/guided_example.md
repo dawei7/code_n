@@ -51,7 +51,7 @@ Therefore each letter's frequency can be minimized independently, and the final 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore each letter's frequency can be minimized independe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore each letter's frequency can be minimized independently, and the final 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-element frequency array:** It avoids :** - **Fixed 26-element frequency array:** It avoids hashing and has the same $O(n)$ time and $O(1)$ space.
+- **Fixed 26-element frequency array:** It avoids hashing and has the same $O(n)$ time and $O(1)$ space.
 - **Presence and parity bitmasks:** One mask records which letters occur and another toggles frequency parity. Each present odd bit contributes one and present even bit contributes two.
 - **Simulate deletions in a mutable string:** It repeatedly searches matching neighbors and shifts content, doing far more work than the frequency invariant requires.
 - **Frequency one:** No operation is possible, and one occurrence remains.
@@ -99,8 +99,8 @@ Therefore each letter's frequency can be minimized independently, and the final 
 - **Interleaved letters:** They do not change per-letter occurrence order or frequency feasibility.
 - **Closest-occurrence wording:** Any internal same-letter pivot's immediate matching predecessor and successor are precisely the required closest occurrences.
 - **Final string not unique:** Different valid deletion orders can leave different occurrences, but their minimum length is identical.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

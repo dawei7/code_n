@@ -65,7 +65,7 @@ The exact query does not need to return `id`, so its final projection is only:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Both tables contain a column named `id`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Rows in `EmployeeUNI` whose ID does not occur in `Employees` would not appear. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `ON` clause:** Write `ON Employees.id:** - **Explicit `ON` clause:** Write `ON Employees.id = EmployeeUNI.id`. It is equivalent and can be clearer when join columns have different names or when qualified names are desired.
+- **Explicit `ON` clause:** Write `ON Employees.id = EmployeeUNI.id`. It is equivalent and can be clearer when join columns have different names or when qualified names are desired.
 - **Inner join:** This incorrectly removes employees without a unique identifier and therefore fails the central null requirement.
 - **Correlated scalar subquery:** Select the matching unique ID separately for every employee. It can work with a unique indexed lookup but is often less direct than one left join.
 - **Right join with reversed tables:** It can preserve `Employees` if table order is reversed, but left join expresses the output ownership more naturally.
@@ -116,8 +116,8 @@ Rows in `EmployeeUNI` whose ID does not occur in `Employees` would not appear. T
 - **Null display:** SQL returns a database `NULL`, not the text string `"null"`.
 - **Result order:** No `ORDER BY` is necessary because any order is accepted.
 - **Column projection:** Selecting only `unique_id` and `name` prevents the shared internal `id` from leaking into the requested output.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

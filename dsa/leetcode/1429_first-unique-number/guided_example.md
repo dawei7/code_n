@@ -71,7 +71,7 @@ A value with frequency greater than one is never inserted, even at its first occ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | first counts the complete initial queue.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Otherwise, iteration over `unique.keys()` follows insertion order, and `next` re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Queue plus status map:** Enqueue first occurre:** - **Queue plus status map:** Enqueue first occurrences and lazily remove stale duplicates from the front during show. Operations are $O(1)$ amortized but one show call may perform several removals.
+- **Queue plus status map:** Enqueue first occurrences and lazily remove stale duplicates from the front during show. Operations are $O(1)$ amortized but one show call may perform several removals.
 - **Scan the complete queue on every show:** Count or check each value repeatedly. This can be linear or quadratic per query and wastes prior frequency work.
 - **Plain unordered set:** It tracks uniqueness but cannot identify which unique value appeared first.
 - **Linked hash set:** In languages that provide one, it directly supports ordered keys with constant-time insertion and removal, analogous to OrderedDict.
@@ -122,8 +122,8 @@ Otherwise, iteration over `unique.keys()` follows insertion order, and `next` re
 - **A new value after no uniques remain:** Its count becomes one, it enters the ordered mapping, and it becomes the first unique.
 - **Show does not consume:** Repeated show calls without additions return the same first value.
 - **Arrival order:** Removing an earlier key does not disturb the relative order of remaining keys.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

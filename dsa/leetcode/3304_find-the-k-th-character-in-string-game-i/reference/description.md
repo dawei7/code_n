@@ -10,7 +10,7 @@ Now Bob will ask Alice to perform the following operation **forever**:
 
 For example, performing the operation on `"c"` generates `"cd"` and performing the operation on `"zb"` generates `"zbac"`.
 
-Return the value of the $$k^{\text{th}}$$ character in `word`, after enough operations have been done for `word` to have **at least** `k` characters.
+Return the value of the $k^{\text{th}}$ character in `word`, after enough operations have been done for `word` to have **at least** `k` characters.
 
 ### 2. Function Contract
 

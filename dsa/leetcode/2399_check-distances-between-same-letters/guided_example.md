@@ -59,11 +59,7 @@ With zero-based positions, a genuine first occurrence at index zero would also s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The scan is:
-
-
-
-`i` begins at one rather than zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +100,7 @@ Letters absent from `s` never enter the loop, so their `distance[j]` entries are
 
 ## 6. Traps This Instance Exposes
 
-- **- **26-entry position array:** Initialize all slot:** - **26-entry position array:** Initialize all slots to `-1` and store zero-based first positions. This avoids hashing and keeps the same $O(1)$ space.
+- **26-entry position array:** Initialize all slots to `-1` and store zero-based first positions. This avoids hashing and keeps the same $O(1)$ space.
 - **Find first and last occurrence per letter:** Repeated string searches can still be acceptable for 26 letters but scan the string multiple times.
 - **Adjacent occurrences:** The computed between-count is zero.
 - **Letter beginning at index zero:** One-based storage records it as one, so it is not confused with the unseen sentinel.
@@ -113,8 +109,8 @@ Letters absent from `s` never enter the loop, so their `distance[j]` entries are
 - **Exactly two occurrence guarantee:** It makes the unconditional overwrite after validation harmless.
 - **All appearing letters valid:** Completing the loop proves true.
 - **Fixed lowercase alphabet:** Dictionary storage is constant despite using a mapping type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

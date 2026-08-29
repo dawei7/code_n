@@ -136,25 +136,6 @@
       },
       "tags": ["trial", "multiple-users", "unordered-result"],
       "validator": {"kind": "unordered_table"}
-    },
-    {
-      "id": "trial-duplicate-newest-row",
-      "name": "trial: duplicate newest storage rows do not change recency",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "UserActivity": [
-            {"username": "Gus", "activity": "Newest", "startDate": "2024-03-01", "endDate": "2024-03-02"},
-            {"username": "Gus", "activity": "Middle", "startDate": "2024-02-01", "endDate": "2024-02-02"},
-            {"username": "Gus", "activity": "Newest", "startDate": "2024-03-01", "endDate": "2024-03-02"},
-            {"username": "Gus", "activity": "Oldest", "startDate": "2024-01-01", "endDate": "2024-01-02"}
-          ]
-        }
-      },
-      "expected": {"columns": ["username", "activity", "startDate", "endDate"], "rows": [["Gus", "Middle", "2024-02-01", "2024-02-02"]]},
-      "tags": ["trial", "duplicate-rows", "logical-periods"],
-      "validator": {"kind": "unordered_table"}
     }
   ]
 }

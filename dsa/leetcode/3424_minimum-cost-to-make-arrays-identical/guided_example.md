@@ -51,7 +51,7 @@ If the fixed-cost rearrangement is never used, every position in `arr` must be c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the fixed-cost rearrangement is never used, every positio... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If the fixed-cost rearrangement is never used, every position in `arr` must be c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every permutation:** There are $n!$ assign:** - **Try every permutation:** There are $n!$ assignments. The sorted exchange property reduces this factorial search to two sorts.
+- **Try every permutation:** There are $n!$ assignments. The sorted exchange property reduces this factorial search to two sorts.
 - **Dynamic programming over blocks:** Because singleton splitting permits any permutation for one fixed fee, retaining original block structure is unnecessary.
 - **Pay rearrangement multiple times:** One rearrangement already reaches every permutation, so another payment can never reduce the adjustment cost further.
 - **Arrays already identical:** `c1` is zero, the smallest possible answer, even if `k` is also zero.
@@ -96,8 +96,8 @@ If the fixed-cost rearrangement is never used, every position in `arr` must be c
 - **Duplicate values:** Sorting aligns multiplicities naturally; no identity needs to be attached to equal copies.
 - **Negative values:** The exchange argument applies on the full ordered number line, and absolute difference remains the operation cost.
 - **Input mutation:** Sorting occurs after `c1` is computed. Moving it earlier would destroy the original-position cost and could return an incorrect result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

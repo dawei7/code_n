@@ -51,7 +51,7 @@ has survived and now appears at the front of the current word. Appended characte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | has survived and now appears at the front of the current wor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For the current word to equal the original `word`, that forced surviving suffix 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Z-function:** Computing prefix-match lengths f:** - **Z-function:** Computing prefix-match lengths for all offsets gives $O(N)$ time and $O(N)$ space, then only multiples of $k$ need testing. It is more scalable but unnecessary for the small first version.
+- **Z-function:** Computing prefix-match lengths for all offsets gives $O(N)$ time and $O(N)$ space, then only multiples of $k$ need testing. It is more scalable but unnecessary for the small first version.
 - **KMP prefix information:** A prefix function can also identify borders and reachable offsets in linear time, at the cost of a more involved explanation and implementation.
 - **Rolling hash:** Substring equality can be checked quickly after preprocessing, but a single modular hash is probabilistic unless collisions are otherwise ruled out.
 - **Simulate actual strings:** Repeatedly deleting and appending candidate characters obscures the only forced part and may explore many unnecessary choices. The overlap condition proves existence directly.
@@ -97,8 +97,8 @@ For the current word to equal the original `word`, that forced surviving suffix 
 - **Offset not divisible by $k$:** It cannot occur after a whole number of seconds and is correctly never tested.
 - **Partial final removal:** When $N$ is not divisible by $k$, $\lceil N/k\rceil$ operations are still enough for every original position to have left the word, and freely appended characters can form the target.
 - **Positive-time requirement:** Offset zero would trivially match the word with itself, but the loop begins at $k$, so zero seconds is never returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ The counter also permits flipping many equal occurrences in one operation on the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Values lie between negative one hundred and positive one hun... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If `k` reaches zero, the loop breaks because every required operation has been a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the array:** Sort ascending, flip negativ:** - **Sort the array:** Sort ascending, flip negatives while operations remain, then adjust the smallest absolute value for odd parity. It is straightforward but costs `O(N \log N)`.
+- **Sort the array:** Sort ascending, flip negatives while operations remain, then adjust the smallest absolute value for odd parity. It is straightforward but costs `O(N \log N)`.
 - **Min-heap:** Repeatedly negate the current minimum and push it back. This costs `O((N + k)\log N)` and may process canceling flips individually.
 - **Flip an arbitrary negative first:** It can waste a limited operation on a small improvement while a larger-magnitude negative remains.
 - **More operations than elements:** Reusing indices is allowed; after beneficial flips, only leftover parity matters.
@@ -119,8 +119,8 @@ If `k` reaches zero, the loop breaks because every required operation has been a
 - **Zero-count Counter keys:** They do not affect the weighted sum and keeping them is harmless.
 - **Exact operation count:** Canceling pairs justify why unused even operations need no explicit simulation.
 - **Input preservation:** Frequency movement produces the result without rewriting `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

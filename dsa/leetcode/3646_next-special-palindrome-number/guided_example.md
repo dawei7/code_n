@@ -74,7 +74,7 @@ An unset bit means that digit is absent. There is no option to include an even d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The tuple `even_digits = (2, 4, 6, 8)` has four members, so ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The empty choice—no even digits and no odd digit—has total length zero and i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute all special palindromes:** Because :** - **Precompute all special palindromes:** Because the valid universe under the constraint is fixed, one could generate the sorted candidate list once and binary-search the first value above `n`. That makes repeated queries faster but requires stored precomputation; the source generates candidates on demand.
+- **Precompute all special palindromes:** Because the valid universe under the constraint is fixed, one could generate the sorted candidate list once and binary-search the first value above `n`. That makes repeated queries faster but requires stored precomputation; the source generates candidates on demand.
 - **Enumerate integers above `n` and test each one:** Testing palindromicity and frequencies is easy, but the gaps between special numbers can be enormous. Structural generation avoids scanning irrelevant integers.
 - **Generate full digit permutations:** Permuting all digits and then checking for palindromes repeats vast amounts of symmetric work. Generating only the left half makes the right half automatic.
 - **Allow multiple odd-frequency digits:** A palindrome has only one central position, so at most one odd-count digit is possible. Choosing two from `1, 3, 5, 7, 9` can never produce a palindrome with their required counts.
@@ -130,8 +130,8 @@ The empty choice—no even digits and no odd digit—has total length zero and i
 - **Enumeration order:** Sorting the digit keys makes traversal deterministic, but it does not by itself guarantee numerical order across configurations. The `best` comparison is what guarantees the smallest answer.
 - **Seventeen-digit pruning:** The bound is safe only because a qualifying special palindrome of at most seventeen digits is guaranteed above every permitted `n`. Changing the input ceiling would require re-establishing an appropriate bound.
 - **No input mutation:** The method reads `n` and constructs bounded local state; it does not modify any caller-owned collection.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

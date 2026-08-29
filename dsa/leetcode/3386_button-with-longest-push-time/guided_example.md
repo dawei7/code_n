@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Initialize the best result from the first event.** Assignm... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ sets `ans` to the first button index and `t` to its press duration. Although `t`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit previous-time variable:** A standard :** - **Explicit previous-time variable:** A standard loop can track `previous=0` and is equivalent to `pairwise` plus special initialization.
+- **Explicit previous-time variable:** A standard loop can track `previous=0` and is equivalent to `pairwise` plus special initialization.
 - **Build all durations:** It works but spends $O(n)$ extra space.
 - **Sort by duration:** Events are already chronological; sorting computed candidates adds unnecessary $O(n\log n)$ work.
 - **Single event:** Its timestamp is the duration, and its index is returned.
@@ -102,8 +102,8 @@ sets `ans` to the first button index and `t` to its press duration. Although `t`
 - **Pairwise import:** `itertools.pairwise` must be available.
 - **Annotation import:** `List` must be supplied.
 - **Input preservation:** No event row is changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

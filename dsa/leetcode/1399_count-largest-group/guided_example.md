@@ -60,7 +60,7 @@ In a language where loop control depends on manually incrementing the same mutab
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The digit loop destructively reduces local variable `i` to z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ If its size remains below `mx`, neither summary changes.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pass counter summary:** Build all group si:** - **Two-pass counter summary:** Build all group sizes, then find the maximum and count its occurrences. It is equally correct and slightly simpler conceptually but scans counter values twice.
+- **Two-pass counter summary:** Build all group sizes, then find the maximum and count its occurrences. It is equally correct and slightly simpler conceptually but scans counter values twice.
 - **String conversion:** Compute `sum(int(c) for c in str(x))`. It is readable but allocates temporary string and iterator objects for each number.
 - **Dynamic digit-sum recurrence:** Use the relationship between $x$ and $x-1$ while handling trailing nines. It can reduce repeated digit work but is more error-prone.
 - **Fixed array of group counts:** Under $n\le10^4$, digit sums are small, so an array can replace `Counter`.
@@ -116,8 +116,8 @@ If its size remains below `mx`, neither summary changes.
 - **Powers of ten:** Zero digits contribute nothing; for example, 100 has digit sum one.
 - **Mutated `i`:** Python's `for` loop safely assigns the next range element despite the inner reduction to zero.
 - **Required import:** `Counter` must be available, normally from `collections`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ That pattern is often called the square-free kernel. Remove every square factor 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | That pattern is often called the square-free kernel.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore, a complete subset consists of indices sharing one square-free kernel.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit square-free kernels:** Factor every i:** - **Explicit square-free kernels:** Factor every index, compute its kernel, and accumulate values in a map keyed by that kernel. This is direct but needs extra storage and factorization machinery.
+- **Explicit square-free kernels:** Factor every index, compute its kernel, and accumulate values in a map keyed by that kernel. This is direct but needs extra storage and factorization machinery.
 - **Sieve-based kernels:** A smallest-prime-factor sieve can derive kernels efficiently, yet $O(n)$ extra memory is unnecessary for the square-multiple enumeration.
 - **Non-square-free outer values:** They generate redundant partial families, not incorrect families. Positivity ensures a partial family never beats its full kernel group.
 - **One-based indexing:** The mathematical index is `k*j*j`; subtract one exactly once when reading `nums`.
@@ -94,8 +94,8 @@ Therefore, a complete subset consists of indices sharing one square-free kernel.
 - **Positive-values guarantee:** The proof that a full kernel group is best relies on all values being positive. With negative values, choosing a beneficial subset would require additional reasoning.
 - **Large sums:** A 64-bit integer is needed in fixed-width languages because up to $10^4$ values of size $10^9$ may be added.
 - **Pairwise condition:** Sharing a kernel simultaneously guarantees the condition for every pair; checking only adjacent chosen indices would not generally be a sufficient formulation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

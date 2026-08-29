@@ -53,7 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `i == j and i <= h`: the upper-left diagonal through the c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The three pieces overlap at the center, but the source combines them with `a or 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build an explicit Boolean Y mask:** It can sim:** - **Build an explicit Boolean Y mask:** It can simplify visualization but uses $O(n^2)$ extra space when the coordinate predicates suffice.
+- **Build an explicit Boolean Y mask:** It can simplify visualization but uses $O(n^2)$ extra space when the coordinate predicates suffice.
 - **Try editing cells greedily:** A cell's best target depends on the global pair of region values; counting all six assignments is simpler and exact.
 - **Choose most frequent value independently in each region:** This works unless both regions choose the same value. Enumerating distinct pairs handles the required conflict correctly.
 - **Center cell:** It satisfies all three geometric predicates but is counted once because of logical OR.
@@ -102,8 +102,8 @@ The three pieces overlap at the center, but the source combines them with `a or 
 - **Counter missing key behavior:** `Counter` returns zero for an unobserved target value, allowing all six assignments to be evaluated without initializing explicit zero counts.
 - **Why target values must differ:** The filter `i != j` enforces the defining visual contrast. Allowing equality could make a uniform grid appear to contain a Y.
 - **Geometric predicates at the center row:** Above and including the center, diagonals count; from the center downward, only the center column counts, exactly matching the stated junction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

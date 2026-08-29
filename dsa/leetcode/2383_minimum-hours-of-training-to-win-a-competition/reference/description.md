@@ -4,9 +4,9 @@ You are entering a competition, and are given two **positive** integers `initial
 
 You are also given two **0-indexed** integer arrays `energy` and `experience`, both of length `n`.
 
-You will face `n` opponents **in order**. The energy and experience of the $$i^{\text{th}}$$ opponent is denoted by $\text{energy}[i]$ and $\text{experience}[i]$ respectively. When you face an opponent, you need to have both **strictly** greater experience and energy to defeat them and move to the next opponent if available.
+You will face `n` opponents **in order**. The energy and experience of the $i^{\text{th}}$ opponent is denoted by $\text{energy}[i]$ and $\text{experience}[i]$ respectively. When you face an opponent, you need to have both **strictly** greater experience and energy to defeat them and move to the next opponent if available.
 
-Defeating the $$i^{\text{th}}$$ opponent **increases** your experience by $\text{experience}[i]$, but **decreases** your energy by $\text{energy}[i]$.
+Defeating the $i^{\text{th}}$ opponent **increases** your experience by $\text{experience}[i]$, but **decreases** your energy by $\text{energy}[i]$.
 
 Before starting the competition, you can train for some number of hours. After each hour of training, you can **either** choose to increase your initial experience by one, or increase your initial energy by one.
 

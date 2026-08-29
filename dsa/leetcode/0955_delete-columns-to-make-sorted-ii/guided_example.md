@@ -62,7 +62,7 @@ Only unresolved pairs can constrain a new column.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Array `st` has `n - 1` Boolean entries.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The algorithm sets `must_del`, breaks, increments `ans`, and does not update any
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delete every individually unsorted column:** T:** - **Delete every individually unsorted column:** That solves the different first problem. Here, a later descending column is harmless for pairs already ordered earlier.
+- **Delete every individually unsorted column:** That solves the different first problem. Here, a later descending column is harmless for pairs already ordered earlier.
 - **Try all column subsets:** It is exponential in `M` and ignores the forced nature of bad first differences.
 - **Track complete transformed prefixes:** Comparing rebuilt row strings after every decision uses more memory; resolved adjacent pairs are sufficient.
 - **One row:** There are no adjacent pairs, so every column is safe and zero deletions are needed.
@@ -117,8 +117,8 @@ The algorithm sets `must_del`, breaks, increments `ans`, and does not update any
 - **Deleted column with useful increases:** Those increases must not update `st` because deleted characters vanish.
 - **Equal characters:** They leave an unresolved pair unresolved.
 - **Difference from strict sorting:** Equal final rows are allowed, so not every pair needs to become resolved.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

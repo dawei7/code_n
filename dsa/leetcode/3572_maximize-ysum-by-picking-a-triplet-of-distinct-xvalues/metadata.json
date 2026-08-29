@@ -3,7 +3,7 @@
   "source": "leetcode",
   "frontend_id": "3572",
   "slug": "maximize-ysum-by-picking-a-triplet-of-distinct-xvalues",
-  "title": "Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values",
+  "title": "Maximize Y\u2011Sum by Picking a Triplet of Distinct X\u2011Values",
   "difficulty": "Medium",
   "acceptance_rate": 63.54870775347913,
   "frequency": 0.0,
@@ -48,10 +48,6 @@
   ],
   "primary_language": "python",
   "runnable_in_coden": true,
-  "solution_variants": {
-    "manifest": "solution_variants.json",
-    "default": "optimal"
-  },
   "subsets": [
     "leetcode_all",
     "leetcode_category:algorithms",

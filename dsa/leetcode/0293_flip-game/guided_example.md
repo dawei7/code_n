@@ -61,7 +61,7 @@ The list `ans` begins empty and collects the completed next-state strings. It is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python strings are immutable: individual positions of `curre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Notice that legal pairs may overlap. The middle plus signs participate in more t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Slicing and concatenation:** For every legal i:** - **Slicing and concatenation:** For every legal index `i`, construct `currentState[:i] + "--" + currentState[i + 2:]`. This is straightforward and has the same $O(n^2)$ worst-case time and output space, but it creates candidate strings through slices rather than reusing a mutable character buffer.
+- **Slicing and concatenation:** For every legal index `i`, construct `currentState[:i] + "--" + currentState[i + 2:]`. This is straightforward and has the same $O(n^2)$ worst-case time and output space, but it creates candidate strings through slices rather than reusing a mutable character buffer.
 - **Regular-expression matching:** A pattern search can locate occurrences of `"++"`, but overlapping matches require special handling. A normal non-overlapping search would miss moves such as the pair beginning at index 1 in `"+++"`.
 - **A set of results:** Duplicate elimination is unnecessary because distinct legal starting indices yield distinct next-state strings. A set would add hashing work and would discard the implementation's natural left-to-right order without improving correctness.
 - **Recursive game exploration:** Searching future turns solves a different question, such as whether the current player can force a win. This problem stops after one move, so recursion would add irrelevant states and work.
@@ -128,8 +128,8 @@ Notice that legal pairs may overlap. The middle plus signs participate in more t
 - **Disjoint legal pairs:** In `"++--++"`, either the left or right pair may be flipped, but one output must never flip both because the contract permits exactly one move.
 - **All plus signs:** This maximizes the number of results at $n-1$ and realizes the $O(n^2)$ output size.
 - **Allowed output order:** The contract accepts any order. The left-to-right order produced here is deterministic and requires no extra sorting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

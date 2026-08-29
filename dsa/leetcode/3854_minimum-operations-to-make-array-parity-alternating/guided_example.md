@@ -73,7 +73,7 @@ The global objective is lexicographic: minimize operations first, then minimize 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Adding one or subtracting one always flips an integer's pari... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ The original extrema also explain why an interior proxy cannot hide a better shr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all changed directions:** For a patt:** - **Enumerate all changed directions:** For a pattern with `m` mismatches, trying `x-1` and `x+1` independently takes `2^m` outcomes. The extrema argument reduces those choices to a linear scan.
+- **Enumerate all changed directions:** For a pattern with `m` mismatches, trying `x-1` and `x+1` independently takes `2^m` outcomes. The extrema argument reduces those choices to a linear scan.
 - **Dynamic programming over minima and maxima:** A DP could track possible boundaries, but the one-step changes and global original extrema make that state unnecessary. Only outward versus inward movement at the boundaries matters.
 - **Greedily minimize each final absolute value:** The objective is the collective range, not the magnitude of individual entries. Moving a negative value toward zero, for example, may be irrelevant or harmful compared with moving it toward the current interval.
 - **Evaluate only one starting parity:** The lower-operation pattern depends on the input. Both even-first and odd-first targets must be evaluated, and a tie in operations must be broken by range.
@@ -140,8 +140,8 @@ The original extrema also explain why an interior proxy cannot hide a better shr
 - **Already alternating input:** One of the two patterns has zero mismatches. Because zero operations is globally minimum, the original array cannot be changed merely to improve its range; the source returns that pattern's original range.
 - **Exactly optimal operation count:** Additional pairs of operations could preserve parity while changing values farther, but they are forbidden by the secondary objective's domain. Only arrays using exactly the minimum count are considered.
 - **Lexicographic list comparison:** Python's `min(f(0), f(1))` is intentional. Comparing only the first entries would lose the required minimum-range tie-break.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

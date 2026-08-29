@@ -51,7 +51,7 @@ The solution maintains two priority queues with different purposes:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution maintains two priority queues with different pu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The solution maintains two priority queues with different purposes:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by capital plus one max-heap:** Sort proj:** - **Sort by capital plus one max-heap:** Sort project pairs once and advance a pointer as capital grows. It has the same asymptotic bound and is the editorial's common presentation.
+- **Sort by capital plus one max-heap:** Sort project pairs once and advance a pointer as capital grows. It has the same asymptotic bound and is the editorial's common presentation.
 - **Scan every project each round:** Finding all affordable projects and the largest profit repeatedly costs $O(kn)$ time.
 - **One heap ordered only by profit:** It cannot efficiently distinguish unaffordable projects; the capital-ordered heap handles unlocking first.
 - **No affordable project initially or later:** An empty `h2` means capital cannot increase, so the loop must stop.
@@ -96,8 +96,8 @@ The solution maintains two priority queues with different purposes:
 - **Zero-profit projects:** Choosing one cannot lower capital. It may consume a slot without benefit, but final capital is unchanged and the max-heap postpones it behind positive profits.
 - **Duplicate profits or requirements:** Heap entries represent distinct project occurrences even when numeric fields match, and each tuple is popped only once.
 - **Negated max-heap arithmetic:** `w -= negative_profit` adds the original positive profit; using `w += heappop(h2)` would incorrectly reduce capital.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

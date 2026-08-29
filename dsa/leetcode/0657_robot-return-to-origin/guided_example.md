@@ -62,7 +62,7 @@ The task asks only where the robot ends, not whether it revisits the origin earl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The plane position after any prefix of moves is fully descri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ After the scan, the condition `x == 0 and y == 0` checks both independent axes. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare character counts:** Return whether `mo:** - **Compare character counts:** Return whether `moves.count("U") == moves.count("D")` and `moves.count("L") == moves.count("R")`. It is correct but may scan the string four times; the coordinate simulation is one pass.
-- **- **Use a frequency map:** Count all four commands:** - **Use a frequency map:** Count all four commands, then compare opposites. This takes `O(N)` time but introduces a data structure when two counters suffice.
-- **- **Store every visited coordinate:** This uses `O:** - **Store every visited coordinate:** This uses `O(N)` space and is necessary only for questions about intersections or revisits, not the final position.
+- **Compare character counts:** Return whether `moves.count("U") == moves.count("D")` and `moves.count("L") == moves.count("R")`. It is correct but may scan the string four times; the coordinate simulation is one pass.
+- **Use a frequency map:** Count all four commands, then compare opposites. This takes `O(N)` time but introduces a data structure when two counters suffice.
+- **Store every visited coordinate:** This uses `O(N)` space and is necessary only for questions about intersections or revisits, not the final position.
 
 ---
 

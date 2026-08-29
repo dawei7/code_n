@@ -59,7 +59,7 @@ Breadth-first search visits states in nondecreasing operation count. Consequentl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The queue starts with the initial mask, and `vis` immediatel... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If this mask has not appeared before, it is recorded and enqueued. Visiting each
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoized depth-first search:** Recursively try:** - **Memoized depth-first search:** Recursively try a current one and cache each remaining mask. It explores a similar state graph but needs careful minimization and recursion handling instead of BFS layers.
+- **Memoized depth-first search:** Recursively try a current one and cache each remaining mask. It explores a similar state graph but needs careful minimization and recursion handling instead of BFS layers.
 - **Precomputed clearing masks:** Build the row-and-column bitmask for each pivot once, then calculate `nxt = state & ~clear[pivot]` in constant bitwise time. This supports the manifest's $O(K2^K)$ transition bound.
 - **Test the current pivot bit:** Replacing the original-grid check with `state >> position & 1` follows the operation contract directly and avoids needing the relaxed-pivot equivalence argument.
 - **Greedy largest immediate clearing:** Removing the most ones now can block no cells, but it still need not minimize the number of overlapping row-and-column operations globally; exhaustive state search is justified by $K\le15$.
@@ -117,8 +117,8 @@ If this mask has not appeared before, it is recorded and enqueued. Visiting each
 - **Input preservation:** The algorithm reads `grid` to build and filter masks but never writes to the matrix.
 - **Defensive negative return:** Zero is reachable from every valid input, so `-1` should not occur.
 - **Manifest discrepancy:** The stored BFS recomputes row and column bit clearing for every transition, so its exact time bound contains an additional line-length factor.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

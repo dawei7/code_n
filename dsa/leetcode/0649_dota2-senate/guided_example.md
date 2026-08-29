@@ -62,7 +62,7 @@ Keeping the parties separate makes the next active member of either party availa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The initialization scans `senate` from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ Original indices and requeued timeline positions are unique, so the two fronts c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string simulation:** Mark or remove b:** - **Repeated string simulation:** Mark or remove banned senators and scan round after round. Physical deletion from a list or string can cost linear time per ban and lead to quadratic behavior.
-- **- **One queue with a party balance:** A single que:** - **One queue with a party balance:** A single queue can track pending bans for each side and requeue survivors. It can also achieve `O(N)` time, but the two-queue timeline makes the next opposing turns explicit.
-- **- **Boolean banned array:** Keep original indices :** - **Boolean banned array:** Keep original indices and search circularly for the next unbanned opponent. Without an efficient index structure, repeated searching can scan many inactive positions.
+- **Repeated string simulation:** Mark or remove banned senators and scan round after round. Physical deletion from a list or string can cost linear time per ban and lead to quadratic behavior.
+- **One queue with a party balance:** A single queue can track pending bans for each side and requeue survivors. It can also achieve `O(N)` time, but the two-queue timeline makes the next opposing turns explicit.
+- **Boolean banned array:** Keep original indices and search circularly for the next unbanned opponent. Without an efficient index structure, repeated searching can scan many inactive positions.
 
 ---
 

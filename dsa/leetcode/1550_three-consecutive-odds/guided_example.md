@@ -61,7 +61,7 @@ The input values are positive, although Python's bitwise representation also mak
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `x & 1` inspects the least significant binary... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The next odd value then begins a new run at one rather than extending the earlie
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every length-three window:** Test the pa:** - **Check every length-three window:** Test the parity of positions `i`, `i+1`, and `i+2`. It is also $O(N)$ time and $O(1)$ space but repeats parity checks.
+- **Check every length-three window:** Test the parity of positions `i`, `i+1`, and `i+2`. It is also $O(N)$ time and $O(1)$ space but repeats parity checks.
 - **Multiply each triple:** An odd product implies three odd factors, but multiplication is less direct and may overflow in fixed-width settings with larger constraints.
 - **Store a queue of three parities:** It works but adds unnecessary state when a streak counter is enough.
 - **Array shorter than three:** The counter cannot reach three, so the answer is false.
@@ -113,8 +113,8 @@ The next odd value then begins a new run at one rather than extending the earlie
 - **Early qualifying block:** Later values are irrelevant once existence has been proven.
 - **Bitwise test:** `x & 1` is equivalent to checking `x % 2 == 1` for the stated positive integers.
 - **No mutation:** The scan is read-only and leaves `arr` unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

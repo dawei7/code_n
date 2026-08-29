@@ -18,7 +18,7 @@ The mentioned steps are done level by level. It is **guaranteed** that every rig
 
 **Inputs**
 
-- `root`: The root `TreeNode` of a binary tree (or `null`), containing between 0 and 10 nodes, with values in $[1, 10]$.
+- `root`: The root `TreeNode` of a binary tree (or `null`), containing between 0 and 10 nodes, with values in `[1, 10]`.
 
 **Return value**
 

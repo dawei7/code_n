@@ -69,7 +69,7 @@ Therefore, if the recursive arrays are beautiful before the transformation, the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose an array `a` is already beautiful.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Separating by parity is therefore more than an ordering preference: it makes eve
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoizing results by size:** Repeated subprobl:** - **Memoizing results by size:** Repeated subproblem sizes can occur, so caching may avoid reconstructing identical beautiful arrays. It uses additional retained memory and is unnecessary for the given direct construction, but it can reduce repeated recursive work if the same helper is reused across calls.
+- **Memoizing results by size:** Repeated subproblem sizes can occur, so caching may avoid reconstructing identical beautiful arrays. It uses additional retained memory and is unnecessary for the given direct construction, but it can reduce repeated recursive work if the same helper is reused across calls.
 - **Iterative doubling construction:** Start with `[1]` and repeatedly form valid odd and even transformations, filtering out values greater than `n`. This uses the same mathematical idea without recursion and can reach `O(n)` generated output work with careful implementation.
 - **Backtracking over permutations:** It can test the definition directly, but the search space grows factorially and ignores the parity structure that makes a deterministic construction possible.
 - **Random shuffling:** A random permutation might be beautiful, but repeated guessing provides no useful worst-case guarantee and still requires expensive validation.
@@ -119,8 +119,8 @@ Separating by parity is therefore more than an ordering preference: it makes eve
 - **Odd `n`:** The odd group contains one more value than the even group. Using `(n + 1) >> 1` is what preserves the largest odd value instead of accidentally omitting it.
 - **Ordering the two groups:** Placing evens before odds would also support the same parity proof if both transformed groups remained internally beautiful. The code consistently returns odds first.
 - **Do not confuse positions with values:** The restriction requires `i < k < j` for positions, then compares the values stored there. The construction controls position ranges by concatenating groups and controls value equality through affine preservation and parity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ Entries for unmatched prefix characters remain `inf`. Such a prefix cannot be em
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $m=|s|$ and $n=|t|$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Entries that cannot start a fully matched suffix remain $-1$.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear two-pointer optimization:** Prefix and :** - **Linear two-pointer optimization:** Prefix and suffix match information can be combined in one monotone sweep to find the minimum gap in $O(m+n)$ time, matching the manifest but differing from this implementation.
+- **Linear two-pointer optimization:** Prefix and suffix match information can be combined in one monotone sweep to find the minimum gap in $O(m+n)$ time, matching the manifest but differing from this implementation.
 - **Try every removed interval:** There are $O(n^2)$ intervals, and checking each subsequence separately is much too slow.
 - **General subsequence dynamic programming:** A two-dimensional table over both strings is unnecessary and can require $O(mn)$ time or space.
 - **Already a subsequence:** `check(0)` succeeds, and binary search returns score zero.
@@ -108,8 +108,8 @@ Entries that cannot start a fully matched suffix remain $-1$.
 - **Unmatched prefix or suffix:** `inf` and $-1$ deliberately make `l < r` false for an impossible real piece.
 - **Repeated characters:** Greedy earliest prefix matches and latest suffix matches preserve maximum separation even when many choices exist.
 - **Lazy search range:** `range(n + 1)` does not allocate an $O(n)$ list of candidate lengths.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

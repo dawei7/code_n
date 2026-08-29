@@ -61,7 +61,7 @@ Grouping by `student_id` makes this test independent per student. `ORDER BY 1` r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | MySQL expression `grade = 'A'` evaluates to 1 for A, 0 for a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For a major with courses 101 and 102:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Double NOT EXISTS:** Select a student for whom:** - **Double NOT EXISTS:** Select a student for whom no required course lacks an A. This expresses universal logic directly.
+- **Double NOT EXISTS:** Select a student for whom no required course lacks an A. This expresses universal logic directly.
 - **Count distinct required courses:** Compare major course count with distinct courses having at least one A; this supports the “ever achieved A” interpretation.
 - **Inner join enrollments:** Incorrect for detecting missing courses because absent rows disappear instead of causing failure.
 - **Missing required course:** Left-join null makes the student fail.
@@ -112,8 +112,8 @@ For a major with courses 101 and 102:
 - **Boolean SUM:** Relies on MySQL treating true as 1 and false as 0.
 - **Null grade:** It cannot contribute an A and prevents equality through the counted required row.
 - **Final ordering:** Positional `ORDER BY 1` sorts student IDs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

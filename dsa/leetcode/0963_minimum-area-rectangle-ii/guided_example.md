@@ -60,7 +60,7 @@ The input points are unique, so set conversion does not lose multiplicity inform
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Set `s` contains every coordinate pair.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ If this coordinate is absent, these three points cannot complete the desired rec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group diagonals by midpoint and length:** Rect:** - **Group diagonals by midpoint and length:** Rectangle diagonals share midpoint and squared length. Grouping pairs can reduce some repeated work but needs more storage.
+- **Group diagonals by midpoint and length:** Rectangle diagonals share midpoint and squared length. Grouping pairs can reduce some repeated work but needs more storage.
 - **Check every four-point subset:** It costs `O(P^4)` and performs redundant geometric tests.
 - **Axis-aligned-only logic:** Matching equal x and y pairs misses rotated rectangles.
 - **No rectangle:** Infinity remains unchanged and zero is returned.
@@ -119,8 +119,8 @@ If this coordinate is absent, these three points cannot complete the desired rec
 - **Multiple equal minimum rectangles:** Only area is requested, so duplicates are harmless.
 - **Large coordinates:** Python integer dot products and squared differences remain exact.
 - **Floating tolerance:** Square roots introduce floating values, but the accepted error margin covers normal rounding.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

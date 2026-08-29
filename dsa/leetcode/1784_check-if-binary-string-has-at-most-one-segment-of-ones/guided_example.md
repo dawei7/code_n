@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given a binary string `s` **​​​​​without leading zeros**, return `true`​​​ *if *`s`* contains **at most one contiguous segment of ones***. Otherwise, return `false`.
+Given a binary string `s` **without leading zeros**, return `true` *if *`s`* contains **at most one contiguous segment of ones***. Otherwise, return `false`.
 
 The objective is to compute `false` from `{"s": "1001"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -69,7 +69,7 @@ These two directions establish an exact equivalence: the string has at most one 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | It may initially seem necessary to remember whether a zero a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For `s = "1111"`, every adjacent pair is `11`. There is one segment covering the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit state flag:** Scan characters while r:** - **Explicit state flag:** Scan characters while remembering whether a zero has been seen; reject any later one. This is also $O(n)$ time and $O(1)$ space, but the forbidden substring states the same condition more directly.
+- **Explicit state flag:** Scan characters while remembering whether a zero has been seen; reject any later one. This is also $O(n)$ time and $O(1)$ space, but the forbidden substring states the same condition more directly.
 - **Count `01` transitions:** Counting transitions and checking that the count is zero works, although the scan should return immediately after the first one because additional counting cannot change the answer.
 - **Count complete ones segments:** A run-counting solution can detect starts of ones blocks, but it needs more boundary handling than this input's leading-one guarantee requires.
 - **Regular expression:** A pattern such as an initial run of ones followed by zeros can validate the shape, but a regex adds machinery without improving complexity or clarity.
@@ -120,8 +120,8 @@ For `s = "1111"`, every adjacent pair is `11`. There is one segment covering the
 - **Early match:** If `01` occurs near the beginning, substring search can finish before examining the remaining suffix.
 - **No leading zeros:** The proof relies on `s[0] = '1'`. Reusing this exact test for arbitrary binary strings would require reconsidering inputs that begin with zeros.
 - **Binary alphabet:** Since every character is either zero or one, there is no third character that could interrupt a segment or alter the transition argument.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

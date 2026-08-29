@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given an array of strings `names` of size `n`. You will create `n` folders in your file system **such that**, at the $$i^{\text{th}}$$ minute, you will create a folder with the name $\text{names}[i]$.
+Given an array of strings `names` of size `n`. You will create `n` folders in your file system **such that**, at the $i^{\text{th}}$ minute, you will create a folder with the name $\text{names}[i]$.
 
 The objective is to compute `["pes", "fifa", "gta", "pes(2019)"]` from `{"names": ["pes", "fifa", "gta", "pes(2019)"]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -70,7 +70,7 @@ The method mutates the supplied `names` list in place and returns that same list
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop `for i, name in enumerate(names)` visits requests f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Recording only base names or only counters would miss this collision. A generate
 
 ## 6. Traps This Instance Exposes
 
-- **- **Restarting at one for every duplicate:** This :** - **Restarting at one for every duplicate:** This is simple and correct, but repeated copies of the same base can recheck a long occupied prefix each time and degrade toward quadratic work. The saved next-suffix pointer avoids that repetition.
+- **Restarting at one for every duplicate:** This is simple and correct, but repeated copies of the same base can recheck a long occupied prefix each time and degrade toward quadratic work. The saved next-suffix pointer avoids that repetition.
 - **A set plus a next-suffix map:** Keeping assigned names in a set and counters in a separate map makes the two roles explicit. It has the same asymptotic behavior but uses two containers instead of one dictionary.
 - **Sorting requests first:** This is incorrect because folder creation is chronological. Reordering requests changes which name is already occupied at each minute and therefore changes the output.
 - **Counting occurrences only:** A simple duplicate count fails when a would-be generated name was already supplied literally, such as `gta(1)` before another `gta` request. Membership of complete names must be checked.
@@ -118,8 +118,8 @@ Recording only base names or only counters would miss this collision. A generate
 - **Input mutation:** The source overwrites duplicated entries in `names`. Callers that need the original requests must pass a copy or preserve the original list before calling.
 - **Smallest positive suffix:** Search begins at one for a newly assigned base and advances by one, so zero and negative suffixes are never considered.
 - **Dictionary default values:** Membership checks are important. Directly reading a missing `defaultdict` key would insert it with zero and could falsely mark a name as occupied in later iterations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

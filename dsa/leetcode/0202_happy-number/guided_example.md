@@ -68,7 +68,7 @@ condition stops and the final comparison returns false.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop continues while `n != 1` and `n not in vis`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ already stored in `vis`, and only its computed successor is needed afterward.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Floyd cycle detection:** Advance one value by :** - **Floyd cycle detection:** Advance one value by one transition and another by two; true constant auxiliary state and matches the manifest summary.
+- **Floyd cycle detection:** Advance one value by one transition and another by two; true constant auxiliary state and matches the manifest summary.
 - **Known-cycle sentinel:** Stop when reaching 1 or 4, relying on the proven unique non-happy cycle for decimal digit squares.
 - **Dictionary history:** Equivalent to the set but stores unnecessary values, as the competitive variant does.
 - **String digit conversion:** Easier to read but allocates text for each transition.
@@ -124,8 +124,8 @@ already stored in `vis`, and only its computed successor is needed afterward.
 - **Positive guarantee:** Avoids defining digit extraction and happiness for zero or negatives.
 - **Fixed 32-bit domain:** Makes the reachable post-transition region a bounded constant.
 - **Set growth:** Exact code remembers history even though a two-pointer alternative need not.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -75,7 +75,7 @@ This “full square minus two cells” formulation is equivalent to spelling out
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one center, the generator inside `sum` visits all nine c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ For a three-by-three matrix, each range contains only the center index 1. The ge
 
 ## 6. Traps This Instance Exposes
 
-- **- **Write all seven additions explicitly:** This a:** - **Write all seven additions explicitly:** This avoids summing the two excluded cells only to subtract them and may have a smaller constant factor. The asymptotic bounds are identical, while the exact source emphasizes the three-by-three mask.
+- **Write all seven additions explicitly:** This avoids summing the two excluded cells only to subtract them and may have a smaller constant factor. The asymptotic bounds are identical, while the exact source emphasizes the three-by-three mask.
 - **Use two-dimensional prefix sums:** A prefix-sum matrix can obtain the top and bottom row segments quickly, but each segment already has fixed length three. Preprocessing adds $O(mn)$ space without improving the $O(mn)$ total time.
 - **Sliding row sums:** Maintain length-three sums for the top and bottom rows as the center moves horizontally. It can reduce repeated additions but adds bookkeeping for a shape containing only seven cells.
 - **Exactly three rows or columns:** There is only one legal center along that dimension. The ranges correctly include it once.
@@ -123,8 +123,8 @@ For a three-by-three matrix, each range contains only the center index 1. The ge
 - **Border centers:** A cell on row 0, row $m-1$, column 0, or column $n-1$ cannot be a center. The loop bounds exclude all of them.
 - **Unrotated shape:** The two removed cells are specifically the horizontal neighbors of the center. Removing vertical neighbors would describe a rotated and invalid shape.
 - **Rectangular rather than square grids:** Row and column loop bounds are independent, so $m$ and $n$ need not match.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

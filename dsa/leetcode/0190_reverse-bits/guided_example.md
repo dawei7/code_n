@@ -71,7 +71,7 @@ complement model and arithmetic right shift, which would require an explicit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `n & 1` isolates bit zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ more clearly and cannot carry into adjacent positions.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mask-and-shift network:** Swap 16-bit halves, :** - **Mask-and-shift network:** Swap 16-bit halves, then bytes, nibbles, pairs, and adjacent bits; five fixed stages give $O(1)$ time.
+- **Mask-and-shift network:** Swap 16-bit halves, then bytes, nibbles, pairs, and adjacent bits; five fixed stages give $O(1)$ time.
 - **Byte lookup table:** Reverse four bytes using a 256-entry cache and reorder them, useful when the function is called repeatedly.
 - **Binary string:** Pad to exactly 32 characters before reversing; readable but allocates extra representation storage.
 - **Input zero:** Every extracted bit is zero, so the answer remains zero.
@@ -124,8 +124,8 @@ more clearly and cannot carry into adjacent positions.
 - **Negative integers:** Outside the Reference; mask with `0xffffffff` first if supporting signed Python inputs as raw 32-bit patterns.
 - **Repeated calls:** A byte or nibble reversal table can trade a small fixed cache for fewer operations.
 - **Variable width:** Replace constants 32 and 31 with the chosen explicit bit width.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

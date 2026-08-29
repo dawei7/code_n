@@ -55,7 +55,7 @@ The stack contains a strictly decreasing sequence of representative heights from
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a one-dimensional list, `f` processes indices from right... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Each popped height counts as one visible person. It is removed because the curre
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan every person ahead:** Checking all rightw:** - **Scan every person ahead:** Checking all rightward and downward pairs can take `O(mn(m+n))` time.
+- **Scan every person ahead:** Checking all rightward and downward pairs can take `O(mn(m+n))` time.
 - **Nearest-greater arrays alone:** A person can see several shorter people before the first blocker, so only storing one greater neighbor is insufficient.
 - **Monotonic stack without equal removal:** A future taller person could incorrectly count multiple equal-height people even though the nearer equal blocks the farther one.
 - **Process rows only:** It omits all downward visibility.
@@ -109,8 +109,8 @@ Each popped height counts as one visible person. It is removed because the curre
 - **First taller blocker:** It is counted once, then traversal stops beyond it.
 - **Right and below overlap:** No distinct target position can satisfy both same-row-right and same-column-below, so counts add without duplication.
 - **Input preservation:** Column lists and answer rows are new objects; `heights` remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -60,7 +60,7 @@ The cumulative value is named `cur`. It is selected into the CTE even though the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The window expression `SUM(cnt) OVER (ORDER BY dt, bus_id)` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ When `@t <= 0`, adding passenger `cnt = -1` increases the waiting count by one. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive chronological CTE:** Assign each bus:** - **Recursive chronological CTE:** Assign each bus a sequence number, count arrivals between consecutive buses, and carry waiting passengers explicitly. This is deterministic and directly models capacity.
+- **Recursive chronological CTE:** Assign each bus a sequence number, count arrivals between consecutive buses, and carry waiting passengers explicitly. This is deterministic and directly models capacity.
 - **Procedural or pandas simulation:** Sort buses, advance through sorted passengers, and maintain a waiting count. This is conceptually simple outside pure SQL.
 - **Cumulative eligible counts alone:** Unlike Bus I, subtracting consecutive cumulative arrivals is insufficient because passengers left behind by a full bus must carry forward.
 - **Use `UNION` instead of `UNION ALL`:** This could collapse identical passenger event rows and lose people; every event must remain.
@@ -123,8 +123,8 @@ When `@t <= 0`, adding passenger `cnt = -1` increases the waiting count by one. 
 - **Positive capacities:** The sign-based interpretation depends on every bus capacity being greater than zero, as guaranteed.
 - **User-variable order:** Without a guaranteed event evaluation order, results may be optimizer-dependent; an explicit recursive solution avoids this reliance.
 - **Session state:** The joined initialization subquery resets `@t` for this statement, preventing a previous session value from being used initially.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

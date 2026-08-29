@@ -63,13 +63,7 @@ Starting the product at zero would make it remain zero for every input, losing a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | One is the multiplicative identity:
-
-$$
-1\cdot d=d.
-$$
-
-Star... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +100,7 @@ Python integers are immutable, so rebinding `x` does not alter `n`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string:** Sum numeric characters :** - **Convert to a string:** Sum numeric characters and multiply them. It is readable but allocates `O(\log n)` character storage.
+- **Convert to a string:** Sum numeric characters and multiply them. It is readable but allocates `O(\log n)` character storage.
 - **Store a digit list:** Extract first and aggregate later. This adds unnecessary memory because both aggregates can be updated immediately.
 - **Two separate digit passes:** One for sum and one for product repeats the same extraction work.
 - **Single-digit input:** Sum and product both equal the digit, so the divisor is twice the digit; no positive single digit is divisible by twice itself.
@@ -120,8 +114,8 @@ Python integers are immutable, so rebinding `x` does not alter `n`.
 - **No division-by-zero risk:** Positive n guarantees a positive digit sum even when product is zero.
 - **Extraction order:** Right-to-left is safe because sum and product do not depend on digit order.
 - **Input preservation:** `n` is retained for the final modulo; only local `x` is reduced.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

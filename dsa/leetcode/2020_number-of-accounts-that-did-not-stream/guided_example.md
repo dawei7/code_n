@@ -63,7 +63,7 @@ A correct anti-join solution would use this null-extended row to identify accoun
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Subscriptions AS sub LEFT JOIN Streams USING (account_id)` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The query then applies `COUNT(sub.account_id)` to surviving joined rows. It coun
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS`:** For each overlapping subscript:** - **`NOT EXISTS`:** For each overlapping subscription, reject it when any stream row has year 2021; this directly expresses absence.
+- **`NOT EXISTS`:** For each overlapping subscription, reject it when any stream row has year 2021; this directly expresses absence.
 - **Conditional left anti-join:** Put the 2021 condition in `ON` and require the joined key to be null.
 - **`NOT IN`:** Can work with a nonnull account subquery, but null semantics make `NOT EXISTS` safer.
 - **No streams at all:** Should qualify if the subscription overlaps 2021; the exact query incorrectly drops it.
@@ -116,8 +116,8 @@ The query then applies `COUNT(sub.account_id)` to surviving joined rows. It coun
 - **SQL null logic:** Comparisons with null are unknown, not true.
 - **Counting unit:** The requested result counts accounts, not sessions.
 - **Exact-source status:** Its filter is not a valid absence test.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

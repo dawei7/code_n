@@ -63,9 +63,7 @@ Future shortest-path calls read the new edge automatically. Previously returned 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `addEdge([f,t,c])` simply sets `g[f][t] = c`.
-
-The matrix re... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ If no direct edge $t\to j$ exists, `g[t][j]` is infinity and cannot improve a fi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap-based adjacency-list Dijkstra:** Gives $O:** - **Heap-based adjacency-list Dijkstra:** Gives $O((n+e)\log n)$ per query and $O(n+e)$ storage, matching the manifest and helping sparse graphs.
+- **Heap-based adjacency-list Dijkstra:** Gives $O((n+e)\log n)$ per query and $O(n+e)$ storage, matching the manifest and helping sparse graphs.
 - **Floyd–Warshall:** Precompute all-pairs paths in $O(n^3)$, then answer queries in $O(1)$, but dynamic edge updates need additional work.
 - **Incremental all-pairs update:** A new edge can update every source-destination pair in $O(n^2)$ using existing all-pairs distances.
 - **Directed edge:** Adding $f\to t$ must not create $t\to f$.
@@ -124,8 +122,8 @@ If no direct edge $t\to j$ exists, `g[t][j]` is infinity and cannot improve a fi
 - **Positive weights:** They are essential to Dijkstra's finalization proof.
 - **Added edge:** Every later query sees it directly in the matrix.
 - **No early destination exit:** The exact loop runs all $n$ rounds even after the target could be finalized.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

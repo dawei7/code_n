@@ -71,9 +71,7 @@ The resulting rolling total is also aliased `amount`. Inside `t`, that name now 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE `t` applies:
-
-`SUM(amount) OVER (ORDER BY visited_on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +114,7 @@ The outer `WHERE rk > 6` removes ranks one through six. Every surviving row has 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join date ranges:** Join each date to tra:** - **Self-join date ranges:** Join each date to transactions in the previous six days and group. It is direct but can create a much larger intermediate relation.
+- **Self-join date ranges:** Join each date to transactions in the previous six days and group. It is direct but can create a much larger intermediate relation.
 - **Correlated subquery:** Sum a seven-day range separately for each date. Indexes may help, but repeated range work is less elegant than one window pass.
 - **`RANGE INTERVAL 6 DAY` frame:** A date-based frame can handle missing calendar days more explicitly, though MySQL syntax and exact requirements must be considered.
 - **`ROW_NUMBER` instead of `RANK`:** Dates are unique after grouping, so both number rows identically; `ROW_NUMBER` communicates the filtering purpose better.
@@ -127,8 +125,8 @@ The outer `WHERE rk > 6` removes ranks one through six. Every surviving row has 
 - **Rounding:** The total is divided by seven before rounding, preserving the requested two-decimal average.
 - **Required output order:** The exact source needs an outer `ORDER BY visited_on`; window-local order is insufficient.
 - **Window frame on `RANK`:** The frame clause does not change ranking and is unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

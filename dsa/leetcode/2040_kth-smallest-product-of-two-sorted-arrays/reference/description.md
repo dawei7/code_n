@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given two **sorted 0-indexed** integer arrays `nums1` and `nums2` as well as an integer `k`, return *the *$$k^{\text{th}}$$* (**1-based**) smallest product of *$\text{nums1}[i] * \text{nums2}[j]$* where *$0 \le i < \text{nums1.length}$* and *$0 \le j < \text{nums2.length}$.
+Given two **sorted 0-indexed** integer arrays `nums1` and `nums2` as well as an integer `k`, return *the *$k^{\text{th}}$* (**1-based**) smallest product of *$\text{nums1}[i] * \text{nums2}[j]$* where *$0 \le i < \text{nums1.length}$* and *$0 \le j < \text{nums2.length}$.
 
 ### 2. Function Contract
 

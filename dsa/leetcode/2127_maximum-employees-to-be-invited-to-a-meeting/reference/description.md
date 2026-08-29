@@ -4,7 +4,7 @@ A company is organizing a meeting and has a list of `n` employees, waiting to be
 
 The employees are numbered from `0` to $n - 1$. Each employee has a **favorite** person and they will attend the meeting **only if** they can sit next to their favorite person at the table. The favorite person of an employee is **not** themself.
 
-Given a **0-indexed** integer array `favorite`, where $\text{favorite}[i]$ denotes the favorite person of the $$i^{\text{th}}$$ employee, return *the **maximum number of employees** that can be invited to the meeting*.
+Given a **0-indexed** integer array `favorite`, where $\text{favorite}[i]$ denotes the favorite person of the $i^{\text{th}}$ employee, return *the **maximum number of employees** that can be invited to the meeting*.
 
 ### 2. Function Contract
 

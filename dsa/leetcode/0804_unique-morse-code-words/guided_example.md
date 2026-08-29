@@ -71,7 +71,7 @@ For `"cab"`, the fragments are `"-.-."`, `".-"`, and `"-..."`. Joining them prod
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each character of a word, the inner list comprehension r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ The algorithm therefore stores only the joined string. If two different words pr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary letter mapping:** Map characters di:** - **Dictionary letter mapping:** Map characters directly to strings. It is readable but the array plus alphabet offset is simpler for a dense lowercase alphabet.
-- **- **Store tuples of fragments:** Incorrect for thi:** - **Store tuples of fragments:** Incorrect for this definition because two different fragment boundaries may yield the same concatenated transformation.
-- **- **Sort all transformations:** Sorting then count:** - **Sort all transformations:** Sorting then counting changes works but costs $O(W\log W)$ comparisons after the same encoding work.
+- **Dictionary letter mapping:** Map characters directly to strings. It is readable but the array plus alphabet offset is simpler for a dense lowercase alphabet.
+- **Store tuples of fragments:** Incorrect for this definition because two different fragment boundaries may yield the same concatenated transformation.
+- **Sort all transformations:** Sorting then counting changes works but costs $O(W\log W)$ comparisons after the same encoding work.
 
 ---
 

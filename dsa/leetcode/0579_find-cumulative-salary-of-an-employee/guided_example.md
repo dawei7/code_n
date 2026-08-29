@@ -63,7 +63,7 @@ SQL logically applies `WHERE` before window functions. Thus, the most recent row
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | SQL logically applies `WHERE` before window functions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Because `(id, month)` is unique, there is at most one salary row for a particula
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three self-joins:** Join each current row to t:** - **Three self-joins:** Join each current row to the same employee at `month - 1` and `month - 2`, replacing missing salaries with zero. This directly models the three months but is longer and less adaptable than a window.
+- **Three self-joins:** Join each current row to the same employee at `month - 1` and `month - 2`, replacing missing salaries with zero. This directly models the three months but is longer and less adaptable than a window.
 - **`ROWS 2 PRECEDING`:** This is incorrect when recorded months have gaps because it chooses prior rows rather than prior calendar values.
 - **Correlated range subquery:** For every row, sum salaries with matching ID and month between `month - 2` and `month`. It is clear but may repeat range lookups for many rows.
 - **`ROW_NUMBER` for latest exclusion:** Rank each employee’s rows by month descending, discard rank one, and then compute sums from an unfiltered base relation. This needs careful query layering so the latest row remains available during any calculation that needs it.
@@ -119,8 +119,8 @@ Because `(id, month)` is unique, there is at most one salary row for a particula
 - **Window order versus output order:** Ascending month inside `OVER` defines a backward numeric frame; descending month in the final `ORDER BY` only formats results.
 - **Null behavior:** Primary-key columns `id` and `month` are non-`NULL`, avoiding the usual `NOT IN` null trap.
 - **Only worked months reported:** Since every output originates from an `Employee` row, the query never invents a row for a missing calendar month.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

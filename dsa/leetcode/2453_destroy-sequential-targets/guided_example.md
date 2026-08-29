@@ -71,11 +71,7 @@ The state `mx` is the largest group frequency seen among candidates so far, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`Counter(v % space for v in nums)`
-
-builds a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +114,7 @@ After the complete scan, `ans` is thus the minimum member of one of the maximum-
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by remainder then value:** Sorting can gr:** - **Sort by remainder then value:** Sorting can group congruent targets and reveal each group's minimum, but costs $O(n\log n)$ time when hashing gives expected linear time.
+- **Sort by remainder then value:** Sorting can group congruent targets and reveal each group's minimum, but costs $O(n\log n)$ time when hashing gives expected linear time.
 - **Array of remainder counts:** If `space` is small, a length-`space` array avoids hashing. With space up to $10^9$, allocating it can be impossible.
 - **Count by exact value:** Exact duplicates alone are insufficient because distinct values separated by multiples of `space` are mutually reachable from their group minimum.
 - **Duplicate minimum targets:** They all count as separate destroyed targets, and the same seed value remains valid.
@@ -128,8 +124,8 @@ After the complete scan, `ans` is thus the minimum member of one of the maximum-
 - **Space larger than target range:** Remainder groups often contain one value, so the smallest target wins.
 - **Unsorted input:** Counter frequencies and the explicit numeric tie-break do not depend on encounter order.
 - **Positive targets:** Initial `ans=0` is safe because the first positive candidate always replaces it through `t>mx`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

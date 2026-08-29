@@ -72,8 +72,7 @@ with first term 28 and common difference seven.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In the first week, deposits are one through seven, totaling
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +119,7 @@ When `k = 0`, the expression inside the parentheses describes a fictitious last 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every day:** Compute week and weekday:** - **Simulate every day:** Compute week and weekday deposits directly in $O(n)$ time. It is easy to verify but unnecessary once the arithmetic sequences are recognized.
+- **Simulate every day:** Compute week and weekday deposits directly in $O(n)$ time. It is easy to verify but unnecessary once the arithmetic sequences are recognized.
 - **Loop by week:** Sum at most seven days inside each week, taking $O(n/7)$ week iterations and constant space.
 - **Closed formula expansion:** Algebraically simplify `s1+s2` into one polynomial in quotient and remainder. It is equally constant-time but less directly tied to the two sequences.
 - **`n < 7`:** `k=0`, so only the first partial week contributes.
@@ -131,8 +130,8 @@ When `k = 0`, the expression inside the parentheses describes a fictitious last 
 - **Integer division:** Both arithmetic-series products are even, so `//2` loses no fraction.
 - **No mutation:** The input integer `n` is only read by `divmod`.
 - **Variable meaning:** `k` counts completed full weeks, while `b` counts days in the unfinished week.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

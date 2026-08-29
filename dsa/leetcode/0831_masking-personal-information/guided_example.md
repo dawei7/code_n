@@ -61,7 +61,7 @@ Everything beginning with `@`, including the normalized domain, must then remain
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The email branch performs `s = s.lower()`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ The validity guarantee ensures the name has at least two letters, so the slice p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Detect email by searching for `@`:** This is a:** - **Detect email by searching for `@`:** This is also correct under the input contract. Testing the first character avoids an extra conceptual format scan.
-- **- **Regular expressions:** They can validate and c:** - **Regular expressions:** They can validate and capture parts, but validation is guaranteed and direct slicing/filtering is clearer.
-- **- **Email name of length two:** It still receives :** - **Email name of length two:** It still receives exactly five asterisks between its first and last letters.
+- **Detect email by searching for `@`:** This is also correct under the input contract. Testing the first character avoids an extra conceptual format scan.
+- **Regular expressions:** They can validate and capture parts, but validation is guaranteed and direct slicing/filtering is clearer.
+- **Email name of length two:** It still receives exactly five asterisks between its first and last letters.
 
 ---
 

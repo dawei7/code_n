@@ -65,11 +65,7 @@ where $R$ contains no factor `2`, `3`, or `5`, the three loops reduce it to exac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `x` in `[2, 3, 5]`, the loop
-
-
-
-keeps dividing unti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +107,7 @@ The order `2`, then `3`, then `5` is convenient but not required for correctness
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime-factorize by testing every divisor:** Ge:** - **Prime-factorize by testing every divisor:** General trial division can discover all prime factors but may take $O(\sqrt n)$ time. Only three allowed primes matter here, so testing anything else is unnecessary.
+- **Prime-factorize by testing every divisor:** General trial division can discover all prime factors but may take $O(\sqrt n)$ time. Only three allowed primes matter here, so testing anything else is unnecessary.
 - **Recursive division:** Recursively divide by an allowed factor until reaching one or failure. It can be correct but uses $O(\log n)$ call-stack space instead of the loop's constant space.
 - **Repeated greatest common divisor:** Divide by `gcd(n, 30)` until no progress. Since `30 = 2 * 3 * 5`, this removes allowed factors in batches, but it is less direct than the three simple loops.
 - **`n = 1`:** It is positive and has no forbidden prime factor, so it is correctly accepted.
@@ -123,8 +119,8 @@ The order `2`, then `3`, then `5` is convenient but not required for correctness
 - **Mixed allowed and forbidden factors:** Allowed factors are removed, leaving the forbidden portion greater than one and producing `false`.
 - **Largest 32-bit values:** The loops never multiply, so there is no overflow risk; division only reduces magnitude.
 - **Order of allowed factors:** Changing `[2, 3, 5]` to another ordering leaves the same residual because prime factorization is unique.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

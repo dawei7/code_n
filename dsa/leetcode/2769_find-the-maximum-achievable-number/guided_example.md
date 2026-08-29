@@ -73,13 +73,7 @@ For `num = 3` and `t = 2`, choose `x = 7`. The pairs of current values are initi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Choose
-
-$$
-x = \text{num} + 2t.
-$$
-
-Initially, `x` is `2t` l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +118,7 @@ The formula value reaches the upper bound and the construction demonstrates how 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate `t` operations:** Repeatedly decrease:** - **Simulate `t` operations:** Repeatedly decrease a candidate and increase `num` demonstrates achievability but costs `O(t)` and still requires determining the candidate first. The formula captures the same repeated change directly.
+- **Simulate `t` operations:** Repeatedly decrease a candidate and increase `num` demonstrates achievability but costs `O(t)` and still requires determining the candidate first. The formula captures the same repeated change directly.
 - **Binary search the answer:** A feasibility predicate based on distance could find the maximum, but the bound is already an exact linear expression, making search unnecessary.
 - **Return `num + t`:** This is the final meeting value under the optimal construction, not the maximum starting `x` requested by the problem.
 - **Move only `x` toward fixed `num`:** That closes only one unit per operation and misses that `num` is allowed to move simultaneously.
@@ -135,8 +129,8 @@ The formula value reaches the upper bound and the construction demonstrates how 
 - **Maximum stated inputs:** `num = 50` and `t = 50` produce 150 with no overflow concern in Python.
 - **Negative starting values outside the stated domain:** The gap proof still works algebraically; positivity is not needed by the formula itself.
 - **“At most” versus “exactly”:** The maximum uses all available operations because each can expand the feasible starting gap by two.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

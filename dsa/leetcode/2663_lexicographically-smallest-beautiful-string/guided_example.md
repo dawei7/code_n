@@ -66,7 +66,7 @@ This is analogous to carrying in a numeral system, except some digits are forbid
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To obtain the smallest lexicographically larger string, pres... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The unchanged prefix was already beautiful, so these are the only new palindrome
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate strings in lexicographic order:** Exp:** - **Generate strings in lexicographic order:** Exponential and unnecessary.
+- **Generate strings in lexicographic order:** Exponential and unnecessary.
 - **Backtracking from scratch:** Ignores that the input is already beautiful and that only the next lexicographic string is needed.
 - **Check every substring for palindromes:** Local distance-one and distance-two checks are sufficient.
 - **Increase last position:** Preferred whenever a legal larger character exists.
@@ -119,8 +119,8 @@ The unchanged prefix was already beautiful, so these are the only new palindrome
 - **No successor:** Exhausted carry search returns empty string.
 - **`k >= 4`:** Guarantees greedy suffix completion after excluding at most two letters.
 - **Input preservation:** The original string is immutable; changes occur in list `cs`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -79,10 +79,7 @@ The source iterates over `freq.items()` rather than over all 36 allowed characte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one pair $\{c,m\}$, the required contribution is
-
-$$
-\le... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -141,7 +138,7 @@ which is identical.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterate over 18 predetermined pairs:** A fixed:** - **Iterate over 18 predetermined pairs:** A fixed table such as `(a,z)` through `(m,n)` and `(0,9)` through `(4,5)` removes the need for `vis`. It has the same $O(n)$ time and $O(1)$ space, but the source instead derives mirrors arithmetically.
+- **Iterate over 18 predetermined pairs:** A fixed table such as `(a,z)` through `(m,n)` and `(0,9)` through `(4,5)` removes the need for `vis`. It has the same $O(n)$ time and $O(1)$ space, but the source instead derives mirrors arithmetically.
 - **Iterate over all 36 characters:** Comparing a character only when it is the lexicographically smaller member of its pair also prevents duplication. This remains constant work after frequency counting.
 - **Mirror absent from the string:** Its frequency is zero, so a present character with count $v$ contributes $|v-0|=v$. `Counter` provides that zero without a special branch.
 - **Both mirror counts equal:** The pair is still processed, but its contribution is zero, as with `b` and `y` in `"byby"`.
@@ -151,8 +148,8 @@ which is identical.
 - **Letter and digit boundaries stay separate:** `a` cannot mirror a digit, and `0` cannot mirror a letter. The source chooses one formula before computing the opposite character.
 - **Input contract matters for `isalpha`:** Other Unicode alphabetic characters would pass `isalpha()` but would not fit the lowercase-English arithmetic. The stated constraints exclude them.
 - **Missing imports:** Standalone execution needs `Counter` from `collections`. This is an integration requirement, not a change to the counting logic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

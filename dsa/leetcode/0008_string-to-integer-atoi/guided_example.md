@@ -69,11 +69,7 @@ is redundant because `not s` already covered exactly that case. It does not alte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method begins with
-
-
-
-An empty string has no digits, so ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +112,7 @@ Once the first non-space character is reached, later spaces are no longer skippa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deterministic finite automaton:** Model “start:** - **Deterministic finite automaton:** Model “start,” “sign seen,” “reading digits,” and “dead” as explicit states. This makes transition rules reusable and formal, but the small fixed sequence here is clearer with direct control flow.
+- **Deterministic finite automaton:** Model “start,” “sign seen,” “reading digits,” and “dead” as explicit states. This makes transition rules reusable and formal, but the small fixed sequence here is clearer with direct control flow.
 - **Regular expression plus integer conversion:** A pattern can extract the allowed prefix, but it adds a parsing engine, still requires careful clamping, and may build a large intermediate integer unless overflow is checked separately.
 - **Use a wider integer then clamp:** Easy in Python, but it does not honor a no-wider-integer environment. The pre-push threshold handles the limit portably.
 - **Empty string:** The first guard returns zero before any indexing.
@@ -131,8 +127,8 @@ Once the first non-space character is reached, later spaces are no longer skippa
 - **Negative boundary or underflow:** Both `"-2147483648"` and any smaller mathematical value return `-2147483648`; the former is an exact boundary, while the latter is clamped.
 - **Plus sign:** It is consumed but leaves `sign = 1`.
 - **Decimal point:** `'.'` is not a digit, so `"3.14"` parses as `3`; the function does not parse floating-point syntax.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

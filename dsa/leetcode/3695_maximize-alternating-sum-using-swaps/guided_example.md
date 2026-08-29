@@ -71,9 +71,7 @@ Otherwise, union by size attaches the smaller root below the larger root. The `s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Initially, every index is its own root:
-
-`parent = list(rang... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +113,7 @@ Suppose a component contains $c$ positions and $E$ of them are even. It necessar
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply beneficial listed swaps greedily:** A lo:** - **Apply beneficial listed swaps greedily:** A locally improving direct swap can prevent recognizing a better sequence of swaps, and values can travel through intermediate vertices. Component-level permutation freedom is the correct abstraction.
+- **Apply beneficial listed swaps greedily:** A locally improving direct swap can prevent recognizing a better sequence of swaps, and values can travel through intermediate vertices. Component-level permutation freedom is the correct abstraction.
 - **Build graph components with DFS or BFS:** An adjacency list plus traversal also finds components in $O(n+m)$ time and space. Disjoint-set union avoids storing every edge after processing it.
 - **Sort all values globally:** Values cannot cross disconnected components, so a global rearrangement may be unreachable and overestimate the answer.
 - **Use a heap per component:** Selecting the largest $E$ values with a heap is possible, but sorting also identifies the remaining negative values and remains within $O(n\log n)$.
@@ -125,8 +123,8 @@ Suppose a component contains $c$ positions and $E$ of them are even. It necessar
 - **Repeated or cyclic connectivity:** An edge whose endpoints already share a root is skipped. Extra paths do not enlarge the component twice.
 - **Indirect swaps:** Two indices need not appear in one listed pair. Any path between them places them in the same permutation component.
 - **Input order:** The source sorts copied component lists, not `nums` itself, so the original input array is not reordered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

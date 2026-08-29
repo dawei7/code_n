@@ -62,9 +62,7 @@ The target itself is intentionally unused because no finite table of real method
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `get` trap receives two relevant arguments:
-
-- `target` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ Calling that generated function returns the key captured from the lookup. This c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Predefine known methods:** Cannot support arbi:** - **Predefine known methods:** Cannot support arbitrary future names and is not truly infinite.
+- **Predefine known methods:** Cannot support arbitrary future names and is not truly infinite.
 - **Cache one closure per property:** Preserves method identity but grows storage with the number of distinct names.
 - **Return the property directly from `get`:** Incorrect because `obj.name()` would try to call a string.
 - **Use `Reflect.get` for existing properties:** Would break the uniform rule for names inherited from `Object.prototype`.
@@ -122,8 +120,8 @@ Calling that generated function returns the key captured from the lookup. This c
 - **Built-in-looking property:** The trap synthesizes a method rather than exposing inherited behavior.
 - **Symbol property:** Exact code returns the symbol, while the challenge contract supplies string method names.
 - **Assignments:** No `set` trap is defined; mutation behavior is not part of the requested interface, and lookups remain governed by `get`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

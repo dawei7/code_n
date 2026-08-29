@@ -59,7 +59,7 @@ Every remaining column is a store-price column by the supplied schema. There is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE `t` selects `column_name` from `information_schema.c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The `WHERE` clause omits null cells, which represent products not sold in that s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Static `UNION ALL` branches:** Simpler when st:** - **Static `UNION ALL` branches:** Simpler when store columns are fixed, but invalid when names change dynamically.
+- **Static `UNION ALL` branches:** Simpler when store columns are fixed, but invalid when names change dynamically.
 - **Application-side unpivoting:** It moves transformation outside SQL and does not implement the requested stored procedure.
 - **Use `UNION ALL` dynamically:** It would be sufficient and may avoid deduplication because generated triples are inherently distinct; the exact solution uses `UNION`.
 - **Null price:** The branch predicate omits that product-store combination entirely.
@@ -117,8 +117,8 @@ The `WHERE` clause omits null cells, which represent products not sold in that s
 - **Exclude `product_id`:** Treating it as a store would create invalid rows; the metadata predicate prevents that.
 - **Prepared-resource cleanup:** The statement is explicitly deallocated after execution.
 - **Generated identifier safety:** Store names come from actual metadata column identifiers and are inserted unquoted into the dynamic statement. The source relies on the supplied schema using names valid in that position.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

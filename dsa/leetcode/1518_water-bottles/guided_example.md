@@ -71,7 +71,7 @@ The guarantee `numExchange >= 2` ensures each iteration reduces `numBottles` by 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An exchange is possible exactly when the current bottle coun... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ This per-bottle loop differs from batching all possible simultaneous exchanges, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form calculation:** Return `B + (B - 1):** - **Closed-form calculation:** Return `B + (B - 1) // (E - 1)`. This achieves the manifest's true $O(1)$ time and $O(1)$ space.
+- **Closed-form calculation:** Return `B + (B - 1) // (E - 1)`. This achieves the manifest's true $O(1)$ time and $O(1)$ space.
 - **Batch exchanges:** Compute quotient and remainder of current empties to process many exchanges at once. It takes logarithmic-like rounds and is easy to simulate explicitly.
 - **Drink one full bottle at a time:** It is correct but performs more state updates than the net-change loop.
 - **Fewer bottles than exchange cost:** The loop never runs, and the answer is the initial bottle count.
@@ -122,8 +122,8 @@ This per-bottle loop differs from batching all possible simultaneous exchanges, 
 - **Exchange cost one:** It would imply infinitely many drinks, which is why the contract excludes it.
 - **Unused final empties:** They cannot contribute to another exchange and correctly add no drinks.
 - **At most maximum consumption:** There is no strategic reason to skip an available exchange.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

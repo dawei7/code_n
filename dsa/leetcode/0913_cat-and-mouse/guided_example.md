@@ -54,7 +54,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +89,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-limited minimax:** Choosing an arbitrary:** - **Depth-limited minimax:** Choosing an arbitrary move limit risks confusing long forced wins with draws and needs careful state repetition handling.
+- **Depth-limited minimax:** Choosing an arbitrary move limit risks confusing long forced wins with draws and needs careful state repetition handling.
 - **Naive recursion with a visited set:** A cycle on the current path does not alone determine the minimax outcome of the state; retrograde resolution is more reliable.
 - **Value iteration:** Repeatedly update game states until stable. It can work but the degree queue processes only relevant changes.
 - **Cat edge to hole:** It must be excluded from both degree and predecessor generation because it is illegal.
@@ -102,8 +102,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Both players can move:** The contract avoids zero-degree ordinary states, while cat-hole exclusion is handled explicitly.
 - **Undirected graph:** Reverse predecessor enumeration can use the same adjacency lists as forward moves.
 - **Initial answer zero:** It means optimal play leads to a draw, not that computation failed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

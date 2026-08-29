@@ -81,7 +81,7 @@ Earlier occurrences never need to be retained. For the same $i$, each would subt
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix index $i$ in `firstString` and let its character be $c$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ Differences may be negative. A late position in `secondString` can make $a>i$, g
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all substring pairs:** There are qua:** - **Enumerate all substring pairs:** There are quadratically many substrings in each string, making direct comparison far beyond the constraints.
+- **Enumerate all substring pairs:** There are quadratically many substrings in each string, making direct comparison far beyond the constraints.
 - **Rolling hashes or suffix structures:** They accelerate substring equality but are unnecessary because every optimum has length one.
 - **Store every occurrence per character:** Only the largest second-string index can minimize `i - a` for a fixed $i$; earlier positions are dominated.
 - **Use the first occurrence:** This maximizes rather than minimizes the subtraction target and can produce the wrong result.
@@ -144,8 +144,8 @@ Differences may be negative. A late position in `secondString` can make $a>i$, g
 - **Tie increment:** Equal `t` values arise from distinct first indices and therefore represent distinct quadruples.
 - **Lowercase guarantee:** It turns dictionary storage into constant space despite potentially long strings.
 - **Input preservation:** The solution reads both strings and never constructs or modifies substring data.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

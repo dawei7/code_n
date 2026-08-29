@@ -61,7 +61,7 @@ For every present `c1` with frequency `v1` and present `c2` with frequency `v2`,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt1` and `cnt2` store character frequencies.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If the totals differ, an equal-character swap cannot change them and is useless.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every index pair:** It can cost $O(|w:** - **Simulate every index pair:** It can cost $O(|word1||word2|)$ and repeats identical character-value effects.
+- **Simulate every index pair:** It can cost $O(|word1||word2|)$ and repeats identical character-value effects.
 - **Equal characters:** Swapping them changes nothing and works only if totals already match.
 - **Frequency one:** Removing the selected occurrence deletes a distinct character.
 - **Frequency above one:** The character remains represented after removal.
@@ -112,8 +112,8 @@ If the totals differ, an equal-character swap cannot change them and is useless.
 - **Exactly one move:** A no-op equal-character swap is legal only when that character occurs in both strings.
 - **Lowercase alphabet:** It bounds candidate character pairs by 676.
 - **Counters:** They let character identities stand in for all equivalent index choices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ Once the loop reaches the opening marker, `stk.pop()` discards that `"("`. The c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `c == ")"`, the code creates an empty temporary list `t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Notice that the outer reversal reverses the already reversed sequence `"evol"` a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Paired-parenthesis direction traversal:** Firs:** - **Paired-parenthesis direction traversal:** First link every matching pair. During a second pass, jump to the mate and reverse direction whenever a parenthesis is reached. This processes each position a constant number of times for $O(n)$ time and $O(n)$ space.
+- **Paired-parenthesis direction traversal:** First link every matching pair. During a second pass, jump to the mate and reverse direction whenever a parenthesis is reached. This processes each position a constant number of times for $O(n)$ time and $O(n)$ space.
 - **Recursive parsing:** A function can parse until a closing parenthesis and return the reversed nested result. It mirrors the grammar clearly but still needs attention to string-copying costs and recursion depth.
 - **Repeated string slicing:** Finding an innermost textual pair and replacing slices is intuitive but can cause even more expensive immutable-string copying.
 - **No parentheses:** Every letter is appended once, the closing branch never runs, and the original string is returned.
@@ -111,8 +111,8 @@ Notice that the outer reversal reverses the already reversed sequence `"evol"` a
 - **Balanced-input guarantee:** The loop safely reads `stk[-1]` because every closing parenthesis has a matching earlier opening marker. Malformed input would require explicit validation.
 - **Parentheses removal:** The opening marker is explicitly popped, while the closing marker is never pushed. Joining the stack cannot include brackets.
 - **Letters are not deduplicated:** Every pop is followed by exactly one append into `t` and one extension back into `stk`, preserving multiplicity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

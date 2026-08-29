@@ -4,9 +4,9 @@ A tree rooted at node 0 is given as follows:
 
 - The number of nodes is `nodes`;
 
-- The value of the $$i^{\text{th}}$$ node is $\text{value}[i]$;
+- The value of the $i^{\text{th}}$ node is $\text{value}[i]$;
 
-- The parent of the $$i^{\text{th}}$$ node is $\text{parent}[i]$.
+- The parent of the $i^{\text{th}}$ node is $\text{parent}[i]$.
 
 Remove every subtree whose sum of values of nodes is zero.
 

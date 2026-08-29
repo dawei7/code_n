@@ -61,7 +61,7 @@ For a run `"aaaaa"`, the first two positions are appended. Every later `a` has t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution scans the original string with index `i` and ch... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ That works because the decision is purely run-based. Inside a long run, every ch
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare against output tail:** Append unless t:** - **Compare against output tail:** Append unless the last two retained characters both equal the current one. This is more general and has the same $O(N)$ bounds.
+- **Compare against output tail:** Append unless the last two retained characters both equal the current one. This is more general and has the same $O(N)$ bounds.
 - **Run-length encoding:** Explicitly find every run and append its first two characters. It expresses the proof directly but needs more indexing code.
 - **Repeated string deletion:** Removing characters from immutable strings can cause quadratic copying.
 - **Length below three:** Every character satisfies `i < 2` or no triple exists, so the string is returned unchanged.
@@ -110,8 +110,8 @@ That works because the decision is purely run-based. Inside a long run, every ch
 - **Original-versus-output comparison:** It is safe here specifically because the property and optimal deletions operate independently on maximal runs.
 - **Unique value result:** Different choices of identical occurrences to delete cannot change the resulting character sequence.
 - **Input immutability:** The source does not modify `s`; it builds a new result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -68,7 +68,7 @@ The method does not need to construct the final anagram or decide which specific
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every surplus occurrence in `t` has a character whose final ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed array of twenty-six counts:** Increment :** - **Fixed array of twenty-six counts:** Increment positions for `s`, decrement for `t`, and sum the surplus or deficit side. It has the same $O(n)$ time and $O(1)$ space with lower hashing overhead.
+- **Fixed array of twenty-six counts:** Increment positions for `s`, decrement for `t`, and sum the surplus or deficit side. It has the same $O(n)$ time and $O(1)$ space with lower hashing overhead.
 - **Two counters:** Build frequencies for both strings and sum positive differences. This is straightforward but stores duplicate map structure and performs a separate comparison pass.
 - **Sorting both strings:** Equal sorted strings reveal whether no work is needed, but deriving the replacement count through sorting takes $O(n\log n)$ time.
 - **Counting deficits instead of surpluses:** Because lengths are equal, the total missing occurrences in `t` equals the total excess occurrences. Either side gives the same answer.
@@ -115,8 +115,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Position independence:** A character at one position may satisfy a quota originating anywhere in `s` because anagrams depend only on frequencies.
 - **Input preservation:** Neither string is modified; the algorithm changes only counter values.
 - **Boolean arithmetic:** `cnt[c] < 0` is a Boolean expression, and Python adds it as zero or one. In a language without this conversion, use an explicit conditional increment to preserve the same counting logic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

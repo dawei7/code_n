@@ -69,7 +69,7 @@ Keeping the flag in the state is essential. Two routes reaching the same physica
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source runs Dijkstra's algorithm on an implicit layered ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The source computes `nxt = cur + w` and updates `dist[v][used]` if this is small
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every excluded edge with a separate shorte:** - **Try every excluded edge with a separate shortest-path run:** This repeats substantial work and can cost $O(E(N+E)\log N)$.
+- **Try every excluded edge with a separate shortest-path run:** This repeats substantial work and can cost $O(E(N+E)\log N)$.
 - **Combine distances around every edge:** Two ordinary shortest-distance arrays can support another derivation, but the layered state directly represents whether the exclusion has been consumed.
 - **Make the globally heaviest graph edge free:** The excluded edge must lie on the chosen path; a heavier irrelevant edge cannot help.
 - **Use the free traversal twice:** Layer one deliberately has no second zero-cost transition.
@@ -126,8 +126,8 @@ The source computes `nxt = cur + w` and updates `dist[v][used]` if this is small
 - **Large path sums:** Python integers avoid fixed-width overflow.
 - **Connected graph:** It guarantees the layer-one target is reachable.
 - **First maximum wording:** It affects edge identity only; all tied maximum exclusions subtract the same weight.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

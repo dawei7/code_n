@@ -61,7 +61,7 @@ We maintain two boundary indices $L$ and $R$, alongside a state tracker $M$ (fre
 
 | Step | $R$ | Processed Item | Condition Met? | Action on $L$ | Active Window $[L, R]$ | Current Metric | Global Best |
 |---|---|---|---|---|---|---|---|
-| 1 (Start) | 0 | First item | Yes | $L = 0$ | $[0, 0]$ | Initial window metric | Baseline |
+| 1 (Start) | 0 | First item | Yes | $L = 0$ | `[0, 0]` | Initial window metric | Baseline |
 | 2 (Expand) | Intermediate | Next item | Evaluated | Advance $L$ if invalid | Dynamic $[L, R]$ | Valid window metric | Updated |
 | 3 (Finish) | End | Final item | Maintained | Final adjustment | Terminal $[L, R]$ | Final window metric | Confirmed Best |
 

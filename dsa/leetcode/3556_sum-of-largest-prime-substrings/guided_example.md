@@ -71,7 +71,7 @@ This update also implements the leading-zero rule automatically. Starting from t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the beginning of each outer iteration, `x = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The source tests every integer divisor, including even divisors after two. This 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Parse every substring slice:** Using `int(s[i::** - **Parse every substring slice:** Using `int(s[i:j+1])` is straightforward and also ignores leading zeros, but it repeatedly creates and parses strings, adding an extra length factor across all substrings. Incremental decimal construction reuses the prior prefix value.
+- **Parse every substring slice:** Using `int(s[i:j+1])` is straightforward and also ignores leading zeros, but it repeatedly creates and parses strings, adding an extra length factor across all substrings. Incremental decimal construction reuses the prior prefix value.
 - **Check the set before primality:** Tracking every previously tested numeric value could avoid repeated primality tests for duplicate substrings. It needs an additional set or a combined cache and may improve repeated inputs, but the exact source tests first and stores only primes.
 - **Keep a three-element min-heap:** A heap can retain only the three largest unique primes after deduplication, avoiding a full final sort. With at most 55 substrings under `n \le 10`, sorting the set is simpler and easily fast enough.
 - **Sieve of Eratosthenes:** Sieving through `M` would make primality lookups fast but could require memory proportional to a number near `10^{10}`, which is completely impractical. Trial division is appropriate for few candidates in a huge numeric range.
@@ -132,8 +132,8 @@ The source tests every integer divisor, including even divisors after two. This 
 - **A one-character string:** The only substring is tested normally, so a one-digit prime is returned and any other digit yields zero.
 - **Floating square root:** `sqrt(x)` is converted to an integer to obtain the trial bound. Values are at most ten decimal digits here, well within the range where the computed square root is sufficiently represented; for far larger integers, an exact integer square root would be safer.
 - **Uniqueness by integer, not text:** `"02"` and `"2"` both represent prime `2` and must count only once; the integer set enforces exactly that interpretation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

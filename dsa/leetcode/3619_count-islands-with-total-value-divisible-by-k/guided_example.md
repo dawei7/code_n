@@ -62,7 +62,7 @@ Calling `dfs(i,j)` then discovers exactly the island containing that cell.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer nested loops inspect every `(i,j)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Marking before recursion is essential. If two adjacent cells recursively call ea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS:** Use an explicit list stack, a:** - **Iterative DFS:** Use an explicit list stack, avoiding `RecursionError` while preserving `O(mn)` time.
+- **Iterative DFS:** Use an explicit list stack, avoiding `RecursionError` while preserving `O(mn)` time.
 - **Breadth-first search:** A deque flood fill is equally correct and also avoids recursion depth.
 - **Separate visited matrix:** Preserve `grid` at the cost of `O(mn)` additional Boolean storage.
 - **Accumulate modulo `k`:** Replace full sums with remainders after each addition; divisibility is preserved because modular addition is compatible with ordinary addition.
@@ -123,8 +123,8 @@ Marking before recursion is essential. If two adjacent cells recursively call ea
 - **Missing `pairwise` import:** Standalone code must import it from `itertools`.
 - **Input preservation:** The exact solution does not preserve input; all visited land becomes zero.
 - **Manifest mismatch:** The source sums full values rather than maintaining only modulo `k`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

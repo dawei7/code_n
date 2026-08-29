@@ -63,7 +63,7 @@ Equality is accepted because the requirement says “at least” `minAmount`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `amount >= minAmount` is joined with the time condition by `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The primary key allows many rows per user at different timestamps, making `DISTI
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group by user then count groups:** Select qual:** - **Group by user then count groups:** Select qualifying user IDs grouped by `user_id` in a subquery and count them. It is equivalent but more verbose.
+- **Group by user then count groups:** Select qualifying user IDs grouped by `user_id` in a subquery and count them. It is equivalent but more verbose.
 - **Use `EXISTS` per user:** Starting from a separate Users table can express eligibility directly, but no Users table is part of this schema.
 - **End-of-day interpretation:** Do not add one day or `23:59:59` here; the problem explicitly interprets `endDate` as start-of-day.
 - **Purchase exactly at start:** Inclusive `BETWEEN` accepts it.
@@ -115,8 +115,8 @@ The primary key allows many rows per user at different timestamps, making `DISTI
 - **One user, many timestamps:** Composite primary key permits them, and distinct counting handles duplication.
 - **Function result type:** The count fits the declared integer under ordinary dataset size assumptions.
 - **Source table unchanged:** The function is read-only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

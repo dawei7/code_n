@@ -2,7 +2,7 @@
 
 An **ugly number** is a positive integer that is divisible by `a`, `b`, or `c`.
 
-Given four integers `n`, `a`, `b`, and `c`, return the $$n^{\text{th}}$$ **ugly number**.
+Given four integers `n`, `a`, `b`, and `c`, return the $n^{\text{th}}$ **ugly number**.
 
 ### 2. Function Contract
 

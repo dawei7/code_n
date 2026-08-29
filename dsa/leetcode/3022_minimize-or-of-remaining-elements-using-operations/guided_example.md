@@ -51,7 +51,7 @@ If there are $g$ groups, exactly $N-g$ merges were used. The final objective is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If there are $g$ groups, exactly $N-g$ merges were used.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If there are $g$ groups, exactly $N-g$ merges were used. The final objective is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all partitions:** There are exponent:** - **Enumerate all partitions:** There are exponentially many ways to place boundaries, so direct partition search is infeasible.
+- **Enumerate all partitions:** There are exponentially many ways to place boundaries, so direct partition search is infeasible.
 - **Dynamic programming over every possible OR value:** The value domain can contain up to $2^{30}$ masks. A state per mask is far too large, while high-to-low greedy testing needs only 30 scans.
 - **Greedily merge the locally smallest pair:** Numeric size of an intermediate AND does not capture which high bits survive in the final OR. Such a local choice has no reliable global guarantee.
 - **Build the chosen partition explicitly:** The feasibility scan only needs its merge count. Reconstructing boundaries would consume extra memory and is unnecessary because the contract asks only for the minimum OR.
@@ -98,8 +98,8 @@ If there are $g$ groups, exactly $N-g$ merges were used. The final objective is 
 - **Repeated values:** The method depends only on the ordered running AND, so duplicates require no special handling.
 - **At most rather than exactly $k$ operations:** Feasibility uses `cnt <= k`. There is no requirement to waste remaining operations after a valid partition is found.
 - **Result bits versus zero-mask bits:** `ans` is not the returned answer; it records bits successfully excluded. `rans` records the complementary decisions proven to remain one and is therefore returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

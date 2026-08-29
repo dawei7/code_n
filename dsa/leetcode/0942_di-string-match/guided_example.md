@@ -68,7 +68,7 @@ Therefore, the next appended value is guaranteed to be larger, regardless of whe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For character `I`, the code appends the current `low` and in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ After the largest value is removed, every future unused value is at most the old
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct from runs of `D`:** Start with incre:** - **Construct from runs of `D`:** Start with increasing values and reverse segments corresponding to consecutive decreases. This also yields `O(n)` time, but the low/high invariant is more direct.
+- **Construct from runs of `D`:** Start with increasing values and reverse segments corresponding to consecutive decreases. This also yields `O(n)` time, but the low/high invariant is more direct.
 - **Backtracking over permutations:** It may find an answer but explores an enormous search space even though an extreme choice always guarantees progress.
 - **Sort values after assigning inequalities:** Postponing exact values creates an unnecessary constraint-solving problem. The endpoint method assigns a valid unused value immediately.
 - **All `I` characters:** The algorithm repeatedly takes the low endpoint and returns `[0, 1, ..., n]`.
@@ -116,8 +116,8 @@ After the largest value is removed, every future unused value is at most the old
 - **Strict comparisons:** Values never repeat, and the next unused interval lies strictly above an old low or strictly below an old high, so equality cannot occur.
 - **Final endpoint equality:** After processing all signs, `low` and `high` must coincide. If they did not, the endpoint-removal invariant or loop count would have been violated.
 - **Output-space convention:** Some analyses call the working space `O(1)` by excluding the answer list. Including the returned permutation gives `O(n)` total additional storage, which matches this package's manifest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

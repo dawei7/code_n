@@ -69,7 +69,7 @@ Because `(user_id, product_id)` is unique, one user cannot produce duplicate joi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query gives `ProductPurchases` two aliases, `pp1` and `p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The joined purchase aliases contain product IDs but not categories. The query jo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Join with product IDs not equal:** `pp1.produc:** - **Join with product IDs not equal:** `pp1.product_id <> pp2.product_id` would create both orientations. It would require a later normalization and could double counts if handled carelessly.
+- **Join with product IDs not equal:** `pp1.product_id <> pp2.product_id` would create both orientations. It would require a later normalization and could double counts if handled carelessly.
 - **Use less-than instead of greater-than:** `pp1.product_id < pp2.product_id` is logically equivalent. The protected predicate expresses the same canonical orientation from the second alias.
 - **Group by user first:** One can derive each user's product pairs in a CTE and aggregate afterward. The direct self-join already performs that relational expansion.
 - **Count purchase quantities:** Summing `quantity` would answer a different question. Eligibility is based on distinct customers who bought both products.
@@ -126,8 +126,8 @@ The joined purchase aliases contain product IDs but not categories. The query jo
 - **Tied customer counts:** Ascending product IDs supply the required deterministic order.
 - **ProductInfo price:** It is deliberately ignored because neither output nor filtering uses it.
 - **Data violating the unique purchase key:** Duplicate user-product rows could multiply the self-join. `COUNT(DISTINCT user_id)` would still protect the aggregate count, although join work would grow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

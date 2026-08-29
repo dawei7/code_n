@@ -62,7 +62,7 @@ For example, in a $2 \times 2$ grid containing `[[1, 3], [2, 2]]`, the frequency
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Under a perfect grid containing every allowed value once, ea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The problem’s guarantee then implies there is exactly one `a` with `cnt[a] == 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sum and squared-sum equations:** Comparing the:** - **Sum and squared-sum equations:** Comparing the actual sums with those of $1$ through $n^2$ can solve two equations for the repeated and missing values in $O(1)$ auxiliary space, but it requires careful arithmetic and is not the technique used by the exact solution.
+- **Sum and squared-sum equations:** Comparing the actual sums with those of $1$ through $n^2$ can solve two equations for the repeated and missing values in $O(1)$ auxiliary space, but it requires careful arithmetic and is not the technique used by the exact solution.
 - **Sign marking in a flattened mutable grid:** Values can sometimes encode visited status in place, but a two-dimensional layout and input mutation make this less direct, and restoring the input may be required.
 - **Hash set detection:** A set can identify the repeated value while a total-sum difference identifies the missing one. It still uses $O(N^2)$ worst-case space and has expected rather than deterministic lookup behavior.
 - **Sorting all cells:** Flattening and sorting exposes a duplicate and gap in $O(N^2\log N)$ time and requires storage or input rearrangement, so it is slower.
@@ -113,8 +113,8 @@ The problem’s guarantee then implies there is exactly one `a` with `cnt[a] == 
 - **Unused index zero:** The final loop deliberately starts at one; including zero would falsely classify the unused counter as missing.
 - **Manifest mismatch:** Readers should use $O(N^2)$ auxiliary space for this exact implementation, despite any $O(1)$ space claim associated with an arithmetic variant.
 - **Input preservation:** Every grid cell is read only; all counts live in the separate list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

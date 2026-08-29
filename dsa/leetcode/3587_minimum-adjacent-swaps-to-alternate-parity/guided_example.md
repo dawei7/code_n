@@ -61,7 +61,7 @@ It pairs these targets with `pos[k]` in their existing order and sums absolute m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pos[0]` stores original indices of even values and `pos[1]`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Counting movement for only one parity does not miss a factor of two. One adjacen
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate adjacent swaps:** Moving misplaced el:** - **Simulate adjacent swaps:** Moving misplaced elements directly can also be linear with careful pointers, but position matching proves the count without mutating the array.
+- **Simulate adjacent swaps:** Moving misplaced elements directly can also be linear with careful pointers, but position matching proves the count without mutating the array.
 - **Try arbitrary permutations:** Values within a parity class are interchangeable; factorial enumeration is unnecessary.
 - **Count mismatched positions only:** A misplaced element may need to travel several cells, so mismatch count alone does not equal adjacent-swap cost.
 - **Count difference above one:** Alternation is impossible and returns `-1`.
@@ -126,8 +126,8 @@ Counting movement for only one parity does not miss a factor of two. One adjacen
 - **Crossing argument:** If two same-parity elements at positions `a<b` were assigned to targets `y<x`, swapping their assignments changes cost from `|a-x|+|b-y|` to `|a-y|+|b-x|` and never increases it. Repeating removes every crossing, proving sorted-to-sorted matching.
 - **Why values are irrelevant:** Adjacent-swap validity observes only even versus odd. Distinct magnitudes do not change target slots or movement cost, so preserving numerical order within a parity class is unnecessary beyond the no-crossing position order.
 - **Realizing the distance sum:** Move tracked parity elements toward their assigned slots from left to right. Each crossing with the opposite parity costs one adjacent swap and decreases remaining tracked displacement by one, constructing a sequence with exactly the calculated total.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

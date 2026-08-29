@@ -75,7 +75,7 @@ There cannot be an extra character in `cnt1` absent from `cnt` because the block
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two strings are anagrams exactly when every letter appears t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ This test also rejects impossible divisibility automatically. If a global count 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare each block to the first block:** Build:** - **Compare each block to the first block:** Build the first block's frequency vector and compare all later blocks. This is direct and can avoid global multiplication, with the same per-candidate time.
+- **Compare each block to the first block:** Build the first block's frequency vector and compare all later blocks. This is direct and can avoid global multiplication, with the same per-candidate time.
 - **Enumerate divisors first:** Generate divisors in $O(\sqrt n)$ and sort them, avoiding the outer $O(n)$ divisibility scan. The block checks still dominate for many candidates.
 - **Prefix frequency arrays:** Precompute 26 prefix counts so each block vector is obtained in $O(26)$ time without slicing. This uses $O(26n)$ space but can reduce repeated character scans.
 - **Index-based fixed arrays:** Count each block directly from character indices into a 26-element array. It retains $O(n\tau(n))$ time while avoiding the $O(k)$ slice allocation.
@@ -126,8 +126,8 @@ This test also rejects impossible divisibility automatically. If a global count 
 - **Early mismatch:** `check` returns immediately on the first differing letter, which improves average time but not the worst-case bound.
 - **Fixed alphabet:** The constant-space counter claim for the data structure depends on lowercase English letters. The slice allocation remains input-sized regardless.
 - **First passing divisor:** Returning immediately is correct because lengths are visited numerically in ascending order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

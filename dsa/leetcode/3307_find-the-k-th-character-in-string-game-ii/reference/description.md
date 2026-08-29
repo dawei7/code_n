@@ -2,7 +2,7 @@
 
 Alice and Bob are playing a game. Initially, Alice has a string $word = "a"$.
 
-You are given a **positive** integer `k`. You are also given an integer array `operations`, where $\text{operations}[i]$ represents the **type** of the $$i^{\text{th}}$$ operation.
+You are given a **positive** integer `k`. You are also given an integer array `operations`, where $\text{operations}[i]$ represents the **type** of the $i^{\text{th}}$ operation.
 
 Now Bob will ask Alice to perform **all** operations in sequence:
 
@@ -10,7 +10,7 @@ Now Bob will ask Alice to perform **all** operations in sequence:
 
 - If $\text{operations}[i] = 1$, generate a new string by **changing** each character in `word` to its **next** character in the English alphabet, and **append** it to the *original* `word`. For example, performing the operation on `"c"` generates `"cd"` and performing the operation on `"zb"` generates `"zbac"`.
 
-Return the value of the $$k^{\text{th}}$$ character in `word` after performing all the operations.
+Return the value of the $k^{\text{th}}$ character in `word` after performing all the operations.
 
 ### 2. Function Contract
 

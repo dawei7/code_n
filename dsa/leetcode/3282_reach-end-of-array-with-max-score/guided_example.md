@@ -51,7 +51,7 @@ For boundary after index `t`, the jump crossing it must have started at some ind
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For boundary after index `t`, the jump crossing it must have... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over destinations:** Tryin:** - **Dynamic programming over destinations:** Trying every previous jump start costs $O(n^2)$. Prefix maxima collapse the transition structure.
+- **Dynamic programming over destinations:** Trying every previous jump start costs $O(n^2)$. Prefix maxima collapse the transition structure.
 - **Greedy jump to the next larger value:** This can construct an optimal route, but summing boundary maxima is simpler when only the score is needed.
 - **Always jump one step:** It earns the sum of original departure values, which can miss carrying an earlier large value across many boundaries.
 - **Always jump directly to the end:** This is optimal only when `nums[0]` remains the prefix maximum throughout.
@@ -101,8 +101,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Route construction from records:** Whenever a new prefix maximum appears before the final index, the current route can jump to it. Skipping all other indices then realizes every prefix-max contribution simultaneously.
 - **Why local contributions combine:** Every route crosses each boundary exactly once because indices only increase. Maximizing the permitted contribution independently at each boundary does not create incompatible choices; record-max jumps realize the complete set.
 - **Positive-value assumption:** With legal positive values, more distance under a larger prefix maximum never hurts. The same formula can extend to arbitrary values with a corrected negative-infinity initialization.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

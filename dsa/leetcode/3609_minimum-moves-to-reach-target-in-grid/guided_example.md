@@ -72,7 +72,7 @@ The y-larger branch applies the identical rules with the coordinates exchanged.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the predecessor be `(x, ty)` and the current larger coor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ If `tx` is odd, no integer predecessor can double to it. The source immediately 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward breadth-first search:** It branches tw:** - **Forward breadth-first search:** It branches twice per state and is impractical on an unbounded grid with coordinates up to `10^9`.
+- **Forward breadth-first search:** It branches twice per state and is impractical on an unbounded grid with coordinates up to `10^9`.
 - **Memoized forward recursion:** It still explores branching states and offers no advantage over the forced reverse predecessor.
 - **Subtract repeatedly like the Euclidean algorithm:** The move rule sometimes doubles the current maximum; the ratio test and halving step are necessary to invert it correctly.
 - **Start already equals target:** The loop does not run and the answer is 0.
@@ -123,8 +123,8 @@ If `tx` is odd, no integer predecessor can double to it. The source immediately 
 - **Example `(1,1) -> (2,2)`:** Equality at the target requires a zero-coordinate predecessor, incompatible with the positive start, so the answer is `-1`.
 - **Coordinates on an axis:** The nonzero coordinate can only double until the other coordinate becomes positive through a move that adds the maximum.
 - **No mutation of caller data:** All parameters are immutable integers; the source rebinds local `tx` and `ty` only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

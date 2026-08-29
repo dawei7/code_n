@@ -51,7 +51,7 @@ The table guarantees that `sex` belongs to the two-value domain `('m', 'f')`. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The table guarantees that `sex` belongs to the two-value dom... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The table guarantees that `sex` belongs to the two-value domain `('m', 'f')`. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **`CASE` expression:** `CASE sex WHEN 'm' THEN ':** - **`CASE` expression:** `CASE sex WHEN 'm' THEN 'f' ELSE 'm' END` is the editorial form. It is equally set-based and may read more clearly when branches multiply.
+- **`CASE` expression:** `CASE sex WHEN 'm' THEN 'f' ELSE 'm' END` is the editorial form. It is equally set-based and may read more clearly when branches multiply.
 - **Explicit two-value `CASE`:** Handle `'f'` and `'m'` separately and use `ELSE sex`. This safely preserves unexpected or null values in a broader schema.
 - **Two update statements:** Updating female and male rows separately violates the contract and can undo the first change if the second statement sees newly written values.
 - **Temporary mapping table:** Joining a two-row mapping table is unnecessary and explicitly outside the requested form.
@@ -97,8 +97,8 @@ The table guarantees that `sex` belongs to the two-value domain `('m', 'f')`. Th
 - **Other columns:** They are untouched because only `sex` appears on the left side of `SET`.
 - **Repeated execution:** Two executions restore the original values, confirming the mapping is a true swap.
 - **Missing `WHERE`:** Here it is required behavior, not an accidental full-table update, because every employee must be changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

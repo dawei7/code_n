@@ -83,7 +83,7 @@ Since `s` is sorted, `bisect_left` finds the smallest such $j$. The assignment `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the last segment in the chosen partition of prefix $... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ For an already non-decreasing positive array, each single-element segment can re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic partition DP:** Try every preceding :** - **Quadratic partition DP:** Try every preceding cut for each endpoint in $O(N^2)$ time.
+- **Quadratic partition DP:** Try every preceding cut for each endpoint in $O(N^2)$ time.
 - **Monotonic deque optimization:** It can maintain feasible predecessor thresholds in linear time, matching the manifest but not this source.
 - **Keep the original array:** When it is already non-decreasing, choosing no merge gives the maximum possible length $N$.
 - **Merge everything:** Always produces a valid length-one array, so an answer exists.
@@ -137,8 +137,8 @@ For an already non-decreasing positive array, each single-element segment can re
 - **No array values are actually merged:** Prefix differences represent segment sums mathematically, so the method avoids repeated list replacement and index shifting.
 - **One-based prefix endpoints:** Segment after cut $p$ through endpoint $i$ corresponds to original indices $p$ through $i-1$, preventing an off-by-one interpretation of `s[i]-s[p]`.
 - **Dominance has two parts:** A later feasible cut has at least as large `f` and a no-larger last-segment sum. Both current objective and future extensibility are therefore no worse.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

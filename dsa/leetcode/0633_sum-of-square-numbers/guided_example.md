@@ -51,7 +51,7 @@ The exact solution searches this bounded square grid with two pointers:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution searches this bounded square grid with tw... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The exact solution searches this bounded square grid with two pointers:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Loop one value and test with `isqrt`:** For ev:** - **Loop one value and test with `isqrt`:** For every `a`, compute `c - a*a` and check whether its exact integer square root squares back. This is also $O(\sqrt c)$ and straightforward.
+- **Loop one value and test with `isqrt`:** For every `a`, compute `c - a*a` and check whether its exact integer square root squares back. This is also $O(\sqrt c)$ and straightforward.
 - **Hash set of squares:** Store every square up to `c` and test complements. It uses $O(\sqrt c)$ extra space without improving the time bound.
 - **Fermat's two-square theorem:** Factor `c` and ensure every prime congruent to 3 modulo 4 has an even exponent. It is elegant but relies on deeper number theory.
 - **`c = 0`:** Both pointers start at 0, and `0^2 + 0^2 = 0` returns true.
@@ -97,8 +97,8 @@ The exact solution searches this bounded square grid with two pointers:
 - **Pointer crossing:** It means every unordered candidate has been tested or eliminated; it is the correct failure condition.
 - **Floating square root:** It is safe for the stated range, but `isqrt` is preferable for exactness on arbitrarily large integers.
 - **Large upper bound:** The scan still uses constant memory even when it performs about $\sqrt c$ iterations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

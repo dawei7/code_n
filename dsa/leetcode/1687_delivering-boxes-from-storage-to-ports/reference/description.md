@@ -2,9 +2,9 @@
 
 You have the task of delivering some boxes from storage to their ports using only one ship. However, this ship has a **limit** on the **number of boxes** and the **total weight** that it can carry.
 
-You are given an array `boxes`, where $\text{boxes}[i] = [ports_​​i​, \text{weight}_{i}]$, and three integers `portsCount`, `maxBoxes`, and `maxWeight`.
+You are given an array `boxes`, where $\text{boxes}[i] = [ports_i, \text{weight}_{i}]$, and three integers `portsCount`, `maxBoxes`, and `maxWeight`.
 
-- `ports_​​i` is the port where you need to deliver the $$i^{\text{th}}$$ box and $\text{weights}_{i}$ is the weight of the $$i^{\text{th}}$$ box.
+- `ports_i` is the port where you need to deliver the $i^{\text{th}}$ box and $\text{weights}_{i}$ is the weight of the $i^{\text{th}}$ box.
 
 - `portsCount` is the number of ports.
 
@@ -72,6 +72,6 @@ So the total number of trips is 2 + 2 + 2 = 6.
 
 - $1 \le portsCount, maxBoxes, maxWeight \le 10^{5}$
 
-- $1 \le ports_​​i \le portsCount$
+- $1 \le ports_i \le portsCount$
 
 - $1 \le \text{weights}_{i} \le maxWeight$

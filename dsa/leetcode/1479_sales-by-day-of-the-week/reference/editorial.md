@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -12,7 +12,7 @@
 
 <!-- h4 for sections -->
 #### Algorithm
-​<!-- Describe your approach to solving the problem. -->
+<!-- Describe your approach to solving the problem. -->
 Since the column $\text{item}_{category}$ is stored in the DataFrame `items` and the column `quantity` is stored in the Dataframe `orders`, we first left `merge` the DataFrame `items` to `orders` to get the total quantities for each $\text{item}_{category}$ no matter if there is an order associated with the $\text{item}_{category}$ or not. In this step, we can also rename the column $\text{item}_{category}$ to `category` as per requested by the final output.
 
 ```python
@@ -54,10 +54,10 @@ Almost there! Now we only need to reshape the table and pivot the values in `day
 ```python
 df = df.pivot_table(index='category', columns='dayofweek', values='quantity', aggfunc='sum').reset_index()
 ```
-​
+
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 
@@ -79,7 +79,7 @@ def sales_by_day(orders: pd.DataFrame, items: pd.DataFrame) -> pd.DataFrame:
 
 <!-- an empty line to separate approaches -->
 ---
-​
+
 ## Database
 
 <!-- h3 for approaches -->

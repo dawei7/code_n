@@ -61,7 +61,7 @@ Using a two-digit month is important for stable representation. January is `01` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `DATE_FORMAT(order_date, '%Y-%m')` produces a fixed-width st... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Positional grouping is concise, although it depends on the select-list order. Sp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation without WHERE:** Group:** - **Conditional aggregation without WHERE:** Group all months and count qualifying rows with conditions, then remove zero-count groups. It is more verbose here.
+- **Conditional aggregation without WHERE:** Group all months and count qualifying rows with conditions, then remove zero-count groups. It is more verbose here.
 - **COUNT star:** After filtering, `COUNT(*)` is equivalent to counting non-null unique order identifiers.
 - **COUNT DISTINCT order id:** It is correct but redundant because order identifiers are already unique.
 - **Count customer rows directly:** It is wrong when one customer has multiple qualifying orders in a month.
@@ -112,8 +112,8 @@ Positional grouping is concise, although it depends on the select-list order. Sp
 - **Any output order:** No outer sorting clause is necessary.
 - **Positional GROUP BY:** It relies on `month` remaining the first selected expression.
 - **Date formatting:** Fixed-width `YYYY-MM` matches the required output type and value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

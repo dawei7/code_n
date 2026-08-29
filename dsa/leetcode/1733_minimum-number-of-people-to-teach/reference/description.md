@@ -6,9 +6,9 @@ You are given an integer `n`, an array `languages`, and an array `friendships` w
 
 - There are `n` languages numbered `1` through `n`,
 
-- $\text{languages}[i]$ is the set of languages the $i^​​​​​​th$​​​​ user knows, and
+- $\text{languages}[i]$ is the set of languages the $i^th$ user knows, and
 
-- $\text{friendships}[i] = [u_​​​​​​i​​​, v_​​​​​​i]$ denotes a friendship between the users $u^​​​​​_​​​​​​i$​​​​​ and $v_{i}$.
+- $\text{friendships}[i] = [u_i, v_i]$ denotes a friendship between the users $u_i$ and $v_{i}$.
 
 You can choose **one** language and teach it to some users so that all friends can communicate with each other. Return *the* ***minimum** **number of users you need to teach.*
 
@@ -52,10 +52,10 @@ Note that friendships are not transitive, meaning if `x` is a friend of `y` and 
 
 - $1 \le \text{languages}[i][j] \le n$
 
-- $1 \le u_​​​​​​i < v_​​​​​​i \le \text{languages.length}$
+- $1 \le u_i < v_i \le \text{languages.length}$
 
 - $1 \le \text{friendships.length} \le 500$
 
-- All tuples `(u_​​​​​i, v_​​​​​​i)` are unique
+- All tuples `(u_i, v_i)` are unique
 
 - $\text{languages}[i]$ contains only unique values

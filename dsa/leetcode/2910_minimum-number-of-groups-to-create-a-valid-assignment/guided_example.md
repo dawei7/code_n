@@ -87,11 +87,7 @@ So the quotient/remainder condition is not merely necessary; it is sufficient.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed $k$, divide a frequency $v$ by $k$:
-
-$$
-v=ak+b,
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -138,7 +134,7 @@ The algorithm adds this group count for every distinct value. If all frequencies
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct groups directly:** Repeatedly assign:** - **Construct groups directly:** Repeatedly assigning occurrences to concrete lists adds unnecessary bookkeeping. Frequency arithmetic decides feasibility and count without materializing any group.
+- **Construct groups directly:** Repeatedly assigning occurrences to concrete lists adds unnecessary bookkeeping. Frequency arithmetic decides feasibility and count without materializing any group.
 - **Try all partitions of each frequency:** Enumerating combinations of $k$- and $(k+1)$-sized groups is exponential or pseudo-polynomial. Quotient and remainder reduce the decision to one constant-time inequality.
 - **Search group count rather than size:** It is possible to test candidate numbers of groups for each frequency, but coordinating a common global size pair is less direct. Searching the shared smaller size exposes the validity rule cleanly.
 - **All values are unique:** Every frequency is $1$, so $k=1$ is immediately feasible and each occurrence forms one group.
@@ -147,8 +143,8 @@ The algorithm adds this group count for every distinct value. If all frequencies
 - **Do not use only divisibility:** A frequency need not be divisible by $k$ or by $k+1$. Mixed sizes are allowed; $5=2+3$ is valid for $k=2$.
 - **Global consistency matters:** A $k$ that works for one frequency is insufficient. Every value's occurrences must be partitionable using the same two sizes, which is why the inner loop must finish successfully.
 - **Why `ans == 0` signals failure safely:** Every successful frequency contributes at least one group. Therefore a completely feasible pass always leaves a positive sum, while zero can unambiguously mean that a frequency caused the pass to break.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

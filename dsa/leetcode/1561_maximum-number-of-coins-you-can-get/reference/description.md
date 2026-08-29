@@ -12,7 +12,7 @@ There are `3n` piles of coins of varying size, you and your friends will take pi
 
 - Repeat until there are no more piles of coins.
 
-Given an array of integers `piles` where $\text{piles}[i]$ is the number of coins in the $$i^{\text{th}}$$ pile.
+Given an array of integers `piles` where $\text{piles}[i]$ is the number of coins in the $i^{\text{th}}$ pile.
 
 Return the maximum number of coins that you can have.
 

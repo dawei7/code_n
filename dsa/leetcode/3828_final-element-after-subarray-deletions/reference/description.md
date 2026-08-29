@@ -38,7 +38,7 @@ Return the value of the sole remaining element when Alice maximizes the outcome 
 
 - Alice removes `[1]`, array becomes `[5, 2]`.
 
-- Bob removes `[5]`, array becomes `[2]`​​​​​​​. Thus, the answer is 2.
+- Bob removes `[5]`, array becomes `[2]`. Thus, the answer is 2.
 
 #### Example 2
 

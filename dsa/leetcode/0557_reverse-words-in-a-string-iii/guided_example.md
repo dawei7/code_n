@@ -52,8 +52,7 @@ The operation has two independent preservation rules:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - words must remain in their original left-to-right order;
--... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ The solution separates the sentence into words, reverses each word independently
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutable character-array scan:** Reverse the co:** - **Mutable character-array scan:** Reverse the complete array, then reverse each word, or directly reverse each word interval. It can preserve arbitrary whitespace positions more exactly.
+- **Mutable character-array scan:** Reverse the complete array, then reverse each word, or directly reverse each word interval. It can preserve arbitrary whitespace positions more exactly.
 - **Reverse the whole sentence:** That also reverses word order, violating the contract.
 - **Reverse word order only:** It preserves word characters rather than reversing them, solving a different problem.
 - **Multiple or tab whitespace:** The exact `split()/join` implementation normalizes it; legal inputs contain only single spaces.
@@ -99,8 +98,8 @@ The solution separates the sentence into words, reverses each word independently
 - **No leading or trailing spaces:** Join correctly produces none.
 - **Very long word:** Slicing remains linear in that word's length.
 - **Input order:** Generator iteration and join preserve it exactly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

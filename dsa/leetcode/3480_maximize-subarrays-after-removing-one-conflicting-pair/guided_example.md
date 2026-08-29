@@ -51,7 +51,7 @@ The source swaps reversed pairs and stores every larger endpoint $b$ in `g[a]`, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source swaps reversed pairs and stores every larger endp... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source swaps reversed pairs and stores every larger endpoint $b$ in `g[a]`, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Remove each conflict and recount:** Repeating :** - **Remove each conflict and recount:** Repeating an $O(n+q)$ count for every pair costs up to quadratic time.
+- **Remove each conflict and recount:** Repeating an $O(n+q)$ count for every pair costs up to quadratic time.
 - **Enumerate all subarrays:** There are $O(n^2)$ candidates even before checking conflicts.
 - **Track only the minimum endpoint:** After deleting its pair, the new boundary is unknown without the second minimum.
 - **Track three or more minima:** One deletion can expose only the second restriction, so additional minima do not affect the gain.
@@ -98,8 +98,8 @@ The source swaps reversed pairs and stores every larger endpoint $b$ in `g[a]`, 
 - **Conflicts sharing one smaller endpoint:** All their larger endpoints are inserted together and the two smallest are retained.
 - **Exactly-one deletion:** A zero best gain still corresponds to deleting a redundant pair; the baseline is not invalidated.
 - **Sentinel indexing:** `cnt` has length $n+2$, so key $n+1$ is safe when no real restriction exists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

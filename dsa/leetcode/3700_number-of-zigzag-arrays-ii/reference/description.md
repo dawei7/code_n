@@ -52,7 +52,7 @@ Return the total number of valid length-`n` ZigZag arrays, reduced modulo $10^9+
 
 - **Output:** 10
 
-- **Explanation:** ​​​​​​​There are 10 valid ZigZag arrays of length $n = 3$ using values in the range `[1, 3]`:
+- **Explanation:** There are 10 valid ZigZag arrays of length $n = 3$ using values in the range `[1, 3]`:
 
 - `[1, 2, 1]`, `[1, 3, 1]`, `[1, 3, 2]`
 
@@ -66,4 +66,4 @@ All arrays meet the ZigZag conditions.
 
 - $3 \le n \le 10^{9}$
 
-- $1 \le l < r \le 75$​​​​​​​
+- $1 \le l < r \le 75$

@@ -6,13 +6,13 @@ You are also given a 2D array `queries` of size `m` where $\text{queries}[i] = [
 
 Initially all elements of the array are **unmarked**.
 
-You need to apply `m` queries on the array in order, where on the $$i^{\text{th}}$$ query you do the following:
+You need to apply `m` queries on the array in order, where on the $i^{\text{th}}$ query you do the following:
 
 - Mark the element at index $\text{index}_{i}$ if it is not already marked.
 
 - Then mark $k_{i}$ unmarked elements in the array with the **smallest** values. If multiple such elements exist, mark the ones with the smallest indices. And if less than $k_{i}$ unmarked elements exist, then mark all of them.
 
-Return *an array answer of size *`m`* where *$\text{answer}[i]$* is the **sum** of unmarked elements in the array after the *$$i^{\text{th}}$$* query*.
+Return *an array answer of size *`m`* where *$\text{answer}[i]$* is the **sum** of unmarked elements in the array after the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

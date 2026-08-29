@@ -57,7 +57,7 @@ If no value has been skipped, `k` equals the current index and the write is a ha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's list iterator visits indices from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The array is nonempty by contract, but the same logic would naturally return zer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit run counter:** Track the current valu:** - **Explicit run counter:** Track the current value's occurrence count and copy only counts one and two. It is equally linear and constant-space but uses more state.
+- **Explicit run counter:** Track the current value's occurrence count and copy only counts one and two. It is equally linear and constant-space but uses more state.
 - **Two-pointer plus previous comparisons:** Scan from index two and compare against the output at `write - 2`; this is the indexed form of the selected method.
 - **Delete excessive values:** Removing list elements while scanning can shift a linear suffix for every deletion, producing quadratic time in Python.
 - **Frequency dictionary:** It works without sorted input but uses extra space and ignores the key simplifying guarantee.
@@ -107,8 +107,8 @@ The array is nonempty by contract, but the same logic would naturally return zer
 - **Unspecified suffix:** The algorithm intentionally does not erase values after `k`.
 - **No resizing:** Stable list length makes mutation during iteration safe together with the never-write-ahead invariant.
 - **Sorted-order dependency:** Without grouping equal values, comparison with `k - 2` would not reliably count occurrences.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

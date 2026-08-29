@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **For a fixed ending, start at index zero.** Suppose an odd ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Even if leading zeros were present, adding them would not increase numeric value
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward scan remembering the last odd index:**:** - **Forward scan remembering the last odd index:** This also takes $O(n)$ time and returns the same prefix, but the reverse scan can return immediately.
+- **Forward scan remembering the last odd index:** This also takes $O(n)$ time and returns the same prefix, but the reverse scan can return immediately.
 - **Enumerate all substrings:** There are $O(n^2)$ candidates and parsing them is unnecessary because parity and length determine the answer structure.
 - **Convert the full string to an integer:** The input may have $10^5$ digits and exceed practical numeric limits. Full conversion provides no useful information beyond the final digit.
 - **Entire number odd:** The last digit succeeds and the whole string is returned.
@@ -95,8 +95,8 @@ Even if leading zeros were present, adding them would not increase numeric value
 - **Several odd digits:** Only the rightmost matters; its prefix strictly contains more digits than every earlier odd prefix.
 - **No leading zeros:** This guarantees a longer chosen prefix is numerically larger in the usual decimal representation.
 - **Output allocation:** The algorithmic working state is constant, but Python materializes `num[:i + 1]` as a new string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

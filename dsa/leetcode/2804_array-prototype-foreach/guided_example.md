@@ -51,7 +51,7 @@ The implementation is a direct index loop:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation is a direct index loop:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The implementation is a direct index loop:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Snapshot length first:** Store `const length =:** - **Snapshot length first:** Store `const length = this.length` before looping. This matches native behavior for appended elements more closely because later growth does not expand the traversal.
+- **Snapshot length first:** Store `const length = this.length` before looping. This matches native behavior for appended elements more closely because later growth does not expand the traversal.
 - **Skip holes with `index in this`:** Adding a property-existence check avoids invoking the callback for missing sparse indices and better matches native `forEach`.
 - **Use a `for...of` loop:** It easily supplies values but not the exact index and mutation semantics without maintaining additional state, and it also visits sparse-array holes as undefined through the array iterator.
 - **Ordinary callback with context:** `call` makes the provided object the callback's `this`, subject to strict-mode and primitive-boxing language rules.
@@ -99,8 +99,8 @@ The implementation is a direct index loop:
 - **Shrinking length:** The next condition observes the shorter value and can stop before indices that existed initially.
 - **Thrown callback exception:** Nothing catches it, so traversal stops immediately and the exception propagates to the caller.
 - **Overwriting the native method:** Other code in the same realm now receives these simplified semantics. This is acceptable in the isolated judge but unsafe as a general polyfill strategy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

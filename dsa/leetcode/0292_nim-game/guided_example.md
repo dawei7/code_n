@@ -85,13 +85,7 @@ For example, begin with ten stones. The first player removes two, leaving eight.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the heap contains
-
-$$
-n = 4q + r,
-$$
-
-where the rema... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +122,7 @@ This proves both necessary directions. A nonmultiple has a move into the losing 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over every heap size:** Ma:** - **Dynamic programming over every heap size:** Mark sizes one through `n` as winning or losing according to whether they can reach a losing predecessor. This can rediscover the four-position pattern, but it requires $O(n)$ time and $O(n)$ space if the whole table is stored, which is unnecessary for a value as large as $2^{31}-1$.
+- **Dynamic programming over every heap size:** Mark sizes one through `n` as winning or losing according to whether they can reach a losing predecessor. This can rediscover the four-position pattern, but it requires $O(n)$ time and $O(n)$ space if the whole table is stored, which is unnecessary for a value as large as $2^{31}-1$.
 - **Constant-space iterative classification:** Track only a few recent winning and losing states while advancing from one to `n`. This reduces auxiliary space to $O(1)$ but still spends $O(n)$ time reproducing a pattern that the modulo invariant expresses directly.
 - **Recursive game search:** Try each removal and ask recursively whether the opponent loses. Without memoization it repeats many states; with memoization it becomes a slower form of dynamic programming. Neither version is suitable when the mathematical structure already gives a constant-time answer.
 - **Always removing three stones:** This does not preserve the winning invariant. The correct first removal depends on the current remainder, and later responses must complement the opponent's removal so that each pair totals four.
@@ -140,8 +134,8 @@ This proves both necessary directions. A nonmultiple has a move into the losing 
 - **The maximum allowed input:** The method neither allocates memory proportional to `n` nor loops `n` times. It handles $2^{31}-1$ with the same constant amount of work as a small input.
 - **Positive-input guarantee:** The constraints begin at one, so the implementation does not need to define a game with an initially empty heap. If zero were introduced under the usual rules, it would be losing for the player to move and would also have remainder zero, but that case is outside the stated contract.
 - **Optimal-play assumption:** A winning position guarantees that a winning strategy exists. A player can still lose by choosing a poor move, but the requested Boolean assumes that the player follows the force-win strategy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

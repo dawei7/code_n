@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The second fact is the crucial direction. Among the selected positions that lie 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all question-mark assignments:** A p:** - **Enumerate all question-mark assignments:** A pattern with `q` question marks has `2^q` completions. Assigning the required ones to the latest question marks gives the prefix-minimal completion directly.
+- **Enumerate all question-mark assignments:** A pattern with `q` question marks has `2^q` completions. Assigning the required ones to the latest question marks gives the prefix-minimal completion directly.
 - **Simulate arbitrary subsequence sorts:** The operation has exponentially many subsequence choices. Total-one equality and prefix dominance capture the entire reachable set without exploring operations.
 - **Move ones with a queue of positions:** One can match source-one positions to target-one positions and check that none moves left. This is equivalent to the prefix test, but the cumulative counts integrate more naturally with wildcard assignment.
 - **Too many fixed ones:** When `fixed_ones > required_ones`, question marks cannot delete literal ones, so the pattern is immediately false.
@@ -100,8 +100,8 @@ The second fact is the crucial direction. Among the selected positions that lie 
 - **Operation direction:** Sorting is non-decreasing. It can move ones right across zeros, not left. Reversing the prefix inequality would characterize the wrong operation.
 - **Boolean arithmetic:** In Python, `char == "1"` is a boolean that behaves as `0` or `1` in addition. This is why `ones += char == "1"` correctly updates the count.
 - **Missing `List` import:** The stated algorithmic bounds assume the method can be defined. The exact source needs `List` supplied by the environment or imported separately before those annotations can be evaluated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

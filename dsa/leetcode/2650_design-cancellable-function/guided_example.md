@@ -65,7 +65,7 @@ Later cancel calls do nothing because the flag is already true. Cancellation is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two closure variables coordinate the cancel function and asy... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ If the generator returns immediately, `done` is true. The while-loop is skipped 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Poll a cancelled flag:** Cannot promptly inter:** - **Poll a cancelled flag:** Cannot promptly interrupt a long pending Promise; rejecting the current bridge wakes the driver immediately.
+- **Poll a cancelled flag:** Cannot promptly interrupt a long pending Promise; rejecting the current bridge wakes the driver immediately.
 - **Race every yield with a cancellation Promise:** Valid, but the stored reject callback is a compact one-pending-wait implementation.
 - **Call `generator.return()` on cancellation:** Skips the required `throw("Cancelled")` semantics and prevents generator catch logic.
 - **Immediate generator return:** The controller Promise resolves without waiting, and later cancellation is harmless.
@@ -119,8 +119,8 @@ If the generator returns immediately, `done` is true. The while-loop is skipped 
 - **Repeated cancel calls:** Only the first has an effect.
 - **Underlying Promise after cancellation:** It is not physically cancelled; its later settlement cannot change the bridge.
 - **One pending bridge:** `rejectCurrent` always refers only to the yield currently being awaited.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

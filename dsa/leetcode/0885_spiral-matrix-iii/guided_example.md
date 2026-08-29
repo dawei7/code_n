@@ -51,7 +51,7 @@ The starting cell is always valid and is placed in `ans` immediately. If the gri
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The starting cell is always valid and is placed in `ans` imm... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The starting cell is always valid and is placed in `ans` immediately. If the gri
 
 ## 6. Traps This Instance Exposes
 
-- **- **Layer-by-layer boundary formulas:** One can ge:** - **Layer-by-layer boundary formulas:** One can generate square-ring edges directly, but clipping them to a displaced rectangle is more complex than unit simulation.
+- **Layer-by-layer boundary formulas:** One can generate square-ring edges directly, but clipping them to a displaced rectangle is more complex than unit simulation.
 - **Stop at the grid boundary:** This changes the path. The statement requires continuing outside and possibly returning later.
 - **Record every infinite-grid coordinate:** Outside positions must not appear in the answer and would waste storage.
 - **Visited set:** The mathematical spiral never revisits a coordinate, so a set is unnecessary. The output length itself determines completion.
@@ -98,8 +98,8 @@ The starting cell is always valid and is placed in `ans` immediately. If the gri
 - **Completion check placement:** It must occur after appending a valid cell. Outside positions do not advance the number of visited grid cells.
 - **Exact output size:** Every one of the $RC$ cells appears once, so the returned list has exactly $RC$ coordinate pairs.
 - **Unbounded outer loop:** Although written as `while true`, the expanding spiral's coverage proof guarantees return for every valid finite grid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

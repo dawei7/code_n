@@ -8,7 +8,7 @@ Define **generation** 0 as the initial list of points. For each integer $k \ge 1
 
 - For each such pair, compute $c = [floor((x_{1} + x_{2}) / 2), floor((y_{1} + y_{2}) / 2), floor((z_{1} + z_{2}) / 2)]$ and collect every such `c` into a generation `k`.
 
-- All points in the generation `k` are produced **simultaneously** from points in generations 0 through​​​​​​​ $k - 1$.
+- All points in the generation `k` are produced **simultaneously** from points in generations 0 through $k - 1$.
 
 - After generation `k` is formed, the points in the generation `k` are considered available for forming later generations.
 
@@ -113,12 +113,12 @@ Return the smallest generation number in which `target` is available. Return `-1
 
 - $1 \le \text{points.length} \le 20$
 
-- $\text{points}[i] = [x_{i}, y_{i}, z_{i}​​​​​​​]$
+- $\text{points}[i] = [x_{i}, y_{i}, z_{i}]$
 
 - $0 \le x_{i}, y_{i}, z_{i} \le 6$
 
 - $\text{target.length} = 3$
 
-- $​​​​​​​0 \le \text{target}[i] \le 6$
+- $0 \le \text{target}[i] \le 6$
 
 - The initial set of points contains no duplicates.

@@ -69,7 +69,7 @@ These formulas include exactly `stampHeight` rows and `stampWidth` columns. If a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The top row `i` ranges from `1` through `m - stampHeight + 1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ These four values are not coverage counts yet. They are boundaries whose two-dim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan every stamp rectangle directly:** This is:** - **Scan every stamp rectangle directly:** This is easy to describe but may cost $O(mn \cdot \textit{stampHeight}\cdot\textit{stampWidth})$. The occupied-cell prefix sum reduces each legality test to $O(1)$.
+- **Scan every stamp rectangle directly:** This is easy to describe but may cost $O(mn \cdot \textit{stampHeight}\cdot\textit{stampWidth})$. The occupied-cell prefix sum reduces each legality test to $O(1)$.
 - **Paint every valid rectangle directly:** Even with constant-time legality checks, writing every covered cell for every stamp can be superlinear. The difference grid records each rectangle in four operations.
 - **Greedy placement around uncovered cells:** Choosing a stamp locally is unnecessary and can be difficult near obstacles. Because overlap is allowed and stamps do not consume resources, the union of all legal placements is the complete feasibility test.
 - **Stamp larger than the grid:** No placement loop iteration occurs. The result is true only when there are no empty cells requiring coverage; otherwise the final scan finds an uncovered zero.
@@ -128,8 +128,8 @@ These four values are not coverage counts yet. They are boundaries whose two-dim
 - **Bottom and right borders:** The $(m+2)$ by $(n+2)$ padding safely receives the difference updates just outside a border-touching stamp.
 - **Off-by-one coordinates:** `grid` is zero-based, while `s` and `d` are used with one-based cell coordinates. The enumerations with `enumerate(..., 1)` maintain this mapping consistently.
 - **Early false return:** Once an uncovered empty cell is found after all valid placements have been accumulated, later cells cannot change its coverage, so stopping is conclusive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

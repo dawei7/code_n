@@ -55,7 +55,7 @@ Keeping the players separate makes every stored count nonnegative and easy to in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor stores `cnt` as a two-element list.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,9 +97,9 @@ The bit operations are only a compact way to form the final two unique keys. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store and scan the complete board:** Record ev:** - **Store and scan the complete board:** Record every mark in an $n \times n$ matrix, then inspect the affected row, affected column, and applicable diagonals after each move. This is straightforward, but one call can take $O(n)$ time and the board takes $O(n^2)$ space. Scanning the entire board would be even less efficient and is unnecessary because only lines through the latest cell can change.
-- **- **One signed counter set:** Use one row array, o:** - **One signed counter set:** Use one row array, one column array, and two diagonal totals; add `1` for player 1 and `-1` for player 2. An absolute value of $n$ signals a win. This uses $O(n)$ space and $O(1)$ time per move, but the exact solution chooses separate dictionaries so each count directly belongs to one player.
-- **- **Fixed arrays instead of dictionaries:** Alloca:** - **Fixed arrays instead of dictionaries:** Allocate `2 * n + 2` counters for each player and use the same key encoding. This removes hash-table overhead and preserves $O(1)$ time and $O(n)$ space, at the cost of eagerly allocating every possible counter.
+- **Store and scan the complete board:** Record every mark in an $n \times n$ matrix, then inspect the affected row, affected column, and applicable diagonals after each move. This is straightforward, but one call can take $O(n)$ time and the board takes $O(n^2)$ space. Scanning the entire board would be even less efficient and is unnecessary because only lines through the latest cell can change.
+- **One signed counter set:** Use one row array, one column array, and two diagonal totals; add `1` for player 1 and `-1` for player 2. An absolute value of $n$ signals a win. This uses $O(n)$ space and $O(1)$ time per move, but the exact solution chooses separate dictionaries so each count directly belongs to one player.
+- **Fixed arrays instead of dictionaries:** Allocate `2 * n + 2` counters for each player and use the same key encoding. This removes hash-table overhead and preserves $O(1)$ time and $O(n)$ space, at the cost of eagerly allocating every possible counter.
 
 ---
 

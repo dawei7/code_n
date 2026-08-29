@@ -51,7 +51,7 @@ Sorting gives one consistent role to each value: $c$ is the longest proposed sid
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting gives one consistent role to each value: $c$ is the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Sorting gives one consistent role to each value: $c$ is the longest proposed sid
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check all three inequalities:** This is correc:** - **Check all three inequalities:** This is correct but redundant for sorted positive lengths. The largest-side inequality implies the other two automatically.
+- **Check all three inequalities:** This is correct but redundant for sorted positive lengths. The largest-side inequality implies the other two automatically.
 - **Avoid sorting with a maximum:** One can find the largest side and compare it with the sum of the other two, then count equalities. That remains $O(1)$ but tends to require more bookkeeping than sorting three items.
 - **Use a set for classification:** The number of distinct lengths distinguishes equilateral, isosceles, and scalene after validity is known. Creating a set works, but direct comparisons avoid an extra container.
 - **Degenerate equality $a+b=c$:** It must return `"none"` because the required inequality is strict and the segments enclose no area.
@@ -97,8 +97,8 @@ Sorting gives one consistent role to each value: $c$ is the longest proposed sid
 - **Positive-length guarantee:** The proof that two inequalities are automatic relies on positive sides. If zeros or negative values were allowed, the validation would need additional checks, but they are outside this contract.
 - **Input order:** Any permutation produces the same sorted triple and therefore the same classification.
 - **Input mutation:** The protected source leaves `nums` sorted. This does not change the returned answer, but callers should not assume the original ordering remains.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

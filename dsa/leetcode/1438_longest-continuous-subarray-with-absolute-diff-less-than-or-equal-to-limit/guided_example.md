@@ -61,7 +61,7 @@ The algorithm therefore maintains a sliding window and a sorted multiset `sl` co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `j` is the left endpoint of the current window.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ inserts it into sorted position. Then `sl[0]` is the current minimum and `sl[-1]
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two monotonic deques:** Maintain decreasing ma:** - **Two monotonic deques:** Maintain decreasing maximum candidates and increasing minimum candidates. Each index enters and leaves each deque once, realizing $O(n)$ time.
+- **Two monotonic deques:** Maintain decreasing maximum candidates and increasing minimum candidates. Each index enters and leaves each deque once, realizing $O(n)$ time.
 - **Two heaps with lazy deletion:** Track minimum and maximum with indices. It is correct but uses logarithmic operations and more stale-entry handling.
 - **Balanced frequency map:** A sorted dictionary from values to counts implements the same multiset idea as SortedList.
 - **Brute-force subarrays:** Recomputing extremes for every range can take quadratic or cubic time.
@@ -112,8 +112,8 @@ inserts it into sorted position. Then `sl[0]` is the current minimum and `sl[-1]
 - **Duplicate minimum or maximum:** Removing one occurrence must not erase the others; SortedList handles multiplicity.
 - **Large new outlier:** The while loop may remove many left elements, but each array position is removed only once overall.
 - **Contiguity:** Shrinking always removes `nums[j]`, not an arbitrary extreme value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

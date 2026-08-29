@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a list of songs where the $$i^{\text{th}}$$ song has a duration of $\text{time}[i]$ seconds.
+You are given a list of songs where the $i^{\text{th}}$ song has a duration of $\text{time}[i]$ seconds.
 
 The objective is to compute `3` from `{"time": [30, 20, 150, 100, 40]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -68,7 +68,7 @@ Every earlier song with remainder `y` forms a valid pair with the current song, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt[r]` stores how many already-processed songs have remain... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ No division by two or duplicate correction is required.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested pair loops:** Directly test every `i < :** - **Nested pair loops:** Directly test every `i < j` pair in `O(N^2)` time.
+- **Nested pair loops:** Directly test every `i < j` pair in `O(N^2)` time.
 - **Frequency array after a separate counting pass:** Count all sixty remainders, then combine complementary groups using products and combinations. It is also linear but requires careful handling of remainder zero and thirty.
 - **Set of remainders:** Presence alone loses multiplicity and cannot count index pairs.
 - **Remainder zero:** Its complement formula maps back to zero, not sixty.
@@ -117,8 +117,8 @@ No division by two or duplicate correction is required.
 - **All songs divisible by sixty:** The result is `N(N - 1)/2`, accumulated online as `0 + 1 + ... + N - 1`.
 - **Durations above sixty:** Modulo reduction retains all divisibility information.
 - **Input preservation:** The loop rebinds local `x` to its remainder but never changes `time`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Turn the repetition count into an array length.** The expr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The constraints guarantee that `times` is a positive integer, so the constructor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary doubling:** Build strings representing :** - **Binary doubling:** Build strings representing one, two, four, and eight copies, and append selected powers according to the binary representation of `times`. This uses $O(\log n)$ high-level decisions and answers the follow-up under an assumed $O(1)$ concatenation model, but actual materialized-string work still depends on the output length.
+- **Binary doubling:** Build strings representing one, two, four, and eight copies, and append selected powers according to the binary representation of `times`. This uses $O(\log n)$ high-level decisions and answers the follow-up under an assumed $O(1)$ concatenation model, but actual materialized-string work still depends on the output length.
 - **Repeated concatenation in a loop:** Start with an empty result and append the receiver $n$ times. It is easy to understand, but repeated creation and copying of progressively longer immutable strings can lead to quadratic character-copying behavior in engines that do not optimize concatenation with ropes.
 - **Native `String.prototype.repeat`:** The built-in method directly expresses the operation and is normally the production choice, but the problem explicitly forbids using it.
 - **Count equal to one:** The intermediate array has one entry, and joining it returns text equal to the receiver. No special branch is necessary.
@@ -94,8 +94,8 @@ The constraints guarantee that `times` is a positive integer, so the constructor
 - **Very large output:** A valid `times` value can still produce a string too large for a particular JavaScript engine's memory or maximum-string limit. The challenge assumes its test data fits the execution environment.
 - **Method extraction:** Saving `const f = str.replicate` and then calling `f(times)` loses the intended receiver in strict mode. The contract uses method-call syntax, which supplies the correct `this`.
 - **Prototype collision:** Installing `replicate` globally can overwrite another property with the same name. The isolated judge expects this assignment, whereas application code should coordinate prototype extensions carefully.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

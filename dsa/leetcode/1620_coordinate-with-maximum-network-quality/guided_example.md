@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of network towers `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ denotes the $$i^{\text{th}}$$ network tower with location $(x_{i}, y_{i})$ and quality factor $q_{i}$. All the coordinates are **integral coordinates** on the X-Y plane, and the distance between the two coordinates is the **Euclidean distance**.
+You are given an array of network towers `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ denotes the $i^{\text{th}}$ network tower with location $(x_{i}, y_{i})$ and quality factor $q_{i}$. All the coordinates are **integral coordinates** on the X-Y plane, and the distance between the two coordinates is the **Euclidean distance**.
 
 The objective is to compute `[2, 1]` from `{"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "radius": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,10 +71,7 @@ The contribution is calculated independently for every tower and then summed. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a tower `[x, y, q]`, the code computes
-
-$$
-d = \sqrt{(x-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +114,7 @@ The zero initialization also handles the case where every candidate has quality 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search only tower-centered bounding limits:** :** - **Search only tower-centered bounding limits:** One can compute the maximum input $x$ and $y$ and search `0..max_x` by `0..max_y`. That may reduce constant work, but the fixed `0..50` search is simpler and remains tiny under the stated constraints.
+- **Search only tower-centered bounding limits:** One can compute the maximum input $x$ and $y$ and search `0..max_x` by `0..max_y`. That may reduce constant work, but the fixed `0..50` search is simpler and remains tiny under the stated constraints.
 - **Search the union of reachable disks:** Points outside every radius have score zero, so candidates could be generated only near towers. Managing integer disk bounds and still preserving tie behavior adds complexity without improving the asymptotic result for a 51-by-51 domain.
 - **Precompute a quality grid:** Each tower could add its signal to all reachable grid cells, producing the same $O(C^2T)$ upper bound while using $O(C^2)$ memory. The source instead computes one scalar score at a time and needs constant auxiliary space.
 - **Squared-distance reachability only:** Comparing `(x-i)**2 + (y-j)**2 <= radius**2` avoids a square root for the reachability test, but the square root is still required to calculate `q / (1 + d)`. It can be a minor numerical refinement, not a different algorithm.
@@ -127,8 +124,8 @@ The zero initialization also handles the case where every candidate has quality 
 - **A tower's floored contribution is zero:** The tower may be reachable yet add zero when its quality is too small relative to its distance. Adding zero is harmless and accurately follows the formula.
 - **All qualities are zero:** No candidate improves `mx = 0`, so the method returns `[0, 0]`, the lexicographically smallest non-negative coordinate.
 - **Flooring at the wrong time:** Each tower's quotient must be floored before summation. Flooring only the combined real-valued sum can produce a different and invalid score.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

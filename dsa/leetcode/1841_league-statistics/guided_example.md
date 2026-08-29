@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - The first `SELECT` describes the home team.
-- The second `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation without a union:** Joi:** - **Conditional aggregation without a union:** Join each team to matches where it is home or away and use `CASE` for perspective. It avoids doubling through a CTE but makes every aggregate expression more complex.
+- **Conditional aggregation without a union:** Join each team to matches where it is home or away and use `CASE` for perspective. It avoids doubling through a CTE but makes every aggregate expression more complex.
 - **Start from `Teams` with a left join:** This is necessary if teams with zero matches must appear with zero statistics.
 - **Plain `UNION`:** It can erase distinct match appearances that happen to produce identical projected values and must not replace `UNION ALL`.
 - **Draw:** Both perspective rows receive score one, and each side’s goals for equal the other side’s goals against.
@@ -100,8 +99,8 @@ We maintain the core conceptual parameters and state variables:
 - **Team with no matches:** The exact inner-join query omits it rather than returning zeros.
 - **Unique team name dependency:** Grouping by `team_id` relies on its unique Teams row to determine `team_name`; stricter SQL modes or other engines may prefer grouping by both.
 - **Indexes:** Indexes on team identifiers help joins, but they do not change the query’s logical result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

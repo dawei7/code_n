@@ -60,7 +60,7 @@ Only letters that are still eligible to survive or be removed by a future star r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A star removes itself as part of the operation.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ By induction, after the entire input, `ans` is exactly the final string.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutable two-pointer buffer:** Convert characte:** - **Mutable two-pointer buffer:** Convert characters to a list and overwrite positions while tracking the current survivor length. It can use the input-sized buffer in place and has the same linear time.
+- **Mutable two-pointer buffer:** Convert characters to a list and overwrite positions while tracking the current survivor length. It can use the input-sized buffer in place and has the same linear time.
 - **Repeated string slicing:** Removing a letter and star from immutable strings can cause $O(n^2)$ total copying.
 - **Search left for each star:** Walking backward over already removed positions also risks quadratic time unless extra links are maintained.
 - **No stars:** Every letter is appended, and the original string is returned.
@@ -109,8 +109,8 @@ By induction, after the entire input, `ans` is exactly the final string.
 - **Validity guarantee:** It ensures every `pop` has a corresponding retained letter.
 - **Uniqueness:** Stack matching produces the same survivor string implied by all valid operation orders.
 - **Large input:** Each character causes only one constant-time stack operation, so length `10^5` is handled efficiently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,7 +74,7 @@ avoids copying elements back a second time.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `q1` already contains the existing stack in top-to-b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ the next top is 2, and no further reorganization is necessary.
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-queue rotation:** Append `x` to the only q:** - **One-queue rotation:** Append `x` to the only queue, then move each older front element to the back so `x` rotates to the front. It satisfies the follow-up, has the same $O(n)$ push and $O(1)$ pop behavior, and matches the manifest summary rather than the exact source.
+- **One-queue rotation:** Append `x` to the only queue, then move each older front element to the back so `x` rotates to the front. It satisfies the follow-up, has the same $O(n)$ push and $O(1)$ pop behavior, and matches the manifest summary rather than the exact source.
 - **Cheap push, expensive pop with two queues:** Always append to the main queue in $O(1)$; for pop, transfer all but its last element to the second queue. It shifts the linear cost to removals and may be preferable when pushes greatly outnumber pops.
 - **Ordinary list as a stack:** Python could append and pop at the same end in amortized $O(1)$ time, but that would evade the requirement to implement the behavior using queue operations.
 - **First push:** With no old values to transfer, the new element becomes the front after a constant-time swap.
@@ -128,8 +128,8 @@ the next top is 2, and no further reorganization is necessary.
 - **Maximum operation count:** At most 100 calls are made, but the complexity reasoning remains valid for larger sequences.
 - **Invalid empty access:** The reference guarantees it does not occur. A reusable production class might raise a documented exception or return a sentinel, but adding that behavior is outside this contract.
 - **Queue-operation restriction:** The implementation uses append-to-back, remove-from-front, front peek, size, and emptiness only. The reference swap exchanges queue identities and does not violate FIFO access.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

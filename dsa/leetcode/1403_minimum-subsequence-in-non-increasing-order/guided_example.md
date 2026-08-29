@@ -61,7 +61,7 @@ Therefore it is enough to sort values in descending order and examine prefixes. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a size-$r$ selection contains value $a$ while an uns... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `[4,3,10,9,8]`, descending order is `[10,9,8,4,3]`. Choosing 10 alone gives 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort ascending and pop from the end:** It make:** - **Sort ascending and pop from the end:** It makes the same greedy choices but mutates a working list and is slightly less direct.
+- **Sort ascending and pop from the end:** It makes the same greedy choices but mutates a working list and is slightly less direct.
 - **Max-heap:** Repeatedly extract the largest value until the sum condition holds. It also costs $O(n\log n)$ and needs heap construction.
 - **Counting frequencies:** Values lie between one and 100, so scan a frequency array from 100 downward for $O(n+100)$ time.
 - **Choose arbitrary large-enough subset:** It may satisfy the inequality but fail minimum size or maximum-sum tie breaking.
@@ -112,8 +112,8 @@ For `[4,3,10,9,8]`, descending order is `[10,9,8,4,3]`. Choosing 10 alone gives 
 - **Already descending input:** `sorted` still creates a copy, but the greedy order is unchanged.
 - **Input immutability:** Using `sorted` rather than `sort` leaves `nums` untouched.
 - **Output ordering:** Appending from the descending scan directly satisfies non-increasing order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

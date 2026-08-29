@@ -75,7 +75,7 @@ When $s[i:i+j+1]$ has been processed, `x` is exactly its decimal value, and its 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every start index $i$, the inner loop begins with `x = 0... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The loop also stops when `i + j >= n`, preventing access beyond the end of the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search per query:** Scanning all substrings fo:** - **Search per query:** Scanning all substrings for every target repeats enormous work and is infeasible for $10^5$ queries.
+- **Search per query:** Scanning all substrings for every target repeats enormous work and is infeasible for $10^5$ queries.
 - **Enumerate every substring:** Precomputing all $O(n^2)$ substrings ignores the 30-bit target bound and uses too much time and space.
 - **Convert slices with `int(..., 2)`:** This is simpler syntactically but repeatedly copies and reparses characters; incremental shifting reuses the previous value.
 - **Target zero:** The correct answer is the earliest one-character `"0"`, never a longer run of zeros.
@@ -124,8 +124,8 @@ The loop also stops when `i + j >= n`, preventing access beyond the end of the s
 - **No occurrence:** Dictionary `get` returns `[-1, -1]` without a separate branch.
 - **String shorter than 32:** The boundary check ends extension at the string's last character.
 - **XOR inversion:** The target must be `first ^ second`; XORing either operand twice cancels it, which is why no equation solving beyond that is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

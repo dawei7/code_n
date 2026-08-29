@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `daysLate` where $\text{daysLate}[i]$ indicates how many days late the $$i^{\text{th}}$$ book was returned.
+You are given an integer array `daysLate` where $\text{daysLate}[i]$ indicates how many days late the $i^{\text{th}}$ book was returned.
 
 The penalty is calculated as follows:
 

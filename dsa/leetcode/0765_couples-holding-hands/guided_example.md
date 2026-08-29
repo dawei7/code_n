@@ -59,7 +59,7 @@ The solution unions `a` and `b` in a disjoint-set structure. After all seat pair
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Seats `0` and `1` must ultimately hold one couple, as must s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ No person from that component sits in a seat pair connected to a different compo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy physical swapping with a position map:*:** - **Greedy physical swapping with a position map:** For every seat pair, locate the first person’s partner and swap it into place. This gives a direct `O(n)` solution when positions are updated.
-- **- **Search for partners linearly:** It is easy to :** - **Search for partners linearly:** It is easy to implement but can cost `O(n^2)`.
-- **- **Union by size or rank:** Adding it supplies th:** - **Union by size or rank:** Adding it supplies the strongest standard near-constant union-find guarantee.
+- **Greedy physical swapping with a position map:** For every seat pair, locate the first person’s partner and swap it into place. This gives a direct `O(n)` solution when positions are updated.
+- **Search for partners linearly:** It is easy to implement but can cost `O(n^2)`.
+- **Union by size or rank:** Adding it supplies the strongest standard near-constant union-find guarantee.
 
 ---
 

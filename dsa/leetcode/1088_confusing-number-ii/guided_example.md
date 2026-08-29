@@ -63,7 +63,7 @@ Leading zeros are useful here. They let one fixed-depth tree represent numbers w
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The decimal text `s = str(n)` fixes the number of positions ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Finally, `x != y` is true exactly for a confusing number. Converting that Boolea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count valid numbers minus unchanged rotations::** - **Count valid numbers minus unchanged rotations:** Every confusing number is rotatable but not strobogrammatic. Decimal-prefix combinatorics can count all valid numbers no greater than `n` and subtract those equal to their rotation, achieving the package’s stated polynomial-in-$D$ bound with more intricate boundary logic.
+- **Count valid numbers minus unchanged rotations:** Every confusing number is rotatable but not strobogrammatic. Decimal-prefix combinatorics can count all valid numbers no greater than `n` and subtract those equal to their rotation, achieving the package’s stated polynomial-in-$D$ bound with more intricate boundary logic.
 - **Enumerate by arithmetic DFS without digit limit state:** Start from each nonzero valid leading digit, append valid digits, and stop a branch once its value exceeds `n`. This avoids padded zeros and is often easier to visualize, but still enumerates every valid candidate.
 - **Check every integer through `n`:** Rotating each integer is straightforward but costs $O(nD)$ and wastes most work on numbers containing invalid digits.
 - **Memoization warning:** Caching only `(pos, limit)` would be incorrect because different prefixes `x` can rotate differently at the leaf. A polynomial digit DP must track enough relational information or count valid and unchanged numbers separately.
@@ -118,8 +118,8 @@ Finally, `x != y` is true exactly for a confusing number. Converting that Boolea
 - **Candidate zero:** It is generated as all leading zeros but rejected as unchanged, preserving the inclusive domain beginning at one.
 - **Upper-bound equality:** When all chosen digits match `n` and are valid, the candidate `n` itself is checked because the interval is inclusive.
 - **Maximum digit length:** The recursion depth is at most ten under the stated constraint, so Python recursion limits are not a concern.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

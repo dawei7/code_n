@@ -51,7 +51,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated range AND:** Decrease `x` and maintai:** - **Repeated range AND:** Decrease `x` and maintain the cumulative AND until zero. Correct but can be far slower.
+- **Repeated range AND:** Decrease `x` and maintain the cumulative AND until zero. Correct but can be far slower.
 - **Loop to find highest power of two:** Repeatedly shift `n` right; it explicitly takes $O(\log n)$ time and reaches the same formula.
 - **Use logarithms:** Floating-point `log2` can introduce precision issues for large integers; `bit_length` is exact.
 - **`n = 1`:** Highest power is one and answer is zero; interval `[0,1]` has AND zero.
@@ -101,8 +101,8 @@ Synthesize the final answer directly from validated sub-states.
 - **No overflow:** Python shifts arbitrary-precision integers safely.
 - **No mutation:** `n` is read once.
 - **Direct formula:** It is not merely a shortcut; it follows from an exact attainable upper bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

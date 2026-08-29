@@ -51,7 +51,7 @@ CTE `T` collects every distinct start and end timestamp per employee. `UNION DIS
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `T` collects every distinct start and end timestamp per ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ CTE `S` joins each event segment with all shifts of the same employee that cover
 
 ## 6. Traps This Instance Exposes
 
-- **- **true sweep line:** Sort start and end events p:** - **true sweep line:** Sort start and end events per employee, update an active count, and integrate pair counts between timestamps. This can achieve $O(m\log m)$ and matches the manifest summary.
+- **true sweep line:** Sort start and end events per employee, update an active count, and integrate pair counts between timestamps. This can achieve $O(m\log m)$ and matches the manifest summary.
 - **Window deltas:** Encode starts as plus one and ends as minus one, order end events before starts at equal timestamps, and use cumulative sums for maximum concurrency.
 - **Pairwise duration self-join:** This is the exact `U` method and naturally implements pairwise total duration, but is quadratic for dense overlaps.
 - **Touching shifts:** Strict `end > start` excludes zero-duration contact.
@@ -100,8 +100,8 @@ CTE `S` joins each event segment with all shifts of the same employee that cover
 - **Gap between shifts:** A consecutive event segment covered by no shift produces no `S` row. This is correct because zero active shifts cannot increase an employee's maximum.
 - **Pairwise versus union duration:** `U` sums each pair's intersection, not the length of time during which at least two shifts are active. Triple-overlap minutes are therefore counted three times, exactly as the example's pair list requires.
 - **Why employees remain present:** Every valid shift covers the segment from its start to the next event at or before its end, so `S` supplies at least one row for an employee with shifts, including employees with no overlap.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

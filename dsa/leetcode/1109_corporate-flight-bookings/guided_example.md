@@ -57,7 +57,7 @@ means that every prefix sum from this point onward includes the booking.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The answer list has indices zero through `n - 1`, while flig... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ When `last == n`, there is no array position after the final flight. The booking
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct range updates:** Add seats to every cov:** - **Direct range updates:** Add seats to every covered flight for every booking. It is easy to understand but can require $O(Bn)$ time.
+- **Direct range updates:** Add seats to every covered flight for every booking. It is easy to understand but can require $O(Bn)$ time.
 - **Fenwick tree:** Range additions and point queries can solve the problem, but all bookings are known before one final output pass, so a difference array is simpler.
 - **Segment tree:** Supports more dynamic query patterns than needed and adds substantial implementation overhead.
 - **Booking for one flight:** Start and cancellation are adjacent, so the contribution appears in exactly one prefix value.
@@ -111,8 +111,8 @@ When `last == n`, there is no array position after the final flight. The booking
 - **Input order:** Boundary additions commute, so sorting bookings is unnecessary.
 - **One flight:** Every valid booking covers that flight, and all seat counts accumulate at the sole index.
 - **Iterator conversion:** Returning `accumulate(ans)` directly would return an iterator rather than the required list, so `list` is essential.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

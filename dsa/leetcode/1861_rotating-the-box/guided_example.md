@@ -51,7 +51,7 @@ If the input has `m` rows and `n` columns, the rotated result has `n` rows and `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the input has `m` rows and `n` columns, the rotated resul... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If the input has `m` rows and `n` columns, the rotated result has `n` rows and `
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply gravity before rotating:** In the origin:** - **Apply gravity before rotating:** In the original orientation, post-rotation downward corresponds to moving stones right. This can work but requires careful equivalence reasoning.
+- **Apply gravity before rotating:** In the original orientation, post-rotation downward corresponds to moving stones right. This can work but requires careful equivalence reasoning.
 - **Write directly into the final matrix:** Rotation and falling can be combined segment by segment, reducing phases but increasing index complexity.
 - **No stones:** Rotation copies obstacles and empties, and gravity makes no changes.
 - **No empty cells:** Every deque remains empty and all stones stay after rotation.
@@ -98,8 +98,8 @@ If the input has `m` rows and `n` columns, the rotated result has `n` rows and `
 - **Output placeholders:** Every `null` is overwritten during complete rotation before gravity begins.
 - **Deque order:** `popleft` selects the lowest reachable empty, while appending a moved stone’s origin preserves ordering.
 - **Guaranteed initial rest:** The algorithm does not rely critically on it; the gravity phase still settles any represented stones correctly after rotation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

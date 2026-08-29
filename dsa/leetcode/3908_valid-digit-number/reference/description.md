@@ -31,7 +31,7 @@ Return `true` when the decimal representation of `n` contains `x` at least once 
 
 - **Output:** true
 
-- **Explanation:** The number contains digit 0 at index 1. It does not start with 0, so it satisfies both conditions. Thus, the answer is `true`​​​​​​​.
+- **Explanation:** The number contains digit 0 at index 1. It does not start with 0, so it satisfies both conditions. Thus, the answer is `true`.
 
 #### Example 2
 
@@ -51,6 +51,6 @@ Return `true` when the decimal representation of `n` contains `x` at least once 
 
 ### 4. Constraints
 
-- $0 \le n \le 10^{5}​​​​​​​$
+- $0 \le n \le 10^{5}$
 
 - $0 \le x \le 9$

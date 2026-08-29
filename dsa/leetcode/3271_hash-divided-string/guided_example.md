@@ -51,7 +51,7 @@ For group start `i`, accumulator `t` begins at zero. The inner loop visits indic
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For group start `i`, accumulator `t` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After summing all `k` indices, `t % 26` is the required hash value. Adding that 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Slice each group:** `s[i:i+k]` with a sum comp:** - **Slice each group:** `s[i:i+k]` with a sum comprehension is readable but creates temporary substrings. Index traversal avoids those copies.
+- **Slice each group:** `s[i:i+k]` with a sum comprehension is readable but creates temporary substrings. Index traversal avoids those copies.
 - **Prefix sums of alphabet indices:** They can answer every group sum in constant time after $O(n)$ preprocessing, but groups are disjoint and every character must already be read once.
 - **Incremental modulo:** Updating `t = (t + value) % 26` per character is equivalent and can bound sums for huge groups, though current bounds do not require it.
 - **String concatenation:** Adding one character to a result string each iteration may cause repeated copying. List plus join has predictable linear construction.
@@ -105,8 +105,8 @@ After summing all `k` indices, `t % 26` is the required hash value. Adding that 
 - **Off-by-one boundary:** `range(i,i+k)` includes exactly `k` indices and excludes the first character of the next group, which is processed by the following outer iteration.
 - **Deterministic compression:** Each fixed group produces exactly one letter regardless of earlier groups, so the algorithm needs no carried state between groups. Resetting `t` to zero is essential; retaining the previous sum would make later hashes depend on unrelated characters and violate the definition.
 - **Hash collisions:** Different groups may produce the same remainder and output letter. This is expected because the operation is a many-to-one transformation; the task asks for the hash string, not reconstruction of the source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

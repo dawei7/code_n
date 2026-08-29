@@ -26,7 +26,7 @@ The operation `get(index, snap_id)` must return the value stored at `index` in t
 - `operations`: an ordered list of at most $5 \cdot 10^4$ method calls represented in cOde(n) as `[method, args]` pairs.
 - `set(index, val)`: requires $0 \le \texttt{index} < \texttt{length}$ and $0 \le \texttt{val} \le 10^9$.
 - `snap()`: takes no arguments and returns the next consecutive snapshot ID beginning at `0`.
-- `get(index, snap_id)`: requires a valid index and $0 \le \texttt{snap_id} < k$, where $k$ is the number of preceding `snap()` calls.
+- `get(index, snap_id)`: requires a valid index and $0 \le \texttt{snap\_id} < k$, where $k$ is the number of preceding `snap()` calls.
 - Let $q$ be the number of operations, $s$ the number of stored value-change records, and $u$ the number of records retained for the index used by a particular `get` call.
 
 **Return value**

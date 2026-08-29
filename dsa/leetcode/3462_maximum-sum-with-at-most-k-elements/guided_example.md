@@ -51,7 +51,7 @@ The source sorts each row ascending and removes those candidates from the end wi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts each row ascending and removes those candid... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source sorts each row ascending and removes those candidates from the end wi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flatten every row completely:** Values below a:** - **Flatten every row completely:** Values below a row's top limit can never be selected and only increase work.
+- **Flatten every row completely:** Values below a row's top limit can never be selected and only increase work.
 - **Sort all eligible candidates globally:** This is correct but stores $O(L)$ candidates; the bounded heap stores only $k$.
 - **Max-heap row merge:** Push each row's largest available candidate and expose the next after selection. It can process only $k$ heap removals but needs row cursors; that is not the protected implementation.
 - **\(k=0\):** Every pushed value is removed, and `sum([])` returns zero.
@@ -96,8 +96,8 @@ The source sorts each row ascending and removes those candidates from the end wi
 - **Duplicate values:** Heap identity is irrelevant; equal copies from valid row slots can all be selected.
 - **Input mutation:** Sorting and popping alter every processed row.
 - **Complexity fidelity:** The number of heap operations is $L$, not merely $k$, in this exact implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

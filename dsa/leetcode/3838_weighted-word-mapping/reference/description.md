@@ -2,7 +2,7 @@
 
 You are given an array of strings `words`, where each string represents a word containing lowercase English letters.
 
-You are also given an integer array `weights` of length 26, where $\text{weights}[i]$ represents the weight of the $$i^{\text{th}}$$ lowercase English letter.
+You are also given an integer array `weights` of length 26, where $\text{weights}[i]$ represents the weight of the $i^{\text{th}}$ lowercase English letter.
 
 The **weight** of a word is defined as the **sum** of the weights of its characters.
 
@@ -65,7 +65,7 @@ Thus, the string formed by concatenating the mapped characters is `"yyy"`.
 
 - **Output:** "g"
 
-- **Explanation:** ​​​​​​​**
+- **Explanation:** **
 
 The weight of `"abcd"` is $7 + 5 + 3 + 4 = 19$. The result modulo 26 is $19 \% 26 = 19$, which maps to `'g'`.
 

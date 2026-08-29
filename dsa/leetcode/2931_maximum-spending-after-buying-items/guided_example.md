@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** $m * n$ integer matrix `values`, representing the values of $m * n$ different items in `m` different shops. Each shop has `n` items where the $$j^{\text{th}}$$ item in the $$i^{\text{th}}$$ shop has a value of $\text{values}[i][j]$. Additionally, the items in the $$i^{\text{th}}$$ shop are sorted in non-increasing order of value. That is, $\text{values}[i][j] \ge \text{values}[i][j + 1]$ for all $0 \le j < n - 1$.
+You are given a **0-indexed** $m * n$ integer matrix `values`, representing the values of $m * n$ different items in `m` different shops. Each shop has `n` items where the $j^{\text{th}}$ item in the $i^{\text{th}}$ shop has a value of $\text{values}[i][j]$. Additionally, the items in the $i^{\text{th}}$ shop are sorted in non-increasing order of value. That is, $\text{values}[i][j] \ge \text{values}[i][j + 1]$ for all $0 \le j < n - 1$.
 
 The objective is to compute `285` from `{"values": [[8, 5, 2], [6, 4, 1], [9, 7, 3]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -57,7 +57,7 @@ Tuple fields `i` and `j` also break value ties deterministically, but tied value
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The initial heap contains tuples `(row[-1], i, n - 1)` for e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The heap selects such a minimum. Repeating this argument proves the popped seque
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flatten and sort all values:** Global ascendin:** - **Flatten and sort all values:** Global ascending order is feasible here and sorting gives $O(mn\log(mn))$ time plus $O(mn)$ storage. The heap exploits already sorted rows.
+- **Flatten and sort all values:** Global ascending order is feasible here and sorting gives $O(mn\log(mn))$ time plus $O(mn)$ storage. The heap exploits already sorted rows.
 - **Choose the largest available item:** That puts expensive values on small multipliers and minimizes rather than maximizes the rearrangement objective.
 - **Dynamic programming over shop positions:** The state space across $m$ shops is enormous and unnecessary because the exchange argument determines the order.
 - **One shop:** The heap simply buys its row from right to left, pairing ascending values with increasing days.
@@ -105,8 +105,8 @@ The heap selects such a minimum. Repeating this argument proves the popped seque
 - **Row ordering guarantee:** If rows were not non-increasing, the current-frontier heap would not necessarily expose a global minimum and the proof would fail.
 - **Pairwise different note:** The algorithm does not rely on global uniqueness and remains correct with equal values.
 - **Heap invariant:** Immediately before every pop, each heap entry is the rightmost unbought item of its shop; pushing only `j - 1` preserves this fact inductively.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

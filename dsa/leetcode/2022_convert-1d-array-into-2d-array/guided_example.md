@@ -63,7 +63,7 @@ For each start, slice `original[i : i + n]` copies the next $n$ elements into on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the length matches, row zero must contain indices zero ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ start indices. Every produced slice has length $n$ because the feasibility check
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested row/column loops:** Explicitly fill a p:** - **Nested row/column loops:** Explicitly fill a preallocated matrix; same $O(L)$ time and output space.
+- **Nested row/column loops:** Explicitly fill a preallocated matrix; same $O(L)$ time and output space.
 - **`divmod` mapping:** Map each flat index to row and column, useful when slicing is unavailable.
 - **Iterator chunking:** Consume $n$ elements per row; must still validate the exact total.
 - **Too many original elements:** Return empty rather than discard extras.
@@ -116,8 +116,8 @@ start indices. Every produced slice has length $n$ because the feasibility check
 - **Independent rows:** Slicing prevents shared-row aliasing.
 - **Input preservation:** Slices copy row lists and do not modify `original`.
 - **Order:** The output follows original row-major order exactly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

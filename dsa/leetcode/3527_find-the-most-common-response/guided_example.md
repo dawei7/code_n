@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D string array `responses` where each $\text{responses}[i]$ is an array of strings representing survey responses from the $$i^{\text{th}}$$ day.
+You are given a 2D string array `responses` where each $\text{responses}[i]$ is an array of strings representing survey responses from the $i^{\text{th}}$ day.
 
 The objective is to compute `"b"` from `{"responses": [["a", "a", "b"], ["b"]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,7 +71,7 @@ The algorithm intentionally ignores the original order of words within a day. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter()` starts every unseen word at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Using an actual response avoids needing a special null value or a separate first
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count every raw entry:** This incorrectly give:** - **Count every raw entry:** This incorrectly gives extra weight to repeated answers within one day.
+- **Count every raw entry:** This incorrectly gives extra weight to repeated answers within one day.
 - **Use one global set:** This incorrectly removes repetitions across different days, even though each day should contribute separately.
 - **Sort all deduplicated responses:** Sorting could group and rank them, but it adds `O(S log S)` work where hashing gives expected linear time.
 - **Store a set of day indices per word:** It is correct but uses much more memory. Daily deduplication means one integer increment per word is enough.
@@ -127,8 +127,8 @@ Using an actual response avoids needing a special null value or a separate first
 - **Lowercase strings:** Ordinary Python string comparison matches lexicographic order for the documented lowercase alphabet.
 - **Hash collisions:** Python dictionaries resolve collisions internally; they affect constants, not logical correctness.
 - **Duplicate word many times in one day:** The temporary set ensures exactly one increment regardless of multiplicity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

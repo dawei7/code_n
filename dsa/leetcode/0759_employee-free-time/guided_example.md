@@ -55,7 +55,7 @@ The input guarantee that each employee’s own schedule is sorted and nonoverlap
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Individual employee identity no longer matters after asking ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,9 +97,9 @@ Touching intervals are merged. If one ends at time five and another begins at fi
 
 ## 6. Traps This Instance Exposes
 
-- **- **K-way merge employee schedules:** Because each:** - **K-way merge employee schedules:** Because each individual schedule is sorted, a heap can merge them before union processing. This avoids one global sort but adds heap logic.
-- **- **Sweep-line endpoints:** Track active employee :** - **Sweep-line endpoints:** Track active employee intervals through start and end events. It works but is more machinery than merging their union.
-- **- **Keep touching intervals separate:** That would:** - **Keep touching intervals separate:** That would emit a zero-length free interval, which is forbidden.
+- **K-way merge employee schedules:** Because each individual schedule is sorted, a heap can merge them before union processing. This avoids one global sort but adds heap logic.
+- **Sweep-line endpoints:** Track active employee intervals through start and end events. It works but is more machinery than merging their union.
+- **Keep touching intervals separate:** That would emit a zero-length free interval, which is forbidden.
 
 ---
 

@@ -21,7 +21,7 @@ A pair shows improvement only when the latest score is strictly greater than the
 
 **Inputs**
 
-- `Scores`: A table with integer `student_id`, text `subject`, integer `score`, and text `exam_date`. The composite primary key is `(student_id, subject, exam_date)`, and each score lies in $[0,100]$.
+- `Scores`: A table with integer `student_id`, text `subject`, integer `score`, and text `exam_date`. The composite primary key is `(student_id, subject, exam_date)`, and each score lies in `[0,100]`.
 
 Let $r$ be the number of rows in `Scores`.
 

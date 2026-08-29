@@ -51,7 +51,7 @@ The implementation uses `w[::-1]` in each insertion and query loop. Conceptually
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation uses `w[::-1]` in each insertion and quer... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The implementation uses `w[::-1]` in each insertion and query loop. Conceptually
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every query with every container word::** - **Compare every query with every container word:** It is direct but can require $O(CQ)$-scale repeated suffix checks in unfavorable inputs.
+- **Compare every query with every container word:** It is direct but can require $O(CQ)$-scale repeated suffix checks in unfavorable inputs.
 - **Dictionary children:** Storing only existing edges can use much less memory for sparse tries, at the cost of hash lookups and dictionary overhead.
 - **Sort reversed words:** Binary-searching prefix ranges is possible, but maintaining the shortest-and-earliest candidate for every query prefix is less direct.
 - **No nonempty common suffix:** Traversal remains at the root and returns the globally shortest, earliest container word.
@@ -104,8 +104,8 @@ The implementation uses `w[::-1]` in each insertion and query loop. Conceptually
 - **Index priority within equal length:** Front-to-back insertion provides the tie-break implicitly.
 - **Input mutation:** Container and query arrays are read only; reversed slices are temporary strings.
 - **Large constant memory:** $O(C)$ hides 26 references per node. A map-based node may be preferable when memory limits are tight.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

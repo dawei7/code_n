@@ -63,7 +63,7 @@ Returning false for a repeated state cannot hide a solution. Future possibilitie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Jug operations create many cycles.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ In the ordinary jug formulation, measuring `z` liters in either jug is accepted,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bézout and Euclid:** A target is measurable ex:** - **Bézout and Euclid:** A target is measurable exactly when it does not exceed `x + y` and is divisible by `gcd(x, y)`. Euclid computes the gcd in $O(\log\min(x,y))$ time and $O(1)$ iterative space. This matches the manifest but is not the checked-in source.
-- **- **Breadth-first search:** Use an explicit queue :** - **Breadth-first search:** Use an explicit queue with the same six transitions. It has the same reachable-state complexity, avoids recursion-depth failure, and can find a shortest operation sequence if parent links are retained.
-- **- **Full two-dimensional Boolean table:** Mark eve:** - **Full two-dimensional Boolean table:** Mark every `(i, j)` pair in an array. It gives deterministic lookup but allocates $O(xy)$ space despite only boundary states being reachable.
+- **Bézout and Euclid:** A target is measurable exactly when it does not exceed `x + y` and is divisible by `gcd(x, y)`. Euclid computes the gcd in $O(\log\min(x,y))$ time and $O(1)$ iterative space. This matches the manifest but is not the checked-in source.
+- **Breadth-first search:** Use an explicit queue with the same six transitions. It has the same reachable-state complexity, avoids recursion-depth failure, and can find a shortest operation sequence if parent links are retained.
+- **Full two-dimensional Boolean table:** Mark every `(i, j)` pair in an array. It gives deterministic lookup but allocates $O(xy)$ space despite only boundary states being reachable.
 
 ---
 

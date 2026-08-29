@@ -2,7 +2,7 @@
 
 You are given an integer `eventTime` denoting the duration of an event. You are also given two integer arrays `startTime` and `endTime`, each of length `n`.
 
-These represent the start and end times of `n` **non-overlapping** meetings that occur during the event between time $t = 0$ and time $t = eventTime$, where the $$i^{\text{th}}$$ meeting occurs during the time $[\text{startTime}[i], \text{endTime}[i]].$
+These represent the start and end times of `n` **non-overlapping** meetings that occur during the event between time $t = 0$ and time $t = eventTime$, where the $i^{\text{th}}$ meeting occurs during the time $[\text{startTime}[i], \text{endTime}[i]].$
 
 You can reschedule **at most **one meeting by moving its start time while maintaining the **same duration**, such that the meetings remain non-overlapping, to **maximize** the **longest** *continuous period of free time* during the event.
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Anti-theft security devices are activated inside a bank. You are given a **0-indexed** binary string array `bank` representing the floor plan of the bank, which is an `m x n` 2D matrix. $\text{bank}[i]$ represents the $$i^{\text{th}}$$ row, consisting of `'0'`s and `'1'`s. `'0'` means the cell is empty, while`'1'` means the cell has a security device.
+Anti-theft security devices are activated inside a bank. You are given a **0-indexed** binary string array `bank` representing the floor plan of the bank, which is an `m x n` 2D matrix. $\text{bank}[i]$ represents the $i^{\text{th}}$ row, consisting of `'0'`s and `'1'`s. `'0'` means the cell is empty, while`'1'` means the cell has a security device.
 
 The objective is to compute `8` from `{"bank": ["011001", "000000", "010100", "001000"]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,11 +65,7 @@ If `cur == 0`, the row is ignored and `pre` remains unchanged. This is important
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each binary string `row`,
-
-`row.count("1")`
-
-computes th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ For the first nonempty row, `pre` is zero. It creates no beam because no earlier
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store all nonempty row counts:** Then multiply:** - **Store all nonempty row counts:** Then multiply consecutive entries. It is correct but uses $O(m)$ storage that `pre` avoids.
+- **Store all nonempty row counts:** Then multiply consecutive entries. It is correct but uses $O(m)$ storage that `pre` avoids.
 - **Compare every pair of nonempty rows:** Most are blocked by an intermediate nonempty row and would add unnecessary quadratic work.
 - **Track device columns:** Columns do not affect whether a beam exists, so only row counts matter.
 - **All rows empty:** `pre` stays zero and the answer is zero.
@@ -126,8 +122,8 @@ For the first nonempty row, `pre` is zero. It creates no beam because no earlier
 - **Input preservation:** Row strings and the bank array are unchanged.
 - **Nearest earlier nonempty row:** `pre` always refers to this row, never merely the immediately preceding physical row.
 - **Vertical gap length:** Any number of empty rows is allowed and does not alter the product.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

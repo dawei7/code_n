@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Ask the same one-bit question twice.** For a legal bit pos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This query has a one only at position $i$ and zeros in every other one of the 30
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct two-call scan:** Replace `range(32)` w:** - **Correct two-call scan:** Replace `range(32)` with `range(30)`. This preserves the intended method and obeys the API domain.
+- **Correct two-call scan:** Replace `range(32)` with `range(30)`. This preserves the intended method and obeys the API domain.
 - **One call per bit without restoration:** Mutations would accumulate and make later comparisons difficult to interpret; the paired call is what isolates and restores each bit.
 - **Query all zeros first:** It can reveal the current zero-bit count, but the state mutation and per-bit recovery still require carefully planned legal calls.
 - **Initial number zero:** Every valid bit comparison has `count1 < count2`, so no answer bit is set.
@@ -101,8 +101,8 @@ This query has a one only at position $i$ and zeros in every other one of the 30
 - **Unreliable does not mean safely ignored:** Once the contract disclaims an output, no proof may assume how the API handles it.
 - **Fixed call budget:** The corrected method uses two calls per each of 30 bits and requires no adaptive search.
 - **Source/manifest relationship:** The manifest's broad “toggle each legal position” summary describes the intended 30-bit algorithm, while the exact source actually toggles two illegal positions as well.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

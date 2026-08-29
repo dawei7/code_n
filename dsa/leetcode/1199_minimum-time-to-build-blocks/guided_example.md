@@ -71,7 +71,7 @@ It is important that the heap contains both original block times and previously 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Long build times should receive fewer split delays, while sh... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For blocks `[1, 2]` with split five, their only merge gives `2 + 5 = 7`. Both bl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over worker counts:** One :** - **Dynamic programming over worker counts:** One can model how many blocks or workers are handled, but the greedy optimal-merge structure gives a simpler $O(n\log n)$ solution.
+- **Dynamic programming over worker counts:** One can model how many blocks or workers are handled, but the greedy optimal-merge structure gives a simpler $O(n\log n)$ solution.
 - **Repeatedly sort the remaining values:** It finds the same two minima but can cost $O(n^2\log n)$ across all contractions.
 - **Linear search for two minima:** This avoids a heap but costs $O(n^2)$ total time.
 - **Binary search on the answer:** Test whether a proposed time permits enough worker splits and block assignments. This is possible but substantially harder to implement and prove.
@@ -121,8 +121,8 @@ For blocks `[1, 2]` with split five, their only merge gives `2 + 5 = 7`. Both bl
 - **Parallel versus additive time:** A sibling combination uses `split + max(x, y)`, not `split + x + y`, because the two child branches execute concurrently.
 - **Input mutation:** `heapify` and subsequent pops destroy the original block list. Copy before heapifying if caller-visible preservation is required.
 - **Positive split and build times:** These guarantees support placing longer work shallower and ensure no unusual benefit from unnecessary extra splitting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

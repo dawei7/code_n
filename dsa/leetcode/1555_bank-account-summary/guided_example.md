@@ -63,7 +63,7 @@ Ordinary `UNION` removes duplicate rows. Two legitimate transactions can have th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query combines the three streams with `UNION ALL`, which... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For such a user, the group sum contains only the initial credit and returns it u
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate incoming and outgoing aggregates:** A:** - **Separate incoming and outgoing aggregates:** Aggregate each transaction side by user and left join both to users. It is correct but needs null handling and more join logic.
+- **Separate incoming and outgoing aggregates:** Aggregate each transaction side by user and left join both to users. It is correct but needs null handling and more join logic.
 - **Conditional aggregation after joins:** Joining users to transactions in both roles can create multiplicative rows unless designed carefully.
 - **UNION instead of UNION ALL:** It is incorrect because equal-looking ledger effects are distinct financial events.
 - **User with no transactions:** The initial-credit branch guarantees one group row and preserves the balance.
@@ -113,8 +113,8 @@ For such a user, the group sum contains only the initial credit and returns it u
 - **Transaction dates:** They do not affect an all-time current-balance summary and are intentionally ignored.
 - **Any output order:** No sorting clause is required.
 - **Functional dependency:** Selecting `user_name` while grouping by primary-key `user_id` relies on MySQL recognizing that dependency.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

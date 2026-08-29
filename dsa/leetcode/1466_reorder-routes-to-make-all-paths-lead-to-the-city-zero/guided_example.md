@@ -51,7 +51,7 @@ For every city to reach zero, each edge must point from a child toward its paren
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every city to reach zero, each edge must point from a ch... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The problem therefore becomes: traverse the tree outward from zero and count the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS:** Store node, parent pairs on a:** - **Iterative DFS:** Store node, parent pairs on an explicit stack and add edge costs while visiting children. It avoids Python recursion-depth failure.
+- **Iterative DFS:** Store node, parent pairs on an explicit stack and add edge costs while visiting children. It avoids Python recursion-depth failure.
 - **Breadth-first search:** A queue can traverse outward from zero with the same labeled adjacency entries and count rule.
 - **Visited array:** It is valid but unnecessary for a tree when the parent is passed. It becomes necessary if cycles are allowed.
 - **Traverse original edges only:** This can fail to reach children whose roads point toward the current node. Artificial reverse entries are required for undirected exploration.
@@ -100,8 +100,8 @@ The problem therefore becomes: traverse the tree outward from zero and count the
 - **Parent sentinel:** `-1` cannot equal a valid city, so root processes all neighbors.
 - **Deep tree:** Prefer iterative traversal in Python if runtime recursion limits are not adjusted.
 - **No actual mutation:** The method counts required reversals; it does not need to rewrite the connection list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

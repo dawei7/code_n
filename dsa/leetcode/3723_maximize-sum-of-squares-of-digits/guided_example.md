@@ -82,7 +82,7 @@ The exchange argument also proves optimality, not just intuition. Any feasible d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The score is the sum of squared digits.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +133,7 @@ For `num = 5` and `sum = 20`, the construction gives two nines, a two, and two z
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming by position and remaining :** - **Dynamic programming by position and remaining sum:** A DP could maximize score for every digit count and sum, but the state range is enormous and unnecessary. Convexity of the square function gives the optimal digit multiset directly.
+- **Dynamic programming by position and remaining sum:** A DP could maximize score for every digit count and sum, but the state range is enormous and unnecessary. Convexity of the square function gives the optimal digit multiset directly.
 - **Try all digit distributions:** The number of compositions and permutations grows combinatorially. The exchange argument collapses all choices to nines, one remainder, and zeros.
 - **Spread the sum evenly:** Equal distribution minimizes rather than maximizes a convex square sum. Moving one unit from a smaller positive digit to a larger non-nine digit strictly raises the score.
 - **Construct the digits in ascending order:** The score would remain optimal, but the tie-breaking integer would be smaller. Descending order is required after choosing the multiset.
@@ -145,8 +145,8 @@ For `num = 5` and `sum = 20`, the construction gives two nines, a two, and two z
 - **Leading-zero restriction:** Positive `sum` guarantees at least one nonzero constructed digit, and descending placement puts it first.
 - **Very large `num`:** The method performs no recursion and no sum-sized DP. Its work is proportional only to the number of output digits.
 - **Use of the parameter name `sum`:** It shadows Python's built-in `sum` function, but this method never needs that built-in. The arithmetic refers consistently to the parameter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

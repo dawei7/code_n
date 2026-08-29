@@ -66,7 +66,7 @@ Keeping the two variables synchronized is important. After an update, `d` must d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `x`, the assignment expression `y := abs(x)` calcul... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ By induction, after the final element `ans` is the required answer for the entir
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort with a custom key:** Sorting by `(abs(x),:** - **Sort with a custom key:** Sorting by `(abs(x), -x)` and taking the first value works, but costs `O(n \log n)` time and extra storage or input mutation.
+- **Sort with a custom key:** Sorting by `(abs(x), -x)` and taking the first value works, but costs `O(n \log n)` time and extra storage or input mutation.
 - **Use `min` with a key:** `min(nums, key=lambda x: (abs(x), -x))` compactly expresses the same ordering, though the explicit scan makes the tie logic visible.
 - **Track only minimum absolute value:** Without storing the chosen signed value, the larger-value tie cannot be resolved.
 - **Return the first closest value:** This fails when `-a` appears before `a`.
@@ -121,8 +121,8 @@ By induction, after the final element `ans` is the required answer for the entir
 - **Single element:** It replaces the infinite sentinel and is returned.
 - **Maximum magnitudes:** Absolute values within the constraints are represented safely.
 - **Input preservation:** The method never sorts or modifies `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

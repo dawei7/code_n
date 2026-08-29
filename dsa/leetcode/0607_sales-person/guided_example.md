@@ -63,7 +63,7 @@ Selecting `s.name` is sound because `sales_id` is the primary key of `SalesPerso
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY sales_id` creates one group per salesperson after ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ maps the no-order null sum to zero. Therefore, both “no orders” and “only 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS` correlated subquery:** For each s:** - **`NOT EXISTS` correlated subquery:** For each salesperson, reject if an order joined to company RED exists. It directly expresses the anti-condition and can short-circuit after one match.
+- **`NOT EXISTS` correlated subquery:** For each salesperson, reject if an order joined to company RED exists. It directly expresses the anti-condition and can short-circuit after one match.
 - **`NOT IN` of RED salesperson IDs:** Works when the subquery cannot return `NULL`. `NOT EXISTS` is safer under nullable data.
 - **Filter non-RED rows in `WHERE`:** Incorrect because it can hide a RED row while leaving another order from the same salesperson.
 - **Inner join:** Incorrectly removes salespersons with no orders.
@@ -124,8 +124,8 @@ maps the no-order null sum to zero. Therefore, both “no orders” and “only 
 - **Functional dependency:** Grouping by primary key `sales_id` determines `s.name` in MySQL.
 - **No required order:** Avoid unnecessary `ORDER BY`.
 - **Why `COALESCE` matters:** `NULL = 0` is unknown, so no-order groups would otherwise fail the `HAVING` test.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

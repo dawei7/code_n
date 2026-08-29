@@ -93,7 +93,7 @@ Both products are twice 21, so 6 is returned.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `for` loop tries every integer `x` from 1 through `n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -150,7 +150,7 @@ The exact code does not use this simplified perfect-square formula to skip the l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Perfect-square test:** Compute $T=n(n+1)/2$, t:** - **Perfect-square test:** Compute $T=n(n+1)/2$, take its integer square root, and return the root only if its square is $T$. This follows the simplified identity and avoids scanning, but it is not the exact implementation explained above.
+- **Perfect-square test:** Compute $T=n(n+1)/2$, take its integer square root, and return the root only if its square is $T$. This follows the simplified identity and avoids scanning, but it is not the exact implementation explained above.
 - **Binary search:** Search for an integer whose square equals $T$. It costs $O(\log n)$ time and constant space.
 - **Running left and right sums:** Update prefix totals while scanning. This is also linear but carries more state than evaluating the closed formulas.
 - **Nested summation:** Recomputing both ranges for every candidate costs $O(n^2)$ and is unnecessary.
@@ -160,8 +160,8 @@ The exact code does not use this simplified perfect-square formula to skip the l
 - **Integer arithmetic:** Cross-multiplication avoids floating-point comparison and division rounding.
 - **First match:** At most one positive candidate can satisfy $x^2=T$.
 - **Manifest mismatch:** Complexity should be reasoned from the loop in the actual solution, not inferred from its mathematical summary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

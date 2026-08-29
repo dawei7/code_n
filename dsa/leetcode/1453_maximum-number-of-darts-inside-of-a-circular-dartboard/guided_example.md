@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Alice is throwing `n` darts on a very large wall. You are given an array `darts` where $\text{darts}[i] = [x_{i}, y_{i}]$ is the position of the $$i^{\text{th}}$$ dart that Alice threw on the wall.
+Alice is throwing `n` darts on a very large wall. You are given an array `darts` where $\text{darts}[i] = [x_{i}, y_{i}]$ is the position of the $i^{\text{th}}$ dart that Alice threw on the wall.
 
 The objective is to compute `4` from `{"darts": [[-2, 0], [2, 0], [0, 2], [0, -2]], "r": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The helper `possibleCenters(x1, y1, x2, y2)` computes those centers. Let the vec
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `possibleCenters(x1, y1, x2, y2)` computes those ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The midpoint `(mid_x, mid_y)` is the base point on that bisector. Drawing a segm
 
 ## 6. Traps This Instance Exposes
 
-- **- **Angular sweep around each anchor:** For each d:** - **Angular sweep around each anchor:** For each dart, compute the angular interval of centers at distance `r` that would also contain every other reachable dart, sort interval events, and find maximum overlap. This achieves the manifest's `O(n^2 log n)` time and `O(n)` space but requires careful wraparound and event ordering.
+- **Angular sweep around each anchor:** For each dart, compute the angular interval of centers at distance `r` that would also contain every other reachable dart, sort interval events, and find maximum overlap. This achieves the manifest's `O(n^2 log n)` time and `O(n)` space but requires careful wraparound and event ordering.
 - **Pair centers with squared-distance counting:** Compare squared distances with `r*r` to avoid a square root for every counted dart. Center coordinates are still floating-point, but this improves constants without changing the cubic bound.
 - **Try centers at dart positions only:** This is incorrect. An optimal circle's center need not coincide with any dart.
 - **Generate only one center per pair:** This can miss a better placement on the other side of the chord. Both perpendicular signs matter.
@@ -103,8 +103,8 @@ The midpoint `(mid_x, mid_y)` is the base point on that bisector. Drawing a segm
 - **Floating comparison at d versus 2r:** The early rejection has no epsilon. Integer-coordinate distance calculations are usually stable here, but a defensive geometric implementation may compare squared distances with a tolerance.
 - **Tolerance too large:** A generous epsilon could count points truly outside the board. The selected `1e-7` is intended only for floating rounding.
 - **Complexity reporting:** Report `O(n^3)` time and `O(1)` auxiliary space for this exact source. Reserve `O(n^2 log n)` and `O(n)` for an implemented angular sweep.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

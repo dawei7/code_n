@@ -67,11 +67,7 @@ A swap touches two distinct indices, so there are only two successful structural
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `diff` is:
-
-`sum(s[i] != goal[i] for i in range(n))`.
-
-Each ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,9 +112,9 @@ It is also necessary for transforming two unequal strings with one swap: a swap 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect mismatch indices:** Store up to three :** - **Collect mismatch indices:** Store up to three and stop early. It makes the cross-character test explicit, though Counter equality already guarantees it when there are two.
-- **- **Try every pair of indices:** This takes `O(n^2:** - **Try every pair of indices:** This takes `O(n^2)` swaps and repeated comparison, unnecessary once mismatch structure is known.
-- **- **Different lengths:** Return false immediately.:** - **Different lengths:** Return false immediately.
+- **Collect mismatch indices:** Store up to three and stop early. It makes the cross-character test explicit, though Counter equality already guarantees it when there are two.
+- **Try every pair of indices:** This takes `O(n^2)` swaps and repeated comparison, unnecessary once mismatch structure is known.
+- **Different lengths:** Return false immediately.
 
 ---
 

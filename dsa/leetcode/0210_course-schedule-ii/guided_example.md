@@ -89,7 +89,7 @@ still missing, so enqueuing `j` would be premature.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A course can be placed next in the answer only when none of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,7 +135,7 @@ constant-time availability test possible.
 
 ## 6. Traps This Instance Exposes
 
-- **- **DFS with three colors:** Mark each course unvi:** - **DFS with three colors:** Mark each course unvisited, active, or complete; an edge to an active course reveals a cycle, and courses appended after exploring descendants form a reverse postorder. It has the same $O(V+E)$ bounds but recursive Python implementations can reach depth $V$ and require careful reversal and cycle-state handling.
+- **DFS with three colors:** Mark each course unvisited, active, or complete; an edge to an active course reveals a cycle, and courses appended after exploring descendants form a reverse postorder. It has the same $O(V+E)$ bounds but recursive Python implementations can reach depth $V$ and require careful reversal and cycle-state handling.
 - **Stack instead of deque:** Kahn's algorithm remains correct if an available course is removed last-in-first-out. It merely selects a different valid topological ordering. The exact solution uses FIFO order with `popleft()`.
 - **Repeatedly scan for an available course:** It avoids a queue but can rescan many blocked vertices after every removal, degrading toward $O(V^2+E)$. Maintaining the zero-indegree frontier makes each availability transition explicit.
 - **No prerequisites:** Every course begins with indegree zero. The exact initialization queues courses `0` through `numCourses - 1`, and the returned list contains them all in that order.
@@ -146,8 +146,8 @@ constant-time availability test possible.
 - **Multiple prerequisites for one course:** Its indegree decreases once per prerequisite edge, and it is queued only after the last one is processed. This prevents a course from appearing after merely some of its requirements.
 - **Distinct-pair guarantee:** The reference says prerequisite pairs are distinct. If duplicate edges were accepted without normalization, both the initial count and later decrements would be duplicated consistently, so this implementation would often still balance them, but relying on duplicates as separate requirements would be an unnecessary representation of invalid input.
 - **Input preservation:** The algorithm mutates only its newly created graph, indegree array, deque, and answer. It reads but does not alter `prerequisites` or its pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a string `s` consisting only of characters `'a'` and `'b'`​​​​.
+You are given a string `s` consisting only of characters `'a'` and `'b'`.
 
 You can delete any number of characters in `s` to make `s` **balanced**. `s` is **balanced** if there is no pair of indices `(i,j)` such that `i < j` and $s[i] = 'b'$ and $s[j]= 'a'$.
 
@@ -36,4 +36,4 @@ Delete the characters at 0-indexed positions 3 and 6 ("aab<u>a</u>bb<u>a</u>b" -
 
 - $1 \le \text{s.length} \le 10^{5}$
 
-- $s[i]$ is `'a'` or `'b'`​​.
+- $s[i]$ is `'a'` or `'b'`.

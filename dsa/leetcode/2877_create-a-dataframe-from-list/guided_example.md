@@ -51,7 +51,7 @@ The solution passes both pieces directly to the pandas constructor:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution passes both pieces directly to the pandas const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution passes both pieces directly to the pandas constructor:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Create then rename:** `pd.DataFrame(student_da:** - **Create then rename:** `pd.DataFrame(student_data).rename(columns={0: 'student_id', 1: 'age'})` works but performs schema definition in a second, unnecessary step.
+- **Create then rename:** `pd.DataFrame(student_data).rename(columns={0: 'student_id', 1: 'age'})` works but performs schema definition in a second, unnecessary step.
 - **Dictionary of columns:** Transposing the rows into two lists and constructing from a dictionary is more verbose and allocates extra intermediates.
 - **Manual row loop:** Repeatedly appending rows to a DataFrame is slower and obscures the direct row-record representation.
 - **Empty input:** The explicit `columns` argument still creates an empty DataFrame with the two required column names.
@@ -94,8 +94,8 @@ The solution passes both pieces directly to the pandas constructor:
 - **Inner-list width:** The contract supplies two items per row. A malformed row with the wrong width can cause construction errors or missing data and is outside the valid input.
 - **Duplicate identifiers:** The constructor preserves them because it is not asked to enforce uniqueness or use identifiers as the index.
 - **Column-label order:** Labels must be `student_id` first and `age` second to match the positions in every inner list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

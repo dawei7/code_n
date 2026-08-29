@@ -71,7 +71,7 @@ The old full value $P$ is never needed. Two values with the same remainder behav
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the numeric value of the processed prefix is $P$, an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The answer list begins empty and receives exactly one entry for every character,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Parse every prefix:** Converting `word[:i+1]` :** - **Parse every prefix:** Converting `word[:i+1]` for each index copies and parses growing strings, leading to quadratic character work and enormous integers.
+- **Parse every prefix:** Converting `word[:i+1]` for each index copies and parses growing strings, leading to quadratic character work and enormous integers.
 - **Maintain the full integer once:** Arbitrary-precision growth still makes arithmetic increasingly expensive, while the remainder contains all necessary information.
 - **Prefix remainder recurrence:** The implemented method is the standard streaming solution and works even if digits arrive one at a time.
 - **Modulus one:** Every prefix is divisible, so the result contains only ones.
@@ -120,8 +120,8 @@ The answer list begins empty and receives exactly one entry for every character,
 - **Very long word:** The stored state never grows with the numeric prefix, preventing overflow and expensive big-integer operations.
 - **Positive modulus:** The constraint `m >= 1` guarantees modulo is defined and avoids division by zero.
 - **Output timing:** Append only after incorporating the current digit so index $i$ describes the prefix through $i$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

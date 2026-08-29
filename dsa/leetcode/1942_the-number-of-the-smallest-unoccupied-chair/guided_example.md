@@ -63,7 +63,7 @@ The target's busy entry is not inserted because the answer is already known and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At most $N$ friends can be present, so chair numbers $0$ thr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Induction over sorted arrivals proves every friend processed before the target r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear chair scan:** For each arrival, scan ch:** - **Linear chair scan:** For each arrival, scan chair states from zero upward. It is simple but can take $O(N^2)$ time.
+- **Linear chair scan:** For each arrival, scan chair states from zero upward. It is simple but can take $O(N^2)$ time.
 - **Allocate chairs lazily:** Keep a next-new-chair counter plus a heap only for released chairs. This also gives $O(N\log N)$ time and can avoid preloading all chair numbers.
 - **Separate event list:** Store arrival, leaving, and index tuples without changing `times`. It preserves the caller's data at the cost of another list.
 - **Arrival at a departure time:** The release condition uses `<=`, so the newly freed chair is eligible immediately.
@@ -113,8 +113,8 @@ Induction over sorted arrivals proves every friend processed before the target r
 - **No chairs freed before target:** Earlier friends occupy chairs from zero upward, so the target receives the next smallest number.
 - **Input mutation:** Rows gain original indices and the list is sorted in place; callers needing the original structure must pass a copy.
 - **Imported heap functions:** The exact source assumes `heapify`, `heappop`, and `heappush` are available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -6,9 +6,9 @@ You are given a 2D array of lamp positions `lamps`, where $\text{lamps}[i] = [\t
 
 When a lamp is turned on, it **illuminates its cell** and **all other cells** in the same **row, column, or diagonal**.
 
-You are also given another 2D array `queries`, where $\text{queries}[j] = [\text{row}_{j}, \text{col}_{j}]$. For the $$j^{\text{th}}$$ query, determine whether $grid[\text{row}_{j}][\text{col}_{j}]$ is illuminated or not. After answering the $$j^{\text{th}}$$ query, **turn off** the lamp at $grid[\text{row}_{j}][\text{col}_{j}]$ and its **8 adjacent lamps** if they exist. A lamp is adjacent if its cell shares either a side or corner with $grid[\text{row}_{j}][\text{col}_{j}]$.
+You are also given another 2D array `queries`, where $\text{queries}[j] = [\text{row}_{j}, \text{col}_{j}]$. For the $j^{\text{th}}$ query, determine whether $grid[\text{row}_{j}][\text{col}_{j}]$ is illuminated or not. After answering the $j^{\text{th}}$ query, **turn off** the lamp at $grid[\text{row}_{j}][\text{col}_{j}]$ and its **8 adjacent lamps** if they exist. A lamp is adjacent if its cell shares either a side or corner with $grid[\text{row}_{j}][\text{col}_{j}]$.
 
-Return *an array of integers *`ans`*,** where *$\text{ans}[j]$* should be *`1`* if the cell in the *$$j^{\text{th}}$$* query was illuminated, or *`0`* if the lamp was not.*
+Return *an array of integers *`ans`*,** where *$\text{ans}[j]$* should be *`1`* if the cell in the *$j^{\text{th}}$* query was illuminated, or *`0`* if the lamp was not.*
 
 ### 2. Function Contract
 

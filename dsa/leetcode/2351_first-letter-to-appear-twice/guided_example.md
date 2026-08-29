@@ -65,7 +65,7 @@ The Counter represents information about the processed prefix, not about the com
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter()` begins as an empty frequency mapping.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For `"abccbaacz"`, `a` is first at index zero, but its second occurrence is inde
 
 ## 6. Traps This Instance Exposes
 
-- **- **26-bit seen mask:** Test the bit for each char:** - **26-bit seen mask:** Test the bit for each character; if already set, return it, otherwise set it. This matches the manifest summary and uses one integer.
+- **26-bit seen mask:** Test the bit for each character; if already set, return it, otherwise set it. This matches the manifest summary and uses one integer.
 - **Boolean array of length 26:** It expresses first-seen state without full counts and remains constant-space.
 - **Set of seen letters:** If `c in seen`, return it; otherwise insert it. This is simpler than a Counter for the exact need.
 - **Compute all frequencies first:** Final counts do not reveal which second occurrence came earliest; scan order must be retained.
@@ -116,8 +116,8 @@ For `"abccbaacz"`, `a` is first at index zero, but its second occurrence is inde
 - **Lowercase alphabet:** At most 26 Counter keys exist.
 - **Input preservation:** Counting does not modify `s`.
 - **Counter availability:** The exact source relies on `Counter`, conventionally from `collections`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

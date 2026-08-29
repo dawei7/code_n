@@ -51,7 +51,7 @@ Call the two aliases `f1` and `f2`. In an `f1` row, `f1.follower` is a person wh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Call the two aliases `f1` and `f2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ therefore matches exactly when the same user satisfies both halves of the defini
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count incoming relationships, then filter with:** - **Count incoming relationships, then filter with `EXISTS`:** Group rows by `followee` to count each user's followers, and retain a group only when an `EXISTS` subquery finds that user in the `follower` column. This directly separates counting from eligibility and avoids multiplying incoming and outgoing degrees.
+- **Count incoming relationships, then filter with `EXISTS`:** Group rows by `followee` to count each user's followers, and retain a group only when an `EXISTS` subquery finds that user in the `follower` column. This directly separates counting from eligibility and avoids multiplying incoming and outgoing degrees.
 - **Intersection of role sets:** Build the set of users appearing as `follower`, intersect it with users appearing as `followee`, and join that set to incoming counts. This mirrors the definition very clearly but may require more CTEs.
 - **`COUNT(*)` instead of `COUNT(DISTINCT ...)`:** It is unsafe with the current two-way join because every outgoing relationship repeats all incoming relationships. It becomes safe only after the eligibility check is restructured so each incoming row appears once.
 - **User follows many accounts:** The distinct count prevents those outgoing rows from inflating the number of people who follow the user.
@@ -96,8 +96,8 @@ therefore matches exactly when the same user satisfies both halves of the defini
 - **Self-follow relationships:** The schema promises that none exist. If they did, one self-edge alone would satisfy both roles, which may or may not match the intended social definition.
 - **Duplicate relationships:** The composite primary key excludes them. `DISTINCT` nevertheless protects the count from duplicates created by the join's multiple outgoing matches.
 - **Alias naming:** The CTE column named `followee` actually stores a direct follower. Reading it by its source expression, `f2.follower`, prevents a direction mistake during review.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

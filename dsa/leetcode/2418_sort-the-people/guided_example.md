@@ -69,11 +69,7 @@ visits those positions in sorted order and extracts only the requested names. It
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The call
-
-`idx.sort(key=lambda i: -heights[i])`
-
-assigns ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ Notice that no association needs to be rebuilt after sorting. The association is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pair and sort:** Construct pairs such as `(hei:** - **Pair and sort:** Construct pairs such as `(height, name)`, sort them by descending height, and extract each name. This is equally asymptotic and often concise, but the exact solution's index permutation avoids duplicating the association into tuple objects.
+- **Pair and sort:** Construct pairs such as `(height, name)`, sort them by descending height, and extract each name. This is equally asymptotic and often concise, but the exact solution's index permutation avoids duplicating the association into tuple objects.
 - **Height-to-name dictionary:** Unique heights allow a map followed by a sort of the heights. It works in $O(n \log n)$ time and $O(n)$ space, but would be invalid without the distinct-height guarantee because duplicate keys could overwrite people.
 - **Sort both arrays in place:** A custom sort could swap names whenever it swaps heights. That can avoid an explicit index result but mutates the inputs and is easier to implement incorrectly because the arrays must remain synchronized.
 - **Counting sort:** Heights are bounded by $10^5$, so a bucket-based method could run in $O(n + H)$ time for height range $H$. Its memory and range-scanning cost are unnecessary for $n \le 1000$, and comparison sorting is simpler.
@@ -119,8 +115,8 @@ Notice that no association needs to be rebuilt after sorting. The association is
 - **Distinct heights:** This guarantee removes all tie ambiguity. If it were removed, the problem would need to specify how equal-height people should be ordered; Python's stable sort would retain their original relative order.
 - **Input preservation:** Neither original list is rearranged. Only the newly allocated index and result lists change, which can be useful when callers still need the original alignment.
 - **Descending versus ascending:** Omitting the minus sign would return the shortest person first. The sign inversion is the exact detail that converts Python's default ascending key order into the required descending height order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

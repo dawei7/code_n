@@ -81,7 +81,7 @@ that can be used at most once, so the two branches cover every subset.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the current state is still viable, the search first inclu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ prune can reject further expansion.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Increasing-candidate loop backtracking:** At e:** - **Increasing-candidate loop backtracking:** At each depth, loop from a `start` digit through 9 and recurse after choosing one. It visits combinations directly instead of representing explicit exclusion branches and has the same uniqueness principle.
+- **Increasing-candidate loop backtracking:** At each depth, loop from a `start` digit through 9 and recurse after choosing one. It visits combinations directly instead of representing explicit exclusion branches and has the same uniqueness principle.
 - **Enumerate all bitmasks:** Each mask from 0 through $2^9-1$ describes one subset. Check its bit count and sum, then emit matching masks. It is compact but less naturally pruned and still examines all 512 subsets.
 - **Combination library:** Generate `combinations(range(1, 10), k)` and filter by sum. It is concise and examines exactly $\binom{9}{k}$ candidates, but hides the search reasoning an interview solution may be expected to demonstrate.
 - **Minimum/maximum achievable-sum pruning:** With `r = k - len(t)` slots remaining, compare `s` against the sum of the next `r` smallest candidates and the `r` largest available digits. This can reject branches earlier but adds arithmetic not present in the exact source.
@@ -141,8 +141,8 @@ prune can reject further expansion.
 - **Filling all slots too early:** If `len(t) == k` while `s > 0`, the branch returns because adding another digit would violate the required size.
 - **No duplicate-output set:** Strictly increasing construction makes permutations impossible, so `ans` can remain a list and needs no deduplication pass.
 - **Input preservation:** `k` and `n` are integers and are never mutated. The changing state is confined to local parameters, `t`, and `ans`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

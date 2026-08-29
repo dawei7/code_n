@@ -59,7 +59,7 @@ When a popped index equals `len(arr) - 1`, BFS has reached the target. Because l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The queue starts with index zero, the visited set starts wit... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Each candidate `j` must lie inside the array and not yet be visited. A valid new
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bidirectional BFS:** Search simultaneously fro:** - **Bidirectional BFS:** Search simultaneously from index zero and the last index, expanding the smaller frontier. It has the same $O(n)$ worst-case bounds and can reduce practical work.
+- **Bidirectional BFS:** Search simultaneously from index zero and the last index, expanding the smaller frontier. It has the same $O(n)$ worst-case bounds and can reduce practical work.
 - **Repeated equal-value scans:** Looking through the full array for matches at every node is correct but can take $O(n^2)$ time.
 - **Keeping buckets after expansion:** Even with a precomputed map, scanning the same large list from every matching node can become quadratic. Removing the bucket is essential.
 - **Current index inside its own bucket:** It is harmless because `vis` already contains it, so it is never enqueued again.
@@ -107,8 +107,8 @@ Each candidate `j` must lie inside the array and not yet be visited. A valid new
 - **Negative values:** Dictionary keys support them exactly like positive values; only equality matters.
 - **Out-of-bounds adjacent index:** The range test rejects `-1` and `n` candidates safely.
 - **Mark on enqueue:** Delaying the visited mark until dequeue would allow the same index to enter the queue several times from one layer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

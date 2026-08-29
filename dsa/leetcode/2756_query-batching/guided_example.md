@@ -58,7 +58,7 @@ The queue is not merely a collection of keys. Keeping the resolver beside its ke
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `getValue` constructs and immediately returns a new Promise.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For example, suppose key `A` arrives while idle. It forms a one-key batch immedi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delay-first debounce:** Waiting `t` millisecon:** - **Delay-first debounce:** Waiting `t` milliseconds before the first dispatch could collect a larger initial batch, but it violates the required behavior because an idle batch must start immediately.
+- **Delay-first debounce:** Waiting `t` milliseconds before the first dispatch could collect a larger initial batch, but it violates the required behavior because an idle batch must start immediately.
 - **Wait for query completion before unlocking:** This would cap concurrency at one, yet it would measure the gap from response completion rather than dispatch time. A slow query would incorrectly delay later work beyond the stated throttle interval.
 - **One timer per incoming request:** Repeatedly scheduling timers complicates ordering and can produce duplicate flush attempts. The single cooldown timer established by the dispatch is sufficient.
 - **Key-to-resolver map:** A map can associate results by key, but it is unnecessary because the API guarantees aligned result order and keys are unique. The positional batch array is both smaller conceptually and faithful to the contract.
@@ -113,8 +113,8 @@ For example, suppose key `A` arrives while idle. It forms a one-key batch immedi
 - **Slow external queries:** Multiple batches may be in flight, but each callback closes over its own detached `batch`, so responses that finish out of order still resolve the correct Promises.
 - **Rejected external queries:** The local reference promises this cannot happen. Without that guarantee, the exact implementation would leave the affected Promises pending because it has no rejection callback.
 - **Mutable or repeated keys:** The contract guarantees unique keys. The implementation forwards each stored key value as received and relies only on response position, not object identity or a deduplication rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -71,9 +71,7 @@ The constraint guarantees `k` is at least the maximum UAM, so this index is alwa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After processing all logs, `len(ts)` is that user's UAM.
-
-Th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ Both users increment index one. The result `[0,2,0,0,0]` means zero users have U
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort logs by user and minute:** Deduplicate ad:** - **Sort logs by user and minute:** Deduplicate adjacent pairs and count runs in $O(n\log n)$ time without nested sets.
+- **Sort logs by user and minute:** Deduplicate adjacent pairs and count runs in $O(n\log n)$ time without nested sets.
 - **Global set of pairs:** `(user, minute)` pairs deduplicate correctly, but another grouping pass is still needed.
 - **Count every log:** It overcounts users who perform several actions in one minute.
 - **Global minute set:** It incorrectly merges different users' activity.
@@ -126,8 +124,8 @@ Both users increment index one. The result `[0,2,0,0,0]` means zero users have U
 - **No zero-UAM bucket:** Only users present in logs are considered.
 - **Output indexing:** Human UAM value $j$ maps to Python index $j-1$.
 - **Input preservation:** Sets summarize logs without modifying the input rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

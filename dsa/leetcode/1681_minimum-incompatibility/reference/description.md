@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `nums`​​​ and an integer `k`. You are asked to distribute this array into `k` subsets of **equal size** such that there are no two equal elements in the same subset.
+You are given an integer array `nums` and an integer `k`. You are asked to distribute this array into `k` subsets of **equal size** such that there are no two equal elements in the same subset.
 
 A subset's **incompatibility** is the difference between the maximum and minimum elements in that array.
 

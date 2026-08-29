@@ -63,7 +63,7 @@ The expression `nums1 + nums2` creates a new outer list containing references to
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Both inputs are already sorted, which would permit a linear ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The exact Python expression returns a list of two-element tuples rather than a l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer merge:** Compare the next ID in ea:** - **Two-pointer merge:** Compare the next ID in each already-sorted input, append the smaller one, and sum on equality. This achieves $O(n+m)$ time and $O(1)$ auxiliary state excluding output.
+- **Two-pointer merge:** Compare the next ID in each already-sorted input, append the smaller one, and sum on equality. This achieves $O(n+m)$ time and $O(1)$ auxiliary state excluding output.
 - **Fixed ID array:** Because IDs are bounded by $1000$, an array of totals can aggregate in linear time and then scan the fixed domain, using constant space relative to input size.
 - **Counter plus sorting:** The implemented method is concise and robust even if input order were not sorted, but it gives up the linear merge advantage.
 - **No common IDs:** Every input record appears once in the output after sorting.
@@ -117,8 +117,8 @@ The exact Python expression returns a list of two-element tuples rather than a l
 - **Input preservation:** List concatenation creates a new outer list and neither original input is changed.
 - **Tuple result records:** `sorted(cnt.items())` returns tuples. Convert with a list comprehension if a strict consumer requires inner lists.
 - **Manifest distinction:** The optimal two-pointer idea is documented as an alternative, while complexity claims for the exact solution reflect hashing and sorting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

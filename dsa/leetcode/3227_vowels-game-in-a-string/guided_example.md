@@ -51,7 +51,7 @@ The exact source tests whether at least one character belongs to `{"a","e","i","
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source tests whether at least one character belong... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source tests whether at least one character belongs to `{"a","e","i","
 
 ## 6. Traps This Instance Exposes
 
-- **- **Membership in the literal string `"aeiou"`:** :** - **Membership in the literal string `"aeiou"`:** Since there are only five vowels, `any(c in "aeiou" for c in s)` also has $O(n)$ time and constant space.
+- **Membership in the literal string `"aeiou"`:** Since there are only five vowels, `any(c in "aeiou" for c in s)` also has $O(n)$ time and constant space.
 - **Count every vowel:** Returning whether the count is positive is correct but scans the entire string even after finding the first vowel.
 - **Game-state dynamic programming:** Exponential substring states are unnecessary once the parity strategy is recognized.
 - **No vowels:** Alice cannot remove an odd-vowel substring and loses immediately.
@@ -99,8 +99,8 @@ The exact source tests whether at least one character belongs to `{"a","e","i","
 - **Single consonant:** Alice has no move.
 - **Single vowel:** Alice removes it.
 - **Lowercase guarantee:** The set contains lowercase vowels only; uppercase handling is unnecessary under the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

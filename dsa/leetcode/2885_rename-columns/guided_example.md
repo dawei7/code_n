@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `{'id': 'student_id', 'first': 'first_name', 'last': 'last_n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ to the `columns` parameter. Keys are labels pandas should look for on the column
 
 ## 6. Traps This Instance Exposes
 
-- **- **Non-in-place `rename`:** Return `students.rena:** - **Non-in-place `rename`:** Return `students.rename(columns=mapping)` to avoid changing the caller's DataFrame.
+- **Non-in-place `rename`:** Return `students.rename(columns=mapping)` to avoid changing the caller's DataFrame.
 - **Assign `students.columns` directly:** Supplying all four new labels can work, but it depends entirely on positional order and is less explicit about old-to-new correspondence.
 - **Rename cell contents:** `replace` on a Series would alter data, not headers, and would solve a different problem.
 - **Extra columns:** Any label not present in the mapping remains unchanged.
@@ -94,8 +94,8 @@ to the `columns` parameter. Keys are labels pandas should look for on the column
 - **Column order:** `rename` changes names without sorting or rearranging columns.
 - **Empty DataFrame:** Even with zero rows, its four column labels are renamed correctly.
 - **Input mutation:** Other references to `students` see the new labels because `inplace=true` is used.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

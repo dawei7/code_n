@@ -28,7 +28,7 @@ different types.
 **Inputs**
 
 - `amount`: Exactly three nonnegative integers for cold, warm, and hot cups,
-  with each entry in $[0,100]$.
+  with each entry in `[0,100]`.
 
 **Return value**
 

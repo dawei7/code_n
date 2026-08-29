@@ -88,7 +88,7 @@ Return an integer equal to the minimum number of groups in a partition where eve
 
 - `["code"]`
 
-​​​​​​​​​​​​​​All pairs of strings in each group are equivalent.
+All pairs of strings in each group are equivalent.
 
 ### 4. Constraints
 

@@ -70,7 +70,7 @@ No subtraction by one is needed. A zero-indexed sequence that included zero woul
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The requested sequence is one-indexed and begins with one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +117,9 @@ The base-nine representation is `11`, so the returned decimal integer is eleven.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a digit string:** Repeatedly take `n % 9:** - **Build a digit string:** Repeatedly take `n % 9`, prepend or collect each digit, reverse at the end, and convert to an integer. This is conceptually direct but uses `O(log N)` string storage.
-- **- **Brute-force decimal enumeration:** Test succes:** - **Brute-force decimal enumeration:** Test successive integers and skip those containing nine. Large gaps and repeated digit inspection make this far slower than direct conversion.
-- **- **Digit-counting plus binary search:** Count how:** - **Digit-counting plus binary search:** Count how many positive integers up to a bound avoid nine, then binary-search the smallest bound with count at least `n`. This generalizes to more complex forbidden-digit sets but is unnecessary here.
+- **Build a digit string:** Repeatedly take `n % 9`, prepend or collect each digit, reverse at the end, and convert to an integer. This is conceptually direct but uses `O(log N)` string storage.
+- **Brute-force decimal enumeration:** Test successive integers and skip those containing nine. Large gaps and repeated digit inspection make this far slower than direct conversion.
+- **Digit-counting plus binary search:** Count how many positive integers up to a bound avoid nine, then binary-search the smallest bound with count at least `n`. This generalizes to more complex forbidden-digit sets but is unnecessary here.
 
 ---
 

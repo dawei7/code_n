@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $$i^{\text{th}}$$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $$n^{\text{th}}$$ friend brings you to the $1^st$ friend.
+There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $i^{\text{th}}$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $n^{\text{th}}$ friend brings you to the $1^st$ friend.
 
 The objective is to compute `3` from `{"n": 5, "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -55,7 +55,7 @@ This is a one-based result because the problem labels friends from 1.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | With one friend, that friend wins.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ and returns `n` when that remainder is zero, otherwise `ans`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative Josephus recurrence:** It attains th:** - **Iterative Josephus recurrence:** It attains the manifest's $O(n)$ time and $O(1)$ space without changing the mathematics.
+- **Iterative Josephus recurrence:** It attains the manifest's $O(n)$ time and $O(1)$ space without changing the mathematics.
 - **List simulation:** Repeated middle deletion can cost $O(n^2)$ time and requires $O(n)$ storage.
 - **Queue rotation:** It models the rules clearly but takes $O(nk)$ time and $O(n)$ space.
 - **`n = 1`:** The sole friend wins immediately.
@@ -114,8 +114,8 @@ and returns `n` when that remainder is zero, otherwise `ans`.
 - **Original start friend:** The top-level numbering already begins at friend 1.
 - **Deterministic game:** No tie or choice affects the recurrence.
 - **Input scalars:** The function mutates no external state.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

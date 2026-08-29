@@ -51,7 +51,7 @@ Preserving items is crucial because a category such as T-Shirt must appear with 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Preserving items is crucial because a category such as T-Shi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Preserving items is crucial because a category such as T-Shirt must appear with 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Items LEFT JOIN Orders:** This is usually easi:** - **Items LEFT JOIN Orders:** This is usually easier to read and is logically equivalent to the stored right join.
+- **Items LEFT JOIN Orders:** This is usually easier to read and is logically equivalent to the stored right join.
 - **CASE WHEN instead of IF:** Conditional sums with `CASE` are more portable across SQL systems.
 - **Inner join:** It is incorrect because categories without orders disappear.
 - **No orders for a category:** Its preserved item rows contribute zero to all seven columns.
@@ -103,8 +103,8 @@ Preserving items is crucial because a category such as T-Shirt must appear with 
 - **Item with many orders:** Each joined order row contributes independently to its matching weekday.
 - **Completely empty Orders table:** Preserved item rows still create every category with zeros.
 - **Order referencing an item:** The join obtains its category from the unique `Items.item_id` row.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

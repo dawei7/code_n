@@ -68,7 +68,7 @@ Requiring direct predecessors is sufficient. Every graph edge is represented dir
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each node corresponds to one bit.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Other entries begin at `-1` to mean unreachable. Scores and positions are positi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy smallest available score first:** It of:** - **Greedy smallest available score first:** It often delays large scores, but unlocking effects can make a local choice globally suboptimal. Subset DP evaluates every feasible choice sequence.
+- **Greedy smallest available score first:** It often delays large scores, but unlocking effects can make a local choice globally suboptimal. Subset DP evaluates every feasible choice sequence.
 - **Enumerate all permutations:** There are `n!` possible orders before even checking edges. Subset merging reduces the state space to `2^n`.
 - **Backtracking without memoization:** Different orders repeatedly reach the same placed subset. Memoizing only the best profit for that subset is the decisive improvement.
 - **Standard topological sort:** Kahn's algorithm finds one valid order, not necessarily the profit-maximizing one.
@@ -127,8 +127,8 @@ Other entries begin at `-1` to mean unreachable. Scores and positions are positi
 - **Positive scores:** They make `-1` a safe unreachable sentinel. The same recurrence could support zero scores, but negative scores would require a different sentinel.
 - **Full-mask access:** `dp[-1]` refers to the last list element, which is exactly mask `2^n - 1`.
 - **DAG guarantee:** Without it, the full mask might remain unreachable and returning `-1` would expose invalid input rather than a meaningful profit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

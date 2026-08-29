@@ -69,9 +69,7 @@ The target is at least one second, so the four digits cannot all be zero; at lea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a valid pair, the list
-
-`[m // 10, m % 10, s // 10, s % ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ For digits `1000` with the finger initially on one, the first push costs only `p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all minute fields:** Trying values z:** - **Enumerate all minute fields:** Trying values zero through 99 and deriving seconds is still constant under fixed bounds, but the two-representation derivation is sharper.
+- **Enumerate all minute fields:** Trying values zero through 99 and deriving seconds is still constant under fixed bounds, but the two-representation derivation is sharper.
 - **Always use divmod form:** This can miss a cheaper borrowed-seconds entry such as 9:60 instead of 10:00.
 - **Press all four digits:** It is legal but may add unnecessary push and movement cost for leading zeros.
 - **Remove every zero:** Only leading zeros may be omitted; internal zeros carry place value.
@@ -128,8 +126,8 @@ For digits `1000` with the finger initially on one, the first push costs only `p
 - **Maximum target 6039:** Canonical form is 99:99, within both field limits.
 - **Positive costs:** Removing redundant leading presses is strictly beneficial or neutral in movement and strictly saves pushes.
 - **No state mutation outside helper:** Each candidate resets `prev` to `startAt`, correctly evaluating independent entry attempts.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

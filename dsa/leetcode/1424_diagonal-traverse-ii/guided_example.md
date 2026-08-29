@@ -71,11 +71,7 @@ The first component places all cells from diagonal zero before all cells from di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested loops visit every real cell:
-
-
-
-Each tuple stores... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +124,7 @@ No two distinct cells can share both `i+j` and `j` because those two numbers uni
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash-map diagonal groups:** Iterate rows from :** - **Hash-map diagonal groups:** Iterate rows from bottom to top, append each value to group `i+j`, then concatenate groups by identifier. This achieves $O(N)$ expected time and $O(N)$ space.
+- **Hash-map diagonal groups:** Iterate rows from bottom to top, append each value to group `i+j`, then concatenate groups by identifier. This achieves $O(N)$ expected time and $O(N)$ space.
 - **Breadth-first traversal:** Start at coordinate `(0,0)` and enqueue the next row start before the next column cell. Careful enqueue rules visit each ragged-grid cell once in output order.
 - **Sort by diagonal and negative row:** Tuple `(i+j, -i, v)` expresses the same order directly because rows should decrease within a diagonal.
 - **Sort by diagonal only:** This would rely on sort stability and the original collection order, which is top-to-bottom and therefore wrong within each diagonal.
@@ -138,8 +134,8 @@ No two distinct cells can share both `i+j` and `j` because those two numbers uni
 - **Highly ragged shape:** Missing rectangular positions are never materialized and have no effect.
 - **Duplicate values:** Coordinate keys, not values, determine order, so equal cell values cause no ambiguity.
 - **Manifest distinction:** The sorting source is correct but not linear; achieving the advertised time requires changing the implementation technique.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

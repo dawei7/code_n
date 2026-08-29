@@ -82,7 +82,7 @@ Notice that `a` and `b` disappear from the final expression. Thus every possible
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The identity can also be checked recursively.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,9 +127,9 @@ The boundary `n=1` is handled automatically: `1 \cdot 0 / 2=0`. This matches the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over every split:** One co:** - **Dynamic programming over every split:** One could define `dp[x]` as the minimum cost to reduce `x` and try every `a` from `1` to `x-1` using `dp[a] + dp[x-a] + a(x-a)`. This repeats work to rediscover that every candidate has the same value. A straightforward implementation costs at least quadratic time and linear storage, whereas the pair invariant yields the answer directly.
-- **- **Greedily peeling off one unit:** Repeatedly sp:** - **Greedily peeling off one unit:** Repeatedly splitting `x` into `1` and `x-1` produces costs `n-1,n-2,\ldots,1`, whose sum is `n(n-1)/2`. This is a valid constructive strategy, but simulating its `n-1` operations takes linear time and does not beat any other strategy in total cost.
-- **- **Always making balanced splits:** Balanced spli:** - **Always making balanced splits:** Balanced splitting may look attractive because an individual product reflects both child sizes, but it produces the same accumulated total. It changes the shape and depth of the split tree, not the set of final pairs that must be separated.
+- **Dynamic programming over every split:** One could define `dp[x]` as the minimum cost to reduce `x` and try every `a` from `1` to `x-1` using `dp[a] + dp[x-a] + a(x-a)`. This repeats work to rediscover that every candidate has the same value. A straightforward implementation costs at least quadratic time and linear storage, whereas the pair invariant yields the answer directly.
+- **Greedily peeling off one unit:** Repeatedly splitting `x` into `1` and `x-1` produces costs `n-1,n-2,\ldots,1`, whose sum is `n(n-1)/2`. This is a valid constructive strategy, but simulating its `n-1` operations takes linear time and does not beat any other strategy in total cost.
+- **Always making balanced splits:** Balanced splitting may look attractive because an individual product reflects both child sizes, but it produces the same accumulated total. It changes the shape and depth of the split tree, not the set of final pairs that must be separated.
 
 ---
 

@@ -73,7 +73,7 @@ This turns a potentially character-by-character pair comparison into one constan
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For any bit position, AND produces one only when that bit is... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The source obtains earlier words through `words[:i]` and enumerates that slice. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Keep only the maximum length per mask:** Map e:** - **Keep only the maximum length per mask:** Map each distinct mask to the longest word having that letter set, then compare mask pairs. Shorter words with the same mask can never produce a better product. This matches the manifest and can reduce practical comparisons.
+- **Keep only the maximum length per mask:** Map each distinct mask to the longest word having that letter set, then compare mask pairs. Shorter words with the same mask can never produce a better product. This matches the manifest and can reduce practical comparisons.
 - **Avoid prefix slices:** Iterate `for j in range(i)` and read `words[j]`. This preserves behavior while avoiding $O(N^2)$ reference-copy work and $O(N)$ temporary slice space.
 - **Use character sets per word:** Disjointness can be tested with set intersection, but integer masks are smaller and use one bitwise operation for the fixed alphabet.
 - **Compare raw characters:** Rechecking membership for every pair adds dependence on word lengths to the quadratic pair loop.
@@ -126,8 +126,8 @@ The source obtains earlier words through `words[:i]` and enumerates that slice. 
 - **Maximum word length:** Length affects only the product, not mask size. A thousand repeated characters still use one relevant bit.
 - **Exactly two words:** The one possible pair is tested when outer index 1 is processed.
 - **No empty words:** Every mask has at least one bit, consistent with the stated minimum word length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

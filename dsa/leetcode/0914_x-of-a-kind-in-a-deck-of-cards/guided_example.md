@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `deck` where $\text{deck}[i]$ represents the number written on the $$i^{\text{th}}$$ card.
+You are given an integer array `deck` where $\text{deck}[i]$ represents the number written on the $i^{\text{th}}$ card.
 
 The objective is to compute `true` from `{"deck": [1, 2, 3, 4, 4, 3, 2, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ A group size $x$ is valid exactly when $x$ divides every $c_i$. This is a common
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A group size $x$ is valid exactly when $x$ divides every $c_... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every group size:** Test $x=2$ through the:** - **Try every group size:** Test $x=2$ through the smallest frequency. This can take quadratic-style work and repeats divisibility information captured by the GCD.
+- **Try every group size:** Test $x=2$ through the smallest frequency. This can take quadratic-style work and repeats divisibility information captured by the GCD.
 - **Enumerate divisors of one frequency:** Then test each across all counts. It works but is more complex than reducing the GCD directly.
 - **Sort the deck into runs:** Frequencies can be obtained after $O(n\log n)$ sorting, but Counter counting is linear expected time and preserves input order.
 - **Check only the minimum frequency:** A size dividing the minimum may fail to divide another frequency; common divisibility is required.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Multiple groups for one value:** A frequency may be several times $x$ and is split into that many identical groups.
 - **Nonempty guarantee:** It avoids defining a GCD over an empty frequency collection.
 - **Return boolean only:** Constructing group arrays would consume unnecessary time and space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

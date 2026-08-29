@@ -35,7 +35,7 @@ that:
 
 - There could be multiple edges between two nodes in the tree after adding the edge of the query.
 
-Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the answer to the* $$i^{\text{th}}$$ *query.*
+Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the answer to the* $i^{\text{th}}$ *query.*
 
 ### 4. Examples
 

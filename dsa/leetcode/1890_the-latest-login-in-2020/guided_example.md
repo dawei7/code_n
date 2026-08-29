@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Group the retained rows by user.** `GROUP BY 1` groups by ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Half-open datetime range:** `time_stamp >= '20:** - **Half-open datetime range:** `time_stamp >= '2020-01-01' AND time_stamp < '2021-01-01'` expresses the same year and can be sargable with an index on `time_stamp`. It also avoids concerns about end-of-year fractional seconds.
+- **Half-open datetime range:** `time_stamp >= '2020-01-01' AND time_stamp < '2021-01-01'` expresses the same year and can be sargable with an index on `time_stamp`. It also avoids concerns about end-of-year fractional seconds.
 - **Window function:** Rank retained logins per user by timestamp descending and keep rank one. This is more machinery than a simple `MAX` when only the timestamp is requested.
 - **Correlated subquery:** Selecting rows equal to each user's latest 2020 timestamp can work but may repeat scans and is unnecessary for the two-column aggregate result.
 - **User with one 2020 login:** That row is both the group's minimum and maximum and is returned unchanged.
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **Boundary timestamps:** Midnight on `2020-01-01` and the end of `2020-12-31` both have year 2020 and qualify; `2021-01-01 00:00:00` does not.
 - **No ordering guarantee:** The absence of `ORDER BY` is intentional because any order is accepted. Application code should not rely on the sample's row sequence.
 - **Positional `GROUP BY`:** `GROUP BY 1` means `user_id` only because it is selected first. Naming the column explicitly would be more maintainable but returns the same result here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

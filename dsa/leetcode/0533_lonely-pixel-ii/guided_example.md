@@ -52,7 +52,7 @@ A qualifying black pixel at `(r, c)` must satisfy two coupled rules:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - its row and column each contain exactly `target` black pix... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The solution groups black pixels by column, counts black pixels per row, and the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count identical row patterns with tuples:** Ha:** - **Count identical row patterns with tuples:** Hash each qualifying row pattern and combine its frequency with column counts. It can make the intended $O(RC)$ time bound explicit while using $O(RC)$ space for patterns.
+- **Count identical row patterns with tuples:** Hash each qualifying row pattern and combine its frequency with column counts. It can make the intended $O(RC)$ time bound explicit while using $O(RC)$ space for patterns.
 - **Check every black pixel independently:** Recounting its row, column, and peer rows repeats substantial work.
 - **Columns with no black pixels:** They are absent from `g` and cannot contribute.
 - **Representative row has wrong count:** The column is skipped immediately.
@@ -98,8 +98,8 @@ The solution groups black pixels by column, counts black pixels per row, and the
 - **Repeated identical rows:** They are permitted and are exactly what the second rule may require.
 - **Several qualifying columns in the same rows:** Each column contributes its distinct set of coordinates.
 - **Rectangular guarantee:** Direct whole-row equality compares patterns of the same length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

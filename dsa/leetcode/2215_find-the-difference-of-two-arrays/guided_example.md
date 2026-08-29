@@ -71,7 +71,7 @@ The conversion does not sort the values. Set iteration order is not a promised n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `s1 - s2` creates a new set containing values... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The same reasoning with the sets reversed proves that every value in the second 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested scans with a result set:** For each val:** - **Nested scans with a result set:** For each value in one array, scan the other array to decide membership and insert qualifying values into a set, then repeat in reverse. This is logically correct but takes `O(nm)` time in the worst case.
+- **Nested scans with a result set:** For each value in one array, scan the other array to decide membership and insert qualifying values into a set, then repeat in reverse. This is logically correct but takes `O(nm)` time in the worst case.
 - **Frequency arrays over the bounded value range:** Because values lie between `-1000` and `1000`, two boolean arrays with an offset could mark presence and then enumerate the domain. This is also efficient for these constraints, but it depends on the small numeric range and normally emits values in sorted domain order; hash sets express the actual set operation more directly.
 - **Sort and use two pointers:** Sorting copies of both arrays would allow duplicate skipping and a linear merge afterward. Its total time is `O(n \log n + m \log m)`, and sorting the original lists in place would modify caller data unless copies were made.
 - **Symmetric difference:** `s1 ^ s2` finds every value that appears in exactly one set, but it loses which input owned the value. The required answer has two directional lists, so two subtractions are necessary unless the symmetric difference is partitioned again.
@@ -122,8 +122,8 @@ The same reasoning with the sets reversed proves that every value in the second 
 - **Arbitrary output order:** Converting a set with `list(...)` does not promise sorted order. This is contract-compliant; sorting would add unnecessary `O(k \log k)` work for an output of size `k`.
 - **Outer-list position:** Even though inner order is arbitrary, the two inner lists cannot be swapped. Index `0` always describes values exclusive to `nums1`, and index `1` always describes values exclusive to `nums2`.
 - **Input preservation:** Neither `set(nums1)` nor subtraction changes the original arrays. The result can be computed safely even if the caller retains and later reuses them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

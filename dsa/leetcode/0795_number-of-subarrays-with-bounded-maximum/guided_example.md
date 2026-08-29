@@ -81,7 +81,7 @@ The exact assignment is:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed threshold `x`, a subarray qualifies if and only ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,9 +122,9 @@ Every nonempty subarray has exactly one ending index, so summing these per-index
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single-pass last-valid-index method:** Track t:** - **Single-pass last-valid-index method:** Track the most recent element above `right` and the most recent element inside the allowed range. It also reaches $O(n)$ time but has a less immediately reusable counting proof.
-- **- **Monotonic deque for every ending index:** It c:** - **Monotonic deque for every ending index:** It can maintain window maxima, but here no fixed window length exists and threshold subtraction is simpler.
-- **- **Enumerate all subarrays:** Updating a running :** - **Enumerate all subarrays:** Updating a running maximum for each start still costs $O(n^2)$ time.
+- **Single-pass last-valid-index method:** Track the most recent element above `right` and the most recent element inside the allowed range. It also reaches $O(n)$ time but has a less immediately reusable counting proof.
+- **Monotonic deque for every ending index:** It can maintain window maxima, but here no fixed window length exists and threshold subtraction is simpler.
+- **Enumerate all subarrays:** Updating a running maximum for each start still costs $O(n^2)$ time.
 
 ---
 

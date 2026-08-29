@@ -1,8 +1,8 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
 
 ## pandas
@@ -12,7 +12,7 @@
 
 <!-- h4 for sections -->
 #### Algorithm
-​
+
 To later decide whether the brand of the second item sold by each user is their favorite brand, we first need to rank the orders for each seller by $\text{order}_{date}$ and then identify the second item.
 
 ```python
@@ -73,7 +73,7 @@ def market_analysis(users: pd.DataFrame, orders: pd.DataFrame, items: pd.DataFra
 ```
 
 ---
-​
+
 
 ## Database
 <!-- h3 for approaches -->
@@ -90,7 +90,7 @@ SELECT seller_id,
 FROM Orders
 ```
 
-We then select the $\text{item}_{brand}$ ​from the `Items` table to the subquery created earlier to later compare it with the $\text{favorite}_{brand}$ for each user. We also filter to only the second order since that's all we need for the comparison.
+We then select the $\text{item}_{brand}$ from the `Items` table to the subquery created earlier to later compare it with the $\text{favorite}_{brand}$ for each user. We also filter to only the second order since that's all we need for the comparison.
 
 ```sql
 SELECT a.seller_id, a.item_id, i.item_brand
@@ -125,6 +125,6 @@ LEFT JOIN(
     WHERE a.rnk = 2) b
 ON u.user_id = b.seller_id
 ```
-​
+
 <!-- an empty line to separate approaches -->
 <br>

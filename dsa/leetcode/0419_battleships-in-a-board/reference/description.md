@@ -22,12 +22,12 @@ Return the number of distinct horizontal or vertical battleships on `board`.
 
 ![](images/image.png)
 
-- **Input:** $board = [["X",".",".","X"],[".",".",".","X"],[".",".",".","X"]]$
+- **Input:** `board = [["X",".",".","X"],[".",".",".","X"],[".",".",".","X"]]`
 - **Output:** `2`
 
 #### Example 2
 
-- **Input:** $board = [["."]]$
+- **Input:** `board = [["."]]`
 - **Output:** `0`
 
 ### 4. Constraints

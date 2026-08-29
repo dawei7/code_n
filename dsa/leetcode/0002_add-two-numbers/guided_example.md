@@ -4,7 +4,7 @@ We will compute the sum of two numbers represented by linked lists in reverse di
 
 - **Input:** $l_1 = [9, 9, 9]$, $l_2 = [1]$
 - **Numerical meaning:** $999 + 1 = 1000$
-- **Required output:** $[0, 0, 0, 1]$
+- **Required output:** `[0, 0, 0, 1]`
 
 This instance is chosen because it exposes the three essential subtleties of digit-wise addition: unequal input lengths, cascading carry propagation across multiple positions, and a final lingering carry that appends a newly created node after both input lists have been exhausted.
 
@@ -54,7 +54,7 @@ We traverse the lists in lockstep while accumulating digits into a new resultant
 |---|---|
 | Active $l_1$ Node | $9 \to \text{next}$ |
 | Active $l_2$ Node | $1 \to \varnothing$ |
-| Result List Built | $[0]$ |
+| Result List Built | `[0]` |
 | Carry Forward | $1$ |
 
 ---

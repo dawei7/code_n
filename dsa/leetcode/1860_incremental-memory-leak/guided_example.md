@@ -51,7 +51,7 @@ asks whether at least one stick can supply the current request. If `i` exceeds t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | asks whether at least one stick can supply the current reque... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Phase-based arithmetic:** One can consume runs:** - **Phase-based arithmetic:** One can consume runs from the currently larger stick using sums of arithmetic sequences, but balancing and tie behavior make it substantially more complex.
+- **Phase-based arithmetic:** One can consume runs from the currently larger stick using sums of arithmetic sequences, but balancing and tie behavior make it substantially more complex.
 - **Priority queue:** A max-heap could choose the larger stick, but two direct comparisons are simpler and preserve the first-stick tie rule explicitly.
 - **Both memories zero:** The program crashes at second one without changing either amount.
 - **One memory zero:** The nonzero stick pays while it can; the zero stick is never selected as larger.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Returned time:** `i` is the failed second, not the number of successful allocations.
 - **Total-memory bound:** The complexity argument uses the sum of both capacities because every successful request reduces that total by `i`.
 - **No input mutation outside the call:** Integers are immutable; local parameters are rebound during simulation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

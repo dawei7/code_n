@@ -67,7 +67,7 @@ Removing all copies ensures future work considers only other prime factors and q
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each array value, local `n` is a working residual and `i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The code increments through composite candidates too, but only actual divisors a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Smallest-prime-factor sieve:** Precompute fact:** - **Smallest-prime-factor sieve:** Precompute factors through 1000 and factor each value faster when many inputs are processed.
+- **Smallest-prime-factor sieve:** Precompute factors through 1000 and factor each value faster when many inputs are processed.
 - **Multiply first:** It preserves mathematical information but creates needless huge integers.
 - **Prime input:** It is added as the final residual.
 - **Prime power:** The prime is inserted once while all exponent copies are divided out.
@@ -116,8 +116,8 @@ The code increments through composite candidates too, but only actual divisors a
 - **Overflow-safe loop guard:** `i<=n//i` avoids multiplying `i*i`.
 - **Input list:** Local residual changes do not mutate it.
 - **Distinct count:** Return set size, not the sum of factors or exponents.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

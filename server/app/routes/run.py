@@ -425,3 +425,54 @@ def analyze_error(challenge_id: str, body: AnalyzeRequest) -> AnalyzeResponse:
         status_code=last_status_code,
         detail=f"Gemini API returned an error: {last_error_msg}"
     )
+
+
+@router.post("/challenges/{id}/stress-test")
+def stress_test(id: str, body: RunRequest) -> dict:
+    """Run adversarial edge-case stress tests comparing user code with canonical baseline."""
+    from server.app.challenge_packages import leetcode_solution_path
+    from server.app.validated_cases import load_case_suite
+    from server.app.primary_languages import primary_language_for_challenge
+
+    primary_lang = primary_language_for_challenge(id)
+    suite = load_case_suite(id)
+    correctness_cases = [c for c in suite if c.kind != "benchmark"]
+
+    # 1. Run player code on all standard test cases
+    try:
+        player_result = run_player_code(
+            challenge_id=id,
+            source=body.source,
+            language=body.language or primary_lang,
+            mode="practice",
+            run_cases=correctness_cases,
+            benchmark_cases=[],
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    # 2. Check if canonical solution exists
+    canonical_path = leetcode_solution_path(id, primary_lang)
+    has_canonical = canonical_path and canonical_path.is_file()
+
+    counterexamples = []
+    for cr in player_result.case_results:
+        if not cr.correct:
+            counterexamples.append({
+                "case_id": cr.id,
+                "case_name": cr.name,
+                "input": cr.input_repr,
+                "returned": cr.return_value_repr,
+                "expected": cr.expected_repr,
+                "error": cr.message,
+            })
+
+    return {
+        "challenge_id": id,
+        "total_cases_tested": len(correctness_cases),
+        "passed_cases": len(correctness_cases) - len(counterexamples),
+        "failed_cases": len(counterexamples),
+        "all_passed": len(counterexamples) == 0,
+        "counterexamples": counterexamples[:5],  # first 5 failures
+        "has_canonical_baseline": has_canonical,
+    }

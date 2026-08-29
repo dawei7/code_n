@@ -65,7 +65,7 @@ The scan tests candidates from smallest to largest. The first value satisfying `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method sorts `nums` in ascending order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Duplicates are handled naturally. If the smallest valid divisor occurs several t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan for the smallest divisor without sorting::** - **Scan for the smallest divisor without sorting:** Compute `min(v for v in nums if x % v == 0)`, then count values smaller than it. This is linear after gcd and avoids input mutation.
+- **Scan for the smallest divisor without sorting:** Compute `min(v for v in nums if x % v == 0)`, then count values smaller than it. This is linear after gcd and avoids input mutation.
 - **Test each candidate against every target:** This costs `O(nm)` remainder operations and repeats work summarized by the gcd.
 - **Delete every nondivisor:** Only the smallest remaining value must divide all targets. Larger nondivisors may remain.
 - **Use lcm instead of gcd:** A value dividing the lcm need not divide each individual target, so lcm gives the wrong condition.
@@ -120,8 +120,8 @@ Duplicates are handled naturally. If the smallest valid divisor occurs several t
 - **Positive values:** Division by zero cannot occur.
 - **Input mutation:** `nums` is left sorted after the call; `numsDivide` itself is unchanged.
 - **Slice allocation:** The target tail is copied even though only iteration is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given two string arrays, `names` and `columns`, both of size `n`. The $$i^{\text{th}}$$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
+You are given two string arrays, `names` and `columns`, both of size `n`. The $i^{\text{th}}$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
 
 You need to implement a class that supports the following **operations**:
 

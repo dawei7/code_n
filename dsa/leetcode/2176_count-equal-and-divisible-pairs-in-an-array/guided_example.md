@@ -59,7 +59,7 @@ Repeated values are required for a valid pair, but each occurrence remains separ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition is `x == nums[j]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Index zero receives the expected mathematical behavior: $0\cdot j=0$, and zero i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct index loops without slicing:** Loop `i`:** - **Direct index loops without slicing:** Loop `i` over `range(j)`. This keeps the same $O(n^2)$ time while reducing auxiliary space to $O(1)$.
+- **Direct index loops without slicing:** Loop `i` over `range(j)`. This keeps the same $O(n^2)$ time while reducing auxiliary space to $O(1)$.
 - **Gcd compatibility groups:** For earlier equal values, group indices by `gcd(i, k)` and count classes compatible with the current index. This is the approach summarized by the manifest and can reduce repeated pair tests.
 - **Store indices by value:** A map from each number to its earlier positions avoids equality checks against unrelated values, though it may still examine quadratically many equal pairs.
 - **Length one:** No outer iteration runs, so the answer is zero.
@@ -112,8 +112,8 @@ Index zero receives the expected mathematical behavior: $0\cdot j=0$, and zero i
 - **Input preservation:** Prefix slicing copies references and all operations are reads; `nums` is never modified.
 - **Boolean conversion:** `int(true)` is one and `int(false)` is zero, making the predicate a direct numeric contribution.
 - **Manifest discrepancy:** The file is called Optimal, but its stored implementation is exhaustive and slice-based. The bounds above follow executed operations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

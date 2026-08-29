@@ -67,7 +67,7 @@ For a customer with several sales, this expands into one joined row per sale. Fo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query starts from `Salesperson AS sp`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Within each group, `SUM(price)` adds every non-null sale price. If one customer 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner joins:** They incorrectly remove salespe:** - **Inner joins:** They incorrectly remove salespeople without customers or without completed sales, violating the zero-total requirement.
+- **Inner joins:** They incorrectly remove salespeople without customers or without completed sales, violating the zero-total requirement.
 - **Correlated subquery per salesperson:** It can calculate each total but may repeat lookup work and is less direct than one joined aggregation.
 - **Pre-aggregate sales by customer:** Summing per customer before joining is valid and may reduce intermediate rows, but the current query already expresses the required logic clearly.
 - **`COUNT` instead of `SUM`:** Counting sales would measure transactions, not the prices paid.
@@ -120,8 +120,8 @@ Within each group, `SUM(price)` adds every non-null sale price. If one customer 
 - **Several customers per salesperson:** Grouping by salesperson merges their sale rows into one total.
 - **`GROUP BY 1`:** The positional `1` refers to `sp.salesperson_id`, not a constant group shared by the whole table.
 - **Output order:** No ordering is promised or needed because any order is accepted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

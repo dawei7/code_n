@@ -51,7 +51,7 @@ Sorting handles leading-zero asymmetry. A longer number such as `100` can become
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting handles leading-zero asymmetry.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Sorting handles leading-zero asymmetry. A longer number such as `100` can become
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare all number pairs:** A direct two-swap :** - **Compare all number pairs:** A direct two-swap distance check costs at least $O(n^2d)$ and is too large for five thousand inputs.
+- **Compare all number pairs:** A direct two-swap distance check costs at least $O(n^2d)$ and is too large for five thousand inputs.
 - **Enumerate arbitrary digit permutations:** Two swaps reach only a subset of permutations; generating all $d!$ arrangements solves a different condition.
 - **Generate from both pair members:** Sorted processing and reversibility make this redundant.
 - **Omit sorting:** Pairs requiring leading-zero shortening can be missed by one-sided generation.
@@ -102,8 +102,8 @@ Sorting handles leading-zero asymmetry. A longer number such as `100` can become
 - **Second-swap restoration:** The code undoes `s[p],s[q]` before trying the next second pair, then undoes `s[i],s[j]` after the inner enumeration. Without both restorations, later candidates would accidentally contain three or more accumulated swaps.
 - **Displayed-length mismatch:** Shorter and longer values can match only when swaps in the longer representation move zeros to the front. Sorting ensures the representation capable of that transformation is the one whose results are enumerated.
 - **Small digit count:** The $d^5$ expression looks large, but $d$ is at most seven. The method trades a bounded transformation set per value for avoiding the $n^2$ pair explosion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

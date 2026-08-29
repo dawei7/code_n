@@ -61,7 +61,7 @@ Each pop increments `ans` because it represents one element moved to the end.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `x`, the code first adds it to `s`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ An exchange argument makes this formal. If an optimal plan at the current prefix
 
 ## 6. Traps This Instance Exposes
 
-- **- **Move the current negative:** This can be subop:** - **Move the current negative:** This can be suboptimal when an earlier, more negative value would repair more balance for the same operation.
+- **Move the current negative:** This can be suboptimal when an earlier, more negative value would repair more balance for the same operation.
 - **Sort the entire array:** Arbitrary reordering is not allowed; only selected elements may move to the end while others retain order.
 - **Dynamic programming:** It can model retained sums but is unnecessary because the most-negative exchange gives a greedy optimum.
 - **No negative prefix:** Heap entries may accumulate, but no pop occurs and the answer is zero.
@@ -109,8 +109,8 @@ An exchange argument makes this formal. If an optimal plan at the current prefix
 - **Guaranteed feasibility:** It implies total sum is nonnegative, ensuring the deferred tail can be appended safely.
 - **Repeated negatives:** Each occurrence is a separate heap entry and possible operation.
 - **Input preservation:** Deferrals are conceptual; the source array is not rearranged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

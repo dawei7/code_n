@@ -51,7 +51,7 @@ Entering an unsafe cell costs one health; entering a safe cell costs zero. The s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dist[x][y]` stores the best cost discovered for a cell.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each popped cell, the source tries four directions produced by consecutive p
 
 ## 6. Traps This Instance Exposes
 
-- **- **true 0-1 BFS:** Use `appendleft` for a neighbo:** - **true 0-1 BFS:** Use `appendleft` for a neighbor with value zero and `append` for value one. This provides the advertised linear bound.
+- **true 0-1 BFS:** Use `appendleft` for a neighbor with value zero and `append` for value one. This provides the advertised linear bound.
 - **Dijkstra:** A min-heap gives $O(mn\log(mn))$ worst-case time and straightforward shortest-path guarantees.
 - **Ordinary BFS with visited cells:** It minimizes steps, not unsafe-cell count, and can reject a longer but healthier path.
 - **DFS over all paths:** Cycles and exponentially many routes make direct enumeration unsuitable.
@@ -105,8 +105,8 @@ For each popped cell, the source tries four directions produced by consecutive p
 - **Zero-weight ordering defect:** Appending a zero-cost neighbor at the back may delay it behind higher-cost work and cause later reprocessing. `appendleft` is the precise change that restores 0-1 BFS ordering.
 - **Distance versus remaining health:** Minimizing cost maximizes final health because initial health is constant. This equivalence justifies solving a shortest-path problem.
 - **Starting-cell convention:** The source charges `grid[0][0]` before any move. This matches examples and the notion that occupying an unsafe start reduces health.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

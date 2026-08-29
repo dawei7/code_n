@@ -63,7 +63,7 @@ The regular expression extracts variable names, nonnegative integer literals, pa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The regular expression extracts variable names, nonnegative ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ Because an expression asks for complete terms before adding them, multiplication
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use Python `eval`:** Forbidden and would not p:** - **Use Python `eval`:** Forbidden and would not produce canonical symbolic polynomial terms.
-- **- **Build an abstract syntax tree first:** It sepa:** - **Build an abstract syntax tree first:** It separates parsing and evaluation but adds a full tree allocation.
-- **- **Keep variables in encounter order:** Products :** - **Keep variables in encounter order:** Products such as `a*b` and `b*a` would fail to combine. Sort every monomial key.
+- **Use Python `eval`:** Forbidden and would not produce canonical symbolic polynomial terms.
+- **Build an abstract syntax tree first:** It separates parsing and evaluation but adds a full tree allocation.
+- **Keep variables in encounter order:** Products such as `a*b` and `b*a` would fail to combine. Sort every monomial key.
 
 ---
 

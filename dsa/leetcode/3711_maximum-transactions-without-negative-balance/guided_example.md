@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `transactions`, where $\text{transactions}[i]$ represents the amount of the $$i^{\text{th}}$$ transaction:
+You are given an integer array `transactions`, where $\text{transactions}[i]$ represents the amount of the $i^{\text{th}}$ transaction:
 
 The objective is to compute `4` from `{"transactions": [2, -5, 3, -1, -2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -79,7 +79,7 @@ The loop nevertheless expresses the general requirement directly and remains cor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `s < 0`, at least one currently selected amount is nega... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The remaining indices still appear in original order, so they form a legal subse
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap:** A standard heap supports insertion:** - **Min-heap:** A standard heap supports insertion and removal of the minimum in $O(\log n)$ and is sufficient because no other sorted operation is needed.
+- **Min-heap:** A standard heap supports insertion and removal of the minimum in $O(\log n)$ and is sufficient because no other sorted operation is needed.
 - **Skip every transaction that immediately fails:** Rejecting only the current value can be suboptimal when an earlier, more negative transaction should be exchanged out instead.
 - **Dynamic programming by balance:** Balances span an enormous range, making a value-indexed DP infeasible.
 - **All negative transactions:** Each tentative selection is repaired by removing a negative value, and the final answer is zero.
@@ -130,8 +130,8 @@ The remaining indices still appear in original order, so they form a legal subse
 - **Removing an earlier item:** Deleting a negative earlier transaction only raises later prefix balances and preserves relative order of all retained indices.
 - **Several severe negatives:** The loop formulation can remove as many minima as needed, while each stored occurrence is popped at most once overall.
 - **Negative final total of all transactions:** A large feasible subsequence may still exist after discarding the most damaging negative amounts.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

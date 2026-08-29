@@ -64,7 +64,7 @@ The alias `difference_in_score` gives the sole output column its required name. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There is no `GROUP BY`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The database may evaluate the row expression twice, once for each aggregate, but
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort students by total:** Reading the first an:** - **Sort students by total:** Reading the first and last totals works but costs $O(R\log R)$ rather than a linear aggregate.
+- **Sort students by total:** Reading the first and last totals works but costs $O(R\log R)$ rather than a linear aggregate.
 - **Pair every student:** Comparing all pairs is $O(R^2)$ and unnecessary because extrema determine the largest difference.
 - **Sum column-wise maxima:** This may combine scores belonging to different students and is incorrect.
 - **Use a derived total CTE:** It can improve readability, then apply `MAX(total)-MIN(total)`; the exact query inlines the expression.
@@ -110,8 +110,8 @@ The database may evaluate the row expression twice, once for each aggregate, but
 - **Negative assignment values:** Even if allowed, max-minus-min logic would remain valid, though the stated educational scores are ordinary integers.
 - **Null assignments:** The exact SQL would exclude that row’s null total from aggregates; it relies on complete score data.
 - **No output sorting:** A one-row result already satisfies “any order.”
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

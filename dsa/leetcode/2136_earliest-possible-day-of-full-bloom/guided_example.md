@@ -63,7 +63,7 @@ Any ordering that contains a shorter-growth seed immediately before a longer-gro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution combines corresponding values with `zip(p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The order differs from the example’s listed schedule but reaches the same opti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by planting time:** Shortest-planting-fir:** - **Sort by planting time:** Shortest-planting-first can delay a seed with a very long growth period and is not generally optimal. Growth time, not planting duration, determines urgency.
+- **Sort by planting time:** Shortest-planting-first can delay a seed with a very long growth period and is not generally optimal. Growth time, not planting duration, determines urgency.
 - **Sort by total `plantTime + growTime`:** This does not have the exchange property. Only the waiting tail continues independently after planting, so decreasing `growTime` is the justified key.
 - **Preempt planting:** Interleaving planting days is allowed but unnecessary. There is always an equally good completion-order schedule with consecutive planting blocks.
 - **Simulate every day:** The answer depends on cumulative planting completion times, so day-by-day state adds work without new information.
@@ -116,8 +116,8 @@ The order differs from the example’s listed schedule but reaches the same opti
 - **Bloom-day convention:** If planting ends at cumulative time `t` and growth requires `gt` full days, the bloom day is `t + gt`, matching the examples.
 - **No idle time:** Waiting before or between planting blocks cannot improve any completion or bloom day.
 - **Input preservation:** `sorted` creates new pairs and does not reorder either input array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

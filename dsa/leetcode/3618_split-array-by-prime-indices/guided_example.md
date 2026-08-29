@@ -78,10 +78,7 @@ The source therefore never allocates arrays `A` and `B` and never needs to compu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let:
-
-- `A` contain values at prime indices;
-- `B` contain v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +117,7 @@ Similarly, a negative value at a prime index contributes negatively to `sum(A)` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sieve only through `len(nums)-1`:** It avoids :** - **Sieve only through `len(nums)-1`:** It avoids precomputing unused indices for short calls but repeats setup for every invocation.
+- **Sieve only through `len(nums)-1`:** It avoids precomputing unused indices for short calls but repeats setup for every invocation.
 - **Prime sum plus total sum:** Compute `prime_sum` and `total`, then use `abs(2*prime_sum-total)`. This matches the manifest summary and is algebraically equivalent.
 - **Test every index individually:** Trial division per index uses less persistent memory but can cost roughly `O(n\sqrt n)` time.
 - **Construct `A` and `B`:** It is straightforward but wastes `O(n)` extra storage when only their sums matter.
@@ -135,8 +132,8 @@ Similarly, a negative value at a prime index contributes negatively to `sum(A)` 
 - **Repeated calls:** They reuse the same global primality table without mutation.
 - **Input preservation:** The method streams over `nums` and never changes its values or order.
 - **Missing `List` import:** Standalone execution must provide the annotation name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

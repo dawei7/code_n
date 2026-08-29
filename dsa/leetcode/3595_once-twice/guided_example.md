@@ -88,7 +88,7 @@ The two exceptional values must be different because one array element value can
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every value appearing three times contributes zero modulo th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ Every ordinary triple consists of three identical values, so all three copies go
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency dictionary:** It is simpler but uses:** - **Frequency dictionary:** It is simpler but uses `O(n)` space in the worst case and violates the required constant-space bound.
+- **Frequency dictionary:** It is simpler but uses `O(n)` space in the worst case and violates the required constant-space bound.
 - **Sort the array:** Frequencies become adjacent, but sorting costs `O(n\log n)` and may mutate input.
 - **Per-bit array of 32 counters:** It uses constant space and can find global modulo counts, but still needs separation logic to distinguish once from twice.
 - **Use XOR only:** Triples do not cancel under XOR because three copies reduce to one copy, so ordinary values would remain.
@@ -142,8 +142,8 @@ Every ordinary triple consists of three identical values, so all three copies go
 - **Output order:** Orientation logic is necessary; simply returning the two group residues could swap once and twice.
 - **Input guarantee:** The proof relies on exactly one frequency-one value, one frequency-two value, and every other frequency exactly three.
 - **No input mutation:** Both passes read values only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

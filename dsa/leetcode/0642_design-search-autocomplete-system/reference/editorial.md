@@ -52,7 +52,7 @@ Next, let's talk about how we can implement the `input` function. Calling this f
 
 Each time we call `input(c)`, there are 3 possibilities:
 
-1. $c = '#'$: We have finished typing the current sentence. Add `currSentence` as a string to the trie using the `addToTrie` function, and reset our class variables in preparation for the next sentence. Empty `currSentence` and set $currNode = root$, then return an empty list.
+1. `c = '#'`: We have finished typing the current sentence. Add `currSentence` as a string to the trie using the `addToTrie` function, and reset our class variables in preparation for the next sentence. Empty `currSentence` and set $currNode = root$, then return an empty list.
 2. $c \neq '#'$, and `c` is a child of `currNode`: there are some existing sentences that have the current sentence we are typing as a prefix. First, let's add `c` to `currSentence`. Next, walk to the child node by doing $currNode = currNode.\text{children}[c]$. Now, fetch the sentences that have the current sentence as a prefix - we store them in the hash map `currNode.sentences` with the mapping `sentence: count`. Finally, sort these sentences according to their count, and return the top 3 sentences according to the criteria in the problem description.
 3. $c \neq '#'$, but `c` is not a child of `currNode`: there are no existing sentences that have the current sentence we are typing as a prefix. We just need to add `c` to `currSentence` and return an empty list.
 
@@ -98,7 +98,7 @@ We can now combine everything to fully implement our solution.
 - `currSentence` of type `StringBuilder` or `list`, depending on the language. This is the current sentence we are typing.
 4. In the constructor of `AutocompleteSystem`, call $addToTrie(\text{sentences}[i], \text{times}[i])$ for each index `i`.
 5. In `input(c)`:
-- If $c = '#'$, convert `currSentence` to a string and add it to the trie with `addToTrie`. Reset `currSentence` and `currNode` to the root. Return an empty array.
+- If `c = '#'`, convert `currSentence` to a string and add it to the trie with `addToTrie`. Reset `currSentence` and `currNode` to the root. Return an empty array.
 - Otherwise, add `c` to `currSentence`. Now, check if `c` is in `currNode.children`.
 - If it isn't, set $currNode = dead$ and return an empty array.
 - If it is, move `currNode` to the child with $currNode = currNode.\text{children}[c]$. Next, fetch the sentences in `currNode.sentences`, sort them, and return the top 3.

@@ -55,7 +55,7 @@ Keeping only a count is sufficient. Opening parentheses are interchangeable for 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `s[i]` is `(`, the code increments `x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This insertion is forced: every legal balanced result must give that lone right 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the repaired string:** It can visualize :** - **Build the repaired string:** It can visualize insertions but requires $O(N)$ additional storage that the count-only scan avoids.
+- **Build the repaired string:** It can visualize insertions but requires $O(N)$ additional storage that the count-only scan avoids.
 - **Stack of openings:** A stack is unnecessary because only the number of unmatched openers matters.
 - **Need-count formulation:** Track how many right parentheses are currently required and repair odd requirements before an opener. It is an equivalent constant-space greedy approach.
 - **Already balanced:** Every closing pair consumes an opener and the answer remains zero.
@@ -109,8 +109,8 @@ This insertion is forced: every legal balanced result must give that lone right 
 - **Order requirement:** An opener inserted after a closing unit would not match it, so the algorithm inserts before when `x == 0`.
 - **Bit shift:** `x << 1` means exactly `2 * x` and is not a change to the string.
 - **Input alphabet:** Only the two parenthesis characters occur, so the two top-level branches are exhaustive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ When counts tie, Python compares the second list element and uses the character 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `h` is used as a max-heap conceptually.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Why append only one copy per iteration instead of trying to append a pair? Recon
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three explicit counters:** Because the alphabe:** - **Three explicit counters:** Because the alphabet is fixed, nested conditions can select the largest legal count without a heap. This retains $O(N)$ time and $O(1)$ auxiliary space but tends to duplicate comparison and streak logic, making tie and forced-separator cases easier to implement incorrectly.
+- **Three explicit counters:** Because the alphabet is fixed, nested conditions can select the largest legal count without a heap. This retains $O(N)$ time and $O(1)$ auxiliary space but tends to duplicate comparison and streak logic, making tie and forced-separator cases easier to implement incorrectly.
 - **Pair-at-a-time greedy construction:** A solution can place up to two dominant characters followed by one separator. It can be efficient, but it needs careful reordering after each group because the identity of the dominant character may change.
 - **Backtracking over all strings:** Trying every legal next character can prove optimality by exhaustive search, but the number of possible prefixes grows exponentially and is unnecessary for counts up to 100.
 - **Fixed round-robin order:** Cycling through `a`, `b`, and `c` preserves validity in many cases but can stop too early when counts are unbalanced. It does not prioritize the supply most likely to become unusable.
@@ -116,8 +116,8 @@ Why append only one copy per iteration instead of trying to append a pair? Recon
 - **Exactly two matching trailing characters:** The next copy of that letter is forbidden, even if it has overwhelmingly the largest count. The code temporarily chooses `nxt` and preserves `cur` unchanged.
 - **One matching trailing character:** Appending a second copy is legal. The suffix condition deliberately requires at least two existing result characters.
 - **Unused characters are valid:** The contract says at most `a`, `b`, and `c` occurrences. When one count exceeds all available separator capacity, stopping with some copies unused is necessary rather than a failure.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

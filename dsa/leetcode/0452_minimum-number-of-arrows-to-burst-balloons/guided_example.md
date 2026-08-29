@@ -64,7 +64,7 @@ Therefore there is always an optimal solution whose next arrow is exactly at the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider the first balloon not yet covered in ending-time or... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For `[[1,2],[2,3],[3,4],[4,5]]`, the algorithm fires at `2` for the first interv
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by starting coordinate and maintain an ov:** - **Sort by starting coordinate and maintain an overlap:** Track the intersection end of the current overlapping group and start a new arrow when the intersection becomes empty. This can also be correct, but the end-sorted greedy has a cleaner exchange argument and only one arrow coordinate.
+- **Sort by starting coordinate and maintain an overlap:** Track the intersection end of the current overlapping group and start a new arrow when the intersection becomes empty. This can also be correct, but the end-sorted greedy has a cleaner exchange argument and only one arrow coordinate.
 - **Merge overlapping intervals naively:** Pairwise overlap is not enough to show an entire group shares one point. Any merging method must maintain the common intersection, not merely a chain of overlaps.
 - **Try every endpoint:** Testing many candidate arrow subsets is exponential and unnecessary; the exchange argument proves earliest right endpoints are sufficient candidates.
 - **Touching intervals:** `[1,2]` and `[2,3]` share coordinate `2`, so one arrow bursts both. The exact condition uses `a > last`, not `a >= last`.
@@ -118,8 +118,8 @@ For `[[1,2],[2,3],[3,4],[4,5]]`, the algorithm fires at `2` for the first interv
 - **Negative coordinates:** Initializing `last` to `-inf` works below every finite endpoint, and comparisons require no special treatment.
 - **Extreme 32-bit endpoints:** The method performs comparisons only, so it has no subtraction overflow risk in fixed-width languages.
 - **Nonempty input guarantee:** The loop will fire at least one arrow. Starting from `ans = 0` also makes the logic robust for an empty list, which would return zero outside the stated contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -60,7 +60,7 @@ The input is guaranteed nonempty, so `cnt.values()` contains at least one freque
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(nums)` builds a mapping from each distinct value to... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +97,7 @@ This step asks only how often the most common values occur; it does not yet ask 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Return the number of tied keys:** This underco:** - **Return the number of tied keys:** This undercounts because the task asks for their total occurrences.
+- **Return the number of tied keys:** This undercounts because the task asks for their total occurrences.
 - **Multiply maximum by tie count:** It is equivalent to summing matching frequencies.
 - **One-pass running maximum:** It can compute the result during counting, but requires careful resets when a new maximum appears.
 - **Fixed frequency array:** Values are at most 100, so a 101-entry list works in constant bounded space; the exact source uses `Counter`.
@@ -106,8 +106,8 @@ This step asks only how often the most common values occur; it does not yet ask 
 - **Several tied modes:** Every tied class contributes its full frequency.
 - **Nonempty guarantee:** It makes `max(cnt.values())` safe without a default.
 - **Input preservation:** Counting reads but does not rearrange `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

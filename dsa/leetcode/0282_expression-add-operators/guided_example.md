@@ -64,7 +64,7 @@ For example, after building `1+2`, `curr = 3` and `prev = 2`. After building `5-
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `dfs(u, prev, curr, path)` carries exactly the in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For every later operand, the source explores three disjoint branches: addition, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build every expression, then evaluate it:** Th:** - **Build every expression, then evaluate it:** This separates generation from evaluation but reparses every leaf and may rely on forbidden or unsafe `eval`-style functionality. Carrying `curr` and `prev` evaluates each branch incrementally.
+- **Build every expression, then evaluate it:** This separates generation from evaluation but reparses every leaf and may rely on forbidden or unsafe `eval`-style functionality. Carrying `curr` and `prev` evaluates each branch incrementally.
 - **Mutable expression buffer:** Append operand and operator fragments, recurse, then pop them. This avoids retaining a chain of immutable prefix strings and brings active path storage closer to the manifest's $O(n)$ auxiliary bound.
 - **Dynamic programming by index and total:** The same index and current total can have different final multiplicative terms, so memoizing only those two values is incorrect. Including all required arithmetic state still does not naturally preserve every distinct expression string that must be returned.
 - **No multiplication:** With only `+` and `-`, `curr` alone would suffice because both operators have equal precedence. `prev` exists specifically to revise the final term for `*`.
@@ -117,8 +117,8 @@ For every later operand, the source explores three disjoint branches: addition, 
 - **All digits must be used:** Reaching the target before `u` reaches the end is not a solution; every digit must appear exactly once and in order.
 - **Answer order:** DFS traversal determines the returned ordering. The contract asks for all possibilities and does not require a particular order.
 - **No valid expression:** Exhaustive search leaves the result list empty, as in the third example.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

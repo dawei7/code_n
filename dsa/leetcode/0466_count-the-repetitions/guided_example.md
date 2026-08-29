@@ -59,7 +59,7 @@ By repeatedly making the earliest match, the scan completes each target prefix a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Whenever the current source character matches the next requi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ This summary is what permits matches to cross block boundaries. If one `s1` copy
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cycle detection over target states:** Record w:** - **Cycle detection over target states:** Record when each `j` state first appears during block application, then jump across repeated cycles. This can remove the linear `n1` term and matches the manifest summary, but it is not present in the exact source.
+- **Cycle detection over target states:** Record when each `j` state first appears during block application, then jump across repeated cycles. This can remove the linear `n1` term and matches the manifest summary, but it is not present in the exact source.
 - **Construct the expanded strings:** Their lengths can reach $10^8$ or more, wasting memory and time.
 - **Scan all expanded source characters:** It uses constant target state but costs $O(n1\cdot L_1)$ instead of using precomputed block transitions.
 - **Character absent from `s1`:** If a required `s2` character never appears, no transition can pass it, `ans` remains zero, and the method returns zero.
@@ -111,8 +111,8 @@ This summary is what permits matches to cross block boundaries. If one `s1` copy
 - **Repeated characters:** State position, rather than only character identity, distinguishes where matching is within `s2`.
 - **No input mutation:** Strings are immutable and only read.
 - **Manifest mismatch:** The stated approach and complexity deliberately follow the direct transition loop in the executable source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

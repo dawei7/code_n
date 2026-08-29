@@ -65,9 +65,7 @@ For `0110111`, the first run has length two and contributes three. The second ru
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a run `111`:
-
-- At the first one, `cur = 1`, counting `1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +107,7 @@ Adding that amount preserves the answer invariant. Induction proves correctness 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run-at-a-time triangular formula:** Measure ea:** - **Run-at-a-time triangular formula:** Measure each maximal run and add `L * (L + 1) // 2` when it ends. It has the same bounds but needs a final post-loop addition.
+- **Run-at-a-time triangular formula:** Measure each maximal run and add `L * (L + 1) // 2` when it ends. It has the same bounds but needs a final post-loop addition.
 - **Enumerate every substring:** Checking each candidate is quadratic or cubic and unnecessary.
 - **Dynamic programming array:** Store the count of valid suffixes for every index. It reproduces `cur` but wastes $O(N)$ space because only the previous value matters.
 - **All zeros:** `cur` repeatedly resets and the result is zero.
@@ -119,8 +117,8 @@ Adding that amount preserves the answer invariant. Induction proves correctness 
 - **Zero between runs:** Resetting prevents invalid substrings from crossing it.
 - **Modulo placement:** Reducing the accumulated answer is safe; reducing or changing the run length would obscure its meaning.
 - **Nonempty substrings:** Every contribution has an endpoint and positive length, so the empty string is never counted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

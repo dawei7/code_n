@@ -65,7 +65,7 @@ Counting candies when a box is enqueued, instead of when it is dequeued, is safe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code examines every label in `initialBoxes`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The same key label may appear in key lists of different boxes. The first useful 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated full scans:** One can repeatedly insp:** - **Repeated full scans:** One can repeatedly inspect all boxes until no new one becomes usable. This is easier to imagine but may rescan many unavailable boxes, while the queue reacts only to useful state changes.
+- **Repeated full scans:** One can repeatedly inspect all boxes until no new one becomes usable. This is easier to imagine but may rescan many unavailable boxes, while the queue reacts only to useful state changes.
 - **Boolean arrays instead of sets:** Arrays such as `has_box` and `used` give worst-case constant-time access and avoid hash overhead because labels range from zero to $n-1$. They express the same state machine.
 - **Recursive traversal:** Recursion can process newly ready boxes, but chains may be deep and Python's recursion limit is unnecessary risk. An explicit queue is safer.
 - **Closed initial box:** It remains in `has` without entering the queue. A later key changes `status` and triggers scheduling.
@@ -121,8 +121,8 @@ The same key label may appear in key lists of different boxes. The first useful 
 - **Positive candy guarantee:** Since every box has at least one candy and opening a box has no cost, processing every reachable box is always optimal. With negative rewards or limited actions, the no-choice worklist argument would no longer be sufficient.
 - **Duplicate labels in `initialBoxes` outside the intended contract:** The exact initialization loop does not check `box not in took` before enqueueing and counting. If duplicate initial labels were permitted, it could double count. A defensive version would apply the same untaken guard used elsewhere.
 - **Input mutation:** Acquired keys change `status`. A caller that needs the original array afterward must pass a copy or use a separate `can_open` structure.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,10 +63,7 @@ This reuse avoids a separate `visited` matrix. Gates and walls are never confuse
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The grid begins with:
-
-- `0` for a gate;
-- `-1` for a wall; ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +102,7 @@ If there are no gates, the queue is empty. The BFS loop never runs, and every em
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS from every empty room:** It can find a nea:** - **BFS from every empty room:** It can find a nearest gate but repeats exploration and costs up to $O(m^2n^2)$ time.
+- **BFS from every empty room:** It can find a nearest gate but repeats exploration and costs up to $O(m^2n^2)$ time.
 - **Separate BFS from every gate:** Distances must be minimized across runs, and cells may be revisited many times. Multi-source BFS combines all gates into one shortest-path computation.
 - **DFS from gates:** DFS does not process paths by increasing length. It needs repeated relaxation or careful pruning to correct distances, while BFS provides shortest unweighted paths directly.
 - **No gates:** The initial queue is empty and all empty rooms remain `INF`.
@@ -119,8 +116,8 @@ If there are no gates, the queue is empty. The BFS loop never runs, and every em
 - **One-cell gate grid:** The gate is processed, has no in-bounds neighbors, and stays zero.
 - **Rectangular rather than square grids:** Separate `m` and `n` bounds handle all legal dimensions.
 - **In-place contract:** Finite distances double as visited markers. Replacing them later with larger values would break the one-visit proof; the BFS first-arrival guarantee makes replacement unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

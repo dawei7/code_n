@@ -63,9 +63,7 @@ The source assumes `pairwise` is available, normally from `itertools`. It was ad
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise(arr)` yields adjacent tuples:
-
-`(arr[0], arr[1])`,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ for every index $i$. This follows by repeatedly adding the common adjacent diffe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Endpoint arithmetic plus set:** Compute minimu:** - **Endpoint arithmetic plus set:** Compute minimum, maximum, and the required gap, then verify every expected term exists with appropriate uniqueness handling. It achieves expected $O(N)$ time and $O(N)$ space.
+- **Endpoint arithmetic plus set:** Compute minimum, maximum, and the required gap, then verify every expected term exists with appropriate uniqueness handling. It achieves expected $O(N)$ time and $O(N)$ space.
 - **In-place index placement:** Map each value to its required progression index and swap values into position. It can use $O(1)$ extra data but must handle zero difference, divisibility, and duplicates carefully.
 - **Sort a copy:** `sorted(arr)` preserves the caller's list but allocates a new list.
 - **Two elements:** They always form an arithmetic progression because there is only one adjacent difference.
@@ -117,8 +115,8 @@ for every index $i$. This follows by repeatedly adding the common adjacent diffe
 - **Input mutation:** The exact source permanently sorts `arr`.
 - **Early mismatch:** `all` stops checking when the first unequal gap is found, although sorting has already completed.
 - **Missing import:** `pairwise` must be supplied from `itertools` in a standalone module.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ The input parameter name is reused as the remaining amount. Reassigning it does 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an even total, `i` starts at two.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The remaining $R$ is even: the original total is even and every subtracted term 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Solve the maximum count algebraically:** Find :** - **Solve the maximum count algebraically:** Find the largest $t$ with $t(t+1)\le S$, build the first $t$ evens, and add the remainder to the last. This uses the same proof but needs careful integer-root handling.
+- **Solve the maximum count algebraically:** Find the largest $t$ with $t(t+1)\le S$, build the first $t$ evens, and add the remainder to the last. This uses the same proof but needs careful integer-root handling.
 - **Choose large evens first:** Spending the sum quickly can only reduce the number of terms, so it conflicts with the maximum-cardinality objective.
 - **Backtracking over partitions:** It explores many unnecessary combinations even though the smallest-sum argument determines the maximum count directly.
 - **Odd total:** No sum of even integers can be odd, so the only correct output is empty.
@@ -112,8 +112,8 @@ The remaining $R$ is even: the original total is even and every subtracted term 
 - **Large input:** The loop count grows with the square root rather than linearly up to $10^{10}$.
 - **Maximum count, not lexicographic choice:** Other valid maximum-length splits may exist; the problem accepts any one of them.
 - **No bean-style redistribution:** The leftover is arithmetic bookkeeping within the constructed list; the only requirements are final values, uniqueness, parity, and sum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

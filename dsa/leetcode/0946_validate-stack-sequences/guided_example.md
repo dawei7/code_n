@@ -68,7 +68,7 @@ Using an `if` instead of a `while` would miss such chains of forced pops.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every `x` in `pushed`, the code first executes `stk.appe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Therefore, if some valid schedule exists, there is also a valid schedule that pe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive search:** Branch between pushing and:** - **Recursive search:** Branch between pushing and popping at every step. It explores many schedules even though a matching top can always be popped greedily.
+- **Recursive search:** Branch between pushing and popping at every step. It explores many schedules even though a matching top can always be popped greedily.
 - **Reuse `pushed` as stack storage:** A write pointer can simulate the stack in place with `O(1)` auxiliary space, but it mutates the input and is less explicit.
 - **Pop only once per push:** This is incorrect because one push may unlock a chain of several target pops.
 - **Identical orders:** Each value is popped immediately after being pushed, and the method returns true.
@@ -122,8 +122,8 @@ Therefore, if some valid schedule exists, there is also a valid schedule that pe
 - **Empty stack guard:** It must be checked before reading `stk[-1]`.
 - **Pointer boundary:** Stack emptiness protects the access after all targets have matched.
 - **Permutation guarantee:** The method need not separately reject length mismatches or foreign values because the contract excludes them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Therefore, if `left[i]` is the nearest greater index to the left, or negative on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore, if `left[i]` is the nearest greater index to the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Contribution-style single stack:** Pop indices:** - **Contribution-style single stack:** Pop indices when a greater current value arrives and assign one boundary then; a second cleanup or sentinel can finish the other side. It can reduce code duplication but is easier to get wrong.
+- **Contribution-style single stack:** Pop indices when a greater current value arrives and assign one boundary then; a second cleanup or sentinel can finish the other side. It can reduce code duplication but is easier to get wrong.
 - **Segment tree with searches:** Range maxima plus boundary binary searches can find blockers in $O(n\log n)$ time and $O(n)$ space, slower than the stack.
 - **Brute-force expansion:** Expand left and right independently for every index. It is simple but quadratic in monotone arrays.
 - **Global maximum:** Both stacks are empty at its boundary checks, so its answer spans the entire array.
@@ -97,8 +97,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Distinctness:** It guarantees a unique maximum in every considered subarray. If duplicates were allowed and equality still counted as maximum, equal values should not be blockers; the source's pop condition already treats them as non-blocking.
 - **Boundary sentinels:** Negative one and `n` eliminate special formulas at array edges.
 - **Indices rather than values:** Distances require exact blocker positions, so storing only values would be insufficient.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

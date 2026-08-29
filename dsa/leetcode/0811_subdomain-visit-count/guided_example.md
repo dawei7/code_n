@@ -61,7 +61,7 @@ For `"9001 discuss.leetcode.com"`, the first space follows `"9001"`, so `v` beco
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every input string `s` contains exactly one space separating... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +114,9 @@ The single statement `cnt[s[i + 1:]] += v` adds the visit count for each valid s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split into labels and join suffixes:** Parsing:** - **Split into labels and join suffixes:** Parsing `count, domain = s.split()` and then joining `frags[i:]` is straightforward and matches the editorial. It creates a fragment list and explicit joins; the exact solution instead recognizes suffixes directly at delimiters.
-- **- **Nested dictionary or domain tree:** A trie can:** - **Nested dictionary or domain tree:** A trie can represent shared suffix labels, but the input is small and the required output is flat strings. A hash counter is simpler and directly aggregates identical suffixes.
-- **- **Sorting the output:** Sorting can make results:** - **Sorting the output:** Sorting can make results deterministic for display, but the contract allows any order. It would add `O(k \log k)` comparisons for `k` distinct subdomains without improving correctness.
+- **Split into labels and join suffixes:** Parsing `count, domain = s.split()` and then joining `frags[i:]` is straightforward and matches the editorial. It creates a fragment list and explicit joins; the exact solution instead recognizes suffixes directly at delimiters.
+- **Nested dictionary or domain tree:** A trie can represent shared suffix labels, but the input is small and the required output is flat strings. A hash counter is simpler and directly aggregates identical suffixes.
+- **Sorting the output:** Sorting can make results deterministic for display, but the contract allows any order. It would add `O(k \log k)` comparisons for `k` distinct subdomains without improving correctness.
 
 ---
 

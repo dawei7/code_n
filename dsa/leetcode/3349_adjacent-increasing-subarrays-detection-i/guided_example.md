@@ -51,7 +51,7 @@ The exact source builds run lengths without storing their boundaries. Variable `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source builds run lengths without storing their bo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ At a run boundary, `pre` is the length of the immediately preceding maximal run,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair of starts:** Verifying both l:** - **Check every pair of starts:** Verifying both length-$k$ subarrays from scratch can take $O(nk)$ time and repeats the same adjacent comparisons.
+- **Check every pair of starts:** Verifying both length-$k$ subarrays from scratch can take $O(nk)$ time and repeats the same adjacent comparisons.
 - **Precompute increasing lengths:** Arrays of increasing-prefix or increasing-suffix lengths can answer candidates in $O(n)$ time, but require $O(n)$ extra space.
 - **Binary search on `k`:** Existence is monotone, but each check still scans the array, producing unnecessary $O(n\log n)$ time when the maximum run formula is direct.
 - **One long increasing run:** The maximum supported common length is half the run length, rounded down.
@@ -100,8 +100,8 @@ At a run boundary, `pre` is the length of the immediately preceding maximal run,
 - **Negative values:** Only relative comparison matters; sign and magnitude do not affect the reasoning.
 - **Requested length near $n/2$:** The formula naturally enforces that the two blocks together require $2k$ elements.
 - **Boolean objective:** Version I computes the same maximum as version II internally, then answers only whether it reaches the supplied threshold.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -75,9 +75,7 @@ Both coefficient arrays are padded with zeros to length `n`. A length-`n` discre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The true product has length:
-
-`m = len(poly1)+len(poly2)-1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ This exact detail differs from the manifest summary. The summary claims both rea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic convolution:** Simple and exact but :** - **Quadratic convolution:** Simple and exact but infeasible for two arrays near length `50,000`.
+- **Quadratic convolution:** Simple and exact but infeasible for two arrays near length `50,000`.
 - **Number-theoretic transform:** Uses modular arithmetic for exact convolution. Multiple moduli plus CRT may be needed because signed coefficients and output magnitudes exceed one convenient modulus.
 - **Complex packing trick:** Two real arrays can be encoded in real and imaginary parts of one transform, matching the manifest summary. The protected code instead runs two forward FFTs.
 - **Naive evaluation/interpolation:** Usually slower and more complex than FFT for dense coefficient arrays.
@@ -128,8 +126,8 @@ This exact detail differs from the manifest summary. The summary claims both rea
 - **Trailing zero result:** It is retained because output length is prescribed.
 - **Sign convention:** Positive-forward/negative-inverse is valid because the two are paired consistently.
 - **Manifest mismatch:** Complexity is unchanged, but no single packed FFT appears in the protected solution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

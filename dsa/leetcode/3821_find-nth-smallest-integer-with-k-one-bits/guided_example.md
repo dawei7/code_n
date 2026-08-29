@@ -75,7 +75,7 @@ Although the table has 50 rows and 51 columns, the algorithm only asks `c[i][k]`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The global table `c` is built once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ The source expresses the second case as `if n > c[i][k]`. Strict `>` is essentia
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate integers and count bits:** Testing p:** - **Enumerate integers and count bits:** Testing positive integers in order is simple but can scan an enormous range before reaching a large rank, despite the answer being below $2^{50}$.
+- **Enumerate integers and count bits:** Testing positive integers in order is simple but can scan an enormous range before reaching a large rank, despite the answer being below $2^{50}$.
 - **Generate combinations then sort:** There are $\binom{50}{k}$ valid bit patterns, far too many to materialize for central values of `k`.
 - **Binary search with digit counting:** Count how many integers up to a candidate have exactly `k` bits, then binary-search the answer. This can work in roughly $O(B^2)$ time per query but is more involved than direct unranking.
 - **Next-combination bit trick:** Starting from the smallest `k`-bit integer and repeatedly generating the next one takes time proportional to `n`, which is unsuitable for very large ranks.
@@ -138,8 +138,8 @@ The source expresses the second case as `if n > c[i][k]`. Strict `>` is essentia
 - **Early termination:** Once `k == 0`, every lower bit must remain zero and breaking cannot skip another valid choice.
 - **Large result bits:** `1 << i` and bitwise OR construct values exactly in Python, with no floating-point conversion.
 - **Existence guarantee:** Without it, an excessive `n` could exhaust all positions without placing the requested number of ones. Valid inputs exclude that situation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

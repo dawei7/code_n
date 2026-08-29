@@ -77,7 +77,7 @@ All positions are unique, but distances need not be. Two different pairs can eas
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `n` be the worker count and `m` be the bike count.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ This works because availability changes only from true to false. Once a pair is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Distance buckets for the manifest target:** Gr:** - **Distance buckets for the manifest target:** Group each `(worker, bike)` pair by its integer Manhattan distance and scan buckets from zero through `D`. Generate pairs in worker-major and bike-minor order so no per-bucket sort is needed. This achieves `O(WB + D)` time.
+- **Distance buckets for the manifest target:** Group each `(worker, bike)` pair by its integer Manhattan distance and scan buckets from zero through `D`. Generate pairs in worker-major and bike-minor order so no per-bucket sort is needed. This achieves `O(WB + D)` time.
 - **Global minimum heap of all pairs:** Heapifying every tuple and popping by priority reproduces the rule but uses `O(WB log(WB))` total pop time in the worst case and does not improve space.
 - **One sorted bike list per worker plus a heap:** Keep each worker's bikes ordered by distance and maintain only that worker's current closest candidate in a global heap. This reduces heap size but still requires substantial preprocessing and careful replacement when a bike is taken.
 - **Repeated full search:** Recompute the best available pair by scanning every worker and bike before each assignment. It directly mirrors the statement but can take `O(W^2B)` time.
@@ -134,8 +134,8 @@ This works because availability changes only from true to false. Once a pair is 
 - **No early break:** The exact loop scans all tuples after assignments are complete. Adding an assigned-worker counter could stop early but would not improve the asymptotic sorting bound.
 - **Placeholder zeros:** Bike zero is a valid assignment, so `ans` alone cannot indicate whether a worker is assigned. `vis1` provides that separate status.
 - **Input preservation:** Coordinates are only read. Sorting affects the newly built tuple list, not `workers` or `bikes`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

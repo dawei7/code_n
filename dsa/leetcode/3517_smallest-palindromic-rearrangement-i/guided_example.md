@@ -67,7 +67,7 @@ For example, `"daccad"` has counts `a:2`, `c:2`, and `d:2`. The left half must c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Lexicographic comparison looks at the first position where t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Because the input is guaranteed palindromic, at most one letter leaves a remaind
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort half of the original palindrome:** Becaus:** - **Sort half of the original palindrome:** Because the input is already palindromic, its original left half contains exactly one copy from every mirrored pair. Sorting that half and mirroring also works in `O(n \log n)` time, but counting uses the fixed alphabet for `O(n)`.
+- **Sort half of the original palindrome:** Because the input is already palindromic, its original left half contains exactly one copy from every mirrored pair. Sorting that half and mirroring also works in `O(n \log n)` time, but counting uses the fixed alphabet for `O(n)`.
 - **Sort all characters and then mirror:** Merely sorting the full string does not produce a palindrome. One must distribute half of each frequency to each side and reserve the odd character for the center.
 - **Try every palindromic permutation:** The number of arrangements can be factorial in the half length, making enumeration impossible for `n = 10^5`.
 - **Greedy placement on both ends:** Repeatedly putting the smallest available pair at the outermost positions is equivalent to building the sorted left half, but the frequency construction is simpler and more direct.
@@ -135,8 +135,8 @@ Because the input is guaranteed palindromic, at most one letter leaves a remaind
 - **Whole-string counting versus half-string counting:** Both are valid under the palindrome guarantee. The protected source counts the whole string and explicitly divides every frequency by two.
 - **Invalid non-palindromic multiset:** The code does not validate feasibility. With multiple odd counts, `ch` would be overwritten and characters would be lost; correctness relies on the stated guarantee that `s` is palindromic.
 - **Lexicographic order:** `ascii_lowercase` is already ordered from `a` through `z`, matching the problem's lowercase English alphabet and ordinary lexicographic comparison.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ The method needs no frequency table for other letters. Every nonmatching positio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s.count(letter)` scans the string and returns how many occu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For `s = "foobar"` and `letter = "o"`, `m = 2` and `n = 6`. The code calculates 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual counting loop:** Increment a counter fo:** - **Manual counting loop:** Increment a counter for each matching character, then use the same formula. It has identical complexity but is more verbose than `str.count`.
+- **Manual counting loop:** Increment a counter for each matching character, then use the same formula. It has identical complexity but is more verbose than `str.count`.
 - **Frequency dictionary:** It computes counts for every character even though only one letter is queried, adding unnecessary state.
 - **Floating-point division:** It is avoidable and may introduce rounding ambiguity; exact integer arithmetic already matches the contract.
 - **Round to nearest:** Python `round` would implement a different rule. The result must always be rounded down.
@@ -121,8 +121,8 @@ For `s = "foobar"` and `letter = "o"`, `m = 2` and `n = 6`. The code calculates 
 - **Lowercase constraint:** Character encoding and case normalization require no special handling.
 - **Result bound:** The formula cannot produce less than zero or more than 100.
 - **Input preservation:** No mutation or reconstructed string is involved.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

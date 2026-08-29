@@ -55,7 +55,7 @@ The assignment `b[idx] = '0'` is performed in either case. After the method, the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `a[idx] == '0'`, `fix` changes it to one and increments `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +90,7 @@ The assignment `b[idx] = '0'` is performed in either case. After the method, the
 
 ## 6. Traps This Instance Exposes
 
-- **- **One array plus inversion flag:** Interpret eac:** - **One array plus inversion flag:** Interpret each stored bit through a global flipped boolean. This uses one array rather than two but makes fix and unfix compare physical and logical values carefully.
+- **One array plus inversion flag:** Interpret each stored bit through a global flipped boolean. This uses one array rather than two but makes fix and unfix compare physical and logical values carefully.
 - **Flip by scanning:** Rewriting all bits makes one flip $O(n)$ and can be too slow across $10^5$ calls.
 - **Recount on every query:** Maintaining `cnt` avoids repeated $O(n)$ scans.
 - **Fix an existing one:** The count must not increase twice; the conditional prevents it.
@@ -103,8 +103,8 @@ The assignment `b[idx] = '0'` is performed in either case. After the method, the
 - **Character storage:** Bits are strings because `toString` can join them directly.
 - **Index validity:** The contract guarantees every `idx` is inside the allocated lists.
 - **Output allocation:** Even with constant-time updates, returning an $n$-character string necessarily costs $O(n)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

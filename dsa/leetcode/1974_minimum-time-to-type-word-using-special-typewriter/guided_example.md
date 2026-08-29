@@ -55,7 +55,7 @@ The variable `a` is not permanently the code for the letter a. It starts as `ord
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Lowercase English letters occupy consecutive code points.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ When the letters are the same, $d=0$. The formula chooses zero rather than 26, c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate one pointer step at a time:** It can :** - **Simulate one pointer step at a time:** It can produce the same answer, but it is more code and obscures the direct circular-distance formula.
+- **Simulate one pointer step at a time:** It can produce the same answer, but it is more code and obscures the direct circular-distance formula.
 - **Dynamic programming:** It is unnecessary because every typed character fixes the next pointer position; there are no competing states to retain.
 - **Always move clockwise:** This fails badly near the a-z boundary, where counterclockwise may take one step instead of 25.
 - **Always use absolute code difference:** This treats the alphabet as a line and misses the wraparound route; use `min(d, 26 - d)`.
@@ -116,8 +116,8 @@ When the letters are the same, $d=0$. The formula chooses zero rather than 26, c
 - **Maximum word length:** Linear work over at most 100 characters is easily bounded.
 - **Lowercase guarantee:** Consecutive codes and a cycle length of 26 are valid because every input character is from a through z.
 - **Input preservation:** The method iterates over the immutable string and does not alter it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -62,7 +62,7 @@ Thus choosing the shortest route for one leg cannot make a later leg worse. The 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After visiting one query target, the next required move alwa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Because `forward_total` is positive, Python modulo returns the unique nonnegativ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run Dijkstra for every leg:** The graph has on:** - **Run Dijkstra for every leg:** The graph has only a cycle structure, so general shortest-path machinery is unnecessary and much slower.
+- **Run Dijkstra for every leg:** The graph has only a cycle structure, so general shortest-path machinery is unnecessary and much slower.
 - **Walk edge by edge per query:** Correct but can cost `O(nQ)`. Prefix sums reduce each arc to constant time.
 - **Always choose forward:** Directional costs can differ greatly; both arcs must be compared.
 - **Mix forward and backward edges:** Any non-simple mixed route contains removable positive-cost repetition and cannot beat both simple arcs.
@@ -126,8 +126,8 @@ Because `forward_total` is positive, Python modulo returns the unique nonnegativ
 - **Positive edge guarantee:** It is what makes cycle removal safe. Zero weights would still not hurt, but negative weights would invalidate the simple-path argument.
 - **Sequential queries:** Only the target house becomes the next state; arrival direction has no effect.
 - **Unit walking speed:** Numerical distance equals time, so no division or multiplication is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

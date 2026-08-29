@@ -4,7 +4,7 @@ You are asked to design an auction system that manages bids from multiple users 
 
 Each bid is associated with a `userId`, an `itemId`, and a `bidAmount`.
 
-Implement the `AuctionSystem` class:​​​​​​​
+Implement the `AuctionSystem` class:
 
 - `AuctionSystem()`: Initializes the `AuctionSystem` object.
 

@@ -60,7 +60,7 @@ No different removed value exists, so this parity behavior cannot be bypassed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `n == 1`, operations alternate between two forced state... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ The `default=-1` handles `k = 1`, where the slice is empty and no previously rem
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generator over indices:** Compute the restorat:** - **Generator over indices:** Compute the restoration maximum without slicing to attain $O(1)$ auxiliary space.
+- **Generator over indices:** Compute the restoration maximum without slicing to attain $O(1)$ auxiliary space.
 - **Simulate pile states:** Explicit move search branches exponentially and is unnecessary once final-move possibilities are characterized.
 - **`k = 0`:** The original top is forced.
 - **One element, odd `k`:** The pile ends empty and returns `-1`.
@@ -116,8 +116,8 @@ The `default=-1` handles `k = 1`, where the slice is empty and no previously rem
 - **Index `k - 1`:** It cannot remain top because one exact move is still required.
 - **Input preservation:** The slice is copied and the original list is not mutated.
 - **Manifest discrepancy:** The algorithmic idea is constant-state, but the exact slice uses linear temporary space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

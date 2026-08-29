@@ -71,7 +71,7 @@ The sign could be reversed for every key—`value - index` would group the same 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The definition says a pair with earlier index $j$ and later ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The order of lookup and increment matters. Incrementing first would count the cu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Total pairs minus good pairs:** Count each key:** - **Total pairs minus good pairs:** Count each key frequency and use $\binom{f}{2}$ for good pairs, then subtract from $\binom{n}{2}$. This is correct but requires a second aggregation step or final frequency loop.
+- **Total pairs minus good pairs:** Count each key frequency and use $\binom{f}{2}$ for good pairs, then subtract from $\binom{n}{2}$. This is correct but requires a second aggregation step or final frequency loop.
 - **Brute-force pair enumeration:** Testing every `(i, j)` directly is simple but takes $O(n^2)$ time and is too slow for $10^5$ elements.
 - **Use `nums[i] - i` as the key:** Reversing every key's sign preserves equality, so it is equally correct. The exact code uses `i - nums[i]`.
 - **One element:** There are no index pairs. The only contribution is zero, and the result is `0`.
@@ -129,8 +129,8 @@ The order of lookup and increment matters. Incrementing first would count the cu
 - **Large values:** A key may be a large negative integer, but Counter keys support it directly.
 - **Update order:** The frequency must be read before the current index is inserted, or the current index would be incorrectly treated as an earlier partner.
 - **Duplicate array values:** Equal values at different indices do not automatically make a pair good; equality depends on `i - nums[i]`, which changes with the index.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

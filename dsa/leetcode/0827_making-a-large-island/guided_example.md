@@ -65,7 +65,7 @@ The `Counter` named `cnt` maps each positive island identifier to its number of 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The matrix `p` has the same dimensions as `grid` and begins ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ These are exactly the four directions allowed by the island definition. Diagonal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flood fill after every possible flip:** It rep:** - **Flood fill after every possible flip:** It repeats almost the same island discovery for each zero and can require `O(n^4)` time.
-- **- **Disjoint set union:** Union adjacent land cell:** - **Disjoint set union:** Union adjacent land cells, store component sizes at roots, and combine distinct neighboring roots for each zero. It has the same near-linear-in-cells behavior but requires parent and size machinery.
-- **- **Overwrite `grid` with island identifiers:** Th:** - **Overwrite `grid` with island identifiers:** This can save the separate label matrix, provided identifiers do not conflict with 0 and 1. The exact solution preserves the input and stores labels in `p`.
+- **Flood fill after every possible flip:** It repeats almost the same island discovery for each zero and can require `O(n^4)` time.
+- **Disjoint set union:** Union adjacent land cells, store component sizes at roots, and combine distinct neighboring roots for each zero. It has the same near-linear-in-cells behavior but requires parent and size machinery.
+- **Overwrite `grid` with island identifiers:** This can save the separate label matrix, provided identifiers do not conflict with 0 and 1. The exact solution preserves the input and stores labels in `p`.
 
 ---
 

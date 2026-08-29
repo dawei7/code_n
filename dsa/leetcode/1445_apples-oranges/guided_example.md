@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - An apples row contributes `sold_num`.
-- An oranges row con... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ For one date, adding those signed contributions produces exactly `apples - orang
 
 ## 6. Traps This Instance Exposes
 
-- **- **SUM with CASE WHEN:** `SUM(CASE WHEN fruit = ':** - **SUM with CASE WHEN:** `SUM(CASE WHEN fruit = 'apples' THEN sold_num ELSE -sold_num END)` expresses the same signed aggregation in standard SQL style. The stored query uses MySQL's shorter `IF` function.
+- **SUM with CASE WHEN:** `SUM(CASE WHEN fruit = 'apples' THEN sold_num ELSE -sold_num END)` expresses the same signed aggregation in standard SQL style. The stored query uses MySQL's shorter `IF` function.
 - **Explicit orange test:** A defensive version can return `-sold_num` only for oranges and zero for any other fruit. That is useful in a broader schema, but the problem guarantees exactly the relevant categories.
 - **Self-join by date:** Join an apples alias to an oranges alias and subtract their quantities. It is intuitive, but it references the table twice and can lose dates if one category is missing unless outer joins and null handling are added.
 - **Separate filtered subqueries:** Build one apple relation and one orange relation, then join on `sale_date`. This makes the two values visually explicit but is more machinery than conditional aggregation needs.
@@ -104,8 +103,8 @@ For one date, adding those signed contributions produces exactly `apples - orang
 - **Ordinal references:** `GROUP BY 1` and `ORDER BY 1` both mean `sale_date` only because it is the first selected expression. Reordering the `SELECT` list would require updating those ordinals.
 - **Exact output name:** `AS diff` supplies the required result-column name. Omitting or changing the alias could make an otherwise correct calculation fail the expected schema.
 - **No recorded rows:** The aggregate query produces no date groups and therefore an empty result. It does not invent calendar dates absent from `Sales`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

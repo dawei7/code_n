@@ -61,9 +61,7 @@ If `x > y`, there is no collision and `x` remains unchanged. If `x <= y`, it mov
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose current original value is `x`.
-
-Because decrementing... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ Thus the ordered problem has the same optimum as the original one.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency counting:** Count occurrences throug:** - **Frequency counting:** Count occurrences through maximum value `M` and carry duplicates forward. This can achieve `O(n + M)` time and `O(M)` space when the value range is affordable.
+- **Frequency counting:** Count occurrences through maximum value `M` and carry duplicates forward. This can achieve `O(n + M)` time and `O(M)` space when the value range is affordable.
 - **Hash-set probing:** Increment duplicates until an unused value appears. Without acceleration, long duplicate runs repeatedly test the same occupied values.
 - **Disjoint-set next-free lookup:** Map occupied values to their next candidates and compress paths. It can avoid sorting but is more complicated.
 - **Already unique values:** Each `x` exceeds `y`, so all values remain unchanged and the answer is zero.
@@ -112,8 +110,8 @@ Thus the ordered problem has the same optimum as the original one.
 - **Input mutation:** `nums.sort()` changes the caller's order. Sort a copy if preservation is required.
 - **Thirty-two-bit result guarantee:** It protects fixed-width implementations. Python integers remain safe regardless.
 - **Original indices:** The code does not reconstruct destinations by input position because only the minimum total is requested.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

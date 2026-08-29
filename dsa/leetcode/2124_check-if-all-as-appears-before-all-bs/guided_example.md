@@ -65,7 +65,7 @@ Thus an invalid global ordering always exposes the adjacent substring `ba`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a `b` occurs before a later `a`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The forbidden pattern is therefore both necessary and sufficient.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Seen-`b` flag:** Scan left to right and reject:** - **Seen-`b` flag:** Scan left to right and reject an `a` after the flag becomes true. It has the same $O(n)$ time and $O(1)$ space.
+- **Seen-`b` flag:** Scan left to right and reject an `a` after the flag becomes true. It has the same $O(n)$ time and $O(1)$ space.
 - **Sort and compare:** A sorted binary string has all `a` before `b`, but sorting costs more and constructs or mutates data unnecessarily.
 - **Find last `a` and first `b`:** The string is valid when one category is absent or the last `a` precedes the first `b`. This is correct but needs more boundary handling.
 - **Only `a` characters:** Valid because there are no `b` characters to be preceded.
@@ -116,8 +116,8 @@ The forbidden pattern is therefore both necessary and sufficient.
 - **Input preservation:** Substring search is read-only.
 - **At most one legal block change:** A valid binary string may transition from `a` to `b` once, but never back.
 - **Local certificate:** One adjacent `ba` is enough to disprove the universal ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

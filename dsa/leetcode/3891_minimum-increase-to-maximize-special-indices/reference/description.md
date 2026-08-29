@@ -34,7 +34,7 @@ Return the minimum total number of unit increases needed to attain the greatest 
 
 - **Output:** 1
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Start with `nums = [1, 2, 2]`.
 
@@ -50,7 +50,7 @@ Return the minimum total number of unit increases needed to attain the greatest 
 
 - **Output:** 2
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Start with `nums = [2, 1, 1, 3]`.
 
@@ -64,13 +64,13 @@ Return the minimum total number of unit increases needed to attain the greatest 
 
 - **Output:** 4
 
-- **Explanation:** ​​​​​​​​​​​​​​​​​​​​​
+- **Explanation:** 
 
 - Start with `nums = [5, 2, 1, 4, 3]`.
 
 - Perform 4 operations at index 1, array becomes `[5, 6, 1, 4, 3]`.
 
-- The final array is `[5, 6, 1, 4, 3]` has 2 special indices, which is the maximum achievable. Thus, the answer is 4.​​​​​​​
+- The final array is `[5, 6, 1, 4, 3]` has 2 special indices, which is the maximum achievable. Thus, the answer is 4.
 
 ### 4. Constraints
 

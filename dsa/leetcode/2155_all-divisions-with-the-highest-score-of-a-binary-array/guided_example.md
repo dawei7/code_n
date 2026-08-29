@@ -61,7 +61,7 @@ The new score is `t = l0 + r1`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop `for i, x in enumerate(nums, 1)` processes values i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This three-way behavior ensures that, after each iteration, `mx` is the greatest
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix and suffix arrays:** Precompute left-ze:** - **Prefix and suffix arrays:** Precompute left-zero and right-one counts for every boundary, then compare scores. This is linear time but uses $O(n)$ extra arrays unnecessarily.
+- **Prefix and suffix arrays:** Precompute left-zero and right-one counts for every boundary, then compare scores. This is linear time but uses $O(n)$ extra arrays unnecessarily.
 - **Recount each division:** Counting both sides independently at all $n+1$ indexes takes $O(n^2)$ time.
 - **Track score alone:** Start with total ones, add one for each zero, and subtract one for each one. This is equivalent and uses slightly fewer named counts, but the exact source keeps `l0` and `r1`.
 - **All zeros:** Every move raises the score, so only division $n$ is returned.
@@ -117,8 +117,8 @@ This three-way behavior ensures that, after each iteration, `mx` is the greatest
 - **Any output order:** The source returns ascending indexes because it scans left to right, which is accepted even though sorting is not required.
 - **Output-size bound:** In some alternating arrays, many divisions may tie, so result storage can genuinely be linear.
 - **Input preservation:** Counts are updated separately; `nums` retains all original bits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

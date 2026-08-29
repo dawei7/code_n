@@ -81,11 +81,7 @@ This key avoids writing a custom comparator. It also defines a complete determin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`sorted(cnt, key=lambda x: (-cnt[x], x))`
-
-i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,9 +118,9 @@ The key function can still read each frequency through `cnt[x]`. There is no nee
 
 ## 6. Traps This Instance Exposes
 
-- **- **Size-`k` min-heap:** Keep only the best `k` un:** - **Size-`k` min-heap:** Keep only the best `k` unique words while scanning the frequency map. This can achieve `O(N + U\log k)` heap work, but the heap's “worst retained word” ordering must reverse the lexicographical tie rule carefully, and the final `k` words still need output ordering.
-- **- **Max-heap of all unique words:** Heapify keys b:** - **Max-heap of all unique words:** Heapify keys based on negative frequency and word, then pop `k` times. This uses `O(U)` space and takes `O(U + k\log U)` after counting.
-- **- **Frequency buckets plus tries:** Bucket words b:** - **Frequency buckets plus tries:** Bucket words by count and enumerate each bucket lexicographically through a trie. With bounded word length, this can approach linear time but has much larger constants and implementation complexity.
+- **Size-`k` min-heap:** Keep only the best `k` unique words while scanning the frequency map. This can achieve `O(N + U\log k)` heap work, but the heap's “worst retained word” ordering must reverse the lexicographical tie rule carefully, and the final `k` words still need output ordering.
+- **Max-heap of all unique words:** Heapify keys based on negative frequency and word, then pop `k` times. This uses `O(U)` space and takes `O(U + k\log U)` after counting.
+- **Frequency buckets plus tries:** Bucket words by count and enumerate each bucket lexicographically through a trie. With bounded word length, this can approach linear time but has much larger constants and implementation complexity.
 
 ---
 

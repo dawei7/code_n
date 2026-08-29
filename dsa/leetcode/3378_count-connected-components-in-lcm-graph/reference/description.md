@@ -2,7 +2,7 @@
 
 You are given an array of integers `nums` of size `n` and a **positive** integer `threshold`.
 
-There is a graph consisting of `n` nodes with the $$i^{\text{th}}$$ node having a value of $\text{nums}[i]$. Two nodes `i` and `j` in the graph are connected via an **undirected** edge if $lcm(\text{nums}[i], \text{nums}[j]) \le threshold$.
+There is a graph consisting of `n` nodes with the $i^{\text{th}}$ node having a value of $\text{nums}[i]$. Two nodes `i` and `j` in the graph are connected via an **undirected** edge if $lcm(\text{nums}[i], \text{nums}[j]) \le threshold$.
 
 Return the number of **connected components** in this graph.
 

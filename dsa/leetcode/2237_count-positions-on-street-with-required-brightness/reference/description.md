@@ -2,7 +2,7 @@
 
 You are given an integer `n`. A perfectly straight street is represented by a number line ranging from `0` to $n - 1$. You are given a 2D integer array `lights` representing the street lamp(s) on the street. Each $\text{lights}[i] = [\text{position}_{i}, \text{range}_{i}]$ indicates that there is a street lamp at position $\text{position}_{i}$ that lights up the area from $[max(0, \text{position}_{i} - \text{range}_{i}), min(n - 1, \text{position}_{i} + \text{range}_{i})]$ (**inclusive**).
 
-The **brightness** of a position `p` is defined as the number of street lamps that light up the position `p`. You are given a **0-indexed** integer array `requirement` of size `n` where $\text{requirement}[i]$ is the minimum **brightness** of the $$i^{\text{th}}$$ position on the street.
+The **brightness** of a position `p` is defined as the number of street lamps that light up the position `p`. You are given a **0-indexed** integer array `requirement` of size `n` where $\text{requirement}[i]$ is the minimum **brightness** of the $i^{\text{th}}$ position on the street.
 
 Return *the number of positions *`i`* on the street between *`0`* and *$n - 1$* that have a **brightness** **of **at least** *$\text{requirement}[i]$*.*
 

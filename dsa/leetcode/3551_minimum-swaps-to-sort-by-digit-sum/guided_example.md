@@ -71,7 +71,7 @@ The code finds these cycles with `vis`. Whenever the outer loop reaches an unvis
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At an original index `j`, the current value is `nums[j]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The lower and upper bounds match, proving that the minimum for a length-`c` cycl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort indexed records:** One can sort records c:** - **Sort indexed records:** One can sort records containing each value’s original index, then construct an explicit index-to-index permutation. This avoids mapping by value and naturally supports duplicates if occurrence identities are preserved, but the current dictionary is simpler because the problem guarantees distinct values.
+- **Sort indexed records:** One can sort records containing each value’s original index, then construct an explicit index-to-index permutation. This avoids mapping by value and naturally supports duplicates if occurrence identities are preserved, but the current dictionary is simpler because the problem guarantees distinct values.
 - **Swap values in a working array:** Another method repeatedly swaps each incorrect value into its target position while updating a position map. It also achieves `O(n \log n)` overall and directly counts swaps, but it mutates an auxiliary copy and has more state to keep synchronized.
 - **Selection-style greedy swapping:** Repeatedly searching the remaining suffix for the next required value can count correct swaps, but without a position map it takes `O(n^2)` time and is too slow for `n = 10^5`.
 - **Already sorted input:** Every index is a length-one cycle. The algorithm discovers `n` cycles, changes `ans` from `n` to zero, and correctly reports no swaps.
@@ -120,8 +120,8 @@ The lower and upper bounds match, proving that the minimum for a length-`c` cycl
 - **Large positive values:** The arithmetic digit-sum loop works for the full allowed range, including powers of ten and values containing internal zeros.
 - **No input mutation:** The method builds keys, a destination map, and visitation state but never rearranges `nums` itself.
 - **Why arbitrary swaps matter:** The cycle formula assumes any two distinct positions may be exchanged. If only adjacent swaps were permitted, the answer would instead depend on inversion count, and this algorithm would not solve that different problem.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

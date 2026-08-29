@@ -72,7 +72,7 @@ after a mismatch.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the cross comparison stops at indices `i` and `j` be... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The pointers always remain symmetric, satisfying `i + j = n - 1`, so the interva
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer middle check:** Compare `s[i]` and:** - **Two-pointer middle check:** Compare `s[i]` and `s[j]` while moving inward instead of slicing. It preserves $O(N)$ time and achieves $O(1)$ auxiliary space.
+- **Two-pointer middle check:** Compare `s[i]` and `s[j]` while moving inward instead of slicing. It preserves $O(N)$ time and achieves $O(1)$ auxiliary space.
 - **Try every split and build strings:** There are $N+1$ splits per direction, and constructing/checking each candidate can cost $O(N^2)$ total or worse.
 - **Rolling hashes:** They can test candidate palindromes quickly after preprocessing but add collision concerns or more complex exact hashing. The cross-pointer observation is simpler.
 - **One string already palindrome:** An empty prefix or suffix makes that whole string a valid result.
@@ -123,8 +123,8 @@ The pointers always remain symmetric, satisfying `i + j = n - 1`, so the interva
 - **Both directions:** Success may exist only for `b_prefix + a_suffix`, which is why arguments are swapped.
 - **Equal-length guarantee:** Symmetric indices and a shared split depend on both strings having the same length.
 - **Exact source allocation:** Slice and reversal copies mean the implementation is not truly constant-space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

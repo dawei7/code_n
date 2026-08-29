@@ -97,7 +97,7 @@ As another example, take `nums = [-4, -2, 1]`. The average is $-5/3$, and its fl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The remaining question is whether the candidate occurs in `n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -134,7 +134,7 @@ The answer is guaranteed to be found. The array contains only finitely many dist
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorting first:** Sorting the distinct values w:** - **Sorting first:** Sorting the distinct values would also make it possible to walk upward from the threshold, but sorting costs $O(n \log n)$ time. The hash set preserves linear expected time and expresses the only needed operation—membership—directly.
+- **Sorting first:** Sorting the distinct values would also make it possible to walk upward from the threshold, but sorting costs $O(n \log n)$ time. The hash set preserves linear expected time and expresses the only needed operation—membership—directly.
 - **Repeated list membership checks:** Testing `ans in nums` without building a set can scan the whole array for every candidate. With up to $n$ consecutive candidates present, that approach can take $O(n^2)$ time.
 - **Floating-point average:** Computing `sum(nums) / len(nums)` and then rounding introduces unnecessary floating-point behavior. Exact floor division gives the correct strict integer threshold for positive, zero, and negative sums.
 - **An integral average:** If the average is exactly $a$, the search must begin at $a+1$, because “strictly greater” excludes $a$. The added one after floor division handles this automatically.
@@ -143,8 +143,8 @@ The answer is guaranteed to be found. The array contains only finitely many dist
 - **Duplicates:** Multiple copies of a number have the same effect as one copy: that number is present and must be skipped. Converting to a set intentionally removes multiplicity.
 - **Values below the threshold:** Their presence is irrelevant because none can satisfy the strict-average requirement. The algorithm never wastes time searching downward.
 - **A long consecutive run:** Even if all of the next several integers occur in the array, each successful loop iteration skips a distinct set member, so the scan remains linear overall.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

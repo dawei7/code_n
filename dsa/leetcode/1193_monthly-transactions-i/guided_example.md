@@ -55,7 +55,7 @@ Using ordinals is concise but depends on select-list order. Writing the expressi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query ends with `GROUP BY 1, 2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +90,7 @@ Using ordinals is concise but depends on select-list order. Writing the expressi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Portable `CASE` expressions:** Replace MySQL B:** - **Portable `CASE` expressions:** Replace MySQL Boolean sums and `IF` with standard conditional `CASE` expressions. The logic and grouping remain the same.
+- **Portable `CASE` expressions:** Replace MySQL Boolean sums and `IF` with standard conditional `CASE` expressions. The logic and grouping remain the same.
 - **Filter to approved rows in `WHERE`:** This would destroy the all-transaction count and total, so it cannot produce every requested aggregate in the same grouped query.
 - **Separate approved and total subqueries:** Aggregate twice and join the results by month and country. It works but repeats grouping work and complicates groups with no approved rows.
 - **No approved transactions in a group:** Every Boolean contribution and conditional amount contribution is zero, so both approved aggregates return zero.
@@ -100,8 +100,8 @@ Using ordinals is concise but depends on select-list order. Writing the expressi
 - **Any output order:** Omitting `ORDER BY` is valid and avoids imposing unnecessary sorting for presentation.
 - **Ordinal grouping:** `GROUP BY 1, 2` refers to formatted month and country. Changing the select-list order without updating these ordinals could silently alter grouping semantics.
 - **MySQL-specific truth values:** `SUM(state = 'approved')` depends on MySQL converting true and false to one and zero. Other SQL dialects may require explicit conversion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

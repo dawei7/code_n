@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $$i^{\text{th}}$$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
+Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $i^{\text{th}}$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
 
 The objective is to compute `19` from `{"prices": [10, 2, 3, 4], "profits": [100, 2, 7, 10]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ Querying before updating prevents the current item from selecting itself. Queryi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For item $i$ with price $x$, the solution first runs `tree1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After querying, the current profit is inserted at $q$. This gives the exact `rig
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic side scans:** Version I fixes each m:** - **Quadratic side scans:** Version I fixes each middle and scans both sides in $O(n^2)$ time, which is too slow for $n=50000$.
+- **Quadratic side scans:** Version I fixes each middle and scans both sides in $O(n^2)$ time, which is too slow for $n=50000$.
 - **Segment tree:** Range-maximum queries also work in $O(n\log P)$ but require more storage and code than Fenwick prefix maxima.
 - **Coordinate compression:** It can replace direct price coordinates when prices are huge, reducing tree space to $O(n)$. Here $P\le5000$, so direct coordinates are simple.
 - **Equal prices:** `query(x-1)` excludes them on the left, and the reversed `query(q-1)` excludes them on the right.
@@ -115,8 +115,8 @@ After querying, the current profit is inserted at $q$. This gives the exact `rig
 - **Duplicate price coordinates:** Fenwick update keeps only the greatest profit seen at that coordinate, which is all future queries need.
 - **Index order comes from sweep direction:** The price tree does not store indices, but the forward tree contains only earlier positions and the reverse tree only later positions when each query occurs.
 - **Independent side choices:** Once the middle is fixed, selecting the best left profit cannot invalidate the best right choice because their index ranges are disjoint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

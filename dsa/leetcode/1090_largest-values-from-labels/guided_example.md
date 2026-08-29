@@ -55,7 +55,7 @@ The global item limit is enforced by stopping as soon as `num == numWanted`. Bef
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` is a `Counter` whose missing labels automatically have... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Together, these two arguments establish that the final greedy set has maximum po
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group by label first:** Keep the greatest `use:** - **Group by label first:** Keep the greatest `useLimit` values from each label, merge those candidates, and take the global greatest `numWanted`. This is also correct because lower values beyond a label’s cap can never be selected, but it requires more grouping machinery.
+- **Group by label first:** Keep the greatest `useLimit` values from each label, merge those candidates, and take the global greatest `numWanted`. This is also correct because lower values beyond a label’s cap can never be selected, but it requires more grouping machinery.
 - **Per-label heaps:** Maintain a min-heap capped at `useLimit` for each label, then choose the global best candidates. This can save candidate space when label groups are huge, though the final selection still requires ordering or another heap.
 - **Bucket by value:** Values are bounded by twenty thousand, so value-frequency buckets can replace comparison sorting and approach $O(n+V)$ time for value range $V$. Label-capacity bookkeeping becomes less direct, and ordinary sorting is simpler.
 - **Dynamic programming:** A state over selected count and every label’s usage would be far larger than necessary. The exchange property makes greedy selection sufficient.
@@ -111,8 +111,8 @@ Together, these two arguments establish that the final greedy set has maximum po
 - **`numWanted == 1`:** The first feasible item is simply the largest-value item, and every label initially has capacity.
 - **`useLimit == 1`:** Only the greatest encountered item for each label can be accepted; all later items with that label are skipped.
 - **Parallel-array alignment:** `zip` deliberately pairs equal indices. Sorting values separately from labels would destroy item identity and produce invalid combinations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

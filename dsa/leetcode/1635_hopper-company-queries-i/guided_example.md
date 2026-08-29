@@ -59,7 +59,7 @@ Pre-aggregating rides is important. The final query also joins multiple drivers 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `Ride` CTE joins `Rides AS r` to `AcceptedRides AS a` by... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Because this is a left join, a month with no matching active driver still remain
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hard-code twelve rows with `UNION ALL`:** This:** - **Hard-code twelve rows with `UNION ALL`:** This avoids recursion but is verbose. The recursive CTE expresses the calendar range compactly.
+- **Hard-code twelve rows with `UNION ALL`:** This avoids recursion but is verbose. The recursive CTE expresses the calendar range compactly.
 - **Aggregate drivers by join month and use a cumulative window sum:** Count pre-2020 drivers into January, count 2020 joiners by month, fill missing months, and run `SUM(...) OVER (ORDER BY month)`. This avoids the range join.
 - **Correlated count subqueries per month:** For each of twelve months, count eligible drivers and accepted rides. It is readable but may rescan base tables repeatedly.
 - **Join raw rides and raw drivers together:** This creates a many-to-many multiplication within each month and makes simple counts wrong. Pre-aggregating Ride avoids it.
@@ -115,8 +115,8 @@ Because this is a left join, a month with no matching active driver still remain
 - **Month with no active drivers:** `COUNT(driver_id)` ignores the null from the calendar-preserving left join and returns zero.
 - **Ordering requirement:** The exact source lacks `ORDER BY`, so ascending presentation is not guaranteed. Grouping alone must not be relied upon as an ordering contract.
 - **Grouping name resolution:** The source writes `GROUP BY month` rather than `GROUP BY m.month`. In this select scope the intended key is the output month; qualifying it would make the intent more robust.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

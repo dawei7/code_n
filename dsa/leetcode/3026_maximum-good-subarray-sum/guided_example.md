@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\lvert \texttt{nums}[j]-\texttt{nums}[i]\rvert=k.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Equivalently, its first value must be either `nums[i] - k` or `nums[i] + k`. If 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Checking both endp:** - **Enumerate every subarray:** Checking both endpoints and summing directly costs up to $O(N^3)$; adding prefix sums reduces sums to $O(1)$ but still leaves $O(N^2)$ endpoint pairs.
+- **Enumerate every subarray:** Checking both endpoints and summing directly costs up to $O(N^3)$; adding prefix sums reduces sums to $O(1)$ but still leaves $O(N^2)$ endpoint pairs.
 - **Store every index per value:** This allows all legal starts to be revisited, but it can degrade to quadratic work. Only the minimum prefix-before-start value is relevant to maximizing a future sum.
 - **Sliding window:** Negative values and a condition on endpoint values rather than window sum destroy the monotonicity a sliding window would need.
 - **Kadane's algorithm alone:** Kadane finds an unconstrained maximum-sum subarray and does not enforce that the endpoint values differ by exactly $k$.
@@ -101,8 +99,8 @@ Equivalently, its first value must be either `nums[i] - k` or `nums[i] + k`. If 
 - **Positive $k$:** The contract guarantees $k>0$, so the two searched values are distinct. The implementation would still perform two equivalent lookups if $k=0$, but that case is outside the stated input.
 - **Length-two good subarray:** The first position was registered with prefix zero before iteration begins, so the earliest possible pair is considered correctly.
 - **Input preservation:** The method only reads `nums` and never sorts or alters it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

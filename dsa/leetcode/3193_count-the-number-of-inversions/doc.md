@@ -27,7 +27,7 @@ count can be large, return it modulo $10^9+7$.
 
 - `n`: The permutation length, with $2 \le n \le 300$.
 - `requirements`: Between $1$ and $n$ pairs `[end, cnt]`. Every `end` is
-  unique and lies in $[0,n-1]$; every `cnt` lies in $[0,400]$.
+  unique and lies in $[0,n-1]$; every `cnt` lies in `[0,400]`.
 
 At least one requirement has `end = n - 1`, so the inversion count of the
 complete permutation is always specified. Let

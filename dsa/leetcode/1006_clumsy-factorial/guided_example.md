@@ -62,7 +62,7 @@ The loop visits every lower integer `x` from `n - 1` down through one. After usi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The stack begins as `[n]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Combining immediately enforces multiplication before any eventual sum. The top t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form pattern:** For sufficiently large :** - **Closed-form pattern:** For sufficiently large `n`, results follow a period based on `n mod 4`. This achieves constant time but is harder to derive and explain safely.
+- **Closed-form pattern:** For sufficiently large `n`, results follow a period based on `n mod 4`. This achieves constant time but is harder to derive and explain safely.
 - **One running total plus current term:** Keep the unresolved multiplicative term separately and commit it on addition/subtraction. It can reduce stack storage to constant space while retaining linear time.
 - **Build tokens and use a general calculator:** Correct precedence is possible, but the machinery is excessive for a fixed four-operation cycle.
 - **Use Python `//` for negative terms:** This floors rather than truncates toward zero and can produce an incorrect extra negative unit.
@@ -111,8 +111,8 @@ Combining immediately enforces multiplication before any eventual sum. The top t
 - **Negative stack terms:** They arise from subtraction and must remain signed through later multiplication and division.
 - **Division by zero:** Impossible because loop operands decrease only through positive integers.
 - **Input upper bound:** Direct simulation of at most ten thousand operands is easily manageable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

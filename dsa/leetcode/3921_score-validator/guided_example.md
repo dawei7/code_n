@@ -59,7 +59,7 @@ The constraints guarantee there are no other digit strings, so the broad `isdigi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Allowed numeric strings are `"0"`, `"1"`, `"2"`, `"3"`, `"4"... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Because the loop breaks at exactly ten, `counter` can never exceed ten. An eleve
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mapping score events to values:** A dictionary:** - **Mapping score events to values:** A dictionary can map every allowed token to its score contribution, but `"W"` still needs separate counter and stop logic.
+- **Mapping score events to values:** A dictionary can map every allowed token to its score contribution, but `"W"` still needs separate counter and stop logic.
 - **Process a sliced prefix:** Finding the tenth `"W"` first and then scanning that prefix requires an extra pass; direct simulation stops naturally.
 - **Numeric zero:** `int("0")` adds zero, as required.
 - **No \(W\) events:** The counter remains zero and every array element is processed.
@@ -113,8 +113,8 @@ Because the loop breaks at exactly ten, `counter` can never exceed ten. An eleve
 - **Closed event domain:** The fallback relies on the guarantee that every nonnumeric non-`W` token is `WD` or `NB`.
 - **Order matters:** Score events before the tenth `W` count, while identical events after it do not.
 - **Input preservation:** Iteration reads tokens without changing the list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

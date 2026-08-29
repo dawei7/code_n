@@ -66,7 +66,7 @@ Thus one top comparison completely handles the new character. There is no need t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before processing `c`, the stack has no adjacent duplicate p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The second cancellation is not found by repeatedly rescanning a modified string.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string replacement:** Remove `aa` thr:** - **Repeated string replacement:** Remove `aa` through `zz` until the length stops changing. It is simple but repeatedly scans and allocates strings, leading to quadratic worst-case work.
+- **Repeated string replacement:** Remove `aa` through `zz` until the length stops changing. It is simple but repeatedly scans and allocates strings, leading to quadratic worst-case work.
 - **Repeated full rescans:** Find one adjacent pair, remove it, and restart. Each removal can shift or rebuild most of the string, again becoming quadratic.
 - **Use a mutable character array with a write pointer:** Treat the array prefix as a stack and overwrite positions in place. This implements the same invariant and can reduce object overhead.
 - **Recursive removal:** Recursion complicates newly formed boundaries and risks deep call stacks; the explicit stack captures them directly.
@@ -124,8 +124,8 @@ The second cancellation is not found by repeatedly rescanning a modified string.
 - **Empty final result:** `''.join([])` returns `""` without a special case.
 - **Lowercase alphabet:** The stack algorithm actually works for any comparable characters, but the source restricts input to lowercase English letters.
 - **Removal order:** Different manual orders lead to the same final answer by the source guarantee; the stack realizes one deterministic left-to-right order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

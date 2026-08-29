@@ -52,7 +52,7 @@ The first-login device cannot be obtained by applying `MIN` directly to `device_
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The first-login device cannot be obtained by applying `MIN` directly to `device_
 
 ## 6. Traps This Instance Exposes
 
-- **- **CTE plus inner join:** Materialize `player_id,:** - **CTE plus inner join:** Materialize `player_id, MIN(event_date)` and join on both columns. It expresses the same relational plan and is more portable than row-value `IN` in some systems.
+- **CTE plus inner join:** Materialize `player_id, MIN(event_date)` and join on both columns. It expresses the same relational plan and is more portable than row-value `IN` in some systems.
 - **`ROW_NUMBER` window function:** Partition by player, order by date, and select row one. This directly keeps the associated device but requires window support.
 - **`FIRST_VALUE(device_id)`:** Compute the first device in each ordered player partition and apply `DISTINCT`. It works but can be less transparent about row reduction.
 - **Aggregate `MIN(device_id)`:** This is incorrect because numeric device order is unrelated to login time.
@@ -97,8 +97,8 @@ The first-login device cannot be obtained by applying `MIN` directly to `device_
 - **Any output order:** No final sort is required.
 - **MySQL row constructors:** The exact syntax is supported by MySQL; a join is the portability fallback.
 - **Keep the device attached to its row:** Aggregating `MIN(device_id)` beside `MIN(event_date)` could combine values from different activity rows. Matching the composite tuple retrieves the device recorded on the actual first-login row.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

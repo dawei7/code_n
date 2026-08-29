@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the user's maximum number of posts in any inclusive seven-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ A user is bursty when the maximum seven-day count is at least twice that average
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correctly scoped self-join:** Add explicit rep:** - **Correctly scoped self-join:** Add explicit reporting-period conditions for the anchor and counted posts. This fixes the exact source's major date-scope defect.
+- **Correctly scoped self-join:** Add explicit reporting-period conditions for the anchor and counted posts. This fixes the exact source's major date-scope defect.
 - **Sliding window per user:** Sorting posts by `(user_id, post_date)` and maintaining two date pointers can find maximum seven-day counts without enumerating every matching pair.
 - **Window-function formulation:** Some SQL dialects can combine ordered analytics with date-range frames, although support for interval-based frames varies.
 - **Index support:** A composite index on `(user_id, post_date)` materially improves the same-user date-range join.
@@ -103,8 +103,8 @@ A user is bursty when the maximum seven-day count is at least twice that average
 - **Functional dependency in grouping:** `avg_weekly_posts` is selected without being explicitly grouped or aggregated. Since `T` has one row per user it is functionally determined, but strict SQL modes or other engines may demand an aggregate or an added group key.
 - **Result order:** `ORDER BY 1` sorts by `user_id` ascending, matching the expected deterministic output.
 - **Not the manifest algorithm:** The checked-in query is a self-join, not a true linear sliding-window implementation, so its complexity must be assessed from the SQL actually present.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

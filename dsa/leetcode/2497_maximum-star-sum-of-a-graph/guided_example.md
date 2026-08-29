@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is an undirected graph consisting of `n` nodes numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $$i^{\text{th}}$$ node.
+There is an undirected graph consisting of `n` nodes numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $i^{\text{th}}$ node.
 
 The objective is to compute `-5` from `{"vals": [-5], "edges": [], "k": 0}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -64,7 +64,7 @@ Both edge directions are considered even though only positive endpoint values ar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The graph is undirected.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ An exchange argument proves the top-choice rule. Suppose a selected neighbor has
 
 ## 6. Traps This Instance Exposes
 
-- **- **Size-`k` min-heaps:** Keep only the best `k` p:** - **Size-`k` min-heaps:** Keep only the best `k` positive neighbors per center for $O(m\log(k+1))$ time; this matches the manifest summary but not the exact source.
+- **Size-`k` min-heaps:** Keep only the best `k` positive neighbors per center for $O(m\log(k+1))$ time; this matches the manifest summary but not the exact source.
 - **Select then partition:** A linear-time selection algorithm can avoid fully sorting large neighbor lists, though it is more complex.
 - **Negative center:** It must still be included, but sufficiently valuable positive neighbors may make its star optimal.
 - **Negative neighbor:** Never include it because using fewer than `k` edges is allowed.
@@ -121,8 +121,8 @@ An exchange argument proves the top-choice rule. Suppose a selected neighbor has
 - **Fewer than `k` positive neighbors:** Use all available positive ones.
 - **Multiple edges:** The constraints describe graph edges; the algorithm assumes each edge represents one neighbor relationship.
 - **Manifest mismatch:** Complexity analysis must account for sorting complete lists in the protected implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

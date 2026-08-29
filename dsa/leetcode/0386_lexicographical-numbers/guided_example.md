@@ -67,7 +67,7 @@ The two branches of the code implement precisely those movements.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The result starts empty and `v` starts at `1`, the first pos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ It always tries digit zero first because children are ordered by their appended 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive decimal-tree DFS:** Visit roots `1` :** - **Recursive decimal-tree DFS:** Visit roots `1` through `9` and recursively try children formed by appending digits `0` through `9`. This also runs in $O(n)$ time and is conceptually direct, but uses $O(\log n)$ call-stack space rather than the requested constant auxiliary space.
-- **- **Convert to strings and sort:** Sorting `1` thr:** - **Convert to strings and sort:** Sorting `1` through `n` by their decimal strings is straightforward but takes $O(n\log n)$ time and $O(n)$ extra storage, failing both desired bounds.
-- **- **Priority queue of next prefixes:** A heap can :** - **Priority queue of next prefixes:** A heap can generate values in lexical order but introduces $O(\log n)$ work per removal and stores many candidates. Direct tree navigation is simpler and faster.
+- **Recursive decimal-tree DFS:** Visit roots `1` through `9` and recursively try children formed by appending digits `0` through `9`. This also runs in $O(n)$ time and is conceptually direct, but uses $O(\log n)$ call-stack space rather than the requested constant auxiliary space.
+- **Convert to strings and sort:** Sorting `1` through `n` by their decimal strings is straightforward but takes $O(n\log n)$ time and $O(n)$ extra storage, failing both desired bounds.
+- **Priority queue of next prefixes:** A heap can generate values in lexical order but introduces $O(\log n)$ work per removal and stores many candidates. Direct tree navigation is simpler and faster.
 
 ---
 

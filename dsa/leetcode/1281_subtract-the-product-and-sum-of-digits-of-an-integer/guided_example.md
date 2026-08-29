@@ -59,7 +59,7 @@ After processing `234`, the extraction order is four, three, two. The product ev
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `x` stores the product of digits processed so far a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The method modifies only its local parameter variable. Python integers are immut
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string:** Iterate through decimal:** - **Convert to a string:** Iterate through decimal characters and convert each with `int`. It is clear but allocates an $O(d)$ string representation.
+- **Convert to a string:** Iterate through decimal characters and convert each with `int`. It is clear but allocates an $O(d)$ string representation.
 - **Separate product and sum passes:** Extracting digits twice repeats work; both aggregates can be updated in one traversal.
 - **Initialize product to zero:** This is incorrect because zero annihilates every multiplication; the identity must be one.
 - **Single-digit input:** Product and sum equal that digit, so the answer is zero.
@@ -108,8 +108,8 @@ The method modifies only its local parameter variable. Python integers are immut
 - **Negative input:** Signs and remainder behavior would require separate handling and are not allowed.
 - **Local mutation of `n`:** Replacing the parameter with successive quotients is safe because no later step needs the original whole value.
 - **Result may be negative:** The task asks for product minus sum and does not require a nonnegative answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

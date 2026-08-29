@@ -66,7 +66,7 @@ The root covers `[1, 10^9]`. The tree does not allocate a billion leaves. Childr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A `Node` represents an inclusive coordinate interval `[node.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ An uncovered part of the domain effectively has height zero. The local accumulat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate compression plus array segment tree:** - **Coordinate compression plus array segment tree:** Collect every left endpoint and `left + size - 1`, map them to `O(N)` indices, and use a conventional lazy tree. This gives `O(N\log N)` time and `O(N)` space with less dependence on the numeric coordinate ceiling.
-- **- **Quadratic simulation:** For each new square, c:** - **Quadratic simulation:** For each new square, compare it with every earlier square to find overlapping support. It is simpler and takes `O(N^2)` time, acceptable only for smaller inputs.
-- **- **Touching side edges:** `r = l + w - 1` ensures:** - **Touching side edges:** `r = l + w - 1` ensures adjacent intervals do not overlap merely because one geometric right edge equals another left edge.
+- **Coordinate compression plus array segment tree:** Collect every left endpoint and `left + size - 1`, map them to `O(N)` indices, and use a conventional lazy tree. This gives `O(N\log N)` time and `O(N)` space with less dependence on the numeric coordinate ceiling.
+- **Quadratic simulation:** For each new square, compare it with every earlier square to find overlapping support. It is simpler and takes `O(N^2)` time, acceptable only for smaller inputs.
+- **Touching side edges:** `r = l + w - 1` ensures adjacent intervals do not overlap merely because one geometric right edge equals another left edge.
 
 ---
 

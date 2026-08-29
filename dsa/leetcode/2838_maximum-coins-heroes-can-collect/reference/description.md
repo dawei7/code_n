@@ -1,12 +1,12 @@
 ### 1. Description
 
-There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. $\text{heroes}[i]$ is the power of $$i^{\text{th}}$$ hero, and $\text{monsters}[i]$ is the power of $$i^{\text{th}}$$ monster.
+There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. $\text{heroes}[i]$ is the power of $i^{\text{th}}$ hero, and $\text{monsters}[i]$ is the power of $i^{\text{th}}$ monster.
 
-The $$i^{\text{th}}$$ hero can defeat the $$j^{\text{th}}$$ monster if $\text{monsters}[j] \le \text{heroes}[i]$.
+The $i^{\text{th}}$ hero can defeat the $j^{\text{th}}$ monster if $\text{monsters}[j] \le \text{heroes}[i]$.
 
-You are also given a **1-indexed** array `coins` of length `m` consisting of **positive** integers. $\text{coins}[i]$ is the number of coins that each hero earns after defeating the $$i^{\text{th}}$$ monster.
+You are also given a **1-indexed** array `coins` of length `m` consisting of **positive** integers. $\text{coins}[i]$ is the number of coins that each hero earns after defeating the $i^{\text{th}}$ monster.
 
-Return* an array *`ans`* of length *`n`* where *$\text{ans}[i]$* is the **maximum** number of coins that the *$$i^{\text{th}}$$* hero can collect from this battle*.
+Return* an array *`ans`* of length *`n`* where *$\text{ans}[i]$* is the **maximum** number of coins that the *$i^{\text{th}}$* hero can collect from this battle*.
 
 ### 2. Function Contract
 

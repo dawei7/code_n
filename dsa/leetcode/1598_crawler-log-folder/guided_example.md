@@ -65,7 +65,7 @@ Testing `"../"` first matters because it also starts with a dot. The later child
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `v == "../"`, the user attempts to move up one level.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The code does not compare explicitly with `"./"`; it uses the first-character di
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stack of folder names:** Push child operations:** - **Stack of folder names:** Push child operations and pop for valid parent operations. It works and can reconstruct the path, but uses $O(N)$ space when only depth is requested.
+- **Stack of folder names:** Push child operations and pop for valid parent operations. It works and can reconstruct the path, but uses $O(N)$ space when only depth is requested.
 - **Build a normalized path string:** Repeated concatenation and removal are unnecessary and can introduce parsing or copying overhead.
 - **Count children minus parents without clamping:** This fails when a parent operation occurs at the main folder. Such an operation cannot create “negative depth” that cancels a later child move.
 - **Already at main folder:** Any number of `"../"` or `"./"` operations leaves the answer zero.
@@ -120,8 +120,8 @@ The code does not compare explicitly with `"./"`; it uses the first-character di
 - **Hidden-style names beginning with a dot:** The shorthand would misclassify them, but the contract restricts folder names to lowercase letters and digits.
 - **Minimum-operation proof:** Each parent move removes exactly one depth level, making final depth both a lower bound and an achievable count.
 - **Input preservation:** The logs are read-only, and no stack or modified path is created.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

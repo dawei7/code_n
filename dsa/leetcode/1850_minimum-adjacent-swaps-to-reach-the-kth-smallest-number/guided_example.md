@@ -51,7 +51,7 @@ The code converts `num` to mutable list `s` and repeats `next_permutation(s)` ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code converts `num` to mutable list `s` and repeats `nex... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code converts `num` to mutable list `s` and repeats `next_permutation(s)` ex
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fenwick-tree inversion count:** Process mapped:** - **Fenwick-tree inversion count:** Process mapped indices and count earlier greater positions in `O(n log n)`, matching the manifest’s faster bound.
+- **Fenwick-tree inversion count:** Process mapped indices and count earlier greater positions in `O(n log n)`, matching the manifest’s faster bound.
 - **Merge-sort inversion count:** Also reduces the counting phase to `O(n log n)` with `O(n)` auxiliary space.
 - **Simulate adjacent swaps directly:** Repeatedly locate each target digit and bubble it left; this is intuitive and `O(n^2)`.
 - **Duplicate digits:** Stable earliest-unused mapping prevents artificial crossings among indistinguishable copies.
@@ -98,8 +98,8 @@ The code converts `num` to mutable list `s` and repeats `next_permutation(s)` ex
 - **Quadratic exact count:** At `n = 1000`, pair enumeration is finite but is not the advertised `n log n` method.
 - **Input preservation:** `num` remains immutable; mutations occur on list `s`.
 - **Boolean summation:** Each true inverted pair contributes integer one to the returned total.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -64,7 +64,7 @@ At each position, `next_no_pair` and `next_cleared` begin impossible and receive
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before index zero, no pair from the left can exist.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ The target character is converted to integer zero or one as well.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over strings:** There are:** - **Breadth-first search over strings:** There are `2^n` binary states. BFS verifies small examples but is infeasible for `n=10^5`.
-- **- **Greedily fix each bit without state:** Choosin:** - **Greedily fix each bit without state:** Choosing a direct zero-to-one change can miss that pairing the current position is necessary to clear the next one. The `cleared` state retains this one-step interaction.
-- **- **Track the entire modified prefix:** Earlier po:** - **Track the entire modified prefix:** Earlier positions are finalized and cannot be touched by future right-starting operations. Only whether the current bit was cleared from the left matters.
+- **Breadth-first search over strings:** There are `2^n` binary states. BFS verifies small examples but is infeasible for `n=10^5`.
+- **Greedily fix each bit without state:** Choosing a direct zero-to-one change can miss that pairing the current position is necessary to clear the next one. The `cleared` state retains this one-step interaction.
+- **Track the entire modified prefix:** Earlier positions are finalized and cannot be touched by future right-starting operations. Only whether the current bit was cleared from the left matters.
 
 ---
 

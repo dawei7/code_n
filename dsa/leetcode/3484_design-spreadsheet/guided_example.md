@@ -51,7 +51,7 @@ The constructor accepts `rows` because the required interface includes it, but t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor accepts `rows` because the required interfac... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The constructor accepts `rows` because the required interface includes it, but t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Allocate a full two-dimensional grid:** It giv:** - **Allocate a full two-dimensional grid:** It gives direct indexed access but uses $O(26\cdot rows)$ space even when very few cells are set.
+- **Allocate a full two-dimensional grid:** It gives direct indexed access but uses $O(26\cdot rows)$ space even when very few cells are set.
 - **Parse references into numeric coordinates:** This is necessary for an array grid but optional for a dictionary with canonical string keys.
 - **Store reset cells as zero:** It is correct but keeps unnecessary entries; removing them restores the sparse default representation.
 - **Unset cell in a formula:** `get(cell, 0)` supplies the required zero.
@@ -98,8 +98,8 @@ The constructor accepts `rows` because the required interface includes it, but t
 - **Mixed operand order:** The token test handles either `cell+number` or `number+cell`.
 - **Constructor row count:** The source ignores it because inputs guarantee valid references; an API requiring validation would need to retain and check it.
 - **No formula caching:** Results should reflect the latest cell values, so evaluating fresh lookups is the correct simple design.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

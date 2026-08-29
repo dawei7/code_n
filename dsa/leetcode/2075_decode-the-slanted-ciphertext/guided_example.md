@@ -73,7 +73,7 @@ It is important that the traversal does not begin diagonals from the left edge b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The original text was placed along diagonals that move one r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Python's `rstrip()` without an argument removes trailing whitespace characters g
 
 ## 6. Traps This Instance Exposes
 
-- **- **Materializing a matrix:** Splitting the flatte:** - **Materializing a matrix:** Splitting the flattened text into `rows` row strings can make coordinates visually obvious, but it duplicates or reorganizes $O(L)$ data. Direct row-major indexing obtains the same cells without building the matrix.
+- **Materializing a matrix:** Splitting the flattened text into `rows` row strings can make coordinates visually obvious, but it duplicates or reorganizes $O(L)$ data. Direct row-major indexing obtains the same cells without building the matrix.
 - **Repeated string concatenation:** Appending one character at a time to an immutable string may repeatedly copy the accumulated prefix. Collecting characters in a list and joining once gives predictable linear construction.
 - **Reading complete matrix rows or columns:** Ordinary row-major or column-major traversal does not undo the slanted placement. Both row and column must increase together along each decoding diagonal.
 - **Starting extra diagonals on the left edge:** Those coordinates do not correspond to the encoder's top-row diagonal starts and would add data in the wrong order. Only `j` values in the top row are used.
@@ -126,8 +126,8 @@ Python's `rstrip()` without an argument removes trailing whitespace characters g
 - **Empty encoded text:** `cols` becomes zero, no indexing occurs, and the result is the empty string.
 - **Divisibility by `rows`:** The solution relies on the valid-encoding guarantee that the flattened length represents a complete rectangular matrix. Integer division then recovers the exact column count.
 - **Trailing-space guarantee:** Correctness of `rstrip()` depends on the original text having no trailing spaces. Under that contract, removed rightmost spaces are necessarily padding rather than message content.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

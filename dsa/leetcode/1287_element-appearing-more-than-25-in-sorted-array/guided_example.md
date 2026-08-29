@@ -61,7 +61,7 @@ This implication also prevents returning an ordinary shorter block. Any equality
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the values at positions $i$ and $i+q$ are equal, sorted o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Without the guaranteed qualifying element, this exact loop would need a bounded 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quartile candidates plus binary search:** The :** - **Quartile candidates plus binary search:** The special block must cover at least one of the quarter positions. Binary-searching each candidate's first and last occurrence achieves $O(\log n)$ time and $O(1)$ space.
+- **Quartile candidates plus binary search:** The special block must cover at least one of the quarter positions. Binary-searching each candidate's first and last occurrence achieves $O(\log n)$ time and $O(1)$ space.
 - **Frequency hash map:** Counting all values takes $O(n)$ time and $O(n)$ space but ignores sorted order.
 - **Run-length scan:** Count each contiguous block and return the one longer than $n/4$. It is robust and linear but maintains more explicit state.
 - **Bound the exact loop:** Iterating only through `range(n - q)` avoids relying on guaranteed early return and is safer general code.
@@ -110,8 +110,8 @@ Without the guaranteed qualifying element, this exact loop would need a bounded 
 - **Strictly more than 25 percent:** Requiring $q+1$ occurrences correctly handles lengths not divisible by four.
 - **Sorted-order requirement:** Without sorting, equal endpoints would not prove that the elements between them match.
 - **Missing valid element:** Outside the contract, the exact source could run out of bounds and has no fallback return.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

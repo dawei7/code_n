@@ -2,7 +2,7 @@
 
 Given two **positive** integers `n` and `x`.
 
-Return *the number of ways *`n`* can be expressed as the sum of the *$$x^{\text{th}}$$* power of **unique** positive integers, in other words, the number of sets of unique integers *$[n_{1}, n_{2}, ..., n_{k}]$* where *$n = n_{1}^x + n_{2}^x + ... + n_{k}^x$*.*
+Return *the number of ways *`n`* can be expressed as the sum of the *$x^{\text{th}}$* power of **unique** positive integers, in other words, the number of sets of unique integers *$[n_{1}, n_{2}, ..., n_{k}]$* where *$n = n_{1}^x + n_{2}^x + ... + n_{k}^x$*.*
 
 Since the result can be very large, return it modulo $10^{9} + 7$.
 

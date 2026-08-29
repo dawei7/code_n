@@ -55,7 +55,7 @@ The left join preserves a month even if no driver matches, producing a row with 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `S` left joins each month to Drivers.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ CTE `T` joins Rides to AcceptedRides using their shared `ride_id` and filters re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate one row per working driver and month:** - **Aggregate one row per working driver and month in `T`:** Grouping there can reduce duplicate ride rows before the final join.
+- **Aggregate one row per working driver and month in `T`:** Grouping there can reduce duplicate ride rows before the final join.
 - **Monthly driver counts plus window sums:** Aggregate joiners and use a cumulative window function for active counts, then join monthly working-driver counts.
 - **Correlated subqueries per month:** They are readable but may rescan base tables twelve times.
 - **Several rides by one driver:** `COUNT(DISTINCT)` counts one working driver, not several rides.
@@ -104,8 +104,8 @@ CTE `T` joins Rides to AcceptedRides using their shared `ride_id` and filters re
 - **Requested but unaccepted ride:** Excluded by the inner join in `T`.
 - **Missing ordering:** The exact query has no `ORDER BY`, so row order is not guaranteed despite the contract's ascending requirement.
 - **Recursive CTE uses `UNION`:** The generated month values are unique, so duplicate elimination does not change the twelve-row result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

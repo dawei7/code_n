@@ -82,7 +82,7 @@ destination.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop continues while `v >= 4`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ method returns `i`, the actual number copied.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct block writes in pointer-based languages:** - **Direct block writes in pointer-based languages:** Full groups of four can be written directly into the correct destination offset, avoiding a second character-by-character copy; Python's given API still expects a separate list buffer.
+- **Direct block writes in pointer-based languages:** Full groups of four can be written directly into the correct destination offset, avoiding a second character-by-character copy; Python's given API still expects a separate list buffer.
 - **Preserve leftover characters:** Required by the follow-up where `read` may be called repeatedly, but unnecessary under the single-call guarantee.
 - **Read one character at a time conceptually:** Impossible because the only permitted file interface advances in blocks of up to four.
 - **File shorter than `n`:** A short return is copied completely, then its size stops the loop.
@@ -140,8 +140,8 @@ method returns `i`, the actual number copied.
 - **Destination capacity:** The contract guarantees room for `n`, and the source never writes beyond index `n - 1`.
 - **Single-call dependency:** Fetched but uncopied characters are discarded; this solution must not be reused unchanged for multiple `read` calls.
 - **Platform API:** `read4` and its file pointer are harness-provided; the solution should not attempt to manipulate the file directly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

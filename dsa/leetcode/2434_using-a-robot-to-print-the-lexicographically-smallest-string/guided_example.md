@@ -57,7 +57,7 @@ The loop stops at the first letter that still occurs, or at `'z'`. When no unrea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The counter `cnt` initially records how many occurrences of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The inner loop repeats because removing one safe top may expose another top that
 
 ## 6. Traps This Instance Exposes
 
-- **- **Suffix-minimum array:** Precompute the smalles:** - **Suffix-minimum array:** Precompute the smallest character in every suffix, then pop while the stack top is at most the next suffix minimum. This is equally $O(n)$ but uses another $O(n)$ array instead of a fixed alphabet counter.
+- **Suffix-minimum array:** Precompute the smallest character in every suffix, then pop while the stack top is at most the next suffix minimum. This is equally $O(n)$ but uses another $O(n)$ array instead of a fixed alphabet counter.
 - **Priority queue of unread characters:** A heap can reveal the minimum, but deletions of the current streamed occurrence and duplicate handling add overhead. Counts plus a monotone 26-letter pointer are simpler.
 - **Explore operation sequences:** Each state can choose a transfer or pop, producing exponentially many possibilities. The greedy comparison eliminates that branching.
 - **Already increasing string:** Each pushed character is no greater than the unread minimum and is printed quickly, preserving the string.
@@ -110,8 +110,8 @@ The inner loop repeats because removing one safe top may expose another top that
 - **No unread characters:** `mi` stops at `'z'`, and every lowercase stack top satisfies the pop condition, ensuring the temporary string empties.
 - **Equality in the pop test:** A top equal to the unread minimum is safe to print. Requiring strict inequality would delay equal characters unnecessarily but would not improve the prefix.
 - **LIFO restriction:** A smaller character buried below a larger stack top cannot be printed first. The proof always reasons about the accessible top and future characters that can be pushed above it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

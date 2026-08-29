@@ -69,7 +69,7 @@ At this stage, the matrix remains unchanged, and all $mn$ values are stored exac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested loops visit every matrix cell in row-major order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If buckets were sorted in ordinary ascending order, popping from the end would p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heaps by diagonal:** Heapify each bucket a:** - **Min-heaps by diagonal:** Heapify each bucket and pop minima during write-back. It has the same broad time bound but more per-pop overhead.
+- **Min-heaps by diagonal:** Heapify each bucket and pop minima during write-back. It has the same broad time bound but more per-pop overhead.
 - **Sort one diagonal at a time:** This reduces auxiliary storage to $O(L)$ while preserving $O(mn\log L)$ time.
 - **Counting sort:** Values lie from 1 through 100, so frequency counting can achieve linear matrix time under the bounded value range.
 - **Ascending bucket plus front removal:** It is logically correct but inefficient in Python because removing index zero shifts the list.
@@ -119,8 +119,8 @@ If buckets were sorted in ordinary ascending order, popping from the end would p
 - **Input mutation:** The same matrix is overwritten and returned.
 - **Key choice:** `j - i` would also identify diagonals but needs a dictionary or offset for negative values.
 - **Reverse sort:** It is paired deliberately with end-pop to emit ascending values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

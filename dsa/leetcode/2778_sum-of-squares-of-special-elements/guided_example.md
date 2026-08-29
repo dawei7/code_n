@@ -63,7 +63,7 @@ No temporary list of special values or divisor indices is created. Python's `sum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator expression visits each pair `(i, x)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The values themselves do not influence whether an element is special. A large va
 
 ## 6. Traps This Instance Exposes
 
-- **- **Complementary divisor enumeration:** Iterate o:** - **Complementary divisor enumeration:** Iterate only through `1..sqrt(n)` and process both divisor indices. This achieves `O(sqrt n)` time and matches the manifest summary, but it is not the exact code.
+- **Complementary divisor enumeration:** Iterate only through `1..sqrt(n)` and process both divisor indices. This achieves `O(sqrt n)` time and matches the manifest summary, but it is not the exact code.
 - **Precompute a divisor set:** It adds storage and is unnecessary for a one-pass calculation.
 - **Use zero-based indices directly:** Testing `n % index` would divide by zero at the first element and shift every intended position. Starting `enumerate` at one prevents both errors.
 - **Build a list of squares first:** It produces the same sum but uses extra space; the generator streams values.
@@ -120,8 +120,8 @@ The values themselves do not influence whether an element is special. A large va
 - **Index equality with length:** `n % n` is zero, guaranteeing inclusion of the last element.
 - **Input preservation:** Neither enumeration nor multiplication mutates `nums`.
 - **Manifest mismatch:** The documented complexity must follow the real all-index scan rather than the absent divisor-pair optimization.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

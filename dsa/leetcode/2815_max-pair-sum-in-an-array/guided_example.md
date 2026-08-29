@@ -51,7 +51,7 @@ This differs from the ten-bucket technique described in the Optimal manifest. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This differs from the ten-bucket technique described in the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This differs from the ten-bucket technique described in the Optimal manifest. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ten largest-digit buckets:** Scan each number :** - **Ten largest-digit buckets:** Scan each number once, compute its largest digit, combine it with the best prior value in that digit's bucket, and update the bucket maximum. This takes $O(n\log V)$ time and $O(1)$ space because there are ten buckets, matching the manifest.
+- **Ten largest-digit buckets:** Scan each number once, compute its largest digit, combine it with the best prior value in that digit's bucket, and update the bucket maximum. This takes $O(n\log V)$ time and $O(1)$ space because there are ten buckets, matching the manifest.
 - **Precompute digit keys:** Store each number's largest digit once, then enumerate pairs in $O(n^2)$ time without repeated string scanning. It uses $O(n)$ extra space.
 - **Arithmetic digit extraction:** Repeatedly use remainder ten and integer division rather than converting to text. It has $O(\log V)$ work per number and handles the numeric intent directly.
 - **No valid pair:** `ans` remains negative one, exactly the required return value.
@@ -99,8 +99,8 @@ This differs from the ten-bucket technique described in the Optimal manifest. Th
 - **Positive inputs:** They ensure every valid sum exceeds the negative-one sentinel and prevent a minus sign from entering the string comparison.
 - **Input preservation:** Sorting is not used; slices copy references, and `nums` remains unchanged.
 - **Manifest mismatch:** The claimed bucket complexity belongs to the faster alternative, not the exact exhaustive source, whose real worst-case pair count is quadratic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

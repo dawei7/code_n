@@ -61,7 +61,7 @@ The stored solution initializes `ans = 0`. It scans `left` and updates `ans = ma
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An ant at position `x` moving left travels distance `x` to c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Since taking a maximum ignores identities, the largest endpoint time from the pa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Event simulation:** Computing the next collisi:** - **Event simulation:** Computing the next collision or fall repeatedly is much more complex and can be quadratic or worse; identities are irrelevant to the answer.
+- **Event simulation:** Computing the next collision or fall repeatedly is much more complex and can be quadratic or worse; identities are irrelevant to the answer.
 - **Pass-through trajectory view:** This is the essential optimal model because direction swaps between identical equal-speed ants are equivalent to identity swaps.
 - **Only left-moving ants:** The answer is the maximum value in `left`.
 - **Only right-moving ants:** The answer is `n` minus the minimum value in `right`.
@@ -111,8 +111,8 @@ Since taking a maximum ignores identities, the largest endpoint time from the pa
 - **Last fall shared by several ants:** Returning the common moment still satisfies the question.
 - **At least one ant:** The contract guarantees the combined arrays are nonempty, so the maximum concept is defined.
 - **Unique starting positions:** No two ants begin at the same coordinate, avoiding an ambiguous initial collision.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

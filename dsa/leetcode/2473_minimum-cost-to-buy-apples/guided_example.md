@@ -61,7 +61,7 @@ Buying in the starting city is always possible with distance zero, so an answer 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Road city labels are one-based.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Notice that relaxation uses current best `dist[u]` rather than popped `d`. This 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Multi-source Dijkstra:** Initialize each city :** - **Multi-source Dijkstra:** Initialize each city with its apple price and use edge weight multiplied by `k+1`. One reversed search yields all starts and matches the manifest.
+- **Multi-source Dijkstra:** Initialize each city with its apple price and use edge weight multiplied by `k+1`. One reversed search yields all starts and matches the manifest.
 - **Add a stale-entry guard:** Skip when popped distance differs from `dist[u]` to prevent redundant edge scans in the repeated-search implementation.
 - **Floyd–Warshall:** All-pairs distances make each apple choice easy but cost $O(N^3)$ time.
 - **Buy locally:** Distance zero guarantees answer is never more than local apple cost.
@@ -116,8 +116,8 @@ Notice that relaxation uses current best `dist[u]` rather than popped `d`. This 
 - **Large totals:** Road paths and scaling require 64-bit arithmetic outside Python.
 - **Input labels:** Subtracting one aligns one-based cities with zero-based arrays.
 - **Metadata mismatch:** The exact source runs Dijkstra from every city instead of one multi-source search.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

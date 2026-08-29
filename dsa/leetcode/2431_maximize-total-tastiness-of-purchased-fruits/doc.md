@@ -27,7 +27,7 @@ You may apply at most `maxCoupons` coupons. A coupon can be used on a purchased 
 - `maxAmount`: The maximum total amount that may be paid.
 - `maxCoupons`: The maximum number of coupons that may be used.
 
-The arrays have the same length $n$, where $1 \le n \le 100$. Each array value and `maxAmount` lies in $[0,1000]$, and $0 \le \texttt{maxCoupons} \le 5$.
+The arrays have the same length $n$, where $1 \le n \le 100$. Each array value and `maxAmount` lies in `[0,1000]`, and $0 \le \texttt{maxCoupons} \le 5$.
 
 **Return value**
 

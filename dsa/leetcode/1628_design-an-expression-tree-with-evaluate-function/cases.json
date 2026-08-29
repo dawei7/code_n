@@ -81,26 +81,6 @@
       ]
     },
     {
-      "id": "trial-negative-division",
-      "name": "trial: division truncates a negative quotient toward zero",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "postfix": [
-          "5",
-          "8",
-          "-",
-          "2",
-          "/"
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "division",
-        "truncation"
-      ]
-    },
-    {
       "id": "trial-right-subtree",
       "name": "trial: multiplication is confined to the right subtree",
       "kind": "trial",

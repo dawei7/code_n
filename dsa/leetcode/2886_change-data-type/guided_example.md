@@ -51,7 +51,7 @@ The source selects only that Series and calls:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source selects only that Series and calls:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source selects only that Series and calls:
 
 ## 6. Traps This Instance Exposes
 
-- **- **DataFrame-wide mapping:** `students.astype({'g:** - **DataFrame-wide mapping:** `students.astype({'grade': int})` names the same one-column conversion but returns a converted DataFrame that must be captured.
+- **DataFrame-wide mapping:** `students.astype({'grade': int})` names the same one-column conversion but returns a converted DataFrame that must be captured.
 - **Nullable integer dtype:** `astype('Int64')` can represent missing grades, unlike the ordinary `int` requested by this source.
 - **`apply(int)` or `map(int)`:** Both can convert element by element but add Python-call overhead for a standard dtype cast.
 - **Non-integral floats:** Casting truncates; round explicitly if a different rule is required.
@@ -94,8 +94,8 @@ The source selects only that Series and calls:
 - **Empty DataFrame:** The empty grade Series can still be assigned an integer dtype without creating rows.
 - **Custom index:** Series alignment preserves which student owns each grade.
 - **Input mutation:** Copy `students` first if the floating-point original must remain available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

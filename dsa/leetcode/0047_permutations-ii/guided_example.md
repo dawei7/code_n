@@ -60,9 +60,7 @@ At one recursion depth, after the branch using the earlier `1` has been fully ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop rejects index `j` for either of two reasons:
-
-- `vi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +99,7 @@ The code does not clear `t[i]`. That is safe because the next allowed sibling ov
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency-map backtracking:** Store each disti:** - **Frequency-map backtracking:** Store each distinct value's remaining count and choose among keys. It removes occurrence labels entirely and naturally avoids duplicates, but needs a map and count restoration.
+- **Frequency-map backtracking:** Store each distinct value's remaining count and choose among keys. It removes occurrence labels entirely and naturally avoids duplicates, but needs a map and count restoration.
 - **Depth-local set:** At each output position, remember which values have already begun a sibling branch. This works without the predecessor rule but allocates or clears additional sets throughout recursion.
 - **In-place swapping with duplicate suppression:** Swap candidates into the current position and use a set to avoid equal swaps at that depth. It can remove `vis` but requires careful array restoration.
 - **Post-generation set deduplication:** Generate all $n!$ labeled permutations and put tuples into a set. It is correct but wastes enormous work when multiplicities are high.
@@ -111,8 +109,8 @@ The code does not clear `t[i]`. That is safe because the next allowed sibling ov
 - **Negative values and zero:** Sorting and equality work identically; numeric sign has no special role.
 - **Input mutation:** `nums.sort()` changes input order. A sorted copy would be needed if caller-visible preservation mattered.
 - **Output order:** Canonical traversal happens to be lexicographic relative to sorted input, but only uniqueness and completeness are required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

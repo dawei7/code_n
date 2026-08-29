@@ -51,7 +51,7 @@ The source builds an undirected adjacency list `g`. For edge `[u,v,w]` it stores
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source builds an undirected adjacency list `g`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source builds an undirected adjacency list `g`. For edge `[u,v,w]` it stores
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bellman-Ford:** It supports negative edges, wh:** - **Bellman-Ford:** It supports negative edges, which this problem does not have, and would be far slower.
+- **Bellman-Ford:** It supports negative edges, which this problem does not have, and would be far slower.
 - **BFS:** Correct only if all edge lengths are equal; arbitrary positive lengths require a priority queue.
 - **Deadline-expanded state graph:** Unnecessary because arriving earlier always dominates arriving later at the same node.
 - **Arrival exactly at disappearance:** Invalid; the check is strictly `candidate < disappear[v]`.
@@ -101,8 +101,8 @@ The source builds an undirected adjacency list `g`. For edge `[u,v,w]` it stores
 - **Node zero in final conversion:** `0 < disappear[0]`, so it remains zero.
 - **Graph with no edges:** Only node zero is reachable.
 - **Final defensive comparison:** It converts infinity and protects the stated strict boundary even though relaxations already enforce it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

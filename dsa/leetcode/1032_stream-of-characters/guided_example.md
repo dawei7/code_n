@@ -61,7 +61,7 @@ After the final reversed character, `node.is_end = true` records a complete word
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `Trie` node has `children`, a list of 26 possible next ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Using 201 rather than 200 is harmless. Every trie path representing a word ends 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward trie with every suffix start:** Store :** - **Forward trie with every suffix start:** Store words normally and try searches from several recent positions after each query. This repeats work across candidate lengths; reversal turns them into one root-to-leaf scan.
+- **Forward trie with every suffix start:** Store words normally and try searches from several recent positions after each query. This repeats work across candidate lengths; reversal turns them into one root-to-leaf scan.
 - **Hash set of words:** Build every suffix of the recent stream and test membership. At most `W` suffixes exist, but materializing them can cost `O(W^2)` characters per query.
 - **Aho-Corasick automaton:** Failure links can process each new character incrementally and report suffix matches efficiently. It offers stronger streaming performance but is substantially more complex than a reversed trie for `W <= 200`.
 - **Store a bounded deque:** Keeping only the latest `W` characters is sufficient and changes persistent stream history from `O(Q)` to `O(W)`.
@@ -114,8 +114,8 @@ Using 201 rather than 200 is harmless. Every trie path representing a word ends 
 - **Missing first edge:** If no word ends in the newest letter, search rejects after one step because every valid suffix must end there.
 - **Lowercase contract:** Array indexing assumes characters from `a` through `z`. Other characters could produce invalid indices and are outside the source domain.
 - **Nonempty words:** No terminal is placed at the trie root, matching the requirement that the reported suffix and every input word are nonempty.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

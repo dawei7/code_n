@@ -67,9 +67,7 @@ This produces strings such as `"HarmonyHill (100)"`, already in the exact output
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `T` applies:
-
-`RANK() OVER (PARTITION BY country ORDER B... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +113,7 @@ The top winery needs no fallback because every country present in the grouped ta
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rank raw rows:** This would treat repeated win:** - **Rank raw rows:** This would treat repeated winery entries separately instead of summing their points first.
+- **Rank raw rows:** This would treat repeated winery entries separately instead of summing their points first.
 - **Use `LIMIT 3` globally:** It would return three wineries across all countries, not three per country.
 - **Omit winery-name tie-break:** Equal totals would have ambiguous order and `RANK` could assign the same rank, breaking the pivot joins.
 - **Conditional aggregation pivot:** `MAX(CASE WHEN rk=1 THEN ... END)` is an equivalent and often simpler pivot; the exact source uses self-joins.
@@ -125,8 +123,8 @@ The top winery needs no fallback because every country present in the grouped ta
 - **Equal total points:** Ascending winery name establishes a unique order.
 - **Output formatting:** Points are summed numerically before being embedded in `"name (points)"`.
 - **Country ordering:** `ORDER BY 1` sorts countries ascending.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ By filling rows and columns in increasing order, all three earlier prefix values
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loops use `enumerate(mat, 1)` and `enumerate(row, 1)`, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The resulting inclusive rectangle `[x1, x2]` by `[y1, y2]` contains exactly the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Directly sum each block:** It is simple but ca:** - **Directly sum each block:** It is simple but can take $O(mn(2k+1)^2)$ time because overlapping values are repeatedly added.
+- **Directly sum each block:** It is simple but can take $O(mn(2k+1)^2)$ time because overlapping values are repeatedly added.
 - **Row prefix sums only:** They reduce each block to one range query per included row, costing $O(mn\min(m,2k+1))$. Two-dimensional prefixes remove the remaining row factor.
 - **Sliding windows:** Horizontal and vertical rolling sums can also achieve $O(mn)$ time, but boundary handling and two passes are more intricate.
 - **Top or left boundary:** The zero-padded prefix row and column let `x1` or `y1` equal zero without special cases.
@@ -117,8 +117,8 @@ The resulting inclusive rectangle `[x1, x2]` by `[y1, y2]` contains exactly the 
 - **Positive values:** Positivity is not required for prefix inclusion-exclusion; negative values would also be summed correctly.
 - **Integer overflow in other languages:** The block total can exceed one cell's range, so a wider accumulator may be necessary. Python integers expand automatically.
 - **Inclusive versus exclusive endpoints:** The `x2 + 1` and `y2 + 1` conversions are essential. Omitting them would exclude the last requested row or column.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

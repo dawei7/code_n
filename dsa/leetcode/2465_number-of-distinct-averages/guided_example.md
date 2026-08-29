@@ -73,7 +73,7 @@ Every possible average is either an integer or ends in one half because both inp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The average of pair `a,b` is $(a+b)/2$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ For `[1,100]`, only one symmetric pair exists, so the set has one member regardl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated minimum/maximum scans:** Literally fi:** - **Repeated minimum/maximum scans:** Literally finding extremes and deleting them each round can take $O(n^2)$ time because list deletion shifts elements.
+- **Repeated minimum/maximum scans:** Literally finding extremes and deleting them each round can take $O(n^2)$ time because list deletion shifts elements.
 - **Two pointers after sorting:** Explicitly advance left and right pointers while adding sums to a set. It is equivalent to the compact generator.
 - **Frequency counting array:** Values are bounded from 0 to 100, so counts can simulate removals in $O(n+U)$ time with fixed domain $U$.
 - **Use floating-point averages:** It works for halves of integers here, but sums are simpler and exact.
@@ -126,8 +126,8 @@ For `[1,100]`, only one symmetric pair exists, so the set has one member regardl
 - **Even-length guarantee:** It ensures the symmetric loop covers every value with no center leftover.
 - **Zeros:** They participate normally as minima and require no special case.
 - **Input mutation:** Sorting occurs in place and changes the original order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

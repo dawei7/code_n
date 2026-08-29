@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** 2D integer array of `events` where $\text{events}[i] = [\text{startTime}_{i}, \text{endTime}_{i}, \text{value}_{i}]$. The $$i^{\text{th}}$$ event starts at $\text{startTime}_{i}$_ and ends at $\text{endTime}_{i}$, and if you attend this event, you will receive a value of $\text{value}_{i}$. You can choose **at most** **two** **non-overlapping** events to attend such that the sum of their values is **maximized**.
+You are given a **0-indexed** 2D integer array of `events` where $\text{events}[i] = [\text{startTime}_{i}, \text{endTime}_{i}, \text{value}_{i}]$. The $i^{\text{th}}$ event starts at $\text{startTime}_{i}$_ and ends at $\text{endTime}_{i}$, and if you attend this event, you will receive a value of $\text{value}_{i}$. You can choose **at most** **two** **non-overlapping** events to attend such that the sum of their values is **maximized**.
 
 Return *this **maximum** sum.*
 

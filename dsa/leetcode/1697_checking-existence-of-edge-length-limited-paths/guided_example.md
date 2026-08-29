@@ -61,7 +61,7 @@ The strict comparison is essential. An edge whose weight equals the limit is for
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts `edgeList` in place by each edge's third va... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ After all edges lighter than the current limit have been joined, `find(a) == fin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first or depth-first search per query::** - **Breadth-first or depth-first search per query:** Build or filter adjacency and search for each threshold. It is straightforward but can revisit $E$ edges for each of $Q$ queries.
+- **Breadth-first or depth-first search per query:** Build or filter adjacency and search for each threshold. It is straightforward but can revisit $E$ edges for each of $Q$ queries.
 - **Union by rank or size:** Add a balancing array while retaining path compression. This gives stronger standard DSU guarantees and protects recursive depth, at the cost of a little extra code and $O(n)$ space.
 - **Minimum spanning forest:** The maximum edge on the forest path determines threshold connectivity, after which binary lifting can answer queries. This is useful for online queries but is more complex than the offline sweep.
 - **Queries in original order:** Processing them unsorted would require adding and then removing edges as limits move up and down; ordinary DSU cannot perform those deletions.
@@ -117,8 +117,8 @@ After all edges lighter than the current limit have been joined, `find(a) == fin
 - **Indirect path:** Endpoints need not have a direct edge; equality of roots captures any chain of eligible undirected edges.
 - **Input mutation:** `edgeList.sort` changes the caller-provided edge order, whereas `queries` itself is not reordered.
 - **Deep parent chains:** Because the source does not union by rank and uses recursive `find`, adversarial union orientation can create a deep call before compression; an iterative find or rank heuristic would make the implementation more robust.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

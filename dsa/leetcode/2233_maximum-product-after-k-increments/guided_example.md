@@ -67,7 +67,7 @@ The same array element need not stay at the root. Once incremented, another valu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `heapify(nums)` rearranges the input list into a min-heap.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This is also the familiar balancing property of products: for a fixed sum, nonne
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort after every increment:** It exposes the m:** - **Sort after every increment:** It exposes the minimum but costs `O(k n \log n)` time due to repeated full sorting.
+- **Sort after every increment:** It exposes the minimum but costs `O(k n \log n)` time due to repeated full sorting.
 - **Scan for the minimum each time:** This uses constant extra space but costs `O(kn)` time.
 - **Sort once and level groups in batches:** A more intricate method can distribute many increments across equal low values without one heap operation per increment, improving some parameter regimes. The heap is direct and fits `k <= 10^5`.
 - **Increment a maximum factor:** The pairwise exchange shows this cannot beat incrementing an available smaller factor.
@@ -118,8 +118,8 @@ This is also the familiar balancing property of products: for a fixed sum, nonne
 - **Modulo ordering:** A numerically larger true product may have a smaller remainder. Optimization must precede modular reporting.
 - **Input mutation:** Heap operations change both ordering and values in `nums`; callers needing the original must pass a copy.
 - **Nonnegative guarantee:** The smallest-factor proof uses nonnegative factors. With negative values, product signs would make the strategy invalid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

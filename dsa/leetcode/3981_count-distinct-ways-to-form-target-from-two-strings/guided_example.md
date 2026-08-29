@@ -68,7 +68,7 @@ After all transitions for `needed`, `dp = next_dp` advances the represented targ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each required character `needed`, the source creates a z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,9 +123,9 @@ The assignment rather than addition is safe here because this loop is the only c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every source assignment:** Even befo:** - **Enumerate every source assignment:** Even before choosing indices, each of `t` target positions has two source choices, giving up to `2^t` assignments.
-- **- **Backtracking over matching indices:** Repeated:** - **Backtracking over matching indices:** Repeated characters can create exponentially many increasing subsequences. Dynamic programming aggregates histories with the same future constraints.
-- **- **Track only how many characters were consumed f:** - **Track only how many characters were consumed from each word:** A source may skip arbitrary characters, so the last selected index—not merely the number selected—determines future choices.
+- **Enumerate every source assignment:** Even before choosing indices, each of `t` target positions has two source choices, giving up to `2^t` assignments.
+- **Backtracking over matching indices:** Repeated characters can create exponentially many increasing subsequences. Dynamic programming aggregates histories with the same future constraints.
+- **Track only how many characters were consumed from each word:** A source may skip arbitrary characters, so the last selected index—not merely the number selected—determines future choices.
 
 ---
 

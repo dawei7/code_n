@@ -51,7 +51,7 @@ The source begins with `Counter(nums)`. For every frequency `c`, it solves the s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source begins with `Counter(nums)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source begins with `Counter(nums)`. For every frequency `c`, it solves the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming per frequency:** A coin-ch:** - **Dynamic programming per frequency:** A coin-change-style table using removals of two and three works, but the modulo proof gives a constant-time formula for each count.
+- **Dynamic programming per frequency:** A coin-change-style table using removals of two and three works, but the modulo proof gives a constant-time formula for each count.
 - **Greedy triples without remainder handling:** It fails whenever `c % 3 == 1` because it leaves one copy. Convert one would-be triple plus that singleton into two pairs.
 - **Any singleton frequency:** Return `-1` immediately; operations on other values cannot rescue it.
 - **Frequency two:** One pair is both feasible and optimal.
@@ -94,8 +94,8 @@ The source begins with `Counter(nums)`. For every frequency `c`, it solves the s
 - **Frequency four:** It must be two pairs, illustrating why simple triple-first removal is unsafe.
 - **Many distinct values:** Their operation counts add independently; order of executing operations is irrelevant.
 - **Input mutation:** The counter-based method does not delete from or reorder `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

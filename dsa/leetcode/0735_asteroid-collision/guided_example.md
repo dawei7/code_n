@@ -62,7 +62,7 @@ It may collide later with a future negative asteroid, which is why it remains av
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the current value `x` is positive, it moves right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ Each popped positive asteroid is smaller than the incoming negative one and ther
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly scan adjacent pairs:** Simulate one:** - **Repeatedly scan adjacent pairs:** Simulate one collision, rebuild or rescan, and continue. This can revisit large portions of the array and degrade to `O(n^2)`.
-- **- **Linked list of live asteroids:** Removing neig:** - **Linked list of live asteroids:** Removing neighbors can be made constant time, but selecting and revisiting collision candidates adds complexity. The stack directly matches the one-sided processing order.
-- **- **Treat every opposite-sign pair as colliding:**:** - **Treat every opposite-sign pair as colliding:** A negative asteroid to the left of a positive one moves away from it. Only a positive-left, negative-right arrangement collides.
+- **Repeatedly scan adjacent pairs:** Simulate one collision, rebuild or rescan, and continue. This can revisit large portions of the array and degrade to `O(n^2)`.
+- **Linked list of live asteroids:** Removing neighbors can be made constant time, but selecting and revisiting collision candidates adds complexity. The stack directly matches the one-sided processing order.
+- **Treat every opposite-sign pair as colliding:** A negative asteroid to the left of a positive one moves away from it. Only a positive-left, negative-right arrangement collides.
 
 ---
 

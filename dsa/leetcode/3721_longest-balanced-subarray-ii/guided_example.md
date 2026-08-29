@@ -115,7 +115,7 @@ The problem for each right endpoint is therefore: find the smallest boundary `j`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source uses one-based positions for processed elements: ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -170,7 +170,7 @@ Leaves before `p` excluded the value both before and after, so they need no chan
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic expansion from every left endpoint:*:** - **Quadratic expansion from every left endpoint:** Maintaining a distinct set while extending every candidate is $O(n^2)$ and works for the smaller version, but it is too slow for `n = 10^5`.
+- **Quadratic expansion from every left endpoint:** Maintaining a distinct set while extending every candidate is $O(n^2)$ and works for the smaller version, but it is too slow for `n = 10^5`.
 - **Ordinary prefix sum of element parity:** Adding a sign for every occurrence counts elements, not distinct values. Repeated numbers would distort the balance. Moving the contribution to the latest occurrence is what makes each value count once for every candidate boundary.
 - **Sliding window with two distinct counters:** Balance is not monotonic as a window grows or shrinks. An unmatched new odd can later be paired by an even, and removing a duplicate may do nothing, so there is no safe greedy rule for moving one boundary.
 - **Store only minimum or only maximum:** Target existence requires knowing whether it lies inside the entire attained range. Both endpoints are necessary for the discrete intermediate-value test.
@@ -184,8 +184,8 @@ Leaves before `p` excluded the value both before and after, so they need no chan
 - **Single-element input:** Its distinct balance is either plus one or minus one. Boundary one supplies the guaranteed target match, producing length zero and the correct answer.
 - **Sign convention:** The code assigns plus one to odd and minus one to even, the reverse of another equally valid convention. Only equality to zero matters; the derivation must remain consistent with the exact source's signs.
 - **Values up to `10^5`:** The tree is indexed by positions, not numeric values. Large values only become dictionary keys, so space depends on `n` and `U` rather than the maximum value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

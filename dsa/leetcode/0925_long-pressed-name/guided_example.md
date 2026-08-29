@@ -51,7 +51,7 @@ A run is a maximal consecutive block of the same character. For example, `alex` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A run is a maximal consecutive block of the same character.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Pointers `i` and `j` mark the beginnings of the next unprocessed runs in `name` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character-by-character greedy pointer:** Match:** - **Character-by-character greedy pointer:** Match name characters directly and allow typed repeats of the previous matched character. This also works but needs careful handling of leading and trailing extras.
+- **Character-by-character greedy pointer:** Match name characters directly and allow typed repeats of the previous matched character. This also works but needs careful handling of leading and trailing extras.
 - **Materialize run-length arrays:** Compare character/count pairs after grouping. It is conceptually clear but uses $O(m+t)$ extra space.
 - **Only compare character sets:** Sets lose order and multiplicity and are insufficient.
 - **Typed shorter than name:** It cannot contain enough required presses and eventually fails a run length or exhaustion test.
@@ -99,8 +99,8 @@ Pointers `i` and `j` mark the beginnings of the next unprocessed runs in `name` 
 - **Repeated intended character:** The typed run must be at least the full required multiplicity.
 - **Lowercase contract:** Direct character equality has no case or locale complication.
 - **Run order:** Long pressing cannot reorder runs; advancing both pointers together enforces identical order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -83,7 +83,7 @@ This size difference is why the formula uses `(n - 1) >> 1`, which is integer di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $n$ be the array length.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,9 +128,9 @@ The reversal places the largest lower value first, but it also pairs it with the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quickselect plus virtual indexing:** Select th:** - **Quickselect plus virtual indexing:** Select the median in expected $O(n)$ time, then three-way partition values through the index mapping that visits odd positions before even positions. This can meet the expected $O(n)$-time and $O(1)$-space follow-up, but it is considerably more intricate and is not the exact source shown here.
-- **- **Sort and interleave halves in ascending order::** - **Sort and interleave halves in ascending order:** This looks similar but fails with duplicates around the median, because equal boundary values can become adjacent. Reversing both halves is the detail that spreads duplicates safely.
-- **- **Sort without a separate copy:** Rearranging `n:** - **Sort without a separate copy:** Rearranging `nums` while also using it as the unread sorted source risks overwriting values before they are consumed. The copied `arr` cleanly separates reads from writes.
+- **Quickselect plus virtual indexing:** Select the median in expected $O(n)$ time, then three-way partition values through the index mapping that visits odd positions before even positions. This can meet the expected $O(n)$-time and $O(1)$-space follow-up, but it is considerably more intricate and is not the exact source shown here.
+- **Sort and interleave halves in ascending order:** This looks similar but fails with duplicates around the median, because equal boundary values can become adjacent. Reversing both halves is the detail that spreads duplicates safely.
+- **Sort without a separate copy:** Rearranging `nums` while also using it as the unread sorted source risks overwriting values before they are consumed. The copied `arr` cleanly separates reads from writes.
 
 ---
 

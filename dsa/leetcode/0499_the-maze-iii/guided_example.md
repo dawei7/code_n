@@ -53,7 +53,7 @@ This problem combines three details that an ordinary maze BFS does not handle:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The source models each cell where the ball can stop—or the hole where it disap
 
 ## 6. Traps This Instance Exposes
 
-- **- **Priority-queue Dijkstra:** Order entries by `(:** - **Priority-queue Dijkstra:** Order entries by `(distance, path)` and finalize the first optimal hole entry. This matches the editorial and manifest more directly and gives predictable logarithmic queue operations.
+- **Priority-queue Dijkstra:** Order entries by `(distance, path)` and finalize the first optimal hole entry. This matches the editorial and manifest more directly and gives predictable logarithmic queue operations.
 - **Precompute roll endpoints:** Directional sweeps can avoid rescanning corridors, but hole interception must still stop a roll early.
 - **Plain BFS:** It is incorrect because roll edges have unequal traveled distances; few instructions do not necessarily mean short distance.
 - **Hole before a wall:** The loop must stop as soon as the ball enters the hole, not at the corridor endpoint.
@@ -97,8 +97,8 @@ The source models each cell where the ball can stop—or the hole where it disap
 - **Unreachable hole:** Its path remains `null` and the method returns `"impossible"`.
 - **Queue duplicates:** They may repeat work, but each pop reads the newest table values rather than stale values embedded in the entry.
 - **Direction order:** Correctness does not rely on iteration order because tie-breaking is explicit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

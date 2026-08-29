@@ -72,8 +72,7 @@ No function is removed from the input array, and no queue shifting is needed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `nextIndex` begins at zero and is captured by every worker.
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +113,7 @@ This atomicity is based on JavaScript's run-to-completion semantics for synchron
 
 ## 6. Traps This Instance Exposes
 
-- **- **Launch every Promise with `Promise.all`:** Vio:** - **Launch every Promise with `Promise.all`:** Violates the pool limit when $m>n$.
+- **Launch every Promise with `Promise.all`:** Violates the pool limit when $m>n$.
 - **One recursive launcher per slot:** Equivalent in principle, but the worker loop avoids recursive chaining.
 - **Shift from an array queue:** Works but mutates or copies input and repeated shifting can be inefficient.
 - **`n = 1`:** One worker executes every function sequentially.
@@ -124,8 +123,8 @@ This atomicity is based on JavaScript's run-to-completion semantics for synchron
 - **Fast synchronous fulfillment:** Await still resumes through Promise scheduling, and the worker then claims the next index.
 - **Rejection:** Outside the stated input guarantee, it propagates through the worker and `Promise.all`.
 - **Shared index safety:** Claims contain no await between reading and incrementing `nextIndex`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

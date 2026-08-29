@@ -51,7 +51,7 @@ The exact source handles the two directions in two separate passes. This differs
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source handles the two directions in two separate ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source handles the two directions in two separate passes. This differs
 
 ## 6. Traps This Instance Exposes
 
-- **- **One combined pass:** Maintain increasing and d:** - **One combined pass:** Maintain increasing and decreasing run lengths simultaneously, resetting the opposite one after each comparison. This matches the manifest summary and uses half as many comparisons.
+- **One combined pass:** Maintain increasing and decreasing run lengths simultaneously, resetting the opposite one after each comparison. This matches the manifest summary and uses half as many comparisons.
 - **`pairwise(nums)` in two passes:** It avoids list slices, though a fresh iterator is needed for each traversal.
 - **Brute force from every start:** Extend increasing and decreasing candidates until failure, taking $O(n^2)$ time.
 - **Single element:** Both loops are empty and initialization correctly returns one.
@@ -101,8 +101,8 @@ The exact source handles the two directions in two separate passes. This differs
 - **Slice indexing:** Loop `i` refers to the predecessor in the original list, while `x` is original `nums[i + 1]`.
 - **Input mutation:** Slices copy references but the source never changes any element.
 - **Manifest space discrepancy:** The abstract run algorithm is constant-state, but the exact list slicing makes auxiliary space linear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

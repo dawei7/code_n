@@ -57,7 +57,7 @@ The input contains at least one uppercase word, so `max` always has a length to 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `n = max(len(w) for w in words)` finds the longest word leng... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The three spaces before `T` are meaningful because they identify the empty third
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `zip_longest`:** Transpose the words with :** - **Use `zip_longest`:** Transpose the words with a space fill value, join each tuple, and apply `rstrip`. It is concise but hides some alignment mechanics.
+- **Use `zip_longest`:** Transpose the words with a space fill value, join each tuple, and apply `rstrip`. It is concise but hides some alignment mechanics.
 - **Preallocate a character grid:** It works but stores the full padded rectangle even though rows can be produced one at a time.
 - **Use `strip`:** This is incorrect because leading spaces can be meaningful output.
 - **Use `rstrip`:** It correctly removes trailing padding and is a simpler equivalent to the pop loop for strings.
@@ -113,8 +113,8 @@ The three spaces before `T` are meaningful because they identify the empty third
 - **Safety of `t[-1]`:** Every row below the maximum length contains at least one real character, so trimming never empties the list.
 - **Input word order:** It defines output column order and must not change.
 - **Uppercase-only guarantee:** A literal space can unambiguously represent padding because spaces do not occur inside words.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ All unions finish before component value counts are built, so component membersh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `p = list(range(n))` initially makes every index its own rep... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After this pass, `cnt[root][value]` is the number of copies of that value availa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Union by rank or size:** Add a balancing array:** - **Union by rank or size:** Add a balancing array while retaining path compression. This supports the manifest's inverse-Ackermann amortized bound and reduces recursion-depth risk.
+- **Union by rank or size:** Add a balancing array while retaining path compression. This supports the manifest's inverse-Ackermann amortized bound and reduces recursion-depth risk.
 - **Graph traversal components:** Build adjacency lists and label components with DFS or BFS in $O(n+m)$ time and space.
 - **Simulate swaps:** Searching actual swap sequences is unnecessary and can be enormous; component permutations capture all reachability.
 - **No allowed swaps:** Every index is its own component, so the result equals the ordinary Hamming distance.
@@ -116,8 +116,8 @@ After this pass, `cnt[root][value]` is the number of copies of that value availa
 - **Already equal arrays:** Every target decrement consumes an available value and the answer stays zero.
 - **Input preservation:** Source and target are not rearranged; only DSU and frequency structures change.
 - **Deep DSU chain:** Recursive path compression eventually flattens it, but the first traversal may be deep because union by rank is absent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

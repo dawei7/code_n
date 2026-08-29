@@ -110,8 +110,8 @@ class Solution:
 
 #### Complexity Analysis
 
-​Let $n$ be the length of `score`.
-​
+Let $n$ be the length of `score`.
+
 * Time complexity: $O(n \log n)$
 
     We traverse the score array once and populate `scoreToIndex`. Since inserting in a hashmap takes $O(1)$ time on average, the entire operation takes $O(n)$. Collisions are unlikely since the scores are guaranteed to be unique according to the constraints.
@@ -121,7 +121,7 @@ class Solution:
     Finally, traversing the score array and assigning ranks to athletes takes $O(n)$.
 
     The dominating term is $O(n \log n)$.
-​
+
 * Space complexity: $O(n)$
 
     The hashmap `scoreToIndex` stores $n$ `(key, value)` mappings, so it requires $O(n)$ auxiliary space.
@@ -202,8 +202,8 @@ class Solution:
 
 #### Complexity Analysis
 
-​Let $n$ be the length of `score`.
-​
+Let $n$ be the length of `score`.
+
 * Time complexity: $O(n \log n)$
 
   We traverse the `score` array once and populate the `heap` with each score. Adding an element to the heap takes $\log n$ time, resulting in a time complexity of $O(n \log n)$ for this step.
@@ -211,7 +211,7 @@ class Solution:
   When assigning ranks to athletes, we pop each pair from the heap. Removing an element from the heap also takes $\log n$ time, so removing $n$ elements will take $O(n \log n)$ time.
 
   The overall time complexity is $O(2n \log n)$, which we can simplify to $O(n \log n)$.
-​
+
 * Space complexity: $O(n)$
 
   The `heap` stores $n$ `(score, index)` pairs, so it requires $O(n)$ auxiliary space.
@@ -327,8 +327,8 @@ class Solution:
 
 #### Complexity Analysis
 
-​Let $n$ be the length of `score` and $m$ be the maximum value in the array.
-​
+Let $n$ be the length of `score` and $m$ be the maximum value in the array.
+
 * Time complexity: $O(n + m)$
 
   The `findMax` function takes $O(n)$ because it traverses `score` once. We call this function once.
@@ -338,7 +338,7 @@ class Solution:
   When we assign ranks to athletes, we iterate through every index of the `scoreToIndex` array, which is size $m + 1$. The operations within the loop take constant time, so this step takes $O(m)$.
 
   The overall time complexity is $O(2n + m)$, which we can simplify to $O(n + m)$.
-​
+
 * Space complexity: $O(m)$
 
   The `scoreToIndex` array is size $m + 1$.

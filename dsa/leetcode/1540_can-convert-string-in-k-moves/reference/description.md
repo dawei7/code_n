@@ -2,7 +2,7 @@
 
 Given two strings `s` and `t`, your goal is to convert `s` into `t` in `k`** **moves or less.
 
-During the $$i^{\text{th}}$$ ($1 \le i \le k$) move you can:
+During the $i^{\text{th}}$ ($1 \le i \le k$) move you can:
 
 - Choose any index `j` (1-indexed) from `s`, such that $1 \le j \le \text{s.length}$ and `j` has not been chosen in any previous move, and shift the character at that index `i` times.
 

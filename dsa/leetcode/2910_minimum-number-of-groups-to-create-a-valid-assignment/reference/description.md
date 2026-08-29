@@ -6,7 +6,7 @@ You are given a collection of numbered `balls` and instructed to sort them into 
 
 - The biggest box can only have one more ball than the smallest box.
 
-​Return the *fewest number of boxes* to sort these balls following these rules.
+Return the *fewest number of boxes* to sort these balls following these rules.
 
 **Example 1: **
 

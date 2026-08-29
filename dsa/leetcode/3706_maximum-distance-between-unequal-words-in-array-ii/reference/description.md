@@ -48,7 +48,7 @@ Return the maximum value of $j-i+1$ among all valid pairs. If every entry is equ
 
 - **Explanation:** 
 
-**​​​​​​​**In this example all the words are equal, thus the answer is 0.
+****In this example all the words are equal, thus the answer is 0.
 
 ### 4. Constraints
 

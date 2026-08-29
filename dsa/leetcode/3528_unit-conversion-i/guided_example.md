@@ -81,9 +81,7 @@ This local propagation is all the DFS needs.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the unique path from unit zero to unit `v` is:
-
-`0 -... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +122,7 @@ Inside the call, it assigns `ans[0] = 1`. Every descendant call receives the par
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS with a stack:** Store `(unit, pa:** - **Iterative DFS with a stack:** Store `(unit, path_product)` pairs and process the same recurrence without recursion depth limits. This is the direct robust repair while preserving `O(n)` time and space.
+- **Iterative DFS with a stack:** Store `(unit, path_product)` pairs and process the same recurrence without recursion depth limits. This is the direct robust repair while preserving `O(n)` time and space.
 - **Breadth-first traversal:** A queue works equally well because each node has one unique root path; traversal order does not affect its path product.
 - **Topological dynamic programming:** It can propagate values in a more general DAG, but the rooted unique-path guarantee makes a tree traversal simpler.
 - **Add reverse conversion edges:** Reversing would require modular division or rational values and violates the source direction contract. Only forward edges belong in `g`.
@@ -138,8 +136,8 @@ Inside the call, it assigns `ans[0] = 1`. Every descendant call receives the par
 - **No visited set:** Safe only because the graph guarantee prevents multiple directed paths and reachable cycles.
 - **Unreachable unit in invalid input:** Its answer would remain the initialization zero, but the contract excludes this situation.
 - **Large raw product:** Reducing at every edge is mathematically exact for the requested residues.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

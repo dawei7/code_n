@@ -61,7 +61,7 @@ The method sorts in place. This is operationally important: after the call, the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input list may be in arbitrary order, so `special.sort()... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ If the first special floor equals `bottom`, this difference is zero, correctly i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add boundary sentinels:** Sorting `bottom - 1`:** - **Add boundary sentinels:** Sorting `bottom - 1` and `top + 1` with the special values makes every answer look like one adjacent gap, but it requires extra storage or input modification.
+- **Add boundary sentinels:** Sorting `bottom - 1` and `top + 1` with the special values makes every answer look like one adjacent gap, but it requires extra storage or input modification.
 - **Boolean array over floors:** It is impossible when the coordinate range approaches `10^9` and ignores that only special markers matter.
 - **Hash set plus coordinate scan:** Membership may be constant time, but scanning every rented floor is still proportional to the enormous coordinate span.
 - **Balanced ordered set:** It could support dynamic insertions, but the input is static and one sort is simpler.
@@ -125,8 +125,8 @@ If the first special floor equals `bottom`, this difference is zero, correctly i
 - **Inclusive rented range:** The boundary formulas differ from an interior formula because only one special endpoint borders each boundary.
 - **Inclusive interior endpoints:** Both `x` and `y` are special and excluded, giving `y - x - 1`.
 - **Input mutation:** `special.sort()` permanently reorders the caller's list; sort a copy if that is unacceptable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

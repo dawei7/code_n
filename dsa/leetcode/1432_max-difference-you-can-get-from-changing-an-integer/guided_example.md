@@ -64,7 +64,7 @@ Because one chosen digit must be replaced at all its occurrences, the algorithm 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Decimal place values decrease from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ If every digit is already 9, no replacement can increase the number. The loop pe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all digit replacements:** Try every :** - **Enumerate all digit replacements:** Try every original and replacement digit pair, reject leading-zero results, and retain maximum and minimum. It is correct but obscures the place-value greedy insight.
+- **Enumerate all digit replacements:** Try every original and replacement digit pair, reject leading-zero results, and retain maximum and minimum. It is correct but obscures the place-value greedy insight.
 - **Arithmetic digit manipulation:** Compute place values without strings. It avoids string methods but makes replacing every equal digit more verbose.
 - **All nines:** The maximum result is unchanged because no digit can increase.
 - **Single digit nine:** Maximum is 9, minimum is 1, and the difference is 8.
@@ -117,8 +117,8 @@ If every digit is already 9, no replacement can increase the number. The loop pe
 - **Replacement digit equals original:** This permits leaving an already optimal maximum or minimum unchanged.
 - **No leading zero:** The minimum uses 1 for a changed leading digit and never replaces a leading one with zero.
 - **Independent operations:** The digit choice used for `a` has no effect on which digit may be chosen for `b`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

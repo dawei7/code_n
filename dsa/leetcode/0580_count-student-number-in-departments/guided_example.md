@@ -63,7 +63,7 @@ For an empty department, the left join creates a placeholder row whose `student_
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the join, `GROUP BY dept_id` gathers the joined rows f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Grouping by the ID rather than only by the name also avoids accidentally combini
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate students, then join:** Count stu:** - **Pre-aggregate students, then join:** Count students per `dept_id` in a subquery and left-join those counts to `Department`, using `COALESCE(count, 0)`. This can reduce join output size before the catalog join and is equally valid.
+- **Pre-aggregate students, then join:** Count students per `dept_id` in a subquery and left-join those counts to `Department`, using `COALESCE(count, 0)`. This can reduce join output size before the catalog join and is equally valid.
 - **Correlated count:** A subquery can count students separately for each department. With a suitable index it may perform well, but without one it can repeatedly scan `Student`.
 - **Inner join:** Incorrect because departments with zero students vanish.
 - **`COUNT(*)`:** Incorrect after a left join because the synthetic unmatched department row is still a row and would be counted as one.
@@ -112,8 +112,8 @@ Grouping by the ID rather than only by the name also avoids accidentally combini
 - **Unique student IDs:** Each real student contributes exactly one because `student_id` is a non-`NULL` primary key.
 - **Ordinal ordering:** `ORDER BY 2 DESC, 1` is concise, but naming `student_number` and `dept_name` explicitly can be easier to maintain if the select-list order changes.
 - **Portability of grouping:** Some database modes require `dept_name` in the `GROUP BY` despite its functional dependency on the primary key. Adding it does not change the algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

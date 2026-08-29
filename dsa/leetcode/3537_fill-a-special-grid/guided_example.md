@@ -80,9 +80,7 @@ For a left-half quadrant, its rightmost column is `y-h`. For a bottom-half quadr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(x,y,k)` fills one `k x k` square:
-
-- `x` is its top row... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +127,7 @@ each once.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fill quadrants in a different order:** Increas:** - **Fill quadrants in a different order:** Increasing values would violate the required chain unless the value ranges were adjusted. The source's visit order exactly matches the inequality order.
+- **Fill quadrants in a different order:** Increasing values would violate the required chain unless the value ranges were adjusted. The source's visit order exactly matches the inequality order.
 - **Build a smaller grid and copy with offsets:** This is an equivalent recursive construction: place offset copies in the four quadrants according to their required ranks.
 - **Compute each cell value from coordinate bits:** A direct bitwise formula may exist by encoding quadrant choices, but recursion is easier to derive and verify.
 - **Sort values after filling:** Unnecessary; traversal already assigns separated consecutive blocks.
@@ -142,8 +140,8 @@ each once.
 - **Unique values:** The global counter increments once per leaf, so no duplicate is written.
 - **Manifest notation:** Actual complexity is `O(4^n)`; an unexplained generic `k` should not obscure the four-way recursion.
 - **Output lower bound:** No approach can asymptotically beat the number of cells when the full matrix must be returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

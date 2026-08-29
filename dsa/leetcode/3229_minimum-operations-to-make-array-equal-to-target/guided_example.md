@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-d_i=\texttt{target}[i]-\texttt{nums}[i].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ If $d_i>0$, position $i$ needs that many unit increments. If $d_i<0$, it needs $
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the difference array explicitly:** It ca:** - **Build the difference array explicitly:** It can make the layer picture easier to inspect but uses $O(n)$ additional space.
+- **Build the difference array explicitly:** It can make the layer picture easier to inspect but uses $O(n)$ additional space.
 - **Simulate one operation at a time:** Magnitudes up to $10^8$ make literal unit updates infeasible.
 - **Segment-tree greedy updates:** Range data structures are unnecessary because the closed layer-start count follows from adjacent differences.
 - **All differences zero:** Initial and added costs are zero, so no operation is needed.
@@ -103,8 +101,8 @@ If $d_i>0$, position $i$ needs that many unit increments. If $d_i<0$, it needs $
 - **Negative differences:** Absolute magnitudes count decrement layers exactly like positive increment layers.
 - **Positive input values:** Intermediate operations may change them, but only the final signed difference profile matters.
 - **Input preservation:** No operation is physically simulated on `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

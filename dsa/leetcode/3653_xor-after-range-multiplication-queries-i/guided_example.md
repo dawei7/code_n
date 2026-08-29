@@ -75,7 +75,7 @@ The simulation performs exactly `U` multiplications. This is a more precise meas
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Both the array length and the number of queries are at most ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The XOR operation is not modular arithmetic. It must be applied to the final red
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maintain XOR during updates:** XOR out `nums[i:** - **Maintain XOR during updates:** XOR out `nums[idx]`, update it, and XOR the new value in. This avoids the final pass but adds two XOR operations per update and does not improve the asymptotic bound.
+- **Maintain XOR during updates:** XOR out `nums[idx]`, update it, and XOR the new value in. This avoids the final pass but adds two XOR operations per update and does not improve the asymptotic bound.
 - **Batch query multipliers:** Difference structures can help when `n` and `q` are much larger, but arbitrary step sizes make them unnecessarily complex for the `10^3` limits of this version.
 - **Update every index between `l` and `r`:** This ignores `k` and changes positions that the query should skip. The arithmetic progression must be followed.
 - **Use `range(l, r, k)`:** Because the stop is exclusive, this misses index `r` when `r` belongs to the progression. Use `r + 1`.
@@ -132,8 +132,8 @@ The XOR operation is not modular arithmetic. It must be applied to the final red
 - **Single-element array:** Every valid query starts and ends at index zero, and `reduce` returns that one final value.
 - **Input mutation:** The source changes `nums`. A caller that needs the original array must copy it before the call.
 - **Missing imports:** The stored source uses `List`, `reduce`, and `xor` without imports. Standalone Python needs imports from `typing`, `functools`, and `operator` unless provided by the harness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

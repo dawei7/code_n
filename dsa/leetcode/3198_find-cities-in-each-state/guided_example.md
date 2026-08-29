@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - cities must appear alphabetically inside each state's stri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Ordering only the final rows would not determine the order of text inside an agg
 
 ## 6. Traps This Instance Exposes
 
-- **- **MySQL-style grouped concatenation:** On engine:** - **MySQL-style grouped concatenation:** On engines that do not accept the exact `STRING_AGG ... SEPARATOR` form, use that engine's native ordered concatenation function while keeping `ORDER BY city` inside it and the delimiter `', '`. Syntax must be verified per dialect.
+- **MySQL-style grouped concatenation:** On engines that do not accept the exact `STRING_AGG ... SEPARATOR` form, use that engine's native ordered concatenation function while keeping `ORDER BY city` inside it and the delimiter `', '`. Syntax must be verified per dialect.
 - **Pre-sort in a subquery:** Some dialects lack an ordering clause inside their aggregate. Sorting rows by state and city in a subquery before grouping can express the intended data flow, though whether order is preserved into aggregation is engine-specific and should not be assumed without dialect guarantees.
 - **Application-side grouping:** Fetching every row and concatenating strings in application code can work, but transfers more rows and duplicates work databases handle naturally.
 - **Omit internal city order:** This can produce nondeterministic strings and violates the ascending-city requirement even if the state rows themselves are sorted.
@@ -102,8 +102,8 @@ Ordering only the final rows would not determine the order of text inside an agg
 - **Empty input table:** Grouping produces no state rows, which is the natural empty result.
 - **Positional ordinals:** `GROUP BY 1` and `ORDER BY 1` are concise but become fragile if select-list order changes. Naming `state` explicitly would be more maintainable with identical logic.
 - **Dialect portability:** The algorithm is grouping plus ordered string aggregation; the exact function syntax is not universal and may require replacement outside its accepted target.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

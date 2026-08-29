@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\max(\texttt{nums}[0:i])
-\le
-\min(\texttt{nums}[i:n]).
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ The solution precomputes suffix minima so each possible split can be checked whi
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass constant-space method:** Track the cu:** - **One-pass constant-space method:** Track the current left maximum, global maximum seen, and boundary; extend the boundary whenever a later value is below the left maximum. This matches the manifest's $O(1)$ space.
+- **One-pass constant-space method:** Track the current left maximum, global maximum seen, and boundary; extend the boundary whenever a later value is below the left maximum. This matches the manifest's $O(1)$ space.
 - **Prefix maxima plus suffix minima arrays:** Precompute both and test splits. It is clear but uses two $O(n)$ arrays instead of one.
 - **Try every pair across every split:** This can cost $O(n^3)$ and ignores extreme summaries.
 - **Sort values:** Sorting destroys contiguity and original split positions.
@@ -107,8 +103,8 @@ The solution precomputes suffix minima so each possible split can be checked whi
 - **Suffix sentinel:** Infinity makes the recurrence simple but should not be used to accept an empty right side.
 - **Input unchanged:** The solution reads values and builds summaries without rearranging the array.
 - **Minimality:** Early return is correct only because split sizes are scanned from smallest to largest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

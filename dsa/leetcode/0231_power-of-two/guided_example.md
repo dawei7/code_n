@@ -72,7 +72,7 @@ of `n`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider a positive binary number and locate its rightmost `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ returns false.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Isolate the lowest set bit:** For positive `n`:** - **Isolate the lowest set bit:** For positive `n`, `n & -n` equals `n` exactly when `n` has one set bit. It is another constant-operation identity based on two's-complement negation.
+- **Isolate the lowest set bit:** For positive `n`, `n & -n` equals `n` exactly when `n` has one set bit. It is another constant-operation identity based on two's-complement negation.
 - **Repeated division by two:** Reject nonpositive input, repeatedly divide even values by 2, and test whether the result reaches 1. It is intuitive but takes $O(\log n)$ time and does not satisfy the no-loop follow-up.
 - **Count set bits:** Count ones in the binary representation and test for exactly one. Built-in or iterative counting expresses the criterion but does more work than clearing one bit.
 - **Floating-point logarithm:** Test whether $\log_2 n$ is integral. Floating-point rounding near representational boundaries can cause errors, so an exact bit identity is preferable.
@@ -127,8 +127,8 @@ returns false.
 - **Largest positive 32-bit power:** $2^{30}$ has one set bit and passes. $2^{31}$ lies outside the signed upper bound.
 - **One more or less than a power:** Adding or subtracting one generally creates several set bits, and the AND result remains nonzero.
 - **No mutation:** `n` is an immutable integer, and the expression creates only temporary numeric results.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

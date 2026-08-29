@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_{i}, \text{weight}_{i}]$ denotes the price and weight of the $$i^{\text{th}}$$ item, respectively.
+You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_{i}, \text{weight}_{i}]$ denotes the price and weight of the $i^{\text{th}}$ item, respectively.
 
 You are also given a **positive** integer `capacity`.
 

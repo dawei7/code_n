@@ -66,7 +66,7 @@ Changing either direction changes the problem. Ascending degree would choose the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `degree DESC` places a higher numerical degree before a lowe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The outer `WHERE rk = 1` keeps that unique winning row and removes every later r
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` with the same ordering:** This is:** - **`ROW_NUMBER` with the same ordering:** This is equally correct and explicitly guarantees one row per partition. Under the unique `(city_id, day)` key, it selects the same row as `RANK`.
+- **`ROW_NUMBER` with the same ordering:** This is equally correct and explicitly guarantees one row per partition. Under the unique `(city_id, day)` key, it selects the same row as `RANK`.
 - **Aggregate maximum degree then join:** Compute `MAX(degree)` per city, join matching rows, and aggregate `MIN(day)` among the ties. This is valid but requires multiple logical stages and careful grouping to return the matching degree.
 - **Correlated subqueries:** For each row, test whether a higher degree or an equal degree with an earlier day exists. This can be correct but is more verbose and may be less efficient without suitable indexes.
 - **Use `MAX(day)` with `MAX(degree)` in one grouping:** Independent maxima may come from different source rows, producing a date that did not record the maximum degree. The tie-break must be applied only among maximum-degree rows.
@@ -120,8 +120,8 @@ The outer `WHERE rk = 1` keeps that unique winning row and removes every later r
 - **No final `ORDER BY`:** SQL does not promise partition or CTE output order. Correct row selection alone would not satisfy the requested ascending city presentation.
 - **`ORDER BY 1` readability:** It correctly refers to `city_id` because that is the first projected column. Writing `ORDER BY city_id` would be more explicit but would not change the result.
 - **Helper rank column:** It exists only inside `T` and is intentionally omitted from the final projection.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

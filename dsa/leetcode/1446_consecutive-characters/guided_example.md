@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `t` is the length of the equal-character run that ends at ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Both begin at one because the input is guaranteed to be nonempty. Even a one-cha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual index loop:** Iterate `i` from one thro:** - **Manual index loop:** Iterate `i` from one through `n - 1` and compare `s[i]` with `s[i - 1]`. This has identical time and space bounds and may be preferable where `pairwise` is unavailable.
+- **Manual index loop:** Iterate `i` from one through `n - 1` and compare `s[i]` with `s[i - 1]`. This has identical time and space bounds and may be preferable where `pairwise` is unavailable.
 - **Track the previous character explicitly:** Loop over characters, store `previous`, and update a count. This is the editorial's equivalent formulation and handles the first character with either a sentinel or a special initialization.
 - **Group consecutive characters:** `itertools.groupby` can form each run lazily, after which the maximum group length is measured. It is expressive, but counting each group usually introduces more iterator machinery than the two-counter scan.
 - **Frequency map:** Counting total occurrences per character is incorrect because equal letters separated by other characters do not form one substring.
@@ -103,8 +103,8 @@ Both begin at one because the input is guaranteed to be nonempty. Even a one-cha
 - **Substring versus subsequence:** Only adjacent positions count. The pair scan enforces contiguity automatically and never skips intervening characters.
 - **Empty string outside the contract:** Initialization to one would be wrong for an empty input. The stated lower bound of one makes this case impossible; a generalized function would need a separate empty check.
 - **Lazy iterator requirement:** Calling `pairwise` directly keeps space constant. Materializing all pairs would change auxiliary space to `O(n)` without improving the result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

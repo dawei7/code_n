@@ -51,7 +51,7 @@ These strict inequalities force membership. Every student with threshold less th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | These strict inequalities force membership.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Consequently, once the group size $i$ is fixed, there is at most one possible ha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency array:** Count each threshold, sweep:** - **Frequency array:** Count each threshold, sweep possible sizes, and track how many thresholds are smaller than the current size. This avoids comparison sorting and runs in $O(n)$ time with $O(n)$ space.
+- **Frequency array:** Count each threshold, sweep possible sizes, and track how many thresholds are smaller than the current size. This avoids comparison sorting and runs in $O(n)$ time with $O(n)$ space.
 - **Trying arbitrary subsets:** Exponential subset enumeration is unnecessary because a fixed valid size uniquely forces membership by threshold.
 - **Empty group:** It is valid only when the minimum threshold is strictly greater than `0`; any threshold-`0` student would be unhappy while unselected.
 - **Full group:** It is always valid under `nums[i] < n`, because selecting $n$ students makes $n$ strictly greater than every threshold.
@@ -94,8 +94,8 @@ Consequently, once the group size $i$ is fixed, there is at most one possible ha
 - **Duplicate thresholds:** Sorting and boundary checks handle them naturally. A block equal to the cut size makes that cut invalid.
 - **Input mutation:** `nums.sort()` changes the input order. That does not affect the returned count, but callers that need the original order would have to sort a copy.
 - **Strict inequality trap:** Selected students require threshold $<i$, while unselected students require threshold $>i$; equality is never permitted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

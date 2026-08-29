@@ -51,7 +51,7 @@ For each word `b`, build `t = Counter(b)`. For every letter `c` appearing in `b`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each word `b`, build `t = Counter(b)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After all words in `words2`, `cnt[c]` is the greatest number of copies of letter
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every `words1`/`words2` pair:** Correct b:** - **Test every `words1`/`words2` pair:** Correct but repeats candidate counting and can multiply the two array lengths.
+- **Test every `words1`/`words2` pair:** Correct but repeats candidate counting and can multiply the two array lengths.
 - **Concatenate all `words2` words:** This sums multiplicities and imposes requirements stronger than universal subset testing.
 - **Use sets instead of counts:** Sets lose multiplicity and fail requirements such as `"wrr"` needing two r characters.
 - **26-entry arrays:** Fixed arrays can replace Counters for lower constant overhead and deterministic storage.
@@ -101,8 +101,8 @@ After all words in `words2`, `cnt[c]` is the greatest number of copies of letter
 - **Unique `words1`:** No output deduplication is needed.
 - **Candidate shorter than a requirement:** It necessarily lacks enough total multiplicity and fails at least one coordinate test.
 - **Empty merged Counter:** The constraints make every requirement word nonempty, but if an empty `words2` were allowed, every candidate would be universal by vacuous truth.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

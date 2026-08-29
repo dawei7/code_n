@@ -63,7 +63,7 @@ The destination is reached before an even movement is required.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `m=2,n=1`, destination is `(1,0)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `m=1,n=2`, the symmetric first move goes right to `(0,1)`. Its cost is two, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** It would discover the :** - **Breadth-first search:** It would discover the same tiny reachable set but allocating or exploring a huge grid is unnecessary.
+- **Breadth-first search:** It would discover the same tiny reachable set but allocating or exploring a huge grid is unnecessary.
 - **Dynamic programming:** Alternating moves include backward edges, so ordinary directional grid DP is not natural; the reachability invariant eliminates the problem entirely.
 - **One row with more than two columns:** The path alternates between columns zero and one and cannot reach farther right.
 - **One column with more than two rows:** It alternates between rows zero and one.
@@ -116,8 +116,8 @@ For `m=1,n=2`, the symmetric first move goes right to `(0,1)`. Its cost is two, 
 - **Why a 2x2 destination fails:** Cell `(1,1)` has Manhattan distance two and needs one down plus one right move. Both are forward directions, but consecutive movements must alternate forward and backward, so the two required steps cannot occur consecutively.
 - **Entrance accounting:** The source’s value three includes the start cost one and one adjacent-cell cost two. It does not treat the starting entrance as a directional displacement, consistent with both reference examples.
 - **Destination reached immediately:** Once an adjacent destination is entered, the task ends; the path is not required to perform the following forced return to the origin.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

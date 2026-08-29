@@ -63,7 +63,7 @@ Thus advancing `i` cannot skip a possible future common occurrence. The argument
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `nums1[i]<nums2[j]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The first match is therefore the minimum common integer, not just any common int
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set:** Expected $O(m+n)$ time but $O(m)$ :** - **Hash set:** Expected $O(m+n)$ time but $O(m)$ or $O(n)$ extra space.
+- **Hash set:** Expected $O(m+n)$ time but $O(m)$ or $O(n)$ extra space.
 - **Binary search each value:** Search the longer array for each element of the shorter, costing $O(\min(m,n)\log\max(m,n))$.
 - **First elements match:** Return immediately.
 - **Last elements provide the only match:** Both pointers may scan almost everything.
@@ -115,8 +115,8 @@ The first match is therefore the minimum common integer, not just any common int
 - **Nondecreasing order:** It is the property that justifies discarding the smaller value.
 - **Minimum requirement:** Returning at the first equality is essential.
 - **Input preservation:** Neither sorted array is changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

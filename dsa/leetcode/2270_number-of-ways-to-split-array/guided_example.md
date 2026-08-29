@@ -57,7 +57,7 @@ The source guarantees at least two elements, so `nums[:-1]` always contains at l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop is `for x in nums[:-1]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The comparison `t >= s - t` therefore tests exactly the validity condition for t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index-based rolling scan:** Loop through indic:** - **Index-based rolling scan:** Loop through indices zero to `n - 2` without slicing. It keeps the same `O(n)` time and achieves genuine `O(1)` auxiliary space.
+- **Index-based rolling scan:** Loop through indices zero to `n - 2` without slicing. It keeps the same `O(n)` time and achieves genuine `O(1)` auxiliary space.
 - **Prefix-sum array:** It computes every split correctly in `O(n)` time but intentionally stores `O(n)` cumulative sums that the rolling method does not logically need.
 - **Recompute both sides for each split:** Summing ranges independently takes `O(n^2)` time.
 - **Compare** `2t \ge s`: This algebraically equivalent condition can shorten the expression, but doubling may overflow a narrow fixed-width type; Python is safe either way.
@@ -121,8 +121,8 @@ The comparison `t >= s - t` therefore tests exactly the validity condition for t
 - **Large magnitude total:** Wide signed arithmetic is required outside Python because sums may be positive or negative.
 - **Temporary slice:** The exact source copies all but one list entry; this is the reason its actual space is linear.
 - **Input values:** The original elements are never changed, even though a shallow slice is created.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

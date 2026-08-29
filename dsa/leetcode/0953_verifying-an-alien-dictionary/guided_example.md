@@ -62,9 +62,7 @@ If some adjacent words tie at this position, the scan continues to the next char
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed character index `i`:
-
-- `prev` stores the previo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +101,7 @@ The rank map and ended-word sentinel are useful ingredients for this comparison.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjacent-pair comparison:** This is the correc:** - **Adjacent-pair comparison:** This is the correct optimal approach. Preserve the first-difference rule separately for each neighboring pair.
+- **Adjacent-pair comparison:** This is the correct optimal approach. Preserve the first-difference rule separately for each neighboring pair.
 - **Transform whole words into rank arrays:** Python can compare transformed sequences lexicographically, but constructing all arrays uses `O(S)` extra space.
 - **Already ordered by first characters:** The exact implementation returns true when that column is strictly increasing across all words.
 - **Proper prefix:** `"app"` must come before `"apple"`; the ended sentinel represents this direction.
@@ -113,8 +111,8 @@ The rank map and ended-word sentinel are useful ingredients for this comparison.
 - **Previously decided pairs:** Later characters must be ignored for those pairs; failure to track this is the checked-in defect.
 - **Twenty-character bound:** The hard-coded `range(20)` depends on the current constraint and would be wrong if longer words were allowed.
 - **Rank map:** Native English character order must not be used because the alien alphabet may be any permutation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

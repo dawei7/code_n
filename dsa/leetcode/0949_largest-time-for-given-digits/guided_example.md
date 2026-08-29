@@ -69,7 +69,7 @@ The condition `cnt == t` means every digit occurs exactly the same number of tim
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input may contain repeated digits, so a set is insuffici... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Thus `05:07` is treated as the four digits `0, 5, 0, 7` even though the numeric 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate the 24 digit permutations:** Four po:** - **Enumerate the 24 digit permutations:** Four positions have at most `4! = 24` arrangements. Validate each and keep the latest. This is also constant time, but duplicate permutations require care.
+- **Enumerate the 24 digit permutations:** Four positions have at most `4! = 24` arrangements. Validate each and keep the latest. This is also constant time, but duplicate permutations require care.
 - **Backtracking with a used array:** It handles repeated positions explicitly but is more machinery than enumerating the small valid-time domain.
 - **Greedily choose each digit:** A locally largest hour digit can make the remaining hour or minute invalid. Complete enumeration is safer.
 - **Repeated digits:** Frequency arrays enforce exact multiplicity and avoid set-related mistakes.
@@ -116,8 +116,8 @@ Thus `05:07` is treated as the four digits `0, 5, 0, 7` even though the numeric 
 - **Several valid times:** Descending enumeration returns the latest without a separate maximum variable.
 - **Exactly 24:00:** It is not a valid 24-hour representation under the contract; the hour loop correctly stops at 23.
 - **Input order:** Only digit multiplicities matter, so the original array order has no effect.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

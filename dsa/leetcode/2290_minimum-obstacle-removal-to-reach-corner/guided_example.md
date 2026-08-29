@@ -62,7 +62,7 @@ The code uses `appendleft` for the first case and `append` for the second. This 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ordinary breadth-first search works only when every edge has... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ For an in-bounds neighbor `(x,y)`, its new cost is `k` when `grid[x][y] == 0` an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra with a heap:** It is correct for nonn:** - **Dijkstra with a heap:** It is correct for nonnegative weights but takes `O(mn\log(mn))` time rather than exploiting the two possible costs.
+- **Dijkstra with a heap:** It is correct for nonnegative weights but takes `O(mn\log(mn))` time rather than exploiting the two possible costs.
 - **Ordinary FIFO BFS:** It prioritizes number of moves, not obstacle removals, and can return a shorter but more expensive path.
 - **Distance-matrix zero-one BFS:** It avoids some duplicate entries through relaxation checks; the exact source instead finalizes with a visited set.
 - **Mark visited on enqueue:** That is unsafe in weighted search because a cheaper route may be discovered before the first queued copy is popped.
@@ -114,8 +114,8 @@ For an in-bounds neighbor `(x,y)`, its new cost is `k` when `grid[x][y] == 0` an
 - **Guaranteed empty endpoints:** No cost is paid at the start, and the destination itself never requires removal.
 - **Cycles:** The visited set prevents repeated expansion despite four-way movement.
 - **Input preservation:** Obstacles are modeled as costs and `grid` is not mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `cards` where $\text{cards}[i]$ represents the **value** of the $$i^{\text{th}}$$ card. A pair of cards are **matching** if the cards have the **same** value.
+You are given an integer array `cards` where $\text{cards}[i]$ represents the **value** of the $i^{\text{th}}$ card. A pair of cards are **matching** if the cards have the **same** value.
 
 Return* the **minimum** number of **consecutive** cards you have to pick up to have a pair of **matching** cards among the picked cards.* If it is impossible to have matching cards, return `-1`.
 

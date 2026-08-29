@@ -59,7 +59,7 @@ Using a set means DFS iteration order is unspecified, but the algorithm compares
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s = {c for c in time if c != ":"}` removes the colon and de... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ Leading zero characters remain in `curr`, so displays such as `"01:05"` are pres
 
 ## 6. Traps This Instance Exposes
 
-- **- **Minute-by-minute simulation:** Advance from th:** - **Minute-by-minute simulation:** Advance from the input one minute at a time modulo 1440 and return the first display using only allowed digits. At most 1440 checks still give `O(1)` time.
-- **- **Cartesian product utility:** Generate the four:** - **Cartesian product utility:** Generate the four positions with a standard product iterator rather than recursion. The candidate set and proof are identical.
-- **- **Greedily increment the last digit:** Clock val:** - **Greedily increment the last digit:** Clock validity and carry behavior can require changing earlier positions, making a direct greedy implementation error-prone.
+- **Minute-by-minute simulation:** Advance from the input one minute at a time modulo 1440 and return the first display using only allowed digits. At most 1440 checks still give `O(1)` time.
+- **Cartesian product utility:** Generate the four positions with a standard product iterator rather than recursion. The candidate set and proof are identical.
+- **Greedily increment the last digit:** Clock validity and carry behavior can require changing earlier positions, making a direct greedy implementation error-prone.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of integers `stones` where $\text{stones}[i]$ is the weight of the $$i^{\text{th}}$$ stone.
+You are given an array of integers `stones` where $\text{stones}[i]$ is the weight of the $i^{\text{th}}$ stone.
 
 The objective is to compute `1` from `{"stones": [2, 7, 4, 1, 8, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ Bottom-up heap construction takes linear time.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `h = [-x for x in stones]` creates a separate list of negate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The simultaneous assignment evaluates both right-hand expressions before assigni
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan for two maximums each turn:** It avoids a:** - **Scan for two maximums each turn:** It avoids a heap but costs `O(N)` per smash and `O(N^2)` total time.
+- **Scan for two maximums each turn:** It avoids a heap but costs `O(N)` per smash and `O(N^2)` total time.
 - **Maintain a sorted list:** Maximum removal is constant time at the end, but inserting each difference can shift linearly many entries, retaining quadratic worst-case time.
 - **Re-sort after every smash:** This is even more expensive, up to `O(N^2 \log N)`.
 - **Bucket counts by weight:** With maximum weight `W`, frequency buckets can run in `O(N + W)` time and `O(W)` space. It is useful only because weights are bounded and is pseudo-polynomial in `W`.
@@ -113,8 +113,8 @@ The simultaneous assignment evaluates both right-hand expressions before assigni
 - **Sign discipline:** Heap entries are always negative. `x - y` is the correct stored representation because `y >= x`.
 - **Input preservation:** The comprehension builds `h` rather than negating `stones` in place, so callers retain their original list.
 - **Positive-weight contract:** Every original stone is positive, and unequal smashes produce a strictly positive difference.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

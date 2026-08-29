@@ -66,7 +66,7 @@ There is no need to group by customer and return one row per customer. The requi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The table's primary key is `bill_id`, which means every bill... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ No `ORDER BY` is needed because the result contains only one row.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Plain `COUNT(customer_id)`:** This counts qual:** - **Plain `COUNT(customer_id)`:** This counts qualifying bill rows, so customers with multiple bills are overcounted. `DISTINCT` is necessary.
+- **Plain `COUNT(customer_id)`:** This counts qualifying bill rows, so customers with multiple bills are overcounted. `DISTINCT` is necessary.
 - **`GROUP BY customer_id` alone:** This yields one row per rich customer rather than the required single total. An outer count could repair it, but the direct distinct aggregate is simpler.
 - **Nested grouped subquery:** Selecting qualifying customer IDs with `GROUP BY` and then counting those rows is correct, but it introduces an unnecessary query layer compared with `COUNT(DISTINCT ...)`.
 - **`EXISTS` against a customer table:** If a separate complete customer table existed, an existence test could mark qualifying customers. No such table is needed here because qualifying identifiers can be obtained directly from `Store`.
@@ -121,8 +121,8 @@ No `ORDER BY` is needed because the result contains only one row.
 - **Unique bill identifiers:** `bill_id` prevents duplicate bill records by key, but customers may repeat. Counting bill IDs would answer a different question.
 - **Null customer identifiers:** Standard `COUNT(DISTINCT ...)` ignores null. The intended data identifies customers, so no special null substitute is required.
 - **Exact output alias:** The aggregate must be named `rich_count` to match the expected result schema.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

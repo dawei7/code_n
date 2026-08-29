@@ -51,7 +51,7 @@ The exact source combines three structures:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source combines three structures:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The exact source combines three structures:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Balanced ordered map of frequency multipliciti:** - **Balanced ordered map of frequency multiplicities:** Update old and new frequencies and read the largest key. This also gives $O(\log n)$ per step but Python has no built-in ordered multiset.
+- **Balanced ordered map of frequency multiplicities:** Update old and new frequencies and read the largest key. This also gives $O(\log n)$ per step but Python has no built-in ordered multiset.
 - **Heap with an ID in every entry:** Push each updated `(count, ID)` pair and pop while the pair's count differs from `cnt[id]`. This is often simpler conceptually and has the same asymptotic bounds.
 - **Scan all IDs after each update:** The map update is easy, but repeated maximum scans can cost $O(n^2)$ overall.
 - **Frequency becomes zero:** Zero may remain in both counters and the heap; the reported maximum is still zero when no positive occurrence exists.
@@ -103,8 +103,8 @@ The exact source combines three structures:
 - **Why not delete zero keys:** Deleting them is optional bookkeeping and would not improve the asymptotic bound.
 - **Large counts:** Frequencies can accumulate beyond one update's magnitude, but Python integers do not overflow.
 - **Output ownership:** The heap identifies only the maximum frequency, exactly what the result requests; it deliberately cannot identify a winning ID.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

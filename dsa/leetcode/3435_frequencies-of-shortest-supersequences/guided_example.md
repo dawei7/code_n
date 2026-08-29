@@ -51,7 +51,7 @@ Every used letter must appear at least once. Some letters may need a second occu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every used letter must appear at least once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every used letter must appear at least once. Some letters may need a second occu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate supersequence strings:** Even at sma:** - **Enumerate supersequence strings:** Even at small alphabet size, ordering and repeated-letter choices create enormous duplication. Frequency subsets avoid permutations entirely.
+- **Enumerate supersequence strings:** Even at small alphabet size, ordering and repeated-letter choices create enormous duplication. Frequency subsets avoid permutations entirely.
 - **Topological sort without doubling:** It works only when the original graph is already acyclic. Cycles require repeated letters.
 - **Double every cycle vertex:** That is sufficient but not shortest. The enumeration finds minimum feedback vertex sets.
 - **Self-loop:** A word with two equal letters requires two copies, and its graph self-loop forces that vertex into every valid doubled subset.
@@ -96,8 +96,8 @@ Every used letter must appear at least once. Some letters may need a second occu
 - **Several minimum subsets:** All are collected before returning, producing all non-permutation-equivalent shortest frequencies.
 - **Alphabet letters absent from words:** Their frequency remains zero in every length-26 result.
 - **Construction sufficiency:** Early and late copies of doubled letters satisfy edges crossing the removed set, while the remaining DAG's topological order satisfies every single-to-single edge.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

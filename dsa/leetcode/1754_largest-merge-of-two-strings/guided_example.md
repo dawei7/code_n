@@ -61,7 +61,7 @@ The expression `word1[i:] > word2[j:]` asks Python to perform exactly this first
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `word1[i]` is greater than `word2[j]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Another useful view is to imagine comparing the best possible merge after each c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare only current characters:** It fails wh:** - **Compare only current characters:** It fails when they tie because later suffix characters decide the best source.
+- **Compare only current characters:** It fails when they tie because later suffix characters decide the best source.
 - **Dynamic programming over both indices:** It can model all interleavings but has $O(mn)$ states and may store large strings, far more than the greedy structure requires.
 - **Rank suffixes in advance:** Suffix arrays, hashes with longest-common-prefix search, or related ranking can reduce repeated comparison work, but add substantial implementation complexity.
 - **Character-by-character lookahead without slicing:** It avoids temporary suffix strings but can still take quadratic time on long equal prefixes.
@@ -116,8 +116,8 @@ Another useful view is to imagine comparing the best possible merge after each c
 - **Output construction:** List accumulation plus one `join` avoids quadratic cost from repeated result-string concatenation.
 - **Input preservation:** Indices advance, while both immutable input strings remain unchanged.
 - **Lowercase alphabet:** Python's ordinary string ordering matches the required lexicographic character order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

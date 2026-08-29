@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `prices` where $\text{prices}[i]$ is the price of a stock in dollars on the $$i^{\text{th}}$$ day, and an integer `k`.
+You are given an integer array `prices` where $\text{prices}[i]$ is the price of a stock in dollars on the $i^{\text{th}}$ day, and an integer `k`.
 
 You are allowed to make at most `k` transactions, where each transaction can be either of the following:
 

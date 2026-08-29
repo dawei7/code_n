@@ -48,4 +48,4 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 
 - $1 \le \text{target}[i] \le 10^{5}$
 
-- ​​​​​​​The input is generated such that the answer fits inside a 32 bit integer.
+- The input is generated such that the answer fits inside a 32 bit integer.

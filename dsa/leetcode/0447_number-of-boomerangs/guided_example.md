@@ -65,7 +65,7 @@ An equivalent direct formula for a distance group of size $m$ is $m(m-1)$: choos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every unordered pair `{j, k}` around a fixed pivot correspon... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The iteration order of `points` does not affect the result. Within a group of si
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every ordered triple:** Trying all disti:** - **Check every ordered triple:** Trying all distinct `(i, j, k)` tuples takes $O(n^3)$ time. Grouping endpoints by distance counts all choices for a pivot collectively and reduces this to $O(n^2)$.
+- **Check every ordered triple:** Trying all distinct `(i, j, k)` tuples takes $O(n^3)$ time. Grouping endpoints by distance counts all choices for a pivot collectively and reduces this to $O(n^2)$.
 - **Count full groups after the inner scan:** For each distance frequency $m$, adding $m(m-1)$ directly is equally valid. The exact solution instead accumulates unordered pairs online and doubles once at the end.
 - **Use squared Euclidean distance:** The key `(x1 - x2) ** 2 + (y1 - y2) ** 2` avoids square roots and floating-point keys. It is often preferred in fixed-width languages, using a sufficiently wide integer type. The present solution uses `dist` but relies on the same grouping principle.
 - **Use Manhattan distance:** This would change the problem. A boomerang is based on Euclidean distance, so points equal under Manhattan distance may not be geometrically equidistant.
@@ -117,8 +117,8 @@ The iteration order of `points` does not affect the result. Within a group of si
 - **The pivot itself:** Its zero-distance group contains only itself because all input points are unique, so it never contributes a pair.
 - **Several points on one circle around a pivot:** If $m$ points share that radius, they contribute $m(m-1)$ ordered boomerangs for that pivot, even if their coordinates or directions differ.
 - **Same endpoint coordinates:** The contract forbids duplicate points. That guarantee ensures `j` and `k` are genuinely different points when two separate entries are selected and keeps the pivot's zero-distance group harmless.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

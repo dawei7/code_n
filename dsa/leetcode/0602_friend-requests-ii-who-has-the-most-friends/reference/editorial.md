@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -43,7 +43,7 @@ df = values.groupby('id', as_index=False).agg(num=('id', 'count')).sort_values('
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 def most_friends(request_accepted: pd.DataFrame) -> pd.DataFrame:
@@ -58,8 +58,8 @@ def most_friends(request_accepted: pd.DataFrame) -> pd.DataFrame:
 <!-- an empty line to separate approaches -->
 
 ----
-​
-​
+
+
 ## Database
 
 <!-- h3 for approaches -->
@@ -111,7 +111,7 @@ GROUP BY id
 ORDER BY COUNT(id) DESC
 LIMIT 1
 ```
-​
+
 <!-- an empty line to separate approaches -->
 
 ### Approach 2: Combining Tables Using UNION ALL and Finding Top Values Using RANK()

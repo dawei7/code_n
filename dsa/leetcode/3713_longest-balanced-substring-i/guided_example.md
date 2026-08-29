@@ -61,7 +61,7 @@ This incremental update is the main reuse of work. Once the counts for `s[i:j]` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop chooses `i`, the left endpoint of a possible ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The initialization `ans = 0` is safe even though a nonempty input always has an 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount every substring from scratch:** One co:** - **Recount every substring from scratch:** One could choose `i` and `j`, build a new frequency table for `s[i:j + 1]`, and then test its counts. Recounting costs up to $O(n)$ per substring, producing $O(n^3)$ time. Incrementally extending each fixed-left substring removes that unnecessary factor.
+- **Recount every substring from scratch:** One could choose `i` and `j`, build a new frequency table for `s[i:j + 1]`, and then test its counts. Recounting costs up to $O(n)$ per substring, producing $O(n^3)$ time. Incrementally extending each fixed-left substring removes that unnecessary factor.
 - **Compare the minimum and maximum positive frequencies:** A substring is balanced when its minimum positive count equals its maximum count. This is valid, but scanning the frequency table after every extension adds work and requires care not to include zero counts. The equality `mx * v == length` captures the same fact with the maintained statistics.
 - **Prefix counts for all 26 letters:** Prefix-frequency arrays can recover the 26 counts of any substring in constant time relative to `n`, leading to $O(26n^2)=O(n^2)$ time and $O(26n)=O(n)$ space. It is correct, but the running-counter method is simpler and uses less memory.
 - **Single-character substrings:** Every one-character substring is balanced because it has one distinct character with frequency one. The code detects these without a special case, which also guarantees a positive answer for every valid nonempty input.
@@ -110,8 +110,8 @@ The initialization `ans = 0` is safe even though a nonempty input always has an 
 - **Maximum frequency never decreases:** While `j` moves right, counts only increase, so keeping `mx` through `max(mx, cnt[s[j]])` is sufficient. A full recomputation of the maximum is unnecessary. A new outer-loop iteration does reset `mx` because it starts a different family of substrings.
 - **Letters absent from the substring:** They must not be treated as having frequency zero in the equality. The variable `v` counts only present letters, so the product uses exactly the frequencies relevant to the definition.
 - **Overlapping candidate substrings:** Nothing is consumed or marked when a balanced substring is found. The loops continue extending it and later restart at every other left endpoint, so overlapping and nested answers are all considered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Python slicing would return the whole shorter word rather than signal failure. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `len(w) < k`, the word has no length-`k` prefix and canno... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Only the first `k` characters matter. Suffix differences after position `k - 1` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort eligible prefixes:** Build and sort all p:** - **Sort eligible prefixes:** Build and sort all prefixes, then count runs of equal values. This costs $O(NK+NK\log N)$ character-comparison work in a simple model, whereas hashing gives expected linear grouping.
+- **Sort eligible prefixes:** Build and sort all prefixes, then count runs of equal values. This costs $O(NK+NK\log N)$ character-comparison work in a simple model, whereas hashing gives expected linear grouping.
 - **Trie:** Insert the first `k` characters and count words ending at depth `k`. A trie can share prefix storage but is more complex for a task needing exact full-prefix equality only.
 - **Pairwise comparison graph:** Comparing all word pairs costs $O(N^2K)$ and creates an unnecessary graph because equality buckets already define components.
 - **Word shorter than k:** It must be ignored; Python's shorter slice is not a valid `k`-length prefix.
@@ -115,8 +115,8 @@ Only the first `k` characters matter. Suffix differences after position `k - 1` 
 - **k equals one:** Groups are determined by first letter.
 - **No qualifying prefix:** The Boolean sum is zero.
 - **All eligible words share a prefix:** The answer is one regardless of array length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

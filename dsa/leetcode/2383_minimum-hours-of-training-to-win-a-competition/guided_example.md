@@ -59,7 +59,7 @@ Training beyond `dx + 1` at that moment could help later opponents, but doing it
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let current energy be `x` and the opponent require strict su... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ After victory, experience increases by `dy` rather than decreasing. This makes l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct energy deficit plus experience scan:** :** - **Direct energy deficit plus experience scan:** Compute the energy formula once and simulate only experience. It is equally optimal and aligns with the manifest summary.
+- **Direct energy deficit plus experience scan:** Compute the energy formula once and simulate only experience. It is equally optimal and aligns with the manifest summary.
 - **Train to a very large value immediately:** It ensures victory but can add unnecessary hours; exact deficits provide the minimum.
 - **Simulate every training hour:** Incrementing one unit at a time is correct but obscures the direct deficit calculation.
 - **Equality with an opponent:** Strict superiority means equality requires exactly one additional unit.
@@ -106,8 +106,8 @@ After victory, experience increases by `dy` rather than decreasing. This makes l
 - **Experience always increases after wins:** Earlier gains are automatically available to reduce later training needs.
 - **Large early experience gain:** It may eliminate all later experience deficits even when initial experience was small.
 - **Training accounting timing:** Every lazily added unit can be moved to the initial state, so the constructed count respects the before-competition-only rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

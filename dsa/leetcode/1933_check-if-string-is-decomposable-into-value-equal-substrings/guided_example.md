@@ -69,7 +69,7 @@ After all runs, `cnt2 == 1` enforces “exactly one.” A string whose every run
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a run of length $L$, removing as many length-three piece... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The particular order of the pair and triple pieces within a run is irrelevant. F
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expression or explicit run list:** Gro:** - **Regular expression or explicit run list:** Grouping equal characters first and then checking lengths is valid, but storing all runs uses unnecessary $O(N)$ space.
+- **Regular expression or explicit run list:** Grouping equal characters first and then checking lengths is valid, but storing all runs uses unnecessary $O(N)$ space.
 - **Dynamic programming over positions:** A DP can test partitions of lengths two and three while tracking whether the pair was used. It is more general but overlooks the simpler independent-run structure.
 - **Greedy chunks without finding runs:** Taking groups of three from the raw string can accidentally cross a digit change and create a non-value-equal substring. Runs must define the boundaries.
 - **Run length one:** Its remainder is one, so it can never be covered by allowed pieces.
@@ -119,8 +119,8 @@ The particular order of the pair and triple pieces within a run is irrelevant. F
 - **All run lengths divisible by three:** The final counter is zero, and the method returns false because “exactly one” does not mean “at most one.”
 - **Pair placement within a run:** Any location that leaves multiples of three on both sides works; only existence matters.
 - **Different adjacent digits:** They can never share a piece, even if combining their lengths would give a convenient total.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

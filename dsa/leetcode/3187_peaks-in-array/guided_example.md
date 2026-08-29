@@ -54,8 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-0<i<n-1,\qquad \texttt{nums}[i-1]<\texttt{nums}[i],\qquad... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +89,7 @@ A type-1 query does not need the peak values themselves. It only needs to count 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Segment tree:** Store peak indicators in a seg:** - **Segment tree:** Store peak indicators in a segment tree and use point updates plus range-sum queries. It has the same $O(\log n)$ operation bounds but uses more code and a larger constant factor than a Fenwick tree for this sum-only task.
+- **Segment tree:** Store peak indicators in a segment tree and use point updates plus range-sum queries. It has the same $O(\log n)$ operation bounds but uses more code and a larger constant factor than a Fenwick tree for this sum-only task.
 - **Recount every requested subarray:** Scanning `left + 1` through `right - 1` is simple and needs no tree, but a long interval costs $O(n)$ and up to $10^5$ such queries can make the total quadratic.
 - **Rebuild after each value change:** Recomputing all peaks after a type-2 query ignores the local three-center dependency and also costs $O(n)$ per update.
 - **Ordered set of peak indices:** A balanced ordered set can update the same three positions, but counting how many stored indices lie in an interval requires order-statistics support. A basic Python set or sorted list does not provide both updates and rank queries efficiently.
@@ -101,8 +100,8 @@ A type-1 query does not need the peak values themselves. It only needs to count 
 - **Assigning the same value:** The code still removes the old local indicators and adds them back. The result is unchanged and remains correct; no special case is required.
 - **Sequential query semantics:** `nums[idx] = val` deliberately mutates the array. Every subsequent query operates on the accumulated state, not the original input.
 - **Fenwick index zero:** Standard Fenwick updates cannot start at zero because `x & -x` would also be zero and the loop would not advance. The wrapper's endpoint rejection guarantees `tree.update` is never called with zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

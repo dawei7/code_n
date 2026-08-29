@@ -73,10 +73,7 @@ The manifest describes explicitly simulating occupancy and recording its maximum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At every prefix,
-
-$$
-\text{current occupants}=\texttt{cnt}-\... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +118,7 @@ For seven E events, no chair is ever freed. Every entry increments `cnt` and the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Occupancy plus maximum:** Add one on E, subtra:** - **Occupancy plus maximum:** Add one on E, subtract one on L, and update a peak variable. It matches the manifest and is algebraically equivalent.
+- **Occupancy plus maximum:** Add one on E, subtract one on L, and update a peak variable. It matches the manifest and is algebraically equivalent.
 - **Stack of chairs:** Explicitly store free chair identifiers, but identities never matter and would use unnecessary space.
 - **Count E minus L prefixes:** Maximum prefix balance directly gives the answer.
 - **All entries:** Every event needs a new chair, so result is string length.
@@ -133,8 +130,8 @@ For seven E events, no chair is ever freed. Every entry increments `cnt` and the
 - **Single event E:** One chair is necessary.
 - **Only E/L alphabet:** It makes the source's `else` branch safe.
 - **No early return:** A later burst of entries may exceed every earlier capacity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

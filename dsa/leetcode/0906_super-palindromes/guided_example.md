@@ -52,7 +52,7 @@ A super-palindrome $x$ must satisfy two conditions:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Rather than testing every number in a range as large as $10^{18}$, the solution 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every integer in the range:** Impossible :** - **Test every integer in the range:** Impossible for intervals approaching $10^{18}$.
+- **Test every integer in the range:** Impossible for intervals approaching $10^{18}$.
 - **Enumerate every square root:** Up to $10^9$ roots are possible. Generating only palindromic roots reduces this to about $10^5$ prefixes.
 - **Generate palindromic squares directly:** It remains necessary to verify that their roots are palindromes; root generation enforces one condition automatically.
 - **String palindrome check:** Comparing `str(x)` with its reverse is simpler and has the same digit-linear cost, but the exact solution uses arithmetic reversal.
@@ -100,8 +100,8 @@ Rather than testing every number in a range as large as $10^{18}$, the solution 
 - **No leading zeros:** Prefixes begin from 1, so generated roots use standard decimal representation.
 - **Candidate order:** The two construction families interleave and are not globally sorted, but summation needs no sorted order.
 - **Potential duplicate defense:** Even if generation ever produced duplicate roots, a set would be needed to prevent double-counting. Under these canonical positive half constructions, even- and odd-length results represent distinct palindrome forms.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

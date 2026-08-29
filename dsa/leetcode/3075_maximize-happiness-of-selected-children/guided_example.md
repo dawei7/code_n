@@ -51,7 +51,7 @@ The penalty depends only on turn number, not on which children were previously c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The penalty depends only on turn number, not on which childr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap:** Selecting the largest value each t:** - **Max-heap:** Selecting the largest value each turn costs $O(N+k\log N)$ and avoids full sort when $k$ is small, but the sort solution is simpler.
+- **Max-heap:** Selecting the largest value each turn costs $O(N+k\log N)$ and avoids full sort when $k$ is small, but the sort solution is simpler.
 - **Repeated linear maximum search:** It can cost $O(kN)$ and offers no advantage.
 - **Choose based on current happiness dynamically:** Current order remains the same after equal decrements and flooring, so sorting originals once is sufficient.
 - **$k=1$:** The largest happiness is selected with zero penalty.
@@ -102,8 +102,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Large answer size:** The sum can exceed 32-bit range when many values approach $10^8$; Python integer arithmetic handles it without overflow.
 - **Selection versus list mutation:** Sorting changes only representation order. It does not simulate decrements in the list; the turn index algebraically accounts for all prior decreases.
 - **Exchange intuition:** Giving an earlier, smaller penalty to a smaller value while delaying a larger value can only waste protected happiness, so descending order removes every such inversion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

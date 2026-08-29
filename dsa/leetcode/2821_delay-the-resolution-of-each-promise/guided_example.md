@@ -51,7 +51,7 @@ The array order is preserved because JavaScript `map` places each produced wrapp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The array order is preserved because JavaScript `map` places... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The array order is preserved because JavaScript `map` places each produced wrapp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delay before source invocation:** Start a time:** - **Delay before source invocation:** Start a timer first and call `fn` after it fires. Simple examples show the same summed duration, but source side effects and rejection timing begin later than in the exact implementation.
+- **Delay before source invocation:** Start a timer first and call `fn` after it fires. Simple examples show the same summed duration, but source side effects and rejection timing begin later than in the exact implementation.
 - **Reusable `sleep` helper:** Define a promise-based delay and chain `sleep(ms).then(() => value)` in both outcome handlers. This can reduce duplication while preserving post-settlement delay.
 - **`finally` alone:** `finally` can wait for a promise, but forwarding both the original fulfillment value and rejection reason correctly still depends on promise adoption semantics; explicit handlers are clearer.
 - **Rejected source promise:** The reason is retained and rejection is delayed, rather than converted into fulfillment.
@@ -98,8 +98,8 @@ The array order is preserved because JavaScript `map` places each produced wrapp
 - **Timer accuracy:** Host scheduling can add delay beyond `ms`, so tests should allow timing tolerance.
 - **Receiver-dependent function:** Calling `fn()` does not forward a wrapper receiver. Use `fn.call(this)` inside an ordinary wrapper if receiver preservation is required.
 - **Sparse input array outside normal constraints:** `map` preserves holes rather than creating wrappers at missing positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

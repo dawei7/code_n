@@ -79,9 +79,7 @@ The outer alias `o` distinguishes the current `Orders` row from the CTE alias `t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The main predicate is
-
-`order_type = 0 OR NOT EXISTS (...)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +121,7 @@ These are exactly the two rules in the statement.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated minimum order type:** Since types a:** - **Correlated minimum order type:** Since types are only 0 and 1, one could compare each row with the customer's minimum type. That requires grouping or a window computation; the explicit type 0 customer set states the rule more directly.
+- **Correlated minimum order type:** Since types are only 0 and 1, one could compare each row with the customer's minimum type. That requires grouping or a window computation; the explicit type 0 customer set states the rule more directly.
 - **Window function:** Computing a per-customer flag such as whether any type 0 exists and filtering on it can be correct. It may retain repeated flag values on every row and is more machinery than the CTE existence test.
 - **`NOT IN` subquery:** `customer_id NOT IN (...)` can express set exclusion, but null values can give surprising three-valued logic. `NOT EXISTS` is the safer existence formulation.
 - **Joining `T` and testing null:** A left join followed by a null test can implement the same logic. The correlated `NOT EXISTS` avoids adding join columns and duplicate concerns to the outer rowset.
@@ -135,8 +133,8 @@ These are exactly the two rules in the statement.
 - **Empty table:** The CTE and outer result are empty, which is the correct set of reported orders.
 - **Any output order:** No ordering is guaranteed or required, so downstream comparison should treat rows as an unordered result set.
 - **Exact two-type guarantee:** The proof uses the fact that every order is type 0 or 1. The query would also include a hypothetical other type for a customer absent from `T`, but such rows are outside the valid input domain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

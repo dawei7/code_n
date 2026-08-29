@@ -35,7 +35,7 @@ A **nice pair** is a pair `(i, j)` where $0 \le i < j < \text{nums.length}$ and 
 - **Input:** `nums = [9,8,4,2,1], low = 5, high = 14`
 - **Output:** `8`
 - **Explanation:** All nice pairs (i, j) are as follows:
-​​​​​    - (0, 2): nums[0] XOR nums[2] = 13
+    - (0, 2): nums[0] XOR nums[2] = 13
 - (0, 3): nums[0] XOR nums[3] = 11
 - (0, 4): nums[0] XOR nums[4] = 8
 - (1, 2): nums[1] XOR nums[2] = 12

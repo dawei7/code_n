@@ -58,7 +58,7 @@ Thus no sorting or second pass is needed. The set contains exactly the distinct 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a valid pair has values `a` and `2a`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ The input array is not modified. Duplicate nonzero values alone do not automatic
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency map:** Count all values first, then :** - **Frequency map:** Count all values first, then check whether each double exists. It is also $O(n)$ expected time and naturally handles zero by requiring its frequency to be at least two.
+- **Frequency map:** Count all values first, then check whether each double exists. It is also $O(n)$ expected time and naturally handles zero by requiring its frequency to be at least two.
 - **Sorting and binary search:** Sort the array and search for each doubled value. It takes $O(n\log n)$ time and needs careful index handling for zero and duplicates.
 - **Brute-force pairs:** Check every pair of distinct indices directly. This uses $O(1)$ extra space but $O(n^2)$ time.
 - **Only checking the double:** A one-pass method that checks only `2 * x` misses the order where the smaller value appeared earlier and its double appears later. Both orientations are required.
@@ -111,8 +111,8 @@ The input array is not modified. Duplicate nonzero values alone do not automatic
 - **Values at either order:** The double and exact-half checks make the algorithm independent of which member appears first.
 - **Input preservation:** The solution builds a separate set and leaves the original array unchanged.
 - **Early return:** Once a matching earlier value is found, no later element can invalidate the pair. Returning immediately is safe and can avoid scanning the rest of the array while preserving the $O(n)$ worst-case bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

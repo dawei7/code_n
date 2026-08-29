@@ -27,7 +27,7 @@ Existing spaces are data and must remain unchanged, including leading spaces, tr
 Let $n$ be the number of rows and define
 
 $$
-S=\sum_{r\in\texttt{user_content}}\lvert r.\texttt{content_text}\rvert.
+S=\sum_{r\in\texttt{user\_content}}\lvert r.\texttt{content\_text}\rvert.
 $$
 
 **Return value**

@@ -59,7 +59,7 @@ The `year` column is not needed after unpivoting because the task asks only for 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The same player can win several tournaments or win across se... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Players who never won have no row in `T`, so they cannot enter the join. This na
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four joins or correlated counts:** They repeat:** - **Four joins or correlated counts:** They repeat logic and are more verbose than unpivoting once.
+- **Four joins or correlated counts:** They repeat logic and are more verbose than unpivoting once.
 - **UNION instead of UNION ALL:** It is incorrect because it removes repeated wins by the same player.
 - **Conditional aggregation per Players row:** Count matches across four columns, but it can require cumbersome joins and expressions.
 - **Player wins multiple tournaments in one year:** Each column contributes a separate CTE row and title.
@@ -112,8 +112,8 @@ Players who never won have no row in `T`, so they cannot enter the join. This na
 - **Inner join:** It deliberately begins from winners rather than retaining every player.
 - **Ordinal grouping:** `GROUP BY 1` depends on `player_id` being the first selected expression.
 - **Any output order:** No ordering clause is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

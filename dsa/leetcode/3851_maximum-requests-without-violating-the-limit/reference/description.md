@@ -8,7 +8,7 @@ A user violates the limit if there exists an integer `t` such that the user make
 
 You may drop any number of requests.
 
-Return an integer denoting the **maximum**​​​​​​​ number of requests that can **remain** such that no user violates the limit.
+Return an integer denoting the **maximum** number of requests that can **remain** such that no user violates the limit.
 
 ### 2. Function Contract
 
@@ -38,7 +38,7 @@ Return the maximum possible total number of retained request records across all 
 
 - **Output:** 4
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - For user 1, the request times are `[1, 7]`. The difference between them is 6, which is greater than $window = 4$.
 
@@ -52,7 +52,7 @@ Return the maximum possible total number of retained request records across all 
 
 - **Output:** 2
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - For user 1, the request times are `[2, 2, 5, 6]`. The inclusive interval `[2, 7]` of length $window = 5$ contains all 4 requests.
 

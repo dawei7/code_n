@@ -68,7 +68,7 @@ Python evaluates `sum(row)` in one pass over that row without allocating a filte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every zero contributes nothing and every one contributes one... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Using `<=` instead would replace an earlier row on ties and incorrectly select t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count with nested loops:** Equivalent to `sum(:** - **Count with nested loops:** Equivalent to `sum(row)` and useful if entries needed validation.
+- **Count with nested loops:** Equivalent to `sum(row)` and useful if entries needed validation.
 - **Compare tuples:** Store a key using negative count and index, but it adds abstraction without reducing work.
 - **Early exit at `n` ones:** Safe because no row can do better and the first full-one row wins ties.
 - **All rows tied:** Strict updates retain row zero.
@@ -121,8 +121,8 @@ Using `<=` instead would replace an earlier row on ties and incorrectly select t
 - **Strict versus non-strict update:** Strict comparison is essential for the smallest-index tie-break.
 - **Binary guarantee:** It is what makes row sum equal one-count.
 - **Input preservation:** Rows are scanned but never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -71,15 +71,7 @@ The composite primary key `(project_id, employee_id)` guarantees that one employ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query selects:
-
-
-
-and ends with:
-
-
-
-In MySQL, `GROUP BY ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +118,7 @@ The result is per employee, not weighted by any other property. The `Project` ta
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit ON syntax:** `JOIN Employee ON Projec:** - **Explicit ON syntax:** `JOIN Employee ON Project.employee_id = Employee.employee_id` is equivalent and useful when table aliases make ownership clearer.
+- **Explicit ON syntax:** `JOIN Employee ON Project.employee_id = Employee.employee_id` is equivalent and useful when table aliases make ownership clearer.
 - **GROUP BY project_id:** Naming the grouping column is equivalent to `GROUP BY 1` and is more robust if select-list order changes.
 - **Correlated subquery:** Computing an average separately for every project can repeat work and is less direct than one join and grouping.
 - **Pre-aggregate assignments:** There is nothing useful to aggregate before joining because experience values live in `Employee`.
@@ -139,8 +131,8 @@ The result is per employee, not weighted by any other property. The `Project` ta
 - **Rounding:** `ROUND(..., 2)` applies after averaging and gives the requested precision.
 - **Any output order:** Omitting `ORDER BY` matches the contract.
 - **Positional grouping:** In this MySQL query, one refers to the first selected expression rather than a constant grouping key.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

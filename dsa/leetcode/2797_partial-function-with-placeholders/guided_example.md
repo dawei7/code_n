@@ -51,7 +51,7 @@ For instance, suppose `args` is logically `[2, "_", 4, "_"]` and the wrapper rec
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For instance, suppose `args` is logically `[2, "_", 4, "_"]`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For instance, suppose `args` is logically `[2, "_", 4, "_"]` and the wrapper rec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fresh array on every call:** Map over the orig:** - **Fresh array on every call:** Map over the original template into a new argument list and then append leftovers. This avoids mutating caller-owned data and makes the returned partial safely reusable, at the cost of allocating $O(a + r)$ fresh space per invocation.
+- **Fresh array on every call:** Map over the original template into a new argument list and then append leftovers. This avoids mutating caller-owned data and makes the returned partial safely reusable, at the cost of allocating $O(a + r)$ fresh space per invocation.
 - **Single output pass:** Build a new result array while scanning `args`, selecting either the fixed value or the next rest value. This makes the correctness rule especially explicit and has the same asymptotic bounds.
 - **Bind-based approaches:** `Function.prototype.bind` can pre-fill a prefix of arguments, but it does not natively understand placeholders in arbitrary positions, so additional merging logic is still required.
 - **No placeholders:** The scan changes nothing, and every call-time argument is appended. On the first invocation this behaves like fixing a prefix of arguments.
@@ -97,8 +97,8 @@ For instance, suppose `args` is logically `[2, "_", 4, "_"]` and the wrapper rec
 - **Repeated invocation:** The captured template has already been overwritten and extended, so later calls do not repeat the advertised transformation independently. Use a fresh-copy implementation when reusable partial functions are required.
 - **Receiver forwarding:** Calling the wrapper as `obj.wrapper(...)` sends `obj` to `fn`. Calling it as a plain function supplies the ordinary strict- or non-strict-mode receiver dictated by the environment.
 - **Exceptions from `fn`:** The merge has already mutated `args` before `fn` is invoked. If `fn` throws, the mutation is not rolled back.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

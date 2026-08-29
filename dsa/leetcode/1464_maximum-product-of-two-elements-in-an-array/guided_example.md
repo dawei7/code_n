@@ -51,7 +51,7 @@ This arrangement automatically enforces distinct indices. It also avoids checkin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This arrangement automatically enforces distinct indices.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each pair, the code calculates `(a - 1) * (b - 1)` exactly as the problem re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track the two largest values:** Update a maxim:** - **Track the two largest values:** Update a maximum and second maximum during one scan, then multiply their decremented values. This achieves the manifest's `O(n)` time and `O(1)` space.
+- **Track the two largest values:** Update a maximum and second maximum during one scan, then multiply their decremented values. This achieves the manifest's `O(n)` time and `O(1)` space.
 - **Sort the array:** The final two values are the largest. This takes `O(n log n)` time and may mutate the input or allocate a copy.
 - **Index-based pair loops:** Use `j` from `i + 1` through `n - 1`. It preserves the exact quadratic search but avoids suffix allocation, reducing auxiliary space to `O(1)`.
 - **Use only the largest distinct value:** This is wrong when the same maximum occurs at two indices; both occurrences may form the best pair.
@@ -99,8 +99,8 @@ For each pair, the code calculates `(a - 1) * (b - 1)` exactly as the problem re
 - **Nonnegative guarantee:** It makes zero initialization safe and ensures the two-largest shortcut is valid.
 - **Slice accounting:** Python list slicing allocates; report `O(n)` peak auxiliary space for this exact source.
 - **Complexity reporting:** The exact implementation is `O(n^2)` time, not the manifest's linear alternative.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

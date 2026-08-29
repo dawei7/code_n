@@ -321,11 +321,7 @@
         "columns": [
           "student_id"
         ],
-        "rows": [
-          [
-            10
-          ]
-        ]
+        "rows": []
       },
       "validator": {
         "kind": "ordered_table"

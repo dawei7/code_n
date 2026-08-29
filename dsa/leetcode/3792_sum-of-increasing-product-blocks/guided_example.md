@@ -71,7 +71,7 @@ It also prevents the stored intermediate from growing into the full enormous pro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `x` starts at one, the multiplicative identity.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The sum is 127.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute factorials:** A block product is a :** - **Precompute factorials:** A block product is a factorial ratio, but modular division requires inverses and adds unnecessary storage for `N<=1000`.
+- **Precompute factorials:** A block product is a factorial ratio, but modular division requires inverses and adds unnecessary storage for `N<=1000`.
 - **Carry the previous block product:** Blocks are separate products; `x` must reset to one.
 - **Reset `k` incorrectly:** Adding `i`, not `i+1`, moves to the next unused integer.
 - **Use `range(k,k+i+1)`:** That includes `i+1` values and steals the next block's first integer.
@@ -131,8 +131,8 @@ The sum is 127.
 - **Empty product:** No block is empty because outer size `i` begins at one, so resetting `x=1` never becomes an unintended contribution by itself.
 - **Maximum `n`:** There are 500,500 multiplications for `n=1000`, consistent with the quadratic bound.
 - **No input mutation:** The sole input integer is never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

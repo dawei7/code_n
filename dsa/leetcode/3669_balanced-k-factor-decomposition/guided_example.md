@@ -65,7 +65,7 @@ This table is global and built when the module is loaded, before `minDifference`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Outside the class, the source constructs `g` for all integer... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The minimum and maximum are updated to include `y`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate only non-decreasing factors:** Requi:** - **Enumerate only non-decreasing factors:** Require each next factor to respect an ordering bound. This removes permutation duplicates and matches the manifest summary more closely.
+- **Enumerate only non-decreasing factors:** Require each next factor to respect an ordering bound. This removes permutation duplicates and matches the manifest summary more closely.
 - **Generate divisors on demand:** Trial division up to `sqrt(x)` avoids the global `O(M log M)` table and may be preferable for one call.
 - **Prime-factor distribution:** Factor `n` and distribute prime factors among `k` buckets. Searching balanced allocations can reduce redundant divisor recursion but is more involved.
 - **Greedily choose factors near the `k`-th root:** Closeness is a useful heuristic but does not prove the minimum spread for arbitrary divisor structure.
@@ -124,8 +124,8 @@ The minimum and maximum are updated to include `y`.
 - **Recursion depth:** It is at most `k <= 5` and is safe under ordinary Python limits.
 - **Input range:** The table covers every permitted `n <= 10^5`.
 - **Missing imports:** The stored source uses `List` and `inf` without imports. Standalone Python requires the corresponding `typing` and `math` imports unless provided by the harness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

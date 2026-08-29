@@ -77,7 +77,7 @@ For `n = 5` and `start = 0`, the generator yields `0`, `2`, `4`, `6`, and `8`. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Bitwise XOR compares corresponding bits.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Python's `reduce` can optionally accept an initializer. The exact source does no
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-XOR formula:** Split off the common low:** - **Prefix-XOR formula:** Split off the common low bit and compute a consecutive-integer XOR with the four-case prefix cycle. This achieves the manifest's true $O(1)$ time and $O(1)$ space, but it is more algebraically demanding than the stored direct reduction.
+- **Prefix-XOR formula:** Split off the common low bit and compute a consecutive-integer XOR with the four-case prefix cycle. This achieves the manifest's true $O(1)$ time and $O(1)$ space, but it is more algebraically demanding than the stored direct reduction.
 - **Explicit loop:** Initialize `answer = 0` and XOR `start + 2 * i` for every index. It has the same $O(n)$ time and $O(1)$ space as the stored source and makes the accumulator invariant especially obvious.
 - **Materialized list:** Build all values and then reduce them. It is correct but wastes $O(n)$ space because no later operation needs the whole array at once.
 - **Arithmetic sum:** Ordinary addition is incorrect. XOR has bit cancellation rules, carries no bits between positions, and is not interchangeable with summation.
@@ -122,8 +122,8 @@ Python's `reduce` can optionally accept an initializer. The exact source does no
 - **Even versus odd count:** In the constant-time derivation, the shared low bit of all terms cancels for even $n$ and remains for odd $n$.
 - **Hypothetical empty input:** It is excluded by $n \ge 1$. If the contract allowed zero, the exact no-initializer reduction would fail and should instead use an initializer of zero.
 - **Missing imports:** The exact method requires `reduce` and `xor` to exist in its module namespace. A standalone Python file normally imports them from `functools` and `operator`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

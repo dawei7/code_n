@@ -59,7 +59,7 @@ It returns the untouched prefix ending at that character.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python `num.rstrip("0")` scans from the right and removes ch... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Passing a broader string such as `"01"` would incorrectly remove both zeros and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual right pointer:** Decrement while `num[i:** - **Manual right pointer:** Decrement while `num[i] == "0"` and return the prefix; same $O(n)$ bound.
+- **Manual right pointer:** Decrement while `num[i] == "0"` and return the prefix; same $O(n)$ bound.
 - **Remember last nonzero during a forward scan:** Correct but always traverses the whole input.
 - **Convert to integer and divide by ten:** Unnecessary and potentially expensive for a 1000-digit value.
 - **Use `strip("0")`:** Incorrect because it also removes leading zeros from both ends.
@@ -110,8 +110,8 @@ Passing a broader string such as `"01"` would incorrectly remove both zeros and 
 - **Input ending in nonzero:** The scan stops immediately.
 - **Positive-number guarantee:** Ensures the result is not empty.
 - **No leading zeros:** The retained prefix remains canonical decimal text.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

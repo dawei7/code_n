@@ -71,7 +71,7 @@ A direct computation for each $i$ would repeat most of the same subtractions and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At group position $i$, all earlier indices are smaller than ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Including $j=0$ is harmless because its term is zero. Thus `left + right` is alr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix sums per group:** Store cumulative inde:** - **Prefix sums per group:** Store cumulative index sums and calculate left and right formulas independently for each occurrence. This is also $O(n)$ but uses an additional prefix structure or variables.
+- **Prefix sums per group:** Store cumulative index sums and calculate left and right formulas independently for each occurrence. This is also $O(n)$ but uses an additional prefix structure or variables.
 - **Two global passes:** Maintain count and index-sum maps left-to-right, then right-to-left, adding each side's contribution directly to the answer.
 - **Pairwise comparison:** Comparing every equal-value pair and adding its distance to both endpoints can take $O(n^2)$ when all values match.
 - **Singleton group:** Both side contributions are zero, so the answer is zero.
@@ -130,8 +130,8 @@ Including $j=0$ is harmless because its term is zero. Thus `left + right` is alr
 - **Widely separated occurrences:** The actual gap scales both contribution changes correctly.
 - **Large input values:** They are dictionary keys only; distances depend on indices, not value magnitude.
 - **Input preservation:** Grouping reads `nums` without sorting or modifying it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

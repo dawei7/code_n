@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two **0-indexed** integer arrays `fronts` and `backs` of length `n`, where the $$i^{\text{th}}$$ card has the positive integer $\text{fronts}[i]$ printed on the front and $\text{backs}[i]$ printed on the back. Initially, each card is placed on a table such that the front number is facing up and the other is facing down. You may flip over any number of cards (possibly zero).
+You are given two **0-indexed** integer arrays `fronts` and `backs` of length `n`, where the $i^{\text{th}}$ card has the positive integer $\text{fronts}[i]$ printed on the front and $\text{backs}[i]$ printed on the back. Initially, each card is placed on a table such that the front number is facing up and the other is facing down. You may flip over any number of cards (possibly zero).
 
 The objective is to compute `2` from `{"fronts": [1, 2, 4, 4, 7], "backs": [1, 3, 4, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -77,7 +77,7 @@ The exact arrangement does not need to be constructed because the function asks 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Now take a value `x` that appears somewhere in `fronts` or `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,9 +116,9 @@ Duplicate appearances are harmless. `min` returns the smallest numeric value reg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every flip configuration:** There ar:** - **Enumerate every flip configuration:** There are `2^n` orientations, which is unnecessary once the equal-sided obstruction is recognized.
-- **- **Try candidates in numeric order and simulate:*:** - **Try candidates in numeric order and simulate:** It can work, but repeatedly checking cards adds avoidable work. Building the bad set characterizes all candidates in two scans.
-- **- **Look only at initially face-down backs:** Flip:** - **Look only at initially face-down backs:** Flipping changes which side is down, so a front-only value may still become good. Both arrays belong to the candidate pool.
+- **Enumerate every flip configuration:** There are `2^n` orientations, which is unnecessary once the equal-sided obstruction is recognized.
+- **Try candidates in numeric order and simulate:** It can work, but repeatedly checking cards adds avoidable work. Building the bad set characterizes all candidates in two scans.
+- **Look only at initially face-down backs:** Flipping changes which side is down, so a front-only value may still become good. Both arrays belong to the candidate pool.
 
 ---
 

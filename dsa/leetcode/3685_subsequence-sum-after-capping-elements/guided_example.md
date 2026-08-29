@@ -85,7 +85,7 @@ after each insertion discards every larger sum and keeps the bitset bounded.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The integer `reachable` is used as a bitset.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ Every one of those `capped_count` elements has value exactly `cap` in the array 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rebuild subset-sum DP for every cap:** Constru:** - **Rebuild subset-sum DP for every cap:** Constructing the capped array and running an $O(nk)$ DP independently for all $n$ caps costs $O(n^2k)$. The evolving fixed-group bitset avoids restarting.
+- **Rebuild subset-sum DP for every cap:** Constructing the capped array and running an $O(nk)$ DP independently for all $n$ caps costs $O(n^2k)$. The evolving fixed-group bitset avoids restarting.
 - **Insert every currently capped element into the persistent bitset:** This is incorrect because an element with original value above the cap changes from $x$ to $x+1$ on the next iteration. Its old contribution would remain as stale state.
 - **Boolean-array knapsack:** A length-$k+1$ boolean array can perform the same zero-or-one updates in $O(nk)$ scalar time. The integer bitset batches many sum states into each shift and OR.
 - **Unbounded knapsack update:** Updating in a way that reuses the same occurrence repeatedly would invent copies that do not exist. Repeating the shift once per frequency entry correctly models distinct positions.
@@ -142,8 +142,8 @@ Every one of those `capped_count` elements has value exactly `cap` in the array 
 - **Target already reachable:** Once fixed elements can form $k$, that bit remains set as later elements are added. Every later cap will succeed at `copies = 0`.
 - **Repeated values:** `frequency` preserves multiplicity, and repeated bitset updates allow selecting any number of distinct occurrences up to that multiplicity.
 - **Dropping sums above `k`:** This is safe only because every number is positive. No future addition can reduce an oversized sum back to the target.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

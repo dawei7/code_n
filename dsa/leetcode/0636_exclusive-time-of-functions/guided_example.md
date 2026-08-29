@@ -56,7 +56,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -91,7 +91,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store start times in stack frames:** Push each:** - **Store start times in stack frames:** Push each function with its effective start and subtract child durations on return. It works but needs more per-frame bookkeeping than the global segment boundary.
+- **Store start times in stack frames:** Push each function with its effective start and subtract child durations on return. It works but needs more per-frame bookkeeping than the global segment boundary.
 - **Event-by-event segment accounting:** The exact approach is preferable because each interval is credited immediately to the current stack top.
 - **Start and end at the same timestamp:** The call executes for one unit; `cur - pre + 1` correctly returns 1.
 - **Nested calls:** The parent is credited before the child starts and again only after the child ends, so child time is excluded.
@@ -102,8 +102,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Inclusive end timestamp:** Omitting `+ 1` is the most common off-by-one error and undercounts every completed call.
 - **Large timestamps:** Only differences matter; the algorithm does not iterate through individual time units.
 - **Functions never called:** Their initialized answer entries remain zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

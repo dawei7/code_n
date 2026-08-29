@@ -51,7 +51,7 @@ Every field is zero-padded, so lexicographic string order agrees with chronologi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every field is zero-padded, so lexicographic string order ag... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This property means the exact class does not need to parse dates, calculate seco
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert timestamps to numeric keys:** Parse fi:** - **Convert timestamps to numeric keys:** Parse fields and encode them in a monotone mixed-radix number. This permits numeric comparisons but adds arithmetic and calendar-like constants that fixed text already avoids.
+- **Convert timestamps to numeric keys:** Parse fields and encode them in a monotone mixed-radix number. This permits numeric comparisons but adds arithmetic and calendar-like constants that fixed text already avoids.
 - **Sorted map or balanced tree:** Store logs by timestamp and range-query only matching keys. Retrieval can improve for large datasets, but insertion becomes logarithmic and duplicate timestamps need grouped IDs.
 - **Keep a sorted list with binary search:** It can narrow scans, but arbitrary insertion requires shifting unless logs arrive chronologically.
 - **Year granularity:** Only four characters are compared, so every lower component is ignored.
@@ -98,8 +98,8 @@ This property means the exact class does not need to parse dates, calculate seco
 - **Unique IDs:** The statement guarantees them, so the result does not need ID deduplication.
 - **Unrecognized granularity:** Dictionary lookup would fail, but the contract restricts input to the six known strings.
 - **Result order:** Insertion order is returned, and no sorting is needed because any order is accepted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

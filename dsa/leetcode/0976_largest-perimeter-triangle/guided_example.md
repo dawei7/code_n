@@ -63,9 +63,7 @@ If they do satisfy the inequality, they also give the largest possible perimeter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix largest candidate `c = nums[i]`.
-
-Among every pair selec... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ Thus the method can return immediately rather than collecting every valid triang
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every triple:** `O(N^3)` and ignores sor:** - **Check every triple:** `O(N^3)` and ignores sorted dominance.
+- **Check every triple:** `O(N^3)` and ignores sorted dominance.
 - **Check every pair for each largest side:** `O(N^2)`; the two largest smaller values are always best.
 - **Equality case:** `a + b = c` is degenerate and must fail.
 - **Exactly three lengths:** Perform one triangle test.
@@ -116,8 +114,8 @@ Thus the method can return immediately rather than collecting every valid triang
 - **First valid early return:** Safe because the scan is in descending perimeter opportunity.
 - **Positive-length guarantee:** Avoids separate checks for zero or negative sides.
 - **Input mutation:** `nums.sort()` changes original order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ The code does not need a separate sorted comparison against `[1,2,\ldots,9]`. Ni
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside a valid 3-by-3 window, the nested loops inspect all n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ The center cell belongs to both diagonals, as it should.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate only valid top-left ranges:** Loop t:** - **Enumerate only valid top-left ranges:** Loop through `range(r-2)` and `range(c-2)`. This avoids boundary calls but has the same complexity.
-- **- **Exploit special Lo Shu properties:** Every 3-b:** - **Exploit special Lo Shu properties:** Every 3-by-3 normal magic square has center 5 and other structural constraints. Those checks can reject faster, but explicit definition validation is easier to prove.
-- **- **Check only line sums:** Equal lines are not en:** - **Check only line sums:** Equal lines are not enough; values must also be distinct and in 1 through 9.
+- **Enumerate only valid top-left ranges:** Loop through `range(r-2)` and `range(c-2)`. This avoids boundary calls but has the same complexity.
+- **Exploit special Lo Shu properties:** Every 3-by-3 normal magic square has center 5 and other structural constraints. Those checks can reject faster, but explicit definition validation is easier to prove.
+- **Check only line sums:** Equal lines are not enough; values must also be distinct and in 1 through 9.
 
 ---
 

@@ -67,4 +67,4 @@ Each group contains $k = 2$ distinct elements, and all elements are used exactly
 
 - $1 \le \text{nums}[i] \le 10^{5}$
 
-- $^​​​​​​​1 \le k \le \text{nums.length}$
+- $^1 \le k \le \text{nums.length}$

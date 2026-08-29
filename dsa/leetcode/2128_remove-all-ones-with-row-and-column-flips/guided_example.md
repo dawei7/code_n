@@ -81,7 +81,7 @@ Now suppose a row is neither identical to nor the complement of the first row. N
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution does not separately compare each row with... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The procedure never changes `grid`: unchanged rows are copied into tuples, and c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct cell comparison:** For each row, determ:** - **Direct cell comparison:** For each row, determine from its first bit whether it should match the first row or its complement, then verify every column immediately. This retains $O(mn)$ time and reduces auxiliary space to $O(1)$, but differs from the exact tuple-and-set implementation.
+- **Direct cell comparison:** For each row, determine from its first bit whether it should match the first row or its complement, then verify every column immediately. This retains $O(mn)$ time and reduces auxiliary space to $O(1)$, but differs from the exact tuple-and-set implementation.
 - **Simulating flips:** Actually flipping selected rows and columns can reach the result, but it performs unnecessary mutation and makes choosing operations seem harder than checking the invariant. The identical-or-complement condition gives the answer without constructing an operation sequence.
 - **Trying every subset of rows and columns:** There are exponentially many flip selections, even though flipping twice cancels. Algebraically eliminating the column choices collapses that search to one deterministic matrix scan.
 - **Checking only row counts:** Two rows can contain the same number of ones without being identical or complementary. Positions, not merely counts, determine whether one column-flip choice can satisfy every row.
@@ -131,8 +131,8 @@ The procedure never changes `grid`: unchanged rows are copied into tuples, and c
 - **Mixed compatible rows:** Any number of first-row copies and first-row complements is allowed. Each complement can be corrected with its own row flip before the shared column flips are applied.
 - **First disagreement after column zero:** Aligning the first bit alone is not enough, but the full tuple catches any later mismatch. This is the material reason the code stores the complete normalized row.
 - **Input preservation:** The code creates tuples and never assigns into `grid`, so callers observe the original matrix after the method returns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

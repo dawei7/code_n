@@ -83,7 +83,7 @@ If $k$ is not a perfect square, no divisor can be paired with itself. Every divi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Whenever $d$ divides $k$, the quotient $k/d$ is also a divis... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -134,9 +134,9 @@ The boundary between consecutive answers is also useful for understanding the fl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct round simulation:** Store `n` Boolean b:** - **Direct round simulation:** Store `n` Boolean bulb states and toggle every `i`-th entry during round `i`. This mirrors the statement and can help discover the pattern on tiny examples, but it requires $O(n \log n)$ total toggles and $O(n)$ storage. It is infeasible near $n = 10^9$ and ignores the divisor structure.
-- **- **Count divisors for every bulb:** For each posi:** - **Count divisors for every bulb:** For each position $k$, enumerate divisors up to $\sqrt{k}$ and decide whether the divisor count is odd. This eventually identifies the same perfect squares, but repeats work for every bulb and is much slower than using the proven square characterization directly.
-- **- **Check every candidate square:** Increment `j` :** - **Check every candidate square:** Increment `j` while $j^2 \le n$ and count the iterations. This uses $O(1)$ space and is easy to reason about, but it takes $O(\sqrt{n})$ time. The count reached by that loop is exactly $\lfloor\sqrt{n}\rfloor$, which the optimal source obtains in one fixed-size numeric operation.
+- **Direct round simulation:** Store `n` Boolean bulb states and toggle every `i`-th entry during round `i`. This mirrors the statement and can help discover the pattern on tiny examples, but it requires $O(n \log n)$ total toggles and $O(n)$ storage. It is infeasible near $n = 10^9$ and ignores the divisor structure.
+- **Count divisors for every bulb:** For each position $k$, enumerate divisors up to $\sqrt{k}$ and decide whether the divisor count is odd. This eventually identifies the same perfect squares, but repeats work for every bulb and is much slower than using the proven square characterization directly.
+- **Check every candidate square:** Increment `j` while $j^2 \le n$ and count the iterations. This uses $O(1)$ space and is easy to reason about, but it takes $O(\sqrt{n})$ time. The count reached by that loop is exactly $\lfloor\sqrt{n}\rfloor$, which the optimal source obtains in one fixed-size numeric operation.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `rolls` of length `n` and an integer `k`. You roll a `k` sided dice numbered from `1` to `k`, `n` times, where the result of the $$i^{\text{th}}$$ roll is $\text{rolls}[i]$.
+You are given an integer array `rolls` of length `n` and an integer `k`. You roll a `k` sided dice numbered from `1` to `k`, `n` times, where the result of the $i^{\text{th}}$ roll is $\text{rolls}[i]$.
 
 The objective is to compute `3` from `{"rolls": [4, 2, 1, 2, 3, 3, 2, 4, 1], "k": 4}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ Any shorter sequence also occurs by using only the first required number of comp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any desired roll sequence `[a_1,a_2,...,a_g]` of length... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Thus at least one sequence of length `g + 1` is impossible. Combined with the pr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over all sequences:** Ther:** - **Dynamic programming over all sequences:** There are `k^\ell` sequences of length `\ell`, making explicit enumeration infeasible.
+- **Dynamic programming over all sequences:** There are `k^\ell` sequences of length `\ell`, making explicit enumeration infeasible.
 - **Count total frequency of every face:** Frequency alone ignores order. Complete blocks capture the sequential ability to choose arbitrary symbols.
 - **Do not clear after completion:** One global set can prove only that all length-one sequences occur; it cannot measure repeated universality.
 - **Delay clearing:** It cannot increase the number of complete blocks and may waste useful rolls for the next block.
@@ -117,8 +117,8 @@ Thus at least one sequence of length `g + 1` is impossible. Combined with the pr
 - **Subsequence rather than subarray:** Choices may skip rolls inside each block, which is why one complete block can supply any requested single face.
 - **Input preservation:** Only the temporary set changes.
 - **Hash-set assumptions:** Complexity uses expected constant-time insertion for bounded integer faces.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

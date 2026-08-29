@@ -51,7 +51,7 @@ Every singleton is valid because its first and last element are the same and are
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every singleton is valid because its first and last element ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every singleton is valid because its first and last element are the same and are
 
 ## 6. Traps This Instance Exposes
 
-- **- **Previous-greater boundaries plus frequency map:** - **Previous-greater boundaries plus frequency maps:** It can count equal endpoints inside valid regions, but the monotonic stack combines both tasks more directly.
+- **Previous-greater boundaries plus frequency maps:** It can count equal endpoints inside valid regions, but the monotonic stack combines both tasks more directly.
 - **Enumerate every subarray:** Checking boundary equality and maxima costs at least quadratic time.
 - **All equal values:** Top counts grow from one through $n$, counting every subarray.
 - **Strictly increasing values:** Each new value pops all smaller groups and contributes only its singleton.
@@ -101,8 +101,8 @@ Every singleton is valid because its first and last element are the same and are
 - **Large answer:** Python integers grow automatically.
 - **No input mutation:** `nums` is scanned in original order.
 - **Unique right endpoints:** They partition qualifying subarrays and prevent double counting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

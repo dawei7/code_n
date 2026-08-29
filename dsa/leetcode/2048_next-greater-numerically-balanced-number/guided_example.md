@@ -63,7 +63,7 @@ For example, processing 1333 extracts digits three, three, three, and one. The r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For candidate `x`, the source copies it into `y` and creates... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The `all` requires this for every digit class. This matches the definition exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precomputed balanced-number table:** Store all:** - **Precomputed balanced-number table:** Store all relevant values and use `bisect_right` for logarithmic lookup in the table size.
+- **Precomputed balanced-number table:** Store all relevant values and use `bisect_right` for logarithmic lookup in the table size.
 - **Generate digit multisets and permutations:** Construct only balanced numbers, sort them, and select the next one.
 - **String-based counting:** `Counter(str(x))` is concise but allocates a string and mapping per candidate.
 - **`n` already balanced:** Enumeration starts at `n+1`, so it still returns a strictly greater value.
@@ -119,8 +119,8 @@ The `all` requires this for every digit class. This matches the definition exact
 - **First valid candidate:** Immediate return is safe because the search order is increasing.
 - **No explicit loop bound:** Correctness relies on existence within the problem's bounded domain.
 - **Manifest mismatch:** Exact work is sequential in the answer gap, not a literal constant number of operations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

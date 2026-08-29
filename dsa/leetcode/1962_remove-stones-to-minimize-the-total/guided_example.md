@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** integer array `piles`, where $\text{piles}[i]$ represents the number of stones in the $$i^{\text{th}}$$ pile, and an integer `k`. You should apply the following operation **exactly** `k` times:
+You are given a **0-indexed** integer array `piles`, where $\text{piles}[i]$ represents the number of stones in the $i^{\text{th}}$ pile, and an integer `k`. You should apply the following operation **exactly** `k` times:
 
 The objective is to compute `12` from `{"piles": [5, 4, 9], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -68,7 +68,7 @@ The update is compact:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's standard heap is a min-heap.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ The expression `pq[0] // 2` is evaluated from the old root before `heapreplace` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort after every operation:** Repeated sorting:** - **Sort after every operation:** Repeated sorting finds the maximum but costs roughly $O(KN\log N)$.
+- **Sort after every operation:** Repeated sorting finds the maximum but costs roughly $O(KN\log N)$.
 - **Scan for the maximum:** It uses constant extra space if mutating input, but costs $O(KN)$ time.
 - **Frequency buckets:** Since pile sizes are bounded, counts by size can support operations efficiently, though repeated halving and maximum tracking add implementation complexity.
 - **Same pile repeatedly:** The heap naturally selects it again whenever it remains largest, as the rules allow.
@@ -128,8 +128,8 @@ The expression `pq[0] // 2` is evaluated from the old root before `heapreplace` 
 - **Input preservation:** A separate negative list is built, so `piles` itself is not mutated.
 - **Final sign:** Heap entries stay nonpositive, so negating their sum recovers the total of represented positive pile sizes.
 - **Imported heap helpers:** The exact source assumes `heapify` and `heapreplace` are available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

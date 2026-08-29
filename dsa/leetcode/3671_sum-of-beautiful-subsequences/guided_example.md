@@ -89,9 +89,7 @@ After all primes are processed, `phi[d]` is available for every possible divisor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The array `phi` begins as `phi[x] = x`.
-
-When `phi[prime] ==... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +134,7 @@ The source maintains a Fenwick tree for `d`. At index `q`, it stores counts of i
 
 ## 6. Traps This Instance Exposes
 
-- **- **DP by exact GCD and ending value:** It follows:** - **DP by exact GCD and ending value:** It follows the definition directly but can create many GCD transitions and large state.
+- **DP by exact GCD and ending value:** It follows the definition directly but can create many GCD transitions and large state.
 - **Enumerate all subsequences:** There are exponentially many and this is infeasible.
 - **Möbius inversion:** Exact-GCD counts can sometimes be recovered from divisible counts by subtracting multiples. Totient weighting is more direct because the desired weight is the GCD itself.
 - **Segment tree per divisor:** It can query smaller endings but uses more constants and similar or greater storage than Fenwick trees.
@@ -150,8 +148,8 @@ The source maintains a Fenwick tree for `d`. At index `q`, it stores counts of i
 - **Lazy trees:** Only divisors appearing in at least one input value allocate Fenwick storage.
 - **Maximum value domain:** `V <= 70000` bounds the sieve and tree universe.
 - **Input preservation:** The method reads `nums` without sorting or modifying it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

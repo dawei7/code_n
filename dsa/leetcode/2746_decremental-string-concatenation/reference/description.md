@@ -6,7 +6,7 @@ Let's define a **join** operation `join(x, y)` between two strings `x` and `y` a
 
 For example $join("ab", "ba") = "aba"$ and $join("ab", "cde") = "abcde"$.
 
-You are to perform $n - 1$ **join** operations. Let $\text{str}_{0} = \text{words}[0]$. Starting from $i = 1$ up to $i = n - 1$, for the $$i^{\text{th}}$$ operation, you can do one of the following:
+You are to perform $n - 1$ **join** operations. Let $\text{str}_{0} = \text{words}[0]$. Starting from $i = 1$ up to $i = n - 1$, for the $i^{\text{th}}$ operation, you can do one of the following:
 
 - Make $\text{str}_{i} = join(\text{str}_{i} - 1, \text{words}[i])$
 

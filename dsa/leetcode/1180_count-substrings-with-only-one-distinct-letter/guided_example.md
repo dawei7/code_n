@@ -67,7 +67,7 @@ Finally, `i = j` moves the outer pointer directly to the first character of the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code begins with `i = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For a string of ten identical letters, there is one run of length ten, so the an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ending-at-this-index dynamic programming:** Tr:** - **Ending-at-this-index dynamic programming:** Track the number of valid substrings ending at the current character. Increase that number when the character matches its predecessor; otherwise reset it to one. Adding these values also gives $O(n)$ time and $O(1)$ space.
+- **Ending-at-this-index dynamic programming:** Track the number of valid substrings ending at the current character. Increase that number when the character matches its predecessor; otherwise reset it to one. Adding these values also gives $O(n)$ time and $O(1)$ space.
 - **Enumerate all substrings:** Generating intervals and checking their distinct letters is unnecessarily expensive, taking at least quadratic time and potentially cubic work with repeated scans.
 - **Single-character string:** One maximal run of length one contributes $1 \cdot 2 / 2=1$, so the only substring is counted.
 - **All characters equal:** The inner loop reaches `n` once, and the formula counts all $n(n+1)/2$ nonempty substrings.
@@ -114,8 +114,8 @@ For a string of ten identical letters, there is one run of length ten, so the an
 - **Same letter in separated runs:** Runs such as the two `"a"` regions in `"aba"` must remain separate. Contiguity prevents combining them across the different middle character.
 - **Exclusive run endpoint:** When the inner loop ends, `j` is not part of the completed run. The correct length is `j - i`, and setting `i = j` starts precisely at the unprocessed character.
 - **Occurrence counting rather than distinct text:** Two equal substrings at different index intervals both count. The run formula naturally counts intervals, not unique string values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

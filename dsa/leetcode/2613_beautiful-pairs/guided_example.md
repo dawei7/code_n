@@ -73,7 +73,7 @@ This preprocessing also makes every point passed to divide and conquer coordinat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `pl` maps each coordinate pair $(x,y)$ to the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ At this point, the only possibly better pair not yet covered has one point in ea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Segment-tree sweep:** Transform Manhattan expr:** - **Segment-tree sweep:** Transform Manhattan expressions and query the best prior point on either side of the current $y$ coordinate in $O(n\log n)$ time, matching the manifest but requiring careful tie-aware tree values.
+- **Segment-tree sweep:** Transform Manhattan expressions and query the best prior point on either side of the current $y$ coordinate in $O(n\log n)$ time, matching the manifest but requiring careful tie-aware tree values.
 - **Maintain merge order by $y$:** A classical closest-pair divide and conquer can avoid sorting at every level and reduce the exact strategy to $O(n\log n)$.
 - **Brute force:** Checking all $\binom n2$ pairs is simple but costs $O(n^2)$ and cannot handle $10^5$ points.
 - **Duplicate coordinates:** Their distance is zero; the preprocessing returns the lexicographically smallest such pair immediately.
@@ -124,8 +124,8 @@ At this point, the only possibly better pair not yet covered has one point in ea
 - **Two points:** Recursive halves are singletons, and the merge evaluates the only pair.
 - **Original versus sorted indices:** Only tuple field two may appear in the returned pair.
 - **Inclusive strip boundary:** Points at horizontal or vertical difference exactly $D$ must remain eligible because they may improve the lexicographic tie.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,9 +59,7 @@ This initial scan costs at most one full grid traversal.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source uses
-
-`next((i, j) for i in range(m) for j in ran... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ These are up, right, down, and left. No diagonal movement is generated.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search:** It can test reachability:** - **Depth-first search:** It can test reachability but does not discover shortest paths in distance order without extra distance tracking and repeated relaxation.
+- **Depth-first search:** It can test reachability but does not discover shortest paths in distance order without extra distance tracking and repeated relaxation.
 - **A* search:** A Manhattan-distance heuristic can prioritize promising cells, but multiple foods and heuristic computation add complexity; BFS already gives linear worst-case time.
 - **Separate visited set:** It preserves the input at the cost of another $O(mn)$ structure.
 - **Food adjacent to start:** The first layer returns one.
@@ -115,8 +113,8 @@ These are up, right, down, and left. No diagonal movement is generated.
 - **Grid mutation:** Callers must not expect original open-cell markers after execution.
 - **Layer size capture:** Using the queue length before the loop is essential to keep newly added cells in the next distance layer.
 - **Direction encoding:** `pairwise(dirs)` produces exactly four orthogonal moves.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

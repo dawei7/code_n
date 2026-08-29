@@ -69,7 +69,7 @@ This is an appropriate integer output column for the example, but its use in fil
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `MIN(event_timestamp)` is the first event and `MAX(event_tim... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Because qualifying groups must have at least five scrolls, the intended denomina
 
 ## 6. Traps This Instance Exposes
 
-- **- **Seconds-based duration filter:** Compare `TIME:** - **Seconds-based duration filter:** Compare `TIMESTAMPDIFF(SECOND, MIN(...), MAX(...)) > 1800` to enforce “more than 30 minutes” exactly.
+- **Seconds-based duration filter:** Compare `TIMESTAMPDIFF(SECOND, MIN(...), MAX(...)) > 1800` to enforce “more than 30 minutes” exactly.
 - **Use `> 30` on the minute alias:** It rejects exact 30 minutes but also incorrectly rejects durations from 30:01 through 30:59 because `TIMESTAMPDIFF(MINUTE)` truncates.
 - **Integer ratio comparison:** `5 * click_count < scroll_count` expresses a strict rate below one fifth without division.
 - **Conditional `CASE` counts:** `SUM(CASE WHEN event_type='scroll' THEN 1 ELSE 0 END)` is more portable than MySQL Boolean arithmetic.
@@ -133,8 +133,8 @@ Because qualifying groups must have at least five scrolls, the intended denomina
 - **Several users sharing one session ID:** This would violate the session model and make selected `user_id` ambiguous; grouping both columns would separate them.
 - **Ordering ties:** Equal scroll counts are resolved by ascending `session_id`.
 - **Potential null timestamps/types:** The reference presents valid event rows. A nullable production schema would need an explicit policy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -62,7 +62,7 @@ Suppose a particular block string appears $f$ times. If we choose it as the fina
 To minimize this quantity, maximize $f$. If `max_frequency` is the largest block count, the answer is
 
 $$
-b-\texttt{max_frequency}.
+b-\texttt{max\_frequency}.
 $$
 
 The exact code computes `b` as `n // k`. Its generator
@@ -73,7 +73,7 @@ produces every aligned block once. `Counter` maps each distinct block string to 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a particular block string appears $f$ times.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Combining the lower bound and construction proves that choosing a maximum-freque
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the blocks:** Sorting groups equal block :** - **Sort the blocks:** Sorting groups equal block values and reveals the largest run, but costs $O(b\log b)$ string comparisons in addition to slicing.
+- **Sort the blocks:** Sorting groups equal block values and reveals the largest run, but costs $O(b\log b)$ string comparisons in addition to slicing.
 - **Hash blocks without slicing:** Rolling hashes could count block identities with less copying, but collision handling is needed for exact correctness and the direct string counter already fits the constraints.
 - **Compare characters column-wise:** One might try choosing the most common character at each offset, but the operation must copy an entire existing block, so independently chosen columns may form a block that cannot be copied.
 - **Try every target block:** Comparing every candidate against every block takes $O(b^2k)$ time. Frequencies compute all candidate costs together.
@@ -126,8 +126,8 @@ Combining the lower bound and construction proves that choosing a maximum-freque
 - **Source preservation:** A chosen source occurrence can be left unchanged while all other blocks are overwritten, so copied values never become unavailable.
 - **Divisibility guarantee:** Because $k$ divides $n$, every slice has exactly length $k$. Without that guarantee, the final partial block would need separate treatment.
 - **Aligned indices only:** The range step of $k$ deliberately ignores identical substrings starting at nonmultiples of $k$, since they cannot define a block operation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

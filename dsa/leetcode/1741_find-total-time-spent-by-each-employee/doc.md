@@ -22,7 +22,7 @@ For every employee-day pair represented in the table, calculate the total number
 
 **Inputs**
 
-- `Employees(emp_id, event_day, in_time, out_time)`: office visit rows with $1 \le \texttt{in_time} < \texttt{out_time} \le 1440$ and nonintersecting same-day intervals.
+- `Employees(emp_id, event_day, in_time, out_time)`: office visit rows with $1 \le \texttt{in\_time} < \texttt{out\_time} \le 1440$ and nonintersecting same-day intervals.
 
 Let $R$ be the number of visit rows and $G$ the number of distinct `(event_day, emp_id)` groups.
 

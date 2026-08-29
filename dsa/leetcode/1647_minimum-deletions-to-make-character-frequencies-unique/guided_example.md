@@ -69,7 +69,7 @@ If `v < pre`, the frequency is already strictly smaller, so no deletion is neede
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pre` records the final frequency assigned to the previously... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The dedicated first branch prevents setting `pre` negative and counts complete d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Used-frequency set:** For each count, decremen:** - **Used-frequency set:** For each count, decrement until it reaches an unused positive value or zero. It is simple and still effectively linear with 26 letters, but may perform more individual decrement steps.
+- **Used-frequency set:** For each count, decrement until it reaches an unused positive value or zero. It is simple and still effectively linear with 26 letters, but may perform more individual decrement steps.
 - **Max-heap:** Repeatedly reduce duplicate largest counts. It works but adds heap operations for a constant-sized alphabet.
 - **All frequencies already distinct:** Every `v < pre` after the first, so the answer remains zero.
 - **Several equal frequencies:** The sorted greedy assigns consecutive smaller values while possible.
@@ -117,8 +117,8 @@ The dedicated first branch prevents setting `pre` negative and counts complete d
 - **Infinite initial boundary:** It lets the largest original frequency stay unchanged without a special first-iteration branch.
 - **Frequency one collision:** One character may keep frequency 1; any later colliding character must fall to zero and disappear.
 - **Deletion count formula:** In the collision branch, `v - pre + 1` is exactly `v - (pre - 1)`, the cost of lowering to the greatest permitted frequency.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

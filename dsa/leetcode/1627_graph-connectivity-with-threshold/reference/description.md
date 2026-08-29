@@ -10,7 +10,7 @@ We have `n` cities labeled from `1` to `n`. Two different cities with labels `x`
 
 Given the two integers, `n` and `threshold`, and an array of `queries`, you must determine for each $\text{queries}[i] = [a_{i}, b_{i}]$ if cities $a_{i}$ and $b_{i}$ are connected directly or indirectly. (i.e. there is some path between them).
 
-Return *an array *`answer`*, where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is *`true`* if for the *$$i^{\text{th}}$$* query, there is a path between *$a_{i}$* and *$b_{i}$*, or *$\text{answer}[i]$* is *`false`* if there is no path.*
+Return *an array *`answer`*, where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is *`true`* if for the *$i^{\text{th}}$* query, there is a path between *$a_{i}$* and *$b_{i}$*, or *$\text{answer}[i]$* is *`false`* if there is no path.*
 
 ### 2. Function Contract
 

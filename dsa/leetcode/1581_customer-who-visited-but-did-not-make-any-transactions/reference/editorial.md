@@ -36,7 +36,7 @@ return df.rename(columns={'visit_id': 'count_no_trans'})
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 
@@ -100,7 +100,7 @@ return df.rename(columns={'visit_id': 'count_no_trans'})
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 
@@ -117,7 +117,7 @@ def find_customers(visits: pd.DataFrame, transactions: pd.DataFrame) -> pd.DataF
 
 <!-- an empty line to separate approaches -->
 ----
-​
+
 ## Database
 <!-- h3 for approaches -->
 ### Approach 1: Removing Records Using `NOT IN/EXISTS`

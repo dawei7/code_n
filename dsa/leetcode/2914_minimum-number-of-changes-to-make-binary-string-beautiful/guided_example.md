@@ -62,7 +62,7 @@ This direction is what removes all boundary-search complexity. We do not need to
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Now assume every fixed pair contains equal characters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ This is both a lower-bound and construction argument. Every mismatching pair for
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over partition boundaries::** - **Dynamic programming over partition boundaries:** One could test even-length homogeneous suffixes and compute a minimum over prefixes, but the fixed-pair equivalence makes all boundary choices irrelevant. That approach adds time and state without changing the answer.
+- **Dynamic programming over partition boundaries:** One could test even-length homogeneous suffixes and compute a minimum over prefixes, but the fixed-pair equivalence makes all boundary choices irrelevant. That approach adds time and state without changing the answer.
 - **Greedily build maximal runs:** Counting odd-length runs can be made to work with careful reasoning, but run boundaries shift after changes and are easier to mishandle. Disjoint fixed pairs give independent, exact costs.
 - **Try all possible beautiful strings:** Enumerating repairs is exponential. Each pair has an immediate local lower bound and construction, so enumeration has no value.
 - **Already beautiful with several parts:** A string such as `001100` returns zero even though it is not all one character. Each pair is homogeneous, which is sufficient for a valid partition.
@@ -115,8 +115,8 @@ This is both a lower-bound and construction argument. Every mismatching pair for
 - **Changing both bits of a mismatching pair:** This is never better than changing one. One change already makes the two characters equal, so a second change only wastes an operation.
 - **Merging repaired pairs:** It is unnecessary for correctness. Once every pair is homogeneous, treating pairs as separate length-two substrings already satisfies the definition.
 - **Boolean arithmetic:** The source relies on Python's `bool` being a subclass of `int`. In a language without numeric Booleans, the comparison should be converted explicitly to $0$ or $1$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

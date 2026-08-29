@@ -75,9 +75,7 @@ Because keys are exactly the first `k` letters, this mask has precisely all requ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The grid contains the first `k` lowercase letters, so:
-
-- ke... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,9 +114,9 @@ The initial state is the start coordinate with mask zero, placed in both queue a
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS by coordinate only:** Incorrect because re:** - **BFS by coordinate only:** Incorrect because returning with more keys can unlock new movement.
-- **- **Permute key orders:** Trying all `c!` orders a:** - **Permute key orders:** Trying all `c!` orders and pathfinding between keys repeats work and complicates lock constraints.
-- **- **Compress points of interest and use Dijkstra:*:** - **Compress points of interest and use Dijkstra:** Useful for some variants, but direct state BFS is clear with only 64 masks.
+- **BFS by coordinate only:** Incorrect because returning with more keys can unlock new movement.
+- **Permute key orders:** Trying all `c!` orders and pathfinding between keys repeats work and complicates lock constraints.
+- **Compress points of interest and use Dijkstra:** Useful for some variants, but direct state BFS is clear with only 64 masks.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-In a warehouse, there is a row of barcodes, where the $$i^{\text{th}}$$ barcode is $\text{barcodes}[i]$.
+In a warehouse, there is a row of barcodes, where the $i^{\text{th}}$ barcode is $\text{barcodes}[i]$.
 
 The objective is to compute `[1, 2, 1, 2, 1, 2]` from `{"barcodes": [1, 1, 1, 2, 2, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,11 +71,7 @@ The call to `sort` mutates `barcodes`. From this point onward, the input list no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution sorts the input list using:
-
-
-
-The first ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -137,7 +133,7 @@ The frequent ones are separated, and the smaller groups in the odd lane are also
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency buckets for the manifest target:** C:** - **Frequency buckets for the manifest target:** Count every value, place distinct values into buckets indexed by frequency, and traverse buckets from high frequency to low frequency while filling even then odd positions. This avoids sorting `N` expanded elements and can achieve linear time under the bounded value domain.
+- **Frequency buckets for the manifest target:** Count every value, place distinct values into buckets indexed by frequency, and traverse buckets from high frequency to low frequency while filling even then odd positions. This avoids sorting `N` expanded elements and can achieve linear time under the bounded value domain.
 - **Maximum heap:** Store one entry per distinct value and repeatedly take the most frequent value different from the previously placed one. Delaying the previous entry until the next step guarantees separation. This takes `O(N log D)` time and `O(D)` heap space.
 - **Sort distinct values only:** Sorting `D` value-frequency pairs and expanding them into the two lanes takes `O(N + D log D)` time. It can be faster than sorting all `N` elements when many duplicates exist, though it is not strict linear time.
 - **Round-robin without frequency priority:** Alternating arbitrary value groups can fail by leaving too many copies of the dominant value for the end. The highest frequencies must receive the safest positions early.
@@ -149,8 +145,8 @@ The frequent ones are separated, and the smaller groups in the odd lane are also
 - **Even length:** Both lanes have `n / 2` positions. The same split expression evaluates to exactly that amount.
 - **Placeholder zero:** The initial zeros in `ans` are not barcode data. Both slice assignments together overwrite every position before return, and valid barcode values are at least one.
 - **Input mutation:** The solution sorts `barcodes` in place and returns a different list `ans`. A caller needing the original order must pass a copy or accept that mutation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

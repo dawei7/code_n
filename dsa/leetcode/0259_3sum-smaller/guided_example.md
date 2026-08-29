@@ -65,10 +65,7 @@ All triples using this fixed `i` and `j` within the remaining range have now bee
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For fixed `i` and `j`, first test
-
-$$
-x=\text{nums}[i]+\text... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +104,7 @@ The strict comparison matters. A sum equal to `target` does not qualify, so it f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three nested loops:** Test every triplet direc:** - **Three nested loops:** Test every triplet directly in $O(n^3)$ time and $O(1)$ extra space. It is simple but too slow near `n = 3500`.
+- **Three nested loops:** Test every triplet directly in $O(n^3)$ time and $O(1)$ extra space. It is simple but too slow near `n = 3500`.
 - **Binary search for each `(i, j)`:** Find the last valid `k` in the sorted suffix, giving $O(n^2\log n)$ time. Two pointers reuse monotonic progress and remove the logarithmic factor.
 - **Frequency counting over the bounded value range:** Since values lie from `-100` to `100`, a combinatorial frequency method is possible, but it requires careful multiplicity cases. The sorted two-pointer method is more general.
 - **Sum exactly equals target:** It is invalid because the condition is strictly smaller; the code correctly moves `k` left.
@@ -119,8 +116,8 @@ The strict comparison matters. A sum equal to `target` does not qualify, so it f
 - **No triples valid:** The right pointer repeatedly moves left for each `i`; runtime remains quadratic in the worst case.
 - **Input mutation:** `nums.sort()` destroys original ordering. Use `sorted(nums)` when the caller must retain it.
 - **Answer size:** The constraints guarantee the count fits within $10^9$; Python would handle larger integers anyway.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

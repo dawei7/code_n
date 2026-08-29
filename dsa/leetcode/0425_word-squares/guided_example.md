@@ -71,7 +71,7 @@ The trie shares nodes for common prefixes. For example, words beginning with `la
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each trie node has 26 child slots, one for each lowercase le... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ When `len(t) == L`, all rows have been chosen. `t[:]` copies the current list in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every sequence of `L` words:** This explor:** - **Try every sequence of `L` words:** This explores $N^L$ combinations and checks symmetry only afterward. Prefix pruning rejects impossible sequences as soon as their next forced prefix has no candidate.
+- **Try every sequence of `L` words:** This explores $N^L$ combinations and checks symmetry only afterward. Prefix pruning rejects impossible sequences as soon as their next forced prefix has no candidate.
 - **Scan all words for each prefix:** Backtracking remains correct but each state pays $O(NL)$ to find candidates. The trie changes lookup to $O(L)$ plus iteration over actual matches.
 - **Prefix hash table:** Map every prefix directly to word indices. It offers fast lookup and similar storage; the trie shares common prefix structure and matches the exact solution.
 - **Forbid reusing a word:** A `used` set would violate the contract and lose valid squares such as those containing the same word in multiple rows.
@@ -122,8 +122,8 @@ When `len(t) == L`, all rows have been chosen. `t[:]` copies the current list in
 - **Several words share a prefix:** Every stored index is explored, ensuring that all valid continuations and outputs are found.
 - **Any output order:** Trie insertion and input iteration determine a stable order, but the contract does not require sorting results.
 - **Unique input words:** This prevents duplicate dictionary entries from generating identical search branches, though different valid row sequences are all retained.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

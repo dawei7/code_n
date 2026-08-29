@@ -51,7 +51,7 @@ The code first splits `text` into `words`, then applies `words[0] = words[0].low
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code first splits `text` into `words`, then applies `wor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code first splits `text` into `words`, then applies `words[0] = words[0].low
 
 ## 6. Traps This Instance Exposes
 
-- **- **Attach original indices:** Sort pairs by lengt:** - **Attach original indices:** Sort pairs by length and then original index. This explicitly enforces tie order and works even with an unstable sorting algorithm, but Python's stable sort makes the indices redundant.
+- **Attach original indices:** Sort pairs by length and then original index. This explicitly enforces tie order and works even with an unstable sorting algorithm, but Python's stable sort makes the indices redundant.
 - **Bucket words by length:** Append each word to a bucket keyed by its length, then concatenate buckets from shortest to longest. This preserves tie order and can run in `O(N + W + L)` where `L` is the maximum length, but it uses a more specialized structure.
 - **Sort by length and word text:** A key such as `(len(word), word)` is wrong because it alphabetizes equal-length words instead of preserving their original order.
 - **Unstable sort by length:** In a language whose sort is not stable, equal-length words could be rearranged incorrectly. Add original indices or use stable buckets in that environment.
@@ -103,8 +103,8 @@ The code first splits `text` into `words`, then applies `words[0] = words[0].low
 - **Length versus byte count:** Python `len` counts characters in the given strings. The input is constrained to the expected letter format, so this directly represents word length.
 - **Empty input outside the contract:** Accessing `words[0]` would fail. The stated sentence constraints guarantee at least one word, so no empty-case branch is needed.
 - **Very long sentence:** The sort dominates by word count while splitting and joining remain linear in characters, consistent with `O(N + W log W)`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

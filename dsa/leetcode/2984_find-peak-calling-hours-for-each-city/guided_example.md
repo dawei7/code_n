@@ -67,9 +67,7 @@ The final `WHERE rk = 1` keeps precisely those peak buckets.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer part of CTE `T` applies:
-
-`RANK() OVER (PARTITION ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ These aliases are presentation details but part of the required result contract.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `ROW_NUMBER`:** This incorrectly drops tie:** - **Use `ROW_NUMBER`:** This incorrectly drops tied peak hours because it forces unique row numbers.
+- **Use `ROW_NUMBER`:** This incorrectly drops tied peak hours because it forces unique row numbers.
 - **Use `DENSE_RANK`:** Filtering rank one would also work; differences between later ranks do not matter.
 - **Correlated maximum subquery:** Each grouped row can be compared with its city’s maximum, but the window rank expresses tie preservation more directly.
 - **Group by full timestamp:** That would count individual moments, not hour-of-day buckets across dates.
@@ -119,8 +117,8 @@ These aliases are presentation details but part of the required result contract.
 - **All hours tied:** Every observed hour for that city is returned.
 - **No call rows:** The grouped relation and output are empty; no synthetic hours are required.
 - **Ordinal ordering:** `ORDER BY 2 DESC, 1 DESC` depends on select-column positions and implements hour first, then city.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

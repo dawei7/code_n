@@ -73,7 +73,7 @@ If no value is dominant, the mandatory multiset is balanced enough to permute it
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within the mandatory set, every position that currently cont... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Thus `m` is not an arbitrary counter: it is the shortage of safe destinations fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit swap construction:** It is unnecessar:** - **Explicit swap construction:** It is unnecessary for the requested minimum cost and introduces difficult cycle bookkeeping.
+- **Explicit swap construction:** It is unnecessary for the requested minimum cost and introduces difficult cycle bookkeeping.
 - **No initial conflicts:** `same=0`, `ans=0`, no dominant value exists, and zero is returned.
 - **Balanced mandatory set:** No helper indices are needed even when several values repeat.
 - **Unique dominant value:** Only one value can exceed half of the selected set.
@@ -130,8 +130,8 @@ Thus `m` is not an arbitrary counter: it is the shortage of safe destinations fo
 - **Insufficient helpers:** A remaining positive `m` proves impossibility and produces `-1`.
 - **Index zero:** Its participation has zero cost and is naturally preferred when eligible.
 - **Inputs remain unchanged:** The method computes feasibility and cost without executing swaps.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -53,7 +53,7 @@ The contract requires a reversible mapping created and used by the same object. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `idx` is the number assigned most recently, starting at ze... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The contract requires a reversible mapping created and used by the same object. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Random fixed-length code:** It hides sequentia:** - **Random fixed-length code:** It hides sequential counts but must detect and retry collisions before storing a mapping.
+- **Random fixed-length code:** It hides sequential counts but must detect and retry collisions before storing a mapping.
 - **Hash-derived code:** It is deterministic from the URL but still needs collision resolution because different URLs can share a hash.
 - **Base-62 counter encoding:** It shortens large numeric identifiers while preserving collision-free sequential assignment.
 - **Reverse URL map:** It can make repeated encoding of the same long URL return the same short URL, but consumes additional storage.
@@ -99,8 +99,8 @@ The contract requires a reversible mapping created and used by the same object. 
 - **Decode before encode or foreign short URL:** The contract excludes these cases; ordinary dictionary lookup would raise an error.
 - **Same-object guarantee:** It is essential because mappings are held only in instance memory.
 - **Process restart:** No persistence is implemented, which is acceptable for this in-memory problem contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

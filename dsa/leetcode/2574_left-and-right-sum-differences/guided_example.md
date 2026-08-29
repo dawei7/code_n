@@ -70,7 +70,7 @@ If the last two updates were reversed, the current element would incorrectly app
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each current value `x`, the statements occur in this exa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ The invariant is true initially because the empty prefix sums to zero and `r` is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit left and right arrays:** Two prefix/s:** - **Explicit left and right arrays:** Two prefix/suffix passes are correct but allocate two additional $O(n)$ arrays when two running totals suffice.
+- **Explicit left and right arrays:** Two prefix/suffix passes are correct but allocate two additional $O(n)$ arrays when two running totals suffice.
 - **Recompute sums for each index:** Slicing and summing both sides at every position costs $O(n^2)$ time.
 - **One prefix array plus total sum:** This also answers each position in $O(1)$ after preprocessing, but still stores $O(n)$ auxiliary prefix values.
 - **Single element:** Subtracting it makes `r=0` while `l=0`, so the sole answer is zero.
@@ -129,8 +129,8 @@ The invariant is true initially because the empty prefix sums to zero and `r` is
 - **Large total:** The maximum sum can exceed a 32-bit integer under broader constraints; Python integers expand automatically.
 - **Update order:** Remove the current value from the right before measuring, and add it to the left only afterward.
 - **Input preservation:** All updates affect scalar totals and the new answer list, never `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

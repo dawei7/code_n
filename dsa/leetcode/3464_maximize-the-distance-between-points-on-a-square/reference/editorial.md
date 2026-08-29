@@ -34,7 +34,7 @@ As follows after expansion:
 
 ![1](images/3464_5.png)
 
-The one-dimensional coordinate after expanding the upper figure is: $[0,1,2,3,4,5,6]$. If we convert all the points into one dimension, assuming the given distance is $x$, the problem becomes:
+The one-dimensional coordinate after expanding the upper figure is: `[0,1,2,3,4,5,6]`. If we convert all the points into one dimension, assuming the given distance is $x$, the problem becomes:
 
 + Can we select $k$ numbers from a one-dimensional array $\textit{arr}$ such that any two adjacent elements differ by at least $x$, and the difference between the last and first numbers is at most $\textit{side} \cdot 4 − \textit{x}$;
 
@@ -83,7 +83,7 @@ As follows after expansion:
 
 ![1](images/3464_5.png)
 
-After transformation, the coordinates become: $[0,1,2,3,4,5,6]$.
+After transformation, the coordinates become: `[0,1,2,3,4,5,6]`.
 
 Now, if we assume a candidate distance $x$, the problem becomes:
 

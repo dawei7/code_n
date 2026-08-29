@@ -51,7 +51,7 @@ The implementation searches for $x$ explicitly rather than using the arithmetic 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation searches for $x$ explicitly rather than u... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The implementation searches for $x$ explicitly rather than using the arithmetic 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add-five formula:** Compute `rounded = ((purch:** - **Add-five formula:** Compute `rounded = ((purchaseAmount + 5) // 10) * 10` and return `100 - rounded`. This directly exploits decimal rounding and is shorter, but it is not the exact implemented method.
+- **Add-five formula:** Compute `rounded = ((purchaseAmount + 5) // 10) * 10` and return `100 - rounded`. This directly exploits decimal rounding and is shorter, but it is not the exact implemented method.
 - **Use quotient and remainder:** Divide by ten, round the quotient up when the remainder is at least five, and multiply back. This makes the tie rule explicit without enumerating candidates.
 - **Floating-point `round`:** Python's built-in rounding uses ties-to-even in relevant forms, not the required always-up rule. It can therefore give the wrong result for amounts ending in five.
 - **Amount ending in zero:** The exact matching candidate has distance zero and is selected.
@@ -98,8 +98,8 @@ The implementation searches for $x$ explicitly rather than using the arithmetic 
 - **Changing traversal direction:** An ascending loop would need a non-strict update on ties, or another explicit rule, to continue rounding upward.
 - **Changing `<` to `<=`:** With the present descending order, this would make the lower equal-distance multiple overwrite the higher one and violate the tie rule.
 - **Inputs outside zero through one hundred:** The candidate set would no longer cover every possible nearest multiple, so the proof and constant bound depend on the stated range.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ The method accumulates the XOR value itself in `result` with `result |= 1 << bit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The active ancestor values are stored bit by bit in a binary... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ On the exit event, `update(node, -1)` removes the node from the active multiset.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan ancestors per query:** Walking from the q:** - **Scan ancestors per query:** Walking from the query node to the root and testing every value can take $O(NQ)$ time on a chain.
+- **Scan ancestors per query:** Walking from the query node to the root and testing every value can take $O(NQ)$ time on a chain.
 - **Persistent trie per node:** Build a trie version derived from the parent's version, then query the target node's version directly. This gives similar asymptotic bounds but uses structural persistence instead of DFS insertion and removal.
 - **Euler tour with offline range structures:** Ancestor queries can be transformed in other ways, but XOR maximization still needs a bitwise structure and the approach is more involved.
 - **Query at the root:** Only the root value is active, so the returned difference is `value XOR root`.
@@ -113,8 +113,8 @@ On the exit event, `update(node, -1)` removes the node from the active multiset.
 - **Historical trie nodes:** A branch may exist with count zero after removal. The preferred-child count check prevents selecting it.
 - **Unique genetic values:** Node numbers themselves supply values, so no separate genetic array is needed.
 - **Maximum bit selection:** Including both node IDs and query values prevents omission of a high bit that could change the best XOR.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

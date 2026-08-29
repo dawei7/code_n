@@ -63,7 +63,7 @@ This proof also explains the second example: the path can travel from city 1 to 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $w_{\min}$ be the minimum distance among all roads in th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Both insertions are necessary because roads are bidirectional. Omitting either d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS:** Use an explicit stack to avoi:** - **Iterative DFS:** Use an explicit stack to avoid Python recursion-depth failure while preserving the same $O(n+m)$ bounds.
+- **Iterative DFS:** Use an explicit stack to avoid Python recursion-depth failure while preserving the same $O(n+m)$ bounds.
 - **Breadth-first search:** A queue visits the same component and can update the same minimum.
 - **Union-find:** Unite road endpoints and then inspect roads whose endpoint belongs to city 1's component. It works but is more machinery than a traversal.
 - **Shortest-path algorithms:** Dijkstra minimizes total distance, which is not this path score and can produce the wrong objective.
@@ -110,8 +110,8 @@ Both insertions are necessary because roads are bidirectional. Omitting either d
 - **Parallel direction storage:** Each bidirectional road must be inserted for both endpoints.
 - **Single connecting route:** The minimum road on that component's edges is attainable even if reaching it requires backtracking.
 - **Recursion limit:** Prefer an iterative queue or stack in production Python for $n=10^5$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

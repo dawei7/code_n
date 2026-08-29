@@ -67,7 +67,7 @@ After preprocessing, `get` performs constant-time array access and arithmetic in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `get(l, r)` uses one-based inclusive positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Both one-based conversions add one to each original endpoint. The second half be
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct half comparison:** Compare slices or ch:** - **Direct half comparison:** Compare slices or characters for every candidate. It is deterministic but can take $O(n^3)$ time because each of $O(n^2)$ candidates may compare $O(n)$ characters.
+- **Direct half comparison:** Compare slices or characters for every candidate. It is deterministic but can take $O(n^3)$ time because each of $O(n^2)$ candidates may compare $O(n)$ characters.
 - **Double rolling hash:** Two independent moduli make collisions vastly less likely while retaining $O(n^2)$ expected time, but do not provide absolute collision freedom.
 - **Suffix array or suffix LCP structure:** Deterministic longest-common-prefix queries can compare halves efficiently after heavier preprocessing.
 - **Store actual echo substrings:** It avoids hash-based distinctness collisions but slicing and hashing full strings can increase total time and memory.
@@ -124,8 +124,8 @@ Both one-based conversions add one to each original endpoint. The second half be
 - **One-based hash coordinates:** Every original endpoint must be shifted by one; the second half's start uses `k + 2`.
 - **Modulo subtraction:** Applying `% mod` normalizes negative raw differences.
 - **Hash collision:** The exact source has a probabilistic correctness caveat that should not be omitted from an expert explanation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

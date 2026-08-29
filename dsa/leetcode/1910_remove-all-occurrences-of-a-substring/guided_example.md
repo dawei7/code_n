@@ -51,7 +51,7 @@ The third argument `1` is essential. Without it, `replace` would remove every no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The third argument `1` is essential.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The third argument `1` is essential. Without it, `replace` would remove every no
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stack with suffix comparison:** Append charact:** - **Stack with suffix comparison:** Append characters and remove the last $M$ when the stack suffix equals `part`. It handles newly formed boundaries naturally but can still spend $O(M)$ per character without optimized matching.
+- **Stack with suffix comparison:** Append characters and remove the last $M$ when the stack suffix equals `part`. It handles newly formed boundaries naturally but can still spend $O(M)$ per character without optimized matching.
 - **KMP state plus stack:** Track prefix-function match lengths alongside output characters. This achieves the manifest's $O(N+M)$ time and $O(N+M)$ space.
 - **Remove all matches at once:** `replace(part, '')` without count one does not necessarily follow the mandated leftmost step sequence when deletions create new matches.
 - **`part` equals `s`:** One iteration removes the whole string and returns empty.
@@ -96,8 +96,8 @@ The third argument `1` is essential. Without it, `replace` would remove every no
 - **Single-character pattern:** Every matching character is removed one iteration at a time, exposing the quadratic rebuilding behavior.
 - **Nonempty pattern guarantee:** Termination relies on every iteration shortening the string. An empty pattern would invalidate that reasoning but is excluded.
 - **Exact leftmost semantics:** Python's `replace(part, '', 1)` removes only the first occurrence in reading order, matching one mandated deletion before the loop searches the newly shortened string again.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

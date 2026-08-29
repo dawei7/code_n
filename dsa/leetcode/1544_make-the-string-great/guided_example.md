@@ -63,7 +63,7 @@ This test is safe because the input contains only English letters. For arbitrary
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For English letters in ASCII-compatible code points, the low... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The pop can expose a previous character for a future input character, but no imm
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated deletion with slicing:** It follows t:** - **Repeated deletion with slicing:** It follows the definition directly but can cost $O(N^2)$ time because Python strings are copied.
+- **Repeated deletion with slicing:** It follows the definition directly but can cost $O(N^2)$ time because Python strings are copied.
 - **Recursive deletion:** It can also become quadratic and adds recursion depth.
 - **Mutable two-pointer buffer:** In a language with mutable strings, the input buffer can simulate the stack with constant extra storage; Python strings are immutable.
 - **Empty final result:** Joining an empty stack correctly returns the empty string.
@@ -114,8 +114,8 @@ The pop can expose a previous character for a future input character, but no imm
 - **Already good string:** Every character is appended and the original string is returned.
 - **English-letter restriction:** It is what makes the code-point-difference test valid.
 - **Unique answer guarantee:** Any complete legal reduction reaches the same final good string, and the stack performs one such reduction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

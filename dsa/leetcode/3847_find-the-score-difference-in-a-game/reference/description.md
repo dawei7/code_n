@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `nums`, where $\text{nums}[i]$ represents the points scored in the $$i^{\text{th}}$$ game.
+You are given an integer array `nums`, where $\text{nums}[i]$ represents the points scored in the $i^{\text{th}}$ game.
 
 There are **exactly **two players. Initially, the first player is **active** and the second player is **inactive**.
 
@@ -10,7 +10,7 @@ The following rules apply **sequentially** for each game `i`:
 
 - In every 6th game (that is, game indices `5, 11, 17, ...`), the active and inactive players swap roles.
 
-- The active player plays the $$i^{\text{th}}$$ game and gains $\text{nums}[i]$ points.
+- The active player plays the $i^{\text{th}}$ game and gains $\text{nums}[i]$ points.
 
 Return the **score difference**, defined as the first player's **total** score **minus** the second player's **total** score.
 
@@ -40,7 +40,7 @@ The result may be negative when the second player finishes with more points.
 
 - **Output:** 0
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Game 0: Since the points are odd, the second player becomes active and gains $\text{nums}[0] = 1$ point.
 

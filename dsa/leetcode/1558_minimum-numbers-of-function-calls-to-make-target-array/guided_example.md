@@ -67,7 +67,7 @@ The number of doublings after the leading bit is one less than the bit length.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a value's binary digits are processed from most sign... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Shorter values simply receive no increments in leading columns, so their zeros r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate forward bit columns:** It makes the c:** - **Simulate forward bit columns:** It makes the construction explicit and produces the same popcount-plus-doublings total.
+- **Simulate forward bit columns:** It makes the construction explicit and produces the same popcount-plus-doublings total.
 - **Reverse all values iteratively:** Count odd elements, decrement them conceptually, then halve all values. It is correct but would copy or mutate values and loop over $B$ levels.
 - **Breadth-first search over arrays:** The state space is enormous and ignores the binary structure.
 - **All zeros:** Both terms become zero because of the explicit clamp.
@@ -121,8 +121,8 @@ Shorter values simply receive no increments in leading columns, so their zeros r
 - **No overflow construction:** The exact source never materializes intermediate arrays.
 - **Nonempty input:** It guarantees `max(nums)` is defined.
 - **Fixed numeric bound:** It makes bit-method costs constant per element in practice, while the manifest retains the general $B$ factor.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

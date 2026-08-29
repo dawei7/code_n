@@ -69,7 +69,7 @@ Target `j` replaces the current answer when it has a strictly larger score. If s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` is a length-$n$ list initialized to zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ At the end, partial scores are full edge scores, so `ans` is the required final 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pass method:** First accumulate every scor:** - **Two-pass method:** First accumulate every score, then scan from index zero and keep the first maximum. It has the same $O(n)$ bounds and may be conceptually simpler, while the exact method combines the passes.
+- **Two-pass method:** First accumulate every score, then scan from index zero and keep the first maximum. It has the same $O(n)$ bounds and may be conceptually simpler, while the exact method combines the passes.
 - **Dictionary of scores:** A hash map works, but every target lies in the dense range `0` through `n - 1`, so a list is faster and simpler.
 - **Count indegrees:** This is incorrect because the score sums source labels rather than the number of sources.
 - **Target with no incoming edges:** Its score remains zero and it can win only if no node has a positive score, with smallest-index tie-breaking.
@@ -118,8 +118,8 @@ At the end, partial scores are full edge scores, so `ans` is the required final 
 - **Repeated target values in `edges`:** Each source label is added independently to that target's running total.
 - **Exactly one outgoing edge per source:** The enumeration accounts for every source once and needs no missing-edge branch.
 - **Large accumulated sums:** Use sufficiently wide arithmetic outside Python.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

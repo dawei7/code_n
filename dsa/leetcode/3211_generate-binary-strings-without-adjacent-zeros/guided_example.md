@@ -51,7 +51,7 @@ This is a prefix-local restriction. Whether zero may be appended depends only on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This is a prefix-local restriction.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This is a prefix-local restriction. Whether zero may be appended depends only on
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all $2^n$ bit strings:** Filter thos:** - **Enumerate all $2^n$ bit strings:** Filter those lacking `"00"`. It is simple but explores invalid branches that prefix pruning rejects immediately.
+- **Enumerate all $2^n$ bit strings:** Filter those lacking `"00"`. It is simple but explores invalid branches that prefix pruning rejects immediately.
 - **Iterative generation:** Start with `[""]` and append legal next bits to every current prefix. It avoids recursion but stores an entire frontier in addition to final outputs.
 - **Dynamic programming for only the count:** Fibonacci DP returns $V_n$ in $O(n)$ time, but it does not satisfy the requirement to list the strings.
 - **Start with zero:** The next position, if any, is forced to one.
@@ -98,8 +98,8 @@ This is a prefix-local restriction. Whether zero may be appended depends only on
 - **Any-order contract:** Zero-first branching yields lexicographic order, but callers must not require that beyond this source's current loop order.
 - **Mutable path snapshot:** Joining at the leaf is essential; appending `t` itself would store multiple references to one list that backtracking later changes.
 - **Positive-$n$ guarantee:** The source would emit the empty string for $n=0$, but that case is outside the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

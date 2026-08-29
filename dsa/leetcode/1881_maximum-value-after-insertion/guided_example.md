@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a very large integer `n`, represented as a string,​​​​​​ and an integer digit `x`. The digits in `n` and the digit `x` are in the **inclusive** range `[1, 9]`, and `n` may represent a **negative** number.
+You are given a very large integer `n`, represented as a string, and an integer digit `x`. The digits in `n` and the digit `x` are in the **inclusive** range `[1, 9]`, and `n` may represent a **negative** number.
 
 The objective is to compute `"999"` from `{"n": "99", "x": 9}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Handle the minus sign before scanning digits.** Variable `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate every insertion candidate:** Construc:** - **Generate every insertion candidate:** Constructing $O(N)$ strings of length $O(N)$ and comparing them costs $O(N^2)$ time and space traffic. The first-difference rule identifies the winner in one scan.
+- **Generate every insertion candidate:** Constructing $O(N)$ strings of length $O(N)$ and comparing them costs $O(N^2)$ time and space traffic. The first-difference rule identifies the winner in one scan.
 - **Parse into an integer:** The input can be vastly larger than fixed-width numeric types, and converting plus multiplying by powers of ten is unnecessary. String order contains all information needed.
 - **Use character comparisons:** Because digits `'1'` through `'9'` have the same lexicographic and numeric order, comparing characters with `str(x)` could avoid repeated `int` calls. The exact source uses integer comparison explicitly.
 - **All digits equal to `x`:** The scan passes every equal digit and appends `x`. Inserting anywhere produces the same final string, so this tie choice is valid.
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **Insertion beside the sign:** For a negative input, starting at index one permits insertion immediately after `'-'` but never before it, exactly matching the rule.
 - **No zero digits:** The contract restricts all digits and `x` to one through nine. If zeros were allowed, the same comparison proof would still work, but representation rules around leading zeros might need separate clarification.
 - **Input preservation:** Python strings are immutable. The source returns a newly assembled string and cannot modify `n` in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

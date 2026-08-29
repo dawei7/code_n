@@ -51,7 +51,7 @@ Each percent code contributes one required component, while commas and spaces in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each percent code contributes one required component, while ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual `CASE` expressions:** Weekday and month:** - **Manual `CASE` expressions:** Weekday and month names could be mapped manually, but this is verbose and more error-prone than built-in date formatting.
+- **Manual `CASE` expressions:** Weekday and month names could be mapped manually, but this is verbose and more error-prone than built-in date formatting.
 - **Concatenate extracted fields:** `DAYNAME`, `MONTHNAME`, `DAY`, and `YEAR` can be combined with `CONCAT`, but `DATE_FORMAT` states the desired pattern in one place.
 - **Single-digit day:** `%e` deliberately avoids a leading zero.
 - **Double-digit day:** `%e` returns the ordinary two digits without changing them.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Null dates:** The local schema does not describe nullability; if null existed, `DATE_FORMAT` would return null for that row.
 - **Session locale:** An external non-English `lc_time_names` setting would change names, so English locale is an environmental dependency.
 - **Alias:** `AS day` is needed to match the requested result column name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

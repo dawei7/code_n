@@ -68,7 +68,7 @@ In the first example, airport 1 receives 4 from departing on route 1 to 2 and 5 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second CTE `P` groups `T` by its first column and calcul... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The airport column is renamed `airport_id` to match the required result schema. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `UNION ALL`:** This is the correct weighte:** - **Use `UNION ALL`:** This is the correct weighted-event normalization because every route must contribute independently to both endpoints.
+- **Use `UNION ALL`:** This is the correct weighted-event normalization because every route must contribute independently to both endpoints.
 - **Separate departure and arrival aggregates:** Aggregate each role, combine airport totals, and aggregate again. It is correct but more verbose than a safe `UNION ALL` normalization.
 - **Window rank:** `DENSE_RANK` over descending traffic can select rank one and preserve ties, but the scalar maximum is simpler.
 - **`ORDER BY cnt DESC LIMIT 1`:** Incorrect when multiple airports tie for maximum.
@@ -119,8 +119,8 @@ The airport column is renamed `airport_id` to match the required result schema. 
 - **Any result order:** No sort is required.
 - **Exact output alias:** The selected column must be named `airport_id`.
 - **Empty input:** `P` is empty and the query returns no airport rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

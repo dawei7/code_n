@@ -63,7 +63,7 @@ This precomputation occurs once when the module is loaded. Multiple calls to `mi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before the `Solution` class is defined, the source enumerate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The source initializes `times` to infinity, conditionally measures both sides, a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mirror the leading binary half:** Constructing:** - **Mirror the leading binary half:** Constructing a few same-length and boundary-length palindrome candidates per input avoids exhaustive enumeration and resembles the manifest summary, but it is not the exact source.
+- **Mirror the leading binary half:** Constructing a few same-length and boundary-length palindrome candidates per input avoids exhaustive enumeration and resembles the manifest summary, but it is not the exact source.
 - **Search outward one integer at a time:** Testing `x-1`, `x+1`, and so on eventually works but repeats palindrome checks and has no comparably clean per-query bound.
 - **Linear scan of all precomputed palindromes:** With only 255 candidates it may be fast in practice, but binary search gives $O(\log P)$ lookup.
 - **Generate candidates for every call:** The global list deliberately pays initialization once and reuses it.
@@ -121,8 +121,8 @@ The source initializes `times` to infinity, conditionally measures both sides, a
 - **Independent array positions:** Duplicate inputs repeat the same search and return duplicate distances; no mutation or shared progress occurs.
 - **Hard-coded domain:** Values beyond the supported constraint could exceed the precomputed range, so correctness should not be claimed for an unauthorized generalized domain.
 - **Source/manifest strategy mismatch:** The explanation and exact complexity must include enumeration plus binary search, not per-value bit mirroring.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

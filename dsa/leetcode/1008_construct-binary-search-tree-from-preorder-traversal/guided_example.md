@@ -67,7 +67,7 @@ The remaining task is to divide indices `i + 1` through `j` into the root's left
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `dfs(i, j)` constructs the BST whose preorder travers... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ This would not be safe for an arbitrary permutation. It is safe because the inpu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive upper bound with one shared index:**:** - **Recursive upper bound with one shared index:** Consume preorder once, creating a node only when the next value fits the current bound. It runs in `O(N)` time and `O(H)` stack space.
+- **Recursive upper bound with one shared index:** Consume preorder once, creating a node only when the next value fits the current bound. It runs in `O(N)` time and `O(H)` stack space.
 - **Monotonic stack:** Attach smaller values as left children and pop smaller ancestors to find a larger value's right parent. It is iterative and linear.
 - **Repeated BST insertion:** Simple, but a sorted preorder creates `O(N^2)` work.
 - **Sort to obtain inorder:** Combine sorted inorder with preorder to reconstruct the tree in `O(N \log N)` time and `O(N)` extra storage.
@@ -121,8 +121,8 @@ This would not be safe for an arbitrary permutation. It is safe because the inpu
 - **Boundary at `i + 1`:** It means no left subtree; the right call receives all remaining values.
 - **Valid-preorder guarantee:** The monotone partition property depends on it; malformed input would require validation.
 - **Input preservation:** The preorder list is only read and is not sorted or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

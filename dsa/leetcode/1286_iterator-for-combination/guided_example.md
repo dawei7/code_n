@@ -59,7 +59,7 @@ Otherwise, the function first includes `characters[i]`: append it, recurse on `i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Nested function `dfs(i)` considers character position `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `"abc"` and length two, the traversal completes `"ab"`, then `"ac"`, then `"
 
 ## 6. Traps This Instance Exposes
 
-- **- **Algorithm L on demand:** Store $k$ selected in:** - **Algorithm L on demand:** Store $k$ selected indices and advance to the next lexicographic combination in $O(k)$ time, using $O(k)$ space and no full output cache.
+- **Algorithm L on demand:** Store $k$ selected indices and advance to the next lexicographic combination in $O(k)$ time, using $O(k)$ space and no full output cache.
 - **Pruned backtracking:** Stop when remaining positions cannot fill the combination. It avoids many doomed branches while retaining precomputation.
 - **Bitmask enumeration:** Test all $2^n$ masks and retain those with $k$ bits. It is simple but also explores the full subset space.
 - **Combination length one:** Results are the individual input characters in order.
@@ -108,8 +108,8 @@ For `"abc"` and length two, the traversal completes `"ab"`, then `"ac"`, then `"
 - **Sorted distinct input:** Both lexicographic proof and duplicate freedom rely on this guarantee.
 - **Precomputation latency:** Construction may be expensive even if the caller consumes only the first few combinations.
 - **Persistent memory:** Returned strings remain stored after being consumed because `idx` advances without removing them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-During the NBA playoffs, we always set the rather strong team to play with the rather weak team, like making the rank `1` team play with the rank $$n^{\text{th}}$$ team, which is a good strategy to make the contest more interesting.
+During the NBA playoffs, we always set the rather strong team to play with the rather weak team, like making the rank `1` team play with the rank $n^{\text{th}}$ team, which is a good strategy to make the contest more interesting.
 
 Given `n` teams, return *their final contest matches in the form of a string*.
 

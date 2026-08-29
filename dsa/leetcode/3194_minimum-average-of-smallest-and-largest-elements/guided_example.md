@@ -51,7 +51,7 @@ Sorting makes the entire removal sequence visible at once. After
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting makes the entire removal sequence visible at once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers after sorting:** Explicitly move :** - **Two pointers after sorting:** Explicitly move a left pointer rightward and a right pointer leftward while tracking the smallest sum. It has the same bounds and behavior as the generator and can be easier for beginners to step through.
+- **Two pointers after sorting:** Explicitly move a left pointer rightward and a right pointer leftward while tracking the smallest sum. It has the same bounds and behavior as the generator and can be easier for beginners to step through.
 - **Build the full `averages` list:** It mirrors the statement directly but uses $O(n)$ additional result storage that is unnecessary when only the minimum is needed.
 - **Repeatedly call `min` and `max` and remove values:** Without an ordered structure, each extreme search or removal can be linear, leading to $O(n^2)$ time.
 - **Two heaps:** A min-heap and max-heap appear natural, but keeping deletions synchronized requires extra bookkeeping and does not beat sorting for this fixed batch process.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Whole-number average:** An even sum returns a float such as `5.0` because `/` performs true division.
 - **Take minimum before division:** This is valid only because every denominator is the same positive value. The source correctly uses that property.
 - **Input mutation:** `nums.sort()` permanently reorders the list. Sort `nums.copy()` instead if caller-visible order must be preserved.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

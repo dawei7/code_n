@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-(\texttt{nums}[i],\texttt{nums}[n-1-i]).
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Fix a candidate common difference $X$ between zero and $k$. One mirrored pair ne
 
 ## 6. Traps This Instance Exposes
 
-- **- **Evaluate every target for every pair:** Direct:** - **Evaluate every target for every pair:** Direct use of the piecewise formula costs $O(nk)$, too slow at $10^5$.
+- **Evaluate every target for every pair:** Direct use of the piecewise formula costs $O(nk)$, too slow at $10^5$.
 - **Savings viewpoint:** Start from two changes per pair, range-add savings of one where one change suffices and another saving at the original difference. It leads to an equivalent difference array.
 - **Pair already at target:** Cost is zero only at `X = y-x`.
 - **Target within one-change reach:** Exactly one replacement suffices unless it is already the original difference.
@@ -102,8 +100,8 @@ Fix a candidate common difference $X$ between zero and $k$. One mirrored pair ne
 - **Transition collision:** If `a+1 == T+1`, updates at the same index add algebraically and still create the correct next cost.
 - **Sentinel slot:** Index $k+1$ stores range endings and is not a legal difference, but its cost cannot lower the valid minimum.
 - **Input preservation:** Values are swapped only in local variables `x,y`, not inside `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

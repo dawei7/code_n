@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** integer array `books` of length `n` where $\text{books}[i]$ denotes the number of books on the $$i^{\text{th}}$$ shelf of a bookshelf.
+You are given a **0-indexed** integer array `books` of length `n` where $\text{books}[i]$ denotes the number of books on the $i^{\text{th}}$ shelf of a bookshelf.
 
 The objective is to compute `19` from `{"books": [8, 5, 2, 7, 9]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ The list `nums[i] = books[i] - i` makes this comparison constant and exposes a p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Extending the progression from `i` back to earlier index `j`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ At this boundary, shelf `j` cannot simply continue the arithmetic ramp controlle
 
 ## 6. Traps This Instance Exposes
 
-- **- **Walk left from every endpoint:** Directly cons:** - **Walk left from every endpoint:** Directly constructing the best progression costs `O(n^2)` in decreasing-capacity patterns.
+- **Walk left from every endpoint:** Directly constructing the best progression costs `O(n^2)` in decreasing-capacity patterns.
 - **Use only a greedy global segment:** Local capacity boundaries create restart points, so dynamic programming is needed to combine earlier optimal segments.
 - **Previous smaller on raw books:** The relevant comparison is `books[i]-i`, which incorporates the one-per-position slope.
 - **Pop only strictly greater stack values:** Equal transformed values must also pop because the boundary requires strictly smaller.
@@ -123,8 +123,8 @@ At this boundary, shelf `j` cannot simply continue the arithmetic ramp controlle
 - **Equal transformed values:** The earlier index is popped so it cannot be used as a strictly smaller boundary.
 - **Maximum over endpoints:** The best section need not end at the last shelf.
 - **Input preservation:** All transformed and DP state is separate from `books`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

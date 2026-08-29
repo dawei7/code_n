@@ -68,13 +68,7 @@ The expression `min(b - a for a, b in pairwise(nums))` computes the smallest adj
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting:
-
-$$
-v_0\le v_1\le\cdots\le v_{n-1},
-$$
-
-the m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +111,7 @@ Thus the smallest adjacent gap is not merely a lower bound; a legal partition ac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** Finds the closest values i:** - **Check every pair:** Finds the closest values in $O(n^2)$ time but ignores the adjacent-after-sorting property.
+- **Check every pair:** Finds the closest values in $O(n^2)$ time but ignores the adjacent-after-sorting property.
 - **Balanced tree insertion:** Can track predecessor and successor gaps in $O(n\log n)$ time without a full final sort, but is more complex.
 - **Counting array:** Useful only when the numeric range is small; values here reach $10^9$.
 - **Two elements:** They must be separated, and their absolute difference is the only adjacent gap.
@@ -127,8 +121,8 @@ Thus the smallest adjacent gap is not merely a lower bound; a legal partition ac
 - **Unequal partition sizes:** Fully allowed; only nonemptiness matters.
 - **Positive values:** The proof would also work for negative values because it depends only on sorted differences.
 - **No partition construction:** The function correctly returns only the optimal value requested.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

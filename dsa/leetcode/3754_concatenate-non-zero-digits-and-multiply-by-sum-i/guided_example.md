@@ -61,7 +61,7 @@ When `v=0`, neither `x` nor `p` changes. Advancing `p` would preserve a zero pos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `x` is the filtered integer formed from processed nonzero di... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The filtered integer is built from the right, but each new retained digit receiv
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string:** Filtering characters le:** - **Convert to a string:** Filtering characters left-to-right is clear and $O(D)$, but allocates $O(D)$ string storage.
+- **Convert to a string:** Filtering characters left-to-right is clear and $O(D)$, but allocates $O(D)$ string storage.
 - **Advance `p` for zeros:** This would preserve removed positions and build the wrong number.
 - **Multiply `x` by ten while scanning right-to-left:** That appends in discovery order and reverses the retained digits.
 - **All digits zero:** Only input zero has this canonical representation; it returns zero.
@@ -126,8 +126,8 @@ The filtered integer is built from the right, but each new retained digit receiv
 - **Maximum input length:** At most ten loop iterations are needed for the stated numeric bound, but the $O(D)$ analysis remains the general form.
 - **Local parameter mutation:** Reassigning `n` through division does not modify caller state because Python integers are immutable.
 - **Manifest space:** The exact implementation has constant explicit working state; $O(D)$ applies only if counting integer representation size.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

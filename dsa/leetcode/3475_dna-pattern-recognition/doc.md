@@ -35,7 +35,7 @@ Return every input row together with these indicators, ordered by `sample_id` in
 Let $r$ be the number of rows and let
 
 $$
-S = \sum_{x \in \texttt{Samples}} \lvert x.\texttt{dna_sequence} \rvert.
+S = \sum_{x \in \texttt{Samples}} \lvert x.\texttt{dna\_sequence} \rvert.
 $$
 
 **Return value**

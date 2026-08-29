@@ -2,9 +2,9 @@
 
 You are given an integer `n`, representing the number of employees in a company. Each employee is assigned a unique ID from 1 to `n`, and employee 1 is the CEO, is the direct or indirect boss of every employee. You are given two **1-based **integer arrays, `present` and `future`, each of length `n`, where:
 
-- $\text{present}[i]$ represents the **current** price at which the $$i^{\text{th}}$$ employee can buy a stock today.
+- $\text{present}[i]$ represents the **current** price at which the $i^{\text{th}}$ employee can buy a stock today.
 
-- $\text{future}[i]$ represents the **expected** price at which the $$i^{\text{th}}$$ employee can sell the stock tomorrow.
+- $\text{future}[i]$ represents the **expected** price at which the $i^{\text{th}}$ employee can sell the stock tomorrow.
 
 The company's hierarchy is represented by a 2D integer array `hierarchy`, where $\text{hierarchy}[i] = [u_{i}, v_{i}]$ means that employee $u_{i}$ is the direct boss of employee $v_{i}$.
 

@@ -51,7 +51,7 @@ The first common table expression, `T`, joins `Logins` with `Accounts` through t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first common table expression, `T`, joins `Logins` with ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After `T`, each user-date combination appears once. This makes a later `COUNT(*)
 
 ## 6. Traps This Instance Exposes
 
-- **- **LAG plus break markers:** Compare each date wi:** - **LAG plus break markers:** Compare each date with the previous date, mark the start of a new streak, take a cumulative sum of breaks, and group by that island number. It is more verbose but expresses gaps explicitly.
+- **LAG plus break markers:** Compare each date with the previous date, mark the start of a new streak, take a cumulative sum of breaks, and group by that island number. It is more verbose but expresses gaps explicitly.
 - **Self-join five dates:** Join each distinct login date to dates one through four days later for the same ID. This can solve a fixed threshold but becomes cumbersome and duplicates work; the row-number key generalizes cleanly.
 - **Correlated existence checks:** Test whether four required following dates exist for each date. Indexes can help, but the logic repeats lookups and is less convenient for a variable threshold.
 - **Count raw login rows:** This is wrong because multiple logins on one day do not represent consecutive days. Deduplication must happen first.
@@ -104,8 +104,8 @@ After `T`, each user-date combination appears once. This makes a later `COUNT(*)
 - **Same name for different IDs:** Grouping and identity use `id`, so two accounts may share a display name without being merged.
 - **General threshold n:** Replace five in `HAVING` with the desired threshold; duplicate removal and island construction remain identical.
 - **Ordered output:** `ORDER BY 1` refers to selected `id`. Writing `ORDER BY id` would be equivalent and more explicit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

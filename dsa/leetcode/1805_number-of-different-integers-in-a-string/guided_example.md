@@ -61,7 +61,7 @@ For a run such as `"000123"`, the slice is `"123"`. For `"45"`, no zero is skipp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When index `i` points to a digit, the first inner loop advan... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Using `"0"` instead would also be understandable, but the exact protected code u
 
 ## 6. Traps This Instance Exposes
 
-- **- **Replace letters and split:** It is concise but:** - **Replace letters and split:** It is concise but creates another full string plus token lists; the pointer scan controls normalization directly.
+- **Replace letters and split:** It is concise but creates another full string plus token lists; the pointer scan controls normalization directly.
 - **Convert runs to integers:** It naturally removes leading zeros, but string normalization avoids large-integer parsing and is sufficient for equality.
 - **Regular expression extraction:** It finds digit runs but adds regex machinery and still needs canonicalization.
 - **Keep raw runs:** This incorrectly treats `"1"` and `"001"` as different.
@@ -115,8 +115,8 @@ Using `"0"` instead would also be understandable, but the exact protected code u
 - **Zero followed by nonzero digits in one run:** Leading zeros are discarded but the remaining digits stay together.
 - **No signs or decimal points:** The input contract makes every digit run a nonnegative integer.
 - **Input preservation:** Slices are read from `word`; the original string is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

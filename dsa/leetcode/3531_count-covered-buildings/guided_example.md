@@ -67,9 +67,7 @@ The grid size `n` is not used for array allocation. Dictionaries store only occu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates two dictionaries:
-
-- `g1[x]` contains eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +109,7 @@ Intermediate sorted positions are not used. Sorting is one way to obtain the two
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track only four extremes:** Maintain min/max `:** - **Track only four extremes:** Maintain min/max `y` per row and min/max `x` per column. This gives the same tests in `O(B)` expected time and is the direct way to achieve the manifest bound.
+- **Track only four extremes:** Maintain min/max `y` per row and min/max `x` per column. This gives the same tests in `O(B)` expected time and is the direct way to achieve the manifest bound.
 - **Use sets and search every direction:** Scanning coordinate-by-coordinate toward grid boundaries can cost `O(nB)` and ignores the fact that only extremes matter.
 - **Sort all buildings globally:** A row-major and column-major sort can also derive neighbors, but two grouped extremes are simpler.
 - **Require immediate adjacent cells:** The statement asks for a building somewhere in each direction, not necessarily at distance one.
@@ -125,8 +123,8 @@ Intermediate sorted positions are not used. Sorting is one way to obtain the two
 - **Unique-coordinate guarantee:** It avoids duplicate copies of the same building in grouped lists.
 - **Coordinate interpretation:** In the source, `g1[x]` varies `y` horizontally and `g2[y]` varies `x` vertically; swapping these meanings would test the wrong directions.
 - **Manifest claim:** The source is correct but not linear due to sorting. Min/max aggregation is the relevant alternative when complexity fidelity matters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

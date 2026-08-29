@@ -64,7 +64,7 @@ The vertical bar marks equal-length halves. The left half repeats the previous r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose some preceding row is a sequence `S`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ The equality belongs to the left half because $2^{n-2}$ is the last left-half po
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set-bit parity of `k - 1`:** The answer equals:** - **Set-bit parity of `k - 1`:** The answer equals the parity of the number of one bits in `k - 1`. Kernighan's bit-clearing loop can compute it in $O(\log k)$ worst-case time and $O(1)$ space, matching the manifest bounds.
-- **- **Iterative half descent:** Repeat the same left:** - **Iterative half descent:** Repeat the same left/right decisions while decreasing `n` and toggle a bit on every right-half step. It preserves $O(n)$ time but removes recursion-stack space.
-- **- **Generate every row:** This is easy to visualiz:** - **Generate every row:** This is easy to visualize but requires $O(2^n)$ total work and $O(2^{n-1})$ space for the final row.
+- **Set-bit parity of `k - 1`:** The answer equals the parity of the number of one bits in `k - 1`. Kernighan's bit-clearing loop can compute it in $O(\log k)$ worst-case time and $O(1)$ space, matching the manifest bounds.
+- **Iterative half descent:** Repeat the same left/right decisions while decreasing `n` and toggle a bit on every right-half step. It preserves $O(n)$ time but removes recursion-stack space.
+- **Generate every row:** This is easy to visualize but requires $O(2^n)$ total work and $O(2^{n-1})$ space for the final row.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-A company is planning to interview `2n` people. Given the array `costs` where $\text{costs}[i] = [\text{aCost}_{i}, \text{bCost}_{i}]$, the cost of flying the $$i^{\text{th}}$$ person to city `a` is $\text{aCost}_{i}$, and the cost of flying the $$i^{\text{th}}$$ person to city `b` is $\text{bCost}_{i}$.
+A company is planning to interview `2n` people. Given the array `costs` where $\text{costs}[i] = [\text{aCost}_{i}, \text{bCost}_{i}]$, the cost of flying the $i^{\text{th}}$ person to city `a` is $\text{aCost}_{i}$, and the cost of flying the $i^{\text{th}}$ person to city `b` is $\text{bCost}_{i}$.
 
 The objective is to compute `110` from `{"costs": [[10, 20], [30, 200], [400, 50], [30, 20]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -75,7 +75,7 @@ This derivation explains why sorting by `a` alone, `b` alone, or the cheaper abs
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Imagine initially sending everyone to city B.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Tied differences can appear on either side without changing the total. Python's 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Start with everyone in A:** Use B-minus-A diff:** - **Start with everyone in A:** Use B-minus-A differences and switch exactly half to B. This is algebraically symmetric and produces the same assignments.
+- **Start with everyone in A:** Use B-minus-A differences and switch exactly half to B. This is algebraically symmetric and produces the same assignments.
 - **Dynamic programming by person and A quota:** A state can track minimum cost after assigning a certain number to A. It is correct but uses `O(P^2)` time in the straightforward form, while the difference structure gives a greedy solution.
 - **Heap selection:** Keep the `n` smallest differences in a heap. This can avoid fully ordering the data but is more complex and has similar `O(P \log n)` time.
 - **Quickselect:** Partition around the `n`-th difference for expected `O(P)` time, then sum the two groups. Worst-case guarantees and tie handling are more involved than sorting for at most 100 people.
@@ -133,8 +133,8 @@ Tied differences can appear on either side without changing the total. Python's 
 - **Even-length guarantee:** `len(costs) >> 1` is exact only because the number of people is guaranteed even.
 - **Input mutation:** `costs.sort(...)` changes row order. If the original order is needed afterward, sort a copy instead at the cost of additional explicit space.
 - **Large individual prices:** Only subtraction and addition are used, and the stated price bounds keep totals comfortably within ordinary integer ranges.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

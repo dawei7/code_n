@@ -64,7 +64,7 @@ Because extraction proceeds backward, `ans` temporarily contains the entire form
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `cnt` records how many digits have been appended si... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ This ordering handles exact multiples of three digits without a special case.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in comma formatting:** Format with comma:** - **Built-in comma formatting:** Format with commas and replace commas by dots. It is concise but hides the grouping logic and still creates strings.
+- **Built-in comma formatting:** Format with commas and replace commas by dots. It is concise but hides the grouping logic and still creates strings.
 - **Convert first and slice groups:** Split the decimal string from the right into chunks of three and join them. It is also $O(D)$.
 - **Repeated string prepending:** It is correct but can repeatedly copy the growing immutable result.
 - **Zero:** The unconditional loop emits one zero digit rather than an empty string.
@@ -117,8 +117,8 @@ This ordering handles exact multiples of three digits without a special case.
 - **Negative values:** They are outside the contract; the digit-extraction logic is designed for nonnegative integers.
 - **Separator placement:** Counting starts at the right, which is why groups remain correct regardless of total digit count.
 - **Output allocation:** Returning a string necessarily requires space proportional to its displayed length when the numeric domain is treated as variable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

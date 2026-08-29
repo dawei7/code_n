@@ -62,7 +62,7 @@ Row prefixes extend from `[i][j - 1]`, while column prefixes extend from `[i - 1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Four matrices use one-based grid coordinates and an extra ze... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Each orientation computes its total twos and fives, then takes their minimum. `a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Multiply every path product:** Products become:** - **Multiply every path product:** Products become huge, and enumerating paths repeats work. Factor exponents are the only information trailing zeros need.
+- **Multiply every path product:** Products become huge, and enumerating paths repeats work. Factor exponents are the only information trailing zeros need.
 - **Enumerate all arm endpoints:** This adds unnecessary factors to runtime because extending arms cannot hurt.
 - **Use only row prefixes:** Vertical arms would still require repeated scans; both dimensions need prefix support.
 - **Count the pivot twice:** Adding two inclusive segments would overstate factors. Each formula excludes the pivot from one arm.
@@ -123,8 +123,8 @@ Each orientation computes its total twos and fives, then takes their minimum. `a
 - **Large overlapping factors:** Counts add normally; only their minimum determines zeros.
 - **Positive-value guarantee:** Extending a path never subtracts prime factors, supporting the boundary-extension argument.
 - **Input preservation:** Only a local copy `x` is divided during factoring.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

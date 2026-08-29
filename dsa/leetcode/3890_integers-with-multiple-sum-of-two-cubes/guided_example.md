@@ -77,7 +77,7 @@ strictly increases as `b` increases. As soon as `x > LIMIT`, every later `b` for
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Both bases are positive.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ Sorting is performed once. The resulting global list is strictly increasing beca
 
 ## 6. Traps This Instance Exposes
 
-- **- **Per-query enumeration:** Enumerating only pair:** - **Per-query enumeration:** Enumerating only pairs whose sums are at most the supplied `n` can do less work for a small one-off input, but it repeats the expensive stage across calls and differs from the fixed global strategy in the source.
+- **Per-query enumeration:** Enumerating only pairs whose sums are at most the supplied `n` can do less work for a small one-off input, but it repeats the expensive stage across calls and differs from the fixed global strategy in the source.
 - **Store only repeated sums:** A set-based transition from “seen once” to “seen multiple times” can reduce stored counts, although all first occurrences still need tracking to detect the second representation.
 - **Pair-sum sorting:** Generating every cube sum into a list, sorting it, and detecting adjacent duplicates also works, but stores duplicate sum entries and pays to sort the full pair list.
 - **Positive bases only:** Zero is not a legal base. The loops correctly begin at 1, so representations such as $0^3+b^3$ never count.
@@ -135,8 +135,8 @@ Sorting is performed once. The resulting global list is strictly increasing beca
 - **Fixed constraint ceiling:** The precomputation is valid because the contract caps `n` at $10^9$. Raising that ceiling without also raising `LIMIT` and the base range would silently omit answers.
 - **Module-level work:** Importing the file performs the full enumeration before `findGoodIntegers` is called. This can be advantageous for repeated queries but should not be mistaken for a constant-cost method call in a fresh process.
 - **Required library names:** Standalone execution needs `defaultdict` and `bisect_right` supplied from the Python standard library; the checked-in file assumes the harness exposes them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

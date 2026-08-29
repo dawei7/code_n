@@ -64,7 +64,7 @@ The invariant holds initially because both the scanned prefix and `nums[:0]` are
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes `k = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Python short-circuits `or`. When `k == 0` is true, it does not evaluate `x != nu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Read index plus write index:** Iterate explici:** - **Read index plus write index:** Iterate explicit indices from one onward and compare `nums[i]` with `nums[i - 1]`. It has the same bounds and is the form used in many editorials.
+- **Read index plus write index:** Iterate explicit indices from one onward and compare `nums[i]` with `nums[i - 1]`. It has the same bounds and is the form used in many editorials.
 - **Set followed by sorting:** It uses $O(k)$ extra space, may require sorting, and ignores the stronger in-place opportunity provided by already sorted input.
 - **Delete duplicates from the list:** Repeated physical deletion shifts later elements and can make the method $O(n^2)$ in an array-backed list.
 - **Empty list outside the stated constraints:** The exact source returns `0` because the loop never runs.
@@ -116,8 +116,8 @@ Python short-circuits `or`. When `k == 0` is true, it does not evaluate `x != nu
 - **Tail contents:** Values at and after index `k` are unspecified and must not be interpreted as part of the answer.
 - **Sortedness is essential:** On an unsorted sequence such as `[1,2,1]`, the last `1` would be retained again; the algorithm removes duplicate runs, relying on the contract to make each value one run.
 - **Relative order:** Values are scanned and written left to right, so the retained sequence keeps its original order automatically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `MAX(quantity) AS max_quantity` is the largest single-prod... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The composite primary key guarantees one row per different product within an ord
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare with `ALL`:** SQL can express `max_qua:** - **Compare with `ALL`:** SQL can express `max_quantity > ALL (subquery of averages)`, but the maximum threshold is usually clearer.
+- **Compare with `ALL`:** SQL can express `max_quantity > ALL (subquery of averages)`, but the maximum threshold is usually clearer.
 - **Window maximum:** Compute per-order statistics and a global maximum average with a window function, then filter in an outer query.
 - **Strict equality:** An order whose maximum equals the largest average must be excluded.
 - **Fractional average:** Ordinary division preserves the exact decimal comparison; integer truncation would be wrong.
@@ -99,8 +99,8 @@ The composite primary key guarantees one row per different product within an ord
 - **Any-order result:** Omitting `ORDER BY` is intentional.
 - **Nonempty table assumption:** Each CTE order has at least one row, so `COUNT(1)` is positive.
 - **No duplicate output:** One grouped summary row produces at most one selected identifier.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

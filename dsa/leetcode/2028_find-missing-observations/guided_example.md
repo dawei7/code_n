@@ -73,7 +73,7 @@ This test handles both directions of impossibility. A very large known sum can m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every six-sided die value is at least one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ The resulting list contains `r` copies of `q+1` and `n-r` copies of `q`. The ord
 
 ## 6. Traps This Instance Exposes
 
-- **- **Start every die at one:** Distribute `s-n` ext:** - **Start every die at one:** Distribute `s-n` extra points, at most five per die; this is equivalent but requires a slightly more explicit capacity loop.
+- **Start every die at one:** Distribute `s-n` extra points, at most five per die; this is equivalent but requires a slightly more explicit capacity loop.
 - **Backtracking over die faces:** It explores many unnecessary combinations even though only the total matters.
 - **Random valid distribution:** It can work but complicates reproducibility and range enforcement without improving complexity.
 - **Required sum exactly `n`:** Every missing roll must be one.
@@ -135,8 +135,8 @@ The resulting list contains `r` copies of `q+1` and `n-r` copies of `q`. The ord
 - **Many valid answers:** The source returns a balanced one; output order has no semantic importance.
 - **Exact average:** Total-sum arithmetic avoids floating-point comparison.
 - **Input preservation:** `rolls` is never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

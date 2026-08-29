@@ -67,9 +67,7 @@ For the example, cumulative identifiers are `1,1,1,2,2,3`, assigning the expecte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The next query level computes the running sum
-
-`SUM(delta) O... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ A one-element range has identical minimum and maximum, correctly returning the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **`log_id - ROW_NUMBER()` grouping:** For consec:** - **`log_id - ROW_NUMBER()` grouping:** For consecutive values, subtracting their sorted row number remains constant. Grouping by that difference is a compact islands-and-gaps technique.
+- **`log_id - ROW_NUMBER()` grouping:** For consecutive values, subtracting their sorted row number remains constant. Grouping by that difference is a compact islands-and-gaps technique.
 - **Recursive range construction:** It is more complex and unnecessary when window functions are available.
 - **Single identifier:** Delta starts at one, one group forms, and start equals end.
 - **All identifiers consecutive:** The cumulative group identifier never changes after the first row, producing one range.
@@ -116,8 +114,8 @@ A one-element range has identical minimum and maximum, correctly returning the s
 - **First-row null:** MySQL `IF` selects the else branch for the null comparison, correctly marking a new group.
 - **Missing final ordering:** Add `ORDER BY start_id` for a result whose required order is guaranteed rather than incidental.
 - **Window sort reuse:** An optimizer may reuse ordering between window stages, affecting constants but not the worst-case bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

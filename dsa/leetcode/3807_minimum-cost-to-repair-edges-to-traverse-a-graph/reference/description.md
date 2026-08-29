@@ -68,7 +68,7 @@ Return the minimum repair threshold that permits a route from node `0` to node $
 
 ![](images/ex3drawio.png)
 
-​​​​​​​**
+**
 
 - **Input:** n = 3, edges = [[0,1,1]], k = 1
 

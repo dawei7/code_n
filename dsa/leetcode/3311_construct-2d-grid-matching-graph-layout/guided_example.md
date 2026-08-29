@@ -51,7 +51,7 @@ The adjacency list `g` stores the undirected graph. Array `deg` has five slots a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The adjacency list `g` stores the undirected graph.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The adjacency list `g` stores the undirected graph. Array `deg` has five slots a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate propagation:** Assign a corner coor:** - **Coordinate propagation:** Assign a corner coordinate and infer neighbor directions through common-neighbor relationships. It is more general-looking but needs conflict handling and more bookkeeping.
+- **Coordinate propagation:** Assign a corner coordinate and infer neighbor directions through common-neighbor relationships. It is more general-looking but needs conflict handling and more bookkeeping.
 - **Try all corner-side orientations:** One could build candidate layouts from both neighbors of a corner and validate edges. The guaranteed grid structure makes the source's arbitrary valid side sufficient.
 - **One-row path:** Degree-one detection chooses an endpoint and the extension produces a single-column rotation of the same path.
 - **Two-by-two grid:** No degree-four node exists; a corner and any degree-two neighbor form an initial side of length two.
@@ -99,8 +99,8 @@ The adjacency list `g` stores the undirected graph. Array `deg` has five slots a
 - **Degree representative overwrite:** `deg[d]` keeps only the last node of degree $d$; existence and one starting example are all the case split needs.
 - **Malformed non-grid input:** Missing outward neighbors or unexpected degrees could leave variables unset or rows incomplete. The guarantee excludes such cases.
 - **Manifest discrepancy:** No shortest-path or shortest-side computation occurs; the code follows an arbitrary boundary side determined by adjacency order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ Because all earlier slices have full length, padding each generated slice is equ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a start `i`, `s[i : i + k]` selects source indexes from ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `s = "abcdefghij"` and `k = 3`, the starts are $0,3,6,9$. Their raw slices a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit while loop:** Advance a pointer by `k:** - **Explicit while loop:** Advance a pointer by `k`, append each slice, and pad the final result after the loop. This mirrors the editorial and has the same complexity but uses more statements than the exact comprehension.
+- **Explicit while loop:** Advance a pointer by `k`, append each slice, and pad the final result after the loop. This mirrors the editorial and has the same complexity but uses more statements than the exact comprehension.
 - **Manual character accumulation:** Build a current group one character at a time and flush it at size `k`. This works but duplicates behavior already provided by slicing and `ljust`.
 - **Pad the whole source first:** Append enough fill characters to make the total length divisible by `k`, then slice fixed-size groups. This is correct but constructs another padded source string in addition to the output groups.
 - **Length divisible by k:** Every slice already has length `k`, so `ljust` makes no change and no fill character is added.
@@ -110,8 +110,8 @@ For `s = "abcdefghij"` and `k = 3`, the starts are $0,3,6,9$. Their raw slices a
 - **No empty final group:** When $n$ is divisible by $k$, `range` stops at $n-k$ and never produces start $n$, so the method does not append an unnecessary all-fill group.
 - **Exclusive slice endpoint:** `s[i : i + k]` contains at most $k$ characters because `i + k` itself is excluded.
 - **Input immutability:** Strings are immutable; slicing and padding create the returned strings without changing `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -4,7 +4,7 @@ You are given a **1-indexed** array of integers `nums` of length `n`.
 
 We define a function `greaterCount` such that `greaterCount(arr, val)` returns the number of elements in `arr` that are **strictly greater** than `val`.
 
-You need to distribute all the elements of `nums` between two arrays `arr1` and `arr2` using `n` operations. In the first operation, append $\text{nums}[1]$ to `arr1`. In the second operation, append $\text{nums}[2]$ to `arr2`. Afterwards, in the $$i^{\text{th}}$$ operation:
+You need to distribute all the elements of `nums` between two arrays `arr1` and `arr2` using `n` operations. In the first operation, append $\text{nums}[1]$ to `arr1`. In the second operation, append $\text{nums}[2]$ to `arr2`. Afterwards, in the $i^{\text{th}}$ operation:
 
 - If $greaterCount(arr1, \text{nums}[i]) > greaterCount(arr2, \text{nums}[i])$, append $\text{nums}[i]$ to `arr1`.
 

@@ -57,7 +57,7 @@ The code writes it to `prime[cnt]` and increments `cnt`. Ascending outer-loop or
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `st[i]` is false when `i` is reached, no smaller prime ge... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For example, 12 is marked as $2\cdot6$. When processing `i=6`, prime 2 divides i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sieve of Eratosthenes:** Mark multiples from e:** - **Sieve of Eratosthenes:** Mark multiples from each prime's square in $O(R\log\log R)$ time; simpler but not the exact source.
+- **Sieve of Eratosthenes:** Mark multiples from each prime's square in $O(R\log\log R)$ time; simpler but not the exact source.
 - **Test each interval number independently:** Trial division can be much slower across a wide range.
 - **Fewer than two primes:** Return `[-1,-1]`.
 - **Prime 2:** It is handled normally as the first discovered prime.
@@ -112,8 +112,8 @@ For example, 12 is marked as $2\cdot6$. When processing `i=6`, prime 2 divides i
 - **Overflow-safe product bound:** `prime[j]<=right//i` guards multiplication.
 - **Preallocated prime array:** Only its prefix through `cnt` contains valid primes.
 - **Manifest mismatch:** The break-on-divisor rule identifies Euler's linear sieve.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

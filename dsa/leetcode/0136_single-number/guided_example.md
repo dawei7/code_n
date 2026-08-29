@@ -94,7 +94,7 @@ The actual implementation does not sort or rearrange the array. Those algebraic 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `reduce` takes the first two elements, combines them with `x... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -141,7 +141,7 @@ This is not merely detecting oddness of the array length. The result follows fro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set toggling:** Add an unseen value and r:** - **Hash set toggling:** Add an unseen value and remove a seen value. The final set contains the answer, but it requires $O(n)$ extra space.
+- **Hash set toggling:** Add an unseen value and remove a seen value. The final set contains the answer, but it requires $O(n)$ extra space.
 - **Frequency dictionary:** Count occurrences and return the key with count one. It is linear expected time but violates the constant-space requirement.
 - **Sort then scan pairs:** Equal values become adjacent, making the singleton easy to find. It costs $O(n\log n)$ time and may use extra sorting memory or mutate the input.
 - **Arithmetic with a set:** Compute twice the sum of distinct values minus the full sum. It uses $O(n)$ set space and can overflow in fixed-width languages.
@@ -151,8 +151,8 @@ This is not merely detecting oddness of the array length. The result follows fro
 - **Arbitrary ordering:** Pair occurrences need not be adjacent because XOR is associative and commutative.
 - **Malformed multiplicities:** The proof depends on every non-answer appearing exactly twice; the function does not validate that promise.
 - **Runtime dependencies:** The selected source uses `List`, `reduce`, and `xor` without imports. Standalone Python needs `from typing import List`, `from functools import reduce`, and `from operator import xor`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

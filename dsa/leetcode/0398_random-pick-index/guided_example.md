@@ -66,7 +66,7 @@ The specific trigger could be `x == 1` instead; choosing the endpoint `n` has th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits every `(i, v)` pair from `enumerate(nums)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ If the target did not exist, the placeholder zero would be returned incorrectly.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Preprocess value-to-indices lists:** In the co:** - **Preprocess value-to-indices lists:** In the constructor, append every index to a dictionary bucket for its value. Initialization takes $O(N)$ time and space, and each `pick` uses `random.choice` in $O(1)$. Across many calls this gives $O(N+Q)$ time, matching the manifest, but uses linear extra storage.
-- **- **Collect matches on every call:** Build a tempo:** - **Collect matches on every call:** Build a temporary list of all qualifying indices and choose from it. This is $O(N)$ time and up to $O(N)$ temporary space per call; reservoir sampling achieves the same distribution with constant space.
-- **- **Choose a random array index until it matches:*:** - **Choose a random array index until it matches:** Rejection sampling is unbiased, but expected time can be very large when the target is rare and has no finite worst-case bound. A full reservoir scan has deterministic linear work.
+- **Preprocess value-to-indices lists:** In the constructor, append every index to a dictionary bucket for its value. Initialization takes $O(N)$ time and space, and each `pick` uses `random.choice` in $O(1)$. Across many calls this gives $O(N+Q)$ time, matching the manifest, but uses linear extra storage.
+- **Collect matches on every call:** Build a temporary list of all qualifying indices and choose from it. This is $O(N)$ time and up to $O(N)$ temporary space per call; reservoir sampling achieves the same distribution with constant space.
+- **Choose a random array index until it matches:** Rejection sampling is unbiased, but expected time can be very large when the target is rare and has no finite worst-case bound. A full reservoir scan has deterministic linear work.
 
 ---
 

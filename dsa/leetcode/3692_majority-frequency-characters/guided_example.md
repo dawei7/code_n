@@ -82,11 +82,7 @@ Each character appears in exactly one list because it has exactly one total freq
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates:
-
-`f = defaultdict(list)`
-
-and visits eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -155,7 +151,7 @@ Assigning `ans = cs` does not copy the list, but no more characters are appended
 
 ## 6. Traps This Instance Exposes
 
-- **- **Choose characters with maximum individual freq:** - **Choose characters with maximum individual frequency:** This solves a different problem. A lower frequency can win when more distinct characters share it.
+- **Choose characters with maximum individual frequency:** This solves a different problem. A lower frequency can win when more distinct characters share it.
 - **Sort all groups:** Sorting by `(len(group), frequency)` would identify the winner but costs extra $O(U\log U)$ work. A running maximum is enough.
 - **Use fixed arrays:** Since there are only 26 lowercase letters, one could count with a 26-element array and group counts manually. `Counter` and `defaultdict` express the same logic more directly.
 - **Tie in group size:** The larger frequency must win. The condition `mv < v` implements this only after confirming equal sizes.
@@ -165,8 +161,8 @@ Assigning `ans = cs` does not copy the list, but no more characters are appended
 - **Several characters share the winning frequency:** Each is appended once from `cnt.items()`, so the result contains distinct characters with no duplicates.
 - **Output order:** The method uses first-occurrence order within the winning list, but the contract accepts any order.
 - **Nonempty guarantee:** At least one group exists, so `ans` cannot remain empty for a valid input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

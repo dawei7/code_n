@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of the $$i^{\text{th}}$$ tree in the garden.
+You are given a 2D integer array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of the $i^{\text{th}}$ tree in the garden.
 
 The objective is to compute `[2.0, 2.0, 2.0]` from `{"trees": [[1, 1], [2, 2], [2, 0], [2, 4], [3, 3], [4, 2]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ If the divisor is within the tolerance of zero, the points are treated as collin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `contains` computes the Euclidean distance from a point to a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ When all loops finish, every shuffled point has been incorporated, so the return
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute force over determining sets:** Trying ev:** - **Brute force over determining sets:** Trying every pair and triple, constructing its circle, and checking all points is straightforward but can require $O(N^4)$ time.
+- **Brute force over determining sets:** Trying every pair and triple, constructing its circle, and checking all points is straightforward but can require $O(N^4)$ time.
 - **Welzl's recursive formulation:** The classic randomized minimum-enclosing-circle algorithm recursively tracks up to three boundary points and also has expected linear time. It is mathematically elegant but can create recursion-depth concerns in Python.
 - **Convex hull first:** Only hull vertices can determine the minimum enclosing circle. Building the hull can reduce the practical point set, but a separate minimum-circle algorithm is still needed and the hull costs $O(N\log N)$ time.
 - **One tree:** The initial circle is centered at that tree with radius zero, which is already optimal.
@@ -118,8 +118,8 @@ When all loops finish, every shuffled point has been incorporated, so the return
 - **Floating-point boundary tests:** `epsilon` avoids rejecting a mathematically enclosed point because of tiny roundoff. An excessively large tolerance could accept a meaningfully outside point, but `1e-10` is far below the allowed answer error.
 - **Fixed shuffle seed:** Results are repeatable, which helps debugging. It does not provide a formal worst-case linear guarantee against an input crafted for that deterministic permutation.
 - **Return format:** The exact method returns three floating-point values in the required order: center $x$, center $y$, then radius.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

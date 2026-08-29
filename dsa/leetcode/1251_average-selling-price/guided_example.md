@@ -65,9 +65,7 @@ Price periods for one product do not overlap. Therefore, one sale matches at mos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The join condition has two parts:
-
-- `p.product_id = u.produ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ If a product has several price periods and no sales, several null-extended rows 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated price lookup per sale:** Find the m:** - **Correlated price lookup per sale:** Find the matching price row for every sale, then aggregate. It can be clear but may execute repeated searches without good indexes.
+- **Correlated price lookup per sale:** Find the matching price row for every sale, then aggregate. It can be clear but may execute repeated searches without good indexes.
 - **Pre-aggregate sales by product, date, and units:** Useful when many identical sale rows exist operationally, but duplicates represent additional units and must be summed, not discarded.
 - **Use `AVG(price)`:** Incorrect because it weights price periods rather than units sold.
 - **Average row revenue:** Also incorrect; the denominator must be total units.
@@ -115,8 +113,8 @@ If a product has several price periods and no sales, several null-extended rows 
 - **Dialect-specific division:** Engines with integer division require a decimal cast before division.
 - **Rounding stage:** Round the final quotient, not individual contributions.
 - **Any output order:** No explicit sort is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

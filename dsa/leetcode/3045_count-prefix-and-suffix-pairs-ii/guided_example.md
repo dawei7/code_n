@@ -54,10 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-(s[0],s[L-1]),\;
-(s[1],s[L-2]),\;\ldots
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +89,7 @@ The source generates it with `zip(s, reversed(s))`. Each trie edge is labeled by
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair directly:** It can cost quadr:** - **Check every pair directly:** It can cost quadratic in word count times string length and is too slow for total length $5\cdot10^5$.
+- **Check every pair directly:** It can cost quadratic in word count times string length and is too slow for total length $5\cdot10^5$.
 - **Two separate tries:** Intersecting prefix and suffix candidates requires additional bookkeeping; paired edges enforce both conditions in one traversal.
 - **Rolling hashes of borders:** They can process lengths efficiently but introduce collision concerns unless verified.
 - **Empty words:** They are outside the contract; every word contributes at least one edge.
@@ -104,8 +101,8 @@ The source generates it with `zip(s, reversed(s))`. Each trie edge is labeled by
 - **Index ordering:** Insertion after querying ensures only $i<j$ pairs count and prevents self-pairing.
 - **Why depth equals earlier word length:** `zip(s,reversed(s))` yields exactly one pair per character, even after the front and back pointers cross. A terminal at depth $\ell$ therefore corresponds unambiguously to an earlier word of length $\ell$.
 - **Counter rather than Boolean terminal:** Multiple identical earlier words occupy the same path. Storing their count lets one traversal add every distinct index pair instead of losing duplicates behind one terminal marker.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

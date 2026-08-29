@@ -63,9 +63,7 @@ This recreates the central behavior of `Promise.allSettled`: one failure is data
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one input function, the source builds this chain:
-
-- ful... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ Array slots can temporarily be sparse while work remains. When every input has s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `Promise.allSettled`:** It provides t:** - **Built-in `Promise.allSettled`:** It provides the requested behavior directly, but the challenge asks for a manual implementation.
+- **Built-in `Promise.allSettled`:** It provides the requested behavior directly, but the challenge asks for a manual implementation.
 - **`Promise.all` without converting rejections:** It rejects as soon as one input rejects and loses the complete outcome report.
 - **Map every Promise to a never-rejecting outcome, then use `Promise.all`:** This is a concise manual design with the same `O(n)` behavior.
 - **Sequential `await` loop:** It preserves order but unnecessarily serializes independent work and makes elapsed time approach the sum of durations.
@@ -118,8 +116,8 @@ Array slots can temporarily be sparse while work remains. When every input has s
 - **Outcome value is undefined:** The fulfilled object still contains a `value` property with undefined.
 - **Rejection reason is falsy:** Catch receives it and records it without a truthiness test.
 - **Input function called once:** Each normal array index is invoked once during the initial synchronous loop.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

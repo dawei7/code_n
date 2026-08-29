@@ -51,7 +51,7 @@ The source passes the two tables as an ordered list:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source passes the two tables as an ordered list:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source passes the two tables as an ordered list:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Omit `axis=0`:** The source does so because ve:** - **Omit `axis=0`:** The source does so because vertical concatenation is pandas' default; writing it explicitly would be equivalent.
+- **Omit `axis=0`:** The source does so because vertical concatenation is pandas' default; writing it explicitly would be equivalent.
 - **Preserve old indexes:** Leaving `ignore_index=false` yields possibly duplicate source labels and does not match the continuous-index behavior of this solution.
 - **Horizontal concatenation:** `axis=1` places columns beside each other and solves a different reshape problem.
 - **One input empty:** The result contains the other input's rows with a fresh continuous index.
@@ -94,8 +94,8 @@ The source passes the two tables as an ordered list:
 - **Duplicate student identifiers:** They are retained because concatenation is not deduplication.
 - **Different column order:** pandas aligns by label; under the promised same schema, values still reach the correct columns.
 - **Unexpected extra column:** General concat forms a union and inserts missing values, but valid inputs avoid that schema mismatch.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

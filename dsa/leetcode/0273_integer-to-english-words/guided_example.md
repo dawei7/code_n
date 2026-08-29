@@ -69,7 +69,7 @@ For every positive input, at least one three-digit group is nonzero, so the main
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The ordinary group logic deliberately skips groups whose num... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ These lookup tables are preferable to trying to derive English spelling mechanic
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single fully recursive scale converter:** Recu:** - **Single fully recursive scale converter:** Recursively choose the largest applicable value among billion, million, thousand, hundred, tens, and ones. This can be elegant but mixes global scale selection with local three-digit spelling; base-1000 grouping makes the repetition explicit.
+- **Single fully recursive scale converter:** Recursively choose the largest applicable value among billion, million, thousand, hundred, tens, and ones. This can be elegant but mixes global scale selection with local three-digit spelling; base-1000 grouping makes the repetition explicit.
 - **Process groups from right to left:** Repeated `% 1000` and `// 1000` can extract units first, but each converted group must then be prepended or stored and reversed. The exact high-to-low divisor loop already produces final order.
 - **Large value-to-word table:** Greedily match pairs such as `(1000000000, "Billion")`, `(90, "Ninety")`, and `(1, "One")`. It works, but the group structure and special below-20 rule are easier to verify with dedicated tables.
 - **Zero:** It needs the explicit `"Zero"` branch because zero-valued groups are intentionally silent everywhere else.
@@ -121,8 +121,8 @@ These lookup tables are preferable to trying to derive English spelling mechanic
 - **Capitalization and punctuation:** Lookup entries are capitalized, words are separated by spaces, and the output uses neither commas nor hyphens nor the conjunction `and`, matching the expected format.
 - **Negative input outside the contract:** The method is designed only for non-negative integers. It has no `Negative` branch and callers must respect the stated range.
 - **Beyond billions outside the contract:** The fixed scale table ends at `Billion`. Supporting arbitrary-size integers would require extending scale names and adjusting the starting divisor rather than relying on this four-iteration loop.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

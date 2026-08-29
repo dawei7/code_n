@@ -76,9 +76,7 @@ For example, tuples `(objectA, 1)` and `(objectA, 2)` share the edge for `object
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `root` is a `Map` representing the empty argument prefix.
-
-F... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +117,7 @@ This design also distinguishes a tuple from its prefix. A result for one argumen
 
 ## 6. Traps This Instance Exposes
 
-- **- **`JSON.stringify(args)`:** Incorrect for unrest:** - **`JSON.stringify(args)`:** Incorrect for unrestricted objects because distinct references can serialize identically.
+- **`JSON.stringify(args)`:** Incorrect for unrestricted objects because distinct references can serialize identically.
 - **Linear list of prior tuples:** Preserves identity but may require $O(ua)$ comparisons per call.
 - **Weak-map hybrid:** Can allow object-key paths to be garbage-collected, but primitive keys still require ordinary maps and implementation becomes more complex.
 - **Same object reused:** It follows the same map edge and produces cache hits.
@@ -129,8 +127,8 @@ This design also distinguishes a tuple from its prefix. A result for one argumen
 - **Zero arguments:** The cached result is stored directly on the root.
 - **Falsy or undefined result:** Marker membership prevents recomputation.
 - **Receiver-dependent function:** `this` is forwarded for execution but not included in the cache key, consistent with the stated argument-only identity contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

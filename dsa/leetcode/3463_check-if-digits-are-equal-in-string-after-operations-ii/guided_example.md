@@ -36,7 +36,7 @@ We maintain the core conceptual parameters and state variables:
 
 ### Step 1: Core Step 1
 
-**The direct simulation hides a binomial-coefficient pattern.** Each operation replaces adjacent digits $a_i,a_{i+1}$ by $(a_i+a_{i+1})\bmod 10$. If the operation is repeated, the coefficients multiplying the original digits form Pascal's triangle. For example, two rounds transform four original digits into two values whose coefficient rows are $[1,2,1]$:
+**The direct simulation hides a binomial-coefficient pattern.** Each operation replaces adjacent digits $a_i,a_{i+1}$ by $(a_i+a_{i+1})\bmod 10$. If the operation is repeated, the coefficients multiplying the original digits form Pascal's triangle. For example, two rounds transform four original digits into two values whose coefficient rows are `[1,2,1]`:
 
 | Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
 |---|---|---|---|
@@ -51,7 +51,7 @@ For a string of length $n$, the code sets `steps = n - 2` because exactly that m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a string of length $n$, the code sets `steps = n - 2` be... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,18 +86,18 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal repeated simulation:** It is easy to u:** - **Literal repeated simulation:** It is easy to understand, but it performs $(n-1)+(n-2)+\cdots+2=O(n^2)$ digit updates and is too slow for $n=10^5$.
+- **Literal repeated simulation:** It is easy to understand, but it performs $(n-1)+(n-2)+\cdots+2=O(n^2)$ digit updates and is too slow for $n=10^5$.
 - **Build an entire Pascal row:** The coefficients can be generated as arbitrary-precision integers, but their values become enormous even though only residues modulo ten are needed.
 - **Use modular division in the usual combination recurrence:** Division modulo ten is unsafe because many denominators have no multiplicative inverse under the composite modulus.
 - **Compute modulo two and five separately:** This is valid because they are coprime; the source's parity choice is a compact Chinese Remainder reconstruction specialized to modulus ten.
 - **A zero base-five digit combination:** When `bottom > top`, Lucas's product is zero modulo five, so the early return is exact.
 - **Negative adjacent differences:** Python's modulo operator still produces a valid residue from zero through nine, so terms such as $3-9$ are handled correctly.
-- **Minimum length three:** `steps = 1`, the coefficient row is $[1,1]$, and the loop compares the two digits produced by the single required operation.
+- **Minimum length three:** `steps = 1`, the coefficient row is `[1,1]`, and the loop compares the two digits produced by the single required operation.
 - **Leading zeros:** Character-code subtraction interprets them as ordinary digit value zero; their positions and coefficients are preserved.
 - **All identical digits:** Equality is not assumed from the input; the same weighted-difference calculation runs and correctly yields zero.
 - **Modulo after every term:** Reducing the running difference does not discard useful information because only its final residue modulo ten determines equality.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ Frequencies are global and based on the original string. Removing one character 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(s)` builds a mapping from each distinct character t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Because the loop never reorders characters, the result is a stable subsequence o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a fixed 26-entry array:** Map each lowerca:** - **Use a fixed 26-entry array:** Map each lowercase letter to an index. This gives the same `O(n)` time with constant-sized count storage.
+- **Use a fixed 26-entry array:** Map each lowercase letter to an index. This gives the same `O(n)` time with constant-sized count storage.
 - **Call `s.count(c)` inside the filter:** Each count scans the string, producing `O(n^2)` time in the worst case.
 - **Filter during the first pass:** A later occurrence can change a character from qualifying to disqualified, so early output decisions are unsafe.
 - **Sort qualifying characters:** Sorting destroys the required original order.
@@ -115,8 +115,8 @@ Because the loop never reorders characters, the result is a stable subsequence o
 - **Repeated qualifying character:** Every copy is appended in its original position.
 - **Input preservation:** Strings are immutable, and the method creates new count and output structures.
 - **Missing import:** The stored source uses `Counter` without importing it. Standalone Python needs `from collections import Counter` unless the harness supplies it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

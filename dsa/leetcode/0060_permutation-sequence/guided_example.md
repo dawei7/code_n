@@ -57,7 +57,7 @@ The strict comparison matters. When `k == fact`, the requested permutation is th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This source does not change `k` to a zero-based index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The source recomputes this factorial at every position rather than carrying it f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Zero-based factorial digits:** Subtract one fr:** - **Zero-based factorial digits:** Subtract one from `k`, divide by the current factorial to select a remaining-list index, then use the remainder. This avoids repeated block subtraction but removing a list element still costs linear time.
+- **Zero-based factorial digits:** Subtract one from `k`, divide by the current factorial to select a remaining-list index, then use the remainder. This avoids repeated block subtraction but removing a list element still costs linear time.
 - **Carry the factorial forward:** Compute `(n-1)!` once and divide by the number of remaining positions after each choice. It removes the repeated factorial loop while keeping overall $O(n^2)$ list selection unless a stronger data structure is used.
 - **Generate permutations in order:** Stop at the $k$th leaf. This may take $\Theta(k n)$ work and is infeasible near $n!$.
 - **Order-statistics tree:** Select and delete the required unused digit in logarithmic time, reducing selection overhead at the cost of a complex data structure.
@@ -109,8 +109,8 @@ The source recomputes this factorial at every position rather than carrying it f
 - **`n = 1`:** `fact` remains $0! = 1$, digit 1 is selected, and `"1"` is returned.
 - **Factorial boundary:** The use of `k > fact` keeps `k == fact` in the current block.
 - **Input values:** `n` and `k` are integers passed by value; caller state is not mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

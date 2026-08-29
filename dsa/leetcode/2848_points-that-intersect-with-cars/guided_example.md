@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** 2D integer array `nums` representing the coordinates of the cars parking on a number line. For any index `i`, $\text{nums}[i] = [\text{start}_{i}, \text{end}_{i}]$ where $\text{start}_{i}$ is the starting point of the $$i^{\text{th}}$$ car and $\text{end}_{i}$ is the ending point of the $$i^{\text{th}}$$ car.
+You are given a **0-indexed** 2D integer array `nums` representing the coordinates of the cars parking on a number line. For any index `i`, $\text{nums}[i] = [\text{start}_{i}, \text{end}_{i}]$ where $\text{start}_{i}$ is the starting point of the $i^{\text{th}}$ car and $\text{end}_{i}$ is the ending point of the $i^{\text{th}}$ car.
 
 The objective is to compute `7` from `{"nums": [[3, 6], [1, 5], [4, 7]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The coordinate range is fixed at one through one hundred, so the exact solution 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The coordinate range is fixed at one through one hundred, so... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The coordinate range is fixed at one through one hundred, so the exact solution 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set of covered points:** Add every integer in :** - **Set of covered points:** Add every integer in each inclusive range. With endpoints at most 100 this is simple, but it performs work proportional to total interval lengths.
+- **Set of covered points:** Add every integer in each inclusive range. With endpoints at most 100 this is simple, but it performs work proportional to total interval lengths.
 - **Sort and merge intervals:** This handles huge coordinates in $O(n\log n)$ time and computes integer union lengths with inclusive endpoint adjustments.
 - **Boolean coverage array:** Mark every point in each interval. It is easy but uses one update per covered coordinate instead of two per interval.
 - **Single-point car:** When start equals end, the start update and removal at the next coordinate cover exactly one point.
@@ -97,8 +97,8 @@ The coordinate range is fixed at one through one hundred, so the exact solution 
 - **Endpoint one hundred:** Array index 101 safely receives the removal update.
 - **Inclusive semantics:** The `end + 1` boundary is essential.
 - **Fixed-domain assumption:** Constant space relies on the documented maximum coordinate of one hundred.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `team_from` is the team whose streak is being measured.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` plus cumulative breaks:** Compare rows a:** - **`LAG` plus cumulative breaks:** Compare rows and assign islands explicitly; the flag already makes cumulative failures sufficient.
+- **`LAG` plus cumulative breaks:** Compare rows and assign islands explicitly; the flag already makes cumulative failures sufficient.
 - **Procedural scan per team:** It works after sorting but is less natural in SQL.
 - **First successful streak:** It uses group zero.
 - **Interception:** It increments the group and is excluded from length.
@@ -102,8 +102,8 @@ We maintain the core conceptual parameters and state variables:
 - **Ordinal grouping:** `GROUP BY 1,2` depends on select-list order.
 - **Final ordering:** Only team name is returned as the sort key.
 - **Read-only behavior:** The CTE chain does not modify source tables.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

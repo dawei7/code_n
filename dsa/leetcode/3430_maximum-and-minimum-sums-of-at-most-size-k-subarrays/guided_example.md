@@ -51,7 +51,7 @@ Two monotonic deques compress extreme values for all such starting positions:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two monotonic deques compress extreme values for all such st... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all bounded subarrays:** There can b:** - **Enumerate all bounded subarrays:** There can be $O(nk)$ of them, and scanning each for extrema is even slower. Share groups aggregate their contributions.
+- **Enumerate all bounded subarrays:** There can be $O(nk)$ of them, and scanning each for extrema is even slower. Share groups aggregate their contributions.
 - **One monotonic deque per single window:** Standard sliding-window extrema find only the maximum or minimum of a fixed-length window, not the sum of extrema over every suffix ending at a point. Shares are the extra ingredient.
 - **Contribution boundaries per element:** Previous/next greater and smaller boundaries can also count bounded-length subarrays, but the at-most-$k$ cap makes the combinatorics more involved.
 - **\(k=1\):** Only singleton subarrays remain. Each element contributes itself as both maximum and minimum, so the result is twice the array sum.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Front share decrement:** Only one oldest start expires per new endpoint, so decrementing exactly one share is correct.
 - **Back-pop amortization:** A single new extreme may pop many entries, but each entry can be popped only once over the entire traversal.
 - **No modulo:** The task requests the exact integer sum. Python integers prevent overflow for the stated bounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

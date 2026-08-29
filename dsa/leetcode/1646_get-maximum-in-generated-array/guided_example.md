@@ -55,7 +55,7 @@ Increasing order guarantees every dependency already exists. For any `i >= 2`, h
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `n >= 2`, the source allocates `nums` with indices 0 thr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For $n=7$, this produces `[0,1,1,2,1,3,2,3]` in order.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track the maximum during construction:** Updat:** - **Track the maximum during construction:** Update a scalar after each assignment and return it, removing the final scan without changing asymptotic time.
+- **Track the maximum during construction:** Update a scalar after each assignment and return it, removing the final scan without changing asymptotic time.
 - **Recursive memoization:** It can compute required entries on demand, but maximum discovery still needs all indices and recursion adds overhead.
 - **Use `i // 2` instead of shifting:** It is equivalent for non-negative indices and may be more immediately readable.
 - **`n = 0`:** Return 0 without allocating or touching index 1.
@@ -112,8 +112,8 @@ For $n=7$, this produces `[0,1,1,2,1,3,2,3]` in order.
 - **Zero-initialized cells:** They are placeholders only until their loop iteration. All dependencies point backward to cells that have already received their defined value.
 - **Maximum may repeat:** `max` needs only the value, so it does not matter which index first attains it.
 - **No overflow concern in Python:** Generated values are ordinary arbitrary-precision integers, and the small $n$ constraint keeps them modest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

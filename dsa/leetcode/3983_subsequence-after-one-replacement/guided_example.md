@@ -59,7 +59,7 @@ If the path represented by `i1` already used a replacement, this is an ordinary 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current target character `t[j]`, if it matches the next ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ This transition is allowed regardless of whether `s[i0]` originally equals `t[j]
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every replacement:** For each source index:** - **Try every replacement:** For each source index and each of 26 letters, running a full subsequence check costs `O(26ST)` in the straightforward form. The two-progress scan considers all replacement moments together.
-- **- **Dynamic programming over both strings and repl:** - **Dynamic programming over both strings and replacement count:** A table can solve the problem in `O(ST)` time and space, but subsequence matching needs only the farthest prefix for each budget.
-- **- **Keep only `i1`:** This loses the less-advanced:** - **Keep only `i1`:** This loses the less-advanced exact route that still has its replacement available for a later mismatch.
+- **Try every replacement:** For each source index and each of 26 letters, running a full subsequence check costs `O(26ST)` in the straightforward form. The two-progress scan considers all replacement moments together.
+- **Dynamic programming over both strings and replacement count:** A table can solve the problem in `O(ST)` time and space, but subsequence matching needs only the farthest prefix for each budget.
+- **Keep only `i1`:** This loses the less-advanced exact route that still has its replacement available for a later mismatch.
 
 ---
 

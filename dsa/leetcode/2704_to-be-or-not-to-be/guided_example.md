@@ -61,9 +61,7 @@ There is no false return path: a failed assertion throws, while a successful ass
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition is `val !== expected`.
-
-If that inequality is ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ Together, the two methods are logical complements with different required failur
 
 ## 6. Traps This Instance Exposes
 
-- **- **Loose equality:** Incorrect because it coerces:** - **Loose equality:** Incorrect because it coerces types such as number 5 and string `"5"`.
+- **Loose equality:** Incorrect because it coerces types such as number 5 and string `"5"`.
 - **Deep equality:** Answers a different question for objects and arrays.
 - **Return false on failure:** Incorrect because the contract requires throwing.
 - **Throw a string:** Produces a different thrown type from the exact `Error` source.
@@ -114,8 +112,8 @@ Together, the two methods are logical complements with different required failur
 - **Null and undefined:** Are strictly unequal.
 - **Repeated method calls:** Use the same captured actual value and have no internal state changes.
 - **Exact messages:** `toBe` uses `Not Equal` and `notToBe` uses `Equal`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

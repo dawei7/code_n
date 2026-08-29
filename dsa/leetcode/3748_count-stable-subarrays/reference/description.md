@@ -6,7 +6,7 @@ A **subarray** of `nums` is called **stable** if it contains **no inversions**, 
 
 You are also given a **2D integer array** `queries` of length `q`, where each $\text{queries}[i] = [l_{i}, r_{i}]$ represents a query. For each query $[l_{i}, r_{i}]$, compute the number of **stable subarrays** that lie entirely within the segment $nums[l_{i}..r_{i}]$.
 
-Return an integer array `ans` of length `q`, where $\text{ans}[i]$ is the answer to the $$i^{\text{th}}$$ query.​​​​​​​​​​​​​​
+Return an integer array `ans` of length `q`, where $\text{ans}[i]$ is the answer to the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 
@@ -35,7 +35,7 @@ Return $q$ integers, one per query, giving the number of nonempty, non-decreasin
 
 - **Output:** [2,3,4]
 
-- **Explanation:** ​​​​​
+- **Explanation:** 
 
 - For $\text{queries}[0] = [0, 1]$, the subarray is `[nums[0], nums[1]] = [3, 1]`.
 

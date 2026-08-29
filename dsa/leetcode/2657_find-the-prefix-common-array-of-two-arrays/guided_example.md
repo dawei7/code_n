@@ -73,7 +73,7 @@ The count is measured after both current values are inserted, which matches pref
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `zip(A, B)` produces pairs `(A[i], B[i])` in increasing inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Thus the sum is the number of common distinct values.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Incremental frequency array:** Update a runnin:** - **Incremental frequency array:** Update a running common count only when a value has appeared in both prefixes, achieving $O(n)$ time.
+- **Incremental frequency array:** Update a running common count only when a value has appeared in both prefixes, achieving $O(n)$ time.
 - **Two prefix sets and intersection:** Rebuilding `setA & setB` each time is also potentially quadratic.
 - **Brute nested search:** Repeated membership scans can become cubic if implemented carelessly.
 - **Length one:** The same sole permutation value appears in both, so result is `[1]`.
@@ -130,8 +130,8 @@ Thus the sum is the number of common distinct values.
 - **Final prefix:** Both contain all values from one through $n$, so final answer is $n$.
 - **Permutation guarantee:** Counter frequencies never exceed one.
 - **Input preservation:** Both arrays are read only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

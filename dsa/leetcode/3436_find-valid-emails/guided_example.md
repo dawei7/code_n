@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `^[A-Za-z0-9_]+@[A-Za-z][A-Za-z0-9]*\\.com$`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The anchors `^` and `$` require the match to cover the complete email string. Wi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Unanchored regex:** It could accept a valid fr:** - **Unanchored regex:** It could accept a valid fragment inside an otherwise invalid email. Both `^` and `$` are essential.
+- **Unanchored regex:** It could accept a valid fragment inside an otherwise invalid email. Both `^` and `$` are essential.
 - **Unescaped dot:** Regex `.` matches any character, so `exampleXcom` could pass. The suffix dot must be literal.
 - **Empty local part:** The `+` quantifier rejects `@domain.com`.
 - **Empty domain:** The mandatory first letter rejects `user@.com`.
@@ -96,8 +96,8 @@ The anchors `^` and `$` require the match to cover the complete email string. Wi
 - **Domain beginning with a digit:** The first-domain-letter class rejects it even though later digits are accepted.
 - **Digits later in domain:** The exact query accepts them; this differs from the reference's “only letters” wording and should not be hidden.
 - **Ordering syntax:** `ORDER BY user_id ASC` would be clearer than positional `ORDER BY 1` but is equivalent here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

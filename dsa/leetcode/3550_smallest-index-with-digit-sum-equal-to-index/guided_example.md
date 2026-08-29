@@ -64,7 +64,7 @@ The assignment `x //= 10` changes only the loop’s local variable. It does not 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one value, the variable `s` starts at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ If `nums[i]` is `0`, the condition `while x` is false immediately. Therefore `s`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Limit the scan to the first 28 indices:** Beca:** - **Limit the scan to the first 28 indices:** Because `nums[i] \le 1000` implies a maximum digit sum of `27`, checking indices `0` through `27` is sufficient. This realizes the manifest summary and is constant with respect to `n` under these exact constraints, but it is not what the current source implements and would need revision if the value bound changed.
+- **Limit the scan to the first 28 indices:** Because `nums[i] \le 1000` implies a maximum digit sum of `27`, checking indices `0` through `27` is sufficient. This realizes the manifest summary and is constant with respect to `n` under these exact constraints, but it is not what the current source implements and would need revision if the value bound changed.
 - **Convert each number to a string:** One can compute `sum(int(ch) for ch in str(x))`. This is concise and has the same digit-count time complexity, but it creates a temporary string and performs character conversions, whereas arithmetic extraction keeps auxiliary numeric state only.
 - **Precompute digit sums:** A table for every value from `0` through `1000` could answer each digit-sum query in constant time. Its setup and storage are unnecessary for a single array, although it can help if many independent arrays reuse the same small value domain.
 - **Index zero:** A match at index `0` is possible only when the value’s digit sum is zero. Under the nonnegative constraints, that means `nums[0]` must be `0`. The source handles this naturally.
@@ -108,8 +108,8 @@ If `nums[i]` is `0`, the condition `while x` is false immediately. Therefore `s`
 - **Values containing zero digits:** Numbers such as `10`, `100`, and `1000` are handled correctly because `x % 10` extracts those zeros even though adding zero leaves `s` unchanged.
 - **Input mutation:** Repeatedly dividing the local variable `x` does not alter `nums[i]`, so callers observe the original array after the method returns.
 - **Negative integers:** The reference constraints exclude them. Python’s modulo and floor-division behavior for negative values would make this loop unsuitable without first taking an absolute value, so the proof relies on `nums[i] \ge 0`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

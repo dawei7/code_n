@@ -62,7 +62,7 @@ The separator argument `','` requests commas with no added spaces. A group conta
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Both aggregate expressions operate on the same date group an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ Therefore, the stored query reliably produces the correct groups, distinct count
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordered string aggregation:** Put `ORDER BY pr:** - **Ordered string aggregation:** Put `ORDER BY product` inside the string aggregate. This is the direct repair because it preserves the one-pass grouped structure while making the required lexicographic order explicit and deterministic.
+- **Ordered string aggregation:** Put `ORDER BY product` inside the string aggregate. This is the direct repair because it preserves the one-pass grouped structure while making the required lexicographic order explicit and deterministic.
 - **Deduplicating subquery:** First select distinct `sell_date` and `product` pairs, then group that smaller relation. This makes the logical stages very visible, although the database may already perform equivalent work for the two distinct aggregates.
 - **Window functions:** Windowed counts can annotate rows, but an additional distinct-and-collapse stage is still needed to return one row per date. They add complexity without improving this grouped result.
 - **Application-side grouping:** Fetching all rows and grouping them in application code can implement the rules, but it moves data unnecessarily and gives up the database engine's aggregation strengths.
@@ -109,8 +109,8 @@ Therefore, the stored query reliably produces the correct groups, distinct count
 - **Lexicographic case behavior:** The exact ordering of uppercase, lowercase, and accented text depends on the database collation. An internal `ORDER BY product` follows that configured collation unless a specific collation is requested.
 - **Null products:** The reference describes product names as sale data but does not state null behavior. Standard count and string aggregates commonly ignore nulls; if nulls were permitted and needed special treatment, the contract would have to specify it.
 - **Outer versus inner order:** `ORDER BY sell_date` sorts rows only. It never guarantees the ordering of product names within an aggregated string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

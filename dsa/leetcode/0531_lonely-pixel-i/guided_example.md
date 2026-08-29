@@ -53,8 +53,7 @@ A black pixel at coordinate `(i, j)` is lonely only when three conditions all ho
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the cell itself is `"B"`;
-- row `i` contains exactly one b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ The solution separates counting from classification. The first pass learns every
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan a row and column for every black pixel:**:** - **Scan a row and column for every black pixel:** It uses constant extra storage but can take $O(RC(R+C))$ time in a dense picture.
+- **Scan a row and column for every black pixel:** It uses constant extra storage but can take $O(RC(R+C))$ time in a dense picture.
 - **Store black coordinates:** Counting only recorded coordinates can avoid a second full matrix scan, but the coordinate list may use $O(RC)$ space.
 - **Modify the first row and column as counters:** It can reduce auxiliary space to $O(1)$ but complicates boundary handling and mutates the input.
 - **Single black pixel:** Its row and column counts are both one, so the result is one.
@@ -101,8 +100,8 @@ The solution separates counting from classification. The first pass learns every
 - **Two black pixels in one column:** Both fail the column-count condition.
 - **Several isolated diagonal pixels:** Each may be counted because loneliness is based on shared rows and columns, not diagonal adjacency.
 - **Rectangular shape:** Separate row and column array lengths support non-square pictures directly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

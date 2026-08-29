@@ -51,7 +51,7 @@ Aliases `t1` and `t2` both refer to `EmployeeShifts`. The first join condition,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Aliases `t1` and `t2` both refer to `EmployeeShifts`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ prevents shifts from different employees from being compared. Overlap counts are
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sweep line by employee:** Sort start and end e:** - **Sweep line by employee:** Sort start and end events, count active earlier shifts at each start, and sum those active counts. This achieves $O(m\log m)$ time and matches the manifest summary, but it is not the exact SQL shown.
+- **Sweep line by employee:** Sort start and end events, count active earlier shifts at each start, and sum those active counts. This achieves $O(m\log m)$ time and matches the manifest summary, but it is not the exact SQL shown.
 - **Window plus event expansion:** SQL can union start and end events and use window sums, with careful tie ordering so ends at a start time are processed first for strict overlap.
 - **Correlated subquery:** Counting later starts inside each shift gives similar pair logic but may be less transparent and still quadratic without strong indexing.
 - **Touching shifts:** `end_time = start_time` is excluded by strict `>`.
@@ -97,8 +97,8 @@ prevents shifts from different employees from being compared. Overlap counts are
 - **Equal starts:** The unique key rules them out for one employee; otherwise strict start ordering would fail to count such overlapping pairs.
 - **Different employees:** They never join even when their times coincide.
 - **Overnight shifts:** A time-only interval with end earlier than start is not handled as crossing midnight. The intended data must describe shifts within one date consistently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

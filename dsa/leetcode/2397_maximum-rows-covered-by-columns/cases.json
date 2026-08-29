@@ -230,7 +230,7 @@
         ],
         "numSelect": 2
       },
-      "expected": 3,
+      "expected": 2,
       "tags": [
         "competing"
       ]

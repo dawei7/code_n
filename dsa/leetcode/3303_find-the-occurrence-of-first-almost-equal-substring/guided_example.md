@@ -51,7 +51,7 @@ If a candidate differs from `pattern` at one position $q$, then its first $q$ ch
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a candidate differs from `pattern` at one position $q$, t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every candidate directly:** It uses $O:** - **Compare every candidate directly:** It uses $O(1)$ auxiliary space but can cost $O(nm)$ on repetitive strings where comparisons run nearly to the end at many starts.
+- **Compare every candidate directly:** It uses $O(1)$ auxiliary space but can cost $O(nm)$ on repetitive strings where comparisons run nearly to the end at many starts.
 - **Rolling hash plus longest-common-prefix searches:** Hashes can locate the first mismatch and verify the suffix in roughly $O(n\log m)$ time, but ordinary modular hashing introduces collision risk.
 - **Extended KMP or prefix-function methods:** Other linear string-matching preprocessors can derive comparable left/right match lengths. The Z representation is especially direct for prefix-length queries.
 - **More than one mismatch:** The earliest and latest mismatches force the prefix/suffix sum below $m-1$, so the candidate is rejected.
@@ -101,8 +101,8 @@ $$
 - **Z-array first entry:** `values[0]` remains zero by convention. The algorithm never needs it for a candidate because all queried positions lie after the separator.
 - **Follow-up with $k$ consecutive changes:** The one-gap prefix/suffix condition would become a bound on the unmatched middle block's length; additional care is needed because the changes must be consecutive.
 - **First occurrence requirement:** Candidate starts are inspected in increasing order and the method returns immediately, which is what turns validity testing into the minimum-index answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

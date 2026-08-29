@@ -72,7 +72,7 @@ Python integers grow automatically, so intermediate products do not overflow. Wi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each mask, `x = y = 1` uses one as the multiplicative id... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The manifest summary’s claim that the method “checks the mandatory total pro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Total-product precheck:** Compute the product :** - **Total-product precheck:** Compute the product once and immediately return false unless it equals `target^2`. This is a sound and cheap rejection that the current source does not use.
+- **Total-product precheck:** Compute the product once and immediately return false unless it equals `target^2`. This is a sound and cheap rejection that the current source does not use.
 - **Search for one target-product subset:** After confirming the total product, finding one non-empty proper subset with product `target` is sufficient because its complement must also have product `target`.
 - **Divisibility-pruned DFS:** During include/exclude recursion, reject a partial product that exceeds `target` or does not divide it. Positive inputs make this effective, but it is absent from the current bitmask loop.
 - **Meet in the middle:** Split the array, enumerate products on each half, and match compatible values. This is useful for larger `n` but unnecessary at 12.
@@ -128,8 +128,8 @@ The manifest summary’s claim that the method “checks the mandatory total pro
 - **Large products:** Python avoids overflow, whereas fixed-width languages may need guarded multiplication or divisibility-based pruning.
 - **Early success:** The first valid mask is enough; the method need not construct or return the actual subsets.
 - **No valid partition:** Exhausting every mask is a complete proof of false because every element assignment was represented.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

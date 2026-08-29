@@ -551,7 +551,7 @@ Now, we will examine the `haystack `characters using $\text{haystack}_{pointer}$
 
 - if the very first character of `needle` (which means $\text{needle}_{pointer} = 0$) doesn't match, we increment $\text{haystack}_{pointer}$ by 1 to check the new character. In this case, $\text{needle}_{pointer}$ remains 0.
 - if there is some partial matching, we can say that $\text{needle}_{pointer} > 0$.
-- Now, lets say the first $\text{needle}_{pointer} - 1$ characters match and $\text{needle}_{pointer}$$^{th}$ character doesn't match. Then we need to check the length of the longest border corresponding to $\text{needle}_{pointer} - 1$.
+- Now, lets say the first $\text{needle}_{pointer} - 1$ characters match and $\text{needle}_{pointer}$^{th}$ character doesn't match. Then we need to check the length of the longest border corresponding to $\text{needle}_{pointer} - 1$.
 
 - This length tells that the last $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{needle}_{substring}$ are the same as the first $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{needle}_{substring}$
 
@@ -559,7 +559,7 @@ Now, we will examine the `haystack `characters using $\text{haystack}_{pointer}$
 - If the last $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{needle}_{substring}$ match with the same number of the last character of $\text{haystack}_{window}$, then we can say that the first $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{needle}_{substring}$ match with the same character of $\text{haystack}_{window}$.
 
        _[Note that all of $\text{needle}_{substring}$ match with the same number of last characters of $\text{haystack}_{window}$, but $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters are special because we can say that first $\text{longest}_{border}[\text{needle}_{pointer}-1]$ (along with last) also matches with the last $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{haystack}_{window}$]_
-- Now, a mismatch occurs at the $\text{needle}_{pointer}$$^{th}$ character. Since first $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{needle}_{substring}$ matches with last $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{haystack}_{window}$, we can compare this mismatched-character of $\text{haystack}_{window}$ with $\text{longest}_{border}[\text{needle}_{pointer}-1]$$^{th}$ character of $\text{needle}_{substring}$.
+- Now, a mismatch occurs at the $\text{needle}_{pointer}$^{th}$ character. Since first $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{needle}_{substring}$ matches with last $\text{longest}_{border}[\text{needle}_{pointer}-1]$ characters of $\text{haystack}_{window}$, we can compare this mismatched-character of $\text{haystack}_{window}$ with $\text{longest}_{border}[\text{needle}_{pointer}-1]$^{th}$ character of $\text{needle}_{substring}$.
 
         _[If the first 2 characters match, we have to check $3^{rd}$ character of $\text{needle}_{substring}$, which is at index 2]_
 - Thus, in partial matching

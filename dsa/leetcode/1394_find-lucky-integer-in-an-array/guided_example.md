@@ -61,7 +61,7 @@ This distinction is important. A value 2 appearing three times has pair `(2,3)` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt.items()` produces pairs `(x, v)`, where `x` is the arra... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `[2,2,3,4]`, pairs include `(2,2)`, `(3,1)`, and `(4,1)`. Only 2 is yielded 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed frequency array:** Values lie between on:** - **Fixed frequency array:** Values lie between one and 500, so an array of 501 counts gives $O(n+500)$ time and constant domain-bounded space.
+- **Fixed frequency array:** Values lie between one and 500, so an array of 501 counts gives $O(n+500)$ time and constant domain-bounded space.
 - **Sort and scan runs:** Sorting groups equal values, then run lengths can be compared with values. It costs $O(n\log n)$ time and may mutate the input.
 - **Repeated `arr.count`:** Count every candidate by rescanning the array. It is simple but can cost $O(n^2)$.
 - **Scan possible values downward:** With a frequency array, check 500 down to one and return the first equality. This makes largest selection explicit.
@@ -113,8 +113,8 @@ For `[2,2,3,4]`, pairs include `(2,2)`, `(3,1)`, and `(4,1)`. Only 2 is yielded 
 - **Input order:** It has no effect on frequencies or the maximum.
 - **Input mutation:** `Counter` only reads `arr`.
 - **Required import:** `Counter` must be available, normally from `collections`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -75,11 +75,7 @@ The two tests are independent rather than an `if/elif` pair. A middle word may d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If:
-
-`words[i] != words[-1]`
-
-then indices `i` and $n-1$ for... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +132,7 @@ Thus every valid pair is dominated by an unequal boundary pair that the loop che
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair:** The straightforward doub:** - **Compare every pair:** The straightforward double loop costs $O(n^2L)$ time. Boundary dominance reduces this to one scan.
+- **Compare every pair:** The straightforward double loop costs $O(n^2L)$ time. Boundary dominance reduces this to one scan.
 - **Scan outward from both ends:** One can find the farthest word unequal to each endpoint separately. The exact source combines both searches into one loop.
 - **Compare only the first endpoint:** This fails when the best pair uses a word equal to the first endpoint but unequal to the last, as can happen when the endpoint words differ.
 - **First and last words differ:** Distance $n$ is immediately attainable and is the absolute maximum.
@@ -146,8 +142,8 @@ Thus every valid pair is dominated by an unequal boundary pair that the loop che
 - **Repeated words:** Equality is based on complete string content, not object identity or frequency.
 - **Inclusive distance:** Pair $(i,j)$ contributes $j-i+1$. Omitting the added one would undercount every valid answer.
 - **A middle word differs from both boundaries:** Both candidates are evaluated because the source uses two separate `if` statements.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have `n` tasks and `m` workers. Each task has a strength requirement stored in a **0-indexed** integer array `tasks`, with the $$i^{\text{th}}$$ task requiring $\text{tasks}[i]$ strength to complete. The strength of each worker is stored in a **0-indexed** integer array `workers`, with the $$j^{\text{th}}$$ worker having $\text{workers}[j]$ strength. Each worker can only be assigned to a **single** task and must have a strength **greater than or equal** to the task's strength requirement (i.e., $\text{workers}[j] \ge \text{tasks}[i]$).
+You have `n` tasks and `m` workers. Each task has a strength requirement stored in a **0-indexed** integer array `tasks`, with the $i^{\text{th}}$ task requiring $\text{tasks}[i]$ strength to complete. The strength of each worker is stored in a **0-indexed** integer array `workers`, with the $j^{\text{th}}$ worker having $\text{workers}[j]$ strength. Each worker can only be assigned to a **single** task and must have a strength **greater than or equal** to the task's strength requirement (i.e., $\text{workers}[j] \ge \text{tasks}[i]$).
 
 The objective is to compute `3` from `{"tasks": [3, 2, 1], "workers": [0, 3, 3], "pills": 1, "strength": 1}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ The check must decide whether these two selected groups can be paired using at m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To test `x`, it is sufficient and optimal to use `tasks[0:x]... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Tasks too hard even with a pill stay outside until a stronger worker is processe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted multiset check:** Process hardest tasks:** - **Sorted multiset check:** Process hardest tasks and remove chosen workers in $O(\log R)$ each, yielding an extra logarithmic factor.
+- **Sorted multiset check:** Process hardest tasks and remove chosen workers in $O(\log R)$ each, yielding an extra logarithmic factor.
 - **Try every task count linearly:** Repeats feasibility work and loses monotonic binary search.
 - **Zero pills:** Every assigned worker must meet its task directly.
 - **Zero strength:** Pills provide no benefit, though the check can still spend them harmlessly only when equality permits.
@@ -112,8 +112,8 @@ Tasks too hard even with a pill stay outside until a stronger worker is processe
 - **Zero tasks feasible:** Provides the binary-search base.
 - **Strongest workers:** Testing any weaker group cannot improve feasibility.
 - **Input mutation:** Both arrays are sorted in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

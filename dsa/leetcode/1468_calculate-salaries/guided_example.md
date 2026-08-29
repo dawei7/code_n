@@ -51,7 +51,7 @@ The derived table `t` groups `Salaries` by company and computes `MAX(salary) AS 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The derived table `t` groups `Salaries` by company and compu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The derived table `t` groups `Salaries` by company and computes `MAX(salary) AS 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window-function maximum:** `MAX(salary) OVER (:** - **Window-function maximum:** `MAX(salary) OVER (PARTITION BY company_id)` can attach the company maximum without an explicit derived-table join. It expresses the same logic compactly where supported.
+- **Window-function maximum:** `MAX(salary) OVER (PARTITION BY company_id)` can attach the company maximum without an explicit derived-table join. It expresses the same logic compactly where supported.
 - **Correlated subquery:** Compute the maximum separately for each employee row. It is readable but may repeat work unless the optimizer decorrelates it.
 - **Tax each employee independently:** This is incorrect because the company's highest salary determines the rate for every employee.
 - **Maximum below 1000:** Salaries remain unchanged before rounding.
@@ -100,8 +100,8 @@ The derived table `t` groups `Salaries` by company and computes `MAX(salary) AS 
 - **Output alias:** `AS salary` gives the calculated value the same required column name as the original.
 - **Decimal arithmetic:** The decimal literals `0.76` and `0.51` express retained percentages directly; database numeric rules determine intermediate precision before rounding.
 - **Empty table:** The derived table and final result are both empty, with no invented employees.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

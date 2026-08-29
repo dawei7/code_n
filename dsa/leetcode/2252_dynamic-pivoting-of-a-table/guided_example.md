@@ -59,7 +59,7 @@ Within all rows for one product, the `CASE` returns that product's price on the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For store name `S`, the generated fragment has the logical f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The resulting comma-separated expression list is assigned to session variable `@
 
 ## 6. Traps This Instance Exposes
 
-- **- **Static conditional aggregation:** It works onl:** - **Static conditional aggregation:** It works only when store names are known ahead of time; this problem changes them by test case.
+- **Static conditional aggregation:** It works only when store names are known ahead of time; this problem changes them by test case.
 - **Return rows without pivoting:** That preserves the source shape and fails the required one-column-per-store output.
 - **Self-join once per known store:** It is also static and becomes unwieldy as store sets change.
 - **Missing product-store pair:** All case values are null, so the pivot cell is null.
@@ -110,8 +110,8 @@ The resulting comma-separated expression list is assigned to session variable `@
 - **Prepared-resource cleanup:** `DEALLOCATE PREPARE` releases the statement after execution.
 - **Any row order:** No final `ORDER BY product_id` is necessary.
 - **Null behavior:** `MAX` ignores nulls but returns null when all values in the group are null.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

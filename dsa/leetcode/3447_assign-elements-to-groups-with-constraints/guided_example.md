@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `groups`, where $\text{groups}[i]$ represents the size of the $$i^{\text{th}}$$ group. You are also given an integer array `elements`.
+You are given an integer array `groups`, where $\text{groups}[i]$ represents the size of the $i^{\text{th}}$ group. You are also given an integer array `elements`.
 
 The objective is to compute `[0, 0, -1, 1, 0]` from `{"groups": [8, 4, 3, 2, 4], "elements": [4, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Instead, process element indices in increasing order and mark every group value 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Instead, process element indices in increasing order and mar... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let `mx = max(groups)`. The array `d` has indices $0$ through `mx`, and `d[y]` w
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan elements for every group:** It preserves :** - **Scan elements for every group:** It preserves smallest-index order naturally but costs $O(GE)$ in the worst case.
+- **Scan elements for every group:** It preserves smallest-index order naturally but costs $O(GE)$ in the worst case.
 - **Factor every group value:** Enumerate divisors of each group and look up their earliest element indices. This can be competitive but requires divisor work per distinct group.
 - **Overwrite existing slots:** That would replace a smaller valid index with a later one and violate the tie rule.
 - **Duplicate element values:** Only the first occurrence matters; later copies can never be selected over it.
@@ -96,8 +96,8 @@ Let `mx = max(groups)`. The array `d` has indices $0$ through `mx`, and `d[y]` w
 - **Repeated group values:** Table lookup returns the same correct element index for each occurrence.
 - **No divisor:** The initialized `-1` survives and becomes the required result.
 - **Positive-values guarantee:** The multiples sieve relies on `x >= 1`; zero would make the step invalid and has no defined divisibility role here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

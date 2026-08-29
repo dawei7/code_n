@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` kids with candies. You are given an integer array `candies`, where each $\text{candies}[i]$ represents the number of candies the $$i^{\text{th}}$$ kid has, and an integer `extraCandies`, denoting the number of extra candies that you have.
+There are `n` kids with candies. You are given an integer array `candies`, where each $\text{candies}[i]$ represents the number of candies the $i^{\text{th}}$ kid has, and an integer `extraCandies`, denoting the number of extra candies that you have.
 
 The objective is to compute `[true, true, true, false, true]` from `{"candies": [2, 3, 5, 1, 3], "extraCandies": 3}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ Each Boolean is independent. The extras are not distributed cumulatively across 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Only child `i` receives extra candies in the scenario used f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ That is why the code uses `>=` rather than `>`. A child with 2 candies and 3 ext
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested comparison against every child:** It di:** - **Nested comparison against every child:** It directly checks each hypothetical scenario but takes $O(n^2)$ time.
+- **Nested comparison against every child:** It directly checks each hypothetical scenario but takes $O(n^2)$ time.
 - **Sort the candy counts:** The final sorted value gives the maximum, but sorting costs $O(n\log n)$ and can disturb index correspondence if used carelessly.
 - **Use threshold `mx - extraCandies`:** Compare each original count with this value. It is algebraically equivalent and also linear.
 - **Several original maxima:** Each already-maximal child returns true, and other children may also reach the same threshold.
@@ -114,8 +114,8 @@ That is why the code uses `>=` rather than `>`. A child with 2 candies and 3 ext
 - **Large extras:** If even the smallest count plus extras reaches `mx`, every output becomes true.
 - **Independent scenarios:** Extras are hypothetically reusable for each child; results do not model a single allocation across the group.
 - **Nonempty input:** The constraints guarantee at least two children, so `max` is always defined.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

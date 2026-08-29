@@ -4,11 +4,11 @@ You have a data structure of employee information, including the employee's uniq
 
 You are given an array of employees `employees` where:
 
-- $\text{employees}[i].id$ is the ID of the $$i^{\text{th}}$$ employee.
+- $\text{employees}[i].id$ is the ID of the $i^{\text{th}}$ employee.
 
-- $\text{employees}[i].importance$ is the importance value of the $$i^{\text{th}}$$ employee.
+- $\text{employees}[i].importance$ is the importance value of the $i^{\text{th}}$ employee.
 
-- $\text{employees}[i].subordinates$ is a list of the IDs of the direct subordinates of the $$i^{\text{th}}$$ employee.
+- $\text{employees}[i].subordinates$ is a list of the IDs of the direct subordinates of the $i^{\text{th}}$ employee.
 
 Given an integer `id` that represents an employee's ID, return *the **total** importance value of this employee and all their direct and indirect subordinates*.
 

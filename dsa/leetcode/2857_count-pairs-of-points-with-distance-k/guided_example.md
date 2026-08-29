@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **2D** integer array `coordinates` and an integer `k`, where $\text{coordinates}[i] = [x_{i}, y_{i}]$ are the coordinates of the $$i^{\text{th}}$$ point in a 2D plane.
+You are given a **2D** integer array `coordinates` and an integer `k`, where $\text{coordinates}[i] = [x_{i}, y_{i}]$ are the coordinates of the $i^{\text{th}}$ point in a 2D plane.
 
 The objective is to compute `2` from `{"coordinates": [[1, 2], [4, 2], [1, 3], [5, 2]], "k": 5}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-a=x_1\mathbin{\mathrm{XOR}}x_2
-\quad\text{and}\quad
-b=y_1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,15 +90,15 @@ Both quantities are non-negative integers, and the required distance condition i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force pairs:** Test all $\binom n2$ pair:** - **Brute-force pairs:** Test all $\binom n2$ pairs directly in $O(n^2)$ time and $O(1)$ extra space. It is simple but far too slow for `50000` points.
+- **Brute-force pairs:** Test all $\binom n2$ pairs directly in $O(n^2)$ time and $O(1)$ extra space. It is simple but far too slow for `50000` points.
 - **Why not enumerate coordinate bits:** The small quantity is `k`, not the coordinate range. Splitting `k` into $a+b$ gives only at most `101` cases even though coordinates reach $10^6$.
 - **Duplicate coordinates:** The counter stores multiplicity, so separate earlier indices at the same coordinate are all counted. This is essential for `k = 0`.
 - **Zero target distance:** Only identical points qualify, and the single split `(0, 0)` handles the case without special branching.
 - **Repeated candidate concern:** XOR is bijective when one operand is fixed, so distinct `a` values yield distinct required `x1` values and cannot double-count one earlier point.
 - **Ordering requirement:** Inserting the current point after querying is crucial. Inserting first would incorrectly permit pairing a point with itself when `k = 0`.
 - **Large answer:** Use a wide integer type outside Python because the count of pairs can be about $1.25\times10^9$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

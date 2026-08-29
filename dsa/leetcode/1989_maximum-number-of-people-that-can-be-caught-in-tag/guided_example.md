@@ -60,7 +60,7 @@ Previously caught zeroes are also absent because the code increments `j` immedia
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before matching an "it" position `i`, the while loop advance... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ If the zero is too far right, the current "it" person cannot catch it, but a lat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect zero and one positions first:** Two-po:** - **Collect zero and one positions first:** Two-pointer matching on those arrays is equally linear but uses $O(N)$ extra space.
+- **Collect zero and one positions first:** Two-pointer matching on those arrays is equally linear but uses $O(N)$ extra space.
 - **Bipartite matching algorithm:** General-purpose and correct, but far heavier than necessary for interval-ordered neighbors.
 - **For each "it," search from scratch:** Can revisit positions and degrade to $O(N^2)$.
 - **Match a later zero before an earlier feasible zero:** May strand the earlier zero; the exchange proof supports earliest-first matching.
@@ -112,8 +112,8 @@ If the zero is too far right, the current "it" person cannot catch it, but a lat
 - **Alternating teams:** The greedy scan consumes nearby zeroes in order.
 - **One-to-one rule:** Incrementing `j` after success prevents double-catching.
 - **Input preservation:** The algorithm reads `team` and does not mark caught people in it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

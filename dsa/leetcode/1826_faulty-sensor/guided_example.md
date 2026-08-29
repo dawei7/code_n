@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-An experiment is being conducted in a lab. To ensure accuracy, there are** two **sensors collecting data simultaneously. You are given two arrays `sensor1` and `sensor2`, where $\text{sensor1}[i]$ and $\text{sensor2}[i]$ are the $$i^{\text{th}}$$ data points collected by the two sensors.
+An experiment is being conducted in a lab. To ensure accuracy, there are** two **sensors collecting data simultaneously. You are given two arrays `sensor1` and `sensor2`, where $\text{sensor1}[i]$ and $\text{sensor2}[i]$ are the $i^{\text{th}}$ data points collected by the two sensors.
 
 The objective is to compute `1` from `{"sensor1": [2, 3, 4, 5], "sensor2": [2, 1, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ for every position `t` before the final random slot. Conversely, if sensor 2 is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | for every position `t` before the final random slot.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build both reconstructed candidates:** One cou:** - **Build both reconstructed candidates:** One could delete a candidate position from each presumed correct array and compare resulting sequences, but trying positions directly can take `O(n^2)` time and allocates unnecessary arrays.
+- **Build both reconstructed candidates:** One could delete a candidate position from each presumed correct array and compare resulting sequences, but trying positions directly can take `O(n^2)` time and allocates unnecessary arrays.
 - **Run two separate full hypothesis checks:** Independently validating “sensor 1 faulty” and “sensor 2 faulty” is still `O(n)` and can be clear, but the paired loop shares the common scan and returns as soon as one direction fails.
 - **Mismatch only at the last index:** The replacement value is unconstrained except that it differs from the dropped value, so the defective sensor cannot be identified and the answer is `-1`.
 - **Completely equal arrays:** There may be no defect, or duplicate readings may hide a possible drop; there is no unique defective sensor, so the answer is `-1`.
@@ -97,8 +97,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Random final value:** The algorithm intentionally never compares it as though it had to continue the shift; doing so would reject valid defective readings.
 - **Return-number interpretation:** Failure of `sensor1[i + 1] == sensor2[i]` disproves sensor 2 and returns one; failure of `sensor1[i] == sensor2[i + 1]` disproves sensor 1 and returns two.
 - **Model guarantee:** The early-return order relies on the stated setting that at most one sensor is defective. Arbitrary unrelated arrays could violate both hypotheses, but such data is outside the promised experiment model.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

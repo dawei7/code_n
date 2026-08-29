@@ -59,7 +59,7 @@ Shared keyword prefixes share trie paths. For example, `"ab"` and `"abc"` reuse 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each trie node has child slots indexed by character code and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ Continuing after an ending node is important because a longer keyword may share 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean coverage array:** Mark every character:** - **Boolean coverage array:** Mark every character covered by any direct keyword search, then emit tags at true-run boundaries. This is simple but may repeat substring searches.
-- **- **Aho-Corasick automaton:** Finds all keyword oc:** - **Aho-Corasick automaton:** Finds all keyword occurrences in linear text-plus-match time, but its failure links are unnecessary for the small limits.
-- **- **Do not merge adjacent ranges:** That produces :** - **Do not merge adjacent ranges:** That produces extra tags and violates the minimum-tag requirement.
+- **Boolean coverage array:** Mark every character covered by any direct keyword search, then emit tags at true-run boundaries. This is simple but may repeat substring searches.
+- **Aho-Corasick automaton:** Finds all keyword occurrences in linear text-plus-match time, but its failure links are unnecessary for the small limits.
+- **Do not merge adjacent ranges:** That produces extra tags and violates the minimum-tag requirement.
 
 ---
 

@@ -6,7 +6,7 @@ There are `n` stones arranged in a row. On each player's turn, they can **remove
 
 Bob found that he will always lose this game (poor Bob, he always loses), so he decided to **minimize the score's difference**. Alice's goal is to **maximize the difference** in the score.
 
-Given an array of integers `stones` where $\text{stones}[i]$ represents the value of the $$i^{\text{th}}$$ stone **from the left**, return *the **difference** in Alice and Bob's score if they both play **optimally**.*
+Given an array of integers `stones` where $\text{stones}[i]$ represents the value of the $i^{\text{th}}$ stone **from the left**, return *the **difference** in Alice and Bob's score if they both play **optimally**.*
 
 ### 2. Function Contract
 

@@ -59,7 +59,7 @@ When a loop iteration selects index `j`, the child is `dfs(j + 1, s - candidates
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The shared list `t` is the partial combination selected on t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This same-depth principle generalizes to any group of duplicates. The first occu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency-compressed search:** Convert each di:** - **Frequency-compressed search:** Convert each distinct value to `(value, count)` and choose that value zero through `count` times. This removes duplicate-index branches explicitly, but adds a second loop over multiplicities and a different state representation.
+- **Frequency-compressed search:** Convert each distinct value to `(value, count)` and choose that value zero through `count` times. This removes duplicate-index branches explicitly, but adds a second loop over multiplicities and a different state representation.
 - **Set-based result deduplication:** Explore all index subsets and insert sorted tuples into a set. It is easier to get working initially, but wastes time generating duplicate value combinations and uses extra hashing memory.
 - **Binary include/exclude recursion:** Decide whether to take each position. To remain duplicate-free, the exclude branch must skip the entire run of equal values; the loop formulation expresses that rule more directly.
 - **Loop-level `break` when a value exceeds `s`:** Sorting makes this safe and avoids the selected source's immediately failing recursive calls. It is a constant-factor improvement, not a different algorithm.
@@ -109,8 +109,8 @@ This same-depth principle generalizes to any group of duplicates. The first occu
 - **Positive-value assumption:** It makes overshoot pruning and termination valid. Zero or negative candidates would need different logic, but the contract excludes them.
 - **Input mutation:** Sorting in place changes `candidates`. A caller that needs the original order would have to pass a copy or use `sorted(candidates)`.
 - **Output order:** Results and their internal values happen to follow sorted depth-first order, but the contract requires uniqueness, not a particular presentation order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

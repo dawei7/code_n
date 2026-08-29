@@ -68,7 +68,7 @@ For example, with `nums = [1, 2, 1]` and $i=0$, the set sizes as $j$ advances ar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop visits every possible left endpoint $i$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ A frequency map would become useful in a sliding window where both endpoints mov
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build every subarray separately:** Slicing eac:** - **Build every subarray separately:** Slicing each `nums[i:j+1]` and converting it to a set takes up to $O(n)$ work per subarray, leading to $O(n^3)$ total time and repeated allocation.
+- **Build every subarray separately:** Slicing each `nums[i:j+1]` and converting it to a set takes up to $O(n)$ work per subarray, leading to $O(n^3)$ total time and repeated allocation.
 - **Use a frequency dictionary:** This also produces the distinct count but stores counts that never need to be decremented. A set is the smaller and clearer state for a one-directional extension.
 - **Advanced contribution aggregation:** The larger version of this problem can update the sum of squared distinct counts for many left endpoints together, often using range data structures. That complexity is unnecessary for the constraints and exact source used here.
 - **All elements equal:** Every subarray has exactly one distinct value and contributes $1$. Repeated `set.add` calls correctly leave the size at one.
@@ -115,8 +115,8 @@ A frequency map would become useful in a sliding window where both endpoints mov
 - **No modulo reduction:** This first-version contract asks for the exact sum, and the source solution returns the full Python integer. Adding an unrequested modulo would change correct outputs.
 - **Duplicate occurrences:** A duplicate must not increase the distinct count, but it still defines a different endpoint and therefore a different subarray contribution. The algorithm handles both facts simultaneously.
 - **Input order matters for subarrays:** A global set of all array values is insufficient because distinct counts depend on the selected contiguous range. The per-left incremental set preserves those boundaries.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

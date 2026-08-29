@@ -62,11 +62,7 @@ keeps only orders whose sold item's brand differs from the seller's favorite. Ap
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The predicate
-
-`WHERE item_brand != favorite_brand`
-
-keeps o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +103,7 @@ After this aggregation, `T` contains one row per seller who has at least one qua
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count every order:** `COUNT(*)` overcounts an :** - **Count every order:** `COUNT(*)` overcounts an item sold multiple times. The exact query correctly uses `COUNT(DISTINCT item_id)`.
+- **Count every order:** `COUNT(*)` overcounts an item sold multiple times. The exact query correctly uses `COUNT(DISTINCT item_id)`.
 - **Count distinct brands:** That would merge different items of the same non-favorite brand and answer a different question.
 - **Use `LIMIT 1`:** It loses sellers tied for the maximum and violates the contract.
 - **Favorite-brand orders only:** Such a seller is absent from `T` because the filter occurs before grouping.
@@ -121,8 +117,8 @@ After this aggregation, `T` contains one row per seller who has at least one qua
 - **Tie comparison after aggregation:** The maximum must be taken over per-seller counts, not over raw orders. The CTE establishes the correct level before the scalar maximum.
 - **Date columns:** `join_date` and `order_date` do not affect this question and are correctly unused.
 - **Why ties survive:** The scalar subquery returns one maximum count, and ordinary equality retains every seller whose already-aggregated count has that value; it does not arbitrarily select one group.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

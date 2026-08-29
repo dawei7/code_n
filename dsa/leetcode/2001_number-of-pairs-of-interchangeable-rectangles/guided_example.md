@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given `n` rectangles represented by a **0-indexed** 2D integer array `rectangles`, where $\text{rectangles}[i] = [\text{width}_{i}, \text{height}_{i}]$ denotes the width and height of the $$i^{\text{th}}$$ rectangle.
+You are given `n` rectangles represented by a **0-indexed** 2D integer array `rectangles`, where $\text{rectangles}[i] = [\text{width}_{i}, \text{height}_{i}]$ denotes the width and height of the $i^{\text{th}}$ rectangle.
 
 The objective is to compute `6` from `{"rectangles": [[4, 8], [3, 6], [10, 20], [15, 30]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,7 +63,7 @@ Thus tuple equality is necessary and sufficient for ratio equality.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $g=\gcd(w,h)$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This online counting automatically enforces index order: every pair is counted w
 
 ## 6. Traps This Instance Exposes
 
-- **- **Floating-point ratio key:** Often works under :** - **Floating-point ratio key:** Often works under small values but relies on representation details and is less exact than reduced integers.
+- **Floating-point ratio key:** Often works under small values but relies on representation details and is less exact than reduced integers.
 - **Cross-multiply every rectangle pair:** Avoids floating point but takes $O(N^2)$ time.
 - **Group then use combinations:** First count every reduced ratio, then sum $c(c-1)/2$; equivalent to the online method.
 - **Identical rectangles:** Counted as interchangeable distinct occurrences.
@@ -115,8 +115,8 @@ This online counting automatically enforces index order: every pair is counted w
 - **Update order:** Add the prior count before incrementing the current rectangle.
 - **Input preservation:** Local `w` and `h` are reassigned, but rectangle rows are not modified.
 - **Environment imports:** The exact source assumes `Counter` and `gcd` are available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

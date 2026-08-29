@@ -65,10 +65,7 @@ Each iteration resolves the current carry positions and may create carries farth
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within a fixed word width,
-
-$$
-a+b=(a\mathbin{\operatorname{... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,9 +108,9 @@ Every carry is also masked after shifting. Any carry out of bit 31 is discarded,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate magnitude addition and subtraction:**:** - **Separate magnitude addition and subtraction:** Compare absolute values, use XOR/AND for same-sign addition, and XOR/borrow logic for mixed signs. This avoids a simulated signed word but creates more cases and may rely on forbidden arithmetic for sign handling.
-- **- **Recursive carry propagation:** Return the XOR/:** - **Recursive carry propagation:** Return the XOR/carry transformation recursively until carry is zero. It expresses the identity neatly but uses call-stack space and is less robust than the loop.
-- **- **Use a wider mask:** A 64-bit mask applies the :** - **Use a wider mask:** A 64-bit mask applies the same method to a 64-bit signed domain. The mask, sign threshold, and final conversion width must remain consistent.
+- **Separate magnitude addition and subtraction:** Compare absolute values, use XOR/AND for same-sign addition, and XOR/borrow logic for mixed signs. This avoids a simulated signed word but creates more cases and may rely on forbidden arithmetic for sign handling.
+- **Recursive carry propagation:** Return the XOR/carry transformation recursively until carry is zero. It expresses the identity neatly but uses call-stack space and is less robust than the loop.
+- **Use a wider mask:** A 64-bit mask applies the same method to a 64-bit signed domain. The mask, sign threshold, and final conversion width must remain consistent.
 
 ---
 

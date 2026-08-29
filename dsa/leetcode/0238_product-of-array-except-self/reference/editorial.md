@@ -50,7 +50,7 @@ Let's go over a simple run of the algorithm that clearly depicts the constructio
 
 ![Slide 10](images/slideshow_238_anim1_anim-10.png)
 
-For the given array $[4,5,1,8,2]$, the `L` and `R` arrays would finally be:
+For the given array `[4,5,1,8,2]`, the `L` and `R` arrays would finally be:
 
 <center>
 <img src="images/products.png" width="700"></center>

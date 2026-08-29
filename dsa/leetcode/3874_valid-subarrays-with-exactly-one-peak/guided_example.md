@@ -73,7 +73,7 @@ The source computes this in two steps with `max`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A valid interval contains exactly one peak.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Conversely, if `l\le peaks[j-1]`, the nearest previous peak lies inside the inte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Check its containe:** - **Enumerate every subarray:** Check its contained peaks and distances directly in `O(N^2)` intervals. Peak boundaries allow counting whole rectangles of endpoint choices at once.
+- **Enumerate every subarray:** Check its contained peaks and distances directly in `O(N^2)` intervals. Peak boundaries allow counting whole rectangles of endpoint choices at once.
 - **Prefix sum of peak indicators:** It can test whether an interval contains exactly one peak in constant time, but enumerating all intervals remains quadratic unless combined with additional boundary logic.
 - **Two pointers:** A window can maintain peak count, but the separate distance bound around the unique peak complicates direct counting. Neighbor-peak formulas are simpler.
 - **Recompute peaks inside each subarray:** Incorrect. Peak status is defined using neighbors in the original array.
@@ -123,8 +123,8 @@ Conversely, if `l\le peaks[j-1]`, the nearest previous peak lies inside the inte
 - **Large `k`:** Array bounds and neighboring peaks still cap choices; `k` does not force an interval to extend fully.
 - **Peaks two positions apart:** Both are valid global peaks with a valley between. The previous-plus-one and next-minus-one boundaries still leave legal intervals centered on either peak without overlap in contained peak sets.
 - **Independent multiplication:** Once boundaries are fixed, choosing a left endpoint does not constrain a legal right endpoint beyond both containing `p`, so the product is exact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

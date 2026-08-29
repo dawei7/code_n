@@ -51,7 +51,7 @@ The difficult part is deciding whether using the one mismatch at a particular ea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The difficult part is deciding whether using the one mismatc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The difficult part is deciding whether using the one mismatch at a particular ea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Editorial rightmost-position array:** Store th:** - **Editorial rightmost-position array:** Store the latest feasible source index for each target suffix character, then test whether the current index lies before the next required position. It achieves $O(n+m)$ time and $O(m)$ space.
+- **Editorial rightmost-position array:** Store the latest feasible source index for each target suffix character, then test whether the current index lies before the next required position. It achieves $O(n+m)$ time and $O(m)$ space.
 - **Dynamic programming over mismatch usage:** A table can decide feasibility for every pair of prefixes and zero/one changes, but the naive form costs $O(nm)$ and is unnecessary.
 - **Try every possible changed target position:** Running a subsequence construction separately for each of $m$ mismatch locations can become $O(nm)$.
 - **Always take the earliest mismatching index:** This is incorrect without the suffix check; an early change may leave too few exact characters to complete `word2`.
@@ -100,8 +100,8 @@ The difficult part is deciding whether using the one mismatch at a particular ea
 - **Lexicographic object:** The comparison is between index arrays, not the selected strings. This is why an earlier mismatching index can be preferable to a later exact-character index.
 - **Source-generated comment:** The file notes that its implementation was AI-generated, but its suffix-count invariant and forward feasibility check can be verified independently as above.
 - **Input mutation:** Strings are immutable, and the method only reads them. The returned indices are newly allocated and sorted automatically by the forward scan.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

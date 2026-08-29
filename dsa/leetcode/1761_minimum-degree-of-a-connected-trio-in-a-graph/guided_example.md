@@ -66,7 +66,7 @@ The input has no repeated edges and no self-loops, so each increment represents 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Input vertices are numbered from one through `n`, while Pyth... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Inside, `g[i][k] and g[j][k]` check the other two required edges. All three Bool
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjacency sets:** Intersect neighbor sets alon:** - **Adjacency sets:** Intersect neighbor sets along edges to find triangles, often improving sparse-graph behavior while using $O(n+m)$ storage.
+- **Adjacency sets:** Intersect neighbor sets along edges to find triangles, often improving sparse-graph behavior while using $O(n+m)$ storage.
 - **Check all six permutations:** It is redundant because increasing indices already enumerate each vertex set exactly once.
 - **Scan external neighbors per trio:** It would add work; the degree-sum-minus-six formula is constant time.
 - **No triangle:** Infinity remains unchanged and the method returns minus one.
@@ -125,8 +125,8 @@ Inside, `g[i][k] and g[j][k]` check the other two required edges. All three Bool
 - **Internal subtraction:** Six is fixed because a triangle has three edges counted twice, not because it has six distinct edges.
 - **Custom min:** It accepts exactly the two arguments used by the source; calling it like the general built-in with an iterable would differ.
 - **n below three:** The loops find no triple and return minus one naturally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

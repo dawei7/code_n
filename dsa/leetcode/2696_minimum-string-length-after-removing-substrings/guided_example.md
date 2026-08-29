@@ -62,7 +62,7 @@ The final result subtracts one from `len(stk)` to exclude this artificial entry.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact stack begins as `[""]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ All other combinations append the current character to the remainder.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated `replace` calls:** Correct when conti:** - **Repeated `replace` calls:** Correct when continued to a fixed point, but can require $O(n^2)$ time.
+- **Repeated `replace` calls:** Correct when continued to a fixed point, but can require $O(n^2)$ time.
 - **Writable-array two-pointer reduction:** Implements the same stack behavior using an array prefix and a write index.
 - **Recursive deletion search:** Explores unnecessary operation orders and can become exponential without a confluence argument.
 - **One character:** It cannot form a pair, so the answer is one.
@@ -117,8 +117,8 @@ All other combinations append the current character to the remainder.
 - **Cascading deletion:** Exposed stack characters are compared with later input characters.
 - **Sentinel:** It prevents empty-stack indexing and must be excluded from the final length.
 - **Uppercase guarantee:** The empty sentinel cannot collide with a real character.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

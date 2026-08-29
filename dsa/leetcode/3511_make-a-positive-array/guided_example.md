@@ -80,9 +80,7 @@ That maximum is what `pre_mx` represents at the moment the condition is tested.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variables have precise roles:
-
-- `l` is the index most r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +131,7 @@ For example, when `l = -1` and `r = 2`, the only length-at-least-three interval 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every bad subarray:** One could comp:** - **Enumerate every bad subarray:** One could compute all interval sums and then greedily hit the resulting intervals, but there are `O(n^2)` subarrays. The running prefix maximum discovers the earliest-ending uncovered bad interval in linear time without materializing intervals.
+- **Enumerate every bad subarray:** One could compute all interval sums and then greedily hit the resulting intervals, but there are `O(n^2)` subarrays. The running prefix maximum discovers the earliest-ending uncovered bad interval in linear time without materializing intervals.
 - **Dynamic programming over replacement positions:** General set cover is difficult, but intervals on a line have the right-endpoint greedy exchange property. DP adds state without improving the linear result.
 - **Replace the most negative element:** A locally very negative value may lie outside the earliest bad interval or cover fewer future bad intervals. Its magnitude does not establish the minimum number of positions.
 - **Choose the left endpoint of a bad interval:** This repairs the current interval but offers no exchange guarantee for later-ending intervals. The right endpoint reaches farthest into all intervals that can overlap the current one.
@@ -148,8 +146,8 @@ For example, when `l = -1` and `r = 2`, the only length-at-least-three interval 
 - **All relevant sums already positive:** The condition never succeeds and `ans` remains zero.
 - **Negative and large-magnitude inputs:** Prefix comparisons work without sign assumptions. A fixed-width implementation should use 64-bit sums, not 32-bit integers.
 - **Replacement bound:** The proof relies on the allowed `10^18` magnitude exceeding the worst possible original subarray magnitude `10^14`. If replacement values were tightly bounded, merely hitting an interval might not be enough to make its sum positive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

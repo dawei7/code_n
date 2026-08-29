@@ -67,7 +67,7 @@ Grouping by `employee_id` adds all independently rounded session minutes for tha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `TIMESTAMPDIFF(second, in_time, out_time)` returns the elaps... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The comparison is strict. An employee who works exactly the required number of h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Round after summing seconds:** This is incorre:** - **Round after summing seconds:** This is incorrect because the specification rounds every session independently.
+- **Round after summing seconds:** This is incorrect because the specification rounds every session independently.
 - **Compare in minutes:** Keep the summed rounded minutes and test against `needed_hours * 60`. It is equivalent and avoids fractional-hour representation.
 - **Inner join:** It loses employees with no sessions, who must be treated as working zero hours.
 - **Exact-minute session:** `CEILING` leaves its integer minute count unchanged.
@@ -120,8 +120,8 @@ The comparison is strict. An employee who works exactly the required number of h
 - **No logs:** `COALESCE` supplies zero and the employee is deducted because required hours are positive.
 - **Multiple sessions:** Each ceiling occurs before `SUM`, preserving the rule.
 - **Any output order:** No sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

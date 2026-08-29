@@ -59,7 +59,7 @@ If a second passes with nobody using the door, `st` resets to one, representing 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `st=0` means entering has priority when both queues are non-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The input order and monotonically increasing `i` ensure each person is enqueued 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Jump over idle gaps:** Set `t` to the next arr:** - **Jump over idle gaps:** Set `t` to the next arrival when both queues are empty; this removes dependence on the arrival-time bound.
+- **Jump over idle gaps:** Set `t` to the next arrival when both queues are empty; this removes dependence on the arrival-time bound.
 - **Simultaneous arrivals:** Enqueue all before choosing, then apply direction and index priorities.
 - **Initial tie:** Exit wins because the door was previously unused.
 - **Consecutive same-direction use:** That direction retains priority.
@@ -108,8 +108,8 @@ The input order and monotonically increasing `i` ensure each person is enqueued 
 - **Arrival while others wait:** The new person joins the appropriate queue's tail.
 - **One person per second:** Only one pop occurs per outer iteration.
 - **Manifest mismatch:** This code advances idle seconds individually rather than jumping.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

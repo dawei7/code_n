@@ -1,10 +1,10 @@
 ### 1. Description
 
-You are given an array of `n` integers, `nums`, where there are at most `50` unique values in the array. You are also given an array of `m` customer order quantities, `quantity`, where $\text{quantity}[i]$ is the amount of integers the $$i^{\text{th}}$$ customer ordered. Determine if it is possible to distribute `nums` such that:
+You are given an array of `n` integers, `nums`, where there are at most `50` unique values in the array. You are also given an array of `m` customer order quantities, `quantity`, where $\text{quantity}[i]$ is the amount of integers the $i^{\text{th}}$ customer ordered. Determine if it is possible to distribute `nums` such that:
 
-- The $$i^{\text{th}}$$ customer gets **exactly** $\text{quantity}[i]$ integers,
+- The $i^{\text{th}}$ customer gets **exactly** $\text{quantity}[i]$ integers,
 
-- The integers the $$i^{\text{th}}$$ customer gets are **all equal**, and
+- The integers the $i^{\text{th}}$ customer gets are **all equal**, and
 
 - Every customer is satisfied.
 

@@ -1,8 +1,8 @@
 ### 1. Description
 
-In a row of dominoes, $\text{tops}[i]$ and $\text{bottoms}[i]$ represent the top and bottom halves of the $$i^{\text{th}}$$ domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.)
+In a row of dominoes, $\text{tops}[i]$ and $\text{bottoms}[i]$ represent the top and bottom halves of the $i^{\text{th}}$ domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.)
 
-We may rotate the $$i^{\text{th}}$$ domino, so that $\text{tops}[i]$ and $\text{bottoms}[i]$ swap values.
+We may rotate the $i^{\text{th}}$ domino, so that $\text{tops}[i]$ and $\text{bottoms}[i]$ swap values.
 
 Return the minimum number of rotations so that all the values in `tops` are the same, or all the values in `bottoms` are the same.
 

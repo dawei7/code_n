@@ -51,7 +51,7 @@ Moving left from the peak, each tower must be no taller than the tower immediate
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Moving left from the peak, each tower must be no taller than... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Moving right is symmetric: each tower must be no taller than the previously chos
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic-stack prefix and suffix sums:** Comp:** - **Monotonic-stack prefix and suffix sums:** Compute the best constrained sum ending at every index from the left and from the right, then combine them. This gives $O(n)$ time and $O(n)$ space and is the true optimal asymptotic method.
+- **Monotonic-stack prefix and suffix sums:** Compute the best constrained sum ending at every index from the left and from the right, then combine them. This gives $O(n)$ time and $O(n)$ space and is the true optimal asymptotic method.
 - **Materializing each mountain:** Building a full temporary array per peak is conceptually similar but adds unnecessary $O(n)$ working space; the source accumulates its sum directly.
 - **Peak at an endpoint:** One side loop is empty, and the other side's running minima correctly form a one-sided mountain.
 - **Flat peak plateau:** Equal adjacent maximum heights are allowed because mountain inequalities are non-strict. Testing every index safely covers any plateau.
@@ -94,8 +94,8 @@ Moving right is symmetric: each tower must be no taller than the previously chos
 - **Very low cap away from the peak:** Once the running minimum drops, all farther towers on that side can be no higher until an even lower cap appears.
 - **Large sums:** Fixed-width implementations need 64-bit accumulation even though individual heights fit 32 bits.
 - **Manifest mismatch:** Complexity documentation must follow the loops that execute; calling this exact source a monotonic-stack solution would be misleading.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

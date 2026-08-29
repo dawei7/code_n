@@ -58,7 +58,7 @@ Return the maximum sum over every non-empty connected path whose node values are
 
 ![](images/screenshot-2026-01-29-at-15555am.png)
 
-​​​​​​​
+
 
 - **Input:** root = [4,6,6,null,null,null,9]
 
@@ -74,4 +74,4 @@ Return the maximum sum over every non-empty connected path whose node values are
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 
-- $-1000 \le \text{Node.val} \le 1000​​​​​​​$
+- $-1000 \le \text{Node.val} \le 1000$

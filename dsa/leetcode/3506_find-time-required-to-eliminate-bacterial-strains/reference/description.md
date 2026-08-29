@@ -8,7 +8,7 @@ Initially, only one **white blood cell** (**WBC**) is deployed to eliminate the 
 
 The WBC devises a clever strategy to fight the bacteria:
 
-- The $$i^{\text{th}}$$ bacterial strain takes $\text{timeReq}[i]$ units of time to be eliminated.
+- The $i^{\text{th}}$ bacterial strain takes $\text{timeReq}[i]$ units of time to be eliminated.
 
 - A single WBC can eliminate **only one** bacterial strain. Afterwards, the WBC is exhausted and cannot perform any other tasks.
 

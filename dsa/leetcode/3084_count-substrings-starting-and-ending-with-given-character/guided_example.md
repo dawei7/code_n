@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the same occurrence as both endpoints, producing a length-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Every choice of endpoints determines exactly one substring, including all charac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store every occurrence index:** It also yields:** - **Store every occurrence index:** It also yields $q$, but wastes $O(q)$ space because exact positions are unnecessary.
+- **Store every occurrence index:** It also yields $q$, but wastes $O(q)$ space because exact positions are unnecessary.
 - **Enumerate all substrings:** There are $O(N^2)$ and checking endpoints repeats work.
 - **Streaming count:** As each $c$ appears, add the number of occurrences seen so far; this also derives the triangular total in $O(N)$ time and $O(1)$ space.
 - **No occurrence of $c$:** $q=0$ and the formula returns zero.
@@ -110,8 +110,8 @@ Every choice of endpoints determines exactly one substring, including all charac
 - **No double counting between cases:** Length-one substrings cannot arise from choosing two occurrences, while every longer valid substring has two distinct endpoint occurrences.
 - **Linear lower bound:** Any solution must at least inspect the string to know how many target characters occur, so the $O(N)$ scan is asymptotically optimal.
 - **Character not present:** The arithmetic remains well-defined because both terms vanish when `cnt=0`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

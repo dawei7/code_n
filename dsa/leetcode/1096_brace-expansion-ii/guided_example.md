@@ -59,7 +59,7 @@ For example, in `"{a,b}{c,{d,e}}"`, the first closing brace reduces `"{a,b}"`, p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `j = exp.find('}')` chooses the first closing brace.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The word is inserted into set `s` rather than appended to a list. Set semantics 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive-descent parser:** Parse union and co:** - **Recursive-descent parser:** Parse union and concatenation as separate grammar levels and return a set from each subexpression. This mirrors the formal grammar directly and can avoid repeatedly rescanning entire intermediate strings.
+- **Recursive-descent parser:** Parse union and concatenation as separate grammar levels and return a set from each subexpression. This mirrors the formal grammar directly and can avoid repeatedly rescanning entire intermediate strings.
 - **Stack-based set evaluation:** Maintain sets for the current concatenation and accumulated union at each brace depth. It avoids recursive string substitution but requires careful precedence handling.
 - **Generate then deduplicate:** Using a list at leaves and converting to a set later is correct but can store many duplicate derivations unnecessarily.
 - **No braces:** The first `find` returns `-1`, so the complete literal word is inserted immediately and returned as a one-element list.
@@ -107,8 +107,8 @@ The word is inserted into set `s` rather than appended to a list. Set semantics 
 - **Lexicographic order:** Sets are unordered, so the final `sorted` call is essential.
 - **Valid grammar guarantee:** The algorithm assumes every closing brace has a matching opening brace and that innermost commas separate alternatives. Malformed syntax would require validation not present here.
 - **Expression growth and shrinkage:** Replacing a group can change string length, but the next recursive call searches its newly formed expression from scratch, so stored indices never become stale.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

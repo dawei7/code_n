@@ -71,7 +71,7 @@ If multiple rows have both the same extreme price and same quantity, all receive
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `RANK` assigns rank 1 to every row tied on the entire orderi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If multiple rows have both the same extreme price and same quantity, all receive
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` with deterministic tie-breaker:**:** - **`ROW_NUMBER` with deterministic tie-breaker:** Select exactly one extreme product using price, then product or inventory ID.
+- **`ROW_NUMBER` with deterministic tie-breaker:** Select exactly one extreme product using price, then product or inventory ID.
 - **Aggregate extreme prices then join:** Compute `MAX(price)` and `MIN(price)` per store, but ties still need an explicit policy.
 - **Count distinct products:** Use `COUNT(DISTINCT product_name)` to match “different products” without relying on row uniqueness.
 - **Exactly two products:** The store is excluded by `cnt>=3`.
@@ -124,8 +124,8 @@ If multiple rows have both the same extreme price and same quantity, all receive
 - **Store with no inventory:** It never appears in `T` and cannot qualify.
 - **Missing store metadata:** The inner join to `stores` removes the row.
 - **Read-only behavior:** The query ranks and selects without modifying either table.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -2,7 +2,7 @@
 
 You are given two linked lists: `list1` and `list2` of sizes `n` and `m` respectively.
 
-Remove `list1`'s nodes from the $$a^{\text{th}}$$ node to the $$b^{\text{th}}$$ node, and put `list2` in their place.
+Remove `list1`'s nodes from the $a^{\text{th}}$ node to the $b^{\text{th}}$ node, and put `list2` in their place.
 
 The blue edges and nodes in the following figure indicate the result:
 

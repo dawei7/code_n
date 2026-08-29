@@ -51,7 +51,7 @@ In a $k$-special nonempty result, let $v$ be the smallest surviving frequency. E
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In a $k$-special nonempty result, let $v$ be the smallest su... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source tries every possible integer $v$ from 0 through word length.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try only distinct frequencies:** Sorting the a:** - **Try only distinct frequencies:** Sorting the at-most-26 counts and evaluating those boundaries reduces constant work but does not improve the fixed-alphabet asymptotic bound.
+- **Try only distinct frequencies:** Sorting the at-most-26 counts and evaluating those boundaries reduces constant work but does not improve the fixed-alphabet asymptotic bound.
 - **Sort frequencies with prefix sums:** It can calculate candidate deletion costs efficiently for a larger alphabet.
 - **Delete a low-frequency group entirely:** This is sometimes better than forcing all high groups down near it, and the `x<v` branch captures that choice.
 - **One distinct letter:** Zero deletions are always sufficient for any $k$.
@@ -100,8 +100,8 @@ The exact source tries every possible integer $v$ from 0 through word length.
 - **Candidate range through $N$:** No surviving frequency can exceed word length. Values above all original counts merely describe deleting every group and cannot improve beyond already considered possibilities.
 - **No need to build the resulting word:** Frequencies prove feasibility; arbitrary occurrences of an overrepresented letter can be deleted to reach its target count.
 - **Fixed alphabet drives linearity:** The helper is called $N+1$ times, but each call examines at most 26 counts, so the nested loops remain $O(N)$ rather than $O(N^2)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ by the second largest and so forth.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inner query selects `DISTINCT salary`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ row position is unspecified and would not represent salary rank.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`DENSE_RANK`:** Assign descending dense ranks :** - **`DENSE_RANK`:** Assign descending dense ranks and select rank `N`; it directly states the ranking intent.
+- **`DENSE_RANK`:** Assign descending dense ranks and select rank `N`; it directly states the ranking intent.
 - **Correlated greater-count:** A salary has rank `N` when exactly `N - 1` distinct salaries are greater, but naive execution is quadratic.
 - **Repeated maximum:** `DISTINCT` gives it only rank one.
 - **`N = 1`:** Zero offset returns the maximum salary.
@@ -120,8 +120,8 @@ row position is unspecified and would not represent salary rank.
 - **Ordering:** Descending order is essential to rank highest first.
 - **Nullable salaries:** Define or filter their policy if the schema permits them.
 - **MySQL routine syntax:** Porting requires adapting the function declaration and limit-variable form.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

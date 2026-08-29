@@ -60,7 +60,7 @@ Every qualifying row with the same reason enters the same group. A reason with n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For report actions, `extra` contains the reason.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ This scope can be viewed as deduplicating ordered pairs `(report_reason, post_id
 
 ## 6. Traps This Instance Exposes
 
-- **- **Subquery with `SELECT DISTINCT extra, post_id`:** - **Subquery with `SELECT DISTINCT extra, post_id`:** Deduplicate reason-post pairs first, then count rows per reason. This is equivalent but uses an extra query layer.
+- **Subquery with `SELECT DISTINCT extra, post_id`:** Deduplicate reason-post pairs first, then count rows per reason. This is equivalent but uses an extra query layer.
 - **`COUNT(*)`:** Incorrect when duplicate rows or multiple users report the same post.
 - **`COUNT(DISTINCT user_id)`:** Counts reporters, not reported posts.
 - **Group by post first:** Possible in a two-stage query, but grouping directly by reason with a distinct post aggregate is simpler.
@@ -114,8 +114,8 @@ This scope can be viewed as deduplicating ordered pairs `(report_reason, post_id
 - **No qualifying reports:** No groups form, yielding an empty result.
 - **Null reason on a report:** SQL would group null reasons together if such rows exist; the local contract describes `extra` as optional but does not specify excluding null report reasons, so the exact query preserves that group.
 - **Any result order:** No sort is needed because the contract explicitly permits arbitrary order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

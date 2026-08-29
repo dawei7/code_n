@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $$i^{\text{th}}$$ query, the element in `nums` at the index $\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
+You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $i^{\text{th}}$ query, the element in `nums` at the index $\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
 
 The objective is to compute `[14, 7, 2, 2, 0]` from `{"nums": [1, 2, 5, 6, 1], "removeQueries": [0, 3, 2, 4, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ It never activates `removeQueries[0]` because doing so would reconstruct the ori
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans` starts as $n$ zeros.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ is truthy exactly when the neighbor belongs to an active segment. An inactive in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward balanced tree of segments:** Track act:** - **Forward balanced tree of segments:** Track active intervals and their sums while splitting on removals. It is possible but considerably more complex than reverse union.
+- **Forward balanced tree of segments:** Track active intervals and their sums while splitting on removals. It is possible but considerably more complex than reverse union.
 - **Segment tree:** Maintain active values and maximum subarray/segment information in $O(\log n)$ per removal, for $O(n\log n)$ total time.
 - **Union by size:** Adding a rank or size array strengthens the standard $O(\alpha(n))$ amortized guarantee and can limit parent depth.
 - **Last answer:** After every index is removed, no segment exists, so the prefilled final zero is correct.
@@ -114,8 +114,8 @@ is truthy exactly when the neighbor belongs to an active segment. An inactive in
 - **Boundary index:** Checks `i` and `i < n - 1` prevent invalid neighbor access.
 - **Positive-value guarantee:** It makes zero a reliable inactive sentinel and makes the global maximum monotone during additions.
 - **Single-element array:** The reverse loop is empty and returns `[0]`, the state after its only removal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

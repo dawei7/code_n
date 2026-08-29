@@ -55,7 +55,7 @@ This base case comes before all grid accesses, preventing an attempt to read `gr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition is `if i == m: return j`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ These checks occur before inspecting either adjacent cell. That order is importa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative simulation:** Loop through rows for :** - **Iterative simulation:** Loop through rows for each starting column. It keeps the same $O(mn)$ time while reducing per-ball auxiliary space to $O(1)$.
+- **Iterative simulation:** Loop through rows for each starting column. It keeps the same $O(mn)$ time while reducing per-ball auxiliary space to $O(1)$.
 - **Bottom-up dynamic programming:** Store the eventual result for every cell, reusing the next row. It can avoid repeated suffix paths but uses $O(mn)$ storage unless rows are compressed.
 - **Memoized recursion:** Cache `dfs(i,j)` so merged paths are solved once. It uses up to $O(mn)$ cache space and does not improve the worst-case cell count below $O(mn)$.
 - **Single column:** Every `1` points into the right wall and every `-1` into the left wall, so every ball is stuck.
@@ -106,8 +106,8 @@ These checks occur before inspecting either adjacent cell. That order is importa
 - **Exit after last row:** The returned column is the column after completing all row transitions, not the last cell's original column.
 - **Input preservation:** The grid is read-only; no board values are changed.
 - **Independent balls:** Balls do not interact, so simulating one does not alter another's path.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

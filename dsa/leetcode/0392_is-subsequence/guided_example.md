@@ -62,7 +62,7 @@ Thus every iteration consumes exactly one character from `t` and consumes either
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `s[i] != t[j]`, the current `t` character cannot satisfy ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ Therefore accepting an early match cannot destroy a solution. It can only leave 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive greedy scan:** Apply the same match-:** - **Recursive greedy scan:** Apply the same match-or-skip rule recursively. It is correct and linear but uses up to $O(T)$ call-stack space in Python, while the iterative form is constant space.
-- **- **Dynamic programming:** A table over prefixes o:** - **Dynamic programming:** A table over prefixes of `s` and `t` can determine subsequence membership in $O(ST)$ time and space. It solves a more general alignment problem than necessary; the greedy property makes the table wasteful here.
-- **- **Character counts:** Frequencies can reject som:** - **Character counts:** Frequencies can reject some impossible inputs but cannot prove subsequence order. Strings may have enough copies of every character in the wrong order.
+- **Recursive greedy scan:** Apply the same match-or-skip rule recursively. It is correct and linear but uses up to $O(T)$ call-stack space in Python, while the iterative form is constant space.
+- **Dynamic programming:** A table over prefixes of `s` and `t` can determine subsequence membership in $O(ST)$ time and space. It solves a more general alignment problem than necessary; the greedy property makes the table wasteful here.
+- **Character counts:** Frequencies can reject some impossible inputs but cannot prove subsequence order. Strings may have enough copies of every character in the wrong order.
 
 ---
 

@@ -78,7 +78,7 @@ the pending multiplication pops the previous 2, multiplies it by the current
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The parser starts with `sign = '+'`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ never observed and is harmless under valid input.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Finalized sum plus current term:** Add the pre:** - **Finalized sum plus current term:** Add the previous term to a running result only when a new `+` or `-` starts, while folding `*` and `/` into one `last` value. It achieves the same $O(n)$ time with $O(1)$ space and matches the manifest summary.
+- **Finalized sum plus current term:** Add the previous term to a running result only when a new `+` or `-` starts, while folding `*` and `/` into one `last` value. It achieves the same $O(n)$ time with $O(1)$ space and matches the manifest summary.
 - **Two-stack precedence parser:** Maintain separate number and operator stacks and reduce according to precedence. It generalizes more easily to parentheses and more operators but adds unnecessary machinery here.
 - **Recursive descent:** Parse additive and multiplicative grammar levels with functions. It is clear and extensible, but this no-parentheses grammar can be handled more compactly by one pass.
 - **Trailing spaces:** Only the final physical character triggers completion. The accumulated `v` survives all preceding spaces, so the last number is still applied exactly once.
@@ -139,8 +139,8 @@ never observed and is harmless under valid input.
 - **Only one number:** The end condition appends it under the imaginary leading plus, and `sum` returns it.
 - **No parentheses:** Parentheses are outside this problem's input alphabet. Supporting them would require saved contexts or a fuller parser.
 - **Intermediate range:** The reference guarantees signed 32-bit intermediate results, which also keeps the source's float-assisted division exact for these values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -22,8 +22,8 @@ One operation selects any single element from either array and replaces it with 
 
 **Inputs**
 
-- `nums1`: the first array of values in the inclusive range $[1,6]$, with length $n$.
-- `nums2`: the second array of values in the inclusive range $[1,6]$, with length $m$.
+- `nums1`: the first array of values in the inclusive range `[1,6]`, with length $n$.
+- `nums2`: the second array of values in the inclusive range `[1,6]`, with length $m$.
 - The constraints guarantee $1 \le n,m \le 10^5$.
 
 **Return value**

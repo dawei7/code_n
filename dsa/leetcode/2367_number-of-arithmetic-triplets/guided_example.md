@@ -65,7 +65,7 @@ Python's `and` short-circuits: if the first gap is not `diff`, it does not need 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A selected triple is arithmetic with the required difference... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For `nums = [0, 1, 4, 6, 7, 10]` and `diff = 3`, the triple of values `(1, 4, 7)
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash-set membership:** Put all values in a set:** - **Hash-set membership:** Put all values in a set and, for each `x`, test whether `x + diff` and `x + 2 * diff` exist. Strict increase makes the index order automatic. This achieves expected $O(n)$ time and $O(n)$ space.
+- **Hash-set membership:** Put all values in a set and, for each `x`, test whether `x + diff` and `x + 2 * diff` exist. Strict increase makes the index order automatic. This achieves expected $O(n)$ time and $O(n)$ space.
 - **Boolean value table:** Since values lie between `0` and `200`, mark their presence in a fixed array and perform the same two lookups in $O(n+V)$ time.
 - **Three pointers:** The sorted input can support pointer-based searches, but membership is simpler for this small exact-gap query.
 - **Check only endpoint distance:** Testing `c - a == 2 * diff` is insufficient because the selected `b` may not be exactly one `diff` from both endpoints.
@@ -116,8 +116,8 @@ For `nums = [0, 1, 4, 6, 7, 10]` and `diff = 3`, the triple of values `(1, 4, 7)
 - **Strictly increasing guarantee:** It removes duplicates and ensures selected value order matches index order. A duplicate-containing array would require more careful value-to-index counting.
 - **Positive `diff`:** Valid values increase from first to third. A zero difference would be impossible with the strictly increasing array, but the contract excludes it.
 - **Maximum input length:** About 1.31 million triples are tested at $n=200$, explaining why exhaustive enumeration is feasible only because the constraint is small.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

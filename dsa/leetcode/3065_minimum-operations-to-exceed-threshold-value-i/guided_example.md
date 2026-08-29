@@ -51,7 +51,7 @@ This gives a lower bound: at least the number of below-threshold elements operat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This gives a lower bound: at least the number of below-thres... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This gives a lower bound: at least the number of below-threshold elements operat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort then locate $k$:** Binary-searching the f:** - **Sort then locate $k$:** Binary-searching the first valid value after sorting works but costs $O(N\log N)$ and may mutate input.
+- **Sort then locate $k$:** Binary-searching the first valid value after sorting works but costs $O(N\log N)$ and may mutate input.
 - **Min-heap simulation:** It mirrors the operation but uses $O(N)$ space and $O(r\log N)$ time for $r$ removals.
 - **Repeated minimum search in a list:** It can degrade to quadratic time and is unnecessary because only the count matters.
 - **All values already at least $k$:** Every comparison is false and the result is zero.
@@ -101,8 +101,8 @@ This gives a lower bound: at least the number of below-threshold elements operat
 - **Generator laziness:** `sum` requests one comparison at a time, so the implementation does not allocate an $N$-element list of Booleans.
 - **Minimum-operation proof uses immutability of values:** Operations remove elements but never change them. An offending value cannot become valid later, which is why every such occurrence is unavoidably removed.
 - **Answer upper bound:** The existence of at least one valid element means at most $N-1$ removals are necessary under the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Because the stops form a cycle and the destination is a valid stop, repeatedly m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `t` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For the same array with destination three, the forward route adds `1 + 2 + 3 = 6
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sum a normalized index interval:** Swap `start:** - **Sum a normalized index interval:** Swap `start` and `destination` so the first is smaller, sum the direct array slice between them, and compare it with the circumference complement. This avoids modulo traversal but may allocate a temporary slice in Python if written carelessly.
+- **Sum a normalized index interval:** Swap `start` and `destination` so the first is smaller, sum the direct array slice between them, and compare it with the circumference complement. This avoids modulo traversal but may allocate a temporary slice in Python if written carelessly.
 - **Traverse both directions separately:** Walking clockwise and counterclockwise gives the same two totals, but the second walk is unnecessary after the circumference is known.
 - **General shortest-path algorithm:** Modeling stops as a weighted graph and running Dijkstra’s algorithm would work for nonnegative edges, but it ignores the special cycle structure and adds needless complexity.
 - **Start equals destination:** The empty route has distance zero. The loop does not execute, and `min(0, s)` returns zero.
@@ -112,8 +112,8 @@ For the same array with destination three, the forward route adds `1 + 2 + 3 = 6
 - **Equal route lengths:** `min` returns their shared length, and no tie-breaking direction is required.
 - **Final segment indexing:** `distance[n - 1]` connects stop `n - 1` back to zero. The modulo update is necessary to cross that boundary correctly.
 - **Nonnegative-distance guarantee:** The claim that repeated travel cannot improve a route relies on segment lengths being nonnegative, which the constraints guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

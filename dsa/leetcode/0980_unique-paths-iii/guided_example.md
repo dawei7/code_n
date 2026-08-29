@@ -63,7 +63,7 @@ The visited set initially contains only `start`. Therefore, the search can never
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dimensions are stored as `m` and `n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The function returns immediately whenever it sees the end. It must not treat the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bitmask dynamic programming:** Encode the visi:** - **Bitmask dynamic programming:** Encode the visited squares in a bitmask and memoize a state such as `(position, mask)`. This can avoid recomputing equivalent states and gives a subset-state formulation, but it uses substantially more memory and is more complicated than the exact backtracking implementation shown here.
+- **Bitmask dynamic programming:** Encode the visited squares in a bitmask and memoize a state such as `(position, mask)`. This can avoid recomputing equivalent states and gives a subset-state formulation, but it uses substantially more memory and is more complicated than the exact backtracking implementation shown here.
 - **In-place visited marking:** Temporarily replace a grid value with an obstacle-like marker and restore it after recursion. This removes the explicit set but mutates the input during the search and requires especially careful restoration.
 - **Copying the visited set:** Passing a new set to every child is conceptually simple, but copying up to `V` coordinates at every branch adds unnecessary allocation and time. Add–recurse–remove provides the same isolation efficiently.
 - **Reaching the end early:** Such a branch must contribute zero even if the destination is reachable, because some required square remains unvisited. The `k == cnt + 1` check enforces this.
@@ -115,8 +115,8 @@ The function returns immediately whenever it sees the end. It must not treat the
 - **Start and end positions:** Nothing assumes corners or a particular orientation; the preliminary scan finds the start wherever it occurs, and the base case recognizes the end by its grid value.
 - **Narrow grids and dead ends:** A single row, single column, or corridor works naturally. A branch with no eligible neighbor returns its current `ans` of zero unless it already ended successfully.
 - **Input preservation:** Since only `vis` changes, the caller receives the grid with exactly its original values after the method returns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

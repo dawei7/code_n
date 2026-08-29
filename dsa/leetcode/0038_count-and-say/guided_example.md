@@ -59,7 +59,7 @@ As a concrete trace, suppose `s` is `"3322251"`. Starting at index 0, `j` stops 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a current term `s`, pointer `i` marks the first characte... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The list alternates between a run count and the digit belonging to that run. A r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string concatenation:** Building the :** - **Repeated string concatenation:** Building the next term with `next_term += piece` is shorter syntactically, but immutable-string copying can make a transformation quadratic under a conservative Python analysis. List accumulation plus one `join` makes the linear construction explicit.
+- **Repeated string concatenation:** Building the next term with `next_term += piece` is shorter syntactically, but immutable-string copying can make a transformation quadratic under a conservative Python analysis. List accumulation plus one `join` makes the linear construction explicit.
 - **Regular-expression grouping:** A pattern can find consecutive equal digits and a replacement can emit each match's length and character. It is concise but hides the two-pointer mechanics and adds regular-expression overhead without improving the asymptotic result.
 - **Recursive sequence generation:** A recursive call can obtain term `n - 1` and encode it. This mirrors the definition, but it adds $O(n)$ call-stack depth and offers no benefit because only the immediately preceding term is needed.
 - **Global frequency counting:** A frequency map is incorrect because separate runs of the same digit must remain separate. In `"1211"`, the first `1` and final `"11"` must not be merged.
@@ -106,8 +106,8 @@ The list alternates between a run count and the digit belonging to that run. A r
 - **Multi-digit counts:** `str(j - i)` supports them without special logic. Count and digit are concatenated exactly as required, with no spaces or punctuation.
 - **Digits versus numbers:** Terms are strings throughout. Treating a term as an integer would lose the convenient character grouping model and could not represent arbitrary textual encodings safely.
 - **Input bounds:** The implementation assumes the promised positive `n`. For `n <= 0`, Python's empty range would return the base term, but that behavior is outside the function contract and should not be interpreted as validation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

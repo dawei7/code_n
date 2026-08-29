@@ -51,7 +51,7 @@ A sequence is palindromic when each position equals the position mirrored across
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A sequence is palindromic when each position equals the posi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first nested loop computes this cost in `cnt1`. It iterates through each `ro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct reversed rows:** Comparing every row:** - **Construct reversed rows:** Comparing every row with `row[::-1]` can identify mismatches, but creating reversed copies uses extra $O(n)$ temporary space and a naive mismatch count must be divided by two. Direct pair indices are clearer.
+- **Construct reversed rows:** Comparing every row with `row[::-1]` can identify mismatches, but creating reversed copies uses extra $O(n)$ temporary space and a naive mismatch count must be divided by two. Direct pair indices are clearer.
 - **Transpose the grid:** One could reuse a row-palindrome routine on the transpose to obtain the column cost. Materializing the transpose costs $O(mn)$ additional space, while direct vertical indexing stays constant-space.
 - **Try every combination of flips:** The pair constraints are independent within each orientation, so search or dynamic programming is unnecessary. Each mismatch has a fixed optimal contribution of one.
 - **Accidentally require both orientations:** Adding or combining `cnt1` and `cnt2` solves a stronger problem and can double-count cells. This problem permits either all rows or all columns.
@@ -97,8 +97,8 @@ The first nested loop computes this cost in `cnt1`. It iterates through each `ro
 - **Already valid in one orientation:** The corresponding counter remains zero, and no negative or unnecessary flips can improve on zero.
 - **A mismatched pair:** Either endpoint may be flipped. The algorithm counts the operation but deliberately does not choose a cell because both choices are equivalent for this problem's sole palindrome requirement.
 - **Input preservation:** Because no assignment to `grid` occurs, computing the row cost cannot affect the later column-cost calculation. Both alternatives are evaluated against the same original grid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

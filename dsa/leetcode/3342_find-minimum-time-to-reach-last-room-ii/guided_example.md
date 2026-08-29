@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Why coordinate parity determines move number parity.** Eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore, from a current room with even $i+j$, an even number of moves has been
 
 ## 6. Traps This Instance Exposes
 
-- **- **State includes parity explicitly:** It is corr:** - **State includes parity explicitly:** It is correct but doubles vertices unnecessarily because room coordinates already determine parity.
+- **State includes parity explicitly:** It is correct but doubles vertices unnecessarily because room coordinates already determine parity.
 - **Breadth-first search:** Alternating durations and waits make arrival costs nonuniform, so BFS ordering is invalid.
 - **Time parity for duration:** It is wrong because waiting changes clock parity without consuming a move.
 - **First move:** Start coordinate parity is even, so duration is one second.
@@ -102,8 +102,8 @@ Therefore, from a current room with even $i+j$, an even number of moves has been
 - **Unconditional loop:** Connectivity and unrestricted waiting ensure the target is eventually popped.
 - **Destination threshold semantics:** The method waits before starting the move, then adds its one- or two-second duration; opening time is not treated as an arrival deadline.
 - **Heap tie order:** Coordinate comparison breaks equal-time tuple ties but has no effect on optimality.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

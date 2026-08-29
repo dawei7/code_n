@@ -1,6 +1,6 @@
 ### 1. Description
 
-You have `n` buckets each containing some gallons of water in it, represented by a **0-indexed** integer array `buckets`, where the $$i^{\text{th}}$$ bucket contains $\text{buckets}[i]$ gallons of water. You are also given an integer `loss`.
+You have `n` buckets each containing some gallons of water in it, represented by a **0-indexed** integer array `buckets`, where the $i^{\text{th}}$ bucket contains $\text{buckets}[i]$ gallons of water. You are also given an integer `loss`.
 
 You want to make the amount of water in each bucket equal. You can pour any amount of water from one bucket to another bucket (not necessarily an integer). However, every time you pour `k` gallons of water, you spill `loss` **percent** of `k`.
 

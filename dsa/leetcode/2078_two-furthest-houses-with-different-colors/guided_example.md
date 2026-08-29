@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` houses evenly lined up on the street, and each house is beautifully painted. You are given a **0-indexed** integer array `colors` of length `n`, where $\text{colors}[i]$ represents the color of the $$i^{\text{th}}$$ house.
+There are `n` houses evenly lined up on the street, and each house is beautifully painted. You are given a **0-indexed** integer array `colors` of length `n`, where $\text{colors}[i]$ represents the color of the $i^{\text{th}}$ house.
 
 The objective is to compute `3` from `{"colors": [1, 1, 1, 6, 1, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -77,11 +77,7 @@ The answer is the larger of these two endpoint-based candidates:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The more interesting case is
-
-`colors[0] == colors[-1]`.
-
-Ca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +123,7 @@ The exact source makes this even simpler by separating the two endpoint-color ca
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerating every pair:** Testing all $O(n^2)$:** - **Enumerating every pair:** Testing all $O(n^2)$ pairs is straightforward and correct, but the endpoint lemma makes almost all of those comparisons unnecessary.
+- **Enumerating every pair:** Testing all $O(n^2)$ pairs is straightforward and correct, but the endpoint lemma makes almost all of those comparisons unnecessary.
 - **One editorial-style pass:** One can scan all indices and update endpoint-based candidate distances whenever a color differs from an endpoint color. That is also $O(n)$; the exact source instead uses an early return plus two boundary searches.
 - **Tracking positions for every color:** A map from color to extreme indices can solve the problem, but the answer needs only disagreement with the endpoints, so the extra storage and bookkeeping are unnecessary.
 - **Different endpoint colors:** Return `n - 1` immediately. No interior pair can exceed the full-array span.
@@ -139,8 +135,8 @@ The exact source makes this even simpler by separating the two endpoint-color ca
 - **Long equal-color suffix:** The right scan skips it once. The final disagreement is the best partner for the left endpoint.
 - **Input guarantee is essential:** If every house had the same color, the unguarded scans could leave the array bounds and no valid answer would exist. The stated guarantee rules out that invalid domain.
 - **No input mutation:** Because the array is only inspected, callers retain the original color ordering after the result is computed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

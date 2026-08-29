@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is a line chart consisting of `n` points connected by line segments. You are given a **1-indexed** integer array `y`. The $$k^{\text{th}}$$ point has coordinates $(k, y[k])$. There are no horizontal lines; that is, no two consecutive points have the same y-coordinate.
+There is a line chart consisting of `n` points connected by line segments. You are given a **1-indexed** integer array `y`. The $k^{\text{th}}$ point has coordinates $(k, y[k])$. There are no horizontal lines; that is, no two consecutive points have the same y-coordinate.
 
 We can draw an infinitely long horizontal line. Return *the **maximum** number of points of intersection of the line with the chart*.
 

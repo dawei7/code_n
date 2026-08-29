@@ -63,11 +63,7 @@ The order matters. Scheduling first and clearing afterward could cancel the newl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each wrapper call begins with:
-
-`clearTimeout(timeoutId)`.
-
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +109,7 @@ For calls with inputs one at 50 milliseconds and two at 75 milliseconds under $t
 
 ## 6. Traps This Instance Exposes
 
-- **- **`setInterval` polling:** Can implement delayed:** - **`setInterval` polling:** Can implement delayed detection but repeatedly wakes and tracks timestamps; one timeout per latest call is simpler.
+- **`setInterval` polling:** Can implement delayed detection but repeatedly wakes and tracks timestamps; one timeout per latest call is simpler.
 - **Throttle:** It enforces a different policy and may execute the first call rather than the last.
 - **Call `fn(...args)` directly in the timer:** Works for context-free functions but can lose the original `this` receiver.
 - **First call:** Clearing undefined is harmless, then one timer is scheduled.
@@ -123,8 +119,8 @@ For calls with inputs one at 50 milliseconds and two at 75 milliseconds under $t
 - **Several arguments:** Rest and `apply` preserve their order.
 - **Simultaneous calls:** The last invocation in event-loop execution order survives.
 - **Return value:** The debounced wrapper returns immediately and does not expose the later function result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

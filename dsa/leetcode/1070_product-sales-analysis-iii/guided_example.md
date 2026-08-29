@@ -69,11 +69,7 @@ No `quantity` or `price` appears in this grouped result. Selecting either withou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inner query is:
-
-
-
-`GROUP BY product_id` creates one gro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +115,7 @@ The composite pair expresses exactly the desired relation: this sale's year equa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Join with the aggregate subquery:** Compute `(:** - **Join with the aggregate subquery:** Compute `(product_id, MIN(year))` and inner-join it to `Sales` on both product and year. This is semantically equivalent and often makes the two-step logic explicit.
+- **Join with the aggregate subquery:** Compute `(product_id, MIN(year))` and inner-join it to `Sales` on both product and year. This is semantically equivalent and often makes the two-step logic explicit.
 - **Window function:** Compute `MIN(year) OVER (PARTITION BY product_id)` for each row, then filter where `year` equals that window value. This preserves all ties but may require a derived table because window aliases are not normally available directly in `WHERE`.
 - **Correlated subquery:** Filter with `year = (SELECT MIN(year) ... WHERE product_id = outer.product_id)`. Optimizers may decorrelate it, but the grouped key set is often clearer.
 - **ROW_NUMBER:** Using `ROW_NUMBER() = 1` would keep only one row when several sales share the first year. A minimum-year filter or `DENSE_RANK() = 1` is required to preserve all ties.
@@ -132,8 +128,8 @@ The composite pair expresses exactly the desired relation: this sale's year equa
 - **Alias first_year:** Only the output column name changes; filtering still uses the source `year`.
 - **Any order:** Omitting `ORDER BY` matches the contract.
 - **Composite row IN support:** MySQL supports row-value membership for the two-column comparison used by the exact query.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

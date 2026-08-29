@@ -66,7 +66,7 @@ It is important not to read too much into the survivor. In the true branch, know
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution begins with `ans = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ After the loop, every person except `ans` has been disproved. Therefore, if a ce
 
 ## 6. Traps This Instance Exposes
 
-- **- **Verify every person independently:** Check bot:** - **Verify every person independently:** Check both directions for each possible candidate. It is simple but makes $O(n^2)$ API calls in the worst case because the same relationships are queried repeatedly.
+- **Verify every person independently:** Check both directions for each possible candidate. It is simple but makes $O(n^2)$ API calls in the worst case because the same relationships are queried repeatedly.
 - **Stack elimination:** Put all people on a stack, pop two at a time, query one relationship, and push the only remaining possible candidate. This implements the same elimination proof with $O(n)$ calls but uses $O(n)$ stack space unnecessarily.
 - **Cache API results:** Memoizing elimination calls can avoid repeating some questions during verification, at the cost of $O(n)$ stored results. The exact source already stays below `3n` calls with constant space.
 - **Return the survivor without verification:** Incorrect when no celebrity exists. Elimination guarantees only that every other person was ruled out, not that the survivor satisfies all unqueried conditions.
@@ -119,8 +119,8 @@ After the loop, every person except `ans` has been disproved. Therefore, if a ce
 - **Two people:** One elimination question leaves a candidate, and verification checks both required directions against the one other person.
 - **API opacity:** The algorithm uses only `knows(a, b)` and never assumes direct access to `graph`. Reading or scanning the entire matrix would violate the interface contract.
 - **Short-circuit order:** Querying the candidate's outgoing edge first allows immediate rejection without the incoming call. Reversing the checks remains correct but changes which failed cases save an API call.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

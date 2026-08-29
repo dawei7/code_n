@@ -79,7 +79,7 @@ by zero in later bucket indexing.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `mi` and `mx` be the minimum and maximum input values, a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ constant-factor bound.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Comparison sorting:** Sort and scan adjacent d:** - **Comparison sorting:** Sort and scan adjacent differences in $O(n\log n)$ time; it is simpler but violates the required linear-time target.
+- **Comparison sorting:** Sort and scan adjacent differences in $O(n\log n)$ time; it is simpler but violates the required linear-time target.
 - **Radix sort:** The nonnegative bounded integers can be sorted digit by digit in linear time for a fixed number of digits, using $O(n)$ extra storage.
 - **Fewer than two values:** No adjacent sorted pair exists, so return zero.
 - **All values equal:** One occupied bucket yields no positive gap.
@@ -141,8 +141,8 @@ constant-factor bound.
 - **First occupied bucket:** The infinity initialization deliberately suppresses a nonexistent gap before the minimum.
 - **Nonnegative contract:** Bucket indexing uses offsets and also works algebraically for negatives, but the stated domain is nonnegative.
 - **Missing imports:** `List` and `inf` must be available in a standalone runtime.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

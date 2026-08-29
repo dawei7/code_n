@@ -69,7 +69,7 @@ The last `P` row has `ed = NULL`. Comparisons involving that null are unknown, s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `S` joins each interval to every task of the same employ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The outer grouping produces one row per employee, and `ORDER BY 1` sorts by the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Signed event sweep:** Emit +1 at starts and -1:** - **Signed event sweep:** Emit +1 at starts and -1 at ends, aggregate equal timestamps, and use cumulative concurrency. It can compute active duration and peak in $O(r\log r)$ without the quadratic containment join.
+- **Signed event sweep:** Emit +1 at starts and -1 at ends, aggregate equal timestamps, and use cumulative concurrency. It can compute active duration and peak in $O(r\log r)$ without the quadratic containment join.
 - **Merge intervals only:** Sorting and merging yields union duration but does not by itself preserve maximum concurrency.
 - **Sum task durations:** Incorrect because overlap would be counted multiple times.
 - **Duplicate boundary times:** `UNION DISTINCT` ensures they define one boundary rather than zero-length repeated segments.
@@ -122,8 +122,8 @@ The outer grouping produces one row per employee, and `ORDER BY 1` sorts by the 
 - **Final boundary:** Its null `ed` cannot form a segment and drops from the containment join.
 - **Employees remain separate:** Every window and join is partitioned or keyed by `employee_id`.
 - **Long MySQL time differences:** `TIMEDIFF`/`TIME_TO_SEC` behavior should be checked if task spans exceed MySQL's TIME range; the local statement provides no such extreme example.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

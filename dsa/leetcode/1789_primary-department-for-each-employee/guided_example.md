@@ -58,7 +58,7 @@ Single-department employees do not appear here because the description states th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first `SELECT` reads `employee_id` and `department_id` f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ The composite primary key guarantees that two rows for the same employee cannot 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION ALL`:** Under the stated rules the two :** - **`UNION ALL`:** Under the stated rules the two branches are disjoint, so it can avoid duplicate elimination. Plain `UNION` is safer against overlapping rows and is what the protected source uses.
+- **`UNION ALL`:** Under the stated rules the two branches are disjoint, so it can avoid duplicate elimination. Plain `UNION` is safer against overlapping rows and is what the protected source uses.
 - **Window count:** Compute `COUNT(*) OVER (PARTITION BY employee_id)` for every row, then retain rows whose count is one or whose flag is `'Y'`. This expresses both cases in one filter and is portable on engines with window functions.
 - **Grouped subquery plus join:** Find employee IDs having one row, join them back for their department, and union with `'Y'` rows. This avoids selecting a non-grouped column under strict SQL modes.
 - **Conditional aggregation:** Group per employee and choose the flagged department, falling back to the only department. It can work but needs careful handling of the single-row `'N'` case.
@@ -113,8 +113,8 @@ The composite primary key guarantees that two rows for the same employee cannot 
 - **Any output order:** No ordering clause is necessary, and consumers must not rely on branch order.
 - **Strict MySQL mode:** `ONLY_FULL_GROUP_BY` may reject the exact second branch; a join or window formulation is more portable.
 - **Declarative execution:** Complexity can vary with indexes, statistics, memory limits, and the optimizer even though the logical result is fixed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

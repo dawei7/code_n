@@ -61,7 +61,7 @@ If the loop finishes, the total weight of all apples is at most 5000, so `len(we
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The running value `s` is the total weight of the sorted pref... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For `[100, 200, 150, 1000]`, the sorted running total never exceeds 5000. The me
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting frequencies by weight:** Because weig:** - **Counting frequencies by weight:** Because weights are at most 1000, count each weight and take as many as possible from one upward. This can achieve $O(n+W)$ time and $O(W)$ space for maximum weight $W$.
+- **Counting frequencies by weight:** Because weights are at most 1000, count each weight and take as many as possible from one upward. This can achieve $O(n+W)$ time and $O(W)$ space for maximum weight $W$.
 - **Min-heap:** Heapify the list and repeatedly pop the lightest apple while it fits. This takes $O(n+k\log n)$ time for $k$ selected apples and also mutates the input.
 - **Capacity dynamic programming:** A knapsack table can find a maximum count, but its $O(n\cdot5000)$ work is unnecessary given the equal value of all apples.
 - **All apples fit:** The loop never returns early and the method returns `len(weight)`.
@@ -117,8 +117,8 @@ For `[100, 200, 150, 1000]`, the sorted running total never exceeds 5000. The me
 - **Positive weights:** Once a prefix overflows, adding more apples cannot restore feasibility. The proof relies on every weight being at least one.
 - **Input mutation:** `weight.sort()` changes the caller-visible list order. Use `sorted(weight)` if preserving input is an external requirement, at the cost of another list.
 - **Zero-based return at overflow:** When index `i` causes failure, there are exactly `i` earlier apples, so returning `i` is not an off-by-one error.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

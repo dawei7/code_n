@@ -76,7 +76,7 @@ This argument is why the source does not expand the state into combinations of u
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At first, adding every reverse arc seems to allow the switch... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ If `nd < dist[v]`, this route is strictly better than every previously discovere
 
 ## 6. Traps This Instance Exposes
 
-- **- **State-expanded search over used switches:** Re:** - **State-expanded search over used switches:** Remembering which of `V` node switches were used would lead toward `2^V` combinations. Positive weights and simple optimal paths make that state unnecessary.
+- **State-expanded search over used switches:** Remembering which of `V` node switches were used would lead toward `2^V` combinations. Positive weights and simple optimal paths make that state unnecessary.
 - **Bellman–Ford:** It handles negative edges but would cost `O(VE)`. All transformed weights are positive, so Dijkstra is substantially more efficient.
 - **Breadth-first search:** BFS minimizes edge count, not weighted cost. Original weights vary and reverse arcs cost twice their originals, so a FIFO queue is not valid.
 - **Permanently reverse edges:** The operation applies only to one immediate traversal. Mutating the graph would incorrectly affect later moves; adding a separate reverse option models the rule faithfully.
@@ -133,8 +133,8 @@ If `nd < dist[v]`, this route is strictly better than every previously discovere
 - **Early destination return:** It is safe only after the stale-entry check. Returning from an obsolete larger destination entry before checking `dist` could be incorrect.
 - **Integer costs:** The maximum route cost can exceed one edge’s bound, but Python integers do not overflow. Other languages should use a sufficiently wide integer type.
 - **Missing imports:** The stored source refers to `List`, `inf`, `heappop`, and `heappush` without importing them. Standalone Python would need the corresponding `typing`, `math`, and `heapq` imports unless supplied by the harness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

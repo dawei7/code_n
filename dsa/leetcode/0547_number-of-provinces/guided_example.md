@@ -52,8 +52,7 @@ The matrix describes an undirected graph:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - each city is a vertex;
-- `isConnected[i][j] == 1` means an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ A province is exactly a connected component of this graph. The solution counts h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** A queue can mark one c:** - **Breadth-first search:** A queue can mark one component at a time with the same $O(n^2)$ time and $O(n)$ space.
+- **Breadth-first search:** A queue can mark one component at a time with the same $O(n^2)$ time and $O(n)$ space.
 - **Union-find:** Union every connected pair and count roots. It is useful for edge streams but still scans this full matrix.
 - **Count direct neighbor groups only:** Direct adjacency is not enough; indirect paths must merge cities into one province.
 - **Single city:** One unvisited start launches DFS and returns one province.
@@ -99,8 +98,8 @@ A province is exactly a connected component of this graph. The solution counts h
 - **Long chain of cities:** Indirect connectivity makes the entire chain one province.
 - **Recursion depth:** With up to 200 cities, the call depth is bounded and modest; an explicit stack is an easy substitute.
 - **Input immutability:** Connectivity entries remain unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

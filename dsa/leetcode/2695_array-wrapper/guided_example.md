@@ -63,7 +63,7 @@ Computing once means future numeric coercions do not rescan the array.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor saves the supplied array reference as `this.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The operator itself has not changed; only the primitive meaning of each operand 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute the sum inside `valueOf`:** Simpler st:** - **Compute the sum inside `valueOf`:** Simpler state, but every addition rescans the array in $O(n)$ time.
+- **Compute the sum inside `valueOf`:** Simpler state, but every addition rescans the array in $O(n)$ time.
 - **Use `Symbol.toPrimitive`:** Can inspect the coercion hint and handle numeric and string cases in one hook, but two familiar methods are sufficient.
 - **Use `JSON.stringify` for text:** Produces suitable integer-array syntax but does more general serialization work than `join`.
 - **Empty array:** Numeric value is zero and string value is `"[]"`.
@@ -116,8 +116,8 @@ The operator itself has not changed; only the primitive meaning of each operand 
 - **Nonnegative integers:** Match the stated constraints, though the arithmetic also handles ordinary negative numbers.
 - **Shared prototype methods:** Avoid allocating method functions per wrapper instance.
 - **Standard number limits:** Extremely large accumulated sums would follow JavaScript's Number precision rules, but the challenge bounds remain safe.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

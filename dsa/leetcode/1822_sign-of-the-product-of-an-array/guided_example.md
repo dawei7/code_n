@@ -55,7 +55,7 @@ The solution returns zero as soon as it sees one. No later element can change th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If any array value `v` equals zero, the complete product equ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ At the end, an even number of negative factors has caused an even number of togg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Multiply the full product:** It is mathematica:** - **Multiply the full product:** It is mathematically direct but risks overflow in fixed-width languages and performs unnecessary large-number arithmetic in Python.
+- **Multiply the full product:** It is mathematically direct but risks overflow in fixed-width languages and performs unnecessary large-number arithmetic in Python.
 - **Count negative values:** Return according to count parity after separately checking zero; this has the same bounds.
 - **Boolean parity flag:** Toggle a Boolean for each negative and translate it to 1 or -1 at the end.
 - **Zero first:** The method returns immediately without examining later values.
@@ -116,8 +116,8 @@ At the end, an even number of negative factors has caused an even number of togg
 - **Magnitude irrelevant:** Values -100 and -1 both cause exactly one sign flip.
 - **Nonempty guarantee:** Initial sign 1 is always updated or validated by at least one array element.
 - **Input preservation:** The array is only read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

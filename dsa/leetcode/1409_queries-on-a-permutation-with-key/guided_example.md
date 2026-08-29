@@ -65,11 +65,7 @@ The code immediately executes `ans.append(j)`. The requested output for this que
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a query value `v`, the statement
-
-
-
-scans `p` from the b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ It would be wrong to insert first and remove using the old index afterward: inse
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fenwick tree with reserved front positions:** :** - **Fenwick tree with reserved front positions:** Place initial values after $q$ empty positions, store each value's current coordinate, and use prefix sums to count active elements before it. Each query and move then costs $O(\log(m+q))$, matching the manifest's advertised asymptotic time.
+- **Fenwick tree with reserved front positions:** Place initial values after $q$ empty positions, store each value's current coordinate, and use prefix sums to count active elements before it. Each query and move then costs $O(\log(m+q))$, matching the manifest's advertised asymptotic time.
 - **Segment tree:** A tree of active-position counts supports the same prefix-count and point-update operations as a Fenwick tree, but uses more code and typically larger constants.
 - **Linked list:** Moving a known node to the front can be constant time, but locating a value's numerical position still requires a linear traversal unless an additional order-statistics structure is maintained.
 - **Array of positions alone:** Updating only the queried value's position is insufficient because moving it changes the ranks of all values formerly before it.
@@ -123,8 +119,8 @@ It would be wrong to insert first and remove using the old index afterward: inse
 - **Maximum value:** The value `m` initially appears at index $m-1$, but earlier moves can change its later index; the algorithm always searches current state.
 - **Zero-based indexing:** Python's `list.index` already returns the required zero-based index. Adding one would produce incorrect one-based positions.
 - **Guaranteed membership:** The input range and permutation invariant ensure `p.index(v)` always succeeds. Without that guarantee, a missing value would need explicit handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

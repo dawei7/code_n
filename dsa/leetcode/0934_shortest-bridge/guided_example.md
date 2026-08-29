@@ -71,7 +71,7 @@ When DFS finishes, every cell of the chosen first island is marked `2` and store
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator expression searches the grid in row-major orde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Interior island cells are harmless seeds. They cannot expand through other marke
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run BFS from only one first-island cell:** Thi:** - **Run BFS from only one first-island cell:** This can overcount movement through existing land and miss the best shoreline. Multi-source BFS correctly assigns zero distance to the entire first island.
+- **Run BFS from only one first-island cell:** This can overcount movement through existing land and miss the best shoreline. Multi-source BFS correctly assigns zero distance to the entire first island.
 - **Start BFS from boundary cells only:** This is also correct and may reduce the initial queue, but it requires an additional boundary test. Enqueuing every island cell is simpler and retains the same `O(n^2)` bound.
 - **Compute all pairs of island cells:** Measuring distances between every cell of one island and every cell of the other can become quadratic in the number of land cells, which is up to `O(n^4)` overall. BFS explores the grid once.
 - **Depth-first search for both phases:** DFS is suitable for identifying a component, but ordinary DFS does not visit positions by shortest distance. Using it for expansion would require extra distance bookkeeping or exhaustive search.
@@ -122,8 +122,8 @@ Interior island cells are harmless seeds. They cannot expand through other marke
 - **Input mutation:** The marking strategy destroys the original binary grid. If preservation were required, the algorithm would need a separate visited set or a copied grid, increasing memory use.
 - **Exactly two islands:** The recognition that every untouched `1` belongs to the target relies on this contract. With more islands, the first contact would find the nearest other island, which would be a different problem.
 - **Direction semantics:** Only vertical and horizontal neighbors count. Diagonal contact does not join islands and is correctly ignored by the four generated direction pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

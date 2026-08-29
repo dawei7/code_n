@@ -10,9 +10,9 @@ You would like to make dessert and are preparing to buy the ingredients. You hav
 
 You are given three inputs:
 
-- `baseCosts`, an integer array of length `n`, where each $\text{baseCosts}[i]$ represents the price of the $$i^{\text{th}}$$ ice cream base flavor.
+- `baseCosts`, an integer array of length `n`, where each $\text{baseCosts}[i]$ represents the price of the $i^{\text{th}}$ ice cream base flavor.
 
-- `toppingCosts`, an integer array of length `m`, where each $\text{toppingCosts}[i]$ is the price of **one** of the $$i^{\text{th}}$$ topping.
+- `toppingCosts`, an integer array of length `m`, where each $\text{toppingCosts}[i]$ is the price of **one** of the $i^{\text{th}}$ topping.
 
 - `target`, an integer representing your target price for dessert.
 

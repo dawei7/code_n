@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `products['quantity'] = products['quantity'].fillna(0)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This preserves missing values elsewhere rather than applying a table-wide fill t
 
 ## 6. Traps This Instance Exposes
 
-- **- **DataFrame-level dictionary fill:** `products.f:** - **DataFrame-level dictionary fill:** `products.fillna({'quantity': 0})` expresses the same column-specific replacement and can return a new DataFrame.
+- **DataFrame-level dictionary fill:** `products.fillna({'quantity': 0})` expresses the same column-specific replacement and can return a new DataFrame.
 - **In-place Series fill:** It is concise but can trigger chained-view warnings or changing pandas semantics; explicit reassignment is safer.
 - **`assign` method:** `products.assign(quantity=products['quantity'].fillna(0))` is convenient when mutation should be avoided.
 - **Existing zero quantity:** It remains zero because zero is a real value, not a missing marker.
@@ -94,8 +94,8 @@ This preserves missing values elsewhere rather than applying a table-wide fill t
 - **No missing quantities:** Values remain the same, though a result Series is still formed.
 - **All quantities missing:** Every row receives zero.
 - **Dtype:** Filling may not convert a float-backed column to integer; the exact source repairs values only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

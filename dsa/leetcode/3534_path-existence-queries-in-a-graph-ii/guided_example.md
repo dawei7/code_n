@@ -67,7 +67,7 @@ When the loop stops, `r` is the farthest sorted position whose value is within o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a node of value `v`, every node whose value lies between... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Therefore, the minimum path length to a higher target is the smallest number of 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search per query:** The implicit:** - **Breadth-first search per query:** The implicit graph may be dense and `Q` may be `100,000`, making repeated traversal far too expensive.
+- **Breadth-first search per query:** The implicit graph may be dense and `Q` may be `100,000`, making repeated traversal far too expensive.
 - **Build all edges:** Up to `O(n^2)` node pairs may satisfy the threshold. Sorted intervals describe reach without materializing them.
 - **Repeated one-step greedy jumps:** Correct, but a query can require `O(n)` jumps. Binary lifting composes them in logarithmic time.
 - **Use original index order:** Edge structure depends on values, so sorting by value is essential.
@@ -122,8 +122,8 @@ Therefore, the minimum path length to a higher target is the smallest number of 
 - **Going backward in value:** It cannot improve a rightward shortest path because it reduces the next maximum reachable value.
 - **Fixed table height:** Twenty levels cover the current constraints but should not be copied blindly to a larger-`n` version.
 - **Undirected edges:** Orienting the query by value is an analysis convenience; every step used remains a valid undirected edge.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

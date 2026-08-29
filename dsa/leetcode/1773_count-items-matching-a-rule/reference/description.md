@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given an array `items`, where each $\text{items}[i] = [\text{type}_{i}, \text{color}_{i}, \text{name}_{i}]$ describes the type, color, and name of the $$i^{\text{th}}$$ item. You are also given a rule represented by two strings, `ruleKey` and `ruleValue`.
+You are given an array `items`, where each $\text{items}[i] = [\text{type}_{i}, \text{color}_{i}, \text{name}_{i}]$ describes the type, color, and name of the $i^{\text{th}}$ item. You are also given a rule represented by two strings, `ruleKey` and `ruleValue`.
 
-The $$i^{\text{th}}$$ item is said to match the rule if **one** of the following is true:
+The $i^{\text{th}}$ item is said to match the rule if **one** of the following is true:
 
 - $ruleKey = "type"$ and $ruleValue = \text{type}_{i}$.
 

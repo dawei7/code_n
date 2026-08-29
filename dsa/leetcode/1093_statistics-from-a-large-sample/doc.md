@@ -14,7 +14,7 @@
 
 ### Goal
 
-A very large sample contains integers in the range $[0, 255]$. Rather than listing every observation, the sample is represented by an array `count` in which `count[k]` is the number of times the value `k` appears.
+A very large sample contains integers in the range `[0, 255]`. Rather than listing every observation, the sample is represented by an array `count` in which `count[k]` is the number of times the value `k` appears.
 
 Calculate five statistics. The minimum and maximum are the smallest and largest observed values. The mean is the sum of all observations divided by their number. For an odd-sized sample, the median is its middle value after sorting; for an even-sized sample, it is the average of the two middle values. The mode is the most frequent value, and it is guaranteed to be unique. Return `[minimum, maximum, mean, median, mode]` as floating-point numbers; an error of at most $10^{-5}$ is accepted.
 

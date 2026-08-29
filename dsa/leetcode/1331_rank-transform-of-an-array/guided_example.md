@@ -67,10 +67,7 @@ This also explains why numerical gaps do not create rank gaps. If the only disti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, `t` has strictly increasing values:
-
-$$
-t[0] ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +114,7 @@ Using `bisect_right` on a list that still contained duplicates would not work th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rank dictionary:** Enumerate the sorted unique:** - **Rank dictionary:** Enumerate the sorted unique values and map each to index plus one, then perform expected constant-time lookups.
+- **Rank dictionary:** Enumerate the sorted unique values and map each to index plus one, then perform expected constant-time lookups.
 - **Sort the full array:** It can still derive ranks by skipping duplicates, but stores and processes repeated values unnecessarily.
 - **`bisect_left + 1`:** It is equivalent because every queried value exists exactly once in `t`.
 - **All values equal:** The unique list has length one, and every rank is one.
@@ -128,8 +125,8 @@ Using `bisect_right` on a list that still contained duplicates would not work th
 - **Duplicate values:** Deduplication ensures equal ranks and no gaps.
 - **Original array unchanged:** The method returns a new rank list rather than overwriting `arr`.
 - **Binary-search cost:** Although sorting dominates broadly, exact lookup is $O(\log u)$ per element rather than hash-map constant expected time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

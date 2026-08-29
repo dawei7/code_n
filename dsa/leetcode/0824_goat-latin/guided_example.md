@@ -57,7 +57,7 @@ Every word is nonempty under the sentence contract, so index zero is safe.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each zero-based index `i` and `word`, the expression `wo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ Vowel-starting words skip this branch and keep their character order unchanged.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual sentence scan:** One can detect word bo:** - **Manual sentence scan:** One can detect word boundaries character by character, but `split` and `join` directly match the guaranteed single-space grammar.
-- **- **Vowel set:** A set such as `set("aeiouAEIOU")`:** - **Vowel set:** A set such as `set("aeiouAEIOU")` gives constant-time membership without lowercasing the word. The exact code lowercases for a simple five-letter comparison.
-- **- **Uppercase vowel:** It follows the vowel branch:** - **Uppercase vowel:** It follows the vowel branch because of `lower()`, while original capitalization is preserved in `word`.
+- **Manual sentence scan:** One can detect word boundaries character by character, but `split` and `join` directly match the guaranteed single-space grammar.
+- **Vowel set:** A set such as `set("aeiouAEIOU")` gives constant-time membership without lowercasing the word. The exact code lowercases for a simple five-letter comparison.
+- **Uppercase vowel:** It follows the vowel branch because of `lower()`, while original capitalization is preserved in `word`.
 
 ---
 

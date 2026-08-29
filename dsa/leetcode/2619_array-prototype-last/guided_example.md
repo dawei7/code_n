@@ -63,7 +63,7 @@ The normal function syntax is therefore not cosmetic. It is what connects the sh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside a method call such as `arr.last()`, a normal function... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ If the array is nonempty, `this.length - 1` is a valid final index, and direct b
 
 ## 6. Traps This Instance Exposes
 
-- **- **`Array.prototype.at(-1)`:** It provides end-re:** - **`Array.prototype.at(-1)`:** It provides end-relative indexing, but a separate length check is still needed to distinguish an empty array from a legitimate final undefined-like value.
+- **`Array.prototype.at(-1)`:** It provides end-relative indexing, but a separate length check is still needed to distinguish an empty array from a legitimate final undefined-like value.
 - **`pop()`:** It returns the last element but removes it, violating the expected query behavior.
 - **`slice(-1)[0]`:** Non-mutating but allocates a new one-element array and is needlessly indirect.
 - **Arrow-function method:** It captures lexical `this` and will not reliably refer to the receiving array.
@@ -114,8 +114,8 @@ If the array is nonempty, `this.length - 1` is a valid final index, and direct b
 - **Nested final array or object:** Return the original reference without copying or serialization.
 - **Repeated calls:** They do not mutate the array and therefore remain stable.
 - **Prototype collision:** Relevant in production design, but extending `Array.prototype` is explicitly required by this challenge.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

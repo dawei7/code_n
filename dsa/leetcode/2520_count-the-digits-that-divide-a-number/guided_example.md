@@ -77,13 +77,7 @@ Digits are processed right to left, but their order does not affect a count.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a positive integer `x`:
-
-`divmod(x,10)`
-
-returns:
-
-- quo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +122,7 @@ The constraint guarantees that no digit is zero. This matters because `num%0` wo
 
 ## 6. Traps This Instance Exposes
 
-- **- **String iteration:** Convert `num` to text, con:** - **String iteration:** Convert `num` to text, convert each character back to an integer, and test divisibility; it is also $O(d)$ but allocates the string.
+- **String iteration:** Convert `num` to text, convert each character back to an integer, and test divisibility; it is also $O(d)$ but allocates the string.
 - **Repeated digit:** Count every occurrence separately.
 - **Digit one:** It always divides the number.
 - **Digit equal to `num`:** This occurs for one-digit input and always contributes.
@@ -138,8 +132,8 @@ The constraint guarantees that no digit is zero. This matters because `num%0` wo
 - **Boolean arithmetic:** true adds one and false adds zero.
 - **Largest input:** Ten extraction iterations suffice for $10^9$.
 - **No floating point:** Decimal digits are obtained exactly with integer arithmetic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

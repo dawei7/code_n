@@ -81,9 +81,7 @@ Impossible states in later layers use negative infinity. This is important when 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed round $q$:
-
-- `previous[i]` is the best total us... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +129,7 @@ over starts in the valid window `[end - r, end - l]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every start for every end:** The direct tr:** - **Try every start for every end:** The direct transition costs $O(r-l+1)$ per state and can produce $O(mN^2)$ time. The deque maintains the range maximum.
+- **Try every start for every end:** The direct transition costs $O(r-l+1)$ per state and can produce $O(mN^2)$ time. The deque maintains the range maximum.
 - **Use zero for impossible exact-count states:** This would allow nonexistent subarray sets to dominate negative valid sums. Negative infinity preserves feasibility.
 - **Compute exactly `m` only:** The statement permits fewer selections, and all-negative arrays are best served by one subarray.
 - **Allow zero selected subarrays in the answer:** That would incorrectly return zero when every valid subarray sum is negative.
@@ -143,8 +141,8 @@ over starts in the valid window `[end - r, end - l]`.
 - **All values negative:** Exact layers remain negative; the maximum over positive layer counts chooses the least harmful valid selection.
 - **Adjacent selected subarrays:** Half-open intervals may end and start at the same index without sharing an element.
 - **Large sums:** Python integers safely hold prefix and DP totals beyond 32-bit limits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

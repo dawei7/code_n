@@ -57,11 +57,7 @@ The actual characters range from `'1'` through `'9'`. Converting with `int(c) - 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source allocates three $9\times9$ Boolean tables:
-
-
-
-`ro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +92,7 @@ When `c == '.'`, the loop uses `continue`. Multiple empty cells in the same unit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sets per unit:** More direct membership semant:** - **Sets per unit:** More direct membership semantics, but still fixed storage here and generalized $O(N^2)$ entries.
+- **Sets per unit:** More direct membership semantics, but still fixed storage here and generalized $O(N^2)$ entries.
 - **Bit masks:** Store nine seen flags in one integer per row, column, and box, reducing constants while preserving the same logic.
 - **Rescan each unit per cell:** Avoids tables but repeats work unnecessarily.
 - **All dots:** Every cell is skipped and the board is valid.
@@ -106,8 +102,8 @@ When `c == '.'`, the loop uses `continue`. Multiple empty cells in the same unit
 - **Duplicate only in a box:** `sub[k][num]` detects it.
 - **Same digit in unrelated units:** Allowed when row, column, and box are all different.
 - **Input shape and symbols:** The exact fixed table sizes rely on the guaranteed $9\times9$ board and characters `1-9` or dot.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

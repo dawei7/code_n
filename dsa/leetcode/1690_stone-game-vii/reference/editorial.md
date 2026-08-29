@@ -28,13 +28,13 @@ Let's take an example, array = `[5, 3, 1]`. Here's how each of the players will 
 
 - Alice knows that Bob is trying to be as close as possible to her.
 
-> Alice :   _" If I remove $5$, I will get score $4$ (3 + 1). From the remaining stones $[3, 1]$, Bob will remove $1$ and get the score $3$. Then the difference between our scores would be $1$._
+> Alice :   _" If I remove $5$, I will get score $4$ (3 + 1). From the remaining stones `[3, 1]`, Bob will remove $1$ and get the score $3$. Then the difference between our scores would be $1$._
 >
->_And If I remove $1$, I will get a score of $8$ (5 + 3). From the remaining stones $[5, 3]$, Bob will remove $3$ and get the score $5$. Then the difference between our scores would be $3$"_
+>_And If I remove $1$, I will get a score of $8$ (5 + 3). From the remaining stones `[5, 3]`, Bob will remove $3$ and get the score $5$. Then the difference between our scores would be $3$"_
 
 Based on her analysis, Alice removes $1$ and gains a score of $8$.
 
-- Now the remaining stone are $[5,3]$. Bob has to remove $3$, to get the score $5$ and minimize the difference with Alice.
+- Now the remaining stone are `[5,3]`. Bob has to remove $3$, to get the score $5$ and minimize the difference with Alice.
 
 > Fun fact: Alice had already predicated what choice Bob is going to make.
 

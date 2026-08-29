@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is an `8 x 8` chessboard containing `n` pieces (rooks, queens, or bishops). You are given a string array `pieces` of length `n`, where $\text{pieces}[i]$ describes the type (rook, queen, or bishop) of the $$i^{\text{th}}$$ piece. In addition, you are given a 2D integer array `positions` also of length `n`, where $\text{positions}[i] = [r_{i}, c_{i}]$ indicates that the $$i^{\text{th}}$$ piece is currently at the **1-based** coordinate $(r_{i}, c_{i})$ on the chessboard.
+There is an `8 x 8` chessboard containing `n` pieces (rooks, queens, or bishops). You are given a string array `pieces` of length `n`, where $\text{pieces}[i]$ describes the type (rook, queen, or bishop) of the $i^{\text{th}}$ piece. In addition, you are given a 2D integer array `positions` also of length `n`, where $\text{positions}[i] = [r_{i}, c_{i}]$ indicates that the $i^{\text{th}}$ piece is currently at the **1-based** coordinate $(r_{i}, c_{i})$ on the chessboard.
 
 When making a **move** for a piece, you choose a **destination** square that the piece will travel toward and stop on.
 
@@ -12,7 +12,7 @@ When making a **move** for a piece, you choose a **destination** square that the
 
 You must make a **move** for every piece on the board simultaneously. A **move combination** consists of all the **moves** performed on all the given pieces. Every second, each piece will instantaneously travel **one square** towards their destination if they are not already at it. All pieces start traveling at the $0^th$ second. A move combination is **invalid** if, at a given time, **two or more** pieces occupy the same square.
 
-Return *the number of **valid** move combinations*​​​​​.
+Return *the number of **valid** move combinations*.
 
 ### 2. Function Contract
 

@@ -51,7 +51,7 @@ The entire implementation is one expression:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The entire implementation is one expression:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Despite its compactness, it performs three clear logical steps. Python first tra
 
 ## 6. Traps This Instance Exposes
 
-- **- **26-bit mask:** Map `a` through `z` to bits zer:** - **26-bit mask:** Map `a` through `z` to bits zero through 25, OR each bit into an integer, and compare with `(1 << 26) - 1`. This also uses `O(n)` time and `O(1)` space but requires more bit-level explanation.
+- **26-bit mask:** Map `a` through `z` to bits zero through 25, OR each bit into an integer, and compare with `(1 << 26) - 1`. This also uses `O(n)` time and `O(1)` space but requires more bit-level explanation.
 - **Boolean array:** A fixed array of 26 flags records whether each letter appeared. It avoids hashing and has the same asymptotic costs, with a little more code.
 - **Search for every alphabet letter:** Checking whether each of 26 letters occurs in the sentence scans the string up to 26 times. Since 26 is constant, it is still `O(n)`, but it repeats work.
 - **Frequency counter:** A counter gives occurrence counts, but the counts are unnecessary when only presence matters. A set expresses the requirement more directly.
@@ -98,8 +98,8 @@ Despite its compactness, it performs three clear logical steps. Python first tra
 - **Empty string outside the constraints:** The same code would return false because its set is empty.
 - **Lowercase-only dependency:** The size test is correct because no characters outside `a` through `z` are permitted. With a broader character domain, the code should compare against the actual alphabet set instead.
 - **Hashing assumptions:** Python character hashing supplies expected constant-time set operations; the fixed maximum of 26 distinct keys keeps the container tiny in any case.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

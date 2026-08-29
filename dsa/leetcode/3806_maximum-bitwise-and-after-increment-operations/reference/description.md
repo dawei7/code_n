@@ -52,7 +52,7 @@ Return the greatest integer that can equal the bitwise AND of some size-`m` subs
 
 - The total number of operations used is 5, which is not greater than $k = 7$.
 
-- The three chosen values become `[4, 4, 4]`, and their bitwise AND is 4, which is the maximum possible.​​​​​​​
+- The three chosen values become `[4, 4, 4]`, and their bitwise AND is 4, which is the maximum possible.
 
 #### Example 3
 

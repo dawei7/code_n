@@ -51,7 +51,7 @@ The query implements this rule in stages with common table expressions. Reading 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query implements this rule in stages with common table e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The query implements this rule in stages with common table expressions. Reading 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate voter counts and join:** Compute:** - **Pre-aggregate voter counts and join:** Compute each participating voter's candidate count in one CTE, join it back to non-null vote rows, then aggregate shares. This expresses the same allocation without a window function but may require an explicit join.
+- **Pre-aggregate voter counts and join:** Compute each participating voter's candidate count in one CTE, join it back to non-null vote rows, then aggregate shares. This expresses the same allocation without a window function but may require an explicit join.
 - **Compare with a maximum subquery:** After candidate totals are computed, filter where `tot = (SELECT MAX(tot) ...)`. This also retains ties; `RANK` makes the intent compact.
 - **`ROW_NUMBER`:** This is unsuitable because it would select only one arbitrary candidate when totals tie.
 - **`LIMIT 1`:** Even with ordering by total, it violates the requirement to return all co-winners.
@@ -97,8 +97,8 @@ The query implements this rule in stages with common table expressions. Reading 
 - **Primary-key guarantee:** Duplicate selections of the same candidate by one voter cannot inflate either the denominator or candidate total.
 - **Fractional equality:** The logical comparison is between rational totals; database numeric precision should be chosen carefully outside the challenge environment.
 - **No non-null votes outside expected data:** `T` and `P` would be empty and the result would have no winner. The problem context normally supplies participating votes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

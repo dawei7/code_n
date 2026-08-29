@@ -73,7 +73,7 @@ The initial call begins at index zero with the full deletion budgets, no kept pa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The recursive function `dfs(i, l, r, lcnt, rcnt, t)` carries... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ There is no deletion branch for a letter: the task permits removing invalid pare
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutable character buffer:** Append a kept char:** - **Mutable character buffer:** Append a kept character, recurse, and pop it afterward. This avoids retaining a separate copied string at each stack level and realizes $O(n)$ non-output backtracking space.
+- **Mutable character buffer:** Append a kept character, recurse, and pop it afterward. This avoids retaining a separate copied string at each stack level and realizes $O(n)$ non-output backtracking space.
 - **Breadth-first deletion search:** Generate all strings after one deletion, then two deletions, stopping at the first level containing valid strings. The first valid level guarantees minimum removals, but deduplicating many intermediate strings can consume substantial memory.
 - **Unrestricted keep/delete backtracking:** Try deleting every parenthesis and track the smallest removal count discovered at leaves. It is correct with careful result replacement, but the precomputed budgets prune all branches that delete too few or too many of either type.
 - **Validity check only at the end:** It permits large subtrees beneath prefixes that already have more closing than opening parentheses. Prefix pruning rejects those branches immediately.
@@ -128,8 +128,8 @@ There is no deletion branch for a letter: the task permits removing invalid pare
 - **Minimum-removal guarantee:** A valid string formed by deleting additional matched pairs is deliberately excluded because the DFS has no deletion budget beyond `l_0+r_0`.
 - **Output order:** The returned list comes from a set and is not sorted. Any order is explicitly accepted.
 - **At most 20 parentheses:** The exponential factor depends on $p$, not on all letters in $n$. This constraint keeps the decision space bounded even though the full string may contain 25 characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

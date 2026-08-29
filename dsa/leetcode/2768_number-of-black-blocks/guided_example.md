@@ -70,7 +70,7 @@ Consecutive pairs from that sequence are `(0, 0)`, `(0, -1)`, `(-1, -1)`, and `(
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a black cell is at `(x, y)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ tests whether `(i, j)` is a legal block top-left coordinate. Only legal candidat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every block:** Inspecting four cells:** - **Enumerate every block:** Inspecting four cells for all `(m - 1)(n - 1)` blocks costs `O(mn)` and is impossible at the largest dimensions.
+- **Enumerate every block:** Inspecting four cells for all `(m - 1)(n - 1)` blocks costs `O(mn)` and is impossible at the largest dimensions.
 - **Materialize the whole grid:** A Boolean `m x n` matrix also costs `O(mn)` space despite the sparse black input.
 - **Store black cells and query neighboring blocks:** One could build a black-coordinate set and inspect candidate blocks, but care is needed to deduplicate blocks. The counter accumulates and deduplicates in one structure.
 - **No black coordinates:** The counter remains empty, all blocks belong to bucket zero, and the answer is `[(m - 1)(n - 1), 0, 0, 0, 0]`.
@@ -123,8 +123,8 @@ tests whether `(i, j)` is a legal block top-left coordinate. Only legal candidat
 - **Distinct-coordinate guarantee:** It prevents one black cell from incrementing the same block twice through duplicate input rows.
 - **Minimum `2 x 2` grid:** There is exactly one possible block, and the counter value or untouched subtraction classifies it.
 - **Huge grid with sparse coordinates:** Only touched keys are stored; the large zero count is represented by one integer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

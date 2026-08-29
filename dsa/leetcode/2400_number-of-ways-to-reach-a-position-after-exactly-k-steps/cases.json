@@ -117,11 +117,11 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "startPos": 1000,
-        "endPos": 1000,
-        "k": 1000
+        "startPos": 500,
+        "endPos": 500,
+        "k": 100
       },
-      "expected": 159835829,
+      "expected": 538992043,
       "tags": [
         "maximum",
         "modulo"

@@ -83,7 +83,7 @@ That expression is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each product-year overlap, the query needs the first and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -134,7 +134,7 @@ The explicit `days_of_year` value makes the 2020 full-year boundary leap-year aw
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive calendar expansion:** Generate every:** - **Recursive calendar expansion:** Generate every overlapping year from the dates instead of hard-coding three rows. It generalizes beyond 2020 but is unnecessary for the fixed domain.
+- **Recursive calendar expansion:** Generate every overlapping year from the dates instead of hard-coding three rows. It generalizes beyond 2020 but is unnecessary for the fixed domain.
 - **Intersection with `GREATEST` and `LEAST`:** Construct year-start and year-end dates, clamp interval endpoints, and use `DATEDIFF + 1`. This is more general and can make date semantics explicit.
 - **Daily calendar table:** Join every active date and group by year. It is flexible but expands one row per day and performs far more work.
 - **Interval inside one year:** Both ordinal endpoints come directly from `DAYOFYEAR`.
@@ -147,8 +147,8 @@ The explicit `days_of_year` value makes the 2020 full-year boundary leap-year aw
 - **Missing product lookup outside the intended relationship:** The product inner join would discard that sales row; valid data is expected to reference an existing product.
 - **Fixed year domain:** A date outside 2018–2020 would not be fully represented because `y` contains only those years; the stated constraints make this safe.
 - **Required ordering:** The final `ORDER BY` is essential because joins and `UNION ALL` do not promise result order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

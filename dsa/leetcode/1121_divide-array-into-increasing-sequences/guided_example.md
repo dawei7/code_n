@@ -59,7 +59,7 @@ If it fails, even the minimum required number of subsequences would demand more 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If there are at least $F$ subsequences and every subsequence... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The starting cyclic position may continue across value boundaries. That does not
 
 ## 6. Traps This Instance Exposes
 
-- **- **Constant-space run counter:** Scan adjacent va:** - **Constant-space run counter:** Scan adjacent values, track current run and maximum run. This is the clearest way to achieve $O(n)$ time and $O(1)$ space.
+- **Constant-space run counter:** Scan adjacent values, track current run and maximum run. This is the clearest way to achieve $O(n)$ time and $O(1)$ space.
 - **Frequency dictionary:** Count all values in $O(n)$ expected time and $O(u)$ space. Sortedness makes a dictionary unnecessary.
 - **Construct sequences greedily:** It can verify existence but stores data the Boolean theorem avoids.
 - **All values distinct:** $F=1$, and the whole array itself is increasing; the answer is true because `k <= n`.
@@ -116,8 +116,8 @@ The starting cyclic position may continue across value boundaries. That does not
 - **Sorted-input guarantee:** It is what makes each `groupby` group equal the total frequency of that value.
 - **No construction required:** The proof supplies existence, so returning a Boolean is sufficient.
 - **Materialized group:** The exact source’s list allocation is the reason its true space differs from the manifest target.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

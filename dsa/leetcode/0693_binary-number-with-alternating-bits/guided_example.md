@@ -78,7 +78,7 @@ When they differ, the newly examined pair is valid. Assigning `prev = curr` exte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `prev` stores the bit from the preceding loop iteration—that... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +117,9 @@ An explicit “first iteration” branch would also work, but the sentinel keeps
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a binary string:** `bin(n)` followe:** - **Convert to a binary string:** `bin(n)` followed by adjacent-character comparisons is straightforward, but it uses `O(\log n)` extra string space.
-- **- **XOR pattern observation:** If `n` alternates, :** - **XOR pattern observation:** If `n` alternates, then `x = n ^ (n >> 1)` consists entirely of ones. Such a number satisfies `x & (x + 1) == 0`. This gives a compact constant-number-of-operations test for fixed-width integers but is less immediately intuitive.
-- **- **Single-bit numbers:** `1` has no adjacent pair:** - **Single-bit numbers:** `1` has no adjacent pair, so the property is vacuously true. The loop processes its only bit and returns `true`.
+- **Convert to a binary string:** `bin(n)` followed by adjacent-character comparisons is straightforward, but it uses `O(\log n)` extra string space.
+- **XOR pattern observation:** If `n` alternates, then `x = n ^ (n >> 1)` consists entirely of ones. Such a number satisfies `x & (x + 1) == 0`. This gives a compact constant-number-of-operations test for fixed-width integers but is less immediately intuitive.
+- **Single-bit numbers:** `1` has no adjacent pair, so the property is vacuously true. The loop processes its only bit and returns `true`.
 
 ---
 

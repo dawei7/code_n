@@ -63,11 +63,7 @@ Starting with `[]` would fail because the nested comprehension would have no exi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The algorithm initializes
-
-
-
-This is not a completed answer ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ Notice that this update does not modify strings already inside the old `ans`. St
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive backtracking:** Append one choice, r:** - **Recursive backtracking:** Append one choice, recurse to the next digit, then pop. It has the same output time and $O(n)$ auxiliary path space excluding results.
+- **Recursive backtracking:** Append one choice, recurse to the next digit, then pop. It has the same output time and $O(n)$ auxiliary path space excluding results.
 - **Mixed-radix enumeration:** Number combinations from `0` to `P - 1` and decode each position using the corresponding choice count. This avoids recursive state but requires careful index arithmetic.
 - **Queue-style breadth-first expansion:** Repeatedly remove partial prefixes and append extensions. It expresses the same Cartesian product with more mutation.
 - **One digit:** The empty identity prefix expands directly to that digit's three or four letters.
@@ -120,8 +116,8 @@ Notice that this update does not modify strings already inside the old `ans`. St
 - **Repeated digits:** Positions are independent; `"22"` correctly includes `"aa"`, `"ab"`, and all nine ordered choices.
 - **No `0` or `1`:** The contract excludes unmapped digits, so no missing-mapping policy is needed.
 - **Input preservation:** The digit string and mapping are read-only; every result string is newly created.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

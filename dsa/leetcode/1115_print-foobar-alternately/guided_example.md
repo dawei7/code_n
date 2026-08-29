@@ -59,7 +59,7 @@ This ordering guarantees that the complete text `foo` is produced before the cor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of every foo iteration, `f.acquire()` waits for... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ That last release authorizes exactly the next foo iteration. Bar cannot immediat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two locks as gates:** Start foo’s lock open an:** - **Two locks as gates:** Start foo’s lock open and bar’s closed, then release the opposite lock after each callback. Semaphore ownership rules often make repeated cross-thread handoffs clearer.
+- **Two locks as gates:** Start foo’s lock open and bar’s closed, then release the opposite lock after each callback. Semaphore ownership rules often make repeated cross-thread handoffs clearer.
 - **Condition variable with turn flag:** Wait for a Boolean turn, print, flip it, and notify. Correct use requires a loop around waits to handle wakeups.
 - **Events:** Events can coordinate turns but must be cleared and set carefully to prevent one thread from passing multiple iterations.
 - **Busy waiting:** Polling a shared turn flag wastes CPU and needs synchronization for visibility.
@@ -109,8 +109,8 @@ That last release authorizes exactly the next foo iteration. Bar cannot immediat
 - **Final permit:** A leftover foo permit after all work is harmless because no additional loop iteration exists.
 - **Callback exception:** It can interrupt the handoff and block the peer; normal callback completion is assumed.
 - **No output buffer:** The class controls callback order and does not build the output string itself.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

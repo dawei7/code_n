@@ -63,7 +63,7 @@ Every non-constant good subarray occurrence is already distinct and must remain 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The sorted, non-descending property is crucial.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Runs are maximal and values differ between runs, so constant sequences from diff
 
 ## 6. Traps This Instance Exposes
 
-- **- **Insert every good subarray tuple into a set:**:** - **Insert every good subarray tuple into a set:** This is direct but constructing $O(n^2)$ sequences and hashing their contents can require cubic character/value work and quadratic storage.
+- **Insert every good subarray tuple into a set:** This is direct but constructing $O(n^2)$ sequences and hashing their contents can require cubic character/value work and quadratic storage.
 - **Return the prefix-remainder count:** That counts index occurrences, not distinct sequences. Equal runs demonstrate the required correction.
 - **Deduplicate all subarrays with rolling hashes:** Hashing can identify repeated sequences, but it is much more complex. Sorted order proves only constant sequences can repeat.
 - **Apply the run correction to non-sorted input:** It would be invalid because non-constant patterns can repeat in an arbitrary array. The method relies essentially on non-descending order.
@@ -125,8 +125,8 @@ Runs are maximal and values differ between runs, so constant sequences from diff
 - **Large values and `k`:** Updating modulo at every step avoids unbounded prefix sums while preserving divisibility equivalence.
 - **Empty prefix seed:** `cnt[0]=1` is required to count a good subarray beginning at index zero.
 - **Correction never makes the answer negative:** Every subtraction removes occurrences known to have been included by the first phase.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

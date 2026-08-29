@@ -69,7 +69,7 @@ The helper maximizes this product over every line containing points.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mn` and `mx` are the smallest and largest x-coordinates amo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ If height is zero, all points lie on the same vertical line and any triangle is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group both axes separately:** Build extrema ma:** - **Group both axes separately:** Build extrema maps for equal x and equal y without mutating coordinates. This uses similar `O(n)` time and space with clearer input preservation.
+- **Group both axes separately:** Build extrema maps for equal x and equal y without mutating coordinates. This uses similar `O(n)` time and space with clearer input preservation.
 - **Enumerate triples:** Testing every three points costs `O(n^3)` and is unnecessary because only line extrema matter.
 - **Enumerate bases and third points:** Even grouping axis-parallel pairs can become quadratic; line and global extrema collapse both choices.
 - **All points on one line:** Perpendicular height is zero, so the answer is `-1`.
@@ -121,8 +121,8 @@ If height is zero, all points lie on the same vertical line and any triangle is 
 - **Positive coordinate constraint:** Initial `mx=0` is safe because every coordinate is at least one; generalized negative coordinates would require `-inf`.
 - **Mutated argument:** After the method, every input point is `[old_y,old_x]`; this should be documented or repaired in reusable code.
 - **Why twice-area is integral:** Coordinate differences are integers, so `base*height` is an integer even when the geometric area itself is a half-integer. Returning the product exactly matches the requested doubled quantity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

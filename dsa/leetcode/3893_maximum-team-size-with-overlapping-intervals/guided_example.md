@@ -77,11 +77,7 @@ The loop over `intervals` still visits every real hub $[l,r]$. Losing the pairin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method first creates
-
-
-
-This snapshot preserves each emp... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,9 +118,9 @@ This first count still includes some intervals that ended before the hub began. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic hub scan:** Testing all intervals ag:** - **Quadratic hub scan:** Testing all intervals against every possible hub is conceptually direct but costs $O(n^2)$, which is too slow for $n=10^5$.
+- **Quadratic hub scan:** Testing all intervals against every possible hub is conceptually direct but costs $O(n^2)$, which is too slow for $n=10^5$.
 - **Sweep-line event counting:** A sweep can answer overlap counts with coordinated queries, but the two independent sorted endpoint lists give a simpler $O(n\log n)$ implementation.
-- **Closed endpoint contact:** Intervals such as $[1,3]$ and $[3,8]$ overlap. `bisect_right(startTime, r)` and the `l-1` end threshold preserve this inclusiveness.
+- **Closed endpoint contact:** Intervals such as `[1,3]` and `[3,8]` overlap. `bisect_right(startTime, r)` and the `l-1` end threshold preserve this inclusiveness.
 - **Single employee:** Both searches produce an overlap count of one, so the only employee forms a valid one-person team.
 - **Identical intervals:** Every copy overlaps every other copy, and each hub receives count $n$.
 - **One interval containing all others:** That containing interval is a hub for the whole set even when some of the smaller intervals do not overlap each other.
@@ -133,8 +129,8 @@ This first count still includes some intervals that ended before the hub began. 
 - **Independent sorting is safe for counts:** The subtraction relies on the fact that every interval ending before $l$ necessarily starts by $r$; it does not require start and end ranks to stay paired.
 - **Input mutation:** If a caller needs the original array order later, it must pass copies or the implementation must sort copies instead.
 - **Binary-search dependency:** Standalone execution requires `bisect_right` from Python's `bisect` module to be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

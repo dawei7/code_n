@@ -66,9 +66,7 @@ Negative values and repeated values need no special logic because list equality 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current group `g`, the expression:
-
-`nums[j : j + len(g)... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +113,7 @@ There may be unused `nums` elements between matches. On mismatches, `j` moves on
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP per group with carried position:** Prefix-:** - **KMP per group with carried position:** Prefix-function matching avoids rechecking long partial matches and can approach $O(N+S)$ total time.
+- **KMP per group with carried position:** Prefix-function matching avoids rechecking long partial matches and can approach $O(N+S)$ total time.
 - **Manual nested comparison:** Avoid Python slice allocation, but still has $O(NL)$ worst-case comparison work without a failure function.
 - **Backtracking over occurrences:** It is unnecessary because the earliest valid occurrence always leaves the largest possible suffix.
 - **Group longer than remaining nums:** The short slice cannot equal it, and the scan eventually returns false.
@@ -129,8 +127,8 @@ There may be unused `nums` elements between matches. On mismatches, `j` moves on
 - **Non-empty groups:** Advancing `j` by `len(g)` always makes progress on a successful match.
 - **Input preservation:** Slices are copies; neither `groups` nor `nums` is modified.
 - **Slice cost:** Concise syntax hides both comparison time and temporary allocation, which matter to the exact complexity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

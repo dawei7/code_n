@@ -63,10 +63,7 @@ The initial guard returns an empty list when `n < 4`. Four distinct indices cann
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation always maintains indices
-
-$$
-i < j < k < ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +108,7 @@ These moves do not skip a possible solution. Suppose `x < target`. With the curr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four nested loops:** It is conceptually direct:** - **Four nested loops:** It is conceptually direct but costs $O(n^4)$ and still needs careful value-level deduplication.
+- **Four nested loops:** It is conceptually direct but costs $O(n^4)$ and still needs careful value-level deduplication.
 - **Recursive generalized k-Sum:** Fix one value recursively until reaching a two-pointer 2Sum base case. It generalizes cleanly to 5Sum and beyond, but the direct two-loop form here is simpler for exactly four values.
 - **Pair-sum hash table:** Store index pairs by their sum and match complementary sums. It can reduce repeated arithmetic, but may require $O(n^2)$ or more memory and careful enforcement of non-overlapping indices and unique outputs.
 - **Hash-set 2Sum after fixing two values:** This preserves $O(n^3)$ time but uses extra per-scan storage and makes deterministic duplicate handling less transparent than sorted pointers.
@@ -122,8 +119,8 @@ These moves do not skip a possible solution. Suppose `x < target`. With the curr
 - **Repeated values are not forbidden:** Only indices must be distinct. Duplicate suppression removes repeated output rows, not legal use of equal values from different positions.
 - **Any output order:** Sorting causes every row and the overall traversal to be deterministic, but the contract does not require that order.
 - **Input mutation:** `nums.sort()` rearranges the provided list; callers that need the original order must pass a copy, although this problem imposes no such requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

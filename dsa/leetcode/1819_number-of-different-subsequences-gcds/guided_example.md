@@ -59,7 +59,7 @@ Whenever a multiple is present, it is folded into running GCD `g`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a sequence has GCD $x$, every selected number must be div... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Thus $x$ appears as a subsequence GCD if and only if the GCD of all present mult
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subsequences:** There are $2^n-1:** - **Enumerate all subsequences:** There are $2^n-1$ nonempty subsequences, which is impossible.
+- **Enumerate all subsequences:** There are $2^n-1$ nonempty subsequences, which is impossible.
 - **Maintain GCDs of subsequences ending at each index:** It can also compress repeated GCD values, but the multiples test exploits the bounded value domain directly.
 - **Boolean presence array:** It replaces expected hash membership with deterministic indexing at $O(M)$ space.
 - **Count duplicates separately:** It is unnecessary because multiplicity does not create new GCD values.
@@ -119,8 +119,8 @@ Thus $x$ appears as a subsequence GCD if and only if the GCD of all present mult
 - **Subsequence order:** Original order never changes the GCD of chosen occurrences.
 - **Positive inputs:** Candidate zero is irrelevant and never tested.
 - **Maximum bound:** No subsequence GCD can exceed the largest selected value, so testing through $M$ is exhaustive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

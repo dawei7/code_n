@@ -65,11 +65,7 @@ After a swap, the `while` loop repeats because `nums[i]` is now a different disp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition is
-
-`nums[i] != nums[nums[i] - 1]`.
-
-If the de... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +104,7 @@ The “at most twice” guarantee means there is only one extra copy to account 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sign marking:** For value `v`, use the sign of:** - **Sign marking:** For value `v`, use the sign of `nums[v-1]` as a seen bit; an already negative location reveals a duplicate. It also achieves $O(n)$ time and $O(1)$ auxiliary space but changes signs rather than positions.
+- **Sign marking:** For value `v`, use the sign of `nums[v-1]` as a seen bit; an already negative location reveals a duplicate. It also achieves $O(n)$ time and $O(1)$ auxiliary space but changes signs rather than positions.
 - **Hash set:** Track seen values and append repeats. It is linear average time but uses $O(n)$ extra memory.
 - **Sort then compare adjacent values:** This costs $O(n\log n)$ time with comparison sorting and also mutates order.
 - **Brute-force later occurrences:** It needs $O(n^2)$ time.
@@ -119,8 +115,8 @@ The “at most twice” guarantee means there is only one extra copy to account 
 - **Duplicate at a noncanonical index:** Equality with the canonical copy stops the loop and preserves it for final reporting.
 - **Values outside `[1,n]`:** Destination indexing would be invalid, which is why the range guarantee is essential.
 - **More than two occurrences:** The comprehension could return the same value multiple times; the contract excludes this case.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

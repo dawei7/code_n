@@ -63,7 +63,7 @@ therefore not a cosmetic flag; it is essential to the correctness of `10p`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Without `-n`, sed normally prints every input line after app... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ records 11 and later, the address again does not match and nothing is printed.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Early-quit sed:** `sed -n '10{p;q;}'` stops im:** - **Early-quit sed:** `sed -n '10{p;q;}'` stops immediately after printing, reducing long-file I/O.
+- **Early-quit sed:** `sed -n '10{p;q;}'` stops immediately after printing, reducing long-file I/O.
 - **Awk address:** `awk 'NR == 10' file.txt` uses the default print action for the tenth record.
 - **Explicit awk action:** `awk 'NR == 10 { print $0 }'` states the output directly.
 - **Tail and head:** Start output at line ten and take one line; readable but uses two processes and may rely on option dialect.
@@ -115,8 +115,8 @@ records 11 and later, the address again does not match and nothing is printed.
 - **Empty tenth line:** It is still printed as an output newline.
 - **Long line:** Streaming memory depends on that line's size even though it is constant in the line-count model.
 - **Missing file:** Produces a tool error rather than an empty valid result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

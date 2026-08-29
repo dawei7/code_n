@@ -79,7 +79,7 @@ Therefore, repeated occurrences should still be processed as array entries, but 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Bitwise OR considers corresponding binary positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ That makes it the correct initializer. The first even value is preserved rather 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit accumulator loop:** Initialize `answe:** - **Explicit accumulator loop:** Initialize `answer = 0` and apply `answer |= x` for each even `x`. This has the same $O(n)$ time and $O(1)$ space and is the imperative equivalent of the exact source.
+- **Explicit accumulator loop:** Initialize `answer = 0` and apply `answer |= x` for each even `x`. This has the same $O(n)$ time and $O(1)$ space and is the imperative equivalent of the exact source.
 - **Build a filtered list:** `reduce(or_, [x for x in nums if x % 2 == 0], 0)` is mathematically identical but allocates up to $O(n)$ temporary space. The generator avoids that list.
 - **Sort before combining:** OR is order-independent, so sorting adds $O(n\log n)$ work without changing the result.
 - **Use arithmetic addition:** OR and addition are different when values share set bits. For example, $2\mathbin{\mathrm{OR}}6=6$, while $2+6=8$.
@@ -138,8 +138,8 @@ That makes it the correct initializer. The first even value is preserved rather 
 - **Even and odd values sharing bits:** Bits from odd numbers must not contribute. Filtering happens before reduction, so their binary representation is irrelevant.
 - **Value zero outside the stated positive range:** Zero is even and would pass the filter, but OR-ing zero changes nothing. The legal constraints begin at one.
 - **All values even:** Every array element reaches the reduction, and the result is the ordinary OR of the entire array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

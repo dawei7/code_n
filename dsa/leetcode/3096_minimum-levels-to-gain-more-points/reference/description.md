@@ -2,7 +2,7 @@
 
 You are given a binary array `possible` of length `n`.
 
-Alice and Bob are playing a game that consists of `n` levels. Some of the levels in the game are **impossible** to clear while others can **always** be cleared. In particular, if $\text{possible}[i] = 0$, then the $$i^{\text{th}}$$ level is **impossible** to clear for **both** the players. A player gains `1` point on clearing a level and loses `1` point if the player fails to clear it.
+Alice and Bob are playing a game that consists of `n` levels. Some of the levels in the game are **impossible** to clear while others can **always** be cleared. In particular, if $\text{possible}[i] = 0$, then the $i^{\text{th}}$ level is **impossible** to clear for **both** the players. A player gains `1` point on clearing a level and loses `1` point if the player fails to clear it.
 
 At the start of the game, Alice will play some levels in the **given order** starting from the $0^th$ level, after which Bob will play for the rest of the levels.
 

@@ -80,7 +80,7 @@ Now suppose the next failed date is January 9, after successful days create a ga
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The desired output is a set of maximal “islands” of consecut... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ A one-day island contains one row, so its minimum and maximum are naturally the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` plus cumulative group numbers:** Compare:** - **`LAG` plus cumulative group numbers:** Compare each date with the previous date and state, mark every break, and cumulatively sum break flags. This is explicit and flexible but needs multiple window stages.
+- **`LAG` plus cumulative group numbers:** Compare each date with the previous date and state, mark every break, and cumulatively sum break flags. This is explicit and flexible but needs multiple window stages.
 - **Recursive calendar generation:** Generate every 2019 date and join outcomes before grouping runs. It can work, but it processes the entire calendar and is more elaborate than ranking existing daily rows.
 - **`UNION` instead of `UNION ALL`:** It would perform unnecessary duplicate elimination under the one-task-per-day and primary-key guarantees.
 - **`ROW_NUMBER` instead of `RANK`:** The two are equivalent here because each state’s dates are unique. If duplicates were allowed, `RANK` gaps could break the shifted-key property.
@@ -134,8 +134,8 @@ A one-day island contains one row, so its minimum and maximum are naturally the 
 - **Empty 2019 input:** The CTE has no rows and the query returns no intervals. The stated system model normally supplies one task every day.
 - **Dialect dependence:** `YEAR` and integer-form `SUBDATE` are MySQL syntax. Other engines need equivalent date extraction and date arithmetic.
 - **Ordinal grouping and ordering:** `GROUP BY 1` means the first selected grouping column and `ORDER BY 2` means `start_date`. Reordering the select list without updating ordinals would change behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

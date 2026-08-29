@@ -28,7 +28,7 @@ Given the positive-integer array `nums`, count all ordered triplets of distinct 
 
 **Inputs**
 
-- `nums`: a list of $n$ positive integers, where $3 \le n \le 10^5$ and every value lies in $[1,100]$.
+- `nums`: a list of $n$ positive integers, where $3 \le n \le 10^5$ and every value lies in `[1,100]`.
 
 Let $U$ be the number of distinct values in `nums`; the contract guarantees $U \le 100$.
 

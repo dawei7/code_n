@@ -51,7 +51,7 @@ The starting cell is called `(0, 0)`, regardless of its hidden grid coordinates.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The starting cell is called `(0, 0)`, regardless of its hidd... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +89,7 @@ The starting cell is called `(0, 0)`, regardless of its hidden grid coordinates.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS with an explicit stack:** It can:** - **Iterative DFS with an explicit stack:** It can avoid Python recursion depth, but each stack frame must preserve both exploration direction and the physical route needed to restore the robot. The recursive entry/exit contract expresses that bookkeeping naturally.
+- **Iterative DFS with an explicit stack:** It can avoid Python recursion depth, but each stack frame must preserve both exploration direction and the physical route needed to restore the robot. The recursive entry/exit contract expresses that bookkeeping naturally.
 - **Breadth-first search:** A queue can plan graph exploration, but the physical robot still has to travel between queued cells and cannot teleport. DFS matches physical backtracking much more directly.
 - **Wall-following alone:** Always turning at walls can traverse some boundaries but does not reliably explore every branch in an arbitrary connected room. The visited-coordinate DFS explicitly returns to branch points.
 - **Unknown absolute location:** Relative `(0, 0)` coordinates are sufficient. Translation of every coordinate by the hidden start position would describe the same adjacency graph.
@@ -100,8 +100,8 @@ The starting cell is called `(0, 0)`, regardless of its hidden grid coordinates.
 - **Long corridor:** Recursion depth can be linear in the number of cells. The asymptotic space bound includes this stack depth, and a language recursion limit may motivate an explicit-stack implementation.
 - **Backtracking move must succeed:** It traverses the same open edge by which the child was entered; room geometry does not change, so no obstacle can appear on that return edge.
 - **Clean exactly once versus at least once:** `vis` ensures each cell's DFS call and `clean()` occur once. The requirement only needs every cell cleaned, but avoiding repeated cleaning also limits work.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

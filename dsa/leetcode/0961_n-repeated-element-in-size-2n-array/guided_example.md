@@ -61,9 +61,7 @@ The membership check must happen before insertion. Inserting first would make ev
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each value `x`:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ This is why the exact function has no explicit return after the loop. Under the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency counter:** Count all values and retu:** - **Frequency counter:** Count all values and return the one with count `n`. It has the same asymptotic bounds but may scan more than necessary.
+- **Frequency counter:** Count all values and return the one with count `n`. It has the same asymptotic bounds but may scan more than necessary.
 - **Fixed value-range array:** Values are at most ten thousand, so a Boolean array can replace the hash set at the cost of range-sized storage.
 - **Constant-space distance observation:** The frequent element must repeat within a small index gap; comparing nearby positions can yield `O(1)` space, but its proof is less direct.
 - **Sort the array:** Equal copies become adjacent, but sorting costs `O(N log N)` and may mutate input.
@@ -112,8 +110,8 @@ This is why the exact function has no explicit return after the loop. Under the 
 - **No explicit fallback return:** Safe only because the input guarantees a repeated value with at least two copies.
 - **Other values unique:** This promise is essential. Without it, the first duplicate need not be the most frequent value.
 - **Input preservation:** The set-based scan does not modify `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

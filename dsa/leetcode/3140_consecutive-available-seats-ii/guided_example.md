@@ -43,7 +43,7 @@ Among the remaining rows, seats are ordered by `seat_id`. Because `seat_id` is a
 For a consecutive run of seat identifiers, both `seat_id` and its rank increase by one from row to row. Their difference remains constant:
 
 $$
-\texttt{gid}=\texttt{seat_id}-\operatorname{rank}.
+\texttt{gid}=\texttt{seat\_id}-\operatorname{rank}.
 $$
 
 For example, available seats 3, 4, and 5 may receive ranks 2, 3, and 4 after an earlier available seat 1. Their differences are all 1. If the next available seat is 8 with rank 5, its difference is 3, so it begins a new group.
@@ -69,7 +69,7 @@ The grouping is valid in both directions. Consecutive available identifiers keep
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `P` groups the rows by `gid`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The local description contains two lines that appear inconsistent: it says there
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` break detection:** Compare each free `se:** - **`LAG` break detection:** Compare each free `seat_id` with the previous one, mark a new group when the difference is not 1, and use a cumulative sum of break flags. This is explicit but uses another window layer.
+- **`LAG` break detection:** Compare each free `seat_id` with the previous one, mark a new group when the difference is not 1, and use a cumulative sum of break flags. This is explicit but uses another window layer.
 - **Recursive traversal:** Follow seat identifiers one by one and build runs. It is more complicated and usually less optimizer-friendly.
 - **Self-join run starts and ends:** Detect free seats without free predecessors or successors, then pair boundaries. Correct pairing can become cumbersome.
 - **`ROW_NUMBER` instead of `RANK` in T:** Because `seat_id` is unique, it produces identical group identifiers and communicates the intent more directly.
@@ -124,8 +124,8 @@ The local description contains two lines that appear inconsistent: it says there
 - **No free seats:** Both CTEs produce no groups and the result is empty. The statement does not specify a synthetic zero-length row.
 - **Ordering ties:** `ORDER BY 1` is positional SQL syntax for ascending `first_seat_id` and ensures deterministic required order.
 - **Unique identifier assumption:** If duplicate `seat_id` values were allowed, `RANK` gaps could distort `gid`. The auto-increment contract rules duplicates out.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

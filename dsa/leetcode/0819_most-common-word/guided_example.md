@@ -64,7 +64,7 @@ Adjacent punctuation causes no empty words. For example, `"word!!next"` yields `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `+` quantifier makes each match consume the entire conse... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ For the main example, the counter includes `"hit": 3` and `"ball": 2`. Although 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single-pass character buffer:** Scan character:** - **Single-pass character buffer:** Scan characters once, build one lowercase word at a time, and update its count when punctuation is reached. This avoids the regex occurrence list and can update the best word during counting.
-- **- **Replace punctuation then split:** Mapping ever:** - **Replace punctuation then split:** Mapping every non-letter to a space and calling `split()` is easy to debug and has the same normalization semantics.
-- **- **Scan counter items for a maximum:** Using `max:** - **Scan counter items for a maximum:** Using `max` over only non-banned entries avoids sorting all distinct words, giving the manifest's linear `O(p+b)` time target.
+- **Single-pass character buffer:** Scan characters once, build one lowercase word at a time, and update its count when punctuation is reached. This avoids the regex occurrence list and can update the best word during counting.
+- **Replace punctuation then split:** Mapping every non-letter to a space and calling `split()` is easy to debug and has the same normalization semantics.
+- **Scan counter items for a maximum:** Using `max` over only non-banned entries avoids sorting all distinct words, giving the manifest's linear `O(p+b)` time target.
 
 ---
 

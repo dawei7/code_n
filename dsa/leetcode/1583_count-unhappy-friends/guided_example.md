@@ -70,7 +70,7 @@ The comprehension’s reused local name `x` is only the key variable inside cons
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `preferences[x]` list is already ordered from most pref... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The constraints guarantee every person appears in exactly one pair. Therefore, e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan preference lists for every comparison:** :** - **Scan preference lists for every comparison:** This avoids the rank dictionaries but can cost $O(N^3)$ time because each candidate condition may require linear searches. The inverse ranks are the standard time-space tradeoff.
+- **Scan preference lists for every comparison:** This avoids the rank dictionaries but can cost $O(N^3)$ time because each candidate condition may require linear searches. The inverse ranks are the standard time-space tradeoff.
 - **Check every possible `u`:** Testing all $N-1$ other people is correct if both conditions are evaluated, but people ranked below partner `y` can never satisfy the first condition. Stopping the candidate range at `d[x][y]` avoids needless work.
 - **Count all witnessing pairs:** A person can have several witnesses, but the requested answer counts that person once. The checked-in `break` is essential.
 - **Mark unhappy people in a set:** A set can deduplicate counts when examining relationships from another iteration order. The person-centered loop already counts at most once, so no set is needed.
@@ -121,8 +121,8 @@ The constraints guarantee every person appears in exactly one pair. Therefore, e
 - **Unique preference entries:** The dictionary rank representation relies on each friend appearing once in a preference list. The problem guarantees uniqueness and excludes the person themself.
 - **Even `n` and complete pairing:** These guarantees ensure every person has one partner. Without them, `p[x]` could be missing and the unhappy definition would need additional handling.
 - **Dictionary variable names:** The inner comprehension’s `x` is local to that comprehension in Python 3. The later `for x in range(n)` independently represents the person being evaluated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

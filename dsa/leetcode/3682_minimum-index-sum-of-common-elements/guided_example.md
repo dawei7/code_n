@@ -92,9 +92,7 @@ Consider `nums1 = [3, 2, 1]` and `nums2 = [1, 3, 1]`. The dictionary is `{1: 0, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `ans` begins as positive infinity:
-
-`ans = inf`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -145,7 +143,7 @@ then returns the required sentinel $-1$. If at least one match exists, every ind
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair of indices:** Comparing every:** - **Check every pair of indices:** Comparing every `nums1[i]` with every `nums2[j]` directly takes $O(n^2)$ time and repeats work for equal values.
+- **Check every pair of indices:** Comparing every `nums1[i]` with every `nums2[j]` directly takes $O(n^2)$ time and repeats work for equal values.
 - **Store all positions per value:** Lists of every occurrence are unnecessary because only the earliest index can minimize a sum. One integer per distinct value is enough.
 - **Build two earliest-index maps:** This also leads to an $O(n)$ solution by intersecting their keys, but the second dictionary is optional. The exact source scans `nums1` directly.
 - **Sort value-index pairs:** Sorting can group common values while retaining original indices, but it increases the running time to $O(n \log n)$.
@@ -155,8 +153,8 @@ then returns the required sentinel $-1$. If at least one match exists, every ind
 - **Duplicate values in either array:** Only the earliest `nums2` index is stored. Later `nums1` occurrences may be checked, but cannot improve on an earlier occurrence of the same value.
 - **Negative and zero element values:** Values are dictionary keys, not indices. Their sign has no effect on matching or on the nonnegative index sum.
 - **Equal-length guarantee:** The method does not rely on synchronized positions; a good pair may use any `i` and `j`. Equal lengths affect only the shared symbol $n$ used in the complexity bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ If `gt` never becomes true, no modulus was applied and `suf` remains the exact n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `suf` begins at 1 and is multiplied by every original range ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The exact source uses floating-point division for `pre`. This is compact but dep
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct the full Python integer:** Simple an:** - **Construct the full Python integer:** Simple and exact, but its digit count and multiplication cost grow with the product, contrary to the bounded-summary intent.
+- **Construct the full Python integer:** Simple and exact, but its digit count and multiplication cost grow with the product, contrary to the bounded-summary intent.
 - **Decimal logarithms for the prefix:** Summing `log10(x)` separates digit count and fractional leading digits, often making the prefix derivation clearer.
 - **Remove zeros only at the end:** Impossible with a bounded suffix if factors have already been discarded incorrectly; factor pairs must be accounted for during modular tracking.
 - **More twos than fives:** Only `min(cnt2, cnt5)` pairs become zeros; extra twos remain.
@@ -121,8 +121,8 @@ The exact source uses floating-point division for `pre`. This is compact but dep
 - **Wide answer:** Only summaries are retained, keeping auxiliary space constant.
 - **Exact exponent format:** The string always ends with `eC`, including `e0`.
 - **Full normalized product exactly ten digits:** It remains in the un-abbreviated form because ellipsis is required only when the digit count exceeds ten.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

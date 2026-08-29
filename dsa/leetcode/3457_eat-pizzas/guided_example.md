@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `pizzas` of size `n`, where $\text{pizzas}[i]$ represents the weight of the $$i^{\text{th}}$$ pizza. Every day, you eat **exactly** 4 pizzas. Due to your incredible metabolism, when you eat pizzas of weights `W`, `X`, `Y`, and `Z`, where $W \le X \le Y \le Z$, you gain the weight of only 1 pizza!
+You are given an integer array `pizzas` of size `n`, where $\text{pizzas}[i]$ represents the weight of the $i^{\text{th}}$ pizza. Every day, you eat **exactly** 4 pizzas. Due to your incredible metabolism, when you eat pizzas of weights `W`, `X`, `Y`, and `Z`, where $W \le X \le Y \le Z$, you gain the weight of only 1 pizza!
 
 The objective is to compute `14` from `{"pizzas": [1, 2, 3, 4, 5, 6, 7, 8]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Among 1-indexed days, the number of odd days is `odd = (days + 1) // 2`, and eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Among 1-indexed days, the number of odd days is `odd = (days... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate all daily groupings:** The number of :** - **Simulate all daily groupings:** The number of partitions into groups of four is enormous. Only sorted role ranks affect the score.
+- **Simulate all daily groupings:** The number of partitions into groups of four is enormous. Only sorted role ranks affect the score.
 - **Use the four largest pizzas every day:** This wastes valuable weights in non-scoring roles and can reduce later scores.
 - **Score the largest remaining pizza on an even day:** It cannot be $Y$ without an even larger $Z$ in the same group.
 - **One day:** It is odd, so the largest pizza is the answer and the other three are fillers.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **In-place sorting:** Callers needing original order must pass a copy.
 - **Odd-day count:** Ceiling division reflects days $1,3,5,\ldots$.
 - **All pizzas consumed:** The role-and-filler count accounts for exactly four pizzas per day.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

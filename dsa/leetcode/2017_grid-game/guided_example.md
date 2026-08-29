@@ -66,9 +66,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Only two positive regions can remain:
-
-- the top-row suffix ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +109,7 @@ Changing this order would incorrectly leave a turn-column cell available even th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate both paths:** Enumerating first and s:** - **Simulate both paths:** Enumerating first and second turn columns takes $O(N^2)$ and is unnecessary after deriving the two regions.
+- **Simulate both paths:** Enumerating first and second turn columns takes $O(N^2)$ and is unnecessary after deriving the two regions.
 - **Prefix-sum arrays:** Permit constant-time region queries for every cut but use $O(N)$ space; rolling sums are simpler.
 - **Maximize first robot's points greedily:** Solves the wrong objective and can leave a larger score for the opponent.
 - **One column:** The first robot clears both cells and the second receives zero.
@@ -123,8 +121,8 @@ Changing this order would incorrectly leave a turn-column cell available even th
 - **Large sums:** Python integers avoid overflow across $5\cdot10^4$ columns.
 - **No grid mutation:** Running sums model the cleared path without writing zeroes.
 - **Minimax:** First chooses the smallest possible value of the second's best response.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

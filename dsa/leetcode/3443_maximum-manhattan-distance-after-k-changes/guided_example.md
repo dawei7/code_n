@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\lvert x\rvert+\lvert y\rvert
-=
-\max(x+y,x-y,-x+y,-x-y).
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ Each signed expression corresponds to moving outward toward one of four diagonal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track coordinates and use the closed formula:*:** - **Track coordinates and use the closed formula:** For each prefix, `min(prefix_length, original_distance + 2k)` also yields the optimum. The four-quadrant scan provides a constructive signed interpretation.
+- **Track coordinates and use the closed formula:** For each prefix, `min(prefix_length, original_distance + 2k)` also yields the optimum. The four-quadrant scan provides a constructive signed interpretation.
 - **Try every changed character set:** There are exponentially many choices. All unfavorable changes have identical signed benefit within a fixed quadrant.
 - **Change favorable moves:** This cannot increase that quadrant's score and wastes budget.
 - **\(k=0\):** Every unfavorable move subtracts one, so the four scans reduce to the original prefix Manhattan distances.
@@ -104,8 +100,8 @@ Each signed expression corresponds to moving outward toward one of four diagonal
 - **One-character string:** A single move already has distance one, and every helper containing its direction records it.
 - **At most \(k\):** Unused changes are harmless when no unfavorable move remains.
 - **Infinite grid:** No boundary checks are required; only displacement matters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

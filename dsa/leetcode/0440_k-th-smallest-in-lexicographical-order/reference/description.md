@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given two integers `n` and `k`, return *the* $$k^{\text{th}}$$ *lexicographically smallest integer in the range* `[1, n]`.
+Given two integers `n` and `k`, return *the* $k^{\text{th}}$ *lexicographically smallest integer in the range* `[1, n]`.
 
 ### 2. Function Contract
 

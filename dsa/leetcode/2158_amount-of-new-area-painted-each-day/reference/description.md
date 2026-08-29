@@ -1,10 +1,10 @@
 ### 1. Description
 
-There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $$i^{\text{th}}$$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
+There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $i^{\text{th}}$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
 
 Painting the same area multiple times will create an uneven painting so you only want to paint each area of the painting at most **once**.
 
-Return *an integer array *`worklog`* of length *`n`*, where *$\text{worklog}[i]$* is the amount of **new** area that you painted on the *$$i^{\text{th}}$$* day.*
+Return *an integer array *`worklog`* of length *`n`*, where *$\text{worklog}[i]$* is the amount of **new** area that you painted on the *$i^{\text{th}}$* day.*
 
 ### 2. Function Contract
 

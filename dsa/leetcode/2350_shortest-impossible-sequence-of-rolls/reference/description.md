@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `rolls` of length `n` and an integer `k`. You roll a `k` sided dice numbered from `1` to `k`, `n` times, where the result of the $$i^{\text{th}}$$ roll is $\text{rolls}[i]$.
+You are given an integer array `rolls` of length `n` and an integer `k`. You roll a `k` sided dice numbered from `1` to `k`, `n` times, where the result of the $i^{\text{th}}$ roll is $\text{rolls}[i]$.
 
 Return* the length of the **shortest** sequence of rolls so that there's no such subsequence in *`rolls`.
 

@@ -81,7 +81,7 @@ Thus `prefix_gcd=[2,6,2]`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Future indices need only the greatest value seen so far, not... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ Summing these GCD values gives the required answer. There is no optimization ove
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute every prefix maximum:** Calling `max:** - **Recompute every prefix maximum:** Calling `max(nums[:i+1])` per index takes `O(N^2)` total time. A rolling maximum updates in constant time.
+- **Recompute every prefix maximum:** Calling `max(nums[:i+1])` per index takes `O(N^2)` total time. A rolling maximum updates in constant time.
 - **Store the full prefix-maximum array:** This follows the editorial literally and remains `O(N)` space, but one scalar `mx` is enough while building the derived list.
 - **Pair original values:** Incorrect. Sorting and pairing apply to `gcd(nums[i],M_i)` values, which may differ substantially from `nums[i]`.
 - **Pair before sorting:** The required pairs depend on value rank, not original position. Sorting is semantically necessary.
@@ -144,8 +144,8 @@ Summing these GCD values gives the required answer. There is no optimization ove
 - **Duplicate derived values:** Sorting keeps all copies, and each position participates according to multiplicity. Stability of the sort is irrelevant because equal values are indistinguishable for GCD.
 - **Positive-input initialization:** `mx=0` is safe because every value is at least one. With a generalized domain containing negatives, initialization and maximum semantics would need adjustment.
 - **GCD import:** The protected source requires `math.gcd` or an equivalent available name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

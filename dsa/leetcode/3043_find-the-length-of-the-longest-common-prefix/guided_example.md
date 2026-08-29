@@ -51,7 +51,7 @@ produces $x$, then its prefix missing one trailing digit, then the next shorter 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | produces $x$, then its prefix missing one trailing digit, th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source inserts every such value from `arr1` into set `s`. Duplicate prefixes
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to strings and compare every cross pai:** - **Convert to strings and compare every cross pair:** It costs $O(NMD)$ time, far larger than prefix hashing.
+- **Convert to strings and compare every cross pair:** It costs $O(NMD)$ time, far larger than prefix hashing.
 - **Decimal trie:** Insert all digits from `arr1` and walk each `arr2` value. It also achieves $O((N+M)D)$ time and can avoid storing duplicate numeric prefixes separately.
 - **Sort string representations:** Neighbor comparisons can expose long prefixes, but cross-array labeling and ordering logic are more involved.
 - **No common first digit:** No positive prefix matches, so zero is returned.
@@ -99,8 +99,8 @@ The source inserts every such value from `arr1` into set `s`. Duplicate prefixes
 - **Prefix set contains complete numbers too:** A number is a prefix of itself, so insertion happens before the first division. Delaying insertion until after division would miss pairs where an entire first-array value equals the beginning or entirety of a second value.
 - **Why zero is only a sentinel:** Legal positive decimal representations never have zero as a nonempty prefix. The truncation loop stops before inserting or searching zero, allowing `mx=0` to unambiguously mean no match.
 - **Hash collisions are not a concern here:** The set hashes integer keys but resolves hash collisions with equality checks, unlike probabilistic rolling-string hashes. Membership therefore remains exact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

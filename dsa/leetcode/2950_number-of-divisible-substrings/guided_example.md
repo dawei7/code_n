@@ -64,7 +64,7 @@ Because Python treats `true` as one and `false` as zero, the last statement incr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each left endpoint `i`, running mapped sum `s` starts at... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The divisor `j - i + 1` is exactly the number of characters in the same interval
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nine transformed prefix scans:** For each poss:** - **Nine transformed prefix scans:** For each possible average $q=1..9$, count equal prefix sums after subtracting $q$ from every mapped value. This achieves $O(9n)=O(n)$ time.
+- **Nine transformed prefix scans:** For each possible average $q=1..9$, count equal prefix sums after subtracting $q$ from every mapped value. This achieves $O(9n)=O(n)$ time.
 - **Prefix sums plus all endpoints:** Prefix sums make each range sum constant time but still leave $O(n^2)$ endpoint pairs; the source's running sum is simpler.
 - **Recompute each substring sum:** Summing from scratch for every pair would take $O(n^3)$ time.
 - **Single character:** Always divisible because any integer is divisible by length one.
@@ -122,8 +122,8 @@ The divisor `j - i + 1` is exactly the number of characters in the same interval
 - **Running sum reset:** Each new left endpoint sets `s=0` so characters before `i` do not contaminate the new family of substrings.
 - **Modulo divisor is never zero:** Every visited substring is nonempty, making `j-i+1 >= 1`.
 - **Endpoint uniqueness:** Equal substring text occurring at two locations counts twice because the problem counts substrings by positions; the nested endpoint loops represent this correctly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

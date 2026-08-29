@@ -62,7 +62,7 @@ Thus every position from `left[i] + 1` through $i$ has value at least $v$, while
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first scan moves from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ with length `right[i] - left[i] - 1`. Every value inside is at least $v$, so thi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy two-pointer expansion from `k`:** Expan:** - **Greedy two-pointer expansion from `k`:** Expand toward the larger adjacent value while tracking the current minimum. It achieves $O(n)$ time and $O(1)$ space, matching the manifest's space target, but it is not the protected implementation.
+- **Greedy two-pointer expansion from `k`:** Expand toward the larger adjacent value while tracking the current minimum. It achieves $O(n)$ time and $O(1)$ space, matching the manifest's space target, but it is not the protected implementation.
 - **Binary-search boundary method:** Prefix minima and binary searches can solve the problem in $O(n\log n)$ time and $O(n)$ space.
 - **Enumerate all good subarrays:** There can be $O(n^2)$ intervals containing $k$, and rescanning minima makes the approach even slower.
 - **Range-minimum structure:** Fast minimum queries do not remove the quadratic number of candidate intervals by themselves.
@@ -121,8 +121,8 @@ with length `right[i] - left[i] - 1`. Every value inside is at least $v$, so thi
 - **Positive-value guarantee:** It justifies expanding a fixed-minimum interval as far as possible; negative values would make greater length potentially harmful.
 - **Containment check:** A large rectangle-like score is irrelevant if its interval does not include `k`.
 - **Input preservation:** The method stores indices and boundaries without changing `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ These are exactly the restrictive cases of the matching condition. Thus the per-
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Think of each value occurrence as an item and each array ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Good positions need not be changed unless they serve as temporary helpers. The t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct a target permutation then count cycl:** - **Construct a target permutation then count cycles:** This can recover an explicit swap plan but requires a careful matching choice; the counting formula avoids unnecessary construction.
+- **Construct a target permutation then count cycles:** This can recover an explicit swap plan but requires a careful matching choice; the counting formula avoids unnecessary construction.
 - **Greedily swap arbitrary bad pairs:** Equal offending values do not fix each other, and careless helper choices can create new conflicts.
 - **Check only `nums` frequencies:** Feasibility depends on how many destinations forbid each value, so `forbidden_count` is essential.
 - **Use only $\lceil B/2\rceil$:** A dominant same-value group may require more because one swap fixes at most one of its members.
@@ -128,8 +128,8 @@ Good positions need not be changed unless they serve as temporary helpers. The t
 - **Values absent from `nums`:** They need no feasibility iteration because no item of that value must be placed.
 - **Large arbitrary values:** Counters avoid dependence on the numeric range.
 - **Input preservation:** No actual swaps are performed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -66,11 +66,7 @@ The array length is at least two, so unpacking exactly two results is always saf
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution calls
-
-`x, y = nlargest(2, nums)`.
-
-`heap... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +103,9 @@ If the test fails, `y` is a concrete other element for which the largest is less
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass largest and second-largest tracking:*:** - **One-pass largest and second-largest tracking:** Maintain both values and the largest index while scanning. This achieves the same `O(n)` time and `O(1)` space without a second index scan.
-- **- **Find maximum, then scan all others:** Obtain t:** - **Find maximum, then scan all others:** Obtain the maximum and index, then verify `max >= 2 * value` for every other position. This is also linear but performs explicit repeated checks instead of using the second-largest reduction.
-- **- **Sort value-index pairs:** The last two pairs r:** - **Sort value-index pairs:** The last two pairs reveal the needed values and preserve the index, but sorting costs `O(n log n)`.
+- **One-pass largest and second-largest tracking:** Maintain both values and the largest index while scanning. This achieves the same `O(n)` time and `O(1)` space without a second index scan.
+- **Find maximum, then scan all others:** Obtain the maximum and index, then verify `max >= 2 * value` for every other position. This is also linear but performs explicit repeated checks instead of using the second-largest reduction.
+- **Sort value-index pairs:** The last two pairs reveal the needed values and preserve the index, but sorting costs `O(n log n)`.
 
 ---
 

@@ -57,7 +57,7 @@ The input contract guarantees account arguments are at least one, so the exact s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A failed transaction must return false and leave every balan... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The total money across all accounts is unchanged by a transfer because the debit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Copy the input list:** `balance = balance.copy:** - **Copy the input list:** `balance = balance.copy()` would isolate bank state from caller mutations but differs from the exact source.
+- **Copy the input list:** `balance = balance.copy()` would isolate bank state from caller mutations but differs from the exact source.
 - **Dictionary by account number:** Supports sparse identifiers, but consecutive one-through-$n$ accounts make a list simpler and faster.
 - **Helper validation method:** Can centralize `1 <= account <= n` checks; the source relies on the contractual lower bound.
 - **Nonexistent source account:** Transfer returns false before indexing its balance.
@@ -115,8 +115,8 @@ The total money across all accounts is unchanged by a transfer because the debit
 - **External mutation:** Because the original list is retained by reference, caller changes to that list also affect bank state.
 - **Account zero outside the contract:** The source would use negative indexing; correctness depends on the guaranteed positive account numbers.
 - **No concurrency model:** The implementation provides sequential in-memory transaction semantics only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

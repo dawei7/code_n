@@ -32,7 +32,7 @@ Count all sturdy walls and return the result modulo $10^9+7$.
 - `width`: the required length of each row, with
   $1\le\texttt{width}\le10$.
 - `bricks`: between one and ten distinct permitted brick widths, each in
-  $[1,10]$.
+  `[1,10]`.
 
 Let $R$ be the number of distinct row layouts that exactly fill `width`, and
 let $E$ be the number of ordered pairs of layouts with disjoint interior

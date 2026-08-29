@@ -77,7 +77,7 @@ The sum is 2.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The definition does not ask how many swaps transform one per... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,7 +125,7 @@ the term specified by the problem. Because `t` contains every character exactly 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index t and scan s:** This is the manifest's o:** - **Index t and scan s:** This is the manifest's orientation and is mathematically identical because absolute differences are symmetric.
+- **Index t and scan s:** This is the manifest's orientation and is mathematically identical because absolute differences are symmetric.
 - **Call `str.index` for every character:** It avoids a dictionary but scans a string repeatedly, producing $O(n^2)$ time.
 - **Fixed 26-entry array:** Store positions by `ord(c) - ord('a')`. It uses constant alphabet-bounded storage and deterministic lookup.
 - **Sort position pairs:** Unnecessary because characters themselves give the correspondence between the two permutations.
@@ -137,8 +137,8 @@ the term specified by the problem. Because `t` contains every character exactly 
 - **Signed displacement:** The problem uses absolute distance, so left and right movement are not allowed to cancel.
 - **Input preservation:** Neither string is modified.
 - **Dictionary ordering:** The algorithm never relies on dictionary iteration order; it performs key lookups while scanning `t`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

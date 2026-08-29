@@ -67,11 +67,7 @@ The start cell is therefore free, and moving right along the top boundary is alw
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The assignment
-
-
-
-replaces the first row with `n` free cells... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,9 +118,9 @@ where the exact number of rows and columns depends on `m` and `n`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Free only the left column and bottom row:** Th:** - **Free only the left column and bottom row:** This symmetric construction also forces one down-then-right route and has the same complexity. The source specifically chooses the top row and final column.
-- **- **A staircase corridor:** Opening a single alter:** - **A staircase corridor:** Opening a single alternating right/down chain can also work, but neighboring turns must be chosen carefully because extra adjacent free cells can create shortcuts or branches. The boundary corridor is simpler to verify.
-- **- **Make every cell free:** An all-free grid has o:** - **Make every cell free:** An all-free grid has one path only when `m=1` or `n=1`. With at least two rows and columns, right and down moves can be interleaved in multiple orders.
+- **Free only the left column and bottom row:** This symmetric construction also forces one down-then-right route and has the same complexity. The source specifically chooses the top row and final column.
+- **A staircase corridor:** Opening a single alternating right/down chain can also work, but neighboring turns must be chosen carefully because extra adjacent free cells can create shortcuts or branches. The boundary corridor is simpler to verify.
+- **Make every cell free:** An all-free grid has one path only when `m=1` or `n=1`. With at least two rows and columns, right and down moves can be interleaved in multiple orders.
 
 ---
 

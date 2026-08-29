@@ -51,7 +51,7 @@ The depth-first search `dfs(i, x)` means: can the suffix starting at character i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The depth-first search `dfs(i, x)` means: can the suffix sta... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The depth-first search `dfs(i, x)` means: can the suffix starting at character i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterate first prefix, then greedily match deci:** - **Iterate first prefix, then greedily match decimal strings:** For each starting value, repeatedly look for the next value while accounting for leading zeros. This can avoid general DFS but requires careful textual matching.
+- **Iterate first prefix, then greedily match decimal strings:** For each starting value, repeatedly look for the next value while accounting for leading zeros. This can avoid general DFS but requires careful textual matching.
 - **Enumerate every split mask:** There are `2^(n-1)` boundary patterns, far more than needed because later values are forced.
 - **Memoization:** States could be cached by index and previous value, but with short input and mostly forced recursion the exact source omits it.
 - **String length one:** The initial range is empty, so false is returned because two substrings are impossible.
@@ -98,8 +98,8 @@ The depth-first search `dfs(i, x)` means: can the suffix starting at character i
 - **Entire string as first value:** The initial loop forbids it, enforcing at least two substrings.
 - **Large parsed values:** Python integers handle up to 20 digits safely without overflow.
 - **Early success:** Once one complete split is found, true propagates without exploring alternatives.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

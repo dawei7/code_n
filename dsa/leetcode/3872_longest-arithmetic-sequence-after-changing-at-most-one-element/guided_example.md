@@ -69,7 +69,7 @@ If the differences differ, the longest run ending at `i` resets to the final two
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `f[i]` is the length, in elements, of the longest unchanged ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ These arrays allow the main loop to know in constant time how far a fixed common
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate replacement values:** The allowed re:** - **Enumerate replacement values:** The allowed replacement is any integer, an infinite set. Structural equations determine the only useful endpoint continuation or interior midpoint instead.
+- **Enumerate replacement values:** The allowed replacement is any integer, an infinite set. Structural equations determine the only useful endpoint continuation or interior midpoint instead.
 - **Check every subarray:** Testing arithmetic structure and one possible defect over `O(N^2)` intervals is too slow for `N=10^5`.
 - **Change one adjacent difference independently:** Replacing an interior element changes two differences together; they cannot be optimized separately. The midpoint equation couples them.
 - **No replacement:** Already arithmetic runs must remain candidates because the operation is “at most” one, not exactly one.
@@ -124,8 +124,8 @@ These arrays allow the main loop to know in constant time how far a fixed common
 - **Avoid double-counting neighbors:** The central bridge starts with three elements, so extensions add run length minus one on each side.
 - **Space reduction:** One could precompute only one directional array and maintain the other direction with a more involved scan, but the three linear arrays keep the exact logic clear and meet the required bounds.
 - **Import dependency:** The annotation uses `List`, which must be available in environments that evaluate annotations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

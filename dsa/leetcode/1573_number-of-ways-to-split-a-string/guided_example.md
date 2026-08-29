@@ -67,7 +67,7 @@ The nonempty requirement is built into choosing two distinct internal gaps; neit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `cnt == 0`, every character is zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Zeros between those two ones create the extra choices.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single scan recording one positions:** Store a:** - **Single scan recording one positions:** Store all one indices, then compute the same gaps. It uses $O(N)$ extra space.
+- **Single scan recording one positions:** Store all one indices, then compute the same gaps. It uses $O(N)$ extra space.
 - **Single scan with four boundary variables:** Capture the required ranks without rescanning and keep $O(1)$ space.
 - **Try every pair of cuts:** There are $O(N^2)$ possibilities.
 - **Total ones not divisible by three:** Return zero immediately.
@@ -125,8 +125,8 @@ Zeros between those two ones create the extra choices.
 - **Nonempty pieces:** Internal gap choices and positive boundary ranks enforce them.
 - **Modulo:** It is applied after the product or all-zero combination count.
 - **Boolean sum:** In Python, comparison results act as integers zero and one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

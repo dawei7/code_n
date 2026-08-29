@@ -57,7 +57,7 @@ Marking on enqueue prevents different parents from inserting the same state.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `move` receives two target coordinates.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ These extra corner checks prevent rotating through an obstacle even when the fin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-dimensional distance array:** Store dist:** - **Three-dimensional distance array:** Store distance by row, column, and orientation instead of a set plus BFS layers. It has the same bounds.
+- **Three-dimensional distance array:** Store distance by row, column, and orientation instead of a set plus BFS layers. It has the same bounds.
 - **A-star search:** A heuristic may explore fewer states but adds complexity without improving the worst-case state bound.
 - **Blocked translation cell:** Both resulting occupied cells must be empty; the helper checks them uniformly.
 - **Blocked rotation corner:** The extra cell swept through the two-by-two square must also be empty.
@@ -108,8 +108,8 @@ These extra corner checks prevent rotating through an obstacle even when the fin
 - **Unreachable target:** Exhausting the finite state graph returns `-1`.
 - **Visited on enqueue:** This preserves shortest discovery and avoids duplicate work.
 - **Target orientation:** The required final pair is horizontal; a vertical snake near the corner is not sufficient.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

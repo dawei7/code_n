@@ -67,7 +67,7 @@ For example, if `mx = 43` and the other values sum to twenty-one, one reverse st
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `mx` is much larger than `t`, it may remain the largest... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The loop continues while the largest value exceeds one. All values are positive.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward search:** It branches over the replace:** - **Forward search:** It branches over the replaced index at every step and is infeasible for large targets.
+- **Forward search:** It branches over the replaced index at every step and is infeasible for large targets.
 - **Single subtraction per reverse step:** Correct in principle but pseudo-polynomial; an input such as one and one billion would require nearly one billion iterations.
 - **Sorted list instead of heap:** Repeatedly finding and replacing the maximum costs more than logarithmic time per step unless a suitable ordered structure is used.
 - **Single-element target:** Only `[1]` is reachable. A larger value gives `t == 0` and returns false.
@@ -116,8 +116,8 @@ The loop continues while the largest value exceeds one. All values are positive.
 - **Positive-value invariant:** Every forward sum and every unchanged entry is positive; a reverse value below one is decisive failure.
 - **Input preservation:** The method builds a separate negated heap and does not reorder or modify `target`.
 - **Tied maxima:** A valid nonterminal forward state cannot have an unchanged maximum large enough to make the forced predecessor nonpositive; the validation detects such impossible ties.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

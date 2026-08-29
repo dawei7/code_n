@@ -63,7 +63,7 @@ Therefore, both outer loops use `range(n - 2)`, and the result matrix is allocat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A $3\times3$ window starting at row `i` needs index `i + 2` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ All input values are positive, but the implementation does not depend on choosin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pass sliding maxima:** Compute width-three:** - **Two-pass sliding maxima:** Compute width-three row maxima and then height-three column maxima with deques. This is useful for variable or very large windows, but fixed $3\times3$ scanning is simpler and already $O(n^2)$.
+- **Two-pass sliding maxima:** Compute width-three row maxima and then height-three column maxima with deques. This is useful for variable or very large windows, but fixed $3\times3$ scanning is simpler and already $O(n^2)$.
 - **Helper function per window:** Moving the nine-cell scan into a named function may improve readability but performs the same work.
 - **Materialize each window:** Building a list of nine values before calling `max` is correct but creates unnecessary temporary objects; the generator avoids them.
 - **Minimum size `n = 3`:** There is exactly one valid window, so the result is a $1\times1$ matrix containing the maximum of the entire input.
@@ -115,8 +115,8 @@ All input values are positive, but the implementation does not depend on choosin
 - **One large value shared by windows:** Every overlapping window that contains it independently reports it.
 - **Input preservation:** A separate `ans` matrix ensures later windows never see altered values.
 - **Off-by-one boundary:** `range(n - 2)` ends at `n - 3`, the last start whose `+2` index is `n - 1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

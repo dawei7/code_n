@@ -71,7 +71,7 @@ Expired entries that are not at the top may remain in the heap. This lazy deleti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before using the heap for current coordinates `x, y`, the lo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Only after evaluating pairs ending at the current point does the code push `(x -
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic deque:** Keep eligible points in dec:** - **Monotonic deque:** Keep eligible points in decreasing order of `y_i-x_i` and increasing x order. Each point enters and leaves once, achieving the manifest's $O(N)$ time and $O(N)$ space.
+- **Monotonic deque:** Keep eligible points in decreasing order of `y_i-x_i` and increasing x order. Each point enters and leaves once, achieving the manifest's $O(N)$ time and $O(N)$ space.
 - **Brute-force pairs:** Testing all earlier points for every current point costs $O(N^2)$ and ignores the rearranged separability.
 - **Balanced search structure:** It can maintain scores with logarithmic operations like the heap, but usually adds implementation complexity.
 - **Negative y-values:** Initializing with negative infinity is necessary because every valid equation value may be negative.
@@ -131,8 +131,8 @@ Only after evaluating pairs ending at the current point does the code push `(x -
 - **Self-pairing:** Pushing the current point after evaluation prevents using the same point twice.
 - **Sorted input requirement:** Permanent expiration and the sign simplification rely on strictly increasing x-coordinates.
 - **Missing imports:** A standalone file must provide `heappush`, `heappop`, and `inf`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

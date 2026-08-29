@@ -72,7 +72,7 @@ The reduction helper must not guess what `init` means. Only `fn` defines how acc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `init` is supplied separately and is the accumulator before ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ A reducer can subtract, concatenate digits, build a string, or make any order-se
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `Array.reduce`:** It expresses the op:** - **Built-in `Array.reduce`:** It expresses the operation directly but is explicitly forbidden.
+- **Built-in `Array.reduce`:** It expresses the operation directly but is explicitly forbidden.
 - **Indexed `for` loop:** Equivalent and makes the index available, though this callback contract needs only accumulator and value.
 - **Recursion:** Can express the recurrence but adds $O(n)$ call-stack space and risks stack overflow.
 - **Empty array:** The loop makes no callback calls and returns `init`.
@@ -131,8 +131,8 @@ A reducer can subtract, concatenate digits, build a string, or make any order-se
 - **Single element:** The answer is exactly `fn(init, nums[0])`.
 - **Input preservation:** The source array is never modified.
 - **Side-effecting callback:** It is invoked exactly once per element in source order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

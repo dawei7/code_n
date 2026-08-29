@@ -2,11 +2,11 @@
 
 There is an endless straight line populated with some robots and walls. You are given integer arrays `robots`, `distance`, and `walls`:
 
-- $\text{robots}[i]$ is the position of the $$i^{\text{th}}$$ robot.
+- $\text{robots}[i]$ is the position of the $i^{\text{th}}$ robot.
 
-- $\text{distance}[i]$ is the **maximum** distance the $$i^{\text{th}}$$ robot's bullet can travel.
+- $\text{distance}[i]$ is the **maximum** distance the $i^{\text{th}}$ robot's bullet can travel.
 
-- $\text{walls}[j]$ is the position of the $$j^{\text{th}}$$ wall.
+- $\text{walls}[j]$ is the position of the $j^{\text{th}}$ wall.
 
 Every robot has **one** bullet that can either fire to the left or the right **at most **$\text{distance}[i]$ meters.
 

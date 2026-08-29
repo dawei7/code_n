@@ -51,7 +51,7 @@ There is no choice about where a block begins: the blocks are `s[0:m]`, `s[m:2m]
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There is no choice about where a block begins: the blocks ar... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For the rearranged concatenation to equal `t`, the same fixed-width partition of
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the block lists:** Splitting and sorting :** - **Sort the block lists:** Splitting and sorting both lists works, but comparisons can lead to $O(n\log k)$ character work and stores two lists.
+- **Sort the block lists:** Splitting and sorting both lists works, but comparisons can lead to $O(n\log k)$ character work and stores two lists.
 - **Set comparison:** It loses multiplicities and is wrong when a block repeats a different number of times.
 - **Character counter only:** Global anagram equality ignores fixed substring boundaries.
 - **`k = 1`:** The sole block is the whole string, so the result is true only when `s == t`; the anagram guarantee alone is insufficient.
@@ -101,8 +101,8 @@ For the rearranged concatenation to equal `t`, the same fixed-width partition of
 - **Hash collisions:** Python dictionaries resolve collisions by equality and preserve correctness.
 - **Input preservation:** Slicing creates new strings; neither original string is modified.
 - **Import requirement:** `Counter` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

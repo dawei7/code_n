@@ -62,7 +62,7 @@ The symmetric reasoning applies to a column query.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The set `row` contains row indices already encountered while... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the full matrix:** Straightforward but c:** - **Build the full matrix:** Straightforward but costs $O(n^2+qn)$ time in a literal row/column update and $O(n^2)$ storage.
+- **Build the full matrix:** Straightforward but costs $O(n^2+qn)$ time in a literal row/column update and $O(n^2)$ storage.
 - **Forward overwrite bookkeeping:** Possible with more complicated correction terms, while reverse processing makes final ownership direct.
 - **Use boolean arrays:** Two length-$n$ arrays can replace the sets and give deterministic $O(1)$ membership with the same asymptotic storage.
 - **Use `reversed(queries)`:** Avoids the $O(q)$ list copy created by `queries[::-1]` and matches the manifest's $O(n)$ auxiliary bound.
@@ -121,8 +121,8 @@ $$
 - **All rows finalized:** Later reversed column discoveries contribute only cells in any rows not yet finalized, possibly zero.
 - **All columns finalized:** The symmetric zero-contribution situation is handled by `n - len(col)`.
 - **Single-cell matrix:** The first reversed query touching its only row or column determines the answer; every older query is excluded.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

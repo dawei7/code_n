@@ -8,7 +8,7 @@ You are given a 2D array `queries`, which contains two types of queries:
 
 - For a query of type 2, $\text{queries}[i] = [2, x, sz]$. Check if it is possible to place a block of size `sz` *anywhere* in the range `[0, x]` on the line, such that the block **entirely** lies in the range `[0, x]`. A block **cannot **be placed if it intersects with any obstacle, but it may touch it. Note that you do** not** actually place the block. Queries are separate.
 
-Return a boolean array `results`, where $\text{results}[i]$ is `true` if you can place the block specified in the $$i^{\text{th}}$$ query of type 2, and `false` otherwise.
+Return a boolean array `results`, where $\text{results}[i]$ is `true` if you can place the block specified in the $i^{\text{th}}$ query of type 2, and `false` otherwise.
 
 ### 2. Function Contract
 

@@ -52,7 +52,7 @@ The iterator must consume a potentially enormous decoded sequence without expand
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `i`: the index of the current run's count in `encoding`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ For current pair `encoding[i], encoding[i + 1]`, the number of remaining copies 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand the sequence:** Counts may be as large :** - **Expand the sequence:** Counts may be as large as $10^9$, making materialization impossible.
+- **Expand the sequence:** Counts may be as large as $10^9$, making materialization impossible.
 - **Subtract directly from encoded counts:** This can work in place but mutates caller data. The offset field preserves the input.
 - **Prefix sums plus binary search:** Record cumulative run lengths and locate each cumulative consumed position. It gives $O(\log m)$ per call and uses $O(m)$ extra space, unnecessary for forward-only iteration.
 - **Zero-count run:** It is skipped automatically without reducing the request.
@@ -99,8 +99,8 @@ For current pair `encoding[i], encoding[i + 1]`, the number of remaining copies 
 - **Nonempty request:** `n >= 1` ensures zero runs always advance rather than return.
 - **Even encoding length:** Every count at `i` has a corresponding value at `i + 1`.
 - **No rewind:** The design is a forward iterator; exhausted state is permanent across calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -102,7 +102,7 @@ This solution is very slow as is. However, we can speed it up considerably by a 
 
 The reason for this is that if there is no solution, trying a longer matchstick first will get to negative conclusion earlier.
 
-e.g. $[8,4,4,4]$. In this case we can have a square of size 5 but the largest side 8 doesn't fit in anywhere i.e. cannot be a part of any of the sides (because we can't break matchsticks according to the question) and hence we can simply return $False$ without even considering the remaining matchsticks.
+e.g. `[8,4,4,4]`. In this case we can have a square of size 5 but the largest side 8 doesn't fit in anywhere i.e. cannot be a part of any of the sides (because we can't break matchsticks according to the question) and hence we can simply return $False$ without even considering the remaining matchsticks.
 
 #### Complexity Analysis
 
@@ -136,7 +136,7 @@ A single set of used matchsticks can represent multiple different unrelated subp
 
 We also need to keep track of number of sides of the square that have been **completely** formed till now.
 
-Also, an important thing to note in the example we just considered was that if the matchsticks being used are $[3,3,4,4,5,5]$ and the side of the square is `8`, then we will always consider that arrangement that forms the most number of complete sides over that arrangement that leads to incomplete sides. Hence, the optimal arrangement here is $(4, 4), (3, 5), (3, 5)$ with 3 complete sides of the square.
+Also, an important thing to note in the example we just considered was that if the matchsticks being used are `[3,3,4,4,5,5]` and the side of the square is `8`, then we will always consider that arrangement that forms the most number of complete sides over that arrangement that leads to incomplete sides. Hence, the optimal arrangement here is $(4, 4), (3, 5), (3, 5)$ with 3 complete sides of the square.
 
 Let us take a look at the following recursion tree to see if in-fact we can get overlapping subproblems.
 

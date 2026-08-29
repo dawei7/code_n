@@ -51,7 +51,7 @@ After this traversal, nodes marked one require no new rune. Only the subgraph in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After this traversal, nodes marked one require no new rune.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After this traversal, nodes marked one require no new rune. Only the subgraph in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit Kosaraju or Tarjan SCCs:** Contract c:** - **Explicit Kosaraju or Tarjan SCCs:** Contract components and count unpowered sources directly; it is clearer but needs more machinery.
+- **Explicit Kosaraju or Tarjan SCCs:** Contract components and count unpowered sources directly; it is clearer but needs more machinery.
 - **Iterative DFS:** It preserves finishing order while avoiding recursion-limit failure.
 - **Add a rune to every unpowered node:** It is valid but ignores forward reachability and is not minimal.
 - **All nodes crystal-reachable:** `seq` is empty and answer is zero.
@@ -100,8 +100,8 @@ After this traversal, nodes marked one require no new rune. Only the subgraph in
 - **State meanings:** Zero is unseen/unpowered, two is DFS-discovered/unpowered, and one is powered or covered.
 - **Manifest wording:** SCCs justify the algorithm but are not explicitly contracted.
 - **Required imports:** `deque`, `Deque`, and `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -60,7 +60,7 @@ The product name is irrelevant to seasonal category totals. The query carries on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `sales JOIN products USING (product_id)` matches each sale t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After this CTE, there is one row per season-category combination that appears in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct complete ranking:** Use `ROW_NUMBER() :** - **Correct complete ranking:** Use `ROW_NUMBER() OVER (PARTITION BY season ORDER BY total_quantity DESC, total_revenue DESC, category ASC)` and keep row one. This fixes the exact source’s equal-quantity/equal-revenue defect.
+- **Correct complete ranking:** Use `ROW_NUMBER() OVER (PARTITION BY season ORDER BY total_quantity DESC, total_revenue DESC, category ASC)` and keep row one. This fixes the exact source’s equal-quantity/equal-revenue defect.
 - **Add category to the existing RANK:** Because each category appears once per season after aggregation, appending `category ASC` also makes rank one unique. `ROW_NUMBER` communicates the single-winner requirement more directly.
 - **Correlated maximum subqueries:** One can compare each group against maximum quantities and revenues, but nested tie logic is harder to read and can repeat aggregation work.
 - **Aggregate revenue incorrectly:** `SUM(quantity * price)` is essential when prices vary by sale. Multiplying an aggregate quantity by one arbitrary price would be wrong.
@@ -119,8 +119,8 @@ After this CTE, there is one row per season-category combination that appears in
 - **Final season order:** `ORDER BY season` is lexicographic, not Winter-Spring-Summer-Fall chronology. It matches “season ascending” as a string column.
 - **Join integrity:** The unique product identifier ensures one category per joined sale. Missing product rows would be excluded by the inner join.
 - **Unused product name:** Popularity is category-based, so product names correctly do not affect grouping or ties.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

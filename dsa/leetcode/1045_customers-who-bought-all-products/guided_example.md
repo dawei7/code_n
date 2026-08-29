@@ -63,7 +63,7 @@ Only IDs that appear in `Customer` form groups. There is no separate customer ma
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query selects `customer_id` from `Customer` and uses `GR... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Without `DISTINCT`, duplicates could make an incomplete customer's count equal t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Double `NOT EXISTS`:** Select customers for wh:** - **Double `NOT EXISTS`:** Select customers for whom there does not exist a product lacking a matching purchase row. This expresses universal quantification directly and does not depend on count equality.
+- **Double `NOT EXISTS`:** Select customers for whom there does not exist a product lacking a matching purchase row. This expresses universal quantification directly and does not depend on count equality.
 - **Cross join then find missing pairs:** Generate every customer-product pair, subtract purchased pairs, and exclude customers with missing rows. It mirrors relational division but can create a very large intermediate table.
 - **Join to `Product` before counting:** This is safer if referential integrity is absent or invalid product keys can appear. Under the stated foreign key, it is redundant.
 - **Count without `DISTINCT`:** This is incorrect because duplicate `Customer` rows can inflate a customer's coverage.
@@ -115,8 +115,8 @@ Without `DISTINCT`, duplicates could make an incomplete customer's count equal t
 - **Null product key:** It is ignored by the distinct count and cannot falsely satisfy a required product.
 - **Foreign-key dependence:** Count equality proves set equality only because purchased keys belong to the product set.
 - **No customer master table:** The query's candidate IDs come only from `Customer`, which is all the schema makes available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

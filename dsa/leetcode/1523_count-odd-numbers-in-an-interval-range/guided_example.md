@@ -74,7 +74,7 @@ For high seven, eight shifted right is four, counting one, three, five, and seve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Among the integers from zero through `high`, the odds are on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Subtracting removes every odd value before the interval while preserving low its
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjust low to the first odd:** If low is even,:** - **Adjust low to the first odd:** If low is even, increment it, then compute spaced terms with division by two. It is constant time but needs a boundary check.
+- **Adjust low to the first odd:** If low is even, increment it, then compute spaced terms with division by two. It is constant time but needs a boundary check.
 - **Parity-length formula:** Half the interval length is odd, with one additional odd when both interval length and starting parity require it. It is correct but easier to get off by one.
 - **Iteration:** Checking every number costs $O(high-low+1)$ and is unnecessary.
 - **Single odd value:** Both prefixes differ by one, returning one.
@@ -123,8 +123,8 @@ Subtracting removes every odd value before the interval while preserving low its
 - **Both endpoints even:** Neither is accidentally counted as odd.
 - **Maximum interval:** Constant-time arithmetic handles the full allowed range.
 - **Nonnegative guarantee:** It is what makes shift and floor-division interpretations straightforward.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

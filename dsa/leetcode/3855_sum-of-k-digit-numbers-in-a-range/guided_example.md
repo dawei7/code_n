@@ -87,7 +87,7 @@ Leading zeros do not break the symmetry. If zero belongs to `[l,r]`, it is count
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix a position `p` and fix an allowed digit `d`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -144,7 +144,7 @@ For `l=0`, `r=1`, and `k=3`, `D=1`, each digit appears `2^2=4` times per positio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all sequences:** There are `n^k` seq:** - **Enumerate all sequences:** There are `n^k` sequences, so direct construction is exponential in `k` and impossible at the maximum constraint. Positional symmetry collapses them into three scalar factors.
+- **Enumerate all sequences:** There are `n^k` sequences, so direct construction is exponential in `k` and impossible at the maximum constraint. Positional symmetry collapses them into three scalar factors.
 - **Digit dynamic programming for `k` positions:** Maintain the count and sum of length-`p` sequences with recurrences such as `new_sum = 10 * old_sum * n + old_count * D`. This is correct but needs `O(k)` iterations unless the recurrence is exponentiated.
 - **Matrix exponentiation:** The count-and-sum recurrence can be encoded in a small matrix and raised to the `k`-th power in `O(\log k)`. It is more general but more complicated than the direct closed form available here.
 - **Construct the repunit as a string or integer:** A number with one billion digits cannot be materialized. The geometric-series residue uses modular exponentiation and an inverse instead.
@@ -157,8 +157,8 @@ For `l=0`, `r=1`, and `k=3`, `D=1`, each digit appears `2^2=4` times per positio
 - **Negative modular numerator:** In Python, `(pow(10,k,mod)-1) % mod` normalizes the value into the standard nonnegative residue range. This is robust even when the power residue is zero.
 - **Huge `k`:** The algorithm never loops `k` times. Only the bits of `k` drive exponentiation, so `k=10^9` remains practical.
 - **Fixed prime modulus:** Fermat's inverse works because `1{,}000{,}000{,}007` is prime and `9` is nonzero modulo it. For a different composite modulus, this inverse argument would need to be reconsidered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

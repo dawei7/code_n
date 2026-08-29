@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D array of axis-aligned `rectangles`. Each $\text{rectangle}[i] = [x_{i1}, y_{i1}, x_{i2}, y_{i2}]$ denotes the $$i^{\text{th}}$$ rectangle where $(x_{i1}, y_{i1})$ are the coordinates of the **bottom-left corner**, and $(x_{i2}, y_{i2})$ are the coordinates of the **top-right corner**.
+You are given a 2D array of axis-aligned `rectangles`. Each $\text{rectangle}[i] = [x_{i1}, y_{i1}, x_{i2}, y_{i2}]$ denotes the $i^{\text{th}}$ rectangle where $(x_{i1}, y_{i1})$ are the coordinates of the **bottom-left corner**, and $(x_{i2}, y_{i2})$ are the coordinates of the **top-right corner**.
 
 The objective is to compute `6` from `{"rectangles": [[0, 0, 2, 2], [1, 0, 2, 3], [1, 0, 3, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,9 +66,7 @@ Only boundaries matter because coverage changes nowhere between consecutive boun
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For rectangle `[x1,y1,x2,y2]`:
-
-- event `(x1,y1,y2,+1)` adds... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,9 +119,9 @@ Coordinate compression preserves exact physical lengths because tree nodes calcu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate-compressed 2D cells:** Mark every r:** - **Coordinate-compressed 2D cells:** Mark every rectangle over compressed x-y cells and sum covered cells. With up to `O(n^2)` cells, it is simpler but uses and processes quadratic space.
-- **- **Sweep with a sorted list of active intervals:*:** - **Sweep with a sorted list of active intervals:** Recompute merged y-length at each x event in `O(n)`, giving `O(n^2)` worst-case time.
-- **- **Inclusion-exclusion over rectangle subsets:** :** - **Inclusion-exclusion over rectangle subsets:** Exponential and impractical.
+- **Coordinate-compressed 2D cells:** Mark every rectangle over compressed x-y cells and sum covered cells. With up to `O(n^2)` cells, it is simpler but uses and processes quadratic space.
+- **Sweep with a sorted list of active intervals:** Recompute merged y-length at each x event in `O(n)`, giving `O(n^2)` worst-case time.
+- **Inclusion-exclusion over rectangle subsets:** Exponential and impractical.
 
 ---
 

@@ -51,7 +51,7 @@ The first loop finds the smallest power-of-two length `n` at least $k$. It start
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop finds the smallest power-of-two length `n` at... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first loop finds the smallest power-of-two length `n` at least $k$. It start
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct bit scan of `k - 1`:** For every set bi:** - **Direct bit scan of `k - 1`:** For every set bit $i$, add `operations[i]`. This is a compact $O(\log k)$ formulation of the same construction path.
+- **Direct bit scan of `k - 1`:** For every set bit $i$, add `operations[i]`. This is a compact $O(\log k)$ formulation of the same construction path.
 - **Build the complete word:** Length can need to exceed $10^{14}$, so simulation is impossible in both time and memory.
 - **Recursive backward mapping:** It mirrors the halves naturally but uses $O(\log k)$ call-stack space; the source's loops retain constant space.
 - **`k = 1`:** Both loops are skipped, $d=0$, and the original character `a` is returned regardless of operations.
@@ -99,8 +99,8 @@ The first loop finds the smallest power-of-two length `n` at least $k$. It start
 - **Local mutation of `k`:** The method changes only its local integer binding while mapping parent positions; it does not affect caller state.
 - **One-based versus zero-based reasoning:** The code uses one-based $k$ throughout. A bit-based alternative usually subtracts one first, so mixing the conventions causes boundary errors.
 - **Operation semantics:** Type one transforms only the appended half, not the existing first half. The backward branch adds a shift only when the position lies in that second half.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

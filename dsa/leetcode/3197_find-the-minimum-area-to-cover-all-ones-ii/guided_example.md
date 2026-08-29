@@ -51,7 +51,7 @@ The helper `f(i1, j1, i2, j2)` examines one inclusive grid region. It scans ever
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(i1, j1, i2, j2)` examines one inclusive grid r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This is the minimum rectangle area needed for the ones inside that region. Altho
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute every subregion's bounding area:** :** - **Precompute every subregion's bounding area:** Cache `f` by its four boundaries or precompute the particular strip/corner areas used by the six families. This trades memory for avoiding repeated cell scans and is closer to the manifest's description.
+- **Precompute every subregion's bounding area:** Cache `f` by its four boundaries or precompute the particular strip/corner areas used by the six families. This trades memory for avoiding repeated cell scans and is closer to the manifest's description.
 - **Prefix-assisted boundary queries:** Ordinary sums can reveal whether a band contains a one, allowing boundary searches or precomputed directional boxes. A carefully designed version can reduce repeated work, but it is not present in the exact source.
 - **Rotate the grid:** The editorial implements fewer orientations on the original grid and repeats them after a $90^\circ$ rotation. The exact source writes all six orientations explicitly instead.
 - **Assign each one to one of three labels:** Enumerating $3^K$ assignments for $K$ ones and bounding each label is correct for tiny $K$ but exponential.
@@ -101,8 +101,8 @@ This is the minimum rectangle area needed for the ones inside that region. Altho
 - **Initial upper bound:** `R * C` is finite and at least the optimum for a valid instance. Every accepted candidate can only lower it.
 - **No input mutation:** The source repeatedly reads `grid` but never changes it.
 - **Manifest mismatch:** Do not attribute prefix sums, caching, the manifest time, or its space bound to this implementation; none is visible in `solution.py`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

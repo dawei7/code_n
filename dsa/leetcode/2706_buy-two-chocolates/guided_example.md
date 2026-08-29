@@ -65,7 +65,7 @@ Their sum is stored as `cost`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact implementation calls `prices.sort()`, which rearra... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This satisfies the requirement to buy exactly two chocolates rather than one pri
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track two minima in one pass:** Achieves $O(n):** - **Track two minima in one pass:** Achieves $O(n)$ time and $O(1)$ auxiliary space without mutating input.
+- **Track two minima in one pass:** Achieves $O(n)$ time and $O(1)$ auxiliary space without mutating input.
 - **Check every pair:** Correct but costs $O(n^2)$ time.
 - **Min-heap:** Can extract two minima in $O(n)$ heap construction plus logarithmic extraction, but is unnecessary.
 - **Exactly two prices:** They are the only possible pair.
@@ -115,8 +115,8 @@ This satisfies the requirement to buy exactly two chocolates rather than one pri
 - **Positive-price guarantee:** No negative or zero price changes the minimum-pair reasoning.
 - **Input ordering:** Destroyed by `sort`.
 - **Exactly two chocolates:** The algorithm never considers buying one or more than two.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

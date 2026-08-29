@@ -53,7 +53,7 @@ The list comprehension appends `i` only when this Boolean is true. It does not a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a string `w`, expression `x in w` is true if at least on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ Every input word is enumerated once, so these two directions prove the returned 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested explicit loops:** Scan characters manua:** - **Nested explicit loops:** Scan characters manually and break at the first match. It has the same complexity but more bookkeeping.
+- **Nested explicit loops:** Scan characters manually and break at the first match. It has the same complexity but more bookkeeping.
 - **Convert each word to a set:** Membership then becomes fast, but constructing sets costs $O(S)$ time and $O(S)$ extra space for a single target query.
 - **Use `w.count(x)`:** Correctly detects positivity but scans the full word even after an early match; `in` can short-circuit.
 - **Target appears many times:** Return the word's index once, not once per occurrence.
@@ -111,8 +111,8 @@ Every input word is enumerated once, so these two directions prove the returned 
 - **Total-character bound is precise:** A word with no target requires all its characters inspected, while one beginning with the target may take one comparison. $O(S)$ states the worst case across these variable stopping points.
 - **Why a regular expression is excessive:** Pattern construction and matching add machinery without improving the linear lower bound for a single literal lowercase character.
 - **List comprehension allocation:** Result capacity grows only for matching words; nonmatching words do not create placeholder entries.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

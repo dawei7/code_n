@@ -70,7 +70,7 @@ Two signatures are equal exactly when all 26 character-presence decisions agree,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Start `x=0` for each word.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ This order enforces `i<j` naturally. The current word pairs only with earlier oc
 
 ## 6. Traps This Instance Exposes
 
-- **- **`frozenset` key:** It directly represents dist:** - **`frozenset` key:** It directly represents distinct characters but allocates more objects than an integer mask.
+- **`frozenset` key:** It directly represents distinct characters but allocates more objects than an integer mask.
 - **Sorted unique characters:** It works but requires sorting and deduplication per word.
 - **Repeated letters:** They set an already-set bit and do not alter the signature.
 - **Anagrams:** They necessarily share a mask, but similarity is broader because multiplicities may differ.
@@ -125,8 +125,8 @@ This order enforces `i<j` naturally. The current word pairs only with earlier oc
 - **Current word:** It is inserted only after counting, preventing a self-pair.
 - **Lowercase contract:** Subtracting `ord("a")` relies on letters being between `a` and `z`.
 - **Counter frequencies:** A set of masks would lose how many earlier matching words exist.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

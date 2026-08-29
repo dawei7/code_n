@@ -57,7 +57,7 @@ The first argument is a literal period, not a regular expression. A period has n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `address.replace('.', '[.]')` scans the string for every non... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ For `"255.100.50.0"`, the digit runs `255`, `100`, `50`, and `0` remain intact. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split and join:** `'[.]'.join(address.split('.:** - **Split and join:** `'[.]'.join(address.split('.'))` also produces the result. It creates a temporary list of four components, making it more elaborate than direct replacement.
+- **Split and join:** `'[.]'.join(address.split('.'))` also produces the result. It creates a temporary list of four components, making it more elaborate than direct replacement.
 - **Character-by-character builder:** Append `[.]` for periods and the original character otherwise. This exposes the transformation explicitly but requires more code and a temporary list or repeated concatenation.
 - **Regular expression replacement:** It is unnecessary and easier to misuse because a period is special in regex syntax. `str.replace` is literal and exact.
 - **Manual three replacements:** Searching for separator indices individually couples the code to address structure and creates avoidable boundary logic.
@@ -108,8 +108,8 @@ For `"255.100.50.0"`, the digit runs `255`, `100`, `50`, and `0` remain intact. 
 - **Malformed input outside the contract:** The method would mechanically replace any periods without validating IPv4 semantics, which is acceptable because malformed addresses are not permitted.
 - **Square brackets in output:** They are newly introduced around each period and are not interpreted as regex or indexing syntax inside the returned string.
 - **No hidden numeric conversion:** Components such as `"100"` remain textually identical; no integer parsing can remove digits or change formatting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

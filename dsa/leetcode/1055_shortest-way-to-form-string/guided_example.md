@@ -76,11 +76,7 @@ This works because defining a Python closure does not execute its body. The valu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested helper is:
-
-
-
-Here `i` is the position currently ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +123,7 @@ For `source = "abc"` and `target = "abcbc"`, the first call starts at `j = 0`. I
 
 ## 6. Traps This Instance Exposes
 
-- **- **Next-occurrence table for the manifest target::** - **Next-occurrence table for the manifest target:** Precompute the next position of every lowercase letter from every source boundary. Then each target character takes constant-time transition work, yielding `O(AS + T)` time and `O(AS)` space.
+- **Next-occurrence table for the manifest target:** Precompute the next position of every lowercase letter from every source boundary. Then each target character takes constant-time transition work, yielding `O(AS + T)` time and `O(AS)` space.
 - **Inverted indices with binary search:** Store the sorted source positions of each character. For each target character, binary-search for the first position greater than the previous match. Restart a subsequence when none exists. This takes `O(S + T log S)` time and `O(S)` space.
 - **Explicit character-set precheck:** Building `set(source)` and verifying every target character can reject impossible inputs before scanning. It uses up to `O(A)` space. The exact code obtains the same fact lazily from `k == j`.
 - **Concatenate source repeatedly:** One could build `source + source + ...` until `target` becomes a subsequence. Repeated immutable-string construction wastes time and space, and checking increasingly long prefixes repeats work.
@@ -140,8 +136,8 @@ For `source = "abc"` and `target = "abcbc"`, the first call starts at `j = 0`. I
 - **Skipped source characters:** Characters not needed at the current point are harmless because a subsequence may delete any number of characters while preserving the order of those retained.
 - **Order, not just membership:** Even when every target character occurs in `source`, one pass may not be enough. For example, target order can force a restart after the source pointer has passed an earlier position.
 - **No input mutation:** Strings are immutable in Python, and the solution only reads them. All progress is represented by integer indices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

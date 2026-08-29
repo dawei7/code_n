@@ -71,7 +71,7 @@ If `x0 == x1`, the source takes the second branch, but `rowCosts[x1:x0]` is an e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `x0 < x1`, the robot must move downward.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ This endpoint handling is a common source of mistakes. The cost belongs to the r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra's algorithm:** General weighted-grid :** - **Dijkstra's algorithm:** General weighted-grid shortest paths suggest Dijkstra, but these costs depend only on the destination row or column and are nonnegative. Separability makes graph search unnecessary.
+- **Dijkstra's algorithm:** General weighted-grid shortest paths suggest Dijkstra, but these costs depend only on the destination row or column and are nonnegative. Separability makes graph search unnecessary.
 - **Dynamic programming over the rectangle:** A DP can compute path costs but uses work and storage proportional to an area. The minimum is simply the sum over mandatory row and column crossings.
 - **Explicit coordinate simulation:** Moving one step at a time and adding the entered cost is correct and also $O(D)$. Slicing expresses the same sum compactly.
 - **Iterator-based summation:** Using loops or generator expressions avoids slice copies and realizes the manifest's $O(1)$ auxiliary-space claim.
@@ -123,8 +123,8 @@ This endpoint handling is a common source of mistakes. The cost belongs to the r
 - **Nonnegative-cost assumption:** The no-detour proof relies on every cost being at least zero. Negative entry costs could make repeated detours beneficial, but they are outside the constraints.
 - **Slice-space subtlety:** Python slicing is not a constant-space view. Complexity documentation must distinguish the mathematical path method from the memory behavior of this exact implementation.
 - **No grid construction:** Only row and column cost arrays are needed; an $m$ by $n$ matrix would duplicate information without helping the calculation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

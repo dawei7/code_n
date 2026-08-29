@@ -51,7 +51,7 @@ Within each partition, rows are ordered by `session_end`. `LAG(session_end)` giv
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within each partition, rows are ordered by `session_end`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Within each partition, rows are ordered by `session_end`. `LAG(session_end)` giv
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precise interval comparison:** Compare `sessio:** - **Precise interval comparison:** Compare `session_start` with `prev_session_end + INTERVAL 12 HOUR` to avoid whole-hour truncation.
+- **Precise interval comparison:** Compare `session_start` with `prev_session_end + INTERVAL 12 HOUR` to avoid whole-hour truncation.
 - **Self-join:** Pair same-user, same-type sessions and test gaps directly. It is simple but can create quadratic candidate pairs.
 - **Use `LEAD`:** Ordering sessions and comparing a row's end with the next row's start is an equivalent orientation when chronology is defined consistently.
 - **First session in a partition:** Its lag is null and it cannot establish an at-least-two condition.
@@ -100,8 +100,8 @@ Within each partition, rows are ordered by `session_end`. `LAG(session_end)` giv
 - **Session IDs are unnecessary:** Pair existence depends on user, type, and timestamps. Unique `session_id` identifies rows but does not enter the calculation.
 - **Negative large differences:** Any overlap passes regardless of magnitude because every negative integer is at most 12. This implicitly treats overlapping time as zero-or-less gap rather than rejecting chronological overlap.
 - **Lag scope:** Partitioning by both `user_id` and `session_type` resets predecessor history whenever either value changes, preventing an unrelated user's or activity type's ending timestamp from leaking into the comparison.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

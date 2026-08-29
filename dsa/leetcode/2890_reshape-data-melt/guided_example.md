@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pd.melt(report, id_vars=['product'], var_name='quarter', va... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each argument defines one part of that reshape.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `value_vars`:** Listing the four quar:** - **Explicit `value_vars`:** Listing the four quarter labels makes the accepted schema narrower and prevents accidental melting of extra columns.
+- **Explicit `value_vars`:** Listing the four quarter labels makes the accepted schema narrower and prevents accidental melting of extra columns.
 - **`DataFrame.melt` method:** `report.melt(...)` is equivalent to the top-level `pd.melt(report, ...)` used by the source.
 - **Manual row construction:** Nested loops can emit product-quarter records but are slower and more error-prone than the native reshape.
 - **Unexpected extra column:** Because `value_vars` is omitted, every non-product column would be melted.
@@ -94,8 +94,8 @@ Each argument defines one part of that reshape.
 - **Empty report:** The result is empty but still has `product`, `quarter`, and `sales` columns.
 - **Quarter-column order:** It controls the block order of output rows because no explicit sort follows.
 - **Original index:** Default melt behavior creates a fresh result index rather than preserving repeated source labels.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

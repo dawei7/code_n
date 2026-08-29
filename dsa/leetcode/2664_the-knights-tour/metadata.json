@@ -3,7 +3,7 @@
   "source": "leetcode",
   "frontend_id": "2664",
   "slug": "the-knights-tour",
-  "title": "The Knight’s Tour",
+  "title": "The Knight\u2019s Tour",
   "difficulty": "Medium",
   "acceptance_rate": 72.756950294861,
   "frequency": 0.0,
@@ -40,10 +40,6 @@
   ],
   "primary_language": "python",
   "runnable_in_coden": true,
-  "solution_variants": {
-    "manifest": "solution_variants.json",
-    "default": "optimal"
-  },
   "subsets": [
     "leetcode_all",
     "leetcode_category:algorithms",

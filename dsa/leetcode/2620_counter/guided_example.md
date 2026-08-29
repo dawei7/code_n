@@ -62,7 +62,7 @@ The caller receives only the function, not direct access to the enclosed variabl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Calling `createCounter(10)` performs two conceptual actions:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Using prefix increment `++n` without adjusting initialization would be wrong bec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit local state variable:** Copy `n` into:** - **Explicit local state variable:** Copy `n` into `let current = n` and return `current++`; behavior and complexity are the same.
+- **Explicit local state variable:** Copy `n` into `let current = n` and return `current++`; behavior and complexity are the same.
 - **Increment before return:** Initialize to $n-1$, then use prefix increment. This works but is less direct.
 - **Class instance:** A class with a field and method models the state but adds unnecessary syntax for one operation.
 - **Global variable:** Incorrect because separately created counters would interfere.
@@ -124,8 +124,8 @@ Using prefix increment `++n` without adjusting initialization would be wrong bec
 - **Extra call arguments:** They are ignored and do not affect state.
 - **Prefix versus postfix:** `n++` returns the old value; `++n` would return the incremented value.
 - **Encapsulation:** The captured binding is not exposed as a writable public object property.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

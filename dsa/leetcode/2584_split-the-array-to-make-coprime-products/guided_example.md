@@ -64,7 +64,7 @@ The exact implementation increments `j` through all integers, not only primes. C
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every `nums[i]`, the code tries divisors `j` starting at... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ No entry is needed at intermediate occurrences. The interval becomes active when
 
 ## 6. Traps This Instance Exposes
 
-- **- **Smallest-prime-factor sieve:** Precompute fact:** - **Smallest-prime-factor sieve:** Precompute factors through $M$ and factor each value quickly, matching the manifest at the cost of $O(M)$ memory.
+- **Smallest-prime-factor sieve:** Precompute factors through $M$ and factor each value quickly, matching the manifest at the cost of $O(M)$ memory.
 - **Multiply and compute GCD:** Prefix and suffix products become huge and make arithmetic unnecessarily expensive.
 - **Prime occurrence counts:** Track remaining counts while sweeping and detect when no active prime remains; this is another correct factor-based formulation.
 - **Array length one:** No legal split exists, so the function returns $-1$.
@@ -117,8 +117,8 @@ No entry is needed at intermediate occurrences. The interval becomes active when
 - **Prime input values:** Trial division reaches the square-root boundary, then records the leftover prime.
 - **No split before final closure:** If `mx` reaches $n-1$, a nonempty suffix cannot avoid the crossing factor.
 - **Manifest distinction:** Complexity must follow the direct divisor loop rather than an absent sieve.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

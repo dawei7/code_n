@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\text{tail length}+\text{cycle length}.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Different starting paths can also merge before reaching a cycle. Once a path rea
 
 ## 6. Traps This Instance Exposes
 
-- **- **Indegree pruning:** Remove all indegree-zero n:** - **Indegree pruning:** Remove all indegree-zero nodes with a queue, leaving only cycles; assign cycle lengths, then process removed nodes in reverse. This matches the manifest summary and also runs in $O(n)$ time and space.
+- **Indegree pruning:** Remove all indegree-zero nodes with a queue, leaving only cycles; assign cycle lengths, then process removed nodes in reverse. This matches the manifest summary and also runs in $O(n)$ time and space.
 - **Three-color DFS:** Track unseen, active, and finished states to detect cycles, but recursive Python implementations risk stack overflow on a chain of length $10^5$.
 - **Naive simulation per start:** A fresh visited set from every node can take $O(n^2)$ time because shared tails and cycles are rediscovered.
 - **Path merging into solved work:** `cnt + ans[j]` reuses the complete known suffix without entering it again.
@@ -98,8 +96,8 @@ Different starting paths can also merge before reaching a cycle. Once a path rea
 - **Long tail into a short cycle:** Answers decrease by one along the tail and become constant on the cycle.
 - **Persistent `vis` values:** They need not be cleared because any node from an older traversal also has a completed `ans` value.
 - **Self-loop:** The constraints exclude `edges[i] == i`, but the formula would still identify a cycle of length one correctly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

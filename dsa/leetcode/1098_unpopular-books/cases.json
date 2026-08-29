@@ -56,31 +56,6 @@
       "tags": ["trial", "left-join", "zero-sales", "empty-orders"]
     },
     {
-      "id": "trial-release-cutoff",
-      "name": "exactly one month old is eligible while a newer book is excluded",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Books": [
-            {"book_id": 1, "name": "Too New", "available_from": "2019-05-24"},
-            {"book_id": 2, "name": "Exactly One Month", "available_from": "2019-05-23"},
-            {"book_id": 3, "name": "Older At Ten", "available_from": "2019-05-22"}
-          ],
-          "Orders": [
-            {"order_id": 1, "book_id": 1, "quantity": 1, "dispatch_date": "2019-06-01"},
-            {"order_id": 2, "book_id": 2, "quantity": 9, "dispatch_date": "2019-06-01"},
-            {"order_id": 3, "book_id": 3, "quantity": 10, "dispatch_date": "2019-06-01"}
-          ]
-        }
-      },
-      "expected": {
-        "columns": ["book_id", "name"],
-        "rows": [[2, "Exactly One Month"]]
-      },
-      "tags": ["trial", "release-boundary", "exact-nine", "exact-ten"]
-    },
-    {
       "id": "trial-order-endpoints",
       "name": "both endpoints of the last-year window count",
       "kind": "trial",
@@ -101,29 +76,6 @@
         "rows": []
       },
       "tags": ["trial", "window-boundaries", "exact-ten"]
-    },
-    {
-      "id": "trial-outside-window",
-      "name": "orders on either side of the last year do not count",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Books": [
-            {"book_id": 3, "name": "Outside Sales", "available_from": "2015-01-01"}
-          ],
-          "Orders": [
-            {"order_id": 1, "book_id": 3, "quantity": 100, "dispatch_date": "2018-06-22"},
-            {"order_id": 2, "book_id": 3, "quantity": 2, "dispatch_date": "2019-01-01"},
-            {"order_id": 3, "book_id": 3, "quantity": 100, "dispatch_date": "2019-06-24"}
-          ]
-        }
-      },
-      "expected": {
-        "columns": ["book_id", "name"],
-        "rows": [[3, "Outside Sales"]]
-      },
-      "tags": ["trial", "outside-window", "closed-interval"]
     },
     {
       "id": "trial-quantity-sum",

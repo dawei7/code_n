@@ -95,20 +95,6 @@
       ]
     },
     {
-      "id": "trial-empty",
-      "name": "trial: no envelopes",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "envelopes": []
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "empty"
-      ]
-    },
-    {
       "id": "trial-equal-height",
       "name": "trial: widths grow but heights do not",
       "kind": "trial",

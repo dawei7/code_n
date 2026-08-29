@@ -59,7 +59,7 @@ If `x == 1`, every power remains one. Multiplication would never change `a`, so 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | While `a <= bound`, the current power of `x` might contribut... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If `y == 1`, all powers repeat one. The break prevents infinite looping.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute power arrays:** Clear but uses `O(A:** - **Precompute power arrays:** Clear but uses `O(A + B)` extra storage.
+- **Precompute power arrays:** Clear but uses `O(A + B)` extra storage.
 - **Logarithmic exponent limits:** Floating rounding and base one need special handling.
 - **List membership deduplication:** Potentially quadratic; a set gives expected constant insertion.
 - **`x = 1`:** Process power one once and break.
@@ -110,8 +110,8 @@ If `y == 1`, all powers repeat one. The break prevents infinite looping.
 - **Duplicate sums:** Retained once.
 - **Any order:** Set-to-list order is accepted.
 - **Large bases:** Their power sequences terminate quickly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

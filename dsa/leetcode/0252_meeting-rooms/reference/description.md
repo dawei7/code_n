@@ -4,7 +4,7 @@ You are given an array of meeting times `intervals` where $\text{intervals}[i] =
 
 A person can attend all meetings if no two meeting intervals overlap. Meetings ending at time `t` and starting at time `t` **do not** overlap.
 
-​​​​​​​Return `true` if a person can attend all meetings. Otherwise, return `false`.
+Return `true` if a person can attend all meetings. Otherwise, return `false`.
 
 ### 2. Function Contract
 

@@ -61,10 +61,7 @@ These fields persist across calls to `consec`. A local variable would be lost af
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor stores:
-
-- `val`: the target value;
-- `k`: r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +104,7 @@ Testing equality `==k` would be wrong after the run grows beyond `k`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Queue of last `k` values:** It works but uses :** - **Queue of last `k` values:** It works but uses $O(k)$ memory and more updates.
+- **Queue of last `k` values:** It works but uses $O(k)$ memory and more updates.
 - **`k=1`:** Return true exactly when the current number equals the target.
 - **Run longer than `k`:** Continue returning true; use `>=` rather than equality.
 - **Mismatch after success:** Reset immediately and return false.
@@ -117,8 +114,8 @@ Testing equality `==k` would be wrong after the run grows beyond `k`.
 - **All values match:** Results become true starting with call `k`.
 - **Persistent state:** Constructor fields must survive between method calls.
 - **No stream storage:** The trailing-run invariant is sufficient.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

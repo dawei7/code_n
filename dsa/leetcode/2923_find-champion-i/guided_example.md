@@ -57,7 +57,7 @@ The transitive-order guarantee also ensures a strongest team exists. Therefore t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two different rows cannot both contain ones against every op... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `[[0,0,1],[1,0,1],[0,0,0]]`:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Candidate elimination:** Compare a current can:** - **Candidate elimination:** Compare a current candidate with each next team and replace the loser, then optionally verify. Under the strong tournament guarantees this can run in $O(n)$ time and $O(1)$ space.
+- **Candidate elimination:** Compare a current candidate with each next team and replace the loser, then optionally verify. Under the strong tournament guarantees this can run in $O(n)$ time and $O(1)$ space.
 - **Column indegree count:** Count losses for every team from the matrix in $O(n^2)$ time and $O(n)$ space; the champion has zero losses.
 - **Do not include the diagonal:** `grid[i][i]` is zero by definition. Testing it would reject every candidate.
 - **Two apparent champions:** Impossible because their mutual pair cannot point in both directions.
@@ -112,8 +112,8 @@ For `[[0,0,1],[1,0,1],[0,0,0]]`:
 - **Row order:** Returning the first passing row does not prefer a smaller label over another valid champion; uniqueness proves no second passing row exists.
 - **Matrix storage:** The input already occupies $O(n^2)$ space, but the method allocates no additional structure proportional to it.
 - **Worst-case short-circuit example:** If each rejected row's first zero appears near its last checked column, almost every off-diagonal entry is inspected before the champion is found.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

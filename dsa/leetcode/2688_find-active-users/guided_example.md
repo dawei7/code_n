@@ -69,7 +69,7 @@ Conversely, any adjacent pair within seven days is plainly a pair of the user's 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At first, “within seven days of any other purchase” sounds a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ This layering is useful in MySQL because a window-function result is conceptuall
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join every user's purchase pairs:** Corre:** - **Self-join every user's purchase pairs:** Correct but can create $O(R^2)$ candidate pairs for a prolific user.
+- **Self-join every user's purchase pairs:** Correct but can create $O(R^2)$ candidate pairs for a prolific user.
 - **Correlated existence subquery:** Expresses the condition directly but may repeat searches without an effective index.
 - **Select directly from the lag-derived table:** Can eliminate the outer `IN` scan while preserving the same adjacent-gap reasoning.
 - **User with one purchase:** Has no predecessor and is not active.
@@ -120,8 +120,8 @@ This layering is useful in MySQL because a window-function result is conceptuall
 - **First partition row:** Its null predecessor is naturally filtered out.
 - **Datetime values:** MySQL `DATEDIFF` compares date portions in calendar days.
 - **Any output order:** No final sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

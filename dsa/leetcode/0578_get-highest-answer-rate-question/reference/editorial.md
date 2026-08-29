@@ -69,7 +69,7 @@ df = df[df['rate'] == df['rate'].max()].groupby('rate')['question_id'].nsmallest
 ```
 
 #### Implementation
-​
+
 ```python
 import pandas as pd
 

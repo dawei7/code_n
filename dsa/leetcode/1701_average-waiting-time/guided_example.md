@@ -64,7 +64,7 @@ For example, if the chef is free at time eight, a customer arrives at four, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the old `t` is greater than `a`, the customer arrives whi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ When `a == t`, either branch interpretation gives the same start time. The next 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store every completion time:** A DP-style arra:** - **Store every completion time:** A DP-style array can record each finish, but only the preceding finish is needed, so it wastes $O(n)$ space.
+- **Store every completion time:** A DP-style array can record each finish, but only the preceding finish is needed, so it wastes $O(n)$ space.
 - **Event simulation with a queue:** Explicit arrival and completion events reproduce the same process with unnecessary machinery because service order is fixed.
 - **Sort the customers:** Arrival order is already non-decreasing, and equal-arrival input order must be preserved; sorting is not needed.
 - **Average incrementally:** Updating a floating mean on every customer can introduce repeated rounding. Summing exact integer waits and dividing once is simpler.
@@ -115,8 +115,8 @@ When `a == t`, either branch interpretation gives the same start time. The next 
 - **Preparation time is included:** The contribution is completion minus arrival, not start minus arrival.
 - **Nonempty input:** The constraint guarantees at least one customer, so division by `len(customers)` cannot divide by zero.
 - **Output precision:** Python true division produces a float; the judge accepts answers within the stated tolerance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

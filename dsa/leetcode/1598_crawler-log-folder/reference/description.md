@@ -10,7 +10,7 @@ The operations are described below:
 
 - `"x/"` : Move to the child folder named `x` (This folder is **guaranteed to always exist**).
 
-You are given a list of strings `logs` where $\text{logs}[i]$ is the operation performed by the user at the $$i^{\text{th}}$$ step.
+You are given a list of strings `logs` where $\text{logs}[i]$ is the operation performed by the user at the $i^{\text{th}}$ step.
 
 The file system starts in the main folder, then the operations in `logs` are performed.
 

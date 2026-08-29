@@ -77,9 +77,7 @@ For `[2, 2, 3, 2]`, binary `2` contributes its bit pattern three times. At every
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `i` from zero through 31, the generator computes:
-
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +130,7 @@ Python’s right shift of a negative number sign-extends with ones, which is con
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-mask finite-state machine:** Maintain mask:** - **Two-mask finite-state machine:** Maintain masks for bits seen once and twice modulo three. It processes all bit positions in parallel and also runs in $O(n)$ time and $O(1)$ space, but its Boolean transitions are less immediately intuitive.
+- **Two-mask finite-state machine:** Maintain masks for bits seen once and twice modulo three. It processes all bit positions in parallel and also runs in $O(n)$ time and $O(1)$ space, but its Boolean transitions are less immediately intuitive.
 - **Frequency dictionary:** Count complete integers and return the count-one key. It is linear expected time but requires $O(n)$ extra space.
 - **Sort and scan triples:** Sorting makes equal values adjacent, but costs $O(n\log n)$ time and may mutate the input.
 - **Set-and-sum formula:** `(3 * sum(set(nums)) - sum(nums)) // 2` derives the singleton algebraically, but the set violates constant space and fixed-width sums can overflow.
@@ -142,8 +140,8 @@ Python’s right shift of a negative number sign-extends with ones, which is con
 - **Negative repeated values:** Each sign-extended bit is still counted three times and vanishes modulo three.
 - **Remainder two:** Valid input cannot leave remainder two at any bit because only the singleton survives and contributes at most one. The code treats any nonzero remainder as set, trusting the contract.
 - **Runtime dependency:** The selected source uses `List` without importing it. A standalone module needs `from typing import List`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

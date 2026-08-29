@@ -66,7 +66,7 @@ It then converts `ownedChunks` to a set and stores it at `user_chunks[userID]`. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `join` is called, every reusable ID came from an earlie... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The user's set is discarded as a whole. Because ownership is stored only by user
 
 ## 6. Traps This Instance Exposes
 
-- **- **Chunk-to-owners reverse index:** Maintain an o:** - **Chunk-to-owners reverse index:** Maintain an ordered owner set for each chunk. Requests become proportional to owner count, but join, leave, and successful request must update both directions consistently.
+- **Chunk-to-owners reverse index:** Maintain an ordered owner set for each chunk. Requests become proportional to owner count, but join, leave, and successful request must update both directions consistently.
 - **Unordered reverse sets plus sorting:** Owner lookup is direct, and sorting still costs $O(p \log p)$ when returning a request.
 - **Scanning for a free ID:** Testing IDs from one upward on every join can be slow after frequent churn. The min-heap returns the smallest reusable ID efficiently.
 - **User joins with no chunks:** An empty set is stored, and the user can acquire chunks through later successful requests.
@@ -115,8 +115,8 @@ The user's set is discarded as a whole. Because ownership is stored only by user
 - **Frequent join and leave:** Heap size can grow with inactive reusable IDs, so space is not described solely by active-user count.
 - **Out-of-range chunk:** The source returns an empty list even though valid calls are guaranteed by the contract.
 - **Sorted output:** Dictionary iteration order is irrelevant because `sorted` establishes ascending IDs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

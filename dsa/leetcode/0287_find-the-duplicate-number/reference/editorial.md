@@ -95,7 +95,7 @@ class Solution:
 
 There are $n + 1$ positive numbers in the array ($nums$) (all in the range $[1, n]$). Since the array only contains positive integers, we can track each number ($num$) that has been seen before by flipping the sign of the number located at index $|num|$, where $||$ denotes absolute value.
 
-For example, if the input array is $[1, 3, 3, 2]$, then for $1$, flip the number at index $1$, making the array $[1,-3,3,2]$. Next, for $-3$ flip the number at index $3$, making the array $[1,-3,3,-2]$. Finally, when we reach the second $3$, we'll notice that $\text{nums}[3]$ is already negative, indicating that $3$ has been seen before and hence is the duplicate number.
+For example, if the input array is `[1, 3, 3, 2]`, then for $1$, flip the number at index $1$, making the array $[1,-3,3,2]$. Next, for $-3$ flip the number at index $3$, making the array $[1,-3,3,-2]$. Finally, when we reach the second $3$, we'll notice that $\text{nums}[3]$ is already negative, indicating that $3$ has been seen before and hence is the duplicate number.
 
 **Algorithm**
 
@@ -166,7 +166,7 @@ As we repeatedly apply this mapping, the duplicate number will, on its first ins
 
 4) Repeat steps 2 and 3. At some point, $\text{nums}[cur]$ will already contain the number $cur$, in which case we have found the duplicate number.
 
-To illustrate the algorithm, let's consider an example $[3,3,5,4,1,3]$:
+To illustrate the algorithm, let's consider an example `[3,3,5,4,1,3]`:
 
 * $store(nums, 0)$
   * Here $cur = 0$ and $\text{nums}[cur] = 3$
@@ -238,7 +238,7 @@ The key idea is to always map **the number at index 0** to its equivalent index.
 
 4) Repeat step 3 until $first$ is the same as $\text{nums}[first]$ (e.g. if the duplicate number is $3$, then keep swapping $\text{nums}[0]$ and nums[nums[0]] until both $\text{nums}[3] = 3$ and $\text{nums}[0] = 3$).
 
-To illustrate the algorithm, let's consider an example $[3,3,5,4,1,3]$:
+To illustrate the algorithm, let's consider an example `[3,3,5,4,1,3]`:
 
 * $[\underline3,3,5,\underline4,1,3]$   // Compare nums[0] to nums[nums[0]] (i.e. nums[0] to nums[3]). $3$ != $4$. Swap them. Now the first $3$ will be swapped into its correct position, and position 0 has $4$.
 * $[\underline4,3,5,3,\underline1,3]$  // Compare nums[0] to nums[4]. 4 != 1. Not equal, so swap again. Now 4 is in its correct position.
@@ -269,9 +269,9 @@ class Solution:
 
 **Intuition**
 
-Consider an array that has $n$ distinct numbers in the range $[1,n]$. For example: $[1,2,3,4,5]$. If we pick any one of these 5 numbers and count how many numbers are less than or equal to it, the answer will be equal to that number. So in $[1,2,3,4,5]$, if you pick the number $4$, there's exactly 4 numbers that are less than or equal to $4$. If you pick $3$, there's exactly 3 numbers that are less than or equal to $3$, and so on. However, when you have duplicates in the array, this count will exceed the number at some point. For example: in $[4,3,4,5,2,4,1]$, $3$ has 3 numbers less than or equal to it. However, the duplicate number will have a count of numbers less than or equal to itself, that is greater than itself (in this example, $4$, which is the duplicate, has 6 numbers that are less than or equal to it). Hence, the smallest number that satisfies this property is the duplicate number.
+Consider an array that has $n$ distinct numbers in the range $[1,n]$. For example: `[1,2,3,4,5]`. If we pick any one of these 5 numbers and count how many numbers are less than or equal to it, the answer will be equal to that number. So in `[1,2,3,4,5]`, if you pick the number $4$, there's exactly 4 numbers that are less than or equal to $4$. If you pick $3$, there's exactly 3 numbers that are less than or equal to $3$, and so on. However, when you have duplicates in the array, this count will exceed the number at some point. For example: in `[4,3,4,5,2,4,1]`, $3$ has 3 numbers less than or equal to it. However, the duplicate number will have a count of numbers less than or equal to itself, that is greater than itself (in this example, $4$, which is the duplicate, has 6 numbers that are less than or equal to it). Hence, the smallest number that satisfies this property is the duplicate number.
 
-Consider an example: $[4,6,4,2,1,4,3,5]$. This has $n + 1$ elements where $n$ = $7$. Take each number from $1$ to $7$ and count how many numbers are less than or equal to it. In our example, $count(1,2,3,4,5,6,7)$ = $(1,2,3,6,7,8,8)$. If we performed a linear scan, we would find that the number $4$ is the first number to have its counts exceed the actual number (i.e. 6 > 4) - hence $4$ is the duplicate. A linear scan based approach would require an overall $O(n^2)$ time complexity in the worst case, since we'd need to iterate over each of the $n$ numbers (requiring $O(n)$ time), and then compare it to every element to generate a count of equal or lower numbers (requiring $O(n)$ time as well - nested inside the other $O(n)$ loop). Fortunately, $count$ is monotonic (it's values are always in non-decreasing order), and hence it is an excellent candidate for binary search.
+Consider an example: `[4,6,4,2,1,4,3,5]`. This has $n + 1$ elements where $n$ = $7$. Take each number from $1$ to $7$ and count how many numbers are less than or equal to it. In our example, $count(1,2,3,4,5,6,7)$ = $(1,2,3,6,7,8,8)$. If we performed a linear scan, we would find that the number $4$ is the first number to have its counts exceed the actual number (i.e. 6 > 4) - hence $4$ is the duplicate. A linear scan based approach would require an overall $O(n^2)$ time complexity in the worst case, since we'd need to iterate over each of the $n$ numbers (requiring $O(n)$ time), and then compare it to every element to generate a count of equal or lower numbers (requiring $O(n)$ time as well - nested inside the other $O(n)$ loop). Fortunately, $count$ is monotonic (it's values are always in non-decreasing order), and hence it is an excellent candidate for binary search.
 
 In the binary search approach, instead of doing a linear scan from $1$ to $n$, we can apply a binary search with a goal of finding the smallest number that satisfies the aforementioned property. We start with a search space of $[1,n]$ that has a midpoint $mid$. If $mid$ satisfies the property, we narrow our search space to the left half $[1, mid - 1]$ and continue searching, otherwise, we narrow our search space to the right half $[mid + 1, n]$.
 
@@ -282,7 +282,7 @@ In the binary search approach, instead of doing a linear scan from $1$ to $n$, w
 1) To recap, we need to find the smallest number such that the count of numbers less than or equal to it is greater than the number itself.
 
 2) Apply binary search and start with the entire range of numbers $[1,n]$.
-* Note: Binary search will be applied to the numbers in the range [1,n] (inclusive) regardless of the contents of the array. So even if a number does not exist in the array, we will still evaluate it. For example, if the array is $[1,2,4,2,2,5]$, the algorithm will first evaluate the number 3 even though that number does not exist in the array.
+* Note: Binary search will be applied to the numbers in the range [1,n] (inclusive) regardless of the contents of the array. So even if a number does not exist in the array, we will still evaluate it. For example, if the array is `[1,2,4,2,2,5]`, the algorithm will first evaluate the number 3 even though that number does not exist in the array.
 
 3) Find the mid-point ($cur$).
 
@@ -331,34 +331,34 @@ class Solution:
 
 **Intuition**
 
-Consider an example $[3,1,3,2,4]$. This has $n + 1$ elements where $n$ = $4$. If we did not have the duplicate, and instead had every number from $1$ through $4$, this base array would have been $[1,2,3,4]$. Let's look at each of these numbers in binary and count the number of times 1 is seen at each bit position (let's call that $base\_count$). Since the largest number is $4$ ($100_2$ in binary notation), we need to count this for the 3 least significant bits:
+Consider an example `[3,1,3,2,4]`. This has $n + 1$ elements where $n$ = $4$. If we did not have the duplicate, and instead had every number from $1$ through $4$, this base array would have been `[1,2,3,4]`. Let's look at each of these numbers in binary and count the number of times 1 is seen at each bit position (let's call that $base\_count$). Since the largest number is $4$ ($100_2$ in binary notation), we need to count this for the 3 least significant bits:
 
-* Initially, $base\_count$ = $[0,0,0]$
-* After 1 (in binary, $001_2$), $base\_count$ = $[0,0,1]$
-* After 2 (in binary, $010_2$), $base\_count$ = $[0,1,1]$
-* After 3 (in binary, $011_2$), $base\_count$ = $[0,2,2]$
-* After 4 (in binary, $100_2$), $base\_count$ = $[1,2,2]$
+* Initially, $base\_count$ = `[0,0,0]`
+* After 1 (in binary, $001_2$), $base\_count$ = `[0,0,1]`
+* After 2 (in binary, $010_2$), $base\_count$ = `[0,1,1]`
+* After 3 (in binary, $011_2$), $base\_count$ = `[0,2,2]`
+* After 4 (in binary, $100_2$), $base\_count$ = `[1,2,2]`
 
-Now that we have the base count established, let's go through the example array $[3,1,3,2,4]$ and calculate the same (sum of 1's set across all bit positions) in this array. Let's call it $nums\_count$:
+Now that we have the base count established, let's go through the example array `[3,1,3,2,4]` and calculate the same (sum of 1's set across all bit positions) in this array. Let's call it $nums\_count$:
 
-* Initially, $nums\_count$ = $[0,0,0]$
-* After 3 (in binary, $011_2$), $nums\_count$ = $[0,1,1]$
-* After 1 (in binary, $001_2$), $nums\_count$ = $[0,1,2]$
-* After 3 (in binary, $011_2$), $nums\_count$ = $[0,2,3]$
-* After 2 (in binary, $010_2$), $nums\_count$ = $[0,3,3]$
-* After 4 (in binary, $100_2$), $nums\_count$ = $[1,3,3]$
+* Initially, $nums\_count$ = `[0,0,0]`
+* After 3 (in binary, $011_2$), $nums\_count$ = `[0,1,1]`
+* After 1 (in binary, $001_2$), $nums\_count$ = `[0,1,2]`
+* After 3 (in binary, $011_2$), $nums\_count$ = `[0,2,3]`
+* After 2 (in binary, $010_2$), $nums\_count$ = `[0,3,3]`
+* After 4 (in binary, $100_2$), $nums\_count$ = `[1,3,3]`
 
-Comparing $nums\_count$ to $base\_count$, we see that the bit count difference is $[1,3,3]$ - $[1,2,2]$ = $[0,1,1]$. This is the equivalent of the number 3, which is the duplicate. By iterating over each bit, and comparing the base to the current, we were able to construct the duplicate number bit by bit.
+Comparing $nums\_count$ to $base\_count$, we see that the bit count difference is `[1,3,3]` - `[1,2,2]` = `[0,1,1]`. This is the equivalent of the number 3, which is the duplicate. By iterating over each bit, and comparing the base to the current, we were able to construct the duplicate number bit by bit.
 
 So how does this work if the duplicate number appears more than twice? In that case, think of it as simply replacing the missing numbers with the duplicate number, effectively reducing the count of 1's corresponding to the missing numbers and adding 1's associated with the duplicate number - so the algorithm remains intact, since the count of 1's will be even more pronounced in favor of the duplicate number.
 
-To illustrate this, consider the same array but with the duplicate occurring more than twice: $[3,1,3,3,3]$ (we've replaced both $2$ and $4$ with $3$). $base\_count$ will remain $[1,2,2]$ because $n$ still equals $4$. However, $nums\_count$ becomes $[0,4,5]$. Comparing $nums\_count$ to $base\_count$, we see that the bit count difference is $[0,4,5]$ - $[1,2,2]$ = $[-1,2,3]$. If we consider just the positive counts (seen at positions 0 and 1), this, again is the equivalent of the number $3$, which is the duplicate number.
+To illustrate this, consider the same array but with the duplicate occurring more than twice: `[3,1,3,3,3]` (we've replaced both $2$ and $4$ with $3$). $base\_count$ will remain `[1,2,2]` because $n$ still equals $4$. However, $nums\_count$ becomes `[0,4,5]`. Comparing $nums\_count$ to $base\_count$, we see that the bit count difference is `[0,4,5]` - `[1,2,2]` = $[-1,2,3]$. If we consider just the positive counts (seen at positions 0 and 1), this, again is the equivalent of the number $3$, which is the duplicate number.
 
-A good question to ask here is "Why does only including the bits with a positive count result in the duplicate number?" To understand this, let's take a step back and reconsider the example array $[3,1,3,2,4]$. However, for this example ignore the binary representation of each number. Pretend $base\_count$ is an array where $base\\text{_count}[num]$ contains the frequency of number $num$. So for the range $[1, 4]$, $base\_count$ is $[1, 1, 1, 1]$ and $nums\_count$ is the count of each number ($[1, 1, 2, 1]$). Then the difference is $[1, 1, 2, 1] - [1, 1, 1, 1] = [0, 0, 1, 0]$. The third index is the only index to have a positive count and thus 3 is the duplicate number.
+A good question to ask here is "Why does only including the bits with a positive count result in the duplicate number?" To understand this, let's take a step back and reconsider the example array `[3,1,3,2,4]`. However, for this example ignore the binary representation of each number. Pretend $base\_count$ is an array where $base\\text{_count}[num]$ contains the frequency of number $num$. So for the range `[1, 4]`, $base\_count$ is `[1, 1, 1, 1]` and $nums\_count$ is the count of each number (`[1, 1, 2, 1]`). Then the difference is $[1, 1, 2, 1] - [1, 1, 1, 1] = [0, 0, 1, 0]$. The third index is the only index to have a positive count and thus 3 is the duplicate number.
 
 To meet the constant space requirement, we will consider one bit at a time and count how many times that bit is set in the numbers [1, 2, ..., n], this will be ($base\_count$) for the bit. Then we will count how many times the bit is set in nums, this will be ($nums\_count$) for the bit. If $nums\_count - base\_count > 0$ then this bit must be set in the duplicate number.
 
-> A key observation is that if the array had $n$ elements instead of $n + 1$ (where each element is in the range $[1,n]$), this solution would not work. For example, if the input array was $[1,3,3]$, then $base\_count$ = $[2,2]$ and $nums\_count$ = $[2,3]$, resulting in a difference of $[0,1]$ and hence $1$ as the reconstructed number, which is incorrect. The $n + 1$ number ensures that number from $1$ to $n$ appear exactly once and plus one extra number.
+> A key observation is that if the array had $n$ elements instead of $n + 1$ (where each element is in the range $[1,n]$), this solution would not work. For example, if the input array was `[1,3,3]`, then $base\_count$ = `[2,2]` and $nums\_count$ = `[2,3]`, resulting in a difference of `[0,1]` and hence $1$ as the reconstructed number, which is incorrect. The $n + 1$ number ensures that number from $1$ to $n$ appear exactly once and plus one extra number.
 
 **Algorithm**
 

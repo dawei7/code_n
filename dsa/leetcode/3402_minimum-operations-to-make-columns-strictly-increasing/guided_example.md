@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `zip(*grid)` iterates the matrix by columns, producing a tup... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate the grid:** Raise each cell in place; i:** - **Mutate the grid:** Raise each cell in place; it gives the same cost but changes input unnecessarily.
+- **Mutate the grid:** Raise each cell in place; it gives the same cost but changes input unnecessarily.
 - **Process rows first:** Column predecessors still require separate state per column, using $O(n)$ memory.
 - **Single row:** Every column is already strictly increasing vacuously, so cost zero.
 - **Single column:** The method becomes the basic one-dimensional greedy.
@@ -103,8 +103,8 @@ We maintain the core conceptual parameters and state variables:
 - **Input preservation:** `zip` reads rows and no assignment touches `grid`.
 - **Strict space accounting:** Column tuples use $O(m)$ transient references.
 - **Annotation import:** `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

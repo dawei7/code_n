@@ -51,7 +51,7 @@ The solution sorts `nums1` in ascending order. It also creates `t = sorted((v, i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution sorts `nums1` in ascending order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Two pointers describe the unassigned portion of `t`:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search for a winning value per opponent:** For:** - **Search for a winning value per opponent:** For each `nums2` value, find and remove the smallest larger `nums1` value from a sorted list. Conceptually this matches the greedy rule, but deletion from an array can make the total time quadratic unless a multiset tree is available.
+- **Search for a winning value per opponent:** For each `nums2` value, find and remove the smallest larger `nums1` value from a sorted list. Conceptually this matches the greedy rule, but deletion from an array can make the total time quadratic unless a multiset tree is available.
 - **Heap-based matching:** Sorting opponents and maintaining eligible values in a heap can solve related assignment forms, but it adds machinery without improving the $O(n\log n)$ bound here.
 - **Try all permutations:** Exhaustive search guarantees the maximum but takes factorial time and is impossible for $n$ up to $10^5$.
 - **Pair sorted arrays position by position:** This may waste a value that could win elsewhere or spend a weak forced loss on an easy target. The two-ended sacrifice rule is the crucial missing decision.
@@ -100,8 +100,8 @@ Two pointers describe the unassigned portion of `t`:
 - **One-element arrays:** The lone value either wins or loses. Both pointers initially identify the same opponent, and the single assignment is valid.
 - **Input mutation:** `nums1.sort()` changes the order of the supplied first list. This is acceptable for the solution contract because only the returned permutation matters; a context requiring input preservation could use `sorted(nums1)` at an additional linear storage cost.
 - **Any optimal answer is accepted:** Multiple permutations can achieve the same maximum advantage, especially with duplicates or unavoidable losses. The algorithm returns one valid optimum, not necessarily the same ordering as an example.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ It decrements `k` for those entries only. When `k` reaches zero, the current `s`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A frequency map identifies which values are distinct, but ma... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This correctly excludes the string value altogether. The task does not ask for t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two sets:** Move values from a once-seen set t:** - **Two sets:** Move values from a once-seen set to a duplicate set, then scan the array again.
+- **Two sets:** Move values from a once-seen set to a duplicate set, then scan the array again.
 - **Nested comparisons:** Test every string against every other string, costing $O(N^2)$.
 - **Build a distinct list:** Filter after counting and index `k-1`; correct but allocates another list.
 - **All strings distinct:** The answer is simply the original $k$th array entry.
@@ -108,8 +108,8 @@ This correctly excludes the string value altogether. The task does not ask for t
 - **Original order:** The second array scan, not counter order, determines rank.
 - **One-element array:** Its only nonempty string is the first distinct.
 - **Input preservation:** `arr` is read twice but never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,7 +55,7 @@ The same expression is used for neighbors. It relies on the restricted source fo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `startUrl.split("/", 3)[2]` splits an HTTP URL at most three... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Because all checks and insertions happen sequentially in the main thread, there 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single-threaded DFS or BFS:** It has the same :** - **Single-threaded DFS or BFS:** It has the same graph-work complexity but serializes blocking requests and can exceed the time limit.
+- **Single-threaded DFS or BFS:** It has the same graph-work complexity but serializes blocking requests and can exceed the time limit.
 - **Shared worker queue:** Long-lived worker threads can pop URLs and coordinate an unfinished-work counter. This offers more control but requires careful locking and termination detection.
 - **Async I/O:** An asynchronous parser interface could overlap requests without threads, but the supplied interface is synchronous and blocking.
 - **Duplicate links from different pages:** The main-thread visited check schedules the target exactly once.
@@ -106,8 +106,8 @@ Because all checks and insertions happen sequentially in the main thread, there 
 - **Any result order:** Set conversion is unordered, which the contract permits.
 - **Restricted hostname parsing:** The split expression assumes the stated HTTP-without-port format.
 - **Distributed follow-up:** At billion-URL scale, consistent hashing can assign hosts or URLs to nodes, durable distributed queues can balance work, deduplication must be partitioned, failed leases must be retried, and global termination requires tracking both queued and in-flight work. Those systems concerns are beyond this single-process source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

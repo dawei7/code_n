@@ -62,19 +62,6 @@
       ]
     },
     {
-      "id": "trial-empty",
-      "name": "empty tree",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "root": []
-      },
-      "expected": true,
-      "tags": [
-        "boundary"
-      ]
-    },
-    {
       "id": "trial-values",
       "name": "mirrored shape but unequal values",
       "kind": "trial",

@@ -45,7 +45,7 @@ Return the minimum possible **sum** of `nums` after performing any number of suc
 
 - Then, delete $nums[0..0] = [3]$, whose sum is 3 (divisible by 3), leaving `[5]`.
 
-- The remaining sum is 5.**​​​​​​​**
+- The remaining sum is 5.****
 
 ### 4. Constraints
 

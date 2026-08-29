@@ -51,7 +51,7 @@ The solution creates three constant keyboard-row sets:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution creates three constant keyboard-row sets:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The solution creates three constant keyboard-row sets:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character-by-character row lookup:** Map each :** - **Character-by-character row lookup:** Map each letter to a row number, use the first letter's row as the target, and reject any mismatch. This avoids constructing a per-word set and has the same linear time.
+- **Character-by-character row lookup:** Map each letter to a row number, use the first letter's row as the target, and reject any mismatch. This avoids constructing a per-word set and has the same linear time.
 - **Regular expressions:** Three case-insensitive patterns can test the rows, but set containment states the condition more directly and avoids regex overhead.
 - **Convert row strings repeatedly:** Testing every letter with `in` on short fixed strings is still effectively linear, but prebuilt sets make membership intent explicit.
 - **Mixed capitalization:** Lowercasing is used only for validation, so output spelling and capitalization remain unchanged.
@@ -96,8 +96,8 @@ The solution creates three constant keyboard-row sets:
 - **One-letter word:** Its singleton set belongs to exactly one row, so it is always accepted.
 - **Input order:** Words are considered once from left to right and appended immediately, so accepted words retain their original order.
 - **English-letter guarantee:** The row sets cover all lowercase English letters. Unexpected symbols would make every subset check fail.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

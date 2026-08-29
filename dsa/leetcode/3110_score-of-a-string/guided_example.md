@@ -51,7 +51,7 @@ The exact source expresses the complete computation in one return statement:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source expresses the complete computation in one r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source expresses the complete computation in one return statement:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index loop:** Iterate `i` from zero through `l:** - **Index loop:** Iterate `i` from zero through `len(s)-2` and add `abs(ord(s[i]) - ord(s[i+1]))`. It is equally correct and may be easier for beginners to debug.
+- **Index loop:** Iterate `i` from zero through `len(s)-2` and add `abs(ord(s[i]) - ord(s[i+1]))`. It is equally correct and may be easier for beginners to debug.
 - **List of codes:** Precompute `[ord(c) for c in s]`, but that uses $O(n)$ extra space without improving time.
 - **Alphabet positions:** Subtracting `ord("a")` from both characters gives the same differences because the common offset cancels.
 - **Minimum length two:** The contract guarantees at least one adjacent pair.
@@ -101,8 +101,8 @@ The exact source expresses the complete computation in one return statement:
 - **Empty generator concern:** Not relevant because length is at least two; even for a shorter input, `sum` would safely return zero.
 - **Numeric result:** The method returns an integer, not the transformed characters or individual differences.
 - **Every pair exactly once:** Overlapping adjacency is intentional and does not double-count an index pair.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

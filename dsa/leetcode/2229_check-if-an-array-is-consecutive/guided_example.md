@@ -72,7 +72,7 @@ Since a set removes duplicates, `len(set(nums)) == len(nums)` proves every input
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python interprets `a == b == c` as “`a == b` and `b == c`,” ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Order is irrelevant. The definition says the array contains the range; it does n
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and compare neighbors:** Sort the values :** - **Sort and compare neighbors:** Sort the values and require each next value to equal the previous plus one. This is correct but costs `O(n \log n)` time and may mutate the input unless a copy is made.
+- **Sort and compare neighbors:** Sort the values and require each next value to equal the previous plus one. This is correct but costs `O(n \log n)` time and may mutate the input unless a copy is made.
 - **Boolean presence array:** The bounded value range permits marking seen values by index. It can run in linear time but allocates according to the value universe rather than the actual input size.
 - **Check only `mx - mi + 1 == n`:** Duplicates can replace missing interior values while preserving the span, so distinctness is essential.
 - **Check only set size `n`:** Unique values can still contain gaps and have a span wider than `n`.
@@ -123,8 +123,8 @@ Order is irrelevant. The definition says the array contains the range; it does n
 - **Large gaps:** They increase `mx - mi + 1` beyond `n` and fail immediately in the final Boolean expression.
 - **Input preservation:** Unlike in-place sorting, this method leaves `nums` unchanged.
 - **Chained-comparison semantics:** Rewriting it in a language without Python-style chaining requires two explicit conjunctions; evaluating equality left to right as ordinary binary operations could be wrong.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

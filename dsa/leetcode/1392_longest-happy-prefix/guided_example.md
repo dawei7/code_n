@@ -69,7 +69,7 @@ For `"level"`, offsets one through three fail. At `i=4`, the one-character prefi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This detail prevents an off-by-one mistake.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The range stops before `len(s)`. At offset $n$, both slices would be empty. A ha
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP prefix function:** Compute the longest pro:** - **KMP prefix function:** Compute the longest proper border length in one pass and return the prefix of that length. This achieves the manifest's $O(n)$ time and $O(n)$ space.
+- **KMP prefix function:** Compute the longest proper border length in one pass and return the prefix of that length. This achieves the manifest's $O(n)$ time and $O(n)$ space.
 - **Rolling hash:** Compare prefix and suffix hashes for each length, often in $O(n)$ preprocessing and constant expected comparison time, but hash collisions require care.
 - **Z-function:** A linear string-matching table can identify suffixes that match the prefix and select the longest proper one.
 - **Single character:** The loop is empty because no nonempty proper prefix exists, so it returns `""`.
@@ -119,8 +119,8 @@ The range stops before `len(s)`. At offset $n$, both slices would be empty. A ha
 - **Unicode or lowercase:** The method works for arbitrary Python strings, though the contract supplies lowercase English letters.
 - **Input immutability:** String slicing creates new strings and never changes `s`.
 - **Performance constraint:** The direct method is pedagogically simple but can be too slow at the maximum length; prefix-function matching is the practical optimal replacement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\lvert i-j\rvert\ge\texttt{indexDifference}
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ becomes `j <= i - indexDifference`. For a fixed current right endpoint `i`, the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **All-pairs scan:** It is $O(n^2)$ and too slow :** - **All-pairs scan:** It is $O(n^2)$ and too slow for the version-II limit.
+- **All-pairs scan:** It is $O(n^2)$ and too slow for the version-II limit.
 - **Prefix min/max arrays:** They support the same queries but allocate $O(n)$ space when two running indices are enough.
 - **Index threshold exceeds available span:** No loop iteration occurs and `[-1,-1]` is returned.
 - **Value difference zero:** The first distance-eligible pair passes; with zero index difference, equal indices pass.
@@ -101,8 +99,8 @@ becomes `j <= i - indexDifference`. For a fixed current right endpoint `i`, the 
 - **Why an interior prefix value is unnecessary:** For a fixed current value, the largest absolute difference over the eligible prefix is attained at its minimum or maximum. If neither extreme reaches the threshold, no value between them can reach it either.
 - **Add before checking:** At current index `i`, index `i - indexDifference` has just become legal and must participate in the comparisons immediately. Delaying the update by one iteration would incorrectly enforce a strictly greater index gap.
 - **Same index when the threshold is zero:** Updating the extrema with the current position before testing intentionally permits `i == j`. The contract uses an absolute index difference of at least zero, so this is valid rather than an accidental reuse.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

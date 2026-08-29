@@ -63,7 +63,7 @@ The loop immediately tests the new value. For `nums = [5,3,6,1,12]` and `origina
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop condition is `while original in s`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ When the condition becomes false, the current value does not occur. The problem 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort then scan:** Sort ascending and double `o:** - **Sort then scan:** Sort ascending and double `original` whenever the current sorted value matches. Because `original` only increases, one pass after sorting suffices, for $O(n\log n)$ time and implementation-dependent sort space.
+- **Sort then scan:** Sort ascending and double `original` whenever the current sorted value matches. Because `original` only increases, one pass after sorting suffices, for $O(n\log n)$ time and implementation-dependent sort space.
 - **Repeated list membership:** This follows the statement directly but can take $O(nd)$ time, up to $O(n^2)$ under the distinct-chain bound.
 - **Frequency map:** A counter also supports membership but stores counts that the process never uses.
 - **Original absent initially:** The loop body never runs, and the input value is returned unchanged.
@@ -114,8 +114,8 @@ When the condition becomes false, the current value does not occur. The problem 
 - **Bit shift meaning:** `<<= 1` is exact integer multiplication by two, not a floating-point operation.
 - **Input preservation:** Constructing `s` does not sort or modify `nums`.
 - **Set expected complexity:** Hash membership is expected constant time; adversarial collision behavior is not the standard model used by the manifest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

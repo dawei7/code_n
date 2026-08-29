@@ -87,10 +87,7 @@ adds one for precisely the visited positions whose value equals the requested di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A positive integer with $d$ decimal digits satisfies
-
-$$
-10^... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +126,7 @@ Thus the arithmetic loop matches the ordinary decimal representation: internal a
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** Summing `str(x).count(str:** - **String conversion:** Summing `str(x).count(str(digit))` is concise and still $O(S)$, but it allocates decimal strings; the source performs the same scan arithmetically with constant auxiliary space.
+- **String conversion:** Summing `str(x).count(str(digit))` is concise and still $O(S)$, but it allocates decimal strings; the source performs the same scan arithmetically with constant auxiliary space.
 - **Frequency table for every digit:** Building ten counts while visiting each position is useful if many digit queries share the same array, but it stores and computes information unnecessary for one requested digit.
 - **Requested digit zero:** Actual zero positions inside positive numbers are counted, while nonexistent leading zeros are not.
 - **Trailing zeros:** A value such as 1200 exposes two zero remainders before the quotient becomes 12, so both zeros count.
@@ -140,8 +137,8 @@ Thus the arithmetic loop matches the ordinary decimal representation: internal a
 - **Input value zero outside the contract:** `while x` would skip it and fail to count its conventional single zero digit. Supporting zero-valued elements would require a special case.
 - **Negative values outside the contract:** Python's floor division keeps negative values negative, so this loop would not terminate correctly for them. The positive-integer constraint is essential.
 - **Input preservation:** Reassigning the loop variable does not change `nums` because the array elements are immutable integers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -99,8 +99,17 @@ def run_with_trace(func: Callable, kwargs: dict[str, Any],
     budget — see :mod:`server.app.ast_ops`).
     """
     trace = ExecutionTrace()
+    if not capture and step_limit is None and not step_callback:
+        result = func(**kwargs)
+        trace.return_value = _safe_repr(result)
+        return result, trace
+
     target_file = os.path.normcase(os.path.abspath(func.__code__.co_filename))
     breakpoint_lines = _load_inline_breakpoints(target_file) if capture else set()
+    try:
+        sys.setrecursionlimit(max(sys.getrecursionlimit(), 200_000))
+    except Exception:
+        pass
     previous_tracer = sys.gettrace()
     step_count = 0
     last_step_update = 0

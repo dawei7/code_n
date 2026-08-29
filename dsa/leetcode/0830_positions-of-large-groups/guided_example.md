@@ -67,7 +67,7 @@ Therefore, all indices from `i` through `j-1` belong to the group, and the run c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of each outer-loop iteration, `i < n` and there... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ Groups of length one or two are fully scanned but not appended.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run-length encoding:** Build character/count/s:** - **Run-length encoding:** Build character/count/start triples, then filter counts at least three. It is correct but stores information for every group when only large intervals are needed.
-- **- **Track a start and detect boundary events in on:** - **Track a start and detect boundary events in one loop:** This is equivalent and can use a sentinel at the end. The exact two-pointer form makes the exclusive boundary explicit.
-- **- **Check every length-three window:** It can dete:** - **Check every length-three window:** It can detect that a large run exists but needs additional logic to merge overlapping windows and find maximal endpoints.
+- **Run-length encoding:** Build character/count/start triples, then filter counts at least three. It is correct but stores information for every group when only large intervals are needed.
+- **Track a start and detect boundary events in one loop:** This is equivalent and can use a sentinel at the end. The exact two-pointer form makes the exclusive boundary explicit.
+- **Check every length-three window:** It can detect that a large run exists but needs additional logic to merge overlapping windows and find maximal endpoints.
 
 ---
 

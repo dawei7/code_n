@@ -65,7 +65,7 @@ Because `product_id` is unique in `Products`, one warehouse inventory row matche
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Warehouse` knows warehouse name, product identifier, and un... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Multiplying a sum of units by one arbitrary product volume would be wrong becaus
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute unit volume in a subquery:** Join `:** - **Precompute unit volume in a subquery:** Join `Warehouse` to `product_id, width*length*height` and then multiply by units. It is relationally equivalent.
+- **Precompute unit volume in a subquery:** Join `Warehouse` to `product_id, width*length*height` and then multiply by units. It is relationally equivalent.
 - **Left join:** It preserves unmatched inventory rows but would require deciding how null dimensions should affect volume.
 - **Aggregate units before joining:** Group by warehouse and product first, then join dimensions; it is useful only if multiple rows per pair are possible.
 - **Sum units alone:** It is wrong because products occupy different volume per unit.
@@ -117,8 +117,8 @@ Multiplying a sum of units by one arbitrary product volume would be wrong becaus
 - **Unique product key:** It prevents a join from duplicating one inventory row.
 - **Product name:** It is irrelevant to physical volume and intentionally not selected.
 - **Positional GROUP BY:** `GROUP BY 1` depends on warehouse name remaining the first selected expression.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

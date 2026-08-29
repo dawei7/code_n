@@ -51,7 +51,7 @@ The exact source sorts `nums` in place. It then treats each sorted index `j` as 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source sorts `nums` in place.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source sorts `nums` in place. It then treats each sorted index `j` as 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers after sorting:** If the smallest :** - **Two pointers after sorting:** If the smallest plus largest value is below target, that smallest value pairs with every position through the largest, so count the whole range and advance the left pointer; otherwise decrease the right pointer. This gives $O(n)$ after sorting and matches the manifest's summary.
+- **Two pointers after sorting:** If the smallest plus largest value is below target, that smallest value pairs with every position through the largest, so count the whole range and advance the left pointer; otherwise decrease the right pointer. This gives $O(n)$ after sorting and matches the manifest's summary.
 - **Brute-force nested loops:** It takes $O(n^2)$ time and $O(1)$ space. The small $n\le50$ bound makes it feasible, but it does not exploit ordering.
 - **Frequency table over the small value range:** Since values lie between negative fifty and fifty, counts can be combined in constant-range time, with careful handling of equal-value pairs.
 - **Strict inequality:** A sum exactly equal to target must be excluded; `bisect_left` enforces this boundary.
@@ -98,8 +98,8 @@ The exact source sorts `nums` in place. It then treats each sorted index `j` as 
 - **Single-element array:** There are no two-index pairs, so the one loop iteration adds zero.
 - **Input order:** Sorting mutates `nums`, even though the returned count does not depend on order.
 - **Current index exclusion:** The `hi=j` argument is necessary; searching the entire list could count the current element or later elements and duplicate pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

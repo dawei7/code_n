@@ -51,7 +51,7 @@ The exact solution records the multiplicity of every value in `cnt = Counter(pow
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution records the multiplicity of every value i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For example, four spells with damage $7$ form one decision worth $28$. Thinking 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative dynamic programming on unique values:** - **Iterative dynamic programming on unique values:** Build sorted pairs `(value, frequency)` and compute the best prefix value iteratively, using a pointer or binary search for the last compatible group. This expresses the same recurrence without duplicate `nxt` entries and avoids recursion-depth failure. It is the safer production formulation, but it is not the exact source implemented here.
+- **Iterative dynamic programming on unique values:** Build sorted pairs `(value, frequency)` and compute the best prefix value iteratively, using a pointer or binary search for the last compatible group. This expresses the same recurrence without duplicate `nxt` entries and avoids recursion-depth failure. It is the safer production formulation, but it is not the exact source implemented here.
 - **Monotonic-pointer transition:** The editorial keeps the best compatible prior state while scanning unique values. Because the pointer only moves forward, the DP after sorting is linear in the number of unique values. The overall bound remains $O(n\log n)$ because sorting dominates.
 - **Quadratic comparison with every earlier group:** A direct DP can test all earlier values for compatibility. It is easy to derive but costs $O(u^2)$ after grouping and is unnecessary when sorted order permits a pointer or binary search.
 - **Greedy choice of the largest immediate group:** Choosing the greatest group weight first is not reliable. A moderately valuable group can block two compatible groups whose combined damage is larger, so the skip/take future must be compared by dynamic programming.
@@ -97,8 +97,8 @@ For example, four spells with damage $7$ form one decision worth $28$. Thinking 
 - **Large numeric values:** The total can exceed a 32-bit signed integer. Python integers grow automatically, so multiplication and addition remain exact for the stated constraints.
 - **Input mutation:** `power.sort()` changes the order of the caller's list. LeetCode permits this because only the returned integer matters, but code that needs the original order must sort a copy.
 - **Recursion-depth limitation:** The mathematical algorithm supports $u$ up to $10^5$, but the exact recursive Python source can raise `RecursionError` on a valid input with many distinct values. Memoization prevents repeated work; it does not reduce the longest chain of nested calls. An iterative DP is required to remove this implementation defect robustly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

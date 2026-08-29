@@ -57,12 +57,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-l=
-\begin{cases}
-0,&i=0,\\
-\texttt{endTime}[i-1],&i>0,
-\e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +98,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every destination gap for every meeting:**:** - **Try every destination gap for every meeting:** This takes $O(n^2)$ time. Prefix and suffix maxima answer the only needed question—whether any fitting non-adjacent gap exists—in constant time per meeting.
+- **Try every destination gap for every meeting:** This takes $O(n^2)$ time. Prefix and suffix maxima answer the only needed question—whether any fitting non-adjacent gap exists—in constant time per meeting.
 - **Use adjacent gaps as relocation destinations:** They are already part of $[l,r]$ and cannot make the full region free; they belong to Case 1.
 - **Do not move a meeting:** The maximum remains covered because local packing never produces less free time than either adjacent original gap.
 - **First meeting:** Its left boundary is zero, and only non-adjacent gaps on the right can support Case 2.
@@ -113,8 +108,8 @@ $$
 - **Touching meetings:** Their between-gap length is zero and the formulas remain correct.
 - **Changed relative order:** Moving to any non-adjacent gap is legal specifically because version II removes the order-preservation restriction.
 - **Destination gap loses free time:** That does not invalidate `r-l` as a newly created free interval; the objective is the longest single free interval, not total free time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

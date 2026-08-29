@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` projects numbered from `0` to $n - 1$. You are given an integer array `milestones` where each $\text{milestones}[i]$ denotes the number of milestones the $$i^{\text{th}}$$ project has.
+There are `n` projects numbered from `0` to $n - 1$. You are given an integer array `milestones` where each $\text{milestones}[i]$ denotes the number of milestones the $i^{\text{th}}$ project has.
 
 The objective is to compute `6` from `{"milestones": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -83,7 +83,7 @@ That is the exact conditional:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Arrange the `rest` other-project milestones in some valid or... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ For `[5,2,1]`, `mx=5` and `rest=3`. Only four dominant milestones can be separat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap simulation:** Repeatedly choose the t:** - **Max-heap simulation:** Repeatedly choose the two projects with most remaining milestones. It constructs a valid schedule but costs $O(S\log N)$ for total milestones $S$, which may be enormous.
+- **Max-heap simulation:** Repeatedly choose the two projects with most remaining milestones. It constructs a valid schedule but costs $O(S\log N)$ for total milestones $S$, which may be enormous.
 - **Sort counts:** Sorting can expose the largest count but costs $O(N\log N)$ when a linear maximum suffices.
 - **One project:** `rest=0`, so only one milestone can be worked before consecutive work would be required.
 - **Perfect balance:** When `mx = rest`, all milestones alternate or interleave and the answer is `s`.
@@ -138,8 +138,8 @@ For `[5,2,1]`, `mx=5` and `rest=3`. Only four dominant milestones can be separat
 - **All counts one:** Every project can be used exactly once in any order, and the returned total is the number of projects.
 - **Large counts:** The formula avoids iterating once per week and depends only on the number of projects.
 - **No schedule output:** Only the maximum length is requested, so the constructive interleaving need not be materialized.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

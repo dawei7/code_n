@@ -51,7 +51,7 @@ The task has two distinct stages: first identify the largest palindrome that is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Turn one descending number into descending palindrome cand... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each `a`, the code forms an even-length palindrome whose left half is `a`. I
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precomputed eight-answer table:** Because `n` :** - **Precomputed eight-answer table:** Because `n` is restricted to `1` through `8`, a reviewed table gives literal constant-time lookup and is a natural bounded-domain alternative. The present solution instead derives the answer by search, which exposes why a candidate is valid but performs more work.
+- **Precomputed eight-answer table:** Because `n` is restricted to `1` through `8`, a reviewed table gives literal constant-time lookup and is a natural bounded-domain alternative. The present solution instead derives the answer by search, which exposes why a candidate is valid but performs more work.
 - **Enumerate every pair of factors:** Multiplying all pairs and testing each product for palindromicity is straightforward, but it repeats work because many pairs share products and most products are not palindromes. Generating only palindromes directs the search toward viable answers.
 - **Generate all decimal palindromes:** Constructing and storing a full candidate collection is unnecessary. Mirroring descending left halves already produces the needed order, so candidates can be checked one at a time with constant auxiliary storage.
 - **Reduce modulo too early:** Searching or comparing `x % 1337` values is incorrect. Different original palindromes can have unrelated remainder order, so reduction must happen only after the largest valid original palindrome is known.
@@ -94,8 +94,8 @@ For each `a`, the code forms an even-length palindrome whose left half is `a`. I
 - **Perfect-square candidate:** The condition `t * t >= x` includes equality. If the legal factorization is `t * t = x`, the square-root factor is tested rather than skipped.
 - **Single-digit input:** The even-length mirroring search is not the mechanism used for `n = 1`; the explicit fallback returns `9`, the correct largest palindromic product of one-digit factors.
 - **Return value versus witness factors:** The contract asks only for the palindrome modulo `1337`, so the quotient `x // t` does not need to be retained or returned after divisibility proves that the factor pair exists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

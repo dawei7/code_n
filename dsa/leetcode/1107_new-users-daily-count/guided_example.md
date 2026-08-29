@@ -57,7 +57,7 @@ The CTE may contain several rows for one user: later login dates, repeated login
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE may contain several rows for one user: later login d... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The local Reference contract explicitly defines the closed interval April 1 thro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Grouped CTE:** Select `user_id, MIN(activity_d:** - **Grouped CTE:** Select `user_id, MIN(activity_date)` from login rows grouped by user, then filter and group those one-row-per-user results. This eliminates the need for outer `DISTINCT` and aligns directly with $O(U)$ intermediate state.
+- **Grouped CTE:** Select `user_id, MIN(activity_date)` from login rows grouped by user, then filter and group those one-row-per-user results. This eliminates the need for outer `DISTINCT` and aligns directly with $O(U)$ intermediate state.
 - **Correlated minimum:** Test each login against the minimum for its user. It is correct with proper indexing but usually less clear than a grouped or window calculation.
 - **Filter date before minimum:** Incorrect because it can hide an older first login and count an existing user as new.
 - **Duplicate login rows:** Window output repeats them, but `COUNT(DISTINCT user_id)` prevents inflated counts.
@@ -108,8 +108,8 @@ The local Reference contract explicitly defines the closed interval April 1 thro
 - **Future first login:** The exact query incorrectly admits it unless the source guarantees no future dates; adding a nonnegative condition fixes this.
 - **Dates with zero users:** SQL grouping emits no synthetic rows, matching the requirement to omit them.
 - **Any result order:** The missing `ORDER BY` is intentional and valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

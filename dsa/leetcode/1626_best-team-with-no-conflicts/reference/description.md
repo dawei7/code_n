@@ -4,7 +4,7 @@ You are the manager of a basketball team. For the upcoming tournament, you want 
 
 However, the basketball team is not allowed to have **conflicts**. A **conflict** exists if a younger player has a **strictly higher** score than an older player. A conflict does **not** occur between players of the same age.
 
-Given two lists, `scores` and `ages`, where each $\text{scores}[i]$ and $\text{ages}[i]$ represents the score and age of the $$i^{\text{th}}$$ player, respectively, return *the highest overall score of all possible basketball teams*.
+Given two lists, `scores` and `ages`, where each $\text{scores}[i]$ and $\text{ages}[i]$ represents the score and age of the $i^{\text{th}}$ player, respectively, return *the highest overall score of all possible basketball teams*.
 
 ### 2. Function Contract
 

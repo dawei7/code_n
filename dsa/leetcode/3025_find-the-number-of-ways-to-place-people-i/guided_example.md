@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-x_A\le x_B
-\quad\text{and}\quad
-y_A\ge y_B.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ The rectangle, including its boundary, must contain no third point. A direct met
 
 ## 6. Traps This Instance Exposes
 
-- **- **Triple-loop rectangle check:** Select Alice an:** - **Triple-loop rectangle check:** Select Alice and Bob, then test every other point. It is easy to derive but costs $O(N^3)$ time.
+- **Triple-loop rectangle check:** Select Alice and Bob, then test every other point. It is easy to derive but costs $O(N^3)$ time.
 - **Two-dimensional prefix sums:** Coordinate compression plus a grid prefix sum can query rectangle populations, but it uses substantially more machinery and space for this small-$N$ version.
 - **Iterate by index without slicing:** Replacing the suffix slice with `for j in range(i + 1, n)` preserves the same $O(N^2)$ algorithm while avoiding the per-iteration lists. That would improve auxiliary space, but it is not the exact protected source.
 - **Sort equal $x$ by ascending $y$:** This is incorrect for vertical fences because a lower same-column point could appear before the upper Alice candidate, breaking the one-direction scan and blocker logic.
@@ -104,8 +100,8 @@ The rectangle, including its boundary, must contain no third point. A direct met
 - **A point on the rectangle boundary:** It blocks the pair just like an interior point. The non-strict coordinate containment and strict frontier update correctly enforce this.
 - **Distinct point coordinates as pairs:** Individual $x$ or $y$ values may repeat even though complete points are distinct, which is why the tie rules matter.
 - **Input mutation:** The returned count is independent of original order, but the caller receives `points` rearranged into sorted order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

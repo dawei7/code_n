@@ -61,7 +61,7 @@ The character `ch` itself appears first in this reversed prefix because the endp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `ch` is present, the prefix includes indices zero throu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `word="abcdefd"` and `ch="d"`, `find` returns three. The first slice is `"dc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer character list:** Convert to a lis:** - **Two-pointer character list:** Convert to a list, swap prefix endpoints inward, and join. It is explicit and linear but also uses $O(N)$ Python space.
+- **Two-pointer character list:** Convert to a list, swap prefix endpoints inward, and join. It is explicit and linear but also uses $O(N)$ Python space.
 - **Stack:** Push through the first target and pop to reverse, then append the suffix; more machinery for the same bounds.
 - **Manual concatenation in a loop:** Repeated immutable-string addition can become $O(N^2)$ in Python.
 - **Character absent:** Return `word`; do not use the -1 index as a real endpoint.
@@ -110,8 +110,8 @@ For `word="abcdefd"` and `ch="d"`, `find` returns three. The first slice is `"dc
 - **Suffix preservation:** `word[i + 1 :]` keeps its original order.
 - **Lowercase guarantee:** No case normalization or Unicode matching policy is needed.
 - **Input preservation:** Strings are immutable and the method returns a newly constructed value when reversal occurs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

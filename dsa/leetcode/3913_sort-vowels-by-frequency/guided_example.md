@@ -72,7 +72,7 @@ For example, in `"baeiou"` every vowel count is one. The key ties all five types
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts `vowels` with key `-cnt[c]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ The source does not explicitly allocate this expanded sequence. It generates the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build an explicit vowel pool:** Repeating each:** - **Build an explicit vowel pool:** Repeating each sorted type by its count and consuming that list is straightforward but allocates another $O(N)$ sequence; the source reuses the counter as group state.
+- **Build an explicit vowel pool:** Repeating each sorted type by its count and consuming that list is straightforward but allocates another $O(N)$ sequence; the source reuses the counter as group state.
 - **Sort every vowel occurrence:** This costs $O(V\log V)$ for $V$ vowels and needs a tie key per occurrence, while sorting at most five types is enough.
 - **Fixed five-element arrays:** Counts and first positions can be stored by vowel index instead of a `Counter`, with the same asymptotic bounds.
 - **No vowels:** `vowels` remains empty, the refill loop changes nothing, and the original string is returned.
@@ -132,8 +132,8 @@ The source does not explicitly allocate this expanded sequence. It generates the
 - **Frequency order is non-increasing:** Higher counts come first because the key is negative; using the positive count would reverse the requirement.
 - **Lowercase contract:** The membership set contains only lowercase vowels, matching the documented alphabet.
 - **Required library name:** Standalone execution needs `Counter` from Python's `collections` module.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ In CTE `T`, points are `wins * 3 + draws` because wins contribute three, draws o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In CTE `T`, points are `wins * 3 + draws` because wins contr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ In CTE `T`, points are `wins * 3 + draws` because wins contribute three, draws o
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NTILE(3)`:** It balances row counts but can s:** - **`NTILE(3)`:** It balances row counts but can separate teams with equal points, so it does not honor the higher-tier tie rule.
+- **`NTILE(3)`:** It balances row counts but can separate teams with equal points, so it does not honor the higher-tier tie rule.
 - **`DENSE_RANK`:** It keeps ties together but changes numeric positions by removing gaps. The examples require competition positions from `RANK`.
 - **Percent-rank functions:** `PERCENT_RANK` and `CUME_DIST` have different boundary semantics, especially for ties, and do not directly reproduce the stated ceiling thresholds.
 - **CTE for points first, second CTE for windows:** This could avoid repeating the points expression inside `RANK` and make stages even more explicit. The source keeps both computations in one CTE.
@@ -99,8 +99,8 @@ In CTE `T`, points are `wins * 3 + draws` because wins contribute three, draws o
 - **Text ordering:** Team names use MySQL collation rules for the final ascending tie order.
 - **Null wins or draws:** The source does not replace nulls with zero. Intended rows must contain usable statistics for the arithmetic and rank policy to be meaningful.
 - **Ordinal order references:** `ORDER BY 2, 1` is concise but coupled to select-column positions; aliases would be more robust to later projection changes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

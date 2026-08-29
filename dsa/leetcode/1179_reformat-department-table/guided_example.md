@@ -64,9 +64,7 @@ That is precisely the required behavior. The query repeats this same pattern for
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | January’s expression is structurally:
-
-`SUM(CASE month WHEN ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +99,7 @@ Suppose department one has rows `(1, 8000, 'Jan')`, `(1, 7000, 'Feb')`, and `(1,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Twelve left joins:** Start from distinct depar:** - **Twelve left joins:** Start from distinct department IDs and left-join one filtered table alias for every month. This preserves missing months as `NULL` but is substantially more verbose and may require repeated table access.
+- **Twelve left joins:** Start from distinct department IDs and left-join one filtered table alias for every month. This preserves missing months as `NULL` but is substantially more verbose and may require repeated table access.
 - **Native `PIVOT` syntax:** Some database systems provide a pivot operator, which can express the intent directly. The submitted solution targets MySQL, where portable conditional aggregation is the appropriate technique.
 - **`MAX` or `MIN` instead of `SUM`:** Because `(id, month)` is unique, any aggregate that ignores `NULL` and returns the lone non-`NULL` value works. `SUM` is correct here because there cannot be multiple monthly rows to combine.
 - **Department with only one recorded month:** The group still produces one complete result row. That month contains its revenue and all other monthly aggregates return `NULL`.
@@ -112,8 +110,8 @@ Suppose department one has rows `(1, 8000, 'Jan')`, `(1, 7000, 'Feb')`, and `(1,
 - **Ordinal grouping:** `GROUP BY 1` means group by the first selected expression, `id`. Writing `GROUP BY id` would be more explicit but would produce the same result for this query.
 - **Output order:** No `ORDER BY` is needed because the problem accepts any row order. Applications that require deterministic display order should add an explicit ordering clause, but that is outside this contract.
 - **Case-sensitive month literals:** The query uses exactly the documented abbreviations from `'Jan'` through `'Dec'`. Misspelling an abbreviation or alias would leave a column empty or violate the required output schema.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

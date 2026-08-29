@@ -61,7 +61,7 @@ For `"aaba*"`, all three `a` values are smallest. Removing the rightmost at inde
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop over `ascii_lowercase` visits letters from `'a'` up... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ After scanning, the final generator emits exactly indices not marked in `rem`, p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap of letters and positions:** It can se:** - **Min-heap of letters and positions:** It can select a smallest character, but enforcing rightmost position among equal letters needs careful heap keys and lazy deletion.
+- **Min-heap of letters and positions:** It can select a smallest character, but enforcing rightmost position among equal letters needs careful heap keys and lazy deletion.
 - **26 stacks plus active bit mask:** A bit mask can find the smallest nonempty bucket faster in constant bit operations.
 - **Physically erase characters:** Repeated string or list deletion can become quadratic and invalidates stored positions.
 - **No stars:** Nothing is marked, so original string is returned.
@@ -121,8 +121,8 @@ After scanning, the final generator emits exactly indices not marked in `rem`, p
 - **Original order:** Unremoved characters retain their relative positions during final join.
 - **Star markers:** Every star's own index is always marked before selecting its paired character.
 - **Fixed lowercase alphabet:** It justifies treating 26-bucket scanning as $O(1)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

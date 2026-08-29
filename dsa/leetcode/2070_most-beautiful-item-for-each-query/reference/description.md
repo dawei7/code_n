@@ -4,7 +4,7 @@ You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_
 
 You are also given a **0-indexed** integer array `queries`. For each $\text{queries}[j]$, you want to determine the **maximum beauty** of an item whose **price** is **less than or equal** to $\text{queries}[j]$. If no such item exists, then the answer to this query is `0`.
 
-Return *an array *`answer`* of the same length as *`queries`* where *$\text{answer}[j]$* is the answer to the *$$j^{\text{th}}$$* query*.
+Return *an array *`answer`* of the same length as *`queries`* where *$\text{answer}[j]$* is the answer to the *$j^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

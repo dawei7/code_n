@@ -61,7 +61,7 @@ Let `n` be the number of digits.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `str(num)` exposes the decimal digits in order, and `list(..... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ The less-than-or-equal comparison is deliberate. When digits tie, it chooses the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Last-position table for digits zero through ni:** - **Last-position table for digits zero through nine:** Record each digit's last occurrence, then scan left to right looking for the largest greater digit available later. This uses constant-size metadata because the alphabet has ten digits.
-- **- **Try every pair:** Swap every pair, convert, an:** - **Try every pair:** Swap every pair, convert, and retain the maximum. With `D` digits this takes roughly `O(D^3)` if each conversion copies `D` characters, though the small numeric constraint may hide the cost.
-- **- **Swap with the first maximum occurrence:** This:** - **Swap with the first maximum occurrence:** This can be suboptimal when the maximum repeats; the displaced smaller digit should be moved as far right as possible.
+- **Last-position table for digits zero through nine:** Record each digit's last occurrence, then scan left to right looking for the largest greater digit available later. This uses constant-size metadata because the alphabet has ten digits.
+- **Try every pair:** Swap every pair, convert, and retain the maximum. With `D` digits this takes roughly `O(D^3)` if each conversion copies `D` characters, though the small numeric constraint may hide the cost.
+- **Swap with the first maximum occurrence:** This can be suboptimal when the maximum repeats; the displaced smaller digit should be moved as far right as possible.
 
 ---
 

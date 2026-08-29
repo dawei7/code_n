@@ -69,7 +69,7 @@ The value zero safely means “uncolored” because every allowed source color i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The answer matrix `ans` begins with zeros.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ The second rule enforces first-arrival permanence. A cell colored in an earlier 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Immediate neighbor coloring:** Writing proposa:** - **Immediate neighbor coloring:** Writing proposals directly into `ans` makes results depend on frontier iteration order and violates simultaneous maximum-color tie resolution.
+- **Immediate neighbor coloring:** Writing proposals directly into `ans` makes results depend on frontier iteration order and violates simultaneous maximum-color tie resolution.
 - **Priority queue by distance and color:** Ordering states by minimum distance and then maximum color can solve the same nearest-source problem, but costs $O(nm\log(nm))$ instead of layered linear BFS.
 - **Run one BFS per source:** This repeats grid work and requires later distance comparisons; multi-source initialization shares the traversal.
 - **Single source:** No ties are possible, and its color eventually fills the connected grid.
@@ -133,8 +133,8 @@ The second rule enforces first-arrival permanence. A cell colored in an earlier 
 - **One-row or one-column grid:** The same four-direction loop works; out-of-bounds checks discard the unavailable directions.
 - **Input-list destruction:** Because `q` aliases `sources` and is repeatedly cleared, `sources` is empty when the method returns.
 - **Required helpers:** Standalone execution needs `defaultdict` and `pairwise` from the Python standard library.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

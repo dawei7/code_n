@@ -59,7 +59,7 @@ tests whether all three prefixes can extend through this character.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `n = min(len(s1), len(s2), len(s3))` is the greatest possibl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ If $i=0$, the strings share no first character. Their only common prefix is empt
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly delete from the longest string:** S:** - **Repeatedly delete from the longest string:** Simulation can eventually work but obscures the fact that the target must be a common prefix and may perform unnecessary string construction.
+- **Repeatedly delete from the longest string:** Simulation can eventually work but obscures the fact that the target must be a common prefix and may perform unnecessary string construction.
 - **Generate all prefixes:** Comparing prefix sets uses extra time and space; the first mismatch identifies the longest one directly.
 - **First characters differ:** Returning the empty string is illegal, so the correct answer is `-1`.
 - **All strings already equal:** $L$ equals every length and the formula returns zero.
@@ -116,8 +116,8 @@ If $i=0$, the strings share no first character. Their only common prefix is empt
 - **A mismatch cannot be repaired:** Rightmost deletion never changes characters before the new endpoint. If position $i$ differs while retained, deleting later characters cannot alter it; the common result must end before $i$.
 - **Different total lengths:** Total `s` may be much larger than $3L$, but every extra character is necessarily outside the shared prefix and must be removed exactly once.
 - **Impossible versus costly:** `-1` is used only when the shared prefix length is zero. Any positive common first character gives a valid result, even if nearly every other character must be deleted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

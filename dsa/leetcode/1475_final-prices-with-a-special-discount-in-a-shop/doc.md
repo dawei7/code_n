@@ -23,7 +23,7 @@ Subtract that first qualifying later price from `prices[i]`. If no later price i
 Let $N$ be the number of shop items.
 
 - `prices`: an integer array with $1 \le N \le 500$.
-- Every item price lies in the inclusive range $[1,1000]$.
+- Every item price lies in the inclusive range `[1,1000]`.
 
 **Return value**
 

@@ -63,7 +63,7 @@ This is a general technique for symmetric relationships: define a canonical orie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | SQL grouping compares the values of its grouping expressions... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Ordinal grouping is concise, but the numbers refer to select-list positions rath
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LEAST` and `GREATEST`:** `LEAST(from_id, to_i:** - **`LEAST` and `GREATEST`:** `LEAST(from_id, to_id)` and `GREATEST(from_id, to_id)` express the same canonical pair more directly in MySQL. The exact source uses two `IF` expressions instead.
+- **`LEAST` and `GREATEST`:** `LEAST(from_id, to_id)` and `GREATEST(from_id, to_id)` express the same canonical pair more directly in MySQL. The exact source uses two `IF` expressions instead.
 - **Union both directions:** Creating a reversed copy with `UNION ALL` is unnecessary and risks counting every call twice unless followed by careful filtering.
 - **Aggregate direction first:** One could summarize ordered pairs and then combine reverse summaries, but canonicalizing each row before one aggregation is simpler.
 - **Distinct counting:** `COUNT(DISTINCT duration)` or deduplicating rows would lose legitimate repeated call records and is not equivalent to counting calls.
@@ -116,8 +116,8 @@ Ordinal grouping is concise, but the numbers refer to select-list positions rath
 - **Large totals:** The database's `SUM` return type must accommodate the accumulated duration; MySQL promotes integer sums appropriately under its aggregate rules.
 - **Any-order output:** Consumers must not rely on the incidental order produced by grouping; add `ORDER BY person1, person2` only if a separate caller requires it.
 - **Ordinal grouping:** `GROUP BY 1, 2` is valid here but tied to projection order; spelling out the canonical expressions can be safer during later query maintenance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

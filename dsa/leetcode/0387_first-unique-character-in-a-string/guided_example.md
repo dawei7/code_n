@@ -62,7 +62,7 @@ Counting before choosing an answer prevents a common one-pass mistake. Seeing th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(s)` builds a mapping from each character to t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ If the loop ends, every character occurrence belongs to a character with frequen
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-element array:** Use `ord(c) - ord('a:** - **Fixed 26-element array:** Use `ord(c) - ord('a')` as an index, count into an integer array, then scan the string. This has the same $O(n)$ time and explicit $O(1)$ space. `Counter` is shorter and expresses the frequency idea directly.
-- **- **Repeated `s.count(c)`:** Testing the total cou:** - **Repeated `s.count(c)`:** Testing the total count separately for each character is concise but each `count` scans the string. In the worst case this costs $O(n^2)$ time.
-- **- **Queue of provisional unique characters:** Duri:** - **Queue of provisional unique characters:** During one pass, keep first-seen characters in a queue and mark repeats in a count map, removing repeated entries from the front when possible. It can be linear but maintains more moving state and is easier to get wrong than the two-pass method.
+- **Fixed 26-element array:** Use `ord(c) - ord('a')` as an index, count into an integer array, then scan the string. This has the same $O(n)$ time and explicit $O(1)$ space. `Counter` is shorter and expresses the frequency idea directly.
+- **Repeated `s.count(c)`:** Testing the total count separately for each character is concise but each `count` scans the string. In the worst case this costs $O(n^2)$ time.
+- **Queue of provisional unique characters:** During one pass, keep first-seen characters in a queue and mark repeats in a count map, removing repeated entries from the front when possible. It can be linear but maintains more moving state and is easier to get wrong than the two-pass method.
 
 ---
 

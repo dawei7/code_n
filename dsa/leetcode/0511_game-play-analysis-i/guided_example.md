@@ -52,8 +52,7 @@ The requested result has one row per player, while `Activity` may have many rows
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `player_id` determines the group;
-- the earliest `event_da... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ SQL's `MIN` aggregate applies directly because dates have chronological ordering
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window `FIRST_VALUE`:** Partition by player an:** - **Window `FIRST_VALUE`:** Partition by player and order by date, then use `DISTINCT` to collapse repeated output rows. It works but is more machinery than grouped `MIN`.
+- **Window `FIRST_VALUE`:** Partition by player and order by date, then use `DISTINCT` to collapse repeated output rows. It works but is more machinery than grouped `MIN`.
 - **Window ranking:** Assign `ROW_NUMBER()` within each player ordered by date and keep row one. This is useful when other columns from the first row are required, but only the date is needed here.
 - **Correlated subquery:** Compare each row's date with that player's minimum. It can return the same result but may repeat logical work and still needs deduplication if the schema allowed ties.
 - **One activity row for a player:** Its date is trivially both minimum and first login.
@@ -96,8 +95,8 @@ SQL's `MIN` aggregate applies directly because dates have chronological ordering
 - **Output order:** No `ORDER BY` is necessary because any order is accepted.
 - **Column alias:** Without `AS first_login`, the computed value would not have the required output name.
 - **`GROUP BY 1` portability:** MySQL supports positional grouping; `GROUP BY player_id` communicates intent more explicitly across database systems.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

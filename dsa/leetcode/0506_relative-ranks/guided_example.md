@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `score` of size `n`, where $\text{score}[i]$ is the score of the $$i^{\text{th}}$$ athlete in a competition. All the scores are guaranteed to be **unique**.
+You are given an integer array `score` of size `n`, where $\text{score}[i]$ is the score of the $i^{\text{th}}$ athlete in a competition. All the scores are guaranteed to be **unique**.
 
 The objective is to compute `["Gold Medal"]` from `{"score": [1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -52,7 +52,7 @@ Rank depends on score order, but the returned strings must appear in the athlete
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Rank depends on score order, but the returned strings must appear in the athlete
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort score-index pairs:** Build `(score, origi:** - **Sort score-index pairs:** Build `(score, original_index)` tuples and sort descending. It is equivalent but stores both fields explicitly rather than sorting lightweight indices.
+- **Sort score-index pairs:** Build `(score, original_index)` tuples and sort descending. It is equivalent but stores both fields explicitly rather than sorting lightweight indices.
 - **Score-to-index dictionary plus sorted score copy:** Unique scores make this valid, but the index list already preserves the mapping without an additional hash table.
 - **Max-heap:** Pop athletes from highest score to lowest and assign increasing placements. It also costs $O(n\log n)$.
 - **Direct score-range array:** With bounded nonnegative scores, map score to index and scan downward. It can take $O(n+M)$ time and $O(M)$ space where `M` is the maximum score, which is wasteful when scores are sparse.
@@ -97,8 +97,8 @@ Rank depends on score order, but the returned strings must appear in the athlete
 - **Unique-score guarantee:** It removes ties. If ties were allowed, the placement policy would need to be specified before this sort could assign ranks.
 - **Preserve input:** Only `idx` is sorted; `score` remains unchanged.
 - **Original output order:** Writing to `ans[j]` is essential. Appending labels in sorted order would return placement order instead of athlete order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

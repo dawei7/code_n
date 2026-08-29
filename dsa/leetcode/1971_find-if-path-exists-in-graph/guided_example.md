@@ -55,7 +55,7 @@ With that invariant, each reachable vertex is processed once. Reaching `destinat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In an undirected graph, every traversed edge immediately off... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The exact implementation may return true in favorable cases—for example, when 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS:** Use an explicit stack and mar:** - **Iterative DFS:** Use an explicit stack and mark vertices when pushed or popped. It avoids both the missing-mark bug and Python recursion limits.
+- **Iterative DFS:** Use an explicit stack and mark vertices when pushed or popped. It avoids both the missing-mark bug and Python recursion limits.
 - **Breadth-first search:** A deque explores the same connected component in $O(V+E)$ time and can stop when destination is reached.
 - **Disjoint Set Union:** Union every edge, then compare representatives of source and destination. This is useful for repeated connectivity queries.
 - **Source equals destination:** The exact code returns true before needing visited state, which is correct.
@@ -111,8 +111,8 @@ The exact implementation may return true in favorable cases—for example, when 
 - **No duplicate edges:** Adjacency still contains one entry in each direction, so visited marking remains essential.
 - **Minimal fix:** Add `vis.add(i)` before the recursive neighbor search.
 - **Recursion depth after fixing:** A chain can still exceed Python's call-stack limit; an explicit stack is production-safe.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

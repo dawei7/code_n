@@ -1,10 +1,10 @@
-​
-​
+
+
 # Solution
-​
+
 ---
 
-​
+
 
 ## pandas
 We provide two different ways to perform calculations on two sets of data in the same column. One way is to use custom changes to distinguish between the two sets of data. The other way is to split the column into two different columns based on filters. Then we can calculate the aggregate total based on those isolated sets.
@@ -62,7 +62,7 @@ mean_machine = sum_machine_process.groupby(['machine_id'], as_index=False)['time
 
 ```python
 import pandas as pd
-​
+
 def get_average_time(activity: pd.DataFrame) -> pd.DataFrame:
 
     activity['timestamp'] = activity.apply(lambda x: x.timestamp * -1 if x.activity_type == 'start' else x.timestamp, axis=1)
@@ -104,7 +104,7 @@ Now we have a DataFrame that contains the start `timestamp` and end `timestamp` 
 | 0          | 0          | end             | 1.52        | start           | 0.712       |
 | 0          | 1          | end             | 4.12        | start           | 3.14        |
 | 1          | 0          | end             | 1.55        | start           | 0.55        |
-​
+
 
 Now we can calculate the time to complete a process. We use the function [`assign()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.assign.html) to minus start `timestamp` ($\text{timestamp}_{y}$) from the end `timestamp` ($\text{timestamp}_{x}$) and store the calculated value in a new column $\text{processing}_{time}$.
 
@@ -191,7 +191,7 @@ FROM
     Activity
 GROUP BY machine_id
 ```
-​
+
 
 ### Approach 2: Calling the original Table twice and Calculate as two columns
 
@@ -254,5 +254,5 @@ AND
     b.activity_type = 'end'
 GROUP BY machine_id
 ```
-​
+
 ---

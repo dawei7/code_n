@@ -73,10 +73,7 @@ The self-distance contributes zero automatically.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one group with sorted positions
-
-$$
-v_0<v_1<\cdots<v_{m-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,7 +122,7 @@ For `i = 0`, `delta` is defined as zero, so the initial value is written unchang
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every equal pair for every index:** Th:** - **Compare every equal pair for every index:** This can become $O(n^2)$ when all values match. The recurrence is linear.
+- **Compare every equal pair for every index:** This can become $O(n^2)$ when all values match. The recurrence is linear.
 - **Two prefix-sum passes per value:** Prefix index sums can compute left and right contributions directly. It is equivalent in complexity to the delta recurrence.
 - **Global prefix sums:** They cannot separate only identical values without grouping.
 - **Singleton value:** Its only distance is to itself, zero.
@@ -139,8 +136,8 @@ For `i = 0`, `delta` is defined as zero, so the initial value is written unchang
 - **Input preservation:** `arr` is only scanned.
 - **Current occurrence coefficient:** It is included in the decreasing side of the transition because its prior distance becomes zero.
 - **Group multiplicity:** Lists preserve every occurrence position.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

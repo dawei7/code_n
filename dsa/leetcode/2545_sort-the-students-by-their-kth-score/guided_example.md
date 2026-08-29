@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a class with `m` students and `n` exams. You are given a **0-indexed** `m x n` integer matrix `score`, where each row represents one student and $\text{score}[i][j]$ denotes the score the $$i^{\text{th}}$$ student got in the $$j^{\text{th}}$$ exam. The matrix `score` contains **distinct** integers only.
+There is a class with `m` students and `n` exams. You are given a **0-indexed** `m x n` integer matrix `score`, where each row represents one student and $\text{score}[i][j]$ denotes the score the $i^{\text{th}}$ student got in the $j^{\text{th}}$ exam. The matrix `score` contains **distinct** integers only.
 
 The objective is to compute `[[7, 5, 11, 2], [10, 6, 9, 1], [4, 8, 3, 15]]` from `{"score": [[10, 6, 9, 1], [7, 5, 11, 2], [4, 8, 3, 15]], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ An equivalent implementation could use `reverse=true` with key `x[k]`. The exact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `sorted` orders keys from smallest to largest.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ No row's internal exam-score order changes. Column `k` remains the ranking exam,
 
 ## 6. Traps This Instance Exposes
 
-- **- **`reverse=true`:** `sorted(score,key=lambda row:** - **`reverse=true`:** `sorted(score,key=lambda row:row[k],reverse=true)` avoids negating keys.
+- **`reverse=true`:** `sorted(score,key=lambda row:row[k],reverse=true)` avoids negating keys.
 - **In-place `sort`:** It would mutate the outer input list instead of returning a separately ordered list.
 - **One student:** The only row is returned.
 - **One exam:** `k` must be zero and rows sort by their sole value.
@@ -108,8 +108,8 @@ No row's internal exam-score order changes. Column `k` remains the ranking exam,
 - **Large scores:** Negation is exact in Python.
 - **Other columns:** They do not affect rank but remain attached to the student.
 - **Row sharing:** The returned outer list references original unmodified rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

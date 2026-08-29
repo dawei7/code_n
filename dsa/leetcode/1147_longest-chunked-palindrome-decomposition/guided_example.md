@@ -64,7 +64,7 @@ After stripping it, the same argument applies independently to the middle. Repea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Any decomposition with at least two chunks must begin and en... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ If a matching pair exactly consumes an even-length remainder, the chunks are adj
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive search over every matching border:**:** - **Recursive search over every matching border:** Trying all possible outer chunk lengths and taking the best is conceptually direct, but without the greedy lemma and memoization it explores many redundant decompositions.
+- **Recursive search over every matching border:** Trying all possible outer chunk lengths and taking the best is conceptually direct, but without the greedy lemma and memoization it explores many redundant decompositions.
 - **Dynamic programming over intervals:** An interval table can represent best decompositions for substrings, but it uses much more storage and work than the outside-in greedy structure.
 - **Rolling hashes:** Prefix hashes can compare candidate substrings in constant time after linear preprocessing, potentially bringing the search work closer to `O(n)` for this greedy scan. Hash collisions must be prevented or independently verified.
 - **Build left and right chunks character by character:** Accumulating and comparing chunks avoids trying explicit slices of every length, though immutable-string concatenation can introduce its own copying costs in Python.
@@ -117,8 +117,8 @@ If a matching pair exactly consumes an even-length remainder, the chunks are adj
 - **Repeated patterns:** The shortest match is intentionally chosen even when longer borders also match, because shorter chunks preserve more opportunities for a larger count.
 - **Nonempty chunks:** The candidate length begins at one, so the algorithm never creates an empty chunk.
 - **Manifest complexity:** `O(n)` time and `O(1)` space should not be attributed to this exact slicing implementation without a source change that removes repeated substring construction and linear comparisons.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

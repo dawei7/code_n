@@ -4,7 +4,7 @@ You are given a tree (i.e. a connected, undirected graph that has no cycles) con
 
 The `edges` array is given on the form $\text{edges}[i] = [a_{i}, b_{i}]$, which means there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
-Return *an array of size `n`* where $\text{ans}[i]$ is the number of nodes in the subtree of the $$i^{\text{th}}$$ node which have the same label as node `i`.
+Return *an array of size `n`* where $\text{ans}[i]$ is the number of nodes in the subtree of the $i^{\text{th}}$ node which have the same label as node `i`.
 
 A subtree of a tree `T` is the tree consisting of a node in `T` and all of its descendant nodes.
 

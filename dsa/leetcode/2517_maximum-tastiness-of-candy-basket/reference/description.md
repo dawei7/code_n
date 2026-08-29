@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an array of positive integers `price` where $\text{price}[i]$ denotes the price of the $$i^{\text{th}}$$ candy and a positive integer `k`.
+You are given an array of positive integers `price` where $\text{price}[i]$ denotes the price of the $i^{\text{th}}$ candy and a positive integer `k`.
 
 The store sells baskets of `k` **distinct** candies. The **tastiness** of a candy basket is the smallest absolute difference of the **prices** of any two candies in the basket.
 

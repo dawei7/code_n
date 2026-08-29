@@ -69,7 +69,7 @@ A change on the report date itself is included because the comparison is `<=`. C
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A price change remains effective until a later change replac... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ It would not be sufficient to compare `change_date` with one global maximum date
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a window function:** Ranking each product':** - **Use a window function:** Ranking each product's rows by date descending after filtering and keeping rank one also finds the latest applicable price. A separate all-product base is still needed for future-only products.
+- **Use a window function:** Ranking each product's rows by date descending after filtering and keeping rank one also finds the latest applicable price. A separate all-product base is still needed for future-only products.
 - **Use correlated subqueries:** For each product, a subquery can order applicable changes descending and take one. This can be concise but may repeat lookup work without suitable indexes.
 - **Use `UNION ALL` for changed and unchanged products:** One branch can return latest prices and another initial tens. The left-join formulation expresses the two cases in one final projection.
 - **Start only from filtered rows:** Products with no change by the report date disappear instead of receiving price ten.
@@ -123,8 +123,8 @@ It would not be sufficient to compare `change_date` with one global maximum date
 - **Several earlier changes:** `MAX(change_date)` selects only the most recent effective one.
 - **Composite primary key:** It guarantees one price for a product-date pair, preventing ambiguity in `P`.
 - **Any result order:** The query intentionally omits sorting because the contract allows it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -38,7 +38,7 @@ Find out the state of the asteroids after all collisions. If two asteroids meet,
 
 #### Example 4
 
-- **Input:** $asteroids = [3,5,-6,2,-1,4]​​​​​​​$
+- **Input:** $asteroids = [3,5,-6,2,-1,4]$
 - **Output:** `[-6,2,4]`
 - **Explanation:** The asteroid -6 makes the asteroid 3 and 5 explode, and then continues going left. On the other side, the asteroid 2 destroys -1. Since 2 and 4 are both moving right, they never collide.
 

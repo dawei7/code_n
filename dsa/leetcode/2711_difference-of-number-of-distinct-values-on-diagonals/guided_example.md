@@ -60,9 +60,7 @@ The input `grid` is never overwritten, so later diagonal walks always read origi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans` is an $m$ by $n$ matrix filled with zeros.
-
-Each input... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ Moving before adding excludes the current cell. The final iteration can add a bo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two sweeps per diagonal:** Store distinct pref:** - **Two sweeps per diagonal:** Store distinct prefix and suffix counts to achieve the manifest's $O(mn)$ time.
+- **Two sweeps per diagonal:** Store distinct prefix and suffix counts to achieve the manifest's $O(mn)$ time.
 - **Frequency maps while sliding:** Can update distinct counts along a diagonal but requires careful removal bookkeeping.
 - **Single cell:** Both sides are empty, so the result is zero.
 - **Top row or left column:** The top-left side is empty.
@@ -116,8 +114,8 @@ Moving before adding excludes the current cell. The final iteration can add a bo
 - **Current value:** Excluded because each loop moves before insertion.
 - **Input preservation:** Only `ans` and temporary sets are modified.
 - **Manifest mismatch:** Linear diagonal sweeps are an alternative, not the behavior of the exact source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

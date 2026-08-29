@@ -51,7 +51,7 @@ The code passes this list to `enumerate(..., 1)`. The second argument makes the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code passes this list to `enumerate(..., 1)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code passes this list to `enumerate(..., 1)`. The second argument makes the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual character scan:** Walk the original sen:** - **Manual character scan:** Walk the original sentence, identify each word start, and compare `searchWord` without creating word strings. This achieves the manifest's `O(N)` time and `O(1)` auxiliary space.
+- **Manual character scan:** Walk the original sentence, identify each word start, and compare `searchWord` without creating word strings. This achieves the manifest's `O(N)` time and `O(1)` auxiliary space.
 - **Explicit split list variable:** Assign `words = sentence.split()` before looping. It behaves exactly like the inline stored expression and can be easier to inspect, with the same linear allocation.
 - **Prefix slicing:** Compare `s[:len(searchWord)]` with `searchWord`. It is correct but allocates a substring for each checked word.
 - **Regular expression:** A word-boundary pattern can locate a prefix, but translating its character position back to a one-based word index adds complexity for this simple scan.
@@ -104,8 +104,8 @@ The code passes this list to `enumerate(..., 1)`. The second argument makes the 
 - **Single-space guarantee:** `split` preserves word order and produces no empty tokens. Its broader whitespace behavior does not affect valid inputs.
 - **Empty search word outside the contract:** Every string starts with the empty string, but the input guarantees at least one search character.
 - **Memory accounting:** The generator-like `enumerate` is constant-space, but the underlying split list is not. Include that list when analyzing this exact source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

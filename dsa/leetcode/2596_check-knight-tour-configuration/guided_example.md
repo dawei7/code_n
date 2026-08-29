@@ -61,7 +61,7 @@ The distinct complete-label guarantee then ensures visit zero appears nowhere el
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A valid tour must begin at the top-left cell.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ A move such as $(2,2)$ is diagonal but not a knight move. A move such as $(0,1)$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search for each next label:** Repeatedly scann:** - **Search for each next label:** Repeatedly scanning the grid for visit $t+1$ would take $O(n^4)$ time; inversion makes every lookup direct.
+- **Search for each next label:** Repeatedly scanning the grid for visit $t+1$ would take $O(n^4)$ time; inversion makes every lookup direct.
 - **Sort coordinate-label triples:** Sorting all cells by label also works in $O(n^2\log n)$ time but ignores the dense complete label range.
 - **Wrong starting label:** Any nonzero `grid[0][0]` fails before other work.
 - **Illegal final move:** `pairwise` includes the transition to label $n^2-1$, so it is checked.
@@ -119,8 +119,8 @@ A move such as $(2,2)$ is diagonal but not a knight move. A move such as $(0,1)$
 - **Direction signs:** Absolute differences cover left, right, up, and down variants.
 - **Nonconsecutive cells:** They need not be a knight move and are intentionally not compared.
 - **Input preservation:** Only the new `pos` array is written.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

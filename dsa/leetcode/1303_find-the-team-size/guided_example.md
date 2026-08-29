@@ -75,7 +75,7 @@ The shared `team_id` is useful for matching but is intentionally omitted from th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The CTE has one row per team, but the task demands one row p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ This reasoning does not depend on team identifiers being consecutive or beginnin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window function:** `COUNT(*) OVER (PARTITION B:** - **Window function:** `COUNT(*) OVER (PARTITION BY team_id)` can compute the size while preserving each employee row in a single query block. It is concise and avoids an explicit join, though the engine may still sort or partition internally.
+- **Window function:** `COUNT(*) OVER (PARTITION BY team_id)` can compute the size while preserving each employee row in a single query block. It is concise and avoids an explicit join, though the engine may still sort or partition internally.
 - **Correlated subquery:** Counting matching rows separately for each employee is logically valid, but without optimizer decorrelation or an index it can degrade toward $O(n^2)$ work.
 - **Self-join then group:** Joining employees to all teammates and grouping by employee can produce the result, but it creates many intermediate pairs and is unnecessarily expensive.
 - **`COUNT(*)` instead of `COUNT(1)`:** Both count every row here. `COUNT(column)` would ignore null values in that column, which is not the intended general expression of row count.
@@ -127,8 +127,8 @@ This reasoning does not depend on team identifiers being consecutive or beginnin
 - **Ordinal `GROUP BY 1`:** It is concise but can become fragile if the select-list order changes. Writing `GROUP BY team_id` is more self-documenting and returns the same result.
 - **Any-order requirement:** No `ORDER BY` is needed. Adding one would be correct but would introduce avoidable sorting work.
 - **CTE optimization behavior:** Some MySQL plans may materialize `T`, while others may merge or otherwise optimize it. This changes physical costs, not the result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

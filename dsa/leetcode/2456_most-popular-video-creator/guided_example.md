@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two string arrays `creators` and `ids`, and an integer array `views`, all of length `n`. The $$i^{\text{th}}$$ video on a platform was created by $\text{creators}[i]$, has an id of $\text{ids}[i]$, and has $\text{views}[i]$ views.
+You are given two string arrays `creators` and `ids`, and an integer array `views`, all of length `n`. The $i^{\text{th}}$ video on a platform was created by $\text{creators}[i]$, has an id of $\text{ids}[i]$, and has $\text{views}[i]$ views.
 
 The objective is to compute `[["alice", "b"]]` from `{"creators": ["alice", "alice", "alice"], "ids": ["a", "b", "c"], "views": [1, 2, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,7 +66,7 @@ The IDs do not need to be unique. Two distinct videos with the same ID are still
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `zip(creators, ids, views)` groups the three values at each ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ for every creator whose total equals `mx`. Dictionary iteration order is irrelev
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group all videos by creator:** Build lists and:** - **Group all videos by creator:** Build lists and later compute totals and maxima. It is correct but stores every record again instead of one total and one best index.
+- **Group all videos by creator:** Build lists and later compute totals and maxima. It is correct but stores every record again instead of one total and one best index.
 - **Sort records:** Sorting by creator, views, and ID can organize the data but costs $O(n\log n)$ when hashing supports a one-pass solution.
 - **Store a tuple per creator:** Keep total plus a best pair such as negative views and ID. This can be concise, but the source's saved index avoids duplicating strings.
 - **Several creators tie:** Every total equal to `mx` is emitted; no arbitrary single winner is chosen.
@@ -117,8 +117,8 @@ for every creator whose total equals `mx`. Dictionary iteration order is irrelev
 - **One video:** Its creator is the sole maximum and that video's ID is returned.
 - **Output ordering:** No sort is required because the contract accepts any order.
 - **Equal-length input guarantee:** It ensures `zip` processes every video record rather than stopping early.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

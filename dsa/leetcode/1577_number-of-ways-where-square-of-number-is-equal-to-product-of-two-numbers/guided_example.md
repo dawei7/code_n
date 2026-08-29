@@ -73,7 +73,7 @@ For example, if the pair array is `[1, 1, 1]`, there are three index pairs, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an input array `nums`, `count(nums)` creates a `Counter`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The main method first computes `cnt1 = count(nums1)` and `cnt2 = count(nums2)`. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three nested loops:** Choosing a squared eleme:** - **Three nested loops:** Choosing a squared element and then checking every pair in the other array is straightforward, but costs $O(NM^2+MN^2)$ time. It repeatedly recomputes identical pair products that the counters calculate once.
+- **Three nested loops:** Choosing a squared element and then checking every pair in the other array is straightforward, but costs $O(NM^2+MN^2)$ time. It repeatedly recomputes identical pair products that the counters calculate once.
 - **Sorting with two pointers:** For each squared value, one could sort the opposite array and count product pairs with two pointers. Handling duplicate values carefully is possible, but the work is repeated for many squared elements and product-based pointer movement is less direct than a frequency lookup here.
 - **Frequency map over values:** Counting value frequencies can reduce work when arrays contain many duplicates. However, it requires careful combinatorics: equal pair values contribute $\binom{f}{2}$, different values contribute the product of their frequencies, and index distinctness must still be preserved. The checked-in pair enumeration expresses those rules automatically.
 - **Using a set of pair products:** A set answers whether a product exists but not how many index pairs produce it. Because the requested result counts triplets by indices, a set undercounts duplicates.
@@ -129,8 +129,8 @@ The main method first computes `cnt1 = count(nums1)` and `cnt2 = count(nums2)`. 
 - **Minimum array lengths:** If an array has fewer than two elements, its product counter is empty. It cannot supply the pair side of a triplet, but its elements may still serve as squared choices against pairs from the other array.
 - **Positive-value contract:** The implementation does not rely heavily on positivity for equality itself, but positivity removes zero and sign combinations from consideration and matches the stated domain.
 - **Integer width in other languages:** Products and squares can exceed a narrow integer representation even when each input value fits. A port should use a wide enough integer type for counter keys; Python handles this automatically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

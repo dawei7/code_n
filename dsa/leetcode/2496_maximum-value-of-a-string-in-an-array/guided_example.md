@@ -70,7 +70,7 @@ Python's `isdigit` recognizes some Unicode digits beyond `0` through `9`, but th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator `c.isdigit() for c in s` produces one Boolean ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ This is one reason that comparing the strings lexicographically or by length wou
 
 ## 6. Traps This Instance Exposes
 
-- **- **`str.isdigit()` directly:** `s.isdigit()` expr:** - **`str.isdigit()` directly:** `s.isdigit()` expresses the same classification more compactly for non-empty valid strings.
+- **`str.isdigit()` directly:** `s.isdigit()` expresses the same classification more compactly for non-empty valid strings.
 - **Exception-based parsing:** Trying `int(s)` and catching `ValueError` works but uses exceptions for normal control flow.
 - **Manual decimal accumulation:** Build the integer digit by digit; it avoids `int` but adds unnecessary code.
 - **Leading zeroes:** They are ignored by numeric conversion rather than counted as length.
@@ -125,8 +125,8 @@ This is one reason that comparing the strings lexicographically or by length wou
 - **One input string:** Its evaluated value is necessarily the answer.
 - **Non-empty guarantee:** It makes both `all` behavior and `max` safe without special defaults.
 - **Input alphabet:** No signs or decimal separators need to be parsed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

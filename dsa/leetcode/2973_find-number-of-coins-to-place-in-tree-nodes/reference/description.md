@@ -2,7 +2,7 @@
 
 You are given an **undirected** tree with `n` nodes labeled from `0` to $n - 1$, and rooted at node `0`. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
-You are also given a **0-indexed** integer array `cost` of length `n`, where $\text{cost}[i]$ is the **cost** assigned to the $$i^{\text{th}}$$ node.
+You are also given a **0-indexed** integer array `cost` of length `n`, where $\text{cost}[i]$ is the **cost** assigned to the $i^{\text{th}}$ node.
 
 You need to place some coins on every node of the tree. The number of coins to be placed at node `i` can be calculated as:
 

@@ -51,7 +51,7 @@ The solution first divides `t` repeatedly by $2,3,5,7$ and stores how many copie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution first divides `t` repeatedly by $2,3,5,7$ and s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution first divides `t` repeatedly by $2,3,5,7$ and stores how many copie
 
 ## 6. Traps This Instance Exposes
 
-- **- **Editorial GCD residual array:** Track the rema:** - **Editorial GCD residual array:** Track the remaining divisor after every original prefix and greedily fill a suffix. It reaches the same goal, but the exact source instead works with explicit prime-exponent vectors and a cached packer.
+- **Editorial GCD residual array:** Track the remaining divisor after every original prefix and greedily fill a suffix. It reaches the same goal, but the exact source instead works with explicit prime-exponent vectors and a cached packer.
 - **Digit dynamic programming with tight state:** A full left-to-right DP can model whether the prefix equals `num`, but its state and reconstruction are more elaborate than the right-to-left first-change search.
 - **Forbidden prime factor:** If `t` contains 11, 13, or any prime outside $\{2,3,5,7\}$, no zero-free decimal digit product can be divisible by it.
 - **`t = 1`:** Every zero-free product is divisible by one; the method returns `num` if it has no zero, otherwise it minimally increases at or before the first zero and fills the suffix with ones.
@@ -100,8 +100,8 @@ The solution first divides `t` repeatedly by $2,3,5,7$ and stores how many copie
 - **No same-length answer:** Increasing the length guarantees numeric superiority, even if the new leading digit is one.
 - **Very long input:** Runtime depends linearly on its $2\cdot10^5$ characters rather than on the numeric value represented by the string.
 - **Imports and shared constants:** The source requires `lru_cache` and relies on the exact exponent meanings encoded by `DIGIT_FACTORS` and `PACK_DIGITS`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

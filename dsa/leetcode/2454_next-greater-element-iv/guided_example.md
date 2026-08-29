@@ -61,7 +61,7 @@ Without stable tie ordering or explicit equal-value batching, inserting one equa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `arr = [(x,i) for i,x in enumerate(nums)]` creates value-ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After answering the current index, `sl.add(i)` makes it available as a greater-v
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two monotonic stacks:** Move indices from a st:** - **Two monotonic stacks:** Move indices from a stack awaiting their first greater value to one awaiting their second, resolving the second stack as new values arrive. This matches the manifest and achieves $O(n)$ time.
+- **Two monotonic stacks:** Move indices from a stack awaiting their first greater value to one awaiting their second, resolving the second stack as new values arrive. This matches the manifest and achieves $O(n)$ time.
 - **Batch equal values:** Process all indices of one value by querying first and adding the entire group afterward. This removes reliance on stable tie order and is often clearer for strict comparisons.
 - **Balanced tree of indices:** Any ordered set supporting successor queries and insertion can replace `SortedList` with the same $O(n\log n)$ structure.
 - **Duplicate values:** Equal values do not count as greater. Stable ascending-index tie processing prevents later equals from appearing in the queried right-side set.
@@ -114,8 +114,8 @@ After answering the current index, `sl.add(i)` makes it available as a greater-v
 - **Strict comparison:** Values equal to `nums[i]` must never count, which is the subtle reason tie handling matters.
 - **Single element:** The sorted set is initially empty, so the sole answer is -1.
 - **Metadata mismatch:** The exact implementation is sorting plus ordered-index queries in $O(n\log n)$, not the documented two-stack linear scan.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

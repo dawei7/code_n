@@ -63,7 +63,7 @@ If they are equal, that final pair is not merely an eligible pair; it is the onl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the next original value `x` is appended, the old stack ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ The second merge did not correspond to two adjacent equal values in the original
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal repeated list scan:** Find the first e:** - **Literal repeated list scan:** Find the first equal pair, replace it, and restart. This directly follows the statement but may cost $O(N^2)$ because of repeated scanning and middle deletion.
+- **Literal repeated list scan:** Find the first equal pair, replace it, and restart. This directly follows the statement but may cost $O(N^2)$ because of repeated scanning and middle deletion.
 - **Linked list plus eligible-pair tracking:** It can support local merges without shifts, but maintaining the globally leftmost eligible pair is substantially more complex than the prefix stack.
 - **Recursive cascade:** A helper can merge the top recursively after each append. It has the same logic but risks recursion depth and is less direct than the loop.
 - **No equal neighbors:** Every value remains on the stack and the original array is returned unchanged in content.
@@ -129,8 +129,8 @@ The second merge did not correspond to two adjacent equal values in the original
 - **One element:** It is appended once, the while condition fails, and it is returned unchanged.
 - **Merged values beyond the input bound:** The contract allows them, and no fixed-size value table is used.
 - **Leftmost requirement:** The stack is valid specifically because every processed prefix is fully reduced before the next value arrives, leaving only the newest boundary eligible.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -70,7 +70,7 @@ Every positive total in row zero correctly remains unreachable because no coins 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $c$ be the number of denominations and let $A$ be `amoun... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,9 +125,9 @@ Notice that the include candidate reads from the current row, not the previous r
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-dimensional bottom-up DP:** Keep `dp[j]` a:** - **One-dimensional bottom-up DP:** Keep `dp[j]` as the best count for total `j`, then for each denomination scan `j` upward from that coin value to $A$. This uses $O(A)$ space and the same $O(cA)$ time. It is a valid optimization because the current row only needs the previous-row value at `j` and the current-row value at `j-x`; however, it is not what the exact source allocates.
-- **- **Amount-first one-dimensional DP:** For every t:** - **Amount-first one-dimensional DP:** For every total from `1` through $A$, try each denomination as the final coin. This also takes $O(cA)$ time and $O(A)$ space. It derives directly from the last-coin recurrence and allows unlimited reuse because all smaller totals are already known.
-- **- **Top-down memoization:** Recursively try subtra:** - **Top-down memoization:** Recursively try subtracting each coin and cache the answer for each remaining amount. It has the same $O(cA)$ state-transition bound, but adds recursion overhead and can create a deep call stack when small denominations are present.
+- **One-dimensional bottom-up DP:** Keep `dp[j]` as the best count for total `j`, then for each denomination scan `j` upward from that coin value to $A$. This uses $O(A)$ space and the same $O(cA)$ time. It is a valid optimization because the current row only needs the previous-row value at `j` and the current-row value at `j-x`; however, it is not what the exact source allocates.
+- **Amount-first one-dimensional DP:** For every total from `1` through $A$, try each denomination as the final coin. This also takes $O(cA)$ time and $O(A)$ space. It derives directly from the last-coin recurrence and allows unlimited reuse because all smaller totals are already known.
+- **Top-down memoization:** Recursively try subtracting each coin and cache the answer for each remaining amount. It has the same $O(cA)$ state-transition bound, but adds recursion overhead and can create a deep call stack when small denominations are present.
 
 ---
 

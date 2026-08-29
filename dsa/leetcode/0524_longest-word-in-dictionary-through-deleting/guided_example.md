@@ -51,7 +51,7 @@ The solution scans the dictionary once. A two-pointer helper tests each candidat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution scans the dictionary once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution scans the dictionary once. A two-pointer helper tests each candidat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort candidates first:** Sorting by decreasing:** - **Sort candidates first:** Sorting by decreasing length and increasing lexicographic order allows returning the first eligible word, but costs sorting time and may mutate or copy the dictionary.
+- **Sort candidates first:** Sorting by decreasing length and increasing lexicographic order allows returning the first eligible word, but costs sorting time and may mutate or copy the dictionary.
 - **Generate all subsequences of `s`:** There can be $2^S$ deletion choices, so generation is infeasible and creates many strings absent from the dictionary.
 - **Precompute next-occurrence positions:** It can accelerate many subsequence queries, but uses extra space and is unnecessary under the stated optimal manifest.
 - **Candidate longer than `s`:** The source pointer ends before the candidate pointer, so the helper returns false.
@@ -98,8 +98,8 @@ The solution scans the dictionary once. A two-pointer helper tests each candidat
 - **No eligible word:** The unchanged initial empty string is the required result.
 - **Duplicate dictionary entries:** Rechecking may repeat work but cannot change the final answer incorrectly.
 - **Source characters skipped at either end:** The source pointer naturally ignores unmatched prefix, interior, and suffix characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

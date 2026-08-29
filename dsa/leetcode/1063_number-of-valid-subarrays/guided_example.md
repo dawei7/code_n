@@ -69,11 +69,7 @@ That default already represents the correct answer for positions having no small
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code begins with:
-
-
-
-`right[i]` will store the first ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ From bottom to top, stack indices move from farther right to nearer right, while
 
 ## 6. Traps This Instance Exposes
 
-- **- **Left-to-right monotonic stack:** Push starts w:** - **Left-to-right monotonic stack:** Push starts while scanning forward. When a strictly smaller value arrives, pop each invalidated start and add the distance to its contribution; after the scan, use `n` for remaining starts. This reaches the same `O(N)` time and space.
+- **Left-to-right monotonic stack:** Push starts while scanning forward. When a strictly smaller value arrives, pop each invalidated start and add the distance to its contribution; after the scan, use `n` for remaining starts. This reaches the same `O(N)` time and space.
 - **Quadratic expansion:** For each start, extend right until a smaller value appears. It is simple but takes `O(N^2)` time on non-decreasing input.
 - **Segment tree plus searches:** Range minima can help locate a smaller value, but the structure is more complex and typically costs `O(N log N)`, worse than the monotonic stack.
 - **One element:** `right[0]` remains one, so the sole single-element subarray contributes one.
@@ -127,8 +123,8 @@ From bottom to top, stack indices move from farther right to nearer right, while
 - **Large answer:** The number of subarrays can be quadratic in `N`. Python integers grow as needed, so the sum does not overflow.
 - **Stack stores indices:** Storing only values would lose the position needed to compute `j - i`. Indices provide both value access and distance.
 - **Input preservation:** The algorithm reads `nums` without modifying it and stores all derived information separately.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

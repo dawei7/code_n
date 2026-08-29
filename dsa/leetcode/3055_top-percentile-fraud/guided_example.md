@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `RANK` gives tied scores the same rank and leaves gaps after... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rank plus partition count:** Compute `RANK` an:** - **Rank plus partition count:** Compute `RANK` and `COUNT(*) OVER (PARTITION BY state)`, then filter rank at or below `CEIL(count * 0.05)`. This matches the manifest's intended boundary and includes score ties.
+- **Rank plus partition count:** Compute `RANK` and `COUNT(*) OVER (PARTITION BY state)`, then filter rank at or below `CEIL(count * 0.05)`. This matches the manifest's intended boundary and includes score ties.
 - **`PERCENT_RANK`:** Filtering at or below 0.05 can express percentile position, but its denominator and small-group behavior should be checked against the exact ceiling definition.
 - **`NTILE(20)`:** Selecting tile one is tempting, but tile sizing and ties may not match the required top-five-percent semantics.
 - **One policy in a state:** The source returns it, and the ceiling top 5% also contains it.
@@ -96,8 +96,8 @@ We maintain the core conceptual parameters and state variables:
 - **Tie at a lower cutoff:** The exact query never reaches that cutoff and misses all such rows.
 - **Output ordering:** The final three ordinal keys correctly implement state ascending, score descending, and policy ID ascending.
 - **Manifest mismatch:** The source does not compute state population or a five-percent threshold, so its advertised summary is inaccurate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

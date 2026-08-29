@@ -34,6 +34,6 @@ Note that
 
 - $\text{nums1.length} = \text{nums2.length}$
 
-- $0 \le nums1_i_ \le \text{nums1.length}$
+- $0 \le nums1_i \le \text{nums1.length}$
 
 - $0 \le \text{nums2}_{i} \le \text{nums2.length}$

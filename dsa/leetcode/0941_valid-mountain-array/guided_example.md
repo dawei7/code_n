@@ -60,7 +60,7 @@ This guard also makes the later boundary expressions easier to reason about. Onc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An array needs at least three elements to have a first slope... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Any equality stops the walk because a mountain is strictly increasing, not non-d
 
 ## 6. Traps This Instance Exposes
 
-- **- **One pointer in two phases:** Walk upward, reje:** - **One pointer in two phases:** Walk upward, reject if the peak is an endpoint, then walk downward and require reaching the last index. This is the most common formulation and has the same `O(n)` time and `O(1)` space.
+- **One pointer in two phases:** Walk upward, reject if the peak is an endpoint, then walk downward and require reaching the last index. This is the most common formulation and has the same `O(n)` time and `O(1)` space.
 - **Track a phase flag:** Scan adjacent differences once, changing from rising to falling at most once. This can work, but it needs careful checks that both phases occurred and that equality is never allowed.
 - **Count sign changes:** Compute differences and verify a positive block followed by a negative block. Materializing the difference array adds `O(n)` space unnecessarily.
 - **Length below three:** Always false because no internal peak with two sides can exist.
@@ -112,8 +112,8 @@ Any equality stops the walk because a mountain is strictly increasing, not non-d
 - **Multiple peaks:** The left pointer stops at the first failed increase, while the right pointer stops at the last failed descent. They cannot cover the entire middle with one shared index.
 - **Valley shape:** Neither monotone walk can cross the central change from decreasing to increasing, so the pointers do not meet.
 - **Repeated numeric values far apart:** Repeating a value is not itself forbidden; only adjacent steps must remain strict in the required directions. The pointer comparison enforces the actual local slopes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

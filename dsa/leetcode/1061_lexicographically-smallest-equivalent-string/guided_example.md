@@ -63,11 +63,7 @@ The representative is not arbitrary in this implementation. The union operation 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The parent array begins as:
-
-
-
-Letter `"a"` maps to node zer... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ The returned value is always the current representative of `x`'s complete equiva
 
 ## 6. Traps This Instance Exposes
 
-- **- **Graph plus depth-first search:** Build an undi:** - **Graph plus depth-first search:** Build an undirected graph on the alphabet, find each connected component, record its smallest character, and map `baseStr`. This takes `O(P + B + A)` time with adjacency lists and is equally valid.
+- **Graph plus depth-first search:** Build an undirected graph on the alphabet, find each connected component, record its smallest character, and map `baseStr`. This takes `O(P + B + A)` time with adjacency lists and is equally valid.
 - **Adjacency matrix:** A 26 by 26 Boolean matrix plus DFS is simple because the alphabet is tiny, but it uses `O(A^2)` space rather than `O(A)` disjoint-set storage.
 - **Repeated transitive closure:** Floyd–Warshall can compute equivalence reachability in `O(A^3)` time. It is acceptable for 26 letters but unnecessarily heavy.
 - **Union by rank with minimum metadata:** For a growing alphabet, balance trees by rank and separately store the minimum node of each component. This preserves efficient general union-find behavior without requiring the root itself to be the minimum.
@@ -128,8 +124,8 @@ The returned value is always the current representative of `x`'s complete equiva
 - **Duplicate base characters:** Each occurrence is mapped independently to the same root. The generator does not cache explicitly, but path compression makes repeated finds short.
 - **Equal input lengths:** `zip` relies on the contract that `s1` and `s2` have equal length. With unequal strings it would silently ignore an unmatched suffix.
 - **Input preservation:** Strings are immutable. Only the private parent array changes during unions and path compression.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

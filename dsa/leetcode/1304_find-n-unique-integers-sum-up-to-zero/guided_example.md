@@ -75,7 +75,7 @@ This is stronger and clearer than merely hoping the construction does not repeat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The positive members are $1,2,\ldots,\lfloor n/2\rfloor$, so... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ When `n = 1`, the loop has zero iterations. Because one is odd, the code appends
 
 ## 6. Traps This Instance Exposes
 
-- **- **First `n - 1` positive integers plus one balan:** - **First `n - 1` positive integers plus one balancing negative:** Return $1,2,\ldots,n-1$ and the negative of their sum. This is also linear and unique for $n>1$, but the opposite-pair construction makes the zero-sum property more immediate.
+- **First `n - 1` positive integers plus one balancing negative:** Return $1,2,\ldots,n-1$ and the negative of their sum. This is also linear and unique for $n>1$, but the opposite-pair construction makes the zero-sum property more immediate.
 - **Centered arithmetic sequence:** Consecutive values symmetric around zero work naturally for odd `n`. Even `n` needs an offset or another adjustment to avoid half-integers.
 - **Random generation with a set:** Repeatedly choosing numbers and checking uniqueness is unnecessary, nondeterministic, and can take unpredictable time.
 - **`n = 1`:** No pair is created and zero is appended, producing the only valid one-element answer.
@@ -137,8 +137,8 @@ When `n = 1`, the loop has zero iterations. Because one is odd, the code appends
 - **Upper constraint:** At `n = 1000`, magnitudes reach only 500, comfortably within ordinary integer ranges.
 - **Bit-operation readability:** `n // 2` and `n % 2` express the same ideas more explicitly. The exact source uses `>> 1` and `& 1`, which are correct for the positive input.
 - **Uniqueness across signs:** Equal magnitudes do not cause duplicates because $a$ and $-a$ differ whenever $a>0$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

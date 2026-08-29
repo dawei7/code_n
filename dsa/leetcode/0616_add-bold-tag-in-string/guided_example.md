@@ -53,7 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ This separation ensures that overlap decisions are based on positions in the unc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean coverage array:** Find each word occur:** - **Boolean coverage array:** Find each word occurrence and mark every covered source index. A final boundary scan inserts tags. This is conceptually simple, but repeated substring searches and repeated marking can be expensive.
+- **Boolean coverage array:** Find each word occurrence and mark every covered source index. A final boundary scan inserts tags. This is conceptually simple, but repeated substring searches and repeated marking can be expensive.
 - **Aho-Corasick automaton:** Add failure links to the trie so all patterns are matched in one left-to-right scan. This is the standard way to approach $O(N+D+M)$ matching without restarting from every index.
 - **Track only the farthest covered end:** While scanning starts, retain the furthest endpoint reached by any match and emit maximal regions directly. This can avoid storing every `[start, end]` pair, but the ordering and emission logic must remain careful.
 - **Empty `words`:** The trie has no outgoing path, `pairs` stays empty, and the original string is returned unchanged.
@@ -100,8 +100,8 @@ This separation ensures that overlap decisions are based on positions in the unc
 - **Several words sharing a prefix:** Terminal flags at multiple trie depths ensure every complete word is recorded while traversal continues toward longer words.
 - **Characters outside ASCII:** The 128-child array would be indexed out of range for sufficiently large code points. The input restriction to English letters and digits is therefore part of the implementation's safety argument.
 - **Large numbers of matches:** `pairs` can consume significant memory even though the final bold union may contain only one interval. A streaming farthest-end design is preferable when constraints are much larger.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

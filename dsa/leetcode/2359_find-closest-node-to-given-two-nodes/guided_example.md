@@ -61,7 +61,7 @@ This conversion is not strictly necessary—one could follow `edges[i]` directly
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input `edges` stores one possible destination for each s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The solution calls `f(node1)` to obtain `d1` and `f(node2)` to obtain `d2`. Thes
 
 ## 6. Traps This Instance Exposes
 
-- **- **Follow `edges` directly:** Since every node ha:** - **Follow `edges` directly:** Since every node has at most one outgoing edge, a simple while-loop can record distances without building adjacency lists or using a deque. It preserves $O(n)$ time and can reduce constants.
+- **Follow `edges` directly:** Since every node has at most one outgoing edge, a simple while-loop can record distances without building adjacency lists or using a deque. It preserves $O(n)$ time and can reduce constants.
 - **Recursive depth-first search:** DFS also follows the unique path correctly, but a path of length $n$ can exceed Python's recursion limit. The iterative traversal avoids that risk.
 - **Search from both starts simultaneously:** A combined traversal is possible, but separate distance arrays keep reachability and objective calculation clearer and make tie handling straightforward.
 - **Cycle reachable from a start:** The finite-distance test prevents revisiting a node, so traversal stops after visiting each cycle node once.
@@ -118,8 +118,8 @@ The solution calls `f(node1)` to obtain `d1` and `f(node2)` to obtain `d2`. Thes
 - **Equal objective scores:** Nodes are scanned in increasing index order, and the strict `<` update retains the smallest index.
 - **Identical start nodes:** The shared start has score zero and is immediately the unique best possible answer.
 - **Merging paths:** Two different starting paths may enter the same node and then share all later nodes. The distance arrays preserve their possibly different arrival lengths, allowing the final maximum to choose the best meeting point.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

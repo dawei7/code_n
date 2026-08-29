@@ -69,7 +69,7 @@ The same spare symbol can be reused to resolve multiple disjoint cycles one afte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Even a consistent mapping cannot always be applied in arbitr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Thus, after mapping consistency is established, `len(set(str2)) < 26` is suffici
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate conversions greedily from left to rig:** - **Simulate conversions greedily from left to right:** A conversion can change characters created by an earlier conversion, so input position order does not provide a safe operation order.
+- **Simulate conversions greedily from left to right:** A conversion can change characters created by an earlier conversion, so input position order does not provide a safe operation order.
 - **Build and explicitly topologically process the mapping graph:** This can construct an actual conversion sequence for acyclic components and detect cycles. For a boolean answer over a fixed alphabet, consistency plus the spare-character test is simpler.
 - **Reject every mapping cycle:** Cycles are possible when an unused target character exists because that symbol can act as temporary storage.
 - **Check unique characters in `str1` only:** The decisive spare condition is expressed by the final target alphabet. A source containing all 26 letters may still be transformable if target merges some of them and therefore uses fewer than 26.
@@ -120,8 +120,8 @@ Thus, after mapping consistency is established, `len(set(str2)) < 26` is suffici
 - **A nontrivial permutation of all 26 letters:** No spare exists, so the transformation fails.
 - **Source characters mapping to themselves:** They require no effective operation and do not cause a conflict in `d`.
 - **Fixed lowercase alphabet:** The constant-space conclusion and the number 26 both rely on this explicit constraint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

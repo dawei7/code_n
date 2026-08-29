@@ -74,7 +74,7 @@ Words can have different lengths. If `col >= len(w)`, that word has no digit in 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `col = 0` means the rightmost character, `col = 1` means the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ This early column test is the main pruning mechanism. Backtracking does not wait
 
 ## 6. Traps This Instance Exposes
 
-- **- **Whole-assignment brute force:** Assign every d:** - **Whole-assignment brute force:** Assign every distinct letter before checking the equation. It has the same factorial ceiling but misses powerful per-column pruning and repeatedly converts full words.
+- **Whole-assignment brute force:** Assign every distinct letter before checking the equation. It has the same factorial ceiling but misses powerful per-column pruning and repeatedly converts full words.
 - **Column backtracking with an explicit carry:** A more conventional formulation processes addend rows in a column, determines the result digit from the sum modulo ten, and passes a nonnegative carry. It can reduce branching and keeps the arithmetic invariant easier to read.
 - **Coefficient equation:** Precompute each letter's signed place-value coefficient and search assignments for a weighted sum of zero. This makes full-equation evaluation fast but may prune less locally than column arithmetic unless bounds are added.
 - **More than ten letters:** No injective digit assignment can exist. The local contract already caps distinct letters at ten; a generalized implementation can reject larger sets immediately.
@@ -127,8 +127,8 @@ This early column test is the main pruning mechanism. Backtracking does not wait
 - **Early column failure:** If `bal % 10 != 0` after a column, more significant assignments cannot change that column's units digit, so pruning is safe.
 - **Input mutation:** `words.append(result)` permanently changes the supplied list. A side-effect-free version would create `words + [result]` instead.
 - **No official local editorial:** The explanation is derived from the exact recursive source and local statement, with the mapping caveat called out rather than importing a different implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

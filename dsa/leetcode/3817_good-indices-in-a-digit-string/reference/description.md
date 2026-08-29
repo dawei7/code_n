@@ -28,7 +28,7 @@ Return an integer array containing precisely the good indices in increasing orde
 
 - **Output:** [0,11,12]
 
-- **Explanation:** ​​​​​​​**
+- **Explanation:** **
 
 - At index 0, the decimal representation of the index is `"0"`. The substring $s[0]$ is `"0"`, which matches, so index `0` is good.
 

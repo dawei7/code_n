@@ -57,7 +57,7 @@ The heap implements a max-priority rule using Python's min-heap. Each entry is `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(s)` records how many copies of every distinct lower... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,9 +96,9 @@ The record enters the queue even when its new count is zero. This is intentional
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly scan all 26 counts:** At every posi:** - **Repeatedly scan all 26 counts:** At every position, choose the most frequent character whose next-allowed index has arrived. This costs $O(26n)=O(n)$ under the fixed alphabet and may be simpler than a heap, though less general for large alphabets.
-- **- **Sort counts once without updates:** This is in:** - **Sort counts once without updates:** This is insufficient because remaining frequencies and eligibility change after every placement. The priority structure must reflect those changes.
-- **- **Segment construction by maximum frequency:** D:** - **Segment construction by maximum frequency:** Distribute the most frequent letters among frequency-sized segments and verify that all but the last reach length `k`. This can run in linear time but requires careful handling of ties and segment filling.
+- **Repeatedly scan all 26 counts:** At every position, choose the most frequent character whose next-allowed index has arrived. This costs $O(26n)=O(n)$ under the fixed alphabet and may be simpler than a heap, though less general for large alphabets.
+- **Sort counts once without updates:** This is insufficient because remaining frequencies and eligibility change after every placement. The priority structure must reflect those changes.
+- **Segment construction by maximum frequency:** Distribute the most frequent letters among frequency-sized segments and verify that all but the last reach length `k`. This can run in linear time but requires careful handling of ties and segment filling.
 
 ---
 

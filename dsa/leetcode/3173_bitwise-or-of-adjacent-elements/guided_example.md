@@ -63,7 +63,7 @@ No carry occurs between bit positions; OR is not addition.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At each binary bit position, the result bit is 1 if at least... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Conversely, every valid output index from 0 through $n-2$ has one emitted pair. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index loop:** Append `nums[i] | nums[i+1]` for:** - **Index loop:** Append `nums[i] | nums[i+1]` for `i` from 0 to $n-2$. It is equivalent and avoids requiring `pairwise`.
+- **Index loop:** Append `nums[i] | nums[i+1]` for `i` from 0 to $n-2$. It is equivalent and avoids requiring `pairwise`.
 - **`zip(nums, nums[1:])`:** Concise, but `nums[1:]` allocates an extra $O(n)$ slice.
 - **In-place overwrite:** It risks corrupting the next pair because interior original values are reused.
 - **Prefix OR:** Incorrect; it accumulates earlier elements rather than using only adjacent pairs.
@@ -117,8 +117,8 @@ Conversely, every valid output index from 0 through $n-2$ has one emitted pair. 
 - **Order preservation:** Pairwise iteration produces outputs by increasing left index.
 - **Nonnegative inputs:** Binary OR has the straightforward finite representation intended by the problem.
 - **Output length:** Exactly one less than input length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

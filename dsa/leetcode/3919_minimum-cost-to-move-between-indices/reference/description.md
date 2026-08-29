@@ -14,7 +14,7 @@ You are also given a 2D integer array `queries`, where each $\text{queries}[i] =
 
 For each query, calculate the **minimum total cost** to move from index $l_{i}$ to index $r_{i}$.
 
-Return an integer array `ans`, where $\text{ans}[i]$ is the answer for the $$i^{\text{th}}$$ query.
+Return an integer array `ans`, where $\text{ans}[i]$ is the answer for the $i^{\text{th}}$ query.
 
 The **absolute difference** between two values `x` and `y` is defined as $abs(x - y)$.
 
@@ -39,7 +39,7 @@ Return a list of $q$ integers in the same order as `queries`. Entry `i` is the m
 
 - **Output:** [6,2,5]
 
-- **Explanation:** ​​​​​​​​​​​​​​​​​​​​
+- **Explanation:** 
 
 - The closest indices are `[1, 0, 1]` respectively.
 
@@ -79,6 +79,6 @@ Thus, $ans = [4, 1, 3]$.
 
 - $1 \le \text{queries.length} \le 10^{5}$
 
-- $\text{queries}[i] = [l_{i}, r_{i}]$​​​​​​​
+- $\text{queries}[i] = [l_{i}, r_{i}]$
 
 - $0 \le l_{i}, r_{i} < \text{nums.length}$

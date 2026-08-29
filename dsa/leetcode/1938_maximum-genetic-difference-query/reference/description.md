@@ -4,7 +4,7 @@ There is a rooted tree consisting of `n` nodes numbered `0` to $n - 1$. Each nod
 
 You are also given the array `queries` where $\text{queries}[i] = [\text{node}_{i}, \text{val}_{i}]$. For each query `i`, find the **maximum genetic difference** between $\text{val}_{i}$ and $p_{i}$, where $p_{i}$ is the genetic value of any node that is on the path between $\text{node}_{i}$ and the root (including $\text{node}_{i}$ and the root). More formally, you want to maximize $\text{val}_{i} XOR p_{i}$.
 
-Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
+Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

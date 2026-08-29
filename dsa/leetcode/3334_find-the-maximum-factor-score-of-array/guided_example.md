@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Build suffix GCD and LCM arrays.** `suf_gcd[i]` is the GCD... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute per deletion:** It uses $O(1)$ extra:** - **Recompute per deletion:** It uses $O(1)$ extra space but $O(n^2\log M)$ time.
+- **Recompute per deletion:** It uses $O(1)$ extra space but $O(n^2\log M)$ time.
 - **Prefix arrays on both sides:** Store prefix and suffix GCD/LCM arrays. It is equally linear but uses more arrays than the running-prefix source.
 - **Exclude no element:** This candidate must be included because deletion can reduce the score, as in arrays already balancing GCD and LCM well.
 - **One element:** No deletion yields $x^2$, while deleting it yields the defined empty score zero.
@@ -104,8 +104,8 @@ $$
 - **Suffix base construction:** `[0] * (n + 1)` and `[0] * n + [1]` deliberately give different empty identities. Swapping them would corrupt every endpoint deletion.
 - **Small bounded values:** Although each input is at most 30, the LCM can combine prime powers from many values. Complexity and integer-width reasoning should use aggregate magnitudes, not only one element's magnitude.
 - **Optional deletion proof:** The initial no-removal score is not duplicated by the loop conceptually; even if some deletion produces the same numeric value, both are legal candidates and `max` handles equality harmlessly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

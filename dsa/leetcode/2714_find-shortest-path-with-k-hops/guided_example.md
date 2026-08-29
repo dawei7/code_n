@@ -59,7 +59,7 @@ The input graph itself is not modified.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every edge `[u, v, w]`, the source appends `(v, w)` to `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The initial heap entry is `(0, s, 0)`. Every later heap entry orders states by c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add the stale-entry check:** Preserves behavio:** - **Add the stale-entry check:** Preserves behavior and realizes the standard manifest heap bound.
+- **Add the stale-entry check:** Preserves behavior and realizes the standard manifest heap bound.
 - **Bellman-Ford-style DP by hops:** Can model layers but does not exploit nonnegative weights as efficiently.
 - **Explicit expanded graph construction:** Correct but unnecessary because transitions can be generated from `g`.
 - **`k = 0`:** Only paid transitions exist, reducing to ordinary shortest path.
@@ -109,8 +109,8 @@ The initial heap entry is `(0, s, 0)`. Every later heap entry orders states by c
 - **Repeated visits to one original node:** Different hop counts remain distinct states.
 - **Stale heap entry:** May add work but cannot worsen a stored distance.
 - **Input preservation:** Hopping is represented in state transitions; edge weights are never edited.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

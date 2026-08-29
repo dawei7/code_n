@@ -24,7 +24,7 @@ Let $e$ be the number of edges.
 
 - `n`: The node count, satisfying $2 \leq n \leq 10^4$.
 - `edges`: A length-$e$ list of undirected endpoint pairs `[a, b]`. There are no self-loops and at most one edge between a pair of nodes.
-- `succProb`: A length-$e$ list where `succProb[i]` is the traversal probability of `edges[i]` and lies in $[0,1]$.
+- `succProb`: A length-$e$ list where `succProb[i]` is the traversal probability of `edges[i]` and lies in `[0,1]`.
 - `start_node`, `end_node`: Distinct valid node labels.
 
 **Return value**

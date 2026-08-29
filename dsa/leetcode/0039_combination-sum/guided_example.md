@@ -63,7 +63,7 @@ The initial call `dfs(0, target)` satisfies this invariant: `t` is empty, its su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The call `dfs(i, s)` has three pieces of state, even though ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Returning immediately is also correct because candidates are strictly positive. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Include-or-skip recursion:** At each candidate:** - **Include-or-skip recursion:** At each candidate, one branch reuses it and another advances to the next candidate. This produces the same canonical combinations and can make the decision structure more explicit, though the loop form is compact.
+- **Include-or-skip recursion:** At each candidate, one branch reuses it and another advances to the next candidate. This produces the same canonical combinations and can make the decision structure more explicit, though the loop form is compact.
 - **Dynamic programming for existence or counts:** A one-dimensional table can decide reachability or count ways, but reconstructing every unique combination requires retaining predecessor structure and is less direct than backtracking for this output task.
 - **Deduplicate permutations with a set:** Exploring candidates in arbitrary order and inserting sorted tuples into a set is correct with extra work, but it generates redundant paths and consumes hashing/storage that index ordering avoids.
 - **Loop-level pruning:** Because candidates are sorted, the loop could stop as soon as `candidates[j] > s`. The selected source instead makes a short recursive call that immediately returns; adding `break` would improve constants without changing the search space of valid combinations.
@@ -110,8 +110,8 @@ Returning immediately is also correct because candidates are strictly positive. 
 - **Distinct positive candidates:** Distinctness supports the uniqueness proof, and positivity guarantees termination and pruning. Zero could cause recursion without reducing `s`; negative values would invalidate the overshoot argument. Both are excluded by the contract.
 - **Mutation of the input:** `candidates.sort()` changes the caller's list order. The problem does not require preserving that order, but this observable side effect matters if the list is reused outside the judge.
 - **Result order:** Depth-first traversal over sorted candidates happens to produce combinations in a regular order, but the contract allows any order, so correctness does not depend on it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

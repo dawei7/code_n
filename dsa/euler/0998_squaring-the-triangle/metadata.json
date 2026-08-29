@@ -15,8 +15,5 @@
   ],
   "primary_language": "python",
   "runnable_in_coden": true,
-  "dataset": "euler",
-  "solution_variants": {
-    "manifest": "solution_variants.json"
-  }
+  "dataset": "euler"
 }

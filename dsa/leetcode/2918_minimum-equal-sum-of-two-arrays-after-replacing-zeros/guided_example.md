@@ -53,7 +53,7 @@ If `s1 == s2`, replace every zero in both arrays by one. Both sums equal the sha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `s1 == s2`, replace every zero in both arrays by one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This yields the exact final expression:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate replacement choices:** Replacements a:** - **Simulate replacement choices:** Replacements are unbounded positive integers, so explicit search is unnecessary. A minimum and an adjustability flag describe all attainable totals.
+- **Simulate replacement choices:** Replacements are unbounded positive integers, so explicit search is unnecessary. A minimum and an adjustability flag describe all attainable totals.
 - **Both arrays contain zeros:** Both can rise above their minima, making `max(s1, s2)` always attainable.
 - **Neither contains a zero:** Both sums are fixed; equality is possible only if they already match.
 - **Only the lower-minimum side has a zero:** It can rise to the larger minimum, producing the optimal result.
@@ -115,8 +115,8 @@ This yields the exact final expression:
 - **Gap absorbed by one replacement:** There is no upper bound on the positive integer replacing a zero, so a gap of any legal size can be assigned to one position. No divisibility or distribution restriction exists.
 - **Minimum proof:** Returning the larger lower bound is not merely feasible when the smaller side is adjustable; every common total below it is impossible for the larger-minimum array.
 - **Large sums:** Python integers avoid overflow when arrays contain many values near $10^6$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

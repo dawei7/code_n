@@ -61,7 +61,7 @@ is true precisely when all three relevant lines are unoccupied. If any one conta
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Cells on a diagonal running from top-right to bottom-left ha... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Since the safety test ruled out every attack with an earlier queen, the child st
 
 ## 6. Traps This Instance Exposes
 
-- **- **Column path plus sets:** Store one column per :** - **Column path plus sets:** Store one column per row and three occupied sets. This reduces the active board representation, but Python sets still need linear state and board strings must be created at each solution.
+- **Column path plus sets:** Store one column per row and three occupied sets. This reduces the active board representation, but Python sets still need linear state and board strings must be created at each solution.
 - **Boolean arrays with no full grid:** Keep the same conflict checks but store only `curr[row] = column`. It achieves $O(n)$ auxiliary search space and constructs the board only at leaves.
 - **Bit-mask backtracking:** Represent columns and diagonals as integers, derive all available positions with bit operations, and recurse on set bits. It is compact and fast but less beginner-friendly.
 - **Check the grid by scanning:** Testing an entire column and two diagonals for every tentative queen avoids marker arrays but increases each safety check to $O(n)$.
@@ -110,8 +110,8 @@ Since the safety test ruled out every attack with an earlier queen, the child st
 - **Negative diagonal differences:** The `n` offset prevents negative indexing from being used as a different Python list position.
 - **Input mutation:** The only input is integer `n`; all board state is internal.
 - **Answer order:** Depth-first increasing-column order determines presentation, but the contract accepts any order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

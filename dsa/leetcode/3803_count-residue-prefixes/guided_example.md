@@ -57,7 +57,7 @@ Therefore the next prefix's distinct set is obtained by one insertion into the p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Prefixes are nested: the length-`i` prefix contains the enti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For `"dd"`, the distinct count remains one. Length one matches remainder one, wh
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rebuild each prefix set:** This can cost $O(N^:** - **Rebuild each prefix set:** This can cost $O(N^2)$ due to repeated slicing and scanning.
+- **Rebuild each prefix set:** This can cost $O(N^2)$ due to repeated slicing and scanning.
 - **Use a 26-element Boolean array:** It gives the same fixed-space behavior with an explicit distinct counter.
 - **Count frequencies:** Removal never occurs, so frequencies are unnecessary.
 - **Use zero-based index modulo:** The condition uses prefix length; `enumerate(...,1)` avoids an off-by-one error.
@@ -116,8 +116,8 @@ For `"dd"`, the distinct count remains one. Length one matches remainder one, wh
 - **Insertion timing:** Add the current character before testing the current length.
 - **Three distinct letters reached:** No later prefix can qualify.
 - **No early exit:** The source scans the remaining suffix even after qualification becomes impossible.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

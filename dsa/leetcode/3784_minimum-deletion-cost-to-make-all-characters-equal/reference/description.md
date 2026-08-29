@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a string `s` of length `n` and an integer array `cost` of the same length, where $\text{cost}[i]$ is the cost to **delete** the $$i^{\text{th}}$$ character of `s`.
+You are given a string `s` of length `n` and an integer array `cost` of the same length, where $\text{cost}[i]$ is the cost to **delete** the $i^{\text{th}}$ character of `s`.
 
 You may delete any number of characters from `s` (possibly none), such that the resulting string is **non-empty** and consists of **equal** characters.
 

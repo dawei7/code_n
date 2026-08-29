@@ -73,11 +73,7 @@ The encoding differs from the common north-east-south-west order, but it is inte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code uses:
-
-- `k = 0` for north.
-- `k = 1` for west.
-- `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +119,7 @@ Actual `x` and `y` coordinates are unnecessary because only a zero-versus-nonzer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track explicit coordinates:** Use a four-direc:** - **Track explicit coordinates:** Use a four-direction vector array and update `x` and `y` on each `G`. This is equally correct; the exact solution's opposite-direction counts encode only the zero-displacement information needed.
+- **Track explicit coordinates:** Use a four-direction vector array and update `x` and `y` on each `G`. This is equally correct; the exact solution's opposite-direction counts encode only the zero-displacement information needed.
 - **Simulate four cycles:** After four repetitions, any changed orientation returns to north, and a bounded path returns to its starting state. This works in `O(M)` time with a larger constant but is unnecessary.
 - **Search for repeated states indefinitely:** Position is unbounded in the false case, so open-ended simulation has no useful stopping rule. The one-cycle theorem supplies one.
 - **Only `G` instructions:** Final direction remains north. The nonzero north displacement makes every nonempty such string unbounded.
@@ -136,8 +132,8 @@ Actual `x` and `y` coordinates are unnecessary because only a zero-versus-nonzer
 - **Different direction index conventions:** North-east-south-west would use different left and right updates. The exact counter interpretation must stay aligned with north-west-south-east.
 - **Modulo wraparound:** Four left or four right turns restore `k = 0`, correctly representing a full rotation.
 - **Finite within-cycle excursions:** Even if one cycle travels far before returning or rotating, the instruction string has finite length. Periodic repetition still fits inside a sufficiently large circle.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

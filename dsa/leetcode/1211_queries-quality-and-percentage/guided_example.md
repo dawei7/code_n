@@ -55,7 +55,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `rating / position` calculates the ratio for one row.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For three rows with one poor rating, the Boolean values are zero, zero, and one.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `CASE` for poor rows:** `AVG(CASE WHE:** - **Explicit `CASE` for poor rows:** `AVG(CASE WHEN rating < 3 THEN 1 ELSE 0 END)` is more portable across SQL dialects.
+- **Explicit `CASE` for poor rows:** `AVG(CASE WHEN rating < 3 THEN 1 ELSE 0 END)` is more portable across SQL dialects.
 - **Count-based percentage:** Compute `100 * SUM(rating < 3) / COUNT(*)`. It is algebraically equivalent when all ratings are non-null.
 - **Round each ratio first:** This is incorrect because early rounding can change the average; round only the final aggregate.
 - **Rating exactly three:** It is not poor because the condition is strictly less than three.
@@ -108,8 +108,8 @@ For three rows with one poor rating, the Boolean values are zero, zero, and one.
 - **Position is never zero:** The documented range starts at one, so division by zero cannot occur.
 - **Any result order:** No presentation sort is required.
 - **Ordinal grouping:** `GROUP BY 1` depends on `query_name` remaining the first selected expression.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

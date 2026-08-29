@@ -59,7 +59,7 @@ Choosing the widest pair is what lets the algorithm avoid examining all pairs of
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose some palindrome $cxc$ can be formed using occurrence... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `s = "aabca"`, the first `a` is at index zero and the last at index four. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precomputed first and last arrays:** One pass :** - **Precomputed first and last arrays:** One pass can store both indices for all 26 letters, avoiding repeated `find` scans. Scanning each interior interval still gives linear time because the alphabet size is constant.
+- **Precomputed first and last arrays:** One pass can store both indices for all 26 letters, avoiding repeated `find` scans. Scanning each interior interval still gives linear time because the alphabet size is constant.
 - **Prefix character counts:** A 26-by-position prefix table can test which middle letters occur between two endpoints in constant time per letter, but uses $O(26N)$ space and is unnecessary.
 - **Enumerate index triples:** Testing all $O(N^3)$ triples repeats enormous amounts of work and requires extra deduplication.
 - **Scan without slicing:** Iterate indices from `l + 1` to `r - 1` and add characters directly to a set. This keeps the same logic and achieves constant auxiliary space under the fixed alphabet.
@@ -110,8 +110,8 @@ For `s = "aabca"`, the first `a` is at index zero and the last at index four. Th
 - **Different outer letters:** Palindromes with the same middle but different ends are different and are counted in separate iterations.
 - **Lowercase-only dependency:** Iterating `ascii_lowercase` is complete only because the contract restricts `s` to lowercase English letters.
 - **Imported alphabet symbol:** The exact method assumes `ascii_lowercase` is available in its execution environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

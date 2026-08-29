@@ -55,7 +55,7 @@ This is equivalent to conceptually padding the shorter string with leading zeros
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` starts at the last character of `a`, and `j` starts at t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Reusing the variable is safe because the old carry has already been included in 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Preallocate an output array:** Reserve $L+1$ p:** - **Preallocate an output array:** Reserve $L+1$ positions and fill from right to left, then omit an unused leading slot. It avoids a reverse slice but needs careful start indexing.
+- **Preallocate an output array:** Reserve $L+1$ positions and fill from right to left, then omit an unused leading slot. It avoids a reverse slice but needs careful start indexing.
 - **Repeated string concatenation:** It is syntactically shorter but can copy the growing prefix repeatedly and become quadratic under a conservative analysis.
 - **Pad the shorter input:** It simplifies paired indexing but allocates an unnecessary leading-zero string.
 - **Convert complete strings to integers:** Python permits it, but this bypasses the intended arbitrary-length bit addition and may be unavailable in fixed-width environments.
@@ -104,8 +104,8 @@ Reusing the variable is safe because the old carry has already been included in 
 - **No leading zeros:** The source adds no leading zero; any final extra bit is a real carry.
 - **Maximum length:** Work scales with characters, not numeric magnitude.
 - **Input preservation:** Strings are immutable and never sliced or altered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

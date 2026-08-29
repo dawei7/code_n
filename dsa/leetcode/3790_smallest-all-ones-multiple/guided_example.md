@@ -75,7 +75,7 @@ A divisor containing factor five is also impossible because a multiple of five e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every repunit ends in digit 1 and is therefore odd.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ For `k=7`, the successive repunit remainders for lengths one through six are 1, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct the actual integer:** Its digit coun:** - **Construct the actual integer:** Its digit count can be proportional to `k`, causing expensive big-integer operations and storage.
+- **Construct the actual integer:** Its digit count can be proportional to `k`, causing expensive big-integer operations and storage.
 - **Store visited remainders:** This detects cycles explicitly in $O(K)$ space, but the fixed $K$-step bound makes it unnecessary.
 - **Reject only even `k`:** That is exactly what the source does initially; odd multiples of five are rejected after the loop.
 - **Early reject `k%5==0`:** This would be a valid constant-time optimization, but it is absent from the exact source.
@@ -140,8 +140,8 @@ For `k=7`, the successive repunit remainders for lengths one through six are 1, 
 - **First zero:** Increasing length order guarantees minimality.
 - **No integer overflow:** Only remainders below `k` are retained.
 - **Constant memory:** No candidate string or visited table is built.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

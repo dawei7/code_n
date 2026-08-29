@@ -64,7 +64,7 @@ The fixed lowercase alphabet means this state is one integer rather than a growi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ord(c) - ord("a")` maps each lowercase character to an inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Forgetting that final insertion would allow an immediate duplicate to slip into 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set for the current part:** A set provides cle:** - **Set for the current part:** A set provides clearer membership semantics and remains $O(1)$ space for 26 letters, but the bitmask has lower overhead.
+- **Set for the current part:** A set provides clearer membership semantics and remains $O(1)$ space for 26 letters, but the bitmask has lower overhead.
 - **Dynamic programming over cut positions:** It can find a minimum but is unnecessary because the latest-valid-cut greedy choice is provably optimal.
 - **One character:** Initialization returns one part.
 - **All characters unique:** No reset occurs, so the entire string is one substring.
@@ -112,8 +112,8 @@ Forgetting that final insertion would allow an immediate duplicate to slip into 
 - **Current character insertion:** It must be added after reset as the first letter of its new part.
 - **Lowercase-only contract:** It makes a 26-bit integer sufficient.
 - **Nonempty input:** It justifies initializing `ans` to one rather than zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

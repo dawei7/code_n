@@ -66,7 +66,7 @@ With `ransomNote = "aaa"`, the third decrement changes the count from `0` to `-1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider two magazines that contain the same multiset of let... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,9 +111,9 @@ This invariant begins true because the processed prefix is empty and no supply h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed array of 26 counts:** Map each character:** - **Fixed array of 26 counts:** Map each character to an index from `0` through `25`, count the magazine, and decrement for the note. This has the same $O(r+m)$ time and strict $O(1)$ space, with less hashing but more manual character-to-index code. `Counter` expresses the same idea more directly.
-- **- **Count both strings:** Build one frequency map :** - **Count both strings:** Build one frequency map for each input, then verify that every note frequency is no greater than the corresponding magazine frequency. This is correct and still linear, but storing a second map is unnecessary because demands can be consumed directly from the magazine inventory.
-- **- **Length precheck:** If `r > m`, returning `fals:** - **Length precheck:** If `r > m`, returning `false` immediately is valid because there are not enough total magazine characters. The exact solution omits this optimization; its counting loop will still discover a specific shortage and retains the same asymptotic complexity.
+- **Fixed array of 26 counts:** Map each character to an index from `0` through `25`, count the magazine, and decrement for the note. This has the same $O(r+m)$ time and strict $O(1)$ space, with less hashing but more manual character-to-index code. `Counter` expresses the same idea more directly.
+- **Count both strings:** Build one frequency map for each input, then verify that every note frequency is no greater than the corresponding magazine frequency. This is correct and still linear, but storing a second map is unnecessary because demands can be consumed directly from the magazine inventory.
+- **Length precheck:** If `r > m`, returning `false` immediately is valid because there are not enough total magazine characters. The exact solution omits this optimization; its counting loop will still discover a specific shortage and retains the same asymptotic complexity.
 
 ---
 

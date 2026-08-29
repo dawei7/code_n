@@ -51,7 +51,7 @@ There is no benefit to combine across a smooth position because the repaired pot
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There is no benefit to combine across a smooth position beca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The optimization is therefore to choose repair lengths from available runs. Long
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort run lengths descending:** Greedily consid:** - **Sort run lengths descending:** Greedily consider full or partial repairs from longest runs. It matches the manifest but needs careful handling of a final partial run.
+- **Sort run lengths descending:** Greedily consider full or partial repairs from longest runs. It matches the manifest but needs careful handling of a final partial run.
 - **Priority queue:** Repeatedly choose the largest remaining repair capacity and reduce it, but the counting cascade is simpler and linear.
 - **No potholes:** Every count is zero and the answer remains zero.
 - **One long run:** It may be repaired fully or partially according to budget.
@@ -101,8 +101,8 @@ The optimization is therefore to choose repair lengths from available runs. Long
 - **Fixed overhead:** It is the reason long operations dominate short ones.
 - **Input binding:** `road += "."` creates a new local string; the caller's immutable string is unchanged.
 - **Source/manifest mismatch:** Exact time and space are both linear in road length, not run-sort bounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

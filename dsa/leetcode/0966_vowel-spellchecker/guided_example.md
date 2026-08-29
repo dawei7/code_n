@@ -57,9 +57,7 @@ Returning the query is correct because exact equality means it is identical to t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Set `s = set(wordlist)` contains original spellings.
-
-For qu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +96,7 @@ After exact matching fails, the query is lowercased. If it exists in `low`, the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan wordlist per query:** Direct but can requ:** - **Scan wordlist per query:** Direct but can require quadratic total content work.
+- **Scan wordlist per query:** Direct but can require quadratic total content work.
 - **Regular expressions:** They add overhead; canonical pattern keys are simpler.
 - **Overwrite dictionary keys:** This would return the last match instead of the first. `setdefault` is essential.
 - **Exact match with a later spelling:** Exact membership returns the identical query.
@@ -108,8 +106,8 @@ After exact matching fails, the query is lowercased. If it exists in `low`, the 
 - **Missing or extra vowel:** Positions are preserved, so insertions and deletions do not match.
 - **Uppercase vowels:** Lowercasing occurs before normalization.
 - **No match:** The output contains an empty string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

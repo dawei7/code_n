@@ -51,7 +51,7 @@ If `multiplier == 1`, no operation changes any value. The original values are al
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `multiplier == 1`, no operation changes any value.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Otherwise, a heap of `(value,index)` pairs enforces minimum value and earliest-i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate all operations:** Heap simulation cos:** - **Simulate all operations:** Heap simulation costs $O(k\log n)$ and is impossible for $k=10^9$.
+- **Simulate all operations:** Heap simulation costs $O(k\log n)$ and is impossible for $k=10^9$.
 - **Apply modulo during heap updates:** This is incorrect because modulo residues do not preserve the order of exact values.
 - **Binary-search a global level:** One can derive selection counts by logarithmic leveling, but the multiplicative-band round argument is simpler.
 - **`multiplier = 1`:** Every operation is a no-op, and the early return avoids a nonterminating “below maximum” balancing concept.
@@ -100,8 +100,8 @@ Otherwise, a heap of `(value,index)` pairs enforces minimum value and earliest-i
 - **Values overshooting `m`:** A selected value may jump far above `m`, but it remains below `m * multiplier` because it was strictly below `m` before multiplication. This strict band is what guarantees one selection per element in a round.
 - **Remainder-round ordering:** Only the first `k % n` pairs in sorted value-index order receive the extra exponent. Assigning extras by original array order would be wrong when current values differ.
 - **Final array order:** Sorting `pq` is used only to allocate future operations. Writing each result to stored index `j` restores the original positional layout instead of returning the heap's sorted order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

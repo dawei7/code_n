@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `books` of length `n` where $\text{books}[i]$ denotes the number of books on the $$i^{\text{th}}$$ shelf of a bookshelf.
+You are given a **0-indexed** integer array `books` of length `n` where $\text{books}[i]$ denotes the number of books on the $i^{\text{th}}$ shelf of a bookshelf.
 
 You are going to take books from a **contiguous** section of the bookshelf spanning from `l` to `r` where $0 \le l \le r < n$. For each index `i` in the range $l \le i < r$, you must take **strictly fewer** books from shelf `i` than shelf $i + 1$.
 

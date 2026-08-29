@@ -70,7 +70,7 @@ After parsing, `cnt[c]` equals the sum of all input frequencies for character $c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The same character may appear in several input groups.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The problem explicitly permits character order to change, so aggregating by lett
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-element integer array:** Matches the :** - **Fixed 26-element integer array:** Matches the manifest exactly and can emit indices in order without sorting.
+- **Fixed 26-element integer array:** Matches the manifest exactly and can emit indices in order without sorting.
 - **Regular-expression parsing:** It can extract letter-number groups but adds engine overhead and hides the simple state machine.
 - **Decompress then recount:** Potentially enormous and unnecessary.
 - **Multi-digit frequency:** The multiply-by-ten recurrence parses it correctly.
@@ -119,8 +119,8 @@ The problem explicitly permits character order to change, so aggregating by lett
 - **One group:** It is returned in the same letter-count form.
 - **Sorting formatted strings:** Safe because each begins with a unique one-character lowercase key.
 - **Valid compression guarantee:** Every letter is followed by at least one digit, so `x` is never left zero for a group.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

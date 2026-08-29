@@ -120,24 +120,6 @@
       ]
     },
     {
-      "id": "trial-single-cell",
-      "name": "the start cell is also the destination",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            42
-          ]
-        ]
-      },
-      "expected": 42,
-      "tags": [
-        "trial",
-        "single-cell"
-      ]
-    },
-    {
       "id": "trial-diagonal-does-not-connect",
       "name": "a high diagonal still requires a low cardinal step",
       "kind": "trial",

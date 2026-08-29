@@ -78,7 +78,7 @@ Python treats the Boolean result as one for true and zero for false, so `ans` in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `bisect_left(arr2, x - d)` returns the smallest index `i` wh... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ For `x=8`, the interval is `[6,10]`. The first value at least six is eight, whic
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force nested loops:** Check every pair d:** - **Brute-force nested loops:** Check every pair directly in $O(nm)$ time. It is easy to derive and may be acceptable for tiny inputs, but binary search scales better.
+- **Brute-force nested loops:** Check every pair directly in $O(nm)$ time. It is easy to derive and may be acceptable for tiny inputs, but binary search scales better.
 - **Two nearest neighbors:** Search for the insertion position of `x` and inspect the immediate predecessor and successor. It is also correct because the closest sorted value must be one of them.
 - **Two-pointer sweep:** Sort both arrays and advance pointers to test ranges in near-linear scan time after sorting. It can be efficient but must preserve multiplicity of `arr1` answers carefully.
 - **Value-frequency array:** The bounded values from $-1000$ to $1000$ permit prefix counts over a fixed universe. It can answer interval emptiness in constant time after preprocessing.
@@ -130,8 +130,8 @@ For `x=8`, the interval is `[6,10]`. The first value at least six is eight, whic
 - **Duplicate `arr2` values:** One violating occurrence is enough; `bisect_left` finds the first relevant one.
 - **Input mutation:** `arr2.sort()` changes the supplied list order. Use a sorted copy when callers require immutability.
 - **Required import:** `bisect_left` must be available, normally from `bisect`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

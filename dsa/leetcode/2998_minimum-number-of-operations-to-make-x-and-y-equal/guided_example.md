@@ -67,7 +67,7 @@ The method evaluates these two choices for both five and eleven and keeps the mi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Division by $d$, where $d$ is five or eleven, is legal only ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ If an optimal strategy never divides, the direct `v-y` candidate represents it.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over integers:** It finds:** - **Breadth-first search over integers:** It finds shortest paths but requires choosing a search bound and can explore many irrelevant values.
+- **Breadth-first search over integers:** It finds shortest paths but requires choosing a search bound and can explore many irrelevant values.
 - **Only adjust downward:** This misses strategies such as 54 incrementing to 55 before division.
 - **Only try immediate divisible operations:** A value not currently divisible may be one step from a valuable division.
 - **Move to farther multiples:** The nearest multiple on each side dominates farther pre-division adjustment.
@@ -115,8 +115,8 @@ If an optimal strategy never divides, the direct `v-y` candidate represents it.
 - **Already divisible:** The lower branch divides with one operation; the upper branch legally considers the next multiple.
 - **Direct decrements win:** `x-y` remains in the minimum, so divisions are never forced.
 - **Memoization:** It prevents overlapping quotient subproblems from expanding exponentially.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

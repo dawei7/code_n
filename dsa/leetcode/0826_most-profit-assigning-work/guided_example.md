@@ -57,7 +57,7 @@ This monotonicity permits one shared pointer through the sorted job list.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `jobs = sorted(zip(difficulty, profit))` creates `(difficult... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ The algorithm adds `mx` to `ans`. If no job is affordable, `mx` remains zero, co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search per worker:** Sort jobs and prep:** - **Binary search per worker:** Sort jobs and preprocess prefix maximum profits, then binary-search the last affordable difficulty. This takes `O(n\log n+m\log n)` and avoids sorting workers, but the two-pointer sweep is simpler once both arrays are ordered.
-- **- **Ability-indexed profit table:** With bounded a:** - **Ability-indexed profit table:** With bounded abilities, store best profit at each difficulty and propagate prefix maxima. Here values reach `10^5`, so it is possible but allocates by value range rather than actual input size.
-- **- **Check every job for every worker:** Correct bu:** - **Check every job for every worker:** Correct but `O(nm)`, too slow at 10,000 by 10,000.
+- **Binary search per worker:** Sort jobs and preprocess prefix maximum profits, then binary-search the last affordable difficulty. This takes `O(n\log n+m\log n)` and avoids sorting workers, but the two-pointer sweep is simpler once both arrays are ordered.
+- **Ability-indexed profit table:** With bounded abilities, store best profit at each difficulty and propagate prefix maxima. Here values reach `10^5`, so it is possible but allocates by value range rather than actual input size.
+- **Check every job for every worker:** Correct but `O(nm)`, too slow at 10,000 by 10,000.
 
 ---
 

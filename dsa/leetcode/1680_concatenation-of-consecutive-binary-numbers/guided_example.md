@@ -68,7 +68,7 @@ Those are precisely the block widths used by ordinary binary representation. No 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i.bit_length()` is the number of bits required to represent... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Thus the algorithm never needs to hold the astronomically large full concatenate
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build one binary string:** Convert every integ:** - **Build one binary string:** Convert every integer with `bin(i)[2:]`, concatenate, parse, and reduce. It is direct but uses $O(n\log n)$ characters and constructs a huge integer.
+- **Build one binary string:** Convert every integer with `bin(i)[2:]`, concatenate, parse, and reduce. It is direct but uses $O(n\log n)$ characters and constructs a huge integer.
 - **Track bit length at powers of two:** Increase a counter when `i & (i-1) == 0`. This avoids calling `bit_length` and yields the same $O(n)$ time and $O(1)$ space.
 - **Use multiplication and addition:** `ans = (ans * (1 << b) + i) % mod` is mathematically identical to shift and OR.
 - **`n == 1`:** One iteration appends binary `1` and returns one.
@@ -128,8 +128,8 @@ Thus the algorithm never needs to hold the astronomically large full concatenate
 - **Positive-input guarantee:** `bit_length` for zero is zero, but the sequence begins at one, so every appended block has at least one bit.
 - **No leading zeros:** Minimal bit length matches the problem’s conventional binary representation.
 - **Large `n`:** The loop remains linear through $10^5$ and avoids any object proportional to the combined binary-string length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

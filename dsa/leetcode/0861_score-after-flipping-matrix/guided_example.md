@@ -73,7 +73,7 @@ This fixes the row decisions. What remains is choosing column flips.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For row `i` with `grid[i][0] == 0`, every entry is toggled t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,9 +118,9 @@ No column choice affects another column, so taking the local maximum in every co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every subset of row and column flips:** Th:** - **Try every subset of row and column flips:** There are `2^{m+n}` possibilities, unnecessary because bit significance and column independence force greedy choices.
-- **- **Compute row flips virtually:** Treat cell `gri:** - **Compute row flips virtually:** Treat cell `grid[i][j]` as toggled when its first bit is zero, avoiding input mutation. It has the same time and `O(1)` space.
-- **- **All first bits already one:** No row is toggle:** - **All first bits already one:** No row is toggled; column optimization still applies.
+- **Try every subset of row and column flips:** There are `2^{m+n}` possibilities, unnecessary because bit significance and column independence force greedy choices.
+- **Compute row flips virtually:** Treat cell `grid[i][j]` as toggled when its first bit is zero, avoiding input mutation. It has the same time and `O(1)` space.
+- **All first bits already one:** No row is toggled; column optimization still applies.
 
 ---
 

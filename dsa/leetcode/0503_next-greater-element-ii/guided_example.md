@@ -51,7 +51,7 @@ For one position `i`, the next greater value may lie later in the ordinary array
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans` begins as `[-1] * n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The loop counts backward from `2 * n - 1` through zero, exactly `2n` iterations.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force circular scan:** For each position:** - **Brute-force circular scan:** For each position, inspect up to `n - 1` successors with modulo indexing. This costs $O(n^2)$ time.
+- **Brute-force circular scan:** For each position, inspect up to `n - 1` successors with modulo indexing. This costs $O(n^2)$ time.
 - **Explicit doubled array:** Concatenate `nums + nums` and run a normal next-greater algorithm. It is correct but uses another $O(n)$ array that modular indexing avoids.
 - **Forward unresolved-index stack:** Traverse two copies left to right and resolve indices when a greater value arrives. It also runs in $O(n)$ but requires care not to push first-copy indices repeatedly.
 - **All values equal:** Every equal candidate is popped, so all answers remain `-1`.
@@ -95,8 +95,8 @@ The loop counts backward from `2 * n - 1` through zero, exactly `2n` iterations.
 - **Duplicate values:** Equality does not satisfy “greater,” so the pop condition must be `<=` rather than `<`.
 - **Negative values:** Ordering comparisons work unchanged, and `-1` is an output sentinel rather than a candidate value. A legitimate next greater value can itself be `-1`, but the returned numeric result is still correct.
 - **Answer overwritten twice:** The preliminary second-copy assignment may be incomplete. The final first-copy pass intentionally overwrites it after all wrapped candidates are available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

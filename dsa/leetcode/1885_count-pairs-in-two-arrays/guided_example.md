@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{nums1}[i]+\texttt{nums1}[j]
->
-\texttt{nums2}[i]+\... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +94,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search for each right endpoint:** After:** - **Binary search for each right endpoint:** After sorting, find the first value greater than `-nums[r]` with an upper-bound search. This is correct but takes another $O(n\log n)$ counting phase, while the monotone pointer makes it linear.
+- **Binary search for each right endpoint:** After sorting, find the first value greater than `-nums[r]` with an upper-bound search. This is correct but takes another $O(n\log n)$ counting phase, while the monotone pointer makes it linear.
 - **Brute-force all index pairs:** Directly testing every `i < j` takes $O(n^2)$ time and is too slow for $10^5$ elements.
 - **Fenwick tree over differences:** Coordinate compression and frequency queries can count earlier values above a threshold online, but add data-structure complexity without improving the sorting-based asymptotic bound.
 - **Strict inequality:** Difference sums equal to zero do not qualify. The inner loop must use `<= 0`, not `< 0`.
@@ -106,8 +103,8 @@ $$
 - **Duplicate differences:** They remain separate occurrences. Sorting and the `r - l` count include every distinct index pair even when values are equal.
 - **A single element:** `l == r` initially, the loop does not execute, and no pair exists.
 - **Equal input lengths:** The source relies on the contract. If lengths differed, `zip` would silently ignore extra elements, so validation would be needed in a generalized API.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

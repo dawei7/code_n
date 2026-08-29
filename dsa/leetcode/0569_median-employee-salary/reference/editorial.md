@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -50,7 +50,7 @@ We then merge the `rank` and the count (`cnt`) created above in another new Data
 ```python
 df2 = df.merge(employee, on='company')
 ```
-​
+
 Now, we can identify the median salaries for each company. Since companies might have an odd or even number of employees, we can create a filter that includes both scenarios:
 
 - If the company has an **even** number of employees (`cnt` equals an even number), the median salaries will be the salaries ranked as $(cnt / 2)$ and $(cnt / 2 + 1)$;
@@ -79,10 +79,10 @@ return df2[['id', 'company', 'salary']]
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
-​
+
 def median_employee_salary(employee: pd.DataFrame) -> pd.DataFrame:
 
     employee['rank'] = pd.to_numeric(employee.sort_values(['salary','id']).groupby('company').cumcount() + 1)
@@ -97,7 +97,7 @@ def median_employee_salary(employee: pd.DataFrame) -> pd.DataFrame:
 ```
 
 <!-- an empty line to separate approaches -->
-​
+
 <!-- h3 for approaches -->
 ### Approach 2: Finding Median Using len() and ':' for slicing
 
@@ -131,7 +131,7 @@ df = employee.sort_values(['salary', 'id']).groupby('company').apply(lambda x: x
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
 def median_employee_salary(employee: pd.DataFrame) -> pd.DataFrame:
@@ -142,8 +142,8 @@ def median_employee_salary(employee: pd.DataFrame) -> pd.DataFrame:
 ```
 
 ----
-​
-​
+
+
 ## Database
 
 <!-- h3 for approaches -->
@@ -223,6 +223,6 @@ JOIN add_count b
 ON a.company = b.company
 AND a.rnk BETWEEN b.cnt / 2 AND b.cnt / 2 + 1
 ```
-​
+
 <!-- an empty line to separate approaches -->
 ----

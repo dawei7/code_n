@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = [0] * 10` allocates one slot for each numeric digit $... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `Counter(s)`:** A dictionary counter is eq:** - **Use `Counter(s)`:** A dictionary counter is equally correct and concise, but a fixed ten-slot array has predictable constant space and direct numeric indexing.
+- **Use `Counter(s)`:** A dictionary counter is equally correct and concise, but a fixed ten-slot array has predictable constant space and direct numeric indexing.
 - **Count during the pair scan only:** A pair may depend on occurrences later in the string, so complete global counts must be known before validation.
 - **Build a digit list:** Converting all characters up front simplifies reuse but allocates $O(n)$ space; two lazy map passes avoid it.
 - **Equal eligible digits:** Even when a digit's count matches its value, a pair such as `"22"` is invalid because the two positions must contain different digits.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Digit nine:** A `9` is eligible only if it occurs nine times in the full string, and the same direct count comparison handles it.
 - **Minimum length:** With two characters, exactly one adjacency is tested.
 - **Input immutability:** Mapping and counting read `s` without changing it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

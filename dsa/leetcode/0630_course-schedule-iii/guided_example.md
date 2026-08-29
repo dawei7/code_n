@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where $\text{courses}[i] = [\text{duration}_{i}, \text{lastDay}_{i}]$ indicate that the $$i^{\text{th}}$$ course should be taken **continuously** for $\text{duration}_{i}$ days and must be finished before or on $\text{lastDay}_{i}$.
+There are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where $\text{courses}[i] = [\text{duration}_{i}, \text{lastDay}_{i}]$ indicate that the $i^{\text{th}}$ course should be taken **continuously** for $\text{duration}_{i}$ days and must be finished before or on $\text{lastDay}_{i}$.
 
 The objective is to compute `3` from `{"courses": [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Once courses are in that order, the scan only needs to decide which durations to
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Once courses are in that order, the scan only needs to decid... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Once courses are in that order, the scan only needs to decide which durations to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming by time:** Sort deadlines :** - **Dynamic programming by time:** Sort deadlines and choose or skip each course using elapsed time as state. It is much more expensive when deadlines are large.
+- **Dynamic programming by time:** Sort deadlines and choose or skip each course using elapsed time as state. It is much more expensive when deadlines are large.
 - **Linear search for the longest selected course:** It preserves the greedy idea but can make the scan quadratic; the heap supplies the longest duration efficiently.
 - **Course longer than its own deadline:** It is pushed, immediately becomes infeasible, and is removed if no even longer selected course is a better replacement.
 - **One course:** It remains only when its duration does not exceed its last day.
@@ -97,8 +97,8 @@ Once courses are in that order, the scan only needs to decide which durations to
 - **Input mutation:** `sort` reorders `courses`. Copy first if callers require the original order.
 - **Continuous scheduling:** There is no benefit to idle time before a selected course; placing chosen courses back-to-back in deadline order minimizes every completion time.
 - **Heap sign convention:** Values are negative only to simulate a max-heap. Adding a popped heap value to `s` subtracts the corresponding duration.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

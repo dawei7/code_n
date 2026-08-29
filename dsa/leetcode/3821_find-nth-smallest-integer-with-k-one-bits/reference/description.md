@@ -2,7 +2,7 @@
 
 You are given two positive integers `n` and `k`.
 
-Return an integer denoting the $$n^{\text{th}}$$ smallest positive integer that has **exactly** `k` ones in its binary representation. It is guaranteed that the answer is **strictly less** than $2^{50}$.
+Return an integer denoting the $n^{\text{th}}$ smallest positive integer that has **exactly** `k` ones in its binary representation. It is guaranteed that the answer is **strictly less** than $2^{50}$.
 
 ### 2. Function Contract
 

@@ -87,7 +87,7 @@ Overlapping interval requirements do not add together. A time covered by several
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At every active integer time, bulbs may be chosen independen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ The condition uses `merged[-1][1] < x[0]`. Thus intervals `[1,3]` and `[3,5]` me
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterate every active time unit:** Endpoints re:** - **Iterate every active time unit:** Endpoints reach $10^9$, so expanding intervals into individual times is infeasible. Union lengths summarize them.
+- **Iterate every active time unit:** Endpoints reach $10^9$, so expanding intervals into individual times is infeasible. Union lengths summarize them.
 - **Add every interval length independently:** Overlapping time units would be charged more than once even though brightness is one shared requirement.
 - **Use `brightness // 3` bulbs:** This rounds down and fails whenever brightness is not a multiple of three. Ceiling division is required.
 - **Assume boundary bulbs always cover three:** A boundary placement covers fewer positions, but optimal bulbs can be shifted inward; the global ceiling remains achievable.
@@ -144,8 +144,8 @@ The condition uses `merged[-1][1] < x[0]`. Thus intervals `[1,3]` and `[3,5]` me
 - **Adjacent but non-overlapping intervals:** `[a,b]` and `[b+1,c]` remain separate, but their summed inclusive lengths still equal the contiguous union size.
 - **Caller-visible changes:** Sorting and endpoint extension mutate `intervals` and some of its row lists.
 - **Large overlapping collection:** Sorting dominates; the linear merge prevents duplicate energy charges.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Arrays follow the same rule because `Object.entries(array)` exposes their presen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Arrays follow the same rule because `Object.entries(array)` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Arrays follow the same rule because `Object.entries(array)` exposes their presen
 
 ## 6. Traps This Instance Exposes
 
-- **- **Plain object accumulator:** It can group value:** - **Plain object accumulator:** It can group values directly, but naive assignment is vulnerable to special names such as `"__proto__"` and requires careful own-property checks.
+- **Plain object accumulator:** It can group values directly, but naive assignment is vulnerable to special names such as `"__proto__"` and requires careful own-property checks.
 - **Null-prototype accumulator:** `Object.create(null)` avoids inherited-name collisions and can replace the Map, though final conversion and duplicate shape logic are still needed.
 - **Always store arrays first:** Group every value into an array and convert length-one arrays to strings afterward. This simplifies updates but requires a second normalization pass.
 - **Exactly one occurrence:** The output value is the original key string, not a one-element array.
@@ -98,8 +98,8 @@ Arrays follow the same rule because `Object.entries(array)` exposes their presen
 - **Inherited properties:** They are ignored, as appropriate for JSON data.
 - **Input preservation:** No input property or array element is changed.
 - **Non-string values outside the contract:** Object materialization would coerce keys and could merge values that were distinct in a Map, so the guarantee is essential.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ This works because `id` values define an ordered integer sequence. The date can 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ROW_NUMBER() OVER (ORDER BY id)` assigns 1, 2, 3, ...... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Every row in the 5–8 island receives `cnt = 4`. Rows 2 and 3 receive count two
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LEAD`/`LAG` neighbors:** Attach the previous :** - **`LEAD`/`LAG` neighbors:** Attach the previous two and next two qualified IDs, then retain a row if it occupies any position in a consecutive triple. Effective for fixed run length three but less scalable.
+- **`LEAD`/`LAG` neighbors:** Attach the previous two and next two qualified IDs, then retain a row if it occupies any position in a consecutive triple. Effective for fixed run length three but less scalable.
 - **Three-way self-join:** Match triples of high-attendance rows with IDs one apart and use `DISTINCT` to return all members. More expensive and verbose.
 - **Recursive run tracking:** A recursive CTE can propagate run IDs, but row-number subtraction is simpler.
 - **Filter after row numbering:** Incorrect: low-attendance rows would consume row numbers and could distort which qualified IDs form islands. The intended sequence is the filtered set.
@@ -121,8 +121,8 @@ Every row in the 5–8 island receives `cnt = 4`. Rows 2 and 3 receive count two
 - **Threshold boundary:** `people = 100` qualifies because the comparison is inclusive.
 - **No qualifying island:** The output is empty.
 - **Unique dates:** The schema’s unique `visit_date` and monotonic relation make the final ordering deterministic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

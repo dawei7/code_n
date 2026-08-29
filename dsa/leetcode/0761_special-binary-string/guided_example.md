@@ -57,7 +57,7 @@ After recording the block, `j` moves to `i + 1` so scanning can identify the nex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution scans left to right with `cnt`, adding one for ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ The empty interior is valid. The recursive base case returns the empty string un
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every legal swap:** The reachable-state sp:** - **Try every legal swap:** The reachable-state space grows rapidly and repeats equivalent arrangements.
-- **- **Sort individual characters:** This destroys th:** - **Sort individual characters:** This destroys the prefix-balance structure and may produce an unreachable string.
-- **- **Sort before recursively optimizing:** Sibling :** - **Sort before recursively optimizing:** Sibling comparison should use their best attainable forms; optimize interiors first.
+- **Try every legal swap:** The reachable-state space grows rapidly and repeats equivalent arrangements.
+- **Sort individual characters:** This destroys the prefix-balance structure and may produce an unreachable string.
+- **Sort before recursively optimizing:** Sibling comparison should use their best attainable forms; optimize interiors first.
 
 ---
 

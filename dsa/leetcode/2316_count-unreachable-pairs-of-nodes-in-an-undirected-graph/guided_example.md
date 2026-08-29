@@ -63,7 +63,7 @@ The Boolean list `vis` records whether a node has already been discovered by an 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `g` has one inner list for every node.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The outer loop still calls `dfs(i)` for every node `i`. If `i` belongs to a comp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS:** Replace recursive calls with :** - **Iterative DFS:** Replace recursive calls with an explicit stack and count nodes as they are popped or pushed. It has the same `O(n + e)` bounds and avoids Python recursion-depth failure.
+- **Iterative DFS:** Replace recursive calls with an explicit stack and count nodes as they are popped or pushed. It has the same `O(n + e)` bounds and avoids Python recursion-depth failure.
 - **Breadth-first search:** A queue finds the same component sizes level by level. It is equally correct and iterative, with a worst-case queue of `O(n)` nodes.
 - **Union-find:** Union every edge, obtain each representative's component size, then apply the same cross-component formula. With path compression and union by size or rank, it is near-linear and uses `O(n)` space without an adjacency list.
 - **Count all pairs then subtract reachable pairs:** Begin with `n(n-1)/2` and subtract `t(t-1)/2` for each component. This is mathematically equivalent; the running-prefix formula avoids one final combinatorial subtraction.
@@ -121,8 +121,8 @@ The outer loop still calls `dfs(i)` for every node `i`. If `i` belongs to a comp
 - **Self-loops:** The contract excludes them. A self-loop would immediately call an already visited node and contribute zero, so it would not change component size.
 - **Recursion depth:** A star graph has shallow recursion, while a path graph may reach linear depth. The same asymptotic graph size can therefore behave differently under Python's recursion limit.
 - **Input mutation:** The method builds separate adjacency and visited lists and never changes `edges`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

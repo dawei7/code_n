@@ -76,7 +76,7 @@ Case conversion applies on both sides. Thus `"A@B.com"` and `"a@b.com"` both nor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After normalization, inserting one canonical identity into a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ No correctness argument can establish the source for every valid input while thi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Tuple key:** Store `(local,domain)` directly. :** - **Tuple key:** Store `(local,domain)` directly. This is the clearest collision-safe representation because its equality semantics exactly mirror the problem definition.
+- **Tuple key:** Store `(local,domain)` directly. This is the clearest collision-safe representation because its equality semantics exactly mirror the problem definition.
 - **Delimited normalized address:** Store `local + "@" + domain`. It is safe because `'@'` cannot occur inside either component under the valid-address contract.
 - **Length-prefixed concatenation:** Encode the local length before the two strings. This is collision-safe but unnecessarily complicated when tuple keys or the existing separator are available.
 - **Sort normalized keys:** Normalize every address, sort the safe keys, and count adjacent changes. This is deterministic but costs `O(E\log E)` key comparisons for `E` emails instead of expected linear hashing.
@@ -140,8 +140,8 @@ No correctness argument can establish the source for every valid input while thi
 - **Already normalized email:** It maps to the same local-domain pair and inserts normally.
 - **Normalized local possibly unusual:** The contract guarantees a nonempty original local name that does not begin with plus, but independent of whether normalization leaves a short or dot-only-derived prefix, tuple encoding still preserves the boundary safely.
 - **Source status:** The protected solution should not be represented as fully correct for the stated domain until its key construction is repaired. The complexity remains optimal, but optimal complexity does not compensate for a collision bug.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

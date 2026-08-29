@@ -51,7 +51,7 @@ For a given prime $x$, we need to choose where that changed bit was zero in $a$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a given prime $x$, we need to choose where that changed ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Clearing any one of those trailing-one positions in $x$ creates a valid $a$. If 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mask-based while loop:** Scan powers of two wh:** - **Mask-based while loop:** Scan powers of two while the corresponding bit is one and update the candidate to `x - mask`. The last candidate before the first zero is the same minimum.
+- **Mask-based while loop:** Scan powers of two while the corresponding bit is one and update the candidate to `x - mask`. The last candidate before the first zero is the same minimum.
 - **Brute force:** Testing every smaller integer is unacceptable near $10^9$, which is why version II requires the bit insight.
 - **Closed-form low-bit manipulation:** Specialized bit tricks can isolate the trailing-one boundary in constant word operations, but they are less transparent and Python integers are not fixed-width machine words conceptually.
 - **Value two:** No solution exists because the OR is always odd, so `-1` is mandatory.
@@ -99,8 +99,8 @@ Clearing any one of those trailing-one positions in $x$ creates a valid $a$. If 
 - **Even values other than two:** They would also be impossible because their least significant bit is zero, but the prime constraint makes two the only such input.
 - **No mutation:** The source appends outputs rather than overwriting `nums`, so caller-visible input order and values remain intact.
 - **Version I comparison:** The algorithm is identical, but the larger $10^9$ limit makes logarithmic bit inspection materially important here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

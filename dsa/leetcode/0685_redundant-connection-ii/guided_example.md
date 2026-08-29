@@ -66,7 +66,7 @@ The direction used for the union-find parent pointer is unrelated to the graph's
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The parent array `p` represents connected components of the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ Returning the first cycle-closing edge also satisfies the “last answer in the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit validation of each candidate:** Ident:** - **Explicit validation of each candidate:** Identify the two incoming edges, remove candidates from later to earlier, and run a directed traversal to test whether all nodes form one rooted tree. This is easier to visualize but can require more graph construction and repeated work.
-- **- **Directed parent-map and cycle traversal:** One:** - **Directed parent-map and cycle traversal:** One can follow parent pointers to locate a directed cycle and combine that information with the indegree-two candidates. It can also be linear, but the case analysis is easier to implement incorrectly.
-- **- **Union-find with rank or size:** A rank or comp:** - **Union-find with rank or size:** A rank or component-size array makes the asymptotic guarantee match the standard `O(n\alpha(n))` claim while preserving all decisions in this solution.
+- **Explicit validation of each candidate:** Identify the two incoming edges, remove candidates from later to earlier, and run a directed traversal to test whether all nodes form one rooted tree. This is easier to visualize but can require more graph construction and repeated work.
+- **Directed parent-map and cycle traversal:** One can follow parent pointers to locate a directed cycle and combine that information with the indegree-two candidates. It can also be linear, but the case analysis is easier to implement incorrectly.
+- **Union-find with rank or size:** A rank or component-size array makes the asymptotic guarantee match the standard `O(n\alpha(n))` claim while preserving all decisions in this solution.
 
 ---
 

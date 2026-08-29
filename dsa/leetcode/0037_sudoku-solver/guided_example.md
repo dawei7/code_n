@@ -63,7 +63,7 @@ The chained test `row[i][v] == col[j][v] == block[i // 3][j // 3][v] == false` i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution builds three occupancy structures before search... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The input guarantee allows initialization to trust the clues. This implementatio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rescan the row, column, and box for every cand:** - **Rescan the row, column, and box for every candidate:** This removes the occupancy tables and is easy to derive, but every tentative placement performs repeated work. It remains a valid backtracking strategy on a $9 \times 9$ board, though the constant factor is worse.
+- **Rescan the row, column, and box for every candidate:** This removes the occupancy tables and is easy to derive, but every tentative placement performs repeated work. It remains a valid backtracking strategy on a $9 \times 9$ board, though the constant factor is worse.
 - **Bit masks instead of Boolean tables:** Nine-bit integers can represent the digits used by each row, column, and box. Availability then becomes a few bitwise operations. This is compact and fast, but Boolean arrays make the digit-to-constraint relationship easier to inspect for a beginner.
 - **Choose the most constrained empty cell first:** Rather than preserve row-major order in `t`, each level can select the unfilled cell with the fewest legal candidates. This minimum-remaining-values heuristic often shrinks the search tree dramatically, at the cost of extra selection logic and more complicated state management.
 - **Copy the whole board at each recursive call:** Copies make rollback conceptually simple, but they allocate and copy 81 cells per branch. Updating one cell and three flags, then undoing those flags, is substantially cheaper.
@@ -110,8 +110,8 @@ The input guarantee allows initialization to trust the clues. This implementatio
 - **Stale characters after a failed branch:** Descendant cells can temporarily retain digits in `board`, but the occupancy tables—not those characters—govern candidate legality, and a descendant is overwritten before reuse. On the guaranteed-solvable input, the successful branch ultimately overwrites every position in `t` with its final digit.
 - **Invalid or unsatisfiable input:** The official contract guarantees one solution. This source has no explicit failure return and does not restore every empty cell to `'.'` after total failure, so callers should not treat it as a validator for boards outside that contract.
 - **In-place result:** The required outcome is the mutation of `board`. The absence of a returned grid is intentional; callers inspect the same nested list they passed in.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

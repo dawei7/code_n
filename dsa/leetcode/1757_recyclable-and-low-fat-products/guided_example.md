@@ -63,7 +63,7 @@ The schema restricts both columns to enum values `'Y'` and `'N'`, so the query d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each source row, `low_fats = 'Y'` evaluates whether that... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This differs from queries over tables that may contain duplicate entity rows. He
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use OR:** This is incorrect because it accepts:** - **Use OR:** This is incorrect because it accepts products satisfying only one of the two required properties.
+- **Use OR:** This is incorrect because it accepts products satisfying only one of the two required properties.
 - **Nested subquery:** Filtering identifiers in a subquery can produce the same result but adds needless structure.
 - **INTERSECT two selections:** Select low-fat IDs and intersect recyclable IDs. It is logically valid where supported, but scans or combines sets unnecessarily.
 - **GROUP BY product_id:** The primary key already guarantees one row per product, so grouping adds no value.
@@ -118,8 +118,8 @@ This differs from queries over tables that may contain duplicate entity rows. He
 - **Output order:** No `ORDER BY` is needed because any order is accepted.
 - **Projection:** Status columns are used to decide membership but are intentionally omitted from the result.
 - **Primary key:** It provides uniqueness, not an automatic guarantee that either status is `'Y'`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

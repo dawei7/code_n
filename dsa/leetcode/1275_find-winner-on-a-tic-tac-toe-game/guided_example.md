@@ -61,7 +61,7 @@ Although traversal goes backward in time, line membership is independent of orde
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The $3$ by $3$ board has three rows, three columns, one main... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For the first example, the last move index is four, so the loop counts A's moves
 
 ## 6. Traps This Instance Exposes
 
-- **- **Process both players with signed counters:** A:** - **Process both players with signed counters:** Add one for A and minus one for B to rows, columns, and diagonals. An absolute value of three identifies a winner and supports checking moves forward.
+- **Process both players with signed counters:** Add one for A and minus one for B to rows, columns, and diagonals. An absolute value of three identifies a winner and supports checking moves forward.
 - **Build the full board:** Mark each move and scan its row, column, and diagonals. It is intuitive but stores more state and may rescan cells.
 - **Count only the last player without valid-input guarantee:** This would be unsafe if moves could continue after an earlier win. The optimization depends on the stated validity.
 - **Center move:** It increments its row, column, main diagonal, and anti-diagonal counters.
@@ -111,8 +111,8 @@ For the first example, the last move index is four, so the loop counts A's moves
 - **Odd final index:** The last mover is B; every loop index is odd and the parity expression returns `"B"`.
 - **Even final index:** The last mover is A and the parity expression returns `"A"`.
 - **No repeated coordinates:** This guarantee prevents one cell from inflating a line counter more than once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

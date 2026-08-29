@@ -69,7 +69,7 @@ Therefore the maximum achievable XOR has a one in every bit position that appear
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one bit position, the XOR of all final elements is one e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For `nums = [3, 2, 4, 6]`, the binary forms are `011`, `010`, `100`, and `110`. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual OR loop:** Initialize `ans = 0` and exe:** - **Manual OR loop:** Initialize `ans = 0` and execute `ans |= value` for every element. This is algorithmically identical and makes the identity value explicit; the exact solution uses functional reduction.
+- **Manual OR loop:** Initialize `ans = 0` and execute `ans |= value` for every element. This is algorithmically identical and makes the identity value explicit; the exact solution uses functional reduction.
 - **Count set bits at every position:** Determine whether each bit appears at least once, then assemble the result. This is correct but performs an extra fixed-bit loop and reimplements what OR already expresses.
 - **Compute the original XOR only:** Even occurrences cancel in the unmodified array, but the operation can clear selected occurrences and change parity. Original XOR can be smaller than the maximum.
 - **Try every possible `x`:** The space of masks is enormous and unnecessary. Per-bit analysis characterizes all reachable submasks directly.
@@ -125,8 +125,8 @@ For `nums = [3, 2, 4, 6]`, the binary forms are `011`, `010`, `100`, and `110`. 
 - **Nonempty-array guarantee:** `reduce(or_, nums)` without an initializer requires at least one element. The source constraint provides that guarantee.
 - **Input mutation:** Reduction reads the values and returns a new integer. It never applies the conceptual clearing operations to `nums` itself.
 - **Availability of helpers:** The exact source relies on the solution environment providing `reduce` and `or_`, conventionally from Python's `functools` and `operator` modules.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

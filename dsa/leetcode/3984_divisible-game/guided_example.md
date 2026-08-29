@@ -83,7 +83,7 @@ Therefore no absent divisor can beat candidate two, and `2` must be included eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An integer `k` that divides none of the input values makes e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,9 +135,9 @@ The outer candidate set automatically removes factors shared by several array va
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every `k` through `M`:** This can require :** - **Try every `k` through `M`:** This can require up to `10^6` Kadane scans. Prime-factor dominance reduces the candidates drastically.
-- **- **Try every divisor, including composites:** Com:** - **Try every divisor, including composites:** Composite candidates cannot beat their prime factors and cannot win an equal-score smallest-`k` tie.
-- **- **Use total signed sum instead of Kadane:** Alic:** - **Use total signed sum instead of Kadane:** Alice chooses any nonempty subarray, not necessarily the whole array. Negative regions may need to be excluded.
+- **Try every `k` through `M`:** This can require up to `10^6` Kadane scans. Prime-factor dominance reduces the candidates drastically.
+- **Try every divisor, including composites:** Composite candidates cannot beat their prime factors and cannot win an equal-score smallest-`k` tie.
+- **Use total signed sum instead of Kadane:** Alice chooses any nonempty subarray, not necessarily the whole array. Negative regions may need to be excluded.
 
 ---
 

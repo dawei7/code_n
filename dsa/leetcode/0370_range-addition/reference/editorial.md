@@ -131,7 +131,7 @@ An extension of this problem is to apply such updates on an array where all elem
 
 In this case, the second approach requires that the original configuration must be stored separately before applying the final transformation. This incurs an additional space complexity of $O(n)$.
 
-[@StefanPochmann](https://leetcode.com/StefanPochmann/) suggested another method (see comment section) which does not require extra space, but requires an extra linear pass over the entire array. The idea is to apply *reverse* $\text{partial}_{sum}$ operation on the array (for example, array $[2, 3, 10, 5]$ transforms to $[2, 1, 7, -5]$) as an initialization step and then proceed with the second method as usual.
+[@StefanPochmann](https://leetcode.com/StefanPochmann/) suggested another method (see comment section) which does not require extra space, but requires an extra linear pass over the entire array. The idea is to apply *reverse* $\text{partial}_{sum}$ operation on the array (for example, array `[2, 3, 10, 5]` transforms to $[2, 1, 7, -5]$) as an initialization step and then proceed with the second method as usual.
 
 ---
 

@@ -61,7 +61,7 @@ The key signal is not merely that values differ. A larger value such as $10$ is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If some $x$ has $x\bmod m>0$, select $x$ as dividend and $m$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ The code returns `(nums.count(mi) + 1) // 2`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate operation choices:** The branching sp:** - **Simulate operation choices:** The branching space is enormous and unnecessary once divisibility by the minimum is recognized.
+- **Simulate operation choices:** The branching space is enormous and unnecessary once divisibility by the minimum is recognized.
 - **Use the gcd of all values:** Gcd is related to reachable remainders, but the exact answer also depends on how many minimum copies exist.
 - **Different but divisible values:** They do not trigger answer one; only a nonzero remainder modulo the minimum does.
 - **One input element:** All values are divisible by the minimum and its count is one, so the formula returns one.
@@ -122,8 +122,8 @@ The code returns `(nums.count(mi) + 1) // 2`.
 - **Nonzero remainder found early:** `any` short-circuits, and no frequency count is needed.
 - **Generated zeros:** They remain in the final array and cannot be selected again.
 - **Input preservation:** No actual modulo operation is performed on `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

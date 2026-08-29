@@ -82,7 +82,7 @@ The total is $1+1+1+2+2=7$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the current character `c` is its $t$th occurrence in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ The counter approach naturally respects positions because every right endpoint i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerating all substrings:** There are $O(n^2:** - **Enumerating all substrings:** There are $O(n^2)$ endpoint pairs, and materializing their text can cost even more. The prefix count groups all matching starts for one right endpoint into one addition.
+- **Enumerating all substrings:** There are $O(n^2)$ endpoint pairs, and materializing their text can cost even more. The prefix count groups all matching starts for one right endpoint into one addition.
 - **Final frequency formula:** Count every character first, then sum $m(m+1)/2$ over frequencies. This is also $O(n)$ and correct; the exact source accumulates the same triangular numbers during the first pass.
 - **Set of substring strings:** This answers how many distinct textual values exist, not how many positional substrings satisfy the endpoint rule. Duplicate occurrences must remain separate.
 - **Checking only adjacent equal characters:** Valid endpoints can be arbitrarily far apart, and the middle characters are unrestricted.
@@ -133,8 +133,8 @@ The counter approach naturally respects positions because every right endpoint i
 - **Large answer:** The maximum can exceed 32-bit range. Python handles it directly; fixed-width implementations should use a 64-bit integer.
 - **Fixed lowercase alphabet:** This guarantee makes the counter's storage constant. A more general character domain would change only the space analysis, not the counting logic.
 - **No input mutation:** The string is read once from left to right, and all state resides in `cnt` and `ans`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

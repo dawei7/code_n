@@ -59,7 +59,7 @@ If `j == i`, it is already correct and no flip is needed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code begins `j = i` and scans left until `arr[j] == i + ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If `j == 0`, the target is already at the front and this flip is skipped.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary sorting:** It does not provide a lega:** - **Ordinary sorting:** It does not provide a legal flip sequence.
+- **Ordinary sorting:** It does not provide a legal flip sequence.
 - **Shortest-sequence BFS:** Exponential and unnecessary because any answer within the limit is accepted.
 - **Already sorted:** Every target is already final, so answer is empty.
 - **Target at front:** Skip the first flip.
@@ -110,8 +110,8 @@ If `j == 0`, the target is already at the front and this flip is skipped.
 - **Permutation guarantee:** Ensures every target is found exactly once.
 - **Input mutation:** The method sorts the actual array.
 - **Multiple answers:** Minimum flip count is not required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

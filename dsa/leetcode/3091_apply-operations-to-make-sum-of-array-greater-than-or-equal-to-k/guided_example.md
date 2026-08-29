@@ -51,7 +51,7 @@ Every duplication increases the number of elements by one, so after $b$ duplicat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every duplication increases the number of elements by one, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Duplicating that value $b$ times produces $b+1$ equal copies and total sum:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Square-root formula:** Check factor sizes arou:** - **Square-root formula:** Check factor sizes around $\sqrt{k}$ to obtain an $O(1)$ or small $O(\sqrt{k})$ implementation, depending on how candidates are generated. This is the idea in the manifest, not the loop in the source.
+- **Square-root formula:** Check factor sizes around $\sqrt{k}$ to obtain an $O(1)$ or small $O(\sqrt{k})$ implementation, depending on how candidates are generated. This is the idea in the manifest, not the loop in the source.
 - **Breadth-first search over arrays:** It models the operations literally but creates an enormous state space and ignores the factor reduction.
 - **Dynamic programming by reachable sum:** It is unnecessary because operation order can be normalized analytically.
 - **`k = 1`:** The initial array already has sum one. With `a = 0`, the formula gives `b = 0` and returns zero.
@@ -100,8 +100,8 @@ Duplicating that value $b$ times produces $b+1$ equal copies and total sum:
 - **Concentrating increments:** Increasing the value that is repeatedly duplicated dominates distributing the same increments after copies already exist.
 - **No final array allocation:** The factor pair proves a legal construction, so the code needs only operation counts.
 - **Manifest discrepancy:** Complexity and method should be read from the exact source: it is an exhaustive linear scan, not a direct balanced-factor calculation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the next value equals the previous value, so the boundary ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The problem requires exactly $k$ matching boundaries. Therefore, exactly
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear inverse-factorial precomputation:** Com:** - **Linear inverse-factorial precomputation:** Compute all factorials, find the inverse of the largest factorial with one modular exponentiation, and fill inverse factorials backward. This reduces startup to $O(M+\log P)$ while preserving $O(1)$ combination queries.
+- **Linear inverse-factorial precomputation:** Compute all factorials, find the inverse of the largest factorial with one modular exponentiation, and fill inverse factorials backward. This reduces startup to $O(M+\log P)$ while preserving $O(1)$ combination queries.
 - **Multiplicative binomial coefficient:** Computing $\binom{n-1}{k}$ with $\min(k,n-1-k)$ numerator factors avoids global tables and uses $O(\min(k,n-1-k)+\log P)$ time. That resembles the manifest bound but is not the protected implementation.
 - **Dynamic programming over positions and match counts:** A DP can track arrays ending with equal or changed boundaries, but it uses at least $O(nk)$ transitions without further algebra and obscures the direct combinatorial structure.
 - **Single allowed value:** If `m == 1`, only the all-ones array exists. It has $n-1$ matching boundaries. The formula returns one when `k == n - 1` because the exponent is zero, and zero otherwise because a positive power of `m - 1` is zero.
@@ -96,8 +96,8 @@ The problem requires exactly $k$ matching boundaries. Therefore, exactly
 - **No boundaries match:** When `k == 0`, choose the first value in $m$ ways and each later value in $m-1$ ways, yielding $m(m-1)^{n-1}$.
 - **Modulo division:** Dividing reduced factorial residues with `//` would be incorrect. Modular inverses are required because arithmetic is taking place in residues modulo a prime.
 - **Global startup timing:** Importing the module performs all precomputation even if `countGoodArrays` is called only once. Complexity discussions and performance investigations should not silently exclude that work.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

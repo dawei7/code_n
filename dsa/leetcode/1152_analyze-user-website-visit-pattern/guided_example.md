@@ -67,7 +67,7 @@ Users with fewer than three visits cannot produce a pattern. The `m > 2` check s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a user with `m` visits, an eligible pattern chooses thre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The set also handles repeated website values correctly. It distinguishes differe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count every generated triple directly:** This :** - **Count every generated triple directly:** This incorrectly lets one user increase a pattern's score several times. A per-user set is essential.
+- **Count every generated triple directly:** This incorrectly lets one user increase a pattern's score several times. A per-user set is essential.
 - **Require consecutive visits:** Patterns are subsequences, not contiguous windows. Three nested increasing indices correctly allow skipped visits.
 - **Sort each user independently:** It is valid but unnecessary after one global timestamp sort; the global restriction already preserves user-relative order.
 - **Track the best pattern while counting:** A final scan using a maximum-score and lexicographic comparison avoids sorting all `P` patterns and removes the `P log P` term.
@@ -118,8 +118,8 @@ The set also handles repeated website values correctly. It distinguishes differe
 - **At least one eligible user:** The contract guarantee ensures `cnt` is nonempty before the final indexing operation.
 - **Concrete return type:** The exact expression returns a tuple counter key. Converting it with `list(...)` would match the annotated return type literally.
 - **Equal timestamps:** Stable input order is not a substitute for strictly increasing time. Such records reveal the protected implementation's semantic gap.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

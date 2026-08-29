@@ -67,7 +67,7 @@ No customer grouping is involved. The same customer may order on several dates, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The requested result has one row for each unique `order_date... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Every emitted group has at least one row, so `COUNT(*)` is positive and division
 
 ## 6. Traps This Instance Exposes
 
-- **- **Average the Boolean condition:** In MySQL, `10:** - **Average the Boolean condition:** In MySQL, `100 * AVG(condition)` can express the same indicator ratio, but the explicit sum and count are easier to derive.
+- **Average the Boolean condition:** In MySQL, `100 * AVG(condition)` can express the same indicator ratio, but the explicit sum and count are easier to derive.
 - **Conditional `COUNT`:** Counting only immediate rows also works if null behavior is handled carefully.
 - **Correlated subquery per date:** Correct but needlessly repeats work.
 - **Group by customer:** Incorrect because the requested denominator is orders on each date.
@@ -124,8 +124,8 @@ Every emitted group has at least one row, so `COUNT(*)` is positive and division
 - **Ascending dates:** The explicit `ORDER BY` makes output deterministic by date.
 - **Nonempty groups:** `COUNT(*)` cannot be zero for a produced date.
 - **SQL execution plans:** Indexes may improve physical performance without changing the query's logical result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

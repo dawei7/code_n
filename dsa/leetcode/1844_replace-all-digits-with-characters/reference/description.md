@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** string `s` that has lowercase English letters in its **even** indices and digits in its **odd** indices.
 
-You must perform an operation `shift(c, x)`, where `c` is a character and `x` is a digit, that returns the $$x^{\text{th}}$$ character after `c`.
+You must perform an operation `shift(c, x)`, where `c` is a character and `x` is a digit, that returns the $x^{\text{th}}$ character after `c`.
 
 - For example, $shift('a', 5) = 'f'$ and $shift('x', 0) = 'x'$.
 

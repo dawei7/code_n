@@ -71,9 +71,7 @@ The allocated matrix has the final shape before traversal begins. Every cell wil
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The result is created with:
-
-`Array.from({ length: rowsCount... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +128,7 @@ This quotient-and-remainder decomposition is unique, so every source index maps 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate row movement:** Maintain a row and di:** - **Simulate row movement:** Maintain a row and direction, reversing at top and bottom; correct but more stateful than direct quotient/remainder mapping.
+- **Simulate row movement:** Maintain a row and direction, reversing at top and bottom; correct but more stateful than direct quotient/remainder mapping.
 - **Nested column loops:** Iterate columns and then rows in the appropriate direction, also $O(n)$ and easy to understand.
 - **Fill rows with one shared array:** Incorrect because all result rows would alias the same object.
 - **Invalid product:** Return an empty array without partial output.
@@ -140,8 +138,8 @@ This quotient-and-remainder decomposition is unique, so every source index maps 
 - **Arbitrary element values:** Mapping moves references or primitives unchanged; it does not inspect their contents.
 - **Input preservation:** The source array is read only.
 - **Normal-function receiver:** Prototype method syntax must bind `this` to the calling array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

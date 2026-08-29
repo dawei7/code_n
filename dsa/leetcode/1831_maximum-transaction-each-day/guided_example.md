@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `RANK() OVER (PARTITION BY DAY(day) ORDER BY amount DESC)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Within each partition, ordering amounts in descending order places the greatest 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full-date window partition:** `PARTITION BY DA:** - **Full-date window partition:** `PARTITION BY DATE(day)` preserves year, month, and day while ignoring time. It is the direct correction needed for the stated calendar-date contract.
+- **Full-date window partition:** `PARTITION BY DATE(day)` preserves year, month, and day while ignoring time. It is the direct correction needed for the stated calendar-date contract.
 - **Aggregate and join:** Compute each full date’s maximum amount, then join it back to `Transactions` on date and amount. This naturally retains all ties but requires an additional relational stage.
 - **Correlated `NOT EXISTS`:** Keep a transaction when no row on the same full date has a greater amount. It also avoids `MAX()` for the follow-up, though indexing strongly affects performance.
 - **Self anti-join:** Left join each row to a same-date row with a larger amount and retain rows with no match. This answers the follow-up without `MAX()` but needs careful date comparison and can create many intermediate pairs.
@@ -99,8 +99,8 @@ Within each partition, ordering amounts in descending order places the greatest 
 - **Different times on the same calendar date:** They should be grouped together; both `DAY(day)` and `DATE(day)` do that, but only `DATE(day)` also separates other months and years.
 - **Output order:** `ORDER BY 1` refers to `transaction_id` in this one-column projection and sorts ascending by default, though spelling out the column name is more explicit for readers.
 - **Null timestamps:** The local schema does not state a null rule. If nulls were possible, their partition behavior would require a separate contract decision rather than an assumption.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

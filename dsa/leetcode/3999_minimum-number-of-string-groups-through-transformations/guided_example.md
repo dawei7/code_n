@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the characters at indices `0, 2, 4, ...` into its even-ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The operation cyclically rotates these two sequences independently and then plac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate and sort all rotations:** This is eas:** - **Generate and sort all rotations:** This is easy to describe but can create `L` strings of length `L` for one sequence, taking `O(L^2)` time and space. Candidate elimination finds the canonical rotation in linear time.
+- **Generate and sort all rotations:** This is easy to describe but can create `L` strings of length `L` for one sequence, taking `O(L^2)` time and space. Candidate elimination finds the canonical rotation in linear time.
 - **Compare every pair of words:** Pairwise equivalence tests can require quadratic work in the number of words. Hashing one canonical signature per word groups all equivalent words at once.
 - **Polynomial rolling hashes for rotations:** Hashes can compare candidate substrings quickly, but collision handling and binary searches make the method more complex. The exact source returns collision-free canonical strings.
 - **Sort characters instead of rotating them:** Cyclic shifts preserve circular order, not merely character counts. `"abc"` and `"acb"` have the same multiset but are not rotations.
@@ -100,8 +100,8 @@ The operation cyclically rotates these two sequences independently and then plac
 - **Right shifts versus left shifts:** Repeated right shifts traverse the full rotation cycle, so canonicalizing over all starting positions matches the allowed operation.
 - **Set output:** The task asks only for the group count, not the membership lists. Storing signatures is sufficient; the source does not retain arrays of words per class.
 - **Missing `List` import:** Complexity and grouping behavior assume the class can be defined. The exact source requires the environment to supply `List` or a separate import correction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -42,7 +42,7 @@ A single block is valid if its **XOR** equals `target1`.
 
 - **Output:** 1
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - The XOR of `[2, 3]` is 1, which matches `target1`.
 
@@ -58,13 +58,13 @@ A single block is valid if its **XOR** equals `target1`.
 
 - **Explanation:** 
 
-- **​​​​​​​**The XOR of `[1, 0, 0]` is 1, which matches `target1`.
+- ****The XOR of `[1, 0, 0]` is 1, which matches `target1`.
 
 - The XOR of `[1]` and `[0, 0]` are 1 and 0, matching `target1` and `target2`.
 
 - The XOR of `[1, 0]` and `[0]` are 1 and 0, matching `target1` and `target2`.
 
-- Thus, the answer is 3.​​​​​​​
+- Thus, the answer is 3.
 
 #### Example 3
 

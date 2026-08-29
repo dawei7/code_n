@@ -76,9 +76,7 @@ Frequency dictionaries are necessary because the same value may occur several ti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of `check(g)`:
-
-- `s1=0` and `cnt1` is empty fo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +115,7 @@ Therefore, when the larger-sum side has both dimensions greater than one, the so
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rotate four times as in the editorial:** It al:** - **Rotate four times as in the editorial:** It also covers cut orientation and deletion side. The protected source checks both larger-side branches directly and needs only one transpose.
+- **Rotate four times as in the editorial:** It also covers cut orientation and deletion side. The protected source checks both larger-side branches directly and needs only one transpose.
 - **Use only a set:** Counts are needed while rows move between sides; a value may remain below after one copy moves above.
 - **Ignore connectivity:** This falsely accepts deleting an interior cell from a one-row or one-column section.
 - **Run graph connectivity after every candidate deletion:** Correct but far too expensive. Rectangle geometry reduces connectivity to a dimension/endpoint rule.
@@ -130,8 +128,8 @@ Therefore, when the larger-sum side has both dimensions greater than one, the so
 - **Single-column grid:** Endpoint rules apply directly to horizontal sections.
 - **Duplicate values:** Side-specific counts ensure presence is tracked after row transfers.
 - **Positive values:** They guarantee the larger side and exact positive difference determine the only possible discount.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

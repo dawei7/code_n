@@ -57,7 +57,7 @@ The current last digit is `x % 10`. The constraint guarantees it is nonzero, alt
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt[d]` is the number of already processed values whose fir... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The actual earlier number values do not matter after their first digits are know
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every index pair:** Directly follows the:** - **Check every index pair:** Directly follows the definition but costs $O(n^2)$.
+- **Check every index pair:** Directly follows the definition but costs $O(n^2)$.
 - **Arithmetic first-digit extraction:** Repeatedly divide by ten instead of creating a string; useful for generalized large values.
 - **Precompute a 10-by-10 coprime table:** Replaces repeated gcd calls with constant table lookups.
 - **First digit one:** Compatible with every legal nonzero last digit.
@@ -108,8 +108,8 @@ The actual earlier number values do not matter after their first digits are know
 - **Repeated numbers:** Allowed; indices remain distinct and bucket counts handle multiplicity.
 - **Update after query:** Prevents pairing an index with itself.
 - **Maximum pair count:** Python integers safely store up to $n(n-1)/2$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -2,9 +2,9 @@
 
 You are given an array `tasks` where $\text{tasks}[i] = [\text{actual}_{i}, \text{minimum}_{i}]$:
 
-- $\text{actual}_{i}$ is the actual amount of energy you **spend to finish** the $$i^{\text{th}}$$ task.
+- $\text{actual}_{i}$ is the actual amount of energy you **spend to finish** the $i^{\text{th}}$ task.
 
-- $\text{minimum}_{i}$ is the minimum amount of energy you **require to begin** the $$i^{\text{th}}$$ task.
+- $\text{minimum}_{i}$ is the minimum amount of energy you **require to begin** the $i^{\text{th}}$ task.
 
 For example, if the task is `[10, 12]` and your current energy is `11`, you cannot start this task. However, if your current energy is `13`, you can complete this task, and your energy will be `3` after finishing it.
 
@@ -61,4 +61,4 @@ Notice that even though we have leftover energy, starting with 7 energy does not
 
 - $1 \le \text{tasks.length} \le 10^{5}$
 
-- $1 \le actual_​i \le \text{minimum}_{i} \le 10^{4}$
+- $1 \le actual_i \le \text{minimum}_{i} \le 10^{4}$

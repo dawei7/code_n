@@ -67,7 +67,7 @@ No separate time is charged for pressing a key. The contract defines cost only a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The assignment `ans = i = 0` initializes both the accumulate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ There is only one dimension and no shorter route around the row, so the absolute
 
 ## 6. Traps This Instance Exposes
 
-- **- **Call `keyboard.index(c)` for every character:*:** - **Call `keyboard.index(c)` for every character:** This is correct and each scan is bounded by 26, so it is still `O(m)` under the fixed alphabet. The position map avoids repeated scans and makes the data flow explicit.
+- **Call `keyboard.index(c)` for every character:** This is correct and each scan is bounded by 26, so it is still `O(m)` under the fixed alphabet. The position map avoids repeated scans and makes the data flow explicit.
 - **Use a 26-element integer array:** Store positions at `ord(c) - ord("a")`. This has the same bounds and may have lower lookup overhead than a dictionary.
 - **Simulate one adjacent step at a time:** It reproduces the distance but performs unnecessary per-position updates. Absolute difference computes the same cost directly.
 - **Finger begins at index zero:** It does not begin at the position of `a` unless `a` happens to be the first keyboard character.
@@ -114,8 +114,8 @@ There is only one dimension and no shorter route around the row, so the absolute
 - **Arbitrary keyboard permutation:** The dictionary captures the supplied layout; no alphabetical-order assumption is made.
 - **Every word key exists:** The permutation and lowercase-word guarantees make dictionary lookup safe.
 - **Maximum word length:** The algorithm retains constant state and performs one arithmetic update per character.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -85,9 +85,7 @@ The return expression sums `reward1` for the first group and `reward2` for the s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code creates `range(n)` and sorts those indices using
-
-`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +134,7 @@ If differences tie, swapping tied indices changes the score by zero. Any orderin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap of size $k$:** Scan all differences a:** - **Min-heap of size $k$:** Scan all differences and retain the $k$ largest in $O(n\log k)$ time and $O(k)$ space, then add them to the second-mouse baseline.
+- **Min-heap of size $k$:** Scan all differences and retain the $k$ largest in $O(n\log k)$ time and $O(k)$ space, then add them to the second-mouse baseline.
 - **Quickselect:** Partition around the $k$th largest difference for expected $O(n)$ time, though implementation and worst-case guarantees are more involved.
 - **Dynamic programming:** A state by prefix and number assigned to mouse one works in $O(nk)$ time, but ignores the independent additive structure.
 - **Sort rewards independently:** This is invalid because rewards at the same index describe the same cheese and must remain paired.
@@ -146,8 +144,8 @@ If differences tie, swapping tied indices changes the score by zero. Any orderin
 - **Tied differences:** Any tied ownership choice gives the same total.
 - **Large raw reward versus difference:** Selection must use comparative gain, not `reward1[i]` alone.
 - **Input preservation:** Sorting a separate index list leaves both reward arrays in their original order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

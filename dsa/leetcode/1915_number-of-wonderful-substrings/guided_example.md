@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Update a prefix mask with XOR.** `st` starts at zero for t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Array of 1024 frequencies:** Direct mask index:** - **Array of 1024 frequencies:** Direct mask indexing avoids dictionary overhead and makes constant bounded storage explicit.
+- **Array of 1024 frequencies:** Direct mask indexing avoids dictionary overhead and makes constant bounded storage explicit.
 - **Count full frequency vectors:** Much larger states are unnecessary because only parity matters.
 - **Enumerate substrings:** Updating counts for all $O(N^2)$ substrings is too slow; prefix-mask pairs aggregate them by state.
 - **Single character:** Current mask differs from the empty prefix by one bit, so the one substring is counted.
@@ -96,8 +96,8 @@ We maintain the core conceptual parameters and state variables:
 - **Two odd letters:** Prefix masks differ in two bits and are intentionally absent from both queried categories.
 - **Alphabet restriction:** Ten neighbor checks rely on letters `a` through `j`. A larger alphabet changes mask width and constant factors.
 - **Update order:** Incrementing `cnt[st]` before queries would count an empty substring at every position; the source correctly increments afterward.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

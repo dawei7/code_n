@@ -61,7 +61,7 @@ An equation always has length four. The code reads its variables from `e[0]` and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Lowercase letters are converted to indices zero through twen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Path compression changes only the shape of the internal forest. It never changes
 
 ## 6. Traps This Instance Exposes
 
-- **- **Equality graph plus DFS:** Add undirected edge:** - **Equality graph plus DFS:** Add undirected edges for `==` equations, label connected components, and test inequalities afterward. It is equally sound but stores an adjacency structure that can include many repeated edges.
+- **Equality graph plus DFS:** Add undirected edges for `==` equations, label connected components, and test inequalities afterward. It is equally sound but stores an adjacency structure that can include many repeated edges.
 - **Repeated reachability search:** For every inequality, search an equality graph to see whether its endpoints connect. This repeats component work that union-find performs once.
 - **Check equations in one input-order pass:** This is unsafe because a later equality may create a contradiction with an earlier inequality. Equalities must be finalized first.
 - **Union individual nodes instead of roots:** Assigning `p[a] = b` without `find` can break the representation of existing components. Root-to-root linking preserves equivalence classes.
@@ -116,8 +116,8 @@ Path compression changes only the shape of the internal forest. It never changes
 - **No inequalities:** Equalities alone are always satisfiable by assigning one integer per component, so the method returns `true`.
 - **No equalities:** Every letter remains separate; only a self-inequality can be contradictory.
 - **Representative identity:** The numeric root chosen for a component is an implementation detail. Only whether roots are equal matters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

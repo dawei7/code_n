@@ -26,20 +26,20 @@ The leading character is `#`; the remaining six characters encode the red, green
 
 #### Example 1
 
-- **Input:** $color = "#09f166"$
+- **Input:** `color = "#09f166"`
 - **Output:** `"#11ee66"`
 - **Explanation:** The similarity is -(0x09 - 0x11)^2 -(0xf1 - 0xee)^2 - (0x66 - 0x66)^2 = -64 -9 -0 = -73.
 This is the highest among any shorthand color.
 
 #### Example 2
 
-- **Input:** $color = "#4e3fe1"$
+- **Input:** `color = "#4e3fe1"`
 - **Output:** `"#5544dd"`
 
 ### 4. Constraints
 
 - $\text{color.length} = 7$
 
-- $\text{color}[0] = '#'$
+- `color[0] = '#'`
 
 - $\text{color}[i]$ is either digit or character in the range `['a', 'f']` for `i > 0`.

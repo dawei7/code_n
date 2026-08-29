@@ -118,25 +118,20 @@ Each problem is stored once:
 ```text
 dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
-  doc.md                    # legacy document or section-mode compatibility anchor
-  template.<ext>            # exact LeetCode code editor starter template (e.g. template.py)
-  reference/                # optional section-authored Reference document
-    follow_up.md            # optional source-native section
-  source_fidelity.json      # optional reviewed structure and factual evidence
+  template.<ext>            # exact LeetCode code editor starter template (e.g. template.py, template.sql)
+  solution.<ext>            # primary-language canonical solution (solution.py, solution.sql, solution.js, solution.sh)
+  approach.md               # canonical approach and complexity explanation
+  submission.json           # remote verification submission evidence (if present)
   cases.json
-  benchmark.json             # normal complexity-verification path
+  benchmark.json            # normal complexity-verification path
   complexity_certificate.json # only when legal scaling is inapplicable
-  guided_example.md           # optional code-free representative walkthrough
-  solution_variants.json     # required branch manifest; Optimal is default
+  guided_example.md         # optional code-free representative walkthrough
+  reference/                # section-authored Reference document
+    description.md
+    contract.md
+    examples.md
+    constraints.md
   assets/                   # optional package-local doc assets
-  variants/
-    optimal/
-      approach.md
-        solutions/
-          solution.<ext>         # primary-language solution (solution.py, solution.js, solution.sql, solution.sh)
-    simplified/                  # optional, legacy fallback
-      submission.json
-      solutions/
 ```
 
 - `server/app/challenge_packages.py` is the path API for these packages.
@@ -160,14 +155,6 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   Only after LeetCode reports Accepted may the staged source replace the
   canonical native file and the manifest be updated with that submission's id
   and timestamp.
-- During canonical migration, follow the early-verification authoring order in
-    simplified/              # optional; authored in a later reviewed pass
-      approach.md
-      submission.json
-      solutions/
-```
-
-- `server/app/challenge_packages.py` is the path API for these packages.
 - Guided examples are package-authored Markdown lessons served by
   `/api/docs/by-id/{challenge_id}/guided-example`. Each lesson works through
   one representative input step by step using precise prose, mathematical

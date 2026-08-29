@@ -59,7 +59,7 @@ The query calculates updated scores as expressions. It does not update either so
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `TeamPoints JOIN P USING (team_id)` pairs every team's name ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Window ranking sees the complete joined result because there is no `PARTITION BY
 
 ## 6. Traps This Instance Exposes
 
-- **- **ROW_NUMBER instead of RANK:** Unique names ful:** - **ROW_NUMBER instead of RANK:** Unique names fully break point ties, so `ROW_NUMBER` with the same two ordering keys produces identical positions.
+- **ROW_NUMBER instead of RANK:** Unique names fully break point ties, so `ROW_NUMBER` with the same two ordering keys produces identical positions.
 - **Two ranking CTEs:** Compute original and updated ranks in separate CTEs and join them by team. This is more verbose but can make the before-and-after columns visible for debugging.
 - **Correlated counting:** A rank can be computed by counting teams ordered ahead of the current team, but doing so for every team can become quadratic without sophisticated optimization.
 - **Unique change rows:** Under the schema, `SUM(points_change)` equals the sole change value; grouping remains harmless.
@@ -116,8 +116,8 @@ Window ranking sees the complete joined result because there is no `PARTITION BY
 - **No persistent update:** The expression `points + delta` affects ranking computation only and leaves both tables unchanged.
 - **Any output order:** The window order is not a final output-order guarantee, but the contract explicitly allows arbitrary result order.
 - **Unique team names:** This guarantee prevents complete ordering-key ties, so `RANK` has no gaps in the returned positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

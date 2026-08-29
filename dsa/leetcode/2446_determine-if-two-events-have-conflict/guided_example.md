@@ -71,7 +71,7 @@ Using `>=` or `<=` in the disjoint test would incorrectly reject endpoint-only i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Event endpoints are inclusive.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ If leading zeros were omitted, string ordering could fail, as `"9:00"` compares 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Later-start versus earlier-end formula:** Retu:** - **Later-start versus earlier-end formula:** Return `max(event1[0],event2[0]) <= min(event1[1],event2[1])`. It is equally concise and makes the inclusive overlap point explicit.
+- **Later-start versus earlier-end formula:** Return `max(event1[0],event2[0]) <= min(event1[1],event2[1])`. It is equally concise and makes the inclusive overlap point explicit.
 - **Convert to minutes:** Parse hours and minutes into `60*hour+minute` and compare numeric intervals. This is robust for other formatting but unnecessary for fixed zero-padded strings.
 - **Enumerate minutes:** Mark every minute covered by each event and check intersection. It wastes time and obscures that interval overlap needs only endpoint comparisons.
 - **Touching endpoints:** Equality is a conflict because intervals are inclusive; strict disjoint comparisons preserve it.
@@ -129,8 +129,8 @@ If leading zeros were omitted, string ordering could fail, as `"9:00"` compares 
 - **Same-day guarantee:** No interval wraps across midnight, so each start is no later than its own end and ordinary ordering suffices.
 - **Formatting guarantee:** Direct string comparison relies on two-digit hours and minutes with the colon in a fixed location.
 - **One-minute boundary meeting:** If one event ends exactly when the other starts, both disjoint tests are false. That shared timestamp correctly makes the inclusive events conflict.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

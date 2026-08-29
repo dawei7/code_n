@@ -51,7 +51,7 @@ Because the address itself ends where its domain ends, filtering the complete em
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because the address itself ends where its domain ends, filte... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because the address itself ends where its domain ends, filtering the complete em
 
 ## 6. Traps This Instance Exposes
 
-- **- **CTE for extracted domains:** Compute `email_do:** - **CTE for extracted domains:** Compute `email_domain` once, filter it, then group. This can make the operation order clearer but is not required.
+- **CTE for extracted domains:** Compute `email_domain` once, filter it, then group. This can make the operation order clearer but is not required.
 - **`RIGHT(email,4)='.com'`:** It expresses the suffix test directly; `LIKE` is concise and equivalent for this literal suffix.
 - **Filter after extraction:** It may be clearer semantically, especially if malformed email input is possible.
 - **Multiple users on one domain:** They form one row with count equal to their number.
@@ -103,8 +103,8 @@ Because the address itself ends where its domain ends, filtering the complete em
 - **Collation and uniqueness:** Domains differing only by case could group together under a case-insensitive collation, but the source guarantee that emails contain no uppercase letters removes that ambiguity.
 - **Filter-before-group benefit:** Non-.com rows are discarded before aggregation, so they consume no domain-group state and cannot affect counts for qualifying domains.
 - **Negative substring index:** The `-1` argument selects the text after the final at-sign, which is the domain portion under the valid-email guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

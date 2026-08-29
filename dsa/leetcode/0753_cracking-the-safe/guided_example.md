@@ -61,7 +61,7 @@ For each node, appending any digit from zero through `k - 1` creates one outgoin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Treat every length-`n - 1` digit sequence as a graph node.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ which discards the oldest digit and retains the newest `n - 1` digits. For `n = 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Concatenate every password:** It is easy but p:** - **Concatenate every password:** It is easy but produces `n * k^n` characters rather than the minimum.
-- **- **Backtracking over output strings:** Searching :** - **Backtracking over output strings:** Searching arrangements directly creates enormous repeated work. Eulerian structure gives a constructive solution.
-- **- **Append labels before recursion:** This loses H:** - **Append labels before recursion:** This loses Hierholzer’s cycle-splicing guarantee. Edge labels belong in postorder.
+- **Concatenate every password:** It is easy but produces `n * k^n` characters rather than the minimum.
+- **Backtracking over output strings:** Searching arrangements directly creates enormous repeated work. Eulerian structure gives a constructive solution.
+- **Append labels before recursion:** This loses Hierholzer’s cycle-splicing guarantee. Edge labels belong in postorder.
 
 ---
 

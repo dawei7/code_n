@@ -40,7 +40,7 @@ Return the total number of commas in the formatted representations of all intege
 
 - **Explanation:** 
 
-**​​​​​​​**All numbers from 1 to 998 have fewer than four digits. Therefore, no commas are used.
+****All numbers from 1 to 998 have fewer than four digits. Therefore, no commas are used.
 
 ### 4. Constraints
 

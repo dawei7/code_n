@@ -51,7 +51,7 @@ There are exactly two possible color patterns:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are exactly two possible color patterns:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ There are exactly two possible color patterns:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form feasibility test:** Use $p^2$ and :** - **Closed-form feasibility test:** Use $p^2$ and $q(q+1)$ to test a proposed height for both starting colors. This matches the mathematical resource formulas but still needs a way to find the largest feasible $h$.
+- **Closed-form feasibility test:** Use $p^2$ and $q(q+1)$ to test a proposed height for both starting colors. This matches the mathematical resource formulas but still needs a way to find the largest feasible $h$.
 - **Binary search on height:** Feasibility is monotone: if height $h$ is possible for a fixed start, every smaller height is possible. Binary search with the closed-form tests runs in $O(\log(red+blue))$ time and $O(1)$ space, which is not better than a direct inverse formula but avoids row simulation.
 - **Direct inverse-square formulas:** Candidate bounds can be derived with integer square roots for odd- and even-row totals, yielding true $O(1)$ arithmetic under fixed-width integers. Care is needed with floors and with reconciling the two colors.
 - **Try only the more numerous color first:** This is unsafe. Row sizes differ by parity, and the scarcer color may be better suited to the smaller odd or even total for the eventual height. Both starts must be evaluated.
@@ -100,8 +100,8 @@ There are exactly two possible color patterns:
 - **Fresh counts per start:** Reusing the mutated `c` from the first simulation would undercount the second. Creating a new list inside the loop prevents that error.
 - **Integer arithmetic:** Every subtraction and comparison is exact. No floating-point square-root rounding enters the simulated source.
 - **Manifest mismatch:** The exact implementation is iterative simulation, not a closed-form solution. Its $O(1)$ time claim is defensible only because the input values are capped at $100$, not as a parameterized asymptotic bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

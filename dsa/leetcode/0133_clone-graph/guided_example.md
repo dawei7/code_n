@@ -70,7 +70,7 @@ It is safe to return a clone before all its neighbors have been filled. Graph no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested function `dfs(node)` first handles `null`, which ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ It also gives independence. Every mapped value was produced by a `Node` construc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first cloning:** Create the starting c:** - **Breadth-first cloning:** Create the starting clone, then use a queue to discover originals and connect their clones. It avoids recursion depth while using the same original-to-clone map.
+- **Breadth-first cloning:** Create the starting clone, then use a queue to discover originals and connect their clones. It avoids recursion depth while using the same original-to-clone map.
 - **Iterative depth-first cloning:** A manual stack follows depth-first order without relying on Python’s call stack. Its asymptotic bounds are unchanged.
 - **Two-pass traversal:** First discover every vertex and create every clone, then traverse edges to fill neighbor lists. It can make the phases explicit but requires revisiting adjacency lists.
 - **Map by node value:** Unique values make this possible under the stated contract, but mapping by original object is more robust and directly preserves identity even if value uniqueness changes.
@@ -127,8 +127,8 @@ It also gives independence. Every mapped value was produced by a `Node` construc
 - **Hashability:** Original nodes are dictionary keys. Ordinary Python objects are identity-hashable unless their class overrides equality without a compatible hash.
 - **Runtime dependency:** The selected file imports `Optional` but calls `defaultdict` without importing it. A standalone execution needs `from collections import defaultdict`; a plain `{}` would also provide every operation this code uses.
 - **Platform-provided type:** `Node` appears only inside a triple-quoted template block because the platform supplies it. The user solution should not recreate it in the native LeetCode environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

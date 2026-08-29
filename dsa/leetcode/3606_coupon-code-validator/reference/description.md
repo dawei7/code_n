@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The $$i^{\text{th}}$$coupon has:
+You are given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The $i^{\text{th}}$coupon has:
 
 - $\text{code}[i]$: a **string** representing the coupon identifier.
 

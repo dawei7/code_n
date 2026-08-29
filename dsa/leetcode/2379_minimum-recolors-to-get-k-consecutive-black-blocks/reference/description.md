@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** string `blocks` of length `n`, where $\text{blocks}[i]$ is either `'W'` or `'B'`, representing the color of the $$i^{\text{th}}$$ block. The characters `'W'` and `'B'` denote the colors white and black, respectively.
+You are given a **0-indexed** string `blocks` of length `n`, where $\text{blocks}[i]$ is either `'W'` or `'B'`, representing the color of the $i^{\text{th}}$ block. The characters `'W'` and `'B'` denote the colors white and black, respectively.
 
 You are also given an integer `k`, which is the desired number of **consecutive** black blocks.
 

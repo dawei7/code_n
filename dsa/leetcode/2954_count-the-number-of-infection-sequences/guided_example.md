@@ -68,7 +68,7 @@ Different left/right choice sequences produce different infection orders, and ev
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An internal gap has infected people on both ends.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ The source starts with `fac[S]` and multiplies by the modular inverse of `fac[x]
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate infection choices:** Enumerating sequ:** - **Simulate infection choices:** Enumerating sequences is exponential and repeats equivalent substructure.
+- **Simulate infection choices:** Enumerating sequences is exponential and repeats equivalent substructure.
 - **Dynamic programming over infected sets:** State space is exponential in $n$.
 - **Leading gap:** Only infection from right to left is legal; do not multiply it by a power of two.
 - **Trailing gap:** Only left-to-right infection is legal.
@@ -125,8 +125,8 @@ The source starts with `fac[S]` and multiplies by the modular inverse of `fac[x]
 - **Factorial bound:** The fixed table size is safe only because $n\le100000$.
 - **Modulo inverses:** Ordinary integer division after modular reduction would be invalid; Fermat inverses are required.
 - **Why interleavings remain legal:** Taking the next scheduled infection from any gap preserves that gap's frontier order, so the chosen person is still adjacent to an already infected boundary or predecessor.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

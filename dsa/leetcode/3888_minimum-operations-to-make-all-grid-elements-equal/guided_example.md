@@ -90,7 +90,7 @@ This is stronger than saying the greedy choice “looks locally best.” There i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside `check(target)`, cells are visited from top to bottom... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -142,7 +142,7 @@ Later prefix accumulation spreads that value over exactly rows $i$ through $i+k-
 
 ## 6. Traps This Instance Exposes
 
-- **- **Derive the feasible target instead of guessing:** - **Derive the feasible target instead of guessing two values:** The fixed-target greedy decisions are affine expressions in $T$, so a complete solution must use the boundary equations and nonnegativity conditions to determine which target values are feasible; merely trying $M$ and $M+1$ is insufficient.
+- **Derive the feasible target instead of guessing two values:** The fixed-target greedy decisions are affine expressions in $T$, so a complete solution must use the boundary equations and nonnegativity conditions to determine which target values are feasible; merely trying $M$ and $M+1$ is insufficient.
 - **Full difference matrix versus rolling coverage:** The source favors a straightforward $(m+2)\times(n+2)$ matrix. A carefully designed rolling structure could reduce storage, but its expiration rules must preserve the same two-dimensional rectangle contributions.
 - **Single-cell squares:** When $k=1$, every cell can be raised independently. Target $M$ is always feasible and is optimal, so the first source check succeeds.
 - **One square covers the whole grid:** When $k=m=n$, every operation changes every cell equally. Equality is possible only if all cells were equal already; otherwise their pairwise differences never change.
@@ -152,8 +152,8 @@ Later prefix accumulation spreads that value over exactly rows $i$ through $i+k-
 - **Repeated selection of one square:** A forced count `needed` may be much larger than one. Storing it as a single rectangle update is exactly equivalent to applying that square `needed` times.
 - **Minimum-operation interpretation:** For any reachable target, total operations are fixed by the total-sum equation. The first reachable target is therefore optimal, but a correct search still has to find that first reachable target.
 - **Source-status warning:** On `[[2,0,2],[2,0,2]]` with `k=2`, the checked-in method returns `-1` even though four operations work. Any caller requiring full-contract correctness must treat this implementation as defective until its target-selection logic is repaired.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

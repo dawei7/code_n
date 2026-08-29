@@ -69,7 +69,7 @@ The input contains only lowercase English letters, so every non-vowel is a conso
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `a` stores the greatest vowel frequency seen so far, and `b`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The same applies to `b` when every character is a vowel. No separate boolean or 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a 26-element frequency array:** This avoid:** - **Use a 26-element frequency array:** This avoids hashing and also gives `O(n)` time and fixed space.
+- **Use a 26-element frequency array:** This avoids hashing and also gives `O(n)` time and fixed space.
 - **Sort the characters:** Frequencies can be grouped after sorting, but `O(n log n)` work is unnecessary.
 - **Track only the globally most frequent letter:** The answer requires one maximum from each category, not merely the overall maximum.
 - **Sum all vowel and consonant counts:** The task asks for maximum individual-letter frequencies, not category totals.
@@ -119,8 +119,8 @@ The same applies to `b` when every character is a vowel. No separate boolean or 
 - **Lowercase guarantee:** The membership string lists every vowel relevant to the input domain.
 - **Counter order:** Explicit maximum operations make iteration order irrelevant.
 - **Fixed alphabet complexity:** Storing up to 26 counts is conventionally `O(1)` rather than `O(n)`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

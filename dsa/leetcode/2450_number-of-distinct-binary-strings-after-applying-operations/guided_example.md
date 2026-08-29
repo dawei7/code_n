@@ -67,7 +67,7 @@ This count does not depend on the original characters of `s`. XORing a fixed ori
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Assume two different operation-choice vectors produced the s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For $k=n$, there is one window covering the entire string. Choosing it zero or o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-argument modular power:** Use `pow(2,w,1:** - **Three-argument modular power:** Use `pow(2,w,10**9+7)` to avoid materializing $2^w$. This preserves the formula while achieving logarithmic exponentiation steps and bounded intermediates.
+- **Three-argument modular power:** Use `pow(2,w,10**9+7)` to avoid materializing $2^w$. This preserves the formula while achieving logarithmic exponentiation steps and bounded intermediates.
 - **Enumerate operation subsets:** Generating all $2^w$ masks or strings is exponential and unnecessary once independence is proved.
 - **Linear-algebra rank calculation:** Build all window masks and compute rank over $\mathrm{GF}(2)$. It would rediscover rank $w$ with much more work.
 - **$k=n$:** There is one independent window and exactly two distinct outcomes.
@@ -120,8 +120,8 @@ For $k=n$, there is one window covering the entire string. Choosing it zero or o
 - **Overlapping windows:** Overlap does not create dependence; the leftmost-selected-window proof still finds a uniquely flipped first position.
 - **Modulo requirement:** The combinatorial count is $2^w$, and only its reported value is reduced modulo $10^9+7$.
 - **Metadata mismatch:** The formula is correct, but the two-argument `pow` creates a $\Theta(w)$-bit integer instead of performing bounded modular exponentiation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** array `heights` of positive integers, where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ building.
+You are given a **0-indexed** array `heights` of positive integers, where $\text{heights}[i]$ represents the height of the $i^{\text{th}}$ building.
 
 The objective is to compute `[2, 5, -1, 5, 2]` from `{"heights": [6, 4, 8, 5, 2, 7], "queries": [[0, 1], [0, 3], [2, 4], [3, 4], [2, 2]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,7 +65,7 @@ The tree therefore represents exactly the candidate suffix strictly to the right
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts query indices by descending `queries[i][1]`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -74,7 +74,7 @@ The tree therefore represents exactly the candidate suffix strictly to the right
 
 A Fenwick prefix query naturally aggregates small coordinates, while we need heights strictly greater than a threshold. The source sorts the unique heights into `s` and reverses their rank.
 
-For a building of height $h$ at sorted position $p=\texttt{bisect_left}(s,h)$, update coordinate is
+For a building of height $h$ at sorted position $p=\texttt{bisect\_left}(s,h)$, update coordinate is
 
 `n - p + 1`.
 
@@ -110,7 +110,7 @@ Using $n$ rather than the number of unique heights leaves harmless gaps in coord
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap sweep:** Group deferred queries at th:** - **Min-heap sweep:** Group deferred queries at their right endpoint and sweep left to right by required height. This matches the manifest summary but is not the checked-in source.
+- **Min-heap sweep:** Group deferred queries at their right endpoint and sweep left to right by required height. This matches the manifest summary but is not the checked-in source.
 - **Monotonic stack plus binary search:** Another editorial method answers height-threshold queries over a right-side skyline.
 - **Brute force per query:** Scanning from $r$ rightward costs $O(NQ)$ in the worst case.
 - **Same starting building:** Return that index without consulting heights or the tree.
@@ -120,8 +120,8 @@ Using $n$ rather than the number of unique heights leaves harmless gaps in coord
 - **Duplicate heights:** Coordinate compression groups them, and strict query boundaries exclude the entire equal-height group.
 - **Query mutation:** Replacing endpoints with sorted order changes the caller's nested lists, an observable side effect unrelated to the correct returned answers.
 - **Manifest mismatch:** The implementation is an offline Fenwick minimum sweep, not a min-heap sweep, and its sorting plus tree operations introduce logarithmic $N$ factors.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

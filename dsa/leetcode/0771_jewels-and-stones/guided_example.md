@@ -61,7 +61,7 @@ If three owned stones have jewel types, all three must count even if some share 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator tests every character `c` in `stones` independ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ The generator is lazy, so it does not allocate a list of Boolean values.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested scans:** Check each stone against every:** - **Nested scans:** Check each stone against every jewel character. This costs `O(jslen)` and repeats work.
-- **- **Frequency counter for stones:** Count every st:** - **Frequency counter for stones:** Count every stone type, then sum jewel frequencies. It is correct but stores more information than necessary.
-- **- **Convert stones to a set:** This is incorrect b:** - **Convert stones to a set:** This is incorrect because repeated physical stones must each count.
+- **Nested scans:** Check each stone against every jewel character. This costs `O(jslen)` and repeats work.
+- **Frequency counter for stones:** Count every stone type, then sum jewel frequencies. It is correct but stores more information than necessary.
+- **Convert stones to a set:** This is incorrect because repeated physical stones must each count.
 
 ---
 

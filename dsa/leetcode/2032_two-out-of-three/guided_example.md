@@ -65,7 +65,7 @@ The list comprehension retains `i` only when that count is greater than one. “
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every input value is between one and one hundred inclusive.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ No later `distinct` operation is necessary. Uniqueness comes from both the singl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Union-set iteration:** Iterate over `s1 | s2 |:** - **Union-set iteration:** Iterate over `s1 | s2 | s3` and apply the same membership sum; useful when the value domain is not bounded.
+- **Union-set iteration:** Iterate over `s1 | s2 | s3` and apply the same membership sum; useful when the value domain is not bounded.
 - **Bitmask per value:** Record one bit for each input array and select masks with at least two set bits; also linear and easily generalized.
 - **Raw occurrence counter:** Incorrect unless each input is deduplicated first, because duplicates in one array must not count as several arrays.
 - **Pairwise set intersections:** Return `(s1 & s2) | (s1 & s3) | (s2 & s3)`; concise and logically equivalent.
@@ -114,8 +114,8 @@ No later `distinct` operation is necessary. Uniqueness comes from both the singl
 - **Arbitrary input order:** Set membership and the final candidate scan are unaffected.
 - **Allowed output order:** Ascending output is valid even when examples show a different order.
 - **Input preservation:** New sets are built without changing any input list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

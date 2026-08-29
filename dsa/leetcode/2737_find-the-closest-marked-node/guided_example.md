@@ -61,7 +61,7 @@ Missing directed edges remain infinity. The code does not mirror entries, correc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `g` is an `n by n` matrix initially filled with infinity.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Missing directed edges remain infinity. The code does not mirror entries, correc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjacency-list heap Dijkstra:** Achieves $O((n:** - **Adjacency-list heap Dijkstra:** Achieves $O((n+e)\log n)$ time and $O(n+e)$ space and can return when the first marked node is popped without stale distance.
+- **Adjacency-list heap Dijkstra:** Achieves $O((n+e)\log n)$ time and $O(n+e)$ space and can return when the first marked node is popped without stale distance.
 - **Bellman-Ford:** Handles negative weights but costs $O(ne)$ and is unnecessary because weights are positive.
 - **Reverse multi-source search:** Reversing edges and starting from all marked nodes is another valid formulation for the distance to `s`.
 - **Repeated directed edges:** Only the minimum weight is retained.
@@ -108,8 +108,8 @@ Missing directed edges remain infinity. The code does not mirror entries, correc
 - **Directedness:** An edge `u -> v` does not permit travel from `v` to `u`.
 - **No self-loops:** Guaranteed, though positive self-loops would not improve a shortest path anyway.
 - **Manifest mismatch:** The exact code is dense $O(n^2)$ Dijkstra and does not stop early.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

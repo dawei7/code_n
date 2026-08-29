@@ -69,7 +69,7 @@ The CTE returns only `user_id`. This makes it a compact eligibility relation tha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first CTE groups `course_completions` by `user_id`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The join happens before course pairs are counted. Therefore an ineligible user's
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join on the next date:** Joining each row:** - **Self-join on the next date:** Joining each row to the minimum later date can express adjacency, but it is more cumbersome and may perform repeated searches. `LEAD` states the sequence relation directly.
+- **Self-join on the next date:** Joining each row to the minimum later date can express adjacency, but it is more cumbersome and may perform repeated searches. `LEAD` states the sequence relation directly.
 - **Correlated subquery for the next course:** This can also find a successor but risks one lookup per row and complicated tie handling.
 - **Filter ratings before grouping:** That would change both the course count and average. Qualification must use every completion row in the user's history.
 - **Use `WHERE COUNT(...)`:** Aggregate conditions belong in `HAVING` because they are defined only after grouping.
@@ -121,8 +121,8 @@ The join happens before course pairs are counted. Therefore an ineligible user's
 - **A qualifying user's first course:** It can be `first_course` but never appears as a `second_course` unless another completion precedes it.
 - **A qualifying user's last course:** It may be `second_course` for the prior row, while its own generated row is removed because there is no successor.
 - **Final tie ordering:** Omitting either name key would leave equal-frequency rows without the full specified order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

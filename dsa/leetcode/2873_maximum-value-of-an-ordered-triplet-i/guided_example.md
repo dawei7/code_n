@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-(\texttt{nums[i]}-\texttt{nums[j]})\cdot\texttt{nums[k]}
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ with $i<j<k$. Trying all triples repeats the same questions. Before choosing `j`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Triple enumeration:** Three nested loops direc:** - **Triple enumeration:** Three nested loops directly evaluate every triplet in $O(n^3)$ time. It fits the small first-version constraint but hides the reusable optimization.
+- **Triple enumeration:** Three nested loops directly evaluate every triplet in $O(n^3)$ time. It fits the small first-version constraint but hides the reusable optimization.
 - **Fix `j` and `k`:** Track the greatest prefix value for `i` inside two loops, reducing time to $O(n^2)$ and constant space.
 - **Prefix and suffix maxima:** For each middle index, combine the greatest left value and greatest right multiplier in $O(n)$ time but $O(n)$ extra space.
 - **Strictly increasing array:** Every ordered difference `nums[i] - nums[j]` is negative, so `mx_diff` stays zero and the result is zero.
@@ -98,8 +96,8 @@ with $i<j<k$. Trying all triples repeats the same questions. Before choosing `j`
 - **Update order:** Evaluate answer, then pair difference, then prefix maximum. Changing this sequence can reuse the current index in multiple triplet positions.
 - **Exactly three elements:** The scan still evaluates their sole legal ordered triplet and clamps a negative value to zero.
 - **Positive-value guarantee:** It justifies keeping only the maximum difference. With negative multipliers, the minimum difference could also matter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You have `n` processes forming a rooted tree structure. You are given two integer arrays `pid` and `ppid`, where $\text{pid}[i]$ is the ID of the $$i^{\text{th}}$$ process and $\text{ppid}[i]$ is the ID of the $$i^{\text{th}}$$ process's parent process.
+You have `n` processes forming a rooted tree structure. You are given two integer arrays `pid` and `ppid`, where $\text{pid}[i]$ is the ID of the $i^{\text{th}}$ process and $\text{ppid}[i]$ is the ID of the $i^{\text{th}}$ process's parent process.
 
 Each process has only **one parent process** but may have multiple children processes. Only one process has $\text{ppid}[i] = 0$, which means this process has **no parent process** (the root of the tree).
 

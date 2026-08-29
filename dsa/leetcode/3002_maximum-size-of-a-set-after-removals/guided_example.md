@@ -65,7 +65,7 @@ There is no benefit in giving an array slot to a duplicate while an unkept exclu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An exclusive-to-first value can be contributed only by the $... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ However, the two remaining arrays contain only $n/2+n/2=n$ elements total. A set
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy over raw occurrences:** Duplicate copie:** - **Greedy over raw occurrences:** Duplicate copies obscure the real objective; classify distinct values first.
+- **Greedy over raw occurrences:** Duplicate copies obscure the real objective; classify distinct values first.
 - **Take half the distinct count from each set:** This can double-count common values and miss the value of exclusives.
 - **Prioritize common values:** Exclusives are less flexible because only one array can provide them; preserving them first is never worse.
 - **Disjoint sets:** Every retained distinct value is exclusive, and the answer can reach $n$ when each side has at least $n/2$ distinct values.
@@ -117,8 +117,8 @@ However, the two remaining arrays contain only $n/2+n/2=n$ elements total. A set
 - **More exclusives than capacity:** `min` caps that array’s contribution at $n/2$.
 - **Duplicate padding:** Exact retention counts remain achievable even after all useful distinct choices are made.
 - **Expected hashing:** Python set operations have expected linear behavior under the standard hash-table model.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

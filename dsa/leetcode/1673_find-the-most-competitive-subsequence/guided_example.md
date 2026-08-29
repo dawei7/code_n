@@ -61,7 +61,7 @@ If it equals `k`, every selected and remaining value is required. Popping would 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current value `v` at index `i`, the loop removes the sta... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Repeated pops are useful. A very small current value may improve the subsequence
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit deletion budget:** Initialize `drop =:** - **Explicit deletion budget:** Initialize `drop = n-k`, pop while the top is larger and `drop > 0`, then return the first `k` values. This is equivalent to the source’s remaining-capacity inequality.
+- **Explicit deletion budget:** Initialize `drop = n-k`, pop while the top is larger and `drop > 0`, then return the first `k` values. This is equivalent to the source’s remaining-capacity inequality.
 - **Deque:** End-only stack operations are sufficient; a deque adds no benefit unless the implementation later removes a prefix separately.
 - **Enumerate every subsequence:** There are combinatorially many length-`k` choices, so exhaustive comparison is infeasible.
 - **Sort the values:** Sorting destroys original index order and can produce a sequence that is not a subsequence.
@@ -110,8 +110,8 @@ Repeated pops are useful. A very small current value may improve the subsequence
 - **Stack already full:** A smaller current value may still enter by first popping; a non-improving value is ignored.
 - **Several consecutive pops:** The feasibility inequality is recomputed after each pop, so the algorithm stops exactly before it would become impossible to collect `k` values.
 - **Zero-valued elements:** They are valid and naturally displace larger stack endings whenever capacity allows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

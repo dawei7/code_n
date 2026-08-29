@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $$i^{\text{th}}$$ operation you replace the number $\text{operations}[i][0]$ with $\text{operations}[i][1]$.
+You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $i^{\text{th}}$ operation you replace the number $\text{operations}[i][0]$ with $\text{operations}[i][1]$.
 
 The objective is to compute `[3, 2, 7, 1]` from `{"nums": [1, 2, 4, 6], "operations": [[1, 3], [4, 7], [6, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ After these statements, future operations can find `y` at the same index without
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For operation `[x,y]`, the contract guarantees `x` currently... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The method never attempts to batch independent-looking replacements, so chains a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delete the old key:** Saving `idx=d[x]`, delet:** - **Delete the old key:** Saving `idx=d[x]`, deleting `x`, and inserting `y` preserves correctness while keeping map size `O(n)`.
+- **Delete the old key:** Saving `idx=d[x]`, deleting `x`, and inserting `y` preserves correctness while keeping map size `O(n)`.
 - **Scan for each old value:** It avoids a dictionary but can take `O(nm)` time.
 - **Value-to-value chain map:** Deferred replacements are harder because output positions and temporal reintroductions must still be resolved.
 - **Direct-address array:** Values are bounded by `10^6`, but it allocates for the whole domain rather than current and historical keys.
@@ -119,8 +119,8 @@ The method never attempts to batch independent-looking replacements, so chains a
 - **Expected dictionary time:** The linear time bound uses ordinary expected hash-table behavior.
 - **Input mutation:** The returned object is the modified original `nums` list.
 - **Operations preservation:** `operations` is read sequentially and never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

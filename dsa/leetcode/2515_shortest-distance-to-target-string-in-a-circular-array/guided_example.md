@@ -76,11 +76,7 @@ compares both routes with the best target occurrence found earlier.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let
-
-`t = abs(i-startIndex)`.
-
-This is the number of steps b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +113,7 @@ The direct index difference measures one path, and `n-t` measures the complement
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bidirectional step simulation:** Move left and:** - **Bidirectional step simulation:** Move left and right from the start until finding the target. It can return early but requires modular indexing.
+- **Bidirectional step simulation:** Move left and right from the start until finding the target. It can return early but requires modular indexing.
 - **Preindexed positions:** Store occurrence indices per word for many repeated queries, but one query does not justify the extra structure.
 - **Target at start:** Return distance zero.
 - **Multiple occurrences:** Evaluate all or stop only when the theoretical minimum zero is found.
@@ -127,8 +123,8 @@ The direct index difference measures one path, and `n-t` measures the complement
 - **Direct route shorter:** `t` captures movement without wrapping.
 - **Exact match:** Substrings do not count.
 - **Sentinel safety:** No valid shortest circular distance can equal `n`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

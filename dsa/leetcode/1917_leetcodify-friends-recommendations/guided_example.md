@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Pair listen rows sharing one song and day.** The comma-sep... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because the join is directional, a match between users one and three generates b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-deduplicate listens:** Selecting distinct :** - **Pre-deduplicate listens:** Selecting distinct user, song, and day before the self join can greatly reduce duplicate multiplication while preserving results.
+- **Pre-deduplicate listens:** Selecting distinct user, song, and day before the self join can greatly reduce duplicate multiplication while preserving results.
 - **Join through friendship first:** That solves the similar-friends problem, not recommendations; here existing friends must be excluded.
 - **Count without `DISTINCT`:** Incorrect when `Listens` contains duplicate rows.
 - **Three songs across different days:** Separate groups never combine, so the pair does not qualify.
@@ -97,8 +97,8 @@ Because the join is directional, a match between users one and three generates b
 - **Any output order:** Absence of `ORDER BY` is intentional.
 - **Exactly two common songs:** The group exists but fails `HAVING`; only three or more distinct song IDs qualify.
 - **Same songs but shifted dates:** Equality is row-by-row on `day`, so matching song sets on different dates provide no evidence.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

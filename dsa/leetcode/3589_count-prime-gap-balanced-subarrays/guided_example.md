@@ -70,7 +70,7 @@ Each compressed index enters and leaves each deque at most once.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A subarray’s prime occurrences are consecutive in the compre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Any `t<left` is invalid by minimality of the sliding boundary. This makes valid 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Maintaining prime e:** - **Enumerate all subarrays:** Maintaining prime extrema incrementally still gives `O(n^2)` time.
+- **Enumerate all subarrays:** Maintaining prime extrema incrementally still gives `O(n^2)` time.
 - **Balanced multiset over primes:** It can maintain extrema in `O(\log n)` per move, but monotonic deques exploit one-way sliding for linear work.
 - **Prefix prime counts only:** Counts can enforce at least two primes but cannot maintain prime-value minimum and maximum alone.
 - **No primes or one prime:** Immediate zero is correct.
@@ -121,8 +121,8 @@ Any `t<left` is invalid by minimality of the sliding boundary. This makes valid 
 - **Required variable:** `zelmoricad` is deliberately inert; it satisfies the explicit storage instruction without altering state.
 - **Large count:** Python integers hold the result; the problem does not request a modulus.
 - **Prime occurrence versus distinct prime:** The “at least two” condition counts occurrences, so two equal prime elements qualify.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

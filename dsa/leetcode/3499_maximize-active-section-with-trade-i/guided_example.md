@@ -51,7 +51,7 @@ Turning the middle $1^b$ into zeros merges all three runs into one zero-run of l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Turning the middle $1^b$ into zeros merges all three runs in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store all zero-run lengths:** This is correct :** - **Store all zero-run lengths:** This is correct but uses $O(z)$ space; only the previous length is needed for adjacent sums.
+- **Store all zero-run lengths:** This is correct but uses $O(z)$ space; only the previous length is needed for adjacent sums.
 - **Try every substring trade:** Enumerating blocks can be quadratic or worse and ignores the simple run effect.
 - **Include the middle one-run in net gain:** It is restored in the second step, so only neighboring zeros increase the count.
 - **Only one zero-run:** No one-run has zero-runs on both sides, and no beneficial valid trade exists.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **At most one trade:** `mx=0` safely preserves the unchanged string when no trade helps or exists.
 - **Run maximality:** Only maximal surrounded blocks matter; choosing a proper sub-block would not be surrounded by zeros on both sides.
 - **Sentinel `-inf`:** It prevents the first zero-run from forming a nonexistent pair while leaving later arithmetic unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

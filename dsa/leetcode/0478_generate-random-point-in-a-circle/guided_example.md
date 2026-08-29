@@ -79,7 +79,7 @@ It is equivalent to `R * sqrt(U0)` for `U0` uniform on `[0,1]`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a circle of radius `R`, the fraction of total area lying... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ If radius itself were uniform, half the samples would lie inside radius `R/2`. B
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rejection sample a bounding square:** Draw uni:** - **Rejection sample a bounding square:** Draw uniformly from the `2R x 2R` square and reject points outside the circle. It is correct with expected about $4/\pi$ attempts, but has unbounded worst-case retries.
+- **Rejection sample a bounding square:** Draw uniformly from the `2R x 2R` square and reject points outside the circle. It is correct with expected about $4/\pi$ attempts, but has unbounded worst-case retries.
 - **Choose radius uniformly:** Incorrect; it overweights the center because equal radial bands do not have equal areas.
 - **Choose `sqrt(U)` for `U in [0,1]`:** Correct when multiplied by `R`; it is algebraically the same as the exact squared-radius draw.
 - **Angle in degrees:** `sin` and `cos` require radians; the exact `2 * pi` scaling is correct despite the variable name.
@@ -124,8 +124,8 @@ If radius itself were uniform, half the samples would lie inside radius `R/2`. B
 - **Very large radius:** Fixed-precision arithmetic handles the stated bounds, though returned coordinates are approximate floating-point values.
 - **Deterministic app stream:** Two supplied values reproduce the same radial and angular transformations per point.
 - **No input mutation:** Constructor values are stored and remain unchanged across calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

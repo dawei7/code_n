@@ -61,11 +61,7 @@ The input is lowercase, so uppercase handling is unnecessary. The character `y` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper returns
-
-`sum(c in "aeiou" for c in w)`.
-
-For eac... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +105,7 @@ Because reversal preserves the character multiset, it also preserves the word's 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan the sentence without splitting:** Index b:** - **Scan the sentence without splitting:** Index boundaries can avoid a separate word list, but they make reconstruction more complicated under no benefit for the stated constraints.
+- **Scan the sentence without splitting:** Index boundaries can avoid a separate word list, but they make reconstruction more complicated under no benefit for the stated constraints.
 - **Regular-expression substitution:** It can identify words but obscures the fixed first-word target and adds unnecessary machinery.
 - **Reverse the first word too:** The rule explicitly applies only to following words; the first is always preserved.
 - **Compare distinct vowels:** The task counts occurrences, not how many vowel kinds appear. `"book"` counts as two.
@@ -123,8 +119,8 @@ Because reversal preserves the character multiset, it also preserves the word's 
 - **Single-letter words:** A matching one-character word reverses to itself.
 - **Spacing guarantee:** `split` and `join` are exact here because there are no repeated, leading, or trailing spaces.
 - **Input preservation:** Strings are immutable; the method returns a newly assembled string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

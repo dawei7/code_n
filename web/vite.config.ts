@@ -22,6 +22,35 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
       sourcemap: true,
+      chunkSizeWarningLimit: 1200,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules/monaco-editor') || id.includes('node_modules/@monaco-editor')) {
+              return 'vendor-monaco';
+            }
+            if (id.includes('node_modules/mermaid') || id.includes('node_modules/cytoscape') || id.includes('node_modules/dagre-d3-es')) {
+              return 'vendor-diagrams';
+            }
+            if (
+              id.includes('node_modules/katex') ||
+              id.includes('node_modules/rehype-katex') ||
+              id.includes('node_modules/remark-math') ||
+              id.includes('node_modules/react-markdown') ||
+              id.includes('node_modules/rehype-raw') ||
+              id.includes('node_modules/remark-gfm')
+            ) {
+              return 'vendor-content';
+            }
+            if (id.includes('node_modules/@fortawesome') || id.includes('node_modules/lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/zustand')) {
+              return 'vendor-core';
+            }
+          },
+        },
+      },
     },
   };
 });

@@ -63,7 +63,7 @@ The result may be returned in any order, so the query does not include `ORDER BY
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SELECT name, population, area` returns exactly three reques... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The result may be returned in any order, so the query does not include `ORDER BY
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION` of two filters:** Query large-area cou:** - **`UNION` of two filters:** Query large-area countries and populous countries separately, then union them. `UNION` must remove duplicates for countries satisfying both; `UNION ALL` would incorrectly repeat them.
+- **`UNION` of two filters:** Query large-area countries and populous countries separately, then union them. `UNION` must remove duplicates for countries satisfying both; `UNION ALL` would incorrectly repeat them.
 - **`AND` instead of `OR`:** Incorrect because the definition requires either threshold, not both.
 - **Strict comparison:** `>` is incorrect at the exact boundary; “at least” requires `>=`.
 - **`SELECT *`:** Returns extra `continent` and `gdp` columns not requested.
@@ -111,8 +111,8 @@ The result may be returned in any order, so the query does not include `ORDER BY
 - **Potential `NULL` values:** SQL comparisons with `NULL` are unknown. If nullability were part of the domain, its intended classification would need specification; do not silently treat missing as zero without a rule.
 - **Index behavior:** Separate indexes on area and population may help an optimizer, but the query remains correct without them.
 - **Complexity fidelity:** The exact relational operation is filtering, not sorting; its natural full-scan time is $O(n)$ despite the manifest’s conservative $O(n\log n)$ label.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

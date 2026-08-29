@@ -59,7 +59,7 @@ No sorting is needed because any valid arrangement may be returned.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The default is `pairs[0][0]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Each adjacency entry is popped exactly once, so every input pair is used exactly
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy output without postorder:** Committing :** - **Greedy output without postorder:** Committing edges directly can get trapped at a dead end before all edges are used. Hierholzer's postorder repairs branching choices.
+- **Greedy output without postorder:** Committing edges directly can get trapped at a dead end before all edges are used. Hierholzer's postorder repairs branching choices.
 - **Recursive Hierholzer:** It has the same logic and complexity but can overflow Python's recursion limit for $10^5$ edges.
 - **Backtracking over permutations:** Exploring edge orders is exponential and ignores Eulerian structure.
 - **Eulerian circuit:** No balance-1 vertex exists, so the first pair's start is a valid arbitrary start.
@@ -112,8 +112,8 @@ Each adjacency entry is popped exactly once, so every input pair is used exactly
 - **Large sparse labels:** No array indexed by values is needed.
 - **Input preservation:** Only constructed adjacency lists are consumed.
 - **Output edge identity:** Reconstructing consecutive vertex pairs preserves edge multiplicity. Even when several edges share endpoints, each popped adjacency entry supplies one occurrence in the trail.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

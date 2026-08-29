@@ -65,7 +65,7 @@ Using `COUNT(product_name = 'A')` would be wrong. `COUNT` counts non-null expres
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In MySQL, a comparison such as `product_name = 'A'` evaluate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Similarly, requiring A and B in a row-level `WHERE` cannot work because one orde
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three `EXISTS` predicates:** Require an A orde:** - **Three `EXISTS` predicates:** Require an A order, require a B order, and reject an existing C order. With indexes this is clear and can short-circuit, though it repeats correlated lookups.
+- **Three `EXISTS` predicates:** Require an A order, require a B order, and reject an existing C order. With indexes this is clear and can short-circuit, though it repeats correlated lookups.
 - **Set intersection and difference:** Build customer-ID sets for A, B, and C, then compute $A\cap B\setminus C$. It expresses the set logic directly but needs joins to recover names.
 - **Inner join:** It is sufficient for the final answer because qualification requires orders, but the left join makes customer preservation explicit.
 - **Filter C in `WHERE`:** This is incorrect because it erases evidence that should disqualify a customer.
@@ -115,8 +115,8 @@ Similarly, requiring A and B in a row-level `WHERE` cannot work because one orde
 - **Unique customer ID:** It makes the selected name functionally dependent on `GROUP BY customer_id`.
 - **Positional clauses:** `GROUP BY 1` and `ORDER BY 1` refer to `customer_id`; explicit column names are safer during future edits.
 - **Required order:** The final sort is necessary because grouping alone does not promise customer-ID order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

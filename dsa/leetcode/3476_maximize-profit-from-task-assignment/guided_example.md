@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `workers`, where $\text{workers}[i]$ represents the skill level of the $$i^{\text{th}}$$ worker. You are also given a 2D integer array `tasks`, where:
+You are given an integer array `workers`, where $\text{workers}[i]$ represents the skill level of the $i^{\text{th}}$ worker. You are also given a 2D integer array `tasks`, where:
 
 The objective is to compute `1000` from `{"workers": [1, 2, 3, 4, 5], "tasks": [[1, 100], [2, 400], [3, 100], [3, 400]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Each dictionary value is a `SortedList`, which keeps profits in ascending order.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each dictionary value is a `SortedList`, which keeps profits... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each dictionary value is a `SortedList`, which keeps profits in ascending order.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort one global task list:** Skill equality st:** - **Sort one global task list:** Skill equality still requires finding and removing tasks within separate requirement groups, so global order alone is inconvenient.
+- **Sort one global task list:** Skill equality still requires finding and removing tasks within separate requirement groups, so global order alone is inconvenient.
 - **Use a max-heap per skill:** This matches the manifest description and can build groups efficiently, but the protected file uses `SortedList`.
 - **Choose the extra worker's task first:** It can still be made correct with careful opportunity-cost accounting, but ordinary-first greedy plus a final leftover maximum is simpler.
 - **Assign a smaller task to save the largest for the extra worker:** Within the same skill group this only swaps who receives the top two tasks and does not improve their combined profit.
@@ -99,8 +99,8 @@ Each dictionary value is a `SortedList`, which keeps profits in ascending order.
 - **Positive profits:** Taking every available regular assignment and one leftover extra assignment cannot reduce the total.
 - **Defaultdict side effect:** Looking up an unmatched worker skill creates an empty group, increasing dictionary keys but not changing the answer.
 - **Input preservation:** Worker and task arrays are read only; profits are copied into grouped containers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

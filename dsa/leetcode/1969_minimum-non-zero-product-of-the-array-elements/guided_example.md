@@ -85,7 +85,7 @@ The factors of one disappear, leaving exactly the formula computed by the source
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Among values one through $M-1$, pair each $x$ with $M-x$, wh... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ The product is minimized before applying the modulus; modular arithmetic is used
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate bit swaps:** The conceptual array has:** - **Simulate bit swaps:** The conceptual array has $2^p-1$ elements and is impossibly large for $p=60$; the formula avoids constructing it.
+- **Simulate bit swaps:** The conceptual array has $2^p-1$ elements and is impossibly large for $p=60$; the formula avoids constructing it.
 - **Ordinary exponentiation then modulo:** It would create an astronomically large integer. Three-argument `pow` reduces after each step.
 - **Modulo too early in the optimization:** The minimum must be chosen over actual products, not residues. The proof derives the true product first.
 - **$p=1$:** Zero complementary pairs make the exponent zero, which `pow` handles correctly.
@@ -134,8 +134,8 @@ The product is minimized before applying the modulus; modular arithmetic is used
 - **Large $p$:** Runtime depends on $p$, not on the exponential number of conceptual array elements.
 - **Prime modulus not needed for `pow`:** Repeated squaring works for this nonnegative exponent regardless; the given modulus simply bounds the result.
 - **Factors of one:** They are part of the feasible optimal array even though they do not appear in the multiplication expression.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

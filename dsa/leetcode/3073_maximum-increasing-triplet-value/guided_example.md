@@ -54,9 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-i<j<k,\qquad
-\texttt{nums}[i]<\texttt{nums}[j]<\texttt{nu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,7 +91,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fenwick prefix maximum:** Compress values and :** - **Fenwick prefix maximum:** Compress values and query the best earlier value below the current rank. This is the algorithm described by the manifest, not the exact source.
+- **Fenwick prefix maximum:** Compress values and query the best earlier value below the current rank. This is the algorithm described by the manifest, not the exact source.
 - **Balanced search tree:** Any ordered multiset supporting predecessor and insertion can replace `SortedList`.
 - **Brute-force triplets:** It costs $O(N^3)$ and ignores separable left/right optimization.
 - **Prefix minimum instead of predecessor maximum:** It is wrong because the expression benefits from the largest legal left value, not the smallest.
@@ -108,8 +106,8 @@ $$
 - **Middle index bounds:** The loop starts at 1 and ends before $N-1$, guaranteeing at least one physical position on both sides even though value constraints may still fail.
 - **Sorted multiset retains duplicates:** Multiple equal earlier values occupy separate entries, but predecessor lookup chooses one value; their identities are irrelevant because only the maximum numeric contribution is needed.
 - **Suffix array includes current position generally:** The query deliberately uses `right[j+1]`, not `right[j]`, so the middle node can never be reused as the right endpoint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,7 +55,7 @@ The board size is fixed by `n = 8`. The output list `ans` starts empty.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The comprehension `s = {(i, j) for i, j in queens}` converts... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For each direction, `x, y = king` begins at the king’s coordinate. The loop co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Examine every queen:** Test whether each queen:** - **Examine every queen:** Test whether each queen is aligned with the king and retain the nearest queen for each normalized direction. This also takes \(O(q)\) expected time and can avoid scanning empty squares, but direction normalization and distance comparison are more involved.
+- **Examine every queen:** Test whether each queen is aligned with the king and retain the nearest queen for each normalized direction. This also takes \(O(q)\) expected time and can avoid scanning empty squares, but direction normalization and distance comparison are more involved.
 - **Boolean board:** Fill an \(8\)-by-\(8\) occupancy matrix and scan the same rays. Because the board is fixed, it uses constant space, though the set directly represents only occupied cells.
 - **Continue after finding a queen:** This is incorrect because any farther queen on the same ray is blocked. The `break` expresses direct visibility.
 - **King on an edge or corner:** Several directions have no in-bounds next square. The while condition rejects them safely without special cases.
@@ -109,8 +109,8 @@ For each direction, `x, y = king` begins at the king’s coordinate. The loop co
 - **Unique positions:** The statement guarantees no duplicate queens and no queen on the king. The set would silently deduplicate repeated coordinates, but such input is outside the contract.
 - **Coordinate interpretation:** The method treats the first coordinate as the row and the second as the column. Swapping this convention consistently would preserve geometry, but mixing conventions would scan incorrect squares.
 - **Any answer order:** Sorting is unnecessary and would add work solely for presentation. Tests must compare according to the contract’s order-insensitive requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

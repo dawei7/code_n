@@ -63,7 +63,7 @@ The constructor also sets `s = 0` and `cnt = 0`, matching an empty stream. The c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor creates `data = [0] * size`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +114,9 @@ On the fourth call, index zero holds the first stream value, which is exactly th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque plus running sum:** Append each new valu:** - **Deque plus running sum:** Append each new value, pop from the left when capacity is exceeded, and update the sum with both changes. It has the same $O(1)$ time per call and $O(w)$ space and matches the manifest wording, but needs a deque object rather than a fixed array.
-- **- **Store the entire stream:** Append all values a:** - **Store the entire stream:** Append all values and sum the final window for every call. This can take $O(w)$ time per average and $O(m)$ storage, retaining values that will never matter again.
-- **- **Recompute the circular-buffer sum:** Fixed sto:** - **Recompute the circular-buffer sum:** Fixed storage alone controls space, but calling `sum(data)` each time would cost $O(w)$ per call. The running sum is what produces constant-time updates.
+- **Deque plus running sum:** Append each new value, pop from the left when capacity is exceeded, and update the sum with both changes. It has the same $O(1)$ time per call and $O(w)$ space and matches the manifest wording, but needs a deque object rather than a fixed array.
+- **Store the entire stream:** Append all values and sum the final window for every call. This can take $O(w)$ time per average and $O(m)$ storage, retaining values that will never matter again.
+- **Recompute the circular-buffer sum:** Fixed storage alone controls space, but calling `sum(data)` each time would cost $O(w)$ per call. The running sum is what produces constant-time updates.
 
 ---
 

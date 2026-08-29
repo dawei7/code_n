@@ -22,7 +22,7 @@ Collect the node counts of all perfect subtrees, preserving duplicates from diff
 
 **Inputs**
 
-- `root`: The root of a nonempty binary tree containing between 1 and 2000 nodes; every node value lies in $[1,2000]$.
+- `root`: The root of a nonempty binary tree containing between 1 and 2000 nodes; every node value lies in `[1,2000]`.
 - `k`: A one-based rank, where $1\leq k\leq1024$.
 
 **Return value**

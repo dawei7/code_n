@@ -31,6 +31,6 @@ Return the number of contiguous non-space segments in `s`.
 
 - $0 \le \text{s.length} \le 300$
 
-- `s` consists of lowercase and uppercase English letters, digits, or one of the following characters $"!@#$%^&*()_+-=',.:"$.
+- `s` consists of lowercase and uppercase English letters, digits, or one of the following characters `"!@#$%^&*()_+-=',.:"`.
 
 - The only space character in `s` is `' '`.

@@ -87,11 +87,7 @@ Because each successful branch returns immediately, once a value is identified a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first branch is
-
-
-
-Only the exact value zero qualifies.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -145,7 +141,7 @@ For integer inputs, the red values are exactly 31 through 90. For example:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Lookup table:** A dictionary can map 0 and 30 :** - **Lookup table:** A dictionary can map 0 and 30 to their labels, followed by a red-range check, but it adds a data structure without simplifying this four-case rule.
+- **Lookup table:** A dictionary can map 0 and 30 to their labels, followed by a red-range check, but it adds a data structure without simplifying this four-case rule.
 - **Nested conditional expression:** The mapping can be written as one expression, but the sequential returns make the boundary semantics easier to inspect.
 - **Pattern matching:** Language-level match syntax handles the two exact values cleanly, yet the interval still requires a guard and offers no complexity improvement.
 - **Timer equal to 0:** This is the only green value; nearby positive values are not green.
@@ -157,8 +153,8 @@ For integer inputs, the red values are exactly 31 through 90. For example:
 - **Out-of-contract negative input:** The source would return `"Invalid"`, although negative values are not required by the problem constraints.
 - **Condition order:** The orange equality could technically appear before the green equality without changing results, but 30 must not be absorbed into an incorrectly inclusive red condition.
 - **Case-sensitive output:** Returning `"green"`, `"ORANGE"`, or any other spelling would violate the contract even if the numerical classification were right.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

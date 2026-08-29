@@ -51,7 +51,7 @@ The set `s[k]` described by the problem is exactly the cycle reached by repeated
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The set `s[k]` described by the problem is exactly the cycle... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution visits each cycle once and records its length.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Start a fresh traversal from every index:** Wi:** - **Start a fresh traversal from every index:** Without global visited state, the same cycle is walked once per member and can take $O(n^2)$ time.
+- **Start a fresh traversal from every index:** Without global visited state, the same cycle is walked once per member and can take $O(n^2)$ time.
 - **Mark in place:** Add `n` or use another sentinel in `nums` to avoid a visited array, but this mutates the input.
 - **Use a set per start:** It detects repetition but allocates and repeats work unnecessarily.
 - **Identity permutation:** Every cycle has length one.
@@ -96,8 +96,8 @@ The solution visits each cycle once and records its length.
 - **Permutation guarantee:** It ensures disjoint pure cycles with no tails.
 - **Visited starting index:** It is skipped because its full cycle was already counted.
 - **Input immutability:** Separate `vis` preserves the original permutation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

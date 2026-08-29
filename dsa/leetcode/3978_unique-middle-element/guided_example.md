@@ -68,7 +68,7 @@ Looking only at the middle element's neighbors would miss distant duplicates. `l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A duplicate can occur anywhere, not just adjacent to the mid... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ No information about other values is relevant.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a frequency dictionary:** Counting every:** - **Build a frequency dictionary:** Counting every distinct value also finds the middle value's frequency in `O(n)` time, but it uses `O(n)` space even though only one value matters.
-- **- **Sort the array:** Sorting destroys the origina:** - **Sort the array:** Sorting destroys the original positional meaning of the middle element unless that value is saved first, and it costs `O(n\log n)` time. It is unnecessary for a frequency question.
-- **- **Check only neighboring positions:** Equal valu:** - **Check only neighboring positions:** Equal values need not be adjacent, so local comparison cannot establish global uniqueness.
+- **Build a frequency dictionary:** Counting every distinct value also finds the middle value's frequency in `O(n)` time, but it uses `O(n)` space even though only one value matters.
+- **Sort the array:** Sorting destroys the original positional meaning of the middle element unless that value is saved first, and it costs `O(n\log n)` time. It is unnecessary for a frequency question.
+- **Check only neighboring positions:** Equal values need not be adjacent, so local comparison cannot establish global uniqueness.
 
 ---
 

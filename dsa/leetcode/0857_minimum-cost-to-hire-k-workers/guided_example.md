@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` workers. You are given two integer arrays `quality` and `wage` where $\text{quality}[i]$ is the quality of the $$i^{\text{th}}$$ worker and $\text{wage}[i]$ is the minimum wage expectation for the $$i^{\text{th}}$$ worker.
+There are `n` workers. You are given two integer arrays `quality` and `wage` where $\text{quality}[i]$ is the quality of the $i^{\text{th}}$ worker and $\text{wage}[i]$ is the minimum wage expectation for the $i^{\text{th}}$ worker.
 
 The objective is to compute `105` from `{"quality": [10, 20, 5], "wage": [70, 50, 30], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -88,7 +88,7 @@ For this fixed rate, minimizing total cost means choosing the `k` smallest quali
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `t` contains `(quality,wage)` pairs sorted by `w/q`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,9 +132,9 @@ For each sorted worker:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every group:** There are $\binom{n}{:** - **Enumerate every group:** There are $\binom{n}{k}$ possibilities, which is infeasible.
-- **- **Choose workers with smallest wages:** Minimum :** - **Choose workers with smallest wages:** Minimum wage alone ignores proportionality; required ratios and qualities jointly determine cost.
-- **- **Choose smallest qualities globally:** A low-qu:** - **Choose smallest qualities globally:** A low-quality worker may require a very high pay rate that makes the group expensive.
+- **Enumerate every group:** There are $\binom{n}{k}$ possibilities, which is infeasible.
+- **Choose workers with smallest wages:** Minimum wage alone ignores proportionality; required ratios and qualities jointly determine cost.
+- **Choose smallest qualities globally:** A low-quality worker may require a very high pay rate that makes the group expensive.
 
 ---
 

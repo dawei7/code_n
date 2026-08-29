@@ -61,7 +61,7 @@ The original `nums` list is not modified. All evolving operation values live in 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | List `h=[-v for v in nums]` negates every input.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The loop runs exactly `k` times as required, even after values become one. Since
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated linear maximum search:** It costs $O(:** - **Repeated linear maximum search:** It costs $O(kn)$ and is too slow.
+- **Repeated linear maximum search:** It costs $O(kn)$ and is too slow.
 - **Balanced ordered multiset:** It supports maximum removal and reinsertion in $O(\log n)$ but is more machinery.
 - **Integer ceiling formula:** `(v+2)//3` is exact without floating point.
 - **`k=1`:** Take the original maximum once.
@@ -116,8 +116,8 @@ The loop runs exactly `k` times as required, even after values become one. Since
 - **Exactly `k`:** Do not stop when rewards become small.
 - **Input preservation:** Only the negative heap is mutated.
 - **Large score:** Use a sufficiently wide accumulator.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

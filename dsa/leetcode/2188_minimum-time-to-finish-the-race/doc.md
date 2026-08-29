@@ -32,7 +32,7 @@ another copy of the current type. Every tire type has an unlimited supply.
   $1\le\lvert\texttt{tires}\rvert\le10^5$, $1\le f\le10^5$, and
   $2\le r\le10^5$.
 - `changeTime`: the fixed tire-change delay, in $[1,10^5]$ seconds.
-- `numLaps`: the number of laps to complete, in $[1,1000]$.
+- `numLaps`: the number of laps to complete, in `[1,1000]`.
 
 Let $T=\lvert\texttt{tires}\rvert$, $N=\texttt{numLaps}$, and let $L$ be the
 largest potentially useful consecutive-lap stint: its final lap is no slower

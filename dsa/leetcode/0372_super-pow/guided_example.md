@@ -79,10 +79,7 @@ Likewise, replacing a base by its remainder does not change the remainder of any
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For modulus $M=1337$,
-
-$$
-(x\bmod M)(y\bmod M)\bmod M=(xy)\b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,9 +119,9 @@ Initially no exponent digits have contributed, so `ans = 1`, the multiplicative 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Most-significant-digit streaming:** Process di:** - **Most-significant-digit streaming:** Process digits left to right with `ans = pow(ans, 10, mod) * pow(a, digit, mod) % mod`. Appending digit `e` changes exponent prefix $P$ to $10P+e$. This matches the manifest summary and uses $O(1)$ auxiliary space without reversing.
-- **- **Euler or Chinese remainder analysis:** Since $:** - **Euler or Chinese remainder analysis:** Since $1337=7\cdot191$, one can reason about exponent cycles modulo each prime factor and combine results. This is mathematically interesting but requires careful handling when the base is not coprime to 1337.
-- **- **Convert all digits to one integer:** Python co:** - **Convert all digits to one integer:** Python could technically hold it, but constructing and exponentiating by that giant value is unnecessary and does not generalize to fixed-width environments.
+- **Most-significant-digit streaming:** Process digits left to right with `ans = pow(ans, 10, mod) * pow(a, digit, mod) % mod`. Appending digit `e` changes exponent prefix $P$ to $10P+e$. This matches the manifest summary and uses $O(1)$ auxiliary space without reversing.
+- **Euler or Chinese remainder analysis:** Since $1337=7\cdot191$, one can reason about exponent cycles modulo each prime factor and combine results. This is mathematically interesting but requires careful handling when the base is not coprime to 1337.
+- **Convert all digits to one integer:** Python could technically hold it, but constructing and exponentiating by that giant value is unnecessary and does not generalize to fixed-width environments.
 
 ---
 

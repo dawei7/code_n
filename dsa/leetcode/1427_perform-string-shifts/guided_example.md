@@ -69,7 +69,7 @@ Applying each operation to an intermediate string would produce the same final c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose one operation shifts left by three and another shift... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The string is guaranteed nonempty, so taking modulo `len(s)` cannot divide by ze
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate each operation:** Slice and concatena:** - **Simulate each operation:** Slice and concatenate after every row. It is correct but costs $O(nq)$ time because every operation copies the string.
+- **Simulate each operation:** Slice and concatenate after every row. It is correct but costs $O(nq)$ time because every operation copies the string.
 - **Shift one character at a time:** This adds another factor proportional to shift amounts and is much slower.
 - **Accumulate separate left and right totals:** Subtract the two totals at the end. It is equivalent but needs two counters instead of one signed counter.
 - **Mutable-array reversal rotation:** In a language with mutable character arrays, three reversals can apply the final rotation in place with $O(1)$ auxiliary space.
@@ -123,8 +123,8 @@ The string is guaranteed nonempty, so taking modulo `len(s)` cannot divide by ze
 - **Net left shift:** Python modulo converts its negative signed value into the equivalent nonnegative right shift.
 - **Language modulo differences:** Some languages keep a negative remainder. They must explicitly normalize it before applying right-rotation indexing.
 - **Nonempty input:** This guarantee is required for modulo by `len(s)` and makes the slice boundary well-defined.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

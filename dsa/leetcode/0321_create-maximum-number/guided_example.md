@@ -75,7 +75,7 @@ These are precisely the values called `l` and `r` in the source. Starting at `0`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `nums1` has length $m$ and `nums2` has length $n$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,9 +135,9 @@ The helper also handles a requested length of zero. `stk` is empty, every input 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare only the current heads:** This works w:** - **Compare only the current heads:** This works when the digits differ but fails on ties. With `[6,7]` and `[6,0,4]`, the suffixes show that the first `6` must be taken from the first array. Complete remaining-suffix order is necessary.
-- **- **Enumerate all subsequences:** Generate every l:** - **Enumerate all subsequences:** Generate every length-$x$ subsequence for every split and try every merge. This is combinatorial and unnecessary; the monotonic stack proves that only the greatest fixed-length subsequence from each source can be relevant.
-- **- **Precompute suffix ranks or longest common pref:** - **Precompute suffix ranks or longest common prefixes:** The repeated recursive comparisons cause the $O(k^2)$ merge term. More elaborate ranking or next-difference preprocessing can speed comparisons, but adds implementation complexity and must be rebuilt for each chosen pair of subsequences.
+- **Compare only the current heads:** This works when the digits differ but fails on ties. With `[6,7]` and `[6,0,4]`, the suffixes show that the first `6` must be taken from the first array. Complete remaining-suffix order is necessary.
+- **Enumerate all subsequences:** Generate every length-$x$ subsequence for every split and try every merge. This is combinatorial and unnecessary; the monotonic stack proves that only the greatest fixed-length subsequence from each source can be relevant.
+- **Precompute suffix ranks or longest common prefixes:** The repeated recursive comparisons cause the $O(k^2)$ merge term. More elaborate ranking or next-difference preprocessing can speed comparisons, but adds implementation complexity and must be rebuilt for each chosen pair of subsequences.
 
 ---
 

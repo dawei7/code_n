@@ -60,7 +60,7 @@ Only leaves become entries. Container objects and arrays determine path segments
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one input item, `flattened` is an object whose keys are ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The stored value remains unchanged. In particular, false, zero, `null`, and an a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect paths, then traverse originals for eac:** - **Collect paths, then traverse originals for each cell:** Correct but can repeatedly walk deep prefixes and do more work than direct flattened lookup.
+- **Collect paths, then traverse originals for each cell:** Correct but can repeatedly walk deep prefixes and do more work than direct flattened lookup.
 - **Build columns incrementally while emitting rows:** New columns discovered late require extending and realigning earlier rows, making the logic more complicated.
 - **Iterative depth-first traversal:** An explicit stack avoids recursive call-stack limits while producing the same path-to-value maps.
 - **Use `Map` for flattened rows:** It avoids special object property behavior and supports direct `has` checks, at the cost of slightly different syntax.
@@ -124,8 +124,8 @@ The stored value remains unchanged. In particular, false, zero, `null`, and an a
 - **Deep nesting:** Recursive code is clear, but an extremely deep structure may exceed the JavaScript call-stack limit.
 - **Lexicographic order:** The header is sorted once; insertion order from objects, arrays, or the set does not determine final column position.
 - **No mutation of input:** The traversal reads input structures and constructs separate flattened rows and a separate matrix.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

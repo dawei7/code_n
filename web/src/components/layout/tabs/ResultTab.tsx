@@ -27,6 +27,7 @@ import 'katex/dist/katex.min.css';
 import { useAppStore } from '../../../store/useAppStore';
 import type { RunCaseResult, SupportedLanguage, TestCaseSummary, TutorChatMessage } from '../../../types/api';
 import { formatCaseValue } from '../../../lib/formatCaseValue';
+import { ExecutionTraceVisualizer } from '../../visualization/ExecutionTraceVisualizer';
 
 
 export interface TutorChatSession {
@@ -393,7 +394,9 @@ function PracticeCasesCard({
   customCaseInput: string;
   onCustomInputChange: (value: string) => void;
 }) {
-  const [activePanel, setActivePanel] = useState<'cases' | 'output' | 'feedback' | 'submissions'>('cases');
+  const [activePanel, setActivePanel] = useState<'cases' | 'output' | 'stepper' | 'stresstest' | 'feedback' | 'submissions'>('cases');
+  const codeLanguage = useAppStore((s) => s.codeLanguage);
+  const sourceCode = useAppStore((s) => s.source);
   const selectedId = selectedCaseIds[0] ?? '';
   const visibleCases = detail.test_cases;
   const selectedCase =
@@ -412,6 +415,8 @@ function PracticeCasesCard({
         <div className="flex min-w-0 items-center gap-1">
           <PanelTab label="Test Cases" active={activePanel === 'cases'} onClick={() => setActivePanel('cases')} />
           <PanelTab label="Output" active={activePanel === 'output'} onClick={() => setActivePanel('output')} />
+          <PanelTab label="Trace Stepper" active={activePanel === 'stepper'} onClick={() => setActivePanel('stepper')} />
+          <PanelTab label="Stress Test" active={activePanel === 'stresstest'} onClick={() => setActivePanel('stresstest')} />
           <PanelTab label="Feedback" active={activePanel === 'feedback'} onClick={() => setActivePanel('feedback')} />
           <PanelTab label="Submissions" active={activePanel === 'submissions'} onClick={() => setActivePanel('submissions')} />
         </div>
@@ -479,6 +484,35 @@ function PracticeCasesCard({
           />
         )}
 
+        {activePanel === 'stepper' && (
+          <ExecutionTraceVisualizer
+            steps={selectedResult?.return_value_repr ? [
+              {
+                step: 1,
+                line: 1,
+                event: 'return',
+                func_name: 'solve',
+                depth: 1,
+                locals: {
+                  input: selectedCase?.input_repr || '',
+                  output: selectedResult.return_value_repr,
+                  expected: selectedResult.expected_repr || '',
+                },
+                changed_keys: ['output'],
+              }
+            ] : []}
+            sourceCode={sourceCode}
+          />
+        )}
+
+        {activePanel === 'stresstest' && (
+          <StressTestPanel
+            challengeId={detail.id}
+            sourceCode={sourceCode}
+            language={codeLanguage}
+          />
+        )}
+
         {activePanel === 'feedback' && (
           <FeedbackPanel result={result} />
         )}
@@ -487,6 +521,99 @@ function PracticeCasesCard({
           <SubmissionsPanel result={result} detailName={detail.name} />
         )}
       </div>
+    </div>
+  );
+}
+
+
+function StressTestPanel({
+  challengeId,
+  sourceCode,
+  language,
+}: {
+  challengeId: string;
+  sourceCode: string;
+  language: string;
+}) {
+  const [running, setRunning] = useState(false);
+  const [report, setReport] = useState<any | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const runStressTest = async () => {
+    setRunning(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/challenges/${challengeId}/stress-test`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: sourceCode, language }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.detail || `Stress test failed with status ${res.status}`);
+      }
+      const data = await res.json();
+      setReport(data);
+    } catch (err: any) {
+      setError(err.message || 'Failed to execute stress test');
+    } finally {
+      setRunning(false);
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-coden-border pb-3">
+        <div>
+          <h4 className="text-sm font-bold text-coden-text">Adversarial Boundary & Edge-Case Stress Testing</h4>
+          <p className="text-xs text-coden-muted">
+            Fuzz your solution across extreme boundaries, empty inputs, duplicates, and constraints against canonical baseline.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={runStressTest}
+          disabled={running}
+          className="rounded bg-rose-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-rose-500 disabled:opacity-50 transition-colors shadow-sm"
+        >
+          {running ? 'Stress Testing...' : 'Run Stress Test'}
+        </button>
+      </div>
+
+      {error && (
+        <div className="rounded border border-rose-500/40 bg-rose-500/10 p-3 text-xs text-rose-300">
+          {error}
+        </div>
+      )}
+
+      {report && (
+        <div className="rounded-lg border border-coden-border bg-coden-surface/70 p-4 space-y-3">
+          <div className="flex items-center justify-between text-xs font-mono">
+            <span>Cases Tested: <strong>{report.total_cases_tested}</strong></span>
+            <span className={report.all_passed ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}>
+              {report.passed_cases} Passed / {report.failed_cases} Failed
+            </span>
+          </div>
+
+          {report.all_passed ? (
+            <div className="rounded border border-emerald-500/40 bg-emerald-500/10 p-3 text-xs text-emerald-300 font-semibold">
+              ✓ All adversarial stress cases passed with 100% agreement with canonical baseline!
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <div className="text-xs font-bold text-rose-300">Counterexamples Discovered:</div>
+              {report.counterexamples.map((ce: any, idx: number) => (
+                <div key={idx} className="rounded border border-rose-500/30 bg-rose-500/10 p-2.5 text-xs font-mono space-y-1">
+                  <div><strong>Input:</strong> <code className="text-coden-text">{ce.input}</code></div>
+                  <div><strong>Returned:</strong> <code className="text-rose-300">{ce.returned}</code></div>
+                  <div><strong>Expected:</strong> <code className="text-emerald-300">{ce.expected}</code></div>
+                  {ce.error && <div className="text-rose-400 text-[11px]">{ce.error}</div>}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

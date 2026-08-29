@@ -68,7 +68,7 @@ A request from a building to itself subtracts and adds at the same index, for ne
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `check(mask)` creates `cnt = [0] * n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ If a larger subset is balanced, `ans = cnt` records its size. Starting `ans` at 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive backtracking:** Accept or reject eac:** - **Recursive backtracking:** Accept or reject each request while mutating one shared balance array, then undo accepted changes. It has the same exponential search and uses $O(N+M)$ space including recursion.
+- **Recursive backtracking:** Accept or reject each request while mutating one shared balance array, then undo accepted changes. It has the same exponential search and uses $O(N+M)$ space including recursion.
 - **Meet in the middle:** Splitting requests into halves can combine balance vectors and may help for larger $M$, but the bound of 16 makes direct enumeration simpler.
 - **Greedy acceptance:** Individual transfers do not reveal whether they participate in a balanced cycle, so local choices cannot ensure a maximum subset.
 - **Check masks in descending bit count:** This can return after the first balanced size is found, though ordering or grouping masks adds complexity. The source uses a simple ascending numeric scan with size pruning.
@@ -123,8 +123,8 @@ If a larger subset is balanced, `ans = cnt` records its size. Starting `ans` at 
 - **Subset-size pruning:** A mask with count equal to `ans` is skipped because it cannot improve the numerical answer.
 - **Generator short-circuit:** `all` may stop at the first nonzero building, improving typical work without changing the worst-case bound.
 - **Exact source space:** No recursion is used; only the current balance list grows with $N$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

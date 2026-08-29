@@ -61,7 +61,7 @@ The alias `c` refers to `Country`, and `c.name AS country` gives the result colu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Phone numbers begin with a three-character country code and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Countries with no call endpoint never appear in the person-call join and therefo
 
 ## 6. Traps This Instance Exposes
 
-- **- **UNION ALL endpoint normalization:** Produce ca:** - **UNION ALL endpoint normalization:** Produce caller-duration rows and callee-duration rows separately, combine them with `UNION ALL`, then join people and countries. This makes the two-endpoint semantics explicit and can improve optimizer options.
+- **UNION ALL endpoint normalization:** Produce caller-duration rows and callee-duration rows separately, combine them with `UNION ALL`, then join people and countries. This makes the two-endpoint semantics explicit and can improve optimizer options.
 - **UNION instead of UNION ALL:** It is wrong because it could remove duplicate endpoint rows, while every call row and both endpoints must retain their weight.
 - **Conditional joins:** Joining calls to caller and callee people in separate aliases can work but requires reshaping both endpoints before one country aggregation.
 - **Domestic call:** It contributes twice to the same country, once per distinct participant.
@@ -113,8 +113,8 @@ Countries with no call endpoint never appear in the person-call join and therefo
 - **Leading-zero country code:** Text prefix extraction preserves the zeros.
 - **Null durations:** SQL `AVG` ignores nulls; the reference presents duration values but does not specify null semantics.
 - **Unrestricted output order:** No `ORDER BY` is needed or implied.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

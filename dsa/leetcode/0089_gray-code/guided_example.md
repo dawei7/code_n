@@ -86,7 +86,7 @@ Because $X$ is a low run of `1` bits, shifting it right removes only its highest
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When binary $i$ is incremented to $i+1$, some suffix changes... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ There are $2^n$ indices in the loop, all outputs are distinct, and every output 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reflected iterative construction:** Begin with:** - **Reflected iterative construction:** Begin with `[0]`. For each new bit, traverse the existing sequence backward and append each value with that bit set. This is also $O(2^n)$ time and $O(1)$ auxiliary space excluding the output. It is often easier to discover from examples, while the selected formula is shorter and computes each position independently.
+- **Reflected iterative construction:** Begin with `[0]`. For each new bit, traverse the existing sequence backward and append each value with that bit set. This is also $O(2^n)$ time and $O(1)$ auxiliary space excluding the output. It is often easier to discover from examples, while the selected formula is shorter and computes each position independently.
 - **Recursive reflection:** First construct the $(n-1)$-bit sequence, then append its reverse with bit $n-1$ set. It expresses the mathematical reflection directly but uses $O(n)$ call-stack space in addition to the output.
 - **Backtracking over the hypercube:** Treat each $n$-bit number as a vertex and connect values that differ in one bit, then search for a Hamiltonian cycle beginning at zero. This models the contract naturally but introduces a visited set and potentially enormous search. A deterministic Gray construction makes that search unnecessary.
 - **Bit-operation precedence:** Write `i ^ (i >> 1)` with parentheses. The selected source does so, avoiding any need for a reader to remember Python's precedence rules.
@@ -131,8 +131,8 @@ There are $2^n$ indices in the loop, all outputs are distinct, and every output 
 - **Hypothetical zero-bit input:** The stated constraints begin at $n=1$, but the formula would still return `[0]` for $n=0$. Whether a one-element cyclic sequence is considered to differ from itself in one bit is irrelevant because that input is outside the contract.
 - **Multiple valid answers:** The problem accepts any valid sequence. The formula deterministically returns the reflected binary Gray ordering; it does not need to reproduce an example's exact list if another valid ordering is shown.
 - **Binary width and leading zeros:** Integers do not store leading zeros, but comparisons are understood in exactly $n$ bit positions. For example, with $n=3$, integer `1` represents `001`. Omitting stored leading zeros does not change which positions differ.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

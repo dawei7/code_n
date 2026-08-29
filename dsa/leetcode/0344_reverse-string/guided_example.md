@@ -76,11 +76,7 @@ That temporary is constant-sized, so either form remains an in-place, $O(1)$-aux
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The assignment
-
-`s[i], s[j] = s[j], s[i]`
-
-evaluates the rig... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,9 +125,9 @@ The swap puts both boundary characters of the unresolved interval into their fin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Create a reversed copy:** Slicing with `s[::-1:** - **Create a reversed copy:** Slicing with `s[::-1]` or building a new list is concise, but a standalone copy uses $O(n)$ extra memory. Assigning a slice back may also allocate temporary storage and therefore misses the strict $O(1)$ requirement.
-- **- **Built-in in-place reverse:** A library method :** - **Built-in in-place reverse:** A library method such as `s.reverse()` typically performs the same mirrored swaps and can satisfy the contract, but the explicit source makes the two-pointer reasoning visible.
-- **- **Recursive mirrored swaps:** Swap the ends and :** - **Recursive mirrored swaps:** Swap the ends and recurse inward. It mutates the list in place but consumes $O(n)$ call-stack space, violating the constant-extra-memory requirement.
+- **Create a reversed copy:** Slicing with `s[::-1]` or building a new list is concise, but a standalone copy uses $O(n)$ extra memory. Assigning a slice back may also allocate temporary storage and therefore misses the strict $O(1)$ requirement.
+- **Built-in in-place reverse:** A library method such as `s.reverse()` typically performs the same mirrored swaps and can satisfy the contract, but the explicit source makes the two-pointer reasoning visible.
+- **Recursive mirrored swaps:** Swap the ends and recurse inward. It mutates the list in place but consumes $O(n)$ call-stack space, violating the constant-extra-memory requirement.
 
 ---
 

@@ -51,7 +51,7 @@ For a zero-based flattened index `idx`, the corresponding coordinates are:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a zero-based flattened index `idx`, the corresponding co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This mapping is a bijection between integers from zero through `m * n - 1` and a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Materialized list plus Fisher–Yates:** Store a:** - **Materialized list plus Fisher–Yates:** Store all $N$ flattened indices and swap selected values with the tail. It gives the same uniform process but requires $O(N)$ initialization and memory.
+- **Materialized list plus Fisher–Yates:** Store all $N$ flattened indices and swap selected values with the tail. It gives the same uniform process but requires $O(N)$ initialization and memory.
 - **Rejection sampling:** Randomly choose cells until an unflipped one appears. It is simple, but calls to randomness and running time grow badly when few cells remain.
 - **Store a set of flipped cells:** This still needs rejection sampling unless an additional searchable structure is used, so it does not guarantee one random call per flip.
 - **Sparse virtual swaps:** The implemented dictionary records only positions changed by removals, giving expected constant-time flips with memory proportional to performed flips.
@@ -97,8 +97,8 @@ This mapping is a bijection between integers from zero through `m * n - 1` and a
 - **Flip after reset:** Clearing `mp` removes every stale virtual swap, so all $mn$ cells are equally eligible again.
 - **Operation guarantee:** The source promises a free cell before every `flip`, so the code never calls `randint` with an invalid empty interval.
 - **Large dimensions:** Only `m * n` and sparse mappings are stored; Python integers safely hold the product.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

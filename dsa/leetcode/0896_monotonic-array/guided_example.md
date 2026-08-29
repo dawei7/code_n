@@ -52,8 +52,7 @@ An array is monotonic when it satisfies at least one of two complete possibiliti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - every adjacent step is nondecreasing;
-- every adjacent ste... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ Checking adjacent pairs is sufficient even though the definition quantifies over
 
 ## 6. Traps This Instance Exposes
 
-- **- **One pass with two flags:** Maintain “still non:** - **One pass with two flags:** Maintain “still nondecreasing” and “still nonincreasing” while scanning once. This avoids the second pass but has the same asymptotic bounds.
+- **One pass with two flags:** Maintain “still nondecreasing” and “still nonincreasing” while scanning once. This avoids the second pass but has the same asymptotic bounds.
 - **Infer direction from the first pair:** Equal leading values make direction undecided, so the method needs to skip ties or maintain both possibilities carefully.
 - **Sort and compare:** Comparing with sorted and reverse-sorted copies works but costs $O(n\log n)$ time and $O(n)$ extra space.
 - **Compare every pair $i<j$:** This follows the definition literally but costs $O(n^2)$; adjacent transitivity makes it unnecessary.
@@ -101,8 +100,8 @@ Checking adjacent pairs is sufficient even though the definition quantifies over
 - **Negative values:** Only ordering matters; sign does not change the logic.
 - **Fresh iterators:** Calling `pairwise(nums)` twice is necessary because one generator cannot be replayed after consumption.
 - **No input mutation:** The original element order remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

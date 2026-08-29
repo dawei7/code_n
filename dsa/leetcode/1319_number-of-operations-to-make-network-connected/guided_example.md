@@ -63,7 +63,7 @@ This classification is incremental but exact. Every accepted merge edge belongs 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For cable `[a, b]`, the method finds representatives `pa` an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ At this point, local `n` means `c`, not the original number of computers. If the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Early cable-count check plus component count:*:** - **Early cable-count check plus component count:** If `len(connections) < N - 1`, return $-1$ immediately; otherwise count components and return `c - 1`. This avoids explicitly counting redundant cables.
+- **Early cable-count check plus component count:** If `len(connections) < N - 1`, return $-1$ immediately; otherwise count components and return `c - 1`. This avoids explicitly counting redundant cables.
 - **DFS or BFS components:** Build an adjacency list, count connected components, and combine it with the total-edge feasibility check. Time is $O(N+m)$ but adjacency storage is $O(N+m)$.
 - **Union by rank or size:** Pairing it with path compression provides the inverse-Ackermann complexity claimed by the manifest and prevents deep parent chains.
 - **Already connected network:** Final component count is one, so zero operations are required regardless of additional redundant cables.
@@ -118,8 +118,8 @@ At this point, local `n` means `c`, not the original number of computers. If the
 - **Single computer:** It is already connected and needs zero operations, even with no cables.
 - **Recursive find depth:** Unbalanced unions can create a long chain before path compression. Python may fail before the theoretical memory limit.
 - **No repeated input edges:** Redundancy still arises through cycles of three or more distinct cables, not only duplicate pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

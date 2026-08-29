@@ -61,7 +61,7 @@ The graph is undirected according to the contract, but the BFS logic would also 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop runs `level` times.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If the connected component ends before the requested level, the queue becomes em
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search with stored distances:** DF:** - **Depth-first search with stored distances:** DFS can traverse the graph while maintaining best known distances, but BFS obtains unweighted shortest layers directly and more simply.
+- **Depth-first search with stored distances:** DFS can traverse the graph while maintaining best known distances, but BFS obtains unweighted shortest layers directly and more simply.
 - **Repeated frontier sets:** Replacing the queue with a set of the next layer can work, but a global visited set is still required to enforce shortest-distance semantics.
 - **Count everyone within the level:** That is incorrect. The task asks for shortest path exactly equal to `level`, so smaller layers must be removed before counting.
 - **No people at the requested level:** The queue is empty and the sorted key list is empty.
@@ -113,8 +113,8 @@ If the connected component ends before the requested level, the queue becomes em
 - **Level one:** One outer expansion removes `id` and leaves exactly direct friends.
 - **Large level beyond component depth:** Empty frontiers remain empty through the remaining fixed iterations and produce an empty answer.
 - **Duplicate friendship entries outside the usual graph representation:** Immediate visited marking prevents duplicate person insertion even if an adjacency list repeats an ID.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

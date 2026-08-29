@@ -65,12 +65,12 @@ isWinner(state)
 
 ##### Defining the state
 
-We define the current state using the heights of the piles taken together. So, $[1, 2, 1]$ defines a state where the first pile has $1$ stone, the second pile has $2$ stones, and the third pile has $1$ stone. In this state, there are four moves available:
+We define the current state using the heights of the piles taken together. So, `[1, 2, 1]` defines a state where the first pile has $1$ stone, the second pile has $2$ stones, and the third pile has $1$ stone. In this state, there are four moves available:
 
-1. Pick one stone from the first pile. The resulting state - $[0, 2, 1]$.
-2. Pick one stone from the second pile. The resulting state - $[1, 1, 1]$.
-3. Pick two stones from the second pile. The resulting state - $[1, 0, 1]$.
-4. Pick one stone from the third pile. The resulting state - $[1, 2, 0]$.
+1. Pick one stone from the first pile. The resulting state - `[0, 2, 1]`.
+2. Pick one stone from the second pile. The resulting state - `[1, 1, 1]`.
+3. Pick two stones from the second pile. The resulting state - `[1, 0, 1]`.
+4. Pick one stone from the third pile. The resulting state - `[1, 2, 0]`.
 
 Let's visualize the gameplay and all possibilities using a tree. Each node of the tree represents a specific state of the gameplay. The root represents the given state of the game. When we make a move, the state changes and all possible states after a move are displayed as the children of the respective node in the tree.
 
@@ -84,7 +84,7 @@ The total number of nodes in the whole tree will have an upper bound of $(m \cdo
 
 Memoization is a technique where we store the result of a given state in a hash. The hash key represents a state, and its corresponding value represents the computed result for that state. This technique could be helpful if we find the same state appearing multiple times in the recursion tree. It saves us repeated calculations by storing the result of the earlier calculations.
 
-You might have noticed that the state $[1, 0, 1]$ appears multiple times in the example given above. So rather than computing its result again by going down the subtree, we can store its result in a hash `memo` when we come across the state for the first time. In the subsequent visits, the same result can be used again.
+You might have noticed that the state `[1, 0, 1]` appears multiple times in the example given above. So rather than computing its result again by going down the subtree, we can store its result in a hash `memo` when we come across the state for the first time. In the subsequent visits, the same result can be used again.
 
 !?!../Documents/1908/nim-memoization.json:960,540!?!
 
@@ -94,7 +94,7 @@ Memoization brings the number of nodes significantly down. For $m$ number of sto
 
 Can we do better?
 
-Notice in this approach, we are counting different permutations of an arrangement of piles as separate states. e.g., From the starting state of $[2, 2, 2]$, if we remove one stone from every pile, we get the following states - $[1, 2, 2]$, $[2, 1, 2]$, $[2, 2, 1]$. These might be counted as three different moves, but the outcome in all three cases will be the same since the order of piles doesn't matter here. So, these are equivalent states, and we should ideally treat them as one state. To do so, we sort the pile in increasing order and then see if we have come across the state before.
+Notice in this approach, we are counting different permutations of an arrangement of piles as separate states. e.g., From the starting state of `[2, 2, 2]`, if we remove one stone from every pile, we get the following states - `[1, 2, 2]`, `[2, 1, 2]`, `[2, 2, 1]`. These might be counted as three different moves, but the outcome in all three cases will be the same since the order of piles doesn't matter here. So, these are equivalent states, and we should ideally treat them as one state. To do so, we sort the pile in increasing order and then see if we have come across the state before.
 
 This involves the additional overhead of sorting the piles, but it saves us from computing the subtrees of equivalent states multiple times.
 

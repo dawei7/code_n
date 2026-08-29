@@ -62,7 +62,7 @@ Moving this selected minimum to index zero costs exactly `i` adjacent swaps: it 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `v < nums[i]`, the scan has found a genuinely smaller v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ Moving the selected maximum from index `j` to the final index costs `n - 1 - j` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use built-in minimum and maximum plus index se:** - **Use built-in minimum and maximum plus index searches:** Find the minimum and maximum values, then locate the first minimum and last maximum. This is correct but makes several linear passes instead of one.
+- **Use built-in minimum and maximum plus index searches:** Find the minimum and maximum values, then locate the first minimum and last maximum. This is correct but makes several linear passes instead of one.
 - **Simulate adjacent swaps:** Moving the chosen elements step by step takes `O(n)` operations and mutates data merely to obtain a count that endpoint distances already provide.
 - **Choose the rightmost minimum:** It requires at least as many swaps to reach the left edge and can be strictly worse.
 - **Choose the leftmost maximum:** It requires at least as many swaps to reach the right edge and can be strictly worse.
@@ -113,8 +113,8 @@ Moving the selected maximum from index `j` to the final index costs `n - 1 - j` 
 - **Multiple minima and maxima:** The scan's tie behavior selects the endpoint-nearest copies.
 - **Minimum equals maximum:** This means all values are equal, handled naturally.
 - **Input preservation:** The method only reads `nums` and returns a count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

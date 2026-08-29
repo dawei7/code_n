@@ -72,7 +72,7 @@ For each position, we enumerate all possible digits:
 
 1. Determine the upper bound of the current digit.
   - If $\textit{isLimit}$ is true, the digit range is $[0, \textit{num}_{\textit{pos}}]$.
-  - Otherwise, the digit range is $[0, 9]$.
+  - Otherwise, the digit range is `[0, 9]`.
 
 2. Enumerate each candidate digit $\textit{digit}$.
 3. Update the leading-zero state:

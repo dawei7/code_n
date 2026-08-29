@@ -63,9 +63,7 @@ A point at the exact current location has distance zero and is valid through bot
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each valid point, the source calculates:
-
-`abs(a - x) + ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ If the new distance equals `mi`, no update occurs. Since indices are visited fro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort valid candidates:** Sorting by `(distance:** - **Sort valid candidates:** Sorting by `(distance, index)` is correct but costs $O(n\log n)$ time and extra storage.
+- **Sort valid candidates:** Sorting by `(distance, index)` is correct but costs $O(n\log n)$ time and extra storage.
 - **Build a filtered list:** It makes validity explicit but uses $O(n)$ space that a streaming minimum avoids.
 - **Check same x only:** It would miss valid points sharing y.
 - **Check same y only:** It would miss valid points sharing x.
@@ -123,8 +121,8 @@ If the new distance equals `mi`, no update occurs. Since indices are visited fro
 - **Point sharing both coordinates:** Both validity clauses are true, but it is still processed once.
 - **Positive coordinate bounds:** They are irrelevant to the logic; only differences matter.
 - **Input preservation:** Enumeration reads points in their original order, which is essential for implicit tie handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

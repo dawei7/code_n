@@ -57,7 +57,7 @@ This is the only input whose significant representation contains a bit even thou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Zero's ordinary binary representation is `"0"`, whose comple... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Conceptually, the subexpression is `(n & 1) ^ 1`. It produces the complement bit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Same-length all-ones mask:** Compute `mask = (:** - **Same-length all-ones mask:** Compute `mask = (1 << n.bit_length()) - 1` and return `mask ^ n`. It flips all significant positions at once.
+- **Same-length all-ones mask:** Compute `mask = (1 << n.bit_length()) - 1` and return `mask ^ n`. It flips all significant positions at once.
 - **Subtract from the mask:** For an all-ones mask of the same bit length, `mask - n` also equals the complement.
 - **Propagate the highest one bit:** Repeated OR-with-shift operations can turn every bit below the highest one into a mask, then XOR with `n`.
 - **Binary-string conversion:** Map each `0` to `1` and each `1` to `0`, then parse. It is clear but allocates text and extra storage.
@@ -113,8 +113,8 @@ Conceptually, the subexpression is `(n & 1) ^ 1`. It produces the complement bit
 - **Power of two:** A representation such as `1000` becomes `0111`, one less than the original power.
 - **Leading zeros:** They are not part of the representation and are deliberately never visited.
 - **Maximum input:** Fewer than thirty-one loop iterations are needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

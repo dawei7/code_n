@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an array of transactions `transactions` where $\text{transactions}[i] = [\text{from}_{i}, \text{to}_{i}, \text{amount}_{i}]$ indicates that the person with $ID = \text{from}_{i}$ gave $\text{amount}_{i}$$to the person with$ID = \text{to}_{i}$.
+You are given an array of transactions `transactions` where $\text{transactions}[i] = [\text{from}_{i}, \text{to}_{i}, \text{amount}_{i}]$ indicates that the person with $ID = \text{from}_{i}$ gave $\text{amount}_{i}$to the person with$ID = \text{to}_{i}$.
 
 Return *the minimum number of transactions required to settle the debt*.
 

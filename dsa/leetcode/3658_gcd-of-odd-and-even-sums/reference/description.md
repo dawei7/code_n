@@ -50,4 +50,4 @@ Hence, $GCD(sumOdd, sumEven) = GCD(25, 30) = 5$.
 
 ### 4. Constraints
 
-- $1 \le n \le 10​​​​​​​00$
+- $1 \le n \le 1000$

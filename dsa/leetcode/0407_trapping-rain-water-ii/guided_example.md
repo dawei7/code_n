@@ -60,7 +60,7 @@ This effective height is what can constrain neighboring cells. A filled depressi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each heap entry is `(h, row, column)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,9 +99,9 @@ These cells begin with their terrain heights. They form the initial frontier bet
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four directional maxima:** The 1D trapping-wat:** - **Four directional maxima:** The 1D trapping-water technique does not capture winding escape paths in two dimensions. A cell can leak around a high wall through a lower route.
-- **- **Repeated global relaxation:** One could iterat:** - **Repeated global relaxation:** One could iteratively lower tentative water levels until stable, but this revisits cells many times. The min-heap finalizes levels in the correct order.
-- **- **Minimax Dijkstra formulation:** Define each ce:** - **Minimax Dijkstra formulation:** Define each cell’s cost as the minimum possible maximum terrain height on a path to the boundary. Standard Dijkstra relaxation uses `max(current_cost, neighbor_height)`. This is exactly the effective-height algorithm described here.
+- **Four directional maxima:** The 1D trapping-water technique does not capture winding escape paths in two dimensions. A cell can leak around a high wall through a lower route.
+- **Repeated global relaxation:** One could iteratively lower tentative water levels until stable, but this revisits cells many times. The min-heap finalizes levels in the correct order.
+- **Minimax Dijkstra formulation:** Define each cell’s cost as the minimum possible maximum terrain height on a path to the boundary. Standard Dijkstra relaxation uses `max(current_cost, neighbor_height)`. This is exactly the effective-height algorithm described here.
 
 ---
 

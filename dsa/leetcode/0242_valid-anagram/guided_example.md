@@ -67,7 +67,7 @@ A negative value means the processed prefix of `t` already contains more copies 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After `cnt = Counter(s)`, `cnt[c]` is the inventory of chara... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The same fact can be viewed through contradiction. Suppose a positive count rema
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-entry frequency array:** Map each low:** - **Fixed 26-entry frequency array:** Map each lowercase letter to an index from `0` through `25`, increment for `s`, and decrement for `t`. It avoids hashing and makes the fixed-alphabet $O(1)$ space explicit. This is the manifest's described representation, but not the exact Python source.
+- **Fixed 26-entry frequency array:** Map each lowercase letter to an index from `0` through `25`, increment for `s`, and decrement for `t`. It avoids hashing and makes the fixed-alphabet $O(1)$ space explicit. This is the manifest's described representation, but not the exact Python source.
 - **Sort both strings:** Equal anagrams become identical after sorting, giving a short solution. Sorting costs $O(n\log n)$ time and typically allocates string or character-array storage, so counting is asymptotically faster.
 - **Two counters compared for equality:** `Counter(s) == Counter(t)` is conceptually direct and still $O(n)$ expected time. The implemented inventory method needs only one initial counter and can reject as soon as `t` overuses a character.
 - **Unequal lengths:** Return `false` before constructing the counter. A longer or shorter string cannot be a rearrangement of the other.
@@ -117,8 +117,8 @@ The same fact can be viewed through contradiction. Suppose a positive count rema
 - **Single-character strings:** Equal characters consume one available count and succeed; different characters make a missing key negative and fail.
 - **Unicode follow-up:** A hash map or Python `Counter` avoids allocating an enormous fixed table and can count arbitrary code points. If “character” is intended to mean a user-perceived grapheme cluster rather than a Unicode code point, the text would first need appropriate Unicode normalization and grapheme segmentation; that is outside the lowercase-English contract.
 - **Case sensitivity:** The allowed input is lowercase. In a broader setting, `A` and `a` are different keys unless the contract explicitly requests case folding.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

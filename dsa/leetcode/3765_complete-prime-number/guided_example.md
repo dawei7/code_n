@@ -63,7 +63,7 @@ For 2 and 3, the divisor range is empty. Python's `all` of an empty sequence is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested `is_prime(x)` helper first rejects every `x < 2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For `num = 317`, the accumulator visits 3, then 31, then 317. Each value is pass
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated decimal slicing:** Testing `int(s[:k]:** - **Repeated decimal slicing:** Testing `int(s[:k])` and `int(s[-k:])` is straightforward, but repeatedly reparses digit sequences. The accumulators express the same values incrementally.
+- **Repeated decimal slicing:** Testing `int(s[:k])` and `int(s[-k:])` is straightforward, but repeatedly reparses digit sequences. The accumulators express the same values incrementally.
 - **Sieve of Eratosthenes:** A sieve up to `num` would answer primality queries quickly after preprocessing but uses $O(n)$ time and space, excessive for only a few tested values.
 - **Probabilistic or deterministic Miller–Rabin:** This is valuable for much larger integers, but trial division is simple and sufficient for `num <= 10^9`.
 - **Check only the whole number:** A prime full number can still contain a composite shorter prefix or suffix; every length is required.
@@ -118,8 +118,8 @@ For `num = 317`, the accumulator visits 3, then 31, then 317. Each value is pass
 - **Full-number duplicate test:** The source tests it as both a prefix and suffix. Skipping the second test would be a possible micro-optimization, not the current behavior.
 - **Floating square root:** The constrained values are small enough for `sqrt` and integer conversion to identify the required trial bound reliably.
 - **Input preservation:** Only local strings and integers are created; `num` is not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

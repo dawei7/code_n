@@ -59,7 +59,7 @@ Transactions from another account never enter the current account's balance, eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The window clause uses `PARTITION BY account_id`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The composite primary key `(account_id,day)` guarantees that one account cannot 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `ROWS` frame:** State `ROWS UNBOUNDED:** - **Explicit `ROWS` frame:** State `ROWS UNBOUNDED PRECEDING` to make cumulative-row semantics explicit.
+- **Explicit `ROWS` frame:** State `ROWS UNBOUNDED PRECEDING` to make cumulative-row semantics explicit.
 - **Correlated subquery:** Sum all earlier transactions per row, but can become quadratic without optimization.
 - **User variables:** Can simulate running totals in MySQL but are more fragile than window functions.
 - **First transaction:** Its balance equals its signed amount because the initial balance is zero.
@@ -110,8 +110,8 @@ The composite primary key `(account_id,day)` guarantees that one account cannot 
 - **Same account and day:** Excluded by the composite primary key.
 - **Final ordering:** `ORDER BY 1,2` uses selected column ordinals.
 - **No mutation:** The query reads transactions and returns derived balances.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

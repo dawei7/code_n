@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` integer matrix `grid`​​​, where `m` and `n` are both **even** integers, and an integer `k`.
+You are given an `m x n` integer matrix `grid`, where `m` and `n` are both **even** integers, and an integer `k`.
 
 The objective is to compute `[[10, 20], [40, 30]]` from `{"grid": [[40, 10], [30, 20]], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Choose one consistent coordinate order.** Helper `rotate(p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Each loop excludes its final corner, which becomes the first cell of the next ed
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store coordinates as well as values:** This ma:** - **Store coordinates as well as values:** This makes write-back visually direct but uses additional perimeter arrays. The exact source regenerates coordinates with identical loops.
+- **Store coordinates as well as values:** This makes write-back visually direct but uses additional perimeter arrays. The exact source regenerates coordinates with identical loops.
 - **Rotate one step `k` times:** Correct but can cost $O(kmn)$ and is impossible for $k$ up to $10^9$. Modulo plus slicing applies the net permutation once.
 - **In-place cycle replacement:** Can reduce auxiliary space toward $O(1)$ but is more delicate because cycle gcds and saved values must be handled correctly.
 - **Different layer lengths:** Each layer takes its own modulo; using the outer perimeter length for every layer would be wrong.
@@ -95,8 +95,8 @@ Each loop excludes its final corner, which becomes the first cell of the next ed
 - **Even dimensions:** They ensure every cell belongs to a complete perimeter layer. Odd dimensions would leave a central row or column that stays fixed and would need explicit interpretation.
 - **Direction trap:** Coordinates are stored clockwise, so counter-clockwise value movement requires a left shift, not a right shift.
 - **Input preservation:** The returned grid is the mutated input object, not a separately allocated matrix.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

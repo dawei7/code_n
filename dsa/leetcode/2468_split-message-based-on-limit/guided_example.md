@@ -78,7 +78,7 @@ is the total number of message-character slots available.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop tests `k` from 1 through `n=len(message)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ If no `k<=n` is feasible, the method returns an empty list.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search the part count:** Feasibility is:** - **Binary search the part count:** Feasibility is complicated by denominator digit jumps and is not simply monotone across every boundary, so ascending enumeration is safer.
+- **Binary search the part count:** Feasibility is complicated by denominator digit jumps and is not simply monotone across every boundary, so ascending enumeration is safer.
 - **Recompute numerator digits for each count:** Summing `digits(1..k)` from scratch would make the search quadratic. Incremental `sa` avoids that repetition.
 - **Limit too small for suffixes:** No count gains usable total payload and the method returns an empty list.
 - **One feasible part:** Suffix `"<1/1>"` is appended and the complete message fits before it.
@@ -127,8 +127,8 @@ If no `k<=n` is feasible, the method returns an empty list.
 - **Numerator digit variation:** `sa` counts each index's actual width rather than assuming all numerators match `k`.
 - **Minimum count:** Returning immediately at the first feasible `k` is valid because enumeration is ascending.
 - **Reconstruction:** Payloads are consecutive slices, so removing suffixes yields the original message without gaps or reordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

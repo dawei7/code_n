@@ -63,7 +63,7 @@ If `i < 0`, no array digit remains, so the conditional expression adds zero. The
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before an iteration processes position `i`, `k` represents e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ All inputs are nonnegative, so the remainder is always a legal digit from zero t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert the digit array to an integer:** Recon:** - **Convert the digit array to an integer:** Reconstruct the number, add `k`, and split the result. It is concise in Python but ignores the intended digit-by-digit method and depends on arbitrary-precision integer conversion.
+- **Convert the digit array to an integer:** Reconstruct the number, add `k`, and split the result. It is concise in Python but ignores the intended digit-by-digit method and depends on arbitrary-precision integer conversion.
 - **Split `k` into a digit array first:** Then add two arrays from right to left with an explicit carry. This is conventional but needs extra preprocessing and indices.
 - **Mutate `num` in place:** Add `k` to the final digit and propagate carries leftward. It can reuse input storage but changes the caller's array and still needs space if a new leading carry appears.
 - **Insert result digits at index zero:** It avoids a final reversal but every front insertion shifts the existing list, potentially making construction quadratic.
@@ -122,8 +122,8 @@ All inputs are nonnegative, so the remainder is always a legal digit from zero t
 - **Input representing zero:** The same loop adds `k` to its single zero digit and emits the proper result.
 - **No leading zeros:** The input guarantee and normal carry termination ensure the returned representation has no artificial leading zero.
 - **Very long `num`:** The method never constructs the represented integer, so it scales linearly to ten thousand digits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -84,7 +84,7 @@ Both aggregates are reduced modulo $10^9+7$. The pending increment is accumulate
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the left-endpoint interval represented by a node, `sums[... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ After a partial update, the parent recomputes both aggregates as the modular sum
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Maintaining a set w:** - **Enumerate all subarrays:** Maintaining a set while extending each left endpoint takes $O(n^2)$ time, which is appropriate for version I but not for this input size.
+- **Enumerate all subarrays:** Maintaining a set while extending each left endpoint takes $O(n^2)$ time, which is appropriate for version I but not for this input size.
 - **Rebuild distinct counts for every right endpoint:** Scanning all starts after each append is also $O(n^2)$. The previous-occurrence boundary proves all changing starts form one interval.
 - **Segment tree stores both moments:** Keeping only $\sum D_l$ cannot recover $\sum D_l^2$. The square-update formula requires both the first and second moments.
 - **First occurrence:** With previous position $-1$, update range $[0,r]$; the new value is absent from every subarray ending before $r$.
@@ -130,8 +130,8 @@ After a partial update, the parent recomputes both aggregates as the modular sum
 - **Modulo arithmetic:** Addition and the polynomial range-update identity are compatible with taking residues, so reducing node aggregates cannot alter the final modular answer.
 - **Empty array is irrelevant:** The contract guarantees at least one element, allowing the tree to be built over range $0..n-1$.
 - **Source provenance:** The local editorial is unavailable; this explanation follows the exact checked-in segment-tree implementation and its update formulas.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

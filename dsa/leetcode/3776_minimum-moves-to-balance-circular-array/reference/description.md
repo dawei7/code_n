@@ -62,7 +62,7 @@ Thus, the minimum number of moves required is 4.
 
 - Move 1 unit from $i = 1$ to $i = 2$, resulting in $balance = [0, 0, 0, 0]$
 
-Thus, the minimum number of moves required is 6.​​​
+Thus, the minimum number of moves required is 6.
 
 #### Example 3
 
@@ -72,7 +72,7 @@ Thus, the minimum number of moves required is 6.​​​
 
 - **Explanation:** 
 
-**​​​​​​​**It is impossible to make all balances non-negative for $balance = [-3, 2]$, so the answer is -1.
+****It is impossible to make all balances non-negative for $balance = [-3, 2]$, so the answer is -1.
 
 ### 5. Constraints
 

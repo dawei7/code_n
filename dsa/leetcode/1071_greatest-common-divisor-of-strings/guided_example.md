@@ -73,11 +73,7 @@ Because outer candidate lengths start at one or more, `a` is never empty. Otherw
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested helper is:
-
-
-
-`a` is a nonempty candidate prefix,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +118,7 @@ extracts the length-`i` prefix of `str1`. As argued above, every possible common
 
 ## 6. Traps This Instance Exposes
 
-- **- **Concatenation compatibility plus numeric GCD:*:** - **Concatenation compatibility plus numeric GCD:** If the two concatenation orders match, the answer length is `gcd(N, M)`. This is the intended linear-time mathematical solution.
+- **Concatenation compatibility plus numeric GCD:** If the two concatenation orders match, the answer length is `gcd(N, M)`. This is the intended linear-time mathematical solution.
 - **Virtual concatenation comparison:** Compare characters of `str1 + str2` and `str2 + str1` by index arithmetic to retain `O(1)` auxiliary space rather than allocating both combined strings.
 - **Length divisors only:** Enumerate divisors of `gcd(N, M)` from largest to smallest instead of every length. This reduces candidate count but still needs pattern checks.
 - **Direct modular periodicity check:** For a candidate length, verify every character against the corresponding prefix position using modulo, avoiding construction of `c`.
@@ -136,8 +132,8 @@ extracts the length-`i` prefix of `str1`. As argued above, every possible common
 - **Nonempty inputs:** The constraints make every outer candidate nonempty. The helper would loop forever for an empty `a`, but that state cannot occur.
 - **Short-circuit evaluation:** `check(t, str2)` runs only if `t` tiles `str1`, saving work without changing correctness.
 - **Output allocation:** Returning `str1[:g]` in an optimized Python solution creates the required output string; output space is normally excluded from auxiliary-space claims.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

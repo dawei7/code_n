@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `heights` of size `n`, where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ block in an exercise routine.
+You are given an integer array `heights` of size `n`, where $\text{heights}[i]$ represents the height of the $i^{\text{th}}$ block in an exercise routine.
 
 You start on the ground (height 0) and **must** jump onto each block **exactly once** in any order.
 
@@ -34,7 +34,7 @@ Once you jump onto the first block, you cannot return to the ground.
 
 - **Output:** 181
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 The optimal sequence is `[9, 1, 7]`.
 

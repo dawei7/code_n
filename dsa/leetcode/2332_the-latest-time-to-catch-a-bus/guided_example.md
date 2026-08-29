@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** integer array `buses` of length `n`, where $\text{buses}[i]$ represents the departure time of the $$i^{\text{th}}$$ bus. You are also given a **0-indexed** integer array `passengers` of length `m`, where $\text{passengers}[j]$ represents the arrival time of the $$j^{\text{th}}$$ passenger. All bus departure times are unique. All passenger arrival times are unique.
+You are given a **0-indexed** integer array `buses` of length `n`, where $\text{buses}[i]$ represents the departure time of the $i^{\text{th}}$ bus. You are also given a **0-indexed** integer array `passengers` of length `m`, where $\text{passengers}[j]$ represents the arrival time of the $j^{\text{th}}$ passenger. All bus departure times are unique. All passenger arrival times are unique.
 
 The objective is to compute `16` from `{"buses": [10, 20], "passengers": [2, 17, 18, 19], "capacity": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -64,7 +64,7 @@ In the full case, matching the last boarded passenger's time is forbidden, so th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Any arrival that catches an earlier bus cannot be later than... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ For a full last bus whose last boarded passenger arrives at 17, the initial cand
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search an arrival time:** Simulate boar:** - **Binary search an arrival time:** Simulate boarding for each candidate and test feasibility. This repeats substantial work and is unnecessary once the final boarding boundary is known.
+- **Binary search an arrival time:** Simulate boarding for each candidate and test feasibility. This repeats substantial work and is unnecessary once the final boarding boundary is known.
 - **Use a set for collision checks:** Start from the boundary and decrement while the candidate is in a passenger set. This is correct with expected constant lookup but uses additional `O(p)` storage; the sorted backward pointer reuses ordering.
 - **Simulate the new traveler explicitly at many times:** Only the boundary passenger and occupied-time gaps matter. Full schedule resimulation for every candidate is wasteful.
 - **Final bus has spare capacity:** Its departure time is best unless an existing passenger has exactly that arrival, in which case retreat finds the next gap.
@@ -118,8 +118,8 @@ For a full last bus whose last boarded passenger arrives at 17, the initial cand
 - **Unique passenger times:** The source guarantee means one backward step handles one occupied time; duplicates would require different queue and collision handling.
 - **Bitwise complement condition:** `~j` is correct only because `j` stops at `-1` and never needs values below it. An explicit `j >= 0` would be clearer.
 - **Input mutation:** Both `buses` and `passengers` are sorted in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

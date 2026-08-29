@@ -68,7 +68,7 @@ Thus the key quantity is `shared_factor_count`: the number of original elements 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An original value $a$ is incompatible with selected value $v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Values equal to one contribute only to `divisible_count[1]` and are never incomp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test the GCD against every array element for e:** - **Test the GCD against every array element for every candidate:** This costs $O(nU\log U)$-scale work. Divisor counts and inclusion–exclusion share incompatibility counting.
+- **Test the GCD against every array element for every candidate:** This costs $O(nU\log U)$-scale work. Divisor counts and inclusion–exclusion share incompatibility counting.
 - **Count only one prime factor:** A selected value may have several distinct primes, and positions divisible by any one are incompatible.
 - **Add prime-divisibility counts without inclusion–exclusion:** Values divisible by multiple selected primes would be counted more than once.
 - **Change every incompatible value plus a separate selected position:** When the selected value is absent, one incompatible position can itself be changed into the selected value, saving one operation.
@@ -124,8 +124,8 @@ Values equal to one contribute only to `divisible_count[1]` and are never incomp
 - **Prime-power selected value:** Repeated powers do not change the incompatibility set; only the one distinct prime is stored.
 - **All originals already co-prime with an absent candidate:** Exactly one change creates the candidate and no other change is needed.
 - **Score zero:** It may be optimal, so initializing `best_score` to zero is intentional.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

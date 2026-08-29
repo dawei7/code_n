@@ -59,7 +59,7 @@ This avoids returning several rides for a bike or requiring a separate lookup af
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY bike_number` partitions the `Bikes` table into all... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ It also allows the later `ORDER BY end_time DESC` to refer clearly to the aggreg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window function with row numbers:** Can rank r:** - **Window function with row numbers:** Can rank rides per bike and keep rank one, but returns more row detail than needed.
+- **Window function with row numbers:** Can rank rides per bike and keep rank one, but returns more row detail than needed.
 - **Anti-join against later rides:** Correct when carefully written, but more complex and potentially more expensive.
 - **Correlated `MAX` subquery:** Produces the right value but may repeat aggregation for many rows.
 - **Maximum ride ID:** Incorrect because unique IDs are not guaranteed chronological.
@@ -112,8 +112,8 @@ It also allows the later `ORDER BY end_time DESC` to refer clearly to the aggreg
 - **Descending direction:** Required to place most recently used bikes first.
 - **Column alias:** Ensures the aggregate has the expected output name.
 - **Source preservation:** The query reads and summarizes rows without modifying `Bikes`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

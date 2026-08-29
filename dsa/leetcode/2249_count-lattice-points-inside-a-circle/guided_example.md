@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{i}]$ represents the center $(x_{i}, y_{i})$ and radius $r_{i}$ of the $$i^{\text{th}}$$ circle drawn on a grid, return *the **number of lattice points** **that are present inside **at least one** circle*.
+Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{i}]$ represents the center $(x_{i}, y_{i})$ and radius $r_{i}$ of the $i^{\text{th}}$ circle drawn on a grid, return *the **number of lattice points** **that are present inside **at least one** circle*.
 
 The objective is to compute `5` from `{"circles": [[2, 2, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,7 +65,7 @@ Thus, the rectangle `[0,mx] \times [0,my]` contains the union of all circles.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | No circle extends right of `x + r` or above `y + r`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If no circle passes, the loop finishes without changing `ans`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Per-circle enumeration with a set:** Visit eac:** - **Per-circle enumeration with a set:** Visit each circle's bounding square and insert covered coordinates into a set. This matches the manifest and can avoid testing distant points against every circle, but uses space proportional to the union.
+- **Per-circle enumeration with a set:** Visit each circle's bounding square and insert covered coordinates into a set. This matches the manifest and can avoid testing distant points against every circle, but uses space proportional to the union.
 - **Scan only each circle's horizontal slices:** For each integer row, derive the covered x interval. Merging intervals can be more efficient but is more complex.
 - **Use Euclidean square roots:** Floating-point calculations are unnecessary and can create boundary precision issues; squared distances are exact.
 - **Overlapping circles:** A point is counted once because its coordinate is visited once and the circle loop breaks.
@@ -120,8 +120,8 @@ If no circle passes, the loop finishes without changing `ans`.
 - **Maximum coordinates:** Global bounds include `x+r` and `y+r` through the `+1` range endpoints.
 - **No set allocation:** Duplicate avoidance comes from visiting each coordinate once.
 - **Input preservation:** Circle definitions are only read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

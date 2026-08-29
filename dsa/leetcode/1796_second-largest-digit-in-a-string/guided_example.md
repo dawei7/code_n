@@ -66,7 +66,7 @@ Simultaneous assignment matters conceptually: Python evaluates the right-hand va
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `v > a`, the new value becomes the largest.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ If neither update applies, the digit is a duplicate of an existing maximum or is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean array of ten digits:** Mark each encou:** - **Boolean array of ten digits:** Mark each encountered digit and scan from 9 downward afterward. This is also $O(n)$ time and $O(1)$ space, but uses more explicit state.
+- **Boolean array of ten digits:** Mark each encountered digit and scan from 9 downward afterward. This is also $O(n)$ time and $O(1)$ space, but uses more explicit state.
 - **Set plus sorting:** Collecting distinct digits and sorting them works, yet it obscures the one-pass top-two invariant.
 - **Sort all digit occurrences:** Duplicates must then be skipped, and copying plus sorting is unnecessary.
 - **Convert every character directly:** Calling `int` on a letter would fail, so classification must occur first.
@@ -122,8 +122,8 @@ If neither update applies, the digit is a duplicate of an existing maximum or is
 - **Letters between digits:** They have no effect on the invariant.
 - **ASCII input guarantee:** It makes `isdigit` followed by `int` safe for every valid digit character.
 - **Input preservation:** The solution reads the string without constructing a modified copy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

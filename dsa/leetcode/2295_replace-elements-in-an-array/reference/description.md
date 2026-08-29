@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $$i^{\text{th}}$$ operation you replace the number $\text{operations}[i][0]$ with $\text{operations}[i][1]$.
+You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $i^{\text{th}}$ operation you replace the number $\text{operations}[i][0]$ with $\text{operations}[i][1]$.
 
-It is guaranteed that in the $$i^{\text{th}}$$ operation:
+It is guaranteed that in the $i^{\text{th}}$ operation:
 
 - $\text{operations}[i][0]$ **exists** in `nums`.
 
@@ -57,6 +57,6 @@ We return the array [2,1].
 
 - $1 \le \text{nums}[i], \text{operations}[i][0], \text{operations}[i][1] \le 10^{6}$
 
-- $\text{operations}[i][0]$ will exist in `nums` when applying the $$i^{\text{th}}$$ operation.
+- $\text{operations}[i][0]$ will exist in `nums` when applying the $i^{\text{th}}$ operation.
 
-- $\text{operations}[i][1]$ will not exist in `nums` when applying the $$i^{\text{th}}$$ operation.
+- $\text{operations}[i][1]$ will not exist in `nums` when applying the $i^{\text{th}}$ operation.

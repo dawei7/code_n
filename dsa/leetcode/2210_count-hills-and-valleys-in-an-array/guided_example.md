@@ -57,7 +57,7 @@ The code continues without changing `j`. This preserves the previous distinct pl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `nums[i] == nums[i + 1]`, the equal run continues to th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ At the starting plateau, `j` may point to an equal value rather than a non-equal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly compress duplicates:** Build a new :** - **Explicitly compress duplicates:** Build a new array containing one value per plateau, then count strict local extrema. It is conceptually simple but uses $O(n)$ extra space.
+- **Explicitly compress duplicates:** Build a new array containing one value per plateau, then count strict local extrema. It is conceptually simple but uses $O(n)$ extra space.
 - **Scan for neighbors per index:** Searching left and right works but can cost $O(n^2)$ across long plateaus.
 - **All values equal:** Every internal index is skipped, and the answer is zero.
 - **Strictly increasing array:** Every internal value lies between its neighbors, so there are no hills or valleys.
@@ -109,8 +109,8 @@ At the starting plateau, `j` may point to an equal value rather than a non-equal
 - **Strict comparisons:** Equal neighboring plateau values are compressed rather than treated as higher or lower.
 - **Two independent conditions:** Mutual exclusivity prevents double increment.
 - **Input preservation:** The array remains unchanged; compression is logical through pointer `j`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

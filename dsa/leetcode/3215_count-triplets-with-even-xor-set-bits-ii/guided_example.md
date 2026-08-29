@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-p(x)=\operatorname{popcount}(x)\bmod2.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ The source computes this as `x.bit_count() & 1`. Result zero means even popcount
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed four-product expression:** Name even/od:** - **Closed four-product expression:** Name even/odd counts and directly sum `Ea*Eb*Ec + Ea*Ob*Oc + Oa*Eb*Oc + Oa*Ob*Ec`. It is equivalent and removes the compact parity-loop condition.
+- **Closed four-product expression:** Name even/odd counts and directly sum `Ea*Eb*Ec + Ea*Ob*Oc + Oa*Eb*Oc + Oa*Ob*Ec`. It is equivalent and removes the compact parity-loop condition.
 - **Combine two parity distributions first:** Convolve the two two-element parity counts, then match even pair parity with even `c` and odd pair parity with odd `c`. This generalizes cleanly to more arrays.
 - **Enumerate all triplets:** $O(|a||b||c|)$ time is infeasible at the II constraints.
 - **Count exact XOR values:** A frequency map of full values retains far more state than the one parity bit needed.
@@ -105,8 +103,8 @@ The source computes this as `x.bit_count() & 1`. Result zero means even popcount
 - **Large result:** The count can far exceed 32-bit range even though individual values are small.
 - **Operator precedence:** Rewriting the condition without preserving parentheses can invert or otherwise change its meaning.
 - **Input preservation:** The method only iterates over all three arrays and does not mutate them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

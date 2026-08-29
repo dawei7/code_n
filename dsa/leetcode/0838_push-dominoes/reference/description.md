@@ -10,11 +10,11 @@ For the purposes of this question, we will consider that a falling domino expend
 
 You are given a string `dominoes` representing the initial state where:
 
-- $\text{dominoes}[i] = 'L'$, if the $$i^{\text{th}}$$ domino has been pushed to the left,
+- $\text{dominoes}[i] = 'L'$, if the $i^{\text{th}}$ domino has been pushed to the left,
 
-- $\text{dominoes}[i] = 'R'$, if the $$i^{\text{th}}$$ domino has been pushed to the right, and
+- $\text{dominoes}[i] = 'R'$, if the $i^{\text{th}}$ domino has been pushed to the right, and
 
-- $\text{dominoes}[i] = '.'$, if the $$i^{\text{th}}$$ domino has not been pushed.
+- $\text{dominoes}[i] = '.'$, if the $i^{\text{th}}$ domino has not been pushed.
 
 Return *a string representing the final state*.
 

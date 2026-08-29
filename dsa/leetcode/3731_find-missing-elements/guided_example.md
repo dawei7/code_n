@@ -79,7 +79,7 @@ For `nums = [5,1]`, all interior candidates two, three, and four are absent, so 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The statement asks which values do not occur, not where exis... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Because the input values are unique, the number of present integers in the range
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and enumerate gaps:** Sorting followed by:** - **Sort and enumerate gaps:** Sorting followed by expanding every adjacent gap takes $O(n\log n+R)$ time and can use less explicit membership storage. The hash-set method avoids sorting and is linear expected time.
+- **Sort and enumerate gaps:** Sorting followed by expanding every adjacent gap takes $O(n\log n+R)$ time and can use less explicit membership storage. The hash-set method avoids sorting and is linear expected time.
 - **Boolean array over values:** With the bound 100, a fixed presence table works in $O(n+R)$ time. A set generalizes without allocating by the maximum value.
 - **Check membership in the original list:** Each candidate would require an $O(n)$ scan, producing $O(nR)$ time. The set removes that repeated work.
 - **Scan from zero or one:** The original range need not begin there. Only values between the surviving minimum and maximum belong in the answer.
@@ -134,8 +134,8 @@ Because the input values are unique, the number of present integers in the range
 - **Adjacent endpoints:** `range(mn+1,mx)` is empty, correctly showing that there is no integer available to be missing.
 - **Uniqueness guarantee:** It ensures `n` reflects distinct survivors, but the presence-based logic would also tolerate duplicates.
 - **Sorted output requirement:** Iterating the numeric range in increasing order satisfies it without a final sort.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

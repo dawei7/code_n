@@ -69,7 +69,7 @@ The trust pairs are unique, so repeated copies cannot artificially inflate these
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | People are labeled from one through `n`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ If no label satisfies both, the method returns `-1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **One score array:** Subtract one for every outg:** - **One score array:** Subtract one for every outgoing edge and add one for every incoming edge. A judge has score `n - 1`. This is more compact, though separate arrays make both requirements explicit.
+- **One score array:** Subtract one for every outgoing edge and add one for every incoming edge. A judge has score `n - 1`. This is more compact, though separate arrays make both requirements explicit.
 - **Adjacency lists:** They can compute degrees but retain neighbor information the answer never uses.
 - **Candidate elimination:** Trusting someone disqualifies the source as judge, after which a candidate can be verified. It is useful in query-based variants but unnecessary with the full edge list available.
 - **Too few trust pairs:** Fewer than `n - 1` edges cannot supply the judge's required incoming degree; the normal count still returns `-1`.
@@ -121,8 +121,8 @@ If no label satisfies both, the method returns `-1`.
 - **Unique pairs:** They ensure degree counts represent distinct people rather than repeated records.
 - **No self-trust:** It ensures the judge's incoming target is exactly all other `n - 1` people.
 - **Maximum label:** Arrays have length `n + 1`, so label `n` is a valid direct index.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,11 +67,7 @@ Python operator precedence interprets it as `(x >> i) & 1`. Parentheses could im
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For value `x`, the expression
-
-`x >> i & 1`
-
-shifts bit `i` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ The inner sum on the right is exactly `a * b`. Therefore adding that product for
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every pair:** XOR and population cou:** - **Enumerate every pair:** XOR and population count is simple but costs $O(n^2B)$ time.
+- **Enumerate every pair:** XOR and population count is simple but costs $O(n^2B)$ time.
 - **Store a 32-entry count array:** Count one-bits while scanning each number, then sum products. It has the same time and constant bounded space; the exact source instead computes each bit immediately.
 - **Binary-string conversion:** Formatting every number into 32 characters adds allocation and parsing overhead without changing the counting idea.
 - **Single element:** Every bit has either `a = 0` or `b = 0`, so the total is zero because no pair exists.
@@ -123,8 +119,8 @@ The inner sum on the right is exactly `a * b`. Therefore adding that product for
 - **Zeros:** All their bits belong to the zero group and pair correctly with set bits of other values.
 - **Leading zero positions:** They contribute zero and need no special handling.
 - **Answer size:** Python accumulation cannot overflow; the source also guarantees the final result fits a signed 32-bit integer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

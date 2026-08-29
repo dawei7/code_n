@@ -73,9 +73,7 @@ Using integer arithmetic `n // 20` and `n - n // 20` would avoid floating repres
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For length `n`, the source computes:
-
-`start = int(n * 0.05)... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ Sorting and slicing operate by position, so they remove exactly the correct coun
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sum the sorted middle without slicing:** Use `:** - **Sum the sorted middle without slicing:** Use `sum(arr[start:end])` still creates a slice in Python; an index loop or iterator such as `islice` can avoid the $O(N)$ middle copy.
+- **Sum the sorted middle without slicing:** Use `sum(arr[start:end])` still creates a slice in Python; an index loop or iterator such as `islice` can avoid the $O(N)$ middle copy.
 - **Selection algorithms:** Find the lower and upper order-statistic boundaries in linear expected time, but handling exact counts and duplicates is more complex.
 - **Counting sort:** With values bounded by $10^5$, a frequency array can compute the trimmed sum in $O(N+V)$ time and $O(V)$ space.
 - **Heap trimming:** Keeping tails in heaps can avoid full sorting but is unnecessary for $N\le1000$.
@@ -125,8 +123,8 @@ Sorting and slicing operate by position, so they remove exactly the correct coun
 - **Five-place rounding:** It is within the accepted tolerance, though Python’s rounding semantics may use ties-to-even.
 - **Input mutation:** The original order is lost because `arr.sort()` is in place.
 - **Non-empty retained set:** Removing ten percent from a length of at least 20 always leaves elements for division.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Every valid subarray is either strictly increasing by one at each step, strictly
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `f` is the length of the current plus-one run.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Initially the first singleton is both an increasing and decreasing run of length
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Checking every cand:** - **Enumerate all subarrays:** Checking every candidate takes at least $O(n^2)$ time.
+- **Enumerate all subarrays:** Checking every candidate takes at least $O(n^2)$ time.
 - **Store run arrays:** Prefix lengths for both directions work but use $O(n)$ space; rolling state is sufficient.
 - **Count only run lengths:** The task sums subarray values, not counts, so ending-value aggregates `s,t` are needed.
 - **Single element:** The loop is empty and the initialized value is returned.
@@ -106,8 +106,8 @@ Initially the first singleton is both an increasing and decreasing run of length
 - **Maximum intermediate scale:** Long runs can make ending aggregates much larger than individual values. Python integer arithmetic avoids overflow before the answer's modulo reduction.
 - **Several separate runs:** Reset states ensure subarrays never cross a break, while `ans` retains contributions from earlier completed runs.
 - **Pairwise availability:** The exact file assumes Python 3.10's `itertools.pairwise` or an equivalent harness import; older runtimes require a manual adjacent-index loop.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -70,7 +70,7 @@ This initial marking is not enough. A smaller palindrome obtained by removing bo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each center, the code knows one maximal palindrome.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ Values can briefly propagate negative candidates such as $0-2$, but `max` with t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand around every center independently:** It:** - **Expand around every center independently:** It is simple but can take $O(N^2)$ on a uniform string.
+- **Expand around every center independently:** It is simple but can take $O(N^2)$ on a uniform string.
 - **Rolling hashes plus binary search:** Hashes can find palindrome radii in $O(N\log N)$ expected time but add collision risk and are slower asymptotically.
 - **Even palindromes:** The task permits only odd lengths, so one radius array suffices; no even-center Manacher array is needed.
 - **Length-one palindrome:** Every individual character is a valid odd palindrome with radius zero, ensuring both sides of every split have at least one candidate.
@@ -128,8 +128,8 @@ Values can briefly propagate negative candidates such as $0-2$, but `max` with t
 - **Touching palindromes:** A split can place the right substring immediately after the left, which remains nonintersecting.
 - **Uniform string:** Manacher remains linear, and the best product comes from partitioning into two odd lengths.
 - **Input unchanged:** All information is stored in numeric arrays; the string is read only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

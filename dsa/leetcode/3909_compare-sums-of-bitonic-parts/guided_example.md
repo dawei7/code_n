@@ -72,7 +72,7 @@ Thus `l` equals $A$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `l` begins as `nums[0]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ This careful update order is exactly what counts the peak once in each part.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Find the peak, then sum two slices:** This is :** - **Find the peak, then sum two slices:** This is straightforward but may allocate slice copies in Python; using index ranges avoids copies but still makes additional passes.
+- **Find the peak, then sum two slices:** This is straightforward but may allocate slice copies in Python; using index ranges avoids copies but still makes additional passes.
 - **Track two sums from scratch:** Once the peak is known, another scan can compute both inclusive sums. The source folds peak detection and boundary adjustment into one pass after the total.
 - **Binary-search the peak:** Bitonic structure permits $O(\log N)$ peak discovery, but both part sums still require prefix-sum preprocessing or linear work; it does not improve the complete one-query task.
 - **Peak counted twice by definition:** It must remain in both `l` and `r`; subtracting it from the total at the break would be wrong.
@@ -139,8 +139,8 @@ This careful update order is exactly what counts the peak once in each part.
 - **Positive values:** Positivity is not required for the invariant itself, but it is guaranteed by the problem.
 - **Required helper:** Standalone execution needs `pairwise` from Python's `itertools` module.
 - **Input preservation:** Neither summation nor pair iteration changes `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

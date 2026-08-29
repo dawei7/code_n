@@ -67,7 +67,7 @@ Thus, the minimum total cost is $2 + 1 = 3$.
 
 - **Output:** 6
 
-- **Explanation:** ​​​​​​​**
+- **Explanation:** **
 
 One optimal set of operations is:
 

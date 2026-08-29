@@ -51,7 +51,7 @@ The source first handles the unavoidable size case. If removing one word leaves 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source first handles the unavoidable size case.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Otherwise, it builds one trie for all words. While inserting a word, it creates 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rebuild a trie after each removal:** This repe:** - **Rebuild a trie after each removal:** This repeats $O(S)$ work for every word and can become quadratic.
+- **Rebuild a trie after each removal:** This repeats $O(S)$ work for every word and can become quadratic.
 - **Temporarily decrement path counts per word:** It can work, but repeatedly searching the deepest valid node needs an additional global structure; vulnerability preprocessing avoids mutations.
 - **Track only the deepest node:** Removing one word may invalidate it while another node at the same depth remains valid, so counts per depth are essential.
 - **Node count greater than \(k\):** Removing one passing word leaves at least $k$, so the node is never disabled.
@@ -98,8 +98,8 @@ Otherwise, it builds one trie for all words. While inserting a word, it creates 
 - **Duplicate words:** Each distinct array index increments counts independently, which is exactly what selection by distinct indices requires.
 - **Very long single word:** Depth arrays scale with its length, still within total character count $S$.
 - **No per-word cleanup:** Immediate overwrite and index comparison make `disabled_by` safely reusable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

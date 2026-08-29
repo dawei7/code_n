@@ -70,7 +70,7 @@ The exact count above zero is unimportant; overlapping bulbs do not make a posit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | During the final left-to-right scan, `s` is the running pref... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +109,9 @@ This delayed processing is useful because a new radius-one bulb can cover neighb
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mark every covered cell directly:** Looping th:** - **Mark every covered cell directly:** Looping through every existing interval is straightforward but can take `O(n^2)` time when many bulbs each illuminate most of the road. Difference updates reduce each interval to constant work.
-- **- **Store merged intervals:** Sorting and merging :** - **Store merged intervals:** Sorting and merging existing coverage intervals can also reveal gaps, but bulb centers are already indexed along the road. The difference array obtains the same gap information in linear time without sorting.
-- **- **Greedily place bulbs while scanning:** One can:** - **Greedily place bulbs while scanning:** One can place a new bulb as far right as possible whenever the first uncovered position is encountered. That also leads to the same per-run count, but the source only needs the count and expresses it directly as `\lceil L/3\rceil`.
+- **Mark every covered cell directly:** Looping through every existing interval is straightforward but can take `O(n^2)` time when many bulbs each illuminate most of the road. Difference updates reduce each interval to constant work.
+- **Store merged intervals:** Sorting and merging existing coverage intervals can also reveal gaps, but bulb centers are already indexed along the road. The difference array obtains the same gap information in linear time without sorting.
+- **Greedily place bulbs while scanning:** One can place a new bulb as far right as possible whenever the first uncovered position is encountered. That also leads to the same per-run count, but the source only needs the count and expresses it directly as `\lceil L/3\rceil`.
 
 ---
 

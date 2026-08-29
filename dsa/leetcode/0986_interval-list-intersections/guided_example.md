@@ -61,9 +61,7 @@ Both intervals are closed. This means their endpoints belong to them, which affe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The statement
-
-`s1, e1, s2, e2 = *firstList[i], *secondList[... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ The non-strict comparison is essential. When `l == r`, the intervals share exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair:** Two nested loops test `M:** - **Compare every pair:** Two nested loops test `MN` interval pairs. It ignores the sorted, pairwise-disjoint structure and is unnecessarily slow.
+- **Compare every pair:** Two nested loops test `MN` interval pairs. It ignores the sorted, pairwise-disjoint structure and is unnecessarily slow.
 - **Merge all labeled endpoints:** A sweep-line construction can recover overlaps but introduces events, labels, and sorting even though both lists are already ordered.
 - **Binary search for each interval:** Search the other list for possible overlaps. This can help in highly asymmetric settings, but careful range handling is required and the simple joint scan is linear overall.
 - **Advance the earlier start:** This may discard a long interval that still overlaps several future intervals. Endpoints determine which interval is exhausted.
@@ -121,8 +119,8 @@ The non-strict comparison is essential. When `l == r`, the intervals share exact
 - **One interval overlapping several opposite intervals:** The longer interval remains current while shorter opposite intervals advance, allowing every distinct intersection to be emitted.
 - **Large coordinates:** The method uses only comparisons, `min`, and `max`, so values up to `10^9` do not create arithmetic overflow concerns in Python.
 - **Output order:** Inputs and pointers move left to right, so generated intersections are already sorted and need no postprocessing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

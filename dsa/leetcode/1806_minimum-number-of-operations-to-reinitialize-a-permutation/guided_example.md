@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an **even** integer `n`​​​​​​. You initially have a permutation `perm` of size `n`​​ where $\text{perm}[i] = i$​ **(0-indexed)**​​​​.
+You are given an **even** integer `n`. You initially have a permutation `perm` of size `n` where $\text{perm}[i] = i$ **(0-indexed)**.
 
 The objective is to compute `36` from `{"n": 1000}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ Here `n >> 1` is integer division by two, valid because $n$ is even.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The statement describes `arr[new_position]` in terms of `per... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +129,7 @@ The loop computes this cycle directly without explicitly performing modular expo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate the full permutation:** Rebuilding al:** - **Simulate the full permutation:** Rebuilding all $n$ positions per operation costs $O(nk)$ time and $O(n)$ space.
+- **Simulate the full permutation:** Rebuilding all $n$ positions per operation costs $O(nk)$ time and $O(n)$ space.
 - **Track every position:** It is unnecessary once multiplication modulo $n-1$ proves that the orbit of position 1 determines the full period.
 - **Compute multiplicative order by modular powers:** Repeatedly update `value = value * 2 % (n - 1)`; this is mathematically equivalent to the branch mapping.
 - **Number-theoretic factorization:** Factoring Euler-function candidates may find the order faster for huge $n$, but is excessive for $n\leq1000$.
@@ -142,8 +142,8 @@ The loop computes this cycle directly without explicitly performing modular expo
 - **Cycle return:** The loop checks `i == 1` only after applying an operation, enforcing a nonzero count.
 - **No overflow in Python:** Shifted positions remain within the mapping domain and integers are unbounded.
 - **Input preservation:** Only a derived position is updated; no input structure is mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-We have `n` chips, where the position of the $$i^{\text{th}}$$ chip is $\text{position}[i]$.
+We have `n` chips, where the position of the $i^{\text{th}}$ chip is $\text{position}[i]$.
 
 The objective is to compute `1` from `{"position": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -70,7 +70,7 @@ This is both a construction and a lower-bound proof. The construction shows that
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A move of size two preserves parity.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ For `position = [2, 2, 2, 3, 3]`, there are two odd chips and three even chips. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop with two counters:** Increment a:** - **Explicit loop with two counters:** Increment an odd or even counter for each position. It has the same \(O(n)\) time and \(O(1)\) space and may make the variable meanings more obvious, while the shipped generator is more compact.
+- **Explicit loop with two counters:** Increment an odd or even counter for each position. It has the same \(O(n)\) time and \(O(1)\) space and may make the variable meanings more obvious, while the shipped generator is more compact.
 - **Sorting or choosing a median:** These techniques solve ordinary absolute-distance minimization, but they do extra work here because distance within one parity class is free. Sorting would raise the running time to \(O(n\log n)\) without changing the answer.
 - **Simulating moves:** Repeatedly changing coordinates can take time proportional to enormous coordinate differences and obscures the parity invariant. It is unnecessary because each chip’s exact route is irrelevant.
 - **All positions have the same parity:** One count is zero, so every chip can meet using only free two-step moves and the answer is zero, even when their coordinates are far apart.
@@ -123,8 +123,8 @@ For `position = [2, 2, 2, 3, 3]`, there are two odd chips and three even chips. 
 - **Very large coordinates:** Only `p % 2` is evaluated, so the \(10^9\) bound has no effect on the number of operations.
 - **Positive-coordinate constraint:** The parity argument also works for zero and negative coordinates, and Python’s remainder still distinguishes their parity, but the stated inputs are positive.
 - **Returning only the cost:** If the task also requested a destination, any coordinate with the majority parity would work after free consolidation. The current contract does not require that additional choice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

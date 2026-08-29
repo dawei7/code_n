@@ -51,7 +51,7 @@ This is exactly the behavior of a mapping from bench ID to a set of student IDs.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This is exactly the behavior of a mapping from bench ID to a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count every row:** A numeric counter per bench:** - **Count every row:** A numeric counter per bench would overcount duplicate student-bench pairs.
+- **Count every row:** A numeric counter per bench would overcount duplicate student-bench pairs.
 - **Deduplicate all pairs globally first:** A set of tuples followed by bench counts is correct but less direct than one set per bench.
 - **Sort pairs:** Sorting by bench and student allows a linear unique scan after $O(n\log n)$ sorting; hashing avoids that cost.
 - **Boolean matrix:** With the stated IDs it is possible, but allocates for all combinations even when input is sparse.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Same student on multiple benches:** Each bench owns a different set, so the student counts on each.
 - **Tied benches:** Only the maximum count is requested, so no bench ID tie-break is needed.
 - **Input preservation:** The method reads rows without sorting or modifying `students`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

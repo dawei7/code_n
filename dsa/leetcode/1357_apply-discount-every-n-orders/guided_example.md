@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a supermarket that is frequented by many customers. The products sold at the supermarket are represented as two parallel integer arrays `products` and `prices`, where the $$i^{\text{th}}$$ product has an ID of $\text{products}[i]$ and a price of $\text{prices}[i]$.
+There is a supermarket that is frequented by many customers. The products sold at the supermarket are represented as two parallel integer arrays `products` and `prices`, where the $i^{\text{th}}$ product has an ID of $\text{products}[i]$ and a price of $\text{prices}[i]$.
 
 The objective is to compute `[100.0]` from `{"n": 3, "discount": 50, "products": [1, 2], "prices": [100, 200], "orders": [[[1], [1]]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -62,8 +62,7 @@ The counter is updated per call rather than per product line. A customer buying 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of every `getBill` call, the statement
-`i = (i ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +99,7 @@ The input arrays have equal lengths, and product IDs within one bill are unique.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Catalog arrays with linear search:** Correct b:** - **Catalog arrays with linear search:** Correct but makes each bill line cost $O(P)$ instead of expected $O(1)$ lookup.
+- **Catalog arrays with linear search:** Correct but makes each bill line cost $O(P)$ instead of expected $O(1)$ lookup.
 - **Countdown counter:** Initialize a counter to `n`, decrement per bill, apply the discount at zero, then reset. It expresses the same cycle without modulo.
 - **One-based total customer count:** Increment an unbounded count and test `count % n == 0`. The checked-in counter keeps only the remainder.
 - **`n == 1`:** Every increment wraps to zero, so every customer receives the discount.
@@ -112,8 +111,8 @@ The input arrays have equal lengths, and product IDs within one bill are unique.
 - **Floating-point tolerance:** Percentage division may produce a non-integer result; the accepted error tolerance covers normal floating arithmetic.
 - **Persistent object state:** Creating a new `Cashier` resets the customer cycle, while repeated calls on the same object continue it.
 - **Counter updated before the subtotal:** With valid input this changes only which customer number the current call represents. The first call correctly becomes customer one rather than customer zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

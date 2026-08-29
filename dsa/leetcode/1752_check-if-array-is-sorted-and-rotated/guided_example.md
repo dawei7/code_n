@@ -65,7 +65,7 @@ No array slice, rotated copy, or explicit counter variable is needed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `enumerate(nums)` produces each current index `i` and value ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Using `>=` would incorrectly count equal neighbors as breaks and reject arrays c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every rotation:** Construct or inspect all:** - **Try every rotation:** Construct or inspect all $n$ rotations and test each for sorting, which can take $O(n^2)$ time.
+- **Try every rotation:** Construct or inspect all $n$ rotations and test each for sorting, which can take $O(n^2)$ time.
 - **Compare with a sorted copy:** Sorting costs $O(n\log n)$ and checking rotations can still be quadratic without a string-matching technique.
 - **Find a minimum value and scan:** Duplicated minimum values make choosing the correct starting occurrence less direct than counting decreases.
 - **Explicit loop counter:** It is equivalent and can return early after a second decrease; the generator version always completes the sum.
@@ -116,8 +116,8 @@ Using `>=` would incorrectly count equal neighbors as breaks and reject arrays c
 - **Boolean summation:** Python treats true as one and false as zero, so `sum` is a count.
 - **Input preservation:** The method derives a property of the current order without changing `nums`.
 - **Value bounds:** The algorithm uses comparisons only, so numeric magnitude does not affect it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

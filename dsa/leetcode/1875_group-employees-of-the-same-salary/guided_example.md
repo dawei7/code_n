@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Build one row per qualifying salary.** The first CTE is... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window count followed by dense rank:** A subqu:** - **Window count followed by dense rank:** A subquery can compute `COUNT(*) OVER (PARTITION BY salary)`, filter counts greater than one, and then rank salaries. Care is needed to rank distinct qualifying salaries rather than every employee row; applying `DENSE_RANK` at the wrong level or before filtering unique salaries can assign incorrect IDs.
+- **Window count followed by dense rank:** A subquery can compute `COUNT(*) OVER (PARTITION BY salary)`, filter counts greater than one, and then rank salaries. Care is needed to rank distinct qualifying salaries rather than every employee row; applying `DENSE_RANK` at the wrong level or before filtering unique salaries can assign incorrect IDs.
 - **Self-join to detect coworkers:** Joining employees to another employee with the same salary and a different ID can identify team members, but it creates duplicate pairs when a salary has many employees and still requires deduplication and salary ranking. Grouping is cleaner and scales better.
 - **Correlated count subquery:** Counting matching salaries separately for every employee expresses eligibility but may repeat work unless the optimizer decorrelates it. The CTE computes each salary count once.
 - **Exactly two employees at one salary:** `COUNT(1) > 1` includes the group, both rows join to the same team, and that salary receives one identifier. The strict comparison is equivalent to “at least two.”
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **A unique salary between two team salaries:** It is excluded before `ROW_NUMBER`, so it creates no gap. For example, qualifying salaries `3000` and `7400` remain teams `1` and `2` even if unique salary `6100` lies between them.
 - **Multiple employees and duplicate join output:** `T` has one row per eligible salary because it is built from a grouped relation. Therefore each employee matches at most one team row; the join does not multiply an employee even when their salary group is large.
 - **Positional ordering and schema changes:** `ORDER BY 4, 1` depends on `e.*` expanding to exactly the declared three employee columns. Explicit `ORDER BY t.team_id, e.employee_id` would be more maintainable, but the source is exact for the fixed contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

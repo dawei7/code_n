@@ -77,10 +77,7 @@ The variables `u1, v1` store the horizontal and vertical components of the first
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the selected points are
-
-$$
-P_1=(x_1,y_1),\quad P_2=... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,9 +127,9 @@ The absolute value is necessary because the determinant is signed. Listing the p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate index combinations:** Loops restrict:** - **Enumerate index combinations:** Loops restricted to `i < j < k` compute each distinct triangle exactly once and avoid repeated-point selections. This reduces the constant factor but uses the same determinant formula and has the same `O(n^3)` asymptotic complexity.
-- **- **Shoelace formula:** Applying the three-vertex :** - **Shoelace formula:** Applying the three-vertex shoelace formula produces the same determinant expression after algebraic simplification. The shared-origin vector form makes the geometric reason for halving especially clear.
-- **- **Base times height:** Computing a side length a:** - **Base times height:** Computing a side length and its perpendicular height requires square roots or line-distance formulas and more floating-point work. The cross product gives twice the area directly.
+- **Enumerate index combinations:** Loops restricted to `i < j < k` compute each distinct triangle exactly once and avoid repeated-point selections. This reduces the constant factor but uses the same determinant formula and has the same `O(n^3)` asymptotic complexity.
+- **Shoelace formula:** Applying the three-vertex shoelace formula produces the same determinant expression after algebraic simplification. The shared-origin vector form makes the geometric reason for halving especially clear.
+- **Base times height:** Computing a side length and its perpendicular height requires square roots or line-distance formulas and more floating-point work. The cross product gives twice the area directly.
 
 ---
 

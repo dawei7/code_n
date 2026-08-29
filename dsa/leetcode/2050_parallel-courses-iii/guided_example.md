@@ -63,7 +63,7 @@ Because all prerequisites must be finished, `f[j]` is the maximum of this value 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Courses with satisfied prerequisites can run simultaneously.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ All such courses can begin together at month zero. The queue order among them do
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoized DFS:** Compute the longest duration p:** - **Memoized DFS:** Compute the longest duration path starting or ending at each course; also $O(N+M)$ but recursion depth can be large.
+- **Memoized DFS:** Compute the longest duration path starting or ending at each course; also $O(N+M)$ but recursion depth can be large.
 - **Ordinary shortest path:** Wrong objective; prerequisites impose a longest critical path, not a shortest route.
 - **Sum all prerequisite finishes:** Incorrect because prerequisites run concurrently.
 - **No relations:** Every course starts at zero and the answer is the largest individual duration.
@@ -112,8 +112,8 @@ All such courses can begin together at month zero. The queue order among them do
 - **Cycle:** Excluded by the DAG guarantee.
 - **Independent components:** They execute in parallel, and the slower component determines `ans`.
 - **Input preservation:** Only new graph and state arrays are mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

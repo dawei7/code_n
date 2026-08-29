@@ -66,9 +66,7 @@ This is an inner join. A user with no transactions produces no joined row. Such 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `FROM` clause is:
-
-`Users JOIN Transactions USING (accou... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +111,7 @@ MySQL permits selecting `name` while grouping by `account` because `Users.accoun
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate transactions before joining:** A sub:** - **Aggregate transactions before joining:** A subquery can compute `SUM(amount)` per account, filter with `HAVING`, and then join the smaller qualifying result to `Users`. It expresses the same logic and may reduce join volume.
+- **Aggregate transactions before joining:** A subquery can compute `SUM(amount)` per account, filter with `HAVING`, and then join the smaller qualifying result to `Users`. It expresses the same logic and may reduce join volume.
 - **`LEFT JOIN` from users:** This would retain users without transactions and require `COALESCE` to treat their sum as zero. Since zero cannot exceed 10000, the checked-in inner join is simpler and sufficient.
 - **Filtering with `WHERE amount > 10000`:** This is incorrect because the condition belongs to the total balance, not each transaction. It also drops negative adjustments that must be included.
 - **Summing only deposits:** Negative amounts represent outgoing money and are part of the balance. Ignoring them can falsely qualify an account.
@@ -128,8 +126,8 @@ MySQL permits selecting `name` while grouping by `account` because `Users.accoun
 - **Alias use in `HAVING`:** MySQL permits `HAVING balance > 10000`. A dialect that does not allow select aliases there should repeat `SUM(amount)`.
 - **`USING (account)` support:** It is standard shorthand when both inputs share the same column name. An explicit `ON Users.account = Transactions.account` is equivalent and more portable across unusual dialects.
 - **Output order:** No ordering is promised or needed. Add `ORDER BY` only if a consumer imposes a separate presentation requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

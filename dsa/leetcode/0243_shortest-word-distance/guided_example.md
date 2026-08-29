@@ -63,9 +63,7 @@ The distance check occurs on every iteration after both targets have first appea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At index `k`, the current word is `w`.
-
-- If `w == word1`, a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +109,7 @@ For `word1 = "makes"` and `word2 = "coding"`, index `1` first records `makes`, i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every cross-target pair:** Record or d:** - **Compare every cross-target pair:** Record or discover every `word1` position and every `word2` position, then test all combinations. It is correct but can take $O(n^2)$ time when both words occur frequently.
+- **Compare every cross-target pair:** Record or discover every `word1` position and every `word2` position, then test all combinations. It is correct but can take $O(n^2)$ time when both words occur frequently.
 - **Store both position lists and merge them:** Since occurrence indices are sorted, a two-pointer merge can find the minimum in linear time after collection. It is also $O(n)$ overall but uses $O(n)$ extra space that the streaming method avoids.
 - **Track only the last relevant word and index:** Another one-pass form stores the most recent occurrence of either target. Whenever the other target appears, update the distance. It is equivalent under `word1 != word2`, while the two-index form mirrors the contract directly.
 - **Targets at adjacent positions:** Their distance is `1`, the smallest possible because the words are distinct and therefore cannot occupy the same index. An implementation could return immediately once `ans == 1`, although the exact source simply completes the scan.
@@ -121,8 +119,8 @@ For `word1 = "makes"` and `word2 = "coding"`, index `1` first records `makes`, i
 - **`word1 == word2`:** The source is not designed for that variant. Its two `if` statements would assign both indices to the same position and report zero. The problem explicitly guarantees that the target words are different; the related same-word variant requires tracking consecutive distinct occurrences.
 - **A missing target:** The documented input excludes this case. Without the presence guarantee, `ans` could remain infinity and the API would need to define an alternate return value or exception.
 - **Non-target words:** They do not affect the relevant indices. Recomputing the unchanged distance during such iterations is redundant but correct and constant time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

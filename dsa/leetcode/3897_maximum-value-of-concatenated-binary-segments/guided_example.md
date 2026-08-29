@@ -63,7 +63,7 @@ All pure-one segments concatenate to one uninterrupted run of ones. Their intern
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When $y=0$, the segment is made entirely of ones.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The source represents that with key category 1 followed by `-x` and `y`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generic concatenation comparator:** Sorting by:** - **Generic concatenation comparator:** Sorting by whether `A+B > B+A` works for arbitrary binary strings, but the source's tuple key is simpler and faster to compare because every segment has form $1^x0^y$.
+- **Generic concatenation comparator:** Sorting by whether `A+B > B+A` works for arbitrary binary strings, but the source's tuple key is simpler and faster to compare because every segment has form $1^x0^y$.
 - **Run-based modular evaluation:** Append a run of $c$ bits using powers of two and a geometric-sum formula, potentially avoiding one iteration and one stored power per bit; it requires careful modular exponentiation.
 - **Construct the full string:** Joining all sorted segments and parsing it is conceptually simple, but materializes $L$ characters and may exceed practical integer-conversion limits.
 - **Pure-one segment:** It belongs before every segment containing a zero. Its order relative to other pure-one segments does not affect the final string.
@@ -127,8 +127,8 @@ The source represents that with key category 1 followed by `-x` and `y`.
 - **Very long one runs:** The source does loop once per one, which is covered by the $O(L)$ total-length bound.
 - **Modulo and maximization:** Segment order must maximize the full equal-length binary string first. Comparing values after reduction modulo $10^9+7$ could select the wrong order.
 - **Space-manifest mismatch:** The actual power table contains $L$ entries, so this implementation uses $O(N+L)$ auxiliary space rather than only $O(N)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

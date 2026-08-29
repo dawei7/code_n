@@ -51,7 +51,7 @@ The original-order condition does not restrict the sum because addition is order
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The original-order condition does not restrict the sum becau... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The original-order condition does not restrict the sum because addition is order
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maximum-unique sliding window:** Sliding windo:** - **Maximum-unique sliding window:** Sliding windows solve the no-deletion version, but arbitrary deletions let nonadjacent positive values be joined, making a window unnecessary.
+- **Maximum-unique sliding window:** Sliding windows solve the no-deletion version, but arbitrary deletions let nonadjacent positive values be joined, making a window unnecessary.
 - **Dynamic programming over subsequences:** Positivity and uniqueness reduce the choice to one copy per positive value, so DP adds no value.
 - **Keep duplicate positives:** That violates the unique-elements rule even though duplicates would increase the numeric sum.
 - **Keep negative values between positives:** They can be deleted, after which the positive occurrences become adjacent in the remaining array.
@@ -98,8 +98,8 @@ The original-order condition does not restrict the sum because addition is order
 - **Original-order preservation:** Chosen occurrences remain in order after deletion, but their sum and distinctness do not depend on that order.
 - **Bounded value range:** It justifies the manifest's constant-space claim for the set.
 - **Input preservation:** The array is scanned without mutation; deletions are a conceptual feasibility argument rather than operations performed by the code.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

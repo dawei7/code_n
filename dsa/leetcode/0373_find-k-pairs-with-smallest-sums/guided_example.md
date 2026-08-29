@@ -57,7 +57,7 @@ This is the same principle used to merge sorted lists: never insert an entire ro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Initially, the smallest element in row `i` is its pair with ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ Seeding beyond `k` would only enlarge the heap without improving the result.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all Cartesian-product pairs:** Build :** - **Generate all Cartesian-product pairs:** Build $mn$ sums, sort them, and take `k`. This costs at least $O(mn)$ space and $O(mn\log(mn))$ time, ignoring the small requested output.
-- **- **Grid best-first search with a visited set:** S:** - **Grid best-first search with a visited set:** Start from `(0,0)` and push right/down neighbors while deduplicating states. It is correct but carries a visited set and can grow more frontier states than the row-merge formulation.
-- **- **Binary-search a sum threshold:** Count how man:** - **Binary-search a sum threshold:** Count how many pairs have sum at most a candidate value, find the kth threshold, then enumerate qualifying pairs. This can be useful for counts but is more complicated when actual occurrence pairs must be returned.
+- **Generate all Cartesian-product pairs:** Build $mn$ sums, sort them, and take `k`. This costs at least $O(mn)$ space and $O(mn\log(mn))$ time, ignoring the small requested output.
+- **Grid best-first search with a visited set:** Start from `(0,0)` and push right/down neighbors while deduplicating states. It is correct but carries a visited set and can grow more frontier states than the row-merge formulation.
+- **Binary-search a sum threshold:** Count how many pairs have sum at most a candidate value, find the kth threshold, then enumerate qualifying pairs. This can be useful for counts but is more complicated when actual occurrence pairs must be returned.
 
 ---
 

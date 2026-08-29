@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Sort to expose all four extremes.** `nums.sort()` arranges... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Occurrences matter rather than distinct values. If the largest value appears twi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track two minima and two maxima:** Update four:** - **Track two minima and two maxima:** Update four scalar extrema in one pass, obtaining the manifest's $O(n)$ time and $O(1)$ space without mutation.
+- **Track two minima and two maxima:** Update four scalar extrema in one pass, obtaining the manifest's $O(n)$ time and $O(1)$ space without mutation.
 - **Heap selection:** Keeping two-element min/max heaps also works in $O(n)$ time but adds unnecessary data-structure overhead for fixed-size extrema.
 - **Enumerate four indices:** Brute force is $O(n^4)$ and repeats information that extremes settle directly.
 - **Exactly four elements:** All occurrences are used; sorting determines which pair is added and which is subtracted.
@@ -96,8 +96,8 @@ Occurrences matter rather than distinct values. If the largest value appears twi
 - **Input mutation:** The exact solution leaves `nums` sorted. Use a copy if callers require the original order.
 - **Manifest mismatch:** Linear constant-space tracking is available, but complexity documentation must reflect this source's sorting behavior.
 - **Four distinct indices versus values:** The values themselves need not differ. What matters is that the four selected sorted positions represent four occurrences from distinct original indices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

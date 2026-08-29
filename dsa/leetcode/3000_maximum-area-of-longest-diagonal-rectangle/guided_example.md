@@ -67,7 +67,7 @@ Initializing both values to zero is safe because all dimensions are positive, ma
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mx` is the largest squared diagonal seen so far.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ That is why the area comparison appears only in the `t == mx` branch. Comparing 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute floating square roots:** Ordering woul:** - **Compute floating square roots:** Ordering would be equivalent, but it adds unnecessary floating-point work and makes exact tie testing less direct.
+- **Compute floating square roots:** Ordering would be equivalent, but it adds unnecessary floating-point work and makes exact tie testing less direct.
 - **Sort by diagonal and area:** Sorting works with key `(l*l+w*w, l*w)` but costs $O(N\log N)$ and extra implementation machinery.
 - **Choose maximum area globally:** This violates the primary longest-diagonal requirement.
 - **Equal diagonals, different areas:** The tie branch keeps the greater area.
@@ -113,8 +113,8 @@ That is why the area comparison appears only in the `t == mx` branch. Comparing 
 - **Swapped dimensions:** Both criteria are unchanged.
 - **Positive-dimension guarantee:** It makes zero a safe initial sentinel.
 - **Input preservation:** No rectangle dimensions are reordered or changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

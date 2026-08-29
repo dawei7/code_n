@@ -76,7 +76,7 @@ Every generated `v` is therefore a decimal palindrome by construction. No separa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each seed `i`, the candidate `v` begins as `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The complete stream of `v` values is strictly increasing. As a result, the first
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every positive integer:** This performs a:** - **Test every positive integer:** This performs an enormous number of unnecessary decimal-palindrome checks. Generating from half-seeds reduces the search to the much sparser decimal palindromes.
+- **Test every positive integer:** This performs an enormous number of unnecessary decimal-palindrome checks. Generating from half-seeds reduces the search to the much sparser decimal palindromes.
 - **Generate base-`k` palindromes instead:** One could construct palindromes in base `k` and test them in decimal. Which stream is smaller varies, but the exact source uses ordered decimal generation naturally.
 - **Precompute all answers for bases 2 through 9:** The bounded input permits a lookup table of the first 30 values for each base. It gives constant query work but embeds a large trusted dataset instead of deriving the result.
 - **Duplicating the middle digit:** Mirroring the full seed for an odd length would produce an even-length palindrome and skip the intended odd candidate. `i // 10` removes the center before mirroring.
@@ -126,8 +126,8 @@ The complete stream of `v` values is strictly increasing. As a result, the first
 - **Stopping condition:** Returning immediately when the countdown reaches zero is correct only because candidates are generated in increasing order. That ordering is established by length, then seed.
 - **Positive-number contract:** Zero is never generated and must not be included, even though the character `0` would trivially read the same both ways.
 - **Large sums:** Fixed-width languages need a sufficiently wide integer type. Python's arbitrary-precision integers safely hold all valid results.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

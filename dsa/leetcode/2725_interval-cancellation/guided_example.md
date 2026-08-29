@@ -57,7 +57,7 @@ The arrow function is necessary because passing `fn` alone would not supply `arg
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `setInterval(() => fn(...args), t)` registers an arrow-funct... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Without preserving the handle, the returned cancel function would have no reliab
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive `setTimeout`:** Can schedule the nex:** - **Recursive `setTimeout`:** Can schedule the next callback after each execution and may avoid interval backlog, but requires explicit rescheduling and a stored timeout handle or cancellation flag.
+- **Recursive `setTimeout`:** Can schedule the next callback after each execution and may avoid interval backlog, but requires explicit rescheduling and a stored timeout handle or cancellation flag.
 - **Call only through `setInterval`:** Incorrect because the first invocation would be delayed by `t` instead of occurring immediately.
 - **Lose the interval ID:** Makes precise cancellation impossible.
 - **Cancel before the first interval tick:** The immediate call still occurs, while all delayed repetitions are prevented.
@@ -104,8 +104,8 @@ Without preserving the handle, the returned cancel function would have no reliab
 - **Thrown initial call:** No interval is created because setup has not reached `setInterval`.
 - **Thrown later call:** The exception belongs to the timer callback; the wrapper does not catch it or automatically clear the interval.
 - **Argument identity:** The same values from `args` are spread on every call; nested objects are passed by reference.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

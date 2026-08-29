@@ -67,7 +67,7 @@ When either part is true, both `mx` and `ans` are updated together. Keeping them
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A press is preferable when it has a longer duration.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The scan compares every press as it occurs. If a later press of the same key is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a duration array first:** Calculate all :** - **Build a duration array first:** Calculate all durations, then find the maximum with the tie rule. This remains $O(n)$ time but uses $O(n)$ extra space and separates two steps that can be combined.
+- **Build a duration array first:** Calculate all durations, then find the maximum with the tie rule. This remains $O(n)$ time but uses $O(n)$ extra space and separates two steps that can be combined.
 - **Map each key to its longest press:** After one pass, scan the at most 26 keys for the best duration. It is correct but unnecessary because the answer concerns the best individual press and can be maintained directly.
 - **Fixed 26-entry duration array:** This gives $O(1)$ bounded storage and can scan letters from `z` downward for ties. The direct scalar solution is still simpler.
 - **Use tuple comparison:** Tracking `max((duration, key), ...)` captures the same priority because Python compares tuple components in order. The explicit condition makes the primary duration and secondary letter criteria easier to see.
@@ -116,8 +116,8 @@ The scan compares every press as it occurs. If a later press of the same key is 
 - **Two presses only:** Initialization handles the first and the single loop iteration compares the second, covering both possible winners and a tie.
 - **Using release time as duration:** Only index 0 has duration equal to its release time. Later absolute release times must have the previous release subtracted.
 - **Character comparison:** `ord` is safe because inputs are lowercase English letters. Direct `keysPressed[i] > ans` would be equivalent for these one-character strings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

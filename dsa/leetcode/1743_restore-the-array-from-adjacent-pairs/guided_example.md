@@ -57,7 +57,7 @@ The array length is recovered as `n = len(adjacentPairs) + 1`. A path with $n$ v
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `g` is a `defaultdict(list)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Seeding two values is particularly useful because it establishes a travel direct
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive DFS:** Start at an endpoint and pass:** - **Recursive DFS:** Start at an endpoint and pass the previous vertex through recursion. It is logically equivalent but risks stack overflow on a path of length 100000.
+- **Recursive DFS:** Start at an endpoint and pass the previous vertex through recursion. It is logically equivalent but risks stack overflow on a path of length 100000.
 - **Visited set:** A normal graph traversal can mark every visited value, but a path needs only the immediately previous value, so the set adds unnecessary $O(n)$ storage.
 - **Degree map plus neighbor map:** Degrees can be counted separately, but adjacency lists already reveal endpoint degrees and are needed for traversal.
 - **Try to order the input pairs directly:** Pair order and orientation are arbitrary, so sorting or chaining raw rows without a graph is unreliable.
@@ -111,8 +111,8 @@ Seeding two values is particularly useful because it establishes a travel direct
 - **No cycle handling:** The code intentionally has no visited set because the valid-input guarantee says the graph is a path, not a cycle.
 - **Dictionary order:** It influences only which accepted orientation is returned, not correctness.
 - **Input preservation:** The pair list is read to build `g` and is never reordered or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

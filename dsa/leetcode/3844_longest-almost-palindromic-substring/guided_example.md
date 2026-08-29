@@ -70,7 +70,7 @@ Spending the one deletion earlier than the first mismatch is unnecessary: all ea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside `f(l, r)`, the first loop expands while both indices ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ Trying both sides is essential. In `"abca"` around center `b`, the first matchin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate substrings and deletions:** Testing :** - **Enumerate substrings and deletions:** Testing every substring and every possible removed position can cost $O(N^4)$ with direct palindrome checks.
+- **Enumerate substrings and deletions:** Testing every substring and every possible removed position can cost $O(N^4)$ with direct palindrome checks.
 - **Interval dynamic programming:** Track whether each substring can become a palindrome with one deletion. It can achieve $O(N^2)$ time but uses $O(N^2)$ space.
 - **Rolling hashes plus binary search:** Hash comparisons can jump across matching mirrored ranges, but collision handling and deletion alignment make it substantially more complex.
 - **String already palindromic:** It still qualifies because one central character can be deleted while preserving a palindrome.
@@ -128,8 +128,8 @@ Trying both sides is essential. In `"abca"` around center `b`, the first matchin
 - **Exactly one mismatch repair:** After a branch begins, a second mismatch stops expansion because no deletion remains.
 - **Odd and even centers:** Trying only one parity would miss valid remaining palindromes of the other parity.
 - **Length cap:** `min(n, ...)` prevents boundary arithmetic from claiming a substring longer than the input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

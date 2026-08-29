@@ -81,7 +81,7 @@ The only useful final parts are consequently threes, plus either one two or one 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This is the classic integer-break product structure.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ For $P<4$, the source returns $P$ directly. With one, two, or three available fa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over every factor count:**:** - **Dynamic programming over every factor count:** It would take at least $O(P)$ work and is impossible for $P$ up to $10^9$.
+- **Dynamic programming over every factor count:** It would take at least $O(P)$ work and is impossible for $P$ up to $10^9$.
 - **Greedily use twos only:** Three has better product per consumed sum, since $3^{1/3}>2^{1/2}$.
 - **Leave a remainder one:** `3 * 1` is worse than `2 * 2`, so the remainder-one correction is essential.
 - **Use a part four:** It is equivalent in product to two twos and is represented by the factor 4.
@@ -136,8 +136,8 @@ For $P<4$, the source returns $P$ directly. With one, two, or three available fa
 - **At most versus exactly:** All available factor multiplicity can be used without reducing the optimum.
 - **Modulo timing:** Compute the optimal form first, then its residue; never compare modular residues to choose a partition.
 - **Large exponent:** Three-argument `pow` avoids constructing the enormous full integer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

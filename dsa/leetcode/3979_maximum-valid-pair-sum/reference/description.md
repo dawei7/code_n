@@ -47,7 +47,7 @@ Return the maximum $\text{nums}[i] + \text{nums}[j]$ over all indices satisfying
 
 - `(2, 4)`: $\text{nums}[2] + \text{nums}[4] = 13$
 
-Thus, the answer is 13.​​​​​​​
+Thus, the answer is 13.
 
 #### Example 2
 
@@ -59,7 +59,7 @@ Thus, the answer is 13.​​​​​​​
 
 - Since $k = 1$, every pair is valid.
 
-- The maximum value is obtained from a pair `(0, 2)`​​​​​​​, which is $\text{nums}[0] + \text{nums}[2] = 5 + 9 = 14$.
+- The maximum value is obtained from a pair `(0, 2)`, which is $\text{nums}[0] + \text{nums}[2] = 5 + 9 = 14$.
 
 - Thus, the answer is 14.
 

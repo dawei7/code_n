@@ -61,7 +61,7 @@ Let this cumulative count for the bus at arrival time $t_i$ be $C_i$. Because la
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the join, `GROUP BY 1` groups by the first selected ex... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ In the sample, cumulative counts in bus-arrival order are one, one, and four. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Event sweep:** Combine bus and passenger arriv:** - **Event sweep:** Combine bus and passenger arrival events, order them once, maintain a waiting count, and reset it at each bus. This can realize the manifest’s near-$O(N\log N)$ strategy but is not the exact stored query.
+- **Event sweep:** Combine bus and passenger arrival events, order them once, maintain a waiting count, and reset it at each bus. This can realize the manifest’s near-$O(N\log N)$ strategy but is not the exact stored query.
 - **Correlated count per bus:** Count passengers up to the current bus and subtract a previous threshold. This is conceptually similar but may repeat range work and makes the prior-bus boundary more cumbersome.
 - **Assign each passenger with a minimum bus time:** Join passengers to qualifying buses, choose the earliest bus per passenger, then count assignments. This is direct but also creates an inequality join and needs an extra grouping stage.
 - **Bus with no passengers ever arrived:** The left join preserves it, `COUNT(passenger_id)` is zero, and the cumulative difference is zero.
@@ -122,8 +122,8 @@ In the sample, cumulative counts in bus-arrival order are one, one, and four. Th
 - **COUNT choice:** `COUNT(*)` would incorrectly count the left-join placeholder for an empty bus. Counting `passenger_id` deliberately ignores it.
 - **GROUP BY ordinal:** `GROUP BY 1` means the first selected expression, `bus_id`. An explicit `GROUP BY b.bus_id` would be clearer but equivalent here.
 - **Final ordering:** `ORDER BY 1` returns ascending `bus_id` as required, independently of the internal chronological window.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

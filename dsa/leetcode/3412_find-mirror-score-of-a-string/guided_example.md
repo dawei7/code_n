@@ -51,7 +51,7 @@ For each letter, the source stores the indices of its currently unmarked occurre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each letter, the source stores the indices of its curren... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The dictionary `d` is a `defaultdict(list)`. A key is a lowercase letter and its
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backward scan for every index:** Searching lef:** - **Backward scan for every index:** Searching left through the string for the closest unmarked mirror directly can take $O(n^2)$ time and requires a separate marked array.
+- **Backward scan for every index:** Searching left through the string for the closest unmarked mirror directly can take $O(n^2)$ time and requires a separate marked array.
 - **Queue per letter:** Removing the earliest stored index chooses the farthest unmatched mirror, violating the closest-index rule. The per-letter container must be LIFO.
 - **One global stack:** The closest unmatched character overall may not be the required mirror. Separate stacks allow direct access to the correct letter class.
 - **Fixed array of 26 stacks:** A list indexed by alphabet position works equally well and avoids dictionary key creation. The protected source uses a dictionary for concise character-based access.
@@ -97,8 +97,8 @@ The dictionary `d` is a `defaultdict(list)`. A key is a lowercase letter and its
 - **Empty mirror stack:** Access through `defaultdict` yields an empty list, and the source correctly stores the current index instead of attempting a pop.
 - **Large score:** Distances can accumulate beyond a small fixed-width integer in related constraints. Python's arbitrary-precision integer makes the addition safe.
 - **Lowercase-only contract:** The character-code formula relies on the contiguous lowercase English alphabet and should not be generalized to arbitrary Unicode characters without a different mapping.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

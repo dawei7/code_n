@@ -65,7 +65,7 @@ The early return is also required for the movement logic. With one row, the top 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `numRows == 1`, every character belongs to row zero, so... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Using a list comprehension is important in Python. An expression such as `[[]] *
 
 ## 6. Traps This Instance Exposes
 
-- **- **Read indices by cycle arithmetic:** A full dow:** - **Read indices by cycle arithmetic:** A full down-and-up cycle has length `2 * numRows - 2`. Visiting each row's vertical and diagonal indices directly avoids storing row buckets. It uses constant auxiliary state besides the result but requires more delicate index formulas.
+- **Read indices by cycle arithmetic:** A full down-and-up cycle has length `2 * numRows - 2`. Visiting each row's vertical and diagonal indices directly avoids storing row buckets. It uses constant auxiliary state besides the result but requires more delicate index formulas.
 - **Sparse matrix simulation:** Place characters into a `numRows`-by-columns grid and then scan all cells. It mirrors the picture literally but allocates many blank cells and may take $O(Rn)$ space and scanning time.
 - **Repeated immutable-string concatenation:** Appending each output character with `result += c` is concise, but Python strings are immutable and the language-level worst case can repeatedly copy the prefix. Row lists plus one `join` provide a robust linear construction.
 - **One row:** The early return avoids invalid movement and correctly leaves the string unchanged.
@@ -117,8 +117,8 @@ Using a list comprehension is important in Python. An expression such as `[[]] *
 - **Punctuation:** Commas and periods are appended like letters. No character is treated as a separator or structural marker.
 - **Case sensitivity:** Uppercase and lowercase characters retain their exact identity and order.
 - **Input preservation:** The algorithm reads `s` and stores its characters in new lists; it never modifies the original string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

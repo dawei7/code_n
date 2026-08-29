@@ -25,7 +25,7 @@ Return `True` when either orientation permits such a division, and `False` other
 **Inputs**
 
 - `n`: The grid side length, with $3\le n\le10^9$.
-- `rectangles`: A list of $r$ non-overlapping rectangles, where $3\le r\le10^5$. Each rectangle has the form `[start_x, start_y, end_x, end_y]` and satisfies $0\le\texttt{start_x}<\texttt{end_x}\le n$ and $0\le\texttt{start_y}<\texttt{end_y}\le n$.
+- `rectangles`: A list of $r$ non-overlapping rectangles, where $3\le r\le10^5$. Each rectangle has the form `[start_x, start_y, end_x, end_y]` and satisfies $0\le\texttt{start\_x}<\texttt{end\_x}\le n$ and $0\le\texttt{start\_y}<\texttt{end\_y}\le n$.
 
 **Return value**
 

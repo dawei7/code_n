@@ -66,7 +66,7 @@ The product name is selected directly. Since `Product.product_id` is unique, one
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query groups joined rows by `product_id`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ For products that do have invoices, `SUM` returns their normal totals and `COALE
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subqueries:** Four subqueries per p:** - **Correlated subqueries:** Four subqueries per product can compute the totals but may rescan invoices repeatedly unless the optimizer rewrites them.
+- **Correlated subqueries:** Four subqueries per product can compute the totals but may rescan invoices repeatedly unless the optimizer rewrites them.
 - **Pre-aggregate invoices first:** Group `Invoice` by `product_id` in a derived table, then left join those totals to `Product`. This is equally valid and can make the one-row-per-product structure explicit.
 - **Inner join:** It is incorrect because products without invoices would disappear.
 - **Filter invoice rows in `WHERE`:** Conditions on nullable invoice columns after a left join can accidentally turn it into inner-join behavior; such filters belong in the join condition when preservation is required.
@@ -116,8 +116,8 @@ For products that do have invoices, `SUM` returns their normal totals and `COALE
 - **Unique product names:** Ordering has no ties, so no secondary key is necessary.
 - **Functional dependency:** Selecting `name` while grouping by `product_id` is sound because one unique ID determines one product row; stricter SQL modes or other databases may prefer grouping by both fields.
 - **Null amounts outside the stated model:** `SUM` ignores individual nulls. If every invoice value in one category were null, `COALESCE` would output zero, which may or may not match a different business rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

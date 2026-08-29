@@ -65,7 +65,7 @@ A literal `#` is never reached as the start of a token because the three-charact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If no marker lies two positions ahead, the current token is ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The subtraction of one is essential because alphabet positions are one-based whi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Right-to-left parsing:** A `#` encountered fro:** - **Right-to-left parsing:** A `#` encountered from the end can signal that the two preceding digits form one token. This works but requires reversing the collected letters or prepending inefficiently.
+- **Right-to-left parsing:** A `#` encountered from the end can signal that the two preceding digits form one token. This works but requires reversing the collected letters or prepending inefficiently.
 - **Dictionary lookup:** Prebuild mappings for `"1"` through `"9"` and `"10#"` through `"26#"`. It is correct but unnecessary when arithmetic conversion is direct.
 - **Repeated string concatenation:** Simpler-looking code may become less efficient because strings are immutable; list append plus one join is the standard linear construction.
 - **Single-character input:** A valid one-digit code takes the single-token branch and returns one letter.
@@ -121,8 +121,8 @@ The subtraction of one is essential because alphabet positions are one-based whi
 - **Bounds safety:** `i + 2 < n` must be evaluated before indexing `s[i + 2]`. Short-circuit evaluation prevents an out-of-range access near the end.
 - **Valid-input guarantee:** The code does not reject malformed zeroes, misplaced markers, or values above 26. Its simple parsing proof relies on the promised valid unique encoding.
 - **Unicode arithmetic:** Lowercase ASCII letters are consecutive Unicode code points, so `ord` and `chr` arithmetic is valid for `a` through `z`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

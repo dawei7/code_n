@@ -74,7 +74,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the input length be $3q$, so there are exactly $q$ round... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ For six piles, `q = 2`. Bob receives sorted indices zero and one. Your slice sel
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque simulation:** Pop the largest for Alice,:** - **Deque simulation:** Pop the largest for Alice, next largest for yourself, and smallest for Bob. It is intuitive but allocates a deque.
+- **Deque simulation:** Pop the largest for Alice, next largest for yourself, and smallest for Bob. It is intuitive but allocates a deque.
 - **Index loop after sorting:** Sum indices from `N/3` to `N-1` in steps of two, avoiding slice copies.
 - **Counting sort:** With the bounded pile values, frequencies can reduce sorting cost, but adds value-domain machinery.
 - **Single round:** Sorting three piles and taking the middle value is exactly the rule.
@@ -129,8 +129,8 @@ For six piles, `q = 2`. Bob receives sorted indices zero and one. Your slice sel
 - **Length divisible by three:** It guarantees the ownership pattern ends cleanly after exactly $N/3$ selections.
 - **Input mutation:** In-place sorting does not preserve the caller's original ordering.
 - **Slice allocation:** The exact concise expression uses linear extra memory despite requiring no explicit queue.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

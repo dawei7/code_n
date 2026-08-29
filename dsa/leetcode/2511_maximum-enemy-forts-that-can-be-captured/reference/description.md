@@ -2,11 +2,11 @@
 
 You are given a **0-indexed** integer array `forts` of length `n` representing the positions of several forts. $\text{forts}[i]$ can be `-1`, `0`, or `1` where:
 
-- `-1` represents there is **no fort** at the $$i^{\text{th}}$$ position.
+- `-1` represents there is **no fort** at the $i^{\text{th}}$ position.
 
-- `0` indicates there is an **enemy** fort at the $$i^{\text{th}}$$ position.
+- `0` indicates there is an **enemy** fort at the $i^{\text{th}}$ position.
 
-- `1` indicates the fort at the $$i^{\text{th}}$$ the position is under your command.
+- `1` indicates the fort at the $i^{\text{th}}$ the position is under your command.
 
 Now you have decided to move your army from one of your forts at position `i` to an empty position `j` such that:
 

@@ -68,7 +68,7 @@ Sorting changes only result order.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every matching joined row, the query selects `user_id` f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Adding `SELECT DISTINCT user_id` would match the manifest claim and robustly pre
 
 ## 6. Traps This Instance Exposes
 
-- **- **`SELECT DISTINCT user_id`:** Robustly returns :** - **`SELECT DISTINCT user_id`:** Robustly returns one row per qualified user and matches the manifest summary.
+- **`SELECT DISTINCT user_id`:** Robustly returns one row per qualified user and matches the manifest summary.
 - **`EXISTS` subquery:** Select each email user once when at least one qualifying text exists, naturally avoiding duplicates per signup row.
 - **Elapsed 24-hour comparison:** Use timestamp differences only if “second day” means elapsed duration rather than next calendar date.
 - **Same-day verification:** `DATEDIFF` is zero and the row is excluded.
@@ -123,8 +123,8 @@ Adding `SELECT DISTINCT user_id` would match the manifest claim and robustly pre
 - **No text action:** Inner join removes the signup.
 - **Final sorting:** Duplicate rows, if present, are sorted but not removed.
 - **Null dates outside normal contract:** `DATEDIFF` becomes null and the row fails the equality predicate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

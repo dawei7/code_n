@@ -69,7 +69,7 @@ Conversely, in a bipartite component every edge crosses between the two parity c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Array `dist` begins with zeros, meaning unvisited.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ The BFS construction reaches this bound, proving maximality.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate coloring pass:** First test bipartite:** - **Separate coloring pass:** First test bipartiteness per component, then BFS from every component node for diameter. It is conceptually separated but has the same asymptotic cost.
+- **Separate coloring pass:** First test bipartiteness per component, then BFS from every component node for diameter. It is conceptually separated but has the same asymptotic cost.
 - **Union-find for component keys:** It can replace the minimum-vertex `root` technique but does not test bipartiteness or compute diameters by itself.
 - **Odd cycle:** Some BFS encounters an already visited same-level neighbor and returns `-1`.
 - **Even cycle:** Alternating BFS layers satisfy every edge, so it is valid.
@@ -126,8 +126,8 @@ The BFS construction reaches this bound, proving maximality.
 - **Labels start at one:** Zero remains available as the unvisited sentinel in `dist`.
 - **Common component key:** Taking the minimum visited index makes all sources in a component update the same dictionary entry.
 - **Parallel or self edges:** The contract excludes them, simplifying adjacency behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

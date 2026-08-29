@@ -1,10 +1,10 @@
 ### 1. Description
 
-You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $$i^{\text{th}}$$ query, the element in `nums` at the index $\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
+You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $i^{\text{th}}$ query, the element in `nums` at the index $\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
 
 A **segment** is a contiguous sequence of **positive** integers in `nums`. A **segment sum** is the sum of every element in a segment.
 
-Return* an integer array *`answer`*, of length *`n`*, where *$\text{answer}[i]$* is the **maximum** segment sum after applying the *$$i^{\text{th}}$$ *removal.*
+Return* an integer array *`answer`*, of length *`n`*, where *$\text{answer}[i]$* is the **maximum** segment sum after applying the *$i^{\text{th}}$ *removal.*
 
 ### 2. Function Contract
 

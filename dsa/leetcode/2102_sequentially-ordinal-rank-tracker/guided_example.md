@@ -70,7 +70,7 @@ This distinction matters when new locations are inserted between queries. An ins
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` starts at -1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ There is no need to adjust `i` during an addition. It records only how many call
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort all locations during every `get`:** Corre:** - **Sort all locations during every `get`:** Correct but repeats $O(m\log m)$ work per query. Maintaining order incrementally avoids full re-sorts.
+- **Sort all locations during every `get`:** Correct but repeats $O(m\log m)$ work per query. Maintaining order incrementally avoids full re-sorts.
 - **Plain sorted list with binary search:** Finding an insertion point is logarithmic, but inserting into a Python list shifts $O(m)$ elements.
 - **Two heaps:** A carefully balanced pair of heaps can track the requested rank and support efficient operations, but tie ordering and insertions around the boundary require more invariants.
 - **Negating the wrong field:** Only score order is descending. Names must remain ascending for ties.
@@ -121,8 +121,8 @@ There is no need to adjust `i` during an addition. It records only how many call
 - **Return only the name:** The score is used for ranking but the contract requests the location name.
 - **Persistent state:** Both the sorted collection and query counter must survive across method calls.
 - **External ordered container:** The complexity claim assumes the provided `SortedList` implementation, not a built-in flat list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

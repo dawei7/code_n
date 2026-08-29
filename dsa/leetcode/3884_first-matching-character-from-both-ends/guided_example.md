@@ -67,7 +67,7 @@ If every tested necessary index fails, the method returns minus one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop begins at zero and increases `i` by one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ For odd length, the center index `c=\lfloor N/2\rfloor` mirrors itself. Its char
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan all `N` indices:** Correct but repeats ev:** - **Scan all `N` indices:** Correct but repeats every mirror pair. Half scanning is enough to find the smallest index.
+- **Scan all `N` indices:** Correct but repeats every mirror pair. Half scanning is enough to find the smallest index.
 - **Two pointers:** Move left from zero and right from `N-1`, returning the left pointer on equality. This is equivalent and makes the pair symmetry explicit.
 - **Reverse the string:** Compare `s` with `s[::-1]` position by position, but allocating the reversed copy uses `O(N)` space unnecessarily.
 - **Use `range((N+1)//2)`:** This is a slightly tighter loop: it includes the odd center and avoids the source's redundant even central-pair reversal.
@@ -129,8 +129,8 @@ For odd length, the center index `c=\lfloor N/2\rfloor` mirrors itself. Its char
 - **No match:** Every necessary left-half pair differs and the method returns minus one.
 - **Negative indexing:** `-i-1` is deliberate Python syntax for the mirror. Other languages should compute `N-i-1` explicitly.
 - **Lowercase constraint:** Character comparison needs no case normalization because all input is already lowercase.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

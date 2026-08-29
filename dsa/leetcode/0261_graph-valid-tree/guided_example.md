@@ -62,7 +62,7 @@ It is important that the parent assignment links roots rather than arbitrary end
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an undirected edge `[a, b]`, the algorithm computes `pa ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ This catches an input such as four nodes with only edges `[0,1]` and `[2,3]`. Bo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Union by size plus path compression:** Track e:** - **Union by size plus path compression:** Track each root's component size and attach the smaller tree below the larger. This supplies the near-linear inverse-Ackermann guarantee described by the editorial and manifest.
+- **Union by size plus path compression:** Track each root's component size and attach the smaller tree below the larger. This supplies the near-linear inverse-Ackermann guarantee described by the editorial and manifest.
 - **Edge count plus DFS or BFS:** Require `E == N - 1`, build an adjacency list, and verify all nodes are reachable. It runs in $O(N+E)$ time but stores both directions of every edge.
 - **Cycle-aware graph traversal:** DFS can track each node's parent and reject an already visited non-parent neighbor, then separately test connectivity. It is correct but has more undirected-edge bookkeeping than union-find.
 - **One node and no edges:** The parent array contains one root, no union fails, and the component count is already one, so the graph is correctly a tree.
@@ -110,8 +110,8 @@ This catches an input such as four nodes with only edges `[0,1]` and `[2,3]`. Bo
 - **Edge order:** Union-find correctness does not depend on order. Different orders may produce different parent-tree shapes but the same cycle/connectivity verdict.
 - **Repurposed `n`:** After `p` is created, `n` means component count, not array length. Adding later code that treats it as the original node count would be an easy maintenance bug.
 - **Recursive depth:** Because links are not balanced, an adversarial order can form a long parent chain. An iterative `find` or union-by-size policy avoids Python recursion-limit risk.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

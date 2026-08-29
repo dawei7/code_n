@@ -62,7 +62,7 @@ The code uses the name `s` both conceptually for the number of sections in the c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every nonempty `mask`, the inner loop visits all entries... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Since the loop examines all subsets, it eventually examines a mask corresponding
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking over win-or-skip choices:** A dep:** - **Backtracking over win-or-skip choices:** A depth-first search can make the same two decisions for each section and track arrows and score along the recursion. It has the same exponential worst-case work, and pruning unaffordable branches can reduce practical work, but the bitmask version is shorter and makes exhaustive coverage especially explicit.
+- **Backtracking over win-or-skip choices:** A depth-first search can make the same two decisions for each section and track arrows and score along the recursion. It has the same exponential worst-case work, and pruning unaffordable branches can reduce practical work, but the bitmask version is shorter and makes exhaustive coverage especially explicit.
 - **Zero-one knapsack by arrow budget:** Treat each section as an item with weight `aliceArrows[i] + 1` and value `i`. A budget-indexed dynamic program can find the maximum score, but its cost depends on `numArrows` and reconstruction needs additional state. With only twelve sections, enumerating `2^12` subsets is simpler and independent of a potentially larger arrow budget.
 - **Greedily choosing the best score-to-arrow ratio:** Ranking sections by `i / (aliceArrows[i] + 1)` is not reliable for a zero-one choice problem. A locally attractive ratio can consume arrows that would enable a better combination of other sections, so only a method that considers combinations can guarantee the optimum.
 - **Spending extra arrows while evaluating a subset:** Excess arrows never increase a section's points. Using the minimum winning cost during comparison is essential because it gives every proposed subset its fairest feasibility test; leftovers are handled only after the best subset is known.
@@ -111,8 +111,8 @@ Since the loop examines all subsets, it eventually examines a mask corresponding
 - **Several optimal answers:** The strict `s > mx` update preserves the first maximum-scoring mask encountered. The problem explicitly accepts any maximum-scoring allocation, so no tie-breaking rule is required.
 - **All arrows left after reconstruction:** Assigning them to index `0` may change the outcome of the zero-point section, but it cannot change the numeric score and cannot invalidate any selected victory.
 - **Fixed twelve-section domain:** The exponential algorithm is appropriate because the number of sections is tiny and fixed. It would not scale to an input with hundreds of independently selectable sections; a different constraint structure would then demand dynamic programming, meet-in-the-middle search, or another optimization method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

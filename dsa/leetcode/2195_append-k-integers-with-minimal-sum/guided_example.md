@@ -63,7 +63,7 @@ Duplicate values are not removed by the exact source. For equal endpoints the co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, each adjacent pair `a, b` bounds the integers... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deduplicate before sorting:** Sorting `set(num:** - **Deduplicate before sorting:** Sorting `set(nums)` makes every gap nonnegative and may reduce scan work, but allocates a separate set; the exact source safely keeps duplicates.
+- **Deduplicate before sorting:** Sorting `set(nums)` makes every gap nonnegative and may reduce scan work, but allocates a separate set; the exact source safely keeps duplicates.
 - **Increment a candidate one by one:** A set membership scan is simple but can require $O(k+n)$ iterations, too many for $k=10^8$.
 - **Prefix arithmetic from one through `k`:** Start with the sum of one through `k` and shift the endpoint for excluded values. This can also work after sorting distinct exclusions but requires careful updates.
 - **Original number one:** The zero-to-one gap is empty, so selection begins afterward.
@@ -123,8 +123,8 @@ $$
 - **Unique appended values:** Taking distinct integers from nonoverlapping gaps guarantees uniqueness.
 - **Integer sum safety:** Python handles totals beyond fixed-width 32-bit range.
 - **Input mutation:** Callers needing the original array must pass a copy; the exact source extends and sorts in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

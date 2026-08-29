@@ -67,7 +67,7 @@ If the digit is zero, the current power is omitted. If it is one, the current po
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `n % 3` is the least significant base-three digit.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ No digit two appears, and $12=3+9$.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a ternary string:** It makes digits:** - **Convert to a ternary string:** It makes digits visible but allocates $O(\log n)$ space.
+- **Convert to a ternary string:** It makes digits visible but allocates $O(\log n)$ space.
 - **Backtracking over powers:** Include or exclude every power, producing exponentially more search than direct unique representation.
 - **Greedy subtract largest power:** It can work with careful checks, but ternary digits state the condition more directly.
 - **n equal to a power of three:** Its representation has one digit one and otherwise zeros, so it passes.
@@ -125,8 +125,8 @@ No digit two appears, and $12=3+9$.
 - **Local mutation:** Dividing `n` does not alter an external object.
 - **Fixed bound:** It explains the manifest's constant-time label while the general algorithm is logarithmic.
 - **Loop progress:** Integer division by three removes the ternary digit just inspected, so positive `n` strictly decreases and the scan must terminate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

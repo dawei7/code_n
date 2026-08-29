@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\text{artifacts}[i] = [\text{r1}_{i}, \text{c1}_{i}, \text{r2}_{i}, \text{c2}_{i}]$ denotes that the $$i^{\text{th}}$$ artifact is buried in the subgrid where:
+There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\text{artifacts}[i] = [\text{r1}_{i}, \text{c1}_{i}, \text{r2}_{i}, \text{c2}_{i}]$ denotes that the $i^{\text{th}}$ artifact is buried in the subgrid where:
 
 The objective is to compute `1` from `{"n": 2, "artifacts": [[0, 0, 0, 0], [0, 1, 1, 1]], "dig": [[0, 0], [0, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,7 +63,7 @@ Both range stops add one because Python excludes the stop endpoint.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `check(a)` assigns `x1, y1, x2, y2` from the artifact... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The constraint that an artifact covers at most four cells means this enumeration
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean grid:** Mark an `n x n` matrix and ins:** - **Boolean grid:** Mark an `n x n` matrix and inspect artifacts. Membership is constant time but space grows as $O(n^2)$ instead of only dug cells.
+- **Boolean grid:** Mark an `n x n` matrix and inspect artifacts. Membership is constant time but space grows as $O(n^2)$ instead of only dug cells.
 - **Prefix-sum grid:** A two-dimensional prefix sum can query dug counts in rectangles quickly, useful for large artifacts but excessive when each covers at most four cells.
 - **Map each cell to an artifact:** Count dug parts per artifact. The no-overlap guarantee makes this possible, but it requires indexing every artifact cell first.
 - **Single-cell artifact:** It is extractable exactly when its one coordinate is in the set.
@@ -116,8 +116,8 @@ The constraint that an artifact covers at most four cells means this enumeration
 - **Short-circuit failure:** `all` may stop before checking later cells once extraction is impossible.
 - **Grid size unused:** Valid-coordinate guarantees remove the need for a full-grid allocation.
 - **Input preservation:** Artifact and dig arrays are only read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

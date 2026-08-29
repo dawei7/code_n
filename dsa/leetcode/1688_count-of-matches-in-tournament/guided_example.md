@@ -59,7 +59,7 @@ For seven teams, three first-round matches eliminate three teams and one team re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In an odd-sized round, one team advances without playing.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ This is stronger than merely observing examples. It proves that no legal arrange
 
 ## 6. Traps This Instance Exposes
 
-- **- **Round simulation:** Repeatedly add `floor(n/2):** - **Round simulation:** Repeatedly add `floor(n/2)` matches and replace `n` with `ceil(n/2)`. It is correct but takes $O(\log n)$ time and obscures the elimination invariant.
+- **Round simulation:** Repeatedly add `floor(n/2)` matches and replace `n` with `ceil(n/2)`. It is correct but takes $O(\log n)$ time and obscures the elimination invariant.
 - **Recursive simulation:** It mirrors the tournament tree but adds unnecessary call-stack overhead.
 - **One team:** No match is needed, and `n - 1` correctly returns zero.
 - **Two teams:** One match eliminates one team and selects the winner; the formula returns one.
@@ -111,8 +111,8 @@ This is stronger than merely observing examples. It proves that no legal arrange
 - **Different winners:** Any possible champion leaves exactly the other `n - 1` teams to be eliminated.
 - **No draws assumed:** The rules state that half of each matched pair advances, so every match has exactly one loser; the proof relies on this.
 - **Closed-form insight:** The answer depends only on initial and final active counts, not the number of rounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

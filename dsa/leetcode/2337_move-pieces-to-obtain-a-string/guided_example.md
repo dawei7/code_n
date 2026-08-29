@@ -61,7 +61,7 @@ Equal counts are necessary but not sufficient. The corresponding types and movem
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Moves exchange a piece with a blank.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This catches examples such as a nonblank sequence `RL` in the start and `LR` in 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers skipping blanks:** Walk through b:** - **Two pointers skipping blanks:** Walk through both strings, compare the next pieces and their indices immediately. This preserves `O(n)` time while achieving true `O(1)` auxiliary space.
+- **Two pointers skipping blanks:** Walk through both strings, compare the next pieces and their indices immediately. This preserves `O(n)` time while achieving true `O(1)` auxiliary space.
 - **Breadth-first search over configurations:** It explores an enormous state graph and is unnecessary because reachability has a simple invariant characterization.
 - **Compare only strings with underscores removed:** Matching piece order is necessary, but direction constraints are also required; `"_R"` cannot become `"R_"`.
 - **Check only each character count:** Equal numbers of L and R do not preserve their relative order. Pieces cannot cross.
@@ -113,8 +113,8 @@ This catches examples such as a nonblank sequence `RL` in the start and `LR` in 
 - **Adjacent opposing pieces:** Their order cannot reverse because neither can move through the other.
 - **Input preservation:** The method builds separate pair lists and never modifies either string.
 - **Exact-source space:** Storing nonblank tuples is linear even though the underlying reachability test can be streamed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

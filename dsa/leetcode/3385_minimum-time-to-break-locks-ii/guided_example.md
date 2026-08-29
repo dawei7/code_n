@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $$i^{\text{th}}$$ lock.
+Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $i^{\text{th}}$ lock.
 
 The objective is to compute `4` from `{"strength": [3, 4, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -54,9 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\left\lceil\frac{a_i}{j+1}\right\rceil
-=\texttt{(a[i]-1)/... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -91,7 +89,7 @@ Every lock must occupy one distinct break position, and every position is used o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hungarian algorithm:** It solves the same dens:** - **Hungarian algorithm:** It solves the same dense assignment in $O(n^3)$ time and $O(n^2)$ matrix storage; it is not the exact source.
+- **Hungarian algorithm:** It solves the same dense assignment in $O(n^3)$ time and $O(n^2)$ matrix storage; it is not the exact source.
 - **Subset DP:** It costs $O(n2^n)$ and is unsuitable for $n=80$.
 - **Sort strengths greedily:** Ceiling rounding and one-use positions require a proven assignment optimization, not an assumed order.
 - **Single lock:** The sole factor is one, so time equals its strength.
@@ -105,8 +103,8 @@ Every lock must occupy one distinct break position, and every position is used o
 - **Dense memory:** $n^2$ assignment and reverse edges dominate.
 - **Manifest mismatch:** The implementation is min-cost flow, not Hungarian, and not linear-space.
 - **Required imports:** `NamedTuple`, `Optional`, `Tuple`, `List`, `cast`, `heappush`, and `heappop` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,7 +52,7 @@ A maximum circular subarray has one of two forms:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The solution computes the best ordinary subarray and the best valid complement f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Kadane maximum plus Kadane minimum:** Compute :** - **Kadane maximum plus Kadane minimum:** Compute ordinary maximum, total minus global minimum, and explicitly guard the all-negative case. This is the common equivalent formulation.
+- **Kadane maximum plus Kadane minimum:** Compute ordinary maximum, total minus global minimum, and explicitly guard the all-negative case. This is the common equivalent formulation.
 - **Duplicate the array:** Searching all length-at-most-$n$ subarrays in a doubled array needs more complex window logic and extra storage if materialized.
 - **Try every circular start:** Extending up to $n$ positions from every start costs $O(n^2)$.
 - **Return total minus minimum only:** It fails when the optimal subarray is nonwrapping or when removing everything would create an illegal empty result.
@@ -99,8 +99,8 @@ The solution computes the best ordinary subarray and the best valid complement f
 - **Prefix update order:** Candidate sums must be computed before current prefix extrema update to prevent empty segments.
 - **`pmx = -inf`:** This is intentional, not symmetric with `pmi = 0`; it keeps the complement candidate nonempty and avoids redundant prefix removal.
 - **No element reuse:** Complementing one contiguous middle segment produces a suffix-plus-prefix path that uses each index at most once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

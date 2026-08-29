@@ -75,7 +75,7 @@ for every possible argument tuple $x$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The returned function always produces the same exact string ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ JavaScript would also allow undeclared extra arguments if the function had no pa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arrow function:** `return () => "Hello World"`:** - **Arrow function:** `return () => "Hello World"` is equivalent and more concise.
+- **Arrow function:** `return () => "Hello World"` is equivalent and more concise.
 - **Return the string from the outer function:** Incorrect because the requested result must be callable.
 - **Use supplied arguments:** Incorrect because output must be constant.
 - **No arguments:** Returns the exact literal.
@@ -128,8 +128,8 @@ JavaScript would also allow undeclared extra arguments if the function had no pa
 - **Multiple created functions:** They are different function objects with identical behavior.
 - **Exact capitalization:** Must match `"Hello World"` exactly.
 - **No persistent state:** The closure captures nothing needed for behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

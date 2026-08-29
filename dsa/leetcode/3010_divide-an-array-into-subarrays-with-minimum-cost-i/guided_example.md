@@ -61,7 +61,7 @@ Thus there is no compatibility constraint beyond choosing two distinct positions
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take the indices of the two smallest values after index zero... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The scan invariant ensures `b` and `c` are exactly those two smallest values aft
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the suffix:** Taking its first two values:** - **Sort the suffix:** Taking its first two values works but costs $O(N\log N)$ time and usually allocates a slice.
+- **Sort the suffix:** Taking its first two values works but costs $O(N\log N)$ time and usually allocates a slice.
 - **Enumerate cut pairs:** Testing all $i<j$ costs $O(N^2)$ despite the absence of interaction between chosen values.
 - **Use `nsmallest(2, nums[1:])`:** It expresses the goal but still creates the slice unless given an iterator.
 - **Duplicate minimum values:** Two equal values at different positions may be both chosen; the strict-update branches retain both.
@@ -119,8 +119,8 @@ The scan invariant ensures `b` and `c` are exactly those two smallest values aft
 - **Positive-value guarantee:** Infinity sentinels are safe; the logic would also work for negative values.
 - **Manifest space mismatch:** Use $O(N)$ auxiliary space for this exact sliced loop.
 - **Input preservation:** The source array is not sorted or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

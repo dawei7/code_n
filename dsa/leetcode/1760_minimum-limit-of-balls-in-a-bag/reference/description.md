@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `nums` where the $$i^{\text{th}}$$ bag contains $\text{nums}[i]$ balls. You are also given an integer `maxOperations`.
+You are given an integer array `nums` where the $i^{\text{th}}$ bag contains $\text{nums}[i]$ balls. You are also given an integer `maxOperations`.
 
 You can perform the following operation at most `maxOperations` times:
 

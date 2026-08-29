@@ -55,7 +55,7 @@ Adding these gives $4 + 4 + 4 = 12$.
 
 ### 4. Constraints
 
-- $1 \le n = \text{nums.length} \le 5 * 10^​​​​​​​4$
+- $1 \le n = \text{nums.length} \le 5 * 10^4$
 
 - $0 \le \text{nums}[i] \le 10^{9}$
 

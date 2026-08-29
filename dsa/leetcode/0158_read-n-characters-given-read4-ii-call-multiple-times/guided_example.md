@@ -80,7 +80,7 @@ four creates a new valid interval `[0, size)`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `read(buf, n)` uses a local counter `j`, the number of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ across requests.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Queue of leftovers:** A deque can express pend:** - **Queue of leftovers:** A deque can express pending characters naturally, but its size never exceeds three here, so an indexed four-slot array is simpler and has the same $O(1)$ bound.
+- **Queue of leftovers:** A deque can express pending characters naturally, but its size never exceeds three here, so an indexed four-slot array is simpler and has the same $O(1)$ bound.
 - **Single-call strategy:** Discarding the unused part of a fetched block works for ID 157 but is incorrect when this method may be called again.
 - **Read one character per loop:** The competitive variant does this with the same persistent state; chunking through an inner loop reduces repeated branch checks.
 - **Request smaller than remaining buffer:** No API call occurs, and the unused suffix remains for the next request.
@@ -140,8 +140,8 @@ across requests.
 - **Same destination object:** Each call writes from `buf[0]` as specified; persistent reader state is independent of the destination's earlier contents.
 - **New test case:** Construct a new solution instance so old buffer indices do not persist across files.
 - **Platform contract:** `read4` owns the file pointer and is supplied by the harness; only its returned prefix is valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

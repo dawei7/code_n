@@ -69,9 +69,7 @@ Thus even code sum corresponds to black at `a1`. Every single horizontal or vert
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The protected solution computes
-
-`ord(coordinates[0]) + ord(... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ For `"c7"`, the codes are 99 and 55. Their sum 154 is even, so the square is bla
 
 ## 6. Traps This Instance Exposes
 
-- **- **Normalize file and rank indices:** Subtract `':** - **Normalize file and rank indices:** Subtract `'a'` and `'1'`, then test the parity of their sum. It is equally correct but slightly more verbose.
+- **Normalize file and rank indices:** Subtract `'a'` and `'1'`, then test the parity of their sum. It is equally correct but slightly more verbose.
 - **Hard-coded board matrix:** It uses unnecessary storage and is more error-prone than the alternating-color invariant.
 - **Set of white coordinates:** Membership would be constant time but requires listing 32 squares manually.
 - **Compare coordinate parities:** White squares have one odd and one even normalized coordinate; this is another form of the same test.
@@ -124,8 +122,8 @@ For `"c7"`, the codes are 99 and 55. Their sum 154 is even, so the square is bla
 - **Case sensitivity:** Files are guaranteed lowercase; uppercase codes would require rechecking the anchor parity and validity.
 - **No parsing:** Rank is a single digit from one through eight, so its character-code parity equals its numerical parity up to a fixed odd offset.
 - **Boolean result:** The comparison already yields `true` for white and `false` for black.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

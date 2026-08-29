@@ -21,7 +21,7 @@ Find every integer ID from 1 through $m$ that does not occur in `Customers`. Ret
 **Inputs**
 
 - `Customers(customer_id, customer_name)`, with one row per existing customer and a unique positive `customer_id`.
-- Let $c$ be the number of customer rows and $m=\max(\texttt{customer_id})$.
+- Let $c$ be the number of customer rows and $m=\max(\texttt{customer\_id})$.
 
 **Return value**
 

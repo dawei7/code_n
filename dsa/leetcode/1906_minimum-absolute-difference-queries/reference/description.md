@@ -6,7 +6,7 @@ The **minimum absolute difference** of an array `a` is defined as the **minimum 
 
 You are given an integer array `nums` and the array `queries` where $\text{queries}[i] = [l_{i}, r_{i}]$. For each query `i`, compute the **minimum absolute difference** of the **subarray** $nums[l_{i}...r_{i}]$ containing the elements of `nums` between the **0-based** indices $l_{i}$ and $r_{i}$ (**inclusive**).
 
-Return *an **array** *`ans` *where* $\text{ans}[i]$ *is the answer to the* $$i^{\text{th}}$$ *query*.
+Return *an **array** *`ans` *where* $\text{ans}[i]$ *is the answer to the* $i^{\text{th}}$ *query*.
 
 A **subarray** is a contiguous sequence of elements in an array.
 

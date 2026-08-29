@@ -51,7 +51,7 @@ moves. Alice takes moves 1, 3, 5, and so on, while Bob takes moves 2, 4, 6, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | moves.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all $(x,y)$ pairs:** Testing whether:** - **Enumerate all $(x,y)$ pairs:** Testing whether each sum is odd costs $O(nm)$ time. It reaches the same count but ignores the fact that parity classes can be counted directly.
+- **Enumerate all $(x,y)$ pairs:** Testing whether each sum is odd costs $O(nm)$ time. It reaches the same count but ignores the fact that parity classes can be counted directly.
 - **Simulate every game:** Simulation would add another factor proportional to $x+y$, even though every simulation's winner is predetermined by that total's parity.
 - **Use the compact formula $\lfloor nm/2\rfloor$:** The number of opposite-parity pairs indeed simplifies to $\lfloor nm/2\rfloor$. The exact source's four parity counts are slightly longer but make the combinatorial reasoning explicit and avoid relying on an unexplained identity.
 - **Both bounds even:** Each range has equally many odd and even choices, so exactly half of all $nm$ pairs are winning.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **$n=m=1$:** The only total is two, so Bob takes the last flower. Both products contain an even-count factor of zero, yielding answer zero.
 - **Lane choice:** Removing from the first or second lane does not alter the remaining total by anything other than one, so it cannot change which player receives the last move.
 - **Ordered lane sizes:** The formula counts choices for the first and second lane separately. It does not identify $(x,y)$ with $(y,x)$, which is appropriate for independently bounded lane choices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

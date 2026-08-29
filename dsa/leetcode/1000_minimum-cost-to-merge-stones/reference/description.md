@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are `n` piles of `stones` arranged in a row. The $$i^{\text{th}}$$ pile has $\text{stones}[i]$ stones.
+There are `n` piles of `stones` arranged in a row. The $i^{\text{th}}$ pile has $\text{stones}[i]$ stones.
 
 A move consists of merging exactly `k` **consecutive** piles into one pile, and the cost of this move is equal to the total number of stones in these `k` piles.
 

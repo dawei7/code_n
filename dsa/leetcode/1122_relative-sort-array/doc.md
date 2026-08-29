@@ -22,8 +22,8 @@ Reorder `arr1` so that its values that appear in `arr2` come first, grouped in t
 
 **Inputs**
 
-- `arr1`: an integer array of length $n$, where $1 \le n \le 1000$ and every value is in $[0, 1000]$.
-- `arr2`: an integer array of length $m$, where $1 \le m \le 1000$; its values are distinct, lie in $[0, 1000]$, and each occurs in `arr1`.
+- `arr1`: an integer array of length $n$, where $1 \le n \le 1000$ and every value is in `[0, 1000]`.
+- `arr2`: an integer array of length $m$, where $1 \le m \le 1000$; its values are distinct, lie in `[0, 1000]`, and each occurs in `arr1`.
 
 Let $V = 1001$ be the size of the allowed value domain.
 

@@ -63,10 +63,7 @@ The answer list starts as all dots. A position changes only when exactly one ear
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each non-dot character:
-
-- append its index to `q`;
-- se... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +105,9 @@ If two opposite forces arrived simultaneously, the length is two. The domino rem
 
 ## 6. Traps This Instance Exposes
 
-- **- **Segment analysis between non-dot symbols:** Ad:** - **Segment analysis between non-dot symbols:** Add virtual boundary symbols and resolve `L...L`, `R...R`, `L...R`, and `R...L` intervals directly. It is also linear and uses less explicit simulation state.
-- **- **Net-force accumulation:** Sweep left-to-right :** - **Net-force accumulation:** Sweep left-to-right for R influence and right-to-left for L influence, then compare magnitudes. This is linear but encodes timing less directly.
-- **- **Second-by-second whole-string simulation:** Re:** - **Second-by-second whole-string simulation:** Repeatedly updating all positions can require `O(n^2)` time before a long chain settles.
+- **Segment analysis between non-dot symbols:** Add virtual boundary symbols and resolve `L...L`, `R...R`, `L...R`, and `R...L` intervals directly. It is also linear and uses less explicit simulation state.
+- **Net-force accumulation:** Sweep left-to-right for R influence and right-to-left for L influence, then compare magnitudes. This is linear but encodes timing less directly.
+- **Second-by-second whole-string simulation:** Repeatedly updating all positions can require `O(n^2)` time before a long chain settles.
 
 ---
 

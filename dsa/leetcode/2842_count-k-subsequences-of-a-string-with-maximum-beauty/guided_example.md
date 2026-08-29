@@ -51,7 +51,7 @@ Therefore, maximum beauty is obtained by choosing `k` character identities with 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore, maximum beauty is obtained by choosing `k` charac... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore, maximum beauty is obtained by choosing `k` character identities with 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency buckets:** Since each frequency is a:** - **Frequency buckets:** Since each frequency is at most $n$, group how many characters have each frequency and scan downward. This avoids sorting but uses $O(n)$ buckets unless a sparse map is used.
+- **Frequency buckets:** Since each frequency is at most $n$, group how many characters have each frequency and scan downward. This avoids sorting but uses $O(n)$ buckets unless a sparse map is used.
 - **Select top `k` with a heap:** It can find the cutoff without fully sorting, but the alphabet has only 26 characters, so sorting is simpler.
 - **Fewer than `k` distinct characters:** No valid unique-character subsequence exists, and zero is returned immediately.
 - **`k = 1`:** Choose any character with maximum frequency and any one of its occurrences; the formula counts all such index choices.
@@ -97,8 +97,8 @@ Therefore, maximum beauty is obtained by choosing `k` character identities with 
 - **Mutating `k` locally:** The parameter is intentionally reused as remaining slots; no later step needs its original value.
 - **Subsequence ordering:** It is determined by index order, so no permutation factor should be introduced.
 - **Lower-frequency characters:** Including any one would strictly lower beauty and is never counted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

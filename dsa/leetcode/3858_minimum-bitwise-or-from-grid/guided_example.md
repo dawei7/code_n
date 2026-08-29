@@ -72,9 +72,7 @@ This is the correct feasibility question for trying to set answer bit `i` to zer
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For nonnegative integers `x` and `mask`,
-
-`(x | mask) == mas... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +111,7 @@ When every row passes, the source leaves `ans` unchanged, permanently choosing z
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate one choice per row:** This requires :** - **Enumerate one choice per row:** This requires `N^M` combinations for an `M\times N` grid and is infeasible. The allowed-mask test collapses a complete-choice search into independent row witnesses.
+- **Enumerate one choice per row:** This requires `N^M` combinations for an `M\times N` grid and is infeasible. The allowed-mask test collapses a complete-choice search into independent row witnesses.
 - **Dynamic programming over reachable OR values:** Maintain every OR obtainable after each row. With `B` bits there can be up to `2^B` states, which is avoidable because numeric mask feasibility supports a direct greedy decision.
 - **Choose the smallest number from each row:** A row's numerically smallest value is not always best for the combined OR; a slightly larger value may reuse bits already forced by other rows instead of introducing a new high bit.
 - **Clear bits from least significant to most significant:** This can sacrifice a high bit to save lower bits, producing a numerically worse answer. Decisions must follow significance from high to low.
@@ -126,8 +124,8 @@ When every row passes, the source leaves `ans` unchanged, permanently choosing z
 - **Positive-value contract:** `mx` is at least one, so `bit_length` is positive. The same logic would also handle zeros if they were allowed, but an all-zero grid would need the empty bit loop, naturally returning zero.
 - **Witnesses are not stored:** Feasibility at each prefix is enough to determine the minimum OR. If the actual chosen cells were required, an additional reconstruction pass or stored witnesses would be necessary.
 - **Early row failure:** Once one row has no compatible value, the trial is impossible and the source may stop scanning that bit. This improves typical time but not the worst-case bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

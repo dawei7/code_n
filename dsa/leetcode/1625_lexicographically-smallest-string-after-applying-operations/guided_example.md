@@ -59,7 +59,7 @@ Every reached state is compared, including the initial one. Thus the answer alwa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop removes the oldest state with `popleft`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Repeated addition edges naturally cover applying the operation any number of tim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate rotations and addition counts algebr:** - **Enumerate rotations and addition counts algebraically:** Iterate the rotation offsets reachable through $\gcd(n,b)$ and the at most ten addition counts for each alterable parity group. This avoids storing a graph and can use $O(n)$ temporary space, but requires a careful parity proof.
+- **Enumerate rotations and addition counts algebraically:** Iterate the rotation offsets reachable through $\gcd(n,b)$ and the at most ten addition counts for each alterable parity group. This avoids storing a graph and can use $O(n)$ temporary space, but requires a careful parity proof.
 - **Depth-first search:** Replacing the deque with recursion or an explicit stack visits the same reachable states and has the same asymptotic bounds. Recursive DFS risks unnecessary recursion-depth concerns.
 - **Greedily minimize the first digit:** A locally smallest first character does not determine the full lexicographically smallest reachable string when several operation sequences tie at that position. Complete state exploration safely resolves later positions.
 - **Convert strings to integers:** This loses leading zeroes and changes fixed-length lexicographic behavior. Comparisons must remain string comparisons.
@@ -112,8 +112,8 @@ Repeated addition edges naturally cover applying the operation any number of tim
 - **The initial string is already smallest:** It remains in `ans` because zero operations are valid; every later state is compared and fails to replace it.
 - **Repeated states through different operation orders:** The visited set merges them. Future possibilities depend only on the current string, not on how it was reached, so exploring it once is sufficient.
 - **Even versus odd `b`:** Even `b` preserves parity classes; odd `b` swaps them. The BFS transition model handles both without branching on `b % 2`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

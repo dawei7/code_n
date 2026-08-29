@@ -69,7 +69,7 @@ The branch order is safe. A match cannot simultaneously be a win and a draw, and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `CASE` expression is evaluated from the perspective of t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Chicago has no match row. Its preserved left-join row contributes zero, so Chica
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand match scores with `UNION ALL`:** Produc:** - **Expand match scores with `UNION ALL`:** Produce one point row for the host and one for the guest, aggregate them, then left-join totals to `Teams`. This avoids an `OR` join and often gives the optimizer simpler inputs.
+- **Expand match scores with `UNION ALL`:** Produce one point row for the host and one for the guest, aggregate them, then left-join totals to `Teams`. This avoids an `OR` join and often gives the optimizer simpler inputs.
 - **Correlated score subqueries:** Compute host and guest points separately per team. This can be readable but may rescan `Matches` repeatedly.
 - **Team with no matches:** `LEFT JOIN` preserves it, and `ELSE 0` makes the sum zero.
 - **Draw:** Both participant rows reach the equality branch and receive one point each.
@@ -120,8 +120,8 @@ Chicago has no match row. Its preserved left-join row contributes zero, so Chica
 - **Unique team ID:** It makes `team_name` functionally dependent on the grouping key.
 - **Ordinal clauses:** `GROUP BY 1` and `ORDER BY 3 DESC, 1` depend on select-list positions; explicit names are more resilient to column reordering.
 - **Null match columns:** They occur only for an unmatched left-join row and safely reach `ELSE 0`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

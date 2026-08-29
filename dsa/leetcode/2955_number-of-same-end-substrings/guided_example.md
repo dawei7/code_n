@@ -74,7 +74,7 @@ Prefix `r+1` includes positions through $r$, while prefix `l` includes positions
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For query `[l, r]`, the number of occurrences of character $... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ the number of pairs of distinct occurrences. Combining the initial singles acros
 
 ## 6. Traps This Instance Exposes
 
-- **- **Position lists plus binary search:** Store sor:** - **Position lists plus binary search:** Store sorted indices per character and use two bisects per query, giving $O(\log N)$ per character per query with less dense storage.
+- **Position lists plus binary search:** Store sorted indices per character and use two bisects per query, giving $O(\log N)$ per character per query with less dense storage.
 - **Scan each query substring:** Counting characters directly costs up to $O(NQ)$ time.
 - **All characters distinct in a range:** Only length-one substrings qualify, so result equals range length.
 - **All characters equal:** Every substring is same-end, giving $L(L+1)/2$ for range length $L$.
@@ -135,8 +135,8 @@ the number of pairs of distinct occurrences. Combining the initial singles acros
 - **Prefix copying cost:** The exact source explicitly carries every present character's count to each next column rather than copying a whole dictionary, producing the stated $DN$ work.
 - **Range length equals total singles:** `r-l+1` is also the sum of all per-character occurrence counts in the query, which proves the initial `t` accounts for every one-character substring exactly once.
 - **Large answers:** A query spanning one repeated-character string has $N(N+1)/2$ results, so fixed-width implementations should use a sufficiently wide integer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

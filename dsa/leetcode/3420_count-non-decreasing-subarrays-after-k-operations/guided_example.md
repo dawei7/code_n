@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\textit{target}[i]
-=
-\max(\textit{target}[i-1],\texttt{nu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,7 +90,7 @@ Equivalently, each target is the maximum original value seen from `left` through
 
 ## 6. Traps This Instance Exposes
 
-- **- **Evaluate every subarray independently:** Recom:** - **Evaluate every subarray independently:** Recomputing prefix maxima for all endpoint pairs takes $O(n^3)$ naively or $O(n^2)$ with incremental costs, still too slow for $n=10^5$.
+- **Evaluate every subarray independently:** Recomputing prefix maxima for all endpoint pairs takes $O(n^3)$ naively or $O(n^2)$ with incremental costs, still too slow for $n=10^5$.
 - **Balanced tree of values:** The required target depends on prefix maxima in order, not merely the multiset, so an order-free frequency structure is insufficient.
 - **Monotonic block stack without a right pointer:** It can update costs for added left endpoints but cannot enforce the budget across all endings. The deque supports removals at both ends.
 - **Already non-decreasing input:** Every subarray costs zero, blocks remain unmerged as appropriate, and the answer becomes $n(n+1)/2$.
@@ -103,8 +100,8 @@ Equivalently, each target is the maximum original value seen from `left` through
 - **Large numeric values:** Cost can exceed 32-bit range. Python integers safely hold products of block lengths and value differences.
 - **Changes are independent:** The maintained cost is a hypothetical value for each endpoint pair. The source never modifies `nums`, correctly reflecting that operations on one subarray do not persist.
 - **Increment-only rule:** Prefix maxima are optimal specifically because values cannot be decreased. If both increment and decrement were allowed, medians or isotonic regression variants would be relevant instead.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

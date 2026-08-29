@@ -71,7 +71,7 @@ After every character has passed the allowed-character check, the method returns
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The fixed set `vs = set("aeiouAEIOU")` contains all ten allo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ At the end, the initial length check proves condition 1, the absence of an early
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expression:** A lookahead-based expres:** - **Regular expression:** A lookahead-based expression can enforce length, alphabet, vowel, and consonant conditions, but it is harder to read and still scans the word.
+- **Regular expression:** A lookahead-based expression can enforce length, alphabet, vowel, and consonant conditions, but it is harder to read and still scans the word.
 - **Lowercase each character:** Test `c.lower() in "aeiou"` for letters. This avoids listing uppercase vowels but creates or computes a case-normalized character each iteration.
 - **Four separate passes:** Check allowed characters, vowels, and consonants independently. It remains $O(n)$ but repeats work and delays failure.
 - **Explicit ASCII ranges:** Tests such as `'A' <= c <= 'Z'` precisely enforce the English-only contract and avoid Unicode classifier semantics.
@@ -126,8 +126,8 @@ At the end, the initial length check proves condition 1, the absence of an early
 - **Special character anywhere:** The method returns false immediately, even if all other requirements have already been satisfied.
 - **Repeated vowels or consonants:** The flags record existence, not counts, so repetitions require no extra handling.
 - **Unicode outside the contract:** Python might classify it as alphanumeric. The solution is correct because such input is excluded by the stated constraints.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

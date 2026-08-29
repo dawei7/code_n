@@ -75,7 +75,7 @@ If `v` is too large, the loop performs zero iterations and the scan moves to the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each descending pair `(c, v)`, the loop appends the toke... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ Since tokens are processed from largest to smallest, a lower decimal place canno
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `divmod` per token:** Compute `count, num :** - **Use `divmod` per token:** Compute `count, num = divmod(num, v)` and append `c * count`. This reduces each table entry to one division and makes the number of outer iterations visibly fixed; it produces the same canonical sequence.
+- **Use `divmod` per token:** Compute `count, num = divmod(num, v)` and append `c * count`. This reduces each table entry to one division and makes the number of outer iterations visibly fixed; it produces the same canonical sequence.
 - **Hardcode each decimal digit:** Use lookup arrays for thousands, hundreds, tens, and ones, then concatenate four entries. This is also constant time but less flexible if the symbol system or supported range changes.
 - **Handle 4 and 9 with branches:** One can convert each decimal place using separate cases. Treating subtractive pairs as tokens produces simpler uniform greedy code.
 - **Omit subtractive tokens:** A greedy scan of only `I,V,X,L,C,D,M` would generate noncanonical forms such as `IIII` and `VIIII`. The six pairs are required.
@@ -128,8 +128,8 @@ Since tokens are processed from largest to smallest, a lower decimal place canno
 - **Mixed decimal places:** `49` becomes `XLIX`, not `IL`, because the descending table respects independent tens and ones forms.
 - **No zero input:** The contract starts at `1`, so the method never needs to define a Roman representation for zero.
 - **Input preservation:** The local integer variable `num` is reduced, but integers are immutable and the caller's value is unaffected.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

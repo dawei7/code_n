@@ -59,7 +59,7 @@ The second and third comparisons require both adjacent values to be absent. Logi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The comprehension loops through `cnt.items()`, so each disti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Therefore `cnt[x - 1] == 0` means precisely that `x - 1` does not occur, and `cn
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the array:** After sorting, a value is lo:** - **Sort the array:** After sorting, a value is lonely if it occurs once and differs by more than one from its immediate sorted neighbors. This costs $O(n\log n)$ time and needs careful boundary and duplicate handling.
+- **Sort the array:** After sorting, a value is lonely if it occurs once and differs by more than one from its immediate sorted neighbors. This costs $O(n\log n)$ time and needs careful boundary and duplicate handling.
 - **Use a set plus a separate count:** A set handles neighbor membership, but uniqueness still requires counts. `Counter` supplies both in one structure.
 - **Search the list for every value:** Repeated calls to count or membership can make the algorithm $O(n^2)$.
 - **One element:** Its frequency is one and neither numeric neighbor occurs, so it is lonely.
@@ -110,8 +110,8 @@ Therefore `cnt[x - 1] == 0` means precisely that `x - 1` does not occur, and `cn
 - **Any output order:** The comprehension’s order is acceptable; no sorting step is required.
 - **Missing-key behavior:** Counter lookup returns zero and does not grow the mapping, avoiding mutation during `items()` iteration.
 - **Input preservation:** All frequency and output storage is separate from `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

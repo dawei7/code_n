@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ No actual multiplication is needed. Only the parity of each factor matters.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming by sum, length, and parity:** - **Dynamic programming by sum, length, and parity:** A DP can count sequences while tracking whether an even element has appeared, but it uses far more than constant per-query time. Complement counting collapses the problem to two binomial coefficients.
+- **Dynamic programming by sum, length, and parity:** A DP can count sequences while tracking whether an even element has appeared, but it uses far more than constant per-query time. Complement counting collapses the problem to two binomial coefficients.
 - **Enumerate positive compositions:** There are `\binom{n-1}{k-1}` candidates, which is enormous near the constraints. Stars and bars counts them without generation.
 - **Inclusion-exclusion over even positions:** Choosing which indices are even creates many overlapping cases. Subtracting the single complement event “all elements are odd” is much simpler.
 - **Multiplicative binomial calculation per call:** Computing each coefficient in `O(k)` time avoids global `O(MX)` tables and may be attractive for one query, but it is not the exact source strategy.
@@ -101,8 +101,8 @@ No actual multiplication is needed. Only the parity of each factor matters.
 - **Factorial bounds:** All needed indices are below `MOD` and below `MX`, so Fermat inverses exist and no Lucas-theorem handling is needed.
 - **Global initialization cost:** Importing the file builds both full tables even if the method is never invoked. Any real performance or memory assessment must include that exact behavior.
 - **Manifest space claim:** The method body uses constant additional state, but the complete implementation does not use `O(1)` space because the global factorial arrays are integral to `comb`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `A + B <= C OR A + C <= B OR B + C <= A`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort side values per row:** Then only the two-:** - **Sort side values per row:** Then only the two-smallest sum needs testing, but expressing a three-value sort in SQL is less direct than symmetric inequalities.
+- **Sort side values per row:** Then only the two-smallest sum needs testing, but expressing a three-value sort in SQL is less direct than symmetric inequalities.
 - **Use `GREATEST` and total sum:** Validity can be expressed as total minus largest greater than largest. The current conditions are clearer and avoid null-propagation surprises beyond normal comparisons.
 - **Count distinct side lengths:** For valid rows, one, two, or three distinct lengths map to equilateral, isosceles, or scalene. Per-row distinct counting is more cumbersome than direct equality.
 - **Degenerate equality:** A sum equal to the third side is `Not A Triangle` because the inequalities are strict.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **CASE short-circuit semantics:** MySQL returns the result of the first true `WHEN`. Later equality tests cannot overwrite an invalid classification, which is exactly why branch ordering forms part of correctness.
 - **Why equality sum cannot be two:** For ordinary values, if $A=B$ and $B=C$, transitivity also gives $A=C$, producing three true comparisons. Otherwise at most one pair is equal. The only possible sums are therefore zero, one, or three.
 - **Column-name case:** The lowercase `c` in `B = c` resolves to column `C` under MySQL's identifier rules; it is not a separate variable or string literal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

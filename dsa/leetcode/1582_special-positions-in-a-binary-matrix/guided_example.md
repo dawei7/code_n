@@ -71,7 +71,7 @@ For the matrix `[[1,0,0],[0,0,1],[1,0,0]]`, the row totals are `[1,1,1]` and the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `rows` has one entry for every matrix row and starts with ze... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ This use of Boolean arithmetic is not counting “truth values” as a separate 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan a row and column for every one:** This us:** - **Scan a row and column for every one:** This uses $O(1)$ extra space but can take $O(RC(R+C))$ time in the worst case because the same lines are checked repeatedly.
+- **Scan a row and column for every one:** This uses $O(1)$ extra space but can take $O(RC(R+C))$ time in the worst case because the same lines are checked repeatedly.
 - **Store coordinates of all ones:** One could record each one and then examine only those candidates after building row and column counts. That may reduce the second scan for sparse matrices, but it adds up to $O(RC)$ coordinate storage; the checked-in solution simply performs a predictable second pass.
 - **Use sets of occupied rows and columns:** A set records presence but not whether a row or column contains exactly one one. Counts are required to distinguish one occurrence from several.
 - **Mutate the matrix to store counts:** Reusing the first row and column can reduce auxiliary storage, but it complicates marker collisions and alters the input. Separate count arrays are clearer and match the checked-in source.
@@ -131,8 +131,8 @@ This use of Boolean arithmetic is not counting “truth values” as a separate 
 - **Boolean addition in Python:** The final expression adds one for true and zero for false. A port to a language that does not treat Booleans numerically should use an explicit conditional increment.
 - **Non-binary values:** The direct-sum counting technique depends on the zero-or-one guarantee. For arbitrary cell values, increment counters only when a cell equals one.
 - **Rectangular rather than square input:** `rows` and `cols` have independent lengths, so the solution handles any valid $R\times C$ shape.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

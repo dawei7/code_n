@@ -61,7 +61,7 @@ For a correct mark-on-pop design, the pop logic must begin by skipping an alread
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The graph can contain cycles.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The second form matches the local editorial's BFS structure. One must still save
 
 ## 6. Traps This Instance Exposes
 
-- **- **Visited set with BFS:** Store indices in a set:** - **Visited set with BFS:** Store indices in a set when enqueuing them and never mutate `arr`. This cleanly prevents duplicate queue entries and preserves the input, at $O(n)$ extra space.
+- **Visited set with BFS:** Store indices in a set when enqueuing them and never mutate `arr`. This cleanly prevents duplicate queue entries and preserves the input, at $O(n)$ extra space.
 - **Guard marked pops:** Keeping the exact mark-on-pop style is valid only if `arr[i] < 0` causes an immediate skip before `x` is read. This is the minimal logical repair shown by the editorial.
 - **Iterative DFS:** A stack can replace the queue because only reachability matters. It has the same $O(n)$ time and space bounds with correct visited handling.
 - **Recursive DFS:** It is concise but can recurse through $O(n)$ indices and exceed Python's recursion limit near the maximum input size.
@@ -119,8 +119,8 @@ The second form matches the local editorial's BFS structure. One must still save
 - **In-place sentinel:** $-1$ is safe only because the contract guarantees every original value is at least zero.
 - **Input mutation visible to callers:** Visited positive entries become $-1$. A caller needing the original data must copy it or use separate visited storage.
 - **Exact-source limitation:** The approach artifact should not claim the submitted code is correct for all valid inputs until duplicate pops are skipped or duplicate enqueues are prevented.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

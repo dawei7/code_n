@@ -59,7 +59,7 @@ Variable `k` stores an index known to be in the different class. It is updated w
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `x = reader.query(0, 1, 2, 3)` records the distribution of t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This loop includes index four. Later, the code calls the same query `query(0, 1,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cache the index-four query:** Reusing the loop:** - **Cache the index-four query:** Reusing the loop result as `y` saves one call and gives $N$ total queries without changing the reasoning.
+- **Cache the index-four query:** Reusing the loop result as `y` saves one call and gives $N$ total queries without changing the reasoning.
 - **Try to decode actual bit values:** It is unnecessary; majority depends only on the sizes of the two equivalence classes.
 - **Compare arbitrary queries:** Equality is informative for individual bits only when the queries share three indices and differ in exactly one.
 - **Equal frequencies:** The code returns negative one before choosing either representative.
@@ -111,8 +111,8 @@ This loop includes index four. Later, the code calls the same query `query(0, 1,
 - **Symmetric query result:** The API does not distinguish zero-majority from one-majority, which is why relative comparison is the appropriate tool.
 - **Interactive boundary:** The platform supplies `ArrayReader`; the solution must not implement or inspect it.
 - **Follow-up minimum calls:** The exact source is budget-compliant but intentionally does not prove the theoretical minimum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ This positional interpretation is important when values repeat. Two subsets choo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This positional interpretation is important when values repe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This positional interpretation is important when values repeat. Two subsets choo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bitwise OR closed form:** OR all values and mu:** - **Bitwise OR closed form:** OR all values and multiply by `2^(n - 1)` to achieve `O(n)` time and `O(1)` space.
+- **Bitwise OR closed form:** OR all values and multiply by `2^(n - 1)` to achieve `O(n)` time and `O(1)` space.
 - **Backtracking:** Include or exclude each position recursively; it still explores `2^n` leaves and uses `O(n)` stack space.
 - **Dynamic programming over XOR values:** Frequency transitions can aggregate subset XORs, but it is unnecessary under the small bound.
 - **Single element:** Masks contribute zero and that element, so the answer equals the element.
@@ -100,8 +100,8 @@ This positional interpretation is important when values repeat. Two subsets choo
 - **Position-based subset definition:** The mask representation exactly preserves multiplicity when array values repeat.
 - **All-ones mask:** Mask `(1 << n) - 1` selects every array position, so the full-array XOR is included exactly once alongside all proper subsets.
 - **Repeated XOR totals:** Different masks may calculate the same numeric XOR value. The algorithm adds each occurrence separately because the problem sums over subsets, not over distinct resulting totals.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

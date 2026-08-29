@@ -70,7 +70,7 @@ It is also the smallest fair number of that new length. Every number with `k + 1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `k` is odd, no `k`-digit number can be fair: splitting an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The recursive search is therefore correct: the digit-count branch accepts exactl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bounded digit construction:** Build the smalle:** - **Bounded digit construction:** Build the smallest decimal string at least `str(n)` with exactly half even and half odd digits, using a tight-prefix state and feasibility checks for the remaining counts. This avoids walking through the numeric gap and can achieve the intended polynomial-in-$d$ behavior, but it needs careful handling of the leading digit and backtracking when a chosen digit makes the suffix impossible.
+- **Bounded digit construction:** Build the smallest decimal string at least `str(n)` with exactly half even and half odd digits, using a tight-prefix state and feasibility checks for the remaining counts. This avoids walking through the numeric gap and can achieve the intended polynomial-in-$d$ behavior, but it needs careful handling of the leading digit and backtracking when a chosen digit makes the suffix impossible.
 - **Digit dynamic programming:** A memoized state such as position, remaining odd digits, and whether the prefix is still equal to the lower bound can determine feasibility, after which digits are greedily reconstructed from smallest to largest. This is more involved but matches the manifest's constructive description much better than the exact recursive enumeration.
 - **Iterative enumeration:** A `while` loop that increments `n` until it is fair preserves the exact search logic while avoiding `RecursionError`. It still may inspect many candidates and therefore does not solve the time-complexity weakness.
 - **Odd number of digits:** No value of that same length can be fair. The direct pattern of zeros followed by the required ones is both fair and the smallest feasible longer value.
@@ -121,8 +121,8 @@ The recursive search is therefore correct: the digit-count branch accepts exactl
 - **Carry across a power of ten:** Incrementing values such as `99` changes the digit count. The next recursive call recomputes all counts from scratch, so the odd-length shortcut is applied correctly.
 - **Maximum stated input:** `10^9` has ten digits and is processed by the even-length branch. The answer may exceed the input constraint because the constraint limits only the argument, not the returned integer.
 - **Manifest mismatch:** The local metadata says $O(d^2)$ time and space, but those bounds should not be used to reason about this exact Python file. Its candidate enumeration and recursive depth are observable parts of the implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

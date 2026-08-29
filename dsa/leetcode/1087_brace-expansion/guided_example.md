@@ -57,7 +57,7 @@ Recursion continues on `s[j + 1:]`, the unparsed suffix after the closing brace.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the current substring begins with `'{'`, `convert` find... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ As a result, concatenating one selected string from every list in `items` recons
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort each option group before DFS:** If every :** - **Sort each option group before DFS:** If every position’s choices are lexicographically sorted, a left-to-right DFS can emit complete words in sorted order and avoid the final comparison sort. Care is needed because this parser stores whole literal runs as singleton strings, though singleton ordering is trivial.
+- **Sort each option group before DFS:** If every position’s choices are lexicographically sorted, a left-to-right DFS can emit complete words in sorted order and avoid the final comparison sort. Care is needed because this parser stores whole literal runs as singleton strings, though singleton ordering is trivial.
 - **Iterative Cartesian product:** Start with `[""]` and, for each option list, append every current option to every prefix built so far. This avoids DFS call-stack depth but may hold both the old and new prefix collections during each expansion step.
 - **Index-based parser:** Walk the original string with one integer rather than recursively slicing suffixes. This makes the $O(n)$ parsing claim precise and avoids repeated string copies.
 - **Generate while parsing:** Backtracking directly over the encoded string can work, but each recursive branch risks rediscovering brace boundaries. Precomputing `items` keeps syntax handling out of the exponential enumeration.
@@ -112,8 +112,8 @@ As a result, concatenating one selected string from every list in `items` recons
 - **One represented word:** When every position has one option, $R=1$. DFS follows a single path and joins the fixed pieces once.
 - **Large expansion count:** Even with a short encoded string, multiplying option counts can produce many words. This is inherent because the function must return every one of them; no algorithm can use sublinear output space while returning the full list.
 - **Mutable path discipline:** Omitting `t.pop()` would leave a previous branch’s choice in the path and corrupt later words. The append, recursive call, and pop must remain a matched backtracking unit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

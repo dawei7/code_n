@@ -72,7 +72,7 @@ Increasing enumeration also makes termination easy to reason about under the pro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `f"{a}{b}"` converts both integers to decimal text and conca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Conversely, because enumeration tries every positive `a < n` in order and derive
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bounded enumeration:** `for a in range(1, n)` :** - **Bounded enumeration:** `for a in range(1, n)` enforces positivity of `b` even without the solution guarantee and is safer than an infinite counter.
+- **Bounded enumeration:** `for a in range(1, n)` enforces positivity of `b` even without the solution guarantee and is safer than an infinite counter.
 - **Arithmetic digit test:** Repeatedly inspect `x % 10` and divide by ten. It avoids string allocation but still takes $O(\log n)$ time per candidate.
 - **Construct digits without zero:** A direct carry-aware construction can avoid testing many candidates, but it is more complex than needed for `n <= 10000`.
 - **`n = 2`:** The first candidate gives `[1,1]`, which is valid.
@@ -125,8 +125,8 @@ Conversely, because enumeration tries every positive `a < n` in order and derive
 - **Guaranteed existence:** The lack of loop bounds and fallback return relies on it. Removing that promise requires a bounded loop.
 - **Negative string outside intended range:** A minus sign is not zero, so unbounded enumeration could accept a negative `b` if no valid positive pair existed.
 - **Leading zeros:** Ordinary integer formatting never creates leading zeroes, so only actual digits of the number are examined.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

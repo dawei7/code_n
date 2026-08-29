@@ -51,7 +51,7 @@ The constructor stores the supplied grid reference in `grid` and creates `d`. Wh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor stores the supplied grid reference in `grid`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The two public methods share one helper. `adjacentSum(value)` calls `cal(value, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute both sums:** During construction, c:** - **Precompute both sums:** During construction, compute an adjacent and diagonal sum for every value and store them in two arrays or maps. Initialization remains $O(n^2)$ and queries become direct lookups, but on-demand calculation is already constant-time and stores less per value.
+- **Precompute both sums:** During construction, compute an adjacent and diagonal sum for every value and store them in two arrays or maps. Initialization remains $O(n^2)$ and queries become direct lookups, but on-demand calculation is already constant-time and stores less per value.
 - **Value-to-position array:** Since values cover `0` through `n^2 - 1` exactly, a list indexed by value could replace the dictionary. It has deterministic $O(1)$ lookup and the same $O(n^2)$ space.
 - **Search for the value on every call:** This avoids the coordinate map but costs $O(n^2)$ per query, which is unnecessary when up to $2n^2$ calls may occur.
 - **Write eight explicit branches:** Separate neighbor checks work but duplicate bounds logic. Direction iteration is shorter and less error-prone once the offsets are understood.
@@ -97,8 +97,8 @@ The two public methods share one helper. `adjacentSum(value)` calls `cal(value, 
 - **Distinctness requirement:** If duplicate values were allowed, later assignments to `d[x]` would overwrite earlier coordinates, making value-only queries ambiguous. The problem explicitly rules this out.
 - **Missing `pairwise` import:** The source assumes `pairwise` is available from `itertools` in the execution harness or imports. In an ordinary standalone module, `from itertools import pairwise` is required; otherwise calls to `cal` raise `NameError`.
 - **External grid mutation:** Legal operations never change the grid. If a caller mutates it anyway, the stored coordinate map is not rebuilt, so behavior no longer represents a coherent initialized service state.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `prices` where $\text{prices}[i]$ is the price of the $$i^{\text{th}}$$ item in a shop.
+You are given an integer array `prices` where $\text{prices}[i]$ is the price of the $i^{\text{th}}$ item in a shop.
 
 The objective is to compute `[4, 2, 4, 2, 3]` from `{"prices": [8, 4, 6, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The source saves `x = prices[i]` before modifying the array. This original value
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source saves `x = prices[i]` before modifying the array.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source saves `x = prices[i]` before modifying the array. This original value
 
 ## 6. Traps This Instance Exposes
 
-- **- **Left-to-right index stack:** Keep unresolved i:** - **Left-to-right index stack:** Keep unresolved item indices and apply the current price when it is the first smaller-or-equal value. It is the common equivalent formulation.
+- **Left-to-right index stack:** Keep unresolved item indices and apply the current price when it is the first smaller-or-equal value. It is the common equivalent formulation.
 - **Nested scan:** Search rightward from every item and stop at the first qualifying price. It is simpler but `O(N^2)` in the worst case.
 - **Equal next price:** Equality qualifies; the strict pop condition preserves it for subtraction.
 - **No qualifying later price:** The stack empties after larger values are removed, so the original price remains unchanged.
@@ -101,8 +101,8 @@ The source saves `x = prices[i]` before modifying the array. This original value
 - **Input mutation:** The caller's `prices` list is changed and returned.
 - **Amortized proof:** Popped entries never return, bounding all while iterations by `N`.
 - **Nearest-index requirement:** Dominance removal is safe specifically because the current value is closer to all future left-side items.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

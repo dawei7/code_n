@@ -75,7 +75,7 @@ The name `ans` is temporary at this stage: it contains only the numerator until 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans` starts at one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ This incremental technique avoids precomputing factorial and inverse-factorial a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Factorial tables:** Precompute factorials and :** - **Factorial tables:** Precompute factorials and inverse factorials through $N$; it also gives $O(N)$ time and space but is not the exact implementation.
+- **Factorial tables:** Precompute factorials and inverse factorials through $N$; it also gives $O(N)$ time and space but is not the exact implementation.
 - **One-letter word:** It contributes exactly one permutation.
 - **All identical letters:** Numerator and denominator factorial cancel, producing one.
 - **All distinct letters:** The word contributes its full length factorial.
@@ -132,8 +132,8 @@ This incremental technique avoids precomputing factorial and inverse-factorial a
 - **Modular inverse:** It exists because all factors are smaller than the prime modulus.
 - **Large answer:** Reducing after each multiplication keeps values controlled.
 - **Manifest mismatch:** The source accumulates factorial products incrementally instead of building shared tables.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ The contract guarantees at least three elements, so at least one inner-loop iter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans = inf` means no real triplet has been considered.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If `t == target`, the absolute difference is zero. No other sum can be closer th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search for the third value:** Fix two i:** - **Binary search for the third value:** Fix two indices and binary-search the remaining suffix near the desired complement. It costs $O(n^2\log n)$, slower than two pointers.
+- **Binary search for the third value:** Fix two indices and binary-search the remaining suffix near the desired complement. It costs $O(n^2\log n)$, slower than two pointers.
 - **Brute-force triples:** Examines $O(n^3)$ combinations and ignores sorted monotonic elimination.
 - **Skip duplicate pivots:** This can reduce repeated work, but is not required for correctness or the $O(n^2)$ bound; the exact source processes them.
 - **Exact target exists:** Return immediately with distance zero.
@@ -111,8 +111,8 @@ If `t == target`, the absolute difference is zero. No other sum can be closer th
 - **Negative target and values:** Only numerical order and differences matter; sign requires no special branch.
 - **Distinct indices:** `j = i + 1` and `j < k` maintain `i < j < k`.
 - **Input mutation:** In-place sorting changes the caller's list order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

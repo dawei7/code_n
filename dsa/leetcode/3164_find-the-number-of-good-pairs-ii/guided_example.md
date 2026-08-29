@@ -83,7 +83,7 @@ Repeating for every distinct `nums2` value gives the total.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix a distinct value $x$ from `nums2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ For every retained index, normalization divides out exactly $k$. For each second
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate divisors of each normalized nums1 va:** - **Enumerate divisors of each normalized nums1 value:** For each divisor, add matching `nums2` frequency. This can cost roughly $O(n\sqrt V)$ and may be preferable for different value distributions.
+- **Enumerate divisors of each normalized nums1 value:** For each divisor, add matching `nums2` frequency. This can cost roughly $O(n\sqrt V)$ and may be preferable for different value distributions.
 - **Dense frequency array:** It makes multiple access faster and explicit but uses $O(V)$ space.
 - **Check every pair:** It costs $O(nm)$ and is infeasible at $10^5$ lengths.
 - **No nums1 value divisible by k:** The early return avoids calling `max` on an empty counter and correctly returns zero.
@@ -139,8 +139,8 @@ For every retained index, normalization divides out exactly $k$. For each second
 - **Positive values:** They make multiple ranges and division straightforward.
 - **Large answer:** It can reach $nm$ and is stored exactly.
 - **Input preservation:** Normalized values are generated into a counter; neither source array is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

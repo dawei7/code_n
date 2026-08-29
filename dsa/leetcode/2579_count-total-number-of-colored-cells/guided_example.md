@@ -77,7 +77,7 @@ The four axis corners are not double-counted by the $4r$ formula when thought of
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a positive distance $r$, the cells satisfying `abs(x) + ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ The implementation returns this formula as `2 * n * (n - 1) + 1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative layer addition:** Add $4,8,\ldots,4(:** - **Iterative layer addition:** Add $4,8,\ldots,4(n-1)$ to one. This is correct but takes $O(n)$ time.
+- **Iterative layer addition:** Add $4,8,\ldots,4(n-1)$ to one. This is correct but takes $O(n)$ time.
 - **Grid simulation:** Tracking colored coordinates wastes $O(n^2)$ space and work because only the count is requested.
 - **Breadth-first search:** BFS reproduces Manhattan layers but is unnecessary on an obstacle-free infinite grid.
 - **Row counting:** Summing diamond row widths leads to the equivalent formula $n^2+(n-1)^2$.
@@ -141,8 +141,8 @@ The implementation returns this formula as `2 * n * (n - 1) + 1`.
 - **Meaning of touches:** Orthogonal cell adjacency produces Manhattan diamonds; diagonal adjacency would create a different square-shaped count.
 - **Large `n`:** The answer exceeds 32-bit range near the upper constraint, so use 64-bit arithmetic outside Python.
 - **No off-by-one layer:** Minute one corresponds to radius zero, making the final radius `n - 1` rather than `n`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

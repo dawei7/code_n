@@ -51,7 +51,7 @@ A tempting shortcut is to find the absolute global minimum and maximum across al
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A tempting shortcut is to find the absolute global minimum a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A tempting shortcut is to find the absolute global minimum and maximum across al
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index-based single scan:** Iterate indices 1 t:** - **Index-based single scan:** Iterate indices 1 through $M-1$ to preserve the exact logic while avoiding the Python slice allocation.
+- **Index-based single scan:** Iterate indices 1 through $M-1$ to preserve the exact logic while avoiding the Python slice allocation.
 - **Compare every array pair:** Endpoints reduce each pair to constant work, but considering all pairs still costs $O(M^2)$ and is unnecessary.
 - **Compare every element:** This ignores the sorted structure and can be dramatically slower while producing no better candidate.
 - **Global minimum and maximum only:** It is unsafe unless their array identities are tracked, because both extrema may come from one array.
@@ -98,8 +98,8 @@ A tempting shortcut is to find the absolute global minimum and maximum across al
 - **Long inner arrays:** Their length does not affect scan time beyond constant endpoint access, provided indexing is constant time.
 - **Nonempty-array guarantee:** It makes `arr[0]` and `arr[-1]` safe for every array.
 - **At least two arrays:** It guarantees that a legal cross-array pair exists; otherwise initial `ans = 0` would not represent a chosen pair.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

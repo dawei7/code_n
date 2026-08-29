@@ -77,14 +77,7 @@ No heap or repeated search is needed after finding the original maximum.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let:
-
-$$
-x=\max(\texttt{nums})
-$$
-
-be the original maximum.
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +120,7 @@ Future selections can continue from this larger evolving value. Replacing every 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap simulation:** Correctly performs $k$ :** - **Max-heap simulation:** Correctly performs $k$ selections in $O(n+k\log n)$ time, but the persistent-maximum observation makes it unnecessary.
+- **Max-heap simulation:** Correctly performs $k$ selections in $O(n+k\log n)$ time, but the persistent-maximum observation makes it unnecessary.
 - **Sort the array:** Finding only the maximum does not require $O(n\log n)$ sorting.
 - **Choose different equal maxima:** They are interchangeable on the first operation.
 - **`k = 1`:** The formula returns the original maximum.
@@ -137,8 +130,8 @@ Future selections can continue from this larger evolving value. Replacing every 
 - **Positive input:** Every reward is positive, though optimality follows from comparison even without this.
 - **Large total:** Python integers avoid overflow.
 - **Input preservation:** The conceptual operation is not simulated on `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

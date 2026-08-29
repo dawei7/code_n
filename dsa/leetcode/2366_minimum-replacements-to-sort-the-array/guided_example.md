@@ -57,7 +57,7 @@ Splitting such a value would add operations and could only make the new boundary
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `nums[i] <= mx`, no split is necessary.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Using fewer pieces is impossible because their combined sum could not reach $x$ 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Actually construct every split piece:** This m:** - **Actually construct every split piece:** This makes the transformation visible but can require enormous time and memory. The boundary calculation contains all information needed for the count.
+- **Actually construct every split piece:** This makes the transformation visible but can require enormous time and memory. The boundary calculation contains all information needed for the count.
 - **Modify `nums` in place:** Replacing `nums[i]` with the new boundary is a common equivalent implementation. The exact solution keeps a separate `mx` and leaves the input unchanged.
 - **Split by repeatedly taking `mx`:** This can leave a very small remainder, such as `[1, 3, 3]` for seven. Balancing preserves a larger boundary for the prefix.
 - **Already non-decreasing input:** Every value fits its right boundary, `k` is never computed, and the answer remains zero.
@@ -117,8 +117,8 @@ Using fewer pieces is impossible because their combined sum could not reach $x$ 
 - **Non-divisible value:** The ceiling adds one piece, and balanced floor/ceiling sizes keep the largest piece within the boundary.
 - **Strictly decreasing large values:** Many elements may require splits, but each is still processed in constant time rather than once per generated piece.
 - **Positive-value guarantee:** Division boundaries never become zero because $x$ is positive and $k\le x$ when `mx >= 1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,9 +61,7 @@ An equal value contributes nothing to the output, so the function returns `{}` w
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first test is `obj1 === obj2`.
-
-For JSON primitives, thi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ If either value is not a container, strict equality has already failed, so the c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Serialize and compare whole objects:** Detects:** - **Serialize and compare whole objects:** Detects equality but does not produce the required nested changed paths and is sensitive to key order.
+- **Serialize and compare whole objects:** Detects equality but does not produce the required nested changed paths and is sensitive to key order.
 - **Iterative stack traversal:** Avoids recursion depth while preserving shared-key semantics.
 - **Include union of keys:** Would report additions and removals, which the problem explicitly excludes.
 - **Equal primitives:** Return no difference.
@@ -114,8 +112,8 @@ If either value is not a container, strict equality has already failed, so the c
 - **Same object reference:** Strict-equality shortcut avoids traversal.
 - **Sparse output:** Array-index changes are stored in an object, not padded array.
 - **Input preservation:** The function creates new result containers and never mutates either input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

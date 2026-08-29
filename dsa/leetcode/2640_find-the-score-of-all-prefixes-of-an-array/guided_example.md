@@ -86,7 +86,7 @@ The update must happen before calculating the conversion value because the curre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mx` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ No separate running-sum variable is necessary because `ans[i - 1]` already store
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the conversion array first:** Also $O(n):** - **Build the conversion array first:** Also $O(n)$ time but allocates another $O(n)$ list unnecessarily.
+- **Build the conversion array first:** Also $O(n)$ time but allocates another $O(n)$ list unnecessarily.
 - **Recompute every prefix:** Correct but $O(n^2)$ because earlier work is repeated.
 - **Separate running sum:** Maintain `score` instead of reading `ans[i-1]`; behavior and complexity are equivalent.
 - **Single element:** Its score is twice its value.
@@ -142,8 +142,8 @@ No separate running-sum variable is necessary because `ans[i - 1]` already store
 - **Positive-value assumption:** It makes zero a safe initial maximum.
 - **Large score:** Python integer arithmetic avoids overflow.
 - **Input preservation:** The source array is never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

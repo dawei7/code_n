@@ -2,9 +2,9 @@
 
 There is a restaurant with a single chef. You are given an array `customers`, where $\text{customers}[i] = [\text{arrival}_{i}, \text{time}_{i}]:$
 
-- $\text{arrival}_{i}$ is the arrival time of the $$i^{\text{th}}$$ customer. The arrival times are sorted in **non-decreasing** order.
+- $\text{arrival}_{i}$ is the arrival time of the $i^{\text{th}}$ customer. The arrival times are sorted in **non-decreasing** order.
 
-- $\text{time}_{i}$ is the time needed to prepare the order of the $$i^{\text{th}}$$ customer.
+- $\text{time}_{i}$ is the time needed to prepare the order of the $i^{\text{th}}$ customer.
 
 When a customer arrives, he gives the chef his order, and the chef starts preparing it once he is idle. The customer waits till the chef finishes preparing his order. The chef does not prepare food for more than one customer at a time. The chef prepares food for customers **in the order they were given in the input**.
 

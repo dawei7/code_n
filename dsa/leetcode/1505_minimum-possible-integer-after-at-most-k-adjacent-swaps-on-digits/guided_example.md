@@ -59,7 +59,7 @@ After selecting an occurrence, `popleft` removes it from its digit queue in cons
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pos[d]` is a deque containing the one-based original indice... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ After `i-1` output digits have been selected, `tree.query(n)` equals `i-1`. For 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct list simulation:** Repeatedly locate an:** - **Direct list simulation:** Repeatedly locate and remove a feasible digit from a list. Shifting elements can make total time quadratic.
+- **Direct list simulation:** Repeatedly locate and remove a feasible digit from a list. Shifting elements can make total time quadratic.
 - **Segment tree:** It can count removed positions and update them in $O(\log n)$, matching the asymptotic time with more implementation overhead.
 - **Budget large enough to sort fully:** The greedy process chooses digits in ascending order, including duplicates, once every needed move is affordable.
 - **Budget too small for a smaller digit:** The algorithm skips it for the current position but may choose it later after intervening digits are removed.
@@ -108,8 +108,8 @@ After `i-1` output digits have been selected, `tree.query(n)` equals `i-1`. For 
 - **k remains unused:** “At most” k swaps allows the algorithm to stop spending when the string cannot be improved.
 - **One-based indexing:** Fenwick operations and stored positions consistently use indices one through n.
 - **Required imports:** `defaultdict`, `deque`, and their supporting environment must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

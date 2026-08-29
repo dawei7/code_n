@@ -4,7 +4,7 @@ Let the function `f(s)` be the **frequency of the lexicographically smallest cha
 
 You are given an array of strings `words` and another array of query strings `queries`. For each query $\text{queries}[i]$, count the **number of words** in `words` such that $f(\text{queries}[i])$ < `f(W)` for each `W` in `words`.
 
-Return *an integer array *`answer`*, where each *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
+Return *an integer array *`answer`*, where each *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

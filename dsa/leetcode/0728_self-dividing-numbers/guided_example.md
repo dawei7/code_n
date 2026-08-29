@@ -60,7 +60,7 @@ If the code modified `x` itself while extracting digits, later tests would divid
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper receives a candidate `x` and copies it into `y`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ The expression is compact, but its meaning is:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert the candidate to a string:** Iterate t:** - **Convert the candidate to a string:** Iterate through character digits, reject `"0"`, and convert each other character back to an integer for modulo. This is readable and has the same `O(D)` per-number time, but it creates a string representation. Arithmetic extraction uses constant working space.
-- **- **Precompute valid numbers:** Because the stated:** - **Precompute valid numbers:** Because the stated domain is small, a fixed table of all self-dividing numbers could answer ranges quickly. That shifts work and data into preprocessing and is less general than checking the supplied interval.
-- **- **Generate numbers digit by digit:** A backtrack:** - **Generate numbers digit by digit:** A backtracking generator can avoid all zero-containing candidates, but divisibility by every constructed digit still needs checking and the extra complexity is unnecessary for the domain.
+- **Convert the candidate to a string:** Iterate through character digits, reject `"0"`, and convert each other character back to an integer for modulo. This is readable and has the same `O(D)` per-number time, but it creates a string representation. Arithmetic extraction uses constant working space.
+- **Precompute valid numbers:** Because the stated domain is small, a fixed table of all self-dividing numbers could answer ranges quickly. That shifts work and data into preprocessing and is less general than checking the supplied interval.
+- **Generate numbers digit by digit:** A backtracking generator can avoid all zero-containing candidates, but divisibility by every constructed digit still needs checking and the extra complexity is unnecessary for the domain.
 
 ---
 

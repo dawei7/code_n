@@ -29,7 +29,7 @@ precisely.
 
 - `target`: an integer array of length $n$.
 - `arr`: another integer array of the same length $n$.
-- $1 \le n \le 1000$, and every value in both arrays lies in $[1,1000]$.
+- $1 \le n \le 1000$, and every value in both arrays lies in `[1,1000]`.
 
 **Return value**
 

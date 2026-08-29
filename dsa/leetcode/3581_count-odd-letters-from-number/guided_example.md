@@ -70,11 +70,7 @@ This is equivalent to maintaining 26 counters modulo two, but packs them into on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For letter `c`, the expression
-
-`1 << (ord(c)-ord("a"))`
-
-cr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +109,7 @@ Repeated digits and repeated letters inside a word are handled naturally. For ex
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the concatenated string:** Converting di:** - **Build the concatenated string:** Converting digit names in original order and using Counter is straightforward but allocates `O(\log n)` characters and full counts when only parity is needed.
+- **Build the concatenated string:** Converting digit names in original order and using Counter is straightforward but allocates `O(\log n)` characters and full counts when only parity is needed.
 - **Array of 26 parity values:** Toggling Boolean or zero/one entries is equally correct and still `O(1)` space; the bitmask is more compact.
 - **Full frequency counters:** Incrementing counts then testing oddness works but stores larger values unnecessarily.
 - **Reverse digit order:** It does not affect counts, so no digit list or final reversal is needed.
@@ -127,8 +123,8 @@ Repeated digits and repeated letters inside a word are handled naturally. For ex
 - **Lowercase names:** The constant mapping already uses lowercase, so bit indices are consistent.
 - **Why ordinary addition is wrong for the mask:** Adding bit flags would allow carries when the same letter appears twice, corrupting neighboring letter positions. XOR performs independent modulo-two arithmetic on every bit and is therefore the correct operation.
 - **Original-order wording:** The conceptual string must use original digit order, but only its frequency vector is consumed by the answer. Reordering concatenated blocks preserves that vector. This commutativity is the precise reason right-to-left arithmetic extraction remains faithful rather than an accidental shortcut.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

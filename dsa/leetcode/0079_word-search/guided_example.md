@@ -55,7 +55,7 @@ This base case appears before the general mismatch check but performs its own eq
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `k == len(word) - 1`, every earlier character has alrea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The saved character is also the exact value needed for restoration; it is not in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Restore before returning success:** Save a Boo:** - **Restore before returning success:** Save a Boolean from child exploration, restore `board[i][j]`, then return it. This preserves the board on every path.
+- **Restore before returning success:** Save a Boolean from child exploration, restore `board[i][j]`, then return it. This preserves the board on every path.
 - **Explicit visited set or matrix:** Avoid mutating the board, at the cost of up to $O(mn)$ additional storage.
 - **Import requirement:** Add `from itertools import pairwise`, or replace it with a literal four-direction tuple.
 - **Character-frequency precheck:** If `word` requires more copies of a letter than the board contains, return false before backtracking.
@@ -107,8 +107,8 @@ The saved character is also the exact value needed for restoration; it is not in
 - **No cell reuse:** All earlier cells on the current path carry the sentinel.
 - **Failed search:** Every mark is restored, so the board remains unchanged when all branches fail.
 - **Successful search:** The exact source leaves nonfinal successful-path cells marked, an important observable caveat.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

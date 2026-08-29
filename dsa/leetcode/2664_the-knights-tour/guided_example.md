@@ -74,10 +74,7 @@ The last condition prevents revisiting a cell.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The sequence passed to `pairwise` produces:
-
-$$
-(-2,-1),(-1,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +113,7 @@ This extends the current partial tour by exactly one cell. The recursion stack i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Warnsdorff ordering:** Try the legal destinati:** - **Warnsdorff ordering:** Try the legal destination with fewest onward moves first; often dramatically faster and matches the manifest summary.
+- **Warnsdorff ordering:** Try the legal destination with fewest onward moves first; often dramatically faster and matches the manifest summary.
 - **Bitmask visited state:** Useful for memoized Hamiltonian-path search, but state space can still be exponential.
 - **Iterative backtracking:** Avoids recursion but needs an explicit path stack.
 - **One-cell board:** Starting cell already completes the tour.
@@ -126,8 +123,8 @@ This extends the current partial tour by exactly one cell. The recursion stack i
 - **Fixed move order:** Affects runtime and which valid tour is returned, not correctness.
 - **Guaranteed solution:** The function relies on it and has no separate failure return.
 - **Small board:** At most 25 recursive levels fit comfortably.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

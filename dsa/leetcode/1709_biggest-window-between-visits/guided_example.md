@@ -59,7 +59,7 @@ The offset argument one means immediate successor, not the second or any later v
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `LEAD(visit_date, 1, '2021-1-1') OVER (...)` asks for the `v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The literal's non-zero-padded month and day are accepted as the intended MySQL d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join on ranked dates:** Assign row number:** - **Self-join on ranked dates:** Assign row numbers and join each visit to rank plus one. It works but is more verbose than `LEAD`.
+- **Self-join on ranked dates:** Assign row numbers and join each visit to rank plus one. It works but is more verbose than `LEAD`.
 - **Append today then use `LAG`:** Add one today row per user and compute backward differences. This is equivalent but requires a union and careful deduplication.
 - **Correlated next-date subquery:** Find the minimum later date for each visit. Without strong indexing, repeated searches can be much slower.
 - **Single visit:** The default date creates the sole window from that visit to today.
@@ -110,8 +110,8 @@ The literal's non-zero-padded month and day are accepted as the intended MySQL d
 - **Ordinal clauses:** Both `GROUP BY 1` and `ORDER BY 1` depend on `user_id` remaining the first select expression.
 - **Visits on today in generalized data:** The last gap is zero and competes normally with earlier gaps.
 - **Fixed today literal:** The solution intentionally uses `2021-01-01` rather than the database server's current date.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

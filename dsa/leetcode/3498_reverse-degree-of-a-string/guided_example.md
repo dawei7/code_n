@@ -51,7 +51,7 @@ That offset is zero for `a`, one for `b`, and twenty-five for `z`. The reversed 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | That offset is zero for `a`, one for `b`, and twenty-five fo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reverse the string:** The problem reverses alp:** - **Reverse the string:** The problem reverses alphabet weights, not character order, so this would use incorrect positions.
+- **Reverse the string:** The problem reverses alphabet weights, not character order, so this would use incorrect positions.
 - **Build a 26-entry dictionary:** It works but stores a table for a value obtainable by one arithmetic expression.
 - **Use zero-based positions:** Forgetting the `enumerate(..., 1)` start would underweight every character.
 - **Use ordinary alphabet values:** `a=1` and `z=26` are the opposite of the required mapping.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **No modulo:** The full weighted sum must be returned exactly.
 - **Input preservation:** Strings are immutable and the method only reads `s`.
 - **Overflow in other languages:** The local constraints fit 32-bit signed arithmetic, though using a wider accumulator is harmless.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

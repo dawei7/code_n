@@ -51,7 +51,7 @@ The exact source expresses that observation with `Counter(nums)`. A `Counter` is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source expresses that observation with `Counter(nu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The list comprehension `[x for x, v in cnt.items() if v == 2]` then visits every
 
 ## 6. Traps This Instance Exposes
 
-- **- **Seen set plus duplicate list:** On the first o:** - **Seen set plus duplicate list:** On the first occurrence, insert the value into a set; on the second, append it to the result. This avoids storing explicit counts but still takes expected $O(N)$ time and $O(N)$ auxiliary space. It also matches the manifest summary more closely than the exact source does.
+- **Seen set plus duplicate list:** On the first occurrence, insert the value into a set; on the second, append it to the result. This avoids storing explicit counts but still takes expected $O(N)$ time and $O(N)$ auxiliary space. It also matches the manifest summary more closely than the exact source does.
 - **Boolean or integer array:** Since every value lies in $[0,n-1]$, an array indexed by value can record whether each number has appeared. This gives deterministic $O(N)$ time and $O(n)$ space without hashing.
 - **In-place sign marking:** Many duplicate problems mark an index by negating an array entry. Here zero needs special handling, input mutation may be undesirable, and the clean range guarantee makes counting easier to explain and safer to use.
 - **Algebra with sums and squares:** The excess sum gives the sum of the two sneaky numbers, while an excess square-sum can derive their product and then the two roots. Python avoids overflow, but fixed-width languages need careful integer sizing, and the method is less robust and less transparent than counting.
@@ -97,8 +97,8 @@ The list comprehension `[x for x, v in cnt.items() if v == 2]` then visits every
 - **Zero as a sneaky value:** Zero is an ordinary dictionary key and needs no special treatment, unlike some arithmetic or sign-marking techniques.
 - **Unsorted return order:** The problem accepts any order. If an external caller demands increasing order, it could sort the two-element result in constant asymptotic time, but that behavior is not required by this contract.
 - **Malformed frequency greater than two:** The exact `v == 2` filter would exclude a value occurring three times. This is acceptable only because the stated input construction rules that case out; changing the contract would require changing the predicate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

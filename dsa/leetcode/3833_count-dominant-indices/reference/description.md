@@ -58,4 +58,4 @@ Return the number of indices `i` whose value is strictly greater than the averag
 
 - $1 \le \text{nums.length} \le 100$
 
-- $1 \le \text{nums}[i] \le 100$​​​​​​​
+- $1 \le \text{nums}[i] \le 100$

@@ -81,7 +81,7 @@ $S = 1 + \sum_{v \in \texttt{nums}} \max(v, 0).$
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 
-- $-10^{5} \le \text{nums}[i] \le 10^{5}​​​​​​​$
+- $-10^{5} \le \text{nums}[i] \le 10^{5}$
 
 - $1 \le m \le n$
 

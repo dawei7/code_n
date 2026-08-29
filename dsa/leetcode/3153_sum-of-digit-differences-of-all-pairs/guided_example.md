@@ -73,7 +73,7 @@ This assignment mutates `nums`. By the end, every input number has been repeated
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each of the $m$ rounds, `cnt` counts the current least s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ The code adds this value to `ans` for every position.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Non-mutating arithmetic scan:** Use a local co:** - **Non-mutating arithmetic scan:** Use a local copy of each value or divide temporary loop values by a changing power of ten. It preserves `nums` but may add storage or repeated arithmetic.
+- **Non-mutating arithmetic scan:** Use a local copy of each value or divide temporary loop values by a changing power of ten. It preserves `nums` but may add storage or repeated arithmetic.
 - **Convert numbers to strings:** Count characters by column. It is easy to read but allocates string representations and $O(nD)$ character storage if all are retained.
 - **Count matching pairs:** Total pairs are $\binom n2$; subtract $\sum_d\binom{v_d}2$ matching pairs at each position. This is algebraically equivalent.
 - **Enumerate all pairs:** Direct comparison costs $O(n^2D)$ and is too slow for $10^5$ values.
@@ -134,8 +134,8 @@ The code adds this value to `ans` for every position.
 - **Floating-point digit count:** For the bounded values below $10^9$, the exact powers involved are within the safe practical range. A string length or integer loop would avoid general floating-boundary concerns.
 - **Input side effect:** After the method returns, every original list element has become zero; a reusable library implementation should avoid or document this.
 - **Unordered pairs:** Division by two is necessary because the frequency product sum counts both orientations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

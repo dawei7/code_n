@@ -59,9 +59,7 @@ Using null rather than zero matters. Zero would assert a price of zero for nonma
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For store one, the expression is:
-
-`IF(store = 'store1', pri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ Because uniqueness guarantees only one price, `MAX` or `MIN` would behave equiva
 
 ## 6. Traps This Instance Exposes
 
-- **- **MAX with CASE:** `MAX(CASE WHEN store = 'store:** - **MAX with CASE:** `MAX(CASE WHEN store = 'store1' THEN price END)` is the conventional portable equivalent.
+- **MAX with CASE:** `MAX(CASE WHEN store = 'store1' THEN price END)` is the conventional portable equivalent.
 - **Self-join per store:** It can pivot columns but requires outer joins to preserve products missing a store.
 - **Native PIVOT operator:** Some database systems support it, but MySQL conditional aggregation is broadly applicable.
 - **Missing store:** All conditional inputs are null and `SUM` returns null.
@@ -119,8 +117,8 @@ Because uniqueness guarantees only one price, `MAX` or `MIN` would behave equiva
 - **Null aggregate semantics:** `SUM` ignores nulls but returns null when there is no non-null value.
 - **Fixed enum domain:** Exactly three conditional columns cover every possible store.
 - **No input mutation:** The query reads and reshapes rows without updating `Products`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

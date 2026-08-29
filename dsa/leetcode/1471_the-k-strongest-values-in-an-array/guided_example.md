@@ -51,7 +51,7 @@ The expression `(len(arr) - 1) >> 1` computes that floor by right-shifting a non
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `(len(arr) - 1) >> 1` computes that floor by ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For four sorted values at indices zero through three, `(4 - 1) >> 1` is one. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort once plus two pointers:** After numeric s:** - **Sort once plus two pointers:** After numeric sorting and finding the centre, compare the two ends by strength and select `k` values. This keeps `O(n log n)` time but avoids the second full sort.
+- **Sort once plus two pointers:** After numeric sorting and finding the centre, compare the two ends by strength and select `k` values. This keeps `O(n log n)` time but avoids the second full sort.
 - **Selection for the median:** Quickselect can find the centre in expected linear time, followed by a heap or selection strategy for the strongest values. It is more complex.
 - **Heap of size k:** After finding the median, retain the strongest `k` by a heap. This can help when `k` is much smaller than `n`.
 - **Even-length array:** The lower median at index `(n - 1) // 2` must be used.
@@ -101,8 +101,8 @@ For four sorted values at indices zero through three, `(4 - 1) >> 1` is one. The
 - **Input mutation:** The caller's array ends in strength order.
 - **Returned slice:** It is a new list, so later changes to `arr` do not alter the returned container.
 - **Any-order output:** Strength order is stricter than required but still accepted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

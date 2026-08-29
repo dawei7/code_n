@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an array of non-overlapping axis-aligned rectangles `rects` where $\text{rects}[i] = [a_{i}, b_{i}, x_{i}, y_{i}]$ indicates that $(a_{i}, b_{i})$ is the bottom-left corner point of the $$i^{\text{th}}$$ rectangle and $(x_{i}, y_{i})$ is the top-right corner point of the $$i^{\text{th}}$$ rectangle. Design an algorithm to pick a random integer point inside the space covered by one of the given rectangles. A point on the perimeter of a rectangle is included in the space covered by the rectangle.
+You are given an array of non-overlapping axis-aligned rectangles `rects` where $\text{rects}[i] = [a_{i}, b_{i}, x_{i}, y_{i}]$ indicates that $(a_{i}, b_{i})$ is the bottom-left corner point of the $i^{\text{th}}$ rectangle and $(x_{i}, y_{i})$ is the top-right corner point of the $i^{\text{th}}$ rectangle. Design an algorithm to pick a random integer point inside the space covered by one of the given rectangles. A point on the perimeter of a rectangle is included in the space covered by the rectangle.
 
 Any integer point inside the space covered by one of the given rectangles should be equally likely to be returned.
 

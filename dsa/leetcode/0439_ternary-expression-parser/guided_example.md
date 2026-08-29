@@ -55,7 +55,7 @@ Scanning `T?2:3` backward, the algorithm first pushes `3`, then pushes `2`. The 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Digits, `T`, and `F` may all be terminal results.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ The next non-separator character is guaranteed by valid syntax to be the conditi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward recursive descent:** Parse one conditi:** - **Forward recursive descent:** Parse one condition and recursively parse its true/false expressions while tracking matching separators. It can be linear with a shared index but may use $O(n)$ recursion depth.
+- **Forward recursive descent:** Parse one condition and recursively parse its true/false expressions while tracking matching separators. It can be linear with a shared index but may use $O(n)$ recursion depth.
 - **Repeatedly replace the rightmost atomic expression:** Easy to visualize, but immutable string rebuilding can make it $O(n^2)$.
 - **Build an explicit expression tree:** Correct but allocates nodes unnecessary when only the final selected terminal is required.
 - **Constant-space focused scan:** Follow only the selected branch from left to right while counting nested `?`/`:` pairs to skip an unselected branch. It can achieve $O(n)$ time and $O(1)$ extra space but is more subtle.
@@ -102,8 +102,8 @@ The next non-separator character is guaranteed by valid syntax to be the conditi
 - **Boolean terminal result:** A `T` or `F` not acting as the character before a pending `?` is pushed like a digit.
 - **Colons:** They are skipped because branch ordering is already encoded by reverse traversal and the stack.
 - **Valid-expression guarantee:** It ensures no stack underflow, unmatched delimiter, or unfinished `cond` state must be handled.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

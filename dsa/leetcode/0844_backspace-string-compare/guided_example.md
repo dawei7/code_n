@@ -57,9 +57,7 @@ These counts begin at zero because no characters have been examined yet.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` and `j` start at the final indices of `s` and `t`.
-
-`ski... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +100,9 @@ The same logic independently finds the next surviving character in `t`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build each final string with a stack:** Push l:** - **Build each final string with a stack:** Push letters and pop on backspaces, then compare. It is straightforward and linear-time but uses linear extra space.
-- **- **Repeatedly remove `letter#` patterns:** Immuta:** - **Repeatedly remove `letter#` patterns:** Immutable-string rebuilding can be quadratic and is harder to reason about with consecutive backspaces.
-- **- **Strings already equal without backspaces:** Ev:** - **Strings already equal without backspaces:** Every character becomes a survivor and compares normally.
+- **Build each final string with a stack:** Push letters and pop on backspaces, then compare. It is straightforward and linear-time but uses linear extra space.
+- **Repeatedly remove `letter#` patterns:** Immutable-string rebuilding can be quadratic and is harder to reason about with consecutive backspaces.
+- **Strings already equal without backspaces:** Every character becomes a survivor and compares normally.
 
 ---
 

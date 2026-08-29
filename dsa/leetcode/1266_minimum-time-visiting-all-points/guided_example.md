@@ -79,10 +79,7 @@ Movement directions are chosen according to the signs of the coordinate differen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose two adjacent points differ by
-
-$$
-\Delta x=\lvert x_... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +120,7 @@ For `[3,2]` to `[-2,2]`, the vertical difference is zero and the horizontal diff
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop:** Iterate through indices from :** - **Explicit loop:** Iterate through indices from one to $n-1$ and add each Chebyshev distance. It has identical complexity and may be easier to debug, while the exact generator is more concise.
+- **Explicit loop:** Iterate through indices from one to $n-1$ and add each Chebyshev distance. It has identical complexity and may be easier to debug, while the exact generator is more concise.
 - **Simulate every second:** Constructing the actual diagonal and straight moves produces the same answer but takes time proportional to total travel distance rather than merely the number of points.
 - **Manhattan distance is incorrect:** $\Delta x+\Delta y$ assumes horizontal and vertical work cannot occur together. Diagonal movement makes that an overestimate whenever both differences are positive.
 - **Euclidean distance is incorrect:** The objective counts allowed one-second moves, not continuous geometric path length.
@@ -134,8 +131,8 @@ For `[3,2]` to `[-2,2]`, the vertical difference is zero and the horizontal diff
 - **Negative coordinates:** Absolute differences remove direction and make the same formula valid in every quadrant.
 - **Passing a later point early:** It does not count as a visit, so the required adjacent-pair order cannot be shortened by such a crossing.
 - **Input order is mandatory:** Reordering points could shorten a traveling-salesperson tour, but it would solve a different problem.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `capacity`, where $\text{capacity}[i]$ represents the capacity of the $$i^{\text{th}}$$ box, and an integer `itemSize` representing the size of an item.
+You are given an integer array `capacity`, where $\text{capacity}[i]$ represents the capacity of the $i^{\text{th}}$ box, and an integer `itemSize` representing the size of an item.
 
 The objective is to compute `2` from `{"capacity": [1, 5, 3, 7], "itemSize": 3}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ Python evaluates `or` from left to right with short-circuiting. When `ans == -1`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes `ans = -1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Using `<=` would be wrong: it would replace an earlier equal-capacity index with
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort eligible boxes:** Sorting `(capacity,inde:** - **Sort eligible boxes:** Sorting `(capacity,index)` pairs yields the right answer but costs `O(N\log N)` time and `O(N)` storage. A running argmin is enough.
+- **Sort eligible boxes:** Sorting `(capacity,index)` pairs yields the right answer but costs `O(N\log N)` time and `O(N)` storage. A running argmin is enough.
 - **Find the minimum capacity, then search its index:** Two passes are correct—first find the smallest eligible capacity, then its first index—but the source combines both into one pass.
 - **Use Python's `min` with a generator:** Generating `(x,i)` for eligible boxes and taking `min` is concise, but handling an empty generator requires a default. The explicit scan makes sentinel and ties transparent.
 - **Replace on `<=`:** This incorrectly favors later indices for equal capacities. Use a strict capacity improvement because traversal order already favors the earliest tie.
@@ -125,8 +125,8 @@ Using `<=` would be wrong: it would replace an earlier equal-capacity index with
 - **Smaller but ineligible capacity:** It must be ignored. Primary minimization occurs only inside the eligible set.
 - **Input mutation:** The source performs no sorting or updates, so the capacity array remains unchanged.
 - **Sentinel short-circuit:** The condition relies on checking `ans == -1` before indexing `capacity[ans]`. Reordering the operands could accidentally compare against Python's last element.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

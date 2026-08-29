@@ -71,7 +71,7 @@ values, partitioned into `k` consecutive equal blocks of length `m`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first block of a repeated segment has no earlier block t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ A run longer than `target` represents the same length-$m$ pattern repeated more 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every candidate block by slicing:** It:** - **Compare every candidate block by slicing:** It is straightforward but can cost $O(Nmk)$ or allocate many temporary lists.
+- **Compare every candidate block by slicing:** It is straightforward but can cost $O(Nmk)$ or allocate many temporary lists.
 - **Rolling hash:** It can compare blocks quickly but introduces collision concerns and is unnecessary for direct periodic comparisons.
 - **m times k exceeds length:** The early return proves impossibility.
 - **Exactly k repetitions:** The counter reaches the threshold at the final required comparison.
@@ -122,8 +122,8 @@ A run longer than `target` represents the same length-$m$ pattern repeated more 
 - **Overlapping candidate windows:** They cause no issue because the problem asks only whether one exists.
 - **Positive integer values:** Equality is the only needed operation; magnitudes do not matter.
 - **Exact target comparison:** The counter cannot skip over the threshold because it increments by one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

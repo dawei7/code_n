@@ -24,7 +24,7 @@ Choose the on/off schedule that completes every task and return the minimum tota
 
 **Inputs**
 
-- `tasks`: A list of $n$ triples `[start_i, end_i, duration_i]`, where $1 \leq n \leq 2000$, $1 \leq \texttt{start_i}, \texttt{end_i} \leq 2000$, and $1 \leq \texttt{duration_i} \leq \texttt{end_i} - \texttt{start_i} + 1$.
+- `tasks`: A list of $n$ triples `[start_i, end_i, duration_i]`, where $1 \leq n \leq 2000$, $1 \leq \texttt{start\_i}, \texttt{end\_i} \leq 2000$, and $1 \leq \texttt{duration\_i} \leq \texttt{end\_i} - \texttt{start\_i} + 1$.
 
 Let $T$ be the largest `end_i`, and let $N=n+T$ denote the combined task-and-timeline workload.
 

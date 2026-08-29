@@ -4,7 +4,7 @@ There is a street with $n * 2$ **plots**, where there are `n` plots on each side
 
 Return *the number of ways houses can be placed such that no two houses are adjacent to each other on the same side of the street*. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
-Note that if a house is placed on the $$i^{\text{th}}$$ plot on one side of the street, a house can also be placed on the $$i^{\text{th}}$$ plot on the other side of the street.
+Note that if a house is placed on the $i^{\text{th}}$ plot on one side of the street, a house can also be placed on the $i^{\text{th}}$ plot on the other side of the street.
 
 ### 2. Function Contract
 

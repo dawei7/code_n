@@ -51,7 +51,7 @@ The decoded tape can be astronomically long, so constructing it is impossible. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Forward pass: compute length without building text.** Let ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The decoded tape can be astronomically long, so constructing it is impossible. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the decoded tape:** This is simple but c:** - **Build the decoded tape:** This is simple but can require near-$2^{63}$ storage and time, far beyond the limits.
+- **Build the decoded tape:** This is simple but can require near-$2^{63}$ storage and time, far beyond the limits.
 - **Stop forward expansion when length reaches `k`:** A reverse mapping can begin once enough length is known, but it must retain the relevant encoded prefix or index. The full two-pass length method is straightforward.
 - **Use recursion:** Recursively undoing characters expresses the same logic but adds stack space without improving time.
 - **Zero modulo:** In this 1-indexed method, remainder zero means the final character of the current prefix, not an invalid position.
@@ -99,8 +99,8 @@ The decoded tape can be astronomically long, so constructing it is impossible. T
 - **Guaranteed valid `k`:** The forward length is at least `k`, so the reverse process always finds a letter.
 - **Reversed-slice memory:** `s[::-1]` is concise but materializes a copy. Reverse index iteration avoids that copy if strict $O(1)$ auxiliary space is required.
 - **Large decoded length:** Only integer multiplication, division, and modulo are used; the decoded characters themselves are never stored.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

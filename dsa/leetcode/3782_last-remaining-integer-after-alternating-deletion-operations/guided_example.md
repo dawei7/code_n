@@ -69,7 +69,7 @@ This mapping is the same for both even and odd $L$ when sweeping from the left.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The contract says to start from one side, keep the first enc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ and uses the even-position formula only for a right-to-left sweep of an even-len
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal list simulation:** It needs $O(N)$ ini:** - **Literal list simulation:** It needs $O(N)$ initial memory and work, impossible for $N$ up to $10^{15}$.
+- **Literal list simulation:** It needs $O(N)$ initial memory and work, impossible for $N$ up to $10^{15}$.
 - **Iterative affine tracking:** One can maintain the first value, spacing, count, and direction without recursion; the source instead maps survivor indices recursively.
 - **Always map with `2r-1`:** This fails for an even-length right sweep, whose survivors occupy even old positions.
 - **Always map with `2r` from the right:** This fails for odd lengths, where the leftmost position is retained.
@@ -139,8 +139,8 @@ and uses the even-position formula only for a right-to-left sweep of an even-len
 - **Large input:** Recursion depth is logarithmic and safely small for the stated bound.
 - **One-based mapping:** Formulas use positions 1 through `length`, matching the original values `[1,2,...,n]`.
 - **No input mutation:** Only integer lengths, directions, and mapped indices are used.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

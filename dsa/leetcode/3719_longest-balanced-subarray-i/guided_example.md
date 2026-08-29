@@ -70,7 +70,7 @@ If the value is already in `vis`, neither distinct count changes. The candidate'
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every subarray is identified by a left endpoint `i` and a ri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ The duplicate two leaves both counters unchanged, but the length grows from two 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rebuild sets for every endpoint pair:** Constr:** - **Rebuild sets for every endpoint pair:** Constructing the distinct even and odd sets from scratch for each subarray adds up to $O(n)$ work per pair and $O(n^3)$ total time. Extending the right boundary reuses everything learned for the shorter candidate.
+- **Rebuild sets for every endpoint pair:** Constructing the distinct even and odd sets from scratch for each subarray adds up to $O(n)$ work per pair and $O(n^3)$ total time. Extending the right boundary reuses everything learned for the shorter candidate.
 - **Store two sets instead of `vis` and `cnt`:** Separate even and odd sets also work, and their sizes directly express the balance condition. The exact source uses one set plus two integer counts, which avoids choosing a set twice and stores each value only once.
 - **Maintain occurrence counts while sliding the left boundary:** A more advanced method can update distinct counts as both boundaries move, but finding the globally longest equality is not a standard monotonic sliding-window problem. The larger version requires a more sophisticated segment-tree treatment; simple shrinking decisions can miss answers.
 - **Compare counts of even and odd elements:** This solves a different problem. Duplicates must contribute only once, so an array such as `[2, 2, 2, 3]` demonstrates why raw parity totals are wrong.
@@ -139,8 +139,8 @@ The duplicate two leaves both counters unchanged, but the length grows from two 
 - **Negative or zero values:** The stated input contains positive integers. Python's low bit still classifies other integers, but the approach relies only on parity and would conceptually extend; no extra handling is needed for the actual contract.
 - **Large numeric values:** Set operations depend on how many values are stored, not on the maximum value `10^5`. No value-indexed array of that size is required.
 - **Overlapping optimal candidates:** Every left boundary receives an independent scan, so overlapping, nested, and duplicate-containing subarrays are all evaluated without conflict.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

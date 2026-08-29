@@ -78,7 +78,7 @@ It is guarded by `i % 2 == 0`, so it contributes only for an even deletion.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `i` is even and `v = nums[i]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ The second source expression checks their equality and is guarded by `i % 2 == 1
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four running sums without slices:** First accu:** - **Four running sums without slices:** First accumulate even and odd totals in one loop, then use the same prefix formulas. This preserves $O(n)$ time and achieves true $O(1)$ auxiliary space.
+- **Four running sums without slices:** First accumulate even and odd totals in one loop, then use the same prefix formulas. This preserves $O(n)$ time and achieves true $O(1)$ auxiliary space.
 - **Prefix arrays:** Store even and odd prefix sums for every boundary and evaluate each deletion from those arrays. The formulas can be intuitive, but storage is $O(n)$ and more than the exact rolling state needs.
 - **Delete and rescan for every index:** This directly follows the definition but takes $O(n^2)$ time and repeatedly shifts or reconstructs data.
 - **Single-element array:** Removing its only element leaves an empty array; both parity sums are zero, so the sole index is correctly counted.
@@ -138,8 +138,8 @@ The second source expression checks their equality and is guarded by `i % 2 == 1
 - **Positive-value constraint:** The derivation uses only addition and subtraction, so it would remain correct for zero or negative values as well.
 - **Update ordering:** Adding `v` to `t1` or `t2` before testing would incorrectly treat the deleted value as part of the preserved left prefix.
 - **Slice-memory subtlety:** Slicing is not a view in Python lists. A constant-space rewrite must avoid `nums[::2]` and `nums[1::2]` rather than merely discarding them after `sum`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

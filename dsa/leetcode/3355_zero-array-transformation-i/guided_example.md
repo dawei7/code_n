@@ -51,7 +51,7 @@ If $c_i$ queries cover index $i$, its total available decrement capacity is $c_i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If $c_i$ queries cover index $i$, its total available decrem... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This condition is independent for each index. A single query may include any sub
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply each query across its range:** Directly :** - **Apply each query across its range:** Directly increasing coverage for every covered index can take $O(nq)$ time in the worst case.
+- **Apply each query across its range:** Directly increasing coverage for every covered index can take $O(nq)$ time in the worst case.
 - **Fenwick tree:** Range additions and point queries can solve the same task in $O((n+q)\log n)$ time, but the offline difference array is simpler and faster.
 - **Construct explicit subsets:** It is unnecessary for the Boolean result; per-index capacity proves a combined construction exists.
 - **Zero-valued element:** It requires no capacity and always satisfies `0 <= s`.
@@ -101,8 +101,8 @@ This condition is independent for each index. A single query may include any sub
 - **Avoiding negative values:** Select an index in exactly its required number of covering queries and omit it afterward.
 - **Early false return:** Once one index lacks capacity, no choices at other indices can compensate for it.
 - **Input preservation:** Only the separate difference array is changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

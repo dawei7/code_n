@@ -63,7 +63,7 @@ The left pointer never moves backward. Once a window ending at the current posit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `i` is the left boundary.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Why? If the newly expanded window was already valid, `i` did not change and it r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two monotonic deques:** One decreasing deque c:** - **Two monotonic deques:** One decreasing deque can track maxima and one increasing deque can track minima in amortized constant time per element, giving `O(n)` time and `O(n)` worst-case space. This is the strategy described by the manifest, but it is not the exact solution file.
+- **Two monotonic deques:** One decreasing deque can track maxima and one increasing deque can track minima in amortized constant time per element, giving `O(n)` time and `O(n)` worst-case space. This is the strategy described by the manifest, but it is not the exact solution file.
 - **Frequency map over the three possible values:** Once a valid window is known, it has at most three distinct integer values, but discovering and repairing the range still requires careful minimum and maximum maintenance. A sorted map can exploit the small distinct range.
 - **Recompute minimum and maximum for every window:** This avoids an ordered structure but can rescan long windows repeatedly and degrade to quadratic time.
 - **All values equal:** No shrinking occurs. The contributions are `1, 2, ..., n`, correctly counting every subarray.
@@ -111,8 +111,8 @@ Why? If the newly expanded window was already valid, `i` did not change and it r
 - **Very large element values:** Only comparisons and subtraction matter; the algorithm never allocates an array indexed by value.
 - **Large answer:** The count can be `n(n + 1) / 2`. Python integers grow as needed, so no fixed-width overflow occurs.
 - **Input order:** Sorting the entire input would destroy contiguity. Only the active window's value multiset is sorted; original positions remain represented by the moving boundaries.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

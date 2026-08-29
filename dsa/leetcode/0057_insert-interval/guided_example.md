@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of non-overlapping intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represent the start and the end of the $$i^{\text{th}}$$ interval and `intervals` is sorted in ascending order by $\text{start}_{i}$. You are also given an interval $newInterval = [start, end]$ that represents the start and end of another interval.
+You are given an array of non-overlapping intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represent the start and the end of the $i^{\text{th}}$ interval and `intervals` is sorted in ascending order by $\text{start}_{i}$. You are also given an interval $newInterval = [start, end]$ that represents the start and end of another interval.
 
 The objective is to compute `[[1, 5], [6, 9]]` from `{"intervals": [[1, 3], [6, 9]], "newInterval": [2, 5]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -55,7 +55,7 @@ After sorting, when a new start is greater than the last merged end, no later in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `intervals.sort()` orders each two-element list lexicographi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ This initialization stores an alias to an existing inner list rather than a copy
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-phase linear scan:** Append intervals st:** - **Three-phase linear scan:** Append intervals strictly before `newInterval`, merge all overlaps, then append the remaining suffix. It uses the sorted/non-overlapping guarantee and achieves $O(n)$ time.
+- **Three-phase linear scan:** Append intervals strictly before `newInterval`, merge all overlaps, then append the remaining suffix. It uses the sorted/non-overlapping guarantee and achieves $O(n)$ time.
 - **Binary search for insertion point:** Locate the starting neighborhood quickly, but merging and constructing the output can still require $O(n)$ time.
 - **Non-mutating sort:** Use `sorted(intervals + [newInterval])` to preserve the outer input, at the cost of an explicit combined copy and the same sorting time.
 - **Empty original list:** Appending first makes the merge input contain one interval, which is returned.
@@ -102,8 +102,8 @@ This initialization stores an alias to an existing inner list rather than a copy
 - **Contained new interval:** Merging may leave existing outer bounds unchanged, but the caller's outer list still contains the appended object.
 - **Covers all intervals:** Repeated end extension creates one result interval spanning the entire union.
 - **Input mutation:** The outer list is appended to and sorted, and the first inner interval may have its end changed through aliasing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

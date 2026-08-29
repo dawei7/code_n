@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ represents the coordinates $(x_{i}, y_{i})$ and quality factor $q_{i}$ of the $$i^{\text{th}}$$ tower.
+You are given a 2D integer array `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ represents the coordinates $(x_{i}, y_{i})$ and quality factor $q_{i}$ of the $i^{\text{th}}$ tower.
 
 The objective is to compute `[3, 1]` from `{"towers": [[1, 2, 5], [2, 1, 7], [3, 1, 9]], "center": [1, 1], "radius": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ Storing an index instead of a separate quality and coordinate keeps the state co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `idx` starts at -1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ For the second example, both `[1,3,4]` and `[2,2,4]` are reachable and have qual
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort all reachable towers:** Filtering and sor:** - **Sort all reachable towers:** Filtering and sorting with a key such as `(-q, x, y)` gives the same winner, but sorting costs $O(N\log N)$ time and stores up to $O(N)$ candidates when only one is needed.
+- **Sort all reachable towers:** Filtering and sorting with a key such as `(-q, x, y)` gives the same winner, but sorting costs $O(N\log N)$ time and stores up to $O(N)$ candidates when only one is needed.
 - **Use a heap:** A priority queue can encode maximum quality and lexicographic coordinates, but inserting all reachable towers costs $O(N\log N)$ time and additional space. A heap is useful for repeated extraction, not for one best item.
 - **Use a tuple ranking key:** The one-pass idea can compare a constructed key such as `(-q, x, y)` and retain its minimum. That is equivalent to the explicit branches; the source's conditions expose the problem's priority rules more directly.
 - **Radius zero:** Only towers exactly at `center` are reachable because Manhattan distance must be zero. Quality and lexicographic ordering still decide among multiple towers at that coordinate, although all such coordinates are identical.
@@ -126,8 +126,8 @@ For the second example, both `[1,3,4]` and `[2,2,4]` are reachable and have qual
 - **Quality zero:** Zero is a valid quality. The -1 sentinel tracks absence separately, so a reachable zero-quality tower is accepted correctly instead of being confused with “no candidate.”
 - **Large coordinates:** The maximum coordinate differences and their sum fit comfortably in Python integers. Manhattan distance must use absolute differences; omitting either absolute value would incorrectly classify towers lying left of or below the center.
 - **Input remains untouched:** The source only reads `towers` and returns a slice of the selected entry, so it does not reorder or mutate the caller's array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

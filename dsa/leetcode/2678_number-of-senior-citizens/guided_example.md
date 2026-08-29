@@ -62,7 +62,7 @@ The fixed length and fixed schema make this extraction constant work per record.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `x[11:13]` takes characters beginning at index 11 a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The constraints guarantee valid digit characters in the age positions, so conver
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop and counter:** Equally correct a:** - **Explicit loop and counter:** Equally correct and $O(n)$; it may be more verbose but can be easier to debug.
+- **Explicit loop and counter:** Equally correct and $O(n)$; it may be more verbose but can be easier to debug.
 - **Read the two digit characters arithmetically:** Computing tens and ones avoids the temporary slice but does not improve asymptotic complexity.
 - **Compare the two-character string with `"60"`:** Fixed width makes it possible here, but numeric conversion states the intent more safely.
 - **Parse the whole record:** Unnecessary because only two fixed positions affect the result.
@@ -114,8 +114,8 @@ The constraints guarantee valid digit characters in the age positions, so conver
 - **Gender values:** `M`, `F`, and `O` have no effect on the calculation.
 - **Other fixed fields:** Phone and seat contents are ignored without changing correctness.
 - **Input preservation:** Slicing and conversion do not alter any record.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

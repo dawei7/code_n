@@ -59,7 +59,7 @@ Why is checking only the last retained path sufficient? Suppose `f` had some ear
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each later path `f`, the method compares it with `ans[-1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The slash test prevents a false relationship such as treating `"/a/b/ca"` as a s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `startswith(parent + "/")`:** This express:** - **Use `startswith(parent + "/")`:** This expresses the boundary rule directly and avoids manual length/index logic, with the same asymptotic scan cost.
+- **Use `startswith(parent + "/")`:** This expresses the boundary rule directly and avoids manual length/index logic, with the same asymptotic scan cost.
 - **Set of all folders:** For each path, repeatedly remove the final component and test ancestors in a set. It avoids sorting but can take \(O(nL^2)\) with repeated string operations.
 - **Trie by path components:** Insert folder names into a prefix tree and stop below terminal nodes. It can run in \(O(nL)\) expected time but uses more structures and memory.
 - **Similar textual prefixes:** `"/a/b/c"` is not a parent of `"/a/b/ca"` because no slash follows the prefix.
@@ -114,8 +114,8 @@ The slash test prevents a false relationship such as treating `"/a/b/ca"` as a s
 - **Unique path guarantee:** Exact duplicates do not occur. If they did, the `m >= n` branch would retain both duplicates.
 - **In-place sorting:** Callers that need the original order should pass a copy. The exact implementation intentionally mutates the list.
 - **Slash indexing safety:** Short-circuit evaluation handles `m >= n` before accessing `f[m]`, preventing an out-of-range read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

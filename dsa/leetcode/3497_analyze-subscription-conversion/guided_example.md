@@ -51,7 +51,7 @@ It groups by both `user_id` and `activity_type`. Therefore, one user can produce
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | It groups by both `user_id` and `activity_type`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ It groups by both `user_id` and `activity_type`. Therefore, one user can produce
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation in one grouped query:*:** - **Conditional aggregation in one grouped query:** `AVG(CASE WHEN ... END)` plus a `HAVING` condition can produce the same result without separate `F` and `P` CTEs.
+- **Conditional aggregation in one grouped query:** `AVG(CASE WHEN ... END)` plus a `HAVING` condition can produce the same result without separate `F` and `P` CTEs.
 - **Include cancelled rows in one average:** Their duration belongs to neither requested stage and would corrupt the result.
 - **Exclude anyone who ever cancelled:** A user may convert, later cancel, and still belong in the analysis, as user four demonstrates.
 - **Trial-only user:** They have no paid CTE row and are removed by the inner join.
@@ -98,8 +98,8 @@ It groups by both `user_id` and `activity_type`. Therefore, one user can produce
 - **Seven-day wording:** No date-range filter appears; stage membership comes from `activity_type`.
 - **Later cancellation:** Filtering cancellation affects neither conversion presence nor paid average.
 - **`ORDER BY 1`:** It is correct while `user_id` remains the first selected expression; naming the column directly can be clearer for maintenance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -62,7 +62,7 @@ Zero-valued entries may remain in the `Counter`, but they do not hurt the arithm
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When a new `v` arrives, it moves from its old frequency buck... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +97,7 @@ Deleting one occurrence changes the frequency of exactly one value by one. If th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount every prefix:** Building a new frequen:** - **Recount every prefix:** Building a new frequency map and testing it after each extension can take \(O(n^2)\). Maintaining `cnt` and `ccnt` shares the work.
+- **Recount every prefix:** Building a new frequency map and testing it after each extension can take \(O(n^2)\). Maintaining `cnt` and `ccnt` shares the work.
 - **Track a set of frequencies only:** A set reveals which frequencies exist but not how many values occupy each one. The conditions require knowing whether the maximum or singleton bucket contains exactly one value.
 - **All values distinct:** `mx == 1` makes every prefix valid, because one singleton can be removed and all remaining counts stay one.
 - **All values equal:** Every prefix is valid. Deleting one occurrence leaves the single remaining value with any positive frequency, or leaves no values for a length-one prefix.
@@ -107,8 +107,8 @@ Deleting one occurrence changes the frequency of exactly one value by one. If th
 - **Exactly one deletion:** The cases do not merely test whether frequencies are already equal. For equal frequencies greater than one across multiple values, deleting one creates inequality and the prefix is not automatically valid.
 - **Positive input values:** Hash-map logic would also work for zero or negative values, but the given domain is positive.
 - **Returning a prefix length:** The algorithm need not remember which occurrence to delete. The matching shape identifies that a deletion exists, which is sufficient for the requested length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

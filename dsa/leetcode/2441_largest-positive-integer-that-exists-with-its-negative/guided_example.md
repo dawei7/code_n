@@ -59,7 +59,7 @@ Even if zero were present alongside no valid positive pair, `max` could return z
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Zero is its own negative, so if zero were allowed, `-0 in s`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `[-10,8,6,7,-2,-3]`, every opposite lookup fails. The generator produces not
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit positive filter:** Use candidates sat:** - **Explicit positive filter:** Use candidates satisfying `x > 0 and -x in s`. This makes intent more obvious and produces the same result under the no-zero constraint.
+- **Explicit positive filter:** Use candidates satisfying `x > 0 and -x in s`. This makes intent more obvious and produces the same result under the no-zero constraint.
 - **Sort and use two pointers:** Sorting permits a scan for opposite values in $O(n\log n)$ time and can use less auxiliary hash storage, but it is slower asymptotically.
 - **Brute-force pairs:** Compare every pair for a zero sum and track the positive magnitude. This takes $O(n^2)$ time.
 - **Fixed boolean presence array:** Offset values by 1000 and mark the bounded domain. It gives $O(n+U)$ time and $O(U)$ storage for fixed $U=2001$.
@@ -108,8 +108,8 @@ For `[-10,8,6,7,-2,-3]`, every opposite lookup fails. The generator produces not
 - **All values negative or all positive:** No opposite pair can exist, so the default -1 is returned.
 - **Zero exclusion:** The symmetric generator is correct because zero cannot appear; without that constraint it would need an explicit positive test.
 - **Default value:** Supplying `default=-1` avoids an exception when no generator candidate exists and matches the required sentinel.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ The implementation ignores that first element by using slices beginning at index
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every valid path begins with `"/"`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For a one-component path such as `"/a"`, `ps[1:-1]` is empty. The traversal stay
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store complete paths in one dictionary:** Crea:** - **Store complete paths in one dictionary:** Creation can derive the parent string and test both full keys. This is simpler and has expected `O(L)` string-processing time; the trie explicitly models hierarchy and shares component navigation.
+- **Store complete paths in one dictionary:** Creation can derive the parent string and test both full keys. This is simpler and has expected `O(L)` string-processing time; the trie explicitly models hierarchy and shares component navigation.
 - **Create missing parent nodes automatically:** That violates the contract. A path may be added only when its immediate parent already exists.
 - **Overwrite an existing final node:** `createPath` is not an update operation, so an existing path must make the call fail without changing its value.
 - **Top-level path:** The implicit root counts as its parent, so `"/a"` may be created in an empty system.
@@ -109,8 +109,8 @@ For a one-component path such as `"/a"`, `ps[1:-1]` is empty. The traversal stay
 - **Positive stored values:** They make the `-1` missing sentinel unambiguous.
 - **Shared prefixes:** Paths such as `"/a/b"` and `"/a/c"` reuse the same `"/a"` node and diverge only at the last edge.
 - **Valid-path guarantee:** The code relies on the leading slash and nonempty lowercase components, so it does not validate malformed input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

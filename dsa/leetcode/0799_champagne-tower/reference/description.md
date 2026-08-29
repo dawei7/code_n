@@ -8,7 +8,7 @@ For example, after one cup of champagne is poured, the top most glass is full.  
 
 ![](images/tower.png)
 
-Now after pouring some non-negative integer cups of champagne, return how full the $$j^{\text{th}}$$ glass in the $$i^{\text{th}}$$ row is (both `i` and `j` are 0-indexed.)
+Now after pouring some non-negative integer cups of champagne, return how full the $j^{\text{th}}$ glass in the $i^{\text{th}}$ row is (both `i` and `j` are 0-indexed.)
 
 ### 2. Function Contract
 

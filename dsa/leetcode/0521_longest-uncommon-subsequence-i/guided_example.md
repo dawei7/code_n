@@ -51,7 +51,7 @@ A string is always a subsequence of itself: delete zero characters. Therefore `a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A string is always a subsequence of itself: delete zero char... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A string is always a subsequence of itself: delete zero characters. Therefore `a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all subsequences:** Each length-$n$ s:** - **Generate all subsequences:** Each length-$n$ string has up to $2^n$ deletion choices, which is exponential and unnecessary because a whole input string is always the optimal witness when the inputs differ.
+- **Generate all subsequences:** Each length-$n$ string has up to $2^n$ deletion choices, which is exponential and unnecessary because a whole input string is always the optimal witness when the inputs differ.
 - **Two-pointer subsequence check:** It would correctly test whether one input is a subsequence of the other, but length and equality already imply the needed result for whole-string candidates.
 - **Longest common subsequence DP:** Computing an LCS solves a much harder question and costs quadratic time and space without changing this answer.
 - **Equal strings:** Every subsequence occurs in both, so the required sentinel is `-1`.
@@ -96,8 +96,8 @@ A string is always a subsequence of itself: delete zero characters. Therefore `a
 - **One-character unequal strings:** Either whole character is uncommon, so the answer is one.
 - **Repeated characters:** Repetition does not affect the equality-and-length proof.
 - **One string is a subsequence of the other:** If lengths differ, the longer whole string still supplies the optimum even when the shorter is common to both.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

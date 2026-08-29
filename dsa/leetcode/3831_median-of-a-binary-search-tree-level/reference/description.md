@@ -47,7 +47,7 @@ Return the requested level's median value, using the upper median when $K$ is ev
 
 #### Example 3
 
-**​​​​​​​​​​​​​​**
+****
 
 ![](images/screenshot-2026-01-27-at-21001pm.png)
 
@@ -55,7 +55,7 @@ Return the requested level's median value, using the upper median when $K$ is ev
 
 - **Output:** -1
 
-- **Explanation:** There is no node present at $level = 2$​​​​​​​, so the answer is -1.
+- **Explanation:** There is no node present at $level = 2$, so the answer is -1.
 
 ### 4. Constraints
 
@@ -63,4 +63,4 @@ Return the requested level's median value, using the upper median when $K$ is ev
 
 - $1 \le \text{Node.val} \le 10^{6}$
 
-- $0 \le level \le 2 * 10^​​​​​​​5$
+- $0 \le level \le 2 * 10^5$

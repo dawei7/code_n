@@ -61,7 +61,7 @@ Otherwise the option lists are collected in `t`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | DFS uses `pairwise(s)` to inspect every neighboring pair.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ It is important to choose the whole next row consistently. Adjacent triangles sh
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtrack one top position at a time:** Build :** - **Backtrack one top position at a time:** Build a candidate row incrementally and recurse when complete. This avoids materializing product tuples and allows additional pruning.
-- **- **Bitmask transitions:** Encode each pair’s poss:** - **Bitmask transitions:** Encode each pair’s possible top letters as six bits for faster combination checks, at the cost of less beginner-friendly code.
-- **- **Greedily choose the first allowed top:** A loc:** - **Greedily choose the first allowed top:** A locally legal choice may block the next level while another choice succeeds. All alternatives may need exploration.
+- **Backtrack one top position at a time:** Build a candidate row incrementally and recurse when complete. This avoids materializing product tuples and allows additional pruning.
+- **Bitmask transitions:** Encode each pair’s possible top letters as six bits for faster combination checks, at the cost of less beginner-friendly code.
+- **Greedily choose the first allowed top:** A locally legal choice may block the next level while another choice succeeds. All alternatives may need exploration.
 
 ---
 

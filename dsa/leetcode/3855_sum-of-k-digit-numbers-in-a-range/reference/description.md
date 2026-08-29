@@ -4,7 +4,7 @@ You are given three integers `l`, `r`, and `k`.
 
 Consider all possible integers consisting of **exactly** `k` digits, where each digit is chosen independently from the integer range `[l, r]` (inclusive). If 0 is included in the range, leading zeros are allowed.
 
-Return an integer representing the **sum of all such numbers.**​​​​​​​ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
+Return an integer representing the **sum of all such numbers.** Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
@@ -46,7 +46,7 @@ Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 
 - **Explanation:** 
 
-- All numbers formed using $k = 3$ digits in the range `[0, 1]` are `000, 001, 010, 011, 100, 101, 110, 111`​​​​​​​.
+- All numbers formed using $k = 3$ digits in the range `[0, 1]` are `000, 001, 010, 011, 100, 101, 110, 111`.
 
 - These numbers without leading zeros are `0, 1, 10, 11, 100, 101, 110, 111`.
 
@@ -58,7 +58,7 @@ Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 
 - **Output:** 555555520
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - 5555555555 is the only valid number consisting of $k = 10$ digits in the range `[5, 5]`.
 

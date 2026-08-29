@@ -68,7 +68,7 @@ The expression `chain(matrix, zip(*matrix))` creates one iterable that first yie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The matrix itself is iterable by rows, so `matrix` supplies ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Python’s `all` short-circuits. As soon as a row or column produces fewer than 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare with an expected set:** Build `set(ran:** - **Compare with an expected set:** Build `set(range(1, n + 1))` once and compare every row set and column set with it. This is equally clear and has the same $O(n^2)$ time and $O(n)$ auxiliary space, but the exact solution exploits the range constraint to compare only cardinalities.
+- **Compare with an expected set:** Build `set(range(1, n + 1))` once and compare every row set and column set with it. This is equally clear and has the same $O(n^2)$ time and $O(n)$ auxiliary space, but the exact solution exploits the range constraint to compare only cardinalities.
 - **Boolean seen array:** For each row and column, clear an $n$-element marker array and reject repeated values. This has deterministic $O(n^2)$ time but requires more explicit loops and reset logic.
 - **Arithmetic sum only:** Checking whether each sequence sums to $n(n+1)/2$ is not sufficient in general because different repeated and missing values can have the same sum.
 - **Rows only:** Valid rows do not imply valid columns. Both halves of `chain` are required.
@@ -121,8 +121,8 @@ Python’s `all` short-circuits. As soon as a row or column produces fewer than 
 - **Constraint dependence:** If values outside `1` through `n` were permitted, `len(set(row)) == n` would need to be replaced by equality with the expected set. For legal inputs, the shorter condition is rigorous.
 - **Square-shape guarantee:** `zip(*matrix)` truncates to the shortest input row in general Python code, but the contract guarantees an $n$ by $n$ matrix, so every column contains exactly $n$ entries.
 - **Input preservation:** Sets and column tuples are newly created temporary objects; the original nested lists remain unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

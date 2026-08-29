@@ -51,7 +51,7 @@ Therefore the total string value depends only on how many times each letter appe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore the total string value depends only on how many ti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This marginal-cost view determines which letters should replace question marks.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count selected replacements by letter:** Store:** - **Count selected replacements by letter:** Store 26 chosen counts, then emit letters alphabetically into question positions. This avoids `t.sort()` and achieves true $O(N)$ time.
+- **Count selected replacements by letter:** Store 26 chosen counts, then emit letters alphabetically into question positions. This avoids `t.sort()` and achieves true $O(N)$ time.
 - **Fill heap choices immediately:** It preserves minimum value but can fail the lexicographically smallest tie-break because selected letters may need reordering.
 - **No question marks:** `t` is empty and joining `cs` returns the original string.
 - **All question marks:** Letters are distributed as evenly as possible, with earlier alphabet letters winning equal marginal costs.
@@ -100,8 +100,8 @@ This marginal-cost view determines which letters should replace question marks.
 - **Final frequencies, not occurrence history:** A letter's total contribution $\binom f2$ is independent of which specific occurrences were fixed versus substituted.
 - **Sorting only chosen characters:** Fixed letters cannot move. Lexicographic minimization permutes replacements solely among the original question-mark positions.
 - **Stable earliest difference:** If two assignments use the same replacement multiset, placing its sorted sequence left to right makes the first differing question position as small as possible, which decides lexicographic order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

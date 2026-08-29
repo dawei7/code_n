@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a rectangular brick wall in front of you with `n` rows of bricks. The $$i^{\text{th}}$$ row has some number of bricks each of the same height (i.e., one unit) but they can be of different widths. The total width of each row is the same.
+There is a rectangular brick wall in front of you with `n` rows of bricks. The $i^{\text{th}}$ row has some number of bricks each of the same height (i.e., one unit) but they can be of different widths. The total width of each row is the same.
 
 The objective is to compute `2` from `{"wall": [[1, 2, 2, 1], [3, 1, 2], [1, 3, 2], [2, 4], [3, 1, 2], [1, 3, 1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The solution counts internal boundary positions using prefix sums of brick width
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution counts internal boundary positions using prefix... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For one row, variable `s` begins at zero. As each brick width `x` is processed, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every possible coordinate against every r:** - **Test every possible coordinate against every row:** This repeats row scans and can become quadratic in the number of bricks.
+- **Test every possible coordinate against every row:** This repeats row scans and can become quadratic in the number of bricks.
 - **Use physical-width buckets:** Wall width may be enormous, so allocating one slot per coordinate is unsafe.
 - **Count the final edge:** It would always appear in every row and incorrectly return zero, despite the forbidden outside boundary.
 - **Count the left edge:** Coordinate zero is also forbidden and intentionally absent.
@@ -96,8 +96,8 @@ For one row, variable `s` begins at zero. As each brick width `x` is processed, 
 - **Large widths:** Hashing prefix coordinates avoids dependence on total wall width.
 - **Several equally common edges:** Any gives the same minimum; only the count is returned.
 - **Positive widths:** They ensure strictly increasing boundaries within each row.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

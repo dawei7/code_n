@@ -4,7 +4,7 @@ You are given the `root` of a binary tree and a positive integer `k`.
 
 The **level sum** in the tree is the sum of the values of the nodes that are on the **same** level.
 
-Return* the *$$k^{\text{th}}$$* **largest** level sum in the tree (not necessarily distinct)*. If there are fewer than `k` levels in the tree, return `-1`.
+Return* the *$k^{\text{th}}$* **largest** level sum in the tree (not necessarily distinct)*. If there are fewer than `k` levels in the tree, return `-1`.
 
 ### 2. Function Contract
 

@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** string `s` that you must perform `k` replacement operations on. The replacement operations are given as three **0-indexed** parallel arrays, `indices`, `sources`, and `targets`, all of length `k`.
 
-To complete the $$i^{\text{th}}$$ replacement operation:
+To complete the $i^{\text{th}}$ replacement operation:
 
 - Check if the **substring** $\text{sources}[i]$ occurs at index $\text{indices}[i]$ in the **original string** `s`.
 

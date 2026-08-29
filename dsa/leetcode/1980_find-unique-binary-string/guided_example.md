@@ -65,7 +65,7 @@ For example, if the input one counts are one and two, bits one and two become se
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mask` is an integer used as a compact set.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Although the iterator is unbounded syntactically, the proof guarantees a missing
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cantor diagonal construction:** Flip `nums[i][:** - **Cantor diagonal construction:** Flip `nums[i][i]` for every $i$. It gives $O(N)$ time and an immediate per-row difference proof.
+- **Cantor diagonal construction:** Flip `nums[i][i]` for every $i$. It gives $O(N)$ time and an immediate per-row difference proof.
 - **Hash set plus enumeration:** Generate candidates until one is absent, but candidate construction and membership storage are unnecessary here.
 - **Integer-set search:** Convert inputs to integers and test $0$ through $N$; conversion still reads $O(N^2)$ input characters.
 - **Missing class zero:** Return the all-zero string.
@@ -117,8 +117,8 @@ Although the iterator is unbounded syntactically, the proof guarantees a missing
 - **Infinite-looking iterator:** `count(0)` terminates through the guaranteed return by index $N$ at the latest.
 - **Output format:** Repeating strings produces exactly $N$ characters containing only zero and one.
 - **Input preservation:** Counting characters does not modify the strings or list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

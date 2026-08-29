@@ -98,7 +98,7 @@ For each of the integers from `0` to $2^N - 1$, we repeat this process and store
 #### Algorithm
 
 1. Initialize an empty list of strings `abbreviations`.
-2. Iterate over each number from `0` to $$2^N$ - 1$ and for each such integer `mask` do the following:
+2. Iterate over each number from `0` to $2^N$ - 1$ and for each such integer `mask` do the following:
 
 - Initialize an empty string `currWord` and integer `abbreviatedCount` to `0`.
 - Iterate over the integers from `0` to $N - 1$ `Index` that represents the bits, for each `Index`
@@ -146,7 +146,7 @@ Here, $N$ is the length of the string `word`.
 
 * Time complexity: $O(N \times 2^N)$.
 
-    We iterate over the integers from `0` to $$2^N$ - 1$and for each one of these we will iterate over the bits from `0` to `N`, hence the total time complexity is equal to$O(N \times 2^N)$.
+    We iterate over the integers from `0` to $2^N$ - 1$and for each one of these we will iterate over the bits from `0` to `N`, hence the total time complexity is equal to$O(N \times 2^N)$.
 
 * Space complexity: $O(1)$.
 

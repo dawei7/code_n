@@ -10,7 +10,7 @@ You are given an integer `n`. A **0-indexed** integer array `nums` of length $n 
 
 - $nums[2 * i + 1] = \text{nums}[i] + nums[i + 1]$ when $2 \le 2 * i + 1 \le n$
 
-Return** ***the **maximum** integer in the array *`nums`​​​.
+Return** ***the **maximum** integer in the array *`nums`.
 
 ### 2. Function Contract
 

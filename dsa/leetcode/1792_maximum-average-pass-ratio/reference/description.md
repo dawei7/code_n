@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where $\text{classes}[i] = [\text{pass}_{i}, \text{total}_{i}]$. You know beforehand that in the $$i^{\text{th}}$$ class, there are $\text{total}_{i}$ total students, but only $\text{pass}_{i}$ number of students will pass the exam.
+There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where $\text{classes}[i] = [\text{pass}_{i}, \text{total}_{i}]$. You know beforehand that in the $i^{\text{th}}$ class, there are $\text{total}_{i}$ total students, but only $\text{pass}_{i}$ number of students will pass the exam.
 
 You are also given an integer `extraStudents`. There are another `extraStudents` brilliant students that are **guaranteed** to pass the exam of any class they are assigned to. You want to assign each of the `extraStudents` students to a class in a way that **maximizes** the **average** pass ratio across **all** the classes.
 

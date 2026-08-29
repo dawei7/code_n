@@ -63,11 +63,7 @@ Tabs and newlines are also not the same as the literal space characters in the p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `bull`, the predicate is:
-
-`content LIKE '% bull %'`.
-
-T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +100,7 @@ No grouping by file name is needed because each input row represents one file. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION ALL`:** Produces the same two labeled r:** - **`UNION ALL`:** Produces the same two labeled rows and avoids duplicate elimination because labels are inherently distinct.
+- **`UNION ALL`:** Produces the same two labeled rows and avoids duplicate elimination because labels are inherently distinct.
 - **Regular expression with spaces:** Can encode the same contract but is more machinery than fixed `LIKE` patterns require.
 - **Regex word boundaries:** Incorrect here because they would count punctuation-delimited or boundary-position words excluded by the statement.
 - **Count string occurrences:** Incorrect because the task counts matching files, not how many times a word appears within each file.
@@ -114,8 +110,8 @@ No grouping by file name is needed because each input row represents one file. T
 - **Plural or longer word:** `bears` and `bullet` do not match.
 - **No matching files:** Each aggregate still returns its label with count zero.
 - **Case behavior:** Depends on the column collation because the query does not normalize case explicitly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

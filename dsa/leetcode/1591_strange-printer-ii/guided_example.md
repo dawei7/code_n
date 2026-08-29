@@ -69,7 +69,7 @@ Because every dictionary key came from the grid, each color is encountered at le
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `colors` is the set of all values appearing in `targetGrid`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Cells already equal to the box’s own color create no self-edge. That color’s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly erase currently removable colors:**:** - **Repeatedly erase currently removable colors:** One can search for a color whose bounding box contains no other active color, erase it, and repeat. It reflects reverse printing order but may rescan the grid many times; the dependency graph states all precedence rules once.
+- **Repeatedly erase currently removable colors:** One can search for a color whose bounding box contains no other active color, erase it, and repeat. It reflects reverse printing order but may rescan the grid many times; the dependency graph states all precedence rules once.
 - **Backtracking over color orders:** Trying permutations can take factorial time. Cycle detection determines whether any valid order exists without enumerating them.
 - **Use one rectangle per connected component of a color:** This violates the printer rule because the same color may be used only once. All occurrences must share one bounding rectangle.
 - **Print a rectangle larger than the bounding box:** It is never necessary for feasibility and may introduce additional cells that need later repair. Minimal boxes capture all unavoidable dependencies.
@@ -130,8 +130,8 @@ Cells already equal to the box’s own color create no self-edge. That color’s
 - **Color labels up to 60:** The algorithm uses dictionaries and sets rather than assuming labels form a dense zero-based range.
 - **No grid mutation:** The source analyzes the target and builds metadata; it does not simulate painting or alter `targetGrid`.
 - **Cycle completion check:** Returning whether `printed` equals the number of colors is the decisive test. A partially produced topological order is not enough.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ Similarly, \(f(x,y)\geq x\). If \(f(x,y)=z\), both \(x\leq z\) and \(y\leq z\). 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The function returns positive integers and is strictly incre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ It then calls `customfunction.f(x, y)` once more. If the value is exactly `z`, i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer staircase:** Start at `x = 1, y = :** - **Two-pointer staircase:** Start at `x = 1, y = z`. Move \(x\) up when the value is too small, \(y\) down when too large, and move both after equality. This finds all pairs in \(O(z)\) oracle calls.
+- **Two-pointer staircase:** Start at `x = 1, y = z`. Move \(x\) up when the value is too small, \(y\) down when too large, and move both after equality. This finds all pairs in \(O(z)\) oracle calls.
 - **Brute-force grid:** Testing every pair from 1 through \(z\) costs \(O(z^2)\) calls and wastes monotonicity.
 - **No solution for an \(x\):** Lower bound lands on a value greater than \(z\), and the equality check simply skips it.
 - **Insertion past the range:** The exact code evaluates \(y=z+1\); monotonic positive-integer output proves it cannot be a solution.
@@ -110,8 +110,8 @@ It then calls `customfunction.f(x, y)` once more. If the value is exactly `z`, i
 - **Unknown formula cost:** The stated complexity assumes each interface call is constant time. An expensive hidden implementation would multiply the oracle-call bound by its cost.
 - **Modern `bisect_left` requirement:** Older Python versions without a `key` parameter need a manual binary search.
 - **Positive-integer guarantee:** The coordinate bound \(x,y\leq z\) relies on positive integer outputs and strict integer increases.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

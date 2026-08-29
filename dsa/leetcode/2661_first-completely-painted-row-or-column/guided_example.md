@@ -73,7 +73,7 @@ All other row and column counts remain unchanged.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Array `row` has one entry per matrix row; `row[i]` is the nu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ If either equality holds, the function returns current paint index `k`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search the matrix for every paint value:** Can:** - **Search the matrix for every paint value:** Can take $O((mn)^2)$ time and repeats coordinate work.
+- **Search the matrix for every paint value:** Can take $O((mn)^2)$ time and repeats coordinate work.
 - **Store row and column directly by value in arrays:** Since values are from one through $mn$, two indexed arrays can replace the dictionary.
 - **Mark cells and rescan lines:** Correct but adds unnecessary row or column scans per query.
 - **One-row matrix:** The row completes only after all cells, while a column completes on its single cell; the first paint returns index zero.
@@ -132,8 +132,8 @@ If either equality holds, the function returns current paint index `k`.
 - **Earliest index:** Immediate return during increasing scan enforces minimality.
 - **Full sequence:** Guarantees the function eventually returns.
 - **Input preservation:** No matrix cell is altered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

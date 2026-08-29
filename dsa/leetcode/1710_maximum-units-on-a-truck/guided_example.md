@@ -61,7 +61,7 @@ which is added to `ans`. Multiplication is correct because every box within one 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the current type, `min(truckSize, a)` is the number of b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ An alternative spelling could subtract `min(truckSize, a)` and stop at exactly z
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly search for the best type:** Finding:** - **Repeatedly search for the best type:** Finding the maximum remaining units in a full scan can cost $O(t^2)$ across all types.
+- **Repeatedly search for the best type:** Finding the maximum remaining units in a full scan can cost $O(t^2)$ across all types.
 - **Max-heap of types:** Heapify by negative units and pop in priority order. It also works in $O(t\log t)$ time and $O(t)$ space.
 - **Counting by unit value:** Because units per box are bounded by 1000, a frequency/count array can achieve $O(t+U)$ time, where $U$ is the value range.
 - **Expand every box:** Sorting individual boxes can require space and time proportional to the total number of boxes and is unnecessary.
@@ -113,8 +113,8 @@ An alternative spelling could subtract `min(truckSize, a)` and stop at exactly z
 - **Positive unit guarantee:** Taking another available box never reduces the objective.
 - **Input preservation:** `sorted` returns a new outer list; it does not reorder `boxTypes`.
 - **Capacity variable after partial load:** Its negative value is internal control state only and does not represent an actual negative number of slots.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

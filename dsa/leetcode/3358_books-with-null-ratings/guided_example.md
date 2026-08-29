@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Filter with SQL's dedicated NULL predicate.** The requirem... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Writing `rating = NULL` would not produce true even when `rating` is null. The e
 
 ## 6. Traps This Instance Exposes
 
-- **- **`rating = NULL`:** This is incorrect because e:** - **`rating = NULL`:** This is incorrect because equality with `NULL` evaluates to unknown rather than true.
+- **`rating = NULL`:** This is incorrect because equality with `NULL` evaluates to unknown rather than true.
 - **`rating IS NOT NULL`:** It selects the opposite set: books that already have ratings.
 - **Explicit ordering name:** `ORDER BY book_id ASC` is equivalent here and more robust if the select-list order changes.
 - **Ordinal ordering:** `ORDER BY 1` refers to `book_id` only because it is the first projected expression.
@@ -102,8 +102,8 @@ Writing `rating = NULL` would not produce true even when `rating` is null. The e
 - **No join:** A join would add unnecessary work and risk multiplying rows.
 - **Index availability:** It may improve the physical plan but does not change query semantics.
 - **MySQL comment:** The leading source comment is inert and simply identifies the expected SQL dialect.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ If two child subplans need times $a$ and $b$ after their WBCs become available, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If two child subplans need times $a$ and $b$ after their WBC... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ because the children execute in parallel after the split. The slower child deter
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split until one WBC per strain immediately:** :** - **Split until one WBC per strain immediately:** A balanced tree ignores different elimination times and can make a long strain unnecessarily deep.
+- **Split until one WBC per strain immediately:** A balanced tree ignores different elimination times and can make a long strain unnecessarily deep.
 - **Assign largest requirements deepest:** Extra split delays on large leaves can only worsen the maximum.
 - **Merge two largest first:** This creates a parent even larger than necessary and contradicts the deepest-smallest exchange.
 - **Sum child requirements:** Children operate in parallel, so their parent uses a maximum.
@@ -98,8 +98,8 @@ because the children execute in parallel after the split. The slower child deter
 - **Input order:** Strains may be eliminated in any order, so heap reordering is legal.
 - **Input mutation:** The source consumes `timeReq` as its heap; copy it first if preservation is required.
 - **Positive durations:** Every split and elimination adds real delay, supporting the depth exchange argument.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

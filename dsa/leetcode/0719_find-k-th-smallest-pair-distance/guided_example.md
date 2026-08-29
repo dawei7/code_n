@@ -69,7 +69,7 @@ Duplicates are handled naturally. If `b` has earlier equal copies and `dist = 0`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper considers every sorted position `i` as the right ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,9 +111,9 @@ The first distance at which the count reaches `k` is exactly the kth element of 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer counting inside the answer search::** - **Two-pointer counting inside the answer search:** For each right endpoint, move one shared left pointer forward until the distance is at most the candidate. Both pointers move only forward, making one count `O(n)`. Combined with value binary search, this yields `O(n log n + n log(W + 1))` time and is the standard refinement that meets the tighter manifest-style bound.
-- **- **Generate and sort every distance:** This is co:** - **Generate and sort every distance:** This is conceptually simple but creates `O(n^2)` distances and then spends `O(n^2 log n)` time sorting them. It becomes impractical as `n` grows.
-- **- **Heap-based pair generation:** A heap can produ:** - **Heap-based pair generation:** A heap can produce distances in increasing order from sorted data without storing all pairs at once. It can be useful when `k` is very small, but its indexing logic is more involved and its running time depends directly on `k`.
+- **Two-pointer counting inside the answer search:** For each right endpoint, move one shared left pointer forward until the distance is at most the candidate. Both pointers move only forward, making one count `O(n)`. Combined with value binary search, this yields `O(n log n + n log(W + 1))` time and is the standard refinement that meets the tighter manifest-style bound.
+- **Generate and sort every distance:** This is conceptually simple but creates `O(n^2)` distances and then spends `O(n^2 log n)` time sorting them. It becomes impractical as `n` grows.
+- **Heap-based pair generation:** A heap can produce distances in increasing order from sorted data without storing all pairs at once. It can be useful when `k` is very small, but its indexing logic is more involved and its running time depends directly on `k`.
 
 ---
 

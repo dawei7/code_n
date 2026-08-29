@@ -65,11 +65,7 @@ The filter uses:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The filter uses:
-
-
-
-`COUNT(1)` counts rows in the current gr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ The actual project identifiers are unnecessary inside this subquery. The outer q
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maximum subquery:** Group project counts in a :** - **Maximum subquery:** Group project counts in a derived table, compute `MAX(employee_count)`, and keep groups equal to it. This is explicit but more verbose.
+- **Maximum subquery:** Group project counts in a derived table, compute `MAX(employee_count)`, and keep groups equal to it. This is explicit but more verbose.
 - **ORDER BY with dense rank:** Rank projects by `COUNT(*)` descending and select rank one. `DENSE_RANK` or `RANK` preserves ties; `ROW_NUMBER` does not.
 - **CTE for counts:** Compute one row per project once, then compare each count with the maximum from that CTE. This can improve readability and encourage reuse.
 - **GROUP BY project_id:** Naming the column is equivalent to `GROUP BY 1` and safer if the select-list order changes.
@@ -122,8 +118,8 @@ The actual project identifiers are unnecessary inside this subquery. The outer q
 - **Employee on multiple projects:** Each assignment belongs to its own project group and correctly counts once in each.
 - **Employee table:** It is not needed for counting valid assignment rows.
 - **Any output order:** Omitting `ORDER BY` is correct.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

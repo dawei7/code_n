@@ -6,7 +6,7 @@ You are building a system that tracks the ranking of locations with the system i
 
 - **Adding** scenic locations, **one at a time**.
 
-- **Querying** the $$i^{\text{th}}$$ **best** location of **all locations already added**, where `i` is the number of times the system has been queried (including the current query).
+- **Querying** the $i^{\text{th}}$ **best** location of **all locations already added**, where `i` is the number of times the system has been queried (including the current query).
 
 		- For example, when the system is queried for the $4^th$ time, it returns the $4^th$ best location of all locations already added.
 
@@ -18,7 +18,7 @@ Implement the `SORTracker` class:
 
 - `void add(string name, int score)` Adds a scenic location with `name` and `score` to the system.
 
-- `string get()` Queries and returns the $$i^{\text{th}}$$ best location, where `i` is the number of times this method has been invoked (including this invocation).
+- `string get()` Queries and returns the $i^{\text{th}}$ best location, where `i` is the number of times this method has been invoked (including this invocation).
 
 ### 2. Function Contract
 

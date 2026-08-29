@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$ *largest element in the array*.
+Given an integer array `nums` and an integer `k`, return *the* $k^{\text{th}}$ *largest element in the array*.
 
 The objective is to compute `5` from `{"nums": [3, 2, 1, 5, 6, 4], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ integer division by two for these nonnegative indices.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting establishes the order of every element, but the meth... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,7 +135,7 @@ are common.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Randomized in-place Quickselect:** Choose a un:** - **Randomized in-place Quickselect:** Choose a uniformly random pivot before the same one-sided recursion. It retains $O(n^2)$ theoretical worst-case time but gives expected $O(n)$ time independent of a fixed adversarial input pattern.
+- **Randomized in-place Quickselect:** Choose a uniformly random pivot before the same one-sided recursion. It retains $O(n^2)$ theoretical worst-case time but gives expected $O(n)$ time independent of a fixed adversarial input pattern.
 - **Three-way partitioning:** Separate values less than, equal to, and greater than the pivot. If the target falls in the equal block, return immediately; this is especially effective with many duplicates and matches part of the manifest description, but it is not the exact source.
 - **Median of medians:** A carefully selected deterministic pivot guarantees $O(n)$ worst-case selection, but its implementation and constant factors are substantially more involved.
 - **Min-heap of size `k`:** Keep the largest `k` values seen, with the heap root as the answer. It offers deterministic $O(n\log k)$ time and $O(k)$ space without mutating the input.
@@ -147,8 +147,8 @@ are common.
 - **Negative values:** Partition comparisons work directly on signed integers; no offset or special case is needed.
 - **One element:** The converted target is 0, the initial call satisfies `l == r`, and that element is returned without partitioning.
 - **Mutation of `nums`:** Swaps change the caller-provided list's order. This is acceptable to the platform contract, but callers that require preservation must pass a copy, adding $O(n)$ time and space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

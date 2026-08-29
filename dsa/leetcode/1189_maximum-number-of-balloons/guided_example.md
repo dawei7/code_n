@@ -67,7 +67,7 @@ For nonnegative integers, shifting right by one bit is integer division by two. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The letters `"b"`, `"a"`, and `"n"` appear once per target w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ For `"leetcode"`, required letters such as `"b"` and `"a"` are absent. Their cou
 
 ## 6. Traps This Instance Exposes
 
-- **- **Five explicit integer counters:** Increment on:** - **Five explicit integer counters:** Increment only `b`, `a`, `l`, `o`, and `n` while scanning. This also gives $O(n)$ time and $O(1)$ space and avoids storing irrelevant letters.
+- **Five explicit integer counters:** Increment only `b`, `a`, `l`, `o`, and `n` while scanning. This also gives $O(n)$ time and $O(1)$ space and avoids storing irrelevant letters.
 - **General target-frequency division:** Count both the input and an arbitrary target, then minimize `available[c] // required[c]` over target characters. This generalizes the reasoning beyond the fixed word `"balloon"`.
 - **Repeatedly remove target letters:** Simulating one constructed word at a time is more cumbersome and can repeat work that the frequency division performs immediately.
 - **Missing required letter:** `Counter` returns zero, and the final minimum correctly returns zero.
@@ -122,8 +122,8 @@ For `"leetcode"`, required letters such as `"b"` and `"a"` are absent. Their cou
 - **Why `"balon"` has one `l` and one `o`:** Their multiplicities were already normalized. Taking the same capacity twice would not change the minimum but would obscure the intent.
 - **Right shift safety:** Character counts are nonnegative, so `x >> 1` equals $\lfloor x/2\rfloor$. This equivalence would require more care for negative values, which cannot occur here.
 - **Each occurrence used once:** Frequency subtraction is implicit in the capacity calculation. Forming $r$ words consumes exactly the required multiples and never exceeds any available count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

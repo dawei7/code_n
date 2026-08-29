@@ -51,7 +51,7 @@ The only question is how many terms the pile can pay before the next player lack
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The only question is how many terms the pile can pay before ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The only question is how many terms the pile can pay before the next player lack
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cumulative-threshold table:** Precompute the t:** - **Cumulative-threshold table:** Precompute the ten prefix sums and locate `n` among them. It is also constant-time but more data than the direct loop needs.
+- **Cumulative-threshold table:** Precompute the ten prefix sums and locate `n` among them. It is also constant-time but more data than the direct loop needs.
 - **Closed-form arithmetic:** Solve a quadratic inequality for the number of payable descending terms, then adjust for rounding. This is unnecessary and easier to get wrong for such a short schedule.
 - **Fewer than 10 stones:** Alice cannot make the opening move and loses.
 - **Exactly 10 stones:** Alice moves once, Bob cannot remove nine, and Alice wins.
@@ -100,8 +100,8 @@ The only question is how many terms the pile can pay before the next player lack
 - **Generalized input defect:** At `n >= 55`, `x` reaches zero and the exact loop ceases to terminate.
 - **Defensive guard:** Adding `x > 0` would make a generalized simulation stop after the one-stone move.
 - **Positive input:** The contract excludes zero, though zero would also yield an immediate false result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

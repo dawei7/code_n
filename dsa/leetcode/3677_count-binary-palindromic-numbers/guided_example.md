@@ -71,7 +71,7 @@ For `n = 0`, it immediately returns one because there are no positive candidates
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Positive binary representations have a leading one and are c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ After this loop, `answer` includes zero and every binary palindrome shorter than
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every integer through `n`:** Convert:** - **Enumerate every integer through `n`:** Convert each to binary and test it, costing `O(n log n)` time.
+- **Enumerate every integer through `n`:** Convert each to binary and test it, costing `O(n log n)` time.
 - **Generate every palindrome explicitly:** It is much better than checking every integer but still unnecessary when prefix counts give a direct formula.
 - **Mirror the center bit twice:** For odd lengths this creates one extra bit and the wrong number. Shift the prefix by one before mirroring.
 - **Count prefixes from zero:** That introduces leading-zero strings representing shorter numbers and double-counts them.
@@ -129,8 +129,8 @@ After this loop, `answer` includes zero and every binary palindrome shorter than
 - **No leading zeros:** The prefix lower bound forces a leading one for every positive candidate.
 - **Large constraint:** `10^15` needs at most 50 binary digits, so the logarithmic method is very small in practice.
 - **Input preservation:** The integer is never modified outside local derived variables.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

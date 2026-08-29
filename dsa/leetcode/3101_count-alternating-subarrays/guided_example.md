@@ -51,7 +51,7 @@ The exact source maintains `s`, the length of the longest alternating suffix end
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source maintains `s`, the length of the longest al... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source maintains `s`, the length of the longest alternating suffix end
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run-length formula:** Split the array at equal:** - **Run-length formula:** Split the array at equal adjacent pairs. An alternating run of length $L$ contributes $L(L+1)/2$ subarrays. This is also $O(n)$ but postpones contributions until a run ends.
+- **Run-length formula:** Split the array at equal adjacent pairs. An alternating run of length $L$ contributes $L(L+1)/2$ subarrays. This is also $O(n)$ but postpones contributions until a run ends.
 - **Explicit sliding-window start:** Track the earliest index of the current alternating suffix and add `right - left + 1`. It is equivalent to storing `s`.
 - **Enumerate every subarray:** Checking all starts and ends is $O(n^2)$ and unnecessary.
 - **Single element:** Initialization counts its singleton and no pair loop runs.
@@ -101,8 +101,8 @@ The exact source maintains `s`, the length of the longest alternating suffix end
 - **Large result:** Python is safe; other languages should use a 64-bit integer.
 - **Lazy pairwise iterator:** `itertools.pairwise` does not allocate all adjacent pairs.
 - **No input mutation:** `nums` is traversed in original order and never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -2,11 +2,11 @@
 
 You are given a **sorted** array `nums` of `n` non-negative integers and an integer `maximumBit`. You want to perform the following query `n` **times**:
 
-- Find a non-negative integer $k < 2^maximumBit$ such that $\text{nums}[0] XOR \text{nums}[1] XOR ... XOR nums[\text{nums.length}-1] XOR k$ is **maximized**. `k` is the answer to the $$i^{\text{th}}$$ query.
+- Find a non-negative integer $k < 2^maximumBit$ such that $\text{nums}[0] XOR \text{nums}[1] XOR ... XOR nums[\text{nums.length}-1] XOR k$ is **maximized**. `k` is the answer to the $i^{\text{th}}$ query.
 
 - Remove the **last **element from the current array `nums`.
 
-Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
+Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 
@@ -56,4 +56,4 @@ Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$
 
 - $0 \le \text{nums}[i] < 2^maximumBit$
 
-- `nums`​​​ is sorted in **ascending** order.
+- `nums` is sorted in **ascending** order.

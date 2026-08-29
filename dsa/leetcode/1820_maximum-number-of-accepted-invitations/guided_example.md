@@ -60,9 +60,7 @@ The algorithm processes boys one at a time and tries to increase the matching si
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Array `match` has one entry per girl:
-
-- `match[j] = -1` mea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +105,7 @@ If no girl can be obtained, `find(i)` returns `false` and the existing matching 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy free-girl assignment:** It can miss the:** - **Greedy free-girl assignment:** It can miss the optimum because earlier flexible boys may block later constrained boys.
+- **Greedy free-girl assignment:** It can miss the optimum because earlier flexible boys may block later constrained boys.
 - **Hopcroft-Karp:** It finds batches of shortest augmenting paths in $O(E\sqrt{m+n})$, better for much larger graphs but more complex.
 - **Maximum flow:** Source, boy, girl, and sink capacities model the problem correctly, with heavier machinery.
 - **Girl with no incoming edges:** She remains unmatched and never affects a DFS.
@@ -121,8 +119,8 @@ If no girl can be obtained, `find(i)` returns `false` and the existing matching 
 - **Boolean addition:** Each successful augmentation contributes exactly one.
 - **Zero-based internal indices:** They represent the problem's ordinal boys and girls without affecting the count.
 - **Input preservation:** Only `match` changes; `grid` is read-only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

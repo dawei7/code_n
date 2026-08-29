@@ -61,7 +61,7 @@ This stability is the reason an in-place quicksort-style partition is unsuitable
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits `nums` from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Concatenation yields `[9,5,3,10,10,12,14]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed output with counted boundaries:** First :** - **Fixed output with counted boundaries:** First count category sizes, then make a second stable pass writing into three known output regions. This is also $O(n)$ time and output space.
+- **Fixed output with counted boundaries:** First count category sizes, then make a second stable pass writing into three known output regions. This is also $O(n)$ time and output space.
 - **Two-direction stable fill:** Scan less-than values forward and greater-than values backward while filling opposite ends carefully. It can reduce temporary lists but is less direct.
 - **Quicksort partition:** Standard swaps achieve category separation but do not preserve relative order.
 - **Sort the array:** Sorting is $O(n\log n)$ and imposes value order within categories rather than merely preserving original order.
@@ -120,8 +120,8 @@ Concatenation yields `[9,5,3,10,10,12,14]`.
 - **Stable requirement applies separately:** A less-than value need not preserve order relative to a greater-than value because categories must be separated.
 - **Input preservation:** Fresh lists satisfy the instruction without mutating `nums`.
 - **Unique stable result:** Although equal pivot copies are indistinguishable, the less-than and greater-than subsequences have only one order that satisfies stability.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

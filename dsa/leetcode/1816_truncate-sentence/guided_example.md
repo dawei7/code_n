@@ -63,7 +63,7 @@ No punctuation handling is needed because every word contains only English lette
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Calling `split()` without an explicit separator treats runs ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Slicing also does not modify the original word list; it creates a new list conta
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan for the `k`th space:** Return the prefix :** - **Scan for the `k`th space:** Return the prefix ending before that separator, using less temporary word-list storage.
+- **Scan for the `k`th space:** Return the prefix ending before that separator, using less temporary word-list storage.
 - **Build words manually:** It duplicates behavior already provided reliably by `split` and `join`.
 - **Character-count truncation:** It is incorrect because words have different lengths and may be cut in the middle.
 - **Regular expression tokenization:** It adds machinery without improving the guaranteed simple format.
@@ -116,8 +116,8 @@ Slicing also does not modify the original word list; it creates a new list conta
 - **No punctuation:** There is no ambiguity about punctuation attached to a word.
 - **Valid `k` range:** No error or padding behavior for excessive `k` is required.
 - **Input immutability:** Strings are immutable, and the method produces a new result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

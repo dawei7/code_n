@@ -68,7 +68,7 @@ Although the helper reassigns its local parameter `x`, integers are immutable an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(x)` maintains an output accumulator `y`, initi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ For `x=5`, bits are read as 1, 0, 1, so `y` becomes binary `101` and remains dec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reverse a binary string:** `int(bin(x)[2:][::-:** - **Reverse a binary string:** `int(bin(x)[2:][::-1], 2)` directly mirrors the definition and has the same $O(B)$ key cost, but the exact source uses bit operations.
+- **Reverse a binary string:** `int(bin(x)[2:][::-1], 2)` directly mirrors the definition and has the same $O(B)$ key cost, but the exact source uses bit operations.
 - **Precompute repeated reflections:** A cache can avoid recomputing `f` for duplicate values. Python's sort already calls the key once per occurrence, and $N\le100$ makes the simple form sufficient.
 - **Sort only by reflection:** Reflection collisions exist, such as 3 and 6 both reflecting to 3. Omitting original `x` violates the required tie-break.
 - **Sort only by original value:** Numeric order and reflected order can differ sharply; 8 must precede 3 in the example because its reflection is 1.
@@ -124,8 +124,8 @@ For `x=5`, bits are read as 1, 0, 1, so `y` becomes binary `101` and remains dec
 - **Positive-input guarantee:** The loop always processes at least one bit. In a generalized call with zero, `f(0)` would return zero because the loop is skipped.
 - **Input mutation:** The returned ordering is also written into the caller-provided `nums` list.
 - **Fixed bit width versus ordinary representation:** The method reverses only significant binary digits, not a padded 32-bit or 64-bit representation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

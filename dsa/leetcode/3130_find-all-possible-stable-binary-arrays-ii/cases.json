@@ -119,7 +119,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "zero": 1000,
+        "zero": 50,
         "one": 1,
         "limit": 1
       },

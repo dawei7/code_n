@@ -80,9 +80,7 @@ After $i=n-1$, every position is the required new prefix sum, so the outer invar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Array `a` begins with $n$ ones, matching time zero.
-
-The out... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,7 +123,7 @@ The exact source does not use factorials, inverses, or the closed form. It simul
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binomial coefficient:** Compute $\binom{k+n-1}:** - **Binomial coefficient:** Compute $\binom{k+n-1}{n-1}$ modulo the prime using products and a modular inverse, matching the manifest.
+- **Binomial coefficient:** Compute $\binom{k+n-1}{n-1}$ modulo the prime using products and a modular inverse, matching the manifest.
 - **Two-array prefix DP:** Clearer old/new separation but uses another $O(n)$ array.
 - **Right-to-left update:** Incorrect for prefix sums because it reads stale rather than updated prefix values.
 - **n equals one:** Inner loop is empty and the sole value remains one.
@@ -138,8 +136,8 @@ The exact source does not use factorials, inverses, or the closed form. It simul
 - **Initial ones:** They create ordinary binomial values; different initialization would change the pattern.
 - **No input arrays:** All mutable state is locally allocated.
 - **Why the previous cell is already current:** During one second, `a[i - 1]` must be the newly computed prefix value for that same second. Left-to-right iteration supplies exactly that dependency while `a[i]` still holds its prior-second value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

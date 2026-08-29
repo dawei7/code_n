@@ -61,7 +61,7 @@ The best row in every partition receives `rk = 1`. The outer query filters to th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A grouped `MAX(grade)` could find the best grade, but it wou... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This is why `RANK`, `ROW_NUMBER`, and `DENSE_RANK` would all select the same sin
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER`:** Assign row numbers with the sa:** - **`ROW_NUMBER`:** Assign row numbers with the same partition and ordering, then keep one. It communicates the one-winner intent directly and is equivalent under the composite primary key.
+- **`ROW_NUMBER`:** Assign row numbers with the same partition and ordering, then keep one. It communicates the one-winner intent directly and is equivalent under the composite primary key.
 - **Maximum-grade CTE plus join:** Find `MAX(grade)` per student, join back to matching rows, then take the minimum course ID among ties. This works but needs multiple logical stages.
 - **Correlated subquery:** Reject a row when a better grade or equal grade with smaller course exists. It expresses dominance directly but is usually harder to read and optimize.
 - **Group only by student with arbitrary course:** Incorrect because SQL cannot safely associate an unaggregated course ID with the maximum grade.
@@ -112,8 +112,8 @@ This is why `RANK`, `ROW_NUMBER`, and `DENSE_RANK` would all select the same sin
 - **Students with different enrollment counts:** Partitioning handles each independently, including students with only one course.
 - **Final ordering:** The outer `ORDER BY` is necessary because window ordering alone does not promise result-table order.
 - **Empty table:** No partitions or winner rows are created.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

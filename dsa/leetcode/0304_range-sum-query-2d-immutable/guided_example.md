@@ -74,7 +74,7 @@ When it computes `s[i + 1][j + 1]`, the entries in prefix row `i` were completed
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The constructor processes rows from top to bottom and column... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -141,7 +141,7 @@ Every cell inside the requested rectangle remains once. Cells only above or only
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sum every query cell:** It uses no prefix stor:** - **Sum every query cell:** It uses no prefix storage but costs $O(hw)$ for a queried rectangle of height $h$ and width $w$, reaching $O(mn)$ per query.
+- **Sum every query cell:** It uses no prefix storage but costs $O(hw)$ for a queried rectangle of height $h$ and width $w$, reaching $O(mn)$ per query.
 - **One prefix array per row:** Precompute horizontal sums, then subtract two prefixes for each row in the query. Construction is $O(mn)$ and space is $O(mn)$, but each query still costs $O(row2-row1+1)$.
 - **Precompute every rectangle:** Constant-time lookup is possible, but the number of possible row and column boundary pairs leads to $O(m^2n^2)$ time and space.
 - **Two-dimensional Fenwick tree:** It supports updates and region queries in logarithmic time. With no updates, the static prefix matrix gives simpler and faster $O(1)$ queries.
@@ -158,8 +158,8 @@ Every cell inside the requested rectangle remains once. Cells only above or only
 - **Negative values:** Prefix totals are not required to be monotone. Inclusion-exclusion relies on exact addition and subtraction, not ordering.
 - **Immutable-data requirement:** Changing one matrix entry after construction would invalidate every prefix covering that cell. This class deliberately exposes no update operation.
 - **Valid query bounds:** The source omits defensive checks because the contract guarantees ordered, in-range inclusive corners.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

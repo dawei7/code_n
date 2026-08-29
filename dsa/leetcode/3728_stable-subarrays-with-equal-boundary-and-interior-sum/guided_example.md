@@ -97,7 +97,7 @@ This timing prevents length-one or length-two ranges from being counted. The dic
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits right endpoints `r` from two through `n-1`, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -154,7 +154,7 @@ Negative values require no special treatment. Prefix sums and tuple keys can be 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all endpoint pairs:** Prefix sums ma:** - **Enumerate all endpoint pairs:** Prefix sums make each stability test $O(1)$, but there are $O(n^2)$ pairs. The transformed-key count removes the quadratic enumeration.
+- **Enumerate all endpoint pairs:** Prefix sums make each stability test $O(1)$, but there are $O(n^2)$ pairs. The transformed-key count removes the quadratic enumeration.
 - **Sum each interior directly:** This adds another linear factor and can reach $O(n^3)$. Prefix sums are the first essential reduction.
 - **Key only by endpoint value:** Equal endpoints are necessary but not sufficient; their interior sum must also match. The transformed prefix component enforces that second condition.
 - **Store a set of keys:** A set would lose multiplicity when several left endpoints share a key. The answer counts subarrays, so the dictionary stores counts.
@@ -164,8 +164,8 @@ Negative values require no special treatment. Prefix sums and tuple keys can be 
 - **Negative numbers:** Neither monotonic prefix sums nor a sliding window is assumed. Hashing exact signed sums works with arbitrary signs.
 - **Large sums:** Prefix sums may exceed 32-bit range because values reach $10^9$ and length reaches $10^5$. Python integers are safe; fixed-width implementations need 64-bit storage.
 - **Overlapping ranges:** The dictionary never removes earlier eligible endpoints, so all overlaps are counted independently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

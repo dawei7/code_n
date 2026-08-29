@@ -55,7 +55,7 @@ An inner join also has a useful semantic effect here: products with no sales cre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The result needs both `product_id` and `product_name`, while... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ There is no need for `DISTINCT`. Grouping already collapses every qualifying pro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Filter in `WHERE` only:** Writing a date predi:** - **Filter in `WHERE` only:** Writing a date predicate before grouping is wrong for this requirement because it removes outside-quarter sales before the query can notice them. The February and April product would appear to have only its February row and would be accepted incorrectly.
+- **Filter in `WHERE` only:** Writing a date predicate before grouping is wrong for this requirement because it removes outside-quarter sales before the query can notice them. The February and April product would appear to have only its February row and would be accepted incorrectly.
 - **Minimum and maximum sale dates:** A group can qualify when `MIN(sale_date) >= '2019-01-01'` and `MAX(sale_date) <= '2019-03-31'`. This is correct for nonempty groups, but the count-versus-sum formulation mirrors the “every row passes” logic more directly.
 - **Conditional minimum:** Aggregating a boolean with `MIN(sale_date BETWEEN ... ) = 1` also expresses that every row is true. It is concise, but readers must know how MySQL converts booleans to numbers.
 - **Correlated `NOT EXISTS`:** Start from products with an in-range sale, then reject any product for which an outside-range sale exists. This can perform well with a suitable index, but it requires two logically separate existence checks.
@@ -101,8 +101,8 @@ There is no need for `DISTINCT`. Grouping already collapses every qualifying pro
 - **Duplicate sale rows:** Duplicates do not change the universal conclusion. Each duplicate is counted consistently as either another passing row or another failing row.
 - **Many in-range sales:** The requirement does not limit the number of sales. Five, fifty, or five hundred in-range records all qualify as long as there is no outside record.
 - **Result ordering:** No ordering is guaranteed without `ORDER BY`, but that is acceptable because the contract explicitly permits any order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,7 +74,7 @@ Appending array entries is amortized constant time, and one final join performs 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Repeatedly building a string with recursive expressions such... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ If null reached the ordinary object branch, `Object.keys(null)` would fail. The 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string concatenation:** Correct in pr:** - **Repeated string concatenation:** Correct in principle but can cause repeated prefix copying; a shared buffer gives a clear linear bound.
+- **Repeated string concatenation:** Correct in principle but can cause repeated prefix copying; a shared buffer gives a clear linear bound.
 - **Explicit action stack:** Avoids recursion-depth limits while emitting the same token sequence.
 - **Built-in `JSON.stringify`:** Exactly suited to the task but explicitly forbidden.
 - **Null:** Must be handled before checking general object type.
@@ -125,8 +125,8 @@ If null reached the ordinary object branch, `Object.keys(null)` would fail. The 
 - **Object key order:** Iterating the `Object.keys` result preserves the required order.
 - **String escaping:** The exact code relies on the alphanumeric-only constraint; general JSON strings would require escapes.
 - **No extra spaces:** Only structural punctuation and value tokens are appended.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

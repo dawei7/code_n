@@ -63,7 +63,7 @@ Initially `i=0` and the processed region is empty, so the invariant holds.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The pointer `i` is the next position where a discovered `y` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ The invariant extends to include position `j`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build three explicit groups:** Concatenating a:** - **Build three explicit groups:** Concatenating all `y`, neutral characters, and all `x` is valid and matches the manifest summary, but the exact source uses one temporary list and a two-way partition.
-- **- **Sort the entire string:** Sorting may place `x:** - **Sort the entire string:** Sorting may place `x` before `y` depending on alphabetic order and costs `O(n\log n)`. The required order is custom and much simpler.
-- **- **Count characters and rebuild alphabetically:**:** - **Count characters and rebuild alphabetically:** This can work with special ordering but uses a frequency structure and imposes unnecessary order on neutral letters.
+- **Build three explicit groups:** Concatenating all `y`, neutral characters, and all `x` is valid and matches the manifest summary, but the exact source uses one temporary list and a two-way partition.
+- **Sort the entire string:** Sorting may place `x` before `y` depending on alphabetic order and costs `O(n\log n)`. The required order is custom and much simpler.
+- **Count characters and rebuild alphabetically:** This can work with special ordering but uses a frequency structure and imposes unnecessary order on neutral letters.
 
 ---
 

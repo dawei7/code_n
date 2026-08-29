@@ -63,7 +63,7 @@ Several operations may accumulate at one boundary. Using `+=` rather than assign
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A value `add[p] = v` means that increment $v$ applies to eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The reused `add` position is safe because every popped slot is reset to zero bef
 
 ## 6. Traps This Instance Exposes
 
-- **- **Eager array updates:** Add `val` directly to t:** - **Eager array updates:** Add `val` directly to the first `min(k, size)` elements. It is easier to visualize but makes `increment` cost $O(k)$.
+- **Eager array updates:** Add `val` directly to the first `min(k, size)` elements. It is easier to visualize but makes `increment` cost $O(k)$.
 - **Dynamic Python list:** Append and pop base values while retaining a parallel lazy array. It avoids unused base slots but still needs capacity tracking and the same marker invariant.
 - **Segment tree with lazy propagation:** Supports richer range updates and queries, but is unnecessary complexity when every update always begins at the bottom.
 - **Full stack:** `push` is ignored and changes neither stored values nor lazy markers.
@@ -115,8 +115,8 @@ The reused `add` position is safe because every popped slot is reset to zero bef
 - **Pop then reuse a slot:** Clearing `add` at the removed index prevents a later pushed value from inheriting stale state.
 - **Nonnegative `val`:** The stated constraint uses nonnegative increments, but the lazy arithmetic would also work for negative values.
 - **Index interpretation:** `i` is a size and next-free index, not the top index; decrementing before a successful pop is therefore essential.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

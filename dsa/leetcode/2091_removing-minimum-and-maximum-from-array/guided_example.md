@@ -64,7 +64,7 @@ Normalizing once avoids writing symmetric formulas for both possible arrangement
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the scan, the code swaps the indices when `mi > mx`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ Every deletion removes from the front or the back. With left important index `mi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort value-index pairs:** Sorting can locate t:** - **Sort value-index pairs:** Sorting can locate the minimum and maximum but costs $O(n\log n)$ and adds storage or mutation. One scan finds both positions optimally.
+- **Sort value-index pairs:** Sorting can locate the minimum and maximum but costs $O(n\log n)$ and adds storage or mutation. One scan finds both positions optimally.
 - **Simulate deletions:** Trying front and back operations step by step obscures that only prefix and suffix lengths matter. The three formulas evaluate every meaningful plan directly.
 - **Four directional combinations:** After ordering the indices, the supposed combination that takes the right position from the front and left position from the back is dominated and unnecessary.
 - **Minimum lies after maximum:** The swap normalizes the positions, so the same formulas apply without caring which value is on which side.
@@ -111,8 +111,8 @@ Every deletion removes from the front or the back. With left important index `mi
 - **Distinctness guarantee:** It makes the minimum and maximum positions unique. The one-element case legitimately uses the same position for both roles.
 - **No physical mutation:** Returning a count does not require constructing the remaining array or changing the input.
 - **Off-by-one boundaries:** Deleting through index `mx` from the front costs `mx + 1`, while deleting from index `mi` through the back costs `n - mi`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

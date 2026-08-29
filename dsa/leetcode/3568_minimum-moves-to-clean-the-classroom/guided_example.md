@@ -69,7 +69,7 @@ The manifest summary says the source retains only the greatest remaining energy 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two visits to the same coordinate and mask are not necessari... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ This ordering is important. The final move may collect the last litter while red
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dominance pruning by maximum energy:** At the :** - **Dominance pruning by maximum energy:** At the same position and mask, a state with more remaining energy can reproduce every continuation available to one with less. Storing only the maximum energy can reduce memory and repeated work; this is advertised by the manifest but absent from the source.
+- **Dominance pruning by maximum energy:** At the same position and mask, a state with more remaining energy can reproduce every continuation available to one with less. Storing only the maximum energy can reduce memory and repeated work; this is advertised by the manifest but absent from the source.
 - **Shortest paths between special cells plus subset DP:** One can precompute energy-aware reachability among start, litter, and reset locations, then solve a smaller mask problem. Reusable resets make the compressed transitions more subtle than ordinary pairwise distances.
 - **Priority-queue search:** Dijkstra’s algorithm is unnecessary because every physical move costs one; BFS has simpler ordering and lower overhead.
 - **No litter:** The source returns zero before allocating the state space.
@@ -133,8 +133,8 @@ This ordering is important. The final move may collect the last litter while red
 - **Different litter orders:** The mask lets BFS explore all reachable orders without prescribing one.
 - **Exactly ten litter cells:** The mask has 1024 possibilities, which is why the energy and grid dimensions make careful state representation important.
 - **Input preservation:** Litter collection is represented in the mask; the immutable classroom strings are never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,11 +61,7 @@ The function returns immediately because a length-$n$ string must be recorded, n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition is:
-
-
-
-Every prefix constructed by the r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +102,7 @@ The completion condition appears before this pruning check. As a subtle result, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Combinatorial block skipping:** Each first-cha:** - **Combinatorial block skipping:** Each first-character block has $2^{n-1}$ strings, and each later legal-character block has a known power-of-two size. Selecting the block containing `k` constructs the result directly in $O(n)$ time without storing earlier strings.
+- **Combinatorial block skipping:** Each first-character block has $2^{n-1}$ strings, and each later legal-character block has a known power-of-two size. Selecting the block containing `k` constructs the result directly in $O(n)$ time without storing earlier strings.
 - **Backtracking with a counter and one result:** Count completed leaves and stop exactly at the kth one. This retains lexicographical DFS but uses only $O(n)$ auxiliary space instead of storing the first `k` strings.
 - **Generate everything then sort:** All happy strings can be enumerated and sorted, but DFS already emits sorted order, so sorting and full storage are unnecessary.
 - **Breadth-first generation:** Expanding all valid strings level by level is intuitive but stores many prefixes and still needs ordered selection.
@@ -117,8 +113,8 @@ The completion condition appears before this pruning check. As a subtle result, 
 - **One-based rank:** The result uses `ans[k - 1]`, not `ans[k]`.
 - **Extra leaf after reaching `k`:** Because completion is checked before pruning, one sibling leaf can still be appended. It appears after the kth leaf and does not change the returned value.
 - **Lexicographical order:** Changing the loop to `"cba"` would generate reverse order and make the stored index incorrect.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Input direction `1` already means forward `+1`. Direction `0` means backward, so
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The difference array `d` has length `n + 1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ To see why, a range contributes `+v` at its start to all following prefix sums, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply each range directly:** It is straightfor:** - **Apply each range directly:** It is straightforward but can take $O(nm)$ time when intervals are long.
+- **Apply each range directly:** It is straightforward but can take $O(nm)$ time when intervals are long.
 - **Fenwick tree:** Range updates with point queries can solve the problem in $O((n+m)\log n)$, but an offline difference array is simpler and faster.
 - **All-string interval:** The end cancellation lands safely at sentinel index `n`.
 - **Single-character interval:** Updates at `i` and `i+1` affect exactly one prefix position.
@@ -112,8 +112,8 @@ To see why, a range contributes `+v` at its start to all following prefix sums, 
 - **Wrap from `z` to `a`:** Numeric value 25 plus one becomes zero modulo 26.
 - **Wrap from `a` to `z`:** Python's negative modulo maps negative one to 25.
 - **Sentinel entry:** `d[n]` is accumulated but never used to transform a character; it only terminates ranges cleanly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

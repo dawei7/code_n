@@ -64,7 +64,7 @@ Taking the maximum gives the largest cycle length.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `max_cycle` uses a global `vis` array.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Only one such long cycle can form the table arrangement, so the relevant value i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force seating subsets:** Exponential and:** - **Brute-force seating subsets:** Exponential and unnecessary once functional-graph structure is recognized.
+- **Brute-force seating subsets:** Exponential and unnecessary once functional-graph structure is recognized.
 - **Count only the longest cycle:** This misses the ability to combine multiple extended two-cycles.
 - **Sum all cycles:** Long cycles cannot be concatenated while preserving every directed favorite adjacency.
 - **Use every incoming branch:** Only one chain can attach to each free side of a two-cycle endpoint; `max` propagation keeps the longest.
@@ -115,8 +115,8 @@ Only one such long cycle can form the table arrangement, so the relevant value i
 - **Distance initialization:** One counts the endpoint employee itself.
 - **Topological leftovers:** They are exactly cycle vertices in a functional graph.
 - **Input preservation:** Favorite edges are read but not changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

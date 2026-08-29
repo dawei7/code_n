@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `startTime[i] <= queryTime <= endTime[i]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Python supports chained comparisons, so `x <= queryTime <= y` means that `x <= q
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit counter loop:** Iterate over indices :** - **Explicit counter loop:** Iterate over indices or zipped pairs and increment `answer` inside an `if`. It has the same bounds and can be easier to step through in a debugger.
+- **Explicit counter loop:** Iterate over indices or zipped pairs and increment `answer` inside an `if`. It has the same bounds and can be easier to step through in a debugger.
 - **List comprehension before sum:** `sum([condition for ...])` returns the same count but allocates `O(n)` temporary Booleans. The generator keeps auxiliary space constant.
 - **Count starts and finishes separately:** The number active at a query equals starts at or before it minus finishes strictly before it. This can help with many queries, but sorting or preprocessing is unnecessary for one query.
 - **Sweep-line events:** Event sorting is useful for a full activity timeline. It would add `O(n log n)` work for a single point that direct interval tests solve in `O(n)`.
@@ -102,8 +102,8 @@ Python supports chained comparisons, so `x <= queryTime <= y` means that `x <= q
 - **Boolean arithmetic:** Python defines `true` as one and `false` as zero for summation. In a language without that property, use an explicit conditional increment.
 - **Single student:** The sum contains one Boolean and returns either zero or one.
 - **Closed interval semantics:** Replacing `<=` with `<` on either side would incorrectly treat an endpoint as inactive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

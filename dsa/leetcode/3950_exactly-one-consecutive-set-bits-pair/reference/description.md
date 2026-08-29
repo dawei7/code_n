@@ -28,7 +28,7 @@ Return `true` if exactly one neighboring pair of binary digits is `11`; otherwis
 
 - Binary representation of 6 is `110`.
 
-- There is exactly one adjacent pair of set bits (`"11"`). Thus, the answer is `true`​​​​​​​.
+- There is exactly one adjacent pair of set bits (`"11"`). Thus, the answer is `true`.
 
 #### Example 2
 
@@ -40,7 +40,7 @@ Return `true` if exactly one neighboring pair of binary digits is `11`; otherwis
 
 - Binary representation of 5 is `101`.
 
-- There is no adjacent pair of set bits. Thus, the answer is `false`​​​​​​​.
+- There is no adjacent pair of set bits. Thus, the answer is `false`.
 
 ### 4. Constraints
 

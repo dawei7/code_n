@@ -51,7 +51,7 @@ The left side selects the salary Series, multiplication applies to every numeric
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left side selects the salary Series, multiplication appl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The left side selects the salary Series, multiplication applies to every numeric
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit reassignment:** `employees['salary'] :** - **Explicit reassignment:** `employees['salary'] = employees['salary'] * 2` has the same table result and makes the read-compute-write stages visible.
+- **Explicit reassignment:** `employees['salary'] = employees['salary'] * 2` has the same table result and makes the read-compute-write stages visible.
 - **`assign` method:** `employees.assign(salary=employees['salary'] * 2)` returns a transformed DataFrame and is useful when input mutation is undesirable.
 - **Row-wise `apply`:** It works but introduces unnecessary per-element Python function calls.
 - **Empty DataFrame:** The salary column remains present and empty; the operation completes without inventing rows.
@@ -94,8 +94,8 @@ The left side selects the salary Series, multiplication applies to every numeric
 - **Missing salary:** It propagates rather than being replaced, because missing-data handling is outside this task.
 - **Overflow:** Very narrow integer dtypes may overflow when doubled; valid challenge data is expected to support the result.
 - **Input mutation:** Preserve original salaries with an explicit copy before calling this exact implementation if they are needed later.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

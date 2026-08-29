@@ -57,7 +57,7 @@ This normalized class is exactly what repeated additions or subtractions preserv
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `x % value` returns a remainder from zero through `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If the class count is zero, no remaining element can become $i$. Since all small
 
 ## 6. Traps This Instance Exposes
 
-- **- **Transform values explicitly:** Searching actua:** - **Transform values explicitly:** Searching actual operation sequences is unnecessary because remainder equivalence completely characterizes reachability.
+- **Transform values explicitly:** Searching actual operation sequences is unnecessary because remainder equivalence completely characterizes reachability.
 - **Sort chosen representatives:** Sorting can derive a MEX but does extra $O(n\log n)$ work after classes are already sufficient.
 - **Array of remainder counts:** A list of length `value` replaces hashing and gives deterministic $O(n+\texttt{value})$ behavior.
 - **Negative inputs:** Python modulo normalizes them into the correct nonnegative class.
@@ -111,8 +111,8 @@ If the class count is zero, no remaining element can become $i$. Since all small
 - **Duplicate remainders:** Each occurrence is a separate resource for successive targets in that class.
 - **MEX upper bound:** Length $n$ guarantees a return by target $n$.
 - **Counter mutation:** Only the local frequency structure is decremented; `nums` remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

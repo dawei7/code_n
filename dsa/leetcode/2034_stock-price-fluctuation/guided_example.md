@@ -61,7 +61,7 @@ After these actions, the dictionary has one additional record and the sorted lis
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `timestamp` is absent from the dictionary, `update` add... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ After removal, the dictionary entry is overwritten and the new price is added to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary plus two heaps:** Push corrected pr:** - **Dictionary plus two heaps:** Push corrected prices lazily and discard stale heap tops during queries; updates are simple but heaps may retain obsolete entries.
+- **Dictionary plus two heaps:** Push corrected prices lazily and discard stale heap tops during queries; updates are simple but heaps may retain obsolete entries.
 - **Balanced map from price to frequency:** Maintain counts at sorted price keys; it provides the same multiset behavior.
 - **Scan dictionary values:** Makes updates cheap but every minimum and maximum query costs $O(Q)$.
 - **Repeated timestamp:** Remove its old price once before adding the corrected price.
@@ -113,8 +113,8 @@ After removal, the dictionary entry is overwritten and the new price is added to
 - **Single record:** Its price is simultaneously current, minimum, and maximum.
 - **Query before update:** Excluded by the contract, so empty-endpoint handling is unnecessary.
 - **No deletion operation:** This is why `last` never needs to move backward.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

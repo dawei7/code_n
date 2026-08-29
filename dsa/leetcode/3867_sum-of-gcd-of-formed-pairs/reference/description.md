@@ -142,4 +142,4 @@ Form pairs: $gcd(2, 8) = 2$ and $gcd(3, 6) = 3$. Thus, the sum is $2 + 3 = 5$.
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 
-- $1 \le \text{nums}[i] \le 10^​​​​​​​9$
+- $1 \le \text{nums}[i] \le 10^9$

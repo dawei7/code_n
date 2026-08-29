@@ -61,7 +61,7 @@ This tie behavior is essential. In the example, keyboard orders six and seven sh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The window expression partitions joined rows by `product_id`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Filtering before ranking would be logically backwards because the query would no
 
 ## 6. Traps This Instance Exposes
 
-- **- **MAX-date subquery:** Group orders by product t:** - **MAX-date subquery:** Group orders by product to find `MAX(order_date)`, then join back on both product and date. It also preserves every latest-date tie.
+- **MAX-date subquery:** Group orders by product to find `MAX(order_date)`, then join back on both product and date. It also preserves every latest-date tie.
 - **ROW_NUMBER:** It is wrong here because it keeps only one row when several orders share the latest date.
 - **DENSE_RANK:** Filtering rank one is correct and equivalent to `RANK` for this task.
 - **Correlated NOT EXISTS:** Keep an order when no later order exists for the same product; it is valid but may be less direct or efficient.
@@ -113,8 +113,8 @@ Filtering before ranking would be logically backwards because the query would no
 - **Positional ORDER BY:** It is concise but depends on the select-list order.
 - **Wildcard in T:** Extra columns are carried only temporarily and removed by the outer projection.
 - **Rank versus row count:** Rank one identifies a date tier, not a fixed number of orders.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

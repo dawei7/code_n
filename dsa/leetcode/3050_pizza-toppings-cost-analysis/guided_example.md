@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `RANK() OVER (ORDER BY topping_name) AS rk`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because `topping_name` is the primary key, names are unique. There are no rank t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare names directly in joins:** Conditions :** - **Compare names directly in joins:** Conditions `t1.topping_name < t2.topping_name` and `t2.topping_name < t3.topping_name` can enforce the same uniqueness and alphabetical order without a ranking CTE.
+- **Compare names directly in joins:** Conditions `t1.topping_name < t2.topping_name` and `t2.topping_name < t3.topping_name` can enforce the same uniqueness and alphabetical order without a ranking CTE.
 - **Cross join then deduplicate:** Generating all $N^3$ ordered triples and applying `DISTINCT` wastes work and makes repeated-topping exclusion harder to reason about.
 - **Recursive combination generation:** It is unnecessary for a fixed combination size of three.
 - **Fewer than three toppings:** No triple satisfies the joins, so the result is empty.
@@ -99,8 +99,8 @@ Because `topping_name` is the primary key, names are unique. There are no rank t
 - **Why `UNION` or grouping is unnecessary:** The strict rank chain already makes every selected set unique. Adding duplicate elimination would impose extra work without changing valid output.
 - **Output-size lower bound:** Any correct query must emit $\binom N3$ rows when $N\ge3$. Consequently cubic result production is unavoidable even if indexes make the joins themselves efficient.
 - **Lexicographic ordering basis:** Alphabetical order follows the database collation used by `ORDER BY topping_name`. The concatenated name order and rank comparisons use that same collation consistently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

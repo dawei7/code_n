@@ -63,7 +63,7 @@ is always a valid index in the nonempty half-open interval.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `left` starts at zero and `right` starts at `this.length`, o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Each update preserves the invariant and strictly shortens the interval.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear scan:** Remembering the last matching i:** - **Linear scan:** Remembering the last matching index is simple but costs `O(n)` and ignores the sorted-order opportunity.
+- **Linear scan:** Remembering the last matching index is simple but costs `O(n)` and ignores the sorted-order opportunity.
 - **Built-in `lastIndexOf`:** It has the desired equality behavior but also scans linearly.
 - **Stop at the first equality:** Ordinary binary search may return a middle duplicate rather than the last occurrence.
 - **Search for the lower bound:** The first value greater than or equal to target identifies the first occurrence, not the last. Upper bound minus one is the needed boundary.
@@ -124,8 +124,8 @@ Each update preserves the invariant and strictly shortens the interval.
 - **Unsorted receiver:** The monotonic boundary invariant fails, so results are unspecified; sorted ascending order is essential.
 - **`NaN` values or target:** JavaScript comparisons with `NaN` are not a normal numerical order. Such values are outside the stated sorted-number contract.
 - **Prototype modification:** Adding methods globally can affect enumeration in unrelated code, but the challenge explicitly requests an Array prototype enhancement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

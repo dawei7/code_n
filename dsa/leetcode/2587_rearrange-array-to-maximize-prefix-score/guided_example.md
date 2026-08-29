@@ -61,7 +61,7 @@ Hence some optimal arrangement is the descending sort used by the code.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a permutation contains adjacent values $a<b$ in that... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This gives another view of optimality: descending order makes every prefix as la
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every permutation:** There are $n!$ orders:** - **Try every permutation:** There are $n!$ orders; the adjacent-swap proof collapses the search to one sorted arrangement.
+- **Try every permutation:** There are $n!$ orders; the adjacent-swap proof collapses the search to one sorted arrangement.
 - **Put only positive values first:** This is directionally correct, but full descending order also optimally orders positives, zeros, and negatives.
 - **Priority queue:** Repeatedly extracting the maximum reproduces descending order in $O(n\log n)$ time with explicit $O(n)$ heap space.
 - **All negative:** The largest value still makes a nonpositive first prefix, so the answer is zero.
@@ -108,8 +108,8 @@ This gives another view of optimality: descending order makes every prefix as la
 - **Duplicate values:** Their relative order is irrelevant and sorting handles them naturally.
 - **Strict positivity:** The stopping test is `s <= 0`; a zero prefix does not count.
 - **Input mutation:** Sort a copy when original ordering must be retained.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

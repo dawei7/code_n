@@ -74,7 +74,7 @@ The first condition requires exactly two copies of the largest required value. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(nums)` builds a mapping from each value to it... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ This is a useful counting proof: the code does not omit duplicate validation; it
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and compare positions:** Sorting lets the:** - **Sort and compare positions:** Sorting lets the first `n` entries be checked against `1..n` and the last against `n`, but costs `O(m log m)` time and may mutate input.
+- **Sort and compare positions:** Sorting lets the first `n` entries be checked against `1..n` and the last against `n`, but costs `O(m log m)` time and may mutate input.
 - **Fixed frequency array:** Since values are bounded, an indexed count list also gives linear time. Counter avoids choosing an allocation bound.
 - **Use the maximum as `n`:** Length is the decisive constraint. An unexpected large value must cause rejection, not redefine a base of incompatible length.
 - **Check lower counts only for presence:** This is safe because those presences plus two copies of `n` exactly fill the array.
@@ -133,8 +133,8 @@ This is a useful counting proof: the code does not omit duplicate validation; it
 - **Arbitrary order:** Counter comparison ignores order, as permutation testing requires.
 - **Positive-value constraint:** Zero and negative values are excluded, though either would necessarily displace a requirement and be rejected.
 - **Input preservation:** Counter reads the sequence without modifying it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

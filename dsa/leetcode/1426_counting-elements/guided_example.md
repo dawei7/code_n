@@ -70,7 +70,7 @@ Python's Counter has another useful behavior: reading a missing key returns zero
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(arr)` maps each distinct input value to its o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Summing these contributions gives the total number of qualifying array positions
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set plus original-array scan:** Build `set(arr:** - **Set plus original-array scan:** Build `set(arr)`, then add one for each original `x` whose successor is in the set. It has the same expected $O(n)$ time and naturally counts duplicates.
+- **Set plus original-array scan:** Build `set(arr)`, then add one for each original `x` whose successor is in the set. It has the same expected $O(n)$ time and naturally counts duplicates.
 - **Incorrect set-key scan:** Iterating only unique values and adding one undercounts repeated `x` values.
 - **Direct list membership:** Testing `x + 1 in arr` for every element uses linear search and can take $O(n^2)$ time.
 - **Sort and count runs:** After sorting, compare adjacent distinct runs and add the earlier run length when values differ by one. This takes $O(n\log n)$ time.
@@ -123,8 +123,8 @@ Summing these contributions gives the total number of qualifying array positions
 - **Largest value:** If its successor is absent, its frequency contributes zero.
 - **Gaps larger than one:** Only exact successor $x+1$ matters; a later value $x+2$ does not qualify `x`.
 - **Counter missing-key behavior:** `cnt[x+1]` returns zero without inserting a meaningful positive count, making it safe as a Boolean test.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

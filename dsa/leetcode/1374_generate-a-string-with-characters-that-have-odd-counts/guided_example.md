@@ -67,7 +67,7 @@ This is equivalent to checking `n % 2 == 1`. The bitwise form is compact, but th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The lowest binary bit represents the ones place.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For $n=7$, the method returns seven copies of `a`. One distinct character occurs
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modulo parity check:** Use `n % 2` instead of :** - **Modulo parity check:** Use `n % 2` instead of `n & 1`. It is equally correct and may be more immediately readable to beginners.
+- **Modulo parity check:** Use `n % 2` instead of `n & 1`. It is equally correct and may be more immediately readable to beginners.
 - **Always use two characters:** For odd $n$, two positive odd counts cannot sum to an odd total, so a fixed two-letter rule needs a different number of used letters in that case.
 - **Use three characters for odd `n`:** Three odd counts can sum to an odd length when $n$ is large enough, but this complicates small inputs without benefit.
 - **Random construction:** Generate candidates and count frequencies until one works. It is unnecessary, nondeterministic, and less efficient than a proof-driven formula.
@@ -120,8 +120,8 @@ For $n=7$, the method returns seven copies of `a`. One distinct character occurs
 - **No empty input:** The constraint $n\ge1$ ensures the even branch never tries to use a negative repetition count.
 - **Frequency of unused letters:** Characters absent from the string are not considered distinct characters “in such string,” so their zero counts do not violate the requirement.
 - **Immutability:** String multiplication and concatenation create the answer without mutating external data.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

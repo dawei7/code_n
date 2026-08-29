@@ -51,7 +51,7 @@ A min-heap supports exactly those operations.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A min-heap supports exactly those operations.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A min-heap supports exactly those operations.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated sorting:** Sorting after every combin:** - **Repeated sorting:** Sorting after every combination costs up to $O(N^2\log N)$ and repeats unnecessary ordering work.
+- **Repeated sorting:** Sorting after every combination costs up to $O(N^2\log N)$ and repeats unnecessary ordering work.
 - **Balanced multiset:** It can support minimum extraction and insertion in logarithmic time but is not built into Python's standard library as directly as a heap.
 - **Two-queue technique after one sort:** Because generated values have useful monotonic properties, a more specialized linear merge approach may exist, but it is more complex than the required heap simulation.
 - **All values already qualify:** The loop never runs and returns zero.
@@ -100,8 +100,8 @@ A min-heap supports exactly those operations.
 - **Operation reduces length:** Two values are removed and one inserted, so heap length falls by one each iteration and termination occurs after at most $N-1$ operations.
 - **Threshold equality:** As soon as the root equals $k$, every value is at least $k$ and the loop correctly stops.
 - **Answer counter:** It increments exactly once per legal combination, not once per pop, so it measures operations rather than removed elements.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ The loop over `zip(cnt1,cnt2)` evaluates this for all 26 possible common letters
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Choose a target letter at alphabet index `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The helper computes their sum and minimizes `ans`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix counts across the alphabet:** Precomput:** - **Prefix counts across the alphabet:** Precompute cumulative frequencies so each boundary cost is constant even when alphabet size is treated as a variable.
+- **Prefix counts across the alphabet:** Precompute cumulative frequencies so each boundary cost is constant even when alphabet size is treated as a variable.
 - **Try all replacement strings:** Exponential and unnecessary because positions are independent once a condition is selected.
 - **Both strings already one same letter:** Condition three costs zero.
 - **Each string uniform but different letters:** One ordering condition may already hold with zero operations.
@@ -121,8 +121,8 @@ The helper computes their sum and minimizes `ans`.
 - **Boundary at 25:** The upper side may contain only `'z'`.
 - **Fixed lowercase alphabet:** It makes frequency arrays and slice overhead constant.
 - **Nonlocal result:** Both helper directions contribute to the same global minimum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

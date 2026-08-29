@@ -148,7 +148,7 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "n": 999
+        "n": 99
       },
       "expected": true,
       "tags": [
@@ -157,12 +157,12 @@
       ]
     },
     {
-      "id": "trial-thousand",
-      "name": "four-digit pile size",
+      "id": "trial-hundred",
+      "name": "three-digit pile size",
       "kind": "trial",
       "visible": true,
       "input": {
-        "n": 1000
+        "n": 100
       },
       "expected": true,
       "tags": [

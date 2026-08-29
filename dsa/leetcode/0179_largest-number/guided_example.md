@@ -76,7 +76,7 @@ extensions.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider any proposed output with adjacent pieces `a` then `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ strictly unequal comparisons.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-way comparator:** Return `-1`, `0`, or `:** - **Three-way comparator:** Return `-1`, `0`, or `1` from comparing `b+a` with `a+b`; this repairs tied-order consistency.
+- **Three-way comparator:** Return `-1`, `0`, or `1` from comparing `b+a` with `a+b`; this repairs tied-order consistency.
 - **Repeated-string sort key:** With bounded digit length, repeating strings to a common comparison length can work, but a true comparator states the rule exactly.
 - **Ordinary descending sort:** Fails for shared-prefix pairs such as three and 30.
 - **All zeros:** Collapse the joined representation to one `"0"`.
@@ -129,8 +129,8 @@ strictly unequal comparisons.
 - **Nonnegative guarantee:** No minus signs complicate concatenation ordering.
 - **Missing imports:** `List` and `cmp_to_key` must be supplied.
 - **Comparator contract:** Equality must return zero even when either tied order has the same final text.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

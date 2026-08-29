@@ -51,7 +51,7 @@ Let $S$ denote the total number of characters across all input words.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $S$ denote the total number of characters across all inp... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let $S$ denote the total number of characters across all input words.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly lengthen duplicate abbreviations:**:** - **Repeatedly lengthen duplicate abbreviations:** It follows the rules directly but may rescan and rebuild abbreviations many times, leading to substantially more than linear work.
+- **Repeatedly lengthen duplicate abbreviations:** It follows the rules directly but may rescan and rebuild abbreviations many times, leading to substantially more than linear work.
 - **Sort each collision group:** Adjacent lexicographic neighbors determine the longest common prefix. This uses less per-node overhead but costs sorting time.
 - **Pairwise longest common prefixes:** Comparing every relevant word pair can require quadratic work in the number of words.
 - **Different first characters in one trie key:** They split at the first trie edge and immediately obtain unique one-character prefixes.
@@ -98,8 +98,8 @@ Let $S$ denote the total number of characters across all input words.
 - **Input order:** Results are generated in a second pass over `words`, preserving the required order.
 - **Lowercase guarantee:** Every child index lies between zero and 25.
 - **Multi-digit counts:** `str(...)` writes the full omitted-character count; the algorithm does not assume it is one digit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

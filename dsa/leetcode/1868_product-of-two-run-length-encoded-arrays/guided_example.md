@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-**Run-length encoding** is a compression algorithm that allows for an integer array `nums` with many segments of **consecutive repeated** numbers to be represented by a (generally smaller) 2D array `encoded`. Each $\text{encoded}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $$i^{\text{th}}$$ segment of repeated numbers in `nums` where $\text{val}_{i}$ is the value that is repeated $\text{freq}_{i}$ times.
+**Run-length encoding** is a compression algorithm that allows for an integer array `nums` with many segments of **consecutive repeated** numbers to be represented by a (generally smaller) 2D array `encoded`. Each $\text{encoded}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $i^{\text{th}}$ segment of repeated numbers in `nums` where $\text{val}_{i}$ is the value that is repeated $\text{freq}_{i}$ times.
 
 The objective is to compute `[[6, 6]]` from `{"encoded1": [[1, 3], [2, 3]], "encoded2": [[6, 3], [3, 3]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The solution iterates each first encoding run `[vi, fi]`. `fi` is unpacked into 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution iterates each first encoding run `[vi, fi]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution iterates each first encoding run `[vi, fi]`. `fi` is unpacked into 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand both arrays:** It is conceptually simpl:** - **Expand both arrays:** It is conceptually simple but can require memory and time proportional to enormous expanded length.
+- **Expand both arrays:** It is conceptually simple but can require memory and time proportional to enormous expanded length.
 - **Copy second frequencies first:** This preserves `encoded2` while retaining the same algorithm and asymptotic bounds.
 - **One run versus many:** The while loop naturally intersects the single long run with each shorter opposing run.
 - **Both runs end together:** Both remaining frequencies reach zero; the outer loop and `j` advance consistently.
@@ -98,8 +98,8 @@ The solution iterates each first encoding run `[vi, fi]`. `fi` is unpacked into 
 - **Large products:** Values reach at most the product of source bounds and fit safely in Python integers.
 - **Input mutation:** Every consumed `encoded2` frequency is reduced in place, usually to zero.
 - **First input preservation:** Unpacked `fi` changes locally and leaves `encoded1` intact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

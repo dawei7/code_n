@@ -51,7 +51,7 @@ The score depends only on the final maximum and minimum. Let
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The score depends only on the final maximum and minimum.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +90,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjust every element greedily:** Explicit choi:** - **Adjust every element greedily:** Explicit choices are unnecessary because the achievable optimum depends only on original extremes.
+- **Adjust every element greedily:** Explicit choices are unnecessary because the achievable optimum depends only on original extremes.
 - **Sort the array:** The minimum and maximum would become endpoints, but sorting costs $O(n\log n)$ and is stronger than needed.
 - **Binary search a target interval:** This can test feasibility but adds complexity when the closed-form intersection is immediate.
 - **One element:** Maximum equals minimum, so the score is zero for every `k`.
@@ -102,8 +102,8 @@ $$
 - **Integer target:** All endpoints are integers, so a nonempty overlap contains an integer boundary point.
 - **At most one operation:** Selecting the entire adjustment in one step reaches any point in `[x-k,x+k]`; repeated operations are unnecessary.
 - **No input mutation:** The solution computes the minimum score without constructing a transformed array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ This priority matters because the root can also have children. Its child status 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This priority matters because the root can also have childre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This priority matters because the root can also have children. Its child status 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`EXISTS` correlated subquery:** Check whether :** - **`EXISTS` correlated subquery:** Check whether any row has `P=t1.N`. It avoids duplicate child rows and therefore removes the need for `DISTINCT`.
+- **`EXISTS` correlated subquery:** Check whether any row has `P=t1.N`. It avoids duplicate child rows and therefore removes the need for `DISTINCT`.
 - **Parent-value set CTE:** Materialize distinct non-null parents, then left join that set to nodes. This makes child existence explicit.
 - **Inner join:** It is incorrect because leaves would vanish from the result.
 - **Root with children:** The outer root check takes priority and returns Root.
@@ -100,8 +100,8 @@ This priority matters because the root can also have children. Its child status 
 - **Distinct cost is caused by the join shape:** Without `DISTINCT`, a parent appears once per child. A valid binary tree limits this to two, but the required result still needs exactly one row per node.
 - **Node values need not be consecutive:** Classification uses equality relationships, not arithmetic on `N`. Sparse, negative, or large identifiers would work identically if allowed by the table.
 - **Ordering after deduplication:** The final sort acts on the one-row-per-node result, ensuring duplicate child matches do not disturb the ascending node sequence.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

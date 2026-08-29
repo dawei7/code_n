@@ -63,7 +63,7 @@ For segments `[1, 4, 5]` and `[1, 7, 7]`, the event deltas are $+12$ at one, $-5
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary is converted to pairs `[coordinate, delta]` a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This works with the unique-color guarantee. Every start or end changes the activ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate-array difference sweep:** Since end:** - **Coordinate-array difference sweep:** Since endpoints are bounded by $10^5$, a fixed array can replace the dictionary and sorting. It scans the whole coordinate range and trades domain-dependent memory for simpler indexing.
+- **Coordinate-array difference sweep:** Since endpoints are bounded by $10^5$, a fixed array can replace the dictionary and sorting. It scans the whole coordinate range and trades domain-dependent memory for simpler indexing.
 - **Explicit active-color set:** Sweep start and end events while maintaining actual colors. This can distinguish sets directly but is unnecessary for sums when all endpoint boundaries are retained.
 - **Merge adjacent equal sums:** This is incorrect because different unique-color sets may have the same sum, as the statement's example demonstrates.
 - **Touching segments:** At a shared endpoint, the ending color is removed and the starting color added before the next half-open interval begins.
@@ -114,8 +114,8 @@ This works with the unique-color guarantee. Every start or end changes the activ
 - **Positive unique colors:** A zero prefix unambiguously means no active segment; cancellation between positive active colors cannot create zero.
 - **Any output order:** The method naturally returns increasing coordinate order, which is valid even though order is unrestricted.
 - **Imported dictionary type:** The exact source assumes `defaultdict` is available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

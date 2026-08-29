@@ -51,7 +51,7 @@ A second join, `Teams t2` on `pass_to`, obtains the receiver's team. Foreign-key
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A second join, `Teams t2` on `pass_to`, obtains the receiver... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A second join, `Teams t2` on `pass_to`, obtains the receiver's team. Foreign-key
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation without a CTE:** It ca:** - **Conditional aggregation without a CTE:** It can compute the same sum inline but is less readable.
+- **Conditional aggregation without a CTE:** It can compute the same sum inline but is less readable.
 - **Left joins:** Foreign keys guarantee endpoints, so inner joins correctly retain all valid passes.
 - **Exactly `45:00`:** It belongs to half one.
 - **`45:01`:** It belongs to half two.
@@ -102,8 +102,8 @@ A second join, `Teams t2` on `pass_to`, obtains the receiver's team. Foreign-key
 - **Ordinal clauses:** `GROUP BY 1,2` and `ORDER BY 1,2` depend on select-list order.
 - **Team names:** Equality, grouping, and ordering follow the database collation.
 - **No row mutation:** This is a read-only query.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -81,7 +81,7 @@ Once the first element is present, the first encoded value determines the second
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes `ans = [first]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Appending rather than overwriting preserves every previously reconstructed value
 
 ## 6. Traps This Instance Exposes
 
-- **- **Preallocate the result:** Allocate `len(encode:** - **Preallocate the result:** Allocate `len(encoded)+1` entries, set the first, and fill by index. It has the same complexity and avoids amortized list growth.
+- **Preallocate the result:** Allocate `len(encoded)+1` entries, set the first, and fill by index. It has the same complexity and avoids amortized list growth.
 - **Recursive decoding:** Apply the same recurrence recursively, but it adds $O(n)$ call-stack space and risks recursion depth for long input.
 - **Brute-force candidates:** Trying possible next values is unnecessary because XOR inversion gives one unique result directly.
 - **First value zero:** The next value is simply `encoded[0]` because zero XOR changes nothing.
@@ -133,8 +133,8 @@ Appending rather than overwriting preserves every previously reconstructed value
 - **Input preservation:** `encoded` and `first` are read but never modified.
 - **Result verification:** XORing each adjacent returned pair reproduces the corresponding encoded entry by construction.
 - **Order dependence:** Each step needs the immediately previous decoded value, so encoded entries must be processed left to right.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

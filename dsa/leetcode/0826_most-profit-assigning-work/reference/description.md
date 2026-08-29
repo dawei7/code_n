@@ -2,9 +2,9 @@
 
 You have `n` jobs and `m` workers. You are given three arrays: `difficulty`, `profit`, and `worker` where:
 
-- $\text{difficulty}[i]$ and $\text{profit}[i]$ are the difficulty and the profit of the $$i^{\text{th}}$$ job, and
+- $\text{difficulty}[i]$ and $\text{profit}[i]$ are the difficulty and the profit of the $i^{\text{th}}$ job, and
 
-- $\text{worker}[j]$ is the ability of $$j^{\text{th}}$$ worker (i.e., the $$j^{\text{th}}$$ worker can only complete a job with difficulty at most $\text{worker}[j]$).
+- $\text{worker}[j]$ is the ability of $j^{\text{th}}$ worker (i.e., the $j^{\text{th}}$ worker can only complete a job with difficulty at most $\text{worker}[j]$).
 
 Every worker can be assigned **at most one job**, but one job can be **completed multiple times**.
 

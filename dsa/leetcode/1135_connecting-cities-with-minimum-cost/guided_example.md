@@ -55,7 +55,7 @@ Parallel edges remain independent. The cheaper one is considered first; a later 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `connections.sort(key=lambda x: x[2])` orders edges by their... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The parent assignment uses representatives rather than raw endpoint indices. Att
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prim’s algorithm:** Grow one tree with a prior:** - **Prim’s algorithm:** Grow one tree with a priority queue in $O(m\log n)$ time; convenient with adjacency lists.
+- **Prim’s algorithm:** Grow one tree with a priority queue in $O(m\log n)$ time; convenient with adjacency lists.
 - **Union by rank:** Add component sizes or ranks to strengthen the DSU bound and tree shape.
 - **Cycle acceptance:** Incorrect because it adds cost without connecting new components.
 - **Disconnected graph:** Component count remains above one and the result is `-1`.
@@ -110,8 +110,8 @@ The parent assignment uses representatives rather than raw endpoint indices. Att
 - **Input mutation:** Sorting permanently reorders `connections`.
 - **One-based labels:** Subtracting one aligns them with the parent array.
 - **Equal-cost edges:** Any order among them can lead to a minimum spanning tree.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

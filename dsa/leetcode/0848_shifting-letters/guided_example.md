@@ -66,7 +66,7 @@ The rightmost character is affected only by the final whole-string operation. On
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `t` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ Adding `t` applies all shifts numerically.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply every prefix operation directly:** It ca:** - **Apply every prefix operation directly:** It can touch `O(n^2)` total characters.
-- **- **Build a separate suffix-sum array:** It gives :** - **Build a separate suffix-sum array:** It gives `O(n)` time but uses another length-`n` numeric array. The running total needs only one scalar beyond the output list.
-- **- **Reduce `t` modulo 26 each step:** This produce:** - **Reduce `t` modulo 26 each step:** This produces identical letters and may keep integers bounded in fixed-width languages.
+- **Apply every prefix operation directly:** It can touch `O(n^2)` total characters.
+- **Build a separate suffix-sum array:** It gives `O(n)` time but uses another length-`n` numeric array. The running total needs only one scalar beyond the output list.
+- **Reduce `t` modulo 26 each step:** This produces identical letters and may keep integers bounded in fixed-width languages.
 
 ---
 

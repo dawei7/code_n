@@ -72,7 +72,7 @@ For block length `k`, only cuts `k,2k,\ldots,N-k` are actual block boundaries. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider a cut before index `c`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The checks are therefore both necessary and sufficient for cross-block order.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every `k` from one through `N`:** Most do :** - **Try every `k` from one through `N`:** Most do not divide `N` and cannot form equal blocks. Divisor enumeration avoids unnecessary candidates.
+- **Try every `k` from one through `N`:** Most do not divide `N` and cannot form equal blocks. Divisor enumeration avoids unnecessary candidates.
 - **Enumerate every rotation combination:** A candidate with many blocks has exponentially many combinations. The one-descent characterization tests each block independently.
 - **Sort each block's values:** This checks its target order but not whether that target is a cyclic rotation of the original order. Circular descents capture exactly that constraint.
 - **Check only blocks, not boundaries:** Individually sortable blocks may still contain values in incompatible global ranges.
@@ -124,8 +124,8 @@ The checks are therefore both necessary and sufficient for cross-block order.
 - **Single-element array:** Its only divisor one succeeds, so the answer is one.
 - **No sortable divisor:** The accumulator remains zero.
 - **No actual mutation:** The method proves rotations exist but never constructs the rotated array, which is sufficient because only the sum of valid `k` values is requested.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

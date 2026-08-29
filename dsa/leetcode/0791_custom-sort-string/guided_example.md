@@ -65,7 +65,7 @@ For a character in `order`, it returns the recorded index. For an absent charact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If character `x` occurs before character `y` in `order`, eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ Some implementations put absent characters after all ordered characters by using
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency counting:** Count characters in `s`,:** - **Frequency counting:** Count characters in `s`, emit ordered groups following `order`, then emit leftovers. This achieves $O(m+n)$ time and is the method matching the manifest.
-- **- **Default leftovers after the order:** Use key `:** - **Default leftovers after the order:** Use key `d.get(x, len(order))` to place absent characters at the end. It remains valid but differs from the exact source's output placement.
-- **- **Custom comparator:** Compare characters by ran:** - **Custom comparator:** Compare characters by rank directly, but repeated map lookups and comparator calls are more cumbersome than a key function.
+- **Frequency counting:** Count characters in `s`, emit ordered groups following `order`, then emit leftovers. This achieves $O(m+n)$ time and is the method matching the manifest.
+- **Default leftovers after the order:** Use key `d.get(x, len(order))` to place absent characters at the end. It remains valid but differs from the exact source's output placement.
+- **Custom comparator:** Compare characters by rank directly, but repeated map lookups and comparator calls are more cumbersome than a key function.
 
 ---
 

@@ -71,7 +71,7 @@ The Counter's keys do not change during recursion; only their numeric values are
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(cnt)` returns the number of distinct nonempty continuat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ At the root for `"AAB"`, choosing `A` counts sequence `"A"`, while choosing `B` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Position-based backtracking plus a set:** It g:** - **Position-based backtracking plus a set:** It generates the same string through different identical tiles and needs a potentially huge set to deduplicate results.
+- **Position-based backtracking plus a set:** It generates the same string through different identical tiles and needs a potentially huge set to deduplicate results.
 - **Sorted tiles with duplicate skipping:** Backtrack over positions and skip equal unused choices at each depth. This also avoids duplicate sequences but requires more delicate used-index logic.
 - **Memoize by remaining counts:** Different prefixes can reach the same remaining multiset, and the number of suffix continuations is identical. Caching can reuse that numeric result while still adding it under each distinct prefix.
 - **Combinatorial frequency formula:** Enumerate how many copies of each letter a sequence uses, then count multiset permutations. It avoids spelling paths but requires careful enumeration and factorial arithmetic.
@@ -126,8 +126,8 @@ At the root for `"AAB"`, choosing `A` counts sequence `"A"`, while choosing `B` 
 - **Backtracking restoration:** Every decrement must be paired with an increment before the loop continues.
 - **Uppercase alphabet:** Counter keys handle only letters actually present; the code does not waste iterations over all 26 possible letters.
 - **Input preservation:** `tiles` is immutable, and only the separate Counter is modified and restored.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

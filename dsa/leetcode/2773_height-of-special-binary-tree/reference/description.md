@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a `root`, which is the root of a **special** binary tree with `n` nodes. The nodes of the special binary tree are numbered from `1` to `n`. Suppose the tree has `k` leaves in the following order: $b_{1} <_ b_{2} < ... < b_{k}$.
+You are given a `root`, which is the root of a **special** binary tree with `n` nodes. The nodes of the special binary tree are numbered from `1` to `n`. Suppose the tree has `k` leaves in the following order: $b_{1} < b_{2} < ... < b_{k}$.
 
 The leaves of this tree have a **special** property! That is, for every leaf $b_{i}$, the following conditions hold:
 

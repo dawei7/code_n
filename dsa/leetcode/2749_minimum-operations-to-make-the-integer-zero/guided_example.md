@@ -73,7 +73,7 @@ Thus a necessary condition is:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The binary representation of `x` writes it as a sum of one d... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over integer values:** Ha:** - **Breadth-first search over integer values:** Has an enormous branching factor of 61 and is unnecessary after the algebraic reduction.
+- **Breadth-first search over integer values:** Has an enormous branching factor of 61 and is unnecessary after the algebraic reduction.
 - **Enumerate exponent multisets:** Combinatorial and redundant because popcount gives a complete feasibility test.
 - **num2 positive:** `x` decreases; negativity proves all later candidates impossible.
 - **num2 zero:** `x` stays `num1`, and the smallest feasible term count is its popcount.
@@ -130,8 +130,8 @@ $$
 - **x zero with positive k:** Fails `k <= x` because positive powers cannot sum to zero.
 - **Minimum guarantee:** Increasing enumeration makes the first feasible `k` optimal.
 - **No construction:** The proof of splittability is sufficient for the requested count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -66,7 +66,7 @@ For example, to reason backward from five, the algorithm must first go to six. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the current reverse target is odd, it cannot have been pr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ More generally, additions before an available halving can be moved after that ha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward breadth-first search:** It can find a :** - **Forward breadth-first search:** It can find a shortest sequence but explores many display values and needs a safe search bound, making it far less efficient.
+- **Forward breadth-first search:** It can find a shortest sequence but explores many display values and needs a safe search bound, making it far less efficient.
 - **Forward greedy doubling:** Doubling whenever below the target fails when decrementing first enables an exact or cheaper later doubling, as in five to eight.
 - **Recursive reverse solution:** Apply the same odd/even recurrence recursively. It is concise but uses `O(\log T)` call-stack space instead of constant space.
 - **Target already equal to start:** The loop is skipped, the difference is zero, and the answer is zero.
@@ -124,8 +124,8 @@ More generally, additions before an available halving can be moved after that ha
 - **Positive-value guarantee:** Bit shifting and parity reasoning use positive integers throughout; the stated constraints ensure this.
 - **Large final difference:** It is counted with one subtraction expression rather than simulated, so a large `startValue - target` does not increase runtime.
 - **Bit operations:** `target & 1` and `target >>= 1` are exact integer parity and division operations here; they introduce no rounding.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an `m x n` integer matrix `grid`​​​.
+You are given an `m x n` integer matrix `grid`.
 
 The objective is to compute `[20, 9, 8]` from `{"grid": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Bound the radius before enumeration.** For a center `(i, j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every `k` from `1` through `l` keeps all four corners in the grid. Any larger ra
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed top-three structure:** Track at most thr:** - **Fixed top-three structure:** Track at most three distinct values with direct comparisons after every candidate. This restores constant-time answer maintenance and gives the manifest's clean $O(mn\min(m,n))$ time without relying on a balanced sorted container.
+- **Fixed top-three structure:** Track at most three distinct values with direct comparisons after every candidate. This restores constant-time answer maintenance and gives the manifest's clean $O(mn\min(m,n))$ time without relying on a balanced sorted container.
 - **Enumerating every border cell:** Walking all four edges for every center and radius avoids prefix tables but adds another factor proportional to the radius, producing a substantially slower worst case.
 - **Horizontal and vertical prefix sums:** They do not align with a 45-degree rhombus border. Two diagonal prefix directions are the natural structures that make each edge a difference of two stored values.
 - **Area-zero rhombi:** Every individual cell is a valid candidate. The explicit `ss.add(x)` is essential because the positive-radius loop starts at one and cannot discover them.
@@ -95,8 +95,8 @@ Every `k` from `1` through `l` keeps all four corners in the grid. Any larger ra
 - **Fewer than three distinct sums:** The set is never padded. Reversing it returns exactly one or two values when that is all the grid provides.
 - **Corner double counting:** Simply adding four inclusive diagonal segments counts every corner twice. The exact endpoint conventions here instead omit top and duplicate bottom, so the specific subtract-bottom/add-top correction must be understood rather than replaced mechanically.
 - **Dependency on `SortedSet`:** This is not Python's built-in `set`; it relies on an ordered-set implementation supplied by the execution environment. A portable solution can use an ordinary set plus fixed top-three comparisons because only three final values are needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

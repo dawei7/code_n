@@ -71,7 +71,7 @@ The input is non-negative, so the produced Kelvin value is at least 273.15. The 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Celsius and Kelvin degrees have the same size.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The order of operations in `celsius * 1.8 + 32` follows the mathematical formula
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use fractional scale `9/5`:** Fahrenheit can b:** - **Use fractional scale `9/5`:** Fahrenheit can be written `celsius*9/5+32`. It is mathematically identical; `1.8` follows the statement directly.
+- **Use fractional scale `9/5`:** Fahrenheit can be written `celsius*9/5+32`. It is mathematically identical; `1.8` follows the statement directly.
 - **Round to five decimals:** This is unnecessary because the judge uses tolerance, and forced rounding can discard useful precision.
 - **Use decimal arithmetic:** It can represent decimal constants exactly but adds complexity without need at the accepted tolerance.
 - **Zero Celsius:** The result is 273.15 Kelvin and 32 Fahrenheit.
@@ -129,8 +129,8 @@ The order of operations in `celsius * 1.8 + 32` follows the mathematical formula
 - **No mutation:** The scalar input is read twice and cannot be changed in place.
 - **Tolerance:** Minor binary floating-point representation error is explicitly accepted.
 - **Affine formulas:** Each output depends only on the input and fixed constants, so no iterative approximation is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

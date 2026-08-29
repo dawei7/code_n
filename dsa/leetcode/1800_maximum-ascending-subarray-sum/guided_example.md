@@ -60,7 +60,7 @@ Every number is positive. Therefore, extending a valid ascending run always incr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the current value `v` is strictly greater than `nums[i - ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ This omitted reset update would require reconsideration if negative numbers were
 
 ## 6. Traps This Instance Exposes
 
-- **- **Start from every index:** Extending a run sepa:** - **Start from every index:** Extending a run separately from each start repeats work and can take $O(n^2)$ time.
+- **Start from every index:** Extending a run separately from each start repeats work and can take $O(n^2)$ time.
 - **Store all run sums:** It works but uses unnecessary $O(n)$ space; only the maximum and current sum matter.
 - **Generic maximum-subarray algorithm:** Kadane's algorithm addresses arbitrary negative values but does not enforce strict ascent by itself.
 - **Equality boundary:** Equal adjacent values break the run because ascending means strictly increasing, not non-decreasing.
@@ -114,8 +114,8 @@ This omitted reset update would require reconsideration if negative numbers were
 - **Strict comparison:** The source uses `>` rather than `>=` to preserve the definition.
 - **Contiguous requirement:** A decrease cannot be skipped; doing so would form a subsequence rather than a subarray.
 - **Input preservation:** The algorithm reads `nums` without changing it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

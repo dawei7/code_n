@@ -57,7 +57,7 @@ This separation is necessary because repeatedly dividing the working number even
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `x` is a disposable copy used for digit extraction,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ equals the required sum.
 
 ## 6. Traps This Instance Exposes
 
-- **- **String digit iteration:** Convert once, set `k:** - **String digit iteration:** Convert once, set `k` to its length, and sum `int(c) ** k` for each character. It is concise but uses textual conversion for extraction too.
+- **String digit iteration:** Convert once, set `k` to its length, and sum `int(c) ** k` for each character. It is concise but uses textual conversion for extraction too.
 - **Logarithm for digit count:** `floor(log10(n)) + 1` works for positive inputs but introduces floating-point boundary concerns.
 - **Arithmetic digit-count loop:** Divide a second copy to count digits, then another copy to sum powers. It avoids strings but makes two arithmetic passes.
 - **One-digit number:** Every legal one-digit positive value is Armstrong.
@@ -112,8 +112,8 @@ equals the required sum.
 - **Integer arithmetic:** No rounding or tolerance is involved.
 - **Positive-input guarantee:** The loop runs at least once and no sign character affects digit count.
 - **Generalized zero:** Outside this positive domain, zero would need deliberate handling because the while loop would skip it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

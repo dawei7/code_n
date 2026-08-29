@@ -81,7 +81,7 @@ Because a sensor covers a row interval and a column interval simultaneously, pai
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider only a line of `n` row positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ The final row or column band may be shorter than `span`, but that only makes it 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy placement by explicit bands:** Iterate :** - **Greedy placement by explicit bands:** Iterate through uncovered rows and columns and place one sensor near the center of each next block. This constructs valid coordinates but costs time proportional to the number of sensors when only the count is requested.
+- **Greedy placement by explicit bands:** Iterate through uncovered rows and columns and place one sensor near the center of each next block. This constructs valid coordinates but costs time proportional to the number of sensors when only the count is requested.
 - **Mark every covered cell:** Trying candidate sensor positions and maintaining a covered matrix can require work proportional to the grid area or worse. The geometric formula avoids simulation entirely.
 - **Use floor division:** `n // span` misses a final partial band whenever `n` is not divisible by `span`. Ceiling division is required.
 - **Add instead of multiply:** Row and column partitions combine as Cartesian products, so the minimum count is their product, not their sum.
@@ -141,8 +141,8 @@ The final row or column band may be shorter than `span`, but that only makes it 
 - **Alternative sensor coordinates:** The problem asks only for the minimum count. Many placements may attain it, so the method need not reproduce the sample’s coordinates.
 - **Manhattan-distance confusion:** Chebyshev coverage is a square because both coordinate differences are bounded separately. A diamond-covering argument would solve a different problem.
 - **Input preservation:** The method receives only integers and does not mutate any external data.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

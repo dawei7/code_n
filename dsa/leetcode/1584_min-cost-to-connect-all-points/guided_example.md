@@ -65,7 +65,7 @@ This matrix makes all later edge-weight lookups constant time. It is important t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution first creates `g` as an $N\times N$ matrix of z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Initially, no actual point is in the tree, and every distance is infinity. The a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Matrix-free optimized Prim:** Compute the Manh:** - **Matrix-free optimized Prim:** Compute the Manhattan distance from the newly selected point to each unvisited point during relaxation. It keeps the same $O(N^2)$ time and reduces explicit auxiliary space to $O(N)$; this is the variant matching the manifest’s stated space bound.
+- **Matrix-free optimized Prim:** Compute the Manhattan distance from the newly selected point to each unvisited point during relaxation. It keeps the same $O(N^2)$ time and reduces explicit auxiliary space to $O(N)$; this is the variant matching the manifest’s stated space bound.
 - **Heap-based Prim:** A priority queue can select candidate edges, but a complete graph may place $O(N^2)$ edges in the heap and cost $O(N^2\log N)$ time and $O(N^2)$ space.
 - **Kruskal’s algorithm:** Generate all $\binom{N}{2}$ edges, sort them, and use union-find to avoid cycles. It is correct but takes $O(N^2\log N)$ time and $O(N^2)$ edge storage.
 - **Connecting each point to its nearest neighbor:** Independent nearest choices can form disconnected clusters or cycles. MST construction must reason about connectivity of the whole growing component.
@@ -116,8 +116,8 @@ Initially, no actual point is in the tree, and every distance is infinity. The a
 - **Complete-graph connectivity:** An index is always found after initialization because every point connects to every other point. On a general disconnected graph, the `i == -1` state would need explicit impossibility handling.
 - **No parent array:** The source returns only total cost. It does not retain which particular edge produced `dist[i]`, so it cannot reconstruct the MST without an additional parent structure.
 - **Input preservation:** The points list is read-only. The distance matrix, visited flags, and best distances are separate allocations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

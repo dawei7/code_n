@@ -197,7 +197,7 @@ Thus, the XOR of all values: $3 XOR 3 XOR 3 = 3$.
 
 ### 5. Constraints
 
-​​​​​​​
+
 
 - $2 \le n \le 2 * 10^{4}$
 

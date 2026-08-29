@@ -71,7 +71,7 @@ There is no other candidate enclosing rectangle: any cover must reach every extr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a rectangle `[x, y, a, b]`, `(x, y)` is bottom-left and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,9 +123,9 @@ The comparison uses integer arithmetic, so there is no floating-point rounding c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Corner parity set plus area:** Toggle each cor:** - **Corner parity set plus area:** Toggle each corner in a set: add it if absent and remove it if present. A perfect cover leaves exactly the four bounding corners. Together with area equality, this is the classic equivalent $O(r)$ approach. The exact source retains full counts and explicitly accepts only multiplicities two or four.
-- **- **Sweep line:** Sort vertical events and maintai:** - **Sweep line:** Sort vertical events and maintain covered y-intervals while moving across x-coordinates. This can detect overlaps and gaps directly but is substantially more complex and usually costs $O(r\log r)$ time.
-- **- **Grid marking:** Mark every unit cell or compre:** - **Grid marking:** Mark every unit cell or compressed coordinate region. Raw marking is impossible for large coordinate ranges, and coordinate compression still uses more machinery than the area-and-corner invariant.
+- **Corner parity set plus area:** Toggle each corner in a set: add it if absent and remove it if present. A perfect cover leaves exactly the four bounding corners. Together with area equality, this is the classic equivalent $O(r)$ approach. The exact source retains full counts and explicitly accepts only multiplicities two or four.
+- **Sweep line:** Sort vertical events and maintain covered y-intervals while moving across x-coordinates. This can detect overlaps and gaps directly but is substantially more complex and usually costs $O(r\log r)$ time.
+- **Grid marking:** Mark every unit cell or compressed coordinate region. Raw marking is impossible for large coordinate ranges, and coordinate compression still uses more machinery than the area-and-corner invariant.
 
 ---
 

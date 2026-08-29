@@ -2,7 +2,7 @@
 
 There exists an undirected and initially unrooted tree with `n` nodes indexed from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
-Each node has an associated price. You are given an integer array `price`, where $\text{price}[i]$ is the price of the $$i^{\text{th}}$$ node.
+Each node has an associated price. You are given an integer array `price`, where $\text{price}[i]$ is the price of the $i^{\text{th}}$ node.
 
 The **price sum** of a given path is the sum of the prices of all nodes lying on that path.
 

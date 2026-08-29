@@ -65,7 +65,7 @@ There are \(2^n\) inputs and exactly \(2^n\) possible \(n\)-bit outputs. An inje
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The Gray transformation is invertible.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ the two low-bit runs cancel except for bit \(t\). The result has exactly one set
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct rotated Gray formula:** XOR every stand:** - **Direct rotated Gray formula:** XOR every standard Gray value with `start`. Because XOR preserves Hamming distance and `G(0)=0`, `[start ^ G(i)]` is also a valid cycle beginning at `start`, avoiding the index search and slices while retaining \(O(2^n)\) output work.
+- **Direct rotated Gray formula:** XOR every standard Gray value with `start`. Because XOR preserves Hamming distance and `G(0)=0`, `[start ^ G(i)]` is also a valid cycle beginning at `start`, avoiding the index search and slices while retaining \(O(2^n)\) output work.
 - **Backtracking on the hypercube:** It can find a valid cycle but explores a large search space unnecessarily.
 - **Minimum \(n=1\):** The standard cycle `[0,1]` or its rotation has one-bit adjacency in both directions.
 - **Start equals zero:** `j` is zero, and the return reproduces the standard Gray list.
@@ -121,8 +121,8 @@ the two low-bit runs cancel except for bit \(t\). The result has exactly one set
 - **Wraparound requirement:** Ordinary adjacent Gray-code proof is not enough by itself; the first and last standard codes differ in the highest bit, establishing circularity.
 - **Output size:** At \(n=16\), the list contains 65,536 integers, which is within the stated bound but inherently requires linear output memory.
 - **Bit-width:** All generated values are below \(2^n\) because XOR of \(n\)-bit quantities stays within \(n\) bits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

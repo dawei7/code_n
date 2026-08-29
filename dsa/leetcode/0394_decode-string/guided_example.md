@@ -71,11 +71,7 @@ The input guarantee says digits occur only as positive repeat counts immediately
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `c.isdigit()` is true, the update is
-
-
-
-Multiplying by ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,9 +115,9 @@ This is analogous to making a recursive call and storing the caller’s local st
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive descent:** Parse until `]`, recursiv:** - **Recursive descent:** Parse until `]`, recursively decode nested contents, and return them to the caller. This mirrors the grammar naturally but uses the language call stack and may face recursion-depth limits. Its string-building costs require the same care as the iterative version.
-- **- **Single character stack:** Push raw input chara:** - **Single character stack:** Push raw input characters; on `]`, pop the inner text and preceding number, expand it, and push the result characters back. This is correct but repeatedly moving individual decoded characters can be less efficient and harder to follow than storing whole prefixes and counts separately.
-- **- **Builder or chunk-list frames:** Store lists of:** - **Builder or chunk-list frames:** Store lists of string chunks per frame and join strategically. This reduces repeated immutable-string concatenation and better realizes output-sensitive $O(n+m)$ behavior.
+- **Recursive descent:** Parse until `]`, recursively decode nested contents, and return them to the caller. This mirrors the grammar naturally but uses the language call stack and may face recursion-depth limits. Its string-building costs require the same care as the iterative version.
+- **Single character stack:** Push raw input characters; on `]`, pop the inner text and preceding number, expand it, and push the result characters back. This is correct but repeatedly moving individual decoded characters can be less efficient and harder to follow than storing whole prefixes and counts separately.
+- **Builder or chunk-list frames:** Store lists of string chunks per frame and join strategically. This reduces repeated immutable-string concatenation and better realizes output-sensitive $O(n+m)$ behavior.
 
 ---
 

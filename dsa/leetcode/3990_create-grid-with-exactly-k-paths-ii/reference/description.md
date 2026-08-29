@@ -62,7 +62,7 @@ The grid contains exactly 2 valid paths from `(0, 0)` to `(2, 2)`:
 
 - **Explanation:** 
 
-**​​​​​​​**
+****
 
 ![](images/screenshot-2026-05-31-at-82251pm.png)
 
@@ -76,6 +76,6 @@ The grid contains exactly 3 valid paths from `(0, 0)` to `(2, 2)`:
 
 ### 4. Constraints
 
-​​​​​​​
+
 
 - $1 \le k \le 1000$

@@ -111,7 +111,7 @@ After paying the distance, `pre = cur` records that the finger remains on the ne
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Only one finger is used, and characters must be typed in str... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -156,7 +156,7 @@ The layout rows need not have equal numbers of real keys for this formula. Every
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search row strings per character:** Find each :** - **Search row strings per character:** Find each letter's row and column on demand. It remains bounded by 26 but repeats avoidable work; the coordinate map is clearer.
+- **Search row strings per character:** Find each letter's row and column on demand. It remains bounded by 26 but repeats avoidable work; the coordinate map is clearer.
 - **Hard-code 26 coordinates:** This removes initialization loops but is more error-prone and harder to compare with the shown keyboard.
 - **Breadth-first search:** It is unnecessary because the statement defines distance directly as Manhattan distance.
 - **First character a:** The finger already starts there, so the first contribution is zero.
@@ -166,8 +166,8 @@ The layout rows need not have equal numbers of real keys for this formula. Every
 - **Blank table cells:** They are not included in the row strings and never appear in valid input.
 - **Finger persistence:** Every transition starts from the previously typed character, not from `a` again.
 - **All lowercase letters covered:** The coordinate dictionary contains every permitted input character.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

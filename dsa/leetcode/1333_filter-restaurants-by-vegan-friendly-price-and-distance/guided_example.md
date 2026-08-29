@@ -65,7 +65,7 @@ Using field positions exactly is important. The restaurant identifier is not the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop header `for idx, _, vegan, price, dist in restauran... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The remaining tests are `price <= maxPrice` and `dist <= maxDistance`. The inclu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Filter before sorting:** Build a list of quali:** - **Filter before sorting:** Build a list of qualifying records first, then sort only those records by rating and identifier. This has $O(n + q \log q)$ time for $q$ matches and avoids sorting rejected records, but it requires storing the qualifying records before extracting identifiers.
+- **Filter before sorting:** Build a list of qualifying records first, then sort only those records by rating and identifier. This has $O(n + q \log q)$ time for $q$ matches and avoids sorting rejected records, but it requires storing the qualifying records before extracting identifiers.
 - **Non-mutating sorted copy:** Use `sorted(restaurants, key=...)` to preserve the caller’s input order. It has the same asymptotic time and space bounds but allocates a separate list.
 - **Sorting with positive keys and reverse mode:** A key of `(rating, id)` together with `reverse=true` also produces descending order for both fields. Negative keys make the two required directions explicit without relying on a global reversal.
 - **Heap-based selection:** A heap is useful when only the best few results are requested. Here every qualifying identifier must be returned, so a complete ordered result still requires work comparable to sorting.
@@ -118,8 +118,8 @@ The remaining tests are `price <= maxPrice` and `dist <= maxDistance`. The inclu
 - **No matches:** The loop performs no append and returns `[]`, which is already a valid ordered result.
 - **All records match:** Every identifier is returned in the order established by the initial sort; the result may use $O(n)$ space.
 - **Input side effect:** Because the sort is in place, code outside this method observes the reordered restaurant records. Use a copied or non-mutating sort if preserving the original list is an additional requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ The request loop uses `enumerate(zip(arrival, load))`. Index `i` identifies the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `free = SortedList(range(k))` contains every server ID from ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Each server handles at most one request at a time, so it has at most one heap en
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two heaps with shifted server priorities:** Re:** - **Two heaps with shifted server priorities:** Released servers can be inserted under a request-relative transformed ID, avoiding a balanced sorted container. It retains $O(R\log K)$ time but is subtler.
+- **Two heaps with shifted server priorities:** Released servers can be inserted under a request-relative transformed ID, avoiding a balanced sorted container. It retains $O(R\log K)$ time but is subtler.
 - **Linear scan for a free server:** Checking up to $K$ IDs per request costs $O(RK)$ and is too slow at the limits.
 - **Only a finish-time heap:** It can release servers but cannot efficiently find the cyclic successor among arbitrary free IDs; a second ordered structure is needed.
 - **Finish exactly at arrival:** `<= start` releases the server in time for the new request.
@@ -122,8 +122,8 @@ Each server handles at most one request at a time, so it has at most one heap en
 - **Tied busiest servers:** The final comprehension includes every server at the maximum count.
 - **Sorted arrivals:** Strict increase lets processing occur chronologically without sorting requests.
 - **External `SortedList` behavior:** The complexity relies on logarithmic lower-bound, insertion, and removal operations supplied by that ordered container.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -62,7 +62,7 @@ An edge on the grid boundary has no neighboring cell and remains in the four-edg
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every orthogonally adjacent pair has one cell above the othe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ This equals the perimeter because the first term counts every edge of every land
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check all four neighbors:** For every land cel:** - **Check all four neighbors:** For every land cell, add one for each side adjacent to water or the exterior. It is equally $O(mn)$ and $O(1)$ but performs more neighbor checks.
+- **Check all four neighbors:** For every land cell, add one for each side adjacent to water or the exterior. It is equally $O(mn)$ and $O(1)$ but performs more neighbor checks.
 - **Depth-first or breadth-first search:** Traverse the island and count exposed sides. This works, but needs a visited mechanism or input mutation and adds traversal machinery that whole-grid counting does not require.
 - **Count land and adjacency separately:** First count all land cells and then all right/down land pairs; return `4 * land - 2 * pairs`. This is algebraically identical to the running update.
 - **Single land cell:** No shared edges exist, so the result is four.
@@ -113,8 +113,8 @@ This equals the perimeter because the first term counts every edge of every land
 - **Water cells:** They add nothing; perimeter is attributed entirely through exposed land edges.
 - **Multiple components outside the contract:** The formula would return their combined perimeter even though the source guarantees one island.
 - **Input preservation:** The scan never changes any cell value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

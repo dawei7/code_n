@@ -60,7 +60,7 @@ The filter `WHERE s1.parent_id IS NULL` ensures only genuine post rows drive the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An inner join would omit posts that have no comments.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ This is why the outer query can use ordinary `COUNT(sub_id)` instead of `COUNT(D
 
 ## 6. Traps This Instance Exposes
 
-- **- **`COUNT(DISTINCT s2.sub_id)` directly:** Group :** - **`COUNT(DISTINCT s2.sub_id)` directly:** Group post-side IDs after a left join and count distinct comment IDs. This can express the same result in one query level.
+- **`COUNT(DISTINCT s2.sub_id)` directly:** Group post-side IDs after a left join and count distinct comment IDs. This can express the same result in one query level.
 - **Pre-deduplicate posts and comments separately:** Build one CTE for unique posts and another for unique comment pairs, then left join them. It is more verbose but makes duplicate handling explicit.
 - **Use of `COUNT(*)`:** Incorrect for posts without comments because the left join supplies one null-extended row.
 - **Duplicate post rows:** `DISTINCT` collapses the repeated post-comment pairs.
@@ -113,8 +113,8 @@ This is why the outer query can use ordinary `COUNT(sub_id)` instead of `COUNT(D
 - **Same comment ID under different posts:** Pair-level distinctness treats those as separate relationships, one per post.
 - **Null semantics:** `parent_id IS NULL` must be used; equality to `NULL` is not valid SQL filtering.
 - **Ordering:** The final sort is by numeric `post_id` ascending, independent of join or grouping order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

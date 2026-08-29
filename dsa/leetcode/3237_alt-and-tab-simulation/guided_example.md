@@ -51,7 +51,7 @@ Consider two windows that both appear in `queries`. Whichever one is queried lat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider two windows that both appear in `queries`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution obtains exactly that order by scanning `queries` backward. It creat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct list simulation:** For every query, loc:** - **Direct list simulation:** For every query, locate the window, remove it, and insert it at index zero. This closely follows the story but can shift $O(n)$ entries per query, leading to $O(nq)$ time.
+- **Direct list simulation:** For every query, locate the window, remove it, and insert it at index zero. This closely follows the story but can shift $O(n)$ entries per query, leading to $O(nq)$ time.
 - **Linked list plus node map:** A doubly linked list and a map from identifier to node can move a window to the front in $O(1)$ per query. It achieves $O(n+q)$ time but requires more complicated mutable structure than the last-occurrence observation.
 - **Record last indices and sort:** Store the final query index for each queried window and sort queried windows by decreasing index. This is correct but costs $O(k\log k)$ for $k$ distinct queried windows, while reverse scanning gives their order directly in $O(q)$.
 - **Use `reversed(queries)`:** This iterator avoids the $O(q)$ slice copy and makes the auxiliary-space bound match $O(n)$, excluding the output. It is the simplest operational improvement to the exact source.
@@ -96,8 +96,8 @@ The solution obtains exactly that order by scanning `queries` backward. It creat
 - **A window is never queried:** It remains below all queried windows, and its order relative to every other unqueried window stays exactly as in `windows`.
 - **Single window:** Every legal query names that window. It is appended once and the result remains the one-element permutation.
 - **Illegal query identifier:** The contract guarantees values from one through $n$. If an absent identifier were supplied, the exact code would add it to `ans` and produce an invalid extra output because it does not validate membership in `windows`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

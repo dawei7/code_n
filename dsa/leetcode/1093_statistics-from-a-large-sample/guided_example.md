@@ -59,7 +59,7 @@ Python integers can represent the weighted sum exactly even when frequencies are
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mi` begins at positive infinity and `mx` at `-1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For an even sample size, the middle elements occupy one-based ranks `cnt // 2` a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand and sort the sample:** Repeating each v:** - **Expand and sort the sample:** Repeating each value according to its count would require time and memory proportional to as many as one billion occurrences. It ignores the central benefit of the histogram representation.
+- **Expand and sort the sample:** Repeating each value according to its count would require time and memory proportional to as many as one billion occurrences. It ignores the central benefit of the histogram representation.
 - **Single cumulative scan for both median ranks:** Track the two target ranks during the main traversal and record each when cumulative count reaches it. This avoids the helper’s repeated fixed scans but is slightly more intertwined.
 - **Binary search over prefix counts:** Build a 256-entry prefix-sum array and binary-search median ranks. It remains constant under this domain but uses extra storage and is unnecessary for only two queries.
 - **Single distinct sample value:** Minimum, maximum, mean, median, and mode all equal that value, regardless of its frequency.
@@ -112,8 +112,8 @@ For an even sample size, the middle elements occupy one-based ranks `cnt // 2` a
 - **Large counts:** Multiplication `k * x` and total accumulation remain exact with Python integers before the final floating conversion.
 - **Unique mode:** Strictly larger frequency updates are sufficient. Without uniqueness, the problem would need a specified tie-breaking rule.
 - **Nonempty sample:** The guarantee `sum(count) >= 1` ensures `find` always reaches requested median ranks and the mean denominator is positive.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

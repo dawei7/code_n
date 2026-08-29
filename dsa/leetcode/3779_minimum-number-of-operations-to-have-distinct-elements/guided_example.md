@@ -59,7 +59,7 @@ For `[3,8,3,6,5,8]`, the scan stores 8, 5, and 6. It then sees 3 and stores it. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source maintains a set `st` while moving from right to l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ This formula handles block boundaries correctly. A duplicate at index two disapp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate removals and rebuild a set each time::** - **Simulate removals and rebuild a set each time:** Rechecking every remaining suffix can become quadratic.
+- **Simulate removals and rebuild a set each time:** Rechecking every remaining suffix can become quadratic.
 - **Scan candidate suffixes from the left:** A reverse set finds the maximal distinct suffix in one pass.
 - **Return `ceil(i/3)`:** Index `i` itself must be removed, so the prefix length must be greater than `i`; `i//3+1` is the correct rounding.
 - **Stop at the first duplicate from the left:** Later duplicates determine whether the retained suffix is distinct; left-to-right discovery does not directly identify the longest distinct suffix.
@@ -121,8 +121,8 @@ This formula handles block boundaries correctly. A duplicate at index two disapp
 - **Empty result:** It is a valid stopping state.
 - **Relative order:** Prefix removal never rearranges survivors, matching the suffix reasoning.
 - **Input preservation:** Only a set and loop index are changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

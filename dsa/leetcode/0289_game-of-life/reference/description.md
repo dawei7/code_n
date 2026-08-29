@@ -36,14 +36,14 @@ that you do not need to return anything.
 
 ![](images/grid1.jpg)
 
-- **Input:** $board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]$
+- **Input:** `board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]`
 - **Output:** `[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]`
 
 #### Example 2
 
 ![](images/grid2.jpg)
 
-- **Input:** $board = [[1,1],[1,0]]$
+- **Input:** `board = [[1,1],[1,0]]`
 - **Output:** `[[1,1],[1,1]]`
 
 ### 5. Constraints

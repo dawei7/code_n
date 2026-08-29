@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `i` ranges from `1` through `n - 1`.
-- For each `i`, `j` r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ Starting `i` at one excludes zero, so the fraction cannot equal zero. Starting `
 
 ## 6. Traps This Instance Exposes
 
-- **- **Denominator-first enumeration:** Loop `j` from:** - **Denominator-first enumeration:** Loop `j` from two through `n` and `i` from one through `j - 1`, accepting coprime pairs. This is equally correct and naturally groups results by denominator rather than numerator.
+- **Denominator-first enumeration:** Loop `j` from two through `n` and `i` from one through `j - 1`, accepting coprime pairs. This is equally correct and naturally groups results by denominator rather than numerator.
 - **Explicit nested loops:** Replace the comprehension with loops and `ans.append(...)`. It may be easier for beginners to debug, but it performs the same candidate tests and has the same bounds.
 - **Generate a Farey sequence:** Farey-sequence methods enumerate reduced fractions in sorted numerical order and can avoid a `gcd` call for every possible pair. They are valuable when ordering or larger bounds matter, but are more complex than required here.
 - **Store floating-point values in a set:** This risks rounding collisions, loses exact fraction formatting, and does unnecessary deduplication work. Coprimality gives an exact integer criterion.
@@ -105,8 +104,8 @@ Starting `i` at one excludes zero, so the fraction cannot equal zero. Starting `
 - **Any-order contract:** The numerator-major order produced by the comprehension is valid. Tests should not require the denominator-major or numerically sorted order of a different implementation.
 - **Exact string form:** Each output uses decimal integers separated by one slash, with no spaces and no reduction step left for the caller.
 - **Imported gcd:** The solution environment must provide `gcd` from the standard math utilities. Replacing it with division or a floating-point check would not test simplification correctly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

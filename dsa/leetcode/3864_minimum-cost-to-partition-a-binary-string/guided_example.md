@@ -77,7 +77,7 @@ The subtraction removes all ones before `l` from the count before `r`, giving th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The cost of retaining an interval depends on its length and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ The helper returns the smaller of the intact and split costs.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every recursive partition:** At ever:** - **Enumerate every recursive partition:** At every even node, branch between keeping and splitting, which creates many complete partition combinations. The recurrence takes a minimum locally after solving children and never materializes all combinations.
+- **Enumerate every recursive partition:** At every even node, branch between keeping and splitting, which creates many complete partition combinations. The recurrence takes a minimum locally after solving children and never materializes all combinations.
 - **Memoized interval DP:** It is correct but unnecessary because forced equal halves produce no repeated interval. Plain recursion already visits each node once.
 - **Bottom-up tree processing:** Build costs from smallest legal blocks upward. This can avoid recursion but needs careful handling when `N` is not a power of two and offers no asymptotic improvement.
 - **Return `(one_count,cost)` from recursion:** This removes the `O(N)` prefix array and can achieve `O(\log N)` stack space while still reading each character through disjoint leaves. It matches the manifest summary better than the protected source.
@@ -143,8 +143,8 @@ The helper returns the smaller of the intact and split costs.
 - **Prefix indexing:** `pre[r]-pre[l]` corresponds to half-open `[l,r)`. Mixing inclusive endpoints would miscount boundary characters.
 - **No mutation:** The method evaluates partitions mathematically; it does not need to build segment strings or alter `s`.
 - **Recursion depth:** Equal halving limits depth to `O(\log N)`, safely small for `N\le10^5` even though the number of total calls can be linear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

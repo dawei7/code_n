@@ -73,11 +73,7 @@ If the text contains fewer than three words, the range is empty. No complete pat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop is:
-
-
-
-`i` is the index of a possible `first` word.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +120,7 @@ Creating a fixed three-element slice costs constant time and space per iteration
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct indexed comparison:** Compare `words[i]:** - **Direct indexed comparison:** Compare `words[i]` and `words[i + 1]` and append `words[i + 2]`. This avoids the temporary three-element slice but has the same complexity.
+- **Direct indexed comparison:** Compare `words[i]` and `words[i + 1]` and append `words[i + 2]`. This avoids the temporary three-element slice but has the same complexity.
 - **Streaming three-word window:** Tokenize lazily and retain only the previous two words. This can reduce auxiliary storage apart from the output, though ordinary `split` is simpler.
 - **Regular expression:** A regex can find patterns, but overlapping matches and word boundaries require care and make it less transparent.
 - **Fewer than three words:** No loop iteration occurs and the result is empty.
@@ -137,8 +133,8 @@ Creating a fixed three-element slice costs constant time and space per iteration
 - **Third equals first or second:** There is no restriction on the reported word.
 - **Single-space guarantee:** `split` also tolerates broader whitespace, but the source contract is already clean.
 - **Input preservation:** Strings are immutable; the method creates a separate token list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

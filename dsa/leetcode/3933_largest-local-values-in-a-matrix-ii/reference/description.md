@@ -16,7 +16,7 @@ The cell `(row, col)` is a **local maximum** if it is **non-zero** and no consid
 
 Return an integer denoting the number of **local maximums** in `matrix`.
 
-**​​​​​​​Example 1:**
+**Example 1:**
 
 **Input:** matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
 
@@ -24,7 +24,7 @@ Return an integer denoting the number of **local maximums** in `matrix`.
 
 ![](images/chatgpt-image-may-14-2026-01_53_19-am.png)
 
-​​​​​​​​​​​​​​​​​​​​​
+
 
 **Explanation:**
 

@@ -38,7 +38,7 @@ The **average** of an array is defined as the sum of all its elements divided by
 
 - **Explanation:** 
 
-- ​​​​​​​The average of `nums` is $(-1 + 1 + 2) / 3 = 2 / 3 = 0.667$.
+- The average of `nums` is $(-1 + 1 + 2) / 3 = 2 / 3 = 0.667$.
 
 - The smallest absent positive integer greater than 0.667 is 3.
 
@@ -58,4 +58,4 @@ The **average** of an array is defined as the sum of all its elements divided by
 
 - $1 \le \text{nums.length} \le 100$
 
-- $-100 \le \text{nums}[i] \le 100$​​​​​​​
+- $-100 \le \text{nums}[i] \le 100$

@@ -87,7 +87,7 @@ This order matters. Reading the opposite count first would not change the numeri
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the beginning of forward iteration $i$, the counters stil... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -140,7 +140,7 @@ Every one of those suffix values has opposite parity, and no same-parity value i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Right-to-left scan:** Start both counts at zer:** - **Right-to-left scan:** Start both counts at zero, answer from the opposite count, then add the current value. This matches the manifest summary and has the same bounds.
+- **Right-to-left scan:** Start both counts at zero, answer from the opposite count, then add the current value. This matches the manifest summary and has the same bounds.
 - **Quadratic pair checking:** Testing every $i,j$ pair costs $O(N^2)$ and stores no useful reusable suffix summary.
 - **Suffix parity arrays:** Precomputing even and odd counts for every suffix works in $O(N)$ time but uses $O(N)$ extra storage instead of two mutable totals.
 - **Single element:** Removing it leaves both counters zero, so its score is zero.
@@ -152,8 +152,8 @@ Every one of those suffix values has opposite parity, and no same-parity value i
 - **Expression precedence:** The source relies on `&` binding before `^`; explicit parentheses would improve readability without changing behavior.
 - **Positive-value constraint:** The low-bit parity test also works for zero and Python negative integers, though only positive values are required.
 - **Manifest/source traversal difference:** Both directions are linear, but the explanation follows the actual left-to-right decrement strategy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -73,7 +73,7 @@ This enumeration includes empty B and empty outside-B, matching the permission f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop variable `outside_b` is the set of elements not ass... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ For fixed outside set, T is constant. Maximizing the A/C split only requires max
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all three assignments:** There are `:** - **Enumerate all three assignments:** There are `3^n` partitions; the B-mask plus basis method is substantially smaller.
+- **Enumerate all three assignments:** There are `3^n` partitions; the B-mask plus basis method is substantially smaller.
 - **Enumerate A submasks for every B:** This also approaches `3^n` total submask work.
 - **Linear basis without projection:** It can maximize XOR(A) but not necessarily the sum `XOR(A)+XOR(C)`; masking out T's one bits is essential.
 - **B empty:** AND contributes zero by contract.
@@ -146,8 +146,8 @@ For fixed outside set, T is constant. Maximizing the A/C split only requires max
 - **Empty AND initialization:** The special first-element recurrence avoids incorrectly ANDing from zero.
 - **No reconstruction:** The source returns only the best value, not the chosen partition.
 - **Input preservation:** It precomputes subset data without modifying `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

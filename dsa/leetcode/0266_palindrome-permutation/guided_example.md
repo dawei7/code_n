@@ -67,7 +67,7 @@ The rule is necessary because a palindrome has only mirrored pairs and possibly 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In a palindrome, every position away from the center has a m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Only values are needed after the map is built. The identities of the odd charact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Odd-character toggle set:** Instead of storing:** - **Odd-character toggle set:** Instead of storing full counts, scan the string and add a character when it is absent from a set or remove it when it is present. At the end, the set contains exactly the characters with odd frequencies. This also gives expected $O(n)$ time and $O(k)$ space, and it matches the parity idea directly, but it is not the exact protected solution explained here.
+- **Odd-character toggle set:** Instead of storing full counts, scan the string and add a character when it is absent from a set or remove it when it is present. At the end, the set contains exactly the characters with odd frequencies. This also gives expected $O(n)$ time and $O(k)$ space, and it matches the parity idea directly, but it is not the exact protected solution explained here.
 - **Fixed array of 26 counts:** Because every legal character is lowercase English, an array indexed by `ord(ch) - ord('a')` can replace the hash map. It has $O(n)$ time and $O(1)$ space relative to $n$, with smaller and more predictable storage, but it is tied to the fixed alphabet and is less general than `Counter`.
 - **Sort before counting runs:** Sorting brings equal characters together, after which run lengths can be checked for oddness. This needs $O(n \log n)$ time in general and may allocate storage or modify a mutable representation, so it is unnecessary when direct frequency counting is linear.
 - **Generate permutations:** Trying rearrangements and testing each one attacks the surface wording instead of the count invariant. There can be $n!$ position permutations before accounting for duplicates, making this approach vastly more expensive than the parity test.
@@ -122,8 +122,8 @@ Only values are needed after the map is built. The identities of the odd charact
 - **Empty string outside the stated contract:** The legal input is nonempty. If an empty string were nevertheless passed to this implementation, the counter would have no values, `sum(...)` would be zero, and the method would return `true`, consistent with treating the empty string as a palindrome.
 - **Character identity and case sensitivity:** The legal domain contains lowercase letters only. `Counter` nevertheless treats every distinct Python character as a separate key, so an out-of-contract uppercase `A` would not match lowercase `a`; spaces and punctuation would also count as characters rather than being ignored.
 - **Counter iteration order:** No particular order is required. Addition is independent of order, and the final decision uses only the sum of parity bits, so any valid mapping iteration order produces the same result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

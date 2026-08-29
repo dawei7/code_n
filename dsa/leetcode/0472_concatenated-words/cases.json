@@ -101,29 +101,6 @@
       ]
     },
     {
-      "id": "trial-empty-word",
-      "name": "trial: empty string is not a component",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "",
-          "x",
-          "xx"
-        ]
-      },
-      "expected": [
-        "xx"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "trial",
-        "empty"
-      ]
-    },
-    {
       "id": "trial-many-pieces",
       "name": "a word uses more than two components",
       "kind": "trial",

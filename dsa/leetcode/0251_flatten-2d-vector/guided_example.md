@@ -62,7 +62,7 @@ The contract guarantees every call to `next()` is valid. Therefore, after normal
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `next()` first calls `forward()`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ Calling `hasNext()` may move across empty or exhausted rows, but it never advanc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flatten in the constructor:** Copy every integ:** - **Flatten in the constructor:** Copy every integer into one list and iterate with one index. Then each public operation is strict $O(1)$, but construction costs $O(N+V)$ time and storage costs $O(N)$, defeating the lazy iterator design.
+- **Flatten in the constructor:** Copy every integer into one list and iterate with one index. Then each public operation is strict $O(1)$, but construction costs $O(N+V)$ time and storage costs $O(N)$, defeating the lazy iterator design.
 - **Store row iterators:** Keep an iterator over rows and a current inner iterator, advancing until one has data. This matches the follow-up style in iterator-oriented languages and retains lazy $O(1)$ auxiliary state when the underlying iterators are references.
 - **Leading empty rows:** The first operation skips them; the constructor remains $O(1)$.
 - **Empty rows between values:** `forward()` may cross any number of them and stops at the next actual integer.
@@ -111,8 +111,8 @@ Calling `hasNext()` may move across empty or exhausted rows, but it never advanc
 - **Invalid `next()` after exhaustion:** The contract guarantees this does not happen. The source would raise an indexing error rather than return a sentinel.
 - **Rows with negative values or duplicates:** Values are returned unchanged. Cursor logic depends only on structure and lengths, not on integer contents.
 - **External mutation:** Because `vec` is stored by reference, changing it during iteration can alter the observed sequence. Standard iterator use assumes the backing collection is not structurally modified unless explicitly supported.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

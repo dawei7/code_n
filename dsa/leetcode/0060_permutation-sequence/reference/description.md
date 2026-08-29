@@ -16,7 +16,7 @@ By listing and labeling all of the permutations in order, we get the following s
 
 - `"321"`
 
-Given `n` and `k`, return the $$k^{\text{th}}$$ permutation sequence.
+Given `n` and `k`, return the $k^{\text{th}}$ permutation sequence.
 
 ### 2. Function Contract
 

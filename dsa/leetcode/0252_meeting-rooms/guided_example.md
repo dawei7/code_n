@@ -79,7 +79,7 @@ The contrapositive gives another useful view. If some earlier interval overlaps 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, let the intervals be $I_0,I_1,\ldots,I_{n-1}$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Python list comparison sorts `[start, end]` intervals first by `start`. If two m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair:** Directly test all $\bino:** - **Compare every pair:** Directly test all $\binom{n}{2}$ pairs. It avoids sorting and can use $O(1)$ extra space, but takes $O(n^2)$ time in the worst case.
+- **Compare every pair:** Directly test all $\binom{n}{2}$ pairs. It avoids sorting and can use $O(1)$ extra space, but takes $O(n^2)$ time in the worst case.
 - **Sweep-line events:** Create start and end events and ensure active meetings never exceed one. It also costs $O(n\log n)$ due to sorting events and requires careful tie ordering so an end at time `t` is processed before a start at `t`.
 - **Sort a copy:** `sorted(intervals)` preserves caller order but allocates another outer list. It is preferable when input mutation is not acceptable.
 - **Empty list:** There are no pairs, so `all` returns `true`.
@@ -125,8 +125,8 @@ Python list comparison sorts `[start, end]` intervals first by `start`. If two m
 - **Unsorted input:** Sorting is essential. Comparing adjacent intervals in the original order could miss conflicts or interpret “previous” incorrectly.
 - **Early conflict:** `all` short-circuits at the first failed pair, although the full sorting cost has already been paid.
 - **Large or zero time coordinates:** Only ordering matters. The permitted nonnegative endpoints require no special arithmetic and cannot overflow in the comparisons.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

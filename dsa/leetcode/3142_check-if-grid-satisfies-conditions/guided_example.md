@@ -76,7 +76,7 @@ Boundary cells simply lack one of these neighbors. The explicit bounds condition
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any vertical adjacent pair `(i,j)` and `(i+1,j)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The exact cell scan checks the local definition directly and automatically enfor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check columns then rows:** Verify every column:** - **Check columns then rows:** Verify every column is constant, then compare adjacent values in one representative row. This is also $O(mn)$ but separates the two logical properties.
+- **Check columns then rows:** Verify every column is constant, then compare adjacent values in one representative row. This is also $O(mn)$ but separates the two logical properties.
 - **Compare every row to the first:** Vertical equality means all rows must be identical; then inspect adjacent entries of the first row. It can be concise, but direct local checks mirror the contract more transparently.
 - **Set per column:** Requiring each column's value set to have size one works but allocates unnecessary storage.
 - **One row:** There are no vertical comparisons; validity depends only on adjacent horizontal values being different.
@@ -127,8 +127,8 @@ The exact cell scan checks the local definition directly and automatically enfor
 - **Boundary safety:** The lower and right checks are guarded independently, so the last row and last column are handled without special loops.
 - **Values beyond Boolean:** Grid values range from 0 to 9, but only equality and inequality matter; no arithmetic assumptions are used.
 - **Early return:** It improves work on invalid inputs and cannot hide a possible recovery because the requirement applies to all cells simultaneously.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

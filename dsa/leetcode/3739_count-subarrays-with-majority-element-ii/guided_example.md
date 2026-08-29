@@ -71,7 +71,7 @@ Querying before insertion prevents a zero-length subarray from being paired with
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each transformed step is plus or minus one, so all prefix su... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The tree size `2n+1` covers the shifted range. Starting at `n+1`, after at most 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested endpoint enumeration:** Incremental tar:** - **Nested endpoint enumeration:** Incremental target counts give $O(n^2)$ time and work for the smaller version, but not for `n=10^5`.
+- **Nested endpoint enumeration:** Incremental target counts give $O(n^2)$ time and work for the smaller version, but not for `n=10^5`.
 - **Editorial unit-step counter:** Because balances move only by one, a carefully maintained count of smaller prior balances can achieve $O(n)$ time. That is not the exact source documented here.
 - **Merge sort counting:** Counting ordered prefix pairs with smaller left values can also take $O(n\log n)$, but a Fenwick tree naturally respects time order online.
 - **Query `s` instead of `s-1`:** This would include equal balances and count subarrays where target is exactly half, violating strict majority.
@@ -121,8 +121,8 @@ The tree size `2n+1` covers the shifted range. Starting at `n+1`, after at most 
 - **Large element values:** Only equality to `target` matters, so values do not require coordinate compression.
 - **Offset boundaries:** The `n+1` shift guarantees valid positive Fenwick indices across the entire possible balance range.
 - **Manifest mismatch:** Runtime claims must include the logarithmic tree operations actually present.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

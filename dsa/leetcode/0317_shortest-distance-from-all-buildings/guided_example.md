@@ -59,7 +59,7 @@ Both matrices start at zero. Buildings and obstacles never need meaningful entri
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt[r][c]` is the number of processed building searches tha... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The queue object is created before the outer scan but is empty after every compl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Grid-marker pruning between building searches::** - **Grid-marker pruning between building searches:** After each BFS, mutate reachable zeros to the next marker and let the next building traverse only cells reached by all prior buildings. This can prune impossible regions and avoid a fresh visited matrix, but the exact source uses independent sets.
+- **Grid-marker pruning between building searches:** After each BFS, mutate reachable zeros to the next marker and let the next building traverse only cells reached by all prior buildings. This can prune impossible regions and avoid a fresh visited matrix, but the exact source uses independent sets.
 - **BFS from every empty land:** Sum distances to buildings from each candidate. It is correct but can be much slower when empty cells greatly outnumber buildings.
 - **Manhattan distance:** It ignores obstacles and impassable buildings, so it can underestimate or claim a route where none exists.
 - **Multi-source BFS from all buildings at once:** It finds distance to the nearest building, not the sum of separate shortest distances to every building.
@@ -113,8 +113,8 @@ The queue object is created before the outer scan but is empty after every compl
 - **Obstacles enclosing a building:** If that prevents every empty cell from reaching all buildings, no count reaches `total` and the method returns `-1`.
 - **Boundary cells:** Explicit range tests prevent grid wrapping and out-of-bounds access.
 - **At least one building:** `total` is positive, so a never-reached empty cell with count zero cannot accidentally qualify.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

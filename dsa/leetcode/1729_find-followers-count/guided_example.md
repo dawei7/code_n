@@ -57,7 +57,7 @@ Only users appearing in the `user_id` column are returned. A person who follows 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 1` groups by the first select-list expression.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The alias `followers_count` supplies the required output column name.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`COUNT(*)`:** It is equivalent for counting gr:** - **`COUNT(*)`:** It is equivalent for counting group rows and is often the clearest conventional spelling.
+- **`COUNT(*)`:** It is equivalent for counting group rows and is often the clearest conventional spelling.
 - **`COUNT(follower_id)`:** It works when follower IDs are non-null, but row counting avoids relying on that detail.
 - **`COUNT(DISTINCT follower_id)`:** It is redundant because the composite primary key already guarantees unique follower relationships.
 - **Correlated subquery per user:** It repeats counting work and requires another source of user IDs.
@@ -108,8 +108,8 @@ The alias `followers_count` supplies the required output column name.
 - **Primary-key uniqueness:** It is what makes ordinary count equal distinct follower count.
 - **Ascending order:** `ORDER BY 1` supplies it explicitly.
 - **Ordinal maintenance:** Reordering projected columns could silently change both grouping and sorting targets.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

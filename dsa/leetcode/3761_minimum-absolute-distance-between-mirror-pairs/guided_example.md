@@ -71,7 +71,7 @@ For a positive number with `D` decimal digits, the loop runs exactly `D` iterati
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper repeatedly takes `x%10` and appends it to `y` usi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ A short map trace for `[120,8,21]` makes the order concrete. At index zero, 120 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check all index pairs:** Reversing and compari:** - **Check all index pairs:** Reversing and comparing every pair costs $O(n^2D)$. Required-value hashing reduces the pair search.
+- **Check all index pairs:** Reversing and comparing every pair costs $O(n^2D)$. Required-value hashing reduces the pair search.
 - **Store the earliest index:** That maximizes rather than minimizes distance for a fixed future endpoint. Latest is required.
 - **Reverse the current value and search original earlier values:** That changes the directional condition for trailing-zero cases and is not equivalent.
 - **String reversal:** `int(str(x)[::-1])` is valid and has the same digit complexity; the exact source uses arithmetic.
@@ -128,8 +128,8 @@ A short map trace for `[120,8,21]` makes the order concrete. At index zero, 120 
 - **Distance one:** It is the smallest possible and may be found for adjacent mirror values.
 - **Hash collisions:** Python dictionary semantics provide expected constant-time lookup while preserving exact key equality.
 - **Manifest time:** Linear time assumes the bounded digit width; generalized complexity is $O(nD)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

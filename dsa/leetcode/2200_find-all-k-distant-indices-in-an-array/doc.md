@@ -28,7 +28,7 @@ positions have overlapping distance neighborhoods.
 
 **Inputs**
 
-- `nums`: an integer array of length $n$, where $1 \le n \le 1000$ and every value lies in $[1,1000]$.
+- `nums`: an integer array of length $n$, where $1 \le n \le 1000$ and every value lies in `[1,1000]`.
 - `key`: a value that occurs in `nums`.
 - `k`: the inclusive maximum index distance, where $1 \le k \le n$.
 

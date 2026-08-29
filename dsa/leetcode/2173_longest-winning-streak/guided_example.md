@@ -61,9 +61,7 @@ It counts how many times that player has produced this particular result up to t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second window expression also partitions by `result`:
-
-`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ For win rows in particular, `rk` equals the number of earlier non-win rows. Ever
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cumulative non-win labels:** Sum a one for eac:** - **Cumulative non-win labels:** Sum a one for each draw or loss over each player's chronological rows, then group wins by that cumulative value. This matches the manifest summary and often makes the streak reset especially explicit.
+- **Cumulative non-win labels:** Sum a one for each draw or loss over each player's chronological rows, then group wins by that cumulative value. This matches the manifest summary and often makes the streak reset especially explicit.
 - **Lag plus cumulative starts:** Compare each row with its predecessor, mark the start of a win run, cumulatively number runs, and aggregate. It is flexible but needs additional window stages.
 - **Correlated subqueries:** Counting neighboring wins per row is harder to reason about and can become quadratic without careful indexing.
 - **Player with no wins:** Retaining non-win rows makes `SUM(result = 'Win')` zero, so the player still appears with longest streak zero.
@@ -116,8 +114,8 @@ For win rows in particular, `rk` equals the number of earlier non-win rows. Ever
 - **Follow-up for non-losing streaks:** Classify both wins and draws as one “non-loss” category before constructing the row-number difference, and count that category. Merely changing the final sum while still partitioning by the three original results would incorrectly split alternating wins and draws.
 - **No output order:** Omitting `ORDER BY` complies with the “any order” contract.
 - **Manifest discrepancy:** The stored query labels runs with row-number differences rather than a cumulative non-win count; the explanation follows the actual SQL.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

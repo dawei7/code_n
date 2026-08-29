@@ -1,10 +1,10 @@
 ### 1. Description
 
-You are given two positive integer arrays `spells` and `potions`, of length `n` and `m` respectively, where $\text{spells}[i]$ represents the strength of the $$i^{\text{th}}$$ spell and $\text{potions}[j]$ represents the strength of the $$j^{\text{th}}$$ potion.
+You are given two positive integer arrays `spells` and `potions`, of length `n` and `m` respectively, where $\text{spells}[i]$ represents the strength of the $i^{\text{th}}$ spell and $\text{potions}[j]$ represents the strength of the $j^{\text{th}}$ potion.
 
 You are also given an integer `success`. A spell and potion pair is considered **successful** if the **product** of their strengths is **at least** `success`.
 
-Return *an integer array *`pairs`* of length *`n`* where *$\text{pairs}[i]$* is the number of **potions** that will form a successful pair with the *$$i^{\text{th}}$$* spell.*
+Return *an integer array *`pairs`* of length *`n`* where *$\text{pairs}[i]$* is the number of **potions** that will form a successful pair with the *$i^{\text{th}}$* spell.*
 
 ### 2. Function Contract
 

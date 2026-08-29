@@ -60,7 +60,7 @@ The heap begins with `(0, 0)`. Each tuple stores arrival time first, so Python's
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `earliest[v]` is the smallest arrival time at node `v` disco... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The inclusive upper endpoint is important. Departing exactly at `end` is legal a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit time-expanded graph:** Creating a sta:** - **Explicit time-expanded graph:** Creating a state for every node and time is infeasible because availability endpoints can be as large as `10^9`. The arrival formula handles waiting symbolically.
+- **Explicit time-expanded graph:** Creating a state for every node and time is infeasible because availability endpoints can be as large as `10^9`. The arrival formula handles waiting symbolically.
 - **Breadth-first search:** Edge traversal takes one unit, but forced waiting varies by edge and current arrival time, so the effective transition costs are not uniform.
 - **Bellman-Ford:** It could repeatedly relax temporal edges but would be much slower; the nondecreasing arrival property permits Dijkstra.
 - **Indexed priority queue:** A true decrease-key heap can maintain one active entry per node and support the manifest's conventional `\log n` heap factor.
@@ -128,8 +128,8 @@ The inclusive upper endpoint is important. Departing exactly at `end` is legal a
 - **Large time endpoints:** Python integers represent them exactly, and the algorithm never iterates through each waiting second.
 - **Stale destination entry:** Stale tuples are rejected before the destination check, preventing a premature nonoptimal return.
 - **Input preservation:** The solution builds a separate adjacency list and does not sort or mutate `edges`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

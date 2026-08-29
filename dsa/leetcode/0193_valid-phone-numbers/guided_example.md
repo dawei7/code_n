@@ -67,7 +67,7 @@ format contract explicit.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The regular expression begins with `^` and ends with `$`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ escape an anchor.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`grep -E`:** The same POSIX extended expressio:** - **`grep -E`:** The same POSIX extended expression can directly filter matching full lines.
+- **`grep -E`:** The same POSIX extended expression can directly filter matching full lines.
 - **`sed -n -E`:** Print only records satisfying the anchored expression; also a valid one-command solution.
 - **PCRE `grep -P`:** Allows `\d`, but `-P` is not available in every grep implementation.
 - **Missing anchors:** Would wrongly accept a valid phone substring embedded in a longer line.
@@ -128,8 +128,8 @@ escape an anchor.
 - **Blank line:** Matches neither branch and is omitted.
 - **Input order:** Streaming default print preserves it automatically.
 - **CRLF files:** A retained carriage return may require normalization in a generalized Unix environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

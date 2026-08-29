@@ -66,7 +66,7 @@ When the loop ends, `res` is the reversed digit order.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `reverse(x)` constructs the decimal reversal without ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ The direct test uses every integer divisor rather than only primes; this is simp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate palindromes rather than scan integers:** - **Generate palindromes rather than scan integers:** Mirror a digit prefix to enumerate only palindromes, then test primality. This can reduce `P` substantially but requires careful length transitions.
-- **- **Sieve primes:** The upper range is too large f:** - **Sieve primes:** The upper range is too large for a simple full boolean sieve to be attractive for one query.
-- **- **Test primality before palindrome:** Correct bu:** - **Test primality before palindrome:** Correct but wastes expensive divisor checks on most candidates.
+- **Generate palindromes rather than scan integers:** Mirror a digit prefix to enumerate only palindromes, then test primality. This can reduce `P` substantially but requires careful length transitions.
+- **Sieve primes:** The upper range is too large for a simple full boolean sieve to be attractive for one query.
+- **Test primality before palindrome:** Correct but wastes expensive divisor checks on most candidates.
 
 ---
 

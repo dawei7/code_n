@@ -67,7 +67,7 @@ Thus the game consists of two independent “pair different labels” problems, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two `x?` cards already agree at position zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ If no label dominates, cards can be alternated until at most one remains, reachi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maximum matching on individual cards:** Buildi:** - **Maximum matching on individual cards:** Building compatibility edges can be quadratic. Category counts collapse the graph to constant many labels.
+- **Maximum matching on individual cards:** Building compatibility edges can be quadratic. Category counts collapse the graph to constant many labels.
 - **Greedily pair any compatible cards:** A poor use of `xx` centers can starve the other side. Enumerating their allocation avoids that choice error.
 - **Pair `x?` with `?x`:** When neither card is `xx`, they differ at both positions and are incompatible.
 - **Pair identical cards:** They differ in zero positions, but compatibility requires exactly one.
@@ -128,8 +128,8 @@ If no label dominates, cards can be alternated until at most one remains, reachi
 - **Duplicate compatible labels:** Copies remain separate cards, but copies of the same label must pair with other labels.
 - **Every center need not score:** The allocation loop assigns all conceptually, but the side formula may leave excess centers unused.
 - **Input preservation:** The method counts cards without removing or reordering the input deck.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

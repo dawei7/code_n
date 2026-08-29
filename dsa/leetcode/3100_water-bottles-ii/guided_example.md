@@ -51,7 +51,7 @@ After this initialization, the variable still named `numBottles` should be inter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After this initialization, the variable still named `numBott... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After this initialization, the variable still named `numBottles` should be inter
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic formula:** Solve for the maximum exc:** - **Quadratic formula:** Solve for the maximum exchange count $t$ from the arithmetic-series inequality and return `B + t`. It can be $O(1)$ but requires careful integer rounding.
+- **Quadratic formula:** Solve for the maximum exchange count $t$ from the arithmetic-series inequality and return `B + t`. It can be $O(1)$ but requires careful integer rounding.
 - **Batch exchange at one price:** It violates the rule because the price must rise after each individual exchange.
 - **Track full and empty separately:** This mirrors the story more literally but adds state without changing the greedy logic.
 - **Initial price exceeds bottle count:** No exchange is affordable, so the answer is exactly the initial number of bottles.
@@ -101,8 +101,8 @@ After this initialization, the variable still named `numBottles` should be inter
 - **No overflow:** Python integers are unbounded; fixed-width implementations should evaluate the arithmetic-series formula carefully if used.
 - **Constraint minimums:** At least one initial full bottle exists, so `ans` starts positive.
 - **Source versus editorial math:** The checked-in Optimal source is the simulation approach, and its $O(\sqrt B)$ manifest bound matches the exact loop.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

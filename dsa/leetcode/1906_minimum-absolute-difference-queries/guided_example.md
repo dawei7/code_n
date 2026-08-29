@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Build one prefix count per value.** `pre_sum[i][j]` is the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This table costs more memory than a single prefix sum, but it turns an arbitrary
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort each queried subarray:** This repeats ext:** - **Sort each queried subarray:** This repeats extraction and sorting, potentially costing far more than the fixed 100-value scan across many queries.
+- **Sort each queried subarray:** This repeats extraction and sorting, potentially costing far more than the fixed 100-value scan across many queries.
 - **Store positions for each value:** Binary-search whether each value has an occurrence in `[l,r]`. This uses $O(n)$ storage but adds logarithmic checks for each of 100 values.
 - **Bitsets:** Presence in ranges can be accelerated with specialized bit operations, but prefix counts are straightforward and exact.
 - **Duplicate-only range:** One present value leaves no unequal pair, so `-1` is returned.
@@ -95,8 +95,8 @@ This table costs more memory than a single prefix sum, but it turns an arbitrary
 - **Value 100:** The table has 101 value columns, so index 100 is valid.
 - **Unused value zero:** It remains zero and is intentionally skipped by loops starting at one.
 - **Output order:** Queries are handled sequentially and answers are appended in the same order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The solution simulates precisely this forced suffix scan. Array `is_added` has l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution simulates precisely this forced suffix scan.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution simulates precisely this forced suffix scan. Array `is_added` has l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set:** Store required values seen in a se:** - **Hash set:** Store required values seen in a set and stop when its size is $k$. This is correct but uses hashing where a compact Boolean array gives simpler direct indexing.
+- **Hash set:** Store required values seen in a set and stop when its size is $k$. This is correct but uses hashing where a compact Boolean array gives simpler direct indexing.
 - **Physically popping elements:** Repeated `nums.pop()` also follows the operation order but unnecessarily mutates the input. Reverse indexing computes the same count.
 - **Irrelevant values above `k`:** They do not change `count` but still contribute to the returned operation total.
 - **Duplicate required values:** Only the first encountered copy changes progress; subsequent copies are skipped.
@@ -94,8 +94,8 @@ The solution simulates precisely this forced suffix scan. Array `is_added` has l
 - **Required value at index zero:** Every element must be removed, and `n - 0` correctly returns `n`.
 - **Immediate completion:** If the final $k$ relevant removals already cover all required values, the function stops without scanning unused prefix elements.
 - **Invalid input outside the contract:** Missing required values would fall through with `null`; a defensive general-purpose version should return a sentinel or raise an error.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

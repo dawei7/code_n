@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **(0-indexed)** array of positive integers `candiesCount` where $\text{candiesCount}[i]$ represents the number of candies of the $$i^{\text{th}}$$ type you have. You are also given a 2D array `queries` where $\text{queries}[i] = [\text{favoriteType}_{i}, \text{favoriteDay}_{i}, \text{dailyCap}_{i}]$.
+You are given a **(0-indexed)** array of positive integers `candiesCount` where $\text{candiesCount}[i]$ represents the number of candies of the $i^{\text{th}}$ type you have. You are also given a 2D array `queries` where $\text{queries}[i] = [\text{favoriteType}_{i}, \text{favoriteDay}_{i}, \text{dailyCap}_{i}]$.
 
 The objective is to compute `[true, false, true]` from `{"candiesCount": [7, 4, 5, 3, 8], "queries": [[0, 2, 2], [4, 2, 4], [2, 13, 1000000000]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -81,7 +81,7 @@ The schedule can distribute the chosen total across earlier days because every d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a query `[t, day, mx]`, days are zero-indexed.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ Both inequalities must hold. The implementation appends their conjunction direct
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate each day:** It is far too slow becaus:** - **Simulate each day:** It is far too slow because favorite days and daily caps can reach $10^9$.
+- **Simulate each day:** It is far too slow because favorite days and daily caps can reach $10^9$.
 - **Binary search the eaten type:** Prefix sums could locate a type for one fixed cumulative count, but each query asks whether any schedule exists, and direct interval overlap is simpler and $O(1)$.
 - **Per-query prefix summation:** Recomputing candies before the favorite type would cost $O(nq)$ in the worst case.
 - **Favorite type zero:** `s[0]` is zero, so the reachability condition on the lower endpoint is naturally satisfied whenever at least one candy can be eaten.
@@ -143,8 +143,8 @@ Both inequalities must hold. The implementation appends their conjunction direct
 - **Cannot yet reach a type:** Even the fastest schedule ends before its first candy, making the second condition false.
 - **Positive counts:** Every type owns a non-empty prefix interval, as guaranteed by the input.
 - **No schedule construction:** The proof of interval reachability is sufficient; the answer needs only Booleans, not daily eating amounts.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

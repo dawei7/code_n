@@ -57,7 +57,7 @@ Therefore the solution never needs to collect or separately traverse entire diag
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a diagonal contains values `a0, a1, a2, ...`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ If all comparisons pass, every diagonal is constant and the method returns `true
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group by `i - j`:** Store the first value for :** - **Group by `i - j`:** Store the first value for every diagonal key and compare later cells. This works but uses `O(m + n)` extra space.
-- **- **Traverse each diagonal separately:** It has th:** - **Traverse each diagonal separately:** It has the same time bound but requires more boundary-start loops and bookkeeping.
-- **- **Compare with upper-right:** That checks the op:** - **Compare with upper-right:** That checks the opposite diagonal direction and solves a different property.
+- **Group by `i - j`:** Store the first value for every diagonal key and compare later cells. This works but uses `O(m + n)` extra space.
+- **Traverse each diagonal separately:** It has the same time bound but requires more boundary-start loops and bookkeeping.
+- **Compare with upper-right:** That checks the opposite diagonal direction and solves a different property.
 
 ---
 

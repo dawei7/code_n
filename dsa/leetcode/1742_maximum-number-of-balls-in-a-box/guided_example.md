@@ -65,7 +65,7 @@ At every iteration of the inner loop, `y` equals the sum of digits already remov
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each loop value `x`, the solution initializes `y = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Thus the digit extraction destroys only the temporary integer bound to `x`. It d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash map of box counts:** A dictionary avoids :** - **Hash map of box counts:** A dictionary avoids choosing an array bound and generalizes easily, but has hashing overhead and is unnecessary when the digit-sum range is tiny.
+- **Hash map of box counts:** A dictionary avoids choosing an array bound and generalizes easily, but has hashing overhead and is unnecessary when the digit-sum range is tiny.
 - **Convert each number to a string:** Summing converted digit characters is readable, yet allocates or processes string representations and retains the same $O(RD)$ time.
 - **Incremental digit-sum updates:** One can update the sum from one number to the next using carry behavior, potentially reducing repeated division, but the carry logic is substantially easier to get wrong.
 - **Digit dynamic programming:** Counting box occupancies without enumerating every label is possible for much larger numeric ranges, but is excessive for `highLimit <= 100000`.
@@ -115,8 +115,8 @@ Thus the digit extraction destroys only the temporary integer bound to `x`. It d
 - **Unused counter zero:** It remains zero because all labels are positive, but causes no issue in the maximum.
 - **Mutated loop variable:** Python's range iterator supplies the next label independently, so reducing `x` inside the body is safe.
 - **No explicit winning-box variable:** Tracking only counters and taking their maximum is sufficient because box identity is not returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

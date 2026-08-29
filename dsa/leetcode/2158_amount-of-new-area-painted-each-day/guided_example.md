@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $$i^{\text{th}}$$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
+There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $i^{\text{th}}$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
 
 The objective is to compute `[3, 3, 1]` from `{"paint": [[1, 4], [4, 7], [5, 8]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -70,7 +70,7 @@ This value is appended before the day’s interval is marked, so it counts only 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one day, `l = start + 1` and `r = end`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Painting is monotone: segments only change from unpainted to painted and never b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Path-compressed successor links:** Jump from e:** - **Path-compressed successor links:** Jump from each already painted unit to the next unpainted one, visiting every unit once overall. This matches the manifest summary and can be very efficient on the bounded integer domain.
+- **Path-compressed successor links:** Jump from each already painted unit to the next unpainted one, visiting every unit once overall. This matches the manifest summary and can be very efficient on the bounded integer domain.
 - **Difference array over days:** A simple global difference array can find final union length but does not directly separate how much became new on each chronological day.
 - **Ordered disjoint intervals:** Maintain the painted union in a balanced structure and merge overlaps. This avoids a fixed coordinate tree but requires careful interval splitting.
 - **Paint every unit directly:** With endpoints at most 50,000, a boolean array can work, but repeated long intervals may cause $O(nU)$ scanning.
@@ -127,8 +127,8 @@ Painting is monotone: segments only change from unpainted to painted and never b
 - **Lazy overwrite:** Marking an already painted full node again leaves `v` equal to its length, so repeated paint is idempotent.
 - **Dynamic children:** `pushdown` creates both children before `pushup` reads them, preventing missing-child counts.
 - **Input preservation:** The tree stores coverage separately and never changes `paint`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -73,9 +73,7 @@ The generator feeds values directly into `Counter`; it does not first allocate a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-`Counter(x & y for x in nums for y in nums)`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +116,7 @@ The loop over `nums` is intentionally not a loop over distinct values. If the sa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three explicit loops:** It mirrors the definit:** - **Three explicit loops:** It mirrors the definition directly but performs `O(N^3)` AND tests and repeats the same pair result for every third index.
+- **Three explicit loops:** It mirrors the definition directly but performs `O(N^3)` AND tests and repeats the same pair result for every third index.
 - **Two loops plus a raw pair-result list:** Precomputing all `N^2` masks avoids recomputing AND, but retaining every occurrence individually uses `O(N^2)` space. The counter compresses equal masks while preserving their frequencies.
 - **Frequency-compress the input values too:** Count each distinct third value and multiply by its occurrence count. This can reduce work when `nums` has many duplicates, but requires another mapping and slightly more bookkeeping.
 - **Subset-transform methods:** A sum-over-subsets dynamic program can precompute how many values are compatible with each mask in roughly `O(U \log U)` after pair counting. It is useful for a large number of distinct third values but is more complex and always pays for the full `2^{16}` universe.
@@ -128,8 +126,8 @@ The loop over `nums` is intentionally not a loop over distinct values. If the sa
 - **All zeros:** Every one of the `N^3` ordered triples is valid, and the compressed calculation still returns exactly `N^3`.
 - **Single element:** The method evaluates one pair and one third value. It returns one if that value ANDed with itself three times is zero, which happens exactly when the value is zero.
 - **Sixteen-bit bound:** Every pairwise AND remains within the same `0` through `2^{16}-1` universe; AND can clear bits but cannot introduce a bit absent from its operands.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -171,28 +171,6 @@
         "rows": [[10, "B", 1, 0, 0], [20, "A", 2, 1, 1]]
       },
       "tags": ["trial", "ordered-output", "zero-contacts"]
-    },
-    {
-      "id": "trial-duplicate-registered-email",
-      "name": "trial: duplicate customer emails still count one trusted contact",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Customers": [
-            {"customer_id": 1, "customer_name": "Owner", "email": "owner@shop.com"},
-            {"customer_id": 2, "customer_name": "First", "email": "shared@shop.com"},
-            {"customer_id": 3, "customer_name": "Second", "email": "shared@shop.com"}
-          ],
-          "Contacts": [{"user_id": 1, "contact_name": "Shared", "contact_email": "shared@shop.com"}],
-          "Invoices": [{"invoice_id": 9, "price": 90, "user_id": 1}]
-        }
-      },
-      "expected": {
-        "columns": ["invoice_id", "customer_name", "price", "contacts_cnt", "trusted_contacts_cnt"],
-        "rows": [[9, "Owner", 90, 1, 1]]
-      },
-      "tags": ["trial", "duplicate-customer-emails", "membership-semantics"]
     }
   ]
 }

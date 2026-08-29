@@ -51,7 +51,7 @@ An inner join would be wrong for the same reason: it would silently remove an un
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An inner join would be wrong for the same reason: it would s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ An inner join would be wrong for the same reason: it would silently remove an un
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner join:** This incorrectly drops products :** - **Inner join:** This incorrectly drops products whose categories have no discount, directly violating the unchanged-price requirement.
+- **Inner join:** This incorrectly drops products whose categories have no discount, directly violating the unchanged-price requirement.
 - **Correlated scalar subquery:** Looking up the discount separately for every product can express the same logic, but it is less direct and may lead to repeated lookups unless the optimizer rewrites it.
 - **`CASE WHEN discount IS NULL`:** A `CASE` expression can substitute zero or return `price` explicitly. `COALESCE` is shorter and communicates the missing-value fallback precisely.
 - **Subtracting the discount amount:** `price - price * discount / 100` is algebraically equivalent for matched rows, but it still needs a `NULL` fallback. The multiplier form handles matched and unmatched rows uniformly.
@@ -98,8 +98,8 @@ An inner join would be wrong for the same reason: it would silently remove an un
 - **Fractional decimal result:** The exact query does not round. Adding `ROUND` or converting to an integer would impose behavior absent from the contract.
 - **`ORDER BY 1` maintainability:** It is valid and exact here, but reordering select columns could silently change the sort key. `ORDER BY product_id ASC` is clearer in evolving production SQL.
 - **`NULL` product category:** The documented schema does not state such rows are possible. Under ordinary SQL equality semantics, `NULL` would not match another `NULL` category and would therefore receive zero discount through `COALESCE`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

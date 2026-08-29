@@ -65,7 +65,7 @@ The same numeric mask is used to generate one entry for each half during an iter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Enumerating all assignments directly would inspect $2^{2n}$ ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Without this grouping, a very small signed difference might correspond to partit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all full assignments:** Costs $O(2^{:** - **Enumerate all full assignments:** Costs $O(2^{2n})$ and misses the meet-in-the-middle advantage.
+- **Enumerate all full assignments:** Costs $O(2^{2n})$ and misses the meet-in-the-middle advantage.
 - **Subset sums using the total sum:** Minimize `abs(total - 2 * selected_sum)` with exactly `n` selected elements; it is algebraically equivalent.
 - **Dynamic programming by numerical sum:** Input magnitudes make a sum-indexed table impractically large.
 - **Brute-force combinations:** Enumerating all $\binom{2n}{n}$ equal-size selections remains much larger than the half enumeration.
@@ -117,8 +117,8 @@ Without this grouping, a very small signed difference might correspond to partit
 - **Even group size is irrelevant:** Binary search operates on distinct sorted differences, not original subset multiplicities.
 - **Exact complement absent:** Checking the lower bound and predecessor finds the nearest available value.
 - **Input preservation:** Masks read `nums` without modifying it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

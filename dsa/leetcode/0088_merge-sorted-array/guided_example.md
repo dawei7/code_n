@@ -61,7 +61,7 @@ After either choice, `k` decreases because exactly one final position has been f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition `i >= 0 and nums1[i] > nums2[j]` first checks ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Another way to see it is by counting: before writing a position, there are exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward merge with a copy:** Copy the first `m:** - **Forward merge with a copy:** Copy the first `m` values, then merge from the beginning. It is linear time but uses $O(m)$ extra space.
+- **Forward merge with a copy:** Copy the first `m` values, then merge from the beginning. It is linear time but uses $O(m)$ extra space.
 - **Append and sort:** Copy `nums2` into the placeholders and sort all values. It ignores existing order and costs $O((m+n)\log(m+n))$ time.
 - **Repeated insertion:** Insert second-array values into the meaningful prefix. Array shifting can make this quadratic.
 - **`n == 0`:** `j` starts negative, the loop is skipped, and `nums1` remains unchanged.
@@ -112,8 +112,8 @@ Another way to see it is by counting: before writing a position, there are exact
 - **Negative input values:** Backward maximum comparison works regardless of sign.
 - **No return value:** Correctness is observed through the mutated `nums1` list.
 - **Input preservation:** `nums2` is read only; `nums1` is intentionally overwritten.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

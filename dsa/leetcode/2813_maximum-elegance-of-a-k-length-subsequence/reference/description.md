@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** 2D integer array `items` of length `n` and an integer `k`.
 
-$\text{items}[i] = [\text{profit}_{i}, \text{category}_{i}]$, where $\text{profit}_{i}$ and $\text{category}_{i}$ denote the profit and category of the $$i^{\text{th}}$$ item respectively.
+$\text{items}[i] = [\text{profit}_{i}, \text{category}_{i}]$, where $\text{profit}_{i}$ and $\text{category}_{i}$ denote the profit and category of the $i^{\text{th}}$ item respectively.
 
 Let's define the **elegance** of a **subsequence** of `items` as $\text{total}_{profit} + \text{distinct}_{categories}^2$, where $\text{total}_{profit}$ is the sum of all profits in the subsequence, and $\text{distinct}_{categories}$ is the number of **distinct** categories from all the categories in the selected subsequence.
 

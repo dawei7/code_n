@@ -55,7 +55,7 @@ The greedy method includes every following sorted value `b` satisfying `b-a \le 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After `nums.sort()`, the first value not assigned to a previ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The nonempty input initializes `ans=1` and `a=nums[0]`. The loop includes the fi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build groups in original order:** Greedy place:** - **Build groups in original order:** Greedy placement by arrival order can waste range capacity because a later small value may change a group's minimum.
+- **Build groups in original order:** Greedy placement by arrival order can waste range capacity because a later small value may change a group's minimum.
 - **Explicit interval covering:** The sorted problem is equivalent to covering all values with the fewest intervals of width `k`; starting each interval at the smallest uncovered value yields the same greedy method.
 - **Dynamic programming:** It can model sorted prefixes but adds unnecessary state because the greedy boundary is forced.
 - **Counting sort:** The bounded value range permits it, but comparison sorting is simpler and already meets the bound.
@@ -106,8 +106,8 @@ The nonempty input initializes `ans=1` and `a=nums[0]`. The loop includes the fi
 - **Duplicates across a boundary:** Equal values cannot straddle a greedy boundary because sorted equals are adjacent and have zero difference.
 - **Subsequence ordering:** Membership is chosen by value, then original order within each membership set supplies a legal subsequence.
 - **Input mutation:** The original ordering of `nums` is destroyed by sorting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

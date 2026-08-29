@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two integers `n` and `k` and two integer arrays `speed` and `efficiency` both of length `n`. There are `n` engineers numbered from `1` to `n`. $\text{speed}[i]$ and $\text{efficiency}[i]$ represent the speed and efficiency of the $$i^{\text{th}}$$ engineer respectively.
+You are given two integers `n` and `k` and two integer arrays `speed` and `efficiency` both of length `n`. There are `n` engineers numbered from `1` to `n`. $\text{speed}[i]$ and $\text{efficiency}[i]$ represent the speed and efficiency of the $i^{\text{th}}$ engineer respectively.
 
 The objective is to compute `60` from `{"n": 6, "speed": [2, 10, 3, 1, 5, 8], "efficiency": [5, 4, 3, 9, 7, 2], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -74,7 +74,7 @@ Although the push appears after the candidate calculation, `tot` already include
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed minimum efficiency, all eligible teammate effici... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The minimum heap root identifies exactly the speed to discard when there are $k$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all teams:** This considers exponent:** - **Enumerate all teams:** This considers exponentially many subsets and is infeasible for $n$ up to 100,000.
+- **Enumerate all teams:** This considers exponentially many subsets and is infeasible for $n$ up to 100,000.
 - **Sort by speed alone:** It can select fast engineers with a disastrously low minimum efficiency and does not control the multiplier.
 - **Re-sort eligible speeds for every threshold:** It expresses the fixed-efficiency idea but repeats work, potentially costing $O(n^2\log n)$.
 - **Balanced multiset of speeds:** It can maintain the largest $k-1$ values, but a min-heap provides exactly the needed remove-smallest operation more simply.
@@ -124,8 +124,8 @@ The minimum heap root identifies exactly the speed to discard when there are $k$
 - **Large performance:** Python integers do not overflow, and the modulus is safely delayed until after maximization.
 - **Parameter `n`:** Pairing the two arrays determines the actual iteration; `n` belongs to the required signature and agrees with their lengths.
 - **Required heap names:** `heappush` and `heappop` must be available, normally from `heapq`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

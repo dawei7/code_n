@@ -76,7 +76,7 @@ If no key finds a valid complement, the loop finishes and returns false.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a query `value`, the source iterates over `(x, v)` entri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ twice.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted list with lazy sorting:** Append in $O(:** - **Sorted list with lazy sorting:** Append in $O(1)$, sort after changes, then use two pointers for queries. A query after an add can cost $O(n\log n)$.
+- **Sorted list with lazy sorting:** Append in $O(1)$, sort after changes, then use two pointers for queries. A query after an add can cost $O(n\log n)$.
 - **Maintain a sorted list on every add:** Enables linear two-pointer queries but insertion can cost $O(n)$.
 - **Precompute pair sums:** Makes `find` expected $O(1)$ but can require $O(n^2)$ update work and storage.
 - **Set only:** Insufficient because it cannot validate two equal operands.
@@ -133,8 +133,8 @@ twice.
 - **Large query target:** An absent complement is simply rejected; no overflow occurs in Python.
 - **Repeated additions:** They increment one count without increasing distinct-key space.
 - **Missing import:** `defaultdict` must be imported before construction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

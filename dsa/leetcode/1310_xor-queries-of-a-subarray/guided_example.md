@@ -77,7 +77,7 @@ Using an exclusive boundary is especially useful for a query beginning at index 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Passing `xor` to `accumulate` makes every cumulative step us... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +133,7 @@ The `r + 1` is necessary because `s` uses an exclusive prefix boundary. Using `s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct range scan per query:** It uses no pref:** - **Direct range scan per query:** It uses no prefix table beyond output but can take $O(nq)$ time when many queries cover long ranges.
+- **Direct range scan per query:** It uses no prefix table beyond output but can take $O(nq)$ time when many queries cover long ranges.
 - **In-place prefix XOR:** Replacing each `arr[i]` with the prefix through `i` reduces auxiliary storage to $O(1)$ excluding output, but mutates the input and needs a special case when `l = 0`.
 - **Segment tree:** It answers range XOR in $O(\log n)$ and supports updates. With a static array and no updates, prefix XOR is simpler and faster per query.
 - **Fenwick tree:** It can support prefix XOR updates and queries, but update capability is unnecessary for this fixed input.
@@ -144,8 +144,8 @@ The `r + 1` is necessary because `s` uses an exclusive prefix boundary. Using `s
 - **Repeated array values:** Equal values cancel only when both lie in the algebraic prefix difference as duplicated prefix terms; actual equal elements inside the requested range correctly XOR according to their multiplicity.
 - **Inclusive right boundary:** Using `r + 1` is essential because prefix indices are exclusive endpoints.
 - **Positive values:** Prefix XOR also works for zero or ordinary nonnegative integers; positivity is not needed for the algebra.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

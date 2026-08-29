@@ -51,7 +51,7 @@ Within each group, `AVG(rating)` calculates the trip-average rating, and `ROUND(
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within each group, `AVG(rating)` calculates the trip-average... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The joins are inner joins. A driver without a vehicle, a vehicle without a trip,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct the accident metric:** Use `MAX(accide:** - **Correct the accident metric:** Use `MAX(accidents) accidents` or `MIN(accidents) accidents` in CTE `T`. Because the driver value is repeated across joined trips, either returns the actual count.
+- **Correct the accident metric:** Use `MAX(accidents) accidents` or `MIN(accidents) accidents` in CTE `T`. Because the driver value is repeated across joined trips, either returns the actual count.
 - **Use `ROW_NUMBER` with a fourth tie-break:** Adding `driver_id ASC` and filtering row number one guarantees exactly one deterministic driver when all stated metrics tie.
 - **Correlated subqueries per fuel type:** They can retrieve a top row but repeat aggregation work and are harder to read than grouped CTEs plus a window function.
 - **Driver with several vehicles of one fuel type:** Grouping combines all of that driver's trips within the fuel type, which is appropriate for a driver/fuel performance row.
@@ -99,8 +99,8 @@ The joins are inner joins. A driver without a vehicle, a vehicle without a trip,
 - **Vehicle-ID uniqueness:** Joining Trips on `vehicle_id` alone assumes that identifier uniquely determines a vehicle row despite the documented composite key.
 - **Final ordering:** `ORDER BY 1` is valid but positional. `ORDER BY fuel_type ASC` is clearer if projection order later changes.
 - **SQL dialect:** The leading `#` comment, CTEs, `USING`, window functions, and alias syntax target a modern MySQL environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

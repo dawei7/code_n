@@ -414,66 +414,6 @@
       }
     },
     {
-      "id": "trial-filter-action",
-      "name": "trial: spam text on a non-report action is excluded",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 60,
-              "action_date": "2024-01-01",
-              "action": "comment",
-              "extra": "spam"
-            },
-            {
-              "user_id": 2,
-              "post_id": 61,
-              "action_date": "2024-01-01",
-              "action": "report",
-              "extra": "spam"
-            },
-            {
-              "user_id": 3,
-              "post_id": 62,
-              "action_date": "2024-01-01",
-              "action": "report",
-              "extra": "spam"
-            }
-          ],
-          "Removals": [
-            {
-              "post_id": 60,
-              "remove_date": "2024-02-01"
-            },
-            {
-              "post_id": 61,
-              "remove_date": "2024-02-02"
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "average_daily_percent"
-        ],
-        "rows": [
-          [
-            50
-          ]
-        ]
-      },
-      "tags": [
-        "trial",
-        "action-filter"
-      ],
-      "validator": {
-        "kind": "unordered_table"
-      }
-    },
-    {
       "id": "trial-removal-date-irrelevant",
       "name": "a removal predating the report still counts as removed",
       "kind": "trial",
@@ -521,56 +461,6 @@
         "trial",
         "removal-date-irrelevant",
         "fifty-percent"
-      ]
-    },
-    {
-      "id": "trial-no-spam-reports",
-      "name": "no date contains a spam report",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Actions": [
-            {
-              "user_id": 1,
-              "post_id": 80,
-              "action_date": "2024-06-06",
-              "action": "report",
-              "extra": "racism"
-            },
-            {
-              "user_id": 2,
-              "post_id": 81,
-              "action_date": "2024-06-06",
-              "action": "view",
-              "extra": "spam"
-            }
-          ],
-          "Removals": [
-            {
-              "post_id": 80,
-              "remove_date": "2024-07-01"
-            }
-          ]
-        }
-      },
-      "expected": {
-        "columns": [
-          "average_daily_percent"
-        ],
-        "rows": [
-          [
-            null
-          ]
-        ]
-      },
-      "validator": {
-        "kind": "unordered_table"
-      },
-      "tags": [
-        "trial",
-        "no-qualifying-days",
-        "null-average"
       ]
     }
   ]

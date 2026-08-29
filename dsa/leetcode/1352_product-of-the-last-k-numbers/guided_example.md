@@ -56,7 +56,7 @@ All allowed nonzero values are positive, so cumulative products are positive and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `num != 0`, `s.append(s[-1] * num)` multiplies the new v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -95,7 +95,7 @@ This reset does not mean the logical stream forgot its earlier length. Instead, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store the raw stream:** Multiply the last `k` :** - **Store the raw stream:** Multiply the last `k` values at query time. Adds are constant-time, but queries cost $O(k)$ and miss the follow-up target.
+- **Store the raw stream:** Multiply the last `k` values at query time. Adds are constant-time, but queries cost $O(k)$ and miss the follow-up target.
 - **Prefix product plus zero counts:** Keep prefixes for the entire stream and a parallel zero-prefix count. This can answer whether a range contains zero but still must avoid dividing zero-valued cumulative products.
 - **Segment tree:** Supports range products and point appends in logarithmic time, but it is unnecessarily complex when queries always ask for a suffix.
 - **First operation is a query outside the contract:** The stream is guaranteed to contain at least `k` values before `getProduct(k)` is called.
@@ -105,8 +105,8 @@ This reset does not mean the logical stream forgot its earlier length. Instead, 
 - **Exact division:** The denominator is a stored prefix factor of the numerator, so `//` does not truncate a fractional value.
 - **Sentinel one:** It represents the empty prefix and avoids a special branch when a query covers the entire current nonzero segment.
 - **Object persistence:** State survives across method calls, and a zero deliberately discards only prefix data that can no longer contribute to a nonzero suffix.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

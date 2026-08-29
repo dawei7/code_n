@@ -77,7 +77,7 @@ The completed array is `[4, 7, 2, 2, 7, 4]`. The two copies of `2` at the bounda
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider an illustrative input `nums = [4, 7, 2]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ For the reversed half, the expression $n-1-i$ starts at $n-1$ when $i=0$ and end
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use slicing and concatenation:** `nums + nums[:** - **Use slicing and concatenation:** `nums + nums[::-1]` is compact and has the same $O(n)$ time and output-space bounds, but it normally materializes a reversed temporary list before constructing the concatenated result. The source makes the mapping and single result allocation explicit.
+- **Use slicing and concatenation:** `nums + nums[::-1]` is compact and has the same $O(n)$ time and output-space bounds, but it normally materializes a reversed temporary list before constructing the concatenated result. The source makes the mapping and single result allocation explicit.
 - **Append the forward pass, then append a reverse traversal:** This is also correct and easy to read. It grows the result dynamically and uses two loops instead of filling two known destinations during one loop.
 - **Reverse the input in place:** Mutating `nums` would lose the original ordering unless it had first been copied, and it would create an unnecessary side effect visible to the caller.
 - **Insert repeatedly at the front:** Front insertion in a Python list shifts existing values and can turn a linear task into quadratic work. Direct indexed writes avoid all shifting.
@@ -136,8 +136,8 @@ For the reversed half, the expression $n-1-i$ starts at $n-1$ when $i=0$ and end
 - **Logically empty input:** If an empty list were supplied, the allocation and loop would produce an empty list, which is the concatenation of the empty list with its reverse. The source handles this naturally even if the formal constraints guarantee a nonempty input.
 - **Large integer values:** Values are copied, not arithmetically transformed, so their magnitudes have no effect on the algorithm or its index safety.
 - **Aliasing expectations:** The returned list is new. Later assignment to an element of `ans` does not alter the corresponding top-level element slot in `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

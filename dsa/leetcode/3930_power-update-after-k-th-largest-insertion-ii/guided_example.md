@@ -59,7 +59,7 @@ For each pair `[val, k]`, `sl.add(val)` inserts one new occurrence at its sorted
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An ordinary set would be wrong because equal values occupy s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Duplicates behave correctly because they occupy distinct list positions. Inserti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Required source dependency:** `SortedList` mus:** - **Required source dependency:** `SortedList` must be imported or otherwise supplied. The current Optimal source is not self-contained, and this documentation does not silently edit it.
+- **Required source dependency:** `SortedList` must be imported or otherwise supplied. The current Optimal source is not self-contained, and this documentation does not silently edit it.
 - **Fenwick tree with coordinate compression:** This is the algorithm claimed by the manifest and can support frequency updates plus order-statistic search in $O(\log(N+Q))$. It is not the algorithm present in `solution.py`.
 - **Sort the entire collection after every insertion:** This is simple but costs up to $O((N+Q)\log(N+Q))$ per query and repeats nearly all sorting work.
 - **Use a plain set:** A set discards duplicates, changing rank positions and producing incorrect `k`th-largest values.
@@ -116,8 +116,8 @@ Duplicates behave correctly because they occupy distinct list positions. Inserti
 - **State becomes zero:** If modular exponentiation produces zero, every later positive exponent keeps it zero. The code naturally preserves that state.
 - **Initial `p` near the modulus:** Three-argument `pow` handles reduction correctly; no manual pre-reduction is necessary.
 - **Input list ownership:** Constructing the intended sorted structure from `nums` does not append query values to the original list itself.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

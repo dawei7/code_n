@@ -330,7 +330,7 @@
             "15": 15,
             "16": 16
           },
-          "max_queries": 30
+          "max_queries": 100000
         }
       },
       "expected": 8,

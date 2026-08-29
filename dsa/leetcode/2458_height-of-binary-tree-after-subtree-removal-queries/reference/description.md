@@ -2,11 +2,11 @@
 
 You are given the `root` of a **binary tree** with `n` nodes. Each node is assigned a unique value from `1` to `n`. You are also given an array `queries` of size `m`.
 
-You have to perform `m` **independent** queries on the tree where in the $$i^{\text{th}}$$ query you do the following:
+You have to perform `m` **independent** queries on the tree where in the $i^{\text{th}}$ query you do the following:
 
 - **Remove** the subtree rooted at the node with the value $\text{queries}[i]$ from the tree. It is **guaranteed** that $\text{queries}[i]$ will **not** be equal to the value of the root.
 
-Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the height of the tree after performing the *$$i^{\text{th}}$$* query*.
+Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the height of the tree after performing the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

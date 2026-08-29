@@ -61,7 +61,7 @@ The constraints guarantee both bounds are valid and `left <= right`, so the slic
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python slices exclude their stop index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The vowel collection is a five-character string rather than a set. Membership sc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct index loop:** Iterate `for i in range(l:** - **Direct index loop:** Iterate `for i in range(left, right + 1)` and inspect `words[i]`, preserving $O(k)$ time with $O(1)$ auxiliary space.
+- **Direct index loop:** Iterate `for i in range(left, right + 1)` and inspect `words[i]`, preserving $O(k)$ time with $O(1)$ auxiliary space.
 - **Prefix counts:** Precompute cumulative vowel-string totals for $O(1)$ range queries, worthwhile only when many queries use the same words.
 - **Set of vowels:** A set gives expected constant membership and communicates intent, though a five-character string is already constant-sized.
 - **One-character vowel:** It qualifies because the same vowel is both first and last.
@@ -110,8 +110,8 @@ The vowel collection is a five-character string rather than a set. Membership sc
 - **Whole-array range:** Every word is checked exactly once.
 - **Lowercase guarantee:** No case conversion is required.
 - **Slice allocation:** The exact code is not constant-space; direct indexing is the allocation-free alternative.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

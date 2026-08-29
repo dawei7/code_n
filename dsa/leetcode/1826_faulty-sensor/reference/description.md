@@ -1,6 +1,6 @@
 ### 1. Description
 
-An experiment is being conducted in a lab. To ensure accuracy, there are** two **sensors collecting data simultaneously. You are given two arrays `sensor1` and `sensor2`, where $\text{sensor1}[i]$ and $\text{sensor2}[i]$ are the $$i^{\text{th}}$$ data points collected by the two sensors.
+An experiment is being conducted in a lab. To ensure accuracy, there are** two **sensors collecting data simultaneously. You are given two arrays `sensor1` and `sensor2`, where $\text{sensor1}[i]$ and $\text{sensor2}[i]$ are the $i^{\text{th}}$ data points collected by the two sensors.
 
 However, this type of sensor has a chance of being defective, which causes **exactly one** data point to be dropped. After the data is dropped, all the data points to the **right** of the dropped data are **shifted** one place to the left, and the last data point is replaced with some **random value**. It is guaranteed that this random value will **not** be equal to the dropped value.
 

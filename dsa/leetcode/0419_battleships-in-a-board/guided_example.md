@@ -74,7 +74,7 @@ The boundary checks `i > 0` and `j > 0` must precede neighbor access. A cell in 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested loops visit rows `0` through `m-1` and columns `0... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ A single-cell ship has no occupied predecessor in either direction and is counte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flood fill each unvisited ship:** Start DFS or:** - **Flood fill each unvisited ship:** Start DFS or BFS at an unvisited `'X'`, mark its connected cells, and increment once. This is $O(rc)$ time but needs $O(rc)$ visited space in the worst case or modifies the board, both unnecessary under the placement guarantees.
+- **Flood fill each unvisited ship:** Start DFS or BFS at an unvisited `'X'`, mark its connected cells, and increment once. This is $O(rc)$ time but needs $O(rc)$ visited space in the worst case or modifies the board, both unnecessary under the placement guarantees.
 - **Erase ships in place:** On finding an `'X'`, walk through and replace its cells with `'.'`. It uses little auxiliary space but violates the follow-up's requirement not to modify `board`.
 - **Count transitions along rows and columns separately:** This can work but risks double-counting single-cell ships and needs careful orientation logic. The no-above-and-no-left signature treats all lengths uniformly.
 - **Count all occupied cells:** This is incorrect whenever a ship has length greater than one because it counts cells rather than connected straight segments.
@@ -126,8 +126,8 @@ A single-cell ship has no occupied predecessor in either direction and is counte
 - **Several separated ships:** The required empty separation ensures each beginning cell is not rejected because of an unrelated adjacent ship.
 - **Invalid touching or L-shaped arrangements:** The proof relies on the contract's straight, separated placement. If arbitrary connected `'X'` shapes were permitted, a graph traversal and an explicit definition of a ship would be necessary.
 - **Python negative indexing:** Omitting `i > 0` or `j > 0` would read the last row or column from a first-edge cell. The explicit guards are correctness conditions, not merely optimizations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

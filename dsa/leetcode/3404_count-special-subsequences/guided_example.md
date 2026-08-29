@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{nums}[p]\texttt{nums}[r]
-=
-\texttt{nums}[q]\textt... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,7 +90,7 @@ Write $a=\texttt{nums}[p]$, $b=\texttt{nums}[q]$, $c=\texttt{nums}[r]$, and $d=\
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four nested loops:** Directly selecting $p,q,r:** - **Four nested loops:** Directly selecting $p,q,r,s$ and testing the equation is conceptually simple but takes $O(n^4)$ time, which is unusable for $n=1000$.
+- **Four nested loops:** Directly selecting $p,q,r,s$ and testing the equation is conceptually simple but takes $O(n^4)$ time, which is unusable for $n=1000$.
 - **Enumerate two pairs for every \(q\):** Rebuilding all right-pair counts from scratch for each second index costs $O(n^3)$. Incremental removal is what reduces the work to quadratic.
 - **Store raw products:** A map keyed by a product can help in some formulations, but here the equality pairs one value from each side. Reduced ratios provide a clean pair-matching key while avoiding floating-point arithmetic.
 - **Floating-point ratios:** Using `a / b` as a floating-point key risks precision-based mismatches. GCD reduction represents equal rational values exactly.
@@ -103,8 +100,8 @@ Write $a=\texttt{nums}[p]$, $b=\texttt{nums}[q]$, $c=\texttt{nums}[r]$, and $d=\
 - **Strict spacing:** The boundaries `q - 2`, `q + 2`, and `r + 2` are not optional optimizations. Allowing adjacent selected indices would count sequences forbidden by the statement.
 - **Positive inputs:** GCD normalization relies on the stated positive values. There is no need to define a ratio involving zero or normalize signs.
 - **Large answer:** The problem asks for an ordinary count, not a modular result. Python integers grow automatically, so `ans` does not overflow even when many quadruples are valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

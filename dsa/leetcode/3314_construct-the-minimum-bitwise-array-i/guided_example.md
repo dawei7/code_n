@@ -51,7 +51,7 @@ We are given the result $x$ and want the smallest $a$ producing it. Every odd pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | We are given the result $x$ and want the smallest $a$ produc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Any valid predecessor can be formed by clearing one bit among that trailing run.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force predecessors:** Test every $a<x$ a:** - **Brute-force predecessors:** Test every $a<x$ and stop at the first satisfying OR. It is easy under tiny limits but costs $O(nM)$ time.
+- **Brute-force predecessors:** Test every $a<x$ and stop at the first satisfying OR. It is easy under tiny limits but costs $O(nM)$ time.
 - **Trailing-one loop with a mask:** Repeatedly test `x & d` while doubling `d`, retaining `x - d` as the latest candidate. This is the editorial's equivalent formulation.
 - **Direct bit trick:** The boundary can be derived from low-bit operations, but the explicit scan is easier to reason about and already logarithmic.
 - **Prime two:** It is the sole even prime and impossible because `a | (a + 1)` is always odd.
@@ -98,8 +98,8 @@ Any valid predecessor can be formed by clearing one bit among that trailing run.
 - **Input preservation:** Results are appended to a new list; `nums` is not modified.
 - **Bit-range cap:** Thirty-one tested positions cover the version I limits comfortably. A truly unbounded Python-integer API should loop until a zero rather than hard-code 32.
 - **Output order:** Each result is appended during the input scan, so it stays aligned with its original prime.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

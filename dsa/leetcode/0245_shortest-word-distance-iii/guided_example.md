@@ -76,7 +76,7 @@ For the example array with both targets equal to `"makes"`, the first occurrence
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Now two “latest target” variables cannot both be assigned th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ That sum cannot be smaller than each positive component. Hence the minimum dista
 
 ## 6. Traps This Instance Exposes
 
-- **- **One unified “previous interesting index” scan::** - **One unified “previous interesting index” scan:** Record the latest index holding either target. When another interesting word appears, compare if the labels differ or if the requested targets are equal. This also achieves $O(n)$ time and $O(1)$ space, but the exact source's branch structure makes the distinct-occurrence rule more explicit.
+- **One unified “previous interesting index” scan:** Record the latest index holding either target. When another interesting word appears, compare if the labels differ or if the requested targets are equal. This also achieves $O(n)$ time and $O(1)$ space, but the exact source's branch structure makes the distinct-occurrence rule more explicit.
 - **Store occurrence lists:** Collect positions for the targets, then merge two lists for different words or inspect consecutive gaps for equal words. It is correct and linear time but uses $O(n)$ extra space unnecessarily for a single query.
 - **Binary search between occurrence lists:** Each occurrence from one list can search for neighboring positions in the other. This costs $O(n\log n)$ in the worst case and needs stored lists, so the streaming scan is stronger.
 - **Compare every pair:** Testing all target occurrence pairs is simple but can require $O(n^2)$ time.
@@ -135,8 +135,8 @@ That sum cannot be smaller than each positive component. Hence the minimum dista
 - **A target missing from the array:** The contract says both target names exist and, when equal, represent two individual words. Outside that contract, `ans` might remain `n`, so a broader API would need defined missing-pair behavior.
 - **Initialization with `n`:** Since the greatest legal distance is $n-1$, `n` is a safe finite sentinel. It avoids depending on floating-point infinity while still being replaced by any valid candidate.
 - **Independent `if` statements in the different branch:** They are safe because that branch runs only when `word1 != word2`. Moving the equal-word case into the same code without adjustment would make both indices equal and incorrectly create a zero distance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

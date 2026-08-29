@@ -60,4 +60,4 @@ Thus, $ans = [3, 3, 3]$.
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $1 \le \text{nums}[i] \le 10^{9}​​​​​​​$
+- $1 \le \text{nums}[i] \le 10^{9}$

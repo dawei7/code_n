@@ -61,7 +61,7 @@ Again this follows the inverse direction of the physical move, but invariance un
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Even rows shift left.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ If all comparisons succeed, values are constant along every cycle formed by adva
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct the shifted matrix:** It is straight:** - **Construct the shifted matrix:** It is straightforward but uses $O(RC)$ extra space and writes values that comparison can address directly.
+- **Construct the shifted matrix:** It is straightforward but uses $O(RC)$ extra space and writes values that comparison can address directly.
 - **Slice each row:** Python slicing can express rotations but allocates new row lists, increasing auxiliary space.
 - **Reduce `k %= n` first:** This improves readability and avoids repeated large-modulus operands, but the exact expressions already produce correct indices.
 - **One column:** Every cyclic shift maps the only position to itself, so the result is always true.
@@ -116,8 +116,8 @@ If all comparisons succeed, values are constant along every cycle formed by adva
 - **No repeated simulation:** Performing $k$ one-position shifts would cost $O(kRC)$ and mutate data. Modular indexing collapses all steps into one comparison per cell.
 - **Modulo with `j-k+n`:** Adding only one $n$ is still safe in Python even when $k>n$, because Python's modulo returns a nonnegative residue for negative dividends.
 - **Zero-based row parity:** The first row shifts left, exactly as the even-index rule requires.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

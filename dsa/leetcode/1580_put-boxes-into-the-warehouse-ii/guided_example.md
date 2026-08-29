@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labeled from `0` to $n - 1$ from left to right where $\text{warehouse}[i]$ (0-indexed) is the height of the $$i^{\text{th}}$$ room.
+You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labeled from `0` to $n - 1$ from left to right where $\text{warehouse}[i]$ (0-indexed) is the height of the $i^{\text{th}}$ room.
 
 The objective is to compute `4` from `{"boxes": [1, 2, 2, 3, 4], "warehouse": [3, 4, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -72,7 +72,7 @@ These scans do not yet include `warehouse[i]` itself. That design makes it easy 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left scan starts at index one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ For example, consider `warehouse = [3, 4, 1, 2]`. The room of height four at ind
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulating every push:** Trying insertion orde:** - **Simulating every push:** Trying insertion orders and moving boxes room by room repeats route checks and creates a combinatorial ordering problem. Prefix and suffix minima summarize all route bottlenecks once.
+- **Simulating every push:** Trying insertion orders and moving boxes room by room repeats route checks and creates a combinatorial ordering problem. Prefix and suffix minima summarize all route bottlenecks once.
 - **Using only prefix minima:** That solves the one-sided warehouse version but misses rooms that are easier to reach from the right. This solution takes the better of the left and right route capacities.
 - **Sorting raw room heights:** Raw heights ignore blocking rooms. A tall interior room may be unreachable by a tall box, so the capacities must be preprocessed before sorting.
 - **Largest-box endpoint greedy:** The editorial also describes testing boxes from largest to smallest against the currently exposed left and right rooms. That can use less explicit preprocessing, but the checked-in solution instead materializes effective capacities and performs ascending matching.
@@ -139,8 +139,8 @@ For example, consider `warehouse = [3, 4, 1, 2]`. The room of height four at ind
 - **Duplicate heights:** Sorting preserves every occurrence as a separate box or room. Equal-height boxes fit equal-height capacities because the comparison rejects only capacities strictly below `x`.
 - **Mutation of inputs:** The solution overwrites `warehouse` with effective capacities and sorts both lists. A caller needing the original orders must pass copies; the LeetCode contract does not require preserving them.
 - **Large heights:** The comparisons and minima do not depend on the magnitude beyond ordering. Python integers safely hold values up to and beyond the stated limit, while `inf` acts only as an unconstraining sentinel.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

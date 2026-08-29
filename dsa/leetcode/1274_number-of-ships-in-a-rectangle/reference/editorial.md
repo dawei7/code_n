@@ -69,14 +69,14 @@ For each sub-rectangle that contains a ship, we will make $4$ recursive calls to
 
 > This technique of dividing the problem into more sub-problems of the same or related type until these become simple enough to be solved directly is called _Divide and Conquer_.
 
-1. Check if the current rectangle given by `topRight` and `bottomLeft` coordinates, contains a ship. ​If so, divide the rectangle into 4​ sub-rectangles and recursively find the number of ships in each sub-rectangle.
+1. Check if the current rectangle given by `topRight` and `bottomLeft` coordinates, contains a ship. If so, divide the rectangle into 4 sub-rectangles and recursively find the number of ships in each sub-rectangle.
 
    Otherwise, terminate the search process. Thus, at each step, we eliminate all rectangles that do not contain a single ship.
 
 2. To divide the rectangle into 4 equal parts, we will first define the center coordinate of the X and Y axes as `midX` and `midY`; thus forming 4 sub-rectangles. The following figure illustrates the idea.
 
 ![ships](images/Sub_Rectangle_Mid_Position.png)
-​
+
 ![ships](images/Rectangle_Four_Division.png)
 
 3. For each of the sub-rectangles, recursively count the number of ships. The number of ships in a given rectangle will be the sum of the ships returned by the recursive call to each sub-rectangle.

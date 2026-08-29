@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have information about `n` different recipes. You are given a string array `recipes` and a 2D string array `ingredients`. The $$i^{\text{th}}$$ recipe has the name $\text{recipes}[i]$, and you can **create** it if you have **all** the needed ingredients from $\text{ingredients}[i]$. A recipe can also be an ingredient for **other **recipes, i.e., $\text{ingredients}[i]$ may contain a string that is in `recipes`.
+You have information about `n` different recipes. You are given a string array `recipes` and a 2D string array `ingredients`. The $i^{\text{th}}$ recipe has the name $\text{recipes}[i]$, and you can **create** it if you have **all** the needed ingredients from $\text{ingredients}[i]$. A recipe can also be an ingredient for **other **recipes, i.e., $\text{ingredients}[i]$ may contain a string that is in `recipes`.
 
 The objective is to compute `[]` from `{"recipes": ["bread"], "ingredients": [["yeast", "flour"]], "supplies": ["yeast"]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ acts as a growing queue and propagates newly made recipes without an explicit de
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The processing list `q` begins with all names in `supplies`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ A missing ingredient that is neither an initial supply nor a producible recipe i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly scan all recipes:** Marking newly p:** - **Repeatedly scan all recipes:** Marking newly possible recipes until no change works but can revisit every ingredient many times. Reverse edges process each requirement once.
+- **Repeatedly scan all recipes:** Marking newly possible recipes until no change works but can revisit every ingredient many times. Reverse edges process each requirement once.
 - **DFS with states:** Recursive availability checks can detect cycles and memoize results, but topological propagation is iterative and direct.
 - **Treat recipe names as initially available:** Incorrect; a recipe becomes available only after all its ingredients are satisfied.
 - **Missing ingredient:** Its dependent counter never reaches zero.
@@ -118,8 +118,8 @@ A missing ingredient that is neither an initial supply nor a producible recipe i
 - **Growing-list iteration:** Python processes appended recipes later in the same `for` loop.
 - **Supplies mutation:** `q = supplies` means produced recipe names are appended to the input list.
 - **Input-preserving variant:** Copy supplies before using it as a queue.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

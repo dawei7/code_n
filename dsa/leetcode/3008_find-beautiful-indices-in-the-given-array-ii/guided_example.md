@@ -57,7 +57,7 @@ Patterns `a` and `b` receive independent prefix arrays.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each pattern, the prefix function at index `i` stores th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Each text scan is linear because fallback never causes the text index to move ba
 
 ## 6. Traps This Instance Exposes
 
-- **- **Naive substring comparisons:** They can cost $:** - **Naive substring comparisons:** They can cost $O(N(A+B))$ in the large version.
+- **Naive substring comparisons:** They can cost $O(N(A+B))$ in the large version.
 - **Z algorithm:** It can find each occurrence list in linear time and is a valid alternative to KMP.
 - **Binary-search `resb` for every `a`:** This costs $O(P\log Q)$; the monotone pointer uses list ordering more fully.
 - **Overlapping pattern matches:** KMP’s post-match fallback preserves them.
@@ -105,8 +105,8 @@ Each text scan is linear because fallback never causes the text index to move ba
 - **Many witnesses:** A beautiful start appears only once.
 - **Sorted result:** Occurrence discovery and append order already satisfy it.
 - **Debug print:** Exact source emits potentially huge internal lists and is not production-clean.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

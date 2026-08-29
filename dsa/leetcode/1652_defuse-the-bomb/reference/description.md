@@ -4,11 +4,11 @@ You have a bomb to defuse, and your time is running out! Your informer will prov
 
 To decrypt the code, you must replace every number. All the numbers are replaced **simultaneously**.
 
-- If `k > 0`, replace the $$i^{\text{th}}$$ number with the sum of the **next** `k` numbers.
+- If `k > 0`, replace the $i^{\text{th}}$ number with the sum of the **next** `k` numbers.
 
-- If `k < 0`, replace the $$i^{\text{th}}$$ number with the sum of the **previous** -`k` numbers.
+- If `k < 0`, replace the $i^{\text{th}}$ number with the sum of the **previous** -`k` numbers.
 
-- If $k = 0$, replace the $$i^{\text{th}}$$ number with `0`.
+- If $k = 0$, replace the $i^{\text{th}}$ number with `0`.
 
 As `code` is circular, the next element of `code[n-1]` is $\text{code}[0]$, and the previous element of $\text{code}[0]$ is `code[n-1]`.
 

@@ -37,7 +37,7 @@ Return the updated matrix.
 
 ![](images/gridexm2drawio.png)
 
-​​​​​​​
+
 
 - **Input:** grid = [[3,4,2,3],[2,3,4,2]], x = 0, y = 2, k = 2
 

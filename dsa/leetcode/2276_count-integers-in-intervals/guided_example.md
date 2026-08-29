@@ -67,9 +67,7 @@ Only additions of coverage occur; no operation clears an interval. Therefore, `a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A `Node` stores:
-
-- `l` and `r`, its inclusive coordinate bo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ The extra endpoint is an implementation choice rather than a problem value. Beca
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordered disjoint intervals:** Maintain merged :** - **Ordered disjoint intervals:** Maintain merged intervals in a balanced search tree and a running union length. It can be efficient, but Python lacks a built-in ordered map with the needed predecessor operations.
+- **Ordered disjoint intervals:** Maintain merged intervals in a balanced search tree and a running union length. It can be efficient, but Python lacks a built-in ordered map with the needed predecessor operations.
 - **Coordinate array or bitset:** The one-billion-sized domain makes direct storage infeasible.
 - **Coordinate compression:** All future endpoints are not supplied in advance to this online class, so static compression is inconvenient.
 - **Dynamic interval union list:** A plain sorted list can require linear insertion and merging per add in the worst case.
@@ -122,8 +120,8 @@ The extra endpoint is an implementation choice rather than a problem value. Beca
 - **Extra root coordinate:** It is excluded explicitly by `query(1, 10^9)` and never appears in a public update.
 - **No removal operation:** A one-valued lazy marker is sufficient because coverage never needs to be cleared.
 - **Internal mutation during count:** Query allocation changes representation, not the logical set or returned count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

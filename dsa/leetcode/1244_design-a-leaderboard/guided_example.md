@@ -67,9 +67,7 @@ All operation reasoning follows from preserving this invariant.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After every mutating call:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ Although `d` is a `defaultdict(int)`, the source checks membership before readin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary plus size-\(K\) heap per query:** U:** - **Dictionary plus size-\(K\) heap per query:** Updates are expected \(O(1)\), while `top(K)` costs \(O(p\log K)\), matching the manifest but repeating selection work.
+- **Dictionary plus size-\(K\) heap per query:** Updates are expected \(O(1)\), while `top(K)` costs \(O(p\log K)\), matching the manifest but repeating selection work.
 - **Dictionary plus sort per query:** Simple, but each top call costs \(O(p\log p)\).
 - **Score-frequency ordered map:** Store how many players have each score and traverse scores descending. It can reduce duplicated keys but needs an ordered-map implementation.
 - **Tied scores:** `SortedList` stores duplicate values, so every tied player is counted separately.
@@ -118,8 +116,8 @@ Although `d` is a `defaultdict(int)`, the source checks membership before readin
 - **Guaranteed active reset:** The exact code raises if asked to reset an absent player, but such a call is outside the contract.
 - **External dependency:** `SortedList` is not built into Python and must be available in the execution environment.
 - **Input calls capped:** The source remains efficient across mixed operations without rebuilding the complete ranking.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,10 +59,7 @@ It does not reverse the array contents. It only determines the order in which po
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `reversed(range(len(arr)))` produces the indices
-
-$$
-n-1,\;n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +108,7 @@ Changing the order of these operations would break the solution. If `arr[i]` wer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute a suffix-maximum array:** A separat:** - **Precompute a suffix-maximum array:** A separate array can store the maximum beginning at every position, after which each answer uses the next entry. It is correct and linear-time but uses $O(n)$ extra space when one running maximum is sufficient.
+- **Precompute a suffix-maximum array:** A separate array can store the maximum beginning at every position, after which each answer uses the next entry. It is correct and linear-time but uses $O(n)$ extra space when one running maximum is sufficient.
 - **Scan to the right for every index:** This direct method is easy to state but repeats comparisons across overlapping suffixes and costs $O(n^2)$ time.
 - **Monotonic stack:** A stack is useful for the next greater element, but this task needs the greatest value anywhere to the right. A single suffix maximum is simpler and uses less machinery.
 - **Left-to-right traversal:** Without preprocessing, it cannot know future values. Attempting to maintain a prefix maximum solves the opposite problem.
@@ -124,8 +121,8 @@ Changing the order of these operations would break the solution. If `arr[i]` wer
 - **Positive-value constraint:** It makes the `-1` sentinel smaller than all originals. The final-element rule is still explicit, but a generalized problem with arbitrary negative values should reason about the empty suffix separately rather than treating `-1` as a universal mathematical identity.
 - **Input mutation visible to callers:** The returned object is `arr` itself. If preserving the caller's list matters outside the problem contract, the method should first copy it, accepting $O(n)$ additional space.
 - **No empty-array case:** The contract guarantees at least one element. If an empty list were supplied outside the contract, the loop would do nothing and return an empty list, though the problem does not define a special last element for that case.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Because the stack is decreasing from bottom to top, popped values increase as th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `x` is greater than the stack top, it cannot be inside ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The solution checks `if x < last: return false` before performing new pops. This
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reuse `preorder` as the stack:** Maintain a st:** - **Reuse `preorder` as the stack:** Maintain a stack length and overwrite the already-read prefix. This preserves $O(n)$ time and reduces auxiliary space to $O(1)$, but mutates the input. It is the follow-up technique described by the manifest, not the exact source.
+- **Reuse `preorder` as the stack:** Maintain a stack length and overwrite the already-read prefix. This preserves $O(n)$ time and reduces auxiliary space to $O(1)$, but mutates the input. It is the follow-up technique described by the manifest, not the exact source.
 - **Recursive bounds parser:** Consume preorder values while they fit a `(lower, upper)` range, recursively assigning left and right subtrees. It can run in $O(n)$ time but uses $O(h)$ call-stack space and requires careful shared-index handling.
 - **Build the BST explicitly:** Insert every value and compare the resulting preorder. A skewed sequence can make insertion $O(n^2)$, and allocating nodes is unnecessary for simple verification.
 - **Strictly decreasing input:** No values are popped; it represents an all-left chain. The stack reaches size $n$.
@@ -109,8 +109,8 @@ The solution checks `if x < last: return false` before performing new pops. This
 - **Negative values:** The local problem bounds values positively, but `last = -inf` means the algorithm itself also supports negative integers without a special sentinel collision.
 - **Input preservation:** The explicit stack leaves `preorder` unchanged, which may be preferable even though it costs linear auxiliary memory.
 - **Order of the bound check:** Testing `x < last` before popping is valid because `last` summarizes previously closed ancestors. The subsequent pops can only establish a new bound for future values after `x` is placed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

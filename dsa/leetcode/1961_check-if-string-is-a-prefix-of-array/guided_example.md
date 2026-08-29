@@ -65,7 +65,7 @@ For `s = "iloveleetcode"` and words beginning `"i"`, `"love"`, `"leetcode"`, cum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When lengths match, the method constructs `"".join(words[: i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Both `s` and every word are nonempty. The loop tests only after adding at least 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Streaming comparison:** Walk characters across:** - **Streaming comparison:** Walk characters across words while matching successive positions in `s`, accepting only at a word boundary. This reaches $O(L)$ time and $O(1)$ auxiliary space.
+- **Streaming comparison:** Walk characters across words while matching successive positions in `s`, accepting only at a word boundary. This reaches $O(L)$ time and $O(1)$ auxiliary space.
 - **Join every prefix:** Rebuilding the concatenation after each word can copy the same characters repeatedly and become quadratic.
 - **Join all words once and use `startswith`:** That can identify a character prefix but must still verify that `s` ends at a word boundary.
 - **Target shorter than first word:** Cumulative length overshoots immediately, and no valid positive word count exists.
@@ -113,8 +113,8 @@ Both `s` and every word are nonempty. The loop tests only after adding at least 
 - **All words too short in total:** The loop ends with `m < n` and returns false.
 - **Nonempty-word guarantee:** It makes cumulative length strictly increase and justifies the one-boundary argument.
 - **Exact allocation:** Slicing and joining mean the source is not constant-space despite its small scalar state.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

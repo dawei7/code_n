@@ -61,7 +61,7 @@ The heap gives fast access to the only element that can immediately reduce the c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python’s `heapq` is a min-heap.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This does not lose configurations. Whenever an element is reduced, the algorithm
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit max-heap implementation:** Languages :** - **Explicit max-heap implementation:** Languages with a native max-heap can store positive values. Python’s negation technique changes representation, not the algorithm.
+- **Explicit max-heap implementation:** Languages with a native max-heap can store positive values. Python’s negation technique changes representation, not the algorithm.
 - **Generate every reachable list and solve smallest range:** This makes the candidate-list interpretation explicit but can store $O(n\log M)$ values instead of the exact heap’s $O(n)$ representatives.
 - **Normalize downward and raise minima:** One can start from minimum reachable values and advance upward with a min-heap, but candidate generation and stopping conditions are less direct.
 - **All values equal:** The initial deviation is zero, which remains the minimum even if the loop performs later halvings.
@@ -113,8 +113,8 @@ This does not lose configurations. Whenever an element is reduced, the algorithm
 - **Integer division:** The popped heap value is divided only when even, so `// 2` has no rounding ambiguity despite being negative.
 - **Input preservation:** Odd values are doubled only in the local loop variable `v`. The original `nums` list is not modified.
 - **Upper numeric bound:** Doubling an odd value up to $10^9$ produces at most $2\cdot10^9$, which remains safe in Python and within typical 32-bit signed range except near its endpoint; Python integers avoid overflow entirely.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

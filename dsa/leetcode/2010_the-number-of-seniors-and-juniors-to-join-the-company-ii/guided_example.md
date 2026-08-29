@@ -59,7 +59,7 @@ Filtering junior rows at 70000 selects exactly the affordable junior prefix.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The scalar query inside CTE `j` intends to find the greatest... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Unique salaries also make the chosen employee IDs unambiguous at every step.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct the scalar subquery:** Use `COALESCE((:** - **Correct the scalar subquery:** Use `COALESCE((SELECT MAX(cur) ...), 0)`; this is mandatory for valid MySQL.
+- **Correct the scalar subquery:** Use `COALESCE((SELECT MAX(cur) ...), 0)`; this is mandatory for valid MySQL.
 - **Procedural two-pass hiring:** Sort seniors and consume budget, then juniors; it mirrors the stated rules directly.
 - **Recursive CTE:** Can model sequential hiring but is more complex than cumulative sums.
 - **No affordable senior:** Senior cost becomes zero and juniors use the entire budget.
@@ -110,8 +110,8 @@ Unique salaries also make the chosen employee IDs unambiguous at every step.
 - **`UNION` versus `UNION ALL`:** IDs are globally unique, so duplicate elimination is unnecessary but harmless.
 - **Invalid exact source:** Missing scalar-subquery parentheses prevent execution.
 - **Any result order:** No final ordering is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

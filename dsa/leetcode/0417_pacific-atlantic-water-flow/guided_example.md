@@ -61,7 +61,7 @@ For a one-cell grid, the sole coordinate belongs to all four conceptual edges. B
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The Pacific touches the left and top edges.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Once accepted, the neighbor is marked before being appended to the queue. Each c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run DFS or BFS from every cell:** This directl:** - **Run DFS or BFS from every cell:** This directly tests whether each source reaches both oceans but can revisit the grid for every source, reaching $O((rc)^2)$ time in a worst case.
+- **Run DFS or BFS from every cell:** This directly tests whether each source reaches both oceans but can revisit the grid for every source, reaching $O((rc)^2)$ time in a worst case.
 - **Reverse depth-first search:** The same multi-source and reversed-height reasoning works with DFS and still takes $O(rc)$ time. Recursive DFS risks a call stack as deep as the number of cells; the deque avoids that risk.
 - **One traversal carrying ocean bit flags:** Reachability information can be combined in other graph formulations, but two independent searches make the proof and state separation simple.
 - **Use the forward inequality during reverse search:** Checking `neighbor <= current` from the ocean is wrong; it finds cells the ocean could flow downhill into, not cells whose rain can flow to the ocean. Reverse traversal must accept equal-or-higher neighbors.
@@ -122,8 +122,8 @@ Once accepted, the neighbor is marked before being appended to the queue. Each c
 - **Strictly rising terrain:** Reverse traversal climbs from each ocean until blocked according to the opposing boundary; the intersection still follows from the same reachability proof.
 - **Boundary duplication:** Corner cells may be seeded twice in one queue, but they are never duplicated in the result because the final scan tests Boolean matrices once per coordinate.
 - **No diagonal flow:** `pairwise(dirs)` creates exactly four orthogonal moves and cannot cross a corner diagonally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

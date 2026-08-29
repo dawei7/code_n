@@ -4,7 +4,7 @@ At a lemonade stand, each lemonade costs `$5`. Customers are standing in a queue
 
 Note that you do not have any change in hand at first.
 
-Given an integer array `bills` where $\text{bills}[i]$ is the bill the $$i^{\text{th}}$$ customer pays, return `true` *if you can provide every customer with the correct change, or* `false` *otherwise*.
+Given an integer array `bills` where $\text{bills}[i]$ is the bill the $i^{\text{th}}$ customer pays, return `true` *if you can provide every customer with the correct change, or* `false` *otherwise*.
 
 ### 2. Function Contract
 

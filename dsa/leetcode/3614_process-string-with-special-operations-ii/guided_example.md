@@ -66,9 +66,7 @@ Undoing each operation maps this pair to the preceding state.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | During the reverse scan:
-
-- `m` is the length immediately af... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +107,7 @@ Both halves contain identical characters. Mapping either half into the original 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store every prefix length:** It simplifies rev:** - **Store every prefix length:** It simplifies reversing effective versus no-op stars and uses `O(n)` space, matching the manifest but not the exact source.
+- **Store every prefix length:** It simplifies reversing effective versus no-op stars and uses `O(n)` space, matching the manifest but not the exact source.
 - **Construct the string:** It can require `10^15` memory and is impossible for the stated constraints.
 - **Expression tree or rope:** A lazy structural representation can answer more general substring queries, but reverse index tracing is simpler for one character.
 - **Out-of-bounds `k`:** The forward length check returns `"."` before reverse processing.
@@ -126,8 +124,8 @@ Both halves contain identical characters. Mapping either half into the original 
 - **Missing final fallback:** Correct contract inputs with valid `k` resolve at a letter, but an explicit final `return "."` would be safer.
 - **Manifest mismatch:** No prefix-length array is allocated; the exact space bound is `O(1)`.
 - **Input preservation:** `s` is immutable, and `k` is only rebound locally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

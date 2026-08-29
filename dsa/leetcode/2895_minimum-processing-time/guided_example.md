@@ -51,7 +51,7 @@ The three shorter tasks in the group do not affect the global completion time on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The three shorter tasks in the group do not affect the globa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The three shorter tasks in the group do not affect the global completion time on
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap assignment:** Repeatedly choosing process:** - **Heap assignment:** Repeatedly choosing processors and tasks with heaps adds complexity; one global sort exposes the optimal opposite ordering directly.
+- **Heap assignment:** Repeatedly choosing processors and tasks with heaps adds complexity; one global sort exposes the optimal opposite ordering directly.
 - **Arbitrary task groups:** Spreading the four largest tasks across four processors creates four large group maxima instead of one and can only hurt.
 - **One processor:** All four tasks run on its cores, and the answer is its availability plus the longest duration.
 - **Equal processor times:** Their relative ordering is irrelevant.
@@ -94,8 +94,8 @@ The three shorter tasks in the group do not affect the global completion time on
 - **Only group maxima matter:** The other three tasks still occupy cores but finish no later than the maximum-duration task.
 - **Large values:** Availability plus duration can reach $2\times10^9$, which fits signed 32-bit only narrowly; wider arithmetic is safer in general.
 - **Input mutation:** Both arrays finish sorted, so copy them first when original ordering must be retained.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

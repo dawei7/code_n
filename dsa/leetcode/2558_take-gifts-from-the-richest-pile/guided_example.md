@@ -61,7 +61,7 @@ The original `gifts` list is not modified. All changes occur in the separate hea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list comprehension `[-v for v in gifts]` creates the neg... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ It is correct to use `heapreplace` rather than separately popping and pushing be
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated linear scan:** Finding the maximum di:** - **Repeated linear scan:** Finding the maximum directly in `gifts` each second uses only constant auxiliary space if mutation is allowed, but costs $O(kn)$ time.
+- **Repeated linear scan:** Finding the maximum directly in `gifts` each second uses only constant auxiliary space if mutation is allowed, but costs $O(kn)$ time.
 - **Keep a sorted list:** The maximum is easy to access, yet reinserting its square root can shift $O(n)$ elements per operation in a Python list.
 - **Balanced multiset:** A tree-based multiset can remove the maximum and insert the replacement in $O(\log n)$ time, matching the heap asymptotically but with more machinery.
 - **Integer square root:** `math.isqrt` computes the exact floored root with integer arithmetic and avoids any floating-point concern. It is a robust substitute for `int(sqrt(...))`.
@@ -114,8 +114,8 @@ It is correct to use `heapreplace` rather than separately popping and pushing be
 - **Non-perfect square:** A pile such as $10$ becomes $3$, not $4$, because the result is floored.
 - **All piles equal one:** Operations no longer reduce the total, but they remain valid and the answer stays $n$.
 - **Input preservation:** Negating into a new list means callers can safely reuse `gifts` after the function returns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

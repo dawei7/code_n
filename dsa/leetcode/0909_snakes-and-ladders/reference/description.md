@@ -36,7 +36,7 @@ Return *the least number of dice rolls required to reach the square *$n^{2}$*. I
 
 ![](images/snakes.png)
 
-- **Input:** $board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]$
+- **Input:** `board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]`
 - **Output:** `4`
 - **Explanation:** In the beginning, you start at square 1 (at row 5, column 0).
 You decide to move to square 2 and must take the ladder to square 15.
@@ -47,7 +47,7 @@ This is the lowest possible number of moves to reach the last square, so return 
 
 #### Example 2
 
-- **Input:** $board = [[-1,-1],[-1,3]]$
+- **Input:** `board = [[-1,-1],[-1,3]]`
 - **Output:** `1`
 
 ### 4. Constraints

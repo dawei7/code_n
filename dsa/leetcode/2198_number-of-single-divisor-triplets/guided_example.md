@@ -63,7 +63,7 @@ Keys may also be equal. A value triple `(2,2,1)` represents two distinct array i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The three nested loops independently iterate over `cnt.items... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Positional wording matters when values repeat. If `a == b` and that value divide
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate index triples:** Directly trying $n^:** - **Enumerate index triples:** Directly trying $n^3$ ordered indices is impossible for $n=10^5$.
+- **Enumerate index triples:** Directly trying $n^3$ ordered indices is impossible for $n=10^5$.
 - **Enumerate sorted value triples:** One can visit each multiset once and multiply by positional permutations carefully. It reduces constant work but makes repeated-value permutation factors more complex.
 - **Precompute divisibility for values:** With only 100 values, candidate-sum divisibility could be tabled, though the constant three modulus checks are already small.
 - **All three values equal:** The sum is divisible by all three positional entries, so the triple never qualifies.
@@ -120,8 +120,8 @@ Positional wording matters when values repeat. If `a == b` and that value divide
 - **Bounded domain:** At most 100 Counter keys keep $U^3$ practical.
 - **Input preservation:** The source array is only read.
 - **Manifest wording:** The exact source enumerates ordered key triples and therefore needs no later permutation multiplier.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

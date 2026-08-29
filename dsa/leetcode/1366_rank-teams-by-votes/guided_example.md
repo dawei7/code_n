@@ -68,7 +68,7 @@ This compact key handles all decision levels:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python compares lists lexicographically.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The algorithm does not depend on dictionary insertion order for correctness. Ins
 
 ## 6. Traps This Instance Exposes
 
-- **- **Custom comparator:** Compare two teams positio:** - **Custom comparator:** Compare two teams position by position and then by letter. This expresses the rule directly, but Python key-based sorting is simpler and avoids repeatedly writing comparator control flow.
+- **Custom comparator:** Compare two teams position by position and then by letter. This expresses the rule directly, but Python key-based sorting is simpler and avoids repeatedly writing comparator control flow.
 - **Negated count vectors with normal ascending sort:** Store negative counts and the ordinary character as the key. That also works, but the exact solution keeps intuitive positive counters and uses `reverse=true`.
 - **Repeated stable sorts:** Sort alphabetically first, then stably sort by each position from last to first. It can reproduce the same ranking, but it performs several passes and obscures the single lexicographic rule.
 - **One voter:** Every position count uniquely mirrors that vote, so sorting reconstructs the vote string exactly.
@@ -116,8 +116,8 @@ The algorithm does not depend on dictionary insertion order for correctness. Ins
 - **Fresh counter arrays:** The `defaultdict` factory executes separately for each unseen team. It does not share one mutable list among all teams.
 - **Dictionary order:** The answer remains deterministic even if teams entered `cnt` in a different order because the composite key breaks every tie.
 - **Maximum 26 teams:** The quadratic counter matrix is small under the constraints, while making ranking comparisons especially clear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

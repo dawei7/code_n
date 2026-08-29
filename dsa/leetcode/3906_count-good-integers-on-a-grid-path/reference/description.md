@@ -276,7 +276,7 @@ The grid for $x = 123456790$:
 
 - The sequence of digits visited is `[1, 2, 8, 8, 3, 6, 8]`.
 
-- ​​​​​​​As the sequence of digits visited is not non-decreasing, 1288561398769758 is not a good integer.
+- As the sequence of digits visited is not non-decreasing, 1288561398769758 is not a good integer.
 
 - No numbers are good, giving a total of 0 good integers in the range.
 

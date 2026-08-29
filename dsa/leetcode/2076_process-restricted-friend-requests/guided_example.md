@@ -65,7 +65,7 @@ The code appends `true` and performs no union in this case.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `pu == pv`, the two people are already directly or indire... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ For example, suppose restriction `[0, 3]` exists and earlier successful requests
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rebuilding a friendship graph for every reques:** - **Rebuilding a friendship graph for every request:** A graph search could test whether a proposed edge causes a forbidden connection, but repeating reachability work is more cumbersome. DSU directly represents the only property needed: current component membership.
+- **Rebuilding a friendship graph for every request:** A graph search could test whether a proposed edge causes a forbidden connection, but repeating reachability work is more cumbersome. DSU directly represents the only property needed: current component membership.
 - **Checking only the requested people against restrictions:** This is incorrect because a request can connect restricted people indirectly through their existing components. Root comparisons detect restrictions involving any members of the two components.
 - **Checking restrictions only once at the beginning:** Component membership changes after successful requests. The original endpoint pair remains fixed, but its roots must be recomputed against the current DSU before each possible merge.
 - **Storing forbidden component pairs dynamically:** One can maintain restriction relationships between components and merge those sets during union, potentially avoiding a full restriction scan. That design is more complex because all references to merged roots must remain consistent.
@@ -122,8 +122,8 @@ For example, suppose restriction `[0, 3]` exists and earlier successful requests
 - **Restriction orientation:** Both root orderings must be checked. Treating `[x, y]` as directional would miss half of the forbidden merges.
 - **Rejected request state:** No union is performed. Only harmless path compression may occur, so later requests see the same component partition they should see.
 - **Result order:** A Boolean is appended while each request is processed, preserving the exact input order in the returned list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

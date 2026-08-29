@@ -73,7 +73,7 @@ Filenames can differ and directories can differ; only exact content-key equality
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `d = defaultdict(list)` maps content strings to lists of ful... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Neither group order nor path order inside a group is constrained. Dictionary ins
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair of files:** Avoids a map bu:** - **Compare every pair of files:** Avoids a map but takes quadratic file comparisons and repeated content scans.
+- **Compare every pair of files:** Avoids a map but takes quadratic file comparisons and repeated content scans.
 - **Sort by content:** Parse `(content,path)` records, sort, and collect equal runs. Takes $O(T+F\log F)$ comparisons for $F$ files.
 - **Content hash for real files:** Hash large files in streamed chunks and group by size/hash, then byte-compare candidate matches to eliminate collision false positives.
 - **DFS versus BFS in a real filesystem:** Either can enumerate files; memory/access patterns and filesystem latency matter more than traversal label.
@@ -127,8 +127,8 @@ Neither group order nor path order inside a group is constrained. Dictionary ins
 - **Spaces inside content:** The stated token format uses spaces as separators, so supplied content tokens cannot contain spaces; a generalized parser would need length framing or escaping.
 - **Any output order:** No sorting is required.
 - **Hash collision concern:** Python dictionary equality checks keys after hashes, so in-memory exact strings do not become false duplicates solely from a hash collision.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

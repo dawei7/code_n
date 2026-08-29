@@ -55,7 +55,7 @@ Because `T` contains one row per activity rather than one row per player, a play
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query groups `T` by `install_dt` through `GROUP BY... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The installation row itself has difference zero and contributes nothing. A retur
 
 ## 6. Traps This Instance Exposes
 
-- **- **Grouped installs plus self join:** First compu:** - **Grouped installs plus self join:** First compute one row per player with `MIN(event_date)`, then left join Activity on the same player and date plus one day. This makes the player-level numerator explicit and avoids relying on the primary key when summing events.
+- **Grouped installs plus self join:** First compute one row per player with `MIN(event_date)`, then left join Activity on the same player and date plus one day. This makes the player-level numerator explicit and avoids relying on the primary key when summing events.
 - **Conditional distinct count:** Use `COUNT(DISTINCT CASE WHEN DATEDIFF(...) = 1 THEN player_id END)`. It remains correct even if the source allowed multiple same-day rows per player.
 - **Correlated existence check:** For each player’s install row, test whether a next-day row exists. This expresses retention directly but may require careful indexing for performance.
 - **Multiple logins after installation:** Only the row exactly one day later contributes; all later rows are false in the Boolean sum.
@@ -110,8 +110,8 @@ The installation row itself has difference zero and contributes nothing. A retur
 - **Composite primary key:** It is what makes the plain Boolean sum safe as a player count. Without date uniqueness, repeated next-day rows could inflate the numerator.
 - **Empty table:** No window rows means no grouped cohorts and therefore an empty result.
 - **Result casing:** The alias is written `day1_retention` while the displayed contract uses different capitalization. SQL identifiers are normally case-insensitive here, and the semantic column is the same.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

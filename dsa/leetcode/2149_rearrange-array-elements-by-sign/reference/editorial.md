@@ -1,5 +1,5 @@
-​
-​
+
+
 ## Solution
 ---
 ### Approach: Two Pointers
@@ -25,7 +25,7 @@ Let us summarize the algorithm.
 4. Once `nums` is fully traversed, return `ans`.
 
 !?!../Documents/2149/slideshow1.json:960,540!?!
-<br>​
+<br>
 
 #### Implementation
 
@@ -56,17 +56,16 @@ class Solution:
         return ans
 ```
 
-​
+
 
 #### Complexity Analysis
 
-​Let $n$ be the length of `nums`
-​
+Let $n$ be the length of `nums`
+
 * Time complexity: $O(n)$
   +  We traverse `nums` once and populate `ans`. Since both these arrays have size $n$, this results in a time complexity of $O(n)$.
-​
+
 * Space complexity: $O(n)$
   + We create an auxiliary array `ans` of size $n$.
 
 ---
-​

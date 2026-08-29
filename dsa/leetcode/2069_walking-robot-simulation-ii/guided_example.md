@@ -59,7 +59,7 @@ steps. With width and height at least two, this perimeter length is positive.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mx = width - 1` is the number of horizontal steps between t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Successive calls compose naturally because each begins from the current cycle di
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute every perimeter state:** Makes quer:** - **Precompute every perimeter state:** Makes queries constant time but uses $O(width+height)$ space.
+- **Precompute every perimeter state:** Makes queries constant time but uses $O(width+height)$ space.
 - **Simulate one step at a time:** Can cost $O(num)$ per call and is unnecessary.
 - **No movement yet:** Origin direction is east.
 - **Complete positive cycle:** Origin direction is south.
@@ -112,8 +112,8 @@ Successive calls compose naturally because each begins from the current cycle di
 - **Minimum two-by-two grid:** All four perimeter cells and corner directions remain covered.
 - **Position return:** A new two-element list is produced each time.
 - **No interior cells:** Boundary-turn rules keep the robot on the perimeter forever.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

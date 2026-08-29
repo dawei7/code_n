@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is a test that has `n` types of questions. You are given an integer `target` and a **0-indexed** 2D integer array `types` where $\text{types}[i] = [\text{count}_{i}, \text{marks}_{i}]$ indicates that there are $\text{count}_{i}$ questions of the $$i^{\text{th}}$$ type, and each one of them is worth $\text{marks}_{i}$ points.
+There is a test that has `n` types of questions. You are given an integer `target` and a **0-indexed** 2D integer array `types` where $\text{types}[i] = [\text{count}_{i}, \text{marks}_{i}]$ indicates that there are $\text{count}_{i}$ questions of the $i^{\text{th}}$ type, and each one of them is worth $\text{marks}_{i}$ points.
 
 Return *the number of ways you can earn **exactly** *`target`* points in the exam*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 

@@ -58,6 +58,45 @@ class LevelRecord:
 
 
 @dataclass
+class SpacedReviewRecord:
+    challenge_id: str
+    repetition_count: int = 0
+    ease_factor: float = 2.5
+    interval_days: int = 1
+    last_reviewed_at: str = ""
+    next_due_date: str = ""
+    retention_score: int = 5
+    state: str = "learning"
+
+
+def calculate_sm2_step(
+    repetition_count: int,
+    ease_factor: float,
+    interval_days: int,
+    quality: int,  # 0 to 5
+) -> tuple[int, float, int, str]:
+    """Calculate next SM-2 interval, ease factor, repetition count, and state."""
+    quality = max(0, min(5, int(quality)))
+    new_ef = max(1.3, ease_factor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)))
+    if quality < 3:
+        new_reps = 0
+        new_interval = 1
+        state = "learning"
+    else:
+        new_reps = repetition_count + 1
+        if new_reps == 1:
+            new_interval = 1
+        elif new_reps == 2:
+            new_interval = 3
+        elif new_reps == 3:
+            new_interval = 7
+        else:
+            new_interval = int(round(interval_days * new_ef))
+        state = "mastered" if new_interval >= 30 else "review"
+    return new_reps, new_ef, new_interval, state
+
+
+@dataclass
 class PlayerProgress:
     player_name: str = ""
     completed: set[str] = field(default_factory=set)
@@ -79,6 +118,7 @@ class PlayerProgress:
     pane_sizes: dict[str, float] = field(default_factory=dict)
     accent_colors: dict[str, str] = field(default_factory=lambda: dict(DEFAULT_ACCENT_COLORS))
     custom_problem_sets: list[dict] = field(default_factory=list)
+    spaced_reviews: dict[str, dict] = field(default_factory=dict)
 
     def complete(self, challenge_id: str, ops: int, complexity: str):
         self.completed.add(challenge_id)
@@ -189,6 +229,7 @@ class PlayerProgress:
                 for problem_set in self.custom_problem_sets
                 if isinstance(problem_set, dict)
             ],
+            "spaced_reviews": dict(self.spaced_reviews),
         }
 
     @classmethod
@@ -233,6 +274,11 @@ class PlayerProgress:
             for problem_set in raw_custom_sets
             if isinstance(problem_set, dict)
         ] if isinstance(raw_custom_sets, list) else []
+        progress.spaced_reviews = {
+            str(cid): dict(rev)
+            for cid, rev in dict(data.get("spaced_reviews", {})).items()
+            if isinstance(rev, dict)
+        }
         return progress
 
 

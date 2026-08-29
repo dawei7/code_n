@@ -23,7 +23,7 @@ Each day, whether the cell is occupied or vacant changes according to the follow
 
 that because the prison is a row, the first and the last cells in the row can't have two adjacent neighbors.
 
-You are given an integer array `cells` where $\text{cells}[i] = 1$ if the $$i^{\text{th}}$$ cell is occupied and $\text{cells}[i] = 0$ if the $$i^{\text{th}}$$ cell is vacant, and you are given an integer `n`.
+You are given an integer array `cells` where $\text{cells}[i] = 1$ if the $i^{\text{th}}$ cell is occupied and $\text{cells}[i] = 0$ if the $i^{\text{th}}$ cell is vacant, and you are given an integer `n`.
 
 Return the state of the prison after `n` days (i.e., `n` such changes described above).
 

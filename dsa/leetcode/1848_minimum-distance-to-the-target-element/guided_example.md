@@ -51,7 +51,7 @@ The exact solution expresses that definition as one generator passed to `min`:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution expresses that definition as one generato... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact solution expresses that definition as one generator passed to `min`:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand outward from `start`:** Check equal-dis:** - **Expand outward from `start`:** Check equal-distance positions on both sides and stop at the first target. It can return early but needs boundary handling.
+- **Expand outward from `start`:** Check equal-distance positions on both sides and stop at the first target. It can return early but needs boundary handling.
 - **Explicit running minimum:** Initialize a sentinel and update it inside a loop. This is longer but may be more familiar to beginners.
 - **Map values to sorted positions:** Useful for many repeated queries on the same array, but unnecessary extra `O(n)` storage for one query.
 - **Target at `start`:** Zero is generated and returned, the minimum possible distance.
@@ -98,8 +98,8 @@ The exact solution expresses that definition as one generator passed to `min`:
 - **Guaranteed existence:** Without it, `min` on the empty generator would fail and a default or explicit branch would be required.
 - **Lazy evaluation:** The generator avoids allocating a length-`n` candidate list.
 - **No early exit in exact code:** Even after seeing distance zero, `min` finishes consuming the generator, preserving `O(n)` runtime.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

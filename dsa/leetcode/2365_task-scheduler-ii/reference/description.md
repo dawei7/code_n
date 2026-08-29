@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** array of positive integers `tasks`, representing tasks that need to be completed **in order**, where $\text{tasks}[i]$ represents the **type** of the $$i^{\text{th}}$$ task.
+You are given a **0-indexed** array of positive integers `tasks`, representing tasks that need to be completed **in order**, where $\text{tasks}[i]$ represents the **type** of the $i^{\text{th}}$ task.
 
 You are also given a positive integer `space`, which represents the **minimum** number of days that must pass **after** the completion of a task before another task of the **same** type can be performed.
 

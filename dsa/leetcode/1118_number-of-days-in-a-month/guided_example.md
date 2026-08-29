@@ -70,9 +70,7 @@ Remainder zero is the exact test for divisibility. For example, `1900 % 100 == 0
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A year is a leap year when either:
-
-- it is divisible by fou... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +111,7 @@ Returning `days[month]` is safe because the contract guarantees `1 <= month <= 1
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional branches:** Return thirty for mont:** - **Conditional branches:** Return thirty for months four, six, nine, and eleven; handle February separately; return thirty-one otherwise. It avoids list allocation but can be less visually systematic.
+- **Conditional branches:** Return thirty for months four, six, nine, and eleven; handle February separately; return thirty-one otherwise. It avoids list allocation but can be less visually systematic.
 - **Calendar library:** A standard library can supply month lengths, but the leap rule is simple and the interview problem expects direct reasoning.
 - **Store February as twenty-eight then add leap:** A fixed table plus `int(leap)` for month two is equivalent.
 - **Year divisible by four:** It is not automatically leap if it is also a non-four-hundred century.
@@ -125,8 +123,8 @@ Returning `days[month]` is safe because the contract guarantees `1 <= month <= 1
 - **Valid month guarantee:** Index zero is never returned, and no out-of-range list access occurs.
 - **One-based sentinel:** The initial zero is alignment padding, not a possible month length.
 - **Boolean precedence:** Parentheses make the two leap-year clauses explicit and prevent misreading the mixture of `and` and `or`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

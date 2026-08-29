@@ -68,7 +68,7 @@ If a long run contains several copies of the same value, this action repeats. Fo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of a pair, suppose `nums[i] == nums[i + 1]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Together, the two cases are safe at every iteration. Equal candidates force at l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct a separate kept array:** Append a va:** - **Construct a separate kept array:** Append a value when it can legally occupy the next position, then remove a trailing element if the result is odd. This can express the state clearly but uses `O(n)` extra space; the index-and-count method represents the same choices in `O(1)` space.
+- **Construct a separate kept array:** Append a value when it can legally occupy the next position, then remove a trailing element if the result is odd. This can express the state clearly but uses `O(n)` extra space; the index-and-count method represents the same choices in `O(1)` space.
 - **Physically delete equal elements:** Repeated deletion from the middle of a Python list shifts later elements and can lead to `O(n^2)` time. Counting conceptual deletions avoids all movement.
 - **Dynamic programming over index and parity:** A DP can decide whether to keep or delete every value while remembering the previous kept value and parity. It is much more state than this pair-local condition requires, and the greedy exchange argument gives a linear constant-space solution.
 - **Only remove adjacent duplicates once:** Deleting a single member of each original equal adjacency is not enough because earlier deletions change which values become paired. The scan's current pair position, not original parity alone, must guide comparisons.
@@ -121,8 +121,8 @@ Together, the two cases are safe at every iteration. Equal candidates force at l
 - **Equal values across a pair boundary:** Values at output indices `1` and `2` may be equal because the rule applies only when the left index is even. The algorithm correctly advances by two after completing a pair and does not compare across that boundary.
 - **Final unpaired candidate:** Its value does not matter. Even if it differs from the previous element, it cannot remain because a beautiful array must have even length.
 - **Input preservation:** All deletions are conceptual. The original `nums` list is unchanged after the method returns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

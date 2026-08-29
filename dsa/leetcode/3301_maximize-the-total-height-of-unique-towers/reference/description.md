@@ -1,10 +1,10 @@
 ### 1. Description
 
-You are given an array `maximumHeight`, where $\text{maximumHeight}[i]$ denotes the **maximum** height the $$i^{\text{th}}$$ tower can be assigned.
+You are given an array `maximumHeight`, where $\text{maximumHeight}[i]$ denotes the **maximum** height the $i^{\text{th}}$ tower can be assigned.
 
 Your task is to assign a height to each tower so that:
 
-- The height of the $$i^{\text{th}}$$ tower is a positive integer and does not exceed $\text{maximumHeight}[i]$.
+- The height of the $i^{\text{th}}$ tower is a positive integer and does not exceed $\text{maximumHeight}[i]$.
 
 - No two towers have the same height.
 

@@ -1,6 +1,3 @@
-"""Tests for canonical LeetCode package documentation."""
-from __future__ import annotations
-
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
@@ -9,6 +6,8 @@ from challenges.algorithms.leetcode import _parse_complexity
 from engine.counter import ComplexityClass
 from server.app.challenge_packages import (
     leetcode_doc_markdown,
+    leetcode_metadata,
+    leetcode_optimal_approach_path,
     leetcode_package_dir,
     leetcode_package_id,
 )
@@ -107,11 +106,12 @@ class DynamicDocsTest(conftest._Base):
 
         approach = self.client.get("/api/docs/by-id/lc_1502/optimal-approach")
         self.assertEqual(approach.status_code, 200, approach.text)
+        approach_path = leetcode_optimal_approach_path("lc_1502")
+        self.assertIsNotNone(approach_path)
+        assert approach_path is not None
         self.assertEqual(
             approach.text,
-            (package / "variants" / "optimal" / "approach.md").read_text(
-                encoding="utf-8"
-            ),
+            approach_path.read_text(encoding="utf-8"),
         )
 
         editorial = self.client.get("/api/docs/by-id/lc_1502/editorial")

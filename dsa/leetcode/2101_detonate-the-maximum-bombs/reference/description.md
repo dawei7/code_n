@@ -2,7 +2,7 @@
 
 You are given a list of bombs. The **range** of a bomb is defined as the area where its effect can be felt. This area is in the shape of a **circle** with the center as the location of the bomb.
 
-The bombs are represented by a **0-indexed** 2D integer array `bombs` where $\text{bombs}[i] = [x_{i}, y_{i}, r_{i}]$. $x_{i}$ and $y_{i}$ denote the X-coordinate and Y-coordinate of the location of the $$i^{\text{th}}$$ bomb, whereas $r_{i}$ denotes the **radius** of its range.
+The bombs are represented by a **0-indexed** 2D integer array `bombs` where $\text{bombs}[i] = [x_{i}, y_{i}, r_{i}]$. $x_{i}$ and $y_{i}$ denote the X-coordinate and Y-coordinate of the location of the $i^{\text{th}}$ bomb, whereas $r_{i}$ denotes the **radius** of its range.
 
 You may choose to detonate a **single** bomb. When a bomb is detonated, it will detonate **all bombs** that lie in its range. These bombs will further detonate the bombs that lie in their ranges.
 

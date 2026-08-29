@@ -86,10 +86,7 @@ Python integer multiplication is exact, so the comparison has no floating-point 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let:
-
-- the first point be $(x_1,y_1)$;
-- the second be $(x_... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +127,7 @@ Writing an explicit `if a == b: cnt += 1` would be equivalent and perhaps more o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Normalized rational slopes per anchor:** Divid:** - **Normalized rational slopes per anchor:** Divide `dy` and `dx` by their greatest common divisor and normalize signs, then count pairs in a map. It gives $O(n^2)$ time and $O(n)$ space with exact arithmetic.
+- **Normalized rational slopes per anchor:** Divide `dy` and `dx` by their greatest common divisor and normalize signs, then count pairs in a map. It gives $O(n^2)$ time and $O(n)$ space with exact arithmetic.
 - **Floating slopes per anchor:** Count `dy / dx` and use a special vertical key. It is concise but can be vulnerable to rounding outside tightly bounded domains.
 - **Line equation keys:** Normalize coefficients in $Ax+By+C=0$. This can count global lines but requires careful common-factor and sign normalization.
 - **One or two points:** Initialization and pair counting return one or two directly.
@@ -140,8 +137,8 @@ Writing an explicit `if a == b: cnt += 1` would be equivalent and perhaps more o
 - **Index-order undercount:** Individual later pairs may omit earlier collinear points, but the two smallest indices on a maximum line provide a complete witness pair.
 - **Runtime dependency:** The source uses nested `List` annotations without importing the type. Standalone Python needs `from typing import List`.
 - **Manifest mismatch:** Its actual tradeoff is cubic time with constant auxiliary storage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

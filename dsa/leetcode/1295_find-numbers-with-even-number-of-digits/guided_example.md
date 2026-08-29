@@ -65,7 +65,7 @@ The equality to zero is preferable to treating the remainder itself as a conditi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `len(str(x))` returns the number of characters in the newly ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ There are two true decisions, so the result is two.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated division by ten:** Count digits by re:** - **Repeated division by ten:** Count digits by repeatedly applying integer division until the value becomes zero. This avoids creating a string and uses $O(1)$ auxiliary space, but takes one loop iteration per digit and needs deliberate handling if zero is allowed.
+- **Repeated division by ten:** Count digits by repeatedly applying integer division until the value becomes zero. This avoids creating a string and uses $O(1)$ auxiliary space, but takes one loop iteration per digit and needs deliberate handling if zero is allowed.
 - **Base-ten logarithm:** For a positive integer $x$, the digit count is $\lfloor \log_{10}x \rfloor+1$. This is concise, but zero is outside the logarithm's domain and floating-point rounding near powers of ten can be an avoidable concern.
-- **Constraint-specific ranges:** Under the exact bound, a number qualifies when it lies in $[10,99]$, lies in $[1000,9999]$, or equals $100000$. That gives constant work per number without conversion, but it is tightly coupled to the current upper limit and becomes easy to forget when constraints change.
+- **Constraint-specific ranges:** Under the exact bound, a number qualifies when it lies in `[10,99]`, lies in `[1000,9999]`, or equals $100000$. That gives constant work per number without conversion, but it is tightly coupled to the current upper limit and becomes easy to forget when constraints change.
 - **Explicit loop and counter:** A conventional `for` loop with an `if` and counter has the same result and asymptotic cost. It is longer but may be easier for a beginner to debug line by line; the generator form is the compact equivalent.
 - **List comprehension instead of a generator:** `sum([condition for x in nums])` also counts true conditions, but it first allocates an $O(n)$ list. Omitting the brackets preserves lazy evaluation and avoids that unnecessary storage.
 - **One-digit values:** Values from $1$ through $9$ produce string length one, so they correctly contribute zero.
@@ -124,8 +124,8 @@ There are two true decisions, so the result is two.
 - **Zero outside the contract:** `str(0)` has length one, which is mathematically the correct decimal digit count. The exact code would happen to handle zero correctly even though the stated inputs start at one.
 - **Very large integers outside the constraint:** Python can convert them, but conversion time and temporary string space grow with their digit count. In that generalized setting, the bounded $O(n)$ and $O(1)$ simplifications no longer apply.
 - **Boolean arithmetic in another language:** Not every language treats booleans as integers. A direct translation may require a conditional increment rather than summing Boolean results.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

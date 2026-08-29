@@ -2,7 +2,7 @@
 
 You are given an integer `length` and an array `updates` where $\text{updates}[i] = [\text{startIdx}_{i}, \text{endIdx}_{i}, \text{inc}_{i}]$.
 
-You have an array `arr` of length `length` with all zeros, and you have some operation to apply on `arr`. In the $$i^{\text{th}}$$ operation, you should increment all the elements $arr[\text{startIdx}_{i}], arr[\text{startIdx}_{i} + 1], ..., arr[\text{endIdx}_{i}]$ by $\text{inc}_{i}$.
+You have an array `arr` of length `length` with all zeros, and you have some operation to apply on `arr`. In the $i^{\text{th}}$ operation, you should increment all the elements $arr[\text{startIdx}_{i}], arr[\text{startIdx}_{i} + 1], ..., arr[\text{endIdx}_{i}]$ by $\text{inc}_{i}$.
 
 Return `arr` *after applying all the* `updates`.
 

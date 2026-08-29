@@ -59,7 +59,7 @@ Limiting candidate length to three is also necessary. Every four-digit nonnegati
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition rejects a substring such as `00`, `01`, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Although the code says `i >= n`, valid recursion can only reach `i == n`: every 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three nested cut loops:** Enumerate lengths of:** - **Three nested cut loops:** Enumerate lengths of the first three components; the fourth consumes the remainder. This avoids recursion and has the same fixed bound, but the repeated index arithmetic is more verbose.
+- **Three nested cut loops:** Enumerate lengths of the first three components; the fourth consumes the remainder. This avoids recursion and has the same fixed bound, but the repeated index arithmetic is more verbose.
 - **Remaining-length pruning:** Before branching, reject states whose unconsumed digit count is outside one to three times the remaining component count. This reduces failed calls without changing asymptotic complexity.
 - **Enumerating all dot positions:** For each choice of three gaps, validate four substrings. It is correct but examines more invalid layouts unless length bounds are incorporated.
 - **Exactly four zeros:** `0000` permits only four single-character components, producing `0.0.0.0`. Any attempt to group two zeros fails the leading-zero check.
@@ -107,8 +107,8 @@ Although the code says `i >= n`, valid recursion can only reach `i == n`: every 
 - **Leading-zero boundary:** `0` is valid, while `00` and `01` are invalid even though their integer values are within range.
 - **Input preservation:** The method reads slices from `s` and never changes or reorders the source digits.
 - **Output order:** DFS order follows shorter component choices first. The contract allows any order, so no final sort is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

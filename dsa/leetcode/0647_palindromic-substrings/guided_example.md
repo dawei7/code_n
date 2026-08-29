@@ -60,7 +60,7 @@ That gives `2n - 1` possible centers in total. Every nonempty palindrome has exa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An odd-length palindrome has one character at its center.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ As `k` increases, these formulas alternate between a character center and the fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming table:** Record whether `s:** - **Dynamic programming table:** Record whether `s[i:j + 1]` is a palindrome using matching endpoints and the state for the inner interval. It takes `O(N^2)` time and `O(N^2)` space, while center expansion reaches the same time with constant extra space.
-- **- **Check every substring independently:** There a:** - **Check every substring independently:** There are quadratically many substrings, and scanning each one for symmetry adds another linear factor, producing `O(N^3)` time.
-- **- **Manacher's algorithm:** It reuses symmetry inf:** - **Manacher's algorithm:** It reuses symmetry information between nearby centers and can count palindromes in `O(N)` time. It is asymptotically faster but substantially more intricate; center expansion is the intended clear optimal variant for the package's stated `O(N^2)` bound.
+- **Dynamic programming table:** Record whether `s[i:j + 1]` is a palindrome using matching endpoints and the state for the inner interval. It takes `O(N^2)` time and `O(N^2)` space, while center expansion reaches the same time with constant extra space.
+- **Check every substring independently:** There are quadratically many substrings, and scanning each one for symmetry adds another linear factor, producing `O(N^3)` time.
+- **Manacher's algorithm:** It reuses symmetry information between nearby centers and can count palindromes in `O(N)` time. It is asymptotically faster but substantially more intricate; center expansion is the intended clear optimal variant for the package's stated `O(N^2)` bound.
 
 ---
 

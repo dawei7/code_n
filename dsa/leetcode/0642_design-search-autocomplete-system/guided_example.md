@@ -70,7 +70,7 @@ Intermediate prefix nodes normally retain `v = 0` and an empty `w`. This lets th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every trie node owns an array of 27 child references.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +109,9 @@ Storing the full sentence at the terminal node means a later traversal does not 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store the top three at every trie node:** Duri:** - **Store the top three at every trie node:** During insertion, update each prefix node's cached best sentences. A query can then return results after following the new character, avoiding subtree traversal and full sorting. This greatly improves frequent-query performance but makes insertions more complicated because a frequency change can alter rankings along every prefix.
-- **- **Maintain a current trie pointer:** Ordinary ca:** - **Maintain a current trie pointer:** Ordinary calls can advance from the node reached by the previous character instead of joining and rescanning the whole prefix. Once a path becomes missing, a sentinel state can remain missing until `#`. This reduces prefix navigation to constant time per character, though it does not remove the subtree traversal and sorting cost.
-- **- **Heap for the best three:** While traversing ma:** - **Heap for the best three:** While traversing matches, a size-three heap can avoid sorting all `H` results, reducing ranking work toward `O(H log 3)`. Tie ordering and the “worst of the kept three” comparison must be implemented carefully.
+- **Store the top three at every trie node:** During insertion, update each prefix node's cached best sentences. A query can then return results after following the new character, avoiding subtree traversal and full sorting. This greatly improves frequent-query performance but makes insertions more complicated because a frequency change can alter rankings along every prefix.
+- **Maintain a current trie pointer:** Ordinary calls can advance from the node reached by the previous character instead of joining and rescanning the whole prefix. Once a path becomes missing, a sentinel state can remain missing until `#`. This reduces prefix navigation to constant time per character, though it does not remove the subtree traversal and sorting cost.
+- **Heap for the best three:** While traversing matches, a size-three heap can avoid sorting all `H` results, reducing ranking work toward `O(H log 3)`. Tie ordering and the “worst of the kept three” comparison must be implemented carefully.
 
 ---
 

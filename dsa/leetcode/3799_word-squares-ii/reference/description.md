@@ -18,7 +18,7 @@ It must satisfy:
 
 - $\text{bottom}[0] = \text{left}[3]$, $\text{bottom}[3] = \text{right}[3]$
 
-Return all valid **distinct** word squares, sorted in **ascending lexicographic** order by the 4-tuple `(top, left, right, bottom)​​​​​​​`.
+Return all valid **distinct** word squares, sorted in **ascending lexicographic** order by the 4-tuple `(top, left, right, bottom)`.
 
 ### 2. Function Contract
 

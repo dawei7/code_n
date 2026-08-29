@@ -51,7 +51,7 @@ Every useful digit must therefore be a factor between 2 and 9. Digit 0 would mak
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every useful digit must therefore be a factor between 2 and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The special target `num = 1` is different. The one-digit integer 1 has digit pro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect factors in a list:** Append digits fou:** - **Collect factors in a list:** Append digits found from 9 down to 2, reverse them, and parse the resulting string. This is often easier to visualize but uses $O(\log a)$ digit storage.
+- **Collect factors in a list:** Append digits found from 9 down to 2, reverse them, and parse the resulting string. This is often easier to visualize but uses $O(\log a)$ digit storage.
 - **Brute-force candidate integers:** Test digit products from 1 upward. This guarantees the first hit is smallest but explores an enormous 32-bit search space.
 - **Backtracking over digit multisets:** It can find valid factorizations but repeats choices that the descending greedy rule resolves directly.
 - **`num = 1`:** Return 1; adding more digits equal to 1 only creates larger answers.
@@ -98,8 +98,8 @@ The special target `num = 1` is different. The one-digit integer 1 has digit pro
 - **32-bit overflow:** Construction is safe in Python, but the final mathematical answer must not exceed $2^{31}-1$.
 - **Zero digit:** It cannot appear because the target is positive; including it would force the product to zero.
 - **One digit inside a larger answer:** It never helps for targets above 1 because it preserves the product while increasing the integer's length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

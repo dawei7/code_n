@@ -71,7 +71,7 @@ For row mask `x` and candidate `mask`, `x & mask` keeps only bits occupied in bo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a reservation at row `i` and seat `j`, the code sets bit... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Thus greedily testing the two nonoverlapping outer blocks first always attains t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean array per reserved row:** Store ten av:** - **Boolean array per reserved row:** Store ten availability flags and test the three blocks. It is readable but uses more per-row objects than one integer mask.
+- **Boolean array per reserved row:** Store ten availability flags and test the three blocks. It is readable but uses more per-row objects than one integer mask.
 - **Set of reserved coordinates:** For each affected row, ask whether any block seat pair occurs in the set. It can work but performs more hashing and obscures block overlap.
 - **Iterate every row:** This is infeasible because $n$ can reach one billion even though the reservation list is small.
 - **Test the middle block first:** It can greedily consume seats 4 through 7 and prevent two free outer groups, producing one instead of the optimal two.
@@ -128,8 +128,8 @@ Thus greedily testing the two nonoverlapping outer blocks first always attains t
 - **Distinct reservation records:** Repeated input pairs are excluded, though bitwise OR would tolerate them.
 - **Seat-bit direction:** The reversed mapping `10-j` is consistent with all three binary literals; changing one without the other would corrupt checks.
 - **Required import:** `defaultdict` must be available, normally from `collections`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

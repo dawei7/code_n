@@ -55,7 +55,7 @@ All inequalities must hold, so logical `AND` is required. `OR` would accept near
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All inequalities must hold, so logical `AND` is required.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The alias names the added result column `triangle`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Find the maximum side:** Check whether total s:** - **Find the maximum side:** Check whether total sum minus the maximum exceeds the maximum. Compact, but requires expressing maximum across columns and assumes positive sides.
+- **Find the maximum side:** Check whether total sum minus the maximum exceeds the maximum. Compact, but requires expressing maximum across columns and assumes positive sides.
 - **Sort each triple conceptually:** After ordering $a\le b\le c$, only $a+b>c$ is necessary. Sorting three scalar columns is unnecessary overhead here.
 - **Use `CASE WHEN`:** Semantically identical to `IF` and more portable across SQL dialects.
 - **Use `OR`:** Incorrect because every inequality must hold.
@@ -109,8 +109,8 @@ The alias names the added result column `triangle`.
 - **Nonpositive lengths:** Segment semantics normally exclude them. Add positivity checks if the schema does not guarantee real lengths.
 - **Any result order:** No `ORDER BY` is needed.
 - **`SELECT *` maintenance:** Correct for the current three-column table, but explicit projection is safer against schema expansion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

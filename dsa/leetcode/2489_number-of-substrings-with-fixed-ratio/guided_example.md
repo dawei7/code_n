@@ -80,7 +80,7 @@ That substring has the fixed ratio exactly when its balance is zero, which is eq
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After scanning a prefix of `s`, the code has counts `n0` and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ For example, with ratio $1:2$, prefix `"011"` has one zero and two ones. Its sco
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct running score:** Update one balance var:** - **Direct running score:** Update one balance variable instead of storing `n0` and `n1`. It uses the same map and proof.
+- **Direct running score:** Update one balance variable instead of storing `n0` and `n1`. It uses the same map and proof.
 - **Enumerate all substrings:** Maintaining counts for every start still costs $O(n^2)$ time.
 - **Normalize every substring with gcd:** It repeats expensive work and is unnecessary because cross-multiplication tests the ratio exactly.
 - **Substring beginning at zero:** The preloaded empty-prefix score counts it.
@@ -129,8 +129,8 @@ For example, with ratio $1:2$, prefix `"011"` has one zero and two ones. Its sco
 - **Ratio multiples:** Counts such as $2\cdot\texttt{num1}$ and $2\cdot\texttt{num2}$ are valid.
 - **Large answer:** Use an integer type capable of holding a quadratic count.
 - **Coprime inputs:** No reduction step is required inside the algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -79,13 +79,7 @@ When `n>1`, the final board therefore contains exactly 2 through `n` and exclude
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every integer `x`:
-
-$$
-x\bmod1=0,
-$$
-
-not one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +116,7 @@ Combined with the descending-chain inclusion and exclusion of one, this proves t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Board simulation:** It would eventually stabil:** - **Board simulation:** It would eventually stabilize for `n<=100` but is unnecessary and obscures the invariant.
+- **Board simulation:** It would eventually stabilize for `n<=100` but is unnecessary and obscures the invariant.
 - **`n=1`:** Initial one remains, so return one.
 - **`n=2`:** Only two remains, also giving one.
 - **`n>2`:** Final set is exactly `\{2,\ldots,n\}`.
@@ -132,8 +126,8 @@ Combined with the descending-chain inclusion and exclusion of one, this proves t
 - **Persistence:** Previously placed values are never removed.
 - **Billion-day count:** It has no effect after early stabilization.
 - **Closed form:** `max(1,n-1)` unifies both input regimes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

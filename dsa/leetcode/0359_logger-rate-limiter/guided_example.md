@@ -58,7 +58,7 @@ This also handles a first message at timestamp `0`: the default is equal to the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ts.get(message, 0)` returns the stored threshold when the m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -95,9 +95,9 @@ This is a crucial semantic point. If every rejected occurrence reset the thresho
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store the last accepted timestamp:** Keep `las:** - **Store the last accepted timestamp:** Keep `last[message]` and accept when the message is absent or `timestamp - last[message] >= 10`. This is equivalent to storing the next threshold but expresses the comparison differently.
-- **- **Queue plus active-message set:** Store only ac:** - **Queue plus active-message set:** Store only accepted messages from the last ten seconds. Before each call, remove expired queue entries and their set memberships. Operations are amortized $O(1)$ and stale message keys are reclaimed, but the implementation has more moving parts.
-- **- **Priority queue for unordered timestamps:** If :** - **Priority queue for unordered timestamps:** If events were not chronological, expiration cleanup would require a structure ordered by expiry, though the semantics of processing past events after future ones would also need explicit definition.
+- **Store the last accepted timestamp:** Keep `last[message]` and accept when the message is absent or `timestamp - last[message] >= 10`. This is equivalent to storing the next threshold but expresses the comparison differently.
+- **Queue plus active-message set:** Store only accepted messages from the last ten seconds. Before each call, remove expired queue entries and their set memberships. Operations are amortized $O(1)$ and stale message keys are reclaimed, but the implementation has more moving parts.
+- **Priority queue for unordered timestamps:** If events were not chronological, expiration cleanup would require a structure ordered by expiry, though the semantics of processing past events after future ones would also need explicit definition.
 
 ---
 

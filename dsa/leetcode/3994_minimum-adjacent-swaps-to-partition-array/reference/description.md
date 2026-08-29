@@ -76,6 +76,6 @@ Return the minimum number of neighboring-element swaps that can arrange all valu
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $​​​​​​​1 \le \text{nums}[i] \le 10^{9}$
+- $1 \le \text{nums}[i] \le 10^{9}$
 
-- $1 \le a < b \le 10^{9}​​​​​​​$
+- $1 \le a < b \le 10^{9}$

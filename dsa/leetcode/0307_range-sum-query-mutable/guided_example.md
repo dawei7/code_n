@@ -83,7 +83,7 @@ Because `lowbit(x)` is at least one for positive `x`, each update step strictly 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `BinaryIndexedTree.update(x, delta)` means “increase the log... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ Each subtraction clears the least significant set bit, so the number of iteratio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative segment tree:** Store values in leav:** - **Iterative segment tree:** Store values in leaves and range sums in parent nodes. It also supports $O(\log n)$ assignments and queries with $O(n)$ space, but usually requires about twice as many array slots and more boundary logic.
+- **Iterative segment tree:** Store values in leaves and range sums in parent nodes. It also supports $O(\log n)$ assignments and queries with $O(n)$ space, but usually requires about twice as many array slots and more boundary logic.
 - **Linear-time Fenwick construction:** Copy values into the tree and propagate each node once to its parent, building in $O(n)$. The exact source uses the simpler repeated-update build, so its constructor is $O(n\log n)$.
 - **Keep a separate current-value array:** Then assignment can read `prev` in $O(1)$ rather than issuing a point query. This uses another $O(n)$ array and keeps update asymptotically $O(\log n)$.
 - **Static prefix sums:** They answer queries in $O(1)$ but require $O(n)$ repair after an assignment, making them unsuitable for mixed mutable operations.
@@ -143,8 +143,8 @@ Each subtraction clears the least significant set bit, so the number of iteratio
 - **Negative values and deltas:** Fenwick sums use ordinary addition, so negative entries and downward assignments work without any ordering assumption.
 - **One-element array:** The tree has entries 0 and 1. Every update and query touches at most position 1 and remains valid.
 - **Maximum operation count:** Each operation visits only logarithmically many tree nodes, avoiding a full-array scan under the stated $3\cdot10^4$ calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

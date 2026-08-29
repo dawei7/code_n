@@ -4,7 +4,7 @@ You are given an array `arr` of positive integers. You are also given the array 
 
 For each query `i` compute the **XOR** of elements from $\text{left}_{i}$ to $\text{right}_{i}$ (that is, $arr[\text{left}_{i}] XOR arr[\text{left}_{i} + 1] XOR ... XOR arr[\text{right}_{i}]$ ).
 
-Return an array `answer` where $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
+Return an array `answer` where $\text{answer}[i]$ is the answer to the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 

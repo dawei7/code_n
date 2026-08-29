@@ -51,7 +51,7 @@ A selected set of boxes is feasible exactly when its total capacity is at least 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A selected set of boxes is feasible exactly when its total c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A selected set of boxes is feasible exactly when its total capacity is at least 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap of capacities:** Heapify and pop larg:** - **Max-heap of capacities:** Heapify and pop largest boxes until enough capacity. It reaches $O(N+M+R\log M)$ but sorting is simpler when only one query is needed.
+- **Max-heap of capacities:** Heapify and pop largest boxes until enough capacity. It reaches $O(N+M+R\log M)$ but sorting is simpler when only one query is needed.
 - **Try all box subsets:** It is exponential and unnecessary because only capacity sums matter.
 - **Sort ascending and scan backward:** It is equivalent but slightly less direct than descending order.
 - **One box holds everything:** The first subtraction reaches nonpositive and returns one.
@@ -105,8 +105,8 @@ A selected set of boxes is feasible exactly when its total capacity is at least 
 - **Minimum one box:** Apple counts are positive, so zero boxes can never satisfy the demand; one-based scanning begins at the smallest meaningful answer.
 - **Apple array remains unchanged:** Only `sum(apple)` is read, so pack counts and order remain available to the caller after execution.
 - **Box identities:** Only capacity affects feasibility, so the method need not retain original box indices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

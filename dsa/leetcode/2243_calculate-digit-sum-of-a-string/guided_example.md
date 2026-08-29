@@ -59,7 +59,7 @@ The inner endpoint is `min(i + k, n)`. Full groups contain exactly `k` character
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of a round, `n = len(s)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ After the group is consumed, `str(x)` converts the numeric sum to its usual deci
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive simulation:** It can perform one rou:** - **Recursive simulation:** It can perform one round per call but adds stack usage without simplifying the process.
+- **Recursive simulation:** It can perform one round per call but adds stack usage without simplifying the process.
 - **Repeated string concatenation:** Appending text directly to an immutable string can create avoidable copying; collecting pieces and joining is cleaner.
 - **Sum numeric value of the whole string:** Group boundaries matter, so one global digit sum produces the wrong transformation.
 - **Initial length at most `k`:** No round occurs and the original string is returned.
@@ -108,8 +108,8 @@ After the group is consumed, `str(x)` converts the numeric sum to its usual deci
 - **Length equal to `k` after a round:** The strict `> k` condition stops immediately.
 - **Digit conversion:** Every generated character remains a decimal digit, so later `int` calls stay valid.
 - **Input preservation:** Local reassignment creates new strings and has no external side effect.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

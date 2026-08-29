@@ -59,7 +59,7 @@ Cell coordinates are flattened to `x = i * n + j`, giving compact integer vertex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every horizontal or vertical move changes the parity of `row... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ That matching size is the minimum number of flips.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hopcroft–Karp:** BFS layers plus DFS augmentat:** - **Hopcroft–Karp:** BFS layers plus DFS augmentations achieve $O(E\sqrt V)$ and would match the manifest, but those layers are absent from the source.
+- **Hopcroft–Karp:** BFS layers plus DFS augmentations achieve $O(E\sqrt V)$ and would match the manifest, but those layers are absent from the source.
 - **Flip every cell with a neighbor:** This covers all edges but can use far more flips than a minimum vertex cover.
 - **Greedy local flipping:** Choices interact across adjacent edges and need not be optimal.
 - **All-zero grid:** The graph is empty and the result is zero.
@@ -110,8 +110,8 @@ That matching size is the minimum number of flips.
 - **Flattened identifiers:** `i * n + j` uniquely represents every cell.
 - **Recursion depth:** A long augmenting path can be a practical Python recursion concern.
 - **Manifest mismatch:** Exact worst-case time is $O(VE)$ for DFS augmentation, not Hopcroft–Karp's $O(E\sqrt V)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

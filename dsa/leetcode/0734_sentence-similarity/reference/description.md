@@ -66,4 +66,4 @@ Return `True` exactly when the sentences have the same length and every pair of 
 
 - $x_{i}$ and $y_{i}$ consist of lower-case and upper-case English letters.
 
-- All the pairs $(x_{i},_ y_{i})$ are **distinct**.
+- All the pairs $(x_{i}, y_{i})$ are **distinct**.

@@ -2,7 +2,7 @@
 
 You are given an array of strings `nums` and an integer `k`. Each string in `nums` represents an integer without leading zeros.
 
-Return *the string that represents the *$$k^{\text{th}}$$*** largest integer** in *`nums`.
+Return *the string that represents the *$k^{\text{th}}$*** largest integer** in *`nums`.
 
 ### 2. Function Contract
 

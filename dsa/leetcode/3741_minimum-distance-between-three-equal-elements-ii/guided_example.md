@@ -61,7 +61,7 @@ This grouping prevents comparisons between unequal values. Every three positions
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | During one left-to-right scan, `g[x]` receives every index w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ For example, occurrences `[1,4,5,9,12]` create windows with outer spans four, fi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cubic triplet enumeration:** It directly tests:** - **Cubic triplet enumeration:** It directly tests the definition but is infeasible at `n=10^5`.
+- **Cubic triplet enumeration:** It directly tests the definition but is infeasible at `n=10^5`.
 - **Successor array:** Linking each occurrence to its next occurrence also permits checking the next two positions in $O(n)$ time. The exact source uses grouped lists instead.
 - **Keep only the latest two positions online:** On seeing a third occurrence, evaluate its span with the occurrence two steps back. This reduces stored history per value but is not the shown implementation.
 - **Evaluate nonconsecutive triples:** They cannot beat a consecutive window because moving the third occurrence earlier or first later shrinks the span.
@@ -123,8 +123,8 @@ For example, occurrences `[1,4,5,9,12]` create windows with outer spans four, fi
 - **Order of tuple components:** Absolute pairwise distance is symmetric; sorting indices for analysis changes nothing.
 - **Large answer:** The maximum finite distance is below `2n`, but the infinity sentinel cleanly handles absence.
 - **Hash behavior:** Dictionary grouping gives expected linear time; values themselves need no bounded-array indexing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

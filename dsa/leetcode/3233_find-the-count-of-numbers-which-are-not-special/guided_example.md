@@ -51,7 +51,7 @@ A positive integer always has itself as a divisor. Therefore, having exactly two
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A positive integer always has itself as a divisor.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A positive integer always has itself as a divisor. Therefore, having exactly two
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every interval value:** Checking whether :** - **Test every interval value:** Checking whether each $x$ has two proper divisors would take work proportional to the interval length and usually additional divisor-search work. With endpoints up to $10^9$, this ignores the prime-square structure and is impractical.
+- **Test every interval value:** Checking whether each $x$ has two proper divisors would take work proportional to the interval length and usually additional divisor-search work. With endpoints up to $10^9$, this ignores the prime-square structure and is impractical.
 - **Test every possible root for primality independently:** Trial division for each root up to $\sqrt r$ can work at these numerical limits, but repeated primality tests cost more than a single sieve and are less convenient for reuse.
 - **Prime list plus binary search:** The preprocessing could store only prime numbers. Then each query could count roots in `[lo,hi]` using two binary searches in $O(\log \pi(M))$ time instead of scanning the root interval, at the cost of maintaining a separate list.
 - **Prefix counts over the sieve:** A prefix array where position `i` stores the number of primes through `i` would answer each query in $O(1)$ after roots are computed. It uses another $O(M)$ array and is attractive for many queries, but one LeetCode call does not require it.
@@ -96,8 +96,8 @@ A positive integer always has itself as a divisor. Therefore, having exactly two
 - **A square of a composite:** Values such as sixteen or thirty-six have more than three total divisors. Their roots are marked non-prime, so they are correctly retained in the non-special count.
 - **Inclusive endpoints:** Using ceiling for the lower root and floor for the upper root ensures that a prime square equal to `l` or `r` is counted. Reversing either rounding direction would introduce an endpoint error.
 - **Empty root interval:** When `lo > hi`, `range(lo, hi + 1)` yields no values, `cnt` is zero, and no special-case control flow is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

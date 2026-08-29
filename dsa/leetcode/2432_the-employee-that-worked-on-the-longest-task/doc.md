@@ -25,7 +25,7 @@ Task 0 begins at time 0. Every later task begins as soon as the preceding task e
 - `n`: The number of employees, whose identifiers lie in $[0,n-1]$.
 - `logs`: The chronological task records `[employee_id, leave_time]`.
 
-The constraints are $2 \le n \le 500$ and $1 \le \lvert\texttt{logs}\rvert \le 500$. Every leave time lies in $[1,500]$ and is strictly greater than the preceding one.
+The constraints are $2 \le n \le 500$ and $1 \le \lvert\texttt{logs}\rvert \le 500$. Every leave time lies in `[1,500]` and is strictly greater than the preceding one.
 
 **Return value**
 

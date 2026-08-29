@@ -89,7 +89,7 @@ The algorithm therefore keeps the sign inside every digit instead of taking `abs
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Many languages define integer division and remainder by trun... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ When `x` reaches zero, every original digit has been transferred and `ans` is th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Extract an absolute magnitude and restore the :** - **Extract an absolute magnitude and restore the sign:** This is simple in Python, but in a true signed 32-bit environment `abs(-2**31)` is not representable. Keeping signed digits avoids that special overflow.
+- **Extract an absolute magnitude and restore the sign:** This is simple in Python, but in a true signed 32-bit environment `abs(-2**31)` is not representable. Keeping signed digits avoids that special overflow.
 - **Convert to a string:** Reverse the digit characters and parse the result. This uses $O(d)$ extra storage and sidesteps the intended arithmetic/overflow reasoning. It also still needs sign and range handling.
 - **Post-update overflow check:** Python's arbitrary-precision integers make it possible to build a large result and compare afterward, but the stated environment forbids relying on a wider integer. A pre-update guard is the portable design.
 - **General unrestricted-input guard:** For arbitrary-size input, add explicit boundary-digit checks for `7` and `-8` before the push. The shorter current guard depends on the original input already lying in the 32-bit range.
@@ -139,8 +139,8 @@ When `x` reaches zero, every original digit has been transferred and `ans` is th
 - **Overflowing reversal:** A legal input such as `1534236469` eventually creates an unsafe prefix, and the pre-push guard returns zero.
 - **Reversal within range:** Values whose reversed form lies in `[mi, mx]` complete the loop and return that signed result.
 - **Sign only affects digits:** No minus symbol is treated as a decimal position; negative digits accumulate the sign arithmetically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -66,7 +66,7 @@ Any maximum pairing can be rearranged so that the smaller member of each pair co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | No solution can contain more than $\lfloor n/2\rfloor$ pairs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Notice that `i` does not advance on failure. A later, larger upper value may sti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search the number of pairs:** One can t:** - **Binary search the number of pairs:** One can test whether $p$ pairs are possible and binary-search $p$, but the direct two-pointer scan finds the maximum in one pass after sorting.
+- **Binary search the number of pairs:** One can test whether $p$ pairs are possible and binary-search $p$, but the direct two-pointer scan finds the maximum in one pass after sorting.
 - **Try every pairing:** Matching combinations grow exponentially and are unnecessary due to sorted monotonicity.
 - **Pair adjacent sorted values:** Adjacent values may be too close in magnitude; small candidates need access to the large upper tail.
 - **Odd length:** At most $n-1$ indices can be marked, and the lower candidate region intentionally has one extra value.
@@ -116,8 +116,8 @@ Notice that `i` does not advance on failure. A later, larger upper value may sti
 - **Very large values:** The condition may require wider arithmetic in fixed-width languages; Python integers do not overflow.
 - **All pairs feasible:** `i` reaches $\lfloor n/2\rfloor$, and the answer is the largest even number not exceeding $n$.
 - **Input mutation:** Sort a copy if the original order must be preserved.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

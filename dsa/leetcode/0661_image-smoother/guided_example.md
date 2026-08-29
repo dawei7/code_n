@@ -69,9 +69,7 @@ accepts exactly the coordinates inside the matrix. For each accepted coordinate,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loops enumerate all `m * n` coordinates:
-
-- `i` se... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +106,9 @@ The current cell `(i, j)` is always inside the image, so `cnt` is never zero. Di
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-dimensional prefix sums:** Precompute rect:** - **Two-dimensional prefix sums:** Precompute rectangular sums so each clipped neighborhood sum can be queried with four prefix references. This remains `O(RC)` overall but introduces another `O(RC)` table and more indexing complexity for a fixed three-by-three window.
-- **- **In-place bit encoding:** Since original and sm:** - **In-place bit encoding:** Since original and smoothed values fit within known ranges, store both in different bit regions of each cell, then extract results in a second pass. This can reduce auxiliary space but is less readable and depends on value bounds.
-- **- **Rolling row buffers:** Retain only enough orig:** - **Rolling row buffers:** Retain only enough original rows to compute the next output row. This reduces extra working memory when output can be written progressively, but careful ordering is required.
+- **Two-dimensional prefix sums:** Precompute rectangular sums so each clipped neighborhood sum can be queried with four prefix references. This remains `O(RC)` overall but introduces another `O(RC)` table and more indexing complexity for a fixed three-by-three window.
+- **In-place bit encoding:** Since original and smoothed values fit within known ranges, store both in different bit regions of each cell, then extract results in a second pass. This can reduce auxiliary space but is less readable and depends on value bounds.
+- **Rolling row buffers:** Retain only enough original rows to compute the next output row. This reduces extra working memory when output can be written progressively, but careful ordering is required.
 
 ---
 

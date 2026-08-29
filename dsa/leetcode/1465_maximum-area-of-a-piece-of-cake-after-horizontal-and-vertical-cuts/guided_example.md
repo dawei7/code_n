@@ -51,7 +51,7 @@ This independence is valid because every horizontal cut crosses every vertical s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This independence is valid because every horizontal cut cros... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This independence is valid because every horizontal cut crosses every vertical s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Handle edge gaps separately:** Sort only inter:** - **Handle edge gaps separately:** Sort only interior cuts, compare the first coordinate, adjacent differences, and dimension minus the last coordinate. It avoids mutating the lists with boundary values but needs more cases.
+- **Handle edge gaps separately:** Sort only interior cuts, compare the first coordinate, adjacent differences, and dimension minus the last coordinate. It avoids mutating the lists with boundary values but needs more cases.
 - **Use sorted copies:** `sorted(horizontalCuts + [0, h])` preserves caller inputs at the cost of explicit `O(H + V)` copied storage.
 - **Test every rectangle:** Combining every horizontal and vertical gap is unnecessary; the product of independent maxima proves the answer directly.
 - **Unsorted gap scan:** Differences between adjacent input entries are meaningless until coordinates are ordered.
@@ -100,8 +100,8 @@ This independence is valid because every horizontal cut crosses every vertical s
 - **Input mutation:** The exact source extends and sorts both cut lists. Reusing those lists later will observe the changes.
 - **Pairwise laziness:** It does not allocate a complete list of adjacent pairs.
 - **No need to locate the piece:** Only the area is requested, so retaining gap endpoints is unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

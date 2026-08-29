@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two **non-increasing 0-indexed **integer arrays `nums1`​​​​​​ and `nums2`​​​​​​.
+You are given two **non-increasing 0-indexed **integer arrays `nums1` and `nums2`.
 
 The objective is to compute `2` from `{"args": [[55, 30, 5, 4, 2], [100, 20, 10, 10, 5]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Reverse `nums2` to use ordinary ascending binary search.**... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ In the reversed list, `bisect_left(nums2, v)` returns the first position `p` who
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers:** Move monotonically through bot:** - **Two pointers:** Move monotonically through both non-increasing arrays to achieve `O(n + m)` time and `O(1)` auxiliary space.
+- **Two pointers:** Move monotonically through both non-increasing arrays to achieve `O(n + m)` time and `O(1)` auxiliary space.
 - **Manual binary search on descending data:** It avoids the reversed copy and retains `O(n log m)` time with constant auxiliary space.
 - **No qualifying value for an `i`:** Lower bound returns `m`, conversion gives minus one, and the negative distance is ignored.
 - **Qualifying values only before `i`:** The farthest `j` still gives a negative distance, proving no valid partner exists for that `i`.
@@ -98,8 +98,8 @@ In the reversed list, `bisect_left(nums2, v)` returns the first position `p` who
 - **Reversed-copy behavior:** The caller’s `nums2` remains unchanged, but `O(m)` memory is allocated.
 - **Sortedness requirement:** Binary search correctness depends completely on both stated non-increasing orders.
 - **Manifest mismatch:** The exact source is not the linear constant-space approach and should not be described as one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

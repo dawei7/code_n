@@ -91,7 +91,7 @@ After these assignments, local `p` and `q` no longer store wall length and rise;
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `g=\gcd(p,q)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,9 +129,9 @@ Each unfolded room-width crossing alternates between the original room's east an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate reflections geometrically:** It can w:** - **Simulate reflections geometrically:** It can work but needs repeated position/direction updates and potentially many bounces before a corner is reached.
-- **- **Use least common multiple explicitly:** The fi:** - **Use least common multiple explicitly:** The first common height is `lcm(p,q)`. Dividing it by `p` and `q` yields the same parity counts, but gcd reduction avoids constructing more values.
-- **- **`q=p`:** Gcd is `p`, reduced values are both o:** - **`q=p`:** Gcd is `p`, reduced values are both one, and the ray reaches east-top receptor 1 immediately.
+- **Simulate reflections geometrically:** It can work but needs repeated position/direction updates and potentially many bounces before a corner is reached.
+- **Use least common multiple explicitly:** The first common height is `lcm(p,q)`. Dividing it by `p` and `q` yields the same parity counts, but gcd reduction avoids constructing more values.
+- **`q=p`:** Gcd is `p`, reduced values are both one, and the ray reaches east-top receptor 1 immediately.
 
 ---
 

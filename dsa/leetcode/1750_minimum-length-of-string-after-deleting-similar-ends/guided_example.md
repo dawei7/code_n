@@ -73,7 +73,7 @@ After those loops, `i` points at the last character of the deletable left run an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the current boundary character is `c`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The same reasoning applies on the right. The outer condition already established
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string slicing:** Delete prefixes and:** - **Repeated string slicing:** Delete prefixes and suffixes by constructing a new string each time. It is intuitive but can copy $O(n)$ characters repeatedly and degrade toward $O(n^2)$ time.
+- **Repeated string slicing:** Delete prefixes and suffixes by constructing a new string each time. It is intuitive but can copy $O(n)$ characters repeatedly and degrade toward $O(n^2)$ time.
 - **Recursive two-pointer helper:** It follows the same greedy logic but may use $O(n)$ call-stack space and can exceed Python's recursion limit.
 - **Run-length encoding:** Compress consecutive characters, then remove matching end runs. It works but allocates $O(n)$ storage that direct pointers avoid.
 - **Different initial endpoints:** No operation is possible, so the original length is returned.
@@ -124,8 +124,8 @@ The same reasoning applies on the right. The outer condition already established
 - **Non-intersection:** Inner-loop guards keep identified prefix and suffix regions separate until the final legal removal.
 - **No input mutation:** Index movement represents deletion without changing `s`.
 - **Alphabet size three:** The logic relies only on equality and would work for any character alphabet.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

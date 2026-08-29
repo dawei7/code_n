@@ -59,7 +59,7 @@ It then appends `y` to `g[x]` and `x` to `g[y]`. Both insertions are necessary b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Input garden labels run from one through `n`, while Python l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The inner loop tries `c = 1, 2, 3, 4` in order. The first value absent from `use
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking coloring:** It can solve general :** - **Backtracking coloring:** It can solve general graphs but explores unnecessary choices here. Four colors and maximum degree three guarantee a greedy answer.
+- **Backtracking coloring:** It can solve general graphs but explores unnecessary choices here. Four colors and maximum degree three guarantee a greedy answer.
 - **Breadth-first or depth-first component coloring:** Traversing components first is also valid, but the numeric-order pass already ensures every edge is handled when its later endpoint is colored.
 - **Use neighbor bitmasks:** Encode used flower types in four bits and choose the first zero bit. This reduces small set allocation but does not change complexity.
 - **Only three flower types:** Maximum degree three alone does not guarantee a greedy three-coloring for every graph; a four-vertex clique has degree three and requires four colors.
@@ -118,8 +118,8 @@ The inner loop tries `c = 1, 2, 3, 4` in order. The first value absent from `use
 - **No self-paths:** The source guarantees `x != y`, so a garden is never asked to differ from itself.
 - **Any valid answer:** The deterministic smallest-available choice is convenient but not uniquely required.
 - **Large `n`:** No recursion or exponential search is used, so the method scales linearly to `10^4` gardens.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

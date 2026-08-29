@@ -68,7 +68,7 @@ This also means the function has no surprising mutation side effect. A caller th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every required lookup must observe the original permutation.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ No special branching is necessary for fixed points or cycles in the permutation.
 
 ## 6. Traps This Instance Exposes
 
-- **- **In-place quotient-and-remainder encoding:** Be:** - **In-place quotient-and-remainder encoding:** Because every original value is in $[0,N-1]$, one can temporarily store both the old and new values in each integer, usually with a base of $N$, then decode in a second pass. That meets the follow-up's $O(1)$ auxiliary-memory target but mutates the input and requires careful use of remainders whenever a previously encoded cell is read.
+- **In-place quotient-and-remainder encoding:** Because every original value is in $[0,N-1]$, one can temporarily store both the old and new values in each integer, usually with a base of $N$, then decode in a second pass. That meets the follow-up's $O(1)$ auxiliary-memory target but mutates the input and requires careful use of remainders whenever a previously encoded cell is read.
 - **Explicit indexed loop:** Initializing an answer list and assigning `ans[i] = nums[nums[i]]` is equivalent to the comprehension. It may be more familiar to a beginner, but it has the same $O(N)$ time and $O(N)$ returned-space costs.
 - **Accidental in-place overwrite:** Simply assigning `nums[i] = nums[nums[i]]` from left to right is unsafe. A later position may depend on an original value that was already replaced. It is only correct with an encoding technique or another way to preserve old values.
 - **Single-element permutation:** The only possible input is `[0]`. The lookup is `nums[nums[0]] = nums[0]`, so the method correctly returns `[0]`.
@@ -113,8 +113,8 @@ No special branching is necessary for fixed points or cycles in the permutation.
 - **Long permutation cycles:** A cycle of any length is harmless because each result follows exactly two indexed links from the unchanged input.
 - **Index safety:** The solution relies on the stated zero-based permutation contract. If arbitrary negative or out-of-range integers were allowed, Python indexing semantics could produce an unintended value or raise an error; such inputs are outside the problem.
 - **Input preservation:** The exact solution returns a new list and leaves `nums` untouched. This is a behavioral advantage over the constant-extra-memory follow-up technique.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

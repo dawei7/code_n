@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Build the numerical value from left to right.** Helper `f(... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For example, `acb` maps to digits `0, 2, 1`. The accumulator progresses as `0`, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Create a mapped digit string and parse it:** J:** - **Create a mapped digit string and parse it:** Joining `str(ord(c) - ord('a'))` for all letters and calling `int` matches the definition, but allocates intermediate strings and needs care if the mapped text is empty. The running accumulator is simpler and constant-space.
+- **Create a mapped digit string and parse it:** Joining `str(ord(c) - ord('a'))` for all letters and calling `int` matches the definition, but allocates intermediate strings and needs care if the mapped text is empty. The running accumulator is simpler and constant-space.
 - **Dictionary lookup:** A mapping from each letter to its digit would work, but the values are consecutive character-code offsets, so a table adds unnecessary storage and setup.
 - **Leading `a` letters:** They represent leading zero digits and vanish in the integer value. Words such as `aab` and `b` both evaluate to one, which is intentional.
 - **All letters `a`:** Any nonempty all-`a` word evaluates to zero regardless of length. Equality is numeric, not textual.
@@ -94,8 +94,8 @@ For example, `acb` maps to digits `0, 2, 1`. The accumulator progresses as `0`, 
 - **Different word lengths:** Lengths do not need to match. Each complete word is converted independently before addition.
 - **Case sensitivity and alphabet range:** The code assumes lowercase consecutive letters beginning at `'a'`. Uppercase or letters after `'j'` would violate the contract and would not preserve the intended one-digit mapping.
 - **Boolean result:** The equality expression already returns Python `true` or `false`. Wrapping it in another conditional would add no behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

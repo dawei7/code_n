@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where $\text{jobs}[i]$ is the amount of time needed to complete the $$i^{\text{th}}$$ job, and $\text{workers}[j]$ is the amount of time the $$j^{\text{th}}$$ worker can work each day.
+You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where $\text{jobs}[i]$ is the amount of time needed to complete the $i^{\text{th}}$ job, and $\text{workers}[j]$ is the amount of time the $j^{\text{th}}$ worker can work each day.
 
 Each job should be assigned to **exactly** one worker, such that each worker completes **exactly** one job.
 

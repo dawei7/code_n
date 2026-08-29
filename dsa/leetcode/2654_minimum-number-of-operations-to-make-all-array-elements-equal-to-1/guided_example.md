@@ -69,7 +69,7 @@ The shortest such subarray is best because combining a length-$L$ segment into o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If no element equals one, propagation cannot begin.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ It continues scanning even after reaching one. Since $\gcd(1,a)=1$, later extens
 
 ## 6. Traps This Instance Exposes
 
-- **- **Break once running gcd reaches one:** Safe bec:** - **Break once running gcd reaches one:** Safe because extensions stay one and are longer; improves constants.
+- **Break once running gcd reaches one:** Safe because extensions stay one and are longer; improves constants.
 - **Whole-array gcd precheck:** If greater than one, return `-1` immediately, but interval search already detects impossibility.
 - **Dynamic distinct gcd sets:** Can reduce work for larger $n$ by tracking compressed gcd states per endpoint.
 - **All elements already one:** Count branch returns zero.
@@ -130,8 +130,8 @@ It continues scanning even after reaching one. Since $\gcd(1,a)=1$, later extens
 - **Shortest segment:** It minimizes only the creation phase; propagation always costs $n-1$ afterward.
 - **Positive integers:** Gcd never involves zero-valued input, though zero initialization is a convenient identity.
 - **Input preservation:** The algorithm analyzes possible operations but never mutates `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

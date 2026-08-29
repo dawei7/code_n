@@ -6,7 +6,7 @@ There is a party where `n` friends numbered from `0` to $n - 1$ are attending. T
 
 When a friend leaves the party, their chair becomes unoccupied at the moment they leave. If another friend arrives at that same moment, they can sit in that chair.
 
-You are given a **0-indexed** 2D integer array `times` where $\text{times}[i] = [\text{arrival}_{i}, \text{leaving}_{i}]$, indicating the arrival and leaving times of the $$i^{\text{th}}$$ friend respectively, and an integer `targetFriend`. All arrival times are **distinct**.
+You are given a **0-indexed** 2D integer array `times` where $\text{times}[i] = [\text{arrival}_{i}, \text{leaving}_{i}]$, indicating the arrival and leaving times of the $i^{\text{th}}$ friend respectively, and an integer `targetFriend`. All arrival times are **distinct**.
 
 Return* the **chair number** that the friend numbered *`targetFriend`* will sit on*.
 

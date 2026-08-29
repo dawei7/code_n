@@ -51,7 +51,7 @@ This maze forms a weighted graph of stopping positions. From one stop, choosing 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dist[i][j]` stores the shortest distance currently known fr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This maze forms a weighted graph of stopping positions. From one stop, choosing 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap-based Dijkstra:** Pop the smallest curren:** - **Heap-based Dijkstra:** Pop the smallest current distance first and ignore stale heap entries. With cached or efficiently generated endpoints, this matches the manifest and gives a cleaner shortest-path bound.
+- **Heap-based Dijkstra:** Pop the smallest current distance first and ignore stale heap entries. With cached or efficiently generated endpoints, this matches the manifest and gives a cleaner shortest-path bound.
 - **Precompute roll endpoints and lengths:** Directional sweeps replace repeated corridor scans with constant-time edge lookup at an $O(RC)$ storage cost.
 - **Plain visited BFS:** Marking a node final on first discovery is incorrect because roll edges have unequal weights.
 - **Destination crossed but not stopped on:** It receives no relaxation unless it is the wall-stopped endpoint.
@@ -95,8 +95,8 @@ This maze forms a weighted graph of stopping positions. From one stop, choosing 
 - **Several routes to one stop:** Only strictly shorter distances trigger re-enqueueing; equal distances need no path tie-breaking in this problem.
 - **Queue duplicates:** They affect efficiency rather than correctness because popped coordinates read current table distances.
 - **Start and destination distinction:** The contract says they differ; if equal, the initialized zero would naturally be returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

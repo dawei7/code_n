@@ -55,7 +55,7 @@ Leaving it open creates a state that survives until the traversal comes back. Me
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the algorithm closed its marker immediately, it could no ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +97,7 @@ This both records the distance to the open reference and removes it from future 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Close the first open door immediately:** Loses:** - **Close the first open door immediately:** Loses the unique return marker and cannot distinguish a full lap.
+- **Close the first open door immediately:** Loses the unique return marker and cannot distinguish a full lap.
 - **Use a closed door as marker:** Impossible because initially closed doors are indistinguishable and cannot be opened.
 - **Editorial two-k traversal:** Also works; this exact source first locates a marker and then uses exactly `k` bounded moves.
 - **One house:** The first loop stops immediately, the first right move returns to the marker, and answer is one.
@@ -107,8 +107,8 @@ This both records the distance to the open reference and removes it from future 
 - **k larger than n:** Extra moves see all doors closed and do not change `ans`.
 - **Final state:** Every door is closed.
 - **Guaranteed open door:** Ensures the initial search terminates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

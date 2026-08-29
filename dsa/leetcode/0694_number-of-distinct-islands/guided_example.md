@@ -72,7 +72,7 @@ Entry directions alone are not sufficient, however. Different branching shapes c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The parameter `k` records the direction used to enter the cu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,9 +113,9 @@ Without exit markers, two different island shapes can share an entry preorder. W
 
 ## 6. Traps This Instance Exposes
 
-- **- **Relative-coordinate sets:** Record `(row - ori:** - **Relative-coordinate sets:** Record `(row - origin_row, col - origin_col)` for each island and insert a `frozenset` of those offsets into the shape set. This is often easier to prove and has the same asymptotic bounds.
-- **- **Sorted coordinate tuples:** Collect relative c:** - **Sorted coordinate tuples:** Collect relative coordinates, sort them, and use the tuple as a hashable key. Sorting can add logarithmic work within islands.
-- **- **Entry directions without exits:** This is insu:** - **Entry directions without exits:** This is insufficient because different branching structures can share the same preorder direction sequence. Backtracking markers are material, not decorative.
+- **Relative-coordinate sets:** Record `(row - origin_row, col - origin_col)` for each island and insert a `frozenset` of those offsets into the shape set. This is often easier to prove and has the same asymptotic bounds.
+- **Sorted coordinate tuples:** Collect relative coordinates, sort them, and use the tuple as a hashable key. Sorting can add logarithmic work within islands.
+- **Entry directions without exits:** This is insufficient because different branching structures can share the same preorder direction sequence. Backtracking markers are material, not decorative.
 
 ---
 

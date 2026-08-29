@@ -73,9 +73,7 @@ If both sessions start at the same instant, either orientation succeeds because 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The remaining predicate is:
-
-`a.login BETWEEN b.login AND b.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ Thus neither ordered pair satisfies `BETWEEN`. Sessions on different days are si
 
 ## 6. Traps This Instance Exposes
 
-- **- **Symmetric overlap predicate:** Using `a.login :** - **Symmetric overlap predicate:** Using `a.login <= b.logout AND b.login <= a.logout` is more visibly complete and works regardless of pair orientation, but the self-join's two orientations make the exact one-start predicate sufficient.
+- **Symmetric overlap predicate:** Using `a.login <= b.logout AND b.login <= a.logout` is more visibly complete and works regardless of pair orientation, but the self-join's two orientations make the exact one-start predicate sufficient.
 - **CROSS JOIN plus WHERE:** It is logically equivalent when all three filters are placed in `WHERE`; the inner `JOIN ... ON` form states pair conditions closer to their source.
 - **EXISTS subquery:** Select accounts whose row has at least one conflicting row. It may let an optimizer stop after the first witness and can avoid `DISTINCT` at an outer account level.
 - **Window-based sweep:** Sorting sessions per account can support a more scalable interval analysis, but handling distinct IP addresses and overlapping active sets is more involved.
@@ -127,8 +125,8 @@ Thus neither ordered pair satisfies `BETWEEN`. Sessions on different days are si
 - **Several conflicting sessions:** Any one valid pair is enough; all resulting rows collapse to one identifier.
 - **Output order:** No ordering clause is required by the contract.
 - **Guaranteed logout after login:** Every row represents a proper positive-duration interval, simplifying interval reasoning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

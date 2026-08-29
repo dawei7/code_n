@@ -79,9 +79,7 @@ The local name `y` is the number of pencil-quantity choices for this pen count, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution loops over every affordable pen count:
-
-`for x ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +120,7 @@ The pen loop itself contains only affordable `x` values, so the remaining budget
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate the more expensive item:** Swap `cos:** - **Enumerate the more expensive item:** Swap `cost1` and `cost2` when needed before looping. This preserves the count and can reduce iterations, matching the manifest summary.
+- **Enumerate the more expensive item:** Swap `cost1` and `cost2` when needed before looping. This preserves the count and can reduce iterations, matching the manifest summary.
 - **Nested loops over both quantities:** It explicitly visits every pair but can take quadratic pseudo-polynomial time; arithmetic counting removes the inner loop.
 - **Dynamic programming by budget:** Coin-change DP uses `O(total)` space and is unnecessary with only two unlimited item types and an at-most budget.
 - **Require exact spending:** That would count solutions to equality rather than the stated inequality and would incorrectly discard plans with leftover money.
@@ -134,8 +132,8 @@ The pen loop itself contains only affordable `x` values, so the remaining budget
 - **Remaining money below `cost2`:** Floor division is zero and the `+ 1` counts only zero pencils.
 - **Cost exactly divides remaining money:** The maximum pencil quantity is included.
 - **Positive-cost guarantee:** It prevents division by zero and infinite quantities.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

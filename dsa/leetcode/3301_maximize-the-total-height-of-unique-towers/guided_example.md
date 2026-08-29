@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `maximumHeight`, where $\text{maximumHeight}[i]$ denotes the **maximum** height the $$i^{\text{th}}$$ tower can be assigned.
+You are given an array `maximumHeight`, where $\text{maximumHeight}[i]$ denotes the **maximum** height the $i^{\text{th}}$ tower can be assigned.
 
 The objective is to compute `10` from `{"maximumHeight": [2, 3, 4, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Once heights are assigned in this order, it is sufficient to make every new heig
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Once heights are assigned in this order, it is sufficient to... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The chosen height is therefore no greater than its tower's limit and no greater 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set of used heights with downward search:** Fo:** - **Set of used heights with downward search:** For each tower, repeatedly decrement until an unused height appears. Without a disjoint-set optimization, long runs of collisions can make this quadratic.
+- **Set of used heights with downward search:** For each tower, repeatedly decrement until an unused height appears. Without a disjoint-set optimization, long runs of collisions can make this quadratic.
 - **Disjoint-set predecessor structure:** It can find the largest unused height under each limit, but sorting plus the descending cap is simpler and already optimal for this objective.
 - **Process limits ascending:** One can reason from small towers first, but choosing their heights greedily upward is easier to get wrong because a small early choice can consume a height useful to a tighter later tower. Descending processing gives one direct upper bound.
 - **No sorting:** Input order has no useful relation to limits. Enforcing descent in arbitrary order can reject feasible assignments or lose total sum.
@@ -99,8 +99,8 @@ The chosen height is therefore no greater than its tower's limit and no greater 
 - **Input mutation:** The source leaves `maximumHeight` sorted ascending. Copy before sorting if caller-visible preservation is required.
 - **Reverse-slice memory:** `[::-1]` costs linear extra space. `reversed(...)` would stream the same order without that particular allocation.
 - **Recovering assignments by original index:** Store each limit with its original index before sorting and write greedy heights back to an output array. The current problem asks only for the sum, so that bookkeeping is omitted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

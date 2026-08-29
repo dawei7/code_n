@@ -63,7 +63,7 @@ Under a valid formula, this pending number belongs either to the atom immediatel
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the current character is a digit, the scanner consumes ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ When the scan later reaches `(`, it has moved out of the current group. Popping 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive descent from left to right:** Parse :** - **Recursive descent from left to right:** Parse one group into a local count map, recursively parse nested groups, and multiply a completed child map after its closing parenthesis. This closely follows the grammar but uses recursion depth `O(d)` and merges maps.
-- **- **Stack of count maps:** Push an empty map at `(:** - **Stack of count maps:** Push an empty map at `(`, then pop, multiply, and merge at `)`. It is iterative and intuitive, but multiple maps may store repeated atom names. The exact reverse scan keeps one global count map and a multiplier stack.
-- **- **Regular-expression tokenization:** A regex can:** - **Regular-expression tokenization:** A regex can extract atoms, numbers, and parentheses before a reverse pass. It shortens token recognition but introduces a separate token collection and makes the grammar less explicit.
+- **Recursive descent from left to right:** Parse one group into a local count map, recursively parse nested groups, and multiply a completed child map after its closing parenthesis. This closely follows the grammar but uses recursion depth `O(d)` and merges maps.
+- **Stack of count maps:** Push an empty map at `(`, then pop, multiply, and merge at `)`. It is iterative and intuitive, but multiple maps may store repeated atom names. The exact reverse scan keeps one global count map and a multiplier stack.
+- **Regular-expression tokenization:** A regex can extract atoms, numbers, and parentheses before a reverse pass. It shortens token recognition but introduces a separate token collection and makes the grammar less explicit.
 
 ---
 

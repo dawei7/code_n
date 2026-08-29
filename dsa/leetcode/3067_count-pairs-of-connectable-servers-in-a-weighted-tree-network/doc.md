@@ -27,7 +27,7 @@ Return an integer array `count` of length $n$ where `count[c]` is the number of 
 - `edges`: The $n-1$ weighted edges of a valid undirected tree, with each edge represented as `[a_i, b_i, weight_i]`.
 - `signalSpeed`: The positive divisor used to test path distances.
 
-The constraints are $2 \le n \le 1000$, $0 \le a_i, b_i < n$, $1 \le \texttt{weight_i} \le 10^6$, and $1 \le \texttt{signalSpeed} \le 10^6$.
+The constraints are $2 \le n \le 1000$, $0 \le a_i, b_i < n$, $1 \le \texttt{weight\_i} \le 10^6$, and $1 \le \texttt{signalSpeed} \le 10^6$.
 
 **Return value**
 

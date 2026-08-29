@@ -31,4 +31,4 @@ The time complexity for calculating the sum of digits of $x$ is $O(\log_{10} x) 
 
 - Space complexity: $O(\log n)$.
 
-Using a hash map as auxiliary space, the number of digits of $n$ is $O(\log_{10} n) = O(\log n)$, and each digit is in the range $[0, 9]$, so the hash map can contain at most $O(10 \log n) = O(\log n)$ keys, and the asymptotic space complexity is $O(\log n)$.
+Using a hash map as auxiliary space, the number of digits of $n$ is $O(\log_{10} n) = O(\log n)$, and each digit is in the range `[0, 9]`, so the hash map can contain at most $O(10 \log n) = O(\log n)$ keys, and the asymptotic space complexity is $O(\log n)$.

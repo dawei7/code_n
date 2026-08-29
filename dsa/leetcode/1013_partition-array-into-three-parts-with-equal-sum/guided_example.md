@@ -65,7 +65,7 @@ Resetting is essential. Without it, later comparisons would use a prefix sum fro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `t` is the sum of elements since the most recent gr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This remains true when `s = 0` and the next element is zero. A one-element zero 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-sum boundary search:** Find one prefix :** - **Prefix-sum boundary search:** Find one prefix equal to `s` and a later prefix equal to `2s` while leaving an element for the suffix. It is also linear but needs careful boundary handling when `s = 0`.
+- **Prefix-sum boundary search:** Find one prefix equal to `s` and a later prefix equal to `2s` while leaving an element for the suffix. It is also linear but needs careful boundary handling when `s = 0`.
 - **Store all prefix sums:** It can search possible cuts but uses `O(N)` space unnecessarily.
 - **Try every pair of cuts:** Direct enumeration costs `O(N^2)` or worse.
 - **Total not divisible by three:** Impossible immediately, regardless of element arrangement.
@@ -112,8 +112,8 @@ This remains true when `s = 0` and the next element is zero. A one-element zero 
 - **Exactly three elements:** Each element must equal the forced target, which the scan recognizes.
 - **Nonempty requirement:** Counting a segment only after consuming an element and demanding a third hit ensures the suffix after the second cut is nonempty.
 - **Input preservation:** The array is read twice but never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

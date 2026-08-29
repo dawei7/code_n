@@ -73,7 +73,7 @@ Zero is not considered because the required domain begins at one, even though ze
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `range(1, n + 1)` starts at one and stops before `n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ This union behavior is exactly what the phrase “divisible by 3, 5, or 7” req
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic inclusion–exclusion:** Computes the:** - **Arithmetic inclusion–exclusion:** Computes the result in $O(1)$ time using sums for 3, 5, 7, 15, 21, 35, and 105.
+- **Arithmetic inclusion–exclusion:** Computes the result in $O(1)$ time using sums for 3, 5, 7, 15, 21, 35, and 105.
 - **Three separate loops without correction:** Incorrect because common multiples would be counted more than once.
 - **Build a set of multiples:** Avoids duplicates but uses $O(n)$ space unnecessarily.
 - **`n < 3`:** No integer qualifies, and `sum` returns zero.
@@ -126,8 +126,8 @@ This union behavior is exactly what the phrase “divisible by 3, 5, or 7” req
 - **Zero:** Excluded because the interval starts at one.
 - **Short-circuit OR:** May skip later remainder checks after an earlier success.
 - **Constraint size:** A linear scan of at most 1000 integers is comfortably bounded.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

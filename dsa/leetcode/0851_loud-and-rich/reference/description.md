@@ -2,7 +2,7 @@
 
 There is a group of `n` people labeled from `0` to $n - 1$ where each person has a different amount of money and a different level of quietness.
 
-You are given an array `richer` where $\text{richer}[i] = [a_{i}, b_{i}]$ indicates that $a_{i}$ has more money than $b_{i}$ and an integer array `quiet` where $\text{quiet}[i]$ is the quietness of the $$i^{\text{th}}$$ person. All the given data in richer are **logically correct** (i.e., the data will not lead you to a situation where `x` is richer than `y` and `y` is richer than `x` at the same time).
+You are given an array `richer` where $\text{richer}[i] = [a_{i}, b_{i}]$ indicates that $a_{i}$ has more money than $b_{i}$ and an integer array `quiet` where $\text{quiet}[i]$ is the quietness of the $i^{\text{th}}$ person. All the given data in richer are **logically correct** (i.e., the data will not lead you to a situation where `x` is richer than `y` and `y` is richer than `x` at the same time).
 
 Return *an integer array *`answer`* where *$\text{answer}[x] = y$* if *`y`* is the least quiet person (that is, the person *`y`* with the smallest value of *$\text{quiet}[y]$*) among all people who definitely have equal to or more money than the person *`x`.
 

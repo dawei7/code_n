@@ -42,9 +42,9 @@ Both substrings have equal scores, so the output is `true`.
 
 - **Output:** false
 
-- **Explanation:** ​​​​​​**
+- **Explanation:** **
 
-**​​​​​​​**No split produces equal scores, so the output is `false`.
+****No split produces equal scores, so the output is `false`.
 
 ### 4. Constraints
 

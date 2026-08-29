@@ -59,7 +59,7 @@ Equal adjacent values are allowed because the target order is non-decreasing, no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `i` starts at zero and advances while `arr[i] <= arr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ If `i >= j`, these sorted regions overlap or meet, meaning the entire array is a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer merge:** Advance one suffix pointe:** - **Two-pointer merge:** Advance one suffix pointer monotonically while scanning the prefix, achieving $O(N)$ time and $O(1)$ space.
+- **Two-pointer merge:** Advance one suffix pointer monotonically while scanning the prefix, achieving $O(N)$ time and $O(1)$ space.
 - **Remove only suffix:** Cost `n-i-1` is one baseline.
 - **Remove only prefix:** Cost `j` is the other baseline.
 - **Already sorted:** Prefix and suffix overlap, so answer is zero.
@@ -111,8 +111,8 @@ If `i >= j`, these sorted regions overlap or meet, meaning the entire array is a
 - **Sorted search range:** Only suffix `arr[j:]` must be sorted; the earlier array may be arbitrary.
 - **No input mutation:** The method reads indices and values without changing `arr`.
 - **Manifest mismatch:** Linear time belongs to the two-pointer implementation, not this per-prefix binary search.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

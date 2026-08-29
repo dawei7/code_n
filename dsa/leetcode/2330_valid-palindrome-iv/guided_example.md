@@ -66,7 +66,7 @@ The code scans all pairs even after finding a third mismatch. The manifest summa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` starts at zero and `j` starts at `len(s) - 1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ This proves the central test `cnt <= 2`, but the problem says exactly one or two
 
 ## 6. Traps This Instance Exposes
 
-- **- **Early return at the third mismatch:** This pre:** - **Early return at the third mismatch:** This preserves correctness and can save work on clearly invalid strings, but the exact implementation counts through the end.
+- **Early return at the third mismatch:** This preserves correctness and can save work on clearly invalid strings, but the exact implementation counts through the end.
 - **Compare with a reversed copy:** Count positions where `s` differs from `s[::-1]` and divide by two. This creates `O(n)` extra storage and requires care because every mismatched pair appears twice.
 - **Dynamic programming for edit distance to a palindrome:** Replacement-only mirrored pairs are independent, so a quadratic DP is unnecessary.
 - **Store all mismatched index pairs:** Only their count up to the threshold matters, so a list wastes linear memory.
@@ -122,8 +122,8 @@ This proves the central test `cnt <= 2`, but the problem says exactly one or two
 - **Boolean arithmetic:** In Python, `true` adds as one and `false` as zero. In languages without this convention, use an explicit conditional increment.
 - **Input mutation:** No actual replacement is made; feasibility is decided from comparisons alone.
 - **Exact versus at most:** `cnt <= 2` would be obviously correct for “at most two.” The additional construction for `cnt = 0` is what also makes it correct for “exactly one or two.”
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

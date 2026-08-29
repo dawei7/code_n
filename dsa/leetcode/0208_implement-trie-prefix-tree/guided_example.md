@@ -82,7 +82,7 @@ the outgoing edges.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact optimal implementation does not define a separate ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +136,7 @@ insertion is harmless and needs no special case.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash-map children:** Store only existing outgo:** - **Hash-map children:** Store only existing outgoing edges in a dictionary. This can save memory for sparse nodes and support larger alphabets, but dictionary entries have more per-edge overhead and lookups rely on expected constant-time hashing; the exact solution instead exploits the guaranteed 26-letter alphabet with direct array access.
+- **Hash-map children:** Store only existing outgoing edges in a dictionary. This can save memory for sparse nodes and support larger alphabets, but dictionary entries have more per-edge overhead and lookups rely on expected constant-time hashing; the exact solution instead exploits the guaranteed 26-letter alphabet with direct array access.
 - **Hash set of complete words:** Exact `search` is expected $O(L)$, but answering `startsWith` by scanning stored words can be far more expensive. Storing every prefix in a second set restores fast prefix checks while duplicating substantial string data.
 - **Sorted set or balanced search tree:** Lexicographic ordering can locate the first candidate near a prefix, but operations generally introduce an $O(\log W)$ factor for $W$ stored words and compare strings. The trie makes work depend directly on the queried length.
 - **Compressed trie or radix tree:** Collapsing single-child chains into string-labelled edges can reduce node overhead. It adds substring comparison and edge-splitting logic, which is unnecessary for the required operations and fixed constraints.
@@ -147,8 +147,8 @@ insertion is harmless and needs no special case.
 - **Maximum-length strings and many calls:** Iterative traversal avoids recursion depth problems even when a string has length 2000. Shared prefixes can greatly reduce created nodes, while completely different suffixes correctly receive separate branches.
 - **Lowercase-only precondition:** The index formula is valid because the reference contract excludes uppercase letters, punctuation, and other characters. Supporting a broader alphabet would require validation or a different child representation; silently feeding such input to this implementation would violate its contract.
 - **Empty strings:** Public inputs are guaranteed nonempty. Internally, `_search_prefix("")` would return the root, making `startsWith("")` true and `search("")` depend on the root's flag, but those behaviors are outside the required input domain and need no special branch.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ If every count is even, `ans` remains the empty string. The eventual palindrome 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop scans digits from nine down to zero and selec... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The code uses all pairs for a digit at once. Repeating the same digit in one blo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a left-half list then mirror it:** Appen:** - **Build a left-half list then mirror it:** Append pair digits from nine down to zero, choose a center, and concatenate left, center, and reversed left. This avoids repeated wrapping and is often easier to reason about.
+- **Build a left-half list then mirror it:** Append pair digits from nine down to zero, choose a center, and concatenate left, center, and reversed left. This avoids repeated wrapping and is often easier to reason about.
 - **Sort all input digits:** Sorting costs $O(n\log n)$ and still requires pair counting; the ten-value Counter is more efficient.
 - **All digits zero:** Outer-zero removal empties the temporary string, and the fallback returns `"0"`.
 - **Only one nonzero digit:** It becomes the center if its count is odd; unused zeros cannot surround it as leading digits.
@@ -117,8 +117,8 @@ The code uses all pairs for a digit at once. Repeating the same digit in one blo
 - **Zero pair plus nonzero pair:** The nonzero pair wraps outside, so zeros remain valid internal digits.
 - **Unused digits:** Leftover singles beyond the center are intentionally discarded, as permitted.
 - **Leading-zero cleanup:** `strip('0')` is safe because symmetry makes every stripped trailing zero the mirror of a forbidden leading zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,7 +69,7 @@ Passing `j` rather than `j + 1` allows repeated factors, which are necessary for
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within `dfs(n, i)`, candidate `j` begins at `i` and continue... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ More formally, each chosen factor becomes the lower bound for all subsequent cho
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate ordered factor sequences:** Trying al:** - **Generate ordered factor sequences:** Trying all factor orders and deduplicating with a set wastes work on permutations. The nondecreasing lower bound prevents duplicates before they are created.
+- **Generate ordered factor sequences:** Trying all factor orders and deduplicating with a set wastes work on permutations. The nondecreasing lower bound prevents duplicates before they are created.
 - **Iterative DFS:** Store states containing a factor path, remaining quotient, and minimum factor. It avoids recursion but copies more partial paths and can use substantially more working memory.
 - **Prime input:** The root tests candidates through $\sqrt n$ but finds no divisor. Since `t` is empty, `[n]` is not emitted, and the answer is empty.
 - **`n = 1`:** No candidate begins below or at its square root, and the top-level one-element form is excluded, so the result is `[]`.
@@ -116,8 +116,8 @@ More formally, each chosen factor becomes the lower bound for all subsequent cho
 - **Backtracking restoration:** `t.pop()` must run after every recursive return so a candidate from one branch does not leak into the next branch.
 - **Large prime near $10^7$:** There is no output, but the algorithm still performs roughly $\sqrt n$ divisibility tests; this is why the non-output root term matters.
 - **Result ordering:** DFS produces a deterministic nondecreasing-factor order, but the outer ordering of combinations need not be sorted because any answer order is accepted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

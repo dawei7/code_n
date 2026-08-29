@@ -57,7 +57,7 @@ The solution then iterates through `sorted(nums)`. Sorting places every occurren
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(nums)` records how many unused copies of each... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Therefore, any valid completion of the remaining multiset is forced to include a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordered frequency map:** Iterating distinct ke:** - **Ordered frequency map:** Iterating distinct keys in sorted order and starting `cnt[x]` groups in a batch avoids traversing duplicate sorted entries. It has the same $O(n\log n)$ asymptotic bound and can be more explicit about multiplicities.
+- **Ordered frequency map:** Iterating distinct keys in sorted order and starting `cnt[x]` groups in a batch avoids traversing duplicate sorted entries. It has the same $O(n\log n)$ asymptotic bound and can be more explicit about multiplicities.
 - **Min-heap of remaining values:** Repeatedly pop the smallest available value and consume a sequence. This preserves the forced-minimum idea, but maintaining and cleaning heap entries adds complexity and logarithmic operations.
 - **Unordered greedy starts:** Beginning with an arbitrary value is unsafe. A middle value might be consumed as the start of a group even though a smaller value needs it later, producing a false failure despite an available valid partition.
 - **Only checking distinct values:** Presence alone is not enough. Frequencies must match across overlapping groups, so a set can accept instances that do not contain enough copies.
@@ -107,8 +107,8 @@ Therefore, any valid completion of the remaining multiset is forced to include a
 - **Very large integer values:** The algorithm depends on counts and comparisons, not on allocating an array indexed by value. Values up to $10^9$ do not create a large value-range allocation.
 - **Counter values never become negative:** The code checks for zero before each decrement. Every decrement therefore consumes an existing copy, preserving the meaning of the counter.
 - **Input order:** The original arrangement is irrelevant because the task asks for a division into sets, not contiguous subarrays. Sorting is allowed to expose the multiset's order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

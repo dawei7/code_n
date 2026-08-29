@@ -63,7 +63,7 @@ This order faithfully handles goals far outside the reusable state interval.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An operation producing a value below zero or above one thous... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Breadth-first order guarantees all states at smaller step counts are processed b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mark start immediately:** Set `vis[start]=true:** - **Mark start immediately:** Set `vis[start]=true` when enqueuing it to remove the one possible redundant revisit.
+- **Mark start immediately:** Set `vis[start]=true` when enqueuing it to remove the one possible redundant revisit.
 - **Depth-first search:** Does not naturally guarantee the minimum operation count and may explore long cycles.
 - **Bidirectional search:** Difficult because inverse transitions, especially signed XOR interactions and terminal goals, require care.
 - **Goal outside zero through one thousand:** Can be reached only as the final generated value and is checked correctly.
@@ -112,8 +112,8 @@ Breadth-first order guarantees all states at smaller step counts are processed b
 - **XOR result:** May be negative or large and is treated by the same terminal rule.
 - **Unreachable goal:** Finite state exhaustion returns `-1`.
 - **Input preservation:** Neither `nums` nor the scalar inputs are modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

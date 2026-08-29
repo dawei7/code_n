@@ -67,7 +67,7 @@ This upper bound depends only on the group’s limit and size. It does not say w
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Assume, for contradiction, that more than `L` elements with ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The source does not construct this order because the method only has to return t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap of size `lim` per group:** Instead of:** - **Min-heap of size `lim` per group:** Instead of sorting a whole group, maintain its largest `lim` values in a min-heap. This can reduce work when `lim` is much smaller than the group size, at the cost of more involved grouping logic; the worst-case bound remains `O(n log n)`.
+- **Min-heap of size `lim` per group:** Instead of sorting a whole group, maintain its largest `lim` values in a min-heap. This can reduce work when `lim` is much smaller than the group size, at the cost of more involved grouping logic; the worst-case bound remains `O(n log n)`.
 - **Selection algorithm:** A linear-time order statistic could partition each group around its largest `min(m, L)` values, giving expected linear total selection time, but sorting is simpler and the constraints permit `O(n log n)`.
 - **Simulate a concrete activation order:** Processing selected groups in increasing limit can construct a valid schedule, but simulation is unnecessary because only the maximum total is returned.
 - **Globally take the largest values:** A value’s eligibility depends on how many values share its exact limit. Ignoring group caps may select too many from a small-limit group and produce an unattainable total.
@@ -123,8 +123,8 @@ The source does not construct this order because the method only has to return t
 - **Positive-value guarantee:** The source always takes the maximum permitted number from a group because all values are at least one. If negative values were allowed, it could be better to activate fewer, and the suffix sum would need to exclude non-positive choices.
 - **Dictionary order:** The source may sum groups in any hash-table order because it computes a closed-form maximum, not the witness schedule used in the attainability argument.
 - **Missing imports:** The stored source uses `List` and `defaultdict` without imports. A standalone file would need `from typing import List` and `from collections import defaultdict` unless the execution harness supplies them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

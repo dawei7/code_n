@@ -51,7 +51,7 @@ The solution discovers that graph implicitly with depth-first search. `dfs(i, j)
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution discovers that graph implicitly with depth-firs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution discovers that graph implicitly with depth-first search. `dfs(i, j)
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute stopping endpoints:** Sweep rows an:** - **Precompute stopping endpoints:** Sweep rows and columns to record where a roll from every open cell ends in each direction. This uses $O(RC)$ extra data and makes the graph traversal itself $O(RC)$, matching the manifest summary.
+- **Precompute stopping endpoints:** Sweep rows and columns to record where a roll from every open cell ends in each direction. This uses $O(RC)$ extra data and makes the graph traversal itself $O(RC)$, matching the manifest summary.
 - **Breadth-first search:** A queue explores the same stopping-position graph and gives the same Boolean reachability result. Shortest roll count is not requested, so BFS offers no correctness advantage over DFS.
 - **Ordinary cell-by-cell DFS:** Marking every crossed cell as a decision node is wrong because the ball cannot turn there. Only wall-stopped endpoints are graph nodes.
 - **Destination crossed but not stopped on:** The code correctly leaves it unvisited unless a roll ends there.
@@ -94,8 +94,8 @@ The solution discovers that graph implicitly with depth-first search. `dfs(i, j)
 - **Cycles among stops:** The ball can roll between the same endpoints repeatedly. `vis` ensures every stop's outgoing directions are expanded once.
 - **Start and destination distinction:** The contract says they differ, but the code would still return true if they were equal because the initial DFS marks the start.
 - **Recursion depth:** A maze with many sequential stopping positions can create a deep Python call stack. An explicit stack preserves the same search if runtime recursion limits matter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

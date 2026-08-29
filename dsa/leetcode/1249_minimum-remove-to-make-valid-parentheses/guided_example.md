@@ -65,7 +65,7 @@ After this pass, every retained prefix has at least as many openings as closings
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `x` is the number of unmatched opening parentheses kept so f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ At the moment an unmatched `')'` is seen, no retained opening parenthesis preced
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index stack plus removal set:** Match closing :** - **Index stack plus removal set:** Match closing parentheses to opening indices, mark all unmatched indices, and rebuild the string. It is also \(O(n)\) time and space.
+- **Index stack plus removal set:** Match closing parentheses to opening indices, mark all unmatched indices, and rebuild the string. It is also \(O(n)\) time and space.
 - **Forward pass plus remove rightmost openings:** After skipping invalid closers, count excess openings and omit that many from the right. This avoids symmetric balance reasoning but is equivalent.
 - **No parentheses:** Every character is retained and the result equals the input.
 - **Already valid string:** Neither pass skips a character.
@@ -110,8 +110,8 @@ At the moment an unmatched `')'` is seen, no retained opening parenthesis preced
 - **Nested pairs:** Balance can grow above one; reverse processing matches all retained openings correctly.
 - **Multiple accepted outputs:** The method returns one minimum result, not necessarily the same textual choice shown in examples.
 - **Immutable strings:** Building lists and joining avoids quadratic cost from repeated string deletion or concatenation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

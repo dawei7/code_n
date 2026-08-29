@@ -66,7 +66,7 @@ yesterday comparison.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `DATEDIFF(w1.recordDate, w2.recordDate) = 1` requires `w1` t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ makes the meaning of a qualifying pair explicit.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Date-add equality join:** Join `w1.recordDate :** - **Date-add equality join:** Join `w1.recordDate = DATE_ADD(w2.recordDate, INTERVAL 1 DAY)`; this states the transformed-yesterday relation directly.
+- **Date-add equality join:** Join `w1.recordDate = DATE_ADD(w2.recordDate, INTERVAL 1 DAY)`; this states the transformed-yesterday relation directly.
 - **`LAG()` window function:** Sort by date, retrieve prior date and temperature, then verify the date gap is exactly one day.
 - **Correlated subquery:** Look up temperature at `DATE_SUB(w1.recordDate, INTERVAL 1 DAY)` for each current row.
 - **Pandas shifted merge:** Add one day to a copied date column and merge, as the local editorial describes.
@@ -117,8 +117,8 @@ makes the meaning of a qualifying pair explicit.
 - **First represented date:** Qualifies only if its actual yesterday is also represented.
 - **Null data:** Cannot establish both predicates and is omitted by SQL three-valued logic.
 - **Any order:** No `ORDER BY` is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

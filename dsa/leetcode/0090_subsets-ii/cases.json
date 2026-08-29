@@ -106,7 +106,14 @@
           2
         ]
       },
-      "expected": null,
+      "expected": [
+        [-1, -1, 2],
+        [-1, -1],
+        [-1, 2],
+        [-1],
+        [2],
+        []
+      ],
       "validator": {
         "kind": "unordered_nested_list"
       },
@@ -128,7 +135,16 @@
           2
         ]
       },
-      "expected": null,
+      "expected": [
+        [1, 2, 2, 2],
+        [1, 2, 2],
+        [1, 2],
+        [1],
+        [2, 2, 2],
+        [2, 2],
+        [2],
+        []
+      ],
       "validator": {
         "kind": "unordered_nested_list"
       },

@@ -69,7 +69,7 @@ The input is nonempty by constraint, guaranteeing the loop executes and `ans` be
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `l` begins at zero because no element has yet j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The order of these three operations is essential. If `r` were reduced before the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store prefix and suffix arrays:** Precompute e:** - **Store prefix and suffix arrays:** Precompute every `L_i` and `R_i`, then scan their pairwise maxima. This is correct and still `O(n)` time, but it uses `O(n)` space that the running-sum sweep avoids.
+- **Store prefix and suffix arrays:** Precompute every `L_i` and `R_i`, then scan their pairwise maxima. This is correct and still `O(n)` time, but it uses `O(n)` space that the running-sum sweep avoids.
 - **Recompute both sums at every index:** Calling a sum operation on each prefix and suffix leads to `O(n^2)` total time because most elements are repeatedly added.
 - **Use only the total and prefix:** Since `R_i = total - L_i + nums[i]` when both sums include index `i`, one could derive the suffix during the loop. This is also constant-space, but maintaining `r` explicitly makes the inclusive timing clear.
 - **Initialize the answer to zero:** This fails when all valid prefix and suffix sums are negative. `-inf` or the first actual candidate is required.
@@ -126,8 +126,8 @@ The order of these three operations is essential. If `r` were reduced before the
 - **Inclusive boundary at index `i`:** The current element belongs to both candidate sums. Updating `l` before and `r` after the comparison is mandatory.
 - **Large-magnitude sums:** The result may exceed 32-bit range. Python is safe automatically; fixed-width implementations should use a 64-bit signed integer.
 - **Input preservation:** The scan reads `nums` without changing its values or order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

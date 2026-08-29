@@ -59,7 +59,7 @@ The helper `calc1` scans these runs. It places `i` at the first character of a r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a substring contains only one distinct character, all its... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The solution runs this helper for all three unordered pairs. A balanced two-lett
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic substring expansion:** Fixing every :** - **Quadratic substring expansion:** Fixing every left endpoint, extending every right endpoint, and maintaining three counts gives an easy $O(n^2)$ solution. That is suitable for the smaller version of the problem but not for a length up to $10^5$.
+- **Quadratic substring expansion:** Fixing every left endpoint, extending every right endpoint, and maintaining three counts gives an easy $O(n^2)$ solution. That is suitable for the smaller version of the problem but not for a length up to $10^5$.
 - **One general prefix-frequency map:** One can derive separate normalized signatures depending on which letters are present, but mixing absent-letter semantics into one state is easy to get wrong. The three-case split makes the completeness argument explicit and keeps each state minimal.
 - **Binary balance without separator resets:** Running the `a` versus `b` difference across a `c` would incorrectly allow a reported interval that contains `c`. Every unchosen letter must end the current pair-only segment and reset `pos`.
 - **Keeping the latest prefix position:** Replacing `pos[d]` or `pos[k]` on every occurrence would still find some balanced substrings, but it could lose the longest one. The earliest matching boundary always maximizes the length for a fixed right endpoint.
@@ -121,8 +121,8 @@ The solution runs this helper for all three unordered pairs. A balanced two-lett
 - **Several forbidden characters in a row:** The initial loop in `calc2` keeps advancing until it reaches a chosen letter or the end. It cannot become stuck, and a fresh `pos` is created only for a real next segment.
 - **Difference values becoming negative:** Negative values are expected when the second chosen letter is more frequent. Dictionary keys can be negative, and equality of prefix differences—not their sign—is what matters.
 - **Why two differences suffice for three counts:** Requiring `A - B = 0` and `B - C = 0` already implies `A = B = C`. A third difference `A - C` would be redundant because it is the sum of the first two.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

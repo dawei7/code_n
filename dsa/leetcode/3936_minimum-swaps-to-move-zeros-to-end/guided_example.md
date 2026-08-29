@@ -63,7 +63,7 @@ The condition `while j` means “while `j != 0`.” It deliberately avoids decre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `j` starts at the final index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The next outer iteration skips any additional already-correct values and locates
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count nonzeroes in the reserved suffix:** Firs:** - **Count nonzeroes in the reserved suffix:** First count $Z$, then count nonzero entries among the last $Z$ positions. This yields the same minimum in two linear passes and makes the mismatch lower bound explicit.
+- **Count nonzeroes in the reserved suffix:** First count $Z$, then count nonzero entries among the last $Z$ positions. This yields the same minimum in two linear passes and makes the mismatch lower bound explicit.
 - **Actually perform each swap:** This returns the same count and constructs a valid arrangement, but mutation is unnecessary because only the minimum number is requested.
 - **Stable two-pointer compaction:** Moving nonzeroes forward while preserving their relative order solves a stronger arrangement problem. Counting writes or adjacent movements would not equal the arbitrary-swap minimum.
 - **Count zero-before-nonzero inversions:** That measures adjacent swaps. One arbitrary swap can eliminate many such inversions, so the inversion total overestimates the answer.
@@ -120,8 +120,8 @@ The next outer iteration skips any additional already-correct values and locates
 - **Zero at the left and nonzero at the right:** They can be exchanged directly in one operation even when far apart.
 - **Repeated nonzero values:** Their identities do not matter; only whether each value is zero affects its target region.
 - **The condition `while j` at index zero:** It does not inspect past the beginning. The later `i >= j` check prevents treating an unclassified index-zero value as a swappable right endpoint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ Shared prefixes reuse nodes. Duplicate numbers follow an existing complete path 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Trie.children` is a two-element list initialized to `[null,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The fallback child is guaranteed to exist. At every level, the current node repr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** Direct XOR comparison take:** - **Check every pair:** Direct XOR comparison takes $O(n^2)$ time, which is too slow for up to $2\cdot10^5$ numbers.
+- **Check every pair:** Direct XOR comparison takes $O(n^2)$ time, which is too slow for up to $2\cdot10^5$ numbers.
 - **Greedy prefix hash sets:** Build the maximum answer bit by bit and test whether two observed prefixes can realize each proposed prefix XOR. It also takes $O(nB)$ time and $O(n)$ space, but the trie gives a concrete best-partner path.
 - **Insert and query incrementally:** Query each value against previously inserted values, then insert it. This avoids self-pairing and has the same bounds, but the chosen code cleanly separates construction and queries.
 - **Variable-width paths without leading zeros:** Misaligned depths would compare bits of different significance. Fixed 31-bit paths avoid that error.
@@ -108,8 +108,8 @@ The fallback child is guaranteed to exist. At every level, the current node repr
 - **Maximum allowed value:** Bit 30 is its highest possible set bit, so the `range(30, -1, -1)` loop covers it exactly.
 - **Duplicate paths:** Insertion reuses existing nodes; duplicates do not increase the asymptotic node count or change the maximum.
 - **Prefer lower-bit gains over a high bit:** This is never beneficial because bit $i$ outweighs all lower positions together, which is the foundation of the greedy search.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

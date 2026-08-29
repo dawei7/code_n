@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `players`, where $\text{players}[i]$ represents the **ability** of the $$i^{\text{th}}$$ player. You are also given a **0-indexed** integer array `trainers`, where $\text{trainers}[j]$ represents the **training capacity **of the $$j^{\text{th}}$$ trainer.
+You are given a **0-indexed** integer array `players`, where $\text{players}[i]$ represents the **ability** of the $i^{\text{th}}$ player. You are also given a **0-indexed** integer array `trainers`, where $\text{trainers}[j]$ represents the **training capacity **of the $j^{\text{th}}$ trainer.
 
-The $$i^{\text{th}}$$ player can **match** with the $$j^{\text{th}}$$ trainer if the player's ability is **less than or equal to** the trainer's training capacity. Additionally, the $$i^{\text{th}}$$ player can be matched with at most one trainer, and the $$j^{\text{th}}$$ trainer can be matched with at most one player.
+The $i^{\text{th}}$ player can **match** with the $j^{\text{th}}$ trainer if the player's ability is **less than or equal to** the trainer's training capacity. Additionally, the $i^{\text{th}}$ player can be matched with at most one trainer, and the $j^{\text{th}}$ trainer can be matched with at most one player.
 
 Return *the **maximum** number of matchings between *`players`* and *`trainers`* that satisfy these conditions.*
 

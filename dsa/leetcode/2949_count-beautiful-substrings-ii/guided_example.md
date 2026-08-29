@@ -85,7 +85,7 @@ Therefore a valid substring corresponds precisely to two prefix positions with t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Assign $+1$ to a vowel and $-1$ to a consonant.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ Each pair of equal states has a unique earlier and later prefix position, so eve
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all substrings:** Version I's nested:** - **Enumerate all substrings:** Version I's nested loops take $O(n^2)$ time and are too slow for $n=50000$.
+- **Enumerate all substrings:** Version I's nested loops take $O(n^2)$ time and are too slow for $n=50000$.
 - **Track balance only:** This counts equal vowels and consonants but ignores the product divisibility requirement.
 - **Track length modulo $2k$:** It is sufficient in some cases but not minimal; factor exponents produce the exact smaller period $2R$.
 - **$k=1$:** `required=1` and period two, so every balanced even-length substring qualifies.
@@ -150,8 +150,8 @@ Each pair of equal states has a unique earlier and later prefix position, so eve
 - **Period may exceed string length:** Then equal residues require the same actual prefix offset within this range; valid counted substrings still follow the exact divisibility rule.
 - **Expected dictionary time:** Hash operations are expected $O(1)$; pathological collision behavior is not the standard complexity model.
 - **Answer needs no modulo:** The source returns the exact number of qualifying substrings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

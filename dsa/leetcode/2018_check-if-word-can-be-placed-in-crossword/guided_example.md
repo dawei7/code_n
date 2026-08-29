@@ -61,7 +61,7 @@ The caller's direction-specific condition enforces the near boundary. Together, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `check(i,j,a,b)` uses direction vector $(a,b)$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If all characters fit and the post-word boundary was valid, the placement succee
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split rows and columns on blocks:** Compare ea:** - **Split rows and columns on blocks:** Compare each exact-length segment with the word and its reverse; clear but may allocate strings or lists.
+- **Split rows and columns on blocks:** Compare each exact-length segment with the word and its reverse; clear but may allocate strings or lists.
 - **Transpose the board:** Reuse horizontal logic for vertical slots, at the cost of $O(MN)$ extra storage.
 - **Check letters without slot boundaries:** Incorrectly allows the word inside a longer unblocked run.
 - **One-cell word:** Requires a one-cell slot bounded on both sides in its direction.
@@ -112,8 +112,8 @@ If all characters fit and the post-word boundary was valid, the placement succee
 - **Several valid placements:** The first discovered returns true, which is sufficient.
 - **Short-circuiting:** Avoids checker calls when the near boundary is invalid.
 - **Input preservation:** Placement is tested logically without writing letters into `board`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

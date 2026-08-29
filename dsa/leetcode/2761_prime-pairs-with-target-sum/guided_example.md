@@ -57,7 +57,7 @@ The exact code starts marking at `i + i` rather than `i * i`. Multiples below `i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop considers every `i` from 2 through `n - 1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ There is no need to search for `y`, factor it, or use a second nested loop. Ever
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trial division for every complement:** Checkin:** - **Trial division for every complement:** Checking each `x` and `n - x` up to their square roots avoids the sieve array but repeats work and can take about `O(n sqrt n)` time in the straightforward form.
+- **Trial division for every complement:** Checking each `x` and `n - x` up to their square roots avoids the sieve array but repeats work and can take about `O(n sqrt n)` time in the straightforward form.
 - **Sieve from `i * i`:** This is a safe constant-factor optimization because smaller multiples already have smaller prime factors. The exact solution starts at `2i` and remains correct.
 - **Generate a prime list and use two pointers:** Two pointers can find sums in the sorted prime list, but constructing that list still needs primality preprocessing and the direct complement scan is simpler here.
 - **Scan all `x < n`:** Doing so produces reversed duplicates unless extra deduplication is added. Stopping at `n // 2` enforces `x <= y` directly.
@@ -110,8 +110,8 @@ There is no need to search for `y`, factor it, or use a second nested loop. Ever
 - **Indices zero and one remain true:** They are never queried by the pair scan, so this unconventional initialization does not create a false result.
 - **Largest allowed target:** The linear table for `n <= 10^6` is practical, while checking every pair by repeated factorization would be considerably slower.
 - **Output ordering:** Appending during the increasing `x` scan already satisfies the sort requirement; sorting again would be redundant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

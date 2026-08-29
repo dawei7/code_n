@@ -75,7 +75,7 @@ This proves that total XOR zero is necessary.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | XOR is associative and commutative, so all right-hand sides ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ Thus total XOR zero is sufficient as well as necessary.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reconstruct from initial zero:** Correct in $O:** - **Reconstruct from initial zero:** Correct in $O(n)$ time but stores an array unnecessarily unless only the current bit is retained.
+- **Reconstruct from initial zero:** Correct in $O(n)$ time but stores an array unnecessarily unless only the current bit is retained.
 - **Try both initial bits:** Redundant because the two reconstructions are complements and pass or fail together.
 - **Count ones and test even parity:** Equivalent for binary input, using `sum(derived) % 2 == 0`.
 - **Nested equation solving:** Adds complexity without improving the one global consistency check.
@@ -140,8 +140,8 @@ Thus total XOR zero is sufficient as well as necessary.
 - **Nonempty constraint:** Makes `reduce` without an initializer safe.
 - **Binary constraint:** Ensures the constructive recurrence always produces binary values.
 - **Input preservation:** Reduction only reads the array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

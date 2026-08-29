@@ -75,11 +75,7 @@ The tests are separate `if` statements. If a middle word differs from both endpo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If:
-
-`words[i] != words[-1]`
-
-then pair $(i,n-1)$ is valid a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +128,7 @@ Thus every valid interior pair has an unequal boundary pair at least as far apar
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check all pairs:** A double loop takes $O(n^2L:** - **Check all pairs:** A double loop takes $O(n^2L)$ time and is infeasible for $n=10^5$.
+- **Check all pairs:** A double loop takes $O(n^2L)$ time and is infeasible for $n=10^5$.
 - **Scan separately from each endpoint:** Two scans are equivalent. The source performs both comparisons inside one loop.
 - **Compare only against `words[0]`:** This can miss a farther valid pair that is best expressed using the last endpoint.
 - **Different endpoint words:** The answer is immediately the full length $n$, though the source discovers it during its ordinary scan.
@@ -142,8 +138,8 @@ Thus every valid interior pair has an unequal boundary pair at least as far apar
 - **Adjacent unequal words:** Their distance is two because both endpoints are counted.
 - **Repeated non-endpoint words:** Only content equality matters; frequency and object identity are irrelevant.
 - **Middle word differs from both endpoints:** Both boundary distances are considered independently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

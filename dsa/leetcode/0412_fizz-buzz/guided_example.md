@@ -66,7 +66,7 @@ Because this is one `if`/`elif`/`elif`/`else` chain, exactly one action runs. No
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An integer is divisible by both `3` and `5` exactly when it ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ At `i = 15`, the first condition succeeds, so the list receives one `"FizzBuzz"`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two independent divisibility checks with conca:** - **Two independent divisibility checks with concatenation:** Start an empty string, append `"Fizz"` if divisible by `3`, append `"Buzz"` if divisible by `5`, and use the number if the string remains empty. This naturally builds `"FizzBuzz"` and is easy to extend, with the same asymptotic bounds. The chosen chain is equally efficient and explicit for the fixed rules.
+- **Two independent divisibility checks with concatenation:** Start an empty string, append `"Fizz"` if divisible by `3`, append `"Buzz"` if divisible by `5`, and use the number if the string remains empty. This naturally builds `"FizzBuzz"` and is easy to extend, with the same asymptotic bounds. The chosen chain is equally efficient and explicit for the fixed rules.
 - **Divisor-to-label mapping:** Iterate through pairs such as `(3, "Fizz")` and `(5, "Buzz")`. This is preferable when mappings are configurable, but introduces a nested loop and requires preserving mapping order so combined labels are spelled correctly.
 - **Precompute the 15-value cycle:** Divisibility categories repeat every 15 integers, but ordinary numeric entries do not repeat because their text changes. Cycle precomputation adds complexity without improving the required $O(n)$ output time.
 - **Check `3` before `15`:** This is incorrect in an `if`/`elif` chain because multiples of 15 would stop at `"Fizz"`. The combined condition must come first.
@@ -122,8 +122,8 @@ At `i = 15`, the first condition succeeds, so the list receives one `"FizzBuzz"`
 - **Multiples of 15:** They enter the first branch and never fall through to a shorter label.
 - **Nonmultiples:** `str(i)` is necessary because every output element must be a string, not an integer.
 - **Positive-input guarantee:** The contract starts at `n = 1`; behavior for zero or negative upper bounds is outside the problem and need not be added to the algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

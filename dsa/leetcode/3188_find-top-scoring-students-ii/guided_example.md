@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the common table expression `T` computes average GPA from ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ This separation prevents a common mistake: if GPA were averaged only after joini
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation with explicit distinct:** - **Conditional aggregation with explicit distinct course IDs:** Counting `COUNT(DISTINCT CASE WHEN ... THEN course_id END)` can express “two different elective courses” and protect the quantity test from repeated-semester duplicates. It is more verbose and may cost additional deduplication work, but it better matches the literal course-count requirement.
+- **Conditional aggregation with explicit distinct course IDs:** Counting `COUNT(DISTINCT CASE WHEN ... THEN course_id END)` can express “two different elective courses” and protect the quantity test from repeated-semester duplicates. It is more verbose and may cost additional deduplication work, but it better matches the literal course-count requirement.
 - **Relational division with `NOT EXISTS`:** A student can be rejected when there exists a mandatory course in the major for which no A enrollment exists. This often makes the “all required courses” meaning explicit and avoids comparing aggregate counts, though the optimizer and indexes determine performance.
 - **Separate requirement CTEs:** One CTE can count mandatory catalog courses by major, another can aggregate a student's major-course results, and another can calculate GPA. Joining those summaries yields clearer named quantities at the cost of a longer query.
 - **Outside-major enrollments:** They intentionally affect `AVG(GPA)` in `T` but never count as mandatory or elective courses for the student's major.
@@ -100,8 +100,8 @@ This separation prevents a common mistake: if GPA were averaged only after joini
 - **Null GPA or grade values:** `AVG` ignores null GPA values, and `SUM` ignores null boolean results. The source assumes the problem's intended enrollment facts are populated. If nulls are allowed beyond missing rows introduced by the left join, the effective semantics should be reviewed explicitly.
 - **Major with no catalog courses:** The inner `JOIN courses USING (major)` produces no outer group for that student, so the student cannot appear. This is reasonable for the given qualification model but is an exact consequence of the join.
 - **Ordering:** `ORDER BY 1` refers to the first selected expression. It works here because only `student_id` is selected, though spelling out `ORDER BY student_id` would be more self-documenting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

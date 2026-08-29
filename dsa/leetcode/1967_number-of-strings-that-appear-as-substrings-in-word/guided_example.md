@@ -59,7 +59,7 @@ Deduplicating would solve a different question: the number of distinct pattern s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator iterates list entries rather than converting `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This is important when explaining the exact algorithm. The one-line form is conc
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP per pattern:** Build a prefix table for ea:** - **KMP per pattern:** Build a prefix table for each pattern and search in $O(W+P_i)$ time, with $O(P_i)$ temporary space.
+- **KMP per pattern:** Build a prefix table for each pattern and search in $O(W+P_i)$ time, with $O(P_i)$ temporary space.
 - **Aho-Corasick automaton:** Search many patterns together after trie/failure-link preprocessing. Duplicate multiplicities must be preserved separately.
 - **Enumerate word substrings into a set:** Then membership is fast, but there are $O(W^2)$ substrings and substantial storage.
 - **Duplicate pattern entries:** Each occurrence is tested and counted independently.
@@ -110,8 +110,8 @@ This is important when explaining the exact algorithm. The one-line form is conc
 - **No preprocessing reuse:** Identical patterns trigger repeated membership searches in the exact code, even though caching could reduce work.
 - **Short-circuit per pattern:** Membership may stop at its first match, improving practical time without changing the worst-case bound.
 - **List-entry counting:** The generator preserves original multiplicity and order, although only the final count is returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

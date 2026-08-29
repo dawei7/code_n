@@ -73,19 +73,6 @@
       ]
     },
     {
-      "id": "trial-ext-1",
-      "name": "CDATA cannot be top-level",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "code": "<![CDATA[text]]>"
-      },
-      "expected": false,
-      "tags": [
-        "cdata-scope"
-      ]
-    },
-    {
       "id": "trial-ext-2",
       "name": "append text and multiple CDATA sections",
       "kind": "trial",

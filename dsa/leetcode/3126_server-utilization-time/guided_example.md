@@ -73,7 +73,7 @@ There are 86,400 seconds in a day, so the query divides the grand total by `8640
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every retained start row, `TIMESTAMPDIFF(SECOND, status_... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The partition boundary matters at the end of a server's history. The last row ha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Signed timestamp aggregation:** Add every stop:** - **Signed timestamp aggregation:** Add every stop timestamp and subtract every start timestamp, then convert the resulting total duration. This can avoid explicitly pairing rows when sessions are guaranteed balanced, but timestamp arithmetic is less direct and still relies on the event contract.
+- **Signed timestamp aggregation:** Add every stop timestamp and subtract every start timestamp, then convert the resulting total duration. This can avoid explicitly pairing rows when sessions are guaranteed balanced, but timestamp arithmetic is less direct and still relies on the event contract.
 - **Self-join with row numbers:** Number starts and stops per server and join matching sequence numbers. It makes pairing visible, but requires more machinery and usually the same ordering work as `LEAD`.
 - **Correlated next-stop lookup:** For every start, search for the earliest later stop of the same server. This is intuitive but may perform repeated index searches and is easier to get wrong when several sessions exist.
 - **Filter placement:** The `session_status = 'start'` condition must remain outside the CTE that computes `LEAD`. Applying it before the window calculation changes “next event” into “next start.”
@@ -120,8 +120,8 @@ The partition boundary matters at the end of a server's history. The last row ha
 - **Last stop event:** Its `next_status_time` is `NULL`, but the stop row is removed by the outer filter.
 - **Unmatched final start:** The exact query silently excludes its `NULL` duration through SQL aggregate semantics. The intended data contract should prevent this malformed history; the query does not choose an artificial end time.
 - **Empty input:** If the table were empty, `SUM` would return `NULL` and so would the final expression. The problem normally supplies valid session data; returning zero for a potentially empty table would require `COALESCE`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

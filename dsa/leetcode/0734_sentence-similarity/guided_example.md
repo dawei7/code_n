@@ -62,7 +62,7 @@ After equal lengths are established, `zip(sentence1, sentence2)` produces every 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first check compares the two lengths.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ For example, if the declaration is `["drama", "acting"]`, the sentence position 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Map each word to a set of direct neighbors:** :** - **Map each word to a set of direct neighbors:** Insert both directions and test `y in neighbors[x]`. This also gives expected linear construction and checking, but stores two directed entries per pair. The tuple set is more compact.
-- **- **Linear scan of `similarPairs` for every positi:** - **Linear scan of `similarPairs` for every position:** It avoids preprocessing but can take `O(np)` time because the same pair list is searched repeatedly.
-- **- **Union-find or graph traversal:** These incorre:** - **Union-find or graph traversal:** These incorrectly impose transitivity. They belong to Sentence Similarity II, not this direct-relation problem.
+- **Map each word to a set of direct neighbors:** Insert both directions and test `y in neighbors[x]`. This also gives expected linear construction and checking, but stores two directed entries per pair. The tuple set is more compact.
+- **Linear scan of `similarPairs` for every position:** It avoids preprocessing but can take `O(np)` time because the same pair list is searched repeatedly.
+- **Union-find or graph traversal:** These incorrectly impose transitivity. They belong to Sentence Similarity II, not this direct-relation problem.
 
 ---
 

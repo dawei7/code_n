@@ -71,11 +71,7 @@ is fixed regardless of assignment. The only optimizable part is how far adjacent
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For labels `a` and `b`:
-
-`2ab = a^2 + b^2 - (a-b)^2`.
-
-This ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ Therefore, maximize score by minimizing the sum of squared absolute adjacent dif
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over label permutations:**:** - **Dynamic programming over label permutations:** Completely unnecessary; the path/cycle structure and squared-difference identity yield a closed form.
+- **Dynamic programming over label permutations:** Completely unnecessary; the path/cycle structure and squared-difference identity yield a closed form.
 - **Greedily put largest labels on high-degree nodes:** All cycle degrees are equal, and path internal degrees are equal, so degree alone cannot determine the optimal adjacent arrangement.
 - **Sort labels monotonically along the path:** It creates one large endpoint effect and does not minimize the combined squared-difference objective as well as the odd/even arrangement.
 - **Brute-force assignments:** There are `n!` possibilities and the closed-form proof dominates them.
@@ -128,8 +124,8 @@ Therefore, maximize score by minimizing the sum of squared absolute adjacent dif
 - **No repeated edges:** Supports the simple path/cycle classification.
 - **Score overflow:** Use 64-bit arithmetic outside Python.
 - **Manifest O(1):** The exact source genuinely uses constant problem-level work because it relies entirely on structural guarantees and edge count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

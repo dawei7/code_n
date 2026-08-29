@@ -51,7 +51,7 @@ CTE `t` attaches three cumulative quantities to each distinct number row.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `t` attaches three cumulative quantities to each distinc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ CTE `t` attaches three cumulative quantities to each distinct number row.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand every occurrence:** It makes median pos:** - **Expand every occurrence:** It makes median positions obvious but costs $O(T)$ time and space rather than working with $R$ compressed rows.
+- **Expand every occurrence:** It makes median positions obvious but costs $O(T)$ time and space rather than working with $R$ compressed rows.
 - **Compute cumulative ascending positions only:** It can locate explicit middle ranks, but the two-sided condition elegantly handles odd and even totals.
 - **Odd total:** Exactly one value block contains the middle.
 - **Even total, distinct middle values:** Two rows are averaged.
@@ -96,8 +96,8 @@ CTE `t` attaches three cumulative quantities to each distinct number row.
 - **Negative numbers:** Numeric ordering and averaging work unchanged.
 - **Rounding:** Applied after the median average, to one decimal place.
 - **Supporting index:** It may improve physical execution without changing query semantics.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

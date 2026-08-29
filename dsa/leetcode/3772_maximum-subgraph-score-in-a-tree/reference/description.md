@@ -1,14 +1,14 @@
 ### 1. Description
 
-You are given an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges`​​​​​​​ of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
+You are given an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
-You are also given an integer array `good` of length `n`, where $\text{good}[i]$ is 1 if the $$i^{\text{th}}$$ node is good, and 0 if it is bad.
+You are also given an integer array `good` of length `n`, where $\text{good}[i]$ is 1 if the $i^{\text{th}}$ node is good, and 0 if it is bad.
 
 Define the **score** of a **subgraph** as the number of good nodes minus the number of bad nodes in that subgraph.
 
 For each node `i`, find the **maximum** possible score among all **connected subgraphs** that contain node `i`.
 
-Return an array of `n` integers where the $$i^{\text{th}}$$ element is the **maximum** score for node `i`.
+Return an array of `n` integers where the $i^{\text{th}}$ element is the **maximum** score for node `i`.
 
 A **subgraph** is a graph whose vertices and edges are subsets of the original graph.
 

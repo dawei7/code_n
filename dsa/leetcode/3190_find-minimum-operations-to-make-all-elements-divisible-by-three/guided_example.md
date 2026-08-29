@@ -51,7 +51,7 @@ Every integer belongs to exactly one of three remainder classes when divided by 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every integer belongs to exactly one of three remainder clas... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Those three cases completely determine the answer for one positive value.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop and counter:** Initialize `opera:** - **Explicit loop and counter:** Initialize `operations = 0`, inspect each remainder, and increment for nonzero ones. This has the same optimal bounds and may be easier to debug, but the generator-based sum expresses the indicator count more compactly.
+- **Explicit loop and counter:** Initialize `operations = 0`, inspect each remainder, and increment for nonzero ones. This has the same optimal bounds and may be easier to debug, but the generator-based sum expresses the indicator count more compactly.
 - **Editorial distance formula:** The general per-value formula is `min(x % 3, 3 - x % 3)`. For remainders $0$, $1$, and $2$, it evaluates to $0$, $1$, and $1$, so it is equivalent here. The exact source uses the simpler nonzero-remainder indicator.
 - **Actually mutate every number:** Applying the chosen additions and subtractions would produce a valid final array, but the requested output is only the minimum count. Mutation adds work and risks changing caller data without providing useful information.
 - **Repeated operations until divisible:** A loop that increments or decrements one step at a time can eventually work, but recognizing the three remainder cases proves that at most one operation is ever needed and eliminates needless simulation.
@@ -100,8 +100,8 @@ Those three cases completely determine the answer for one positive value.
 - **Positive-input guarantee:** The stated constraints contain only positive integers. Python's modulo would still give a remainder in `{0,1,2}` for negative values, and the nonzero-count conclusion remains valid because both addition and subtraction are allowed, but that extension is not needed for the contract.
 - **No input mutation:** Unlike solutions that demonstrate the changes, this method only reads `nums`. The caller's array remains in its original form.
 - **Why modulus matters:** For divisibility by $m>3$, a nonzero remainder can be more than one step from either neighboring multiple. Merely counting nonzero remainders would then undercount. The one-operation result relies specifically on the two nonzero classes modulo three.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

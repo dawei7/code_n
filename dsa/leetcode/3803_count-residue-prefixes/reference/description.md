@@ -28,7 +28,7 @@ Return an integer equal to the number of prefix lengths for which those two valu
 
 - **Output:** 2
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Prefix `"a"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
 

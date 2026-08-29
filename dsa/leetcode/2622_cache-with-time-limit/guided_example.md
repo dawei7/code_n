@@ -64,7 +64,7 @@ The public operations are installed on `TimeLimitedCache.prototype`, so all inst
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `TimeLimitedCache` is a constructor function.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ For a new key, no old timer needs cancellation. The method schedules a callback 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store expiration timestamps:** Check time duri:** - **Store expiration timestamps:** Check time during `get` and `count`; this avoids one timer per key but makes accurate count require cleanup or scanning.
+- **Store expiration timestamps:** Check time during `get` and `count`; this avoids one timer per key but makes accurate count require cleanup or scanning.
 - **Priority queue of expirations:** Efficiently expire keys in chronological order, but replacement generations need validation and the implementation is more complex.
 - **Overwrite without `clearTimeout`:** Incorrect because the old timer can delete the new value early.
 - **New key:** `set` returns false and increases active count.
@@ -115,8 +115,8 @@ For a new key, no old timer needs cancellation. The method schedules a callback 
 - **Duration zero:** Expiration is timer-scheduled after the synchronous call rather than performed inline.
 - **Repeated `get`:** Reads do not extend the expiration time.
 - **Separate instances:** Each constructor call owns its own map and timers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

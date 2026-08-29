@@ -51,7 +51,7 @@ The exact solution first builds `Counter(tasks)`. Let:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution first builds `Counter(tasks)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The exact solution first builds `Counter(tasks)`. Let:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap simulation:** Repeatedly choose the m:** - **Max-heap simulation:** Repeatedly choose the most frequent available labels in cycles of length $n+1$. This can construct the timing explicitly and generalizes well, but it is more machinery than the closed formula needs.
+- **Max-heap simulation:** Repeatedly choose the most frequent available labels in cycles of length $n+1$. This can construct the timing explicitly and generalizes well, but it is more machinery than the closed formula needs.
 - **Sort 26 frequencies and count idle slots:** Use one maximum label to create gaps, then fill them with other frequencies. This is also constant-alphabet linear time but has more bookkeeping around tied maxima.
 - **Cooldown queue simulation:** Track time, a max heap of available labels, and a queue of cooling labels. It is useful when an actual schedule is needed, but unnecessary for returning only the length.
 - **`n = 0`:** The skeleton cannot force a gap, and the maximum returns exactly $T$.
@@ -98,8 +98,8 @@ The exact solution first builds `Counter(tasks)`. Let:
 - **Enough filler tasks:** When $T$ exceeds the skeleton, the result is $T$ because useful work fills all cooldown gaps.
 - **Nonempty input guarantee:** It makes `max(cnt.values())` safe. An empty task array would require a separate return of 0.
 - **Fixed alphabet assumption:** Constant space depends on A through Z. With arbitrary labels, describe counter storage as $O(U)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

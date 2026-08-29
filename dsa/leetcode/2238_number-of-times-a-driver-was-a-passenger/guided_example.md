@@ -65,9 +65,7 @@ If `d` never appears as a passenger, the left join still emits one row for `t` w
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query left-joins the original rides:
-
-`LEFT JOIN Rides A... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ Using `COUNT(*)` would be wrong for the zero-match case because it would count t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner join:** It counts passenger occurrences :** - **Inner join:** It counts passenger occurrences but entirely drops drivers who were never passengers, violating the required zero rows.
+- **Inner join:** It counts passenger occurrences but entirely drops drivers who were never passengers, violating the required zero rows.
 - **Correlated subquery:** For each distinct driver, count matching passenger rows. It is correct, but can repeat scans without suitable indexing.
 - **Pre-aggregate passengers then left join:** Group `Rides` by `passenger_id` first and join those counts to distinct drivers with `COALESCE`. This is also valid but uses an additional aggregation subquery.
 - **Use `COUNT(*)`:** An unmatched left-join row would count as one. Counting a nullable right-side column is essential.
@@ -120,8 +118,8 @@ Using `COUNT(*)` would be wrong for the zero-match case because it would count t
 - **Self-ride prohibition:** The schema guarantees a ride's driver and passenger differ, but the query does not need this fact for cross-ride counting.
 - **Any output order:** No `ORDER BY` is required.
 - **Group-by ordinal:** `GROUP BY 1` refers to `t.driver_id`, the first selected expression; writing the column explicitly would be equivalent and sometimes clearer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

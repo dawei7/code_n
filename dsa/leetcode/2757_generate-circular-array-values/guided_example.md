@@ -66,7 +66,7 @@ After the first yield, each resume supplies the jump that should move away from 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The function first sets `index = startIndex` and executes `l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ This double-modulo normalization works for forward jumps, backward jumps, zero, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated step-by-step movement:** Incrementing:** - **Repeated step-by-step movement:** Incrementing or decrementing the cursor once per unit of `jump` is intuitive, but a huge jump would cost `O(|jump|)`. Modular arithmetic reaches the identical position in constant time.
+- **Repeated step-by-step movement:** Incrementing or decrementing the cursor once per unit of `jump` is intuitive, but a huge jump would cost `O(|jump|)`. Modular arithmetic reaches the identical position in constant time.
 - **Single remainder expression:** Writing `(index + jump) % arr.length` fails for negative totals in JavaScript because it may return a negative remainder. The two-remainder normalization is necessary.
 - **Precompute an infinite sequence:** This is impossible in finite memory and cannot accommodate future jumps that have not been supplied. A generator naturally computes only the next requested state.
 - **Return an iterator object manually:** A custom object with a `next` method can implement the same state machine, but the generator syntax directly expresses suspension and input through `yield`.
@@ -125,8 +125,8 @@ This double-modulo normalization works for forward jumps, backward jumps, zero, 
 - **External array mutation:** The generator holds the original reference. Later element changes are visible, and changing the length changes circular behavior; callers should keep the array stable when they need a fixed sequence.
 - **Empty array:** The described operation assumes a usable circular array. With length zero, modulo by zero and `arr[index]` cannot define a valid walk, so such input must be excluded by the contract.
 - **Infinite loop concern:** The loop is safe because every iteration reaches `yield`. It advances only once per caller request rather than running without pause.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

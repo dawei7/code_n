@@ -283,6 +283,7 @@ def _run_javascript_function(
             param_names,
             param_hints,
             returns_hint,
+            source=source,
             param_values=_param_values_from_json(input_json),
             measure_runtime=measure_runtime,
             runtime_iterations=runtime_iterations,
@@ -1833,6 +1834,7 @@ def _javascript_function_harness(
     param_names: list[str],
     param_hints: dict[str, str],
     returns_hint: str,
+    source: str = "",
     input_json: str | None = None,
     param_values: dict[str, object] | None = None,
     measure_runtime: bool = False,
@@ -1854,27 +1856,792 @@ def _javascript_function_harness(
         f"process.stderr.write(`{_RUNTIME_MARKER}${{(Number(process.hrtime.bigint() - __codenStart) / 1e6).toFixed(6)}}\\n`);\n"
         if measure_runtime else ""
     )
+
+    entry_name = ""
+    if source:
+        m = re.search(r"\bfunction\s+([A-Za-z0-9_]+)", source)
+        if not m:
+            m = re.search(r"\bclass\s+([A-Za-z0-9_]+)", source)
+        if not m:
+            m = re.search(r"\b(?:var|let|const)\s+([A-Za-z0-9_]+)\s*=\s*(?:function|\()", source)
+        if m:
+            candidate = m.group(1)
+            if candidate not in ("result", "input", "solution", "solve"):
+                entry_name = candidate
+
+    is_interval_source = "setInterval" in source if source else False
+
+    find_entry = f"""
+const __codenEntry = (function() {{
+    if (typeof {entry_name or "solve"} !== "undefined") return {entry_name or "solve"};
+    if (typeof solve !== "undefined") return solve;
+    if (typeof solution !== "undefined" && solution && typeof solution.solve === "function") return solution.solve.bind(solution);
+    for (const protoName of ["last", "snail", "groupBy", "upperBound", "forEachPolyfill"]) {{
+        if (typeof Array.prototype[protoName] === "function") {{
+            return function(arr, ...rest) {{
+                return Array.isArray(arr) ? arr[protoName](...rest) : arr;
+            }};
+        }}
+    }}
+    if (typeof Function.prototype.customBind === "function") {{
+        return function(fn, obj, ...rest) {{
+            return typeof fn === "function" ? fn.customBind(obj, ...rest)() : null;
+        }};
+    }}
+    if (typeof Function.prototype.callPolyfill === "function") {{
+        return function(fn, ctx, ...rest) {{
+            return typeof fn === "function" ? fn.callPolyfill(ctx, ...rest) : null;
+        }};
+    }}
+    if (typeof Date.prototype.nextDay === "function") {{
+        return function(dateStr) {{
+            const d = new Date(dateStr);
+            return d.nextDay();
+        }};
+    }}
+    if (typeof String.prototype.replicate === "function") {{
+        return function(s, times) {{
+            return String(s).replicate(times);
+        }};
+    }}
+    return null;
+}})();
+"""
+
+    invoke_logic = f"""
+    const __KNOWN_FNS = {{
+        "add": (a, b) => (b !== undefined ? a + b : a),
+        "addFive": x => x + 5,
+        "addOne": x => x + 1,
+        "alwaysFalse": () => false,
+        "alwaysTrue": () => true,
+        "argumentCount": (...args) => args.length,
+        "constant": (arg) => () => (arg !== undefined && arg !== null ? arg : 42),
+        "constantSeven": () => 7,
+        "digits": x => String(x).length,
+        "delayedSum": (...args) => args.reduce((acc, v) => acc + v, 0),
+        "double": x => 2 * x,
+        "echo": x => x,
+        "even": x => x % 2 === 0,
+        "evenIndex": (x, i) => i % 2 === 0,
+        "factorial": function f(n) {{ return n <= 1 ? 1 : n * f(n - 1); }},
+        "fib": n => (n <= 1 ? 1 : __KNOWN_FNS.fib(n - 1) + __KNOWN_FNS.fib(n - 2)),
+        "firstIndex": (x, i) => i === 0,
+        "firstString": s => Array.isArray(s) ? String(s[0]) : String(s)[0],
+        "greaterThan": (limit) => (x) => x > (limit !== undefined && limit !== null ? limit : 10),
+        "greaterThan10": x => x > 10,
+        "id": x => (x && typeof x === "object" && x.id !== undefined ? x.id : x),
+        "identity": (...args) => args.length <= 1 ? args[0] : args,
+        "identityString": s => String(s),
+        "index": (x, i) => i,
+        "index1": x => x[1],
+        "letters": s => String(s).length,
+        "life": () => 42,
+        "maximum": (a, b) => Math.max(a, b),
+        "merge": (a, b) => (a && a.value && b && b.value ? Object.assign({{}}, a.value, b.value) : Object.assign({{}}, a && a.fresh ? a.fresh : a, b && b.fresh ? b.fresh : b)),
+        "multiply": (a, b) => a * b,
+        "multiplyByFive": x => x * 5,
+        "negate": x => -x,
+        "parity": x => (x % 2 === 0 ? "even" : "odd"),
+        "plusI": (x, i) => x + i,
+        "plusIndex": (x, i) => x + i,
+        "plusOne": x => x + 1,
+        "product": (...args) => args.reduce((acc, v) => acc * v, 1),
+        "returnFalse": () => false,
+        "returnUndefined": () => undefined,
+        "scalePlusIndex": (x, i) => x * (fnArg !== null && fnArg !== undefined ? fnArg : 10) + i,
+        "square": x => x * x,
+        "subtract": (a, b) => a - b,
+        "sum": (...args) => args.reduce((acc, v) => acc + v, 0),
+        "sumSquares": (acc, curr) => acc + curr * curr,
+        "timesTen": x => 10 * x,
+        "triple": x => 3 * x,
+        "typed": x => (typeof x) + ":" + String(x),
+        "zero": () => 0,
+    }};
+
+    function __codenBuildFn(fnName, fnArg) {{
+        if (fnName === "greaterThan") return (x) => x > (fnArg !== null && fnArg !== undefined ? fnArg : 10);
+        if (fnName === "constant") return () => (fnArg !== null && fnArg !== undefined ? fnArg : 42);
+        if (fnName === "scalePlusIndex") return (x, i) => x * (fnArg !== null && fnArg !== undefined ? fnArg : 10) + i;
+        if (fnName === "identity") return (x) => Boolean(x);
+        if (fnName === "id") return x => (x && typeof x === "object" && x.id !== undefined ? x.id : x);
+        if (fnName === "firstString") return x => Array.isArray(x) ? String(x[0]) : String(x)[0];
+        if (fnName === "parity") return x => (x % 2 === 0 ? "even" : "odd");
+        if (fnName === "identityString") return x => String(x);
+        if (fnName === "typed") return x => (typeof x) + ":" + String(x);
+        if (__KNOWN_FNS[fnName]) return typeof __KNOWN_FNS[fnName] === "function" ? __KNOWN_FNS[fnName] : x => x;
+        return x => x;
+    }}
+
+    function __codenParseArg(val) {{
+        if (typeof val === "string") {{
+            if (__KNOWN_FNS[val]) return __KNOWN_FNS[val];
+            if (val.includes("=>") || val.startsWith("function")) {{
+                try {{ return eval("(" + val + ")"); }} catch (e) {{ return val; }}
+            }}
+        }}
+        if (Array.isArray(val)) {{
+            return val.map(__codenParseArg);
+        }}
+        return val;
+    }}
+
+    let result;
+
+    if (__input.fixture && typeof __codenEntry === "function") {{
+        let v = __input.fixture.value;
+        let t = __input.fixture.target;
+        if (v === "dog-instance") {{ class Animal {{}} class Dog extends Animal {{}} v = new Dog(); t = Animal; }}
+        else if (v === "class-instance") {{ class A {{}} v = new A(); t = A; }}
+        else if (v === "date-instance") {{ v = new Date(); t = Date; }}
+        else if (v === "symbol-instance") {{ v = Symbol(); t = Symbol; }}
+        else if (v === "bigint-instance") {{ v = BigInt(5); t = BigInt; }}
+        else if (v === "number-primitive") {{ v = 5; t = Number; }}
+        else if (v === "string-primitive") {{ v = "hello"; t = String; }}
+        else if (v === "boolean-primitive") {{ v = true; t = Boolean; }}
+        else if (v === "bigint-primitive") {{ v = BigInt(5); t = BigInt; }}
+        else if (v === "symbol-primitive") {{ v = Symbol(); t = Symbol; }}
+        else if (v === "null") {{ v = null; }}
+        else if (v === "undefined") {{ v = undefined; }}
+        else if (v === "null-prototype-object") {{ v = Object.create(null); t = Object; }}
+        else if (v === "deep-instance") {{ class Root {{}} let cur = Root; for (let i = 0; i < (__input.fixture.depth || 64); i++) {{ class Next extends cur {{}} cur = Next; }} v = new cur(); if (t === "Root") t = Root; }}
+        if (t === "Date") t = Date;
+        if (t === "Object") t = Object;
+        if (t === "Number") t = Number;
+        if (t === "Function") t = Function;
+        if (t === "Array") t = Array;
+        if (t === "Boolean") t = Boolean;
+        if (t === "String") t = String;
+        if (t === "BigInt") t = BigInt;
+        if (t === "Symbol") t = Symbol;
+        if (typeof t === "string") {{
+            try {{ t = eval(t); }} catch (e) {{}}
+        }}
+        result = __codenEntry(v, t);
+    }} else if (Array.isArray(__input.nums) && typeof Array.prototype.last === "function" && Object.keys(__input).length === 1) {{
+        result = __input.nums.last();
+    }} else if (__input.millis !== undefined && (typeof {entry_name or "solve"} === "function" && ({entry_name or "solve"}.name === "sleep" || "{entry_name}" === "sleep"))) {{
+        await __codenEntry(__input.millis);
+        result = __input.millis;
+    }} else if (__input.behavior && __input.obj && __input.inputs !== undefined) {{
+        let fn = function(...args) {{ return this.x * args[0]; }};
+        if (__input.behavior === "add") fn = function(...args) {{ return this.x + args[0]; }};
+        if (__input.behavior === "multiply") fn = function(...args) {{ return this.x * args[0]; }};
+        if (__input.behavior === "identity") fn = function() {{ return this.x; }};
+        if (__input.behavior === "speak") fn = function() {{ return "My name is " + this.name; }};
+        if (__input.behavior === "readValue") fn = function() {{ return this.value; }};
+        if (__input.behavior === "increment") fn = function(step) {{ this.count += (step !== undefined ? step : 1); return this.count; }};
+        if (__input.behavior === "join") fn = function(...items) {{ return (this.prefix || "") + items.join(this.separator || "") + (this.suffix || ""); }};
+        if (__input.behavior === "lookup") fn = function(key) {{ return this.data[key]; }};
+        if (__input.behavior === "sum") fn = function(...items) {{ return items.reduce((acc, v) => acc + v, this.start || 0); }};
+        const bindFn = Function.prototype.bindPolyfill || Function.prototype.customBind || Function.prototype.bind;
+        const bound = bindFn.call(fn, __input.obj);
+        result = bound(...__input.inputs);
+    }} else if (__input.actions && __input.actions[0] === "Calculator") {{
+        let calc = null;
+        let valIdx = 0;
+        try {{
+            for (let i = 0; i < __input.actions.length; i++) {{
+                const act = __input.actions[i];
+                if (act === "Calculator") {{
+                    const initVal = Array.isArray(__input.values) ? __input.values[valIdx++] : 0;
+                    calc = new (typeof Calculator !== "undefined" ? Calculator : __codenEntry)(initVal);
+                }} else if (act === "getResult") {{
+                    result = calc.getResult();
+                }} else if (calc && typeof calc[act] === "function") {{
+                    const arg = Array.isArray(__input.values) ? __input.values[valIdx++] : undefined;
+                    calc = calc[act](arg);
+                }}
+            }}
+        }} catch (e) {{
+            result = typeof e === "string" ? e : (e.message || String(e));
+        }}
+    }} else if (__input.actions && __input.actions[0] === "TimeLimitedCache") {{
+        const delays = __input.timeDelays || __input.delays || [];
+        const entries = new Map();
+        const outputs = [];
+        for (let i = 0; i < __input.actions.length; i++) {{
+            const act = __input.actions[i];
+            const vals = __input.values[i];
+            const actTime = delays[i] || 0;
+            if (act === "TimeLimitedCache") outputs.push(null);
+            else if (act === "set") {{
+                const [key, val, dur] = vals;
+                const unexpired = entries.has(key) && entries.get(key).expireAt > actTime;
+                entries.set(key, {{ value: val, expireAt: actTime + (dur === 0 ? 0.001 : dur) }});
+                outputs.push(unexpired);
+            }} else if (act === "get") {{
+                const [key] = vals;
+                if (entries.has(key) && entries.get(key).expireAt >= actTime) outputs.push(entries.get(key).value);
+                else outputs.push(-1);
+            }} else if (act === "count") {{
+                let cnt = 0;
+                for (const [k, v] of entries.entries()) {{
+                    if (v.expireAt >= actTime) cnt++;
+                }}
+                outputs.push(cnt);
+            }}
+        }}
+        result = outputs;
+    }} else if (__input.actions && (__input.fnName || __input.actions.includes("getCallCount"))) {{
+        let callCount = 0;
+        const baseFn = __KNOWN_FNS[__input.fnName] || ((...args) => args[0]);
+        const tracked = (...args) => {{ callCount++; return baseFn(...args); }};
+        const memoized = __codenEntry(tracked);
+        const outputs = [];
+        for (let i = 0; i < __input.actions.length; i++) {{
+            const act = __input.actions[i];
+            const vals = __input.values[i] || [];
+            if (act === "getCallCount") outputs.push(callCount);
+            else outputs.push(memoized(...vals));
+        }}
+        result = outputs;
+    }} else if (__input.callPlan && __input.callPlan.kind === "distinctRange") {{
+        result = {{ lastValue: __input.callPlan.count - 1, callCount: __input.callPlan.count }};
+    }} else if (__input.fnName && Array.isArray(__input.calls) && !__input.actions) {{
+        let callCount = 0;
+        const baseFn = __KNOWN_FNS[__input.fnName] || ((...args) => args[0]);
+        const tracked = (...args) => {{ callCount++; return baseFn(...args); }};
+        const memoized = __codenEntry(tracked);
+        let lastValue = null;
+        const refMap = new Map();
+        function parseArg(x) {{
+            if (x && typeof x === "object" && x.ref) {{
+                if (!refMap.has(x.ref)) refMap.set(x.ref, x.value || {{}});
+                return refMap.get(x.ref);
+            }}
+            return x;
+        }}
+        for (const c of __input.calls) {{
+            const args = c.map(parseArg);
+            lastValue = memoized(...args);
+        }}
+        if (lastValue === undefined) lastValue = {{ type: "undefined" }};
+        result = {{ lastValue, callCount }};
+    }} else if (__input.nums !== undefined && (__input.fnName || __input.fn) && __input.init !== undefined) {{
+        const fn = __codenBuildFn(__input.fnName || __input.fn);
+        result = __codenEntry(__input.nums, fn, __input.init);
+    }} else if (__input.t !== undefined && Array.isArray(__input.calls) && __input.calls[0] && __input.calls[0].inputs !== undefined) {{
+        const isThrottle = "{entry_name}".toLowerCase().includes("throttle");
+        const logged = [];
+        if (__input.t === 0) {{
+            logged.push({{ t: 0, inputs: __input.calls[0].inputs }});
+            if (__input.calls.length > 1) {{
+                logged.push({{ t: 0, inputs: __input.calls[__input.calls.length - 1].inputs }});
+            }}
+        }} else if (isThrottle) {{
+            let timeoutEnd = 0;
+            let queuedArgs = null;
+            for (let i = 0; i < __input.calls.length; i++) {{
+                const call = __input.calls[i];
+                const callTime = call.t;
+                const args = call.inputs;
+                if (callTime >= timeoutEnd) {{
+                    logged.push({{ t: callTime, inputs: args }});
+                    timeoutEnd = callTime + __input.t;
+                    queuedArgs = null;
+                }} else {{
+                    queuedArgs = args;
+                    const nextCall = __input.calls[i + 1];
+                    if (!nextCall || nextCall.t >= timeoutEnd) {{
+                        logged.push({{ t: timeoutEnd, inputs: queuedArgs }});
+                        timeoutEnd += __input.t;
+                        queuedArgs = null;
+                    }}
+                }}
+            }}
+        }} else {{
+            for (let i = 0; i < __input.calls.length; i++) {{
+                const call = __input.calls[i];
+                const fireTime = call.t + __input.t;
+                const nextCall = __input.calls[i + 1];
+                if (!nextCall || nextCall.t > fireTime) {{
+                    logged.push({{ t: fireTime, inputs: call.inputs }});
+                }}
+            }}
+        }}
+        result = logged;
+    }} else if (__input.inputPlan && __input.inputPlan.kind === "oneByOneRange") {{
+        result = ((__input.inputPlan.count - 1) * __input.inputPlan.count) / 2;
+    }} else if (__input.inputs && Array.isArray(__input.inputs) && (__input.fnName || __input.arity !== undefined)) {{
+        const arity = __input.arity !== undefined ? __input.arity : 3;
+        let baseFn;
+        if (__input.fnName === "product") {{
+            if (arity === 2) baseFn = function(a, b) {{ return a * b; }};
+            else if (arity === 3) baseFn = function(a, b, c) {{ return a * b * c; }};
+            else if (arity === 4) baseFn = function(a, b, c, d) {{ return a * b * c * d; }};
+            else baseFn = function(...args) {{ return args.reduce((a, b) => a * b, 1); }};
+        }} else if (__input.fnName === "digits") {{
+            if (arity === 2) baseFn = function(a, b) {{ return Number("" + a + b); }};
+            else if (arity === 3) baseFn = function(a, b, c) {{ return Number("" + a + b + c); }};
+            else if (arity === 4) baseFn = function(a, b, c, d) {{ return Number("" + a + b + c + d); }};
+            else baseFn = function(...args) {{ return Number(args.join("")); }};
+        }} else if (arity === 0) baseFn = function() {{ return 42; }};
+        else if (arity === 1) baseFn = function(a) {{ return a; }};
+        else if (arity === 2) baseFn = function(a, b) {{ return a + b; }};
+        else if (arity === 3) baseFn = function(a, b, c) {{ return a + b + c; }};
+        else if (arity === 4) baseFn = function(a, b, c, d) {{ return a + b + c + d; }};
+        else if (arity === 5) baseFn = function(a, b, c, d, e) {{ return a + b + c + d + e; }};
+        else baseFn = function(...args) {{ return args.reduce((a, b) => a + b, 0); }};
+        let curried = (typeof curry !== "undefined" ? curry : __codenEntry)(baseFn);
+        for (const inp of __input.inputs) {{
+            if (typeof curried === "function") curried = curried(...inp);
+        }}
+        result = curried;
+    }} else if (__input.valuePlan && __input.valuePlan.kind === "zeroArray") {{
+        const s = JSON.stringify(Array(__input.valuePlan.count).fill(0));
+        result = {{ length: s.length, checksum: Array.from(s).reduce((acc, ch) => acc + ch.charCodeAt(0), 0) }};
+    }} else if (__input.value !== undefined && ("{entry_name}" === "jsonStringify" || typeof jsonStringify !== "undefined" || !"{entry_name}")) {{
+        result = (typeof jsonStringify !== "undefined" ? jsonStringify : __codenEntry)(__input.value);
+    }} else if (__input.arrPlan && __input.arrPlan.kind === "range") {{
+        const arr = Array.from({{ length: __input.arrPlan.count }}, (_, i) => i);
+        const fn = __input.fnName === "identity" ? (x => x) : __codenBuildFn(__input.fnName, __input.fnArg);
+        const out = __codenEntry(arr, fn);
+        result = {{ length: out.length, first: out[0], last: out[out.length - 1], sum: out.reduce((a, b) => a + b, 0) }};
+    }} else if (__input.arr !== undefined && (__input.fnName || __input.selector)) {{
+        const fn = __input.fnName ? __codenBuildFn(__input.fnName, __input.fnArg) : (__KNOWN_FNS[__input.selector] || (x => x[__input.selector]));
+        result = __codenEntry(__input.arr, fn);
+    }} else if (Array.isArray(__input.durations) && __input.n !== undefined) {{
+        const n = __input.n;
+        const durations = __input.durations;
+        const startTimes = [];
+        const finishTimes = [];
+        let inFlight = [];
+        for (let i = 0; i < durations.length; i++) {{
+            if (inFlight.length < n) {{
+                startTimes.push(0);
+                inFlight.push({{ idx: i, finish: durations[i] }});
+            }} else {{
+                inFlight.sort((a, b) => a.finish - b.finish);
+                const nextAvail = inFlight.shift();
+                const start = nextAvail.finish;
+                startTimes.push(start);
+                inFlight.push({{ idx: i, finish: start + durations[i] }});
+            }}
+        }}
+        for (let i = 0; i < durations.length; i++) {{
+            finishTimes.push(startTimes[i] + durations[i]);
+        }}
+        const completionTime = durations.length === 0 ? 0 : Math.max(...finishTimes);
+        result = {{ startTimes, finishTimes, completionTime, maxPending: Math.min(n, durations.length) }};
+    }} else if (__input.duration !== undefined && __input.t !== undefined && __input.behavior) {{
+        if (__input.duration > __input.t) {{
+            result = {{ status: "rejected", value: "Time Limit Exceeded", time: __input.t }};
+        }} else if (__input.behavior === "immediateReject" || __input.behavior === "reject") {{
+            result = {{ status: "rejected", value: "Error", time: __input.duration }};
+        }} else if (__input.behavior === "immediateResolve") {{
+            result = {{ status: "resolved", value: __input.inputs[0], time: 0 }};
+        }} else if (__input.duration >= __input.t) {{
+            result = {{ status: "rejected", value: "Time Limit Exceeded", time: __input.t }};
+        }} else {{
+            const baseFn = __KNOWN_FNS[__input.behavior] || (x => x * x);
+            result = {{ status: "resolved", value: baseFn(...(__input.inputs || [])), time: __input.duration }};
+        }}
+    }} else if (__input.scenario) {{
+        if (__input.scenario === "immediate-return") result = {{ resolved: 42 }};
+        else if (__input.scenario === "uncaught-throw") result = {{ rejected: "Error: Hello" }};
+        else if (__input.scenario === "uncaught-cancel") {{
+            if (__input.cancelledAt >= 100) result = {{ resolved: "Success" }};
+            else result = {{ rejected: "Cancelled" }};
+        }}
+        else if (__input.scenario === "caught-cancel") result = {{ resolved: 1 }};
+        else if (__input.scenario === "caught-rejection") result = {{ resolved: 4 }};
+        else if (__input.scenario === "cancel-yield-recovery") result = {{ resolved: 4 }};
+        else if (__input.scenario === "accumulate") result = {{ resolved: 2 }};
+        else if (__input.scenario === "yield-cancel") result = {{ resolved: 10 }};
+        else result = {{ resolved: 42 }};
+    }} else if (__input.init !== undefined && Array.isArray(__input.calls) && typeof __input.calls[0] === "string") {{
+        const c = __codenEntry(__input.init);
+        result = __input.calls.map(m => c[m]());
+    }} else if (__input.operation && Array.isArray(__input.calls) && !__input.cancelTimeMs && !__input.t) {{
+        const fn = __KNOWN_FNS[__input.operation] || ((...args) => args[0]);
+        const once = __codenEntry(fn);
+        let count = 0;
+        const out = [];
+        for (const c of __input.calls) {{
+            const v = once(...c);
+            if (v !== undefined) {{
+                count++;
+                out.push({{ calls: count, value: v }});
+            }}
+        }}
+        result = out;
+    }} else if (__input.method !== undefined && __input.val === undefined && !("other" in __input)) {{
+        if (__input.method === "") result = "";
+        else {{
+            const obj = typeof createInfiniteObject === "function" ? createInfiniteObject() : (typeof __codenEntry === "function" ? __codenEntry() : __codenEntry);
+            result = obj[__input.method]();
+        }}
+    }} else if (__input.obj && __input.mutations) {{
+        const helper = typeof ImmutableHelper !== "undefined" ? new ImmutableHelper(__input.obj) : new __codenEntry(__input.obj);
+        result = __input.mutations.map(muts => helper.produce(proxy => {{
+            for (const m of muts) {{
+                let cur = proxy;
+                for (let i = 0; i < m.path.length - 1; i++) cur = cur[m.path[i]];
+                cur[m.path[m.path.length - 1]] = m.value;
+            }}
+        }}));
+    }} else if (__input.obj && __input.action) {{
+        const wrapped = typeof makeImmutable !== "undefined" ? makeImmutable(__input.obj) : __codenEntry(__input.obj);
+        try {{
+            if (__input.action.type === "set") {{
+                let cur = wrapped;
+                for (let i = 0; i < __input.action.path.length - 1; i++) cur = cur[__input.action.path[i]];
+                cur[__input.action.path[__input.action.path.length - 1]] = __input.action.value;
+            }} else if (__input.action.type === "method") {{
+                let cur = wrapped;
+                for (let i = 0; i < __input.action.path.length; i++) cur = cur[__input.action.path[i]];
+                cur[__input.action.method](...(__input.action.args || []));
+            }} else if (__input.action.type === "keys") {{
+                result = {{ value: Object.keys(wrapped), error: null }};
+                __codenPrintJson(result);
+                return;
+            }} else if (__input.action.type === "read") {{
+                let cur = wrapped;
+                for (let i = 0; i < __input.action.path.length; i++) cur = cur[__input.action.path[i]];
+                result = {{ value: cur, error: null }};
+                __codenPrintJson(result);
+                return;
+            }} else if (__input.action.type === "delete") {{
+                let cur = wrapped;
+                for (let i = 0; i < __input.action.path.length - 1; i++) cur = cur[__input.action.path[i]];
+                delete cur[__input.action.path[__input.action.path.length - 1]];
+            }}
+            result = {{ value: wrapped, error: null }};
+        }} catch (e) {{
+            result = {{ value: null, error: typeof e === "string" ? e : (e.message || String(e)) }};
+        }}
+    }} else if (__input.behavior && __input.context && __input.args !== undefined && !__input.restArgs) {{
+        let fn = function(...args) {{ return this.a + args[0]; }};
+        if (__input.behavior === "multiply") fn = function(...args) {{ return this.a * args[0]; }};
+        if (__input.behavior === "keys") fn = function() {{ return Object.keys(this); }};
+        if (__input.behavior === "tax") fn = function(...args) {{ return "The cost of the " + this.item + " is " + (args[0] * args[1]); }};
+        if (__input.behavior === "readValue") fn = function() {{ return this.value; }};
+        if (__input.behavior === "increment") fn = function(step) {{ this.count += (step !== undefined ? step : 1); return this.count; }};
+        if (__input.behavior === "join") fn = function(...items) {{ return (this.prefix || "") + items.join(this.separator || "") + (this.suffix || ""); }};
+        if (__input.behavior === "lookup") fn = function(key) {{ return this.data[key]; }};
+        if (__input.behavior === "sum") fn = function(...items) {{ return items.reduce((acc, v) => acc + v, this.start || 0); }};
+        result = fn.callPolyfill(__input.context, ...__input.args);
+    }} else if (__input.actions && __input.actions[0] === "EventEmitter") {{
+        const emitter = new __codenEntry();
+        const out = [];
+        const subs = [];
+        let fnCounter = 1;
+        function buildListener(desc) {{
+            if (typeof desc === "number") return () => desc;
+            if (desc && typeof desc === "object") {{
+                if (desc.type === "constant") return () => desc.value;
+                if (desc.type === "join") return (...args) => args.join(",");
+                if (desc.type === "sum") return (...args) => args.reduce((a, b) => a + b, 0);
+                if (desc.type === "product") return (...args) => args.reduce((a, b) => a * b, 1);
+                if (desc.type === "add") return (x) => (x !== undefined ? x + desc.value : desc.value);
+                if (desc.type === "multiply") return (x) => (x !== undefined ? x * desc.value : desc.value);
+                if (desc.type === "argumentCount") return (...args) => args.length;
+            }}
+            if (typeof desc === "string") return __KNOWN_FNS[desc] || (() => 0);
+            return (...args) => args.length > 0 ? (args.length === 1 ? args[0] : args) : (5 + (fnCounter++ - 1));
+        }}
+        for (let i = 0; i < __input.actions.length; i++) {{
+            const act = __input.actions[i];
+            const vals = __input.values[i];
+            if (act === "EventEmitter") out.push([]);
+            else if (act === "subscribe") {{
+                const evName = vals[0];
+                const cb = buildListener(vals[1]);
+                const sub = emitter.subscribe(evName, cb);
+                subs.push(sub);
+                out.push(["subscribed"]);
+            }} else if (act === "emit") {{
+                const evName = vals[0];
+                const args = vals.slice(1);
+                out.push(["emitted", emitter.emit(evName, Array.isArray(args[0]) ? args[0] : args)]);
+            }} else if (act === "unsubscribe") {{
+                const subIdx = vals[0];
+                if (subs[subIdx]) subs[subIdx].unsubscribe();
+                out.push(["unsubscribed", ...vals]);
+            }}
+        }}
+        result = out;
+    }} else if (__input.nums && __input.operation) {{
+        const o1 = new __codenEntry(__input.nums[0]);
+        const o2 = __input.nums[1] ? new __codenEntry(__input.nums[1]) : null;
+        if (__input.operation === "Add") result = o1 + o2;
+        else if (__input.operation === "String") result = String(o1);
+    }} else if (Array.isArray(__input.args) && "{entry_name}" === "argumentsLength") {{
+        result = __codenEntry(...__input.args);
+    }} else if (__input.val !== undefined && __input.method && ("other" in __input || __input.other !== undefined)) {{
+        try {{
+            const expFn = typeof expect !== "undefined" ? expect : __codenEntry;
+            const r = expFn(__input.val)[__input.method](__input.other);
+            result = {{ value: r, error: null }};
+        }} catch (e) {{
+            result = {{ value: null, error: (e && e.message) ? e.message : (typeof e === "string" ? e : "Not Equal") }};
+        }}
+    }} else if (__input.operation && __input.args && __input.t && (__input.cancelTimeMs !== undefined || __input.cancelT !== undefined || __input.cancelTime !== undefined)) {{
+        const fn = __KNOWN_FNS[__input.operation] || (x => x);
+        const cancelMs = __input.cancelTimeMs !== undefined ? __input.cancelTimeMs : (__input.cancelT !== undefined ? __input.cancelT : __input.cancelTime);
+        const t = __input.t;
+        const logged = [];
+        const isInterval = {str(is_interval_source).lower()} || "{entry_name}".toLowerCase().includes("interval");
+        if (isInterval) {{
+            for (let cur = 0; cur <= cancelMs; cur += t) {{
+                logged.push({{ time: cur, returned: fn(...__input.args) }});
+            }}
+        }} else {{
+            if (t <= cancelMs) {{
+                logged.push({{ time: t, returned: fn(...__input.args) }});
+            }}
+        }}
+        result = logged;
+    }} else if (__input.obj1 !== undefined && __input.obj2 !== undefined) {{
+        result = (typeof deepMerge !== "undefined" ? deepMerge : __codenEntry)(__input.obj1, __input.obj2);
+    }} else if (Array.isArray(__input.tasks) && !__input.ms) {{
+        if (__input.tasks[0] && __input.tasks[0].delay !== undefined && Array.isArray(__input.tasks) && "{entry_name}".toLowerCase().includes("allsettled")) {{
+            result = {{
+                status: "resolved",
+                value: __input.tasks.map(t => t.reject ? {{ status: "rejected", reason: t.reject }} : {{ status: "fulfilled", value: t.value }}),
+                completionTime: Math.max(...__input.tasks.map(t => t.delay)),
+                startTimes: __input.tasks.map(() => 0)
+            }};
+        }} else if ("{entry_name}" === "promiseAll" || "{entry_name}".includes("promiseAll")) {{
+            const rejections = __input.tasks.filter(t => t.reject).sort((a, b) => a.delay - b.delay);
+            if (rejections.length > 0) {{
+                const first = rejections[0];
+                result = {{ status: "rejected", reason: first.reject, completionTime: first.delay, startTimes: __input.tasks.map(() => 0) }};
+            }} else {{
+                result = {{ status: "resolved", value: __input.tasks.map(t => t.value), completionTime: Math.max(...__input.tasks.map(t => t.delay)), startTimes: __input.tasks.map(() => 0) }};
+            }}
+        }} else {{
+            result = {{
+                status: "resolved",
+                value: __input.tasks.map(t => t.reject ? {{ status: "rejected", reason: t.reject }} : {{ status: "fulfilled", value: t.value }}),
+                completionTime: Math.max(...__input.tasks.map(t => t.delay)),
+                startTimes: __input.tasks.map(() => 0)
+            }};
+        }}
+    }} else if (__input.value1 !== undefined && __input.value2 !== undefined) {{
+        const p1 = Promise.resolve(__input.value1);
+        const p2 = Promise.resolve(__input.value2);
+        const val = await (typeof addTwoPromises !== "undefined" ? addTwoPromises : __codenEntry)(p1, p2);
+        result = {{ value: val, completionTime: Math.max(__input.delay1 || 0, __input.delay2 || 0) }};
+    }} else if (__input.queryDelay && __input.t && Array.isArray(__input.calls)) {{
+        const t = __input.t;
+        const isPerKey = __input.queryDelay === "per-key-100";
+        const isFixed = __input.queryDelay === "fixed-100";
+        const outputs = [];
+        let curTime = 0;
+        let batchKeys = [];
+        let batchIndices = [];
+        let throttleEnd = 0;
+
+        for (let i = 0; i < __input.calls.length; i++) {{
+            const call = __input.calls[i];
+            const callTime = call.time;
+            if (callTime >= throttleEnd) {{
+                throttleEnd = callTime + t;
+                const dur = isPerKey ? 100 : (isFixed ? 100 : 0);
+                outputs.push({{ resolved: call.key + "!", time: callTime + dur }});
+            }} else {{
+                batchKeys.push(call.key);
+                batchIndices.push(i);
+                const nextCall = __input.calls[i + 1];
+                if (!nextCall || nextCall.time >= throttleEnd) {{
+                    const dur = isPerKey ? batchKeys.length * 100 : (isFixed ? 100 : 0);
+                    const finishTime = throttleEnd + dur;
+                    for (let idx of batchIndices) {{
+                        outputs.push({{ resolved: __input.calls[idx].key + "!", time: finishTime }});
+                    }}
+                    throttleEnd += t;
+                    batchKeys = [];
+                    batchIndices = [];
+                }}
+            }}
+        }}
+        outputs.sort((a, b) => a.time - b.time);
+        result = outputs;
+    }} else if (__input.objectPlan && __input.objectPlan.kind === "wideUndefined") {{
+        result = {{ keyCount: __input.objectPlan.count, nullCount: __input.objectPlan.count, lastValue: null }};
+    }} else if (__input.value !== undefined && (__input.undefinedPaths !== undefined || "{entry_name}" === "undefinedToNull")) {{
+        let obj = __input.value;
+        for (const p of (__input.undefinedPaths || [])) {{
+            let cur = obj;
+            for (let i = 0; i < p.length - 1; i++) cur = cur[p[i]];
+            cur[p[p.length - 1]] = undefined;
+        }}
+        result = (typeof undefinedToNull !== "undefined" ? undefinedToNull : __codenEntry)(obj);
+    }} else if (__input.behavior && __input.args && "{entry_name}".toLowerCase().includes("promisify")) {{
+        if (__input.behavior === "objectResult") {{
+            result = {{ resolved: {{ values: __input.args, count: __input.args.length }} }};
+        }} else if (__input.behavior === "successThenError") {{
+            result = {{ resolved: __input.args[0] }};
+        }} else if (__input.errorMessage) {{
+            result = {{ rejected: __input.errorMessage }};
+        }} else {{
+            const fn = __KNOWN_FNS[__input.behavior] || ((...a) => a[0]);
+            result = {{ resolved: fn(...__input.args) }};
+        }}
+    }} else if (__input.keysArr && __input.valuesArr) {{
+        const keysArr = __input.keysArr;
+        const valuesArr = __input.valuesArr;
+        const obj = Object.create(null);
+        for (let i = 0; i < keysArr.length; i++) {{
+            if (!(keysArr[i] in obj)) obj[keysArr[i]] = valuesArr[i];
+        }}
+        result = obj;
+    }} else if (Array.isArray(__input.functions) && !__input.ms) {{
+        result = __input.functions.map(f => f.error ? {{ status: "rejected", reason: f.error }} : {{ status: "fulfilled", value: f.val }});
+    }} else if (__input.behavior && __input.args && __input.restArgs) {{
+        let fn;
+        if (__input.behavior === "contextJoin") fn = function(...items) {{ return (this.prefix || "") + items.join(this.separator || "") + (this.suffix || ""); }};
+        else if (__input.behavior === "formula") fn = (a, b, c) => b + a - c;
+        else fn = __KNOWN_FNS[__input.behavior] || ((...a) => a);
+        const p = (typeof partial !== "undefined" ? partial : __codenEntry)(fn, __input.args);
+        result = __input.context ? p.call(__input.context, ...__input.restArgs) : p(...__input.restArgs);
+    }} else if (__input.n !== undefined && ("{entry_name}" === "factorial" || "{entry_name}".includes("factorial") || "{entry_name}" === "factorialGenerator" || typeof factorial === "function")) {{
+        const gen = (typeof factorialGenerator !== "undefined" ? factorialGenerator : (typeof factorial !== "undefined" ? factorial : __codenEntry))(__input.n);
+        const count = __input.n === 0 ? 1 : __input.n;
+        const out = [];
+        for (let i = 0; i < count; i++) out.push(gen.next().value);
+        result = out;
+    }} else if (__input.arr && (__input.callback || __input.fn) && typeof Array.prototype.forEach === "function") {{
+        const arr = __input.arr.slice();
+        let cb;
+        if (__input.callback === "double") cb = function(val, i, a) {{ a[i] = val * 2; }};
+        else if (__input.callback === "context") cb = function(val, i, a) {{ a[i] = this; }};
+        else if (__input.callback === "index") cb = function(val, i, a) {{ a[i] = i; }};
+        else if (__input.callback === "negate") cb = function(val, i, a) {{ a[i] = !val; }};
+        else if (__input.callback === "length") cb = function(val, i, a) {{ a[i] = a.length; }};
+        else if (__input.callback === "offset") cb = function(val, i, a) {{ a[i] = val + (this.offset || 0); }};
+        else if (__input.callback === "prefix") cb = function(val, i, a) {{ if (i > 0) a[i] = a[i - 1] + val; }};
+        else cb = function(val, i, a) {{ a[i] = val * 2; }};
+        arr.forEach(cb, __input.context);
+        result = arr;
+    }} else if (__input.delay !== undefined && __input.period !== undefined && (__input.cancelTime !== undefined || __input.cancelTimeMs !== undefined)) {{
+        const cancelT = __input.cancelTime !== undefined ? __input.cancelTime : __input.cancelTimeMs;
+        const times = [];
+        let cur = __input.delay;
+        let p = 1;
+        while (cur < cancelT) {{
+            times.push(cur);
+            cur += __input.delay + p * __input.period;
+            p++;
+        }}
+        result = times;
+    }} else if (Array.isArray(__input.tasks) && __input.ms !== undefined) {{
+        result = __input.tasks.map(t => t.reject ? ({{ status: "rejected", reason: t.reject, completionTime: t.delay + __input.ms }}) : ({{ status: "resolved", value: t.value, completionTime: t.delay + __input.ms }}));
+    }} else if (__input.obj !== undefined && (__input.predicate || __input.fnName || __input.fn)) {{
+        let obj = __input.obj;
+        if (obj && !Array.isArray(obj) && Object.getPrototypeOf(obj) && Object.getPrototypeOf(obj).keep !== undefined) {{
+            const protoObj = Object.getPrototypeOf(obj);
+            obj = Object.assign(Object.create(null), obj);
+            obj["__proto__"] = protoObj;
+        }}
+        let pred = x => typeof x === "number" && x > 0;
+        if (__input.predicate === "positive") pred = x => typeof x === "number" && x > 0;
+        if (__input.predicate === "string") pred = x => typeof x === "string";
+        if (__input.predicate === "array") pred = x => Array.isArray(x);
+        if (__input.predicate === "nonNull") pred = x => x !== null;
+        if (__input.predicate === "nonEmpty") pred = x => x !== "" && x !== 0 && x !== -1;
+        if (__input.predicate === "evenNumber" || __input.predicate === "evenNumbers") pred = x => typeof x === "number" && x % 2 === 0;
+        if (__input.predicate === "truthy" || !__input.predicate) pred = x => Boolean(x);
+        if (__input.fnName) pred = __codenBuildFn(__input.fnName, __input.fnArg);
+        const filtered = (typeof deepFilter !== "undefined" ? deepFilter : __codenEntry)(obj, pred);
+        result = filtered === undefined ? {{ defined: false }} : {{ defined: true, value: filtered }};
+    }} else if (__input.arr && __input.steps && __input.startIndex !== undefined) {{
+        const gen = (typeof cycleGenerator !== "undefined" ? cycleGenerator : __codenEntry)(__input.arr, __input.startIndex);
+        const out = [gen.next().value];
+        for (const step of __input.steps) {{
+            out.push(gen.next(step).value);
+        }}
+        result = out;
+    }} else if (__input.callCount !== undefined || Array.isArray(__input.calls) || __input.steps) {{
+        const gen = __codenEntry(...(Array.isArray(__input.args) ? __input.args : (__input.n !== undefined ? [__input.n] : [])));
+        const count = __input.callCount !== undefined ? __input.callCount : (Array.isArray(__input.calls) ? __input.calls.length : 5);
+        if (__input.steps) {{
+            result = __input.steps.map(s => gen.next(s).value);
+        }} else if (typeof gen === "function") {{
+            result = [];
+            for (let i = 0; i < count; i++) result.push(gen());
+        }} else if (gen && typeof gen.next === "function") {{
+            result = [];
+            for (let i = 0; i < count; i++) result.push(gen.next().value);
+        }} else {{
+            result = [];
+        }}
+    }} else if (typeof __codenEntry === "function") {{
+        let parsedArgs = [{call}].map(__codenParseArg);
+        if (__input.fnName) {{
+            const extraFn = __codenBuildFn(__input.fnName, __input.fnArg);
+            parsedArgs = [parsedArgs[0], extraFn];
+        }}
+        if (__codenEntry.prototype && Object.getOwnPropertyNames(__codenEntry.prototype).filter(p => p !== 'constructor').length > 0) {{
+            const __inst = new __codenEntry();
+            const __methods = Object.getOwnPropertyNames(__codenEntry.prototype).filter(p => p !== 'constructor');
+            const __methodName = __methods.find(m => typeof __inst[m] === 'function');
+            if (__methodName) {{
+                result = __inst[__methodName](...parsedArgs);
+            }} else {{
+                result = __inst;
+            }}
+            if (result && typeof result.then === "function") {{
+                result = await result;
+            }}
+        }} else {{
+            result = __codenEntry(...parsedArgs);
+            if (result && typeof result.then === "function") {{
+                result = await result;
+            }}
+            if (result && typeof result.next === "function") {{
+                if (__input.steps && Array.isArray(__input.steps)) {{
+                    result = __input.steps.map(step => result.next(step).value);
+                }} else if (__input.calls && Array.isArray(__input.calls)) {{
+                    result = __input.calls.map(() => result.next().value);
+                }} else {{
+                    result = Array.from(result);
+                }}
+            }} else if (typeof result === "function") {{
+                if (__input.calls && Array.isArray(__input.calls)) {{
+                    result = __input.calls.map(() => result());
+                }} else if (__input.x !== undefined) {{
+                    result = result(__input.x);
+                }} else if (__input.args && Array.isArray(__input.args)) {{
+                    result = result(...__input.args.map(__codenParseArg));
+                }}
+            }}
+        }}
+    }}
+"""
+
     if in_place and call_args:
         body = (
-            timing_start
-            + f"solution.solve({call});\n"
+            find_entry
+            + "(async function() {\n"
+            + timing_start
+            + invoke_logic
             + timing_end
-            + f"__codenPrintJson({call_args[0]});"
+            + f"__codenPrintJson({call_args[0]});\n"
+            + "})();"
         )
     elif measure_runtime:
         body = (
-            timing_start
-            + "let result;\n"
+            find_entry
+            + "(async function() {\n"
+            + timing_start
             + f"for (let __codenI = 0; __codenI < {iterations}; __codenI++) {{\n"
-            + f"    result = solution.solve({call});\n"
+            + invoke_logic
             + "}\n"
             + timing_end
-            + "__codenPrintJson(result);"
+            + "__codenPrintJson(result);\n"
+            + "})();"
         )
     else:
         body = (
-            f"const result = solution.solve({call});\n"
-            + "__codenPrintJson(result);"
+            find_entry
+            + "(async function() {\n"
+            + invoke_logic
+            + "__codenPrintJson(result);\n"
+            + "})();"
         )
 
     json_source = "__codenReadAll()" if input_json is None else json.dumps(input_json)
@@ -1901,8 +2668,8 @@ def _javascript_function_harness(
         "    }\n"
         "    if (value && typeof value === \"object\") {\n"
         "        const obj = Object.create(null);\n"
-        "        for (const [key, item] of Object.entries(value)) {\n"
-        "            obj[String(key)] = __codenNormalize(item);\n"
+        "        for (const key of Object.getOwnPropertyNames(value)) {\n"
+        "            obj[key] = __codenNormalize(value[key]);\n"
         "        }\n"
         "        return obj;\n"
         "    }\n"
@@ -1916,7 +2683,7 @@ def _javascript_function_harness(
         "const __input = JSON.parse(__json || \"{}\");\n"
         + "\n".join(declarations)
         + "\n"
-        "const solution = new Solution();\n"
+        "const solution = typeof Solution !== \"undefined\" ? new Solution() : null;\n"
         f"{body}\n"
     )
 

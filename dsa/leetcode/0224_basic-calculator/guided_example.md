@@ -83,7 +83,7 @@ expression, each character participates in constant work.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer pointer `i` scans the string.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +136,7 @@ involved. The group must first obtain its own complete value.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive-descent parser:** Define a function :** - **Recursive-descent parser:** Define a function that parses until a matching `)` and returns both the value and new position. It mirrors the grammar naturally but can use $O(d)$ call-stack space and risks Python recursion limits for very deep input.
+- **Recursive-descent parser:** Define a function that parses until a matching `)` and returns both the value and new position. It mirrors the grammar naturally but can use $O(d)$ call-stack space and risks Python recursion limits for very deep input.
 - **Reverse scan with an operand/operator stack:** Reverse the expression so stack popping preserves subtraction order, then evaluate each closed group. It is correct but processes more stack items and makes multi-digit parsing less intuitive.
 - **Global accumulated sign:** Maintain the effective sign contributed by every enclosing parenthesis, using a sign-context stack. This can be compact but requires careful handling of unary minus and context restoration.
 - **Leading unary minus:** Initial `ans = 0`; `-` sets `sign = -1`; the following number or parenthesized result is therefore subtracted from zero.
@@ -148,8 +148,8 @@ involved. The group must first obtain its own complete value.
 - **Zero values:** Parsing `0` still completes a number and adds zero with the current sign. It does not interfere with later operators.
 - **Integer range:** The reference guarantees every running calculation fits signed 32-bit range. Python integers would remain safe even beyond it.
 - **Invalid syntax:** The implementation relies on the validity guarantee. It does not diagnose unmatched parentheses, unsupported characters, unary plus, or malformed operator sequences.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

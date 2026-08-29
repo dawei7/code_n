@@ -2,7 +2,7 @@
 
 Alice is a caretaker of `n` gardens and she wants to plant flowers to maximize the total beauty of all her gardens.
 
-You are given a **0-indexed** integer array `flowers` of size `n`, where $\text{flowers}[i]$ is the number of flowers already planted in the $$i^{\text{th}}$$ garden. Flowers that are already planted **cannot** be removed. You are then given another integer `newFlowers`, which is the **maximum** number of flowers that Alice can additionally plant. You are also given the integers `target`, `full`, and `partial`.
+You are given a **0-indexed** integer array `flowers` of size `n`, where $\text{flowers}[i]$ is the number of flowers already planted in the $i^{\text{th}}$ garden. Flowers that are already planted **cannot** be removed. You are then given another integer `newFlowers`, which is the **maximum** number of flowers that Alice can additionally plant. You are also given the integers `target`, `full`, and `partial`.
 
 A garden is considered **complete** if it has **at least** `target` flowers. The **total beauty** of the gardens is then determined as the **sum** of the following:
 

@@ -70,7 +70,7 @@ The contract guarantees valid operations and says a file’s parent directory ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Absolute paths begin with `/`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The public contract says queried paths exist, so `null` is mainly defensive. `ls
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate file and directory maps:** A director:** - **Separate file and directory maps:** A directory node can keep one child-directory dictionary and one filename-to-content dictionary. Type checks become implicit, but traversal logic is split across two namespaces.
+- **Separate file and directory maps:** A directory node can keep one child-directory dictionary and one filename-to-content dictionary. Type checks become implicit, but traversal logic is split across two namespaces.
 - **Ordered child map:** Maintaining names in sorted order can reduce listing sort work, but insertion becomes more expensive and Python’s ordinary dictionary plus query-time sorting is simpler at this scale.
 - **Flat path map:** Store every absolute path as a key. Direct lookup is easy, but listing immediate children and creating hierarchical intermediates requires prefix parsing and extra indexing.
 - **Repeated string concatenation:** Updating one immutable string with `old + content` can repeatedly copy growing files. Fragment lists defer copying until reading.
@@ -120,8 +120,8 @@ The public contract says queried paths exist, so `null` is mainly defensive. `ls
 - **File/directory name collision:** The contract forbids identical names in one directory, allowing one unified child dictionary.
 - **Valid-operation guarantee:** Reading assumes the path names a file. Robust production code might raise an explicit error for missing or wrong-type nodes.
 - **Input mutation:** Operations mutate only the in-memory trie state, which is the intended persistent object behavior across method calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

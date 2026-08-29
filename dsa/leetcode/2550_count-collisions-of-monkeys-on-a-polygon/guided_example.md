@@ -73,7 +73,7 @@ These give at least two non-collision assignments.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If every monkey moves clockwise, each leaves its vertex and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Thus the only collision-free assignments are the two uniform rotations.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate assignments:** It costs $O(2^n)$ and:** - **Enumerate assignments:** It costs $O(2^n)$ and is impossible for large `n`.
+- **Enumerate assignments:** It costs $O(2^n)$ and is impossible for large `n`.
 - **Count collision patterns directly:** Assignments with multiple collisions make inclusion-exclusion unnecessarily difficult.
 - **All clockwise:** Collision-free cyclic rotation.
 - **All anticlockwise:** Collision-free cyclic rotation.
@@ -126,8 +126,8 @@ Thus the only collision-free assignments are the two uniform rotations.
 - **`n=3`:** Six of eight assignments collide.
 - **Large exponent:** Use modular exponentiation rather than building $2^n$.
 - **Modulo subtraction:** Final `%mod` returns the canonical residue.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

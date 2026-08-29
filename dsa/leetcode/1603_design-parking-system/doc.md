@@ -22,7 +22,7 @@ When `addCar(carType)` is called, the arriving car may use only a space of its m
 
 - `ParkingSystem(big, medium, small)` initializes the three capacities.
 - `addCar(carType)` attempts one arrival and returns whether it parked.
-- Capacities lie in $[0,1000]$, `carType` is in `{1,2,3}`, and at most 1000 additions occur.
+- Capacities lie in `[0,1000]`, `carType` is in `{1,2,3}`, and at most 1000 additions occur.
 
 **Inputs**
 

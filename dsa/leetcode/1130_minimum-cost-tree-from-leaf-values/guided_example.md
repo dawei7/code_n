@@ -58,9 +58,7 @@ The maximum is needed because joining two child trees creates a new non-leaf roo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(i,j)` returns:
-
-- the minimum sum of non-leaf values fo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -95,7 +93,7 @@ When `i == j`, the interval contains one leaf. There is no non-leaf node, so cos
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic stack:** The required optimal approa:** - **Monotonic stack:** The required optimal approach for the manifest; pop a middle value when a greater neighbor arrives and multiply it by the smaller bounding neighbor.
+- **Monotonic stack:** The required optimal approach for the manifest; pop a middle value when a greater neighbor arrives and multiply it by the smaller bounding neighbor.
 - **Bottom-up interval DP:** Computes the same recurrence iteratively with $O(n^3)$ time and $O(n^2)$ space.
 - **Brute-force trees:** Catalan-many structures make enumeration exponential.
 - **Two leaves:** Only one tree exists and cost is their product.
@@ -107,8 +105,8 @@ When `i == j`, the interval contains one leaf. There is no non-leaf node, so cos
 - **Maximum independent of split:** Every interval return must report the same greatest leaf regardless of the chosen tree.
 - **Cache:** Removing it makes recursive repetition exponential.
 - **Manifest mismatch:** Complexity claims must describe the exact DP separately from the linear stack alternative.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

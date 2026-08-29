@@ -51,7 +51,7 @@ This gives an immediate necessary condition:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This gives an immediate necessary condition:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct both parts greedily:** It can work b:** - **Construct both parts greedily:** It can work but requires balancing logic that the frequency proof makes unnecessary.
+- **Construct both parts greedily:** It can work but requires balancing logic that the frequency proof makes unnecessary.
 - **Sort and detect triples:** Three equal consecutive values after sorting imply impossibility. That costs $O(N\log N)$ time and may mutate or copy input.
 - **Fixed 101-entry frequency array:** It exploits the value bound and has deterministic constant space, equivalent to the counter approach.
 - **Every value distinct:** Maximum frequency is one; because length is even, divide the values arbitrarily into equal halves.
@@ -101,8 +101,8 @@ $$
 - **Why there is no separate half-capacity test:** Once duplicate values contribute one element to each half, every remaining value is a unique singleton and may go to either side. Even singleton count guarantees an exact equal split, so frequency at most two already contains the size argument.
 - **Counter maximum versus checking all counts:** `max < 3` is logically equivalent to `all(count <= 2)`. The maximum form is concise because the counter cannot be empty under the input guarantee.
 - **Copies remain distinguishable by position:** Two equal occurrences may be placed in different arrays even though their values match. The requirement is distinctness within each part, not across the union.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

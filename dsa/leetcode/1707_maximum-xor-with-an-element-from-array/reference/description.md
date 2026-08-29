@@ -2,9 +2,9 @@
 
 You are given an array `nums` consisting of non-negative integers. You are also given a `queries` array, where $\text{queries}[i] = [x_{i}, m_{i}]$.
 
-The answer to the $$i^{\text{th}}$$ query is the maximum bitwise `XOR` value of $x_{i}$ and any element of `nums` that does not exceed $m_{i}$. In other words, the answer is $max(\text{nums}[j] XOR x_{i})$ for all `j` such that $\text{nums}[j] \le m_{i}$. If all elements in `nums` are larger than $m_{i}$, then the answer is `-1`.
+The answer to the $i^{\text{th}}$ query is the maximum bitwise `XOR` value of $x_{i}$ and any element of `nums` that does not exceed $m_{i}$. In other words, the answer is $max(\text{nums}[j] XOR x_{i})$ for all `j` such that $\text{nums}[j] \le m_{i}$. If all elements in `nums` are larger than $m_{i}$, then the answer is `-1`.
 
-Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query.*
+Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query.*
 
 ### 2. Function Contract
 

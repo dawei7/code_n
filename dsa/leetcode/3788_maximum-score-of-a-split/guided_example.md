@@ -79,7 +79,7 @@ Each iteration updates `ans` with the larger of its current value and this candi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second loop scans valid split indices `0` through `n-2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ At split three, the prefix becomes eight and the suffix minimum remains -5, givi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Right-to-left constant-space scan:** With the :** - **Right-to-left constant-space scan:** With the total sum and a running suffix minimum, one can evaluate splits without storing every suffix minimum. That matches the manifest space claim but is not the exact source.
+- **Right-to-left constant-space scan:** With the total sum and a running suffix minimum, one can evaluate splits without storing every suffix minimum. That matches the manifest space claim but is not the exact source.
 - **Recompute each suffix minimum:** Calling `min(nums[i+1:])` for every split can cost $O(N^2)$ and allocate repeated slices.
 - **Use suffix sum instead of minimum:** The contract subtracts one minimum value, not the suffix total.
 - **Use `suf[i]`:** That incorrectly allows the split element itself into the suffix minimum.
@@ -131,8 +131,8 @@ At split three, the prefix becomes eight and the suffix minimum remains -5, givi
 - **Large magnitudes:** Python arithmetic safely handles cumulative sums.
 - **Input preservation:** Only `suf` and scalars are updated.
 - **Source/manifest mismatch:** The exact file uses linear auxiliary storage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

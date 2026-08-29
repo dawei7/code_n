@@ -63,7 +63,7 @@ An element counts if and only if its value lies strictly inside the open interva
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `mx = max(nums)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This correctly handles duplicates. In `[-3,3,3,90]`, both occurrences of three s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the array:** After sorting, count element:** - **Sort the array:** After sorting, count elements strictly between the first and last values. This costs $O(n\log n)$ time and may mutate the input, offering no benefit over extrema.
+- **Sort the array:** After sorting, count elements strictly between the first and last values. This costs $O(n\log n)$ time and may mutate the input, offering no benefit over extrema.
 - **Compare every pair:** For each element, search the array for smaller and greater witnesses. This can cost $O(n^2)$ even though the global extrema answer every witness query.
 - **Frequency map:** Counts of the minimum and maximum can be subtracted from $n$. This is correct but uses $O(n)$ space unless a second extrema-based pass is still used.
 - **Formula using counts:** After finding `mi` and `mx`, one may return `n - count(mi) - count(mx)` when `mi != mx`. The exact generator is clearer and naturally handles all cases.
@@ -116,8 +116,8 @@ This correctly handles duplicates. In `[-3,3,3,90]`, both occurrences of three s
 - **Minimum and maximum each occur once:** They serve as witnesses for every interior occurrence but do not count themselves.
 - **Boolean summation:** In Python, `sum` counts true generator results without an explicit integer conversion.
 - **Input preservation:** Unlike sorting, the three scans leave `nums` in its original order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

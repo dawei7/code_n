@@ -70,11 +70,7 @@ gives the computed column the exact output name required by the contract. Withou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact query begins:
-
-
-
-`product_id` is preserved as the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +115,7 @@ The positional form is concise but depends on select-list order. If another expr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit group name:** `GROUP BY product_id` i:** - **Explicit group name:** `GROUP BY product_id` is equivalent to `GROUP BY 1` and is more robust when the select-list order changes.
+- **Explicit group name:** `GROUP BY product_id` is equivalent to `GROUP BY 1` and is more robust when the select-list order changes.
 - **Window sum plus DISTINCT:** A window function could attach the total to every sale row and a later deduplication could keep one per product. It is more complicated and creates unnecessary intermediate repetition.
 - **Correlated subquery:** Computing one sum for every distinct product can repeat scans or index lookups. Direct grouping expresses the task more efficiently.
 - **Join to Product:** It is redundant because no product metadata is requested and can only add work.
@@ -132,8 +128,8 @@ The positional form is concise but depends on select-list order. If another expr
 - **Output alias:** `total_quantity` is required even though it is not a stored source column.
 - **Any row order:** Omitting `ORDER BY` is correct.
 - **Positional grouping caution:** `GROUP BY 1` refers to the first select expression, not the numeric constant one in this MySQL context.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labelled from `0` to $n - 1$ from left to right where $\text{warehouse}[i]$ (0-indexed) is the height of the $$i^{\text{th}}$$ room.
+You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labelled from `0` to $n - 1$ from left to right where $\text{warehouse}[i]$ (0-indexed) is the height of the $i^{\text{th}}$ room.
 
 The objective is to compute `3` from `{"boxes": [4, 3, 4, 1], "warehouse": [5, 3, 3, 4, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,7 +65,7 @@ The sort happens in place, so the supplied `boxes` list is permanently reordered
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts `boxes` in ascending order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Because `left` becomes weakly larger as `j` moves left, this search progresses t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modify warehouse in place:** Replace every hei:** - **Modify warehouse in place:** Replace every height by its prefix minimum and avoid the separate `left` array, if input mutation is allowed.
+- **Modify warehouse in place:** Replace every height by its prefix minimum and avoid the separate `left` array, if input mutation is allowed.
 - **Largest-box left-to-right greedy:** Sort descending, discard boxes too tall for each current room, and place the largest that fits. It is an equivalent strategy.
 - **Simulate pushing each box:** It repeatedly rechecks bottlenecks and obscures the effective-capacity reduction.
 - **First room is shortest:** Every effective capacity equals that height, so only boxes no taller than it can enter.
@@ -118,8 +118,8 @@ Because `left` becomes weakly larger as `j` moves left, this search progresses t
 - **Exact fit:** `left[j] == boxes[i]` is allowed.
 - **Unit width and no stacking:** They justify treating every room as one placement slot.
 - **Input mutation:** Sorting changes box order, while the separate prefix array leaves warehouse heights unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

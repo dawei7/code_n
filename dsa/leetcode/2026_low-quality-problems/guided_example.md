@@ -71,7 +71,7 @@ This sequence is important conceptually. Sorting is performed on the filtered re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `FROM Problems` clause begins with every problem row.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ After all rows are evaluated this way, the remaining identifiers are sorted nume
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cross multiplication:** Use `2 * likes < 3 * d:** - **Cross multiplication:** Use `2 * likes < 3 * dislikes` to avoid decimal division when the vote total is positive; choose numeric types wide enough to prevent multiplication overflow.
+- **Cross multiplication:** Use `2 * likes < 3 * dislikes` to avoid decimal division when the vote total is positive; choose numeric types wide enough to prevent multiplication overflow.
 - **Percentage multiplication:** Writing `100 * likes / (likes + dislikes) < 60` is equivalent for a positive denominator but introduces an unnecessary multiplication.
 - **Integer division:** Using an operator or cast that truncates the quotient would be incorrect because fractional percentages carry the decision.
 - **Exactly 60 percent:** The row is excluded because the condition is strict `< 0.6`.
@@ -123,8 +123,8 @@ After all rows are evaluated this way, the remaining identifiers are sorted nume
 - **Unsorted input storage:** `ORDER BY problem_id` still guarantees ascending output.
 - **Empty qualifying set:** The query correctly returns an empty result table.
 - **Database execution plan:** Indexes may improve physical performance, but they do not change the logical filter or ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The strings keep their circular block order, but each block may be reversed. Aft
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Fix every non-cut block greedily.** For each string `s`, t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If a block does not contain the cut, it appears as one complete contiguous segme
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all block orientations:** There are :** - **Enumerate all block orientations:** There are $2^m$ combinations; greedily fixing non-cut blocks avoids this exponential search.
+- **Enumerate all block orientations:** There are $2^m$ combinations; greedily fixing non-cut blocks avoids this exponential search.
 - **Fix the cut block greedily too:** This can miss a better rotation from its opposite orientation.
 - **Try cuts only between blocks:** The best first character may lie inside a block, so every character position is required.
 - **One string:** Both orientations and all rotations are tested; `"abc"` yields `"cba"`.
@@ -96,8 +96,8 @@ If a block does not contain the cut, it appears as one complete contiguous segme
 - **Circular order:** `t` places later blocks before earlier ones exactly once.
 - **Input immutability:** The normalized list is newly allocated.
 - **Equal candidates:** `max` may retain either identical string without affecting the result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

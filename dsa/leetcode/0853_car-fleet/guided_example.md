@@ -63,7 +63,7 @@ The algorithm sorts indices rather than paired records, preserving access to bot
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `idx` contains car indices sorted by `position[i]` in increa... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ It starts at zero. Every car starts before the positive target and has positive 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort paired position/time records:** This is e:** - **Sort paired position/time records:** This is equivalent and may be more direct. The exact source sorts original indices.
-- **- **Simulate positions over time:** Continuous cat:** - **Simulate positions over time:** Continuous catch-up events make simulation unnecessarily complex and potentially slow.
-- **- **Monotonic stack:** Arrival times in position o:** - **Monotonic stack:** Arrival times in position order can be pushed and merged with stack logic. The scalar `pre` suffices when scanning from front to back.
+- **Sort paired position/time records:** This is equivalent and may be more direct. The exact source sorts original indices.
+- **Simulate positions over time:** Continuous catch-up events make simulation unnecessarily complex and potentially slow.
+- **Monotonic stack:** Arrival times in position order can be pushed and merged with stack logic. The scalar `pre` suffices when scanning from front to back.
 
 ---
 

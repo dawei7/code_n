@@ -51,7 +51,7 @@ After landing at `j`, the remaining problem has exactly the same form: choose la
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After landing at `j`, the remaining problem has exactly the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Define `dfs(i)` as the maximum additional score obtainable when currently standi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Suffix-maximum greedy method:** Scan boundarie:** - **Suffix-maximum greedy method:** Scan boundaries from right to left while maintaining the greatest `nums[j]` available to their right, and add that maximum for each boundary. This derives from the interval interpretation and runs in $O(n)$ time and $O(1)$ space, matching the manifest rather than the exact source.
+- **Suffix-maximum greedy method:** Scan boundaries from right to left while maintaining the greatest `nums[j]` available to their right, and add that maximum for each boundary. This derives from the interval interpretation and runs in $O(n)$ time and $O(1)$ space, matching the manifest rather than the exact source.
 - **Bottom-up quadratic DP:** Compute `dp[i]` from already filled later indices. It preserves the exact $O(n^2)$ recurrence but avoids recursion-depth failure.
 - **Enumerate all routes:** Every intermediate index may be selected or skipped, producing exponentially many paths. Memoization merges routes at their landing indices.
 - **Always jump to the globally largest value:** Its index matters. A high value may be useful for early boundaries but cannot cover boundaries after its position; later landings are still required.
@@ -101,8 +101,8 @@ Define `dfs(i)` as the maximum additional score obtainable when currently standi
 - **Recursion limit:** Memoization does not cap nesting depth. A valid length-$1000$ input can approach or exceed the interpreter's default limit.
 - **Input preservation:** The method only reads `nums` and does not reorder or mutate it.
 - **Manifest mismatch:** Attribute $O(n)$/$O(1)$ only to the suffix-maximum alternative; the exact artifact is quadratic and linear-space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

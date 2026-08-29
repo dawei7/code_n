@@ -99,7 +99,7 @@ which allocates a small number of harmless extra columns. Levels whose interval 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To evaluate $V(l,r)$ quickly, the class `SparseTableRMQ` sto... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -159,7 +159,7 @@ each need only two table lookups and one comparison.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate and sort all subarrays:** There are :** - **Enumerate and sort all subarrays:** There are $\Theta(n^2)$ distinct subarrays, so materializing all values is infeasible at the maximum $n$.
+- **Enumerate and sort all subarrays:** There are $\Theta(n^2)$ distinct subarrays, so materializing all values is infeasible at the maximum $n$.
 - **Segment tree plus heap:** A segment tree uses $O(n)$ space and builds in $O(n)$ time, but each range minimum/maximum query costs $O(\log n)$. This is the manifest-described alternative, not the exact source.
 - **Heapify initial candidates:** Building a list of the $n$ terminal candidates and calling `heapify` reduces heap initialization from $O(n\log n)$ to $O(n)$. The checked-in source uses repeated `heappush`.
 - **Binary-search a value threshold:** One could try to count subarrays above a range threshold, but efficiently counting max-minus-min constraints is substantially more involved and still needs tie handling for the top-$k$ sum.
@@ -170,8 +170,8 @@ each need only two table lookups and one comparison.
 - **Equal range values:** Distinct subarrays may have identical values. The heap entries retain coordinates, so equal values are still emitted as separate legal choices.
 - **Overlapping subarrays:** Different coordinate pairs may overlap freely. The sequence organization is by left endpoint, not by disjointness.
 - **Sparse-table overlap:** Query blocks may overlap because minimum and maximum are idempotent. The same technique would not work unchanged for a non-idempotent aggregate such as sum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

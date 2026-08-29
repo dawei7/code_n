@@ -65,7 +65,7 @@ Index `i` begins at zero and advances by two after every placement. Once it pass
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When a rearrangement is possible, the even indices `0, 2, 4,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ The feasibility check guarantees it does not need more even positions than exist
 
 ## 6. Traps This Instance Exposes
 
-- **- **Max-heap with a held-back previous character:*:** - **Max-heap with a held-back previous character:** Repeatedly choose the most frequent character different from the last. It is more general and runs in `O(n log A)` for alphabet size `A`.
-- **- **Random shuffling:** It offers no correctness o:** - **Random shuffling:** It offers no correctness or termination guarantee.
-- **- **Skip the feasibility check:** Placement could :** - **Skip the feasibility check:** Placement could run out of separating slots for a dominant character.
+- **Max-heap with a held-back previous character:** Repeatedly choose the most frequent character different from the last. It is more general and runs in `O(n log A)` for alphabet size `A`.
+- **Random shuffling:** It offers no correctness or termination guarantee.
+- **Skip the feasibility check:** Placement could run out of separating slots for a dominant character.
 
 ---
 

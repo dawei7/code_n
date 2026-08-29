@@ -37,7 +37,7 @@ The problem boils down to finding the minimum flip sequence needed to convert al
 
 To tackle this problem, we use the property of order invariance, allowing us to sort the sequence by index in ascending order. Once sorted, we minimize the sequence size using the property of parity invariance.
 
-Due to the parity invariance property, duplicate values in the flip sequence can be removed without affecting the final result. For example, given a sequence like $[0, 1, 2, 4, 5, 6, 5, 6, 7]$ (above example 3), we can simplify it to $[0, 4, 5]$, ensuring all indexes are unique and in ascending order.
+Due to the parity invariance property, duplicate values in the flip sequence can be removed without affecting the final result. For example, given a sequence like `[0, 1, 2, 4, 5, 6, 5, 6, 7]` (above example 3), we can simplify it to `[0, 4, 5]`, ensuring all indexes are unique and in ascending order.
 
 Thus, every flip sequence $S$ can be simplified to a new sequence $S'$, where all indexes in $S'$ are unique and sorted in ascending order. As indexes are sorted, subsequent flips with larger indexes cannot alter the value at prior indexes.
 
@@ -51,13 +51,13 @@ For any given index `i` in `nums`, one of the following two cases must occur to 
 
 Let's take example 3 to elaborate on these properties in detail. If the sequence of indexes is changed to $\{0, 1, 1, 4, 4, 4, 5\}$, what will happen?
 
-1. Flip $\text{nums}[0], \text{nums}[1], \text{nums}[2]$: $nums$ becomes $[1, 1, 1, 1, 0, 1, 1, 0]$.
-2. Flip $\text{nums}[1], \text{nums}[2], \text{nums}[3]$: $nums$ becomes $[1, 0, 0, 0, 0, 1, 1, 0]$.
-3. Flip $\text{nums}[1], \text{nums}[2], \text{nums}[3]$: $nums$ becomes $[1, 1, 1, 1, 0, 1, 1, 0]$.
-4. Flip $\text{nums}[4], \text{nums}[5], \text{nums}[6]$: $nums$ becomes $[1, 1, 1, 1, 1, 0, 0, 0]$.
-5. Flip $\text{nums}[4], \text{nums}[5], \text{nums}[6]$: $nums$ becomes $[1, 1, 1, 1, 0, 1, 1, 0]$.
-6. Flip $\text{nums}[4], \text{nums}[5], \text{nums}[6]$: $nums$ becomes $[1, 1, 1, 1, 1, 0, 0, 0]$.
-7. Flip $\text{nums}[5], \text{nums}[6], \text{nums}[7]$: $nums$ becomes $[1, 1, 1, 1, 1, 1, 1, 1]$.
+1. Flip $\text{nums}[0], \text{nums}[1], \text{nums}[2]$: $nums$ becomes `[1, 1, 1, 1, 0, 1, 1, 0]`.
+2. Flip $\text{nums}[1], \text{nums}[2], \text{nums}[3]$: $nums$ becomes `[1, 0, 0, 0, 0, 1, 1, 0]`.
+3. Flip $\text{nums}[1], \text{nums}[2], \text{nums}[3]$: $nums$ becomes `[1, 1, 1, 1, 0, 1, 1, 0]`.
+4. Flip $\text{nums}[4], \text{nums}[5], \text{nums}[6]$: $nums$ becomes `[1, 1, 1, 1, 1, 0, 0, 0]`.
+5. Flip $\text{nums}[4], \text{nums}[5], \text{nums}[6]$: $nums$ becomes `[1, 1, 1, 1, 0, 1, 1, 0]`.
+6. Flip $\text{nums}[4], \text{nums}[5], \text{nums}[6]$: $nums$ becomes `[1, 1, 1, 1, 1, 0, 0, 0]`.
+7. Flip $\text{nums}[5], \text{nums}[6], \text{nums}[7]$: $nums$ becomes `[1, 1, 1, 1, 1, 1, 1, 1]`.
 
 The final result is the same as the flip sequence $\{0, 4, 5\}$.
 

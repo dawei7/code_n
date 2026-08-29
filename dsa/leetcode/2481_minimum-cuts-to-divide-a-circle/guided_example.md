@@ -57,7 +57,7 @@ The source reaches this through the final `n>>1` branch: right-shifting 1 gives 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `n=1`, the whole circle is already the required single ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `n=4`, two perpendicular diameters create four 90-degree slices. For `n=2`, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit conditional formula:** Return 0 for o:** - **Explicit conditional formula:** Return 0 for one, `n//2` for even values, and `n` for odd values. It is longer but more immediately readable.
+- **Explicit conditional formula:** Return 0 for one, `n//2` for even values, and `n` for odd values. It is longer but more immediately readable.
 - **Simulate angular boundaries:** Constructing ray angles would reproduce the formula with unnecessary floating-point geometry.
 - **`n=1`:** No cut is needed; treating all odd values uniformly would incorrectly return one.
 - **`n=2`:** One diameter is sufficient.
@@ -108,8 +108,8 @@ For `n=4`, two perpendicular diameters create four 90-degree slices. For `n=2`, 
 - **Equal slices:** Cuts must be equally spaced; arbitrary center lines can create unequal sectors.
 - **Bitwise precedence:** Parenthesized intent is “`n>1` and odd”; Python evaluates the comparison and bit test so the source condition behaves accordingly.
 - **No rotations needed in output:** Only the count matters, not specific angles.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

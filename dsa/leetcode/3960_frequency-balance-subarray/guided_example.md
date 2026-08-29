@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array ​​​​​​​`nums`.
+You are given an integer array `nums`.
 
 The objective is to compute `5` from `{"nums": [1, 2, 2, 1, 2, 3, 3, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -72,11 +72,7 @@ This separate branch matters. With one value repeated, `freq` has only one key, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first test is
-
-
-
-Because `cnt` receives a key when a val... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,9 +122,9 @@ Whenever either balance rule succeeds, the source updates `ans` with the current
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount every candidate subarray:** Building a:** - **Recount every candidate subarray:** Building a fresh frequency map for each `[l,r]` requires scanning up to `O(n)` elements per candidate, leading to `O(n^3)` time. Incrementally extending the right endpoint removes that redundant scan.
-- **- **Scan all counts after every extension:** Maint:** - **Scan all counts after every extension:** Maintaining only `cnt` and then collecting or scanning all its values for each right endpoint can also reach cubic time when the subarray has many distinct values. The histogram `freq` reduces the balance query to constant expected time.
-- **- **Sort the frequency values:** Sorting the disti:** - **Sort the frequency values:** Sorting the distinct counts for every subarray is unnecessary. The condition needs only the number of occupied levels and a factor-of-two relationship, both available directly from `freq`.
+- **Recount every candidate subarray:** Building a fresh frequency map for each `[l,r]` requires scanning up to `O(n)` elements per candidate, leading to `O(n^3)` time. Incrementally extending the right endpoint removes that redundant scan.
+- **Scan all counts after every extension:** Maintaining only `cnt` and then collecting or scanning all its values for each right endpoint can also reach cubic time when the subarray has many distinct values. The histogram `freq` reduces the balance query to constant expected time.
+- **Sort the frequency values:** Sorting the distinct counts for every subarray is unnecessary. The condition needs only the number of occupied levels and a factor-of-two relationship, both available directly from `freq`.
 
 ---
 

@@ -61,7 +61,7 @@ Each converted value is appended to `d[name]`. Input order does not need to be c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each time has format `"HH:MM"`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Equality is accepted, matching the rule that `"10:00"` through `"11:00"` is with
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort all records globally by name and time:** :** - **Sort all records globally by name and time:** This can also group timelines, but the dictionary plus per-name sorts is direct and preserves the same $O(N\log N)$ bound.
+- **Sort all records globally by name and time:** This can also group timelines, but the dictionary plus per-name sorts is direct and preserves the same $O(N\log N)$ bound.
 - **Sliding window with two pointers:** It can detect whether a sorted window contains at least three accesses. Fixed consecutive triples are simpler because exactly three are sufficient.
 - **Enumerate all triples:** This is unnecessary and can be cubic per worker. Any qualifying triple implies a qualifying consecutive triple.
 - **Use raw `"HH:MM"` strings:** Fixed-width 24-hour strings sort chronologically, so this can work, but minute conversion makes the inclusive 60-minute test straightforward.
@@ -121,8 +121,8 @@ Equality is accepted, matching the rule that `"10:00"` through `"11:00"` is with
 - **Same-day assumption:** Minute subtraction is valid because no interval crosses into a second day.
 - **Unique name-time pair:** Duplicate records for the same worker at the exact same time are excluded by contract, though the algorithm would count them as separate uses if present.
 - **Alphabetical result:** Explicit final sorting satisfies the requirement independently of dictionary insertion order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

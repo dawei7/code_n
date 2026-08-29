@@ -94,19 +94,6 @@
       "tags": ["trial", "sorting", "distinct-users"]
     },
     {
-      "id": "trial-same-user-equal-timestamps",
-      "name": "same-time visits do not establish an order",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "username": ["u", "u", "u", "u"],
-        "timestamp": [1, 1, 2, 3],
-        "website": ["a", "b", "z", "z"]
-      },
-      "expected": ["a", "z", "z"],
-      "tags": ["trial", "equal-timestamps", "strict-order", "regression"]
-    },
-    {
       "id": "trial-equal-timestamps-across-users",
       "name": "different users may visit at the same timestamps",
       "kind": "trial",

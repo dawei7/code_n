@@ -63,7 +63,7 @@ This is the standard BFS layer invariant:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `step` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Although the variable is named `pq`, it is a normal Python list, not a priority 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Layer-by-layer candidate sorting:** Collect el:** - **Layer-by-layer candidate sorting:** Collect eligible items in one BFS distance layer, sort that layer by price, row, and column, and stop after collecting `k`. This can avoid exploring and sorting farther layers once enough results are known, but it is not the exact source.
+- **Layer-by-layer candidate sorting:** Collect eligible items in one BFS distance layer, sort that layer by price, row, and column, and stop after collecting `k`. This can avoid exploring and sorting farther layers once enough results are known, but it is not the exact source.
 - **Priority queue over ranking keys:** A heap can combine exploration and ranking, but ordinary BFS plus one sort is simpler because distance is already generated in layers.
 - **Separate visited matrix:** This preserves `grid` at the cost of $O(mn)$ additional booleans. The exact code reuses zero as a visited marker.
 - **Manhattan distance:** Walls may force detours or make a cell unreachable, so coordinate distance alone is incorrect.
@@ -121,8 +121,8 @@ Although the variable is named `pq`, it is a normal Python list, not a priority 
 - **Mark when enqueued:** This ensures one queue entry and one candidate tuple per cell, even when several shortest paths reach it.
 - **Grid mutation:** All reachable positive cells become zero, including item prices. Callers needing the original map must provide a copy.
 - **Direction construction:** `pairwise` over the five-number tuple yields exactly four orthogonal moves and no diagonal move.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `t` is the current prefix.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ At each position, the loop considers `j` in increasing numeric order. A choice i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all permutations then filter:** It ex:** - **Generate all permutations then filter:** It explores every one of $n!$ leaves even when parity fails near the front. Immediate pruning avoids most invalid branches.
+- **Generate all permutations then filter:** It explores every one of $n!$ leaves even when parity fails near the front. Immediate pruning avoids most invalid branches.
 - **Choose from separate odd/even lists:** Alternating between parity pools can reduce candidate scans, but numeric merge order must be handled carefully to preserve lexicographic output.
 - **Sort results afterward:** It is unnecessary because ascending candidate order already emits lexicographically.
 - **Odd \(n\):** There is one extra odd number, so complete solutions start with odd. Even-start branches die naturally.
@@ -96,8 +96,8 @@ At each position, the loop considers `j` in increasing numeric order. A choice i
 - **Visited restoration:** Failing to clear `vis[j]` after recursion would incorrectly ban that number from sibling branches.
 - **Parity restoration:** Popping `t` restores the previous last value, so sibling legality checks use the correct prefix.
 - **Complexity terminology:** Output size is substantial, but the exact nested candidate scans also visit prefixes that never become outputs; they should be included in a literal runtime analysis.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

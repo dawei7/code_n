@@ -6,9 +6,9 @@ You are given a positive integer `k`. You are also given a 2D array `queries`, w
 
 - $\text{queries}[i] = [x, y]$: Build an obstacle at coordinate `(x, y)` in the plane. It is guaranteed that there is **no** obstacle at this coordinate when this query is made.
 
-After each query, you need to find the **distance** of the $$k^{\text{th}}$$ **nearest** obstacle from the origin.
+After each query, you need to find the **distance** of the $k^{\text{th}}$ **nearest** obstacle from the origin.
 
-Return an integer array `results` where $\text{results}[i]$ denotes the $$k^{\text{th}}$$ nearest obstacle after query `i`, or $\text{results}[i] = -1$ if there are less than `k` obstacles.
+Return an integer array `results` where $\text{results}[i]$ denotes the $k^{\text{th}}$ nearest obstacle after query `i`, or $\text{results}[i] = -1$ if there are less than `k` obstacles.
 
 ### 2. Function Contract
 

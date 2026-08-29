@@ -1,6 +1,6 @@
 ### 1. Description
 
-Due to a bug, there are many duplicate folders in a file system. You are given a 2D array `paths`, where $\text{paths}[i]$ is an array representing an absolute path to the $$i^{\text{th}}$$ folder in the file system.
+Due to a bug, there are many duplicate folders in a file system. You are given a 2D array `paths`, where $\text{paths}[i]$ is an array representing an absolute path to the $i^{\text{th}}$ folder in the file system.
 
 - For example, `["one", "two", "three"]` represents the path `"/one/two/three"`.
 

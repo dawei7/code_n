@@ -4,11 +4,11 @@ A city's **skyline** is the outer contour of the silhouette formed by all the bu
 
 The geometric information of each building is given in the array `buildings` where $\text{buildings}[i] = [\text{left}_{i}, \text{right}_{i}, \text{height}_{i}]$:
 
-- $\text{left}_{i}$ is the x coordinate of the left edge of the $$i^{\text{th}}$$ building.
+- $\text{left}_{i}$ is the x coordinate of the left edge of the $i^{\text{th}}$ building.
 
-- $\text{right}_{i}$ is the x coordinate of the right edge of the $$i^{\text{th}}$$ building.
+- $\text{right}_{i}$ is the x coordinate of the right edge of the $i^{\text{th}}$ building.
 
-- $\text{height}_{i}$ is the height of the $$i^{\text{th}}$$ building.
+- $\text{height}_{i}$ is the height of the $i^{\text{th}}$ building.
 
 You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height `0`.
 

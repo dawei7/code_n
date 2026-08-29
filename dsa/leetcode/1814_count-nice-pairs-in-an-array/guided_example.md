@@ -81,7 +81,7 @@ For input zero, the loop runs zero times and returns zero.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `rev(x)` starts `y = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Only signature equality matters; two different original values can and often do 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Streaming hash count:** Add the previous frequ:** - **Streaming hash count:** Add the previous frequency before incrementing each signature. It avoids a separate final combination pass but has the same bounds.
+- **Streaming hash count:** Add the previous frequency before incrementing each signature. It avoids a separate final combination pass but has the same bounds.
 - **Check every pair:** Direct equation testing costs $O(n^2)$ and is too slow.
 - **Sort signatures:** Equal runs can be counted after $O(n\log n)$ sorting, slower than expected-linear hashing.
 - **String reversal:** Converting to text is valid but numeric reversal makes dropped trailing zeros explicit.
@@ -134,8 +134,8 @@ Only signature equality matters; two different original values can and often do 
 - **Modulo timing:** Applying it once at the end is safe in Python.
 - **Index order:** Each unordered combination corresponds to exactly one ordered condition $i<j$.
 - **Input preservation:** The helper consumes only its local copy of each integer; `nums` is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

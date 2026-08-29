@@ -4,7 +4,7 @@ We build a table of `n` rows (**1-indexed**). We start by writing `0` in the $1^
 
 - For example, for $n = 3$, the $1^st$ row is `0`, the $2^nd$ row is `01`, and the $3^rd$ row is `0110`.
 
-Given two integer `n` and `k`, return the $$k^{\text{th}}$$ (**1-indexed**) symbol in the $$n^{\text{th}}$$ row of a table of `n` rows.
+Given two integer `n` and `k`, return the $k^{\text{th}}$ (**1-indexed**) symbol in the $n^{\text{th}}$ row of a table of `n` rows.
 
 ### 2. Function Contract
 

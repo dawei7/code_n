@@ -61,7 +61,7 @@ This is path compression. Future searches from those nodes become shorter becaus
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `p = list(range(n))` creates `[0, 1, ..., n - 1]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ finds the current roots and makes `a`'s root point to `b`'s root. If both alread
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy representative scan:** Compare each new:** - **Greedy representative scan:** Compare each new index with earlier representatives and count it only if none match. This can use constant extra space and matches the manifest summary.
+- **Greedy representative scan:** Compare each new index with earlier representatives and count it only if none match. This can use constant extra space and matches the manifest summary.
 - **Build an adjacency graph plus DFS:** It is correct but may store `O(n^2)` edges when all elements share one category.
 - **Union by size or rank:** It provides stronger balancing guarantees alongside path compression. The exact source does not implement it.
 - **All elements share one category:** Every positive union eventually leaves one root.
@@ -120,8 +120,8 @@ finds the current roots and makes `a`'s root point to `b`'s root. If both alread
 - **Handler-call cost:** If the interface call itself is expensive, the unavoidable quadratic number of calls is the main cost.
 - **Recursive `find` depth:** Without rank balancing, an unfortunate forest may deepen; path compression shortens paths once searched.
 - **Manifest mismatch:** Actual source uses `O(n)` parent storage and DSU rather than a constant-space earlier-match test.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

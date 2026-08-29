@@ -63,7 +63,7 @@ Thus the group values may be assigned arbitrarily to the original indices belong
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within one group, consecutive sorted values are connected by... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ Duplicates are handled as separate `(value,index)` pairs. Their ordering among t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Union-find over all value pairs:** Connecting :** - **Union-find over all value pairs:** Connecting every directly swappable pair is quadratic. Sorted consecutive gaps reveal the same components efficiently.
+- **Union-find over all value pairs:** Connecting every directly swappable pair is quadratic. Sorted consecutive gaps reveal the same components efficiently.
 - **Map values to group queues:** Another method groups sorted values and pops the smallest group value while scanning original indices.
 - **Sort the entire array blindly:** Incorrect when a gap greater than `limit` separates unreachable components.
 - **Large endpoint difference inside a group:** It is still reachable through a chain of intermediate values.
@@ -131,8 +131,8 @@ Duplicates are handled as separate `(value,index)` pairs. Their ordering among t
 - **Component indices need not be adjacent:** Swaps may choose any two array indices; connectivity depends on current values, so one component can occupy scattered original positions.
 - **Assignment exchange proof:** If two component indices $p<q$ receive values $u>v$, exchanging them makes the first changed position smaller and therefore strictly improves lexicographic order.
 - **Returned array is fresh:** Writing into `ans` preserves the original input while ensuring each index is assigned exactly once by its component.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ This initialization lets one loop handle the first item without separate indexin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mi` is initialized to positive infinity and `ans` to -1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ If `x <= mi`, no positive difference ending here can exist. The value becomes th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every index pair:** Direct but takes $O(:** - **Check every index pair:** Direct but takes $O(N^2)$ time.
+- **Check every index pair:** Direct but takes $O(N^2)$ time.
 - **Suffix maximum for each earlier index:** Also linear with an array, but uses $O(N)$ space when one rolling prefix minimum suffices.
 - **Sort the values:** Incorrect because sorting destroys the required index order.
 - **Strictly decreasing array:** No current value exceeds its prefix minimum, so return -1.
@@ -108,8 +108,8 @@ If `x <= mi`, no positive difference ending here can exist. The value becomes th
 - **Several equal minima:** Any occurrence gives the same numerical candidate, and the earliest/later identity is irrelevant.
 - **Answer sentinel:** -1 remains only when no positive valid difference exists.
 - **Input preservation:** The scan performs no sorting or writes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

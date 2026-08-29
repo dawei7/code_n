@@ -65,11 +65,7 @@ For `k = 7`, the pair advances through `(1, 2)`, `(2, 3)`, `(3, 5)`, and `(5, 8)
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variables start as:
-
-
-
-At every iteration of the first l... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +116,7 @@ the algorithm uses that Fibonacci number once and reduces the remaining target. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store all Fibonacci numbers:** Generate a list:** - **Store all Fibonacci numbers:** Generate a list through $k$, then traverse it backward greedily. It has the same $O(\log k)$ time but uses $O(\log k)$ space and is simpler to visualize.
+- **Store all Fibonacci numbers:** Generate a list through $k$, then traverse it backward greedily. It has the same $O(\log k)$ time but uses $O(\log k)$ space and is simpler to visualize.
 - **Repeated binary search:** After each subtraction, binary-search a stored Fibonacci list for the next largest fitting value. It works but adds machinery when a single descending pass already visits candidates in order.
 - **Dynamic programming over all totals:** A coin-change DP can find a minimum count, but $k$ can be $10^9$, making $O(k)$ time and space impractical.
 - **Breadth-first search of sums:** Exploring every reachable sum by number of terms also grows with $k$ and ignores the Fibonacci structure.
@@ -130,8 +126,8 @@ the algorithm uses that Fibonacci number once and reduces the remaining target. 
 - **Remainder skips an adjacent Fibonacci:** After selecting $F_i$, the remainder is below $F_{i-1}$, so the next candidate cannot be selected.
 - **Duplicate Fibonacci one:** Although the mathematical sequence begins with two ones, they represent the same usable value. The greedy sum never requires taking both copies.
 - **Large target:** Only logarithmically many Fibonacci values are generated for `k <= 10^9`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

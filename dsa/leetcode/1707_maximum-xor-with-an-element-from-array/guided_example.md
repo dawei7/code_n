@@ -64,7 +64,7 @@ The preserved query index `i` is used to write `ans[i]`, restoring original orde
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `nums.sort()` arranges candidate values from smallest to lar... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Duplicate numbers follow an already existing path and create no new nodes. That 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute force per query:** Test every `nums` val:** - **Brute force per query:** Test every `nums` value no greater than `m` and keep the best XOR. It is simple but costs $O(NQ)$.
+- **Brute force per query:** Test every `nums` value no greater than `m` and keep the best XOR. It is simple but costs $O(NQ)$.
 - **Persistent trie:** Build versions by sorted value and choose the version for each limit. It supports other query orders but uses more complex versioned storage.
 - **Balanced ordered set alone:** Numeric closeness does not determine XOR maximum, so ordinary predecessor or successor queries are insufficient.
 - **All numbers exceed `m`:** The trie is empty for that query and `search` returns `-1`.
@@ -123,8 +123,8 @@ Duplicate numbers follow an already existing path and create no new nodes. That 
 - **Input mutation:** `nums.sort()` permanently reorders the provided number list; `queries` itself is not mutated.
 - **Fixed bit width:** The loop is correct for the stated nonnegative values up to $10^9$; larger values would require increasing the highest bit.
 - **Empty internal branch:** Search falls back to the same-bit child, accepting a zero XOR bit when a one is impossible.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

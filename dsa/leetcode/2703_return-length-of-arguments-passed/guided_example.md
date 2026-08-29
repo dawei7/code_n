@@ -63,9 +63,7 @@ The name `args` is local to this invocation.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The function signature is `function(...args)`.
-
-JavaScript r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ No loop, type test, serialization, or inspection of argument contents is needed.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Return `arguments.length`:** Avoids naming a r:** - **Return `arguments.length`:** Avoids naming a rest array and reports the same count in a normal function.
+- **Return `arguments.length`:** Avoids naming a rest array and reports the same count in a normal function.
 - **Loop over `args`:** Correct but unnecessary because the array already stores its length.
 - **Count truthy values:** Incorrect because falsy supplied values still count.
 - **No arguments:** Returns zero.
@@ -115,8 +113,8 @@ No loop, type test, serialization, or inspection of argument contents is needed.
 - **Object argument:** Its number of keys is irrelevant.
 - **Repeated references:** Every supplied position counts even if several positions reference the same object.
 - **Return type:** Always a nonnegative integer Number.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

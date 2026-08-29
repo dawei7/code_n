@@ -57,7 +57,7 @@ If `cnt[x] == 0`, that occurrence is already fully accounted for, so the loop co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop still iterates through every entry of the sorted li... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The order of decrementing matters for zero. When `x=0`, its double is also zero.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting-array scan:** Values are bounded by $:** - **Counting-array scan:** Values are bounded by $10^5$, so frequencies can be processed from zero upward in $O(N+V)$ time and $O(V)$ space.
+- **Counting-array scan:** Values are bounded by $10^5$, so frequencies can be processed from zero upward in $O(N+V)$ time and $O(V)$ space.
 - **Unsorted counter iteration:** Unsafe because deciding whether a value is original or a double requires magnitude order.
 - **Backtracking pair choices:** Exponential ambiguity is unnecessary once the smallest remaining value is chosen.
 - **Odd changed length:** Cannot be split into pairs and eventually returns empty.
@@ -111,8 +111,8 @@ The order of decrementing matters for zero. When `x=0`, its double is also zero.
 - **Bit shift:** `x << 1` is exactly twice `x` for these nonnegative integers.
 - **Input side effect:** The exact source sorts `changed` in place.
 - **Environment import:** The solution assumes `Counter` is available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

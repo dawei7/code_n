@@ -61,7 +61,7 @@ Consider `nums = [1, 2, 1, 3, 4, 3]`. The last positions are 2 for value 1, 1 fo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `j` is the farthest last occurrence of any value se... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The implementation calculates this value with `pow(2, k - 1, 1_000_000_007)`. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every cut combination:** There are $2^{N-1:** - **Try every cut combination:** There are $2^{N-1}$ raw ways to place boundaries, so validating all of them is infeasible.
+- **Try every cut combination:** There are $2^{N-1}$ raw ways to place boundaries, so validating all of them is infeasible.
 - **Explicit interval sorting and merging:** Building first/last intervals and sorting them works, but array scan order already presents first encounters in order, allowing an $O(N)$ merge without sorting.
 - **Frequency countdown:** One can track counts remaining and the number of active values. This is valid but needs more changing state than the farthest-last-index invariant.
 - **All values distinct:** Every occurrence interval has length zero, so every index closes a component. With $k=N$, all $2^{N-1}$ boundary selections are valid.
@@ -115,8 +115,8 @@ The implementation calculates this value with `pow(2, k - 1, 1_000_000_007)`. Th
 - **Chained overlaps:** Even if the first and last intervals do not directly overlap, intermediate intervals can extend `j` repeatedly and correctly merge the entire chain.
 - **Modulo arithmetic:** Only the final count modulo $10^9+7$ is requested. Modular `pow` preserves the correct residue without forming $2^{k-1}$ explicitly.
 - **Input order:** Sorting would destroy contiguity and the original occurrence intervals, so the solution scans the array as given.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

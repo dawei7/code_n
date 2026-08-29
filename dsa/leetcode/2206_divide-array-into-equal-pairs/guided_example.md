@@ -57,7 +57,7 @@ For `[3,2,3,2,2,2]`, the counter records two threes and four twos.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(nums)` creates one mapping entry per distinct integ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ If all counts are even, value `x` with count $2q$ forms $q$ equal pairs. Doing t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Toggle a hash set:** Add a value on its first :** - **Toggle a hash set:** Add a value on its first unmatched occurrence and remove it on the next. The array is pairable exactly when the final set is empty.
+- **Toggle a hash set:** Add a value on its first unmatched occurrence and remove it on the next. The array is pairable exactly when the final set is empty.
 - **Fixed parity array:** Toggle one boolean per value from one through 500, using constant domain space.
 - **Sort and compare adjacent pairs:** Sorting groups equal values but costs $O(m\log m)$ time and may mutate the input.
 - **XOR all elements:** A zero XOR does not prove every value has even frequency because bit patterns from different values can cancel.
@@ -108,8 +108,8 @@ If all counts are even, value `x` with count $2q$ forms $q$ equal pairs. Doing t
 - **Input preservation:** Counter construction reads but does not reorder or mutate `nums`.
 - **Expected hash behavior:** Counter operations are expected constant time.
 - **No explicit pair construction:** The existence proof is sufficient because only a boolean is returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

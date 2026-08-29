@@ -79,7 +79,7 @@ After the update, `ans.append(x == 0)` adds a Boolean for the prefix that now in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `P = 5q + r`, where `r` is the remainder and therefo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ For a trace that demonstrates remainder reuse, consider prefix value `13`, whose
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build every full prefix integer:** This follow:** - **Build every full prefix integer:** This follows the same recurrence but omits the per-step modulo. It is mathematically simple, yet it overflows fixed-width types and makes Python arithmetic progressively more expensive. Retaining only the remainder is both safer and more efficient.
+- **Build every full prefix integer:** This follows the same recurrence but omits the per-step modulo. It is mathematically simple, yet it overflows fixed-width types and makes Python arithmetic progressively more expensive. Retaining only the remainder is both safer and more efficient.
 - **Convert each prefix slice independently:** Joining `nums[0..i]` into text and parsing it repeats almost all earlier work for every index, leading to quadratic total input processing and many temporary objects.
 - **Use decimal divisibility rules:** Rules based on the final decimal digit do not apply directly to a binary digit stream. The modular recurrence works in any base and uses the actual base-two construction.
 - **Store a table of five transitions:** A small table could map each pair of current remainder and next bit to the next remainder. That is equivalent to the formula and can remove arithmetic, but it is less transparent and does not improve the asymptotic bounds.
@@ -133,8 +133,8 @@ For a trace that demonstrates remainder reuse, consider prefix value `13`, whose
 - **Long input:** Even at the maximum length of `10^5`, `x` never exceeds four after an iteration. The method's numeric state is completely independent of the potentially enormous full prefix.
 - **Why equality with zero is enough:** There is no need to test `x % 5` again when appending. The assignment has already reduced `x` into the canonical remainder range.
 - **Order of operations:** The modulo must apply after appending the new bit. Reducing the old `x` is already implicit in the invariant, but testing before the update would report divisibility for the previous prefix rather than the current one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

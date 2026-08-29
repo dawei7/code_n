@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given an integer array `nums` which is sorted in **ascending order** and all of its elements are **unique** and given also an integer `k`, return the $$k^{\text{th}}$$ missing number starting from the leftmost number of the array.
+Given an integer array `nums` which is sorted in **ascending order** and all of its elements are **unique** and given also an integer `k`, return the $k^{\text{th}}$ missing number starting from the leftmost number of the array.
 
 ### 2. Function Contract
 

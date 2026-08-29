@@ -51,7 +51,7 @@ where the conceptual prefix before the array, at index $-1$, has sum zero.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | where the conceptual prefix before the array, at index $-1$,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ where the conceptual prefix before the array, at index $-1$, has sum zero.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full prefix array:** It makes formulas explici:** - **Full prefix array:** It makes formulas explicit but uses $O(n)$ space and still needs remainder minima.
+- **Full prefix array:** It makes formulas explicit but uses $O(n)$ space and still needs remainder minima.
 - **Enumerate all subarrays:** It costs $O(n^2)$ even with prefix sums.
 - **Fixed-length sliding windows:** Legal lengths include every multiple of `k`, not just one length.
 - **`k=1`:** Every nonempty subarray is legal; the recurrence becomes the standard maximum-subarray prefix-minimum method.
@@ -103,8 +103,8 @@ where the conceptual prefix before the array, at index $-1$, has sum zero.
 - **Tied minima:** Keeping one numeric minimum is enough.
 - **Input preservation:** Only a running sum and separate table are updated.
 - **Import requirements:** `inf` and `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

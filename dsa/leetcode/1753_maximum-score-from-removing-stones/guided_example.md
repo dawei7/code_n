@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are playing a solitaire game with **three piles** of stones of sizes `a`​​​​​​, `b`,​​​​​​ and `c`​​​​​​ respectively. Each turn you choose two **different non-empty **piles, take one stone from each, and add `1` point to your score. The game stops when there are **fewer than two non-empty** piles (meaning there are no more available moves).
+You are playing a solitaire game with **three piles** of stones of sizes `a`, `b`, and `c` respectively. Each turn you choose two **different non-empty **piles, take one stone from each, and add `1` point to your score. The game stops when there are **fewer than two non-empty** piles (meaning there are no more available moves).
 
 The objective is to compute `6` from `{"a": 2, "b": 4, "c": 6}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ An exchange argument supports the greedy choice. Consider any state sorted as $x
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The only way to lose future scoring opportunities is to leav... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The exact source does not calculate this formula; it realizes the same optimum o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form bound:** Return $\min(\lfloor T/2\:** - **Closed-form bound:** Return $\min(\lfloor T/2\rfloor,T-M)$ in $O(1)$ time and space. It is asymptotically faster than the exact simulation.
+- **Closed-form bound:** Return $\min(\lfloor T/2\rfloor,T-M)$ in $O(1)$ time and space. It is asymptotically faster than the exact simulation.
 - **Max heap:** Repeatedly pop the two largest piles and push decremented sizes. It generalizes to more piles but adds machinery for exactly three.
 - **Choose arbitrary non-empty piles:** It can exhaust small partners too soon and strand avoidable stones in a large pile.
 - **Two equal largest piles:** Pairing them is immediately safe and keeps their sizes balanced.
@@ -134,8 +134,8 @@ The exact source does not calculate this formula; it realizes the same optimum o
 - **Large pile sizes:** The simulation can perform up to roughly 150000 iterations under the constraints, unlike the constant-time formula.
 - **Input values:** They are copied into `s`, so the integer arguments themselves are not mutated.
 - **Pile identity:** Sorting is valid because the objective and legal move depend only on current sizes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

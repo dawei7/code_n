@@ -66,9 +66,7 @@ The current element belongs to neither side. The update order makes that fact ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each index, the operations occur in this exact order:
-
-1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,9 +110,9 @@ Thus the comparison at every index uses precisely the two sums named in the prob
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-sum array:** Build cumulative sums, the:** - **Prefix-sum array:** Build cumulative sums, then compute each left and right side in constant time. This also takes `O(n)` time but uses `O(n)` additional storage. The two-running-sum method retains only the information needed at the current index.
-- **- **Recompute both sides for each index:** Summing:** - **Recompute both sides for each index:** Summing slices or loops around every candidate is easy to describe but costs `O(n^2)` time and may allocate temporary slices. Most additions are needlessly repeated.
-- **- **Use the equation `2 * left + nums[i] == total`:** - **Use the equation `2 * left + nums[i] == total`:** This algebraic form is equivalent because `right = total - left - nums[i]`. It can reduce the maintained state to a total and a left sum. The exact solution’s explicit right sum closely mirrors the problem definition.
+- **Prefix-sum array:** Build cumulative sums, then compute each left and right side in constant time. This also takes `O(n)` time but uses `O(n)` additional storage. The two-running-sum method retains only the information needed at the current index.
+- **Recompute both sides for each index:** Summing slices or loops around every candidate is easy to describe but costs `O(n^2)` time and may allocate temporary slices. Most additions are needlessly repeated.
+- **Use the equation `2 * left + nums[i] == total`:** This algebraic form is equivalent because `right = total - left - nums[i]`. It can reduce the maintained state to a total and a left sum. The exact solution’s explicit right sum closely mirrors the problem definition.
 
 ---
 

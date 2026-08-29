@@ -32,7 +32,7 @@ Return a string of length $n$ in which every consonant remains at its original i
 
 - **Output:** "leetcedo"
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Vowels in the string are `['e', 'e', 'o', 'e']` with frequencies: $e = 3$, $o = 1$.
 
@@ -44,7 +44,7 @@ Return a string of length $n$ in which every consonant remains at its original i
 
 - **Output:** "aaaaoooiie"
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Vowels in the string are `['a', 'e', 'i', 'a', 'a', 'i', 'o', 'o', 'o', 'a']` with frequencies: $a = 4$, $o = 3$, $i = 2$, $e = 1$.
 

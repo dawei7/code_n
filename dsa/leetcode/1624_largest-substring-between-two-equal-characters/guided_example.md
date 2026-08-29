@@ -67,7 +67,7 @@ Crucially, the dictionary entry is not updated after a repeated occurrence. Supp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `d` maps each character already seen to its f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Another equivalent perspective is to focus on one character. Its longest possibl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force all index pairs:** Test every $L<R:** - **Brute-force all index pairs:** Test every $L<R$ and update the answer when `s[L] == s[R]`. This is direct and correct, but it performs $O(n^2)$ comparisons instead of using the earliest-occurrence observation.
+- **Brute-force all index pairs:** Test every $L<R$ and update the answer when `s[L] == s[R]`. This is direct and correct, but it performs $O(n^2)$ comparisons instead of using the earliest-occurrence observation.
 - **First and last occurrence arrays:** With 26 lowercase letters, two fixed arrays can record each letter's first and last indices. A second pass computes every distance. This is also $O(n)$ time and $O(1)$ space, but the one-pass dictionary updates the answer immediately.
 - **Use `str.find` and `str.rfind` for each letter:** Calling both for every one of 26 fixed letters is still $O(n)$ under the fixed alphabet. It is concise but scans the same string repeatedly and is less adaptable to a larger alphabet.
 - **Store every occurrence index:** This uses unnecessary $O(n)$ space. Only the first occurrence is needed because it dominates all later left boundaries for every future right endpoint.
@@ -122,8 +122,8 @@ Another equivalent perspective is to focus on one character. Its longest possibl
 - **A one-character string:** It contains no pair, so the initialized `-1` is correct.
 - **Do not include the boundary characters:** Using `i - d[c] + 1` would measure the whole bounded substring; using `i - d[c]` would still be one too large. The required interior is `i - d[c] - 1`.
 - **Lexicographic concerns are irrelevant here:** The result asks only for maximum length. If several pairs have the same length, there is no need to retain their positions or choose among their contents.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

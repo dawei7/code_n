@@ -61,10 +61,7 @@ This represents consuming exactly one liter and traveling the fixed mileage. The
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | On each iteration:
-
-- increment `cur` by one;
-- add ten to `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +100,7 @@ If the reserve is empty, no transfer occurs. A later multiple of five cannot res
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form transfer count:** Compute the thre:** - **Closed-form transfer count:** Compute the threshold formula and return ten times initial fuel plus transfers; this truly uses $O(1)$ operations.
+- **Closed-form transfer count:** Compute the threshold formula and return ten times initial fuel plus transfers; this truly uses $O(1)$ operations.
 - **Simulate five-liter chunks:** Can reduce iterations while preserving trigger semantics, but must handle the last partial chunk carefully.
 - **Initial main tank below five:** No transfer trigger is reached, so distance is ten times `mainTank`.
 - **Reserve empty:** The source constraints make it positive, but with zero reserve no transfer would occur.
@@ -113,8 +110,8 @@ If the reserve is empty, no transfer occurs. A later multiple of five cannot res
 - **Immediate trigger timing:** Transfer occurs after the fifth liter is consumed, even if the main tank just became empty.
 - **No strategic choices:** Consuming every available liter is always optimal.
 - **Manifest mismatch:** The exact code is a per-liter simulation, not a closed-form computation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

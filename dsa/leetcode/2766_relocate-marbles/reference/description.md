@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** integer array `nums` representing the initial positions of some marbles. You are also given two **0-indexed **integer arrays `moveFrom` and `moveTo` of **equal** length.
 
-Throughout `moveFrom.length` steps, you will change the positions of the marbles. On the $$i^{\text{th}}$$ step, you will move **all** marbles at position $\text{moveFrom}[i]$ to position $\text{moveTo}[i]$.
+Throughout `moveFrom.length` steps, you will change the positions of the marbles. On the $i^{\text{th}}$ step, you will move **all** marbles at position $\text{moveFrom}[i]$ to position $\text{moveTo}[i]$.
 
 After completing all the steps, return *the sorted list of **occupied** positions*.
 
@@ -55,4 +55,4 @@ Since 2 is the only occupied position, we return [2].
 
 - $1 \le \text{nums}[i], \text{moveFrom}[i], \text{moveTo}[i] \le 10^{9}$
 
-- The test cases are generated such that there is at least a marble in $\text{moveFrom}[i]$ at the moment we want to apply the $$i^{\text{th}}$$ move.
+- The test cases are generated such that there is at least a marble in $\text{moveFrom}[i]$ at the moment we want to apply the $i^{\text{th}}$ move.

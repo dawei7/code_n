@@ -74,10 +74,7 @@ Because the list is sorted, `b \ge a` for each adjacent pair `(a,b)`. The source
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the sorted values are
-
-$$
-a_0 \le a_1 \le \cdots \le... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +113,7 @@ The manifest summary says the method “builds and sorts the distinct values.”
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair:** Checking all value pairs:** - **Compare every pair:** Checking all value pairs in one window costs `O(k^4)` time. Sorting reduces the relevant comparisons to adjacent gaps.
+- **Compare every pair:** Checking all value pairs in one window costs `O(k^4)` time. Sorting reduces the relevant comparisons to adjacent gaps.
 - **Build a set before sorting:** Sorting `set(nums)` directly represents distinct values and can reduce work when duplicates are common. The exact source sorts all occurrences and filters equal neighbors instead.
 - **Balanced ordered multiset across sliding windows:** One could update value frequencies as a window shifts and maintain adjacent distinct gaps. Extending this efficiently across both row and column movement is more complex, and the small `30 \times 30` limits make independent sorting reasonable.
 - **Counting array:** With values bounded to a small dense range, frequency counts could find adjacent distinct values without comparison sorting. The allowed range from `-10^5` to `10^5` is manageable but much larger than a window, and repeated initialization needs care.
@@ -130,8 +127,8 @@ The manifest summary says the method “builds and sorts the distinct values.”
 - **Input preservation:** Values are copied before sorting; the original grid order never changes.
 - **Absolute value after sorting:** It is redundant but harmless because adjacent sorted values never decrease.
 - **Output dimensions:** Allocating `m-k+1` rows and `n-k+1` columns exactly matches the number of top-left positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

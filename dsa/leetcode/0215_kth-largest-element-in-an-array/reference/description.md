@@ -1,8 +1,8 @@
 ### 1. Description
 
-Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$ *largest element in the array*.
+Given an integer array `nums` and an integer `k`, return *the* $k^{\text{th}}$ *largest element in the array*.
 
-Note that it is the $$k^{\text{th}}$$ largest element in the sorted order, not the $$k^{\text{th}}$$ distinct element.
+Note that it is the $k^{\text{th}}$ largest element in the sorted order, not the $k^{\text{th}}$ distinct element.
 
 Can you solve it without sorting?
 

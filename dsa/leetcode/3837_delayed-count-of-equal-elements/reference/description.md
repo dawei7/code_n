@@ -94,7 +94,7 @@ Return the length-$N$ array containing the delayed count for every original inde
 	</tbody>
 </table>
 
-Thus, $ans = [2, 0, 0, 0]$​​​​​​​.
+Thus, $ans = [2, 0, 0, 0]$.
 
 #### Example 2
 
@@ -151,7 +151,7 @@ Thus, $ans = [2, 0, 0, 0]$​​​​​​​.
 	</tbody>
 </table>
 
-Thus, $ans = [1, 1, 0, 0]$​​​​​​​.
+Thus, $ans = [1, 1, 0, 0]$.
 
 ### 4. Constraints
 

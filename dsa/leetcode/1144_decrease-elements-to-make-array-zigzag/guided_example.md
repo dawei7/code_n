@@ -70,7 +70,7 @@ For example, if a candidate valley has value seven with neighbors five and three
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `j` is intended to be a valley.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ It is also important that the calculation always compares against the original `
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modify a copy for each orientation:** This can:** - **Modify a copy for each orientation:** This can work, but copying and mutating arrays uses `O(n)` extra space. Independent cost calculation obtains the same result without constructing the final arrays.
+- **Modify a copy for each orientation:** This can work, but copying and mutating arrays uses `O(n)` extra space. Independent cost calculation obtains the same result without constructing the final arrays.
 - **Greedily repair comparisons from left to right:** A local change can commit to one orientation implicitly or alter a value needed by the next comparison. Evaluating the two valley parities directly avoids that ambiguity.
 - **Add left and right reductions:** Both constraints apply to the same valley value. The larger required reduction satisfies both, so summing them overcounts moves.
 - **Try to increase peaks:** Increasing is not an allowed move. Decreasing the alternating valley positions is sufficient to establish every strict comparison.
@@ -119,8 +119,8 @@ It is also important that the calculation always compares against the original `
 - **A valley already below both neighbors:** Both computed requirements are nonpositive, `d` remains zero, and no unnecessary move is counted.
 - **Boundary valleys:** Index zero has only a right constraint and index `n - 1` has only a left constraint. The boundary checks apply exactly the existing comparison.
 - **Shared peak:** Two same-parity valleys may border the same peak. Lowering either one only strengthens its comparison with that peak, so their costs remain independent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

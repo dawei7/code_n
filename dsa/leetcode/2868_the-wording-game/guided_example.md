@@ -51,7 +51,7 @@ A candidate word is legal when it is lexicographically greater than `w` and its 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A candidate word is legal when it is lexicographically great... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A candidate word is legal when it is lexicographically greater than `w` and its 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full minimax search:** Branching over every pl:** - **Full minimax search:** Branching over every playable word creates a huge game tree. Sorted-order dominance collapses those choices to the first legal move.
+- **Full minimax search:** Branching over every playable word creates a huge game tree. Sorted-order dominance collapses those choices to the first legal move.
 - **Binary search for a lexicographic successor:** It may find the first word greater than `w`, but first-letter eligibility still needs handling and the two pointers already make total scanning linear.
 - **Word too small:** Once a word is not greater than current `w`, it can never be legal after later, even greater played words.
 - **First-letter gap above one:** All subsequent sorted words are also too far ahead for the current turn, so that player will lose.
@@ -94,8 +94,8 @@ A candidate word is legal when it is lexicographically greater than `w` and its 
 - **Next first letter:** Lexicographic greaterness is automatic because the first differing character is already larger.
 - **One-word Alice list:** After her forced opening, she has no future move. She wins only if Bob cannot reply immediately.
 - **Distinct-word guarantee:** There is no equality across the combined lists, but the implementation's strict comparison would reject an equal word correctly even without that promise.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

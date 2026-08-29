@@ -61,7 +61,7 @@ This is the central simplification. Counting unrestricted simple paths in a gene
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the distance phase, consider an undirected edge betwee... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Although `dfs` is declared before `g`, `dist`, and `mod` are assigned, Python cl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra with a stale-entry guard:** Keep the :** - **Dijkstra with a stale-entry guard:** Keep the popped distance and skip the adjacency scan when it is not equal to `dist[u]`. This preserves the same results and attains the manifest's $O((n+E)\log n)$ time bound.
+- **Dijkstra with a stale-entry guard:** Keep the popped distance and skip the adjacency scan when it is not equal to `dist[u]`. This preserves the same results and attains the manifest's $O((n+E)\log n)$ time bound.
 - **Iterative DAG dynamic programming:** Sort nodes by increasing distance and accumulate path counts without recursion. It avoids recursion-depth risk while using the same distance orientation.
 - **Enumerate complete paths:** Backtracking through all decreasing choices repeats common suffixes and can take exponential time; memoization is essential.
 - **Run Dijkstra from node 1:** That computes distances to the wrong endpoint. The restriction compares shortest distances to node `n`, so the distance source must be `n`.
@@ -125,8 +125,8 @@ Although `dfs` is declared before `g`, `dist`, and `mod` are assigned, Python cl
 - **Connected graph guarantee:** Every `dist` becomes finite. No special unreachable-node behavior is needed.
 - **Deep decreasing chain:** The recursive DFS can reach depth $O(n)$; in Python, a sufficiently long chain may exceed the runtime's recursion limit. An iterative distance-ordered DP avoids that implementation hazard.
 - **Input preservation:** The method builds its own adjacency representation and never mutates `edges`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

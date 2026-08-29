@@ -64,4 +64,4 @@ Return the minimum number of permitted multiplication and division operations re
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $1 \le \text{nums}[i] \le 10^​​​​​​​9$
+- $1 \le \text{nums}[i] \le 10^9$

@@ -2,13 +2,13 @@
 
 On a campus represented on the X-Y plane, there are `n` workers and `m` bikes, with $n \le m$.
 
-You are given an array `workers` of length `n` where $\text{workers}[i] = [x_{i}, y_{i}]$ is the position of the $$i^{\text{th}}$$ worker. You are also given an array `bikes` of length `m` where $\text{bikes}[j] = [x_{j}, y_{j}]$ is the position of the $$j^{\text{th}}$$ bike. All the given positions are **unique**.
+You are given an array `workers` of length `n` where $\text{workers}[i] = [x_{i}, y_{i}]$ is the position of the $i^{\text{th}}$ worker. You are also given an array `bikes` of length `m` where $\text{bikes}[j] = [x_{j}, y_{j}]$ is the position of the $j^{\text{th}}$ bike. All the given positions are **unique**.
 
 Assign a bike to each worker. Among the available bikes and workers, we choose the $(\text{worker}_{i}, \text{bike}_{j})$ pair with the shortest **Manhattan distance** between each other and assign the bike to that worker.
 
 If there are multiple $(\text{worker}_{i}, \text{bike}_{j})$ pairs with the same shortest **Manhattan distance**, we choose the pair with **the smallest worker index**. If there are multiple ways to do that, we choose the pair with **the smallest bike index**. Repeat this process until there are no available workers.
 
-Return *an array *`answer`* of length *`n`*, where *$\text{answer}[i]$* is the index (**0-indexed**) of the bike that the *$$i^{\text{th}}$$* worker is assigned to*.
+Return *an array *`answer`* of length *`n`*, where *$\text{answer}[i]$* is the index (**0-indexed**) of the bike that the *$i^{\text{th}}$* worker is assigned to*.
 
 The **Manhattan distance** between two points `p1` and `p2` is $Manhattan(p1, p2) = |\text{p1.x} - \text{p2.x}| + |\text{p1.y} - \text{p2.y}|$.
 

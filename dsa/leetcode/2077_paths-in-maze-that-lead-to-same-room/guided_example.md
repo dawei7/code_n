@@ -66,7 +66,7 @@ Consider triangle rooms 1, 3, and 4. When `i = 1`, the pair `(3, 4)` occurs amon
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix a room `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ This matches the definition that cycles are considered the same when they visit 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Degree-oriented triangle counting:** Direct ev:** - **Degree-oriented triangle counting:** Direct every edge from the lower-degree endpoint toward the higher-degree endpoint, breaking ties consistently, and intersect forward neighborhoods. This can achieve the advertised $O(E^{3/2})$ style bound, but it requires orientation logic absent from the exact source.
+- **Degree-oriented triangle counting:** Direct every edge from the lower-degree endpoint toward the higher-degree endpoint, breaking ties consistently, and intersect forward neighborhoods. This can achieve the advertised $O(E^{3/2})$ style bound, but it requires orientation logic absent from the exact source.
 - **Adjacency matrix:** A matrix makes the closing-edge test constant time without hashing, but it consumes $O(n^2)$ space even for a sparse maze. Sets use storage proportional to the actual corridors.
 - **Triple enumeration of rooms:** Trying every room triple costs $O(n^3)$ and wastes work on triples with few or no corridors. Neighbor-pair enumeration narrows candidates to triples already known to contain two edges.
 - **Ordered neighbor pairs:** Iterating both `j, k` and `k, j` would count every triangle six times rather than three. `combinations(..., 2)` avoids that local duplication.
@@ -123,8 +123,8 @@ This matches the definition that cycles are considered the same when they visit 
 - **Set iteration order:** The order of neighbors in a set is irrelevant because every unordered pair is generated and only the final count matters.
 - **No duplicate corridors:** The input guarantee and set storage ensure a physical corridor cannot create duplicate adjacency entries or duplicate detections at one center.
 - **High-degree star:** It has no triangles but triggers many failed neighbor-pair checks. This is the concrete edge shape that exposes the exact implementation's $O(E^2)$ worst case.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

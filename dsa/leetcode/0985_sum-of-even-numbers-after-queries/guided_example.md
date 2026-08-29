@@ -63,7 +63,7 @@ Suppose a query is `[v, i]`. Only `nums[i]` changes. All other values retain bot
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Immediately before and immediately after every query, `s` eq... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Subtracting a negative even value is also correct. For example, if the running s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rescan after every query:** Update the index a:** - **Rescan after every query:** Update the index and sum all even values from scratch. It is easy to understand but costs `O(NQ)` time.
+- **Rescan after every query:** Update the index and sum all even values from scratch. It is easy to understand but costs `O(NQ)` time.
 - **Segment tree:** Maintain a tree of even contributions with point updates and a root sum. It supports each update in `O(\log N)` but is unnecessary because the required aggregate can be repaired in constant time.
 - **Track only parity changes:** One can derive cases from the parity of `v`, but the running sum still needs the old and new numeric values. Direct removal and addition is clearer.
 - **Negative even values:** They contribute negatively to `s`. Subtracting the old negative value and adding the new negative value follow normal arithmetic.
@@ -116,8 +116,8 @@ Subtracting a negative even value is also correct. For example, if the running s
 - **Odd-to-odd update:** Both conditionals skip the value, leaving `s` unchanged even though the stored number changes.
 - **Single-element array:** The invariant reduces to whether that one current value is even, and the same code produces one answer per query.
 - **Input mutation:** Callers that need the original `nums` afterward would have to pass a copy. The solution itself intentionally preserves the required cumulative query state in the given list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

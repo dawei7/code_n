@@ -23,7 +23,7 @@ Player $i$ wins when they have picked strictly more than $i$ balls of at least o
 **Inputs**
 
 - `n`: The player count, with $2\leq\texttt{n}\leq10$.
-- `pick`: Between $1$ and $100$ pairs `[player, color]`, where player identifiers lie in $[0,n-1]$ and colors lie in $[0,10]$.
+- `pick`: Between $1$ and $100$ pairs `[player, color]`, where player identifiers lie in $[0,n-1]$ and colors lie in `[0,10]`.
 
 Let $p=\lvert\texttt{pick}\rvert$.
 

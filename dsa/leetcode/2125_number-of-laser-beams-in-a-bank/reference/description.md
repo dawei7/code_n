@@ -1,12 +1,12 @@
 ### 1. Description
 
-Anti-theft security devices are activated inside a bank. You are given a **0-indexed** binary string array `bank` representing the floor plan of the bank, which is an `m x n` 2D matrix. $\text{bank}[i]$ represents the $$i^{\text{th}}$$ row, consisting of `'0'`s and `'1'`s. `'0'` means the cell is empty, while`'1'` means the cell has a security device.
+Anti-theft security devices are activated inside a bank. You are given a **0-indexed** binary string array `bank` representing the floor plan of the bank, which is an `m x n` 2D matrix. $\text{bank}[i]$ represents the $i^{\text{th}}$ row, consisting of `'0'`s and `'1'`s. `'0'` means the cell is empty, while`'1'` means the cell has a security device.
 
 There is **one** laser beam between any **two** security devices **if both** conditions are met:
 
 - The two devices are located on two **different rows**: $r_{1}$ and $r_{2}$, where $r_{1} < r_{2}$.
 
-- For **each** row `i` where $r_{1} < i < r_{2}$, there are **no security devices** in the $$i^{\text{th}}$$ row.
+- For **each** row `i` where $r_{1} < i < r_{2}$, there are **no security devices** in the $i^{\text{th}}$ row.
 
 Laser beams are independent, i.e., one beam does not interfere nor join with another.
 

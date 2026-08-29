@@ -68,7 +68,7 @@ This matches literal repeated string deletion without shifting indices.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Deleting an earlier letter can make a still earlier letter b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ After the full scan, every digit has been processed and the stack is exactly the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated string deletion:** It directly follow:** - **Repeated string deletion:** It directly follows the statement but can copy or shift $O(n)$ characters per operation, becoming quadratic.
+- **Repeated string deletion:** It directly follows the statement but can copy or shift $O(n)$ characters per operation, becoming quadratic.
 - **Two-pointer output buffer:** A preallocated character array with a write pointer is an equivalent stack.
 - **Store digit positions:** Unnecessary because digits are handled immediately in forced order.
 - **No digits:** Every letter remains and the original string is returned.
@@ -119,8 +119,8 @@ After the full scan, every digit has been processed and the stack is exactly the
 - **Digits are deleted implicitly:** They never enter the stack.
 - **Relative order of survivors:** Stack joining preserves their original order.
 - **Unicode digit behavior:** Irrelevant under the ASCII-like constrained alphabet.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,7 +55,7 @@ Every token is guaranteed to be either entirely lowercase letters or entirely di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every token is guaranteed to be either entirely lowercase le... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ After a successful comparison, `pre = cur` makes the current number the referenc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual digit parser:** Scan characters and bui:** - **Manual digit parser:** Scan characters and build numbers in place for $O(1)$ auxiliary state.
+- **Manual digit parser:** Scan characters and build numbers in place for $O(1)$ auxiliary state.
 - **Regular expression extraction:** Find all digit sequences, then compare them; concise but adds regex machinery and still stores matches.
 - **Lexicographic token comparison:** Incorrect for numbers with different digit counts.
 - **Equal consecutive numbers:** Return false because increasing is strict.
@@ -113,8 +113,8 @@ After a successful comparison, `pre = cur` makes the current number the referenc
 - **Mixed alphanumeric token:** Excluded by the input contract; first-character detection relies on that guarantee.
 - **Early failure:** No later token is processed once a violation is found.
 - **Input preservation:** The method does not modify `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

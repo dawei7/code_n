@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $$i^{\text{th}}$$ item. You are also given an integer `budget`.
+You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $i^{\text{th}}$ item. You are also given an integer `budget`.
 
 The objective is to compute `5` from `{"items": [[1, 6], [2, 4], [3, 5]], "budget": 19}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -88,7 +88,7 @@ Free copies received from different source types do not conflict. The same desti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose type $i$ has $d_i$ eligible destination indices.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +133,7 @@ This explains the source's cutoff `price > 2 * minimum_price`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Budget dynamic programming:** A $10^9$ budget :** - **Budget dynamic programming:** A $10^9$ budget makes capacity DP impossible. The boosted-unit decomposition removes budget from the state dimension.
+- **Budget dynamic programming:** A $10^9$ budget makes capacity DP impossible. The boosted-unit decomposition removes budget from the state dimension.
 - **Count one free copy for every repeated purchase forever:** Each ordered pair may be used once, so type $i$ has only `divisible_counts[factor_i] - 1` boosted units.
 - **Give one purchased copy several freebies:** The rule allows at most one free copy per purchased copy. The source assigns value two, not one plus every eligible destination, to each boosted unit.
 - **Sort by factor instead of price:** All boosted units are worth the same two copies, so price determines dominance.
@@ -146,8 +146,8 @@ This explains the source's cutoff `price > 2 * minimum_price`.
 - **Budget buys only part of a batch:** The remaining money cannot afford another unit at that price or any later price, making immediate ordinary fill optimal.
 - **Single item type:** Every boosted count is zero, and the result is simply `budget // minimum_price`.
 - **Very large budget:** All boosted capacities are exhausted, then the remaining amount buys unlimited cheapest ordinary copies.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ Another way to see the benefit is that a forward double magnifies all progress a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `target` is even and a double remains, the source returns... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `target = 10` with four available doubles, the path is $10\to5\to4\to2\to1$,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative backward greedy:** Repeatedly halve :** - **Iterative backward greedy:** Repeatedly halve even targets while budget remains, decrement odd targets, and finally add `target - 1`. This preserves the recurrence and time bound while eliminating recursion-stack space.
+- **Iterative backward greedy:** Repeatedly halve even targets while budget remains, decrement odd targets, and finally add `target - 1`. This preserves the recurrence and time bound while eliminating recursion-stack space.
 - **Breadth-first search from one:** BFS can find a shortest path but explores many scores and is infeasible near a target of $10^9$. The inverse operations expose a deterministic greedy path.
 - **Forward greedy doubling whenever possible:** Doubling too early can overshoot or leave costly increments. The backward view knows exactly whether the last operation can be a double.
 - **Dynamic programming over all scores:** Storing answers through `target` costs $O(\textit{target})$ time and space, far more than the logarithmic reduction.
@@ -113,8 +113,8 @@ For `target = 10` with four available doubles, the path is $10\to5\to4\to2\to1$,
 - **Powers of two:** With enough doubles, repeated halving uses exactly $\log_2(\textit{target})$ moves and no decrements.
 - **Stack accounting:** The implementation does not use a list or map, but recursive frames are auxiliary memory and must not be described as constant space.
 - **Positive-target guarantee:** Right shifting is safe and subtraction never needs to go below one because the target is always at least one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

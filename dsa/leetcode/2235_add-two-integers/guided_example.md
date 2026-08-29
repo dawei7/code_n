@@ -59,7 +59,7 @@ For `num1 = 12` and `num2 = 5`, the expression evaluates to seventeen. For `num1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Integer addition combines signed quantities.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ These all follow the same single expression.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated increment or decrement:** Move from `:** - **Repeated increment or decrement:** Move from `num1` one unit at a time according to `num2`. This is slower, more error-prone for negative values, and unnecessary when addition is permitted.
+- **Repeated increment or decrement:** Move from `num1` one unit at a time according to `num2`. This is slower, more error-prone for negative values, and unnecessary when addition is permitted.
 - **Bitwise carry simulation:** XOR and shifted AND can implement addition without `+`, but the problem does not prohibit `+`. Such code obscures the simple contract, especially for Python's signed integers.
 - **Convert to strings:** Decimal digit addition would require sign and carry handling and extra memory while producing the same value.
 - **One operand zero:** The other operand is returned mathematically through the same expression.
@@ -116,8 +116,8 @@ These all follow the same single expression.
 - **Return type:** Integer operands remain in integer arithmetic, so the method never produces a string or floating-point approximation.
 - **Exactness:** Every value in the constraint range is represented exactly; no rounding or precision loss occurs.
 - **No input mutation:** Python integers are immutable, and the function has no side effects.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,9 +74,7 @@ Digit order is irrelevant because the task chooses any two digits, so right-to-l
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `divmod(n,10)` returns quotient and remainder:
-
-`n = 10 * qu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +119,7 @@ The source writes these comparisons as `a < x` and `b < x`, which are equivalent
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a string and sort digits:** Correct:** - **Convert to a string and sort digits:** Correct, but sorting costs `O(D log D)` and allocates digit storage where two running maxima suffice.
+- **Convert to a string and sort digits:** Correct, but sorting costs `O(D log D)` and allocates digit storage where two running maxima suffice.
 - **Count frequencies for digits zero through nine:** Also correct in `O(D)` time and constant space; scanning down from nine can select the top two occurrences.
 - **Check every digit pair:** Costs `O(D^2)`, unnecessary when nonnegative ordering determines the best pair.
 - **Use the two largest distinct values:** Wrong for repeated maximum digits such as `22` or `991`.
@@ -134,8 +132,8 @@ The source writes these comparisons as `a < x` and `b < x`, which are equivalent
 - **Positive n guarantee:** The loop would skip for zero, but zero is outside the documented `n >= 10` domain.
 - **At least two digits:** This guarantee is what makes both result slots correspond to real selectable occurrences.
 - **Strict comparisons:** They preserve ordering while still allowing an equal-to-`a` digit to enter `b` through the second branch.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

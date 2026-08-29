@@ -72,7 +72,7 @@ The CTE retains `student_id` along with both ranks. It does not need `exam_id` i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `rk1`, ascending order puts the smallest score first, so... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ The main query uses:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Per-exam `MIN` and `MAX` subquery:** Compute b:** - **Per-exam `MIN` and `MAX` subquery:** Compute both extremes for each exam, join them back to Exam, and reject students with a matching extreme. This is correct but requires another aggregation and join.
+- **Per-exam `MIN` and `MAX` subquery:** Compute both extremes for each exam, join them back to Exam, and reject students with a matching extreme. This is correct but requires another aggregation and join.
 - **`NOT EXISTS` disqualifier:** Select participating students for whom no Exam row equals its exam's minimum or maximum. This can read naturally but may involve correlated work unless the optimizer rewrites it well.
 - **Conditional aggregation without ranks:** Window `MIN(score)` and `MAX(score)` values can be attached to each row, followed by Boolean sums. It handles ties correctly and expresses the same idea.
 - **`ROW_NUMBER`:** This is incorrect when scores tie because only one tied row gets number one. `RANK` marks every student at an extreme.
@@ -123,8 +123,8 @@ The main query uses:
 - **Tie only at one extreme:** Every student sharing that minimum or maximum is disqualified, while strict middle scores remain eligible.
 - **Quiet in one exam but extreme in another:** Group-level sums detect the single violation and exclude the student.
 - **Ordinal syntax:** `GROUP BY 1` and `ORDER BY 1` refer to the first selected column. Naming `student_id` explicitly would be more self-documenting but is logically equivalent here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

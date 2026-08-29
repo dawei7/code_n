@@ -77,7 +77,7 @@ At time zero, the length is `n` and the mapping is `nums[i]`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `t < n`, exactly `t` elements have been removed from th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ The strict inequalities deliberately isolate the empty state without an explicit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate minute by minute:** Query times reach:** - **Simulate minute by minute:** Query times reach $10^5$ and repeat; simulation repeats identical cycles unnecessarily. Modulo gives direct access.
+- **Simulate minute by minute:** Query times reach $10^5$ and repeat; simulation repeats identical cycles unnecessarily. Modulo gives direct access.
 - **Precompute all cycle arrays:** It uses more storage and copying. The suffix/prefix formulas answer a query without materializing a state.
 - **Time zero:** The full original array is present.
 - **Time `n`:** The array is exactly empty; both strict phase conditions fail.
@@ -129,8 +129,8 @@ The strict inequalities deliberately isolate the empty state without an explicit
 - **Query index guarantee:** It is below original length, but may still exceed the shorter current length.
 - **Input preservation:** The process is modeled mathematically; no elements are actually removed or appended.
 - **Last minute before reset:** At `t = 2n - 1`, the restored prefix has length `n - 1`; one minute later modulo zero restores the final element.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

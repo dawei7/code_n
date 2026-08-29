@@ -57,7 +57,7 @@ There is no `await` inside this loop and no chain from one input promise to the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `functions.forEach((fn, index) => { ...... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Sparse slots in the initially allocated array are filled as promises fulfill. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `Promise.all`:** Has the desired sema:** - **Built-in `Promise.all`:** Has the desired semantics but is explicitly forbidden by the problem.
+- **Built-in `Promise.all`:** Has the desired semantics but is explicitly forbidden by the problem.
 - **Sequential `await` loop:** Preserves order easily but delays invocation of later functions, violating the required parallel start.
 - **Append values on fulfillment:** Produces completion order rather than input order and is therefore incorrect.
 - **Use `Promise.allSettled`:** Waits for every rejection and fulfillment and returns status objects, which does not match fail-fast behavior.
@@ -108,8 +108,8 @@ Sparse slots in the initially allocated array are filled as promises fulfill. Th
 - **Work after rejection:** Already-started operations continue unless they implement their own cancellation mechanism.
 - **Empty array:** The constraints require at least one function. This exact code would leave the returned promise pending forever for an empty array because `completed === functions.length` is never checked before the loop.
 - **Synchronous throw:** The outer Promise constructor rejects, although later functions after the throwing call are not invoked.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

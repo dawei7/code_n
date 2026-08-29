@@ -67,7 +67,7 @@ For `n = 6`, six is divisible by both six and two, so there is no reason to doub
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `n % 2 == 0`, then `n` is divisible by two.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For `n = 5`, five fails the even requirement, while ten is divisible by both two
 
 ## 6. Traps This Instance Exposes
 
-- **- **General `lcm` helper:** Compute `2*n // gcd(2,:** - **General `lcm` helper:** Compute `2*n // gcd(2,n)`. It is correct but more machinery than a parity branch.
+- **General `lcm` helper:** Compute `2*n // gcd(2,n)`. It is correct but more machinery than a parity branch.
 - **Enumerate multiples:** Test `n, 2n, 3n, ...` until finding an even one. It stops within two trials but obscures the direct proof.
 - **`n = 1`:** One is odd, so the answer is two.
 - **`n = 2`:** It is already a multiple of both inputs, so the answer is two.
@@ -114,8 +114,8 @@ For `n = 5`, five fails the even requirement, while ten is divisible by both two
 - **Any odd `n`:** Exactly one factor of two is needed, so return `2n`.
 - **Zero:** It is not an allowed input and not a positive answer.
 - **No sorting or iteration:** The result depends only on parity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

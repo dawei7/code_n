@@ -25,7 +25,7 @@ Let $m$ be the number of logs and $q$ the number of queries.
 **Inputs**
 
 - `n`: The total number of servers, where $1 \le n \le 10^5$.
-- `logs`: An array of $m$ pairs `[server_id, time]`, where $1 \le m \le 10^5$, $1 \le \texttt{server_id} \le n$, and $1 \le \texttt{time} \le 10^6$.
+- `logs`: An array of $m$ pairs `[server_id, time]`, where $1 \le m \le 10^5$, $1 \le \texttt{server\_id} \le n$, and $1 \le \texttt{time} \le 10^6$.
 - `x`: The window width, where $1 \le x \le 10^5$.
 - `queries`: An array of $q$ query times, where $1 \le q \le 10^5$ and $x < \texttt{queries[i]} \le 10^6$.
 

@@ -59,7 +59,7 @@ A higher adjacent column is a ridge that water cannot cross. An equal or lower c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For direction `d`, where `-1` means left and `1` means right... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ If the scan later finds another strict decrease, `j` updates again because that 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute fixed basins once:** This fails bec:** - **Precompute fixed basins once:** This fails because every droplet changes levels and therefore future basins.
-- **- **Choose the globally lowest reachable column:**:** - **Choose the globally lowest reachable column:** The rule is directional and left-preferring, not a global minimum search.
-- **- **Update candidate on equal height:** That would:** - **Update candidate on equal height:** That would move water across a flat plateau even though it does not eventually fall there. Update only on strict decreases.
+- **Precompute fixed basins once:** This fails because every droplet changes levels and therefore future basins.
+- **Choose the globally lowest reachable column:** The rule is directional and left-preferring, not a global minimum search.
+- **Update candidate on equal height:** That would move water across a flat plateau even though it does not eventually fall there. Update only on strict decreases.
 
 ---
 

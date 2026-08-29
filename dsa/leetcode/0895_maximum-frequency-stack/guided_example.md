@@ -52,7 +52,7 @@ Every pop must rank currently stored elements by two criteria:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The exact solution stores one heap entry for every pushed occurrence. Each entry
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stacks grouped by frequency:** Map each value :** - **Stacks grouped by frequency:** Map each value to its count, keep a stack for each frequency, and track the maximum frequency. Push and pop are both $O(1)$ and this is the method matching the manifest.
+- **Stacks grouped by frequency:** Map each value to its count, keep a stack for each frequency, and track the maximum frequency. Push and pop are both $O(1)$ and this is the method matching the manifest.
 - **Scan the entire logical stack on every pop:** It can find frequency and recency but costs $O(q)$ or worse per operation.
 - **Heap with only current value frequency:** Updating priorities for all older occurrences is awkward. The rank-per-occurrence representation avoids decrease-key operations.
 - **One distinct value:** Its rank increases on each push and decreases through successive pops, so every pop returns it.
@@ -99,8 +99,8 @@ The exact solution stores one heap entry for every pushed occurrence. Each entry
 - **Timestamp uniqueness:** Incrementing before every push ensures no two entries need a further recency tie-breaker.
 - **Frequency count after pop:** Decrementing exactly once matches removal of one occurrence; zero-count dictionary entries are harmless.
 - **Manifest mismatch:** Describing this exact heap code as $O(1)$ per operation would be incorrect even though another optimal design achieves it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

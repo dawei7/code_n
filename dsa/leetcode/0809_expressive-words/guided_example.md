@@ -70,7 +70,7 @@ At the start of an iteration, `s[i]` must equal `t[j]`. If the characters differ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each query `t`, the nested `check(s, t)` function decide... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +109,9 @@ At this point, the group characters match, so only their lengths can make the pa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute run-length encodings:** Converting :** - **Precompute run-length encodings:** Converting `s` and every query into arrays of character/count pairs makes the comparison explicit and can avoid rescanning the target encoding for each word. It also allocates storage proportional to the encoded input. The two-pointer implementation obtains the same comparisons directly from the strings with constant auxiliary space.
-- **- **Character-by-character matching without group :** - **Character-by-character matching without group lengths:** A simple subsequence test is insufficient. It might accept `"helo"` for `"heeellooo"` even though the target's two-character `l` group cannot legally be produced from one `l`.
-- **- **Query longer than the target:** It is rejected:** - **Query longer than the target:** It is rejected immediately because the only permitted operation adds characters. Even without the early test, some group would be too long or remain unmatched.
+- **Precompute run-length encodings:** Converting `s` and every query into arrays of character/count pairs makes the comparison explicit and can avoid rescanning the target encoding for each word. It also allocates storage proportional to the encoded input. The two-pointer implementation obtains the same comparisons directly from the strings with constant auxiliary space.
+- **Character-by-character matching without group lengths:** A simple subsequence test is insufficient. It might accept `"helo"` for `"heeellooo"` even though the target's two-character `l` group cannot legally be produced from one `l`.
+- **Query longer than the target:** It is rejected immediately because the only permitted operation adds characters. Even without the early test, some group would be too long or remain unmatched.
 
 ---
 

@@ -51,7 +51,7 @@ The list comprehension iterates `i` from one through `len(height)-1`. For each c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list comprehension iterates `i` from one through `len(he... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The strict greater-than comparison is essential. A predecessor exactly equal to 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop:** Append qualifying indices in :** - **Explicit loop:** Append qualifying indices in a standard loop. It is equivalent and may be easier to instrument, but the comprehension directly expresses filtering.
+- **Explicit loop:** Append qualifying indices in a standard loop. It is equivalent and may be easier to instrument, but the comprehension directly expresses filtering.
 - **Compare the current mountain:** This is incorrect; stability depends on the previous mountain's height.
 - **Use greater-than-or-equal:** It would wrongly include predecessors equal to `threshold`.
 - **Start at zero:** Python negative indexing would compare mountain zero against the last mountain, violating the non-circular definition.
@@ -110,8 +110,8 @@ The strict greater-than comparison is essential. A predecessor exactly equal to 
 - **Read-only behavior:** The comprehension reads `height` without sorting or changing it, so predecessor relationships remain those of the original row.
 - **Why every possible answer is examined:** Every stable index must lie between one and `n-1`, exactly the range traversed. The predicate is the definition itself, so there is no hidden candidate outside the scan.
 - **One-pass optimality:** A correct method may need to inspect every predecessor height because any unchecked value could independently determine whether its following index belongs in the result. Linear time is therefore asymptotically optimal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

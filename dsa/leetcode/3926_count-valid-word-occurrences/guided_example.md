@@ -58,7 +58,7 @@ The outer loop first checks `s[i] in " -"`. Under the stated alphabet, a charact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The intended source creates `cnt` as a mapping from a comple... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Letters pass automatically: they are not spaces, and the parenthesized hyphen re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Required source repair:** The exact file needs:** - **Required source repair:** The exact file needs `from collections import defaultdict`, or an equivalent defined mapping strategy, before the intended algorithm can run. The approach does not apply that repair because only documentation is in scope.
+- **Required source repair:** The exact file needs `from collections import defaultdict`, or an equivalent defined mapping strategy, before the intended algorithm can run. The approach does not apply that repair because only documentation is in scope.
 - **Split only on spaces:** This incorrectly keeps leading, trailing, or repeated non-joiner hyphens inside tokens. Hyphen classification depends on adjacent characters and cannot be modeled by spaces alone.
 - **Replace every hyphen with a separator:** This breaks valid words such as `"well-known"`, where a hyphen has lowercase letters on both sides.
 - **Tokenize each chunk independently:** Chunk boundaries are not separators. Independent scans can split one word or misclassify a hyphen whose neighbor lies in another chunk.
@@ -117,8 +117,8 @@ Letters pass automatically: they are not spaces, and the parenthesized hyphen re
 - **Repeated queries:** The list comprehension performs a lookup for every query position, preserving repetitions and input order.
 - **Absent query:** With the intended default dictionary available, its count is zero; the lookup may also add that query key to the map.
 - **Alphabet guarantee:** The test `s[j + 1] not in " -"` treats any other character as letter-like. It is exact only because the contract restricts content to lowercase letters, spaces, and hyphens.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

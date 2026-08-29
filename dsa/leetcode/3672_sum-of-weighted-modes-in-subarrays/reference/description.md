@@ -38,7 +38,7 @@ Return the **sum** of the weights of all **subarrays** of length `k`.
 			<th style="border: 1px solid black;">Mode</th>
 			<th style="border: 1px solid black;">Mode
 
-			​​​​​​​Frequency</th>
+			Frequency</th>
 			<th style="border: 1px solid black;">Weight</th>
 		</tr>
 	</thead>

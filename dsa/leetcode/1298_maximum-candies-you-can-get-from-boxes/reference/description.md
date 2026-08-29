@@ -2,13 +2,13 @@
 
 You have `n` boxes labeled from `0` to $n - 1$. You are given four arrays: `status`, `candies`, `keys`, and `containedBoxes` where:
 
-- $\text{status}[i]$ is `1` if the $$i^{\text{th}}$$ box is open and `0` if the $$i^{\text{th}}$$ box is closed,
+- $\text{status}[i]$ is `1` if the $i^{\text{th}}$ box is open and `0` if the $i^{\text{th}}$ box is closed,
 
-- $\text{candies}[i]$ is the number of candies in the $$i^{\text{th}}$$ box,
+- $\text{candies}[i]$ is the number of candies in the $i^{\text{th}}$ box,
 
-- $\text{keys}[i]$ is a list of the labels of the boxes you can open after opening the $$i^{\text{th}}$$ box.
+- $\text{keys}[i]$ is a list of the labels of the boxes you can open after opening the $i^{\text{th}}$ box.
 
-- $\text{containedBoxes}[i]$ is a list of the boxes you found inside the $$i^{\text{th}}$$ box.
+- $\text{containedBoxes}[i]$ is a list of the boxes you found inside the $i^{\text{th}}$ box.
 
 You are given an integer array `initialBoxes` that contains the labels of the boxes you initially have. You can take all the candies in **any open box** and you can use the keys in it to open new boxes and you also can use the boxes you find in it.
 

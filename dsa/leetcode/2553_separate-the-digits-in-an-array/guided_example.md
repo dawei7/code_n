@@ -65,7 +65,7 @@ The constraints say every input integer is at least $1$. This matters because th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the start of each pass through `while x`, the current $x$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The accumulated result is `[1, 3, 2, 5, 8, 3, 7, 7]`. The process is a flattenin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert each number to a string:** Iterating t:** - **Convert each number to a string:** Iterating through `str(x)` is concise and also takes $O(D)$ time, but the checked-in solution demonstrates the arithmetic representation directly and avoids character-to-integer conversion.
+- **Convert each number to a string:** Iterating through `str(x)` is concise and also takes $O(D)$ time, but the checked-in solution demonstrates the arithmetic representation directly and avoids character-to-integer conversion.
 - **Traverse input backward and reverse once:** Processing `nums` from right to left, appending units digits immediately, and reversing the complete answer at the end avoids a separate temporary list per number. It has the same $O(D)$ time and still stores the output.
 - **Place-value divisor:** One can first find the largest power of ten not exceeding $x$ and then read digits from left to right. This avoids reversing a temporary list but requires careful divisor updates and leading-zero reasoning.
 - **Single-digit values:** One remainder extracts the value, one division reaches zero, and reversing a one-element list changes nothing.
@@ -117,8 +117,8 @@ The accumulated result is `[1, 3, 2, 5, 8, 3, 7, 7]`. The process is a flattenin
 - **Maximum value:** `100000` has six digits, including five trailing zeros. Each zero is extracted on a separate iteration before the leading one.
 - **Initial zero outside the contract:** If zero were allowed, the current loop would append nothing for it. Supporting that altered contract would require an explicit `if x == 0` case.
 - **Input preservation:** Reassigning the local name `x` is safe because integers are immutable and the code never assigns through an index of `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

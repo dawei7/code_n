@@ -65,9 +65,7 @@ The `philosopher` identifier is not referenced directly. It is still part of the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Once a call holds the transaction lock, it invokes:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ Thus fork ownership intervals from different calls never overlap. This is strong
 
 ## 6. Traps This Instance Exposes
 
-- **- **One lock per fork with a global acquisition or:** - **One lock per fork with a global acquisition order:** Philosophers acquire the lower-numbered fork before the higher-numbered fork. This breaks circular wait and permits nonadjacent philosophers to eat concurrently, but requires careful mapping of left and right callbacks.
+- **One lock per fork with a global acquisition order:** Philosophers acquire the lower-numbered fork before the higher-numbered fork. This breaks circular wait and permits nonadjacent philosophers to eat concurrently, but requires careful mapping of left and right callbacks.
 - **Limit diners with a semaphore:** Allow at most four philosophers to attempt fork acquisition at once. This prevents all five from holding one fork simultaneously, though fork locks and fairness reasoning are still needed.
 - **Arbitrator or waiter:** A coordinator grants both forks atomically when available. It can preserve more concurrency and implement a fair queue, but has substantially more state.
 - **Asymmetric fork order:** Have one philosopher acquire right then left while others acquire left then right. This breaks the classic cycle but is less uniform than the single transaction.
@@ -114,8 +112,8 @@ Thus fork ownership intervals from different calls never overlap. This is strong
 - **Lost parallelism:** The source permits only one eater even when two philosophers use disjoint forks. This is a throughput tradeoff, not a safety error.
 - **Shared object requirement:** All threads must call the same instance so they share `transaction`. Separate instances would have separate locks and would not coordinate.
 - **Fixed problem size:** Five philosophers and bounded requests make safety and progress the meaningful properties; asymptotic scaling does not capture scheduler behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

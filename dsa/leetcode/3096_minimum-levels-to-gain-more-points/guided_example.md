@@ -57,12 +57,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\text{score}(x)=
-\begin{cases}
-+1,&x=1,\\
--1,&x=0.
-\end{c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +92,7 @@ After this translation, the game no longer needs any separate simulation. Alice 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix array:** Store every prefix score and c:** - **Prefix array:** Store every prefix score and compare each with total minus prefix. It is correct but uses $O(n)$ space without improving time.
+- **Prefix array:** Store every prefix score and compare each with total minus prefix. It is correct but uses $O(n)$ space without improving time.
 - **Two separate sums per split:** Recomputing Alice's and Bob's scores repeatedly can take $O(n^2)$ time.
 - **Scalar loop by index:** Iterating `for i in range(n - 1)` avoids the source's list slice and achieves true $O(1)$ auxiliary space.
 - **Both players need one level:** Only prefix lengths 1 through $n-1$ are legal.
@@ -112,8 +107,8 @@ After this translation, the game no longer needs any separate simulation. Alice 
 - **Total-minus-prefix:** This identity avoids maintaining or rescanning Bob's suffix separately.
 - **Input remains unchanged:** The slice is a copy, and no element of `possible` is modified.
 - **Manifest space discrepancy:** The algorithmic idea is constant-state, but the exact Python slice makes the implemented auxiliary space linear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

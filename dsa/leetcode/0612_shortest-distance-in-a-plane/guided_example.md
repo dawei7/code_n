@@ -67,10 +67,7 @@ The query could compare squared distances and apply one square root after findin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each joined pair, the source evaluates:
-
-$$
-\sqrt{(p_1.x... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +106,7 @@ Computing `MIN` on exact squared distances and rounding afterward would express 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate minimum squared distance:** `ROUND(S:** - **Aggregate minimum squared distance:** `ROUND(SQRT(MIN(dx*dx+dy*dy)),2)` avoids sorting and computes square root once. It more directly supports $O(1)$ aggregate state.
+- **Aggregate minimum squared distance:** `ROUND(SQRT(MIN(dx*dx+dy*dy)),2)` avoids sorting and computes square root once. It more directly supports $O(1)$ aggregate state.
 - **Generate unordered pairs only:** Use a lexicographic condition such as `p1.x < p2.x OR (p1.x = p2.x AND p1.y < p2.y)` to halve pair rows.
 - **Closest-pair divide and conquer:** In procedural code, sorting by coordinate and merging strips achieves $O(P\log P)$ time, but is much more complex than portable SQL.
 - **Self-pairs:** Must be excluded or distance zero always wins.
@@ -122,8 +119,8 @@ Computing `MIN` on exact squared distances and rounding afterward would express 
 - **Ordered-pair duplication:** Doubles constant work but not asymptotic complexity or result.
 - **Physical-plan caveat:** `ORDER BY LIMIT 1` may be optimized as top-one, but a full materialized sort would violate the manifest’s constant-space assumption.
 - **Any coordinate signs:** Squared differences handle negative coordinates correctly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

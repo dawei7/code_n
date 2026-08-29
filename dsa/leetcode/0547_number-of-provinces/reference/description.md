@@ -4,7 +4,7 @@ There are `n` cities. Some of them are connected, while some are not. If city `a
 
 A **province** is a group of directly or indirectly connected cities and no other cities outside of the group.
 
-You are given an `n x n` matrix `isConnected` where $\text{isConnected}[i][j] = 1$ if the $$i^{\text{th}}$$ city and the $$j^{\text{th}}$$ city are directly connected, and $\text{isConnected}[i][j] = 0$ otherwise.
+You are given an `n x n` matrix `isConnected` where $\text{isConnected}[i][j] = 1$ if the $i^{\text{th}}$ city and the $j^{\text{th}}$ city are directly connected, and $\text{isConnected}[i][j] = 0$ otherwise.
 
 Return *the total number of **provinces***.
 

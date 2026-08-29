@@ -57,7 +57,7 @@ For `"fly me   "`, `i` moves past the three trailing spaces and stops on `e`. Fo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` starts at `len(s) - 1`, the final character index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ It is important that `j` stops *before* the first character of the word rather t
 
 ## 6. Traps This Instance Exposes
 
-- **- **One backward loop with a counter:** Ignore spa:** - **One backward loop with a counter:** Ignore spaces until a word character is found, then count until the next space. This combines the two phases but encodes the phase in the counter.
+- **One backward loop with a counter:** Ignore spaces until a word character is found, then count until the next space. This combines the two phases but encodes the phase in the counter.
 - **Forward scan:** Reset a current length after spaces and save completed word lengths. It is linear and constant-space but necessarily inspects the whole prefix.
 - **`strip` and `split`:** `len(s.strip().split()[-1])` is concise but allocates new strings and a token list, using $O(n)$ extra memory.
 - **No trailing spaces:** The first loop does nothing; the second begins at the final word immediately.
@@ -109,8 +109,8 @@ It is important that `j` stops *before* the first character of the word rather t
 - **Leading spaces:** They are irrelevant once the left boundary of the last word is found.
 - **All spaces outside the contract:** The first loop would make `i = -1`, and the method would return zero; valid inputs always contain a word.
 - **Literal-space definition:** The source intentionally checks `' '` rather than all Unicode whitespace because the contract names only English letters and spaces.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

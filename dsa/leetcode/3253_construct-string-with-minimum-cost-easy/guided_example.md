@@ -51,7 +51,7 @@ The solution combines a trie with memoized suffix recursion. The trie lets it ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution combines a trie with memoized suffix recursion.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution combines a trie with memoized suffix recursion. The trie lets it ex
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bottom-up prefix DP:** Let `dp[i]` be the mini:** - **Bottom-up prefix DP:** Let `dp[i]` be the minimum cost to build the first `i` characters and traverse the trie forward from each reachable `i`. It has similar $O(S+nW)$ time, avoids recursion depth, and naturally skips unreachable boundaries.
+- **Bottom-up prefix DP:** Let `dp[i]` be the minimum cost to build the first `i` characters and traverse the trie forward from each reachable `i`. It has similar $O(S+nW)$ time, avoids recursion depth, and naturally skips unreachable boundaries.
 - **Compare every word at every position:** Checking `target.startswith(word, i)` for all words gives a simpler DP but can cost $O(nS)$ character work. The trie shares common word prefixes.
 - **Aho-Corasick plus shortest path:** A multi-pattern automaton can find all word occurrences efficiently and then relax prefix boundaries. It is more sophisticated and more useful in the harder version with larger data.
 - **Keep all duplicate costs:** Duplicate words lead to identical transitions. Retaining only the minimum terminal cost is always safe and reduces useless candidates.
@@ -98,8 +98,8 @@ The solution combines a trie with memoized suffix recursion. The trie lets it ex
 - **Positive costs:** There are no negative cycles or incentives to append extra text. Every valid construction ends exactly at target length.
 - **Recursive depth:** A target made of many one-character pieces can create $O(n)$ nested calls and exceed the default Python limit; iterative DP is operationally safer.
 - **Missing imports:** The source assumes `inf`, `cache`, and typing names are supplied by imports or the harness. A standalone file needs them explicitly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

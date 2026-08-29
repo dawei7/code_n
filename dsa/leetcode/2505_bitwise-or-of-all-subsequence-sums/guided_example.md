@@ -63,7 +63,7 @@ After this pass, `cnt[i]` is the number of input values that directly contain a 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` has 64 entries.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The low-to-high count propagation summarizes those possibilities without enumera
 
 ## 6. Traps This Instance Exposes
 
-- **- **OR elements and running prefix sums:** Another:** - **OR elements and running prefix sums:** Another known linear characterization captures direct bits and carries, but it follows a different implementation.
+- **OR elements and running prefix sums:** Another known linear characterization captures direct bits and carries, but it follows a different implementation.
 - **Enumerate subsequences:** There are $2^n$ choices and this is infeasible.
 - **All zeroes:** No bit units exist, so the answer remains zero.
 - **One number:** Its singleton sum makes the answer equal that number.
@@ -114,8 +114,8 @@ The low-to-high count propagation summarizes those possibilities without enumera
 - **Original-bit bound:** Positions 0 through 30 cover every value up to $10^9$.
 - **Carry capacity:** Sixty-four slots safely exceed the maximum possible sum width.
 - **Low-to-high order:** Carries must be processed again at subsequent bit positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

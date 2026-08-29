@@ -66,7 +66,7 @@ Incrementing the new color before decrementing the old one is safe even when the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For query `[x, y]`, the code first increments `cnt[y]` becau... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Because the keys of `cnt` are exactly colors with at least one owner, `len(cnt)`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount colors after every query:** Scanning a:** - **Recount colors after every query:** Scanning all colored balls per query can take $O(q^2)$ time.
+- **Recount colors after every query:** Scanning all colored balls per query can take $O(q^2)$ time.
 - **Color set only:** A set cannot tell whether removing one ball's old color should remove the color entirely when other balls still use it.
 - **Array indexed by ball label:** It requires $O(limit)$ memory, impossible when `limit` is $10^9$.
 - **Coordinate compression:** It can replace the ball dictionary after reading all queries, but adds preprocessing without improving asymptotic bounds.
@@ -124,8 +124,8 @@ Because the keys of `cnt` are exactly colors with at least one owner, `len(cnt)`
 - **Uncolored balls:** They have no `g` entry and never contribute a color.
 - **Unused limit:** It only validates legal labels; sparse dictionaries intentionally make it unnecessary to the computation.
 - **One answer per query:** The append occurs after both the old-color removal and new assignment are complete, so the returned list has exactly one fully updated distinct-color count for every query.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

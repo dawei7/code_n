@@ -51,7 +51,7 @@ The set of reachable strings changes completely depending on whether `k` equals 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Case `k == 1`: only rotation is possible.** The only eligi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Booth's minimum-rotation algorithm:** It finds:** - **Booth's minimum-rotation algorithm:** It finds the smallest cyclic rotation in $O(n)$ time, improving the `k == 1` case.
+- **Booth's minimum-rotation algorithm:** It finds the smallest cyclic rotation in $O(n)$ time, improving the `k == 1` case.
 - **Counting sort for lowercase letters:** A 26-entry frequency array can construct the sorted `k > 1` result in $O(n)$ time.
 - **Always sort:** Incorrect for `k == 1` because only rotations are reachable.
 - **Always test rotations:** Incorrect for `k >= 2` because many non-rotation permutations are reachable.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Lowercase contract:** Native character sorting matches lexicographic order without locale or case complications.
 - **Input immutability:** The local variable `s` is rebound to new rotation strings; the caller's string cannot be mutated.
 - **Manifest mismatch:** The exact repeated slicing branch must not be described as $O(n)$ merely because a more advanced minimum-rotation method exists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

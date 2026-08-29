@@ -63,7 +63,7 @@ Not allocating all coordinates is essential: the domain has one billion position
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The root is false with no children and no lazy tag.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ This assignment overwrites any earlier state throughout the covered segment, exa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted disjoint intervals:** Maintain merged h:** - **Sorted disjoint intervals:** Maintain merged half-open intervals. Queries can be logarithmic, while additions/removals may touch many stored intervals.
-- **- **Coordinate compression:** It is difficult onli:** - **Coordinate compression:** It is difficult online because future endpoints are unknown, but possible offline when all operations are available first.
-- **- **Adjacent ranges:** Half-open ranges `[a,b)` an:** - **Adjacent ranges:** Half-open ranges `[a,b)` and `[b,c)` touch without overlapping but together fully cover `[a,c)` after both are added.
+- **Sorted disjoint intervals:** Maintain merged half-open intervals. Queries can be logarithmic, while additions/removals may touch many stored intervals.
+- **Coordinate compression:** It is difficult online because future endpoints are unknown, but possible offline when all operations are available first.
+- **Adjacent ranges:** Half-open ranges `[a,b)` and `[b,c)` touch without overlapping but together fully cover `[a,c)` after both are added.
 
 ---
 

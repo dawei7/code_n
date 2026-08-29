@@ -57,7 +57,7 @@ This tie behavior matters when no room is available and a meeting must begin at 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `idle` is a min-heap of room numbers.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Releasing *all* such rooms before selection ensures `heappop(idle)` chooses the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan all rooms per meeting:** Track each room':** - **Scan all rooms per meeting:** Track each room's end time and choose by linear search. It costs $O(mn)$ but may be acceptable only for small `n`.
+- **Scan all rooms per meeting:** Track each room's end time and choose by linear search. It costs $O(mn)$ but may be acceptable only for small `n`.
 - **One heap only:** Mixing idle-room number priority with busy end-time priority is awkward; separate heaps encode the two different orderings cleanly.
 - **Meeting starts when a room ends:** Half-closed intervals make that room immediately available.
 - **Several rooms become idle:** Release all, then choose the smallest number.
@@ -103,8 +103,8 @@ Releasing *all* such rooms before selection ensures `heappop(idle)` chooses the 
 - **All meetings non-overlapping:** Every meeting uses room zero because it is the lowest idle room.
 - **Equal booking counts:** The strict final comparison retains the lowest index.
 - **Unique original starts:** Sorting gives an unambiguous delayed-meeting priority.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

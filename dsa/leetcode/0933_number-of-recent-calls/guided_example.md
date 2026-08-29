@@ -62,7 +62,7 @@ A regular Python list can append efficiently, but removing index zero shifts eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because calls arrive in increasing order, the retained times... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Once the oldest timestamp is not below the lower boundary, every later timestamp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scanning an array of all timestamps:** Append :** - **Scanning an array of all timestamps:** Append every call and count values in the range each time. This is simple but can cost `O(m)` per call and `O(m^2)` across the full sequence.
+- **Scanning an array of all timestamps:** Append every call and count values in the range each time. This is simple but can cost `O(m)` per call and `O(m^2)` across the full sequence.
 - **Array plus a moving start index:** Keep every timestamp in a list and advance an index past expired values. This also gives amortized `O(1)` query time, but old entries remain allocated unless the list is occasionally compacted. The deque naturally releases them.
 - **Binary search over all timestamps:** Since arrival order is sorted, binary search can find the first valid timestamp in `O(log m)` time. It retains every historical call and is slower than the deque's amortized constant time.
 - **Balanced tree or ordered multiset:** Such a structure supports general insertions and range counts, but it is unnecessary because timestamps arrive in a much stronger order. It adds logarithmic overhead and implementation complexity.
@@ -113,8 +113,8 @@ Once the oldest timestamp is not below the lower boundary, every later timestamp
 - **Strictly increasing timestamps:** The correctness and efficiency rely on this contract. If timestamps could arrive out of order, expired values would not necessarily form a prefix and a deque alone would not be sufficient.
 - **Duplicate timestamps:** The stated contract excludes them. If nondecreasing timestamps were allowed, the same deque mechanics would still count duplicates correctly, but that is not the interface guarantee being used.
 - **Inclusive upper boundary:** The new request at `t` is always counted. Appending before returning the length handles this automatically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Variable `k` is the current place value: one, ten, one hundred, then one thousan
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `k` is the current place value: one, ten, one hundr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ removes all lower places through integer division and then isolates the current 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Zero-pad strings:** Format every input to widt:** - **Zero-pad strings:** Format every input to width four, take coordinate-wise character minima, join, and convert to integer. This is correct but allocates small strings and requires careful numeric character comparison.
+- **Zero-pad strings:** Format every input to width four, take coordinate-wise character minima, join, and convert to integer. This is correct but allocates small strings and requires careful numeric character comparison.
 - **Extract digits into arrays:** Four-entry arrays make positions explicit but add unnecessary storage when accumulation can happen immediately.
 - **Process from thousands downward:** Repeatedly build `ans = ans * 10 + digit`. This is equally correct; the source instead uses place-value addition from units upward.
 - **All inputs identical:** Every positional minimum equals that number's digit, so the key equals the input.
@@ -102,8 +102,8 @@ removes all lower places through integer division and then isolates the current 
 - **Place multiplier invariant:** `k` is always a power of ten. Updating it only after adding the current contribution prevents placing a chosen digit one column too far left or right.
 - **Returning fewer than four displayed digits:** The conceptual key always has four padded positions, but the return type is integer. Numeric representation intentionally omits every leading zero while retaining zeros between nonzero digits.
 - **Example with an internal zero:** If positional minima form `"5070"`, accumulation adds five thousand and seven tens. It returns 5070, showing that only leading zeros disappear; internal and trailing zeros retain their positional meaning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,8 +74,7 @@ or all comparison results.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a sequence `[x0, x1, x2, x3]`, `pairwise` yields
-`(x0, x... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +122,7 @@ the sorting cost.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set of seen values:** Scan the original l:** - **Hash set of seen values:** Scan the original list and return immediately when a value is already in the set. This matches the manifest, gives expected $O(n)$ time and $O(n)$ space, and may stop before reading the whole array; hash operations have expected rather than unconditional constant time.
+- **Hash set of seen values:** Scan the original list and return immediately when a value is already in the set. This matches the manifest, gives expected $O(n)$ time and $O(n)$ space, and may stop before reading the whole array; hash operations have expected rather than unconditional constant time.
 - **In-place sorting:** Calling `nums.sort()` avoids the separate top-level copy and then uses the same adjacent check. It changes the caller's order and Python sorting still has implementation-dependent temporary memory.
 - **Nested pair comparison:** Compare each position with every earlier position. It uses $O(1)$ extra space and can stop early, but worst-case time is $O(n^2)$ and is unsuitable for $n$ up to $10^5$.
 - **Counting array:** Direct frequencies are excellent for a small numeric domain, but values here span from $-10^9$ to $10^9$; allocating that range would be wasteful compared with sorting or hashing.
@@ -134,8 +133,8 @@ the sorting cost.
 - **Negative and zero values:** Ordinary integer ordering places them correctly, and equality semantics are unchanged. No numeric offset is needed.
 - **Already sorted or reverse-sorted input:** The logic is identical. Sorting still creates a separate list, and the later scan checks adjacent values in non-decreasing order.
 - **Input preservation:** Because the code uses `sorted(nums)` rather than `nums.sort()`, callers observe the original list in its original order after the method returns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

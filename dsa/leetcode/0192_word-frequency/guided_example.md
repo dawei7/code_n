@@ -71,7 +71,7 @@ pipeline visually explicit.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cat words.txt` streams the file contents.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ all occurrences of each word into one contiguous block.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single `awk` counter:** Scan all fields into a:** - **Single `awk` counter:** Scan all fields into an associative array, print counts, then sort by the second field; this is the competitive variant and handles general field whitespace better.
+- **Single `awk` counter:** Scan all fields into an associative array, print counts, then sort by the second field; this is the competitive variant and handles general field whitespace better.
 - **Direct input redirection:** Replace `cat words.txt | tr ...` with `tr ... < words.txt` to avoid an unnecessary process.
 - **`grep -o` tokenization:** Extract lowercase runs explicitly, but behavior and options vary across environments.
 - **Repeated spaces:** `tr -s` collapses them into one delimiter.
@@ -122,8 +122,8 @@ all occurrences of each word into one contiguous block.
 - **One distinct word:** `uniq -c` emits one record and both sorts remain harmless.
 - **Unique-frequency guarantee:** Makes unspecified tie ordering irrelevant.
 - **Locale:** Can affect lexical comparison cost/order in the preparatory sort but not grouping equality for identical lowercase words.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

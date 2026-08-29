@@ -66,7 +66,7 @@ Never overwriting `left[v]` is essential. Always overwriting `right[v]` is equal
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionaries `left` and `right` are populated in one lef... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ Therefore, every valid answer is associated with at least one value satisfying `
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass combined records:** Store `count`, `f:** - **One-pass combined records:** Store `count`, `first`, and `last` together while scanning, update the degree, then inspect unique records. This achieves `O(N)` expected time without sorting Counter entries.
-- **- **Use `max(cnt.values())`:** This is a minimal c:** - **Use `max(cnt.values())`:** This is a minimal change that avoids the `O(U\log U)` full `most_common()` ordering.
-- **- **Sliding window:** A window could search for th:** - **Sliding window:** A window could search for the shortest range with degree `d`, but first/last positions give the answer more directly.
+- **One-pass combined records:** Store `count`, `first`, and `last` together while scanning, update the degree, then inspect unique records. This achieves `O(N)` expected time without sorting Counter entries.
+- **Use `max(cnt.values())`:** This is a minimal change that avoids the `O(U\log U)` full `most_common()` ordering.
+- **Sliding window:** A window could search for the shortest range with degree `d`, but first/last positions give the answer more directly.
 
 ---
 

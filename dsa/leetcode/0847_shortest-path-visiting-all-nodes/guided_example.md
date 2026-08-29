@@ -70,9 +70,7 @@ For example, when `n=4`, `1 << 4` is binary `10000` and subtracting one gives `1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The mask containing only start node `i` is `1 << i`.
-
-When m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,9 +111,9 @@ The same states are inserted into `vis` immediately, preventing duplicate initia
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS separately from every start:** It repeats :** - **BFS separately from every start:** It repeats much search work. Multi-source BFS finds the best start in one state graph traversal.
-- **- **DFS with subset DP:** Memoize a recurrence ove:** - **DFS with subset DP:** Memoize a recurrence over node and visited mask. It can solve the same state graph but shortest unweighted distance is especially natural with BFS.
-- **- **Mark only nodes visited:** Incorrect, because :** - **Mark only nodes visited:** Incorrect, because the same current node with different masks represents different remaining tasks.
+- **BFS separately from every start:** It repeats much search work. Multi-source BFS finds the best start in one state graph traversal.
+- **DFS with subset DP:** Memoize a recurrence over node and visited mask. It can solve the same state graph but shortest unweighted distance is especially natural with BFS.
+- **Mark only nodes visited:** Incorrect, because the same current node with different masks represents different remaining tasks.
 
 ---
 

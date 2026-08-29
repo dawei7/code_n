@@ -61,7 +61,7 @@ The two starts remain distinct, with the challenger arranged after the candidate
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `i` is the start of the best surviving candidate, `j` is the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ No pointer is eliminated until the first differing character is found or the cha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate and sort all suffixes:** Constructing:** - **Generate and sort all suffixes:** Constructing suffix strings can use quadratic total characters, and comparison sorting adds substantial time.
+- **Generate and sort all suffixes:** Constructing suffix strings can use quadratic total characters, and comparison sorting adds substantial time.
 - **Compare every suffix against the current best directly:** Repeated long common prefixes can lead to `O(n^2)` character comparisons.
 - **Suffix array:** A suffix array can identify the lexicographically last suffix, but general construction machinery and extra storage are unnecessary for this single maximum query.
 - **Booth or Duval-style algorithms:** Related linear string algorithms use similar block elimination. The exact two-pointer form is specialized to the maximum suffix.
@@ -109,8 +109,8 @@ No pointer is eliminated until the first differing character is found or the cha
 - **Candidate and challenger must differ:** When advancing `i` crosses `j`, resetting `j = i + 1` avoids comparing a suffix with itself.
 - **Proper-prefix rule:** If the challenger ends after matching, the longer candidate is lexicographically greater.
 - **Returned slice allocation:** Python materializes `s[i:]`. It is output storage rather than search state, but complexity discussions should state the convention.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

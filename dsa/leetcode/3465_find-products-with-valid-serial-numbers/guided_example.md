@@ -51,7 +51,7 @@ The doubled backslashes belong to the SQL string literal. They cause the regular
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The doubled backslashes belong to the SQL string literal.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The doubled backslashes belong to the SQL string literal. They cause the regular
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `LIKE 'SN____-____'`:** Underscores match :** - **Use `LIKE 'SN____-____'`:** Underscores match any character, not specifically digits, and anchoring or surrounding-token rules become awkward.
+- **Use `LIKE 'SN____-____'`:** Underscores match any character, not specifically digits, and anchoring or surrounding-token rules become awkward.
 - **Omit `(?-i)`:** On a case-insensitive setup, lowercase or mixed-case prefixes could be accepted even though `SN` is case-sensitive.
 - **Omit the final word boundary:** `SN1234-56789` would incorrectly match through its first four trailing digits.
 - **Omit the initial word boundary:** Text such as `ASN1234-5678` or `1SN1234-5678` could be accepted as an embedded suffix.
@@ -98,8 +98,8 @@ The doubled backslashes belong to the SQL string literal. They cause the regular
 - **A valid and an invalid serial together:** The row qualifies if at least one complete valid occurrence matches.
 - **`NULL` description:** SQL regular-expression evaluation yields unknown rather than true, so such a row is not selected; the reference schema does not state a separate null requirement.
 - **`ORDER BY 1` readability:** It is concise and correct here, though spelling out `product_id ASC` can be clearer when a select list is later rearranged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

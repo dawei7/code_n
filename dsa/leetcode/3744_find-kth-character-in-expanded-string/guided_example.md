@@ -71,7 +71,7 @@ The final word has no following separator. A valid global `k` can never equal or
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s.split()` yields the source words in order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The comparison order also prevents subtracting past a separator. Equality is tes
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct `t` explicitly:** Expanded length ca:** - **Construct `t` explicitly:** Expanded length can be quadratic in a long word, making time and memory unnecessarily large.
+- **Construct `t` explicitly:** Expanded length can be quadratic in a long word, making time and memory unnecessarily large.
 - **Scan `s` manually:** This can preserve the same logic with $O(1)$ auxiliary space and would match the manifest, but the exact source uses `split`.
 - **Forget separator length:** Later relative indices would be off by one after every word.
 - **Repeat positions across the whole string:** Repetition counts restart for each word, not after each space as a continuing global index.
@@ -131,8 +131,8 @@ The comparison order also prevents subtracting past a separator. Equality is tes
 - **One-letter word:** Its expansion length is one, followed by a space only when another word exists.
 - **Long word:** Arithmetic skips repetition blocks without materializing their potentially huge expansion.
 - **Manifest mismatch:** Space analysis must include the list and substrings allocated by `s.split()`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

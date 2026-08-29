@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a positive integer array `skill` of **even** length `n` where $\text{skill}[i]$ denotes the skill of the $$i^{\text{th}}$$ player. Divide the players into $n / 2$ teams of size `2` such that the total skill of each team is **equal**.
+You are given a positive integer array `skill` of **even** length `n` where $\text{skill}[i]$ denotes the skill of the $i^{\text{th}}$ player. Divide the players into $n / 2$ teams of size `2` such that the total skill of each team is **equal**.
 
 The objective is to compute `22` from `{"skill": [3, 2, 5, 1, 3, 4]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,9 +71,7 @@ Because the input length is even, the pointers meet between elements after exact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code sorts the list in place and defines
-
-`t = skill[0] ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ Thus the early `-1` is logically conclusive.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency table:** Since skills are at most 10:** - **Frequency table:** Since skills are at most 1000, pair complementary values by counts in $O(n+U)$ time and $O(U)$ space, where $U=1000$. It avoids comparison sorting but requires careful handling of equal complements.
+- **Frequency table:** Since skills are at most 1000, pair complementary values by counts in $O(n+U)$ time and $O(U)$ space, where $U=1000$. It avoids comparison sorting but requires careful handling of equal complements.
 - **Hash-map counts:** Determine the common sum from total skill divided by the number of teams, then consume complements. It offers expected linear time but has more bookkeeping.
 - **Two players:** They always form the sole team, and their product is returned.
 - **Duplicate skills:** They represent different players and must be consumed with their full multiplicity.
@@ -122,8 +120,8 @@ Thus the early `-1` is logically conclusive.
 - **Early mismatch:** A failed remaining-extremes sum cannot be repaired by a different pairing.
 - **Large chemistry:** Use a sufficiently wide integer type in fixed-width languages.
 - **Mutation:** The exact implementation sorts the input list in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

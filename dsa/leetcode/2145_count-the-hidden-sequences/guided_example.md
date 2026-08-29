@@ -84,7 +84,7 @@ This is the expression returned by the exact solution.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every hidden value must be at least `lower`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ For `differences = [1,-3,4]`, the offsets are $0,1,-2,2$. Thus `mi = -2` and `mx
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store every prefix offset:** Building the repr:** - **Store every prefix offset:** Building the representative sequence in a list and then taking its minimum and maximum is correct but uses $O(n)$ space instead of the exact constant-space scan.
+- **Store every prefix offset:** Building the representative sequence in a list and then taking its minimum and maximum is correct but uses $O(n)$ space instead of the exact constant-space scan.
 - **Try every starting value:** There can be up to 200,001 candidates, and validating each would repeat the same prefix work. The interval derivation counts all candidates at once.
 - **Check only total difference:** A path can leave the allowed range in the middle and later return. Minimum and maximum prefix offsets are both necessary.
 - **Early impossibility check:** The editorial may return as soon as `mx - mi > upper - lower`. The exact source finishes the scan and clamps the final count to zero; both are correct.
@@ -137,8 +137,8 @@ For `differences = [1,-3,4]`, the offsets are $0,1,-2,2$. Thus `mi = -2` and `mx
 - **Inclusive endpoints:** The final `+ 1` is required because both the smallest and largest valid starting values count.
 - **Initial offset zero:** Initializing `mi` and `mx` to zero includes `hidden[0]`. Starting them only from the first accumulated difference could miss the first element’s constraint.
 - **Input preservation:** The solution only reads `differences` and never constructs or modifies a hidden sequence array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ If there are $p$ earlier complementary values, current index forms exactly $p$ n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` records remainder frequencies among earlier array posi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Invalid remainders never satisfy the complement lookup and contribute zero.
 
 ## 6. Traps This Instance Exposes
 
-- **- **24-entry list:** Faster deterministic indexing:** - **24-entry list:** Faster deterministic indexing and explicitly fixed space.
+- **24-entry list:** Faster deterministic indexing and explicitly fixed space.
 - **Post-count frequency formula:** Pair complementary distinct classes once and use combinations for 0 and 12; easy to double-count without care.
 - **Nested pair loops:** $O(n^2)$ is infeasible for the II constraints.
 - **Remainder zero:** Pairs with earlier zero remainders.
@@ -114,8 +114,8 @@ Invalid remainders never satisfy the complement lookup and contribute zero.
 - **All multiples of 24:** Answer is $\binom n2$.
 - **Streaming order:** Naturally enforces $i<j$.
 - **No input mutation:** Only remainders are stored in the counter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -14,7 +14,7 @@ The game stops when **only** **one** stone is left in the row.
 
 The **score difference** between Alice and Bob is $(Alice's score - Bob's score)$. Alice's goal is to **maximize** the score difference, and Bob's goal is the **minimize** the score difference.
 
-Given an integer array `stones` of length `n` where $\text{stones}[i]$ represents the value of the $$i^{\text{th}}$$ stone **from the left**, return *the **score difference** between Alice and Bob if they both play **optimally**.*
+Given an integer array `stones` of length `n` where $\text{stones}[i]$ represents the value of the $i^{\text{th}}$ stone **from the left**, return *the **score difference** between Alice and Bob if they both play **optimally**.*
 
 ### 2. Function Contract
 

@@ -61,7 +61,7 @@ The method immediately adds `cnt` to `ans`, recording every zero-filled subarray
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` starts at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If the next element is zero, its run begins at length one rather than incorrectl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Detect complete runs and use `L(L+1)/2`:** Thi:** - **Detect complete runs and use `L(L+1)/2`:** This is equally linear but requires finalizing a run at separators and after the loop. The ending-count method avoids a special final step.
+- **Detect complete runs and use `L(L+1)/2`:** This is equally linear but requires finalizing a run at separators and after the loop. The ending-count method avoids a special final step.
 - **Enumerate all subarrays:** There are `O(n^2)` candidates, and checking their contents can add another factor. The run invariant eliminates this work.
 - **Prefix sums:** A zero-sum subarray is not necessarily zero-filled when negative values exist, so numeric prefix sums solve a different condition.
 - **One zero:** It contributes exactly one subarray.
@@ -114,8 +114,8 @@ If the next element is zero, its run begins at length one rather than incorrectl
 - **Subarray identity:** Equal value sequences at different positions are distinct subarrays and are counted at their distinct endpoints.
 - **No empty subarray:** Contributions start at one only when an actual zero is processed.
 - **Input preservation:** The scan does not alter `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

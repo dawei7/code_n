@@ -69,7 +69,7 @@ The source encodes both exceptional cases with:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `n = 1`, the only available value is `1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ This interval contains exactly `2^(p + 1)` integers. It is an upper bound on the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all index triplets:** There are `O(n:** - **Enumerate all index triplets:** There are `O(n^3)` triples even with ordered indices, which is impossible for `n = 10^5` and ignores the strong permutation structure.
+- **Enumerate all index triplets:** There are `O(n^3)` triples even with ordered indices, which is impossible for `n = 10^5` and ignores the strong permutation structure.
 - **Build reachable XOR sets incrementally:** A bitset or hash-set DP can find the answer for a general array, but here the proof gives the count directly from `n` with constant problem-level work.
 - **Return the next power of two for every n:** This fails at `n = 1` and `n = 2`. Their attainable sets are `{1}` and `{1, 2}` rather than a full range beginning at zero.
 - **Return the greatest power of two at most n:** The attainable values use all `p + 1` bit positions and range through `2^(p + 1) - 1`, so the count is the next strictly larger power of two.
@@ -125,8 +125,8 @@ This interval contains exactly `2^(p + 1)` integers. It is an upper bound on the
 - **Target y equals one in the construction:** `1 ^ y` would be zero, which is unavailable. The special pair `2, 3` closes exactly this gap.
 - **Zero target:** Zero is not an input value, but it is a result because `1 ^ 2 ^ 3 = 0` once `n >= 3`.
 - **Loss of the permutation guarantee:** If values were missing, duplicated, or arbitrary, the construction could use unavailable operands and the closed form would no longer be justified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

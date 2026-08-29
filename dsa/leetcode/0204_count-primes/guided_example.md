@@ -69,7 +69,7 @@ counted.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every `i` from 2 through `n - 1`, the algorithm checks `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ though it adds work.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Square-start sieve:** Begin marking at `p*p` a:** - **Square-start sieve:** Begin marking at `p*p` and stop outer candidate processing near $\sqrt n$; avoids redundant writes.
+- **Square-start sieve:** Begin marking at `p*p` and stop outer candidate processing near $\sqrt n$; avoids redundant writes.
 - **Bytearray slicing:** Compact storage and C-level bulk marking can be substantially faster in Python.
 - **Odd-only sieve:** Store only odd candidates and treat 2 separately, as the competitive variant effectively does.
 - **Linear sieve:** Record smallest prime factors so each composite is generated once; $O(n)$ time but more bookkeeping.
@@ -121,8 +121,8 @@ though it adds work.
 - **Repeated marking:** Safe because false assignment is idempotent.
 - **Indices 0 and 1:** Remain true internally but are never scanned or counted.
 - **Manifest mismatch:** Exact source is a boolean-list, `2p`-start sieve, not a bytearray square-start implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

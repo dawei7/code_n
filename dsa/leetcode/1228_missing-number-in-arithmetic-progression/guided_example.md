@@ -83,7 +83,7 @@ The method never needs to calculate the common difference or locate the gap. It 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pair the first original term with the last, the second with ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ The observed sum is 40, so the missing value is 14. Nothing in the formula assum
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search for the first shifted index:** D:** - **Binary search for the first shifted index:** Derive the common difference from the preserved endpoints, compare `arr[mid]` with its expected value, and find the first mismatch in \(O(\log n)\) time and \(O(1)\) space. This matches the manifest but is more complex.
+- **Binary search for the first shifted index:** Derive the common difference from the preserved endpoints, compare `arr[mid]` with its expected value, and find the first mismatch in \(O(\log n)\) time and \(O(1)\) space. This matches the manifest but is more complex.
 - **Linear difference scan:** Derive the common difference and return the first expected value that does not match. It has the same \(O(n)\) time as the sum formula with more branching.
 - **Increasing progression:** The complete-total formula works without locating the unusually large adjacent gap.
 - **Decreasing progression:** Endpoint order and negative difference do not affect the sum identity.
@@ -142,8 +142,8 @@ The observed sum is 40, so the missing value is 14. Nothing in the formula assum
 - **Exact integer arithmetic:** The numerator is always even for a valid integer progression, so floor division does not lose information.
 - **Overflow in other languages:** Endpoint values and lengths should be promoted before multiplication. Python’s arbitrary-precision integers avoid this issue.
 - **Input validity:** The code does not verify that the remaining values came from a valid progression with one interior deletion; it relies on the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

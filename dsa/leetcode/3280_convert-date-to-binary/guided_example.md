@@ -51,7 +51,7 @@ The date already has three decimal components separated by hyphens. Each compone
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `date.split("-")` produces the year, month, and day strings ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each part `s`, `int(s)` performs decimal conversion. This step is important 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `bin(value)[2:]`:** Python's `bin` adds `0:** - **Use `bin(value)[2:]`:** Python's `bin` adds `0b`, so slicing removes it. Format code `b` expresses the desired output more directly.
+- **Use `bin(value)[2:]`:** Python's `bin` adds `0b`, so slicing removes it. Format code `b` expresses the desired output more directly.
 - **Manual repeated division:** Repeatedly divide each component by two and reverse remainders. This teaches base conversion but is longer and more error-prone than the built-in formatter.
 - **Preserve textual leading zeros:** This would be wrong because binary components must have no leading zeros. Decimal padding is presentation, not value.
 - **Convert the full date at once:** Hyphens make it nonnumeric, and even removing them would solve a different conversion.
@@ -107,8 +107,8 @@ For each part `s`, `int(s)` performs decimal conversion. This step is important 
 - **No locale dependency:** Hyphen splitting and integer formatting do not depend on localized date formats, month names, or calendar display settings.
 - **Formatting expression scope:** The comprehension variable `s` refers to one component at a time and does not shadow or modify the original `date` argument.
 - **Canonical result:** Every positive integer has one unique binary representation without leading zeroes. Consequently, the component-wise transformation cannot produce two different valid answers for the same input date.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

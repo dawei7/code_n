@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `animals[animals['weight'] > 100].sort_values('weight', asce... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Method chaining shortens the syntax, but the intermediate tables still exist con
 
 ## 6. Traps This Instance Exposes
 
-- **- **Named intermediate variables:** They perform t:** - **Named intermediate variables:** They perform the same operations and can be easier to debug, but do not meet the optional one-line chaining challenge.
+- **Named intermediate variables:** They perform the same operations and can be easier to debug, but do not meet the optional one-line chaining challenge.
 - **Sort before filtering:** Correct membership and order are possible, but sorting all $n$ rows costs $O(n\log n)$ instead of sorting only $h$ matches.
 - **`query` method:** `animals.query('weight > 100')` can replace Boolean indexing but adds expression parsing.
 - **Weight exactly 100:** It is excluded because the predicate is strictly greater.
@@ -94,8 +94,8 @@ Method chaining shortens the syntax, but the intermediate tables still exist con
 - **All animals heavy:** Sorting dominates at $O(n\log n)$.
 - **Equal weights:** Their relative order is not explicitly defined by this source; only descending weight is guaranteed.
 - **Space accounting:** Include the $n$-element Boolean mask when describing the exact implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

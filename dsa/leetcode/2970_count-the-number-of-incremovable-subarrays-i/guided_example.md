@@ -61,7 +61,7 @@ Otherwise, `nums[i] >= nums[i + 1]` is the first broken adjacency. Any retained 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `i` begins at zero and advances while `nums[i] < num... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ There are `i + 2` such endpoints. Every retained prefix in this range is strictl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every removed subarray:** There are :** - **Enumerate every removed subarray:** There are $O(N^2)$ candidates, and checking each remainder directly can make the method $O(N^3)$. Even optimized prefix checks still lose the linear pointer reuse.
+- **Enumerate every removed subarray:** There are $O(N^2)$ candidates, and checking each remainder directly can make the method $O(N^3)$. Even optimized prefix checks still lose the linear pointer reuse.
 - **Binary search bridges:** With precomputed increasing prefix/suffix ranges, each suffix could binary-search a compatible prefix in $O(\log N)$, but monotone `i` yields $O(N)$ total time.
 - **Already strictly increasing:** Every nonempty subarray is incremovable, producing $N(N+1)/2$.
 - **Strict versus non-decreasing:** Equality is invalid. Both scans and the bridge use strict `<`, while `>=` triggers rejection.
@@ -107,8 +107,8 @@ There are `i + 2` such endpoints. Every retained prefix in this range is strictl
 - **No retained prefix:** Endpoint $-1$ explains the extra one in `i + 2`.
 - **No retained suffix:** Those cases are counted once in the initial `ans = i + 2` and not duplicated in the suffix loop.
 - **Input preservation:** Pointer movement only reads `nums` and leaves it unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

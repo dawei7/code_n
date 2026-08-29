@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_{i}, \text{weight}_{i}]$ denotes the price and weight of the $$i^{\text{th}}$$ item, respectively.
+You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_{i}, \text{weight}_{i}]$ denotes the price and weight of the $i^{\text{th}}$ item, respectively.
 
 The objective is to compute `55` from `{"items": [[50, 1], [10, 8]], "capacity": 5}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,11 +67,7 @@ The manifest describes density sorting directly; the exact key reaches the same 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts by:
-
-`x[1]/x[0]`,
-
-which is `weight/price`,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +112,7 @@ This is added to `ans`, and `v` is subtracted from remaining `capacity`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cross-product comparator:** Avoid floating-poi:** - **Cross-product comparator:** Avoid floating-point density keys by comparing `p1*w2` with `p2*w1`.
+- **Cross-product comparator:** Avoid floating-point density keys by comparing `p1*w2` with `p2*w1`.
 - **Indivisible knapsack DP:** It is unnecessary and incorrect for freely divisible items.
 - **Insufficient total weight:** Return `-1`.
 - **Capacity smaller than first item:** Take only the needed fraction of the best-density item.
@@ -126,8 +122,8 @@ This is added to `ans`, and `v` is subtracted from remaining `capacity`.
 - **Positive prices and weights:** They make reciprocal sorting well-defined.
 - **Exact fill:** Unused capacity is not allowed even if current price is maximal.
 - **Input preservation:** `sorted` does not reorder the original outer list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

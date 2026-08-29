@@ -57,7 +57,7 @@ If at least one neighbor opens by time one, the traveler can make a first move. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The traveler cannot stand still.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If the neighbor's opening time is $g$ and $t+1\ge g$, direct arrival works. Othe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary BFS:** It assumes every transition ha:** - **Ordinary BFS:** It assumes every transition has identical effective cost and cannot prioritize paths with different gate-induced delays.
+- **Ordinary BFS:** It assumes every transition has identical effective cost and cannot prioritize paths with different gate-induced delays.
 - **Wait in place:** The rules require a move every second, so simply replacing arrival by `max(t+1, gate)` ignores parity and can claim impossible times.
 - **Time-expanded BFS:** Adding a state for every time step is far larger than computing the next legal time algebraically.
 - **Both first neighbors locked:** No move at time one means no waiting cycle exists, so $-1$ is mandatory.
@@ -109,8 +109,8 @@ If the neighbor's opening time is $g$ and $t+1\ge g$, direct arrival works. Othe
 - **Wrong parity at the gate:** Arrival is delayed to `gate + 1`, not to the gate time.
 - **Stale heap entries:** They may cause redundant work, but the distance comparison prevents harmful updates and the minimum destination entry pops first.
 - **Input dimensions:** The direct accesses to `grid[0][1]` and `grid[1][0]` rely on the guaranteed minimum of two rows and two columns.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -9,7 +9,7 @@ We are given a stream of **records** of the **price** of stock at different **ti
 
 The records do not come in chronological order. Another record with the same timestamp may appear later in the stream, correcting the price of the previous wrong record; this correction can affect the lowest, highest, and latest price of the stock.
 
-Let's walk through an example to make sure we clearly understand what this problem is asking. Suppose the stock prices in increasing order of timestamp are, $[2, 10, 3, 3, 5, 9]$.
+Let's walk through an example to make sure we clearly understand what this problem is asking. Suppose the stock prices in increasing order of timestamp are, `[2, 10, 3, 3, 5, 9]`.
 Here, the lowest price of the stock is $2$, the highest price is $10$, and the latest price is $9$.
 - If the $1^{st}$ record is corrected from $2$ to $4$, then the lowest price changes from $2$ to $3$.
 - If the last record is corrected from $9$ to $6$, then the latest price changes to $6$.

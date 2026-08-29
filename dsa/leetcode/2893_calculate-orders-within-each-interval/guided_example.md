@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SUM(order_count) OVER (ORDER BY minute ROWS 5 PRECEDING)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct bucket grouping:** Group by `(minute - :** - **Direct bucket grouping:** Group by `(minute - 1) DIV 6 + 1`, sum counts, and `ORDER BY interval_no`. This is robust to missing minute rows and matches the manifest.
+- **Direct bucket grouping:** Group by `(minute - 1) DIV 6 + 1`, sum counts, and `ORDER BY interval_no`. This is robust to missing minute rows and matches the manifest.
 - **Consecutive minutes:** Only under this unstated guarantee does six preceding rows equal the current six-minute interval.
 - **Missing boundary minute:** The exact query omits that interval entirely.
 - **Sparse rows:** `ROWS` counts records, not minute distance, so totals can cross interval boundaries.
@@ -94,8 +94,8 @@ We maintain the core conceptual parameters and state variables:
 - **Final ordering:** Add outer `ORDER BY interval_no`; window ordering alone does not guarantee result order.
 - **Division:** Boundary minutes are divisible by six, so `minute / 6` has an integer value even if MySQL represents it as a decimal type.
 - **Primary key:** It guarantees unique minute labels, not consecutiveness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

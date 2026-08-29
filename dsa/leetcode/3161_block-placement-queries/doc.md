@@ -39,7 +39,7 @@ Let $q$ be the number of queries and let $C$ be one more than the largest coordi
 - **Input:** `queries = [[1, 2], [2, 3, 3], [2, 3, 1], [2, 2, 2]]`
 - **Output:** `[false, true, true]`
 
-An obstacle at coordinate `2` leaves no obstacle-free interval of length `3` inside $[0,3]$. Length `1` fits, and a length-`2` block can exactly touch the obstacle at its right endpoint.
+An obstacle at coordinate `2` leaves no obstacle-free interval of length `3` inside `[0,3]`. Length `1` fits, and a length-`2` block can exactly touch the obstacle at its right endpoint.
 
 #### Example 2
 

@@ -59,7 +59,7 @@ The case `b < a` is symmetric. The right pointer moves left, `nums[j]` is added 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `a < b`, the two current blocks cannot be matched as they... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ It then resets `a` and `b` to the new boundary values. When the pointers meet, b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Actually mutate the array:** Replacing adjacen:** - **Actually mutate the array:** Replacing adjacent elements and shifting storage can simulate the statement literally, but repeated deletions may make the implementation $O(n^2)$. Accumulated boundary sums represent the same merges without movement.
+- **Actually mutate the array:** Replacing adjacent elements and shifting storage can simulate the statement literally, but repeated deletions may make the implementation $O(n^2)$. Accumulated boundary sums represent the same merges without movement.
 - **Dynamic programming over intervals:** One could search for minimum operations for every subarray, but that introduces quadratic states and overlooks positivity's forced greedy choice.
 - **Prefix-sum partition search:** Choosing matching block boundaries through prefix sums can describe the final partition, yet two pointers find those boundaries online with constant extra space.
 - **Non-positive numbers:** The proof would fail if zeros or negatives were allowed because extending the larger side might leave it unchanged or reduce it. The strict positivity constraint is what makes extending only the smaller sum safe.
@@ -106,8 +106,8 @@ It then resets `a` and `b` to the new boundary values. When the pointers meet, b
 - **Equal accumulated sums from unequal block lengths:** Blocks need equal sums, not equal numbers of original elements. The method correctly fixes them regardless of how many values each side absorbed.
 - **Pointer meeting:** A central block needs no partner and requires no extra operation. The `i < j` condition stops at exactly that point.
 - **Input preservation:** Only sums and pointers change; callers retain the original array unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

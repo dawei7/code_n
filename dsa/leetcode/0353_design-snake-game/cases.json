@@ -75,15 +75,6 @@
       "tags": ["food-order", "pending-food"]
     },
     {
-      "id": "trial-persistent-game-over",
-      "name": "moves after game over continue returning minus one",
-      "kind": "trial",
-      "visible": true,
-      "input": {"width": 2, "height": 1, "food": [[0, 1]], "directions": ["R", "R", "L"]},
-      "expected": [1, -1, -1],
-      "tags": ["minimum-height", "game-over", "persistent-result"]
-    },
-    {
       "id": "trial-maximum-board",
       "name": "maximum board dimensions and food coordinates",
       "kind": "trial",

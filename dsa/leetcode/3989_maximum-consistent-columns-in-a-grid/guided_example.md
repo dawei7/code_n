@@ -69,7 +69,7 @@ If no row causes a break, `left` may be the previous retained column before `rig
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `right`, the source tries every earlier `left<right... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +114,9 @@ occurs exactly when every row passed the compatibility test. The `else` is assoc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate retained subsets:** There are `2^n-1:** - **Enumerate retained subsets:** There are `2^n-1` nonempty column subsets. The DAG dynamic program reduces this to polynomial time.
-- **- **Greedily keep the next compatible column:** A :** - **Greedily keep the next compatible column:** A locally compatible choice can block a longer later chain. All possible predecessors must be compared through DP.
-- **- **Require compatibility with every retained colu:** - **Require compatibility with every retained column:** Only adjacent columns in the reduced grid matter. That stronger condition can reject valid solutions.
+- **Enumerate retained subsets:** There are `2^n-1` nonempty column subsets. The DAG dynamic program reduces this to polynomial time.
+- **Greedily keep the next compatible column:** A locally compatible choice can block a longer later chain. All possible predecessors must be compared through DP.
+- **Require compatibility with every retained column:** Only adjacent columns in the reduced grid matter. That stronger condition can reject valid solutions.
 
 ---
 

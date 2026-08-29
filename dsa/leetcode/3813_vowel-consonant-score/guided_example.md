@@ -70,7 +70,7 @@ This organization automatically ignores every permitted nonletter. There is no s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `s = "cooear"`, the loop encounters six alphabetic chara... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ If there are consonants but no vowels, `v` is zero and `v // c` naturally return
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count consonants directly:** An explicit branc:** - **Count consonants directly:** An explicit branch can increment `v` for vowels and increment `c` for other lowercase letters. That avoids the temporary “all letters” meaning of `c` but has the same $O(N)$ time and $O(1)$ space.
+- **Count consonants directly:** An explicit branch can increment `v` for vowels and increment `c` for other lowercase letters. That avoids the temporary “all letters” meaning of `c` but has the same $O(N)$ time and $O(1)$ space.
 - **Repeated built-in counts:** Summing `s.count(ch)` for the five vowels can find $V$, but a separate letter count is still needed and the string is scanned several times. Five is constant, so the asymptotic time stays $O(N)$, though the single pass is clearer and does less work.
 - **Regular expressions or filtered strings:** Building collections of matching characters can express the classification, but it introduces $O(N)$ temporary space for a task requiring only two integers.
 - **No consonants:** The answer must be zero even when vowels are present. The conditional return prevents division by zero and implements the special rule.
@@ -125,8 +125,8 @@ If there are consonants but no vowels, `v` is zero and `v // c` naturally return
 - **Mixed digits and letters:** Digits do not become consonants merely because they are not vowels. The outer alphabetic test is essential.
 - **Unicode outside the contract:** Python's `isalpha()` recognizes many non-English letters. Such characters would be counted as consonants unless they were one of the five literal vowels, but the input guarantee excludes them, so this does not affect valid cases.
 - **Maximum length:** Even though the stated maximum is only 100, the one-pass method remains the natural optimal solution and scales linearly for longer strings as well.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

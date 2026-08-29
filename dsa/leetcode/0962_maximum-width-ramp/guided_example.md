@@ -64,7 +64,7 @@ For `[6, 0, 8, 2, 1, 5]`, the stack becomes indices `[0, 1]` with values `[6, 0]
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The stack stores indices in increasing index order, while th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The non-strict comparison is required because equal values are allowed in a ramp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair:** It costs `O(N^2)` time.
+- **Check every pair:** It costs `O(N^2)` time.
 - :** - **Check every pair:** It costs `O(N^2)` time.
 - **Sort indices by value:** Processing indices in value order can track a minimum index in `O(N log N)` time.
 - **Prefix minima and suffix maxima arrays:** A two-pointer scan gives linear time but uses two auxiliary arrays.
@@ -118,8 +118,8 @@ The non-strict comparison is required because equal values are allowed in a ramp
 - **Two elements:** The method returns one if the first value is at most the second, otherwise zero.
 - **Early empty stack:** It means every candidate already received its best possible right endpoint.
 - **Input preservation:** The algorithm stores indices and does not modify `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

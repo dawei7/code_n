@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - a cell `[x, y]` belongs to one color when `(x + y) % 2 == ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The names “black” and “white” are unimportant. Only the two parity class
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search with move parity:** A BFS:** - **Breadth-first search with move parity:** A BFS over states `(x, y, parity)` can answer the question and is small on an `8 \times 8` board. It is unnecessary because the checkerboard invariant reduces the answer to constant-time arithmetic.
+- **Breadth-first search with move parity:** A BFS over states `(x, y, parity)` can answer the question and is small on an `8 \times 8` board. It is unnecessary because the checkerboard invariant reduces the answer to constant-time arithmetic.
 - **Ordinary shortest-path BFS:** Computing only the shortest distance would be more information than needed. The color classes already determine whether every route length is even or odd.
 - **Searching for one explicit route:** A found route demonstrates one answer but requires predecessor or queue state. The endpoint parity proves the answer for all routes at once.
 - **Manhattan or Euclidean distance:** These distances do not determine knight reachability parity. Knight movement is governed by the `(2,1)` displacement and its resulting color flip.
@@ -99,8 +99,8 @@ The names “black” and “white” are unimportant. Only the two parity class
 - **Coordinate convention:** Whether `x` is viewed as a row or a column does not matter. A knight changes one coordinate by `2` and the other by `1` in either convention.
 - **Maximum coordinate values:** Coordinates `0` and `7` behave exactly like interior coordinates for the parity test. Boundaries affect which particular moves are legal, but not the color-flip rule.
 - **Boolean result:** The equality comparison already produces Python's `true` or `false` value, so no conditional statement or conversion is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

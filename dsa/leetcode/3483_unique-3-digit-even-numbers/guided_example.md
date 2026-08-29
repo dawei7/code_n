@@ -51,7 +51,7 @@ The outer loop chooses index `i` and value `a` for the units place. A decimal nu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop chooses index `i` and value `a` for the units... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The middle loop chooses index `j` and value `b` for the tens place. `i == j` is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Digit-frequency enumeration:** Count copies of:** - **Digit-frequency enumeration:** Count copies of digits zero through nine, try value triples, and decrement counts temporarily. This matches the manifest and has linear input processing plus constant-domain work.
+- **Digit-frequency enumeration:** Count copies of digits zero through nine, try value triples, and decrement counts temporarily. This matches the manifest and has linear input processing plus constant-domain work.
 - **Count valid index triples directly:** This overcounts when duplicate copies produce the same decimal number; a set or value-based enumeration is required.
 - **Generate all numbers from 100 through 999:** Checking digit availability is correct and bounded by 900 candidates, but differs from the protected construction.
 - **Leading zero:** Zero is legal in the tens or units place but rejected only when chosen as `c` for hundreds.
@@ -98,8 +98,8 @@ The middle loop chooses index `j` and value `b` for the tens place. `i == j` is 
 - **Insufficient nonzero digits:** If every possible hundreds copy is zero, no three-digit number is added.
 - **Distinctness meaning:** The output counts unique numeric values, not the number of ways to select copies.
 - **Source-complexity fidelity:** The small constraint makes cubic enumeration fast, but it should not be documented as the unimplemented linear count method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

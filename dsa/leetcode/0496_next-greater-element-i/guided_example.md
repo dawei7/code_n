@@ -51,7 +51,7 @@ Scanning from right to left has a natural advantage: when processing value `x`, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Scanning from right to left has a natural advantage: when pr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Scanning from right to left has a natural advantage: when processing value `x`, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan rightward for every query:** Locate each :** - **Scan rightward for every query:** Locate each `nums1` value and search its suffix. This can cost $O(mn)$ time.
+- **Scan rightward for every query:** Locate each `nums1` value and search its suffix. This can cost $O(mn)$ time.
 - **Left-to-right monotonic stack:** Keep unresolved values; when a larger value arrives, pop them and map each popped value to the current one. It has the same $O(n+m)$ bounds and is the editorial's common direction.
 - **Precompute indices only:** A value-to-index map avoids locating queries but still leaves a linear suffix scan per query, so worst-case time remains quadratic.
 - **No greater element:** The reverse scan stores no mapping, and `get(x, -1)` supplies the required sentinel.
@@ -95,8 +95,8 @@ Scanning from right to left has a natural advantage: when processing value `x`, 
 - **Distinctness:** Dictionary keys are values because each value occurs once. Duplicate arrays would require index-aware handling.
 - **Strict comparison:** Equal values would not qualify as greater. The source's `<` pop is sufficient because equality is impossible here.
 - **Query order:** Preprocessing order does not affect output order; the final comprehension follows `nums1` exactly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

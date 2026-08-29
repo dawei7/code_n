@@ -67,7 +67,7 @@ The modulo expression covers all of them with one uniform rule and no separate f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For every index except the last, `i+1` is the ordinary next ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This gives a direct correctness argument in both directions. A true return means
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct space scan:** Check the character befor:** - **Direct space scan:** Check the character before each space against the character after it, plus the final-to-first comparison. This avoids the word list and achieves $O(1)$ auxiliary space.
+- **Direct space scan:** Check the character before each space against the character after it, plus the final-to-first comparison. This avoids the word list and achieves $O(1)$ auxiliary space.
 - **Explicit word loop:** A regular loop can return false at the first mismatch and true afterward; it is equivalent to `all`.
 - **Single word:** Compare its last and first characters; do not automatically return true.
 - **Case difference:** Uppercase and lowercase characters must compare unequal.
@@ -116,8 +116,8 @@ This gives a direct correctness argument in both directions. A true return means
 - **All boundaries equal:** Then every required edge is present and true is returned.
 - **Input mutation:** `split()` creates new objects but does not modify the original string.
 - **Manifest mismatch:** Space complexity must follow the materialized `ss` list in the actual source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Spaces and `!` characters count because they are characters in the content. The 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | MySQL distinguishes character count from byte count.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This boundary follows the wording “strictly greater than 15” exactly.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LENGTH(content)`:** It counts bytes rather th:** - **`LENGTH(content)`:** It counts bytes rather than characters. It happens to work for the restricted simple character set in common encodings, but `CHAR_LENGTH` states the requirement correctly.
+- **`LENGTH(content)`:** It counts bytes rather than characters. It happens to work for the restricted simple character set in common encodings, but `CHAR_LENGTH` states the requirement correctly.
 - **Computed length column:** A stored or indexed generated column can accelerate repeated length filters, but it changes schema design and is unnecessary for this query.
 - **Return content too:** That would add an unrequested output column; only `tweet_id` belongs in the result.
 - **Use `>= 15`:** This is an off-by-one error because exactly 15 characters is valid.
@@ -110,8 +110,8 @@ This boundary follows the wording “strictly greater than 15” exactly.
 - **No invalid tweets:** The query correctly returns an empty table with the `tweet_id` column.
 - **All tweets invalid:** Every row passes and every unique ID appears once.
 - **Any-order requirement:** Omitting `ORDER BY` avoids an unnecessary sort and remains fully correct.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

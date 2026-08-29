@@ -27,6 +27,9 @@ from server.app.challenge_sets import (
 from server.app.competitive_solutions import split_competitive_solution_source
 from server.app.challenge_packages import (
     leetcode_guided_example_path,
+    leetcode_metadata,
+    leetcode_optimal_approach_path,
+    leetcode_package_dir,
     leetcode_solution_path,
     leetcode_template_path,
     leetcode_solution_variants_status,
@@ -160,6 +163,49 @@ def _solution_variant_details(
 
     status = leetcode_solution_variants_status(challenge_id)
     if not status.variants:
+        # Construct single canonical solution variant directly from package root
+        package_dir = leetcode_package_dir(challenge_id)
+        if package_dir is not None:
+            metadata = leetcode_metadata(challenge_id)
+            primary_lang = metadata.get("primary_language", "python")
+            sol_path = leetcode_solution_path(challenge_id, primary_lang)
+            approach_path = leetcode_optimal_approach_path(challenge_id)
+            if sol_path and sol_path.is_file():
+                sol_source = sol_path.read_text(encoding="utf-8")
+                sources = {primary_lang: sol_source}
+                approach_md = approach_path.read_text(encoding="utf-8") if (approach_path and approach_path.is_file()) else ""
+                submission_path = package_dir / "submission.json"
+                submission_status = "missing"
+                verified_submission_id = None
+                if submission_path.is_file():
+                    try:
+                        sub_data = json.loads(submission_path.read_text(encoding="utf-8"))
+                        submission_status = str(sub_data.get("status") or "accepted")
+                        verified_submission_id = sub_data.get("submission_id")
+                    except Exception:
+                        pass
+                canonical_variant = SolutionVariantDetail(
+                    id="optimal",
+                    label="Optimal",
+                    kind="optimal",
+                    summary="Canonical solution",
+                    time_complexity="",
+                    space_complexity="",
+                    approach_markdown=approach_md,
+                    sources=sources,
+                    leetcode_sources=sources,
+                    implementations=[
+                        SolutionImplementationDetail(
+                            id="solution-1",
+                            label="Verified solution",
+                            sources=sources,
+                            leetcode_sources=sources,
+                        )
+                    ],
+                    submission_status=submission_status,
+                    verified_submission_id=str(verified_submission_id or ""),
+                )
+                return [canonical_variant], "optimal", None, "", None
         return [], "", None, "", None
 
     variants: list[SolutionVariantDetail] = []
@@ -575,12 +621,15 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         else {}
     )
     native_optimal = optimal_native_submission_source(spec.id)
-    leetcode_optimal_sources = (
-        {native_optimal[0]: native_optimal[1]}
-        if native_optimal is not None
-        else {}
-    )
-    leetcode_optimal_source = native_optimal[1] if native_optimal is not None else ""
+    if native_optimal is not None:
+        leetcode_optimal_sources = {native_optimal[0]: native_optimal[1]}
+        leetcode_optimal_source = native_optimal[1]
+    elif coden_optimal_source:
+        leetcode_optimal_sources = {primary_language: coden_optimal_source}
+        leetcode_optimal_source = coden_optimal_source
+    else:
+        leetcode_optimal_sources = {}
+        leetcode_optimal_source = ""
     (
         solution_variants,
         default_solution_variant,

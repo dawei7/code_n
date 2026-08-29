@@ -77,7 +77,7 @@ If $1$, $4$, and $8$ are present, $13$ is expressible. This construction works f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose $2^k$ is the first power of two absent from the arra... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ For `nums = [5,3,2]`, power $1$ is not an array element. Although both $5$ and $
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bit-presence mask:** Record bit $k$ only when :** - **Bit-presence mask:** Record bit $k$ only when an input equals $2^k$. This preserves the proof and achieves $O(1)$ auxiliary space under the fixed 32-bit domain.
+- **Bit-presence mask:** Record bit $k$ only when an input equals $2^k$. This preserves the proof and achieves $O(1)$ auxiliary space under the fixed 32-bit domain.
 - **Enumerate subsequence OR values:** Maintaining all reachable OR results is much more expensive and unnecessary because the minimum answer is controlled by powers of two.
 - **Sort the array:** Sorting does not help; exact membership of a few powers is enough, and a set supplies it directly.
 - **Missing one:** If literal value $1$ is absent, the answer is always $1$, even when other numbers have their lowest bit set.
@@ -129,8 +129,8 @@ For `nums = [5,3,2]`, power $1$ is not an array element. Although both $5$ and $
 - **Composite values:** They may express other composites but can never replace a missing single-bit power.
 - **Guaranteed generator result:** The value $2^{30}$ exceeds the input maximum and is necessarily absent, so checking 32 positions is sufficient.
 - **Expected set behavior:** The $O(n)$ time statement uses normal expected constant-time Python hash membership.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

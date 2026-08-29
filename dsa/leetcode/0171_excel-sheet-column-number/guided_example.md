@@ -72,7 +72,7 @@ needs validation. Every mapped code corresponds to a legal Excel digit.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `map(ord, columnTitle)` yields the integer character code fo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ least one.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index the string directly:** Iterate positions:** - **Index the string directly:** Iterate positions and call `ord(columnTitle[i])`; it implements the same recurrence.
+- **Index the string directly:** Iterate positions and call `ord(columnTitle[i])`; it implements the same recurrence.
 - **Right-to-left powers:** Sum each digit times an increasing power of 26. It is correct but needs more bookkeeping.
 - **Alphabet dictionary:** Map each letter to one through 26; the table is constant-sized but unnecessary because codes are consecutive.
 - **Single `A`:** Produces one.
@@ -127,8 +127,8 @@ least one.
 - **No zero digit:** Omitting `+ 1` would make `A` contribute zero and break every title.
 - **Uppercase guarantee:** Character-code subtraction relies on the specified alphabet.
 - **Empty string outside the contract:** The method would return zero, but no empty Excel title is valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

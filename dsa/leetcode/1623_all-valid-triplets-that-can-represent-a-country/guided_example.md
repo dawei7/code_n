@@ -81,7 +81,7 @@ Name distinctness and ID distinctness are also independent. Two rows may have di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are three unordered pairs among three selected student... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ No `DISTINCT` is needed either. Inside each school, student names are distinct. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `CROSS JOIN` syntax:** Writing `Schoo:** - **Explicit `CROSS JOIN` syntax:** Writing `SchoolA AS a CROSS JOIN SchoolB AS b CROSS JOIN SchoolC AS c` is semantically equivalent and can make the intended Cartesian product more visible. The checked-in comma syntax produces the same candidate combinations.
+- **Explicit `CROSS JOIN` syntax:** Writing `SchoolA AS a CROSS JOIN SchoolB AS b CROSS JOIN SchoolC AS c` is semantically equivalent and can make the intended Cartesian product more visible. The checked-in comma syntax produces the same candidate combinations.
 - **Pairwise joins with `ON` conditions:** The six inequality predicates can be distributed into explicit join conditions. That may improve readability for some teams, but the logical work and resulting set remain the same.
 - **Use `NOT IN` tuples or concatenated keys:** Compressing the tests into clever expressions tends to obscure that names and IDs require separate pairwise distinctness. Concatenation can also create collisions and type-conversion issues.
 - **Use `DISTINCT` defensively:** It is unnecessary under the stated per-school uniqueness of names and could add duplicate-removal work. It would also hide, rather than explain, any violation of the source guarantees.
@@ -140,8 +140,8 @@ No `DISTINCT` is needed either. Inside each school, student names are distinct. 
 - **Same ID but different name:** The ID predicate rejects the candidate. Distinct names do not excuse a repeated identifier.
 - **SQL `NULL` semantics:** In SQL, `NULL != value` evaluates to unknown rather than true. The problem's student rows are intended to supply their identifying values; if a different real-world schema allowed nulls, the desired null policy would need to be stated and handled explicitly.
 - **No explicit output IDs:** IDs are filtering attributes only. Adding them to `SELECT` would violate the required three-column result format.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

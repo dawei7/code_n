@@ -61,7 +61,7 @@ This matches the shifting sequence: one left shift turns `ba` into `az`. The wra
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ordinary subtraction without modulo behavior would group `az... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The key also preserves length because it is a string containing one normalized c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjacent-difference tuple:** Record `(s[i] - s:** - **Adjacent-difference tuple:** Record `(s[i] - s[i-1]) mod 26` for every adjacent pair. It is shift-invariant and is the representation summarized by the manifest. The exact source uses the equally valid first-letter normalization.
+- **Adjacent-difference tuple:** Record `(s[i] - s[i-1]) mod 26` for every adjacent pair. It is shift-invariant and is the representation summarized by the manifest. The exact source uses the equally valid first-letter normalization.
 - **Compare every pair of strings:** Test whether one constant shift converts each pair and merge matches. This repeats character work and can take quadratic time in the number of strings.
 - **Generate each string's full shifting sequence:** A string has at most 26 distinct shifts, so it could be matched through all variants, but canonicalizing once is simpler and avoids storing unnecessary forms.
 - **Single-character strings:** Every one-letter lowercase string can shift into every other. Normalization maps all of them to the one-character key `a`, so they form one group.
@@ -118,8 +118,8 @@ The key also preserves length because it is a string containing one normalized c
 - **Dictionary ordering:** Modern Python preserves insertion order, but the contract explicitly allows any output order. Correctness depends only on group membership.
 - **Empty strings:** The source accesses `s[0]`, but the constraints guarantee every string has length at least one. Supporting empty strings would require assigning them a separate empty key.
 - **Non-lowercase characters:** The arithmetic assumes contiguous lowercase English codes and a 26-letter cycle. Broader alphabets would require a contract-specific mapping rather than this fixed offset.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

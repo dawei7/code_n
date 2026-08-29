@@ -14,7 +14,7 @@ For each query, your task is to determine whether it is possible to make `s` a *
 
 Each query is answered **independently** of the others.
 
-Return *a **0-indexed** array *`answer`*, where *$\text{answer}[i] = true$* if it is possible to make *`s`* a palindrome by performing operations specified by the *$$i^{\text{th}}$$* query, and *`false`* otherwise.*
+Return *a **0-indexed** array *`answer`*, where *$\text{answer}[i] = true$* if it is possible to make *`s`* a palindrome by performing operations specified by the *$i^{\text{th}}$* query, and *`false`* otherwise.*
 
 - A **substring** is a contiguous sequence of characters within a string.
 

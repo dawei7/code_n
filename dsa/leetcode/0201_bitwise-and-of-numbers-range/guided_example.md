@@ -67,7 +67,7 @@ the rightmost set bit of the original value disappears.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The update `right &= right - 1` is Brian Kernighan's bit-cle... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ also `5 & 6`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Common-prefix shifts:** Shift both endpoints r:** - **Common-prefix shifts:** Shift both endpoints right until equal, count shifts, then restore the prefix with a left shift.
+- **Common-prefix shifts:** Shift both endpoints right until equal, count shifts, then restore the prefix with a left shift.
 - **Brute-force range AND:** Correct but proportional to `right - left + 1`, which is infeasible for wide intervals.
 - **Highest-difference mask:** Find the most significant differing endpoint bit and clear that bit and everything below in one calculation.
 - **Equal endpoints:** Return the endpoint unchanged.
@@ -120,8 +120,8 @@ also `5 & 6`.
 - **Maximum endpoint:** Still at most 31 clearing iterations under the contract.
 - **Nonnegative guarantee:** Ensures monotonic finite bit-clearing behavior.
 - **Common-prefix bit:** The stopping condition prevents it from being cleared.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

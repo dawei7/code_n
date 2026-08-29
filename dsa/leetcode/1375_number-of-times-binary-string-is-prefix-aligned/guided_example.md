@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have a **1-indexed** binary string of length `n` where all the bits are `0` initially. We will flip all the bits of this binary string (i.e., change them from `0` to `1`) one by one. You are given a **1-indexed** integer array `flips` where $\text{flips}[i]$ indicates that the bit at index $\text{flips}[i]$ will be flipped in the $$i^{\text{th}}$$ step.
+You have a **1-indexed** binary string of length `n` where all the bits are `0` initially. We will flip all the bits of this binary string (i.e., change them from `0` to `1`) one by one. You are given a **1-indexed** integer array `flips` where $\text{flips}[i]$ indicates that the bit at index $\text{flips}[i]$ will be flipped in the $i^{\text{th}}$ step.
 
 The objective is to compute `2` from `{"flips": [3, 2, 4, 1, 5]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ This proof relies on the permutation guarantee. If repeated flips were allowed, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `mx > i`, some position beyond the prefix `[1, i]` has al... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `[3, 2, 4, 1, 5]`, the running maxima are 3, 3, 4, 4, and 5. Comparing with 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Running sum:** Compare the sum of seen flip po:** - **Running sum:** Compare the sum of seen flip positions with $i(i+1)/2$. Under distinctness, equality also proves the seen set is `[1, i]`, but the maximum method uses simpler arithmetic.
+- **Running sum:** Compare the sum of seen flip positions with $i(i+1)/2$. Under distinctness, equality also proves the seen set is `[1, i]`, but the maximum method uses simpler arithmetic.
 - **Explicit bit array:** Apply every flip and scan the prefix. It mirrors the story but can cost $O(n^2)$ if rescanned after each step and uses $O(n)$ space.
 - **Set of flipped positions:** Check whether all positions one through $i$ are present. It works but stores information the permutation and maximum invariant make unnecessary.
 - **First flip is one:** Then `mx == i == 1`, so the first moment is aligned.
@@ -112,8 +112,8 @@ For `[3, 2, 4, 1, 5]`, the running maxima are 3, 3, 4, 4, and 5. Comparing with 
 - **One-based indexing:** Starting `enumerate` at one avoids off-by-one errors between Python iteration and problem positions.
 - **Boolean addition:** `true` contributes one and `false` zero in Python; an explicit conditional is a readability-equivalent alternative.
 - **Input mutation:** The method never changes `flips`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

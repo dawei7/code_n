@@ -63,7 +63,7 @@ For `k=0`, the conversion sequence remains `"0"` and integer 0. This makes `num=
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Converting `k` to a string exposes its decimal digits, and `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ These two directions establish exact correctness. No mathematical characterizati
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic digit reversal:** Compute the rever:** - **Arithmetic digit reversal:** Compute the reverse with modulo and integer division rather than strings. It has the same asymptotic bounds and may avoid allocation.
+- **Arithmetic digit reversal:** Compute the reverse with modulo and integer division rather than strings. It has the same asymptotic bounds and may avoid allocation.
 - **Digit dynamic programming:** Model addition from both ends with carries to decide existence without enumerating every `k`. This can improve dependence on `num` but is considerably more complex for the small bound.
 - **Precompute all sums:** For many queries, one could generate `k + reverse(k)` values once and store them in a set. For one call, that uses unnecessary memory.
 - **`num=0`:** Candidate zero works, so the answer is true.
@@ -112,8 +112,8 @@ These two directions establish exact correctness. No mathematical characterizati
 - **Multiple witnesses:** Only the first encountered match matters because the result is Boolean.
 - **Upper search bound:** No `k > num` can work because both addends are non-negative.
 - **String conversion:** The exact source uses decimal strings, so its temporary-space cost depends on digit count rather than being strictly constant for unbounded integers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

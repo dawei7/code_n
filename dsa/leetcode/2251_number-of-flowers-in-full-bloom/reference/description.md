@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given a **0-indexed** 2D integer array `flowers`, where $\text{flowers}[i] = [\text{start}_{i}, \text{end}_{i}]$ means the $$i^{\text{th}}$$ flower will be in **full bloom** from $\text{start}_{i}$ to $\text{end}_{i}$ (**inclusive**). You are also given a **0-indexed** integer array `people` of size `n`, where $\text{people}[i]$ is the time that the $$i^{\text{th}}$$ person will arrive to see the flowers.
+You are given a **0-indexed** 2D integer array `flowers`, where $\text{flowers}[i] = [\text{start}_{i}, \text{end}_{i}]$ means the $i^{\text{th}}$ flower will be in **full bloom** from $\text{start}_{i}$ to $\text{end}_{i}$ (**inclusive**). You are also given a **0-indexed** integer array `people` of size `n`, where $\text{people}[i]$ is the time that the $i^{\text{th}}$ person will arrive to see the flowers.
 
-Return *an integer array *`answer`* of size *`n`*, where *$\text{answer}[i]$* is the **number** of flowers that are in full bloom when the *$$i^{\text{th}}$$* person arrives.*
+Return *an integer array *`answer`* of size *`n`*, where *$\text{answer}[i]$* is the **number** of flowers that are in full bloom when the *$i^{\text{th}}$* person arrives.*
 
 ### 2. Function Contract
 

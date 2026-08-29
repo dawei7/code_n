@@ -61,7 +61,7 @@ For `nums = [-1, -2, 3, 4]` and `k = 3`, the chosen values are -1, 3, and 4 at i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The selected indices are sorted numerically.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ After selection, sorting indices always creates a valid order.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort values directly:** This finds the maximum:** - **Sort values directly:** This finds the maximum multiset but loses original indices and cannot reliably reconstruct a subsequence.
+- **Sort values directly:** This finds the maximum multiset but loses original indices and cannot reliably reconstruct a subsequence.
 - **Heap of size `k`:** Tracking the top $k$ value-index pairs can reduce selection time to $O(n\log k)$, followed by index sorting.
 - **Quickselect:** It can find a threshold in expected linear time, but ties at the boundary require careful index selection.
 - **`k == 1`:** Any index containing a maximum value is valid.
@@ -110,8 +110,8 @@ After selection, sorting indices always creates a valid order.
 - **Input preservation:** Sorting indices leaves `nums` unchanged.
 - **Required output length:** The final comprehension iterates over exactly the selected $k$ indices, so its result always has length $k$.
 - **Stable sorting:** Python stability determines a consistent choice among equal values, but any tied choice has the same sum and is accepted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

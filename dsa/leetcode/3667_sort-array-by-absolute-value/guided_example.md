@@ -65,7 +65,7 @@ No additional rule is specified for values with equal magnitudes. Either `-1, 1`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After key-based sorting, for every adjacent output pair `a, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Duplicates and opposite-signed pairs need no special handling. They are ordinary
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed-domain counting:** Count each value from:** - **Fixed-domain counting:** Count each value from `-100` through `100`, then emit values by magnitude. This realizes the manifest’s `O(n)` time and constant-domain storage.
+- **Fixed-domain counting:** Count each value from `-100` through `100`, then emit values by magnitude. This realizes the manifest’s `O(n)` time and constant-domain storage.
 - **In-place key sort:** `nums.sort(key=abs)` avoids a separate returned copy but mutates the caller’s array and still has `O(n log n)` time.
 - **Sort ordinary numeric values:** This orders negatives before positives rather than ordering by magnitude and solves a different task.
 - **Replace values with their absolute values:** The output must contain the original signed elements, not only their magnitudes.
@@ -119,8 +119,8 @@ Duplicates and opposite-signed pairs need no special handling. They are ordinary
 - **Most negative allowed value:** `abs(-100) = 100` is valid and poses no overflow issue in Python.
 - **Input preservation:** `sorted` leaves `nums` unchanged.
 - **Missing import:** The stored source uses `List` without importing it. Standalone Python needs `from typing import List` unless the harness provides the name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

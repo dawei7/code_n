@@ -77,7 +77,7 @@ When `w` is absent from `cnt2`, a `Counter` lookup returns zero, so the second c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The return expression iterates through `cnt1.items()`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Each word is examined once regardless of how many times it appeared in `words1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set intersection:** This counts words present :** - **Set intersection:** This counts words present at least once in both arrays but loses occurrence counts. It fails whenever a common word is duplicated on either side.
+- **Set intersection:** This counts words present at least once in both arrays but loses occurrence counts. It fails whenever a common word is duplicated on either side.
 - **Nested scans:** For every word in one array, counting occurrences in both arrays repeatedly can take quadratic time. Counters summarize frequencies once.
 - **One combined counter:** A total frequency of two could mean one occurrence in each array or two occurrences in only one array. Separate counters preserve the required source distinction.
 - **Filtering unique words into sets:** One can construct a set of words whose count is one in each array and intersect those sets. That is correct but creates additional collections after the counters.
@@ -134,8 +134,8 @@ Each word is examined once regardless of how many times it appeared in `words1`.
 - **Arrays with no common words:** Every second-counter lookup is zero and the sum returns zero.
 - **One word in each array:** The answer is one when the two strings are equal and zero otherwise.
 - **Input preservation:** Counters are new summary structures; neither source array is sorted or changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

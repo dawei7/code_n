@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` persons on a social media website. You are given an integer array `ages` where $\text{ages}[i]$ is the age of the $$i^{\text{th}}$$ person.
+There are `n` persons on a social media website. You are given an integer array `ages` where $\text{ages}[i]$ is the age of the $i^{\text{th}}$ person.
 
 The objective is to compute `2` from `{"ages": [16, 16]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -73,7 +73,7 @@ Age zero entries exist in the count array only for convenient indexing and have 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A sender aged `ax` does not request a recipient aged `ay` wh... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,9 +120,9 @@ For two people aged 16, the pair 16 to 16 passes because `16 > 15` and is not ol
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every pair of people:** It follows the d:** - **Check every pair of people:** It follows the definition directly but takes quadratic time. Age frequencies aggregate people with identical behavior.
-- **- **Sort and use two pointers:** Sorting can count:** - **Sort and use two pointers:** Sorting can count eligible recipient ranges per sender age, but the fixed 1–120 domain makes a frequency table simpler.
-- **- **Prefix sums by age:** They can sum allowed rec:** - **Prefix sums by age:** They can sum allowed recipient counts for each sender age. This reduces a generalized `A^2` scan to `O(A)`, though `A = 121` already makes the direct pair scan tiny.
+- **Check every pair of people:** It follows the definition directly but takes quadratic time. Age frequencies aggregate people with identical behavior.
+- **Sort and use two pointers:** Sorting can count eligible recipient ranges per sender age, but the fixed 1–120 domain makes a frequency table simpler.
+- **Prefix sums by age:** They can sum allowed recipient counts for each sender age. This reduces a generalized `A^2` scan to `O(A)`, though `A = 121` already makes the direct pair scan tiny.
 
 ---
 

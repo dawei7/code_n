@@ -61,7 +61,7 @@ In a fresh MySQL session, an unset user variable reads as `NULL`. The source doe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The statement guarantees that the first presented row has a ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The output ID and computed drink are selected together, so every row retains its
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive CTE with an order column:** Number r:** - **Recursive CTE with an order column:** Number rows, then recurse from row `r` to `r+1` carrying `COALESCE(current_drink, previous_drink)`. This is more explicit but needs a real ordering attribute.
+- **Recursive CTE with an order column:** Number rows, then recurse from row `r` to `r+1` carrying `COALESCE(current_drink, previous_drink)`. This is more explicit but needs a real ordering attribute.
 - **Window function with `IGNORE NULLS`:** `LAST_VALUE` over a defined row order can express forward fill on engines supporting the needed null semantics; MySQL support and syntax vary.
 - **Correlated previous-row lookup:** Find the greatest earlier ordered row with non-null drink. It is portable only when “earlier” has a schema key and may be less efficient.
 - **Consecutive null rows:** They all reuse the same unchanged `@cur` value.
@@ -115,8 +115,8 @@ The output ID and computed drink are selected together, so every row retains its
 - **No explicit order column:** This is the central portability limitation; primary-key `id` does not encode displayed order.
 - **Session-variable state:** A clean first processed row overwrites old state, but user-variable evaluation order remains MySQL-specific.
 - **Output order:** The exact query relies on provider row presentation because it has no relational `ORDER BY` expression that can reproduce the requested sequence.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

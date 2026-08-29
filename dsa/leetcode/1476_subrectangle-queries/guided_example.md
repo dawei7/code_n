@@ -51,7 +51,7 @@ This makes even a very large subrectangle update constant-time: its effect is re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This makes even a very large subrectangle update constant-ti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This makes even a very large subrectangle update constant-time: its effect is re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use reversed directly:** `reversed(ops)` avoid:** - **Use reversed directly:** `reversed(ops)` avoids the copied reverse slice and reduces each query's temporary space to `O(1)`, while keeping `O(U)` worst-case time.
+- **Use reversed directly:** `reversed(ops)` avoids the copied reverse slice and reduces each query's temporary space to `O(1)`, while keeping `O(U)` worst-case time.
 - **Eagerly update every cell:** Queries become `O(1)`, but one update costs the rectangle's area.
 - **Two-dimensional lazy structures:** Segment trees or other range-update structures can improve larger workloads but are much more complex.
 - **No updates:** The query falls through to the original matrix value.
@@ -99,8 +99,8 @@ This makes even a very large subrectangle update constant-time: its effect is re
 - **Original matrix ownership:** External baseline mutation can be observed for never-updated cells because no copy is made.
 - **Operation-log growth:** Updates are never compacted, so retained space grows linearly with update calls.
 - **Complexity reporting:** Use `O(1)` update, `O(U)` query, and `O(U)` retained space for this source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

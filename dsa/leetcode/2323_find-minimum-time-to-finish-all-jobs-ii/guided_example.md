@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where $\text{jobs}[i]$ is the amount of time needed to complete the $$i^{\text{th}}$$ job, and $\text{workers}[j]$ is the amount of time the $$j^{\text{th}}$$ worker can work each day.
+You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where $\text{jobs}[i]$ is the amount of time needed to complete the $i^{\text{th}}$ job, and $\text{workers}[j]$ is the amount of time the $j^{\text{th}}$ worker can work each day.
 
 The objective is to compute `2` from `{"jobs": [5, 2, 4], "workers": [1, 7, 5]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ For the second example, sorted jobs are `[3, 9, 15, 18]` and sorted capacities a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code sorts `jobs` and `workers` independently in ascendi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Whenever an assignment has a faster worker paired with a smaller job while a slo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search on the number of days:** For eac:** - **Binary search on the number of days:** For each deadline, sort once and test whether each aligned job satisfies `job <= days * worker`. This is correct but adds a logarithmic search that the direct maximum of aligned durations avoids.
+- **Binary search on the number of days:** For each deadline, sort once and test whether each aligned job satisfies `job <= days * worker`. This is correct but adds a logarithmic search that the direct maximum of aligned durations avoids.
 - **Priority-queue assignment:** Repeatedly choose a worker for a job based on a local ratio. This adds `O(n \log n)` machinery and requires a proof equivalent to the sorted exchange property.
 - **Pair largest job with slowest worker:** Opposite-order pairing maximizes tension and can greatly increase the bottleneck; it is the opposite of the proven alignment.
 - **Pair smallest job with fastest worker:** This creates a crossing whenever a larger job is left for a slower worker. Exchanging those two pairs cannot worsen and often improves the maximum.
@@ -128,8 +128,8 @@ Whenever an assignment has a faster worker paired with a smaller job while a slo
 - **All pairs finish at the same time:** The maximum equals that common duration, as in the balanced second example.
 - **Input mutation:** Both input lists are reordered in ascending order. This does not affect correctness but is observable after the call.
 - **Nonempty guarantee:** `max` receives at least one generated duration because the arrays have equal positive length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

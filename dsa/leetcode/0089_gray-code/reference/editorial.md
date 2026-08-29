@@ -190,7 +190,7 @@ Here $n$ is the total number of bits in the code.
 
 * Time complexity: $O(2 ^ n)$
 
-     The maximum depth of the recursive function stack is $n$. At every function call we iterate over the list `result` and at each iteration we add a new number to the sequence. At $n = 0$ the size of the list is $1$. At $n = 1$ we iterate over the list $[0]$ of size $2 ^ 0 = 1$. Next, at $n = 2$ we iterate over the list $[0, 1]$ of size $2 ^ 1 = 2$. Likewise, at $n = 3$ we iterate over the list $[0, 1, 3, 2]$ of size $2 ^ 2 = 4$. This ends at $n$ where we iterate over a list of size $2 ^ {n - 1}$.
+     The maximum depth of the recursive function stack is $n$. At every function call we iterate over the list `result` and at each iteration we add a new number to the sequence. At $n = 0$ the size of the list is $1$. At $n = 1$ we iterate over the list `[0]` of size $2 ^ 0 = 1$. Next, at $n = 2$ we iterate over the list `[0, 1]` of size $2 ^ 1 = 2$. Likewise, at $n = 3$ we iterate over the list `[0, 1, 3, 2]` of size $2 ^ 2 = 4$. This ends at $n$ where we iterate over a list of size $2 ^ {n - 1}$.
 
      The mathematical expression for the above analysis reflects a geometric progression as follows $1 + 2 + 4 + 8 + ......2 ^{n - 1}$. Thus the time complexity will be $O(2 ^ n)$.
 
@@ -382,7 +382,7 @@ G(i) \oplus G(i + 1) &= (i \oplus (i >> 1)) \oplus ((i + 1) \oplus ((i + 1) >> 1
 \end{aligned}\\
 \text{where} \hspace{3pt} X = (i \oplus (i + 1)) \hspace{3pt} \text{and} \hspace{3pt} Y = ((i \oplus (i + 1)) >> 1)
 
-$Adding 1 to any number is equivalent to toggling every bit from the rightmost zero bit to the end. Let's use$87 + 1 = 88$as an example:$1010111 + 0000001 = 1011000$. Notice that the$0^{th}$through$3^{rd}$$ bits are flipped while all the other bits remain the same.
+$Adding 1 to any number is equivalent to toggling every bit from the rightmost zero bit to the end. Let's use$87 + 1 = 88$as an example:$1010111 + 0000001 = 1011000$. Notice that the$0^{th}$through$3^{rd}$ bits are flipped while all the other bits remain the same.
 Thus in general if $i = ...#01...1 , i + 1$ will be $...#10...0$. Here $#$ represents the first bit to the left of the rightmost zero bit and `...` represents any sequence of binary digits. As we can observe the length of the tailing $1$ bits of $i$ will be the same as the length of the tailing $0$ bits of $i + 1$. The bits from the beginning upto # will remain the same in both $i$ and $i + 1$ and the bits after # will be opposite in $i$ and $i + 1$. Thus we can show that xor product of $i$ and $i + 1$ will be of the form $0000000111111$ (sequence of zeros followed by a sequence of ones):
 
 $$

@@ -70,7 +70,7 @@ The problem allows any output order, so the absence of `ORDER BY` is correct. SQ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `FROM Activity` scans the activity records.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ For machine zero in the example, the signed values are `-0.712`, `1.520`, `-3.14
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join start and end rows:** Alias `Activit:** - **Self-join start and end rows:** Alias `Activity` twice, join on both `machine_id` and `process_id`, filter one alias to `'start'` and the other to `'end'`, then average `end.timestamp - start.timestamp` by machine. This is explicit and does not need the factor two, but requires a join.
+- **Self-join start and end rows:** Alias `Activity` twice, join on both `machine_id` and `process_id`, filter one alias to `'start'` and the other to `'end'`, then average `end.timestamp - start.timestamp` by machine. This is explicit and does not need the factor two, but requires a join.
 - **Two-stage aggregation:** First group by machine and process to sum signed timestamps into durations, then average those durations by machine. It mirrors the definition closely but adds a derived-table stage.
 - **Conditional sums divided by process count:** Sum end timestamps minus start timestamps and divide by `COUNT(DISTINCT process_id)`. This is clear but distinct counting may cost more than exploiting the guaranteed two-row structure.
 - **Missing one activity row:** The `* 2` derivation would be invalid if a process lacked a start or end. The input guarantee rules this out.
@@ -120,8 +120,8 @@ For machine zero in the example, the signed values are `-0.712`, `1.520`, `-3.14
 - **Floating-point timestamps:** Rounding happens once after aggregation. Exact internal representation and half-way rounding behavior follow MySQL’s numeric rules for the expression types.
 - **Output ordering:** No `ORDER BY` is needed because the contract explicitly accepts any order.
 - **Ordinal grouping syntax:** `GROUP BY 1` is concise but can become fragile if the select-list order changes. `GROUP BY machine_id` is a more self-documenting equivalent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

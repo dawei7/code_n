@@ -65,9 +65,7 @@ The sum of an extended subarray is its previous sum plus `arr[i]`. If several su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any subarray ending at `i - 1` and append `arr[i]`:
-
-- ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +113,7 @@ For example, at `i = 4`, subarrays ending at index three have lengths one, two, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Contribution counting per element:** Count how:** - **Contribution counting per element:** Count how many odd-length subarrays contain each index and multiply that occurrence count by `arr[i]`. It also runs in $O(N)$ time and can use $O(1)$ space, but derives the result through combinatorial endpoint choices rather than parity DP.
+- **Contribution counting per element:** Count how many odd-length subarrays contain each index and multiply that occurrence count by `arr[i]`. It also runs in $O(N)$ time and can use $O(1)$ space, but derives the result through combinatorial endpoint choices rather than parity DP.
 - **Scalar parity DP:** Replace arrays `f` and `g` with two previous-state variables. It preserves the exact recurrence and $O(N)$ time while achieving the manifest’s $O(1)$ auxiliary space.
 - **Enumerate all subarrays with rolling sums:** Maintaining a sum for every start avoids a third loop but still takes $O(N^2)$ time.
 - **Recompute every subarray sum:** Three nested loops are conceptually direct but take $O(N^3)$ time.
@@ -127,8 +125,8 @@ For example, at `i = 4`, subarrays ending at index three have lengths one, two, 
 - **Large totals:** A fixed-width implementation may need a wider integer type. Python avoids overflow.
 - **Array allocation mismatch:** Although only the previous state is mathematically needed, this source stores every `f[i]` and `g[i]`. Documentation and memory analysis must reflect that exact choice.
 - **No empty subarray:** The initialization and recurrences include only non-empty subarrays. The empty subarray contributes nothing and is not part of the problem definition.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

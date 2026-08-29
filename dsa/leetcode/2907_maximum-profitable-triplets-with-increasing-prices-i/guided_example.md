@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $$i^{\text{th}}$$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
+Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $i^{\text{th}}$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
 
 The objective is to compute `19` from `{"prices": [10, 2, 3, 4], "profits": [100, 2, 7, 10]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,7 +63,7 @@ Thus a positive `right` represents a real later item with a strictly larger pric
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second inner loop performs the symmetric search after $j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The current middle's own profit is always included exactly once. The result vari
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every triplet:** Three loops directl:** - **Enumerate every triplet:** Three loops directly test all $i<j<k$ combinations in $O(n^3)$ time. Fixing $j$ and keeping only side maxima removes an unnecessary factor of $n$.
+- **Enumerate every triplet:** Three loops directly test all $i<j<k$ combinations in $O(n^3)$ time. Fixing $j$ and keeping only side maxima removes an unnecessary factor of $n$.
 - **Fenwick tree or segment tree by price:** Coordinate-compressed range-maximum queries can obtain best profits for smaller or larger prices more quickly. They add data-structure complexity that the exact source and this version's constraints do not require.
 - **Precompute every side maximum:** Arrays of best eligible left and right profit can also be constructed, but eligibility depends on the current price, so a simple prefix maximum without price-aware queries is insufficient.
 - **Equal prices:** Items with a price equal to the middle cannot be selected. Replacing either strict comparison with a non-strict one would accept invalid triplets.
@@ -114,8 +114,8 @@ The current middle's own profit is always included exactly once. The result vari
 - **Positive-profit guarantee:** Zero is a safe “not found” sentinel only because legal profits are strictly positive. If zero or negative profits were allowed, eligibility would need a separate Boolean or a different sentinel.
 - **Several items share the greatest eligible profit:** Any one of them is enough because only the maximum total value is requested, not the indices.
 - **Large numeric totals:** The result adds only three profits. Python integers do not overflow; a fixed-width implementation should choose a type that covers the stated profit bounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

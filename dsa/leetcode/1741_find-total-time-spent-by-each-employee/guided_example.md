@@ -39,7 +39,7 @@ We maintain the core conceptual parameters and state variables:
 Each row of `Employees` records one uninterrupted visit to the office. The visit begins at `in_time` and ends at `out_time`, measured as minute positions within the same `event_day`. Because `in_time < out_time`, the duration contributed by that row is exactly:
 
 $$
-\texttt{out_time}-\texttt{in_time}.
+\texttt{out\_time}-\texttt{in\_time}.
 $$
 
 The task is not asking for one result per visit. It asks for one result per employee per day, and an employee may have several visits on the same day. Therefore the durations of rows that share both `emp_id` and `event_day` must be added together.
@@ -65,7 +65,7 @@ Using both key columns is essential. Grouping only by employee would incorrectly
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first selected expression is `event_day AS day`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The guarantee that visits do not overlap is useful domain information, but the q
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit grouping names:** `GROUP BY event_day:** - **Explicit grouping names:** `GROUP BY event_day, emp_id` is equivalent here and can be safer during query maintenance because reordering the `SELECT` list cannot silently change its meaning.
+- **Explicit grouping names:** `GROUP BY event_day, emp_id` is equivalent here and can be safer during query maintenance because reordering the `SELECT` list cannot silently change its meaning.
 - **Window function:** `SUM(...) OVER (PARTITION BY ...)` would repeat a daily total on every visit row unless followed by deduplication, so ordinary grouping is simpler.
 - **Correlated subquery:** Recomputing the sum for each employee-day pair is more verbose and may repeatedly scan the same rows.
 - **Application-side aggregation:** Fetching all visits and grouping them in application code moves work and data transfer out of the database without improving the result.
@@ -123,8 +123,8 @@ The guarantee that visits do not overlap is useful domain information, but the q
 - **Alias requirement:** `event_day AS day` supplies the requested result-column name without changing the stored date values.
 - **Ordinal syntax:** `GROUP BY 1, 2` is concise but depends on MySQL's interpretation of select-list positions.
 - **Primary key semantics:** Different `in_time` values allow multiple rows in one employee-day group, which is why aggregation remains necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

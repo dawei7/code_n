@@ -75,4 +75,4 @@ Return the largest number of columns that can be retained while every adjacent r
 
 - $-10^{5} \le \text{grid}[i][j] \le 10^{5}$
 
-- $0 \le limit \le 10^{5}​​​​​​​​​​​​​​​​$
+- $0 \le limit \le 10^{5}$

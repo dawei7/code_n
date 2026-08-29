@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ---
 
 ## pandas
@@ -49,7 +49,7 @@ return df[['buyer_id']].drop_duplicates()
 
 ```python
 import pandas as pd
-​
+
 def sales_analysis(product: pd.DataFrame, sales: pd.DataFrame) -> pd.DataFrame:
 
 sales_and_product = sales.merge(product, on = 'product_id')
@@ -96,7 +96,7 @@ The new DataFrame $\text{buyer}_{score}$ looks like this:
 | -------- | ------ | ---------- |
 | 1        | 1      | 0          |
 | 2        | 0      | 0          |
-| 3        | 1      | 1          |​
+| 3        | 1      | 1          |
 
 With the scores for each buyer, we can now use the row-filtering method to select the ideal buyers. The ideal buyers need to have a score larger than 0 in the $\text{s8}_{sum}$ column and a score of 0 in the $\text{iphone}_{sum}$ column.
 
@@ -115,7 +115,7 @@ return df[['buyer_id']]
 
 ```python
 import pandas as pd
-​
+
 def sales_analysis(product: pd.DataFrame, sales: pd.DataFrame) -> pd.DataFrame:
 
 product_and_sales = product.merge(sales, on = 'product_id')
@@ -137,9 +137,9 @@ return df[['buyer_id']]
 ### Approach 1: NOT IN/EXIST in the subquery
 
 <!-- h4 for sections -->
-#### Algorithm​
+#### Algorithm
 The most straightforward way to solve this type of **NOT IN** problem is always to use a subquery to select the unwanted group (for this question it is the buyers who have bought iPhone), and then select the wanted group in the main query (the buyers who have bought S8) and exclude the records in the subquery using `NOT IN` or `NOT EXISTS`.
-​
+
 
 To create the subquery that contains the unwanted buyers:
 ```sql
@@ -178,13 +178,13 @@ AND s.buyer_id NOT IN
     AND p.product_name = 'iPhone'
     )
 ```
-​
+
 <!-- an empty line to separate approaches -->
 
 ### Approach 2: LEFT JOIN and NULL Ids From the Right Table
 
 <!-- h4 for sections -->
-#### Algorithm​
+#### Algorithm
 <!-- Describe your approach to solving the problem. -->
 Another common approach to solve the 'NOT IN' problem is to use `LEFT JOIN`. In this approach, we join the two tables and put the wanted group in the left table. We then remove all the records in the right table (unwated group) from the left table by setting all the ids in the right table to NULL.
 
@@ -228,7 +228,7 @@ LEFT JOIN
 ON s.buyer_id = a.buyer_id
 WHERE a.buyer_id IS NULL
 ```
-​
+
 <!-- an empty line to separate approaches -->
 
 ### Approach 3: Using CASE WHEN or GROUP_CONCAT to Score Each Buyer
@@ -264,7 +264,7 @@ This step can be replaced by using $\text{GROUP}_{CONCAT}$, which returns a stri
 HAVING GROUP_CONCAT(p.product_name) LIKE '%S8%'
 AND GROUP_CONCAT(p.product_name) NOT LIKE '%iPhone%'
 ```
-​<!-- h4 for sections -->
+<!-- h4 for sections -->
 #### Final Code Using CASE WHEN
 ```sql
 SELECT DISTINCT s.buyer_id

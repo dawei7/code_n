@@ -64,7 +64,7 @@ Because all letters occur once, there is no need to sort frequencies. That becom
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An optimal assignment must fill all available lower-cost pos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For $N=26$, complete layers cost $8\cdot1+8\cdot2+8\cdot3=48$. Two remaining let
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form arithmetic:** Summing complete lay:** - **Closed-form arithmetic:** Summing complete layers algebraically gives true $O(1)$ parameterized time and matches the editorial’s second method.
+- **Closed-form arithmetic:** Summing complete layers algebraically gives true $O(1)$ parameterized time and matches the editorial’s second method.
 - **Construct an explicit keypad mapping:** It can demonstrate feasibility but is unnecessary for the numeric minimum.
 - **Use only the traditional three letters per key:** Remapping permits any number of letters per key, so fourth-depth slots are legal.
 - **Fewer than nine letters:** Every letter receives a one-push slot, and the answer is $N$.
@@ -116,8 +116,8 @@ For $N=26$, complete layers cost $8\cdot1+8\cdot2+8\cdot3=48$. Two remaining let
 - **Twenty-five or twenty-six letters:** Fourth-depth slots are required.
 - **Distinct-letter guarantee:** It removes frequency-based assignment decisions.
 - **Exact loop versus summary:** The code iterates by layers even though the manifest describes a closed form.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

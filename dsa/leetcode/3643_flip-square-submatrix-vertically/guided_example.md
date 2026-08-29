@@ -77,7 +77,7 @@ Python evaluates both right-hand values before assigning either left-hand locati
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `i` is a row in the upper half of the selected squar... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ When `k = 1`, `k // 2` is zero, so the outer range is empty. A one-cell square i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two moving row pointers:** Initialize one poin:** - **Two moving row pointers:** Initialize one pointer at `x` and another at `x + k - 1`, swap the selected columns, and move both pointers inward. This is equivalent to the reflected-index formula and has the same `O(k^2)` time and `O(1)` space.
+- **Two moving row pointers:** Initialize one pointer at `x` and another at `x + k - 1`, swap the selected columns, and move both pointers inward. This is equivalent to the reflected-index formula and has the same `O(k^2)` time and `O(1)` space.
 - **Copy and reverse the square:** Extracting the selected cells, reversing their row order, and writing them back is conceptually simple, but it allocates `O(k^2)` extra space that the in-place pairing avoids.
 - **Swap complete matrix rows:** Exchanging `grid[i]` and `grid[i2]` is only valid when the selected square spans every matrix column. In the general case it incorrectly changes cells to the left or right of the square.
 - **Horizontal versus vertical reversal:** Reversing each selected row changes column order and performs a horizontal flip. This task preserves column offsets and reverses the order of selected rows.
@@ -127,8 +127,8 @@ When `k = 1`, `k // 2` is zero, so the outer range is empty. A one-cell square i
 - **Repeated values:** Equal cell values do not need special treatment. Swapping equal values may be visually invisible, but the positional transformation remains valid.
 - **Input mutation:** The source modifies `grid` in place. A caller needing both versions must make a copy before invoking it; adding a copy inside the method would change the stated auxiliary-space behavior.
 - **Missing type import:** The stored source refers to `List` without importing it. The algorithm assumes the judge supplies that typing name; standalone Python would need `from typing import List`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

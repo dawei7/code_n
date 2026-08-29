@@ -71,8 +71,7 @@ Each row has its own accumulator position. Finishing one row does not affect any
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source first creates `ans` with one zero for every row:
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +116,7 @@ Double-counting would be a concern if the task asked for the total number of edg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in row sums:** Returning `[sum(row) for :** - **Built-in row sums:** Returning `[sum(row) for row in matrix]` expresses the same algorithm more compactly, with the same $O(N^2)$ time and $O(N)$ output space.
+- **Built-in row sums:** Returning `[sum(row) for row in matrix]` expresses the same algorithm more compactly, with the same $O(N^2)$ time and $O(N)$ output space.
 - **Upper-triangle scan:** Visit only entries with $i<j$ and increment both endpoint degrees for every one. This uses symmetry explicitly but does not improve the asymptotic time for dense matrix storage.
 - **Adjacency-list input:** If the graph were stored by neighbors, degrees could be obtained in $O(N+E)$ time. Converting this matrix first would still require reading $N^2$ entries.
 - **Single vertex:** The sole diagonal entry is zero, so the answer is `[0]`.
@@ -127,8 +126,8 @@ Double-counting would be a concern if the task asked for the total number of edg
 - **Zero diagonal requirement:** The row-sum method relies on the promise of no self-loops; a different self-loop degree convention would need explicit handling.
 - **Binary-entry requirement:** Summation works because 1 means one edge and 0 means none. Weighted adjacency values would produce weighted sums rather than ordinary degrees.
 - **Input preservation:** The method does not sort or alter any row, so the supplied matrix remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -70,7 +70,7 @@ The transaction `amount` never enters the calculation. The problem asks how many
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second common table expression, `T`, starts from `Visits... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The whole construction is exhaustive and exclusive. Every visit appears once in 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Calendar or numbers table:** A permanent integ:** - **Calendar or numbers table:** A permanent integer table can replace the recursive `S` sequence. It avoids recursive-CTE limits but requires that the database already provide a sufficiently large range.
+- **Calendar or numbers table:** A permanent integer table can replace the recursive `S` sequence. It avoids recursive-CTE limits but requires that the database already provide a sufficiently large range.
 - **Window-based sequence generation:** Some SQL dialects can derive row numbers from an existing large relation. That approach is dialect-specific and must still guarantee a zero row when transaction data is empty.
 - **Correlated count per visit:** A scalar subquery could count transactions for each visit, but repeatedly searching `Transactions` may be slower than grouping once and joining the result.
 - **Starting from transaction groups:** An inner or left join rooted at grouped transactions would lose zero-transaction visits. The query correctly starts `T` from `Visits`.
@@ -123,8 +123,8 @@ The whole construction is exhaustive and exclusive. Every visit appears once in 
 - **No transaction rows:** The maximum is null, recursion retains only zero, and all visits join the zero bucket.
 - **Maximum endpoint:** The recursion must include the largest observed count, not stop one value before it. Testing `n < maximum` before producing `n + 1` creates the endpoint correctly.
 - **Recursive depth limits:** A database may cap recursive common-table-expression iterations. If one visit can have a count beyond that configured cap, the session setting or sequence-generation strategy must accommodate it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

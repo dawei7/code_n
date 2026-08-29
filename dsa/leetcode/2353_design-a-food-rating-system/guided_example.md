@@ -62,7 +62,7 @@ Thus `d[cuisine][0]` is always the correct best tuple.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SortedList` orders ascending.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ After initialization, every food appears once in its cuisine list and once in th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap with lazy deletion:** Push every new `(-r:** - **Heap with lazy deletion:** Push every new `(-rating,food)` tuple and compare heap tops with current metadata during queries. Updates are simple, but stale entries accumulate to `O(n+q)` space.
+- **Heap with lazy deletion:** Push every new `(-rating,food)` tuple and compare heap tops with current metadata during queries. Updates are simple, but stale entries accumulate to `O(n+q)` space.
 - **Scan all foods in a cuisine per query:** Updates are easy, but queries can become linear in cuisine size.
 - **Sort a cuisine list after every update:** Resorting costs `O(n \log n)` per change rather than maintaining order incrementally.
 - **Use positive ratings in ascending order:** The lowest-rated food would appear first. Negation reverses rating priority.
@@ -114,8 +114,8 @@ After initialization, every food appears once in its cuisine list and once in th
 - **Guaranteed cuisine query:** Index zero is safe because every queried cuisine has at least one food.
 - **External dependency:** The source requires `SortedList` from its supporting library.
 - **Persistent mutation:** Internal ranking structures intentionally change across calls; input arrays are only read during construction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

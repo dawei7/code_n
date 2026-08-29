@@ -70,9 +70,9 @@ Thus, the answer is `[1, 1, 0]`.
 
 ### 4. Constraints
 
-- $1 \le n = \text{matrix.length} = \text{matrix}[i].length \le 100$​​​​​​​
+- $1 \le n = \text{matrix.length} = \text{matrix}[i].length \le 100$
 
-- $​​​​​​​\text{matrix}[i][i] = 0$
+- $\text{matrix}[i][i] = 0$
 
 - $\text{matrix}[i][j]$ is either 0 or 1
 

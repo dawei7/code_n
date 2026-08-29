@@ -67,7 +67,7 @@ Under the given positive constraints, `V >= 1` and hence `mx >= 2`. There is no 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `V = max(nums)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ The loops enumerate ordered pairs, although pair order is irrelevant to XOR. Tha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fast Walsh-Hadamard transform:** XOR convoluti:** - **Fast Walsh-Hadamard transform:** XOR convolution can compute the support of triple choices more asymptotically efficiently. It requires careful integer transforms and inversion; despite the manifest summary, the protected source does not implement it.
+- **Fast Walsh-Hadamard transform:** XOR convolution can compute the support of triple choices more asymptotically efficiently. It requires careful integer transforms and inversion; despite the manifest summary, the protected source does not implement it.
 - **Editorial boolean-DP enumeration:** Maintaining reachable XORs after one, two, and three choices can run in `O(nM)` and `O(M)` space. It avoids the explicit `n^2` pair loop and better matches the bounded value universe.
 - **Hash sets of pair and triple XORs:** Sets store only reached values and may help when support is sparse. Dense arrays have predictable lookup and exploit the small maximum value.
 - **Triple nested loops:** Directly evaluating every `a,b,c` costs `O(n^3)`. Factoring the expression through pair-XOR support is the essential improvement in this source.
@@ -130,8 +130,8 @@ The loops enumerate ordered pairs, although pair order is irrelevant to XOR. Tha
 - **Maximum documented value:** For `V = 1500`, both arrays have length `3000`. Every XOR is below `2048`, so the extra tail is unused but harmless.
 - **Ordered-index condition:** The full loops do not violate it. Any three selected positions can be sorted, and XOR does not depend on operand order.
 - **Counting unique results:** `sum(s)` works because every reached entry is assigned exactly the integer one and every unreached entry remains zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

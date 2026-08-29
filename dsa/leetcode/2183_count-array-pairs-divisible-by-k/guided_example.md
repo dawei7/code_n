@@ -67,7 +67,7 @@ Therefore no necessary divisibility information is lost by replacing full values
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider one prime $p$ whose exponent in $k$ is $e$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Only after counting does the code increment `gcd_counts[current_gcd]`. Thus the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all pairs:** It is simple but costs :** - **Enumerate all pairs:** It is simple but costs $O(n^2)$, which is too large for $n=10^5$.
+- **Enumerate all pairs:** It is simple but costs $O(n^2)$, which is too large for $n=10^5$.
 - **Precompute compatible divisor lists:** Enumerate divisors of `k` and store which class pairs work. This can reduce repeated modulus checks at the cost of setup and extra tables.
 - **Count all classes first:** Combine compatible class frequencies with careful handling of identical classes. It is valid but easier to double-count than the online scan.
 - **Value divisible by `k`:** Its gcd class is `k`, which is compatible with every previous class, so it pairs with every earlier value.
@@ -122,8 +122,8 @@ Only after counting does the code increment `gcd_counts[current_gcd]`. Thus the 
 - **Large answer:** Up to $\binom n2$ pairs may qualify; Python integers avoid overflow.
 - **Input preservation:** The array is only scanned, while all state lives in the counter.
 - **Counter iteration safety:** The counter is updated only after the generator sum finishes, so its size does not change during iteration.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

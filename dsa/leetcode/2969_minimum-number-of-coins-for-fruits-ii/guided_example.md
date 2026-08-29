@@ -69,7 +69,7 @@ A direct scan of every interval $[i+1,2i+1]$ would lead to quadratic time. The s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every state depends only on larger indices, so the loop runs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For larger `i`, $2i \ge N$ and the current price alone is the base-case DP value
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic dynamic programming:** Evaluating ev:** - **Quadratic dynamic programming:** Evaluating every `j` in each recurrence interval is straightforward but takes $O(N^2)$ time.
+- **Quadratic dynamic programming:** Evaluating every `j` in each recurrence interval is straightforward but takes $O(N^2)$ time.
 - **Segment tree:** Range-minimum queries can reduce the DP to $O(N\log N)$ time with $O(N)$ space, but the recurrence windows move monotonically and a deque achieves linear time.
 - **Separate DP array:** It preserves `prices` and may be easier to inspect, but adds an $O(N)$ allocation without changing the asymptotic bound.
 - **Buying a free fruit:** This can be optimal because paying for it extends future free coverage; the recurrence deliberately allows every $j$ in the coverage interval.
@@ -119,8 +119,8 @@ For larger `i`, $2i \ge N$ and the current price alone is the base-case DP value
 - **One fruit:** Buying the first fruit completes the process, the deque logic uses the base case, and the answer is its price.
 - **Input mutation:** The returned value is correct, but callers must not expect `prices` to retain its original contents.
 - **One-based versus zero-based indexing:** Recurrence indices are one-based, while list access uses `i - 1`; keeping that distinction avoids coverage-boundary errors.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

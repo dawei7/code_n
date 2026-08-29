@@ -97,13 +97,7 @@ Because `m` is minimal, the new balance is at least `x` but less than `x+k`. Aft
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current requirement `x`, define:
-
-$$
-diff=x-cur.
-$$
-
-If ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -142,9 +136,9 @@ Even under an interpretation allowing optional extra blocks, buying them earlier
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate operations one at a time:** A single :** - **Simulate operations one at a time:** A single large requirement could need up to `10^9` additions when `k=1`. The ceiling formula batches them.
-- **- **Compute from total sum directly:** The closed :** - **Compute from total sum directly:** The closed form for `cnt` is valid and could avoid the balance simulation after summing. The source uses the equivalent per-prefix greedy scan.
-- **- **Buy extra resource proactively:** Operations a:** - **Buy extra resource proactively:** Operations are triggered by insufficiency, and extra total operations only add positive numbered costs. Minimum necessary blocks are optimal.
+- **Simulate operations one at a time:** A single large requirement could need up to `10^9` additions when `k=1`. The ceiling formula batches them.
+- **Compute from total sum directly:** The closed form for `cnt` is valid and could avoid the balance simulation after summing. The source uses the equivalent per-prefix greedy scan.
+- **Buy extra resource proactively:** Operations are triggered by insufficiency, and extra total operations only add positive numbered costs. Minimum necessary blocks are optimal.
 
 ---
 

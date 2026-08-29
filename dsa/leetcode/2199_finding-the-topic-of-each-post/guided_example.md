@@ -67,11 +67,7 @@ The content contract contains only English letters and spaces, so spaces are the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The join condition searches
-
-`CONCAT(' ', content, ' ')`
-
-fo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ If the same word maps to several topics, there are several keyword rows and all 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit lowercase normalization:** Apply `LOW:** - **Explicit lowercase normalization:** Apply `LOWER` to both padded operands or a declared case-insensitive collation so correctness does not depend on the database default.
+- **Explicit lowercase normalization:** Apply `LOWER` to both padded operands or a declared case-insensitive collation so correctness does not depend on the database default.
 - **Explicit ordered aggregation:** Use the target dialect's syntax to sort distinct numeric topic IDs inside aggregation; this is required for a guaranteed ascending topic string.
 - **MySQL `GROUP_CONCAT`:** In native MySQL, distinct ordered aggregation is normally expressed with `GROUP_CONCAT` and an internal `ORDER BY`.
 - **Split content into tokens:** Tokenization and equality joins can avoid repeated substring searches, but require engine-specific string-splitting support.
@@ -124,8 +120,8 @@ If the same word maps to several topics, there are several keyword rows and all 
 - **Topic-string order:** Unlike row order, numeric order inside the topic string is required and is not guaranteed by the exact aggregate text.
 - **Dialect portability:** `STRING_AGG(DISTINCT ..., ',')` is not uniformly supported under the MySQL label.
 - **Manifest discrepancy:** The source neither lowercases explicitly nor orders the aggregate explicitly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

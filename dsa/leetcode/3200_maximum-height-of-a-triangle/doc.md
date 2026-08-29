@@ -27,7 +27,7 @@ Return the greatest height, meaning the largest number of complete rows that can
 - `red`: The available number of red balls.
 - `blue`: The available number of blue balls.
 
-Both values are integers in $[1,100]$.
+Both values are integers in `[1,100]`.
 
 **Return value**
 

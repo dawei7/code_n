@@ -68,7 +68,7 @@ in `stk1`. They must therefore be popped first. New pushes can accumulate in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `push(x)` simply executes `stk1.append(x)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ movement.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expensive push, cheap pop:** Move all existing:** - **Expensive push, cheap pop:** Move all existing values around every new value so one stack's top is always the queue front. Pop becomes worst-case $O(1)$, but each push costs $O(n)$ and a long push sequence becomes quadratic.
+- **Expensive push, cheap pop:** Move all existing values around every new value so one stack's top is always the queue front. Pop becomes worst-case $O(1)$, but each push costs $O(n)$ and a long push sequence becomes quadratic.
 - **One stack plus recursion:** Temporarily pop values recursively to reach the oldest element, then restore newer ones. It uses call-stack space, repeats work across removals, and is less efficient than two persistent phases.
 - **Ordinary deque:** It directly supports queue operations in constant time, but using it would avoid the exercise's two-stack constraint.
 - **First pop after many pushes:** This is the expensive operation that transfers the whole incoming batch, but later pops from that batch are constant time.
@@ -126,8 +126,8 @@ movement.
 - **Repeated values:** Stack positions preserve arrival order even when values are equal; each pushed occurrence is stored and removed separately.
 - **Valid-access guarantee:** Empty `pop` and `peek` do not occur. A production queue might raise an explicit exception, but the challenge requires no additional policy.
 - **Stack-operation restriction:** Python list `append`, `pop`, `[-1]`, and truth testing correspond to push, pop, top, and empty checks. No bottom or interior element is accessed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

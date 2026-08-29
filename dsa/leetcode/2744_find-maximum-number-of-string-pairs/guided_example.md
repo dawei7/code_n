@@ -61,7 +61,7 @@ Under the problem's distinct-word guarantee, there is at most one previous occur
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Recording `w` before checking would let a palindromic word s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The distinctness guarantee is central to this exact simplicity. With duplicate w
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set:** Sufficient under distinctness; che:** - **Hash set:** Sufficient under distinctness; check the reversal and then insert the current word.
+- **Hash set:** Sufficient under distinctness; check the reversal and then insert the current word.
 - **Nested pair scan:** Direct but costs $O(n^2)$ time.
 - **Remove a matched reversal:** Unnecessary for distinct words because no third word can need the same unique partner.
 - **Palindromic word:** Cannot pair with itself and cannot have a duplicate under the constraints.
@@ -110,8 +110,8 @@ The distinctness guarantee is central to this exact simplicity. With duplicate w
 - **Fixed length two:** Makes reversal constant time.
 - **Distinctness removed:** The exact Counter accumulation would overcount combinations relative to one-use pairing.
 - **Input order:** Only determines which endpoint discovers a pair; the final maximum is order-independent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

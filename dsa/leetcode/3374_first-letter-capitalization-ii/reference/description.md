@@ -88,4 +88,4 @@ user_content table:
 
 ### 3. Constraints
 
-- $\text{context}_{text}$ contains only English letters, and the characters in the list $['\', ' ', '@', '-', '/', '^', ',']$
+- $\text{context}_{text}$ contains only English letters, and the characters in the list `['\', ' ', '@', '-', '/', '^', ',']`

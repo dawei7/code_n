@@ -51,7 +51,7 @@ Because `k >= 0`, every valid pair can be written canonically as:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because `k >= 0`, every valid pair can be written canonicall... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The smaller endpoint `a` uniquely identifies that pair. The solution stores thes
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency map:** For `k > 0`, count keys whose:** - **Frequency map:** For `k > 0`, count keys whose `x + k` exists; for `k = 0`, count values with frequency at least two. It has the same asymptotic bounds.
+- **Frequency map:** For `k > 0`, count keys whose `x + k` exists; for `k = 0`, count values with frequency at least two. It has the same asymptotic bounds.
 - **Sort and use two pointers:** It can find each distinct difference in $O(n\log n)$ time, but sorting is slower asymptotically and may modify or copy the input.
 - **Check every index pair:** It takes $O(n^2)$ time and requires an additional mechanism to deduplicate value pairs.
 - **`k = 0`:** A value qualifies only after a second occurrence; the set prevents further duplicates from increasing the result.
@@ -97,8 +97,8 @@ The smaller endpoint `a` uniquely identifies that pair. The solution stores thes
 - **No valid pair:** `ans` stays empty and `len(ans)` returns zero.
 - **Distinct-index rule:** Delaying `vis.add(x)` until after checks prevents an occurrence from pairing with itself.
 - **Large `k`:** Complements may lie far outside observed values; failed set membership simply contributes nothing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

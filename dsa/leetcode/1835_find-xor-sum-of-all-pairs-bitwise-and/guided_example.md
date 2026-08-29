@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `XOR over all i and j of (arr1[i] AND arr2[j])`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every pair:** This directly follows :** - **Enumerate every pair:** This directly follows the definition but costs `O(pq)` time and is infeasible at maximum lengths.
+- **Enumerate every pair:** This directly follows the definition but costs `O(pq)` time and is infeasible at maximum lengths.
 - **Materialize pair results:** Storing all AND values adds `O(pq)` space on top of the already excessive time; XOR can be accumulated without storage even in the brute-force version.
 - **Count set bits explicitly:** For each bit position, count ones in both arrays and set the answer bit when both counts are odd. This is correct but adds a factor for the bit width and is more verbose than two XOR reductions.
 - **Repeated values:** Even multiplicities cancel in both the aggregate formula and the conceptual pair list.
@@ -98,8 +98,8 @@ We maintain the core conceptual parameters and state variables:
 - **Nonempty-array dependency:** `reduce` has no initializer in the exact code, so the guaranteed minimum length of one is necessary.
 - **No input mutation:** Both reductions only read their arrays, and the method returns one computed integer.
 - **Operator distinction:** The final operation must be AND, not XOR or addition; it represents the requirement that a result bit needs odd parity in both arrays.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

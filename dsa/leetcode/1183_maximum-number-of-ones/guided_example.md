@@ -57,7 +57,7 @@ For instance, with width and height both three and `x = 2`, residue zero appears
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `width` or `height` is not a multiple of `x`, some resi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The code sorts `cnt` in descending order and returns `sum(cnt[:maxOnes])`. If `m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute residue frequencies arithmetically:** :** - **Compute residue frequencies arithmetically:** The number of coordinates with a given residue can be derived from quotient and remainder division in each dimension, avoiding the $O(wh)$ nested loop. This can reduce counting to $O(s^2)$ while preserving the same sorting step.
+- **Compute residue frequencies arithmetically:** The number of coordinates with a given residue can be derived from quotient and remainder division in each dimension, avoiding the $O(wh)$ nested loop. This can reduce counting to $O(s^2)$ while preserving the same sorting step.
 - **Min-heap of the best frequencies:** Keep only the largest `maxOnes` counts instead of sorting all $s^2$ entries. This may help when `maxOnes` is much smaller than $s^2$, but full sorting is simpler at these constraints.
 - **Construct the full matrix:** Repeating the chosen template would produce a witness matrix, but the contract asks only for the maximum count, so allocating it is unnecessary.
 - **`maxOnes = 0`:** No constrained square may contain a one. The empty sorted slice sums to zero.
@@ -104,8 +104,8 @@ The code sorts `cnt` in descending order and returns `sum(cnt[:maxOnes])`. If `m
 - **Dimensions not divisible by `sideLength`:** Residue frequencies differ. Sorting is essential because selecting the more frequent residues yields additional boundary cells at no extra per-window cost.
 - **Width and height orientation:** The loops name the width coordinate `i` and height coordinate `j`. Swapping the axes would produce the same multiset of frequency products, so the final maximum is unchanged.
 - **Flattened residue index:** Multiplying the first residue by `x` and adding the second gives a unique index from zero through $x^2-1$. Omitting the multiplication would mix distinct residue pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ There are `m + n - 1` diagonals in an `m` by `n` matrix. The smallest index sum 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are `m + n - 1` diagonals in an `m` by `n` matrix.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ There are `m + n - 1` diagonals in an `m` by `n` matrix. The smallest index sum 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct zigzag simulation:** Track one cell at :** - **Direct zigzag simulation:** Track one cell at a time, move up-right or down-left, and handle boundary bounces. It can use $O(1)$ auxiliary space but has more corner-specific state transitions.
+- **Direct zigzag simulation:** Track one cell at a time, move up-right or down-left, and handle boundary bounces. It can use $O(1)$ auxiliary space but has more corner-specific state transitions.
 - **Group by `i + j` in a dictionary:** Append every cell to its diagonal bucket, then reverse alternating buckets. It is easy to derive but stores the full matrix again.
 - **One row:** Every diagonal has one value, so the output stays in left-to-right order despite alternating reversal calls.
 - **One column:** Each diagonal also has one value, producing top-to-bottom order.
@@ -94,8 +94,8 @@ There are `m + n - 1` diagonals in an `m` by `n` matrix. The smallest index sum 
 - **Tall matrix:** The same formulas remain valid, and the down-left loop stops at the bottom before the column becomes negative where appropriate.
 - **Parity convention:** Diagonals are zero-indexed. Even `k` is reversed; describing them as human-numbered first, third, fifth diagonals refers to the same set.
 - **Nonempty guarantee:** The implementation immediately reads `mat[0]` and relies on the stated positive dimensions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -75,11 +75,7 @@ The complete result is therefore:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The requested value is
-
-$$
-\bigoplus_{a \in \texttt{nums1}}
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +118,7 @@ For `nums1 = [2, 1, 3]` and `nums2 = [10, 2, 5, 0]`, the second array has even l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all pairings:** Two nested loops dire:** - **Generate all pairings:** Two nested loops directly mirror the definition but take $O(nm)$ time. Storing the generated values also takes $O(nm)$ space and is impossible at maximum lengths.
+- **Generate all pairings:** Two nested loops directly mirror the definition but take $O(nm)$ time. Storing the generated values also takes $O(nm)$ space and is impossible at maximum lengths.
 - **Frequency dictionary:** Count how many times each source value contributes and keep odd frequencies. This eventually recovers the same parity rule while using unnecessary hashing and storage.
 - **XOR each array first:** Compute `xor1` and `xor2` unconditionally, then include `xor1` when $m$ is odd and `xor2` when $n$ is odd. This is equally correct but always scans both arrays; the exact code skips a scan when its contribution cancels.
 - **Both lengths even:** Every element from both arrays occurs an even number of times, so the result is zero regardless of contents.
@@ -132,8 +128,8 @@ For `nums1 = [2, 1, 3]` and `nums2 = [10, 2, 5, 0]`, the second array has even l
 - **Zeros:** Zero contributes no set bits and does not change an XOR accumulator, but its position still participates in the parity count. The formula handles it naturally.
 - **Duplicate values:** The proof counts positions, not distinct numeric values. Additional cancellation between equal surviving values is automatically performed by the XOR loops.
 - **Large Cartesian product:** The method's cost depends only on input lengths added together, not multiplied, which is the central reason it meets the constraints.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

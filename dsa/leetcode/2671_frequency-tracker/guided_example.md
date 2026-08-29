@@ -77,7 +77,7 @@ This transition bookkeeping is the central idea. Updating both views at the same
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `number` currently occurs `old` times.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Because `cnt` is a `defaultdict(int)`, reading a previously unseen key yields ze
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan the number-count map for every query:** T:** - **Scan the number-count map for every query:** This uses only `cnt` but makes `hasFrequency` take $O(d)$ time.
+- **Scan the number-count map for every query:** This uses only `cnt` but makes `hasFrequency` take $O(d)$ time.
 - **Maintain sets of numbers per frequency:** Moving values between sets also supports expected $O(1)$ operations, but stores more information than the query needs.
 - **Use a fixed count array:** This works only when the numeric value domain is small and known; hash maps handle the full allowed range naturally.
 - **Add a new number:** It enters positive frequency bucket one even though the unused zero bucket is not a meaningful census.
@@ -127,8 +127,8 @@ Because `cnt` is a `defaultdict(int)`, reading a previously unseen key yields ze
 - **Query frequency zero:** The problem restricts queries to positive frequencies; the exact implementation does not maintain a semantic zero-frequency bucket.
 - **Repeated add and delete cycles:** Each transition reverses the corresponding prior transition, keeping both maps synchronized.
 - **Hash-map complexity:** Constant time is expected rather than deterministic worst-case because it relies on ordinary hash-table behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

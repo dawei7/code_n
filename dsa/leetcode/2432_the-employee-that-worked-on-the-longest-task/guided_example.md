@@ -85,7 +85,7 @@ The addition restores `last` to the absolute leave time of the current task. Wri
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop receives `uid` and the raw leave time in `t`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ Because durations are positive, the first log always has `t > mx` when `mx` is i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute a duration array:** Subtract consec:** - **Precompute a duration array:** Subtract consecutive leave times, then find the best pair. This is also $O(m)$ time but uses $O(m)$ unnecessary storage.
+- **Precompute a duration array:** Subtract consecutive leave times, then find the best pair. This is also $O(m)$ time but uses $O(m)$ unnecessary storage.
 - **Sort tasks by duration:** Sorting can apply a compound key of negative duration and employee ID, but costs $O(m\log m)$ when a single pass suffices.
 - **Track totals per employee:** Summing all work by an employee answers a different question. The problem asks for the employee owning one longest task, not the greatest total time.
 - **One log:** Its duration is its leave time minus zero, so its employee is returned regardless of ID.
@@ -138,8 +138,8 @@ Because durations are positive, the first log always has `t > mx` when `mx` is i
 - **Strictly increasing leave times:** This guarantee makes durations positive and lets zero serve as a safe initial maximum.
 - **Unused `n` parameter:** The scan does not need the number of possible employees because IDs are already present in logs and guaranteed valid.
 - **Local variable mutation:** `t -= last` changes only the unpacked integer variable, not the nested entry stored in `logs`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

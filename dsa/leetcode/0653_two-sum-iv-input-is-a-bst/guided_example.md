@@ -63,7 +63,7 @@ Checking before inserting is essential because the problem requires two nodes. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the moment `dfs(root)` examines a non-null node, `vis` co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ Ignoring the ordering is not incorrect. The set provides constant-time expected 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inorder list plus two pointers:** Inorder trav:** - **Inorder list plus two pointers:** Inorder traversal of a BST produces sorted values. Two pointers can then find a target sum in `O(N)` time and `O(N)` list space. It uses the BST property explicitly but still stores all values.
-- **- **Two BST iterators:** One ascending and one des:** - **Two BST iterators:** One ascending and one descending iterator can imitate two pointers with `O(H)` space, but carefully ensuring the iterators refer to distinct nodes makes the implementation more complex.
-- **- **Search the BST for each node's complement:** S:** - **Search the BST for each node's complement:** Searching from the root for every node takes `O(NH)` time, which becomes `O(N^2)` in a skewed tree.
+- **Inorder list plus two pointers:** Inorder traversal of a BST produces sorted values. Two pointers can then find a target sum in `O(N)` time and `O(N)` list space. It uses the BST property explicitly but still stores all values.
+- **Two BST iterators:** One ascending and one descending iterator can imitate two pointers with `O(H)` space, but carefully ensuring the iterators refer to distinct nodes makes the implementation more complex.
+- **Search the BST for each node's complement:** Searching from the root for every node takes `O(NH)` time, which becomes `O(N^2)` in a skewed tree.
 
 ---
 

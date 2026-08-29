@@ -13,7 +13,7 @@ For smaller step sizes ($k < \sqrt{n}$), we group queries by their $k$ value so 
 
 Once $k$ is fixed, each query $[l, r, v]$ multiplies elements at positions $l, l + k, l + 2k, \dots$ by $v$. This is equivalent to performing range multiplication on a subsequence defined by step size $k$.
 
-To handle this efficiently, we use a difference array $\textit{dif}$ initialized with all values set to $1$. For a query $[l, r, v]$, we determine the last affected index and denote the next position as $R$. For example, in the query $[2, 7, 3]$, the last affected index is $5$, so $R = 8$. We then apply:
+To handle this efficiently, we use a difference array $\textit{dif}$ initialized with all values set to $1$. For a query $[l, r, v]$, we determine the last affected index and denote the next position as $R$. For example, in the query `[2, 7, 3]`, the last affected index is $5$, so $R = 8$. We then apply:
 
 * $\textit{dif}[l] = \textit{dif}[l] \times v$
 * $\textit{dif}[R] = \textit{dif}[R] \times v^{-1}$

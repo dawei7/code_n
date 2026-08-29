@@ -61,7 +61,7 @@ For the difference `125` in the first example, two sixty-minute operations leave
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits `[60, 15, 5, 1]` in descending order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Another way to view the result is mixed-radix decomposition. The quotient at eac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Increment minute by minute:** Repeatedly add o:** - **Increment minute by minute:** Repeatedly add one until reaching the target. It is correct but can perform up to 1439 iterations and does not minimize operations when larger increments are available.
+- **Increment minute by minute:** Repeatedly add one until reaching the target. It is correct but can perform up to 1439 iterations and does not minimize operations when larger increments are available.
 - **Breadth-first search over times:** Treat every minute as a state and every allowed addition as an edge. BFS would find a shortest path but introduces a queue and visited set for a problem solved directly by divisible denominations.
 - **Dynamic programming over the difference:** A coin-change table can find the minimum number of increments, but uses extra time and space and ignores the special divisibility structure that makes greedy exact.
 - **Greedy with arbitrary increments:** The proof depends on `60`, `15`, `5`, and `1` forming a divisible chain. The same strategy should not be copied blindly to denominations where a large choice can block a better combination.
@@ -118,8 +118,8 @@ Another way to view the result is mixed-radix decomposition. The quotient at eac
 - **No midnight wrap:** The contract guarantees `current <= correct`. If overnight conversion were allowed, the difference would need an added 1440-minute adjustment.
 - **No overshoot:** Quotient division takes only increments that fit in the remaining difference, so every intermediate time stays at or before `correct`.
 - **Input formatting:** The solution relies on the guaranteed `"HH:MM"` layout; malformed or variable-width strings are outside the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

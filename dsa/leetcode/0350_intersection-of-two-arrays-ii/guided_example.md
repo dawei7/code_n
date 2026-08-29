@@ -53,7 +53,7 @@ The implementation always counts `nums1`. It does not compare the array lengths 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(nums1)` visits all values in `nums1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,9 +94,9 @@ Now change `nums2` to `[2, 2, 2, 2]`. The first two copies consume the two avail
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count the shorter array:** Swap the inputs whe:** - **Count the shorter array:** Swap the inputs when `nums1` is longer, then run the same counter-and-consumption procedure. Time remains expected $O(n+m)$ while counter storage becomes $O(\min(n,m))$. This matches the manifest summary but is absent from the exact solution.
-- **- **Two pointers on sorted arrays:** When both arr:** - **Two pointers on sorted arrays:** When both arrays are already sorted, compare their current values. Advance the smaller side, and append then advance both sides when equal. This takes $O(n+m)$ time and $O(1)$ auxiliary space excluding output, directly answering the first follow-up.
-- **- **Sort unsorted inputs first:** Sorting and then:** - **Sort unsorted inputs first:** Sorting and then using two pointers costs $O(n\log n+m\log m)$ time. It can reduce hash storage, but in-place sorting mutates inputs and sorting implementations may use additional memory.
+- **Count the shorter array:** Swap the inputs when `nums1` is longer, then run the same counter-and-consumption procedure. Time remains expected $O(n+m)$ while counter storage becomes $O(\min(n,m))$. This matches the manifest summary but is absent from the exact solution.
+- **Two pointers on sorted arrays:** When both arrays are already sorted, compare their current values. Advance the smaller side, and append then advance both sides when equal. This takes $O(n+m)$ time and $O(1)$ auxiliary space excluding output, directly answering the first follow-up.
+- **Sort unsorted inputs first:** Sorting and then using two pointers costs $O(n\log n+m\log m)$ time. It can reduce hash storage, but in-place sorting mutates inputs and sorting implementations may use additional memory.
 
 ---
 

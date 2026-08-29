@@ -73,7 +73,7 @@ Once `i` no longer divides the residual, the candidate increments by one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a candidate divisor `i`, the inner `while n%i==0` repeat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Notice that `n` shrinks as factors are removed. The square-root boundary shrinks
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precomputed smallest prime factors:** A sieve :** - **Precomputed smallest prime factors:** A sieve supports fast repeated factorizations but uses $O(n)$ preprocessing and memory.
+- **Precomputed smallest prime factors:** A sieve supports fast repeated factorizations but uses $O(n)$ preprocessing and memory.
 - **Store a factor list:** It is unnecessary because only the sum is needed.
 - **Prime input:** Its only prime factor is itself, so it is returned immediately.
 - **Repeated prime factor:** Add it once per division, preserving multiplicity.
@@ -124,8 +124,8 @@ Notice that `n` shrinks as factors are removed. The square-root boundary shrinks
 - **Overflow-safe test:** `i<=n//i` avoids computing `i*i` in fixed-width languages.
 - **No increase:** The prime-factor sum cannot exceed the original composite value.
 - **Termination:** A decreasing positive-integer sequence must eventually reach a fixed point.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

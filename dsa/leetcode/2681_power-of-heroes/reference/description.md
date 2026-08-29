@@ -28,7 +28,7 @@ Return *the sum of the **power** of all **non-empty** groups of heroes possible.
 4^th group: [2,1] has power = $2^{2}$ * 1 = 4.
 5^th group: [2,4] has power = $4^{2}$ * 2 = 32.
 6^th group: [1,4] has power = $4^{2}$ * 1 = 16.
-​​​​​​​7^th group: [2,1,4] has power = $4^{2}$​​​​​​​ * 1 = 16.
+7^th group: [2,1,4] has power = $4^{2}$ * 1 = 16.
 The sum of powers of all groups is 8 + 1 + 64 + 4 + 32 + 16 + 16 = 141.
 
 #### Example 2

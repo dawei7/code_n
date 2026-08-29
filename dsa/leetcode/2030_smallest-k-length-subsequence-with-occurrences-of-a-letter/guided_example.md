@@ -67,7 +67,7 @@ guarantees that these together can still produce length `k`. Without it, a late 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `while` loop considers replacing the last selected chara... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ This check is intentionally made before decrementing `remaining_letter` for the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate subsequences:** There can be exponen:** - **Enumerate subsequences:** There can be exponentially many, so direct comparison is infeasible.
+- **Enumerate subsequences:** There can be exponentially many, so direct comparison is infeasible.
 - **Dynamic programming over positions and quota:** It can model feasibility but uses much more time and memory than the monotonic greedy method.
 - **Ordinary smallest-subsequence stack:** Ignoring the `letter` quota may pop or skip too many required copies.
 - **Exactly `k` source characters:** Nothing can ultimately be omitted; the capacity condition prevents destructive pops.
@@ -123,8 +123,8 @@ This check is intentionally made before decrementing `remaining_letter` for the 
 - **Late smaller character:** It cannot trigger a pop when too few positions remain to refill length `k`.
 - **Duplicate subsequence values:** The task asks for the smallest string, not a unique index selection.
 - **Input preservation:** The source reads `s` and builds a separate stack.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

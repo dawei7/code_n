@@ -65,9 +65,7 @@ These two calls enumerate the complete binary decision tree of index subsets.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The recursive helper `dfs(i, t)` means:
-
-- indices zero thro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ They may have the same OR, but the problem defines them as different subsets. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Early count after reaching `mx`:** Once a part:** - **Early count after reaching `mx`:** Once a partial OR equals the maximum, add `2^(remaining indices)` instead of exploring all continuations.
+- **Early count after reaching `mx`:** Once a partial OR equals the maximum, add `2^(remaining indices)` instead of exploring all continuations.
 - **Dynamic programming by OR value:** Track how many subsets produce each OR; useful when the number of distinct OR states is small.
 - **Bitmask loop:** Iterate masks from one through `2^N-1`; same exponential class with explicit subset masks.
 - **Memoized recursion:** States with the same index and OR can be merged, though counts rather than Boolean reachability must be preserved.
@@ -116,8 +114,8 @@ They may have the same OR, but the problem defines them as different subsets. Th
 - **All-zero array outside constraints:** Would expose the empty-subset issue in the exact source.
 - **Maximum OR target:** OR of all elements is reachable and dominates every subset bitwise.
 - **Input preservation:** Recursion reads values without editing `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -68,7 +68,7 @@ permits movement only to a strictly larger value. Equal neighbors are deliberate
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise((-1, 0, 1, 0, -1))` produces the consecutive pairs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The acyclic property is also why no separate “currently visiting” marker is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Kahn topological propagation:** Compute indegr:** - **Kahn topological propagation:** Compute indegrees in the increasing-edge DAG, start from local minima, and propagate path counts toward larger cells. This is iterative `O(mn)` time and space and avoids recursion depth.
+- **Kahn topological propagation:** Compute indegrees in the increasing-edge DAG, start from local minima, and propagate path counts toward larger cells. This is iterative `O(mn)` time and space and avoids recursion depth.
 - **Sort all cells by value:** Process from largest to smallest for starting-path counts or smallest to largest for ending-path counts. This is straightforward but costs `O(mn \log(mn))` time.
 - **DFS toward smaller neighbors:** Define the state as paths ending at the current cell instead. This is equally valid if the outer sum and comparison direction remain consistent.
 - **Plain DFS without cache:** Overlapping suffix subproblems would be recomputed many times and can cause exponential work.
@@ -122,8 +122,8 @@ The acyclic property is also why no separate “currently visiting” marker is 
 - **Modulo during recursion:** Reducing each addition preserves the final answer and prevents exponential-size cached integers.
 - **Availability of helpers:** The exact source relies on `cache` and `pairwise` being provided by the Python environment, conventionally from `functools` and `itertools`.
 - **Input preservation:** No cell is marked or reordered; all traversal state lives in the function cache.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

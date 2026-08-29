@@ -51,7 +51,7 @@ For a fixed starting index, the longest legal piece is always lexicographically 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed starting index, the longest legal piece is alway... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The crucial large-input challenge is to find the lexicographically largest suffi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate maximum pieces:** Generate `word[i:i:** - **Enumerate maximum pieces:** Generate `word[i:i+L]` for every $i$ and take their maximum. This is easy to understand and works for the smaller Box I constraints, but slicing and long-prefix comparisons can require $O(n^2)$ time.
+- **Enumerate maximum pieces:** Generate `word[i:i+L]` for every $i$ and take their maximum. This is easy to understand and works for the smaller Box I constraints, but slicing and long-prefix comparisons can require $O(n^2)$ time.
 - **Sort suffixes:** Explicitly sorting all suffixes uses far more time and memory than necessary. Only the maximum suffix is needed, and pairwise elimination finds it directly.
 - **Suffix array:** A suffix array can identify the greatest suffix in $O(n\log n)$ with standard constructions, but it adds substantial machinery and storage for a single maximum query.
 - **One friend:** Returning `word` immediately is required because there is no choice of split. It also avoids calling the suffix helper when truncation length is the entire word.
@@ -96,8 +96,8 @@ The crucial large-input challenge is to find the lexicographically largest suffi
 - **Pointer collision:** After `i` advances, `if i >= j` moves `j` to `i + 1`. Without this repair, the algorithm could compare a suffix with itself and lose the invariant `i < j`.
 - **Resetting the match length:** Every pointer-changing mismatch sets `k = 0`. Reusing the previous common-prefix length after changing a start would compare unrelated offsets and could eliminate the true answer.
 - **Space terminology:** The algorithm is constant-state, but Python slices are copies. When exact runtime memory matters, include those $O(n)$ allocations rather than repeating the language-independent $O(1)$ claim without qualification.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

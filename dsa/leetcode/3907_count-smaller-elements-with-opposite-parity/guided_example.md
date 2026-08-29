@@ -80,13 +80,7 @@ The order “query first, insert second” is essential. Inserting first could a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop runs through
-
-$$
-i=n-1,n-2,\ldots,0.
-$$
-
-Immediatel... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -140,7 +134,7 @@ For insertion, `nums[i] & 1` chooses the current value's own parity list.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate-compressed Fenwick trees:** This is:** - **Coordinate-compressed Fenwick trees:** This is the method described by the manifest and also achieves $O(N\log N)$ time and $O(N)$ space, but it is not the checked-in implementation.
+- **Coordinate-compressed Fenwick trees:** This is the method described by the manifest and also achieves $O(N\log N)$ time and $O(N)$ space, but it is not the checked-in implementation.
 - **Merge-sort counting:** A divide-and-conquer method can count cross-half qualifying pairs, though parity filtering complicates the merge bookkeeping.
 - **Quadratic suffix scan:** Checking every pair directly is $O(N^2)$ and too slow for $N=10^5$.
 - **Equal values:** `bisect_left` excludes them, correctly enforcing strict `<` rather than `<=`.
@@ -152,8 +146,8 @@ For insertion, `nums[i] & 1` chooses the current value's own parity list.
 - **Query-before-insert order:** This preserves the strict right-side condition $j>i$.
 - **External dependency:** `SortedList` is generally supplied by the `sortedcontainers` package and must be available in the execution environment.
 - **Input preservation:** The source reads `nums` without sorting or changing it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

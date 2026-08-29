@@ -66,7 +66,7 @@ The exact query does not group by year and does not filter to a particular year.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `MONTH(trip_date)` returns a month number from 1 through 12.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ This inner self-join automatically enforces the requirement that a driver have t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation in one driver row:** C:** - **Conditional aggregation in one driver row:** Compute first- and second-half averages with `AVG(CASE WHEN ... THEN ... END)`, use `HAVING` to require both, and compare them. This avoids the CTE self-join but must repeat or carefully alias the aggregate expressions.
+- **Conditional aggregation in one driver row:** Compute first- and second-half averages with `AVG(CASE WHEN ... THEN ... END)`, use `HAVING` to require both, and compare them. This avoids the CTE self-join but must repeat or carefully alias the aggregate expressions.
 - **Ratio of total distance to total fuel:** `SUM(distance_km) / SUM(fuel_consumed)` weights trips by fuel consumed and does not match the requested average of per-trip efficiencies.
 - **Round before comparing:** This could discard a real but small improvement or manufacture equality. The source correctly compares raw averages.
 - **Subtract rounded averages:** It can disagree with rounding the raw difference; the source calculates the difference first.
@@ -128,8 +128,8 @@ This inner self-join automatically enforces the requirement that a driver have t
 - **NULL measurements:** In MySQL, a NULL division result is ignored by `AVG`. The stated table semantics are expected to provide valid measurements; otherwise explicit data-quality rules would be needed.
 - **Missing driver row:** The inner join to `drivers` excludes a trip aggregate whose `driver_id` has no matching driver, though the intended relational data should maintain that relationship.
 - **Input preservation:** The query reads and aggregates the tables; it performs no `INSERT`, `UPDATE`, or `DELETE` operation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

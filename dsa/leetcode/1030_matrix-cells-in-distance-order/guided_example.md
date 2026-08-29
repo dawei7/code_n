@@ -63,7 +63,7 @@ The answer starts empty. A coordinate is appended when removed from the front of
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The queue begins with `[rCenter, cCenter]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ A standard FIFO BFS would preserve the same order even without the explicit laye
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all cells and comparison-sort:** Comp:** - **Generate all cells and comparison-sort:** Compute each Manhattan distance and sort coordinates by it. This is simple but costs `O(M \log M)` time instead of exploiting bounded integer distance layers.
+- **Generate all cells and comparison-sort:** Compute each Manhattan distance and sort coordinates by it. This is simple but costs `O(M \log M)` time instead of exploiting bounded integer distance layers.
 - **Bucket by distance:** The maximum possible distance is at most `rows + cols - 2`. Append every cell to its distance bucket and concatenate buckets. This also runs in `O(M + rows + cols)` time but requires explicit buckets.
 - **Direct diamond-ring generation:** Enumerate coordinates at distance zero, one, two, and so on around the center. It can use little visited state, but handling clipped diamonds at matrix borders without duplicates is more error-prone.
 - **Priority queue:** Push cells keyed by distance. It produces sorted order but adds `O(\log M)` overhead to each extraction even though BFS already supplies the correct layers.
@@ -117,8 +117,8 @@ A standard FIFO BFS would preserve the same order even without the explicit laye
 - **Tie ordering:** The up, right, down, left direction order determines one valid order among equal-distance cells, but correctness does not depend on that choice.
 - **No obstacles:** Manhattan distance equals graph distance because every monotone row-and-column path stays within the rectangle. With obstacles, BFS distance could be larger and the problem would be different.
 - **Imports supplied by the environment:** The exact solution uses `deque` and `pairwise`. They must be available from the solution environment, but they do not change the algorithmic reasoning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

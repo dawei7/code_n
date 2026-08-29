@@ -28,7 +28,7 @@ Rank the students in non-increasing order of their scores. When two students hav
 - `student_id`: A list of unique positive student identifiers aligned with `report`.
 - `k`: The number of highest-ranked student identifiers to return.
 
-The two feedback lists are disjoint. Let $n = \lvert\texttt{report}\rvert = \lvert\texttt{student_id}\rvert$; then $1 \le n \le 10^4$ and $1 \le k \le n$. Each report has length from $1$ through $100$, each feedback word has length from $1$ through $100$, and every student identifier is at most $10^9$.
+The two feedback lists are disjoint. Let $n = \lvert\texttt{report}\rvert = \lvert\texttt{student\_id}\rvert$; then $1 \le n \le 10^4$ and $1 \le k \le n$. Each report has length from $1$ through $100$, each feedback word has length from $1$ through $100$, and every student identifier is at most $10^9$.
 
 **Return value**
 

@@ -71,7 +71,7 @@ This proves that one left pointer can serve all right endpoints without restarti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When a new rightmost value is appended, the window length gr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Using `<=` rather than only `<` keeps the latest occurrence among equal maxima. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Updating minimum a:** - **Enumerate every subarray:** Updating minimum and maximum incrementally still requires $O(N^2)$ pairs, which is too slow for $N=10^5$.
+- **Enumerate every subarray:** Updating minimum and maximum incrementally still requires $O(N^2)$ pairs, which is too slow for $N=10^5$.
 - **Balanced multiset window:** An ordered multiset can provide min and max in $O(\log N)$ per insertion/removal, yielding $O(N\log N)$ time. Monotonic deques exploit one-directional movement for linear time.
 - **Two heaps with lazy deletion:** This also maintains extrema but is more complicated and logarithmic; stale-entry bookkeeping is unnecessary here.
 - **k equals zero:** A valid window must have maximum equal to minimum, so the method counts exactly constant-valued subarrays.
@@ -126,8 +126,8 @@ Using `<=` rather than only `<` keeps the latest occurrence among equal maxima. 
 - **Duplicate maxima or minima:** Back removal keeps the newest equal occurrence, which remains available longer and preserves the correct extreme.
 - **Large products:** The maximum range and length can create values above 32-bit limits, but Python multiplication is exact.
 - **Earliest valid start:** Cost monotonicity under left-shrinking guarantees that all later starts are valid and justifies adding `r - l + 1` at once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

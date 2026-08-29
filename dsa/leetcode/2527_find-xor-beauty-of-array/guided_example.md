@@ -70,7 +70,7 @@ the chosen bit is one under two requirements:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix a bit position.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ effective values.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate triplets:** It costs $O(n^3)$ and is:** - **Enumerate triplets:** It costs $O(n^3)$ and is infeasible.
+- **Enumerate triplets:** It costs $O(n^3)$ and is infeasible.
 - **Explicit per-bit counting:** Count ones at each bit and apply the parity proof; it costs $O(nB)$ for bit width $B$ but is unnecessary once the identity is known.
 - **Single element:** The sole effective triplet reduces to that element, matching its XOR.
 - **Duplicate values:** XOR parity naturally cancels even multiplicities.
@@ -131,8 +131,8 @@ effective values.
 - **Non-empty guarantee:** It makes `reduce` valid without an initializer.
 - **Bit independence:** OR, AND, and XOR can be analyzed separately at every position.
 - **Positive inputs:** No sign-extension behavior needs consideration.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

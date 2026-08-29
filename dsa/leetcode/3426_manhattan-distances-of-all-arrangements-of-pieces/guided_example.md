@@ -51,7 +51,7 @@ be the number of cells. Once two distinct cells are fixed as occupied, the remai
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | be the number of cells.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate arrangements:** There are $\binom Nk:** - **Enumerate arrangements:** There are $\binom Nk$ of them, making direct generation infeasible even at the stated $N\le10^5$.
+- **Enumerate arrangements:** There are $\binom Nk$ of them, making direct generation infeasible even at the stated $N\le10^5$.
 - **Enumerate all cell pairs explicitly:** This takes $O(N^2)$ time. Separating row and column distances gives closed forms.
 - **Precompute factorials:** Factorial and inverse-factorial arrays answer combinations in $O(1)$ after $O(N)$ preprocessing but require $O(N)$ space. One binomial query does not need them.
 - **Exactly two pieces:** `chosen = 0`, both products remain one, and the answer is simply the sum of distances over all cell pairs.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Identical pieces:** Occupied cell subsets, not permutations of labeled pieces, are the valid arrangements.
 - **Unordered pairs:** The distance formulas count each pair once. Multiplying by two would incorrectly treat the two piece orders as different.
 - **Modular division:** Ordinary integer division of residues is invalid. Fermat inversion is safe because the denominator contains factors only below the prime modulus.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

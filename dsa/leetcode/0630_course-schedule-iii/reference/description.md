@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where $\text{courses}[i] = [\text{duration}_{i}, \text{lastDay}_{i}]$ indicate that the $$i^{\text{th}}$$ course should be taken **continuously** for $\text{duration}_{i}$ days and must be finished before or on $\text{lastDay}_{i}$.
+There are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where $\text{courses}[i] = [\text{duration}_{i}, \text{lastDay}_{i}]$ indicate that the $i^{\text{th}}$ course should be taken **continuously** for $\text{duration}_{i}$ days and must be finished before or on $\text{lastDay}_{i}$.
 
 You will start on the $1^st$ day and you cannot take two or more courses simultaneously.
 

@@ -62,7 +62,7 @@ For a closing parenthesis, the decremented value is the number of outer pairs su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `d` is the number of opening parentheses currently ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ If the previous character is also `)`, the closing parenthesis ends a larger com
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stack of partial scores:** Push a frame for ea:** - **Stack of partial scores:** Push a frame for each opening parenthesis and combine on closing. It mirrors the grammar but uses `O(n)` worst-case space.
-- **- **Divide and conquer:** Find top-level balanced :** - **Divide and conquer:** Find top-level balanced components recursively. It is conceptually direct but can rescan ranges or use recursion.
-- **- **One primitive `()`:** Depth after closing is z:** - **One primitive `()`:** Depth after closing is zero, so score is one.
+- **Stack of partial scores:** Push a frame for each opening parenthesis and combine on closing. It mirrors the grammar but uses `O(n)` worst-case space.
+- **Divide and conquer:** Find top-level balanced components recursively. It is conceptually direct but can rescan ranges or use recursion.
+- **One primitive `()`:** Depth after closing is zero, so score is one.
 
 ---
 

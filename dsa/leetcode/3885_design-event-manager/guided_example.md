@@ -73,7 +73,7 @@ This encodes both ranking rules in the data structure's ordinary ascending order
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SortedList` orders tuples lexicographically in ascending or... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The key tuple is also unique among active events because event IDs are unique, e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Lazy heap plus dictionary:** Push every update:** - **Lazy heap plus dictionary:** Push every updated version and discard stale heap tops during polls. This matches the manifest summary and has simple updates, but stale entries can grow storage to `O(E+Q)`.
+- **Lazy heap plus dictionary:** Push every updated version and discard stale heap tops during polls. This matches the manifest summary and has simple updates, but stale entries can grow storage to `O(E+Q)`.
 - **Balanced search tree:** Store `(-priority,id)` keys with direct deletion. This is the abstract structure implemented by the source's ordered collection.
 - **Sort all active events on every poll:** Simple but can take `O(A\log A)` per poll.
 - **Scan the dictionary on every poll:** Uses no ordered structure but takes `O(A)` per poll.
@@ -125,8 +125,8 @@ The key tuple is also unique among active events because event IDs are unique, e
 - **No stale keys:** Exact old-key removal is the core difference from a lazy heap.
 - **Dependency availability:** Without `sortedcontainers.SortedList`, this exact source cannot run and needs another ordered structure.
 - **Output protocol:** Constructor and updates conceptually yield null in the design harness; only polls return integers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

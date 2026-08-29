@@ -64,7 +64,7 @@ Therefore both interval endpoints lie within the precomputed `is_prime[0..1000]`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The original number satisfies $1\le n\le1000$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Every number that remains true is prime.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trial division per candidate:** Test each inte:** - **Trial division per candidate:** Test each interval value up to its square root. This avoids a table but repeats factor work and is slower across many candidates.
+- **Trial division per candidate:** Test each interval value up to its square root. This avoids a table but repeats factor work and is slower across many candidates.
 - **Prime prefix sums:** Precompute cumulative prime totals and return `prefix[U] - prefix[L - 1]` in constant query time, using the same $O(B)$ storage.
 - **Dynamic sieve to \(U\):** This matches the manifest description but repeats setup per independent call unless cached.
 - **Trailing zeros in \(n\):** They become leading zeros in the reversed string and disappear during integer conversion.
@@ -123,8 +123,8 @@ Every number that remains true is prime.
 - **No primes in the interval:** Summing the filtered generator returns zero.
 - **Fixed-ceiling dependency:** Raising the input constraint above 1000 without expanding the global table could cause missing entries or an index error.
 - **Input preservation:** Integers are immutable, and the method does not modify external state beyond reading the shared sieve.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

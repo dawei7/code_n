@@ -2,7 +2,7 @@
 
 A teacher is writing a test with `n` true/false questions, with `'T'` denoting true and `'F'` denoting false. He wants to confuse the students by **maximizing** the number of **consecutive** questions with the **same** answer (multiple trues or multiple falses in a row).
 
-You are given a string `answerKey`, where $\text{answerKey}[i]$ is the original answer to the $$i^{\text{th}}$$ question. In addition, you are given an integer `k`, the maximum number of times you may perform the following operation:
+You are given a string `answerKey`, where $\text{answerKey}[i]$ is the original answer to the $i^{\text{th}}$ question. In addition, you are given an integer `k`, the maximum number of times you may perform the following operation:
 
 - Change the answer key for any question to `'T'` or `'F'` (i.e., set $\text{answerKey}[i]$ to `'T'` or `'F'`).
 

@@ -51,7 +51,7 @@ The number of required attack seconds is the ceiling of health divided by power:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The number of required attack seconds is the ceiling of heal... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The number of required attack seconds is the ceiling of health divided by power:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by damage alone:** A high-damage enemy ma:** - **Sort by damage alone:** A high-damage enemy may require extremely many attacks; ratio ordering correctly balances damage removed against time spent.
+- **Sort by damage alone:** A high-damage enemy may require extremely many attacks; ratio ordering correctly balances damage removed against time spent.
 - **Sort by health or attack time alone:** This ignores the rate kept alive during delay and can be suboptimal.
 - **Floating-point ratios:** Sorting by `t/d` is conceptually correct, but cross-products avoid precision errors and division.
 - **Attack enemies in alternating turns:** Preemption cannot beat a completion order because partial attacks remove no damage rate until an enemy dies.
@@ -102,8 +102,8 @@ The number of required attack seconds is the ceiling of health divided by power:
 - **Why subtraction happens after the block:** The enemy remains alive for all `attack_seconds` seconds assigned to it. Its rate disappears only after the final one of those seconds has already contributed damage.
 - **Comparator transitivity:** The cross-product rule is equivalent to ordering positive ratios `t/d`, so it defines a consistent sortable order rather than a collection of contradictory pair preferences.
 - **Large accumulated answer:** Up to $10^5$ enemies can remain active for many seconds, making the total far exceed 32-bit range. Python integers prevent overflow; fixed-width implementations need 64-bit arithmetic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

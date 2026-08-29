@@ -63,11 +63,7 @@ Dictionary iteration order does not matter. `max` compares numeric values and pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator:
-
-`x for x, v in cnt.items() if v == 1`
-
-yield... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +102,7 @@ The default is consulted only when the generator yields nothing. It is not inser
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed frequency array:** Count indices zero th:** - **Fixed frequency array:** Count indices zero through one thousand, then scan backward for count one. This realizes $O(n+V)$ time and $O(V)$ space directly.
+- **Fixed frequency array:** Count indices zero through one thousand, then scan backward for count one. This realizes $O(n+V)$ time and $O(V)$ space directly.
 - **Sorting:** Sort values, identify runs of length one, and retain the largest. It costs $O(n\log n)$ and may mutate input.
 - **Repeated list count:** Calling `nums.count(x)` for many values can cost $O(n^2)$.
 - **One element:** Its frequency is one, so it is returned.
@@ -118,8 +114,8 @@ The default is consulted only when the generator yields nothing. It is not inser
 - **Nonempty input:** Counter always has at least one entry, though the candidate generator may be empty.
 - **Sentinel safety:** Negative one lies outside the legal nonnegative domain.
 - **Input preservation:** Counter reads the array without changing it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ Odd-length strings naturally compare the center character with itself. Even-leng
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `w[::-1]` is Python slicing with a step of -1, producing the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ The constraints say input words are nonempty, so the default empty string cannot
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two mirrored pointers:** Compare characters at:** - **Two mirrored pointers:** Compare characters at the two ends while moving inward. This realizes the manifest's constant-space claim and can stop a word check at its first mismatch.
+- **Two mirrored pointers:** Compare characters at the two ends while moving inward. This realizes the manifest's constant-space claim and can stop a word check at its first mismatch.
 - **Build a list of all palindromes:** It does unnecessary work and storage after the first match. The lazy generator stops immediately.
 - **Sort the words:** This destroys the input-order meaning of “first” and is incorrect.
 - **First word is palindromic:** Only one word is examined.
@@ -123,8 +123,8 @@ The constraints say input words are nonempty, so the default empty string cannot
 - **Lazy evaluation:** Words after the first palindrome incur no time or reverse allocation.
 - **Long non-palindromic word:** Its full reverse is still allocated before equality can reject it, which is why peak space depends on word length.
 - **Return identity versus text:** The generator yields the original `w` value from `words`, not the temporary reverse.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

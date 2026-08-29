@@ -65,9 +65,7 @@ Validity guarantees each left edge is strictly left of its right edge and each b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `rec1 = [x1,y1,x2,y2]`:
-
-- `x1` is its left edge and `x2... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,9 +111,9 @@ If none is true, neither rectangle is entirely above, below, left, or right of t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute intersection width and height:** Check:** - **Compute intersection width and height:** Check `min(rights) > max(lefts)` and `min(tops) > max(bottoms)`. This is equally constant-time and directly expresses positive dimensions.
-- **- **Multiply intersection dimensions:** Multiplica:** - **Multiply intersection dimensions:** Multiplication is unnecessary and can be misleading if one or both dimensions are negative. Check both dimensions separately.
-- **- **Edge contact:** Equality on one separating bou:** - **Edge contact:** Equality on one separating boundary returns false because shared area is zero.
+- **Compute intersection width and height:** Check `min(rights) > max(lefts)` and `min(tops) > max(bottoms)`. This is equally constant-time and directly expresses positive dimensions.
+- **Multiply intersection dimensions:** Multiplication is unnecessary and can be misleading if one or both dimensions are negative. Check both dimensions separately.
+- **Edge contact:** Equality on one separating boundary returns false because shared area is zero.
 
 ---
 

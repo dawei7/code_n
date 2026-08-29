@@ -63,7 +63,7 @@ This explains the outer condition `if z - x > 2`. All nonterminal configurations
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Three distinct integer positions cannot have span smaller th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Thus at least one move is necessary because the current state is nonterminal, an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over configurations:** En:** - **Breadth-first search over configurations:** Enumerating every legal move can find the minimum for small coordinates, but state count grows and it gives no simple maximum proof. Gap formulas solve both objectives directly.
+- **Breadth-first search over configurations:** Enumerating every legal move can find the minimum for small coordinates, but state count grows and it gives no simple maximum proof. Gap formulas solve both objectives directly.
 - **Recursive game simulation:** Exploring move sequences repeats configurations and obscures why maximum play is finite. The empty-position potential gives an exact bound.
 - **Sort a three-element list:** `sorted([a, b, c])` is equally correct and still constant time. The exact solution derives the middle through the sum to avoid allocating the temporary list.
 - **Input already sorted or reversed:** Minimum, maximum, and total-sum recovery produce the same `x, y, z` regardless of argument order.
@@ -119,8 +119,8 @@ Thus at least one move is necessary because the current state is nonterminal, an
 - **Dynamic endpoints:** After a move, the lowest and highest stones may be different physical stones. The maximum construction reasons about positions, not stone identities.
 - **Why maximum is not the larger gap alone:** Empty positions in both gaps can be consumed one at a time, so the total `(g_1 - 1) + (g_2 - 1)` equals `z - x - 2`.
 - **Distinct-value guarantee:** It ensures strict order and prevents zero gaps. Duplicate positions would not describe three separate stones under the source contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

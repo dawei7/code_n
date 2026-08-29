@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `transactions`, where $\text{transactions}[i]$ represents the amount of the $$i^{\text{th}}$$ transaction:
+You are given an integer array `transactions`, where $\text{transactions}[i]$ represents the amount of the $i^{\text{th}}$ transaction:
 
 - A positive value means money is **received**.
 

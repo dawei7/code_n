@@ -51,7 +51,7 @@ For one source letter and target letter, the alphabet is a cycle of 26 vertices.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one source letter and target letter, the alphabet is a c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ For one source letter and target letter, the alphabet is a cycle of 26 vertices.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate both routes per character:** At most :** - **Simulate both routes per character:** At most 25 steps in each direction still gives $O(26n)$ time, asymptotically linear but with repeated cost summation.
+- **Simulate both routes per character:** At most 25 steps in each direction still gives $O(26n)$ time, asymptotically linear but with repeated cost summation.
 - **All-pairs shortest paths:** Floyd–Warshall on 26 letters works but ignores the simple cycle structure and costs $O(26^3)$ preprocessing.
 - **Dijkstra per letter pair:** Nonnegative weights permit it, but two simple routes are the only candidates after removing backtracking.
 - **Forward wrap:** Use target index `y+26` when `y<x`.
@@ -102,8 +102,8 @@ For one source letter and target letter, the alphabet is a cycle of 26 vertices.
 - **Large costs and long strings:** The total may exceed 64-bit limits in other languages; Python's integer arithmetic remains exact.
 - **Input preservation:** Strings and cost arrays are read only.
 - **No benefit from full cycles:** Costs are nonnegative, so adding a cycle cannot lower a route's total.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,7 +69,7 @@ The explicit disjunction is often the clearest version for discussing SQL null b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | SQL uses three-valued logic: conditions can be true, false, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Brad and John have no matching bonus rows. The left join still retains both empl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit null predicate:** `WHERE bonus < 1000:** - **Explicit null predicate:** `WHERE bonus < 1000 OR bonus IS NULL` states the two requirements word for word and does not depend on a replacement value. It is generally the clearest alternative.
+- **Explicit null predicate:** `WHERE bonus < 1000 OR bonus IS NULL` states the two requirements word for word and does not depend on a replacement value. It is generally the clearest alternative.
 - **Inner join:** This is incorrect because it removes employees without a `Bonus` row before the filter gets a chance to include them.
 - **Right join from `Bonus`:** Driving from the optional table is easy to get wrong. A left join from `Employee` directly expresses that every employee must remain eligible.
 - **`NOT EXISTS` plus a joined query:** Separate branches could find low bonuses and employees without bonus rows, then combine them with `UNION ALL`. That is longer and may scan data multiple times.
@@ -123,8 +123,8 @@ Brad and John have no matching bonus rows. The left join still retains both empl
 - **Bonus table empty:** Every employee is preserved with `NULL` bonus and therefore qualifies.
 - **Any output order:** Omitting `ORDER BY` is intentional. Adding one would do unnecessary work unless a consumer imposed an ordering requirement.
 - **Preserving display semantics:** Applying `COALESCE` in `SELECT` would display missing bonuses as zero, changing the requested result. Its placement only in `WHERE` is significant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

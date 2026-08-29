@@ -69,7 +69,7 @@ This invariant prevents both losing a duplicate and using a letter too many time
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The array `counts` has 26 entries.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ In the second situation, equality is not enough because the result must be stric
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate and sort all distinct permutations:**:** - **Generate and sort all distinct permutations:** This directly follows the definition but can require up to $n!$ candidates and is infeasible even far below `n = 300`. Frequency-guided pivot selection constructs only the single best candidate.
+- **Generate and sort all distinct permutations:** This directly follows the definition but can require up to $n!$ candidates and is infeasible even far below `n = 300`. Frequency-guided pivot selection constructs only the single best candidate.
 - **Take the next permutation of a sorted copy of `s` repeatedly:** Advancing until passing `target` can still traverse exponentially many permutations. The exact method jumps directly to the latest feasible pivot.
 - **Choose a larger letter at the earliest opportunity:** That makes a valid answer but not necessarily the smallest one. Preserving an equal prefix for more positions has higher lexicographic priority than optimizing any suffix.
 - **Use the largest feasible pivot letter:** Once the pivot position is fixed, a larger chosen letter only makes the result worse. The ascending alphabet scan correctly takes the first available greater letter.
@@ -126,8 +126,8 @@ In the second situation, equality is not enough because the result must be stric
 - **A smaller available letter at the failed position:** Choosing it would make the result smaller than `target` at the first difference, so the code correctly ignores it and either chooses a greater letter or backtracks.
 - **Length one:** The sole permutation is `s`. The algorithm returns it only if its character is greater than `target`; equality or a smaller character yields `""`.
 - **Restoring on backtrack:** Without adding the popped target character back to `counts`, later pivot attempts would operate on an incomplete multiset and could falsely report failure or build a non-permutation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

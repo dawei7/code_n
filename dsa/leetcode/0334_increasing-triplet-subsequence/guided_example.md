@@ -62,7 +62,7 @@ Strict `>` is essential. If `num == mid`, appending it would create equal second
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition in the exact source is `if num > mid`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ A newly smaller `mi` makes future pair formation easier. Any later number above 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate triples:** Testing all index triples:** - **Enumerate triples:** Testing all index triples directly takes $O(n^3)$ time and is impossible for up to $5\cdot10^5$ elements.
-- **- **For every middle index, search both sides:** P:** - **For every middle index, search both sides:** Precomputed prefix minima and suffix maxima can detect a triplet in $O(n)$ time, but require $O(n)$ extra arrays. The two-tail scan compresses the same useful information into constants.
-- **- **Longest-increasing-subsequence tails array:** :** - **Longest-increasing-subsequence tails array:** Standard binary-search LIS tracking can detect whether length reaches three in $O(n\log 3)=O(n)$ time and $O(1)$ bounded storage. The explicit two variables are simpler for the fixed target length.
+- **Enumerate triples:** Testing all index triples directly takes $O(n^3)$ time and is impossible for up to $5\cdot10^5$ elements.
+- **For every middle index, search both sides:** Precomputed prefix minima and suffix maxima can detect a triplet in $O(n)$ time, but require $O(n)$ extra arrays. The two-tail scan compresses the same useful information into constants.
+- **Longest-increasing-subsequence tails array:** Standard binary-search LIS tracking can detect whether length reaches three in $O(n\log 3)=O(n)$ time and $O(1)$ bounded storage. The explicit two variables are simpler for the fixed target length.
 
 ---
 

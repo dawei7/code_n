@@ -77,11 +77,7 @@ and no explicit `abs` call is needed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source returns
-
-`sum(nums[-k:]) - sum(nums[:k])`.
-
-Altho... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +118,7 @@ Slice boundaries remain correct at every legal `k`. Negative indexing makes `-k`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency array over values 1 through 100:** I:** - **Frequency array over values 1 through 100:** It can achieve the manifest's $O(N+V)$ time and $O(V)$ space, but it is not the exact implementation.
+- **Frequency array over values 1 through 100:** It can achieve the manifest's $O(N+V)$ time and $O(V)$ space, but it is not the exact implementation.
 - **Two heaps or selection algorithms:** They can avoid a full sort for small `k`, at the cost of more complicated logic.
 - **Use `abs` explicitly:** It is harmless but unnecessary because the largest `k`-sum cannot be smaller than the smallest `k`-sum.
 - **Choose distinct values only:** The problem selects elements, so duplicate occurrences count separately.
@@ -135,8 +131,8 @@ Slice boundaries remain correct at every legal `k`. Negative indexing makes `-k`
 - **Positive values:** Positivity is not needed for the sorted-order proof; the same subtraction remains nonnegative even for generalized signed values.
 - **Input mutation:** Callers needing the original order would have to sort a copy.
 - **Source/manifest mismatch:** Complexity for this source must include full sorting and slice allocation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -73,9 +73,7 @@ is necessary and sufficient for direct similarity.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All input strings have the same length and are anagrams.
-
-If... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +112,9 @@ The generator comparison scans all `m` positions and sums Boolean mismatch indic
 
 ## 6. Traps This Instance Exposes
 
-- **- **DFS or BFS on an explicit similarity graph:** :** - **DFS or BFS on an explicit similarity graph:** It produces the same components but stores up to `O(g^2)` edges. Union-find processes each edge as it is discovered and uses `O(g)` persistent space.
-- **- **Generate every one-swap neighbor:** For shorte:** - **Generate every one-swap neighbor:** For shorter strings and many words, hashing generated neighbors can be useful. With both dimensions at most 300, direct pair comparison is straightforward.
-- **- **Stop mismatch counting after three:** This imp:** - **Stop mismatch counting after three:** This improves constants for dissimilar pairs. The exact source uses `sum` over all positions.
+- **DFS or BFS on an explicit similarity graph:** It produces the same components but stores up to `O(g^2)` edges. Union-find processes each edge as it is discovered and uses `O(g)` persistent space.
+- **Generate every one-swap neighbor:** For shorter strings and many words, hashing generated neighbors can be useful. With both dimensions at most 300, direct pair comparison is straightforward.
+- **Stop mismatch counting after three:** This improves constants for dissimilar pairs. The exact source uses `sum` over all positions.
 
 ---
 

@@ -70,9 +70,7 @@ The expression first checks `a + b == -2`. Helper results are either `-1` or non
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source computes
-
-- `a = f(nums1[-1], nums2[-1])` for no ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +109,7 @@ For each fixed orientation, local decisions cannot conflict: swapping index $i$ 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try all swap subsets:** There are $2^n$ possib:** - **Try all swap subsets:** There are $2^n$ possibilities. Fixing the final orientation makes each earlier choice independent.
+- **Try all swap subsets:** There are $2^n$ possibilities. Fixing the final orientation makes each earlier choice independent.
 - **Check only the original last pair:** The optimal solution may require swapping the final index, so both orientations are mandatory.
 - **Swap an already fitting pair:** It cannot lower the operation count and may violate bounds; the helper correctly leaves it unchanged.
 - **Neither orientation fits an earlier pair:** The fixed scenario is impossible immediately.
@@ -121,8 +119,8 @@ For each fixed orientation, local decisions cannot conflict: swapping index $i$ 
 - **Only both global scenarios impossible:** The helper feasibility sets are symmetric under exchanging endpoint bounds, so `a+b==-2` detects impossibility.
 - **Slicing overhead:** Replacing slices with `for i in range(n-1)` would restore $O(1)$ auxiliary space without changing logic.
 - **Large values:** Only comparisons and counts are used, so Python integer size creates no overflow concern.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

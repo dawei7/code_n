@@ -71,7 +71,7 @@ Because $x$ is between 1 and 9, the count is always one digit and decoding bound
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one group, `c` is its character and iterator `v` yields ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Runs cover every input position exactly once and do not overlap. Concatenating t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer scan:** Measure each run with indi:** - **Two-pointer scan:** Measure each run with indices and emit chunks as its length is known. It avoids materializing group characters and can use $O(1)$ working space excluding output.
+- **Two-pointer scan:** Measure each run with indices and emit chunks as its length is known. It avoids materializing group characters and can use $O(1)$ working space excluding output.
 - **Streaming counter:** Track current character and count, flushing a chunk whenever count reaches 9 or the character changes.
 - **Repeated front slicing:** It mirrors the statement but can copy string suffixes repeatedly and approach quadratic time.
 - **Run length exactly nine:** It emits one `9c` chunk.
@@ -127,8 +127,8 @@ Runs cover every input position exactly once and do not overlap. Concatenating t
 - **Lowercase alphabet:** Counts and characters are unambiguous because each count is one digit and each symbol one character.
 - **Group iterator consumption:** `list(v)` fully consumes each shared iterator before the outer `groupby` advances.
 - **Output construction:** Accumulating parts and joining avoids repeated immutable-string concatenation costs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

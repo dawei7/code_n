@@ -57,7 +57,7 @@ For `s1 = "abc"` and `s2 = "xya"`, the sorted lists are `['a','b','c']` and `['a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | returns two lists in ascending alphabetical order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ This is the easy direction: a successful componentwise comparison directly const
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency and cumulative counts:** Store 26 fr:** - **Frequency and cumulative counts:** Store 26 frequencies per string and test dominance through cumulative totals. This realizes the manifest's $O(n)$ time and $O(1)$ alphabet-sized space.
+- **Frequency and cumulative counts:** Store 26 frequencies per string and test dominance through cumulative totals. This realizes the manifest's $O(n)$ time and $O(1)$ alphabet-sized space.
 - **Enumerate permutations:** It is factorial and unnecessary because sorted pairing fully characterizes feasibility.
 - **Greedy multiset matching:** Repeatedly pair the smallest remaining characters. This is effectively sorting but can be implemented with heaps at greater complexity.
 - **Identical strings:** Both dominance checks pass through equality.
@@ -104,8 +104,8 @@ This is the easy direction: a successful componentwise comparison directly const
 - **Equal-length guarantee:** It ensures `zip` covers every character in both strings; unequal lengths would require a different contract.
 - **Lowercase-only alphabet:** Python's ordinary character ordering matches alphabetical order for these characters.
 - **Short-circuit evaluation:** `all` may stop early on a violation, but sorting remains the dominant cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

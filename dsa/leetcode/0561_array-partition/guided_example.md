@@ -53,7 +53,7 @@ Each pair contributes only its smaller element. To maximize the sum, large value
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting sort:** The bounded value range allow:** - **Counting sort:** The bounded value range allows linear time in input size plus range, at the cost of a frequency array.
+- **Counting sort:** The bounded value range allows linear time in input size plus range, at the cost of a frequency array.
 - **Enumerate pairings:** The number of pairings grows combinatorially and is unnecessary.
 - **Pair smallest with largest:** It wastes large values as non-contributing partners and is generally suboptimal.
 - **One pair:** Sorting and choosing index zero returns the smaller of the two values.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Even-length guarantee:** Every sorted element belongs to a complete adjacent pair.
 - **Slice semantics:** `[::2]` selects indices zero, two, four, and so on.
 - **Large pair count:** Sorting, not pairing construction, is the dominant cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Why sorting both arrays is allowed.** The statement explic... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting frequencies:** Count each value from :** - **Counting frequencies:** Count each value from `1` through `100` in both arrays, then consume the first array upward and the second downward. This achieves $O(n+K)$ time and $O(K)$ space, where $K=100$, but requires more careful pointer and multiplicity bookkeeping than the concise sorting solution.
+- **Counting frequencies:** Count each value from `1` through `100` in both arrays, then consume the first array upward and the second downward. This achieves $O(n+K)$ time and $O(K)$ space, where $K=100$, but requires more careful pointer and multiplicity bookkeeping than the concise sorting solution.
 - **Sort only indexed `nums2` values:** If `nums2` must remain physically unchanged, sort `(value, index)` pairs, assign ascending `nums1` values to descending `nums2` values, and optionally reconstruct a rearranged first array. That adds storage while representing the same proof.
 - **Priority queues:** Repeatedly extracting the smallest value from one heap and largest from another also creates opposite pairings, but costs $O(n\log n)$ time with more data-structure overhead and no advantage over sorting all values once.
 - **Sorting both arrays in the same direction:** This maximizes rather than minimizes the product sum for nonnegative values. The exchange inequality shows exactly why like-sized values together make the sum no smaller.
@@ -94,8 +94,8 @@ We maintain the core conceptual parameters and state variables:
 - **Duplicate values:** Equal elements can lead to many optimal permutations. Their relative order is irrelevant, and the exchange proof permits equality without requiring strict inequalities.
 - **Input mutation:** The exact method changes both caller-provided lists. Use copies when order preservation is an external requirement; silently claiming this implementation is non-mutating would be inaccurate.
 - **Negative-number generalization:** The stated inputs are positive. Opposite sorting is in fact supported by the general rearrangement inequality for real numbers too, but reasoning based only on “large products are expensive” should not be extended casually when signs change; the exchange proof is the reliable justification.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

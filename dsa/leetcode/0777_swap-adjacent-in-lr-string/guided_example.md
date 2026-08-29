@@ -63,7 +63,7 @@ If only one pointer reaches the end, one string still has an unmatched letter. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because `L` and `R` never cross, deleting every `X` from bot... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ After a matching letter passes its direction test, both pointers advance once. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build filtered strings plus position lists:** :** - **Build filtered strings plus position lists:** Comparing the non-`X` sequences and then comparing corresponding indices expresses the same proof clearly, but the new lists require $O(n)$ auxiliary space.
-- **- **Breadth-first search over strings:** It could :** - **Breadth-first search over strings:** It could discover a move sequence for tiny inputs, but the number of configurations is enormous at length $10^4$ and the sequence itself is not requested.
-- **- **Greedy swap simulation:** Choosing currently a:** - **Greedy swap simulation:** Choosing currently available moves can perform unnecessary work and needs careful scheduling; the invariant-based scan decides reachability directly.
+- **Build filtered strings plus position lists:** Comparing the non-`X` sequences and then comparing corresponding indices expresses the same proof clearly, but the new lists require $O(n)$ auxiliary space.
+- **Breadth-first search over strings:** It could discover a move sequence for tiny inputs, but the number of configurations is enormous at length $10^4$ and the sequence itself is not requested.
+- **Greedy swap simulation:** Choosing currently available moves can perform unnecessary work and needs careful scheduling; the invariant-based scan decides reachability directly.
 
 ---
 

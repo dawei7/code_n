@@ -73,7 +73,7 @@ For `[1,[4,[6]]]`, integer `1` is visited at depth one, `4` at depth two, and `6
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer `nestedList` is the container supplied to the meth... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,9 +115,9 @@ Negative values require no special treatment. Both sums and the final algebra us
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pass DFS:** First find the deepest integer:** - **Two-pass DFS:** First find the deepest integer, then traverse again and apply each explicit inverse weight. This is conceptually direct and still $O(N)$ time, but it visits the structure twice.
-- **- **Totals grouped by depth:** Accumulate one sum :** - **Totals grouped by depth:** Accumulate one sum per depth, find the deepest occupied level, then multiply each bucket by its inverse weight. This matches the manifest summary and uses $O(D)$ explicit bucket storage.
-- **- **Breadth-first cumulative sum:** Traverse level:** - **Breadth-first cumulative sum:** Traverse level by level, maintaining an unweighted running sum and adding it to the answer at each level. Values encountered earlier are added more times and therefore receive greater inverse weights. This avoids knowing the final depth in advance but may require a wide queue.
+- **Two-pass DFS:** First find the deepest integer, then traverse again and apply each explicit inverse weight. This is conceptually direct and still $O(N)$ time, but it visits the structure twice.
+- **Totals grouped by depth:** Accumulate one sum per depth, find the deepest occupied level, then multiply each bucket by its inverse weight. This matches the manifest summary and uses $O(D)$ explicit bucket storage.
+- **Breadth-first cumulative sum:** Traverse level by level, maintaining an unweighted running sum and adding it to the answer at each level. Values encountered earlier are added more times and therefore receive greater inverse weights. This avoids knowing the final depth in advance but may require a wide queue.
 
 ---
 

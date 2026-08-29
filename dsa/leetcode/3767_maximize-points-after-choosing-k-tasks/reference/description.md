@@ -2,7 +2,7 @@
 
 You are given two integer arrays, `technique1` and `technique2`, each of length `n`, where `n` represents the number of tasks to complete.
 
-- If the $$i^{\text{th}}$$ task is completed using technique 1, you earn $\text{technique1}[i]$ points.
+- If the $i^{\text{th}}$ task is completed using technique 1, you earn $\text{technique1}[i]$ points.
 
 - If it is completed using technique 2, you earn $\text{technique2}[i]$ points.
 
@@ -64,6 +64,6 @@ Choosing all tasks using technique 2 yields the maximum points: $4 + 5 + 6 = 15$
 
 - $1 \le n = \text{technique1.length} = \text{technique2.length} \le 10^{5}$
 
-- $1 \le \text{technique1}[i], technique2​​​​​​​[i] \le 10^​​​​​​​5$
+- $1 \le \text{technique1}[i], technique2[i] \le 10^5$
 
 - $0 \le k \le n$

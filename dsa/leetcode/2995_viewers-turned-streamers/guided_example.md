@@ -62,7 +62,7 @@ If the unique earliest row is a Streamer, the CTE-side Viewer condition fails an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Assume each user has one unique earliest `session_start`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This explains the intended algorithm and why the sample works.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` with `session_id` tie-break:** Th:** - **`ROW_NUMBER` with `session_id` tie-break:** This selects one deterministic first session and prevents count multiplication.
+- **`ROW_NUMBER` with `session_id` tie-break:** This selects one deterministic first session and prevents count multiplication.
 - **Find minimum timestamp then join:** It still needs a rule when several sessions share that minimum.
 - **Conditional aggregation:** After deterministic numbering, group once and require the first type Viewer while summing Streamer rows; this avoids joining rank rows back to facts.
 - **Unique earliest Viewer, no streamers:** The exact inner join/filter yields no output row, as required.
@@ -113,8 +113,8 @@ This explains the intended algorithm and why the sample works.
 - **Tied earliest sessions:** The exact source is ambiguous and can overcount because the schema does not forbid ties.
 - **Count ordering:** Greater `sessions_count` comes first, then greater `user_id`.
 - **Manifest complexity:** $O(R\log R)$ is conditional on one rank-one classifier row; exact worst-case joined cardinality is quadratic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

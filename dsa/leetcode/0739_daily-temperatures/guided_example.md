@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `temperatures` represents the daily temperatures, return *an array* `answer` *such that* $\text{answer}[i]$ *is the number of days you have to wait after the* $$i^{\text{th}}$$ *day to get a warmer temperature*. If there is no future day for which this is possible, keep $\text{answer}[i] = 0$ instead.
+Given an array of integers `temperatures` represents the daily temperatures, return *an array* `answer` *such that* $\text{answer}[i]$ *is the number of days you have to wait after the* $i^{\text{th}}$ *day to get a warmer temperature*. If there is no future day for which this is possible, keep $\text{answer}[i] = 0$ instead.
 
 The objective is to compute `[1, 1, 4, 2, 1, 1, 0, 0]` from `{"temperatures": [73, 74, 75, 71, 69, 72, 76, 73]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,7 +63,7 @@ The top is also the nearest surviving future candidate because indices were push
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The stack stores indices, not temperatures, because the answ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ Equal temperatures are popped as well because the problem requires a strictly wa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward monotonic stack:** Scan left to right :** - **Forward monotonic stack:** Scan left to right and keep unresolved days with decreasing temperatures. When a warmer day arrives, pop and fill their waits. This is equally optimal and may feel more event-driven.
-- **- **Nested forward searches:** For every day, scan:** - **Nested forward searches:** For every day, scan later days until finding a warmer one. Worst-case decreasing or constant temperatures cause `O(n^2)` comparisons.
-- **- **Jump using already computed answers:** Scan ba:** - **Jump using already computed answers:** Scan backward and skip through future days by their known waits. This can achieve linear behavior with careful zero handling, but the monotonic stack has a clearer domination proof.
+- **Forward monotonic stack:** Scan left to right and keep unresolved days with decreasing temperatures. When a warmer day arrives, pop and fill their waits. This is equally optimal and may feel more event-driven.
+- **Nested forward searches:** For every day, scan later days until finding a warmer one. Worst-case decreasing or constant temperatures cause `O(n^2)` comparisons.
+- **Jump using already computed answers:** Scan backward and skip through future days by their known waits. This can achieve linear behavior with careful zero handling, but the monotonic stack has a clearer domination proof.
 
 ---
 

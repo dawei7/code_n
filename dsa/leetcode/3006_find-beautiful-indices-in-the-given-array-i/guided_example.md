@@ -57,7 +57,7 @@ Separate tables are built for `a` and `b` because their border structures differ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a pattern, `prefix_function[i]` is the length of the lon... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Since text scanning is left to right, both `resa` and `resb` are sorted ascendin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated slicing with `find`:** Pattern length:** - **Repeated slicing with `find`:** Pattern lengths are small here, but careful overlap advancement is still required; KMP gives a general linear guarantee.
+- **Repeated slicing with `find`:** Pattern lengths are small here, but careful overlap advancement is still required; KMP gives a general linear guarantee.
 - **Binary search each `a` occurrence:** Searching `resb` for neighbors costs $O(P\log Q)$; the monotone pointer is linear.
 - **Reset the KMP state after a match:** Resetting to zero misses overlapping occurrences.
 - **No `a` occurrences:** The outer loop is empty and the answer is empty.
@@ -107,8 +107,8 @@ Since text scanning is left to right, both `resa` and `resb` are sorted ascendin
 - **Several nearby `b` starts:** Each `a` index is appended only once because the condition is existential.
 - **Sorted output:** KMP discovery order and outer traversal already provide it.
 - **Debug print:** The exact source leaks full occurrence arrays and should be cleaned in a separate solution-fix campaign.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

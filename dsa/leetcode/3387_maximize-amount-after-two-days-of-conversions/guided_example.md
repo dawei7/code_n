@@ -51,7 +51,7 @@ The no-contradiction guarantee means every path between the same currencies prod
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The no-contradiction guarantee means every path between the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The no-contradiction guarantee means every path between the same currencies prod
 
 ## 6. Traps This Instance Exposes
 
-- **- **Floyd–Warshall:** It computes all-pairs rates :** - **Floyd–Warshall:** It computes all-pairs rates but is unnecessary when only ratios relative to one initial currency are needed.
+- **Floyd–Warshall:** It computes all-pairs rates but is unnecessary when only ratios relative to one initial currency are needed.
 - **Repeated path search per overnight currency:** It duplicates graph work; one DFS assigns every consistent multiplier.
 - **Logarithmic weights:** They can turn products into sums and improve numerical handling for large graphs, but constraints are tiny.
 - **No conversions:** Initial-currency ratio one guarantees a valid baseline.
@@ -101,8 +101,8 @@ The no-contradiction guarantee means every path between the same currencies prod
 - **Floating-point output:** Small rounding differences are expected within platform tolerance.
 - **Dictionary as visited set:** Assignment occurs before exploring neighbors, preventing immediate reciprocal recursion.
 - **Required imports:** `defaultdict`, `Dict`, and `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

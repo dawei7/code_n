@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have a video sharing platform where users can upload and delete videos. Each `video` is a **string** of digits, where the $$i^{\text{th}}$$ digit of the string represents the content of the video at minute `i`. For example, the first digit represents the content at minute `0` in the video, the second digit represents the content at minute `1` in the video, and so on. Viewers of videos can also like and dislike videos. Internally, the platform keeps track of the **number of views, likes, and dislikes** on each video.
+You have a video sharing platform where users can upload and delete videos. Each `video` is a **string** of digits, where the $i^{\text{th}}$ digit of the string represents the content of the video at minute `i`. For example, the first digit represents the content at minute `0` in the video, the second digit represents the content at minute `1` in the video, and so on. Viewers of videos can also like and dislike videos. Internally, the platform keeps track of the **number of views, likes, and dislikes** on each video.
 
 The objective is to compute `[null, 0, 1, null, null, 0, "456", "45", null, null, null, [1, 2], 2]` from `{"operations": ["VideoSharingPlatform", "upload", "upload", "remove", "remove", "upload", "watch", "watch", "like", "dislike", "dislike", "getLikesAndDislikes", "getViews"], "arguments": [[], ["123"], ["456"], [4], [0], ["789"], [1, 0, 5], [1, 0, 1], [1], [1], [1], [1], [1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -66,9 +66,7 @@ The new dictionary record initializes views, likes, and dislikes to zero. Reusin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two fields coordinate allocation:
-
-- `next_id` is the smalle... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +105,7 @@ Removing an unknown ID has no effect on any state.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan upward from ID zero on every upload:** It:** - **Scan upward from ID zero on every upload:** It finds the smallest free ID but can take linear time per upload; the heap retrieves released minima efficiently.
+- **Scan upward from ID zero on every upload:** It finds the smallest free ID but can take linear time per upload; the heap retrieves released minima efficiently.
 - **Use only a monotonically increasing ID:** Deleted IDs would never be reused, violating the contract.
 - **Reuse IDs with a stack or queue:** Neither guarantees the smallest available ID; a min-heap does.
 - **Push on every remove call:** Repeated removal would duplicate heap entries. Membership guarding is essential.
@@ -119,8 +117,8 @@ Removing an unknown ID has no effect on any state.
 - **Duplicate videos:** Text equality does not matter; each upload receives its own ID and record.
 - **Repeated arrival of same call:** Every successful watch increments views once; every valid like or dislike increments its own counter once.
 - **Returned likes list:** Slicing produces only the two requested values, not the internal video record.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

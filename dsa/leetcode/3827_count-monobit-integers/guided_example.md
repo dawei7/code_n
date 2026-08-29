@@ -83,11 +83,7 @@ gives the two variables different conceptual roles despite their equal initial v
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The chained assignment
-
-`ans = x = 1`
-
-gives the two variabl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -146,7 +142,7 @@ No positive Monobit value is skipped, and no non-Monobit value is generated.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct bit-length formula:** `(n + 1).bit_leng:** - **Direct bit-length formula:** `(n + 1).bit_length()` equals $1+\lfloor\log_2(n+1)\rfloor$ for nonnegative `n` and returns the answer in constant high-level operations.
+- **Direct bit-length formula:** `(n + 1).bit_length()` equals $1+\lfloor\log_2(n+1)\rfloor$ for nonnegative `n` and returns the answer in constant high-level operations.
 - **Scan every integer:** Convert each value in `[0,n]` to binary and test whether it has one distinct character. This costs $O(n\log n)$ total bit work and ignores the simple all-one characterization.
 - **Floating-point logarithm:** The closed formula can be evaluated with logs, but rounding near exact powers of two can produce boundary errors. Bit operations or generation are exact.
 - **n equals zero:** Zero itself is Monobit, so the answer is 1 even though no positive candidate is counted.
@@ -156,8 +152,8 @@ No positive Monobit value is skipped, and no non-Monobit value is generated.
 - **Powers of two above one:** Their representations contain one leading 1 followed by zeros, so they are not Monobit.
 - **Sequence invariant:** At loop entry, `x = 2^i - 1`. The shift update is what guarantees generation remains exact.
 - **Integer arithmetic:** Python shifts and additions are exact, so the method has no overflow or precision boundary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

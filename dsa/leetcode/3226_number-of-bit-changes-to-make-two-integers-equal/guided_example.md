@@ -51,7 +51,7 @@ is the exact feasibility condition. If `k` contains even one bit outside `n`'s s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | is the exact feasibility condition.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inspect bits in a loop:** Compare correspondin:** - **Inspect bits in a loop:** Compare corresponding low bits, reject a required zero-to-one change, and count extra ones. It is correct but more verbose than masks.
+- **Inspect bits in a loop:** Compare corresponding low bits, reject a required zero-to-one change, and count extra ones. It is correct but more verbose than masks.
 - **Use `(n | k) == n`:** Bitwise OR equals `n` exactly when every set bit of `k` is already in `n`. This is an equivalent feasibility test.
 - **Subtract powers of two greedily:** Numeric subtraction can borrow across bits and obscures the operation, which flips chosen bits independently.
 - **`n == k`:** XOR is zero and the answer is zero.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Smaller target not sufficient:** Numeric comparison cannot replace bit-subset testing.
 - **No overflow:** Python bit operations and popcount are exact.
 - **Mismatch mask after feasibility:** Once `k` is known to be a bit subset of `n`, `n ^ k` contains no required additions. Every one in that mask is precisely an independently removable extra bit, which is why popcount needs no further filtering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

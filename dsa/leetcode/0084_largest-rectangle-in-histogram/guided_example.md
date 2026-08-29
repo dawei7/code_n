@@ -61,7 +61,7 @@ Finally, index `i` is pushed. Because all greater-or-equal heights were removed,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `stk` stores indices whose heights are strictly increasing f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Bars that never get popped have no blocking height at or below them on the right
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute areas during pops:** A sentinel index :** - **Compute areas during pops:** A sentinel index or appended zero can finalize width immediately, avoiding the two boundary arrays while retaining $O(n)$ stack space.
+- **Compute areas during pops:** A sentinel index or appended zero can finalize width immediately, avoiding the two boundary arrays while retaining $O(n)$ stack space.
 - **Quadratic expansion:** For each bar, scan left and right until a shorter bar. It is easy to derive but can take $O(n^2)$ time on monotone histograms.
 - **Divide and conquer:** Split at a minimum-height bar. Without fast range-minimum queries, sorted inputs cause quadratic time.
 - **Segment tree:** It accelerates range-minimum queries but adds substantial structure and usually $O(n\log n)$ total time.
@@ -110,8 +110,8 @@ Bars that never get popped have no blocking height at or below them on the right
 - **Maximum length:** Amortized push/pop analysis avoids the quadratic behavior of repeated outward scans.
 - **Nonempty guarantee:** The final `max` depends on at least one candidate.
 - **Input preservation:** Only boundary and stack arrays are mutated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

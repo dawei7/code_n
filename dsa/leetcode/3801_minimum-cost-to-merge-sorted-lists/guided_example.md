@@ -59,7 +59,7 @@ This computes the total element count for every subset in constant time after it
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For nonzero `mask`, `lowest_bit = mask & -mask` isolates one... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This scan costs linear total-element work per mask but avoids materializing a me
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedily merge the cheapest current pair:** Me:** - **Greedily merge the cheapest current pair:** Median changes can make a locally cheap choice globally suboptimal.
+- **Greedily merge the cheapest current pair:** Median changes can make a locally cheap choice globally suboptimal.
 - **Huffman merging by length:** The additional median-distance term invalidates pure length-based optimality.
 - **Materialize every subset merge:** This uses much more storage; the global ordered owner list yields medians by filtering.
 - **Use the right median:** The contract specifies the left middle, implemented by `(size-1)//2`.
@@ -116,8 +116,8 @@ This scan costs linear total-element work per mask but avoids materializing a me
 - **Input sortedness:** The source still builds one global sorted flattened sequence.
 - **Output list:** Only minimum cost is returned; no merge sequence is reconstructed.
 - **Constraint role:** Exponential dependence is feasible because `L<=12`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

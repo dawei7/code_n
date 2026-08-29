@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `students[students['student_id'] == 101][['name', 'age']]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Reading the expression from the inside outward makes it much easier to understan
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single `loc` selection:** Combine mask and col:** - **Single `loc` selection:** Combine mask and columns in `students.loc[mask, ['name', 'age']]`. It is clearer and avoids read-time chained indexing.
+- **Single `loc` selection:** Combine mask and columns in `students.loc[mask, ['name', 'age']]`. It is clearer and avoids read-time chained indexing.
 - **Query syntax:** `students.query('student_id == 101')[['name', 'age']]` is readable but invokes expression parsing unnecessarily.
 - **No matching student:** The result is an empty DataFrame that still has `name` and `age` columns.
 - **Multiple matches:** The exact code returns every matching row in original order.
@@ -94,8 +94,8 @@ Reading the expression from the inside outward makes it much easier to understan
 - **Strict equality:** Identifiers other than numeric 101 are excluded; no range or string search is intended.
 - **Column order:** The list places `name` before `age`, matching the requested output.
 - **Chained assignment warning:** This expression only selects data. Do not generalize it to mutation; use `loc` for assignments.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

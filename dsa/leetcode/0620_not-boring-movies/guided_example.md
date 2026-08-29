@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Detect odd identifiers with the low binary bit.** The expr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The condition `id & 1 = 1` is therefore a compact oddness test. In the intended 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modulo parity check:** `MOD(id, 2) = 1` or `id:** - **Modulo parity check:** `MOD(id, 2) = 1` or `id % 2 = 1` is more immediately recognizable to many readers and avoids bitwise-precedence questions.
+- **Modulo parity check:** `MOD(id, 2) = 1` or `id % 2 = 1` is more immediately recognizable to many readers and avoids bitwise-precedence questions.
 - **Explicit column names:** Select `id, movie, description, rating` and write `ORDER BY rating DESC`. This is behaviorally equivalent for the given schema and more maintainable than `SELECT *` with ordinal 4.
 - **Parenthesized bit test:** Writing `(id & 1) = 1` makes the exact operation unambiguous without changing the plan.
 - **Equal ratings:** Their relative order is unspecified because there is no secondary key. This is acceptable when the contract requires only descending rating; add `id` only if deterministic tie order is desired and allowed.
@@ -98,8 +98,8 @@ The condition `id & 1 = 1` is therefore a compact oddness test. In the intended 
 - **Null description:** `!=` yields unknown and excludes the row. Use an explicit null policy only if the contract permits null descriptions.
 - **Negative IDs:** Bitwise low-bit testing still identifies two's-complement odd integers in MySQL, whereas some modulo expressions return `-1` for negative odd values. The table's identifier semantics normally imply positive IDs.
 - **Schema column reordering:** `ORDER BY 4` would silently sort by a different field if the projection order changed, which is why naming `rating` is preferable outside this fixed challenge.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

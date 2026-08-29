@@ -103,10 +103,7 @@ The answer is allowed to be negative. The positivity of individual elements does
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The alternating sum is written position by position as:
-
-$$
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -145,7 +142,7 @@ The method does not sort, filter by value, or modify the input. Only original in
 
 ## 6. Traps This Instance Exposes
 
-- **- **One running accumulator:** Add `x` at even ind:** - **One running accumulator:** Add `x` at even indices and subtract it at odd indices. This retains $O(n)$ time while achieving the manifest's intended $O(1)$ auxiliary space.
+- **One running accumulator:** Add `x` at even indices and subtract it at odd indices. This retains $O(n)$ time while achieving the manifest's intended $O(1)$ auxiliary space.
 - **Signed generator:** `sum(x if i % 2 == 0 else -x for i, x in enumerate(nums))` also avoids materialized slices and uses constant auxiliary space.
 - **Multiply by `(-1) ** i`:** This matches the signs mathematically but performs unnecessary exponentiation or sign computation compared with parity.
 - **One element:** The odd slice is empty, its sum is zero, and the single even-indexed value is returned.
@@ -155,8 +152,8 @@ The method does not sort, filter by value, or modify the input. Only original in
 - **Repeated values:** Signs depend on positions, so equal values at different indices may contribute with opposite signs.
 - **Input mutation:** Slicing creates new lists and leaves the original order and contents unchanged.
 - **Indexing convention:** The first element is index zero and therefore positive; treating the array as one-indexed would reverse every sign.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

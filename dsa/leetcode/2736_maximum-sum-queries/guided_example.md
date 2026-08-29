@@ -65,7 +65,7 @@ Answers still belong in original query order. The loop sorts indices rather than
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `nums` stores all paired coordinates sorted by decreasing `n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Large second coordinates receive small indices; smaller coordinates receive larg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan every point per query:** Simple but costs:** - **Scan every point per query:** Simple but costs $O(nq)$.
+- **Scan every point per query:** Simple but costs $O(nq)$.
 - **Segment tree:** Supports the same coordinate-compressed maximum queries but uses more code than a Fenwick tree.
 - **Monotone Pareto frontier:** Another offline solution can maintain nondominated points, though boundary management is subtler.
 - **No qualifying first coordinate:** No point is inserted for the query, so the tree returns `-1`.
@@ -122,8 +122,8 @@ Large second coordinates receive small indices; smaller coordinates receive larg
 - **Equal query x values:** They see the same fully inserted eligibility set.
 - **Original answer order:** Stored query indices undo offline sorting.
 - **Input mutation:** `nums2` is sorted in place; `nums1` and `queries` are not reordered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

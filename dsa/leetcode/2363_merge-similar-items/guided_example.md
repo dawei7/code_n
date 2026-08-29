@@ -65,11 +65,7 @@ For `items1 = [[1,1],[4,5],[3,8]]` and `items2 = [[3,1],[1,5]]`, processing the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation uses:
-
-
-
-`chain` does not create a combin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ The resulting Python object is a list of tuples rather than a list of mutable li
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed frequency array:** Allocate totals for v:** - **Fixed frequency array:** Allocate totals for values `0` through `1000`, add each weight, and scan in numeric order. This exactly realizes $O(n+V)$ time and $O(V)$ space without comparison sorting.
+- **Fixed frequency array:** Allocate totals for values `0` through `1000`, add each weight, and scan in numeric order. This exactly realizes $O(n+V)$ time and $O(V)$ space without comparison sorting.
 - **Plain dictionary:** A normal dictionary with `get(v, 0)` works identically; `Counter` supplies the missing-zero behavior directly.
 - **Sort and merge two arrays:** Sort both inputs by value and advance two pointers, combining equal keys. This uses less hash machinery but costs sorting time unless the inputs are already ordered.
 - **A value appears in only one array:** Its stored total is simply that one positive weight, and it still appears in the sorted output.
@@ -120,8 +116,8 @@ The resulting Python object is a list of tuples rather than a list of mutable li
 - **Input order is arbitrary:** Hash accumulation ignores order, and the explicit final sort establishes the required result order.
 - **Tuple result rows:** `sorted(cnt.items())` returns tuples. They represent the same two integer fields and are accepted by sequence-based serialization.
 - **Maximum value boundary:** Value `1000` is an ordinary Counter key and naturally sorts after every smaller allowed value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

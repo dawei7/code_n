@@ -65,7 +65,7 @@ The expression `pairwise((-1, 0, 1, 0, -1))` produces the four direction pairs `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For coordinates `(i, j)`, `dfs(i, j)` has one job: if this p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Conversely, every `.` is safe. The search can create a `.` only while walking fr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search from the border:** Use a :** - **Breadth-first search from the border:** Use a queue of safe `O` cells and mark each cell when it is enqueued. It proves the same reachability fact without recursive calls, but the queue can require $O(mn)$ memory.
+- **Breadth-first search from the border:** Use a queue of safe `O` cells and mark each cell when it is enqueued. It proves the same reachability fact without recursive calls, but the queue can require $O(mn)$ memory.
 - **Explicit depth-first stack:** Replacing recursion with a stack preserves depth-first traversal while avoiding Python’s recursion-depth limit. It still has $O(mn)$ worst-case auxiliary space.
 - **Region-by-region search:** One can start from every unvisited `O`, collect its complete component, and record whether the component touches a border. This works, but it needs component storage and solves a harder classification problem than the border-first method.
 - **Union-find:** Treat each `O` as a vertex and union adjacent `O` cells, with a virtual vertex representing the border. This is valid but needs $O(mn)$ parent/rank storage and is more machinery than a single traversal.
@@ -123,8 +123,8 @@ Conversely, every `.` is safe. The search can create a `.` only while walking fr
 - **Temporary-character safety:** Using `.` is correct only because the input alphabet is restricted to `X` and `O`. With a broader alphabet, the marker would need to be chosen or tracked differently.
 - **Runtime dependencies:** The selected source refers to `List` and `pairwise` without importing them. A standalone Python file needs `from typing import List` and `from itertools import pairwise`; `pairwise` also requires a sufficiently recent Python version.
 - **Recursion depth:** Although the algorithm is mathematically correct for boards up to $200 \times 200$, a large connected component can exceed Python’s default recursion limit. An iterative queue or stack is safer when the execution environment does not raise that limit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

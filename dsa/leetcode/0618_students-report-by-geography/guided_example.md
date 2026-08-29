@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Assign an independent rank inside every continent.** The C... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three ranked CTEs plus joins:** Rank each cont:** - **Three ranked CTEs plus joins:** Rank each continent separately, then full-outer-join on rank. This is visually direct but verbose, and MySQL lacks a native full outer join.
+- **Three ranked CTEs plus joins:** Rank each continent separately, then full-outer-join on rank. This is visually direct but verbose, and MySQL lacks a native full outer join.
 - **Session variables:** The editorial's older MySQL technique manually increments one counter per continent. Window functions are clearer, declarative, and less sensitive to evaluation-order behavior.
 - **Conditional aggregation with `ROW_NUMBER`:** The exact method is compact and naturally keeps all continents, including when the promised largest partition changes.
 - **Explicit final `ORDER BY rk`:** Add this to make alphabetical vertical display guaranteed rather than relying on incidental group output order.
@@ -97,8 +97,8 @@ We maintain the core conceptual parameters and state variables:
 - **Unexpected continent value:** It receives ranks in the CTE and can create groups, but none of the three conditional columns displays its name. The stated domain must remain America, Asia, and Europe.
 - **Equal names within one continent:** Their relative row numbers are nondeterministic, but the visible values are identical, so the report is unchanged.
 - **Column order:** The three select expressions are deliberately written America, Asia, Europe; changing their order would violate the requested schema even if the values remained correct.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

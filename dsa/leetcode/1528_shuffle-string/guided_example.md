@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` and an integer array `indices` of the **same length**. The string `s` will be shuffled such that the character at the $$i^{\text{th}}$$ position moves to $\text{indices}[i]$ in the shuffled string.
+You are given a string `s` and an integer array `indices` of the **same length**. The string `s` will be shuffled such that the character at the $i^{\text{th}}$ position moves to $\text{indices}[i]$ in the shuffled string.
 
 The objective is to compute `"leetcode"` from `{"s": "codeleet", "indices": [4, 5, 6, 7, 0, 2, 1, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -57,7 +57,7 @@ Initializing with `null` is safe because the permutation guarantee ensures every
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python strings are immutable.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This is the central reason direct placement works without collision handling.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by destination:** Zip each character with:** - **Sort by destination:** Zip each character with its index, sort pairs, and join characters. It is correct but unnecessarily costs $O(N\log N)$.
+- **Sort by destination:** Zip each character with its index, sort pairs, and join characters. It is correct but unnecessarily costs $O(N\log N)$.
 - **Build the inverse permutation:** First record which source belongs to each destination, then read the string. It adds an extra pass without improving bounds.
 - **Identity permutation:** Every assignment writes to the same position and returns the original string.
 - **Single character:** Its only valid destination is zero.
@@ -106,8 +106,8 @@ This is the central reason direct placement works without collision handling.
 - **Unequal input lengths:** `zip` would truncate, but equal lengths are guaranteed.
 - **String immutability:** The list is required for indexed writes; repeated string concatenation would be less efficient.
 - **Required type import:** `List` must be available for the annotation in a standalone module.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

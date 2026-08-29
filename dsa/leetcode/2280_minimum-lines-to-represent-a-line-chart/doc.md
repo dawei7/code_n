@@ -28,7 +28,7 @@ needed to represent the entire chart.
 - `stockPrices`: An array of $n$ pairs `[day_i, price_i]`, where every `day_i` is distinct.
 
 Here, $1 \le n \le 10^5$, every pair has exactly two entries, and
-$1 \le \texttt{day_i}, \texttt{price_i} \le 10^9$.
+$1 \le \texttt{day\_i}, \texttt{price\_i} \le 10^9$.
 
 **Return value**
 

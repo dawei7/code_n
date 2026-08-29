@@ -62,7 +62,7 @@ Grouping by only actor would combine work with different directors. Grouping by 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query selects `actor_id` first and `director_id` second,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Every row contributes exactly one collaboration to exactly one actor-director gr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit column names in `GROUP BY`:** `GROUP :** - **Explicit column names in `GROUP BY`:** `GROUP BY actor_id, director_id` is clearer and more portable than positional references while producing the same result.
+- **Explicit column names in `GROUP BY`:** `GROUP BY actor_id, director_id` is clearer and more portable than positional references while producing the same result.
 - **`COUNT(*)`:** It is semantically equivalent to `COUNT(1)` for counting group rows.
 - **`COUNT(timestamp)`:** Because the primary key cannot be null, it also counts every row. The constant count avoids depending on that column detail.
 - **`COUNT(DISTINCT timestamp)`:** It is correct but redundant because timestamp is globally unique and may add unnecessary distinct-processing work.
@@ -115,8 +115,8 @@ Every row contributes exactly one collaboration to exactly one actor-director gr
 - **Same director with several actors:** Each actor likewise remains separate.
 - **Unique timestamp:** Every physical row is a distinct keyed cooperation event, so plain row counting is appropriate.
 - **Result order:** No `ORDER BY` is required or implied by the problem.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

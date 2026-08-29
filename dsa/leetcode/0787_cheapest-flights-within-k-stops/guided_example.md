@@ -59,7 +59,7 @@ Running exactly `k + 1` rounds therefore produces the cheapest costs among all r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before any relaxation round, `dist[src] = 0` and every other... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ Without the copy, a chain of several flights could propagate through `dist` duri
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-row dynamic programming:** Explicitly comp:** - **Two-row dynamic programming:** Explicitly compute costs for each exact or bounded edge count. It expresses the same recurrence and also uses $O(V)$ rolling space.
-- **- **State-expanded Dijkstra:** Treat `(city, edges:** - **State-expanded Dijkstra:** Treat `(city, edges_used)` as a state and use a heap. It can return early but requires more elaborate dominance handling.
-- **- **Ordinary Dijkstra with one distance per city:*:** - **Ordinary Dijkstra with one distance per city:** It can discard a more expensive but lower-edge state that is necessary under the stop constraint.
+- **Two-row dynamic programming:** Explicitly compute costs for each exact or bounded edge count. It expresses the same recurrence and also uses $O(V)$ rolling space.
+- **State-expanded Dijkstra:** Treat `(city, edges_used)` as a state and use a heap. It can return early but requires more elaborate dominance handling.
+- **Ordinary Dijkstra with one distance per city:** It can discard a more expensive but lower-edge state that is necessary under the stop constraint.
 
 ---
 

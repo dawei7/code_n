@@ -51,7 +51,7 @@ The solution accelerates the repeated running-minimum sums. Array `f` stores the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution accelerates the repeated running-minimum sums.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ where the subtraction removes the peak counted by both sides.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every peak directly:** Running minima outw:** - **Try every peak directly:** Running minima outward from every index is easy to derive and works for Beautiful Towers I, but costs $O(n^2)$ and is too slow here.
+- **Try every peak directly:** Running minima outward from every index is easy to derive and works for Beautiful Towers I, but costs $O(n^2)$ and is too slow here.
 - **Single-pass contribution variants:** It is possible to combine stack events more compactly, but separate `f` and `g` arrays make the two constrained sides easier to verify.
 - **Equal caps:** Non-strict mountain slopes allow plateaus. The left and right stacks deliberately use different equality popping rules so equal boundaries are owned consistently.
 - **Peak counted twice:** Always subtract `maxHeights[i]` when combining `f[i]` and `g[i]`.
@@ -94,8 +94,8 @@ where the subtraction removes the peak counted by both sides.
 - **Single tower:** Both side sums equal its cap, and subtracting one copy returns that cap.
 - **Large values:** Use a wide sum type; the answer greatly exceeds 32-bit range even though indices do not.
 - **Input preservation:** The algorithm reads `maxHeights` without changing it and stores all derived state separately.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

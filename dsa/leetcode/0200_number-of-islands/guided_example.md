@@ -68,7 +68,7 @@ portable to older Python runtimes.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dirs = (-1, 0, 1, 0, -1)` contains a circular sequence of c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ direction without recursion.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit DFS stack:** Push discovered coordina:** - **Explicit DFS stack:** Push discovered coordinates and mark on push; preserves $O(mn)$ worst-case space while avoiding `RecursionError`.
+- **Explicit DFS stack:** Push discovered coordinates and mark on push; preserves $O(mn)$ worst-case space while avoiding `RecursionError`.
 - **Breadth-first queue:** Equivalent component marking with different frontier order.
 - **Union-find:** Join adjacent land cells and count remaining components; useful when connectivity is built incrementally but needs $O(mn)$ storage.
 - **Separate visited set:** Preserves the input grid at the cost of additional memory.
@@ -125,8 +125,8 @@ direction without recursion.
 - **One cell:** Returns one for land and zero for water.
 - **Rectangular guarantee:** Allows one shared column count `n`; ragged rows would break bounds assumptions.
 - **Missing imports:** `List` and `pairwise` must be available in the execution environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

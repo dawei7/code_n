@@ -4,7 +4,7 @@ You are given an `m x n` matrix `mat` that has its rows sorted in non-decreasing
 
 You are allowed to choose **exactly one element** from each row to form an array.
 
-Return *the *$$k^{\text{th}}$$* smallest array sum among all possible arrays*.
+Return *the *$k^{\text{th}}$* smallest array sum among all possible arrays*.
 
 ### 2. Function Contract
 

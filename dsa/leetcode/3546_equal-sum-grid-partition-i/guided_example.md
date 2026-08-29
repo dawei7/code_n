@@ -57,7 +57,7 @@ This is a necessary condition, not a sufficient one; an even total still needs a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let total grid sum be `s`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Although the loop computes the full-grid prefix at the final row, it explicitly 
 
 ## 6. Traps This Instance Exposes
 
-- **- **2D prefix sum:** Correct in `O(mn)` time but u:** - **2D prefix sum:** Correct in `O(mn)` time but uses `O(mn)` space for more general rectangle queries than needed.
+- **2D prefix sum:** Correct in `O(mn)` time but uses `O(mn)` space for more general rectangle queries than needed.
 - **Store row and column sums:** Two arrays give `O(m+n)` space and a straightforward single cell pass.
 - **Rotate the grid:** Lets one horizontal routine handle both orientations but allocates another matrix.
 - **Check arbitrary submatrices:** The cut must span the whole grid, so arbitrary rectangle enumeration solves a different problem.
@@ -115,8 +115,8 @@ Although the loop computes the full-grid prefix at the final row, it explicitly 
 - **First possible boundary:** It is checked after the first row or column, so both sections are non-empty when another line remains.
 - **zip space behavior:** The conceptual running-sum method is constant-state, but exact Python tuple/iterator materialization gives an `O(m)` caveat.
 - **Even total without matching boundary:** The scans finish and correctly return false.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

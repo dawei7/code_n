@@ -77,7 +77,7 @@ The unusual five-item `dirs` tuple is simply a compact way to produce those four
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There appear to be eight sign combinations across three abso... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The two endpoints producing maximum and minimum may occur in either index order.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all index pairs:** Direct evaluation:** - **Enumerate all index pairs:** Direct evaluation costs $O(n^2)$ and is unnecessary.
+- **Enumerate all index pairs:** Direct evaluation costs $O(n^2)$ and is unnecessary.
 - **List all eight sign forms:** Correct but duplicates forms obtainable by swapping endpoints.
 - **Precompute four transformed arrays:** Simplifies range calls but uses $O(n)$ extra space; streaming extrema are sufficient.
 - **Equal indices:** The expression is zero, included implicitly but never needed when a positive larger pair exists.
@@ -132,8 +132,8 @@ The two endpoints producing maximum and minimum may occur in either index order.
 - **Index term:** It is essential; omitting `+i` would solve only the two-array difference.
 - **Pair symmetry:** It justifies fixing the index coefficient positive.
 - **Direction tuple:** Consecutive pairs happen to enumerate all four sign combinations exactly once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

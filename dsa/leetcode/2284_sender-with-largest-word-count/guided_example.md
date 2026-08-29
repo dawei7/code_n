@@ -59,7 +59,7 @@ The plus one is essential for a one-word message, which contains zero spaces but
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every message has single spaces between words and no leading... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Using a real candidate avoids separate handling for the first counter item and a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Split every message:** `message.split()` also :** - **Split every message:** `message.split()` also counts words but allocates a list of word strings that the space-count formula avoids.
+- **Split every message:** `message.split()` also counts words but allocates a list of word strings that the space-count formula avoids.
 - **Choose the longest message:** It ignores accumulation across multiple messages from one sender.
 - **Sort all senders by score:** It works but costs `O(u \log u)` instead of one maximum scan.
 - **Tuple maximum:** A pair `(count, name)` can encode both rules, but the explicit condition makes the tie logic visible.
@@ -115,8 +115,8 @@ Using a real candidate avoids separate handling for the first counter item and a
 - **Space-count assumption:** The compact formula depends on exactly one separator and no boundary spaces, which the source contract guarantees.
 - **Maximum message length:** Counting spaces remains linear in characters and does not depend on how many distinct words appear.
 - **No need to retain messages:** Once one message's count has been added, its content has no future role.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

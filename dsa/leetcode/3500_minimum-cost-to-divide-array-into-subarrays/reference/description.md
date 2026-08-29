@@ -2,7 +2,7 @@
 
 You are given two integer arrays, `nums` and `cost`, of the same size, and an integer `k`.
 
-You can divide `nums` into subarrays. The cost of the $$i^{\text{th}}$$ subarray consisting of elements `nums[l..r]` is:
+You can divide `nums` into subarrays. The cost of the $i^{\text{th}}$ subarray consisting of elements `nums[l..r]` is:
 
 - $(\text{nums}[0] + \text{nums}[1] + ... + \text{nums}[r] + k * i) * (\text{cost}[l] + cost[l + 1] + ... + \text{cost}[r])$.
 

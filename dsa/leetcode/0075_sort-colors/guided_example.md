@@ -62,7 +62,7 @@ If `i == k`, the swap is with itself and simply confirms that position as zero. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `nums[k] == 0`, the zero belongs immediately after the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ If decrementing `j` makes `j == k`, the swap is effectively at the boundary and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting two passes:** Count how many zeroes, :** - **Counting two passes:** Count how many zeroes, ones, and twos occur, then overwrite the array in blocks. It is $O(n)$ time and $O(1)$ space but does not satisfy the one-pass follow-up.
+- **Counting two passes:** Count how many zeroes, ones, and twos occur, then overwrite the array in blocks. It is $O(n)$ time and $O(1)$ space but does not satisfy the one-pass follow-up.
 - **Library sort:** It would obscure the three-value structure, typically costs $O(n\log n)$, and is explicitly forbidden.
 - **Stable partition:** Preserving relative identity within each color is unnecessary because equal integer color codes are indistinguishable; stable in-place partitioning would add complexity.
 - **All zeroes:** Every iteration grows the zero prefix, often through self-swaps.
@@ -114,8 +114,8 @@ If decrementing `j` makes `j == k`, the swap is effectively at the boundary and 
 - **Reverse-grouped input:** Swaps progressively exchange left twos with right zeroes without extra storage.
 - **Input-domain reliance:** The `else` branch means “one” only because no other integer is allowed.
 - **Mutation contract:** Callers must inspect the changed list, not a return value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

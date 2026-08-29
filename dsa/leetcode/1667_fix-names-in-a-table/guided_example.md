@@ -62,7 +62,7 @@ The input guarantees names consist only of lowercase and uppercase characters, s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `LEFT(name, 1)` returns the leftmost one-character substring... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The alias `AS name` is significant. It gives the computed expression the same ou
 
 ## 6. Traps This Instance Exposes
 
-- **- **`SUBSTRING(name, 1, 1)` instead of `LEFT`:** T:** - **`SUBSTRING(name, 1, 1)` instead of `LEFT`:** This extracts the same first character and matches the editorial formulation; the rest of the query is unchanged.
+- **`SUBSTRING(name, 1, 1)` instead of `LEFT`:** This extracts the same first character and matches the editorial formulation; the rest of the query is unchanged.
 - **Capitalize-style function:** Some environments provide a direct capitalization helper, but MySQL does not offer the same simple standard function used by Pandas, so composing `UPPER`, `LOWER`, and substrings is portable within MySQL.
 - **Update the table:** An `UPDATE` statement would mutate source data and would not itself return the required ordered result. The task asks for a query result, so `SELECT` is appropriate.
 - **Already normalized name:** Uppercasing the first character and lowercasing the suffix are idempotent, so a value such as `'Alice'` stays `'Alice'`.
@@ -113,8 +113,8 @@ The alias `AS name` is significant. It gives the computed expression the same ou
 - **Unique IDs:** The primary key eliminates ordering ties, so no secondary sort key is necessary.
 - **Case-sensitive table identifiers:** Using the declaration’s exact `Users` capitalization would be safer across arbitrary MySQL installations, though the exact source uses `users` and is accepted in its target environment.
 - **Result storage:** Even when working memory is described as constant, returning `R` rows and their normalized strings necessarily occupies output space proportional to the result size.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

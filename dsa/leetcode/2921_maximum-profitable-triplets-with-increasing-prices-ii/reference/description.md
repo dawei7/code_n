@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $$i^{\text{th}}$$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
+Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $i^{\text{th}}$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
 
 We have to pick three items with the following condition:
 

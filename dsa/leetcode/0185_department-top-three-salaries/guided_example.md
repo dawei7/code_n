@@ -69,7 +69,7 @@ employee-department pair.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query reads `Employee` and `Department` with comma... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ leaders in departments whose salaries are lower than another department's.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`DENSE_RANK()` window function:** Partition by:** - **`DENSE_RANK()` window function:** Partition by department, order salary descending, and retain ranks at most three; this directly models unique salary levels.
+- **`DENSE_RANK()` window function:** Partition by department, order salary descending, and retain ranks at most three; this directly models unique salary levels.
 - **Distinct salary table:** Deduplicate department-salary pairs, choose the top three per department, then join back to all employees so ties survive.
 - **Pandas dense rank:** The local editorial uses descending dense rank within each department and filters values at most three.
 - **Plain `COUNT(*)`:** Incorrect when several higher-paid employees share a salary because it ranks people instead of unique salary values.
@@ -123,8 +123,8 @@ leaders in departments whose salaries are lower than another department's.
 - **Same salary in different departments:** The correlation must include `DepartmentId`.
 - **Nullable salary:** The stored comparison does not define a safe null ranking and may admit nulls incorrectly.
 - **Any order:** No output sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ If `prefix` is the product before the cell and `suffix` is the product after it,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `prefix` is the product before the cell and `suffix` is t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Total product plus division:** Invalid under a:** - **Total product plus division:** Invalid under a composite modulus when current values lack modular inverses.
+- **Total product plus division:** Invalid under a composite modulus when current values lack modular inverses.
 - **Separate prefix and suffix matrices:** Correct but wastes another $O(N)$ storage; the source stores suffixes in the output.
 - **Single row or column:** Row-major traversal still acts like the standard one-dimensional except-self algorithm.
 - **Factor equal to 12345:** It becomes zero modulo the modulus and is handled naturally.
@@ -97,8 +97,8 @@ $$
 - **Large raw values:** Reducing after every multiplication keeps stored residues bounded.
 - **Output-space convention:** Distinguish $O(N)$ returned storage from $O(1)$ extra working state.
 - **Traversal order is part of the proof:** The reverse pass writes the product strictly after each cell, and the forward pass multiplies by the product strictly before it. Including the current factor in either update too early would violate the except-self requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

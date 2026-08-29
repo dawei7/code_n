@@ -2,7 +2,7 @@
 
 #### Intuition
 
-Since the given range of $n$ is $[2, 10000]$, which is relatively small, we can directly enumerate possible values of $A$ in the range $[1, n)$. For each $A$, we compute $B = n - A$ and check whether both $A$ and $B$ contain no zero in their decimal representation.
+Since the given range of $n$ is `[2, 10000]`, which is relatively small, we can directly enumerate possible values of $A$ in the range $[1, n)$. For each $A$, we compute $B = n - A$ and check whether both $A$ and $B$ contain no zero in their decimal representation.
 
 #### Implementation
 

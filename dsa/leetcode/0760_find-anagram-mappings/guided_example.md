@@ -59,9 +59,7 @@ Choosing the last occurrence is not required; it is simply the deterministic res
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The comprehension
-
-`d = {x: i for i, x in enumerate(nums2)}`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +96,9 @@ The anagram guarantee ensures `x` is always a key. No missing-value branch or de
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store all indices per value:** Use a dictionar:** - **Store all indices per value:** Use a dictionary of lists and pop an index for every source occurrence. This supports a stricter one-to-one occurrence mapping with the same asymptotic bounds.
-- **- **Nested search:** Scan `nums2` for every source:** - **Nested search:** Scan `nums2` for every source value. It uses little extra storage but costs `O(n^2)`.
-- **- **Sort both arrays with original indices:** This:** - **Sort both arrays with original indices:** This can pair duplicates uniquely but costs `O(n log n)` time.
+- **Store all indices per value:** Use a dictionary of lists and pop an index for every source occurrence. This supports a stricter one-to-one occurrence mapping with the same asymptotic bounds.
+- **Nested search:** Scan `nums2` for every source value. It uses little extra storage but costs `O(n^2)`.
+- **Sort both arrays with original indices:** This can pair duplicates uniquely but costs `O(n log n)` time.
 
 ---
 

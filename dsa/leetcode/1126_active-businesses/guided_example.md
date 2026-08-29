@@ -59,7 +59,7 @@ The join is inner because every outer Events row has an event type that necessar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer Events row `t1` is joined to derived row `t2` on e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Filtering belongs before the business grouping. If all rows were grouped first, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window average:** Add `AVG(occurrences) OVER (:** - **Window average:** Add `AVG(occurrences) OVER (PARTITION BY event_type)` to every row, filter above-average rows, then group by business.
+- **Window average:** Add `AVG(occurrences) OVER (PARTITION BY event_type)` to every row, filter above-average rows, then group by business.
 - **Correlated average:** Compare each row with a subquery average for its type. Correct indexing matters to avoid repeated scans.
 - **Count distinct event type:** `COUNT(DISTINCT event_type) > 1` is more defensive if uniqueness were absent; the primary key makes plain row count sufficient.
 - **Global average:** Incorrect because each event type needs its own peer benchmark.
@@ -112,8 +112,8 @@ Filtering belongs before the business grouping. If all rows were grouped first, 
 - **Any result order:** No `ORDER BY` is needed.
 - **Empty table:** No averages, joined rows, or businesses are returned.
 - **Column spelling:** Every intended `occurences` reference must match the actual schema name `occurrences` for execution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

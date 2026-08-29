@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `accumulate(nums)` implements exactly this recurrence.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For `[1,2,3,4]`, the iterator yields one, then three, then six, then ten. Each v
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit output loop:** Maintain `total`, add :** - **Explicit output loop:** Maintain `total`, add each number, and append it. This is behaviorally identical and easier to customize.
+- **Explicit output loop:** Maintain `total`, add each number, and append it. This is behaviorally identical and easier to customize.
 - **Modify nums in place:** Add `nums[i-1]` into `nums[i]` from left to right. It uses constant auxiliary space but mutates input.
 - **Recompute each prefix with sum:** It is clear but takes quadratic time across all positions.
 - **Single element:** Its running sum is the element itself.
@@ -102,8 +102,8 @@ For `[1,2,3,4]`, the iterator yields one, then three, then six, then ten. Each v
 - **Prefix total becomes zero:** Zero is emitted normally and remains the correct base for adding the next value.
 - **Standard-library dependency:** The supported environment supplies `accumulate`; an explicit loop is the direct fallback when it is unavailable.
 - **Materialization timing:** The function completes the full traversal before returning because `list` eagerly consumes the iterator.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

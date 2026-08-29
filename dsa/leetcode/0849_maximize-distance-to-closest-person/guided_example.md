@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array representing a row of `seats` where $\text{seats}[i] = 1$ represents a person sitting in the $$i^{\text{th}}$$ seat, and $\text{seats}[i] = 0$ represents that the $$i^{\text{th}}$$ seat is empty **(0-indexed)**.
+You are given an array representing a row of `seats` where $\text{seats}[i] = 1$ represents a person sitting in the $i^{\text{th}}$ seat, and $\text{seats}[i] = 0$ represents that the $i^{\text{th}}$ seat is empty **(0-indexed)**.
 
 The objective is to compute `2` from `{"seats": [1, 0, 0, 0, 1, 0, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,7 +65,7 @@ Only occupied seats matter as boundaries. Runs of zeroes need no per-run counter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `first` stores the first occupied index encountered.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ For `[0,0,1]`, `first=2` and the best leading distance is two.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Distance array from two passes:** Compute near:** - **Distance array from two passes:** Compute nearest occupied distance from left and right for every seat. It is linear-time but uses `O(n)` space.
-- **- **Store all occupied indices:** Then inspect gap:** - **Store all occupied indices:** Then inspect gaps. It works but the running `first`, `last`, and `d` values are sufficient.
-- **- **Expand from every empty seat:** Searching outw:** - **Expand from every empty seat:** Searching outward separately can become quadratic.
+- **Distance array from two passes:** Compute nearest occupied distance from left and right for every seat. It is linear-time but uses `O(n)` space.
+- **Store all occupied indices:** Then inspect gaps. It works but the running `first`, `last`, and `d` values are sufficient.
+- **Expand from every empty seat:** Searching outward separately can become quadratic.
 
 ---
 

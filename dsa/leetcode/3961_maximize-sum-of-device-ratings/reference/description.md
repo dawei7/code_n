@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $$j^{\text{th}}$$ unit in the $$i^{\text{th}}$$ device. Each device contains **exactly** `n` units.
+You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $j^{\text{th}}$ unit in the $i^{\text{th}}$ device. Each device contains **exactly** `n` units.
 
 The **rating** of a device is the **minimum** capacity among all its units.
 
@@ -42,7 +42,7 @@ Return the maximum possible sum of final device ratings after zero or more legal
 
 - **Explanation:** 
 
-- ​​​​​​​​​​​​​​Select device $i = 0$ and transfer $\text{units}[0][0] = 1$ to device $i = 1$.
+- Select device $i = 0$ and transfer $\text{units}[0][0] = 1$ to device $i = 1$.
 
 - After the transfer, the ratings are:
 

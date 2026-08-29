@@ -74,7 +74,7 @@ For moves that do not involve `z`, both endpoints lie in the complete five-by-fi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | On an ordinary rectangle, any ordering of the required verti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ One additional `"!"` operation is mandatory for every character of `target`. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search for every character:** BF:** - **Breadth-first search for every character:** BFS can find a shortest path on the 26-cell board, but rebuilding a search for each target letter adds queues, visited state, and path reconstruction to a geometry problem with direct coordinates. The fixed-order Manhattan route is simpler and linear in the output size.
+- **Breadth-first search for every character:** BFS can find a shortest path on the 26-cell board, but rebuilding a search for each target letter adds queues, visited state, and path reconstruction to a geometry problem with direct coordinates. The fixed-order Manhattan route is simpler and linear in the output size.
 - **Precompute all pairwise shortest paths:** A 26-by-26 table could provide valid path strings in constant lookup time per target character. It is feasible because the board is fixed, but it uses substantially more stored data and still requires careful handling of `z` when building the table.
 - **Move vertically before horizontally in every case:** This fails when moving to `z` from a positive column, because moving down first can enter a nonexistent cell in row five.
 - **Move horizontally before vertically in every case:** This fails when moving from `z` to a positive column, because moving right first would leave `(5, 0)` for a nonexistent cell.
@@ -128,8 +128,8 @@ One additional `"!"` operation is mandatory for every character of `target`. The
 - **Consecutive equal ordinary letters:** The behavior is the same: no movement, exactly one new selection operation.
 - **A one-character target:** The algorithm returns a shortest route from `a` to that character followed by `"!"`. For target `"a"`, the result is simply `"!"`.
 - **Any valid minimum path is accepted:** The problem does not require a particular command string. The deterministic direction order chooses one shortest valid path among potentially many.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -73,7 +73,7 @@ The boundary case `num = 0` is worth tracing because its answer contains no visi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code evaluates `bin(num + 1)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The implementation is especially compact because the binary conversion already p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build blocks explicitly:** One could subtract :** - **Build blocks explicitly:** One could subtract block sizes `1, 2, 4, ...` until finding the encoding length, then format the remaining offset with leading zeroes. This mirrors the definition but performs more bookkeeping and still takes $O(\log q)$ time.
+- **Build blocks explicitly:** One could subtract block sizes `1, 2, 4, ...` until finding the encoding length, then format the remaining offset with leading zeroes. This mirrors the definition but performs more bookkeeping and still takes $O(\log q)$ time.
 - **Repeated division by two:** Extracting bits with division and remainders can construct the same suffix. It requires reversing or prepending the collected bits and needs a special representation for leading zeroes within a block, so Python's binary conversion is clearer.
 - **String replacement is unsafe:** Removing every `1` or using a general replacement operation would destroy meaningful suffix bits. Only the single highest-order `1` must disappear.
 - **Do not omit the shift:** Applying `bin(num)` directly fails immediately. The shift by one aligns problem value zero with positive binary value one and is what creates the empty-string encoding.
@@ -126,8 +126,8 @@ The implementation is especially compact because the binary conversion already p
 - **Powers-of-two boundaries:** When `num = 2^L - 1`, `num + 1` is `1` followed by $L$ zeroes, so the answer is exactly $L$ zeroes. Preserving these leading zeroes is essential.
 - **End of a length block:** When `num = 2^(L+1) - 2`, the shifted value has one leading `1` followed by $L$ ones, so the encoding is the final length-$L$ string.
 - **Largest allowed input:** The method does not depend on a precomputed table or a fixed machine-word width; Python converts `10**9 + 1` normally, and the logarithmic bound still applies.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,7 +69,7 @@ The exact source tests these without creating substrings:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `s[i] != s[j]` after all earlier outer pairs matched... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ No deletion is allowed inside the helper. The branch choice made before calling 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Create two candidate strings:** At the mismatc:** - **Create two candidate strings:** At the mismatch, physically remove each character and reverse or compare the results. It remains `O(N)` time but uses `O(N)` temporary space.
-- **- **Dynamic programming for minimum deletions:** A:** - **Dynamic programming for minimum deletions:** A full interval table can solve more general deletion counts but costs `O(N^2)` time and space, unnecessary for one deletion.
-- **- **Recursive branching at every position:** This :** - **Recursive branching at every position:** This explores many irrelevant choices. Only the first mismatch can require deletion.
+- **Create two candidate strings:** At the mismatch, physically remove each character and reverse or compare the results. It remains `O(N)` time but uses `O(N)` temporary space.
+- **Dynamic programming for minimum deletions:** A full interval table can solve more general deletion counts but costs `O(N^2)` time and space, unnecessary for one deletion.
+- **Recursive branching at every position:** This explores many irrelevant choices. Only the first mismatch can require deletion.
 
 ---
 

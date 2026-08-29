@@ -68,7 +68,7 @@ Thus, an optimal solution either changes the leftmost six to nine or performs no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Replacing a nine with a six decreases its contribution by $3... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Finally, `int(...)` converts the modified digit string back to the required inte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual character scan:** Convert to a list, fi:** - **Manual character scan:** Convert to a list, find the first six, replace it, and stop. It makes the greedy decision explicit but is longer.
+- **Manual character scan:** Convert to a list, find the first six, replace it, and stop. It makes the greedy decision explicit but is longer.
 - **Arithmetic digit scan:** Inspect digits from right to left, remember the highest position containing six, and add $3\cdot10^p$. This uses $O(1)$ auxiliary space.
 - **Try every possible change:** It is correct but unnecessary; the place-value proof identifies the best position immediately.
 - **All digits are nine:** No six is found, so the unchanged input is returned.
@@ -124,8 +124,8 @@ Finally, `int(...)` converts the modified digit string back to the required inte
 - **At most one operation:** Leaving an all-nine number unchanged is explicitly allowed.
 - **No leading-zero concern:** The permitted digit changes preserve length and positivity.
 - **String immutability:** `replace` returns a new string rather than modifying the original representation in place, which explains the $O(d)$ space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ For distinct pattern characters, incrementing `y` before adding `x` has no inter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `c == pattern[1]`, the code increments `y`, the total n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ existing subsequences, exactly the number of ways to choose two positions in inc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix and suffix arrays:** Precompute first-c:** - **Prefix and suffix arrays:** Precompute first-character prefixes and second-character suffixes for every insertion point. This verifies all positions but uses $O(n)$ space unnecessarily.
+- **Prefix and suffix arrays:** Precompute first-character prefixes and second-character suffixes for every insertion point. This verifies all positions but uses $O(n)$ space unnecessarily.
 - **Try both endpoint strings explicitly:** Construct and recount two modified strings. It stays linear but duplicates scans and allocates strings.
 - **Pattern characters equal:** The ordered pair of independent `if` statements counts earlier equal occurrences before incrementing the current one.
 - **No first-pattern characters:** Existing count is zero; inserting the first character gains all `y` second characters.
@@ -115,8 +115,8 @@ existing subsequences, exactly the number of ways to choose two positions in inc
 - **Subsequence, not substring:** Matching positions need not be adjacent.
 - **Exactly one insertion:** The formula always accounts for one new character, even when it creates zero pairs.
 - **Input preservation:** No character is actually inserted into `text`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

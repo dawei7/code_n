@@ -66,7 +66,7 @@ Python tuples are immutable and hashable, so a coordinate tuple can be stored di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The set `vis` contains every coordinate occupied so far.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If that endpoint is already in `vis`, the algorithm correctly reports a crossing
 
 ## 6. Traps This Instance Exposes
 
-- **- **List of visited coordinates:** It is correct b:** - **List of visited coordinates:** It is correct but membership is linear, causing $O(N^2)$ worst-case time.
+- **List of visited coordinates:** It is correct but membership is linear, causing $O(N^2)$ worst-case time.
 - **Boolean grid:** An offset grid can give direct lookup, but a square covering all possible coordinates consumes $O(N^2)$ space even though the path visits only $O(N)$ locations.
 - **Complex-number coordinates:** Directions can be mapped to complex displacements and positions stored in a set. It is concise but may be less beginner-friendly than integer pairs.
 - **Return to origin:** This is detected only because the origin is inserted before processing the first move.
@@ -119,8 +119,8 @@ If that endpoint is already in `vis`, the algorithm correctly reports a crossing
 - **Single instruction:** It reaches one new neighboring point and cannot cross under the valid-direction contract.
 - **Invalid direction character:** The match would make no movement and could cause a false repeat, but such characters are explicitly excluded.
 - **Python version:** The `match` statement requires Python 3.10 or newer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

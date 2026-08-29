@@ -51,7 +51,7 @@ The source returns `list(players.shape)`. If `players.shape` is `(10, 5)`, conve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source returns `list(players.shape)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source returns `list(players.shape)`. If `players.shape` is `(10, 5)`, conve
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate axis lengths:** `[len(players.index),:** - **Separate axis lengths:** `[len(players.index), len(players.columns)]` is correct but more verbose than using `shape`.
+- **Separate axis lengths:** `[len(players.index), len(players.columns)]` is correct but more verbose than using `shape`.
 - **Use `len(players)` alone:** It returns only rows, so it cannot satisfy the two-number contract.
 - **Count with iteration:** Scanning records wastes $O(r)$ time and may mishandle an empty DataFrame; axis metadata already provides the answer.
 - **Empty rows, known columns:** A DataFrame may have shape `(0, c)`, and the method correctly returns `[0, c]`.
@@ -94,8 +94,8 @@ The source returns `list(players.shape)`. If `players.shape` is `(10, 5)`, conve
 - **Missing values:** Null cells do not affect dimensions because shape counts positions, not non-null entries.
 - **Duplicate labels:** Duplicate row or column labels still occupy separate positions and are included in shape.
 - **Tuple-versus-list contract:** Returning `players.shape` directly gives correct numbers but the wrong Python container type for the requested array result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

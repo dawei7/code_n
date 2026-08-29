@@ -62,7 +62,7 @@ If `i` is even, the code writes `min(a,b)`. If `i` is odd, it writes `max(a,b)`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For new index `i`, the source indices are `2i` and `2i+1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ Those ranges do not overlap. For example, after writing destination zero from so
 
 ## 6. Traps This Instance Exposes
 
-- **- **Allocate a new array each round:** It mirrors :** - **Allocate a new array each round:** It mirrors the statement directly and uses `O(n)` peak auxiliary space.
+- **Allocate a new array each round:** It mirrors the statement directly and uses `O(n)` peak auxiliary space.
 - **Recursive tournament:** It can express the reduction tree but adds call-stack overhead and more complex parity indexing.
 - **Apply min or max by source index:** The rule uses the new index `i`, so that substitution is incorrect.
 - **Single element:** The loop is skipped and the element is returned.
@@ -117,8 +117,8 @@ Those ranges do not overlap. For example, after writing destination zero from so
 - **Pair coverage:** Source positions zero through `2n-1` are divided into disjoint consecutive pairs, so every active old value participates exactly once per round.
 - **Return location:** Every reduction writes its first result to index zero, making `nums[0]` the final survivor after the last round.
 - **No list slicing:** Reusing the existing buffer avoids both a half-length allocation and copying on every round.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

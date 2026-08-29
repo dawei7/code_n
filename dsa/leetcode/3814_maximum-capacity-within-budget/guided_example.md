@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $$i^{\text{th}}$$ machine and $\text{capacity}[i]$ represents its performance capacity.
+You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $i^{\text{th}}$ machine and $\text{capacity}[i]$ represents its performance capacity.
 
 The objective is to compute `8` from `{"costs": [4, 8, 5, 3], "capacity": [1, 5, 2, 7], "budget": 8}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -77,7 +77,7 @@ At this point, `remain[-1]` does not identify the cheapest legal partner. It ide
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed first machine at sorted index `i`, only later in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ Every legal pair is considered in the following sense: when its smaller sorted i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix maximum plus binary search:** Sort by c:** - **Prefix maximum plus binary search:** Sort by cost, build the best capacity over every prefix, and for each machine binary-search the largest partner cost strictly below `budget - cost` while excluding the same index. This matches the manifest summary and also achieves $O(N\log N)$ time, but it is not the exact source's data flow.
+- **Prefix maximum plus binary search:** Sort by cost, build the best capacity over every prefix, and for each machine binary-search the largest partner cost strictly below `budget - cost` while excluding the same index. This matches the manifest summary and also achieves $O(N\log N)$ time, but it is not the exact source's data flow.
 - **Quadratic pair enumeration:** Testing every pair is straightforward and handles the strict inequality directly, but it costs $O(N^2)$ and is too slow for $N=10^5$.
 - **Cost-indexed maximum table:** Since `budget <= 2 * 10^5`, capacities can be aggregated by cost and prefix maxima built over the numeric cost domain. Distinct-machine handling for two equal-cost selections still requires retaining the best two capacities at a cost.
 - **No individually affordable machine:** Filtering produces an empty array and the function correctly returns 0.
@@ -139,8 +139,8 @@ Every legal pair is considered in the following sense: when its smaller sorted i
 - **Best pair need not use the cheapest machine:** Every sorted index eventually serves as the smaller endpoint while a later partner exists, so a higher-cost, higher-capacity pair is still evaluated.
 - **Positive capacities:** The largest affordable individual machine is always at least as good as selecting zero machines. If capacities could be negative, the zero-machine option would need explicit comparison, but the contract excludes that case.
 - **External ordered-container dependency:** `SortedList` must be provided by the harness or imported from its supporting library. Replacing it with an ordinary list would make middle removals linear and could degrade the algorithm to quadratic time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

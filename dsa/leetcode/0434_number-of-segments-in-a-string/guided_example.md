@@ -63,7 +63,7 @@ By contrast, explicitly splitting on `' '` can produce empty strings between rep
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Calling `split()` without a separator differs from calling `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This matches the definition, which is based solely on spaces rather than linguis
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count segment starts manually:** Scan indices :** - **Count segment starts manually:** Scan indices and increment when a non-space character follows the start or a space. This preserves $O(n)$ time and achieves $O(1)$ auxiliary space, matching the manifest bound.
+- **Count segment starts manually:** Scan indices and increment when a non-space character follows the start or a space. This preserves $O(n)$ time and achieves $O(1)$ auxiliary space, matching the manifest bound.
 - **Maintain an `inside_segment` Boolean:** Entering a non-space run increments once; encountering a space resets the flag. This is another constant-space formulation.
 - **Use `split(' ')` directly:** This returns empty strings for repeated/boundary spaces and gives the wrong count unless empties are filtered.
 - **Regular expression tokenization:** It can express non-space runs but adds machinery and still materializes matches.
@@ -111,8 +111,8 @@ This matches the definition, which is based solely on spaces rather than linguis
 - **No spaces:** Every character belongs to the single segment, including punctuation.
 - **Punctuation adjacent to letters:** It remains part of the same segment because only `' '` is a separator.
 - **Default-whitespace semantics:** Tabs/newlines would also split in Python, but the contract guarantees they never occur.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

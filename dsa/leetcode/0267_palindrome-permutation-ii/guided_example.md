@@ -59,7 +59,7 @@ If another odd count appears after `mid` has been filled, the solution immediate
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every position away from the center of a palindrome has a mi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Wrapping with the same `c` on both ends preserves the palindrome property. If `t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Permute one half with a mutable buffer:** Buil:** - **Permute one half with a mutable buffer:** Build a multiset containing half of each even count, backtrack over its distinct permutations, and mirror each completed half around `mid`. This expresses the same combinatorial search and can attain the manifest's $O(n+pn)$ time with $O(n)$ auxiliary space by avoiding repeated immutable center-wrapping.
+- **Permute one half with a mutable buffer:** Build a multiset containing half of each even count, backtrack over its distinct permutations, and mirror each completed half around `mid`. This expresses the same combinatorial search and can attain the manifest's $O(n+pn)$ time with $O(n)$ auxiliary space by avoiding repeated immutable center-wrapping.
 - **Sort a half-string and skip equal choices:** A sorted list allows index-based permutation backtracking with a `used` array and the standard duplicate-skip rule. It is valid, but the counter-based search represents multiplicities more directly and never creates separate indistinguishable copies at a level.
 - **Generate all permutations of `s`:** This explores as many as $n!$ arrangements and then spends $O(n)$ checking each candidate. It ignores palindrome symmetry and remains wasteful even if a set later removes duplicate results.
 - **Use a result set to deduplicate:** Generating duplicate palindromes and inserting them into a set can make the final collection unique, but it does not recover the time already spent generating duplicates and uses additional hash storage. Count-based branching prevents those duplicates at their source.
@@ -117,8 +117,8 @@ Wrapping with the same `c` on both ends preserves the palindrome property. If `t
 - **Empty string outside the contract:** The stated input is nonempty. If the exact implementation received `""`, `mid` would stay empty and the initial DFS call would immediately append `""`, treating the empty string as its one palindromic permutation.
 - **Answer order:** Counter iteration order influences traversal order, so the returned list need not be lexicographically sorted. The contract explicitly allows any order, and uniqueness and completeness do not depend on that order.
 - **Restoration after recursion:** The `cnt[c] += 2` step must occur after every child returns. Omitting it would make later sibling branches operate with missing copies and silently lose valid palindromes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

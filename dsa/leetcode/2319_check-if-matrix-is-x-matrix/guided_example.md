@@ -66,7 +66,7 @@ If a diagonal value is zero, the method immediately returns `false`. One violati
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop uses `enumerate(grid)` to obtain row index `i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Only after every coordinate satisfies its category requirement does execution re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check the two diagonals first, then all other :** - **Check the two diagonals first, then all other cells:** This can work, but avoiding double-checks of diagonal coordinates in the second pass requires the same coordinate classification. A single pass is simpler.
+- **Check the two diagonals first, then all other cells:** This can work, but avoiding double-checks of diagonal coordinates in the second pass requires the same coordinate classification. A single pass is simpler.
 - **Build a set of diagonal coordinates:** Precompute all `(i, i)` and `(i, n-1-i)` pairs, then test membership for every cell. This uses `O(n)` extra space for formulas that are already constant-time.
 - **Count nonzero cells:** An X-Matrix has `2n` nonzero diagonal positions when `n` is even and `2n-1` when odd, but the count alone cannot prove that the nonzeros are in the correct locations.
 - **Sum diagonal values:** Nonzero values can cancel if negatives were allowed, and even with nonnegative values a sum does not verify off-diagonal zeros. Per-cell conditions are direct and reliable.
@@ -121,8 +121,8 @@ Only after every coordinate satisfies its category requirement does execution re
 - **Truthiness of negative values:** The source values are nonnegative, but Python would also treat a negative integer as nonzero, which is the correct requirement for either category test.
 - **Square-shape guarantee:** The coordinate formulas use `len(grid)` for both dimensions. The contract guarantees every row has that length; a ragged or rectangular input is outside scope.
 - **Input mutation:** Enumeration reads existing rows and values only, leaving `grid` unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

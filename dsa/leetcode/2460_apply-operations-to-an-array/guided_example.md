@@ -70,7 +70,7 @@ For `[0,1]`, no equality operation changes the array. Compaction skips the leadi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After all adjacent operations, the problem asks for a stable... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The compaction pass then produces the unique sequence consisting of all nonzero 
 
 ## 6. Traps This Instance Exposes
 
-- **- **In-place stable compaction:** Use a write poin:** - **In-place stable compaction:** Use a write pointer to move nonzero values forward in `nums` after operations, then fill the suffix with zeros. This matches the manifest's $O(1)$ auxiliary-space claim.
+- **In-place stable compaction:** Use a write pointer to move nonzero values forward in `nums` after operations, then fill the suffix with zeros. This matches the manifest's $O(1)$ auxiliary-space claim.
 - **Combine operation and compaction carefully:** A one-pass method is possible but must respect that a newly produced zero participates in the next prescribed comparison. Separating phases is easier to verify.
 - **Apply all comparisons simultaneously:** This is incorrect because later operations must observe earlier mutations.
 - **Adjacent equal zeros:** The branch executes but changes nothing.
@@ -117,8 +117,8 @@ The compaction pass then produces the unique sequence consisting of all nonzero 
 - **Stable order:** Nonzero values must not be sorted; the write pointer preserves encounter order.
 - **Input mutation:** The first phase changes `nums` even though the final shifted result is stored separately.
 - **Exact array length:** Preallocating $n$ positions guarantees that the count of removed interior zeros reappears at the end.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ If `num1` and `num2` have equal popcounts, this pass copies every set bit of `nu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop `for i in range(30, -1, -1)` considers positions fr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The input bound `num1, num2 <= 10^9` means all possible set bits lie among posit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modify `num1` toward the target popcount:** If:** - **Modify `num1` toward the target popcount:** If it has too many set bits, repeatedly clear its least significant set bit; if it has too few, repeatedly set its least significant zero bit. This is another compact greedy expression of the same priorities.
+- **Modify `num1` toward the target popcount:** If it has too many set bits, repeatedly clear its least significant set bit; if it has too few, repeatedly set its least significant zero bit. This is another compact greedy expression of the same priorities.
 - **Enumerate integers with the required popcount:** The search space is exponential in bit width and ignores the strong positional structure of XOR.
 - **Dynamic programming over bits:** A bit DP can enforce an exact count, but no cross-bit carry exists in XOR, so the two greedy passes are simpler and fully sufficient.
 - **Equal popcounts:** The answer is `num1` and the XOR is zero.
@@ -112,8 +112,8 @@ The input bound `num1, num2 <= 10^9` means all possible set bits lie among posit
 - **High-bit scan direction:** Reversing the first pass could spend the limited matches on low bits and leave a costly high mismatch.
 - **Operator precedence:** The condition in the exact source is intended as “the selected bit, XOR 1,” which recognizes a zero bit. Parentheses such as `((num1 >> i) & 1) == 0` would make that intent more explicit.
 - **Positive inputs:** The method reasons about ordinary finite binary representations; signed negative integers with infinitely extended sign bits are outside the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

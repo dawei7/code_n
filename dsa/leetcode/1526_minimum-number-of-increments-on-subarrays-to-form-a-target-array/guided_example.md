@@ -72,7 +72,7 @@ For `[1,2,3,2,1]`, one layer starts at index zero, another at index one, and ano
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The formula is not merely a lower bound.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ The constructive schedule achieves the same number, proving optimality.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit difference array:** Build all adjacen:** - **Explicit difference array:** Build all adjacent differences and sum positive entries. It is correct but wastes $O(N)$ space.
+- **Explicit difference array:** Build all adjacent differences and sum positive entries. It is correct but wastes $O(N)$ space.
 - **Monotonic stack:** Layer starts and endings can be modeled with a stack, but the adjacent-rise formula is simpler.
 - **Simulate every increment:** Applying operations one unit at a time to array values can be far too slow.
 - **One element:** Exactly `target[0]` operations on that singleton are necessary.
@@ -129,8 +129,8 @@ The constructive schedule achieves the same number, proving optimality.
 - **Valley then rise:** The rise after the valley starts new layers because earlier high layers had to end before the lower value.
 - **No input mutation:** The generator only reads adjacent values.
 - **Required import:** `pairwise` must be available from `itertools`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

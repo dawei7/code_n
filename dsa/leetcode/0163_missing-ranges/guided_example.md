@@ -72,7 +72,7 @@ it does not convert singleton gaps to a special string format.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `nums` has no elements, every integer from `lower` throug... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ would exceed their end.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sentinel scan:** Treat `lower - 1` and `upper :** - **Sentinel scan:** Treat `lower - 1` and `upper + 1` as virtual present values, allowing one uniform loop over every gap.
+- **Sentinel scan:** Treat `lower - 1` and `upper + 1` as virtual present values, allowing one uniform loop over every gap.
 - **Enumerate every integer:** Simple but can take time proportional to `upper - lower`, far larger than `n`.
 - **Empty `nums`:** Return the complete inclusive interval as one range.
 - **No missing values:** Boundary checks and consecutive pairs append nothing.
@@ -129,8 +129,8 @@ would exceed their end.
 - **Unique sorted guarantee:** It makes every adjacent difference positive and ranges naturally ordered.
 - **Output space:** The result itself may be linear even though working storage is constant.
 - **Missing imports:** `List` and `pairwise` must be supplied for standalone execution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

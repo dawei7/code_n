@@ -67,7 +67,7 @@ The threshold is a proof cutoff, not an estimate of the source-to-target distanc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `B = len(blocked)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Source and target searches use separate visited sets because each must independe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full-grid BFS or DFS:** It is logically correc:** - **Full-grid BFS or DFS:** It is logically correct but computationally impossible on up to `10^{12}` cells. The blocker-derived cutoff is essential.
+- **Full-grid BFS or DFS:** It is logically correct but computationally impossible on up to `10^{12}` cells. The blocker-derived cutoff is essential.
 - **Bounded breadth-first search:** A queue can perform the same two directional checks and stop after more than `m` discoveries. It avoids recursion-depth risk and has the same `O(B^2)` bounds.
 - **Coordinate compression:** Compress rows and columns around obstacles and endpoints, preserving gaps between significant coordinates. This can solve the problem but requires careful treatment of large empty intervals and adjacency.
 - **Search only from source:** This misses a target enclosed in a small region while the source is outside. Both directions are necessary.
@@ -120,8 +120,8 @@ Source and target searches use separate visited sets because each must independe
 - **Grid outer boundary:** Coordinates equal to `-1` or `10^6` are rejected, so searches never leave the legal board.
 - **Recursive implementation:** The mathematical cutoff can still exceed Python's default recursion depth. An iterative queue or stack preserves the algorithm when runtime stack limits are a concern.
 - **Conservative threshold:** `B^2 // 2` may allow slightly more exploration than the tight triangular bound, but exceeding it still safely proves non-enclosure.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

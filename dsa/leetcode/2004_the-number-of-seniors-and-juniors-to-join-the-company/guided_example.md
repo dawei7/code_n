@@ -59,7 +59,7 @@ This expresses the priority correctly: senior count is maximized first; juniors 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before considering juniors, the company must keep the optima... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The first aggregate selects the constant label Senior and counts affordable rows
 
 ## 6. Traps This Instance Exposes
 
-- **- **Corrected window query:** Parenthesize the sca:** - **Corrected window query:** Parenthesize the scalar subquery and use `ROWS UNBOUNDED PRECEDING` with `employee_id` as a deterministic salary tie-breaker.
+- **Corrected window query:** Parenthesize the scalar subquery and use `ROWS UNBOUNDED PRECEDING` with `employee_id` as a deterministic salary tie-breaker.
 - **Ranked candidates plus recursive budget:** More verbose, but can state one-candidate-at-a-time selection explicitly.
 - **Procedural sort and scan:** Sort seniors, consume budget, then sort juniors and consume the remainder; directly mirrors the greedy proof.
 - **No affordable senior:** Senior count is zero and juniors receive all 70000.
@@ -108,8 +108,8 @@ The first aggregate selects the constant label Senior and counts affordable rows
 - **Scalar-subquery syntax:** The exact source is invalid without an inner pair of parentheses.
 - **`UNION ALL`:** Appropriate because the two literal experience labels are distinct.
 - **Any result order:** No final `ORDER BY` is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

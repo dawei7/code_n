@@ -65,7 +65,7 @@ The simulation can use these sorted indices as efficiency ranks. It does not nee
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code sorts `time` by `right_i+left_i` in ascending order... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ There are separate waiting heaps per side because right-side workers always rece
 
 ## 6. Traps This Instance Exposes
 
-- **- **Minute-by-minute simulation:** It wastes time :** - **Minute-by-minute simulation:** It wastes time across long pick or put intervals; completion heaps allow jumps.
+- **Minute-by-minute simulation:** It wastes time across long pick or put intervals; completion heaps allow jumps.
 - **One waiting heap:** It cannot enforce unconditional right-side priority cleanly.
 - **Efficiency ties:** Stable sorting preserves original index order, so larger sorted rank remains less efficient.
 - **Several simultaneous completions:** Release all before choosing the least efficient waiter.
@@ -114,8 +114,8 @@ There are separate waiting heaps per side because right-side workers always rece
 - **Right-side priority:** It is checked before left dispatch whenever both wait.
 - **Idle bridge:** Advance to the earliest work completion.
 - **Input mutation:** Sorting reorders worker rows into efficiency rank order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,12 +57,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\text{score}
-=
-\sum\texttt{nums}
--
-\text{sum of the final... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +92,7 @@ The total array sum is fixed. Maximizing the score is equivalent to minimizing t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Interval dynamic programming:** It can model a:** - **Interval dynamic programming:** It can model all operations but costs at least quadratic time when final-remainder reachability gives a linear formula.
+- **Interval dynamic programming:** It can model all operations but costs at least quadratic time when final-remainder reachability gives a linear formula.
 - **Greedily remove the largest current pair:** A locally large removal may force an unfavorable final remainder; optimizing the remainder globally is simpler.
 - **Leave any two elements for even \(n\):** Only adjacent original elements can form the final contiguous interval.
 - **Odd length:** Exactly one element remains because removing two preserves odd parity.
@@ -109,8 +104,8 @@ The total array sum is fixed. Maximizing the score is equivalent to minimizing t
 - **All equal values:** Every reachable remainder has the same sum, so every complete sequence ties.
 - **Lazy `pairwise`:** It enumerates consecutive values only and keeps constant memory.
 - **Reachability parity:** Side counts around a target singleton or pair have the same parity, enabling either same-side removals or one initial cross-end removal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

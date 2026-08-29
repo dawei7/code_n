@@ -76,7 +76,7 @@ Thus the invariant holds after every character. At the end, the stack is exactly
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After processing the first `t` input characters, `stk` equal... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The left-to-right stream effectively pauses after each input character until the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly scan and delete from the string:** :** - **Repeatedly scan and delete from the string:** This directly follows the statement but can require `O(n)` work per deletion due to searching and rebuilding, leading to `O(n^2)` time.
+- **Repeatedly scan and delete from the string:** This directly follows the statement but can require `O(n)` work per deletion due to searching and rebuilding, leading to `O(n^2)` time.
 - **Linked list plus a moving pointer:** A linked structure can delete adjacent nodes cheaply, but finding and revisiting the correct leftmost candidate requires more bookkeeping. The stack is the natural representation for a left-to-right cancellation rule.
 - **Use modular alphabet indices:** Mapping letters to `0` through `25` and checking whether their circular distance is one is equivalent. The source’s code differences `1` and `25` are simpler for lowercase ASCII-compatible ordering.
 - **Ignore the circular pair:** Checking only absolute difference one would fail on `"az"` and `"za"`, both of which must disappear.
@@ -128,8 +128,8 @@ The left-to-right stream effectively pauses after each input character until the
 - **New adjacency after a removal:** The exposed stack top is compared with the next input character when it arrives, exactly as in the `"adcb"` trace.
 - **Order sensitivity:** The invariant proves this stack simulates the required leftmost sequence; it is not relying on an unstated freedom to choose arbitrary removable pairs.
 - **Lowercase constraint:** The `ord` difference test depends on the promised lowercase English alphabet. Other alphabets or case combinations would require a different successor relation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,7 +55,7 @@ The queue starts with `(0,0)` and `(0,1)`. These two conceptual states allow the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `g[0]` stores red outgoing neighbors and `g[1]` stores blue ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ It records the colored state in `vis`, flips `c` with XOR one, and follows only 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enqueue-time visited marking:** The standard r:** - **Enqueue-time visited marking:** The standard repair that ensures each colored state enters the queue once.
+- **Enqueue-time visited marking:** The standard repair that ensures each colored state enters the queue once.
 - **Distance matrix:** Store separate red-ending and blue-ending distances, then take the minimum per node.
 - **Dijkstra:** Correct but unnecessary because every edge has unit length.
 - **Node-only BFS:** Incorrect because previous color changes future legality.
@@ -106,8 +106,8 @@ It records the colored state in `vis`, flips `c` with XOR one, and follows only 
 - **Cycle:** Colored visited state prevents endlessly discovering new semantic states, though duplicate expansion remains possible.
 - **Unreachable node:** Its initialized `-1` is returned.
 - **Start node:** Its shortest path length is zero without traversing an edge.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

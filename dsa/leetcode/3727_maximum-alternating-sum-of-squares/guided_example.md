@@ -91,7 +91,7 @@ It follows that the `floor(n / 2)` smallest squares must occupy the negative pos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose an arrangement assigns square `a` to a positive slot... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -142,7 +142,7 @@ then returns `s2 - s1`. This is the maximum sum of positive-slot squares minus t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all permutations:** Up to `n!` arran:** - **Enumerate all permutations:** Up to `n!` arrangements exist, even though the score depends only on the two sign groups. The exchange argument reduces the problem to one sort.
+- **Enumerate all permutations:** Up to `n!` arrangements exist, even though the score depends only on the two sign groups. The exchange argument reduces the problem to one sort.
 - **Sort by the raw integer value:** This is wrong for negatives. For example, `-100` sorts before `2` numerically but has the much larger square and should receive a positive sign.
 - **Sort a separate square array:** This produces the same grouping and can make the mathematical reduction explicit. The exact source sorts original values by a square key and squares them while summing, avoiding another stored numeric array.
 - **Greedily alternate largest and smallest original values:** A constructed arrangement can work if it assigns square groups correctly, but raw signed size is not the relevant order. Grouping by squares first is safer.
@@ -155,8 +155,8 @@ then returns `s2 - s1`. This is the maximum sum of positive-slot squares minus t
 - **Already sorted input:** The in-place sort may do less practical work, but the worst-case bound remains $O(n\log n)$.
 - **Mutation-sensitive caller:** Sorting a copy would preserve the original list at an additional $O(n)$ allocation. The problem method's contract does not require preservation.
 - **Large result:** Summation must use a wide numeric type even though each individual input fits comfortably in 32 bits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,7 +74,7 @@ After this loop, `is_prime[x]` answers primality for every value in the legal do
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sets `mx = 500000`, the maximum legal input, and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ Skipping a composite prefix sum does not reset `t`. The next candidate must stil
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trial-divide every potential value:** Repeated:** - **Trial-divide every potential value:** Repeated primality checks are simpler for tiny bounds but much slower than one shared sieve across the full domain.
+- **Trial-divide every potential value:** Repeated primality checks are simpler for tiny bounds but much slower than one shared sieve across the full domain.
 - **Sieve only through the current `n`:** This saves work for a single small query and matches the manifest wording, but does not reuse a fixed global table.
 - **Sum an arbitrary consecutive prime interval:** That solves a different problem; the required sequence always starts from 2.
 - **Reset after a composite prefix sum:** Composite status of one total does not end the sequence. Later, longer prefix sums may be prime, as 10 is followed by 17.
@@ -140,8 +140,8 @@ Skipping a composite prefix sum does not reset `t`. The next candidate must stil
 - **Repeated method calls:** They share the already-built read-only sieve and candidate list.
 - **Inputs above the documented ceiling:** The fixed table is not designed to establish correctness beyond 500,000.
 - **Module initialization cost:** It is paid before the method call and must not be mistaken for an $O(\log C)$ complete-program cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - the last occurrence of the lowercase form;
-- the first occ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ All lowercase copies precede all uppercase copies exactly when:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four-state automaton:** Track unseen, lowercas:** - **Four-state automaton:** Track unseen, lowercase-only, valid uppercase-after-lowercase, and invalid ordering per letter. This matches the manifest.
+- **Four-state automaton:** Track unseen, lowercase-only, valid uppercase-after-lowercase, and invalid ordering per letter. This matches the manifest.
 - **Two 26-element position arrays:** Store last lowercase and first uppercase indices, avoiding hash maps.
 - **Set-only solution from version I:** Incorrect because it forgets occurrence order.
 - **Only lowercase form:** Fails uppercase membership.
@@ -103,8 +102,8 @@ All lowercase copies precede all uppercase copies exactly when:
 - **Last lowercase:** It is the strongest lowercase boundary to test.
 - **No input mutation:** The method only records indices.
 - **Source/manifest mismatch:** Exact source uses two occurrence dictionaries, not an automaton.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

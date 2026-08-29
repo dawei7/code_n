@@ -66,7 +66,7 @@ The distinctness guarantee is important. With duplicates, a value could be the m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code does not retain the row and column coordinates of a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ If the two sets have no common value, no cell can satisfy both requirements, and
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate scan with precomputed arrays:** Sto:** - **Coordinate scan with precomputed arrays:** Store each row minimum and column maximum, then test every cell against both indexed values. It is also $O(mn)$ and works even when duplicate values require coordinate awareness.
+- **Coordinate scan with precomputed arrays:** Store each row minimum and column maximum, then test every cell against both indexed values. It is also $O(mn)$ and works even when duplicate values require coordinate awareness.
 - **Max of row minima versus min of column maxima:** Under distinct entries, these two scalar values are equal exactly when a lucky number exists. This uses $O(1)$ extra scalar space but needs a less immediate proof.
 - **Check every candidate from scratch:** For each cell, rescan its row and column. It is simple but costs $O(mn(m+n))$.
 - **One row:** Its row minimum is lucky because every column contains only one value, making that value its column maximum only for the minimum's column.
@@ -117,8 +117,8 @@ If the two sets have no common value, no cell can satisfy both requirements, and
 - **Arbitrary output order:** Set iteration order is not guaranteed, but the contract explicitly permits any order.
 - **Rectangular shape:** `zip(*matrix)` works because every row has the same stated length.
 - **Input mutation:** `min`, `max`, `zip`, and set construction only read the matrix.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

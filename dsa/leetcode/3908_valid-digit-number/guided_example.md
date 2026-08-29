@@ -75,7 +75,7 @@ makes it true as soon as any extracted non-leading digit equals $x$. Once true, 
 At loop termination:
 
 $$
-\texttt{has_x}
+\texttt{has\_x}
 \iff
 x\text{ appeared in at least one non-leading position}.
 $$
@@ -84,7 +84,7 @@ The source does not need the number or locations of occurrences. The requirement
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The Boolean `has_x` begins false.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ This is equivalent to the original wording. If the number contains $x$ and does 
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** `sx = str(x); s = str(n);:** - **String conversion:** `sx = str(x); s = str(n); return sx in s and s[0] != sx` is direct and also linear in the digit count, but allocates a decimal string.
+- **String conversion:** `sx = str(x); s = str(n); return sx in s and s[0] != sx` is direct and also linear in the digit count, but allocates a decimal string.
 - **Track the original leading digit separately:** One can first find the highest power of ten, but the source obtains the leading digit naturally by repeated division.
 - **Single-digit number equal to \(x\):** It contains $x$ but starts with $x$, so it is invalid; `has_x` remains false.
 - **Single-digit number different from \(x\):** It does not contain $x$ and is invalid.
@@ -141,8 +141,8 @@ This is equivalent to the original wording. If the number contains $x$ and does 
 - **Occurrence only immediately after the leading digit:** The final loop iteration before termination detects it.
 - **Digit \(x=0\):** Arithmetic extraction handles internal zeros, while ordinary decimal representation has no leading zeros to consider.
 - **Nonnegative-input requirement:** The remainder/division loop is designed for $n\ge0$; negative representations would introduce a sign and different floor-division behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

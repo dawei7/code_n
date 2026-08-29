@@ -40,7 +40,7 @@ Return the level sums from the root level through the deepest level. A level con
 
 - **Explanation:** ![](images/screenshot-2026-04-13-at-22054am.png)
 
-​​​​​​​
+
 
 - At level 1, nodes are processed left to right. Node 5 is included, thus $\text{ans}[0] = 5$.
 

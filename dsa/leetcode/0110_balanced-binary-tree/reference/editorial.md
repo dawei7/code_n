@@ -165,7 +165,7 @@ class Solution:
         &> \left(\frac{3}{2}\right)^{h-1} \cdot \frac{9}{4} \quad \text{(since } \frac{5}{2} > \frac{9}{4} \text{)} \\
         &= \left(\frac{3}{2}\right)^{h+1}
     \end{aligned}
-    $Therefore, the height$h$$ of a balanced tree
+    $Therefore, the height$h$ of a balanced tree
     is bounded by $\mathcal{O}(\log_{1.5}(n))$. With this bound we can guarantee that
     $\texttt{height}$ will be called
     on each node $\mathcal{O}(\log n)$ times.

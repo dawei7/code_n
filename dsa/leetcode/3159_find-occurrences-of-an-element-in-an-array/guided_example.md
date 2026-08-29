@@ -71,7 +71,7 @@ The output list comprehension preserves query order. Queries do not need to be s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Query values are one-based ordinals.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ For a query $k$, if $k\le\lvert\texttt{ids}\rvert$, the element at zero-based po
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan for each query:** It uses no occurrence l:** - **Scan for each query:** It uses no occurrence list but can take $O(nq)$ time.
+- **Scan for each query:** It uses no occurrence list but can take $O(nq)$ time.
 - **Map every value to positions:** Useful if queries named different target values, but wasteful when all ask about one fixed `x`.
 - **Binary search cumulative counts:** A prefix count array plus binary search can locate occurrences, but direct stored indices answer faster and use comparable space.
 - **Sort queries by ordinal:** Unnecessary because lookup is already constant time and output must preserve original order.
@@ -132,8 +132,8 @@ For a query $k$, if $k\le\lvert\texttt{ids}\rvert$, the element at zero-based po
 - **Unsorted queries:** Their order has no effect on correctness.
 - **Positive-query guarantee:** It prevents accidental negative indexing for query zero.
 - **Input preservation:** Only a new occurrence list and result list are created.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

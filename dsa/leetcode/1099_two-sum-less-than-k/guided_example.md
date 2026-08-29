@@ -57,7 +57,7 @@ The check `i < j` confirms that the binary search actually found an element in t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits sorted index `i` with value `x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Sorting changes indices, but any two positions in the sorted array correspond to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers after sorting:** Put one pointer :** - **Two pointers after sorting:** Put one pointer at each end. If the sum is below `k`, record it and move the left pointer right; otherwise move the right pointer left. This reduces the post-sort scan to $O(n)$ and keeps the same $O(n\log n)$ total.
+- **Two pointers after sorting:** Put one pointer at each end. If the sum is below `k`, record it and move the left pointer right; otherwise move the right pointer left. This reduces the post-sort scan to $O(n)$ and keeps the same $O(n\log n)$ total.
 - **Brute force:** Check every pair in $O(n^2)$ time and $O(1)$ auxiliary space. It is simplest for small constraints but scales worse.
 - **Counting array:** Values are bounded by one thousand, so frequency counts can search value pairs without comparison sorting. Duplicate handling and distinct-occurrence checks require care.
 - **Array length one:** Every suffix is empty, `i < j` never holds, and the answer remains `-1`.
@@ -108,8 +108,8 @@ Sorting changes indices, but any two positions in the sorted array correspond to
 - **Very small complement:** It can return `i + 1`; subtracting one gives `i` and the distinct-position check rejects the nonexistent partner.
 - **Input mutation:** `nums.sort()` permanently reorders the supplied list. If caller-visible order had to be preserved, use `sorted(nums)` and accept an explicit $O(n)$ copy.
 - **Positive-value guarantee:** It makes `-1` an unambiguous failure sentinel below every real pair sum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

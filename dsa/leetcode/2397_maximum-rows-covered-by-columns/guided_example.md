@@ -63,7 +63,7 @@ The problem requires exactly `numSelect` distinct columns. `mask.bit_count()` gi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `n` columns, integers zero through `2^n - 1` encode ever... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The expression is Boolean, and Python's `sum` counts true values as one:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate only combinations:** Iterating `combi:** - **Generate only combinations:** Iterating `combinations(range(n), k)` avoids checking the other $2^n-\binom{n}{k}$ masks and aligns more closely with the manifest formula.
+- **Generate only combinations:** Iterating `combinations(range(n), k)` avoids checking the other $2^n-\binom{n}{k}$ masks and aligns more closely with the manifest formula.
 - **Backtracking with pruning:** Build selections one column at a time and bound remaining coverage. It can help larger domains but is unnecessary for twelve columns.
 - **All-zero row:** Its zero mask is a subset of every selection and is always counted.
 - **`numSelect = n`:** Only the all-bits mask qualifies, and every row is covered.
@@ -119,8 +119,8 @@ The expression is Boolean, and Python's `sum` counts true values as one:
 - **Duplicate row masks:** They are separate matrix rows and each contributes independently to `t`.
 - **Extra selected zeros:** Selecting a column where a row has zero never harms coverage.
 - **Bit orientation:** Only consistent mapping matters; bit `j` is used for column `j` everywhere.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

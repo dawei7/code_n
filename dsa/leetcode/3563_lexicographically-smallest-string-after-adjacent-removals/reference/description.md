@@ -46,7 +46,7 @@ Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
 
 - **Explanation:** 
 
-- **​​​​​​​**Remove `"cd"` from the string, leaving `"ba"` as the remaining string.
+- ****Remove `"cd"` from the string, leaving `"ba"` as the remaining string.
 
 - Remove `"ba"` from the string, leaving `""` as the remaining string.
 

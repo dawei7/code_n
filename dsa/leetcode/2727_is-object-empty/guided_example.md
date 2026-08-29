@@ -61,11 +61,7 @@ If no enumerable property exists, the loop body never executes, control reaches 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop:
-
-`for (const x in obj)`
-
-iterates enumerable prope... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +100,7 @@ The function never evaluates `obj[x]`, so it cannot accidentally confuse a false
 
 ## 6. Traps This Instance Exposes
 
-- **- **`Object.keys(obj).length === 0`:** Very clear :** - **`Object.keys(obj).length === 0`:** Very clear and checks own keys, but explicitly constructs all key names in $O(n)$ time and space.
+- **`Object.keys(obj).length === 0`:** Very clear and checks own keys, but explicitly constructs all key names in $O(n)$ time and space.
 - **`JSON.stringify(obj).length === 2`:** Works for legal empty arrays and objects but serializes the entire structure in $O(n)$ time and space.
 - **Array/object type branch:** Checking array length separately is valid but unnecessary for parsed dense arrays.
 - **Empty object:** The loop yields nothing and returns true.
@@ -114,8 +110,8 @@ The function never evaluates `obj[x]`, so it cannot accidentally confuse a false
 - **Inherited enumerable property:** Could affect arbitrary custom objects, but the `JSON.parse` guarantee excludes custom prototype data.
 - **Sparse array:** A manually created holes-only array is outside the JSON-parsed input model and may not be detected by this exact loop.
 - **Property name `"__proto__"`:** Parsed JSON data treats it as an ordinary own data key, so it is correctly recognized as non-empty.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

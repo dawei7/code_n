@@ -61,7 +61,7 @@ For every nonzero number, at least one nibble is nonzero. Negative 32-bit values
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The number zero has eight zero nibbles.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,9 +109,9 @@ For example, decimal `26` is binary `000...00011010`. At nibble position one, sh
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated division by 16:** For a nonnegative v:** - **Repeated division by 16:** For a nonnegative value, repeatedly take remainder 16 and divide, then reverse the collected digits. Negative inputs first require conversion to their unsigned 32-bit value. This is correct but needs separate sign handling.
-- **- **Add `2**32` for negatives:** Converting `num` :** - **Add `2**32` for negatives:** Converting `num` to `num + 2**32` makes the unsigned two’s-complement value explicit, after which repeated division works. The exact masking method achieves the same result directly.
-- **- **Built-in `hex`:** It would violate the explici:** - **Built-in `hex`:** It would violate the explicit restriction against a direct library conversion and formats negative numbers with a minus sign rather than the required 32-bit two’s-complement representation.
+- **Repeated division by 16:** For a nonnegative value, repeatedly take remainder 16 and divide, then reverse the collected digits. Negative inputs first require conversion to their unsigned 32-bit value. This is correct but needs separate sign handling.
+- **Add `2**32` for negatives:** Converting `num` to `num + 2**32` makes the unsigned two’s-complement value explicit, after which repeated division works. The exact masking method achieves the same result directly.
+- **Built-in `hex`:** It would violate the explicit restriction against a direct library conversion and formats negative numbers with a minus sign rather than the required 32-bit two’s-complement representation.
 
 ---
 

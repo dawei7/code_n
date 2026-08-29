@@ -51,7 +51,7 @@ An $n$-digit palindrome is determined by its first $\lceil n/2\rceil$ digits. `b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An $n$-digit palindrome is determined by its first $\lceil n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For half string `s`, the source appends a reversed slice. When `n` is even, `n %
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all $n$-digit integers:** There are :** - **Enumerate all $n$-digit integers:** There are $9\cdot10^{n-1}$, far more than the roughly square-root-sized palindrome space.
+- **Enumerate all $n$-digit integers:** There are $9\cdot10^{n-1}$, far more than the roughly square-root-sized palindrome space.
 - **Generate digit multisets directly:** This avoids duplicate palindromes but then determining whether any permutation is a divisible palindrome is more complex.
 - **Permute each palindrome's digits explicitly:** A multiset can have millions of arrangements. The factorial formula counts them without generation.
 - **No multiset deduplication:** Two divisible palindromes with the same digits would cause every good permutation to be counted twice.
@@ -104,8 +104,8 @@ For half string `s`, the source appends a reversed slice. When `n` is even, `n %
 - **Good integer need not be palindromic:** The formula counts every legal arrangement of a witnessed multiset, including arrangements that are not themselves palindromes. They are good because they can be rearranged to the witness.
 - **Divisibility belongs to the witness:** A counted permutation need not be divisible by `k`. The definition requires only that its digits can form a divisible palindrome.
 - **Exact integer division:** The combinatorial numerator is divisible by the product of repeated-digit factorials. Sequential `//=` operations therefore retain the exact integer count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,11 +59,7 @@ The algorithm does not depend on choosing the least significant differing bit sp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression
-
-
-
-isolates the least significant set bit of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ If `a = p`, then `(p ^ q) ^ p = q` because the two copies of `p` cancel. The sou
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency hash map:** Count every value and re:** - **Frequency hash map:** Count every value and return the two with count one. It is straightforward and $O(n)$ expected time, but requires $O(n)$ extra space in the worst case.
+- **Frequency hash map:** Count every value and return the two with count one. It is straightforward and $O(n)$ expected time, but requires $O(n)$ extra space in the worst case.
 - **Sort the array:** Paired values become adjacent and singletons can be found by scanning. Sorting takes $O(n\log n)$ time and may mutate the input or require a copy.
 - **Build both XOR partitions:** Maintain one accumulator for the selected-bit group and another for the zero-bit group. It directly yields both singletons but is unnecessary because `xs ^ a` recovers the second.
 - **Singleton value zero:** Zero participates normally: it changes no XOR accumulator, but after the other singleton is recovered, `xs ^ other` correctly yields zero.
@@ -121,8 +117,8 @@ If `a = p`, then `(p ^ q) ^ p = q` because the two copies of `p` cancel. The sou
 - **Nonempty-input assumption:** `reduce` is called without an initializer, but the constraints guarantee at least two elements. An empty list outside the contract would raise an error.
 - **More or fewer singleton values:** The proof relies on exactly two. With a different occurrence pattern, `xs` would not necessarily encode a separable pair and this method would need redesign.
 - **Return order:** The selected bit determines which singleton becomes `a`; the problem explicitly accepts either ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

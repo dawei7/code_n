@@ -60,7 +60,7 @@ The repeated zero at the end allows the up pair to use indices 3 and 4 without a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dirs = (0, 1, 0, -1, 0)` stores overlapping row/column delt... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ The boundary conditions reject negative row or column coordinates and coordinate
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four shrinking boundaries:** Track top, bottom:** - **Four shrinking boundaries:** Track top, bottom, left, and right bounds and traverse one perimeter at a time. It achieves the same $O(mn)$ time with genuine $O(1)$ auxiliary space.
+- **Four shrinking boundaries:** Track top, bottom, left, and right bounds and traverse one perimeter at a time. It achieves the same $O(mn)$ time with genuine $O(1)$ auxiliary space.
 - **Destructively mark the matrix:** Replace visited elements with a sentinel. This removes `vis` but mutates input and is unsafe if the sentinel may be a legitimate value.
 - **Layer index formulas:** Compute each ring's coordinates directly. It avoids a visited grid but is more vulnerable to duplicate center-row or center-column handling.
 - **Single row:** The walker moves right through all cells; only the irrelevant post-final update points outside.
@@ -109,8 +109,8 @@ The boundary conditions reject negative row or column coordinates and coordinate
 - **Repeated values:** Visitation is coordinate-based, not value-based. Equal integers in different cells are all returned.
 - **Input preservation:** The matrix is only read. The separate Boolean grid holds traversal state.
 - **Post-final coordinate:** It may be invalid or visited, but no subsequent iteration dereferences it, so it cannot affect the returned answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

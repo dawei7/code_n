@@ -59,7 +59,7 @@ This compact representation makes configurations hashable for `vis` and avoids c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Cell `(i, j)` is assigned bit position `i * n + j`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Using XOR with the bit mask would be a shorter equivalent operation, but the exp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate flip subsets:** Because each center :** - **Enumerate flip subsets:** Because each center need be used at most once, test all $2^k$ subsets and choose the smallest successful one. It has similar exponential behavior but does not discover solutions in increasing flip count automatically.
+- **Enumerate flip subsets:** Because each center need be used at most once, test all $2^k$ subsets and choose the smallest successful one. It has similar exponential behavior but does not discover solutions in increasing flip count automatically.
 - **First-row Lights Out enumeration:** Guess flips in the first row and derive later rows. It can reduce enumeration width but requires more specialized row reasoning.
 - **Mutate matrix copies:** This is conceptually direct but allocates and hashes much larger objects than a bitmask.
 - **Initially zero:** The answer is zero at the first BFS pop.
@@ -108,8 +108,8 @@ Using XOR with the bit mask would be a shorter equivalent operation, but the exp
 - **Duplicate paths:** Different flip orders may reach the same state, and `vis` keeps only its shortest discovery.
 - **Toggle implementation:** Subtraction is safe only after confirming the bit is set; OR safely sets a clear bit.
 - **Bit indexing:** Row-major position `i * n + j` is one-to-one for all cells.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

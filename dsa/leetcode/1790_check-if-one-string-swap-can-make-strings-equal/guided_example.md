@@ -71,7 +71,7 @@ This is called a cross-match because the first string's character at one mismatc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits paired characters `a` from `s1` and `b` from... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ After the scan, the solution returns `cnt != 1`. This accepts zero mismatches an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store mismatch indices:** Collect at most two :** - **Store mismatch indices:** Collect at most two indices, reject a third, then check crossed characters. This is also $O(n)$ time and $O(1)$ bounded space, but the protected solution stores the first characters directly.
+- **Store mismatch indices:** Collect at most two indices, reject a third, then check crossed characters. This is also $O(n)$ time and $O(1)$ bounded space, but the protected solution stores the first characters directly.
 - **Frequency maps plus mismatch count:** Equal 26-letter frequency arrays and exactly two differences are sufficient, yet cross-matching avoids the extra arrays.
 - **Sort both strings:** Equal sorted strings prove they are anagrams but do not prove one swap is sufficient; mismatch positions still need checking, and sorting costs $O(n\log n)$.
 - **Try every swap:** Testing all index pairs is at least quadratic and unnecessary once the mismatch structure is understood.
@@ -127,8 +127,8 @@ After the scan, the solution returns `cnt != 1`. This accepts zero mismatches an
 - **Same-index swap:** It changes nothing and matters only as an optional interpretation when strings are already equal.
 - **Equal-length contract:** Reusing this exact `zip` loop for unequal strings would miss an unmatched suffix and would require an explicit length check.
 - **Lowercase alphabet:** The direct comparison logic does not depend on alphabet size; the constraint simply defines valid inputs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

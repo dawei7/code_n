@@ -59,9 +59,7 @@ For totals to be strictly increasing as years increase with no missing year, chr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Within each customer partition,
-
-`RANK() OVER (PARTITION BY ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +114,7 @@ The outer query groups these derived rows by customer and applies
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` adjacent comparison:** Aggregate annual :** - **`LAG` adjacent comparison:** Aggregate annual totals, compare each year and total with the previous row, then reject any gap or non-increase. This matches the manifest wording and is often easier to read.
+- **`LAG` adjacent comparison:** Aggregate annual totals, compare each year and total with the previous row, then reject any gap or non-increase. This matches the manifest wording and is often easier to read.
 - **Recursive calendar expansion:** Generate every year between first and last and left join totals, filling gaps with zero. It models the statement literally but is much heavier.
 - **Equal totals:** `RANK` ties them and the constant-difference test rejects the customer.
 - **Missing intermediate year:** Consecutive total ranks cannot keep pace with the larger year jump, so the customer fails.
@@ -126,8 +124,8 @@ The outer query groups these derived rows by customer and applies
 - **Any result order:** The outer query has no `ORDER BY`, which is allowed.
 - **Positive prices:** A missing year's zero necessarily breaks increase after any positive prior annual total.
 - **Rank versus row number:** `RANK` tie behavior is essential for rejecting equal totals; arbitrary row numbering could mask them.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

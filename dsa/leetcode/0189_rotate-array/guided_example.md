@@ -65,7 +65,7 @@ block order and the character order inside each block.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After normalization, split the original array conceptually i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ constructing a replacement array.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cyclic replacement:** Follow target indices `(:** - **Cyclic replacement:** Follow target indices `(i + k) % n` and use one temporary value; also $O(n)$ time and $O(1)$ space, but multiple index cycles require careful counting.
+- **Cyclic replacement:** Follow target indices `(i + k) % n` and use one temporary value; also $O(n)$ time and $O(1)$ space, but multiple index cycles require careful counting.
 - **Extra array:** Write each value directly to its target index, then copy back; straightforward $O(n)$ time but $O(n)$ extra space.
 - **Repeated one-step rotation:** Constant space but $O(nk)$ time after normalization.
 - **Left/right block interpretation:** Right rotation by `k` is also left rotation by `n - k`; the reversal boundaries must match the chosen direction.
@@ -117,8 +117,8 @@ constructing a replacement array.
 - **Negative and duplicate values:** Movement depends only on indices, not value comparisons.
 - **Nonempty guarantee:** Required for `k %= n`; a generalized API should guard an empty list.
 - **Missing typing import:** Supply `List` outside a harness that already defines it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

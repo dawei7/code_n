@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\operatorname{freq}(a_1)-\operatorname{freq}(a_2),
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ where the first frequency is odd and the second is even. To maximize a subtracti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every character pair:** At most $26^2$ che:** - **Try every character pair:** At most $26^2$ checks are still constant, but independently selecting the two extrema is simpler and proves optimality directly.
+- **Try every character pair:** At most $26^2$ checks are still constant, but independently selecting the two extrema is simpler and proves optimality directly.
 - **Count into a 26-slot array:** This avoids a dictionary and has the same asymptotic bounds, but zero entries must be skipped so absent letters are not treated as even-frequency candidates.
 - **Use the largest even frequency:** That would make the subtraction smaller. The even term must be minimized.
 - **Use the smallest odd frequency:** That also moves the objective in the wrong direction. The odd term must be maximized.
@@ -100,8 +98,8 @@ where the first frequency is odd and the second is even. To maximize a subtracti
 - **Guarantee dependency:** Without an odd or even appearing frequency, the sentinels would remain invalid. The implementation relies on the explicit input guarantee.
 - **Single scan after counting:** Frequencies do not change, so no repeated passes over the original string are needed.
 - **Lowercase-only alphabet:** The constant-space claim uses the fixed 26-character domain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

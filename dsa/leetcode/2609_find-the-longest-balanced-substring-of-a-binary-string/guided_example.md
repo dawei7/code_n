@@ -75,7 +75,7 @@ says that ones occupy exactly half of the positions. Because every other charact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The local variable `cnt` counts ones seen in the candidate.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ For each candidate accepted by `check`, the solution updates `ans` with its leng
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass run tracking:** Count a zero-run and :** - **One-pass run tracking:** Count a zero-run and the immediately following one-run, then maximize `2 * min(zeroes, ones)`. This is the true $O(n)$ optimal method summarized by the manifest.
+- **One-pass run tracking:** Count a zero-run and the immediately following one-run, then maximize `2 * min(zeroes, ones)`. This is the true $O(n)$ optimal method summarized by the manifest.
 - **Regular-expression-shaped thinking:** Looking for blocks matching `0+1+` captures order, but run lengths must still be compared and a regex is unnecessary.
 - **Equal counts alone:** A range such as `"0110"` has equal counts but is not balanced because a zero follows a one.
 - **Correct order but unequal counts:** `"00111"` is not itself balanced, although its prefix `"0011"` is.
@@ -124,8 +124,8 @@ For each candidate accepted by `check`, the solution updates `ans` with its leng
 - **Length one:** Only the empty substring is balanced, and `ans` remains zero.
 - **Odd candidate length:** The equality `cnt * 2 == length` automatically rejects it.
 - **No substring allocation:** Index-based checking avoids hidden $O(n)$ copies and keeps extra space constant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

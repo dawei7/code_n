@@ -61,9 +61,7 @@ Any popped index cannot be the first-rule destination for `i` because its value 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first right-to-left monotonic-stack pass pops while
-
-`nu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ Again, a farther smaller destination would have this nearer smaller value as an 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Test every later index:** Verifying all possib:** - **Test every later index:** Verifying all possible jumps takes quadratic time and repeats boundary work.
+- **Test every later index:** Verifying all possible jumps takes quadratic time and repeats boundary work.
 - **Dijkstra's algorithm:** Edge costs are nonnegative, but the graph is already a forward DAG, so index-order relaxation is simpler and linear.
 - **Build edges on the fly:** It can combine stack discovery and DP with careful ordering; the exact source separates graph construction from relaxation.
 - **Pop equality in the first stack:** That would skip a valid equal destination.
@@ -117,8 +115,8 @@ Again, a farther smaller destination would have this nearer smaller value as an 
 - **Two edges to different boundaries:** Both are relaxed because either can lead to the optimal route.
 - **Forward-only property:** It makes index order a valid topological order.
 - **Input preservation:** Both arrays are read without modification.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

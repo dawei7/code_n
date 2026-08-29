@@ -62,7 +62,7 @@ The cost of this protection is deliberate: reconstructing an $n$-element array r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `reset()` executes `nums = original.copy()` and returns the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ Conceptually, each iteration chooses which one of the still-unplaced elements sh
 
 ## 6. Traps This Instance Exposes
 
-- **- **Draw and delete from an auxiliary list:** Repe:** - **Draw and delete from an auxiliary list:** Repeatedly choose a random remaining element and remove it. This mirrors sampling without replacement but Python middle deletion costs linear time, producing $O(n^2)$ shuffle time and another $O(n)$ temporary list. Fisher–Yates performs logical removal by shrinking the eligible suffix.
-- **- **Swap with a random index from the entire array:** - **Swap with a random index from the entire array:** Reusing the full range at every iteration is generally biased because different final permutations can be reached by different numbers of random-choice sequences. The lower bound must advance with `i`.
-- **- **Assign random keys and sort:** Giving every el:** - **Assign random keys and sort:** Giving every element a random key and sorting by those keys costs $O(n\log n)$ and requires careful handling of key collisions. Fisher–Yates is linear and has a direct uniformity proof.
+- **Draw and delete from an auxiliary list:** Repeatedly choose a random remaining element and remove it. This mirrors sampling without replacement but Python middle deletion costs linear time, producing $O(n^2)$ shuffle time and another $O(n)$ temporary list. Fisher–Yates performs logical removal by shrinking the eligible suffix.
+- **Swap with a random index from the entire array:** Reusing the full range at every iteration is generally biased because different final permutations can be reached by different numbers of random-choice sequences. The lower bound must advance with `i`.
+- **Assign random keys and sort:** Giving every element a random key and sorting by those keys costs $O(n\log n)$ and requires careful handling of key collisions. Fisher–Yates is linear and has a direct uniformity proof.
 
 ---
 

@@ -65,7 +65,7 @@ For equal `nums2`, reverse tuple ordering places larger `nums1` first. Tie order
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `zip(nums2,nums1)` creates pairs `(a,b)` from the same origi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The heap maintains exactly the information needed for that choice.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate subsequences:** $\binom nk$ choices :** - **Enumerate subsequences:** $\binom nk$ choices are infeasible.
+- **Enumerate subsequences:** $\binom nk$ choices are infeasible.
 - **Sort ascending:** Possible with a different scan invariant, but descending order exposes eligible multipliers naturally.
 - **`k=1`:** Each current item alone yields `nums1[i]*nums2[i]`.
 - **Equal multipliers:** Tuple tie order does not lose any selection.
@@ -114,8 +114,8 @@ The heap maintains exactly the information needed for that choice.
 - **Minimum multiplier:** It is supplied by the last selected item in sorted order.
 - **Large product:** Use 64-bit arithmetic in fixed-width languages.
 - **Input pairing:** Never sort arrays independently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

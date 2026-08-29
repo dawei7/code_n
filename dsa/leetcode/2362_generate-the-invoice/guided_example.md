@@ -62,7 +62,7 @@ After this join, every logical row in `P` has the invoice, product, quantity, an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Purchases` contains `invoice_id`, `product_id`, and `quanti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Grouping only by `invoice_id` is correct because the goal at this stage is one t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window functions:** Compute invoice totals wit:** - **Window functions:** Compute invoice totals with a window sum and rank invoices, then filter the winning rank. This can be correct but may repeat totals on every detail row and requires careful tie ordering.
+- **Window functions:** Compute invoice totals with a window sum and rank invoices, then filter the winning rank. This can be correct but may repeat totals on every detail row and requires careful tie ordering.
 - **Correlated subqueries:** Recomputing totals while filtering individual lines is usually harder to read and may repeat aggregation work.
 - **`MAX(amount)` alone:** It identifies the highest total but does not select the smallest `invoice_id` among ties without additional logic.
 - **Tie between invoices:** `ORDER BY amount DESC, invoice_id` guarantees that the smallest identifier wins.
@@ -111,8 +111,8 @@ Grouping only by `invoice_id` is correct because the goal at this stage is one t
 - **Output ordering:** The final rows are intentionally unordered because any order is accepted.
 - **Unit versus extended price:** The source `Products.price` is per unit; the returned `price` is multiplied by `quantity` for that invoice line.
 - **Positional ordering references:** `2` means `amount` and `1` means `invoice_id` within CTE `T`; they are not numeric constants used to rank every row equally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

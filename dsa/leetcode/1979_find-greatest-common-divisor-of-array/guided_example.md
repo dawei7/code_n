@@ -59,7 +59,7 @@ Repeated extrema cause no difficulty. For `[3, 3]`, both calls return 3, and the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `max` scans the sequence and retains the greatest v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The imported `gcd` function performs this well-established process, so the solut
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the array:** The endpoints become the fir:** - **Sort the array:** The endpoints become the first and last values, but sorting costs $O(N\log N)$ time and may mutate the input.
+- **Sort the array:** The endpoints become the first and last values, but sorting costs $O(N\log N)$ time and may mutate the input.
 - **One combined extrema loop:** It finds both values in one pass and has the same $O(N)$ asymptotic time, but the two built-ins are simpler.
 - **Test every possible divisor:** Scanning down from the minimum can take $O(M)$ time, slower than Euclid's logarithmic behavior.
 - **Take the gcd of all elements:** This answers a different question and can produce a smaller value than the gcd of only the extrema.
@@ -123,8 +123,8 @@ The imported `gcd` function performs this well-established process, so the solut
 - **Minimum length two:** Both extrema calls are always defined.
 - **Input preservation:** `min`, `max`, and `gcd` do not alter `nums`.
 - **Execution environment:** The exact solution relies on `gcd` already being available; standalone code would need `from math import gcd`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

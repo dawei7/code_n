@@ -69,8 +69,7 @@ Because every input value is nonnegative, `s` is non-decreasing. That monotonici
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s = list(accumulate(nums))` creates inclusive prefix sums:
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +116,7 @@ The search interval uses Python's half-open bounds `[i+1,n-1)`, meaning possible
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two monotonic pointers:** As `i` increases, ad:** - **Two monotonic pointers:** As `i` increases, advance lower and upper middle endpoints without moving them backward. This achieves the manifest's $O(n)$ time but requires careful boundary maintenance.
+- **Two monotonic pointers:** As `i` increases, advance lower and upper middle endpoints without moving them backward. This achieves the manifest's $O(n)$ time but requires careful boundary maintenance.
 - **Enumerate both cuts:** Check every `(i,r)` pair directly in $O(n^2)$ time, which is too slow at $10^5$ elements.
 - **Negative values:** They would destroy prefix monotonicity and invalidate binary search; non-negativity is essential.
 - **All zeros:** Every choice of two cut positions is good, and duplicate prefix sums are counted by left/right bisection.
@@ -128,8 +127,8 @@ The search interval uses Python's half-open bounds `[i+1,n-1)`, meaning possible
 - **No valid endpoint:** `k-j` is zero rather than negative because the upper search starts at `j`.
 - **Large answer:** Modulo is applied at return; Python avoids overflow before then.
 - **Bit shifts:** `<<1` means multiplication by two and `>>1` means floor division by two for these nonnegative sums.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

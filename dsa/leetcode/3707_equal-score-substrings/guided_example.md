@@ -73,11 +73,7 @@ At this conceptual moment, the boundary lies before the string. That is not a le
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes:
-
-`l = 0`
-
-because no character has y... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,7 +131,7 @@ After moving `a`, the totals are one and nine. After moving `d`, they are five a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute both scores at every boundary:** Sum:** - **Recompute both scores at every boundary:** Summing prefix and suffix substrings repeatedly can take $O(n^2)$ time.
+- **Recompute both scores at every boundary:** Summing prefix and suffix substrings repeatedly can take $O(n^2)$ time.
 - **Prefix-sum array:** It supports constant-time split checks after $O(n)$ preprocessing but uses $O(n)$ storage. Two running totals are simpler.
 - **Index-based scan:** Looping over indices zero through $n-2$ avoids `s[:-1]` and achieves the manifest's intended $O(1)$ auxiliary space.
 - **Check `2 * l == total`:** This equivalent condition keeps only a prefix and fixed total, also using constant scalar state.
@@ -145,8 +141,8 @@ After moving `a`, the totals are one and nine. After moving `d`, they are five a
 - **Early balanced split:** The method returns immediately because existence is all that is requested.
 - **Nonempty suffix:** Excluding the last character from the loop prevents testing an illegal empty right substring.
 - **Alphabet mapping:** The added one is essential because the contract assigns `a = 1` rather than zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,10 +1,10 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `nums` of size `n` representing the cost of collecting different chocolates. The cost of collecting the chocolate at the index `i` is $\text{nums}[i]$. Each chocolate is of a different type, and initially, the chocolate at the index `i` is of $$i^{\text{th}}$$ type.
+You are given a **0-indexed** integer array `nums` of size `n` representing the cost of collecting different chocolates. The cost of collecting the chocolate at the index `i` is $\text{nums}[i]$. Each chocolate is of a different type, and initially, the chocolate at the index `i` is of $i^{\text{th}}$ type.
 
 In one operation, you can do the following with an incurred **cost** of `x`:
 
-- Simultaneously change the chocolate of $$i^{\text{th}}$$ type to $((i + 1) mod n)^th$ type for all chocolates.
+- Simultaneously change the chocolate of $i^{\text{th}}$ type to $((i + 1) mod n)^th$ type for all chocolates.
 
 Return *the minimum cost to collect chocolates of all types, given that you can perform as many operations as you would like.*
 

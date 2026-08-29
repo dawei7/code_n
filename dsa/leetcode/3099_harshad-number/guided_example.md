@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Preserve the original value.** The method begins with `s, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** `sum(map(int, str(x)))` i:** - **String conversion:** `sum(map(int, str(x)))` is concise and also $O(\log x)$ time, but allocates a decimal string and temporary iteration state.
+- **String conversion:** `sum(map(int, str(x)))` is concise and also $O(\log x)$ time, but allocates a decimal string and temporary iteration state.
 - **Recursive digit sum:** It follows the same remainder/division recurrence but adds $O(\log x)$ call-stack space.
 - **Lookup table:** The tiny `x <= 100` domain could be precomputed, but that obscures the definition and is unnecessary.
 - **One-digit input:** Every value from one through nine is divisible by its own single digit.
@@ -101,8 +101,8 @@ We maintain the core conceptual parameters and state variables:
 - **Return contract:** A Harshad input returns the digit sum, not `true`, `x`, or the quotient.
 - **No floating point:** Integer remainder and division avoid rounding entirely.
 - **No mutation outside the method:** Integers are immutable, and only local bindings change.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

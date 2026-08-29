@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `customers.drop_duplicates(subset=['email'])`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Passing a one-element list selects `email` as the sole duplicate key. Other colu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `keep='first'`:** Adding the argument:** - **Explicit `keep='first'`:** Adding the argument makes the default visible and produces the same result.
+- **Explicit `keep='first'`:** Adding the argument makes the default visible and produces the same result.
 - **In-place deletion:** `inplace=true` modifies the caller's DataFrame and returns `null`; the exact source instead returns a new result.
 - **Group by email:** Taking the first row of every group can work but may change ordering or index structure and is unnecessarily complex.
 - **All emails unique:** Every row survives in original order.
@@ -94,8 +94,8 @@ Passing a one-element list selects `email` as the sole duplicate key. Other colu
 - **Nonconsecutive index:** Surviving labels are preserved; call `reset_index(drop=true)` only if a new index is explicitly required.
 - **Duplicate names but different emails:** Both rows survive because `name` is outside the subset.
 - **Repeated missing emails:** pandas retains the first and treats later missing keys as duplicates for this operation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

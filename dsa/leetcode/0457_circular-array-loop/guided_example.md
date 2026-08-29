@@ -73,7 +73,7 @@ If no meeting occurs yet, slow advances once and fast advances twice. In any fin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an unmarked start `i`, initialize `slow = i` and `fast =... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For `[2,-1,1,2,2]`, start at index `0`. Its route is `0 -> 2 -> 3 -> 0`. Values 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Corrected in-place cleanup:** Cache `next(j)` :** - **Corrected in-place cleanup:** Cache `next(j)` before writing zero. This preserves the same logic and restores the intended $O(n)$ amortized time with $O(1)$ auxiliary space.
+- **Corrected in-place cleanup:** Cache `next(j)` before writing zero. This preserves the same logic and restores the intended $O(n)$ amortized time with $O(1)$ auxiliary space.
 - **Per-start visited set:** Record indices along each walk and detect repeats directly. It is simpler to visualize but can use $O(n)$ extra space and repeat work unless global state is also maintained.
 - **Three-state visitation array:** Mark nodes unseen, active in the current walk, or fully processed. This gives $O(n)$ time and clear cycle ownership, but uses $O(n)$ space.
 - **Ignore direction:** Ordinary functional-graph cycle detection would wrongly accept routes containing both positive and negative jumps.
@@ -119,8 +119,8 @@ For `[2,-1,1,2,2]`, start at index `0`. Its route is `0 -> 2 -> 3 -> 0`. Values 
 - **Zero values:** Original inputs cannot contain zero. Zeros are reserved for internal marking and cause future traversals to stop.
 - **Input mutation:** Failed starts are replaced with zero. Callers that need the original jumps must pass a copy.
 - **Negative modulo:** Python already produces a nonnegative remainder for positive `n`; other languages may need the double-modulo normalization shown by the formula.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

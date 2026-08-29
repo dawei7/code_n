@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given two binary strings `s` and `t`​​​​​​​, each of length `n`.
+You are given two binary strings `s` and `t`, each of length `n`.
 
 You may **rearrange** the characters of `t` in any order, but `s` **must remain unchanged**.
 

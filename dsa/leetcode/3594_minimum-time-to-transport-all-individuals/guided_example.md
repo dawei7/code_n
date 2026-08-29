@@ -55,7 +55,7 @@ For one person, no return is necessary after the only crossing, so capacity one 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If boat capacity is one and more than one person exists, eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This supplies group maxima in constant time during transition enumeration.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming without a priority queue:*:** - **Dynamic programming without a priority queue:** Unequal stage-dependent edge weights prevent ordinary BFS; a repeated-relaxation DP would need another valid ordering.
+- **Dynamic programming without a priority queue:** Unequal stage-dependent edge weights prevent ordinary BFS; a repeated-relaxation DP would need another valid ordering.
 - **Ordinary BFS:** It minimizes number of trips, not elapsed weighted time.
 - **Precompute all feasible groups:** This can reduce repeated bit counts but stores additional exponential data; the source enumerates submasks directly.
 - **Capacity covers everyone:** The algorithm may send the full set immediately, while still comparing other routes whose stage effects could theoretically differ.
@@ -111,8 +111,8 @@ This supplies group maxima in constant time during transition enumeration.
 - **Positive multipliers:** All edges have positive duration, satisfying Dijkstra’s requirement.
 - **Floating stale check:** Pushed values come directly from assigned distance values, so exact equality filters their own stale copies; robust production code might prefer a greater-than test.
 - **n at maximum twelve:** Exponential enumeration is intentional and bounded by the small constraint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

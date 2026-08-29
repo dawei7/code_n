@@ -75,13 +75,7 @@ so the representation is `12_7`, immediately disproving the property. The exampl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let:
-
-$$
-b=n-2.
-$$
-
-When $n\ge5$, $b\ge3$, so digit `2` is v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +120,7 @@ This boundary case completes the proof for the full input domain.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert in every required base:** It can verif:** - **Convert in every required base:** It can verify the definition directly but wastes substantial work; the single counterexample theorem already settles all inputs.
+- **Convert in every required base:** It can verify the definition directly but wastes substantial work; the single counterexample theorem already settles all inputs.
 - **Test only base two:** It is insufficient as a general proof because some numbers, such as nine, are palindromic in base two.
 - **Use base `n - 2` blindly as `"12"`:** The derivation needs `n >= 5` so base is at least three and digit two is valid.
 - **Boundary `n = 4`:** Base two representation `100` supplies the required separate counterexample.
@@ -134,8 +128,8 @@ This boundary case completes the proof for the full input domain.
 - **Upper constraint:** The proof does not depend on `10^5` and works for every integer at least four.
 - **No true branch:** This is intentional and fully proved, not an omitted implementation.
 - **No base-conversion helper:** Runtime conversion would not improve correctness once the invariant is known.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

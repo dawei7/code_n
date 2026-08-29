@@ -65,7 +65,7 @@ If the intended object were a multiset whose exact multiplicities had to match a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop begins with `min_x = inf` and `max_x = -inf`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ For `[[1, 1], [-1, -1]]`, the same candidate axis is derived. The mirror of `(1,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group and sort x-coordinates by height:** For :** - **Group and sort x-coordinates by height:** For every $y$, sort that row's horizontal coordinates and compare pairs from the outside inward against a common sum. This can verify symmetry but costs $O(n\log n)$ time overall.
-- **- **Try every possible partner or axis:** Comparin:** - **Try every possible partner or axis:** Comparing point pairs can reach $O(n^2)$ time and ignores the fact that the global extremes uniquely determine the candidate axis.
-- **- **Frequency map for multiset symmetry:** Store c:** - **Frequency map for multiset symmetry:** Store counts of every coordinate and require equal counts for `(x, y)` and `(s - x, y)`. This is necessary only if duplicate multiplicity is semantically meaningful; the exact source follows set semantics.
+- **Group and sort x-coordinates by height:** For every $y$, sort that row's horizontal coordinates and compare pairs from the outside inward against a common sum. This can verify symmetry but costs $O(n\log n)$ time overall.
+- **Try every possible partner or axis:** Comparing point pairs can reach $O(n^2)$ time and ignores the fact that the global extremes uniquely determine the candidate axis.
+- **Frequency map for multiset symmetry:** Store counts of every coordinate and require equal counts for `(x, y)` and `(s - x, y)`. This is necessary only if duplicate multiplicity is semantically meaningful; the exact source follows set semantics.
 
 ---
 

@@ -62,7 +62,7 @@ The candy’s magnitude is preserved, so comparisons use `abs(board[i][j])`. A h
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All groups present at the beginning of a round must disappea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ The nonzero check prevents three empty cells from being treated as a candy group
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect coordinates in a set:** Scan the board:** - **Collect coordinates in a set:** Scan the board and add every crushable position to a set, then clear those cells and apply gravity. This is conceptually direct but needs `O(mn)` extra space in the worst case. Negative marking stores the same information inside the board.
-- **- **Crush immediately while scanning:** This is in:** - **Crush immediately while scanning:** This is incorrect because an erased cell may belong to another horizontal or vertical group that must be detected simultaneously. Mark first, then remove.
-- **- **Copy the board for each round:** Comparing aga:** - **Copy the board for each round:** Comparing against an unchanged snapshot also preserves simultaneity, but it requires `O(mn)` additional memory per working copy. Absolute-value marking achieves the same effect in place.
+- **Collect coordinates in a set:** Scan the board and add every crushable position to a set, then clear those cells and apply gravity. This is conceptually direct but needs `O(mn)` extra space in the worst case. Negative marking stores the same information inside the board.
+- **Crush immediately while scanning:** This is incorrect because an erased cell may belong to another horizontal or vertical group that must be detected simultaneously. Mark first, then remove.
+- **Copy the board for each round:** Comparing against an unchanged snapshot also preserves simultaneity, but it requires `O(mn)` additional memory per working copy. Absolute-value marking achieves the same effect in place.
 
 ---
 

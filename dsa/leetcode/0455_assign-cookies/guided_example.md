@@ -64,7 +64,7 @@ If the current child was unmatched but `s[j]` was used for a later child, reassi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider the least-greedy remaining child `i` and the first ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ If a cookie remains, the first non-skipped cookie satisfies `g[i]`. Incrementing
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every child-cookie pairing:** This becomes:** - **Try every child-cookie pairing:** This becomes a bipartite matching problem and is far more expensive than necessary because acceptability is ordered by size.
+- **Try every child-cookie pairing:** This becomes a bipartite matching problem and is far more expensive than necessary because acceptability is ordered by size.
 - **Process largest values first:** Matching the greediest child with the largest fitting cookie can also be made correct, but the smallest-first scan makes useless cookies easy to discard and matches the exact source.
 - **Use a multiset without sorting children:** For each child, find the smallest adequate cookie in a balanced tree. It costs roughly $O((G+S)\log S)$ and needs more machinery.
 - **Empty cookie list:** The first child finds `j >= len(s)` and the method returns zero.
@@ -115,8 +115,8 @@ If a cookie remains, the first non-skipped cookie satisfies `g[i]`. Incrementing
 - **Many duplicate sizes or greed factors:** Sorting keeps equal values adjacent, and each pointer advance still represents one distinct child or cookie occurrence.
 - **Huge cookie for a small child:** It is used only if every smaller remaining cookie is inadequate; the greedy proof shows this cannot reduce the maximum match count.
 - **Input mutation:** Both input lists are reordered. A caller needing their original order would have to sort copies instead.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

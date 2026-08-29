@@ -51,7 +51,7 @@ total ways to choose those four surrounding positions. The source counts all of 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | total ways to choose those four surrounding positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let $l_v$ and $r_v$ be the frequencies of value $v$ on the left and right of the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate five indices:** Directly checking ev:** - **Enumerate five indices:** Directly checking every length-$5$ subsequence costs $O(n^5)$ and is impossible for $n=10^5$.
+- **Enumerate five indices:** Directly checking every length-$5$ subsequence costs $O(n^5)$ and is impossible for $n=10^5$.
 - **Loop over distinct values per middle:** The same formulas can be computed from counters by summing all values each time, but this degrades to $O(n^2)$ when values are mostly distinct.
 - **Count valid patterns directly:** Valid cases can also be divided by the number of extra middle values, but the exactly-one case remains intricate. Total-minus-invalid produces compact disjoint formulas.
 - **All values equal:** Every choice of five indices is valid. The subtraction terms become zero, yielding $\binom n5$ across all middle positions, as in the first example.
@@ -96,8 +96,8 @@ Let $l_v$ and $r_v$ be the frequencies of value $v$ on the left and right of the
 - **Too few positions on one side:** `choose_two(0)` and `choose_two(1)` are zero, so edge middle indices contribute nothing without separate branches.
 - **Nonnegative subtraction:** The combinatorial derivation guarantees `total - invalid` counts real selections. Applying modulo also safely normalizes the accumulated answer.
 - **Current occurrence placement:** The middle must be removed from `right` before counting and added to `left` afterward. Reversing either step would allow the same index to be selected as both middle and side element.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

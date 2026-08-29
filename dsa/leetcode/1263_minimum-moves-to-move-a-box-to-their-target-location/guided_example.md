@@ -61,7 +61,7 @@ These edge costs are zero for walking and one for pushing. Processing zero-cost 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | From a state, the player may try the four cardinal direction... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The grid itself is not modified. Characters `S` and `B` are treated as walkable 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra's algorithm:** The same player-box gr:** - **Dijkstra's algorithm:** The same player-box graph can be searched with a priority queue using edge weights zero and one. It is correct but adds a logarithmic queue factor that zero-one BFS avoids.
+- **Dijkstra's algorithm:** The same player-box graph can be searched with a priority queue using edge weights zero and one. It is correct but adds a logarithmic queue factor that zero-one BFS avoids.
 - **Push-level BFS with reachability checks:** Store the box cell and the side occupied by the player, then run a flood fill to decide which pushing sides are reachable. This can reduce persistent states toward $O(V)$ but repeats or caches walking reachability logic and differs from the exact source.
 - **Sparse visited set:** Storing only reached `(player, box)` pairs avoids eagerly allocating invalid wall combinations. Worst-case asymptotic space remains $O(V^2)$, though practical memory may improve.
 - **Ordinary BFS that counts every move:** Treating walking and pushing equally minimizes total player steps, not pushes, and can return the wrong answer.
@@ -112,8 +112,8 @@ The grid itself is not modified. Characters `S` and `B` are treated as walkable 
 - **Same box, different player:** These must remain separate states because only some player positions may reach the side needed for the next push.
 - **Target and lettered cells are traversable:** `check` excludes only walls, so `S`, `B`, `T`, and `.` cells are all treated as floor after their semantic positions are known.
 - **Missing markers are outside the contract:** The exact scan assumes one `S` and one `B` exist; without them, the saved coordinates would be undefined.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

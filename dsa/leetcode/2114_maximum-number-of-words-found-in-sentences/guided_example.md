@@ -71,11 +71,7 @@ A one-word sentence contains zero spaces, and the formula returns one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider a sentence with words
-
-`word1 word2 word3`.
-
-There ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +114,7 @@ The input guarantee `sentences.length >= 1` ensures `max` always receives at lea
 
 ## 6. Traps This Instance Exposes
 
-- **- **`len(s.split())`:** Correct under the contract:** - **`len(s.split())`:** Correct under the contract and more general about whitespace, but allocates a list of word substrings for each sentence.
+- **`len(s.split())`:** Correct under the contract and more general about whitespace, but allocates a list of word substrings for each sentence.
 - **Manual character loop:** It can count spaces with the same time and constant space, but `str.count` expresses the operation directly.
 - **One-word sentence:** Zero spaces plus one gives one word.
 - **Multiple sentences tie:** Only the maximum count is returned, so no tie-breaking is needed.
@@ -132,8 +128,8 @@ The input guarantee `sentences.length >= 1` ensures `max` always receives at lea
 - **Input preservation:** Sentences remain unchanged.
 - **Add after maximum:** A uniform plus one commutes with taking the maximum, so no per-sentence word-count list is needed.
 - **Tie preservation:** Equal separator counts imply equal word counts under the format contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have `k` bags. You are given a **0-indexed** integer array `weights` where $\text{weights}[i]$ is the weight of the $$i^{\text{th}}$$ marble. You are also given the integer `k.`
+You have `k` bags. You are given a **0-indexed** integer array `weights` where $\text{weights}[i]$ is the weight of the $i^{\text{th}}$ marble. You are also given the integer `k.`
 
 The objective is to compute `4` from `{"weights": [1, 3, 5, 1], "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -82,9 +82,7 @@ When taking maximum score minus minimum score, the fixed outer-endpoint term can
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Regardless of cuts:
-
-- the first marble is the first endpoin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +121,7 @@ After sorting `arr` ascending, these values are `arr[:k-1]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heaps for partial selection:** Find `k-1` smal:** - **Heaps for partial selection:** Find `k-1` smallest and largest without a full sort when `k` is small.
+- **Heaps for partial selection:** Find `k-1` smallest and largest without a full sort when `k` is small.
 - **`k=1`:** No boundaries, so difference zero.
 - **`k=n`:** All boundaries are forced, also giving zero.
 - **Single-marble bag:** Its weight appears as both endpoints, correctly through adjacent cuts.
@@ -133,8 +131,8 @@ After sorting `arr` ascending, these values are `arr[:k-1]`.
 - **Contiguous bags:** Every gap subset automatically preserves contiguity.
 - **Large sums:** Use wide arithmetic.
 - **Pairwise iterator:** It generates every adjacent boundary exactly once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

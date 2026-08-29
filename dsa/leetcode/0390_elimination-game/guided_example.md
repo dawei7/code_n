@@ -75,7 +75,7 @@ This is why the even-direction branch contains an unconditional update of `a1` a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Index the current progression’s positions from one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,9 +119,9 @@ The odd-direction branch of the code therefore updates `an` unconditionally and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit list simulation:** Build `[1, ..., n]:** - **Explicit list simulation:** Build `[1, ..., n]`, keep every other value, reverse direction, and repeat. It is intuitive but requires $O(n)$ memory and substantial element-copying work, which is infeasible for $n = 10^9$.
-- **- **Recursive recurrence:** The game has a compact:** - **Recursive recurrence:** The game has a compact mathematical recurrence relating the left-to-right result for `n` to a reflected result on `n // 2`. This yields $O(\log n)$ time and $O(\log n)$ call-stack space. The iterative endpoint model avoids recursion and is easier to trace operationally.
-- **- **Head-only iterative model:** Track the first v:** - **Head-only iterative model:** Track the first value, gap, remaining count, and direction. The head moves on every left pass and on a right pass only when the count is odd. This is equivalent and slightly smaller; the exact solution additionally maintains the tail.
+- **Explicit list simulation:** Build `[1, ..., n]`, keep every other value, reverse direction, and repeat. It is intuitive but requires $O(n)$ memory and substantial element-copying work, which is infeasible for $n = 10^9$.
+- **Recursive recurrence:** The game has a compact mathematical recurrence relating the left-to-right result for `n` to a reflected result on `n // 2`. This yields $O(\log n)$ time and $O(\log n)$ call-stack space. The iterative endpoint model avoids recursion and is easier to trace operationally.
+- **Head-only iterative model:** Track the first value, gap, remaining count, and direction. The head moves on every left pass and on a right pass only when the count is odd. This is equivalent and slightly smaller; the exact solution additionally maintains the tail.
 
 ---
 

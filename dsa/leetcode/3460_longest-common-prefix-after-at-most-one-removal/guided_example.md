@@ -51,7 +51,7 @@ When `s[i] == t[j]`, the characters extend the common prefix. Both strings advan
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `s[i] == t[j]`, the characters extend the common prefix... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ When they differ and no removal has been used, the only way to continue matching
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try deleting every position:** Recomputing a p:** - **Try deleting every position:** Recomputing a prefix for each choice can take $O(n^2)$ time.
+- **Try deleting every position:** Recomputing a prefix for each choice can take $O(n^2)$ time.
 - **Dynamic programming:** A two-state matched-prefix DP works but is unnecessary because the first useful deletion is forced.
 - **Delete from \(t\):** The operation permits removal only from `s`; `j` must never skip.
 - **No mismatch:** No removal is needed, and the shorter-string length is returned.
@@ -96,8 +96,8 @@ When they differ and no removal has been used, the only way to continue matching
 - **\(t\) longer than \(s\):** At most the available post-deletion characters can contribute.
 - **At most one removal:** Leaving `rem` false is a valid outcome.
 - **Input preservation:** Indices scan immutable strings without constructing modified copies.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

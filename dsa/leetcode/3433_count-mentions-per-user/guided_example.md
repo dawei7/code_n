@@ -51,7 +51,7 @@ The first key is numeric time. The second key is a compact tie-breaker: characte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first key is numeric time.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The sort mutates the input `events` list. All later processing is chronological.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply ALL immediately:** It is correct but cos:** - **Apply ALL immediately:** It is correct but costs $O(U)$ per ALL message. The lazy scalar reduces all such work to one final pass.
+- **Apply ALL immediately:** It is correct but costs $O(U)$ per ALL message. The lazy scalar reduces all such work to one final pass.
 - **Explicit online/offline Boolean:** It would require scheduling return events or checking timestamps separately. A next-online time represents both states compactly.
 - **Wrong same-time order:** Processing a message before OFFLINE at the same timestamp would incorrectly include that user in HERE.
 - **Automatic return time:** A user is online at exactly `offline_time + 60`, so the comparison must be `<=`.
@@ -96,8 +96,8 @@ The sort mutates the input `events` list. All later processing is chronological.
 - **Initially online:** Zero return times make every user pass HERE at positive timestamps until an offline event changes the entry.
 - **Input mutation:** `events.sort` reorders the caller's event list.
 - **Tie-break key:** `e[0][2]` works only because the guaranteed names place `"F"` before `"S"`; an explicit Boolean is clearer for maintenance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

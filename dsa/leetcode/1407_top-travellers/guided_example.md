@@ -59,7 +59,7 @@ This multiplicity is useful rather than accidental: the aggregate function can a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before grouping, a user with several rides appears several t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The selected `name` is functionally determined by `u.id`: every group represents
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner join:** This is shorter but wrong for th:** - **Inner join:** This is shorter but wrong for the contract because every user without a ride disappears before aggregation.
+- **Inner join:** This is shorter but wrong for the contract because every user without a ride disappears before aggregation.
 - **Correlated subquery per user:** Selecting each user and running a separate sum over `Rides` can express the same result. Without a helpful index it may repeatedly scan rides and be much slower than joining and grouping once.
 - **Pre-aggregate then join:** A derived table can first group `Rides` by `user_id` and then left join those totals to `Users`. It is correct and can make the one-row-per-user relationship explicit, but the stored query achieves the same logical result compactly.
 - **Window function:** `SUM(distance) OVER (PARTITION BY u.id)` would repeat the total on every joined ride row, so an additional deduplication step would be required. Plain grouping is more direct here.
@@ -112,8 +112,8 @@ The selected `name` is functionally determined by `u.id`: every group represents
 - **Equal names for distinct users:** Grouping preserves separate rows because their identifiers differ. Their displayed names and totals may tie completely; the contract does not require another tie-breaker.
 - **Ordinal ordering syntax:** `ORDER BY 2 DESC, 1` depends on the select-column positions. Writing `ORDER BY travelled_distance DESC, name ASC` is more self-documenting and equivalent, but the exact stored solution uses ordinals correctly.
 - **Null handling location:** Omitting `COALESCE` returns `NULL` rather than zero for a non-traveller. Converting the completed aggregate is the key step because there is no non-null distance to sum in that group.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

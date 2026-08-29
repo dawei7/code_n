@@ -16,7 +16,7 @@ The following sequence is not **arithmetic**:
 1, 1, 2, 5, 7
 ```
 
-You are given an array of `n` integers, `nums`, and two arrays of `m` integers each, `l` and `r`, representing the `m` range queries, where the $$i^{\text{th}}$$ query is the range `[l[i], r[i]]`. All the arrays are **0-indexed**.
+You are given an array of `n` integers, `nums`, and two arrays of `m` integers each, `l` and `r`, representing the `m` range queries, where the $i^{\text{th}}$ query is the range `[l[i], r[i]]`. All the arrays are **0-indexed**.
 
 Return *a list of *`boolean` *elements* `answer`*, where* $\text{answer}[i]$ *is* `true` *if the subarray* $nums[l[i]], nums[l[i]+1], ... , nums[r[i]]$* can be **rearranged** to form an **arithmetic** sequence, and* `false` *otherwise.*
 

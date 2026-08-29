@@ -61,7 +61,7 @@ Path compression in `find` shortens representative chains. `merge` attaches one 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Initially every index is its own set of size one, and `vis` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ If the test succeeds, the whole active component is a valid subarray of length `
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic stack:** Find each value's widest in:** - **Monotonic stack:** Find each value's widest interval where it is the minimum, then test `value * width > threshold`. This achieves `O(n)` time and `O(n)` space and matches the manifest summary.
+- **Monotonic stack:** Find each value's widest interval where it is the minimum, then test `value * width > threshold`. This achieves `O(n)` time and `O(n)` space and matches the manifest summary.
 - **For every length, use a sliding minimum:** Repeating a window-minimum computation for all lengths costs quadratic time.
 - **Binary search the answer length:** Validity is not simply monotone by length for arbitrary arrays, so ordinary binary search on `k` is unsafe.
 - **Merge nonadjacent active indices:** That would create a set that is not a subarray. Only immediate active neighbors may join.
@@ -120,8 +120,8 @@ If the test succeeds, the whole active component is a valid subarray of length `
 - **Current `vis` timing:** The current node is merged before being marked active, but initialized DSU state makes that valid; the mark is needed only for later iterations.
 - **Tie ordering:** Reverse tuple sorting affects when equal indices activate but not correctness.
 - **Input preservation:** Sorting creates a separate pair list and leaves `nums` unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

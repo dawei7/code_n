@@ -52,7 +52,7 @@ The exact solution uses a stack-like list to cancel matching pairs. After proces
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - If `c` is a closing parenthesis and the stack top is an op... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ An opening parenthesis is always appended because it may be matched by a future 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two counters:** Maintain open balance; when a :** - **Two counters:** Maintain open balance; when a closing arrives at balance zero, count a needed opening, otherwise decrement balance. Return needed openings plus remaining balance. This achieves $O(1)$ space and matches the manifest.
+- **Two counters:** Maintain open balance; when a closing arrives at balance zero, count a needed opening, otherwise decrement balance. Return needed openings plus remaining balance. This achieves $O(1)$ space and matches the manifest.
 - **Repeatedly replace `()` in the string:** It can require many scans and $O(n^2)$ time.
 - **Full parser:** A grammar parser is unnecessary for a single parenthesis type.
 - **Already valid string:** Every symbol cancels and stack length is zero.
@@ -101,8 +101,8 @@ An opening parenthesis is always appended because it may be matched by a future 
 - **Only two character types:** The exact branch's `else` means every nonmatched character is one of the valid parentheses by contract.
 - **Manifest mismatch:** The stored list grows with unmatched input; it is not constant-space even though a counter alternative is.
 - **Minimum proof:** Stack length supplies a lower bound of one missing partner per symbol and a construction using exactly that many insertions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

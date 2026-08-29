@@ -10,7 +10,7 @@ You must **repeatedly** remove all **non-overlapping k-balanced substrings** fro
 
 Return the final string after all possible removals.
 
-​​​​​​​**Example 1:**
+**Example 1:**
 
 **Input:** s = "(())", k = 1
 

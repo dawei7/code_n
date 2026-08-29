@@ -36,7 +36,7 @@ Return *the lowest number of moves to acquire all keys*. If it is impossible, re
 
 ![](images/lc-keys2.jpg)
 
-- **Input:** $grid = ["@.a..","###.#","\text{b.A}.B"]$
+- **Input:** `grid = ["@.a..","###.#","\text{b.A}.B"]`
 - **Output:** `8`
 - **Explanation:** Note that the goal is to obtain all the keys not to open all the locks.
 
@@ -44,14 +44,14 @@ Return *the lowest number of moves to acquire all keys*. If it is impossible, re
 
 ![](images/lc-key2.jpg)
 
-- **Input:** $grid = ["@..aA","..B#.","....b"]$
+- **Input:** `grid = ["@..aA","..B#.","....b"]`
 - **Output:** `6`
 
 #### Example 3
 
 ![](images/lc-keys3.jpg)
 
-- **Input:** $grid = ["@Aa"]$
+- **Input:** `grid = ["@Aa"]`
 - **Output:** `-1`
 
 ### 4. Constraints

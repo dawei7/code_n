@@ -69,7 +69,7 @@ Starting with infinity makes the first minimum equal to `g[i][j]`. As more rows 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix cell `(i, j)` as the bottom-right corner.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ At a different bottom row where the upward widths are three and two, contributio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic stack per row:** Build upward histog:** - **Monotonic stack per row:** Build upward histogram heights and count rectangles ending at each column with an increasing stack. It achieves the manifest's $O(mn)$ time and $O(n)$ space.
+- **Monotonic stack per row:** Build upward histogram heights and count rectangles ending at each column with an increasing stack. It achieves the manifest's $O(mn)$ time and $O(n)$ space.
 - **Early break at zero width:** Stop the upward scan when `col` becomes zero. It improves zero-heavy inputs but retains $O(m^2n)$ worst-case time on all ones.
 - **Brute-force four boundaries:** Enumerating every rectangle and checking all its cells is much slower because it repeats cell validation.
 - **Single cell:** A one contributes one submatrix, while a zero contributes none.
@@ -120,8 +120,8 @@ At a different bottom row where the upward widths are three and two, contributio
 - **One column:** The method counts all vertical runs through the incremental minimum.
 - **Infinity initialization:** `inf` must be available in the module environment; the first minimum converts it to a finite width.
 - **No input mutation:** `mat` is read only, while widths are written to a separate matrix.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

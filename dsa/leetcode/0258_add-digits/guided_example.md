@@ -94,7 +94,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a positive input, the final digital root must be one of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -139,7 +139,7 @@ Zero must remain a separate branch. Applying the positive formula to zero in Pyt
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct digit-sum simulation:** Repeatedly extr:** - **Direct digit-sum simulation:** Repeatedly extract digits with `% 10` and `// 10` until one digit remains. It is easy to discover but uses loops and takes time proportional to the digits processed, missing the constant-time follow-up.
+- **Direct digit-sum simulation:** Repeatedly extract digits with `% 10` and `// 10` until one digit remains. It is easy to discover but uses loops and takes time proportional to the digits processed, missing the constant-time follow-up.
 - **String conversion:** Convert the number to text and sum converted characters repeatedly. This is more allocation-heavy and still iterative.
 - **Three-branch modulo formula:** Return `0` for zero, `9` for positive multiples of 9, and `num % 9` otherwise. It is equivalent to the exact compact expression but uses an additional explicit case.
 - **`num = 0`:** This is the only input whose digital root is zero. It must be handled before the positive formula.
@@ -149,8 +149,8 @@ Zero must remain a separate branch. Applying the positive formula to zero in Pyt
 - **Nonnegative-input assumption:** The mathematical digital root can be extended to negatives with a chosen convention, but the source and contract define only `num >= 0`.
 - **Decimal-base dependency:** Modulo 9 appears because $10\equiv1\pmod9$. In base $b$, the analogous positive digital-root formula uses modulo $b-1$.
 - **Divisibility intuition:** The familiar rule “a number is divisible by 9 exactly when its digit sum is divisible by 9” is a consequence of the same congruence used here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

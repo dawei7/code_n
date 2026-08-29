@@ -51,7 +51,7 @@ This one recurrence contains the entire greedy strategy. If the original value i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This one recurrence contains the entire greedy strategy.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This one recurrence contains the entire greedy strategy. If the original value i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate the array in place:** Setting `nums[i] :** - **Mutate the array in place:** Setting `nums[i] = max(nums[i], nums[i - 1] + 1)` and adding the difference expresses the same greedy recurrence. It remains `O(n)` time and `O(1)` auxiliary space but changes the caller’s input.
+- **Mutate the array in place:** Setting `nums[i] = max(nums[i], nums[i - 1] + 1)` and adding the difference expresses the same greedy recurrence. It remains `O(n)` time and `O(1)` auxiliary space but changes the caller’s input.
 - **Construct a separate adjusted array:** This can make the resulting sequence visible for teaching or reconstruction, but it uses `O(n)` additional space even though only the last adjusted value affects the next decision.
 - **Repeated one-by-one simulation:** Literally incrementing a value until it clears its predecessor produces the same answer but may take time proportional to the answer, which can be far larger than `n`. Computing the difference performs all forced increments at once.
 - **Already strictly increasing:** Every difference term is zero, each value becomes the new `mx` unchanged, and the answer is zero.
@@ -97,8 +97,8 @@ This one recurrence contains the entire greedy strategy. If the original value i
 - **Strict versus non-decreasing:** The required threshold is `mx + 1`, not `mx`. Using `mx` would permit equal adjacent values and solve a different problem.
 - **Positive-input assumption:** Initializing `mx` to zero is correct because every input value is at least one. A generalized version allowing arbitrary integers should initialize from the first array value instead.
 - **No integer overflow in Python:** `ans` and `mx` expand as needed. Implementations with bounded integers should use a sufficiently wide type for the accumulated answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

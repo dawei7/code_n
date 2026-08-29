@@ -66,9 +66,7 @@ At the start of each step, the inner loop advances `i` while the next threshold 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source first builds
-
-`idx = sorted(range(n), key=lambda ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +105,7 @@ For the first example, step one releases only the value 10, so 10 is selected. S
 
 ## 6. Traps This Instance Exposes
 
-- **- **Threshold buckets with aggregate state:** Beca:** - **Threshold buckets with aggregate state:** Because thresholds lie between 1 and `n`, a genuinely different algorithm may exploit arrays indexed by threshold. That is the strategy suggested by the manifest, but it is not what this source executes.
+- **Threshold buckets with aggregate state:** Because thresholds lie between 1 and `n`, a genuinely different algorithm may exploit arrays indexed by threshold. That is the strategy suggested by the manifest, but it is not what this source executes.
 - **Maximum heap:** A max-heap can replace the sorted multiset because only insertion and removal of the maximum are required. Python would normally store negated values. It has the same $O(n\log n)$ worst-case class with simpler operations.
 - **Choose the smallest eligible threshold first:** This is unnecessary for reachability; the number of reachable steps depends only on threshold counts, not the chosen eligible threshold. It can sacrifice contribution value.
 - **Choose the globally largest unreleased value:** A high value with `threshold[i] > step` is illegal and cannot be selected early.
@@ -119,8 +117,8 @@ For the first example, step one releases only the value 10, so 10 is selected. S
 - **Positive contributions:** The documented values are positive, but the process still cannot stop voluntarily. Even in a generalized signed version, the loop would correctly make a required choice whenever one exists.
 - **Input mutation:** The arrays are not reordered or modified; only a separate index list and multiset are created.
 - **Source/manifest complexity mismatch:** Any performance claim for this exact solution must include sorting and ordered multiset operations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

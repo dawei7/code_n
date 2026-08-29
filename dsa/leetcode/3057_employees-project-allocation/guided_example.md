@@ -51,7 +51,7 @@ The resulting CTE has one row per represented team:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The resulting CTE has one row per represented team:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Employees without a project row contribute no workload and therefore do not ente
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window average:** Join allocations to employee:** - **Window average:** Join allocations to employees once, compute `AVG(workload) OVER (PARTITION BY team)`, then filter in an outer query. This matches the manifest but not the exact source.
+- **Window average:** Join allocations to employees once, compute `AVG(workload) OVER (PARTITION BY team)`, then filter in an outer query. This matches the manifest but not the exact source.
 - **Correlated subquery:** Recompute a team's average for each employee. It is correct with optimization but can repeat work and be harder to reason about.
 - **Workload equals average:** It is excluded because the predicate is strictly greater.
 - **One employee in a team:** Their workload equals the team's average, so that team contributes no result.
@@ -100,8 +100,8 @@ Employees without a project row contribute no workload and therefore do not ente
 - **Team with no allocated employee:** It has no row in CTE `T` and cannot produce an output employee, which is consistent because no project workload exists to evaluate.
 - **Name is descriptive only:** Employee identity and joining use `employee_id`. Duplicate employee names across teams or within a team cannot merge rows or alter averages.
 - **Strict team isolation:** The CTE key prevents an employee from being compared with a global company average or another team's workload distribution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

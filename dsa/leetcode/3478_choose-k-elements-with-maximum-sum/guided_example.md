@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{nums1}[j] < \texttt{nums1}[i].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ If the current `nums1` threshold increases, the eligible set only grows. This mo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan every index for every answer:** This dire:** - **Scan every index for every answer:** This directly follows the definition but costs $O(n^2)$.
+- **Scan every index for every answer:** This directly follows the definition but costs $O(n^2)$.
 - **Sort `nums2` candidates per query:** Repeated sorting is even more expensive and discards the monotone-threshold structure.
 - **Use a max-heap:** It exposes the largest value, while maintenance needs to evict the smallest; a bounded min-heap is the natural choice.
 - **Insert equal `nums1` values immediately:** That would incorrectly treat equality as eligibility. The `arr[j][0] < x` guard delays the entire equal group.
@@ -102,8 +100,8 @@ If the current `nums1` threshold increases, the eligible set only grows. This mo
 - **Original order:** Saving index `i` in each sorted tuple is necessary to place the result back correctly.
 - **Running-sum synchronization:** Every push adds to `s` and every pop subtracts from it, so no separate $O(k)$ heap summation is needed per query.
 - **Input preservation:** Neither input array is mutated; sorted tuples and answers are stored separately.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

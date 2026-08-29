@@ -71,7 +71,7 @@ It holds initially at `j=k` because `nums[0]` is incorporated. If it holds for o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `x` stores the largest value among all left ind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,9 +118,9 @@ After the final iteration, every possible `j` with at least one valid left endpo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every pair:** Testing all `O(n^2)` i:** - **Enumerate every pair:** Testing all `O(n^2)` index pairs and filtering by distance is correct but unnecessary. The fixed-right-endpoint maximum reduces the search to one scan.
-- **- **Recompute the eligible-prefix maximum:** Calli:** - **Recompute the eligible-prefix maximum:** Calling `max(nums[:j-k+1])` for every `j` repeats work and can produce `O(n^2)` time.
-- **- **Prefix-maximum array:** Precomputing `prefixMa:** - **Prefix-maximum array:** Precomputing `prefixMax[t]` gives each right endpoint's best left value in constant time, but uses `O(n)` space. The source maintains only the current prefix maximum.
+- **Enumerate every pair:** Testing all `O(n^2)` index pairs and filtering by distance is correct but unnecessary. The fixed-right-endpoint maximum reduces the search to one scan.
+- **Recompute the eligible-prefix maximum:** Calling `max(nums[:j-k+1])` for every `j` repeats work and can produce `O(n^2)` time.
+- **Prefix-maximum array:** Precomputing `prefixMax[t]` gives each right endpoint's best left value in constant time, but uses `O(n)` space. The source maintains only the current prefix maximum.
 
 ---
 

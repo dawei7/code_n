@@ -61,7 +61,7 @@ It is positive when $S_j<S_i$. To maximize interval length for a fixed end, the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the prefix sum through index `i` be $S_i$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The conceptual prefix before the array has sum zero at index negative one. This 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic enumeration:** Compute every interva:** - **Quadratic enumeration:** Compute every interval sum, taking $O(n^2)$ time even with prefix sums.
+- **Quadratic enumeration:** Compute every interval sum, taking $O(n^2)$ time even with prefix sums.
 - **Monotonic-stack prefix method:** Build all prefixes, keep decreasing candidate indices, and scan from the right. It also achieves $O(n)$ but uses a more global proof.
 - **Store every prefix occurrence:** Correct but unnecessary; only the earliest can maximize length.
 - **All tiring days:** Every prefix is positive, so the answer grows to $n$.
@@ -112,8 +112,8 @@ The conceptual prefix before the array has sum zero at index negative one. This 
 - **Single tiring day:** The answer is one.
 - **Single non-tiring day:** The answer is zero.
 - **Implicit prefix zero:** The `s > 0` branch replaces the need to store sum zero at index negative one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

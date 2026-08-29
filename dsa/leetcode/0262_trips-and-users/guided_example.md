@@ -73,11 +73,7 @@ Using the unqualified name `request_at` is unambiguous here because only `Trips`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition
-
-
-
-is inclusive at both ends.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +122,7 @@ The query applies `ROUND(..., 2)` after taking the average, producing the requir
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional sum divided by count:** `SUM(statu:** - **Conditional sum divided by count:** `SUM(status != 'completed') / COUNT(*)` expresses the same rate explicitly. `AVG` is shorter because a Boolean indicator already represents one canceled trip or zero.
+- **Conditional sum divided by count:** `SUM(status != 'completed') / COUNT(*)` expresses the same rate explicitly. `AVG` is shorter because a Boolean indicator already represents one canceled trip or zero.
 - **Exclude banned IDs with subqueries:** Filter both foreign keys using `NOT IN` or `NOT EXISTS`. It can be correct, but two joins make the client and driver requirements direct and avoid `NOT IN` null semantics.
 - **Common table expression:** First select eligible rows and a `cancelled` indicator, then group the CTE. This may improve readability for a longer pipeline but is unnecessary for the compact query.
 - **Banned client:** The first join eliminates the trip entirely, regardless of driver status or trip outcome.
@@ -140,8 +136,8 @@ The query applies `ROUND(..., 2)` after taking the average, producing the requir
 - **Duplicate user rows:** `users_id` is a primary key, so each join has at most one matching user and cannot multiply trip rows.
 - **Result ordering:** Without `ORDER BY`, the engine may return dates in any order, which the contract explicitly allows.
 - **Null status outside the declared enum contract:** `status != 'completed'` would evaluate to `NULL`, and `AVG` ignores nulls. If null statuses were possible, an explicit `CASE` expression would be safer; the source schema supplies only the stated enum outcomes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The query creates two aliases, `p1` and `p2`, of the `Points` table. Joining the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query creates two aliases, `p1` and `p2`, of the `Points... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Without that inequality, points with IDs one and two would appear both as `1, 2`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cross join with a WHERE pair condition:** Writ:** - **Cross join with a WHERE pair condition:** Writing `CROSS JOIN Points p2 WHERE p1.id < p2.id` is logically equivalent. Keeping the pair condition in `JOIN ... ON` makes pair formation explicit.
+- **Cross join with a WHERE pair condition:** Writing `CROSS JOIN Points p2 WHERE p1.id < p2.id` is logically equivalent. Keeping the pair condition in `JOIN ... ON` makes pair formation explicit.
 - **Filter on area greater than zero:** This is equivalent for integer coordinates but repeats or aliases the area calculation. Testing coordinate inequality states the geometry directly.
 - **Use LEAST and GREATEST for IDs:** Generate both orientations and normalize the IDs afterward. That performs duplicate work; `p1.id < p2.id` prevents duplicates earlier.
 - **GROUP BY normalized pair:** It could remove duplicated orientations, but correct join construction makes aggregation unnecessary.
@@ -102,8 +102,8 @@ Without that inequality, points with IDs one and two would appear both as `1, 2`
 - **Unique ID guarantee:** It makes `p1.id < p2.id` a reliable strict ordering and ensures output pair identities are unique.
 - **Area overflow in other systems:** Coordinate ranges and SQL integer promotion should be considered in a broader schema. Casting to a wider numeric type may be needed for extremely large coordinates.
 - **Ordering aliases:** MySQL permits `area`, `p1`, and `p2` in `ORDER BY` because they are selected aliases.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

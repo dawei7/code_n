@@ -81,7 +81,7 @@ For example, if all sums through `6` are covered, then `x = 7`. Consuming a next
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the next unused sorted value be $v=\text{nums}[i]$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,9 +118,9 @@ At least one patch is therefore unavoidable at this point. This is the key fact 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit subset-sum set or Boolean table:** Up:** - **Explicit subset-sum set or Boolean table:** Updating all reachable sums can solve smaller bounded targets, but it needs $O(n)$ or more storage and potentially $O(mn)$ time. Here `n` can approach $2^{31}-1$, making that approach impossible.
-- **- **Patch with a smaller value than `x`:** It may :** - **Patch with a smaller value than `x`:** It may close the immediate gap, but extends the frontier less than patching `x`. It cannot lead to fewer future patches under the coverage invariant.
-- **- **Patch with a value larger than `x`:** Positive:** - **Patch with a value larger than `x`:** Positive numbers already consumed cannot combine with it to make the smaller missing value `x`, so the gap remains. Such a patch is invalid as the next greedy action.
+- **Explicit subset-sum set or Boolean table:** Updating all reachable sums can solve smaller bounded targets, but it needs $O(n)$ or more storage and potentially $O(mn)$ time. Here `n` can approach $2^{31}-1$, making that approach impossible.
+- **Patch with a smaller value than `x`:** It may close the immediate gap, but extends the frontier less than patching `x`. It cannot lead to fewer future patches under the coverage invariant.
+- **Patch with a value larger than `x`:** Positive numbers already consumed cannot combine with it to make the smaller missing value `x`, so the gap remains. Such a patch is invalid as the next greedy action.
 
 ---
 

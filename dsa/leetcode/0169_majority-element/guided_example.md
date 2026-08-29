@@ -73,7 +73,7 @@ nonempty and the first iteration sees `cnt == 0`, `m` is replaced by
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `cnt == 0`, all elements represented by the previous vo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ negative one.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency map:** Count every value and return :** - **Frequency map:** Count every value and return the one above half. It is $O(n)$ time but can use $O(n)$ space.
+- **Frequency map:** Count every value and return the one above half. It is $O(n)$ time but can use $O(n)$ space.
 - **Sorting:** The majority must occupy sorted index `n // 2`, but sorting costs $O(n\log n)$ time and may mutate the input.
 - **Bit counting:** Reconstruct the majority bit by bit in linear time for a fixed integer width, with more implementation complexity around negatives.
 - **Divide and conquer:** Combine half-majority candidates, generally taking $O(n\log n)$ time.
@@ -129,8 +129,8 @@ negative one.
 - **Negative values:** Equality-only voting handles them unchanged.
 - **No guaranteed majority:** A second counting pass would be required to validate the candidate.
 - **Missing typing import:** `List` must be supplied for standalone evaluation of annotations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -68,7 +68,7 @@ For `start = 3` and `goal = 4`, the aligned forms are `011` and `100`. XOR produ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exclusive-or operation compares corresponding bits accor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ No explicit loop appears in the Python source because the language runtime perfo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare least significant bits in a loop:** Re:** - **Compare least significant bits in a loop:** Repeatedly test `start & 1` against `goal & 1` and right-shift both values. This is correct and explicit, but XOR consolidates the comparison into one mask and `bit_count()` expresses the final operation directly.
+- **Compare least significant bits in a loop:** Repeatedly test `start & 1` against `goal & 1` and right-shift both values. This is correct and explicit, but XOR consolidates the comparison into one mask and `bit_count()` expresses the final operation directly.
 - **Count XOR bits by shifting:** Store `x = start ^ goal`, add `x & 1` to a counter, and shift until `x` is zero. It examines every bit through the highest set position, including zero bits.
 - **Brian Kernighan's method:** Repeatedly execute `x &= x - 1` to clear the lowest set bit. It performs exactly one loop iteration per required flip and is valuable when no population-count built-in is available.
 - **Convert to padded binary strings:** Align string representations and count unequal characters. It can work, but needs padding and extra `O(b)` character storage for a problem naturally expressed with bits.
@@ -122,8 +122,8 @@ No explicit loop appears in the Python source because the language runtime perfo
 - **Flipping a leading zero:** This is already modeled. A high bit present only in `goal` becomes a set bit in XOR and is counted.
 - **Nonnegative-input guarantee:** Python's behavior for negative integers uses an unbounded signed representation that would need careful interpretation. The constraints exclude negative values, so `bit_count()` has the direct intended meaning.
 - **Repeated flips of one bit:** They cannot reduce the minimum. A differing bit needs odd parity and is cheapest to flip once; a matching bit needs even parity and is cheapest to leave alone.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

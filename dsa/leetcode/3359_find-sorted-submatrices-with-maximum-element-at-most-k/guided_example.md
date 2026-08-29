@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - contain only values at most `k`; and
-- are non-increasing ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ The first pass computes this value with a running `run` for each row. If the cur
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all submatrices:** Four boundaries a:** - **Enumerate all submatrices:** Four boundaries already create $O(m^2n^2)$ candidates, and checking rows would add more work.
+- **Enumerate all submatrices:** Four boundaries already create $O(m^2n^2)$ candidates, and checking rows would add more work.
 - **Histogram expansion from every top row:** It can recompute the same minima repeatedly and degrade to $O(m^2n)$.
 - **Segment tree for minima:** It answers interval minima but still leaves too many row intervals; the monotonic stack aggregates them in linear time.
 - **Single cell above `k`:** Its width is zero and it contributes no submatrix.
@@ -103,8 +102,8 @@ The first pass computes this value with a running `run` for each row. If the cur
 - **Large answer:** The number of submatrices can be large, but Python integers do not overflow.
 - **Input preservation:** The separate `widths` table is built without altering `grid`.
 - **Generated source status:** With no local editorial, the explanation follows the exact width recurrence and stack arithmetic in the Optimal file.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

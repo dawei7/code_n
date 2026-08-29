@@ -2,7 +2,7 @@
 
 You are given a **0-indexed** integer array `nums` of length `n` where `n` is the total number of students in the class. The class teacher tries to select a group of students so that all the students remain happy.
 
-The $$i^{\text{th}}$$ student will become happy if one of these two conditions is met:
+The $i^{\text{th}}$ student will become happy if one of these two conditions is met:
 
 - The student is selected and the total number of selected students is** strictly greater than** $\text{nums}[i]$.
 

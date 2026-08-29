@@ -6,7 +6,7 @@ A **subtree** is a subset of cities where every city is reachable from every oth
 
 For each `d` from `1` to `n-1`, find the number of subtrees in which the **maximum distance** between any two cities in the subtree is equal to `d`.
 
-Return *an array of size* `n-1` *where the *$$d^{\text{th}}$$* **element **(1-indexed)** is the number of subtrees in which the **maximum distance** between any two cities is equal to *`d`.
+Return *an array of size* `n-1` *where the *$d^{\text{th}}$* **element **(1-indexed)** is the number of subtrees in which the **maximum distance** between any two cities is equal to *`d`.
 
 ### 2. Function Contract
 

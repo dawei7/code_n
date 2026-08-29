@@ -62,7 +62,7 @@ An original word that is not a suffix of a longer input ends at a leaf. Thus, on
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suffix comparisons are awkward in an ordinary prefix trie.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ An array of 26 child slots gives constant-time navigation for each letter. A dic
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set and proper-suffix removal:** Put distinct :** - **Set and proper-suffix removal:** Put distinct words in a set, discard every proper suffix of every word, and sum the survivors' lengths plus one. It is simpler, but generating sliced suffix strings can take `O(\sum |w|^2)` time; word length is small here, while the reversed trie is linear in total characters.
-- **- **Sort reversed words:** After reversing and sor:** - **Sort reversed words:** After reversing and sorting, prefix relationships become adjacent and can be detected without a trie. This adds sorting comparisons but can be concise.
-- **- **Forward trie:** It groups common prefixes, whi:** - **Forward trie:** It groups common prefixes, which do not provide encoding sharing. Reversal is what aligns the trie structure with suffixes.
+- **Set and proper-suffix removal:** Put distinct words in a set, discard every proper suffix of every word, and sum the survivors' lengths plus one. It is simpler, but generating sliced suffix strings can take `O(\sum |w|^2)` time; word length is small here, while the reversed trie is linear in total characters.
+- **Sort reversed words:** After reversing and sorting, prefix relationships become adjacent and can be detected without a trie. This adds sorting comparisons but can be concise.
+- **Forward trie:** It groups common prefixes, which do not provide encoding sharing. Reversal is what aligns the trie structure with suffixes.
 
 ---
 

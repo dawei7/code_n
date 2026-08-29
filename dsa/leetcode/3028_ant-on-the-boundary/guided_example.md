@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-S_i=\sum_{j=0}^{i}\texttt{nums}[j].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ The ant has returned to the boundary after that movement exactly when $S_i=0$. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit running-sum loop:** Initialize `posit:** - **Explicit running-sum loop:** Initialize `position = answer = 0`, add each movement, and increment when position is zero. This is equivalent in time and space and may be easier for beginners to debug; the exact source expresses the same loop through iterators.
+- **Explicit running-sum loop:** Initialize `position = answer = 0`, add each movement, and increment when position is zero. This is equivalent in time and space and may be easier for beginners to debug; the exact source expresses the same loop through iterators.
 - **Build a prefix-sum list:** Counting zeros afterward works but wastes $O(N)$ memory because past positions are never needed.
 - **Count sign changes:** This incorrectly counts movements that cross the boundary without ending there, which the statement explicitly excludes.
 - **Count zero values in `nums`:** Individual movements are guaranteed nonzero, and a return depends on the cumulative position rather than one movement's size.
@@ -101,8 +99,8 @@ The ant has returned to the boundary after that movement exactly when $S_i=0$. T
 - **Move away after a return:** The following nonzero movement creates a nonzero prefix, and a subsequent zero is properly counted as another return.
 - **All movements in one direction:** Every prefix has the same nonzero sign, so the result is zero.
 - **Lazy memory use:** Neither `accumulate` nor the Boolean generator materializes all intermediate values, which is why the exact source truly uses constant auxiliary space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -6,7 +6,7 @@ Implement the `MRUQueue` class:
 
 - `MRUQueue(int n)` constructs the `MRUQueue` with `n` elements: `[1,2,3,...,n]`.
 
-- `int fetch(int k)` moves the $$k^{\text{th}}$$ element **(1-indexed)** to the end of the queue and returns it.
+- `int fetch(int k)` moves the $k^{\text{th}}$ element **(1-indexed)** to the end of the queue and returns it.
 
 ### 2. Function Contract
 

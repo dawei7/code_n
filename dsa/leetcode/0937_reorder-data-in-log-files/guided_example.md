@@ -61,7 +61,7 @@ The contract guarantees one identifier and at least one following word, so both 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The key function executes `id_, rest = log.split(" ", 1)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Python compares tuples lexicographically. It compares the first elements first a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate, sort, and concatenate:** Scan into l:** - **Separate, sort, and concatenate:** Scan into letter and digit lists, sort only letter-logs by `(content, identifier)`, and append digit-logs unchanged. This is equally sound and makes stability for digits explicit, but the single-key solution is more compact.
+- **Separate, sort, and concatenate:** Scan into letter and digit lists, sort only letter-logs by `(content, identifier)`, and append digit-logs unchanged. This is equally sound and makes stability for digits explicit, but the single-key solution is more compact.
 - **Custom comparator:** Directly encode all pairwise cases. It can work, but repeatedly splitting strings inside comparisons performs redundant parsing and makes transitivity mistakes easier than a tuple key.
 - **Sort the full original strings:** This incorrectly lets identifiers dominate because the identifier appears first even though letter content must be the primary key.
 - **Give digit-logs their content as a key:** That would reorder them numerically or lexicographically, violating their stable input-order requirement.
@@ -116,8 +116,8 @@ Python compares tuples lexicographically. It compares the first elements first a
 - **Classification contract:** Checking only `rest[0]` is safe because a log is guaranteed to contain either letter words or digit words. With mixed or malformed content, this shortcut would need reconsideration.
 - **Tuple-length safety:** Letter and digit tuples differ in length, but their integer type flag always decides cross-type comparisons before tuple length or string components matter.
 - **Stable-sort dependency:** The digit rule relies on Python's documented stable sorting. Porting this key idea to a language with an unstable sorting routine would require attaching original indices or separating digit-logs first.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

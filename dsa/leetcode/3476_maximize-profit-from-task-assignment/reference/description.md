@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `workers`, where $\text{workers}[i]$ represents the skill level of the $$i^{\text{th}}$$ worker. You are also given a 2D integer array `tasks`, where:
+You are given an integer array `workers`, where $\text{workers}[i]$ represents the skill level of the $i^{\text{th}}$ worker. You are also given a 2D integer array `tasks`, where:
 
 - $\text{tasks}[i][0]$ represents the skill requirement needed to complete the task.
 

@@ -63,7 +63,7 @@ If the implementation mutated the sole initial binding without retaining its ori
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `init` is the permanent reset target.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Using postfix `return current++` would return the old value and violate this ver
 
 ## 6. Traps This Instance Exposes
 
-- **- **Class with a field:** Models the same state bu:** - **Class with a field:** Models the same state but exposes or requires receiver-based access unless private fields are used.
+- **Class with a field:** Models the same state but exposes or requires receiver-based access unless private fields are used.
 - **Object with public `current`:** Simpler but allows external mutation and weaker encapsulation.
 - **Postfix increment:** Returns the old value and is wrong for this contract unless rewritten.
 - **Repeated reset:** Always returns the original `init`.
@@ -116,8 +116,8 @@ Using postfix `return current++` would return the old value and violate this ver
 - **Detached method:** Still works because it closes over state rather than relying on `this`.
 - **Multiple counters:** Each factory call has independent bindings.
 - **Shared methods:** Within one object, all three closures reference the same mutable `current`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

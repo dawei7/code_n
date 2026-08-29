@@ -69,7 +69,7 @@ The source is never overwritten or shortened.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `filtered` starts empty.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ A JavaScript callback declaring only one parameter simply ignores the extra inde
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `Array.filter`:** Provides the same c:** - **Built-in `Array.filter`:** Provides the same core behavior but is explicitly forbidden.
+- **Built-in `Array.filter`:** Provides the same core behavior but is explicitly forbidden.
 - **Preallocated output:** Store accepted values at a write pointer and truncate; same $O(n)$ bounds with more bookkeeping.
 - **In-place compaction:** Can use $O(1)$ extra space but mutates the source, unlike the exact solution.
 - **Empty array:** No callback calls occur and a new empty array is returned.
@@ -121,8 +121,8 @@ A JavaScript callback declaring only one parameter simply ignores the extra inde
 - **Non-Boolean callback result:** Ordinary JavaScript truthiness determines inclusion.
 - **Falsy source value:** It may still be kept when the callback result is truthy.
 - **Callback side effects:** They occur exactly once per element from left to right.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

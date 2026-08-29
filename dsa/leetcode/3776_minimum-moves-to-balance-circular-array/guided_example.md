@@ -65,7 +65,7 @@ The optimization is therefore to consume available units in nondecreasing shorte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Otherwise, `mn = min(balance)` is the unique negative value,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Because all non-deficit positions are nonnegative, `min(supply, need)` never tra
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort donors by distance:** It is correct but u:** - **Sort donors by distance:** It is correct but unnecessary because the circle can be enumerated directly in increasing distance.
+- **Sort donors by distance:** It is correct but unnecessary because the circle can be enumerated directly in increasing distance.
 - **Breadth-first unit movement:** Simulating every individual transfer can take time proportional to the numeric balances rather than array length.
 - **Use only one direction:** The closest supply may lie across the other circular edge, producing a nonminimal cost.
 - **Use linear distance `abs(i-j)`:** Circular distance is `min(abs(i-j), n-abs(i-j))`.
@@ -131,8 +131,8 @@ Because all non-deficit positions are nonnegative, `min(supply, need)` never tra
 - **At-most-one-negative guarantee:** The greedy single-destination reasoning depends on it. Multiple deficits would require a more general transport argument.
 - **Input preservation:** Donor amounts are not decremented in the list; local `need` tracks total demand.
 - **Source/manifest mismatch:** This exact solution is linear-time distance expansion, not sorting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -70,7 +70,7 @@ After position 30, the exact code executes `ans |= n << 31`. Under the constrain
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code initializes `ans = x` so every mandatory 1-bit is a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ For $n=2$ and $x=7$ (`111`), positions 0, 1, and 2 are unavailable. Counter valu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate supermasks one by one:** Start at $x$:** - **Generate supermasks one by one:** Start at $x$ and repeat `value = (value + 1) | x` exactly $n-1$ times. It is intuitive and produces the same order, but costs $O(n)$ time and is too slow for $n$ up to $10^8$.
+- **Generate supermasks one by one:** Start at $x$ and repeat `value = (value + 1) | x` exactly $n-1$ times. It is intuitive and produces the same order, but costs $O(n)$ time and is too slow for $n$ up to $10^8$.
 - **Explicit bit arrays:** Store binary digits of $x$ and $n-1$, then fill zero positions. This expresses the same mapping but uses $O(\log n+\log x)$ extra storage.
 - **Generic moving mask:** Continue shifting a mask until all counter bits are consumed. It avoids the hard-coded position 31 and is easier to generalize to larger constraints.
 - **`n = 1`:** After decrementing, the counter is zero. No optional bits are added and the answer is exactly $x$.
@@ -124,8 +124,8 @@ For $n=2$ and $x=7$ (`111`), positions 0, 1, and 2 are unavailable. Counter valu
 - **Exact AND:** Including $x$ as the first conceptual element prevents any optional zero-position bit from surviving the AND.
 - **Operator precedence:** The condition relies on Python parsing bit shifts, AND, and XOR in the intended order. Parenthesizing it as `((x >> i) & 1) == 0` would be clearer but equivalent.
 - **Constraint dependence:** The final shift by 31 is safe because the source guarantees $x\le10^8$. A version accepting arbitrary larger $x$ could overwrite the conceptual mapping and should use a fully generic bit scan.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

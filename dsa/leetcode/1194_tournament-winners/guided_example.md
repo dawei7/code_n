@@ -61,7 +61,7 @@ The query also selects `group_id`. Player IDs are unique in `Players`, so one pl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The next CTE, `t`, groups the score stream by `player_id` an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The outer query keeps `WHERE rk = 1` and returns only `group_id` and `player_id`
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` instead of `RANK`:** With the com:** - **`ROW_NUMBER` instead of `RANK`:** With the complete score-and-ID ordering, `ROW_NUMBER() = 1` directly selects one winner. It avoids relying on the uniqueness of the final ordering key to make rank one unique.
+- **`ROW_NUMBER` instead of `RANK`:** With the complete score-and-ID ordering, `ROW_NUMBER() = 1` directly selects one winner. It avoids relying on the uniqueness of the final ordering key to make rank one unique.
 - **Correlated maximum query:** Compare each player against better players in the same group. This can express the rule but is often harder to optimize and read.
 - **Start from all players:** Left-join aggregated scores and use zero for missing totals when players with no matches must remain eligible.
 - **Use `UNION` instead of `UNION ALL`:** This is incorrect because equal score contributions from different matches are separate facts and must not be deduplicated.
@@ -115,8 +115,8 @@ The outer query keeps `WHERE rk = 1` and returns only `group_id` and `player_id`
 - **Inactive player:** The exact query omits it because candidates originate in `Matches`; correctness requires the participation assumption described above or a query redesign.
 - **Grouping portability:** Selecting `group_id` while grouping only by `player_id` relies on the functional dependency. Grouping by both columns would be clearer across strict SQL systems.
 - **Any result order:** The outer query has no `ORDER BY` because the contract permits arbitrary row order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

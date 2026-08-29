@@ -67,7 +67,7 @@ There are only nine ordered pairs $(a,b)$, so every valid residue multiset appea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loops choose residue `a` for the first element and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ After testing a second choice, `g[b].append(y)` restores it. After all second cl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Keep only three maxima per residue:** This is :** - **Keep only three maxima per residue:** This is sufficient because a triplet uses at most three occurrences from one class and achieves the manifest's intended $O(N)$ time and $O(1)$ bounded storage, but it is not the exact source.
+- **Keep only three maxima per residue:** This is sufficient because a triplet uses at most three occurrences from one class and achieves the manifest's intended $O(N)$ time and $O(1)$ bounded storage, but it is not the exact source.
 - **Enumerate all triplets:** It is direct but costs $O(N^3)$.
 - **Dynamic programming by selected count and remainder:** A small DP can solve the problem in $O(N)$ time, but the source uses sorted residue groups.
 - **Choose one maximum from each class only:** Valid patterns also include three values from one class and patterns such as residues 1,1,1.
@@ -121,8 +121,8 @@ After testing a second choice, `g[b].append(y)` restores it. After all second cl
 - **Restoration order:** Popped maxima are appended back, preserving sorted residue lists for later patterns.
 - **Input mutation:** The initial `nums.sort()` changes caller-visible order.
 - **Source/manifest mismatch:** This implementation stores and sorts the complete input rather than maintaining three bounded top-value buffers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

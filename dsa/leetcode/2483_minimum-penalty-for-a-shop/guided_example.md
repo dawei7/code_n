@@ -71,7 +71,7 @@ This is the update
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Changing closing time from `j-1` to `j` moves hour `j-1` fro... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For `"YYNY"`, initial cost is three. Moving past the first two Y hours reduces i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix and suffix arrays:** Precompute open-N :** - **Prefix and suffix arrays:** Precompute open-N penalties and closed-Y penalties for every boundary. This gives $O(n)$ time but uses $O(n)$ space.
+- **Prefix and suffix arrays:** Precompute open-N penalties and closed-Y penalties for every boundary. This gives $O(n)$ time but uses $O(n)$ space.
 - **Evaluate every boundary from scratch:** Counting both sides separately for all $n+1$ times costs $O(n^2)$.
 - **Score transformation:** Maximize served Y minus open N; it is algebraically equivalent but less directly tied to penalty.
 - **Tie between closing times:** Strict comparison retains the earliest boundary.
@@ -120,8 +120,8 @@ For `"YYNY"`, initial cost is three. Moving past the first two Y hours reduces i
 - **All Y:** Optimum is after the final hour.
 - **Single character:** Both possible boundaries are evaluated through initialization and one update.
 - **Hour indexing:** The loop's displayed `j` is the boundary after processing character index `j-1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

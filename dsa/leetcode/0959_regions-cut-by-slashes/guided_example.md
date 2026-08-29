@@ -68,11 +68,7 @@ Whenever `union(a, b)` finds different roots, it joins them and decrements `size
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Cell `(i, j)` has linear cell index:
-
-`k = i * n + j`.
-
-Its ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ Only down and right connections are needed. Up and left boundaries were or will 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand each cell to a three-by-three pixel blo:** - **Expand each cell to a three-by-three pixel block:** Draw slash pixels as blocked and flood-fill empty pixels. It is intuitive and also `O(n^2)`, with a larger constant.
+- **Expand each cell to a three-by-three pixel block:** Draw slash pixels as blocked and flood-fill empty pixels. It is intuitive and also `O(n^2)`, with a larger constant.
 - **Graph vertices at grid corners:** Adding slash edges and counting cycles via Euler-style reasoning can work but is less direct.
 - **Four-triangle DFS:** Build the same connectivity explicitly and count components with traversal instead of Union-Find.
 - **One blank cell:** All four triangles merge into one region.
@@ -125,8 +121,8 @@ Only down and right connections are needed. Up and left boundaries were or will 
 - **Redundant union:** It must not decrement `size` when roots already match.
 - **Spaces:** They are meaningful blank cells, not characters to trim from input strings.
 - **Neighbor direction numbering:** Bottom-to-top and right-to-left unions depend on the documented triangle order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

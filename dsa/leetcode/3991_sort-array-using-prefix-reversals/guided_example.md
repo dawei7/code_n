@@ -59,7 +59,7 @@ This branch is also relevant to the stored dependency defect: an already sorted 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `start==target`, zero operations are required.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ Prefix reversal is its own inverse: applying the same length twice restores the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy pancake sorting:** It assumes access to:** - **Greedy pancake sorting:** It assumes access to useful reversal lengths and does not guarantee the minimum number under an arbitrary `pre` set.
-- **- **Depth-first search:** DFS can establish reacha:** - **Depth-first search:** DFS can establish reachability but does not naturally return the shortest number of unit-cost operations without additional distance handling.
-- **- **Dijkstra's algorithm:** All transitions cost o:** - **Dijkstra's algorithm:** All transitions cost one, so BFS provides the same shortest distances with less overhead.
+- **Greedy pancake sorting:** It assumes access to useful reversal lengths and does not guarantee the minimum number under an arbitrary `pre` set.
+- **Depth-first search:** DFS can establish reachability but does not naturally return the shortest number of unit-cost operations without additional distance handling.
+- **Dijkstra's algorithm:** All transitions cost one, so BFS provides the same shortest distances with less overhead.
 
 ---
 

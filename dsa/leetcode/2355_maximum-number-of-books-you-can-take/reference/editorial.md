@@ -69,9 +69,9 @@ Let's say we have already found the answer for some $i_1$. Now, a new shelf to t
 
 We can simulate the process in the slideshow with a *monotonic stack*. The stack will keep the indices (shown with colorful arrows) in order of $\text{books}[i] - i$ with the index with the largest value being at the top of the stack. When a new index comes, we pop some elements from the stack, and push the new index,  keeping the $\text{books}[i] - i$ values of the elements on the stack in ascending order.
 
-In the slideshow, the stack was $[5, 8, 12]$ (index $12$ at the top) due to inequalities $\text{books}[5] - 5 < \text{books}[8] - 8 < \text{books}[12] - 12$. The stack means that we have ranges $[0, 5]$, $[6, 8]$ and $[9, 12]$. We could compute $\text{dp}[12]$ as $\text{dp}[8] + \text{calculateSum}(9, 12)$.
+In the slideshow, the stack was `[5, 8, 12]` (index $12$ at the top) due to inequalities $\text{books}[5] - 5 < \text{books}[8] - 8 < \text{books}[12] - 12$. The stack means that we have ranges `[0, 5]`, `[6, 8]` and `[9, 12]`. We could compute $\text{dp}[12]$ as $\text{dp}[8] + \text{calculateSum}(9, 12)$.
 
-After adding index $13$, the stack becomes $[5, 13]$ (index $13$ at the top) and ranges are $[0, 5]$, $[6, 13]$. Now we can calculate $\text{dp}[13]$ as $\text{dp}[5] + \text{calculateSum}(6, 13)$.
+After adding index $13$, the stack becomes `[5, 13]` (index $13$ at the top) and ranges are `[0, 5]`, `[6, 13]`. Now we can calculate $\text{dp}[13]$ as $\text{dp}[5] + \text{calculateSum}(6, 13)$.
 
 To summarize, we iterate over all shelves $i$ from left to right keeping the monotonic stack of indices. For each $i$, we find the previous index in the stack $j$ and compute $\text{dp}[i]$ via $\text{dp}[j]$, or calculate $\text{dp}[i] = \text{calculateSum}(0, i)$ if such $j$ does not exist.
 

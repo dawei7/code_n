@@ -1,12 +1,12 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
-​
+
 We offer two ways to approach this problem of finding consecutive values. One way is to use the functions [`shift()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) and [`diff()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.diff.html) to compare the values between the current row and the previous rows. Another way, inspired by the idea of 'gaps and islands', is to find the islands (consecutive values) from all rows. You can learn more about this [concept](https://www.mssqltips.com/sqlservertutorial/9130/sql-server-window-functions-gaps-and-islands-problem/) if you are interested in this idea.
 
 <!-- h3 for approaches -->
@@ -74,7 +74,7 @@ return df.loc[:, df.columns != 'flag'].sort_values(by='visit_date')
 
 <!-- h4 for sections -->
 #### Implementation
-​​
+
 ```python
 import pandas as pd
 
@@ -96,7 +96,7 @@ def human_traffic(stadium: pd.DataFrame) -> pd.DataFrame:
 
 <!-- h4 for sections -->
 #### Algorithm
-​<!-- Describe your approach to solving the problem. -->
+<!-- Describe your approach to solving the problem. -->
 The key to identifying the islands (consecutive values) from a column is to calculate the difference between the column (in this problem, it is the column `id`) and a new rank (looks like an index id) we append to all rows. Any islands will be some consecutive rows that share the same result from this calculation. If all `id`s are consecutive, the differences between this new rank and the `id` will be the same for all rows, in other words, all rows belong to this one island. If no `id`s are consecutive, every row will return a different value from this calculation, and no island is identified.
 
 To begin with, we update the original DataFrame to get only the records with `people` larger than or equal to 100 since we only need to find consecutive `id`s from these records.
@@ -161,7 +161,7 @@ The output looks like this:
 | 7  | 2017-01-07 | 199    | 4   | 3      | 4          |
 | 8  | 2017-01-09 | 188    | 5   | 3      | 4          |
 
-​
+
 Now we can identify the qualified islands, which are records in an island and with a count ($\text{island}_{cnt}$) larger than or equal to 3.
 
 ```python
@@ -176,7 +176,7 @@ return stadium[stadium['island_cnt'] >= 3][['id', 'visit_date', 'people']].sort_
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 def human_traffic(stadium: pd.DataFrame) -> pd.DataFrame:
 
@@ -192,8 +192,8 @@ def human_traffic(stadium: pd.DataFrame) -> pd.DataFrame:
 ```
 
 ---
-​
-​
+
+
 ## Database
 We provide three different ways to solve this problem of identifying consecutive values. If the problem doesn't require too many consecutive rows (say, 5?), we can create table aliases and manually compare the differences from the rows of each table alias. For better performance, or if the problem is looking for too many consecutive rows, we can use window functions `LEAD()` or `LAG()` to append values from the previous and next rows and calculate the differences between them. If you are interested in a more graceful way to approach this problem, you probably want to learn a bit more about the idea of ['gap and island'](https://www.mssqltips.com/sqlservertutorial/9130/sql-server-window-functions-gaps-and-islands-problem/), and we will also provide an approach using this concept.
 
@@ -216,7 +216,7 @@ FROM
 WHERE
     a.people >= 100 AND b.people >= 100 AND c.people >= 100
 ```
-​
+
 Now we can identify the consecutive `id`s by calculating the differences between `id`s from each table alias.
 
 If the three `id`s are consecutive from table a, b, and c, which means the difference between the two `id`s are 1, we can add filters like below:
@@ -368,7 +368,7 @@ Now we have a new column, `rnk`, in addition to the original `id`:
 | 3  | 2017-01-03 | 150    | 2   |
 | 5  | 2017-01-05 | 145    | 3   |
 
-​
+
 With these new ranks for the records, we can identify the islands by calculating the differences between `id` and `rnk`. We store the result of this calculation in a new column called `island` and save the output in a CTE, `stadium with rnk`, for future use.
 
 ```sql

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a special kind of apple tree that grows apples every day for `n` days. On the $$i^{\text{th}}$$ day, the tree grows $\text{apples}[i]$ apples that will rot after $\text{days}[i]$ days, that is on day $i + \text{days}[i]$ the apples will be rotten and cannot be eaten. On some days, the apple tree does not grow any apples, which are denoted by $\text{apples}[i] = 0$ and $\text{days}[i] = 0$.
+There is a special kind of apple tree that grows apples every day for `n` days. On the $i^{\text{th}}$ day, the tree grows $\text{apples}[i]$ apples that will rot after $\text{days}[i]$ days, that is on day $i + \text{days}[i]$ the apples will be rotten and cannot be eaten. On some days, the apple tree does not grow any apples, which are denoted by $\text{apples}[i] = 0$ and $\text{days}[i] = 0$.
 
 The objective is to compute `7` from `{"apples": [1, 2, 3, 5, 2], "days": [3, 2, 1, 4, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -64,7 +64,7 @@ The source inserts only when `apples[i]` is nonzero. Under the contract, a zero-
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A batch grown on day `i` with lifetime `days[i]` becomes rot... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ If the heap is empty during an early day with no apples, the loop still incremen
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan all batches daily:** Select the earliest :** - **Scan all batches daily:** Select the earliest expiration by a linear search. It is correct but can take $O(n)$ per day.
+- **Scan all batches daily:** Select the earliest expiration by a linear search. It is correct but can take $O(n)$ per day.
 - **Sort all individual apples:** Expanding every apple into its own deadline may require space proportional to the total apple count, far larger than the number of batches.
 - **Latest-expiration first:** It can consume flexible apples while urgent ones rot and is not optimal.
 - **Ordered deadline counts:** A balanced ordered map can support the same greedy choice, but a min-heap is simpler because batches only enter and leave.
@@ -120,8 +120,8 @@ If the heap is empty during an early day with no apples, the loop still incremen
 - **Many apples in one batch:** The batch count is decremented one per day and reinserted only while a future edible day exists.
 - **Input mutation:** Neither `apples` nor `days` is reordered or modified.
 - **Inclusive deadline:** The test is `t < i`, not `t <= i`, because an apple is still edible on its stored last day.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ This removes the need for a separate visited matrix but intentionally mutates th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input already uses zero to mean land.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ For each offset $(a,b)$, neighbor coordinates are $(i+a,j+b)$. Bounds checks ens
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** Uses an explicit queue:** - **Breadth-first search:** Uses an explicit queue and has the same $O(mn)$ bounds.
+- **Breadth-first search:** Uses an explicit queue and has the same $O(mn)$ bounds.
 - **Separate visited matrix:** Preserves the grid at the cost of $O(mn)$ additional storage.
 - **Union-find:** Can merge adjacent water cells and track component sums, but is heavier than a grid traversal.
 - **All land:** No component starts and answer remains zero.
@@ -120,8 +120,8 @@ For each offset $(a,b)$, neighbor coordinates are $(i+a,j+b)$. Bounds checks ens
 - **Several equal maximum components:** Only the maximum sum is returned, so identity does not matter.
 - **Input mutation:** Every visited water cell becomes zero.
 - **Small dimensions:** Recursion depth is bounded by at most 100 cells under the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

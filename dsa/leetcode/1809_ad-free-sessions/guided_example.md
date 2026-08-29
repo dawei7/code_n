@@ -62,7 +62,7 @@ The subquery may return the same session ID several times when multiple ads were
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query scans `Playback` and retains rows whose `ses... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ The guarantee that one customer's sessions do not intersect also means one ad ti
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS` correlated anti-join:** It expres:** - **`NOT EXISTS` correlated anti-join:** It expresses “no matching ad” directly and avoids `NOT IN` null semantics.
+- **`NOT EXISTS` correlated anti-join:** It expresses “no matching ad” directly and avoids `NOT IN` null semantics.
 - **Left join with `IS NULL`:** Join sessions to qualifying ads and keep groups or rows with no ad match; duplicates must be handled carefully.
 - **Count matches per session:** Group and retain count zero, but an outer join is required so sessions without ads are not lost.
 - **Timestamp-only join:** It is incorrect because ads belong to specific customers.
@@ -114,8 +114,8 @@ The guarantee that one customer's sessions do not intersect also means one ad ti
 - **Any output order:** No sorting is required.
 - **Index design:** A composite customer/timestamp index aligns with both join predicates.
 - **Plan dependence:** Logical correctness is fixed even though runtime can differ substantially by database configuration.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

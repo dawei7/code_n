@@ -61,7 +61,7 @@ new piece, one or more opponent pieces, same-colored closing piece.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one direction, `i, j` start at the move cell and `cnt` s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ At the immediate neighbor, `cnt > 1` is false, so the same-color neighbor falls 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Temporarily write the move:** One may set the :** - **Temporarily write the move:** One may set the board cell to `color` and scan lines, then restore it. The exact method avoids mutation because the start color is already known.
+- **Temporarily write the move:** One may set the board cell to `color` and scan lines, then restore it. The exact method avoids mutation because the start color is already known.
 - **Generate whole lines:** Extract row, column, and diagonals as strings and search patterns. This allocates unnecessary sequences and complicates endpoint direction.
 - **Immediate same-color neighbor:** It cannot close a three-cell line, so that direction fails.
 - **Exactly one opponent between endpoints:** Distance two satisfies `cnt > 1` and is the shortest legal line.
@@ -111,8 +111,8 @@ At the immediate neighbor, `cnt > 1` is false, so the same-color neighbor falls 
 - **Multiple good directions:** The first found returns true, which is sufficient for legality.
 - **Board remains unchanged:** The scan is observational, so callers retain the original free move cell.
 - **Guaranteed free move cell:** The code relies on the contract and does not validate it separately.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

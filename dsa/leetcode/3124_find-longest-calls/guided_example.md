@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Rank incoming and outgoing calls independently.** The wind... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` with full ordering:** Enforces ex:** - **`ROW_NUMBER` with full ordering:** Enforces exactly three rows per type and resolves duration ties deterministically.
+- **`ROW_NUMBER` with full ordering:** Enforces exactly three rows per type and resolves duration ties deterministically.
 - **Correlated top-three subqueries:** Possible but usually less clear and potentially less efficient than a window function.
 - **Fewer than three calls of a type:** Every available row should be returned.
 - **Equal durations:** Exact `RANK` may return more than three rows, a correctness defect for a strict row count.
@@ -101,8 +101,8 @@ We maintain the core conceptual parameters and state variables:
 - **Projection:** Numeric duration and rank are intentionally hidden from the result.
 - **Primary key:** It does not prevent different contacts from sharing a duration.
 - **Source defects:** Use of `RANK` and ascending `type` prevent a general correctness guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

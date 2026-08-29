@@ -75,7 +75,7 @@ The second nested loop visits all cells again. A zero cell cannot be part of a r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Computing the row and column totals separately for every pos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Third, the same geometric triangle is not counted from another vertex. Of its th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount for each vertex:** Scan the vertex's r:** - **Recount for each vertex:** Scan the vertex's row and column whenever a 1 is found. This uses little extra storage but can take $O(mn(m+n))$ time on a dense grid.
+- **Recount for each vertex:** Scan the vertex's row and column whenever a 1 is found. This uses little extra storage but can take $O(mn(m+n))$ time on a dense grid.
 - **Store coordinates of ones:** Group 1-cell coordinates by row and column, then apply the same product formula. This can be attractive for a sparse representation, but the given dense matrix still takes $O(mn)$ time to read and the groups can use $O(mn)$ space.
 - **Count triples directly:** Enumerating every triple of 1-cells is far more expensive and then requires testing row/column relationships. Choosing the unique right-angle vertex exposes independent choices immediately.
 - **Single row or single column:** One of `rows[i] - 1` or `cols[j] - 1` is always zero, so the answer is correctly zero.
@@ -125,8 +125,8 @@ Third, the same geometric triangle is not counted from another vertex. Of its th
 - **Non-adjacent cells:** Distance is irrelevant. Row and column totals deliberately include partners anywhere on the corresponding axis.
 - **Subtracting the vertex:** Both counts include the current 1, so subtracting one from each is mandatory. Omitting either subtraction would allow the vertex to be selected as its own partner.
 - **Boolean matrix representation:** The code relies on entries being numeric 0 or 1 so that adding `x` directly counts ones.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

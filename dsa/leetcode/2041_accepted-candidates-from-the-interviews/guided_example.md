@@ -63,7 +63,7 @@ Once an inexperienced candidate is removed, none of that candidate's joined roun
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `WHERE years_of_exp >= 2` removes candidates with fewer than... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If two candidate rows happen to reference the same interview identifier, they st
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate rounds first:** Build one total per :** - **Aggregate rounds first:** Build one total per `interview_id`, filter totals above fifteen, then join to experienced candidates; often reduces join volume.
+- **Aggregate rounds first:** Build one total per `interview_id`, filter totals above fifteen, then join to experienced candidates; often reduces join volume.
 - **Correlated subquery:** Sum rounds for each candidate, but without good indexing it can repeat work.
 - **`WHERE` for experience:** Correct because experience is a row attribute evaluated before grouping.
 - **`HAVING` for score total:** Required because the threshold applies to an aggregate.
@@ -115,8 +115,8 @@ If two candidate rows happen to reference the same interview identifier, they st
 - **Any row order:** No `ORDER BY` is necessary.
 - **`GROUP BY 1`:** Refers to the first selected expression, `candidate_id`; naming the column explicitly would be clearer but equivalent.
 - **Null score outside the stated model:** `SUM` ignores null values; an all-null group would not pass the comparison.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

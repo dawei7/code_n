@@ -63,7 +63,7 @@ For arrays `[2, 3, 6, 8]`, `[1, 2, 3, 5, 6, 7, 10]`, and `[2, 3, 4, 6, 9]`, the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are `len(arrays)` input arrays.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This also explains why no duplicate should appear in the result. Strictly increa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set intersection:** Convert the first row to a:** - **Set intersection:** Convert the first row to a set and repeatedly intersect it with later rows, then sort the result. This is correct but uses hashing and a final sort despite the small bounded value domain.
+- **Set intersection:** Convert the first row to a set and repeatedly intersect it with later rows, then sort the result. This is correct but uses hashing and a final sort despite the small bounded value domain.
 - **Repeated two-pointer intersection:** Merge the current common list with each sorted row. It takes linear time in the scanned data and does not rely on the value upper bound.
 - **General LCS dynamic programming:** It would solve a much broader problem but waste time and memory because strict sorting eliminates order conflicts.
 - **No common value:** No counter reaches the number of arrays, so the comprehension returns an empty list.
@@ -113,8 +113,8 @@ This also explains why no duplicate should appear in the result. Strictly increa
 - **Strict-increase dependency:** Duplicate values in one row could falsely inflate a count; the exact method relies on the stated contract.
 - **Sorted-order dependency:** In unsorted arrays, all common values need not form a common subsequence in sorted numeric order.
 - **Result ordering:** Enumerating the counter array returns the required increasing sequence without a separate sort.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

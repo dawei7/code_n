@@ -72,7 +72,7 @@ For four peak orders among four total rows, the expression produces 100. For two
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `TIME(order_timestamp)` extracts only the time-of-day portio... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ which displays as 4.67.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation with `CASE`:** `SUM(CA:** - **Conditional aggregation with `CASE`:** `SUM(CASE WHEN peak_condition THEN 1 ELSE 0 END)` is more portable across SQL dialects. MySQL permits summing Boolean expressions directly.
+- **Conditional aggregation with `CASE`:** `SUM(CASE WHEN peak_condition THEN 1 ELSE 0 END)` is more portable across SQL dialects. MySQL permits summing Boolean expressions directly.
 - **Filter exact metrics:** To match the local contract strictly, compare the unrounded peak ratio and raw `AVG(order_rating)` in `HAVING`, then round only for output.
 - **Use `COUNT(order_rating)`:** This counts rated rows because `COUNT(column)` ignores nulls and can replace `SUM(order_rating IS NOT NULL)`.
 - **Inclusive interval endpoints:** `BETWEEN` counts orders exactly at 11:00, 14:00, 18:00, and 21:00.
@@ -131,8 +131,8 @@ which displays as 4.67.
 - **Exactly three orders:** The `>= 3` condition includes the threshold boundary.
 - **Rounded peak false positive:** An exact percentage below 60 can round to 60 and pass the checked-in alias filter.
 - **Ordering ties:** Equal rounded averages are ordered by descending `customer_id`, not by raw average or peak percentage.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

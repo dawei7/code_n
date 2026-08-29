@@ -25,7 +25,7 @@ Return the smallest positive subarray length whose set of values sums to at leas
 
 - **Output:** 2
 
-- **Explanation:** The subarray `[2, 3]` has distinct elements `{2, 3}` whose sum is $2 + 3 = 5$, which is ​​​​​​​at least $k = 4$. Thus, the answer is 2.
+- **Explanation:** The subarray `[2, 3]` has distinct elements `{2, 3}` whose sum is $2 + 3 = 5$, which is at least $k = 4$. Thus, the answer is 2.
 
 #### Example 2
 
@@ -33,7 +33,7 @@ Return the smallest positive subarray length whose set of values sums to at leas
 
 - **Output:** 2
 
-- **Explanation:** The subarray `[3, 2]` has distinct elements `{3, 2}` whose sum is $3 + 2 = 5$, which is ​​​​​​​at least $k = 5$. Thus, the answer is 2.
+- **Explanation:** The subarray `[3, 2]` has distinct elements `{3, 2}` whose sum is $3 + 2 = 5$, which is at least $k = 5$. Thus, the answer is 2.
 
 #### Example 3
 

@@ -71,11 +71,7 @@ This is an anti-membership operation: it keeps left-side rows with no matching k
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The subquery
-
-`SELECT visit_id FROM Transactions`
-
-returns t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +113,7 @@ Grouping first would lose the visit-level distinction or require conditional agg
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS` anti-join:** A correlated `NOT EX:** - **`NOT EXISTS` anti-join:** A correlated `NOT EXISTS` predicate expresses the same absence test and handles nullable values more safely. It is often the preferred production form, but the checked-in solution specifically uses `NOT IN`.
+- **`NOT EXISTS` anti-join:** A correlated `NOT EXISTS` predicate expresses the same absence test and handles nullable values more safely. It is often the preferred production form, but the checked-in solution specifically uses `NOT IN`.
 - **`LEFT JOIN` with `IS NULL`:** Left-joining transactions and keeping rows with a null right-side key is another standard anti-join. It must filter before counting so transaction duplicates do not inflate results.
 - **Conditional aggregation after a join:** This can work, but multiple transactions per visit require deduplication or visit-level aggregation first. The direct anti-membership filter is simpler.
 - **Using `COUNT(transaction_id)`:** After filtering for visits with no transactions, there are no transaction rows to count. The requested quantity is surviving visit rows, so `COUNT(1)` is appropriate.
@@ -130,8 +126,8 @@ Grouping first would lose the visit-level distinction or require conditional agg
 - **Nullable transaction visit identifiers:** A null inside a `NOT IN` subquery can make the predicate unknown. The source contract’s concrete identifiers are required; otherwise use `NOT EXISTS` or explicitly filter nulls.
 - **`GROUP BY 1` readability:** It is valid MySQL positional shorthand, but `GROUP BY customer_id` is clearer when select-list columns may later be reordered.
 - **Output order:** Because any order is accepted, omitting `ORDER BY` avoids unnecessary sorting and makes no correctness promise about row order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

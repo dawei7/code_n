@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a line chart consisting of `n` points connected by line segments. You are given a **1-indexed** integer array `y`. The $$k^{\text{th}}$$ point has coordinates $(k, y[k])$. There are no horizontal lines; that is, no two consecutive points have the same y-coordinate.
+There is a line chart consisting of `n` points connected by line segments. You are given a **1-indexed** integer array `y`. The $k^{\text{th}}$ point has coordinates $(k, y[k])$. There are no horizontal lines; that is, no two consecutive points have the same y-coordinate.
 
 The objective is to compute `5` from `{"y": [1, 2, 1, 2, 1, 3, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -69,7 +69,7 @@ Both formulas implement “left chart endpoint included, right chart endpoint ex
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Event coordinates use twice the real height.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Now every chart vertex is owned exactly once, while crossings strictly inside se
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed intervals for every segment:** This dou:** - **Closed intervals for every segment:** This double-counts shared vertices.
+- **Closed intervals for every segment:** This double-counts shared vertices.
 - **Evaluate only integer heights:** The maximum can occur between vertex heights, such as at 1.5, so fractional regions matter.
 - **Floating epsilon endpoints:** Doubled integers encode endpoint order exactly without floating-point error.
 - **Brute-force candidate heights against all segments:** Testing $O(N)$ height regions with $O(N)$ segments costs $O(N^2)$.
@@ -115,8 +115,8 @@ Now every chart vertex is owned exactly once, while crossings strictly inside se
 - **Repeated nonconsecutive heights:** Events combine correctly; only consecutive equality is forbidden.
 - **Last vertex:** Its explicit singleton is necessary because all segment right endpoints are excluded.
 - **Large height values:** Doubling values up to $10^9$ is safe in Python integer arithmetic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

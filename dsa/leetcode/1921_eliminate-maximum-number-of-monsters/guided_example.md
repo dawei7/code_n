@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are playing a video game where you are defending your city from a group of `n` monsters. You are given a **0-indexed** integer array `dist` of size `n`, where $\text{dist}[i]$ is the **initial distance** in kilometers of the $$i^{\text{th}}$$ monster from the city.
+You are playing a video game where you are defending your city from a group of `n` monsters. You are given a **0-indexed** integer array `dist` of size `n`, where $\text{dist}[i]$ is the **initial distance** in kilometers of the $i^{\text{th}}$ monster from the city.
 
 The objective is to compute `3` from `{"dist": [1, 3, 4], "speed": [1, 1, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,9 +71,7 @@ For example, suppose the sorted deadlines are `[0, 2, 2]`. The first target is s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code constructs all deadlines and sorts them:
-
-`times = ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ If the loop never finds a missed deadline, each sorted monster is shot by its ow
 
 ## 6. Traps This Instance Exposes
 
-- **- **Floating-point arrival times:** Sorting `d / s:** - **Floating-point arrival times:** Sorting `d / s` and failing when the arrival time is at most the shot minute follows the same idea, but integer deadlines express the strict boundary exactly and avoid rounding concerns.
+- **Floating-point arrival times:** Sorting `d / s` and failing when the arrival time is at most the shot minute follows the same idea, but integer deadlines express the strict boundary exactly and avoid rounding concerns.
 - **Min-heap:** All arrival deadlines can be heapified and removed from earliest to latest. This still uses $O(N)$ space and up to $O(N\log N)$ time, with more per-element overhead than sorting a list.
 - **Counting deadlines:** Under bounded input values, deadlines could be bucketed and processed by minute. That can avoid comparison sorting, but it depends on the numeric constraints and is less direct than the robust sort.
 - **Nearest current distance first:** Distance alone is insufficient because speed changes urgency. A farther but much faster monster may arrive sooner.
@@ -123,8 +121,8 @@ If the loop never finds a missed deadline, each sorted monster is shot by its ow
 - **Monster reachable before minute one:** Any monster with $d\le s$ has deadline $0$. One such monster can be shot immediately; if two or more have deadline $0$, only one can be eliminated before another arrives.
 - **One monster:** The weapon is ready at minute $0$, while positive distance guarantees a positive arrival time. Its deadline is at least $0$, so the function returns $1$.
 - **All monsters schedulable:** If every sorted deadline satisfies `t >= i`, the loop completes and returns $N$ rather than needing a separate simulation of movement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

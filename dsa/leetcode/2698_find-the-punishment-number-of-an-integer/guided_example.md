@@ -61,9 +61,7 @@ This state records exactly the information future choices need; the numeric valu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `check(s, pos, remaining)` means:
-
-> Can the suffix beginnin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ Returning true only for zero enforces complete digit coverage and exact target e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoize `position, remaining` states:** Avoids:** - **Memoize `position, remaining` states:** Avoids repeated suffix work at the cost of additional state storage.
+- **Memoize `position, remaining` states:** Avoids repeated suffix work at the cost of additional state storage.
 - **Modulo-nine prefilter:** Can reject candidates that fail a necessary digit-sum congruence, but the exact source does not use it.
 - **Precompute qualifying squares through 1000:** Fast for repeated calls but replaces derivation with a fixed table.
 - **Integer suffix recursion:** Can split with powers of ten instead of a string.
@@ -113,8 +111,8 @@ Returning true only for zero enforces complete digit coverage and exact target e
 - **All digits consumed with positive remainder:** Invalid.
 - **Target reached before digits end:** Remaining digits must still be partitioned, usually into zeros, before success.
 - **Add the square:** A qualifying $i$ contributes $i^2$, not $i$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

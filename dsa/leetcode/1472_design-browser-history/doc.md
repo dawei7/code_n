@@ -25,7 +25,7 @@ Visiting a URL makes that page current and permanently clears every forward entr
 - `back(steps)` moves at most `steps` entries toward the homepage and returns the current URL.
 - `forward(steps)` moves at most `steps` entries toward the newest valid page and returns the current URL.
 
-Both `homepage` and every `url` have length from $1$ through $20$ and contain only lowercase English letters and `.`. Each `steps` value lies in $[1,100]$, and there are at most $5000$ method calls.
+Both `homepage` and every `url` have length from $1$ through $20$ and contain only lowercase English letters and `.`. Each `steps` value lies in `[1,100]`, and there are at most $5000$ method calls.
 
 **App-local adapter**
 

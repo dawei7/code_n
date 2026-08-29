@@ -53,7 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `lo` contains the smallest values, with a target size of `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ All three are `SortedList` objects, so equal values are preserved as separate oc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort on every calculation:** Copying and sorti:** - **Sort on every calculation:** Copying and sorting the last `m` values is simple, but each query costs `O(m log m)` instead of reusing the maintained rank partition.
+- **Sort on every calculation:** Copying and sorting the last `m` values is simple, but each query costs `O(m log m)` instead of reusing the maintained rank partition.
 - **Fenwick tree over the bounded value domain:** Frequency and sum trees can locate rank cutoffs and compute retained sums in `O(log U)` time, where `U` is the maximum value. This is efficient but requires coordinate or domain indexing and more intricate rank-sum logic.
 - **Two heaps alone:** Heaps expose extremes but do not support arbitrary expired-value deletion cleanly without lazy-deletion maps and careful duplicate accounting. Three ordered multisets express the needed ranks more directly.
 - **Fewer than `m` values:** The partitions may not yet have both boundary groups at full size, but `calculateMKAverage` deliberately returns `-1` and never divides an incomplete middle.
@@ -100,8 +100,8 @@ All three are `SortedList` objects, so equal values are preserved as separate oc
 - **Integer rounding:** Positive inputs and a positive denominator make `//` the required mathematical floor.
 - **Repeated queries without additions:** They do not mutate any structure, so every such call returns the same value in constant time.
 - **Library requirement:** The solution relies on `SortedList` supporting duplicates and ordered index operations; replacing it with a plain Python list would make middle insertions and removals linear.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

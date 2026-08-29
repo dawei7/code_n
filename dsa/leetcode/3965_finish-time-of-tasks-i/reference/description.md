@@ -122,6 +122,6 @@ Return the finish time of task `0` after applying the leaf and non-leaf rules re
 
 - $\text{baseTime.length} = n$
 
-- $1 \le \text{baseTime}[i] \le 10^{5}$​​​​​​​
+- $1 \le \text{baseTime}[i] \le 10^{5}$
 
 - The finish time of every task is guaranteed to be less than $2^{53}$.

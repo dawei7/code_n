@@ -68,7 +68,7 @@ Write $d_t=\text{distance}[t]$. All lengths are positive, so the orientation and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inequalities are easier to understand if the picture is ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,9 +125,9 @@ Equality is intentional. It includes touching at an endpoint, which counts as th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct every segment and compare with all e:** - **Construct every segment and compare with all earlier segments:** General axis-aligned intersection checks are straightforward, but comparing each new segment against the whole prefix takes $O(n^2)$ time. The turning pattern makes only three local configurations necessary.
-- **- **Store every visited lattice point:** Distances:** - **Store every visited lattice point:** Distances can be as large as `100000`, so expanding moves into unit steps can require enormous time and memory. Crossings can also occur along segment interiors, which geometric inequalities handle directly.
-- **- **Track full coordinates with a sweep-line struc:** - **Track full coordinates with a sweep-line structure:** This solves a more general segment-intersection problem in roughly $O(n\log n)$ time, but is unnecessary for the fixed counter-clockwise direction cycle.
+- **Construct every segment and compare with all earlier segments:** General axis-aligned intersection checks are straightforward, but comparing each new segment against the whole prefix takes $O(n^2)$ time. The turning pattern makes only three local configurations necessary.
+- **Store every visited lattice point:** Distances can be as large as `100000`, so expanding moves into unit steps can require enormous time and memory. Crossings can also occur along segment interiors, which geometric inequalities handle directly.
+- **Track full coordinates with a sweep-line structure:** This solves a more general segment-intersection problem in roughly $O(n\log n)$ time, but is unnecessary for the fixed counter-clockwise direction cycle.
 
 ---
 

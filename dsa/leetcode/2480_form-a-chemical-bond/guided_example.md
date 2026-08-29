@@ -73,7 +73,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any metal row $M$ and nonmetal row $N$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The aliases do not duplicate stored data permanently; they are query-level names
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit `CROSS JOIN`:** Write two filtered al:** - **Explicit `CROSS JOIN`:** Write two filtered aliases with clear cross-join syntax. It is semantically identical and may be easier to read.
+- **Explicit `CROSS JOIN`:** Write two filtered aliases with clear cross-join syntax. It is semantically identical and may be easier to read.
 - **Conditional self-join with `ON`:** Use `JOIN Elements b ON a.type='Metal' AND b.type='Nonmetal'`. It works but uses an unconditional relationship in the join condition.
 - **Filter subqueries first:** Cross join `SELECT symbol FROM Elements WHERE type='Metal'` with the equivalent nonmetal subquery. This makes predicate pushdown explicit.
 - **No metals:** The filtered left set is empty, so no bonds are returned.
@@ -120,8 +120,8 @@ The aliases do not duplicate stored data permanently; they are query-level names
 - **Electron mismatch:** It does not matter because type alone defines a bond in this task.
 - **Primary-key symbols:** They prevent duplicate logical element rows and remove any need for `DISTINCT`.
 - **Any result order:** Omitting `ORDER BY` is correct.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

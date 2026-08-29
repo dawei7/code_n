@@ -67,7 +67,7 @@ No other sorted pair changes. Therefore the imbalance can be updated in constant
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before inserting `x = nums[j]`, the code computes `k = sl.bi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ If instead 2 is inserted, the left gap `1 -> 2` contributes zero, the right gap 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bounded-value presence set:** Since the constr:** - **Bounded-value presence set:** Since the constraints give `1 <= nums[i] <= n`, a carefully derived contribution method can achieve `O(n^2)` with an array or set and constant-time neighbor-value checks. That would match the manifest but is not the exact implementation.
+- **Bounded-value presence set:** Since the constraints give `1 <= nums[i] <= n`, a carefully derived contribution method can achieve `O(n^2)` with an array or set and constant-time neighbor-value checks. That would match the manifest but is not the exact implementation.
 - **Sort every subarray independently:** This is easy to understand but can cost `O(n^3 log n)` or worse when array copying is included, because nearly identical prefixes are repeatedly sorted.
 - **Recompute all gaps after each insertion:** Keeping a sorted list but scanning every adjacent pair would add another linear factor. The predecessor-successor update is what avoids that.
 - **One-element subarray:** There are no adjacent sorted positions, so its imbalance is zero.
@@ -124,8 +124,8 @@ If instead 2 is inserted, the left gap `1 -> 2` contributes zero, the right gap 
 - **All values equal:** Every gap is zero, every `cnt` remains zero, and the total is zero.
 - **Strict threshold for a gap:** Only a difference greater than one contributes. A difference exactly one is balanced and is never counted.
 - **Large accumulated answer:** Python's arbitrary-precision integers safely hold the sum across all subarrays.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

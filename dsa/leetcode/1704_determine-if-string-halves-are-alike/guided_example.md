@@ -63,7 +63,7 @@ Testing `character in vowels` returns a Boolean. Python Booleans behave numerica
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `vowels = set('aeiouAEIOU')` creates a set containing all fi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The counter is allowed to become negative. A negative value simply means the pro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two separate counters:** Count vowels in each :** - **Two separate counters:** Count vowels in each half and compare them. It is equally correct and still $O(N)$ time and $O(1)$ space, but uses two accumulators or two loops.
+- **Two separate counters:** Count vowels in each half and compare them. It is equally correct and still $O(N)$ time and $O(1)$ space, but uses two accumulators or two loops.
 - **Slice each half:** `s[:n]` and `s[n:]` make the split visually explicit, but Python allocates $O(N)$ total substring storage.
 - **Lowercase conversion:** Converting `s.lower()` allows a five-letter vowel set but creates another $O(N)$ string; listing both cases avoids it.
 - **Vowel string membership:** Testing against `"aeiouAEIOU"` is also correct. Its ten-character scan is constant-sized, while a set expresses lookup intent.
@@ -128,8 +128,8 @@ The counter is allowed to become negative. A negative value simply means the pro
 - **Uppercase consonants:** They are absent and correctly contribute zero.
 - **Even-length guarantee:** It ensures `len(s) >> 1` partitions all characters into two equal halves; odd length would leave the definition ambiguous.
 - **Negative intermediate counter:** It is expected and safe; it records a temporary surplus in the second half.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

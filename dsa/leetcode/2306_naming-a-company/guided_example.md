@@ -63,7 +63,7 @@ The temporary list `t` is reused across all 26 trials for one idea. Only positio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Map letters `a` through `z` to indices `0` through `25`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For example, suppose the current idea begins with `b` and the loop is considerin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Suffix sets grouped by initial:** Store, for e:** - **Suffix sets grouped by initial:** Store, for each initial letter, the set of suffixes used by that group. For every pair of initial groups, count suffixes unique to each and add twice the product of those counts. This is the most common formulation and can avoid repeatedly building 26 generated names per idea, but it requires careful set-intersection reasoning; the exact solution expresses the same compatibility information in `f`.
+- **Suffix sets grouped by initial:** Store, for each initial letter, the set of suffixes used by that group. For every pair of initial groups, count suffixes unique to each and add twice the product of those counts. This is the most common formulation and can avoid repeatedly building 26 generated names per idea, but it requires careful set-intersection reasoning; the exact solution expresses the same compatibility information in `f`.
 - **Checking every pair of ideas directly:** For each pair, swap initials, build both names, and test the set. This is straightforward but takes `O(N^2 L_{\max})` time in the worst case, while the fixed-alphabet matrix aggregates compatible partners.
 - **Generating and storing all possible swapped names:** Materializing up to `26N` strings uses unnecessary memory. The solution keeps only counts because the identity of a compatible partner is irrelevant after its replacement direction is known.
 - **Dividing the result by two:** This would be incorrect for the implementation. It directly counts ordered selections, corresponding to the two possible concatenation orders, so no final division is needed.
@@ -117,8 +117,8 @@ For example, suppose the current idea begins with `b` and the loop is considerin
 - **One idea or only one occupied initial group:** No valid pair exists. Every attempt to keep the same initial regenerates an existing name, and there is no partner in another occupied group, so `ans` remains zero.
 - **Names of different lengths:** The method never compares suffix positions across words. It constructs complete candidate strings and tests membership, so varying lengths are handled naturally.
 - **Hash-set behavior:** The complexity assumes ordinary expected hash performance. Correctness does not depend on hashing being collision-free because Python resolves collisions by equality checks.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

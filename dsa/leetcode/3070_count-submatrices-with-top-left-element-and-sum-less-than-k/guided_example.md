@@ -51,7 +51,7 @@ Therefore the problem asks how many anchored prefix rectangles have sum at most 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore the problem asks how many anchored prefix rectangl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore the problem asks how many anchored prefix rectangles have sum at most 
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-dimensional rolling prefix state:** Mainta:** - **One-dimensional rolling prefix state:** Maintain vertical column sums and a horizontal running total for each row, achieving $O(N)$ space as described by the manifest.
+- **One-dimensional rolling prefix state:** Maintain vertical column sums and a horizontal running total for each row, achieving $O(N)$ space as described by the manifest.
 - **Modify the grid into prefix sums:** It can avoid a separate table but mutates caller data and still uses $O(MN)$ stored values.
 - **Enumerate every rectangle's cells:** Recomputing sums directly can cost $O(M^2N^2)$ or worse.
 - **Early break with nonnegative values:** Once row prefix sums exceed $k$, later columns in that row also exceed it; this can save work but is not used.
@@ -102,8 +102,8 @@ Therefore the problem asks how many anchored prefix rectangles have sum at most 
 - **Large prefix sums:** A full 1000-by-1000 grid can sum to $10^9$, which Python integers handle safely and the constraint on $k$ accommodates.
 - **No duplicate submatrices:** Different bottom-right coordinates define different cell sets, while the same coordinate is visited once, so the Boolean additions form an exact count.
 - **Answer storage:** A single integer is sufficient; individual qualifying rectangles never need reconstruction.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

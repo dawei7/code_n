@@ -79,7 +79,7 @@ rejects every other relationship. It catches an `O` move before the first `X`, t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Player `X` always moves first and turns alternate.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,9 +123,9 @@ The helper returns as soon as it finds a line. The number of winning lines is ir
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all legal game states:** A DFS from :** - **Enumerate all legal game states:** A DFS from the empty board can precompute reachability, but direct invariants are simpler and constant-time.
-- **- **Check counts only:** Insufficient because a pl:** - **Check counts only:** Insufficient because a player may have moved after the opponent already won.
-- **- **Check winners only:** Insufficient because tur:** - **Check winners only:** Insufficient because turns may have the wrong number of marks even without a win.
+- **Enumerate all legal game states:** A DFS from the empty board can precompute reachability, but direct invariants are simpler and constant-time.
+- **Check counts only:** Insufficient because a player may have moved after the opponent already won.
+- **Check winners only:** Insufficient because turns may have the wrong number of marks even without a win.
 
 ---
 

@@ -74,12 +74,7 @@ Therefore, the two subtraction moves never change the gcd.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For all integers `x` and `y`:
-
-$$
-\gcd(x,y-x)=\gcd(x,y),
-$$
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +119,7 @@ a power of two. This proves necessity.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly divide gcd by two:** Remove factors:** - **Repeatedly divide gcd by two:** Remove factors of two and test whether the remainder is one; equivalent but longer than the bit trick.
+- **Repeatedly divide gcd by two:** Remove factors of two and test whether the remainder is one; equivalent but longer than the bit trick.
 - **Grid search:** The state space is infinite and infeasible.
 - **Gcd one:** It is $2^0$ and always passes.
 - **Equal target coordinates:** Reachable exactly when that common coordinate is a power of two.
@@ -134,8 +129,8 @@ a power of two. This proves necessity.
 - **Subtraction moves:** They preserve gcd exactly.
 - **Doubling moves:** They cannot introduce odd common primes.
 - **Operator precedence:** The expression tests `(x&(x-1))==0`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

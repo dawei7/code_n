@@ -61,7 +61,7 @@ The formatter uses the weekday already associated with the constructed date. It 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method `strftime` converts date information to formatted... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For August 31, 2019, the constructor creates the corresponding valid date and th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual elapsed-day counting:** Sum complete ye:** - **Manual elapsed-day counting:** Sum complete years since 1971, add complete months in the target year, add `day - 1`, and take the total modulo seven from Friday. This can be correct but requires careful leap-year and indexing logic.
+- **Manual elapsed-day counting:** Sum complete years since 1971, add complete months in the target year, add `day - 1`, and take the total modulo seven from Friday. This can be correct but requires careful leap-year and indexing logic.
 - **Zeller-style congruence:** A closed-form weekday formula avoids library use and remains constant time, but its month transformations and century terms are less beginner-friendly and easier to implement incorrectly.
 - **Numeric weekday plus name list:** `date.weekday()` could return a number that indexes a manually supplied array. That approach must respect Python’s Monday-first numbering, whereas `%A` directly produces the full name.
 - **Leap day:** February 29 is valid only in a leap year. The date constructor applies the century exceptions correctly without a special branch in this method.
@@ -110,8 +110,8 @@ For August 31, 2019, the constructor creates the corresponding valid date and th
 - **Full versus abbreviated weekday:** `%A` is required. Using `%a` would produce abbreviations that do not match the allowed output values.
 - **Locale dependence:** Weekday names produced by `strftime` are locale-sensitive in general. The judge environment must provide English names for this exact implementation to match the English-only contract.
 - **Invalid dates outside this problem:** `datetime.date` would raise an exception for an impossible date. The stated validity guarantee makes explicit validation unnecessary here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -68,7 +68,7 @@ or one hundred times, the outer condition still learns the same fact: customer
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inner query selects `customerId` from every order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ column is named `name`, but the requested one-column table must be headed
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated `NOT EXISTS`:** Test that no order :** - **Correlated `NOT EXISTS`:** Test that no order has `customerId = Customers.id`; this is explicit anti-membership and remains safe when unrelated nulls occur.
+- **Correlated `NOT EXISTS`:** Test that no order has `customerId = Customers.id`; this is explicit anti-membership and remains safe when unrelated nulls occur.
 - **Left anti-join:** Left-join orders and retain rows whose right-side key is null; often clear to beginners and optimizer-friendly.
 - **Pandas exclusion:** Use negated `isin` on customer IDs, then select and rename `name`, as the local editorial demonstrates.
 - **Duplicate orders:** Repeated order IDs for one customer do not change membership, so no `DISTINCT` is necessary.
@@ -119,8 +119,8 @@ column is named `name`, but the requested one-column table must be headed
 - **No customers:** There are no outer rows to return.
 - **Nullable `customerId`:** A null can poison `NOT IN`; prefer `NOT EXISTS` unless non-nullness is guaranteed.
 - **Any result order:** Do not add sorting unless a separate presentation requirement asks for it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

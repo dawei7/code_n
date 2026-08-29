@@ -67,9 +67,7 @@ This is best when shared items are expensive compared with buying one item of ea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `a = need1 * cost1 + need2 * cost2`
-
-is $C(0)$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ This candidate matters when a shared item is even cheaper than satisfying the re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Loop over every shared-item count:** Requireme:** - **Loop over every shared-item count:** Requirements reach $10^9$, so enumeration is far too slow.
+- **Loop over every shared-item count:** Requirements reach $10^9$, so enumeration is far too slow.
 - **Always buy `min(need1,need2)` shared items:** This ignores whether shared items are too expensive or cheap enough to justify oversupplying the smaller side.
 - **Compare `costBoth` only with `cost1+cost2`:** That decides the overlap interval but not whether shared items should cover the larger-side remainder.
 - **Require exact contributions:** The contract permits exceeding a need, which is why the all-shared candidate is legal.
@@ -121,8 +119,8 @@ This candidate matters when a shared item is even cheaper than satisfying the re
 - **Very cheap shared item:** Buying `max(need1,need2)` shared items may win.
 - **Positive prices:** Buying beyond the larger need is never beneficial.
 - **No input mutation:** All five arguments remain unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

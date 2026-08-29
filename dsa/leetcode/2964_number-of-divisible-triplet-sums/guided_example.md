@@ -69,7 +69,7 @@ For example, let `nums = [3, 3, 4, 7]` and `d = 5`. When `j = 1`, `cnt` contains
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop chooses `j` from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For every pair $(j,k)$, there is exactly one complementary remainder class. Ever
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three nested loops:** Testing every $(i,j,k)$ :** - **Three nested loops:** Testing every $(i,j,k)$ directly takes $O(N^3)$ time and repeats the same modular relationships.
+- **Three nested loops:** Testing every $(i,j,k)$ directly takes $O(N^3)$ time and repeats the same modular relationships.
 - **Two-sum map rebuilt for every index:** Several pair-counting arrangements are possible, but rebuilding a map per fixed index still costs quadratic time with more setup. The streaming remainder map maintains index order naturally.
 - **Use a set of remainders:** A set loses multiplicity and undercounts when several earlier indices share the needed remainder.
 - **Complement without final modulo:** `d - r` equals `d` when `r=0`, but normalized remainders range from zero to `d-1`. The outer `% d` fixes this case.
@@ -115,8 +115,8 @@ For every pair $(j,k)$, there is exactly one complementary remainder class. Ever
 - **`d = 1`:** Every value has remainder zero, so every index triple is divisible; the algorithm accumulates exactly $\binom{N}{3}$.
 - **Large answer:** The number of triples can be $\Theta(N^3)$ even though computation is $O(N^2)$; Python integers represent the result without overflow.
 - **Input preservation:** The solution reads values in their original order and never modifies the list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

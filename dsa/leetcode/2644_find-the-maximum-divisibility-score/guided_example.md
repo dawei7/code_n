@@ -71,11 +71,7 @@ Each array position counts separately. If `nums` contains the same divisible num
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one divisor, the expression:
-
-`x % div == 0`
-
-is true ex... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +112,7 @@ All scores are nonnegative, so zero is a valid baseline. Starting `ans` with an 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort divisors first:** Then the first maximum :** - **Sort divisors first:** Then the first maximum might encode the tie-break, but sorting adds $O(d\log d)$ and remains unnecessary.
+- **Sort divisors first:** Then the first maximum might encode the tie-break, but sorting adds $O(d\log d)$ and remains unnecessary.
 - **Deduplicate divisors:** Can avoid identical rescans while preserving the numerical result, at the cost of extra storage.
 - **Factor-frequency preprocessing:** Helpful for much larger domains but substantially more complex than the bounded direct scan.
 - **All scores zero:** Return the smallest divisor.
@@ -126,8 +122,8 @@ All scores are nonnegative, so zero is a valid baseline. Starting `ans` with an 
 - **Divisor larger than every number:** Its score is normally zero unless an equal multiple exists.
 - **Repeated numbers:** Every occurrence contributes separately.
 - **Input order:** Tie logic makes the result independent of divisor ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

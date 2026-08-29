@@ -51,7 +51,7 @@ Therefore the encrypted output must satisfy
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore the encrypted output must satisfy... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Slice rotation:** After `r = k % n`, return `s:** - **Slice rotation:** After `r = k % n`, return `s[r:] + s[:r]`. This is concise and $O(n)$ but still allocates the result and relies on recognizing the operation as a left rotation.
+- **Slice rotation:** After `r = k % n`, return `s[r:] + s[:r]`. This is concise and $O(n)$ but still allocates the result and relies on recognizing the operation as a left rotation.
 - **List comprehension:** `"".join(s[(i+k)%n] for i in range(n))` expresses the same mapping without first copying `s` into a list.
 - **Repeated one-step rotation:** Applying the transformation $k$ times can cost $O(nk)$ and is unnecessary because modulo combines all steps.
 - **In-place cycle replacement:** On a mutable array, permutation cycles can rotate with $O(1)$ auxiliary storage, but strings are immutable and the returned string still requires allocation.
@@ -100,8 +100,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Lowercase-only constraint:** Character content does not affect the algorithm; the guarantee merely bounds the alphabet.
 - **Read from `s`, write to `cs`:** Keeping source and destination separate prevents overwrite corruption.
 - **Input preservation:** Python strings are immutable, and the method returns a new string without changing `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

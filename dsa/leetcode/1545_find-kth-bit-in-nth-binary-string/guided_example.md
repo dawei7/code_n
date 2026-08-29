@@ -61,7 +61,7 @@ The source checks `k == 1` first and returns zero. This ordering matters because
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every string begins with the full previous string, ultimatel... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This shortcut stops recursion immediately for any center inherited at any level.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Construct every string:** It is straightforwar:** - **Construct every string:** It is straightforward but needs $O(2^N)$ time and space in the worst case.
+- **Construct every string:** It is straightforward but needs $O(2^N)$ time and space in the worst case.
 - **Iterative mirror tracking:** Repeatedly mirror right-half positions and track an inversion flag, avoiding recursion stack while preserving $O(N)$ time.
 - **Constant-time bit formula:** A deeper bit-pattern derivation can solve the query with fixed operations, but it is not the stored source or manifest approach.
 - **n equals one:** The only valid position is one, and the helper returns zero.
@@ -114,8 +114,8 @@ This shortcut stops recursion immediately for any center inherited at any level.
 - **Valid-k guarantee:** Every recursive mirrored position remains within the appropriate previous string.
 - **XOR inversion:** `bit ^ 1` is valid because the recursive result is always zero or one.
 - **No dependence on generated length:** Powers of two are computed with shifts rather than allocating characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

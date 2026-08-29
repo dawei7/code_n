@@ -2,7 +2,7 @@
 
 You are given `nums`, an array of positive integers of size $2 * n$. You must perform `n` operations on this array.
 
-In the $$i^{\text{th}}$$ operation **(1-indexed)**, you will:
+In the $i^{\text{th}}$ operation **(1-indexed)**, you will:
 
 - Choose two elements, `x` and `y`.
 

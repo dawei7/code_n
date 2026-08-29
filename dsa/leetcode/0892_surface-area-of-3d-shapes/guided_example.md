@@ -51,7 +51,7 @@ Each positive grid cell represents a vertical tower. The solution first counts t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Surface of one isolated tower.** A tower of height $v>0$ i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This formula already excludes faces between cubes stacked inside the same tower.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count six faces per cube:** Subtract two faces:** - **Count six faces per cube:** Subtract two faces for every adjacent cube pair, including vertical pairs. This is correct but can take time proportional to the total number of cubes rather than $n^2$.
+- **Count six faces per cube:** Subtract two faces for every adjacent cube pair, including vertical pairs. This is correct but can take time proportional to the total number of cubes rather than $n^2$.
 - **Check all four neighboring cells:** It can work only if each shared contact is divided or carefully deduplicated. The top-and-left rule is simpler.
 - **Use `abs(v - w)` for internal boundaries:** Height difference describes exposed side above the shorter tower, but a complete formula must also handle outer boundaries and other sides. Isolated area minus shared contacts is less error-prone.
 - **Projection area:** Projection counts shadows, not exposed faces. It is a different problem and cannot replace surface-contact accounting.
@@ -99,8 +99,8 @@ This formula already excludes faces between cubes stacked inside the same tower.
 - **Grid boundary:** Missing neighbors cause no subtraction, retaining outward faces.
 - **Bottom surfaces:** They are always part of each positive tower's initial two horizontal faces, as required.
 - **No double-counting:** Each horizontal adjacency is handled by its lower or right endpoint exactly once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

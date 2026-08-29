@@ -74,7 +74,7 @@ These cases cover every legal array, and each has a direct construction.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are only three possible parity distributions in `nums1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ at every index. All output values remain even. This uses exactly one allowed cho
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan for an odd reference:** A constructive Bo:** - **Scan for an odd reference:** A constructive Boolean algorithm could inspect parities and choose a reference, but the universal proof makes even that scan unnecessary.
+- **Scan for an odd reference:** A constructive Boolean algorithm could inspect parities and choose a reference, but the universal proof makes even that scan unnecessary.
 - **Try to make everything even in the mixed case:** Odd values would need to subtract another odd or an even value would need to remain even. This may require more case handling; making everything odd always works by using one odd reference.
 - **Subtract an even reference from odd values:** Odd minus even is odd, so this is another way to keep odd parity, but it does not transform even values. The simple construction keeps odds and changes evens.
 - **Require positive differences:** That is not part of this version. Adding it invalidates the negative example and changes the answer for some arrays, as handled in ID 3876.
@@ -127,8 +127,8 @@ at every index. All output values remain even. This uses exactly one allowed cho
 - **Input order:** It has no effect because the construction is per-index and the result needs only uniform parity.
 - **Distinctness:** Guaranteed but unnecessary for the parity existence proof.
 - **Do not overimplement:** Building the actual output would be correct but wastes work when only a Boolean is returned.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

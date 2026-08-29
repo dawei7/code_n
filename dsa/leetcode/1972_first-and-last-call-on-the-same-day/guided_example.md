@@ -68,7 +68,7 @@ All calls made or received by the same user on the same date belong to one windo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | First and last are not global properties of a user.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ If a user has exactly one call on a day, that same row is simultaneously earlies
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation after ranking:** Rank :** - **Conditional aggregation after ranking:** Rank earliest and latest rows and group by user and day, then compare conditional partner values. This is explicit but usually longer than two `FIRST_VALUE` annotations.
+- **Conditional aggregation after ranking:** Rank earliest and latest rows and group by user and day, then compare conditional partner values. This is explicit but usually longer than two `FIRST_VALUE` annotations.
 - **Join minimum and maximum times back to `Calls`:** It can work, but it needs both participant perspectives and careful joins; time ties can multiply rows.
 - **`DENSE_RANK` plus grouping:** Keep rows ranked first in ascending or descending order, then require one distinct partner. This treats tied boundary times differently and can express a deliberate all-ties interpretation.
 - **Analyze callers only:** This is incorrect because calls received by a user are part of that user's daily history.
@@ -123,8 +123,8 @@ If a user has exactly one call on a day, that same row is simultaneously earlies
 - **Equal timestamps:** Without a secondary ordering key, different partners tied at a boundary make `FIRST_VALUE` nondeterministic; the exact source assumes an unambiguous boundary.
 - **Self-call:** `UNION ALL` may create two identical perspective rows, but both name the same partner and do not change the equality result.
 - **Result order:** No `ORDER BY` is needed because the contract allows any order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

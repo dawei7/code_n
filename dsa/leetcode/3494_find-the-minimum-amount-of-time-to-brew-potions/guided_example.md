@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-T+x\sum_{h=0}^{i-1}\texttt{skill}[h].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ The immediate-transfer rule means this arrival time must also be the exact time 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Standard flow-shop DP only:** Keeping the forw:** - **Standard flow-shop DP only:** Keeping the forward tentative completion times would permit a potion to wait between wizards, violating immediate transfer.
+- **Standard flow-shop DP only:** Keeping the forward tentative completion times would permit a potion to wait between wizards, violating immediate transfer.
 - **Binary-search each potion's start:** Feasibility is monotone, but the maximum start constraint is derived directly in one pass.
 - **Build a full \(n\times m\) table:** It is unnecessary because only the previous potion's wizard completion times are needed.
 - **Start every potion when wizard zero is free:** A later wizard may still be occupied, so all wizard constraints must influence the start.
@@ -102,8 +100,8 @@ The immediate-transfer rule means this arrival time must also be the exact time 
 - **Immediate transfer:** Backward subtraction makes each wizard's completion exactly the next wizard's start.
 - **Positive durations:** No processing interval has zero or negative length, preserving scheduling order.
 - **Name shadowing:** The local `max` lambda behaves correctly for two arguments but should not be confused with a different optimization.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

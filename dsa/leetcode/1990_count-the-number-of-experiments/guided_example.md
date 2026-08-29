@@ -57,7 +57,7 @@ This fixed nine-row table is the backbone of the solution. Even a category absen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `T` selects from `P, Exp` without a join condition.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The left join is essential. If a pair has no experiment, its `T` row remains and
 
 ## 6. Traps This Instance Exposes
 
-- **- **Group `Experiments` directly:** Misses categor:** - **Group `Experiments` directly:** Misses category pairs whose count should be zero.
+- **Group `Experiments` directly:** Misses category pairs whose count should be zero.
 - **Conditional aggregation:** Can count all experiment names per platform, but still needs an explicit platform domain and may produce a wide rather than requested row format.
 - **Separate tables for enum domains:** Preferable in a normalized extensible schema; cross joining those tables follows the same idea.
 - **`COUNT(*)`:** Incorrectly counts the null-extended placeholder as one for absent categories.
@@ -109,8 +109,8 @@ The left join is essential. If a pair has no experiment, its `T` row remains and
 - **Any output order:** No `ORDER BY` is needed.
 - **Positional grouping:** `GROUP BY 1, 2` refers to the two selected category columns.
 - **No mutation:** The query reads and aggregates `Experiments`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

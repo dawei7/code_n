@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `daysLate` where $\text{daysLate}[i]$ indicates how many days late the $$i^{\text{th}}$$ book was returned.
+You are given an integer array `daysLate` where $\text{daysLate}[i]$ indicates how many days late the $i^{\text{th}}$ book was returned.
 
 The objective is to compute `32` from `{"daysLate": [5, 1, 7]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,13 +65,7 @@ The strict comparison places $6$ and all larger delays in the highest-rate brack
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The next branch is:
-
-`if x > 5:`
-
-`    return 3 * x`
-
-The st... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +113,7 @@ These four checks capture both transitions between fee brackets.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop with an accumulator:** A loop th:** - **Explicit loop with an accumulator:** A loop that selects a branch and adds to `total` is equally $O(n)$ and may be more verbose. The generator-plus-helper source expresses the same scan compactly.
+- **Explicit loop with an accumulator:** A loop that selects a branch and adds to `total` is equally $O(n)$ and may be more verbose. The generator-plus-helper source expresses the same scan compactly.
 - **List comprehension before summing:** `sum([f(x) for x in daysLate])` returns the same result but allocates $O(n)$ temporary space. The generator keeps auxiliary space constant.
 - **Sort by lateness:** Sorting does not help because fee calculation is independent for every book and addition ignores order. It would unnecessarily increase time to $O(n \log n)$.
 - **Delay exactly one:** This must return a fixed fee of $1$, not $2x$. The first branch handles the exception.
@@ -129,8 +123,8 @@ These four checks capture both transitions between fee brackets.
 - **One book:** The generator produces one fee, and `sum` returns it unchanged.
 - **Positive-delay guarantee:** A zero or negative delay is outside the contract. The helper's final branch relies on legal remaining values being between two and five.
 - **No cumulative bracket:** Ten books each one day late cost ten in total. Their delays are not combined into ten days before applying the fee rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

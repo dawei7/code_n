@@ -87,7 +87,7 @@ Grouping later by `user_id, action, grp` therefore identifies exactly one maxima
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `(user_id, action)` pair, `streak_groups` sorts eli... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ This relies on the single-action-day filter. Each eligible calendar day has one 
 
 ## 6. Traps This Instance Exposes
 
-- **- **LAG plus cumulative break markers:** Compare e:** - **LAG plus cumulative break markers:** Compare each eligible row with its preceding user row, mark a new run when the action changes or `DATEDIFF` is not 1, and cumulatively sum markers into group IDs. This directly expresses all break conditions but needs careful handling after multi-action dates are removed.
+- **LAG plus cumulative break markers:** Compare each eligible row with its preceding user row, mark a new run when the action changes or `DATEDIFF` is not 1, and cumulatively sum markers into group IDs. This directly expresses all break conditions but needs careful handling after multi-action dates are removed.
 - **Self-join date chains:** Joining each row to the next calendar day can identify local continuity, but assembling maximal streaks and selecting their endpoints is more cumbersome and may create large intermediates.
 - **Multi-action date:** All rows for that user-date receive `cnt > 1` and are removed. The missing date separates runs on both sides.
 - **Missing calendar date:** Adjacent records are not necessarily consecutive days; the shifted-date key changes across the gap.
@@ -138,8 +138,8 @@ This relies on the single-action-day filter. Each eligible calendar day has one 
 - **One row per day after filtering:** This makes `COUNT(*)` equal elapsed streak days rather than merely activity records.
 - **Final ties across users:** Equal streak lengths are ordered by ascending `user_id` in the final result.
 - **MySQL alias behavior:** The query uses `streak_length` in `HAVING`, which MySQL permits for a select-list aggregate alias.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

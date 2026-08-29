@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `DENSE_RANK()` implements exactly this definition.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Unlike ordinary `RANK`, `DENSE_RANK` does not leave gaps after ties. If two empl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subquery:** Count distinct salaries:** - **Correlated subquery:** Count distinct salaries greater than each employee's and keep rows where that count is one. It is logically direct but can repeat work without optimizer support.
+- **Correlated subquery:** Count distinct salaries greater than each employee's and keep rows where that count is one. It is logically direct but can repeat work without optimizer support.
 - **Group distinct salaries first:** A department-salary table can be ranked and then joined back to employees. This makes distinctness explicit but adds a join.
 - **`RANK` instead of `DENSE_RANK`:** It is wrong when the highest salary is tied because the next salary rank would skip past two.
 - **`ROW_NUMBER`:** It keeps only one physical employee at a salary and would incorrectly omit tied second earners.
@@ -99,8 +99,8 @@ Unlike ordinary `RANK`, `DENSE_RANK` does not leave gaps after ties. If two empl
 - **Positional `ORDER BY`:** It is concise but fragile if projection order changes; `ORDER BY emp_id ASC` is clearer.
 - **Duplicate employee ID:** The schema prohibits it, ensuring each returned employee appears once.
 - **MySQL version:** Window functions require a modern engine.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

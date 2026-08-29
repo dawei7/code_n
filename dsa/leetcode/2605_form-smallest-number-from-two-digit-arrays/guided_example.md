@@ -65,7 +65,7 @@ The smaller order places the smaller digit in the tens position.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the arrays are disjoint, no single digit can represent bo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ There is no risk that the sentinel survives. Both input arrays are nonempty, so 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set intersection:** Find the smallest common d:** - **Set intersection:** Find the smallest common digit directly, then use both array minima if none exists.
+- **Set intersection:** Find the smallest common digit directly, then use both array minima if none exists.
 - **Sort both arrays:** Sorting is unnecessary for at most 81 direct candidates and would add mutation or copies.
 - **Multiple common digits:** The nested minimum keeps the smallest one.
 - **No common digit:** Exactly two digits are necessary, and both orders are tested.
@@ -120,8 +120,8 @@ There is no risk that the sentinel survives. Both input arrays are nonempty, so 
 - **No zero digits:** Every constructed two-digit candidate truly has two decimal digits.
 - **Sentinel 100:** All valid candidates lie from one through 99, so it is safely replaced.
 - **Input preservation:** Neither array is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

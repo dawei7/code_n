@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are playing a game that contains multiple characters, and each of the characters has **two** main properties: **attack** and **defense**. You are given a 2D integer array `properties` where $\text{properties}[i] = [\text{attack}_{i}, \text{defense}_{i}]$ represents the properties of the $$i^{\text{th}}$$ character in the game.
+You are playing a game that contains multiple characters, and each of the characters has **two** main properties: **attack** and **defense**. You are given a 2D integer array `properties` where $\text{properties}[i] = [\text{attack}_{i}, \text{defense}_{i}]$ represents the properties of the $i^{\text{th}}$ character in the game.
 
 The objective is to compute `0` from `{"properties": [[5, 5], [6, 3], [3, 6]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -64,7 +64,7 @@ For example, equal-attack characters `(5,3)` and `(5,7)` are scanned in that ord
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Characters with equal attack cannot dominate one another, no... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Defense values are positive, so initializing `mx=0` ensures the first character 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Attack-frequency suffix maximum:** Store maxim:** - **Attack-frequency suffix maximum:** Store maximum defense at each attack, build suffix maxima, and test against strictly higher attacks in $O(N+K)$ time and $O(K)$ space.
+- **Attack-frequency suffix maximum:** Store maximum defense at each attack, build suffix maxima, and test against strictly higher attacks in $O(N+K)$ time and $O(K)$ space.
 - **Brute-force pair comparison:** Takes $O(N^2)$ time and repeats dominance checks.
 - **Wrong tie order:** Descending attack and descending defense scanned left-to-right can let equal attacks falsely dominate.
 - **Equal attack, different defense:** Neither is weak because attack must be strictly greater.
@@ -115,8 +115,8 @@ Defense values are positive, so initializing `mx=0` ensures the first character 
 - **Positive defenses:** Make zero a safe initial maximum.
 - **Boolean arithmetic:** In Python, adding the comparison increments by exactly zero or one.
 - **Input side effect:** The exact source reorders `properties`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

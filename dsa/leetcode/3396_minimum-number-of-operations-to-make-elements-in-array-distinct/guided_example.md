@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Find the longest distinct suffix by scanning backward.** S... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first time `nums[i] in s`, suffix `nums[i:]` is not distinct because the sam
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward simulation:** Recheck each remaining s:** - **Forward simulation:** Recheck each remaining suffix after every removal, costing up to $O(n^2)$.
+- **Forward simulation:** Recheck each remaining suffix after every removal, costing up to $O(n^2)$.
 - **Frequency counter with moving start:** It can track duplicates but uses more bookkeeping than the reverse suffix scan.
 - **Already distinct:** Return zero.
 - **Duplicate in final two elements:** Enough operations may remove the entire array.
@@ -103,8 +103,8 @@ The first time `nums[i] in s`, suffix `nums[i:]` is not distinct because the sam
 - **Set uniqueness:** It represents exactly the already-scanned suffix.
 - **Value bounds:** Hashing works regardless of the small domain.
 - **Annotation import:** `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

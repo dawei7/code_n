@@ -51,7 +51,7 @@ The solution expresses the entire scan as `sum(x for i, x in enumerate(nums) if 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution expresses the entire scan as `sum(x for i, x in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ First, `enumerate(nums)` yields `(index, value)` pairs in increasing index order
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brian Kernighan's bit loop:** Repeatedly repla:** - **Brian Kernighan's bit loop:** Repeatedly replace `v` by `v & (v - 1)` and count iterations until zero. Each step removes the lowest set bit, but Python's `bit_count()` is shorter and purpose-built.
+- **Brian Kernighan's bit loop:** Repeatedly replace `v` by `v & (v - 1)` and count iterations until zero. Each step removes the lowest set bit, but Python's `bit_count()` is shorter and purpose-built.
 - **Binary-string conversion:** `bin(i).count("1")` is easy to visualize, but it allocates a string for every index and adds unnecessary overhead.
 - **Precomputed population counts:** A table with `bits[i] = bits[i >> 1] + (i & 1)` works, but uses $O(n)$ space for information needed only once.
 - **`k = 0`:** Only index `0` qualifies, so the answer is exactly the first array value.
@@ -94,8 +94,8 @@ First, `enumerate(nums)` yields `(index, value)` pairs in increasing index order
 - **Single-element input:** Its only index is zero; the result is `nums[0]` when `k = 0` and `0` otherwise.
 - **Positive array values:** Qualification depends only on indices, so the logic would remain valid even if stored values were zero or negative.
 - **Index-versus-value trap:** Always apply `bit_count()` to `i`, never to `x`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

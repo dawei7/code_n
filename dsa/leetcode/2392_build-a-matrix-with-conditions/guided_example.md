@@ -59,7 +59,7 @@ All numbers `1` through `k` must be included even if they never appear in a cond
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(cond)` creates adjacency lists `g` and an inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Duplicate conditions are also safe. They create duplicate adjacency entries and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **DFS topological sort:** Three-color visitation:** - **DFS topological sort:** Three-color visitation can detect cycles and append nodes in reverse finish order. It has the same asymptotic bounds but recursive depth can be a concern.
+- **DFS topological sort:** Three-color visitation can detect cycles and append nodes in reverse finish order. It has the same asymptotic bounds but recursive depth can be a concern.
 - **One combined graph of row and column constraints:** Row and column positions are independent dimensions; merging them would impose relationships the problem never requires.
 - **Cycle in only one dimension:** No matrix exists even if the other dimension has a valid order.
 - **Unconstrained value:** It begins with zero indegree and is placed somewhere valid in both orders.
@@ -107,8 +107,8 @@ Duplicate conditions are also safe. They create duplicate adjacency entries and 
 - **All zeros except `k` cells:** Initialization supplies zeros, and exactly one assignment is made per value.
 - **Independent coordinate maps:** A value's row position does not need to match its column position.
 - **Self-condition:** The contract excludes `a == b`; such a condition would be an immediate cycle.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

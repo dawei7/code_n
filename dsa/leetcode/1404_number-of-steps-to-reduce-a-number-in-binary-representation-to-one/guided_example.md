@@ -64,7 +64,7 @@ The table explains a detail that can initially look surprising: once a carry is 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the loop is about to process a character `c`, all less ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ After normalization, `if c == '1'` identifies an odd current number. The code ad
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutable-string simulation:** Repeatedly deleti:** - **Mutable-string simulation:** Repeatedly deleting a trailing zero or propagating an add-one carry directly through a character array mirrors the problem statement and can be intuitive. It stores or modifies the full representation and may revisit several bits during individual additions, while the carry scan compresses those effects into one pass.
+- **Mutable-string simulation:** Repeatedly deleting a trailing zero or propagating an add-one carry directly through a character array mirrors the problem statement and can be intuitive. It stores or modifies the full representation and may revisit several bits during individual additions, while the carry scan compresses those effects into one pass.
 - **Arbitrary-precision integer conversion:** A language with built-in big integers could parse `s` and simulate the numeric rules. That depends on nonconstant-width arithmetic and hides costs proportional to the number of bits, so it is less portable and less direct than reasoning on the representation.
 - **Index-based carry scan:** Iterating `i` from `len(s) - 1` down to `1` and reading `s[i]` implements the same recurrence without constructing the reversed slice. This is the practical variant when the $O(1)$ auxiliary-space claim must include Python slicing behavior.
 - **Single leading bit:** For `"1"`, there are no removable suffix bits and no carry, so the correct result is zero.
@@ -121,8 +121,8 @@ After normalization, `if c == '1'` identifies an odd current number. The code ad
 - **All ones:** An input such as `"1111"` creates a carry at the right edge. That carry passes through every remaining one, and the final extra division handles the new leading bit.
 - **Internal zeros under a carry:** A zero is not automatically a one-step case. If `carry` is true, that zero becomes effectively one, so it requires an addition and a division and sends a new carry leftward.
 - **No leading zeros:** The guarantee `s[0] == '1'` is essential to the final reasoning. The algorithm treats index zero as the one leading significant bit that should remain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

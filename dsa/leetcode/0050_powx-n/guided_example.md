@@ -61,7 +61,7 @@ Then `a *= a` advances from $x^{2^k}$ to $x^{2^{k+1}}$, and `n >>= 1` removes th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `qpow(a, n)` is called only with a nonnegative exponent.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Only four iterations are needed because 13 has four binary positions, rather tha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive exponentiation by squaring:** Comput:** - **Recursive exponentiation by squaring:** Compute the half power once, square it, and multiply by `x` for an odd exponent. It has the same time bound but uses $O(\log |n|)$ call-stack space.
+- **Recursive exponentiation by squaring:** Compute the half power once, square it, and multiply by `x` for an odd exponent. It has the same time bound but uses $O(\log |n|)$ call-stack space.
 - **Naive repeated multiplication:** It is simple but takes $O(|n|)$ time, which is infeasible for the maximum exponent.
 - **Built-in power operator:** `x ** n` is concise but bypasses the requested implementation exercise and hides the binary process.
 - **Exponent zero:** The untouched multiplicative identity 1 is returned.
@@ -114,8 +114,8 @@ Only four iterations are needed because 13 has four binary positions, rather tha
 - **Base one or negative one:** Squaring quickly stabilizes at one, while selected odd bits preserve the appropriate sign.
 - **Negative base:** The parity of selected exponent bits naturally determines the sign; no special branch is needed.
 - **Floating-point precision:** The algorithm minimizes multiplication count asymptotically but cannot eliminate ordinary rounding in floating-point operations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

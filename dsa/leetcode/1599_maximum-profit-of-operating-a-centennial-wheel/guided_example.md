@@ -69,11 +69,7 @@ Once both conditions are false, there are no future customers and nobody waiting
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop continues while:
-
-`wait or i < len(customers)`.
-
-If... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +116,7 @@ The rule says customers cannot be kept waiting when room exists, so the operator
 
 ## 6. Traps This Instance Exposes
 
-- **- **Queue individual customer objects:** Only the :** - **Queue individual customer objects:** Only the waiting count affects boarding and profit. Storing each person wastes $O(A)$ space.
+- **Queue individual customer objects:** Only the waiting count affects boarding and profit. Storing each person wastes $O(A)$ space.
 - **Stop simulation at the final arrival index:** This can miss profitable rotations that serve customers still waiting after arrivals end.
 - **Simulate gondola positions:** Capacity at the boarding gondola and free safety rotations after stopping make occupant positions irrelevant to profit.
 - **Update on `t >= mx`:** This would replace an earlier optimal rotation count with a later tie, violating the minimum-rotations requirement.
@@ -135,8 +131,8 @@ The rule says customers cannot be kept waiting when room exists, so the operator
 - **Backlog after final arrival:** The `wait` part of the loop condition continues service until it is empty, evaluating all useful prefixes.
 - **No backlog and no future arrivals:** The loop stops because further paid rotations have negative incremental profit `-runningCost`.
 - **Free rotations after stopping:** They safely unload onboard customers but do not alter the recorded paid-service profit or rotation choice requested by the problem.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

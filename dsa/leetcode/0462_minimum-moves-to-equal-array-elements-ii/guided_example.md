@@ -67,13 +67,7 @@ This contribution is already as small as possible; moving `k` outside the pair's
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sort values as
-
-$$
-a_0\le a_1\le\cdots\le a_{n-1}.
-$$
-
-Pair ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +108,7 @@ For odd `n`, this is the unique middle index. For even `n`, it selects the upper
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quickselect the median:** Expected $O(n)$ time:** - **Quickselect the median:** Expected $O(n)$ time finds the middle order statistic without fully sorting, followed by an $O(n)$ distance scan. It mutates the array and has quadratic worst-case time with naive pivots.
+- **Quickselect the median:** Expected $O(n)$ time finds the middle order statistic without fully sorting, followed by an $O(n)$ distance scan. It mutates the array and has quadratic worst-case time with naive pivots.
 - **Deterministic median of medians:** Guarantees $O(n)$ worst-case selection but is considerably more complex and usually unnecessary for these bounds.
 - **Try every possible target:** The numerical range can span billions, making range enumeration infeasible.
 - **Use the arithmetic mean:** It minimizes squared error, not the sum of unit moves, and can be suboptimal here.
@@ -125,8 +119,8 @@ For odd `n`, this is the unique middle index. For even `n`, it selects the upper
 - **Negative values:** Sorting and absolute differences work across zero without special handling.
 - **Duplicate medians:** Repeated central values simply make the optimal target explicit and do not affect the proof.
 - **Input mutation:** Callers needing the original order must sort a copy rather than reuse this exact in-place implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

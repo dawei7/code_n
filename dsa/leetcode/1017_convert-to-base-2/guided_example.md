@@ -85,7 +85,7 @@ This separation is a clean alternative to repeatedly calling division by `-2` an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `N` denote the original input, and suppose the loop is a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ For `n = 3`, the first odd step chooses a units digit of one and reduces the wor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated division by `-2`:** A conventional fo:** - **Repeated division by `-2`:** A conventional formulation uses `n, remainder = divmod(n, -2)` and repairs a negative remainder by adding two and increasing the quotient. It is correct when implemented carefully, but the repair rule is easy to get wrong. The chosen code avoids negative remainders by dividing by positive two and tracking the place sign separately.
+- **Repeated division by `-2`:** A conventional formulation uses `n, remainder = divmod(n, -2)` and repairs a negative remainder by adding two and increasing the quotient. It is correct when implemented carefully, but the repair rule is easy to get wrong. The chosen code avoids negative remainders by dividing by positive two and tracking the place sign separately.
 - **Build powers first and use a greedy choice:** One could find the largest power of `-2` and decide digits from left to right. Alternating positive and negative place values make an ordinary largest-first greedy rule much harder to justify, because choosing a large positive contribution changes what negative lower places must compensate.
 - **Convert to ordinary binary and edit bits:** Base two and base negative two share digit symbols but not positional values. Merely flipping selected bits or inserting a sign cannot generally transform one representation into the other without carrying information across positions.
 - **Recursive digit generation:** The same recurrence can be written recursively and concatenate a final remainder digit. Its reasoning is similar, but it consumes `O(B)` call-stack frames and may perform costly repeated string concatenation unless designed carefully.
@@ -136,8 +136,8 @@ For `n = 3`, the first odd step chooses a units digit of one and reduces the wor
 - **No leading zeroes:** Zero digits may be appended early because the list is built from right to left. They become trailing zeroes in the final string, not leading zeroes. The last generated digit for a positive input is always one.
 - **Mutation of the parameter:** The method reuses `n` as its shrinking working residual. That is safe because the original value is not needed after conversion and integers are immutable values from the caller's perspective.
 - **Values near `10^9`:** The number of iterations grows logarithmically, so the upper constraint needs only a few dozen digit steps rather than work proportional to the numeric value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

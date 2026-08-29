@@ -56,7 +56,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -91,7 +91,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stack of letters:** Extract all letters, then :** - **Stack of letters:** Extract all letters, then scan original positions and pop replacements for letter slots. It is also $O(n)$ time and space but stores a separate letter collection.
+- **Stack of letters:** Extract all letters, then scan original positions and pop replacements for letter slots. It is also $O(n)$ time and space but stores a separate letter collection.
 - **Reverse extracted letters and rebuild:** This is clear and equivalent, with $O(n)$ extra storage.
 - **Reverse the entire string:** It moves punctuation and digits, violating fixed positions.
 - **Swap without skipping both sides:** A letter could exchange with a non-letter and move a fixed character.
@@ -106,8 +106,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Immutable input:** A list is required for swaps; joining produces a new string rather than altering `s`.
 - **Pointers meet on punctuation:** No swap occurs, and that fixed character remains untouched.
 - **Pointers meet on a letter:** It is the middle letter of the extracted sequence and correctly stays where it is.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - its largest decimal digit `mx`;
-- its number of digits $d$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ The encrypted number repeats `mx` exactly $d$ times. Numerically, that is:
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** `str(x)` can find maximum:** - **String conversion:** `str(x)` can find maximum character and length, then repeat the character. It is concise but allocates $O(d)$ temporary text per number.
+- **String conversion:** `str(x)` can find maximum character and length, then repeat the character. It is concise but allocates $O(d)$ temporary text per number.
 - **Power formula:** Use $(10^d-1)/9$ for the repeated-ones factor after separately counting digits. The iterative construction avoids exponentiation and division.
 - **Single-digit number:** Multiplier is one, so encryption returns the number unchanged.
 - **Number containing zero:** Zero participates in length but cannot raise the maximum.
@@ -110,8 +109,8 @@ The encrypted number repeats `mx` exactly $d$ times. Numerically, that is:
 - **Why `p` starts at zero:** The first `p*10+1` must yield one. Starting at one would incorrectly create two multiplier digits after processing the first input digit.
 - **Original digit count is preserved:** Encryption replaces digits but never removes positions, including zeros inside the number; one loop iteration per decimal position enforces this.
 - **Aggregate correctness:** Since encryption of one element is independent of every other, summing helper results gives the array's encrypted sum without cross-element state.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

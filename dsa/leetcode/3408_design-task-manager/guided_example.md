@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `d` is a dictionary from `taskId` to `(userId, priority)`;... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The dictionary is the direct identity view. It answers “who owns this task?”
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap with lazy deletion:** Keep current metada:** - **Heap with lazy deletion:** Keep current metadata in a dictionary, push a new heap item on each add or edit, and skip stale entries during execution. This is the editorial method, but it can retain $O(q)$ obsolete entries and is not the protected source.
+- **Heap with lazy deletion:** Keep current metadata in a dictionary, push a new heap item on each add or edit, and skip stale entries during execution. This is the editorial method, but it can retain $O(q)$ obsolete entries and is not the protected source.
 - **Scan the dictionary on every execution:** Add, edit, and remove remain simple, but finding the best live task costs $O(N)$ per `execTop`, which is too slow for the operation limit.
 - **Priority buckets:** Priorities reach $10^9$, so allocating a bucket for every possible priority is impractical; task-ID tie-breaking would still need an ordered structure.
 - **Equal priorities:** The negative task ID in the second tuple field guarantees that the numerically largest `taskId` is executed first.
@@ -97,8 +97,8 @@ The dictionary is the direct identity view. It answers “who owns this task?”
 - **Editing the owner:** `edit` changes only priority. The source reads and preserves the existing `userId`, matching the contract.
 - **Uniqueness guarantees:** `add` assumes a new task ID, while `edit` and `rmv` assume an existing one. The implementation intentionally relies on those input guarantees rather than defining overwrite or missing-task behavior.
 - **Synchronization failures:** Every change must update both structures. Forgetting to remove an old ranking tuple could make `execTop` access a missing dictionary task or execute an obsolete priority.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

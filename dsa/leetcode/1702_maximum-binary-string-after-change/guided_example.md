@@ -60,7 +60,7 @@ This branch also prevents later arithmetic from treating `-1` as a real zero pos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `binary.find('0')` returns the index of the first zero, or `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ It obtains this directly by starting `k` at the first-zero index and adding `bin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal operation simulation:** Repeatedly mov:** - **Literal operation simulation:** Repeatedly move and merge zeros according to the rules. It can perform quadratic many character movements and obscures the simple final invariant.
+- **Literal operation simulation:** Repeatedly move and merge zeros according to the rules. It can perform quadratic many character movements and obscures the simple final invariant.
 - **Count all zeros in one pass:** Track the first zero and total zero count without creating a suffix slice. It yields the same final index with $O(1)$ scalar auxiliary state before output construction.
 - **Greedy local replacement only:** Applying whichever operation appears first can eventually reach a good form, but proving termination and maximum value is harder than constructing the invariant-derived result.
 - **All ones:** `find` returns `-1` and the unchanged string is already maximal.
@@ -113,8 +113,8 @@ It obtains this directly by starting `k` at the first-zero index and adding `bin
 - **Fixed length:** The two repetition counts plus the literal zero total exactly $n$ characters.
 - **Variable reuse:** After the count assignment, `k` is the final zero position, not a count and not necessarily the original first-zero index.
 - **Lexicographic reasoning:** For equal-length binary strings, pushing the only zero later maximizes both lexicographic and numeric value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

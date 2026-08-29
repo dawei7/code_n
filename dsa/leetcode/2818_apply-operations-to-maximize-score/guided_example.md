@@ -51,7 +51,7 @@ If index $i$ is dominant for $c_i$ different subarrays, then `nums[i]` can be us
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If index $i$ is dominant for $c_i$ different subarrays, then... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because every value is positive and at least one, using another allowed operatio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sieve prime-score table:** Precompute the numb:** - **Sieve prime-score table:** Precompute the number of distinct prime factors for every value through $V$ by visiting multiples of each prime. This gives roughly $O(V\log\log V+n\log n)$ time and $O(V+n)$ space, matching the manifest and often outperforming repeated trial division.
+- **Sieve prime-score table:** Precompute the number of distinct prime factors for every value through $V$ by visiting multiples of each prime. This gives roughly $O(V\log\log V+n\log n)$ time and $O(V+n)$ space, matching the manifest and often outperforming repeated trial division.
 - **Max-heap instead of sorting:** Push value-capacity pairs and repeatedly remove the largest. It has the same $O(n\log n)$ ordering cost but sorting is simpler because capacities are static.
 - **Equal prime scores:** The earlier index must dominate shared subarrays. The left boundary blocks equality while the right boundary permits it.
 - **Value one:** Its prime score is zero because its factor set stays empty. It may still dominate a singleton or a region with no higher score.
@@ -96,8 +96,8 @@ Because every value is positive and at least one, using another allowed operatio
 - **`k` exhausts exactly at a boundary:** The source subtracts to zero and continues through later triples, but any later power uses exponent zero or the next comparison breaks harmlessly; the product is already complete.
 - **Modulo is not an ordering criterion:** Values are selected by their ordinary magnitude before reduction. Comparing modular residues would be incorrect.
 - **Input preservation:** The source sorts only `arr`, a new triple list; `nums` itself remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

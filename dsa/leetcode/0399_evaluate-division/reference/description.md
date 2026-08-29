@@ -2,7 +2,7 @@
 
 You are given an array of variable pairs `equations` and an array of real numbers `values`, where $\text{equations}[i] = [A_{i}, B_{i}]$ and $\text{values}[i]$ represent the equation $A_{i} / B_{i} = \text{values}[i]$. Each $A_{i}$ or $B_{i}$ is a string that represents a single variable.
 
-You are also given some `queries`, where $\text{queries}[j] = [C_{j}, D_{j}]$ represents the $$j^{\text{th}}$$ query where you must find the answer for $C_{j} / D_{j} = ?$.
+You are also given some `queries`, where $\text{queries}[j] = [C_{j}, D_{j}]$ represents the $j^{\text{th}}$ query where you must find the answer for $C_{j} / D_{j} = ?$.
 
 Return *the answers to all queries*. If a single answer cannot be determined, return `-1.0`.
 

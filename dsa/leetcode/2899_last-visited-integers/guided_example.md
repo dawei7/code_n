@@ -51,7 +51,7 @@ The source instead appends positives to the end. The most recently seen positive
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source instead appends positives to the end.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The source instead appends positives to the end. The most recently seen positive
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prepend literally:** `seen.insert(0, x)` match:** - **Prepend literally:** `seen.insert(0, x)` matches the prose but shifts a growing list and can take $O(n^2)$ total time.
+- **Prepend literally:** `seen.insert(0, x)` matches the prose but shifts a growing list and can take $O(n^2)$ total time.
 - **Deque front insertion:** It makes prepending efficient, but indexed access to the $k$-th item is not the deque's strongest operation.
 - **Queries before any positive:** Every one returns `-1` because `seen` is empty.
 - **Positive resets `k`:** The next query always asks for the newest positive, not the next rank from an older query run.
@@ -98,8 +98,8 @@ The source instead appends positives to the end. The most recently seen positive
 - **Duplicate positives:** Each occurrence is a separate visit and occupies its own historical position.
 - **Why negative indexing is safe:** The source evaluates `seen[-k]` only when `k <= len(seen)`. That guard prevents an out-of-range access while mapping query number one to the newest appended value, query number two to the second newest, and so on.
 - **Queries are numbered within a run:** Only consecutive `-1` operations increase `k`. Encountering a positive integer ends that run before the next query begins again at rank one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

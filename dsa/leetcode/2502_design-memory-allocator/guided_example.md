@@ -70,7 +70,7 @@ assigns every unit in that block to the requested identifier. The method immedia
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `allocate(size,mID)` scans the memory array from index zero ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ A longer free region causes allocation at its first `size` positions. The scan d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Free-interval tree:** Track free ranges for fa:** - **Free-interval tree:** Track free ranges for faster allocation, but merging after frees becomes more complex.
+- **Free-interval tree:** Track free ranges for faster allocation, but merging after frees becomes more complex.
 - **Segment tree:** Store maximum free prefix, suffix, and run lengths to find blocks faster when constraints are much larger.
 - **Size one:** The first zero entry is allocated immediately.
 - **Request fills all memory:** It succeeds only when the full array is free.
@@ -119,8 +119,8 @@ A longer free region causes allocation at its first `size` positions. The scan d
 - **Leftmost rule:** Immediate return at the first completed run is essential.
 - **Sentinel zero:** It is safe only because valid identifiers are positive.
 - **Failed allocation:** It performs no partial write.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

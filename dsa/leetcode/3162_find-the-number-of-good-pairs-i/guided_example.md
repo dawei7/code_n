@@ -73,7 +73,7 @@ Similarly, two equal values at different `nums2` indices produce two good pairs 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The problem counts index pairs, not distinct value pairs.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ No preprocessing or inference can create false positives because the direct modu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency maps:** Group equal values so one di:** - **Frequency maps:** Group equal values so one divisibility test contributes the product of their frequencies. This can reduce repeated work when arrays contain many duplicates.
+- **Frequency maps:** Group equal values so one divisibility test contributes the product of their frequencies. This can reduce repeated work when arrays contain many duplicates.
 - **Normalize by k:** Ignore `nums1` values not divisible by $k$, divide the rest by $k$, and test divisibility by `nums2`. This leads toward the scalable ID 3164 method.
 - **Enumerate divisors:** For each normalized first-array value, enumerate its divisors and count matching second-array values. It is useful for larger constraints but unnecessary here.
 - **Use sets:** Incorrect because it would discard index multiplicities.
@@ -135,8 +135,8 @@ No preprocessing or inference can create false positives because the direct modu
 - **Boolean summation:** Python's `true == 1` behavior is intentionally used to count passing predicates.
 - **Ordered pair domains:** Pair $(i,j)$ is distinct from another index combination even when values match.
 - **Input preservation:** The expression only reads both arrays.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

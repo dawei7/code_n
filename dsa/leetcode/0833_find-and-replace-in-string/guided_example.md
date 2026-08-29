@@ -63,7 +63,7 @@ The loop enumerates `zip(indices, sources)`, so `k` is the shared operation inde
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `n = len(s)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ All checks read the same original `s`. This directly implements the simultaneous
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply replacements from right to left:** Sorti:** - **Apply replacements from right to left:** Sorting valid operations by decreasing index and slicing can preserve earlier indices, but repeated immutable-string rebuilding may copy large portions many times.
-- **- **Sort operations and stream directly:** This ca:** - **Sort operations and stream directly:** This can avoid a full length-`n` marker array, but requires explicit ordering. The exact source uses direct index lookup during the scan.
-- **- **Apply operations left to right on a changing s:** - **Apply operations left to right on a changing string:** This is incorrect because earlier target lengths shift later original indices.
+- **Apply replacements from right to left:** Sorting valid operations by decreasing index and slicing can preserve earlier indices, but repeated immutable-string rebuilding may copy large portions many times.
+- **Sort operations and stream directly:** This can avoid a full length-`n` marker array, but requires explicit ordering. The exact source uses direct index lookup during the scan.
+- **Apply operations left to right on a changing string:** This is incorrect because earlier target lengths shift later original indices.
 
 ---
 

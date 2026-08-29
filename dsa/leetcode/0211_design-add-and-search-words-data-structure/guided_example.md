@@ -71,7 +71,7 @@ trie can avoid repeatedly storing and checking the same beginning.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution defines a small `Trie` node class.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ already-true endpoint flag remains true.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative frontier of nodes:** Keep every node:** - **Iterative frontier of nodes:** Keep every node that can match the current pattern prefix, replacing the frontier with matching literal children or all children for a dot. It avoids recursion and substring slices but can hold a broad set of nodes at once; it is the method described by the manifest summary, not by the exact source file.
+- **Iterative frontier of nodes:** Keep every node that can match the current pattern prefix, replacing the frontier with matching literal children or all children for a dot. It avoids recursion and substring slices but can hold a broad set of nodes at once; it is the method described by the manifest summary, not by the exact source file.
 - **Nested dictionaries with an end sentinel:** A map stores only present character edges and naturally supports sparse alphabets. It may save empty child slots but adds hashing and per-entry overhead; the fixed array exploits the lowercase-only contract.
 - **Words grouped by length in hash sets:** Search only words of the pattern's length and compare characters with dot matching. It is simple, but a query can scan every stored word of that length, giving $O(NL)$ time for $N$ candidates.
 - **No dots:** Search follows exactly one route and never recurses, so a missing character fails immediately and a complete route still requires `is_end` at its endpoint.
@@ -129,8 +129,8 @@ already-true endpoint flag remains true.
 - **Maximum input sizes:** Words have length at most 25 and queries contain at most two dots, keeping recursion shallow. Up to $10^4$ operations can still build many nodes, so sharing prefixes remains valuable.
 - **Lowercase and dot preconditions:** `addWord` accepts only lowercase letters, and only search patterns may contain dots. The fixed-index calculation and wildcard branch assume those guarantees; other characters are outside the contract.
 - **Input preservation:** The implementation reads each supplied string and creates slices during wildcard recursion, but strings are immutable and the caller's values are never changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

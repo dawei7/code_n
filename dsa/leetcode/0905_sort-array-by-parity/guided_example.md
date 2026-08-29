@@ -51,7 +51,7 @@ The exact solution partitions in place with two pointers:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution partitions in place with two pointers:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The exact solution partitions in place with two pointers:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two output lists:** Collect evens and odds sep:** - **Two output lists:** Collect evens and odds separately, then concatenate. This is easy but uses $O(n)$ extra space.
+- **Two output lists:** Collect evens and odds separately, then concatenate. This is easy but uses $O(n)$ extra space.
 - **Stable in-place partition:** Preserving relative order generally requires shifting elements and can cost $O(n^2)$ without extra storage. Stability is not required.
 - **Sort by parity key:** It works but usually costs $O(n\log n)$ and may use sorting workspace.
 - **Single write pointer:** Scan for evens and swap each into the next left slot. This is another $O(n)$, $O(1)$ partition.
@@ -100,8 +100,8 @@ The exact solution partitions in place with two pointers:
 - **Any accepted order:** The algorithm is free to reverse or rearrange members within a parity group.
 - **Input mutation:** Callers needing the original order should pass a copy.
 - **Pointer meeting:** The single middle value needs no classification action because verified groups on either side cannot be inverted through one cell.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -53,8 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-x,\;x^2,\;x^4,\;\ldots,\;x^{2^t},\;\ldots,\;x^4,\;x^2,\;x... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ Every level below the center appears twice, once on each side, while the center 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and search for every chain level:** Sorti:** - **Sort and search for every chain level:** Sorting all values and repeatedly binary-searching counts can work, but a frequency map gives direct multiplicity checks and avoids $O(\log N)$ lookup cost.
+- **Sort and search for every chain level:** Sorting all values and repeatedly binary-searching counts can work, but a frequency map gives direct multiplicity checks and avoids $O(\log N)$ lookup cost.
 - **Build chains only from values that are not squares:** That may reduce duplicate candidate work, but identifying predecessors adds complexity and is unnecessary because repeated squaring already yields a tiny chain depth.
 - **Backtracking over subsets:** Enumerating subsets is exponential and ignores the rigid repeated-square structure that reduces the problem to multiplicities.
 - **Value 1:** It must be separated because squaring does not advance. The best all-one subset uses the largest odd number of available ones.
@@ -100,8 +99,8 @@ Every level below the center appears twice, once on each side, while the center 
 - **A single value at the first non-paired level:** That value is the ideal center, so the candidate length is all completed pairs plus one.
 - **Duplicate candidate chains:** Starting at both $x$ and $x^2$ evaluates overlapping possibilities, but this affects only a small constant factor and cannot corrupt counts because the counter is not consumed.
 - **Odd answer guarantee:** Every constructed candidate consists of zero or more pairs plus one center, so every non-sentinel candidate length is odd as the required structure demands.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

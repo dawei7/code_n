@@ -78,7 +78,7 @@ There are exactly $k = 4$ valid paths from `(0, 0)` to `(2, 2)`:
 
 - **Output:** []
 
-- **Explanation:** ​
+- **Explanation:** 
 
 No grid exists with exactly $k = 2$ valid paths for a `1 x 4` grid, so the answer is an empty array.
 

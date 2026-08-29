@@ -72,7 +72,7 @@ The order of these steps prevents stale duplicates. If user 5 changes an item-9 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `addBid` first ensures that the user has an inner dictionary... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ This is an eager-update design. There are no stale heap records and no version t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash map plus lazy max-heap:** Push `(-amount,:** - **Hash map plus lazy max-heap:** Push `(-amount, -userId, version)` records and keep current amounts in a dictionary. Updates avoid arbitrary heap deletion, but queries must discard stale records until the top matches current state. This is the method described by the manifest, not by the exact source.
+- **Hash map plus lazy max-heap:** Push `(-amount, -userId, version)` records and keep current amounts in a dictionary. Updates avoid arbitrary heap deletion, but queries must discard stale records until the top matches current state. This is the method described by the manifest, not by the exact source.
 - **Balanced search tree per item:** Any ordered multiset keyed by `(amount, userId)` supports the same eager insert, delete, and maximum operations. `SortedList` is the concrete Python choice here.
 - **Scan all bids at query time:** Keeping only the nested dictionaries makes mutations expected $O(1)$, but finding one item's winner could take $O(Q)$. The ordered item index pays logarithmic mutation cost to make queries constant-time.
 - **Replacing through addBid:** The old tuple must be removed before the new one is inserted; otherwise one user could have multiple active tuples for one item and a stale amount might win.
@@ -123,8 +123,8 @@ This is an eager-update design. There are no stale heap records and no version t
 - **Updating to the same amount:** The source removes and reinserts the identical tuple. State remains correct, with logarithmic work.
 - **Guaranteed-valid update and removal:** The source intentionally does not guard against missing pairs. The contract makes direct lookup and exact removal safe.
 - **Largest numeric values:** Amounts up to $10^9$ compare exactly as Python integers; no arithmetic beyond ordering is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

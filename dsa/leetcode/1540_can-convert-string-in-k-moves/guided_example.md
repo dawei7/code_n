@@ -61,7 +61,7 @@ The early length check also makes `zip(s, t)` safe for the main analysis. Every 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Moves replace characters but never insert or delete position... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ All of these moves shift a character by the same effective amount modulo 26. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every move:** Iterating from one thro:** - **Simulate every move:** Iterating from one through `k` can be infeasible because `k` may be one billion.
+- **Simulate every move:** Iterating from one through `k` can be infeasible because `k` may be one billion.
 - **Store required positions by residue:** It works but uses $O(N)$ space when counts alone determine feasibility.
 - **Greedily pick arbitrary matching moves:** Choosing the earliest congruent moves is the canonical schedule and exposes the exact feasibility bound.
 - **Unequal lengths:** Conversion cannot change string length, so the answer is false.
@@ -119,8 +119,8 @@ All of these moves shift a character by the same effective amount modulo 26. The
 - **Zero-residue count:** It is deliberately ignored because those indices need not be selected.
 - **One-use index rule:** Each changed position receives exactly one scheduled move, so the construction respects it.
 - **Do-nothing moves:** Unused move numbers cause no problem because every move permits doing nothing.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

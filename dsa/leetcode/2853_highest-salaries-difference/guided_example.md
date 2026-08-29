@@ -51,7 +51,7 @@ For Engineering, this row is the greatest engineering salary. For Marketing, it 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For Engineering, this row is the greatest engineering salary... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For Engineering, this row is the greatest engineering salary. For Marketing, it 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional aggregation:** Compute `MAX(CASE W:** - **Conditional aggregation:** Compute `MAX(CASE WHEN department = 'Engineering' THEN salary END)` and the analogous Marketing maximum, then apply `ABS` to their difference. This explicitly follows the requirement and matches the manifest.
+- **Conditional aggregation:** Compute `MAX(CASE WHEN department = 'Engineering' THEN salary END)` and the analogous Marketing maximum, then apply `ABS` to their difference. This explicitly follows the requirement and matches the manifest.
 - **Filter the grouped subquery:** Restrict to the two named departments before grouping, then `MAX(s) - MIN(s)` is safe.
 - **Two scalar subqueries:** Query each department maximum separately and subtract with `ABS`. It is clear but may scan the table twice without optimization.
 - **Engineering maximum is larger:** Outer max-minus-min returns Engineering minus Marketing.
@@ -97,8 +97,8 @@ For Engineering, this row is the greatest engineering salary. For Marketing, it 
 - **Existence of both named departments:** It prevents a missing required maximum but does not by itself exclude unrelated groups.
 - **One output row:** No result ordering is needed.
 - **Manifest mismatch:** Conditional one-scan aggregation is the robust alternative, not the exact grouped-all-departments source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,7 +55,7 @@ Locations farther east than `mx` do not matter because all trips have ended. Loc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mx = max(e[2] for e in trips)` finds the farthest drop-off ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +92,7 @@ This matches the half-open trip semantics. Passengers whose destination is locat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted event list:** Create pickup and drop-of:** - **Sorted event list:** Create pickup and drop-off events, sort by location, and scan the running occupancy. This supports large coordinates in $O(n\log n)$ time; drop-offs must be ordered before pickups at the same point or combined by location.
+- **Sorted event list:** Create pickup and drop-off events, sort by location, and scan the running occupancy. This supports large coordinates in $O(n\log n)$ time; drop-offs must be ordered before pickups at the same point or combined by location.
 - **Ordered difference map:** Store only nonzero changes in a dictionary, sort its keys, and accumulate. It uses $O(n)$ space and avoids a dense coordinate range.
 - **Min-heap of active trips:** Sort trips by pickup, remove all destinations reached before each pickup, and track occupied seats. This costs $O(n\log n)$ and is more complex than the bounded-coordinate difference array.
 - **Simulate each passenger or kilometer per trip:** Updating every point inside every interval can cost $O(nL)$. Endpoint differences encode the same coverage much more efficiently.
@@ -105,8 +105,8 @@ This matches the half-open trip semantics. Passengers whose destination is locat
 - **Pickup at zero:** The addition at `d[0]` appears in the first prefix sum, representing passengers entering at the initial location.
 - **Input order:** Trips may be arbitrary because event additions are commutative and the prefix scan supplies geographic order.
 - **Nonempty trips:** The maximum drop-off call relies on the guaranteed minimum of one trip.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

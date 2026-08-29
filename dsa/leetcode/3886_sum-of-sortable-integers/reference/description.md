@@ -32,7 +32,7 @@ Return the sum of all positive divisors $k$ of $n$ for which the permitted block
 
 - **Output:** 3
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - For $n = 3$, possible divisors are 1 and 3.
 
@@ -64,7 +64,7 @@ Return the sum of all positive divisors $k$ of $n$ for which the permitted block
 
 - **Output:** 3
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - For $n = 2$, possible divisors are 1 and 2.
 

@@ -51,7 +51,7 @@ Python strings are immutable, so the solution first creates mutable character li
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python strings are immutable, so the solution first creates ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer swaps in a character array:** Swap:** - **Two-pointer swaps in a character array:** Swap inward within each first-half interval. It avoids the temporary slice but has the same $O(n)$ list storage in Python.
+- **Two-pointer swaps in a character array:** Swap inward within each first-half interval. It avoids the temporary slice but has the same $O(n)$ list storage in Python.
 - **Build output from chunks:** Concatenate a reversed first chunk and unchanged second chunk for each block. Repeated immutable concatenation can become costly unless pieces are accumulated and joined.
 - **Reverse every `k` characters:** That incorrectly reverses the second half of each `2k` block as well.
 - **Fewer than `k` characters remain:** Slice truncation reverses all of them.
@@ -97,8 +97,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Length exactly `k`:** The entire string is the first portion and reverses.
 - **Non-overlapping blocks:** Step size `2 * k` ensures operations do not revisit a preserved half.
 - **Immutable input:** Conversion to `cs` is required because characters of `s` cannot be assigned directly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

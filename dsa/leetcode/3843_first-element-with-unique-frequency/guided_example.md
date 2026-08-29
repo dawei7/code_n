@@ -69,12 +69,7 @@ The full-array count must be known before deciding any position. A value appeari
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(nums)` creates:
-
-$$
-\texttt{cnt}[x]=F(x),
-$$
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +122,7 @@ For `[20,10,30,30]`, `cnt` is `{20:1, 10:1, 30:2}`. The second Counter records t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the array:** Frequencies can be derived f:** - **Sort the array:** Frequencies can be derived from equal-value runs, but sorting costs $O(N\log N)$ and loses original order unless positions are separately preserved.
+- **Sort the array:** Frequencies can be derived from equal-value runs, but sorting costs $O(N\log N)$ and loses original order unless positions are separately preserved.
 - **Fixed value-frequency arrays:** Since values are bounded by $10^5$, arrays can replace Counters for deterministic indexing. They reserve the entire domain even when $D$ is small.
 - **Nested comparison of frequencies:** Count values, then compare every pair of distinct frequencies. This costs $O(D^2)$ instead of using the second Counter.
 - **Single element:** Its frequency 1 belongs to one distinct value, so that element is returned.
@@ -137,8 +132,8 @@ For `[20,10,30,30]`, `cnt` is `{20:1, 10:1, 30:2}`. The second Counter records t
 - **Repeated qualifying value:** Its first occurrence triggers the return.
 - **No qualifying frequency:** The complete scan ends and returns -1.
 - **Frequency multiplicity:** It counts distinct values having a frequency, not total array positions belonging to those values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

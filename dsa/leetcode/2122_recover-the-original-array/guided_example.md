@@ -69,7 +69,7 @@ The source uses a right shift by one, `>> 1`, which is exact because the gap and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The gap `d` must be positive because $k$ is positive, and it... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Always taking the smallest unused lower value makes the validation deterministic
 
 ## 6. Traps This Instance Exposes
 
-- **- **Multiset counter validation:** Repeatedly remo:** - **Multiset counter validation:** Repeatedly remove the smallest value and its value-plus-gap partner from a frequency map. It expresses the same greedy proof.
+- **Multiset counter validation:** Repeatedly remove the smallest value and its value-plus-gap partner from a frequency map. It expresses the same greedy proof.
 - **Try arbitrary pairings:** Exponential backtracking is unnecessary because the smallest unused lower partner is forced for a fixed gap.
 - **Zero gap:** It implies `k = 0` and must be rejected.
 - **Odd gap:** It cannot equal `2k` for integer `k`.
@@ -127,8 +127,8 @@ Always taking the smallest unused lower value makes the validation deterministic
 - **Input mutation:** `nums.sort()` changes the input order.
 - **Existence guarantee:** The final empty return is a fallback outside the promised valid cases.
 - **Monotonic partner pointer:** Sorted required partner values mean `r` never needs to retreat.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,7 +69,7 @@ Therefore an internal high value cannot equal its neighbors' average.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An upper-half value in the alternating result is surrounded ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Endpoints have only one neighbor and are not constrained by the problem. Thus th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Swap adjacent pairs after sorting:** A differe:** - **Swap adjacent pairs after sorting:** A different local-peak construction can also work, but its proof must handle endpoints and parity carefully.
+- **Swap adjacent pairs after sorting:** A different local-peak construction can also work, but its proof must handle endpoints and parity carefully.
 - **Random shuffling until valid:** It has no deterministic runtime guarantee and repeatedly checks the same condition.
 - **Sort then interleave halves in another order:** Starting with high instead of low also works if strict alternation and half separation are maintained.
 - **Odd length:** The lower half has one extra value, which becomes the final unconstrained endpoint.
@@ -123,8 +123,8 @@ Endpoints have only one neighbor and are not constrained by the problem. Thus th
 - **No arithmetic in code:** The method enforces inequalities structurally and never computes a potentially floating-point average.
 - **Input side effect:** The exact source sorts `nums` in place before returning a separate arrangement.
 - **Any valid output:** There is no requirement to preserve relative order or choose a lexicographically smallest rearrangement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

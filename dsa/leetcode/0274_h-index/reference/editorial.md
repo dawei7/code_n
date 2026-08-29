@@ -112,7 +112,7 @@ The counting results are:
 
 The value $s_k$ is defined as "the sum of all counts with citation $\geq k$" or "the number of papers having, at least, $k$ citations". By definition of the h-index, the largest $k$ with $k \leq s_k$ is our answer.
 
-After replacing $100$ with $n = 5$, we have $\mathrm{citations} = [1, 3, 2, 3, 5]$. Now, we count the number of papers for each citation number $0$ to $5$. The counts are $[0, 1, 1, 2, 0, 1]$. The first $k$ from right to left ($5$ down to $0$) that have $k \leq s$ is the $h$-index $3$.
+After replacing $100$ with $n = 5$, we have $\mathrm{citations} = [1, 3, 2, 3, 5]$. Now, we count the number of papers for each citation number $0$ to $5$. The counts are `[0, 1, 1, 2, 0, 1]`. The first $k$ from right to left ($5$ down to $0$) that have $k \leq s$ is the $h$-index $3$.
 
 Since we can calculate $s_k$ on the fly when traverse the count array, we only need one pass through the count array which only costs $O(n)$ time.
 

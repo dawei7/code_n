@@ -65,7 +65,7 @@ Some cells on failed exploratory branches are also left as zero. This does not i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested `dfs(i, j)` first rejects out-of-bounds cells and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The variables `a` and `b` record the two search results. The returned expression
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count paths:** Computing the exact number of p:** - **Count paths:** Computing the exact number of paths is unnecessary and can involve enormous integers. Only the existence of two internally disjoint paths matters.
+- **Count paths:** Computing the exact number of paths is unnecessary and can involve enormous integers. Only the existence of two internally disjoint paths matters.
 - **Reachability from both ends:** One can compute which cells are reachable from the start and can reach the destination, then analyze layers for a unique bottleneck. That can also work but usually needs $O(mn)$ extra storage.
 - **Maximum flow:** Splitting each cell into an in-vertex and out-vertex with capacity one gives a formal vertex-disjoint-path test, but generic flow machinery is excessive for this monotone grid.
 - **Already disconnected:** When the first DFS fails, zero flips are allowed, so the answer must be true.
@@ -119,8 +119,8 @@ The variables `a` and `b` record the two search results. The returned expression
 - **Only one monotone corridor:** Erasing its internal cells prevents the second DFS, so the method returns true.
 - **Input mutation:** The grid is used as the visited set and path eraser. Callers that need the original matrix afterward must pass a copy.
 - **Recursion depth:** Although the mathematical stack bound is $O(m+n)$, dimensions up to $1000$ can exceed Python's default recursion limit on a long path. An iterative implementation would avoid that runtime concern.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

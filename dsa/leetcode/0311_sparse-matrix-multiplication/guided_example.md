@@ -62,9 +62,7 @@ The list comprehension creates a new inner list for each row. This avoids aliasi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source reads
-
-- `m = len(mat1)` for the output row count... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +113,7 @@ Although `k` is also conventionally used as the name of the shared dimension, in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Skip zero values from `mat1`:** Reorder loops :** - **Skip zero values from `mat1`:** Reorder loops as row `i`, shared index `t`, then output column `j`. If `mat1[i][t]` is zero, skip the entire column loop. This helps when the left matrix is sparse while retaining dense storage.
+- **Skip zero values from `mat1`:** Reorder loops as row `i`, shared index `t`, then output column `j`. If `mat1[i][t]` is zero, skip the entire column loop. This helps when the left matrix is sparse while retaining dense storage.
 - **Compress both matrices by row:** Store only `(column, value)` pairs for every nonzero entry. For each nonzero `mat1[i][t]`, propagate products through nonzero entries in row `t` of `mat2`. This realizes the sparse behavior described by the manifest.
 - **CSR for `mat1` and CSC for `mat2`:** Intersect sorted shared indices for each output row-column pair. This avoids zero products but adds compression and two-pointer machinery.
 - **Transpose `mat2`:** Turning its columns into contiguous rows can make each dot product easier to express and can improve memory locality, but it still performs $O(mnk)$ arithmetic unless zeros are skipped.
@@ -129,8 +127,8 @@ Although `k` is also conventionally used as the name of the shared dimension, in
 - **Compatible dimensions:** The source assumes at least one row and column and a matching shared dimension, all guaranteed by the constraints.
 - **No input mutation:** The method only reads both matrices and writes a newly allocated result.
 - **Integer magnitude:** Products and sums remain exact in Python integers, including negative totals.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

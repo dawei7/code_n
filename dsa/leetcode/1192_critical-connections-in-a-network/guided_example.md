@@ -57,7 +57,7 @@ When `tarjan(a, fa)` first enters vertex `a`, it increments `now` and assigns th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `tarjan(a, fa)` first enters vertex `a`, it increments ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ This simple parent-vertex check is safe because the input forbids repeated paral
 
 ## 6. Traps This Instance Exposes
 
-- **- **Remove every edge and test connectivity:** Run:** - **Remove every edge and test connectivity:** Running a graph traversal after each removal can cost $O(m(n+m))$, far too much for $10^5$ edges.
+- **Remove every edge and test connectivity:** Running a graph traversal after each removal can cost $O(m(n+m))$, far too much for $10^5$ edges.
 - **Iterative low-link DFS:** Store explicit frames containing vertex, parent, and neighbor position. This avoids Python recursion depth but requires more bookkeeping to perform child-return updates.
 - **Union-find in reverse or offline bridge algorithms:** More advanced techniques exist for dynamic settings, but low-link DFS is the direct linear solution for one static graph.
 - **Graph is a tree:** Every edge is the sole connection between two components, so every child has `low[child] > dfn[parent]` and all edges are returned.
@@ -104,8 +104,8 @@ This simple parent-vertex check is safe because the input forbids repeated paral
 - **No repeated connections:** Skipping by parent vertex is safe only under this guarantee. Parallel undirected edges would require tracking edge IDs.
 - **Strict comparison:** `low[b] == dfn[a]` means a route returns to `a`, so the edge lies on a cycle and is not a bridge.
 - **Output orientation and order:** The contract accepts any order and either endpoint orientation, so appending tree direction `[a, b]` is sufficient.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

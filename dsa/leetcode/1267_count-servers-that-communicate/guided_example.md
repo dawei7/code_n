@@ -71,7 +71,7 @@ The generator visits all grid cells but does not create a list of Boolean result
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the first pass, the condition for cell `(i, j)` is str... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ In the third example, the two servers in the first row see `row[0] = 2`, and the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search each server's row and column directly:*:** - **Search each server's row and column directly:** This uses $O(1)$ space but can take $O(mn(m+n))$ time when many cells contain servers.
+- **Search each server's row and column directly:** This uses $O(1)$ space but can take $O(mn(m+n))$ time when many cells contain servers.
 - **Group server coordinates by row and column:** Dictionaries or lists of coordinates can identify communicable groups, but storing the actual positions uses more information than the two count arrays need.
 - **Count isolated servers instead:** Count all servers, subtract those whose row and column counts both equal one, and obtain the same result. It still needs the same precomputed counts.
 - **Row-at-a-time constant-space scan:** For a row with one server, scan its column to decide communication. This removes count arrays but can perform $O(m^2+mn)$ work depending on dimensions; claims of universal $O(mn)$ need care when $m$ can exceed $n$.
@@ -122,8 +122,8 @@ In the third example, the two servers in the first row see `row[0] = 2`, and the
 - **All-zero grid:** Every counter remains zero and the sum is zero.
 - **All-one grid:** If the grid has more than one cell, every server has a partner in its row or column and all $mn$ cells are counted.
 - **Nonempty-grid assumption:** The exact source reads `grid[0]`, which is safe because both dimensions are at least one under the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

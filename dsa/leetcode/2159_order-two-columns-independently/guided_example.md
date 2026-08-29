@@ -63,9 +63,7 @@ Both CTEs contain exactly one row per input row, so each produces the same compl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | CTE `T` independently reads `Data` again and calculates
-
-`RO... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ The selected columns are `first_col` from the ascending sequence and `second_col
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two subqueries with row numbers:** The same lo:** - **Two subqueries with row numbers:** The same logic can be written without named CTEs; CTE names make the independent sequences clearer.
+- **Two subqueries with row numbers:** The same logic can be written without named CTEs; CTE names make the independent sequences clearer.
 - **Aggregate sorted strings:** Concatenating and splitting values is type-unsafe, length-sensitive, and unnecessary compared with window ranks.
 - **Sort original rows by two keys:** This preserves original pairings and does not independently order the two columns.
 - **Use `RANK`:** Duplicate values share ranks, causing incorrect join multiplicities or gaps. `ROW_NUMBER` is the correct positional function.
@@ -116,8 +114,8 @@ The selected columns are `first_col` from the ascending sequence and `second_col
 - **Missing final ordering:** Without outer `ORDER BY rk`, SQL does not guarantee display order even though rank pairings are correct.
 - **Recommended deterministic presentation:** Append `ORDER BY rk` so the returned rows visibly follow the specified directions.
 - **No data mutation:** The query constructs ranked intermediate results and does not alter `Data`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ The visited set is new for every `s`. Reachability from one source must not supp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `bfs(s)` begins with queue `deque([s])` and visited s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If another path from the same source later reaches `j`, the visited test skips i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Topological propagation:** Process nodes in to:** - **Topological propagation:** Process nodes in topological order and union each node's ancestors into its children. This can exploit the DAG structure but needs potentially large sets.
+- **Topological propagation:** Process nodes in topological order and union each node's ancestors into its children. This can exploit the DAG structure but needs potentially large sets.
 - **Reverse-graph traversal per target:** Starting from each target in a reversed graph directly collects its ancestors, followed by sorting or numeric scanning.
 - **Bitset propagation:** With $n\le1000$, machine-word bitsets can make ancestor unions efficient, then set bits can be emitted in order.
 - **Isolated node:** Its BFS reaches only itself and appends nothing, so its ancestor list is empty.
@@ -113,8 +113,8 @@ If another path from the same source later reaches `j`, the visited test skips i
 - **Acyclic guarantee:** No node is its own ancestor through a cycle; visited would still prevent infinite traversal.
 - **Defaultdict side effect:** Reading a sink's adjacency creates an empty list entry but does not affect graph meaning.
 - **Input preservation:** The edge list is only read to build separate adjacency lists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ If a vector has `K` nonzero entries, its dictionary contains exactly `K` key-val
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input still arrives as an ordinary list, so constructing... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ When that index is absent from `b`, the other value is implicitly zero and the p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store the dense arrays:** Dot product is simpl:** - **Store the dense arrays:** Dot product is simple but always costs $O(N)$ even when almost all entries are zero.
+- **Store the dense arrays:** Dot product is simple but always costs $O(N)$ even when almost all entries are zero.
 - **Sorted index-value pairs:** Use two pointers in $O(K_1+K_2)$ time without hash assumptions.
 - **Iterate the larger dictionary:** It remains correct but can perform unnecessary lookups; the source swaps to the smaller one.
 - **Both vectors zero:** The empty generator sums to zero.
@@ -117,8 +117,8 @@ When that index is absent from `b`, the other value is implicitly zero and the p
 - **Repeated dot products:** Sparse construction can be reused across calls.
 - **Generator expression:** Contributions are not materialized in another list.
 - **Integer arithmetic:** Products and sums are exact in Python without overflow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

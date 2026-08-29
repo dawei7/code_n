@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given a **1-indexed** integer array `prices`, where $\text{prices}[i]$ is the price of a particular stock on the $$i^{\text{th}}$$ day, your task is to select some of the elements of `prices` such that your selection is **linear**.
+Given a **1-indexed** integer array `prices`, where $\text{prices}[i]$ is the price of a particular stock on the $i^{\text{th}}$ day, your task is to select some of the elements of `prices` such that your selection is **linear**.
 
 The objective is to compute `20` from `{"prices": [1, 5, 3, 7, 8]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{prices[b]}-\texttt{prices[a]}=b-a.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -92,7 +90,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over previous days:** It c:** - **Dynamic programming over previous days:** It can test the linear relation pairwise but wastes $O(n^2)$ time when equality of one invariant solves the problem.
+- **Dynamic programming over previous days:** It can test the linear relation pairwise but wastes $O(n^2)$ time when equality of one invariant solves the problem.
 - **One-based key:** Using `price - (i + 1)` creates different numeric labels but exactly the same groups.
 - **All keys equal:** Every day can be selected and the answer is the sum of all prices.
 - **All keys distinct:** The best linear selection has one day, so return the largest individual price.
@@ -101,8 +99,8 @@ $$
 - **Large sums:** Use a wide integer type outside Python.
 - **No reconstruction needed:** The problem requests only maximum score, so storing group totals is sufficient.
 - **Dictionary default of zero:** Because every price is positive, a previously unseen invariant key may safely begin with total zero before the current price is added.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

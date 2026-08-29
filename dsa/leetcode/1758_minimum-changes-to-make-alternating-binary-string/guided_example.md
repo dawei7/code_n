@@ -68,7 +68,7 @@ Using bitwise AND with one is equivalent to `i % 2` for nonnegative indices. It 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The two-character string `'01'` acts as a tiny lookup table.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Each mismatched position costs exactly one operation because an operation flips 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count both targets explicitly:** Maintain two :** - **Count both targets explicitly:** Maintain two counters in one pass. It is correct but redundant because the counts sum to $n$.
+- **Count both targets explicitly:** Maintain two counters in one pass. It is correct but redundant because the counts sum to $n$.
 - **Construct target strings:** Comparing with materialized `0101...` and `1010...` strings uses $O(n)$ extra space unnecessarily.
 - **Greedy adjacent repair:** It can be made correct, but changes influence two neighboring relationships and obscure the two-target structure.
 - **Dynamic programming:** Tracking the previous chosen bit is excessive because only two deterministic patterns exist.
@@ -129,8 +129,8 @@ Each mismatched position costs exactly one operation because an operation flips 
 - **Bitwise parity:** `i & 1` is safe because enumerate indices are nonnegative integers.
 - **Binary alphabet:** Complementary mismatch counts rely on each input character being exactly zero or one.
 - **No mutation needed:** The method calculates the minimum count without constructing the changed string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

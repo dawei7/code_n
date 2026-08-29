@@ -65,9 +65,7 @@ Integer division is exact here because one of two consecutive integers `n` and `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The well-known arithmetic-series formula gives:
-
-`s1 = n * (... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,9 +110,9 @@ Rearranging immediately gives `m = s1 - s2`. That is why the second returned com
 
 ## 6. Traps This Instance Exposes
 
-- **- **In-place sign marking:** Use each value as an :** - **In-place sign marking:** Use each value as an index and negate the element at that position. Encountering an already negative slot identifies the duplicate, and the one positive slot later identifies the missing value. This gives `O(n)` time and `O(1)` auxiliary space, but mutates `nums` and requires careful absolute-value handling.
-- **- **XOR partitioning:** XOR all array values with :** - **XOR partitioning:** XOR all array values with one through `n` to obtain the XOR of the two unknowns, split values by a differing bit, and recover two candidates. A final membership check distinguishes duplicate from missing. It achieves `O(n)` time and `O(1)` space without arithmetic overflow, but is less intuitive.
-- **- **Sum and sum-of-squares equations:** The differ:** - **Sum and sum-of-squares equations:** The differences of sums and squared sums form two equations for the missing and duplicate values. This uses constant space but is more error-prone and can overflow fixed-width types quickly.
+- **In-place sign marking:** Use each value as an index and negate the element at that position. Encountering an already negative slot identifies the duplicate, and the one positive slot later identifies the missing value. This gives `O(n)` time and `O(1)` auxiliary space, but mutates `nums` and requires careful absolute-value handling.
+- **XOR partitioning:** XOR all array values with one through `n` to obtain the XOR of the two unknowns, split values by a differing bit, and recover two candidates. A final membership check distinguishes duplicate from missing. It achieves `O(n)` time and `O(1)` space without arithmetic overflow, but is less intuitive.
+- **Sum and sum-of-squares equations:** The differences of sums and squared sums form two equations for the missing and duplicate values. This uses constant space but is more error-prone and can overflow fixed-width types quickly.
 
 ---
 

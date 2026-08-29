@@ -68,7 +68,7 @@ Reversing before movement whenever currently at an endpoint could also be made c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At an endpoint, the holder has just received the pillow.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ By induction, the state after `time` iterations is the required answer.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Endpoint traversal formula:** Divide time by $:** - **Endpoint traversal formula:** Divide time by $n-1$, use traversal parity for direction, and compute the remaining offset in $O(1)$ time.
+- **Endpoint traversal formula:** Divide time by $n-1$, use traversal parity for direction, and compute the remaining offset in $O(1)$ time.
 - **Full-period modulo:** Reduce time modulo $2(n-1)$ and reflect positions in the second half of the period.
 - **Queue simulation:** Storing people or pillow passes is unnecessary; position and direction are sufficient state.
 - **Exactly at person `n`:** Direction flips after arrival, but the returned holder remains $n$ if time ends there.
@@ -116,8 +116,8 @@ By induction, the state after `time` iterations is the required answer.
 - **One complete traversal:** At `time = n - 1`, person $n$ holds the pillow.
 - **One complete period:** At `time = 2(n - 1)`, the pillow is back at person one.
 - **Manifest distinction:** The source is a linear simulation; the mathematical $O(1)$ method is an alternative.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

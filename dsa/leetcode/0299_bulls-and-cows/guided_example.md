@@ -78,7 +78,7 @@ The source iterates only through keys in `cnt1`. That is sufficient. If a digit 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix one digit $d$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ This example demonstrates why a membership-only test is insufficient. The guess 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two fixed arrays of length ten:** Convert each:** - **Two fixed arrays of length ten:** Convert each unmatched digit to an index and increment two arrays, then sum their minima. This matches the manifest wording and avoids hash-table machinery, while preserving $O(n)$ time and $O(1)$ space. It is not the exact source representation.
+- **Two fixed arrays of length ten:** Convert each unmatched digit to an index and increment two arrays, then sum their minima. This matches the manifest wording and avoids hash-table machinery, while preserving $O(n)$ time and $O(1)$ space. It is not the exact source representation.
 - **One signed frequency array in one pass:** For each mismatch, a negative existing count for the secret digit reveals an earlier unmatched guess, and a positive count for the guess digit reveals an earlier unmatched secret. This can count cows online but is less immediately transparent than intersecting two final multisets.
 - **Remove matched characters from mutable lists:** Repeated searching and deletion can become $O(n^2)$ and makes duplicate accounting more error-prone.
 - **Set intersection:** Sets discard multiplicity. They would undercount when several copies can be cows and overinterpret presence when only one counterpart exists.
@@ -145,8 +145,8 @@ This example demonstrates why a membership-only test is insufficient. The guess 
 - **Length one:** The only pair is either a bull or a mismatch. A mismatching one-character guess cannot produce a cow because no equal digit exists elsewhere.
 - **Maximum length:** The method performs one linear scan and stores only ten possible frequency entries, so length 1000 requires no special handling.
 - **Output format:** The literal letters are always uppercase and appear in the exact order `A` then `B`, including when either count is zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -22,7 +22,7 @@ For a set $S$ of nodes, its lowest common ancestor is the node of greatest depth
 
 **Inputs**
 
-- `root`: the root of a nonempty binary tree containing $n$ nodes, where $1 \le n \le 1000$; every node value is unique and lies in $[0, 1000]$. cOde(n) serializes the tree as a level-order array with `null` for missing children.
+- `root`: the root of a nonempty binary tree containing $n$ nodes, where $1 \le n \le 1000$; every node value is unique and lies in `[0, 1000]`. cOde(n) serializes the tree as a level-order array with `null` for missing children.
 
 Let $h$ be the tree height measured in nodes on the longest root-to-leaf path.
 

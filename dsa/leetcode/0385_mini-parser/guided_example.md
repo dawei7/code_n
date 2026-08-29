@@ -64,7 +64,7 @@ These branches terminate recursion. Only a nonempty bracketed list reaches the s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first branch is `if not s or s == '[]': return NestedInt... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ When the loop sees `[` in a child, it increments `depth`. When it later sees the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index-based recursive descent:** Keep the orig:** - **Index-based recursive descent:** Keep the original string and a shared current index. Parse one value at a time without slicing, advancing past digits, commas, and brackets. This realizes the intended $O(n)$ time and $O(d)$ stack space while preserving the same recursive grammar.
-- **- **Iterative stack parser:** Push a new empty `Ne:** - **Iterative stack parser:** Push a new empty `NestedInteger` for each `[`, accumulate signed integers, and attach completed values when a comma or `]` is reached. It scans once in $O(n)$ time and uses $O(d)$ explicit stack space, while avoiding Python recursion limits.
-- **- **Built-in general-purpose evaluation:** Convert:** - **Built-in general-purpose evaluation:** Converting the text with a language evaluator may appear concise, but it creates ordinary lists rather than the required `NestedInteger` interface and may be unsafe for untrusted input. A purpose-built parser recognizes only the stated grammar.
+- **Index-based recursive descent:** Keep the original string and a shared current index. Parse one value at a time without slicing, advancing past digits, commas, and brackets. This realizes the intended $O(n)$ time and $O(d)$ stack space while preserving the same recursive grammar.
+- **Iterative stack parser:** Push a new empty `NestedInteger` for each `[`, accumulate signed integers, and attach completed values when a comma or `]` is reached. It scans once in $O(n)$ time and uses $O(d)$ explicit stack space, while avoiding Python recursion limits.
+- **Built-in general-purpose evaluation:** Converting the text with a language evaluator may appear concise, but it creates ordinary lists rather than the required `NestedInteger` interface and may be unsafe for untrusted input. A purpose-built parser recognizes only the stated grammar.
 
 ---
 

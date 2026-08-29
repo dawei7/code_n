@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are playing a game that has `n` levels numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `damage` where $\text{damage}[i]$ is the amount of health you will lose to complete the $$i^{\text{th}}$$ level.
+You are playing a game that has `n` levels numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `damage` where $\text{damage}[i]$ is the amount of health you will lose to complete the $i^{\text{th}}$ level.
 
 The objective is to compute `13` from `{"damage": [2, 7, 4, 3], "armor": 4}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -79,7 +79,7 @@ It is also helpful to distinguish two cases. If `armor >= M`, the armor prevents
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The armor's saving on damage `d` is `min(d, armor)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ This remains true even when the protected level occurs in the middle of the sequ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate health for a guessed starting value:*:** - **Simulate health for a guessed starting value:** One could choose where to use armor and walk through every level, but that still leaves the optimization and minimum-start search unresolved. The total-damage formula proves the answer directly and avoids repeated simulations.
+- **Simulate health for a guessed starting value:** One could choose where to use armor and walk through every level, but that still leaves the optimization and minimum-start search unresolved. The total-damage formula proves the answer directly and avoids repeated simulations.
 - **Binary search the starting health:** A feasibility check could simulate the game for each candidate health, leading to an extra logarithmic factor and still requiring a strategy for armor use. Because all damage is nonnegative and the best saving is known greedily, binary search is unnecessary.
 - **Prefix sums:** Prefix sums can report damage accumulated through each level, but the maximum prefix is always the full total here. Storing all prefixes adds `O(n)` space without changing the answer.
 - **Try armor on every level:** Computing `D - min(damage[i], armor) + 1` for all indices is correct but redundant. The saving function is monotone, so only a largest hit needs consideration.
@@ -130,8 +130,8 @@ This remains true even when the protected level occurs in the middle of the sequ
 - **Strictly positive health:** The final `+ 1` must not be omitted. A result equal to net damage would leave exactly zero health after the last level and fail the game.
 - **Nonnegative-damage guarantee:** The final-total argument depends on cumulative damage never decreasing. If levels could heal the player through negative damage, the worst prefix might occur before the end and this simple formula would need reconsideration; the stated constraints rule that case out.
 - **Large total damage:** The sum can exceed a 32-bit signed integer in other languages. Python handles it automatically; a fixed-width implementation should use a sufficiently wide integer type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

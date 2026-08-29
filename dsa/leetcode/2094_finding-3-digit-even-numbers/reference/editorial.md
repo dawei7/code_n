@@ -55,7 +55,7 @@ Let $M = \min(n^3, 10^k)$ be the number of even numbers that meet the requiremen
 
 #### Intuition
 
-We can also traverse all 3-digit even numbers from smallest to largest (i.e., all even numbers in the closed interval $[100, 999]$), and check whether their three digits can be formed using distinct elements from the input digit array. If they can, then the number qualifies as a target even number; otherwise, it does not.
+We can also traverse all 3-digit even numbers from smallest to largest (i.e., all even numbers in the closed interval `[100, 999]`), and check whether their three digits can be formed using distinct elements from the input digit array. If they can, then the number qualifies as a target even number; otherwise, it does not.
 
 Specifically, we first use a hash table $\textit{freq}$ to record the frequency of each digit in the $\textit{digits}$ array. While traversing even numbers, we use another hash table $\textit{freq}_1$ to record the frequency of each digit in the current number. At this point, a **necessary and sufficient** condition for the number to be formed using the array is:
 

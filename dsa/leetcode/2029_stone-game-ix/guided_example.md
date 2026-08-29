@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Alice and Bob continue their games with stones. There is a row of n stones, and each stone has an associated value. You are given an integer array `stones`, where $\text{stones}[i]$ is the **value** of the $$i^{\text{th}}$$ stone.
+Alice and Bob continue their games with stones. There is a row of n stones, and each stone has an associated value. You are given an integer array `stones`, where $\text{stones}[i]$ is the **value** of the $i^{\text{th}}$ stone.
 
 The objective is to compute `true` from `{"stones": [2, 1]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -57,7 +57,7 @@ If `cnt[1]` is zero, that proposed starting move is unavailable and the helper r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The running sum starts at remainder zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The helper first consumes the initial residue-one stone with `cnt[1] -= 1` and c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct closed-form test:** Use the parity of `:** - **Direct closed-form test:** Use the parity of `count0` and either the presence of both nonzero groups or `abs(count1 - count2) > 2`; it is shorter but hides the safe-turn derivation.
+- **Direct closed-form test:** Use the parity of `count0` and either the presence of both nonzero groups or `abs(count1 - count2) > 2`; it is shorter but hides the safe-turn derivation.
 - **Full game-state minimax:** State counts can be enormous and exploring individual stones ignores that equal residues are interchangeable.
 - **Start with residue zero:** Alice loses immediately because the running sum remains divisible by three.
 - **Only residue-zero stones:** Neither helper has a legal nonzero start, so Bob wins.
@@ -115,8 +115,8 @@ The helper first consumes the initial residue-one stone with `cnt[1] -= 1` and c
 - **Short-circuit evaluation:** The second helper is unnecessary once the first finds a winning opening.
 - **Local mutation:** `check` changes only count copies, never the input list.
 - **Original stone values:** Values with the same remainder modulo three are strategically identical.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -62,7 +62,7 @@ This starting-turn rule is different from the rule for making a move. If a playe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The statement says that a player who starts a turn while the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +117,9 @@ When `S` is nonzero, this equation is equivalent to `x_i = S`. Consequently, a m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Minimax over erased subsets:** A recursive gam:** - **Minimax over erased subsets:** A recursive game search can model the rules directly, but there are up to `2^n` subsets of remaining elements. With `n` as large as 1000, even memoization by subset is impossible. The XOR/parity theorem gives the same optimal-play result in linear time.
-- **- **Searching for Alice's actual first move:** Whe:** - **Searching for Alice's actual first move:** When the length is even and XOR is nonzero, the proof guarantees a safe value exists. The function only needs a Boolean answer, so locating that value would add work without changing the result.
-- **- **Using ordinary sum or parity of values:** Addi:** - **Using ordinary sum or parity of values:** Addition does not have XOR's cancellation property. Only the bitwise XOR aggregate determines whether an erasure immediately loses.
+- **Minimax over erased subsets:** A recursive game search can model the rules directly, but there are up to `2^n` subsets of remaining elements. With `n` as large as 1000, even memoization by subset is impossible. The XOR/parity theorem gives the same optimal-play result in linear time.
+- **Searching for Alice's actual first move:** When the length is even and XOR is nonzero, the proof guarantees a safe value exists. The function only needs a Boolean answer, so locating that value would add work without changing the result.
+- **Using ordinary sum or parity of values:** Addition does not have XOR's cancellation property. Only the bitwise XOR aggregate determines whether an erasure immediately loses.
 
 ---
 

@@ -59,7 +59,7 @@ For a substring ending at index `i` and beginning after an earlier prefix ending
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `st` starts at zero for the empty prefix because every digit... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The initialization `d = {0: -1}` represents the empty prefix before index zero. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all substrings:** Updating counts fo:** - **Enumerate all substrings:** Updating counts for every pair of endpoints costs at least $O(N^2)$.
+- **Enumerate all substrings:** Updating counts for every pair of endpoints costs at least $O(N^2)$.
 - **Store full frequency vectors:** Prefix counts work but make comparisons heavier; a parity mask contains exactly the needed information.
 - **Store latest mask index:** It is wrong for maximum length because later prefixes produce shorter candidates.
 - **All counts even:** Equal prefix masks detect this case.
@@ -111,8 +111,8 @@ The initialization `d = {0: -1}` represents the empty prefix before index zero. 
 - **Nonempty input:** The contract guarantees at least one character; otherwise initializing answer to one would need adjustment.
 - **Fixed digit alphabet:** Ten neighbor checks and at most 1024 states are constant only because input contains digits.
 - **Rearrangement permission:** Without arbitrary swaps, parity alone would not characterize palindromic substrings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

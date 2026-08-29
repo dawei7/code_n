@@ -4,7 +4,7 @@ Start from integer `1`, remove any integer that contains `9` such as `9`, `19`, 
 
 Now, you will have a new integer sequence `[1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ...]`.
 
-Given an integer `n`, return *the* $$n^{\text{th}}$$ (**1-indexed**) integer in the new sequence.
+Given an integer `n`, return *the* $n^{\text{th}}$ (**1-indexed**) integer in the new sequence.
 
 ### 2. Function Contract
 

@@ -65,7 +65,7 @@ When no further match is possible, any positive remaining `a` is pushed into `bu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a buy batch with price `p` and remaining amount `a`, mat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The two cases mirror the execution rules exactly; only heap direction and price 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store unit orders:** Amounts reach $10^9$, so :** - **Store unit orders:** Amounts reach $10^9$, so expanding a batch into individual heap entries is impossible.
+- **Store unit orders:** Amounts reach $10^9$, so expanding a batch into individual heap entries is impossible.
 - **Sorted lists:** Finding the best price is easy, but inserting arbitrary prices can cost $O(n)$ per batch.
 - **Ordered price map:** A balanced tree keyed by price can aggregate equal prices and support extreme-price matching in $O(\log n)$, but Python has no built-in ordered map.
 - **Aggregate identical heap prices:** It may reduce tuple count, though correctness does not require merging equal-price batches.
@@ -119,8 +119,8 @@ The two cases mirror the execution rules exactly; only heap direction and price 
 - **Large total backlog:** Python's unbounded integers prevent overflow before the final modulo.
 - **Input order:** Batches must be processed sequentially; sorting `orders` would change execution semantics.
 - **Input preservation:** The loop unpacks values and changes only local `a`, leaving the input rows unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

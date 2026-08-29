@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **A long press can only explain a repeated run.** If one int... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Suppose a displayed run has length $L$. If the mistake occurred in this run, its
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run-length scan:** Explicitly find every maxim:** - **Run-length scan:** Explicitly find every maximal run and add its length minus one. It has the same bounds and may make the combinatorial reasoning more visible.
+- **Run-length scan:** Explicitly find every maximal run and add its length minus one. It has the same bounds and may make the combinatorial reasoning more visible.
 - **Generate all candidate strings:** Removing different counts from each run can verify the idea but allocates $O(n^2)$ total text unnecessarily.
 - **All characters distinct:** There are no equal adjacent pairs, so only the unchanged word is possible.
 - **Entire word one run:** A length-$n$ run gives $n-1$ mistaken originals plus the unchanged word, totaling $n$.
@@ -100,8 +100,8 @@ Suppose a displayed run has length $L$. If the mistake occurred in this run, its
 - **Boolean arithmetic:** `sum` counts true comparisons because Python Booleans are integer-compatible.
 - **Input preservation:** The method only iterates over the immutable string and creates no modified candidates.
 - **Run boundaries:** A change from one letter to another contributes false, correctly separating two independent runs instead of treating nearby repeated letters as one long press.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

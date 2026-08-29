@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dist[i][j]` stores the earliest known time at which the tou... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** It fails because openi:** - **Breadth-first search:** It fails because opening-time waits make effective edge arrival costs unequal.
+- **Breadth-first search:** It fails because opening-time waits make effective edge arrival costs unequal.
 - **Bellman-Ford:** It can handle general weights but would be vastly slower than needed; all transitions satisfy Dijkstra's monotonicity.
 - **Explicit visited matrix:** It can finalize each node once. The stale-distance comparison already provides equivalent lazy handling.
 - **Neighbor already open:** Candidate is current time plus one.
@@ -103,8 +103,8 @@ We maintain the core conceptual parameters and state variables:
 - **No benefit from deliberate extra waiting:** Because every later transition is nondecreasing in arrival time, waiting beyond the earliest permitted departure cannot improve any future arrival.
 - **Heap tuple tie-breaking:** Equal times are then ordered by row and column automatically. This affects processing order only, not computed distances.
 - **Relax from finalized time:** After the stale check, using `dist[i][j]` rather than local `d` yields the same value and preserves the formula's state meaning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

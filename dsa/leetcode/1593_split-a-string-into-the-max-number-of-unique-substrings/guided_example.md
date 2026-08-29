@@ -63,7 +63,7 @@ If the candidate is already in `st`, choosing it would violate global uniqueness
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dfs(i)` means that `s[:i]` has already been split into the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Python slicing creates the substring each time the expression appears. The exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking without pruning:** It is correct :** - **Backtracking without pruning:** It is correct and simpler, but explores branches even when every remaining character as a singleton cannot beat the known best.
+- **Backtracking without pruning:** It is correct and simpler, but explores branches even when every remaining character as a singleton cannot beat the known best.
 - **Dynamic programming by index alone:** It is insufficient because validity depends on the entire set of previously used substring values. A richer state would need to encode that configuration and becomes impractical.
 - **Enumerate cut masks:** Each bit mask defines a partition, after which a set can test uniqueness. This is conceptually direct but repeats substring construction and cannot prune partial partitions as early.
 - **Greedy shortest unused substring:** Choosing the shortest available piece may create conflicts later and miss a better global partition. Backtracking must reconsider endpoints.
@@ -118,8 +118,8 @@ Python slicing creates the substring each time the expression appears. The exact
 - **Empty substrings:** The endpoint starts at `i + 1`, so they are never generated.
 - **Pruning equality:** A branch whose upper bound equals `ans` may be skipped because tied solutions do not change the requested maximum value.
 - **Small constraint:** The exponential method is appropriate because $N$ is at most 16; it would not scale to strings of length $10^5$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

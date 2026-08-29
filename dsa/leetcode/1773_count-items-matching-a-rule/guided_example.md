@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `items`, where each $\text{items}[i] = [\text{type}_{i}, \text{color}_{i}, \text{name}_{i}]$ describes the type, color, and name of the $$i^{\text{th}}$$ item. You are also given a rule represented by two strings, `ruleKey` and `ruleValue`.
+You are given an array `items`, where each $\text{items}[i] = [\text{type}_{i}, \text{color}_{i}, \text{name}_{i}]$ describes the type, color, and name of the $i^{\text{th}}$ item. You are also given a rule represented by two strings, `ruleKey` and `ruleValue`.
 
 The objective is to compute `1` from `{"items": [["a", "b", "c"]], "ruleKey": "name", "ruleValue": "c"}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,9 +67,7 @@ This compact mapping deliberately relies on the guaranteed key set. With arbitra
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source chooses:
-
-`i = 0 if ruleKey[0] == 't' else (1 if ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +110,7 @@ Because it is a generator expression, it does not allocate a separate list of Bo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dictionary mapping:** `{"type": 0, "color": 1,:** - **Dictionary mapping:** `{"type": 0, "color": 1, "name": 2}` is more explicit and remains constant time.
+- **Dictionary mapping:** `{"type": 0, "color": 1, "name": 2}` is more explicit and remains constant time.
 - **Full conditional per item:** Test `ruleKey` inside the loop for every row. It is correct but repeats invariant work.
 - **Search all fields:** It is incorrect because a value in the wrong column does not satisfy the rule.
 - **Filter then length:** Building a list of matching items gives the same count but uses $O(n)$ extra space.
@@ -127,8 +125,8 @@ Because it is a generator expression, it does not allocate a separate list of Bo
 - **Guaranteed rule keys:** The first-character shortcut is unambiguous only because the allowed set is fixed.
 - **Generator laziness:** Match indicators are consumed one at a time.
 - **Input preservation:** Neither the outer list nor any item row is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

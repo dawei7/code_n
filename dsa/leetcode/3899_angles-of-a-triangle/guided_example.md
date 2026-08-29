@@ -100,7 +100,7 @@ All denominators are nonzero because the input sides are positive.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a triangle with side $a$ opposite angle $A$, the law of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -159,7 +159,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute all three cosine angles:** This is sym:** - **Compute all three cosine angles:** This is symmetric and direct, but performs one extra inverse-cosine call; the source uses the exact $180^\circ$ sum for the third angle.
+- **Compute all three cosine angles:** This is symmetric and direct, but performs one extra inverse-cosine call; the source uses the exact $180^\circ$ sum for the third angle.
 - **Heron's formula plus trigonometry:** Area can help recover angles, but it adds more operations and can be less numerically direct than the law of cosines.
 - **Avoid input mutation:** Using `a, b, c = sorted(sides)` would preserve the caller's list while keeping the same algorithm and bounds.
 - **Degenerate equality:** Sides such as `[2,2,4]` satisfy $a+b=c$ and must return `[]` because their area is zero.
@@ -171,8 +171,8 @@ $$
 - **Positive-side guarantee:** Zero-length sides would make a cosine denominator invalid, but the constraints exclude them.
 - **Floating-point tolerance:** Results should be compared approximately, not by exact decimal equality.
 - **Required library names:** Standalone execution needs `acos` and `degrees` from Python's `math` module.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

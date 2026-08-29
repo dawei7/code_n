@@ -51,7 +51,7 @@ The implementation expresses that rule directly:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation expresses that rule directly:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Although compact, this line combines two useful Python ideas: a generator expres
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit counter loop:** Initialize a counter :** - **Explicit counter loop:** Initialize a counter to zero, test every value, and increment on success. It has the same $O(n)$ time and $O(1)$ space and may be more familiar to a new programmer, but it is longer than the generator-and-sum expression.
+- **Explicit counter loop:** Initialize a counter to zero, test every value, and increment on success. It has the same $O(n)$ time and $O(1)$ space and may be more familiar to a new programmer, but it is longer than the generator-and-sum expression.
 - **List comprehension plus `sum`:** This is logically equivalent, but it materializes all Boolean results and therefore uses $O(n)$ temporary space unnecessarily.
 - **`filter` plus `len`:** A filter can express the predicate, but obtaining a length normally requires materializing it or manually counting it. It is less direct than summing indicators.
 - **Sorting first:** Sorting would increase the time to $O(n \log n)$. Binary search could then locate the threshold, but the sort cost dominates for a one-time query and mutation or copying would add complications.
@@ -98,8 +98,8 @@ Although compact, this line combines two useful Python ideas: a generator expres
 - **Single employee:** The generator emits one Boolean and returns either zero or one.
 - **Empty array outside the constraints:** Python's `sum` of an empty generator is zero, so the expression remains mathematically sensible even though the problem guarantees at least one employee.
 - **No input mutation:** The approach is suitable when the caller retains aliases to `hours` because it only iterates over the list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

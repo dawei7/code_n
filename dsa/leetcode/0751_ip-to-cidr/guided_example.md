@@ -63,7 +63,7 @@ At every iteration, the next block must begin exactly at `current`. Beginning la
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A prefix length `p` fixes the first `p` bits and leaves `32 ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ When `current == 0`, the expression is zero even though address zero is aligned 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Emit every address as `/32`:** This is exact b:** - **Emit every address as `/32`:** This is exact but uses `n` blocks and is not minimal.
-- **- **Choose only by remaining size:** A large block:** - **Choose only by remaining size:** A large block may start at a misaligned address and cover a different CIDR range. Both size and alignment constraints are mandatory.
-- **- **Choose only by alignment:** The aligned block :** - **Choose only by alignment:** The aligned block may extend beyond the requested final address. Limit it by the largest power of two no greater than `remaining`.
+- **Emit every address as `/32`:** This is exact but uses `n` blocks and is not minimal.
+- **Choose only by remaining size:** A large block may start at a misaligned address and cover a different CIDR range. Both size and alignment constraints are mandatory.
+- **Choose only by alignment:** The aligned block may extend beyond the requested final address. Limit it by the largest power of two no greater than `remaining`.
 
 ---
 

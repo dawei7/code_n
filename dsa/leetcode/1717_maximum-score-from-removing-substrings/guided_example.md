@@ -59,7 +59,7 @@ The source processes one segment with two counters and flushes it whenever anoth
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Only adjacent `'a'` and `'b'` can ever form a removable patt... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This counter behavior is equivalent to a stack removal of every possible high-va
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two stack passes:** Remove the higher pair wit:** - **Two stack passes:** Remove the higher pair with a stack, then the lower pair from the remainder. It is $O(n)$ time but uses $O(n)$ space.
+- **Two stack passes:** Remove the higher pair with a stack, then the lower pair from the remainder. It is $O(n)$ time but uses $O(n)$ space.
 - **Reverse when `y>x`:** Reversing converts `"ba"` to `"ab"`, but Python allocates an $O(n)$ copy; swapping character roles avoids it.
 - **Repeated string replacement:** Searching and rebuilding after each deletion can become quadratic.
 - **Equal scores:** Either pair may be prioritized because every removal is worth the same; the source keeps original `"ab"` priority.
@@ -110,8 +110,8 @@ This counter behavior is equivalent to a stack removal of every possible high-va
 - **Final segment:** The explicit post-loop flush is necessary when the string ends with relevant characters.
 - **Score normalization:** After swapping, `x` always means the high score and `y` the low score, regardless of original pattern names.
 - **Constant memory:** Counter magnitudes may grow with $n$, but the number of stored integers does not.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

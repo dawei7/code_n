@@ -125,7 +125,7 @@ Thus, the maximum possible total is 6.
 
 - **Output:** 12
 
-- **Explanation:** One optimal activation order is:​​​​​​​**​​​​​​​**
+- **Explanation:** One optimal activation order is:****
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -190,6 +190,6 @@ Thus, the maximum possible total is 12.
 
 - $1 \le n = \text{value.length} = \text{limit.length} \le 10^{5}$
 
-- $1 \le \text{value}[i] \le 10^{5}$​​​​​​​
+- $1 \le \text{value}[i] \le 10^{5}$
 
 - $1 \le \text{limit}[i] \le n$

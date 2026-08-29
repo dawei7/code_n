@@ -69,7 +69,7 @@ The parity check is essential. When `total` is odd, no integer prefix sum can eq
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source fills array `s` in one pass.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ This placement is why the count is calculated before `s[i]` is moved from `right
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every replacement and rescan every pivot:*:** - **Try every replacement and rescan every pivot:** This direct method costs $O(N^2)$ and is too slow for $N=10^5$.
+- **Try every replacement and rescan every pivot:** This direct method costs $O(N^2)$ and is too slow for $N=10^5$.
 - **Recompute changed prefix sums:** Explicitly rebuilding them for each index repeats information; the two frequency maps encode the same effect algebraically.
 - **No replacement:** The initial `ans` calculation preserves the possibility that the original array is already best.
 - **Replacement by the same value:** Then `d=0`, and the two map lookups together recover the unchanged pivot count.
@@ -130,8 +130,8 @@ This placement is why the count is calculated before `s[i]` is moved from `right
 - **Changing the last element:** All legal pivots are in `left`, so all use the unchanged-left-side formula.
 - **Whole-array prefix:** `s[n-1]` never represents a legal pivot; its final bookkeeping update is harmless.
 - **Large sums:** Python integers avoid overflow even though cumulative sums can exceed the range of an individual input value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

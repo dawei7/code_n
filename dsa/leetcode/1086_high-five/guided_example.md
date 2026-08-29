@@ -59,7 +59,7 @@ Creating empty dictionary entries for gaps is a subtle implementation effect. It
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop `for i in range(1, m + 1)` may visit gaps.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The solution then computes `sum(nlargest(5, xs)) // 5`. The sum includes exactly
 
 ## 6. Traps This Instance Exposes
 
-- **- **Five-element min-heap per student:** Push each:** - **Five-element min-heap per student:** Push each score into that student’s heap and pop the minimum whenever its size exceeds five. This truly keeps only $O(S)$ score storage because five is constant, and it is the strongest choice when students can have many records.
+- **Five-element min-heap per student:** Push each score into that student’s heap and pop the minimum whenever its size exceeds five. This truly keeps only $O(S)$ score storage because five is constant, and it is the strongest choice when students can have many records.
 - **Sort all records:** Sort by ID ascending and score descending, then take the first five scores in each ID block. The logic is direct, but sorting all $N$ records costs $O(N\log N)$ time and may mutate the input if done in place.
 - **Store all scores and sort each list:** Sorting every student’s complete list is simpler than heap selection, but it orders many low scores that are never used. Its total time can reach $O(N\log N)$.
 - **Sort dictionary keys instead of scanning to `m`:** Iterating over `sorted(d)` costs $O(S\log S)$ and behaves well for sparse or very large IDs. The current range scan is attractive only because IDs are positive and capped at one thousand.
@@ -110,8 +110,8 @@ The solution then computes `sum(nlargest(5, xs)) // 5`. The sum includes exactly
 - **Gaps between identifiers:** Empty lists created for missing IDs are false and produce no result rows. The rows that are produced remain in increasing order.
 - **No identifier zero:** The scan begins at one because the constraints make every valid ID at least one. Supporting zero or negative IDs would require iterating actual keys instead.
 - **Empty input outside the contract:** The official input contains at least one record. With an empty list, `m` would remain zero and the function would return an empty answer, but represented-student guarantees would no longer be meaningful.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

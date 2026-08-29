@@ -75,7 +75,7 @@ The product is always even because one of two consecutive integers `cnt` and `cn
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a run of length $c$, any choice of a start and an end wi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Even when two separate runs contain the same letter, they remain independent. Fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ending-streak counting:** Maintain the current:** - **Ending-streak counting:** Maintain the current equal-character streak and add its length at every position. It is also $O(n)$ time and $O(1)$ space.
+- **Ending-streak counting:** Maintain the current equal-character streak and add its length at every position. It is also $O(n)$ time and $O(1)$ space.
 - **Run-length array:** First store all run lengths, then sum their triangular values. It is correct but uses up to $O(n)$ extra space.
 - **Enumerate substrings:** Checking all $O(n^2)$ intervals is far too slow for $n=100000$.
 - **Count only distinct texts:** This is incorrect because identical substring text at different positions counts multiple times.
@@ -129,8 +129,8 @@ Even when two separate runs contain the same letter, they remain independent. Fo
 - **No substring allocation:** Counting by lengths avoids slicing, copying, or comparing candidate strings.
 - **Lowercase alphabet:** Only equality matters; the method would work for any character set.
 - **Empty string:** The official constraint excludes it, so no special return branch is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

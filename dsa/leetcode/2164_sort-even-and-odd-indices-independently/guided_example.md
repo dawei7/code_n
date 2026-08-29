@@ -57,7 +57,7 @@ Ascending order for `a` means each later even index receives a value at least as
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting the complete array would allow a value from an odd i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `[4,1,2,3]`, the even values are `[4,2]` and sort to `[2,4]`. The odd values
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect with explicit loops:** Append values t:** - **Collect with explicit loops:** Append values to even and odd lists based on `i % 2`, sort them, then rebuild the answer. This has the same asymptotic complexity but more indexing code.
+- **Collect with explicit loops:** Append values to even and odd lists based on `i % 2`, sort them, then rebuild the answer. This has the same asymptotic complexity but more indexing code.
 - **Counting frequencies:** Values are bounded by 100, so frequency arrays can produce each parity ordering in $O(n+100)$ time. The exact solution uses comparison sorting.
 - **Sort the entire array:** This violates parity membership because values may cross between even and odd positions.
 - **Sort both groups ascending:** The odd-index requirement is non-increasing, so `reverse=true` is essential.
@@ -111,8 +111,8 @@ For `[4,1,2,3]`, the even values are `[4,2]` and sort to `[2,4]`. The odd values
 - **Extended slice lengths:** Each replacement list has exactly as many values as its target slice, so Python does not raise a size mismatch.
 - **Input mutation:** The returned object is `nums` itself, not a newly allocated final list.
 - **Temporary independence:** Because `a` and `b` are computed first, neither write can corrupt values needed to build the other sorted group.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

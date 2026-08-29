@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Count every occurrence globally.** `cnt = Counter()` creat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-element array:** Map each character w:** - **Fixed 26-element array:** Map each character with `ord(c) - ord('a')` and count in a list. This makes the constant alphabet storage explicit and has the same complexity.
+- **Fixed 26-element array:** Map each character with `ord(c) - ord('a')` and count in a list. This makes the constant alphabet storage explicit and has the same complexity.
 - **Concatenate all words first:** `Counter("".join(words))` is concise but builds an intermediate string of length $S$. The nested loops avoid that extra allocation.
 - **Compare only total lengths:** Divisible total length is necessary but not sufficient; each individual character count must divide evenly.
 - **One word:** Every frequency is divisible by one, so true is returned. No operations are required.
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **A character occurring fewer than `n` times:** Unless its count is zero, it cannot be placed equally in every string, so the modulo test correctly fails.
 - **Absent letters:** Their zero counts are automatically divisible and do not need counter entries.
 - **Arbitrary destination position:** Sufficiency relies on the ability to choose insertion positions; if moves could only append, ordering might require additional reasoning, but that is not this contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

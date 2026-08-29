@@ -48,14 +48,12 @@ We maintain the core conceptual parameters and state variables:
 ### Step 2: Core Step 2
 
 $$
-A=\texttt{nums[0] AND nums[1] AND \cdots AND nums[n-1]}
+A = \text{nums}[0] \text{ AND } \text{nums}[1] \text{ AND } \cdots \text{ AND } \text{nums}[n-1]
 $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-A=\texttt{nums[0] AND nums[1] AND \cdots AND nums[n-1]}
-$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ be the bitwise AND of the whole array. Keeping the entire array as one subarray 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute the whole AND first:** One may explici:** - **Compute the whole AND first:** One may explicitly branch on $A$ and then run a second greedy pass when it is zero. The source combines discovery and cutting in one pass.
+- **Compute the whole AND first:** One may explicitly branch on $A$ and then run a second greedy pass when it is zero. The source combines discovery and cutting in one pass.
 - **Dynamic programming over cut positions:** It can model partitions but is unnecessary because AND only loses bits and the earliest valid cut is always optimal.
 - **Whole AND positive:** Return one; every additional subarray contributes at least the same positive common-bit value.
 - **Trailing nonzero remainder:** Merge it into the final zero-score segment, whose AND stays zero.
@@ -98,8 +96,8 @@ be the bitwise AND of the whole array. Keeping the entire array as one subarray 
 - **All zeros:** Every single element forms a zero-score segment, so the maximum number is $n$.
 - **Single element:** The result is one whether its value is zero or positive, because at least one subarray is required.
 - **Identity value `-1`:** This Python idiom is safe for non-negative inputs; a fixed-width implementation can initialize from the first element or use an all-ones mask.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

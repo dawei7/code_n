@@ -53,8 +53,7 @@ A word is uncommon only when its total behavior across both sentences is “appe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - repeated in its own sentence gives at least two;
-- present... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ Therefore the two-sentence definition can be reduced to one frequency table over
 
 ## 6. Traps This Instance Exposes
 
-- **- **One Counter over concatenated word lists:** `C:** - **One Counter over concatenated word lists:** `Counter(s1.split() + s2.split())` expresses the same combined-count idea. It creates an additional concatenated list, while Counter addition keeps the two stages explicit.
+- **One Counter over concatenated word lists:** `Counter(s1.split() + s2.split())` expresses the same combined-count idea. It creates an additional concatenated list, while Counter addition keeps the two stages explicit.
 - **Manual dictionary:** Increment a normal mapping for every word from both splits. This has the same asymptotic behavior and avoids relying on Counter addition syntax.
 - **Set symmetric difference:** It ignores repeated occurrences within one sentence and can report words that are not uncommon.
 - **Compare every word with every other word:** This is unnecessarily quadratic; frequency counting summarizes all comparisons.
@@ -102,8 +101,8 @@ Therefore the two-sentence definition can be reduced to one frequency table over
 - **Lowercase-only contract:** Word comparison is case-sensitive, but uppercase forms never occur in valid input.
 - **Single-space guarantee:** `split()` produces no empty words. It would also safely ignore extra whitespace in a broader input.
 - **Output multiplicity:** Each uncommon word appears exactly once globally, so it appears once in the returned list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

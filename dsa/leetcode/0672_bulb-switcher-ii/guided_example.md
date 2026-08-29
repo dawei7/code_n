@@ -71,7 +71,7 @@ The code checks `cnt % 2 == presses % 2`. If both conditions hold, the differenc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `cnt = mask.bit_count()`, the number of buttons that mus... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +114,9 @@ Therefore, for `n > 6`, the first six bulb effects determine all later bulbs. Re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form case analysis:** The first three b:** - **Closed-form case analysis:** The first three bulbs actually determine all states, allowing a small formula based on capped `n` and whether presses is zero, one, two, or at least three. It is faster only by a constant and less directly connected to the operations.
-- **- **Breadth-first simulation by press count:** Rep:** - **Breadth-first simulation by press count:** Repeatedly apply four buttons to every current state. Capping to six bulbs keeps the state universe small, but parity enumeration reaches the answer more directly.
-- **- **Enumerate all operation sequences:** There are:** - **Enumerate all operation sequences:** There are `4 ** presses` sequences, which is impossible for large `presses` and repeats many equivalent parities.
+- **Closed-form case analysis:** The first three bulbs actually determine all states, allowing a small formula based on capped `n` and whether presses is zero, one, two, or at least three. It is faster only by a constant and less directly connected to the operations.
+- **Breadth-first simulation by press count:** Repeatedly apply four buttons to every current state. Capping to six bulbs keeps the state universe small, but parity enumeration reaches the answer more directly.
+- **Enumerate all operation sequences:** There are `4 ** presses` sequences, which is impossible for large `presses` and repeats many equivalent parities.
 
 ---
 

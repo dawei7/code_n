@@ -38,7 +38,7 @@ Return `true` if every required prefix and suffix is prime. Return `false` as so
 
 - **Explanation:** 
 
-- **​​​​​​​**Prefixes of $num = 23$ are 2 and 23, both are prime.
+- ****Prefixes of $num = 23$ are 2 and 23, both are prime.
 
 - Suffixes of $num = 23$ are 3 and 23, both are prime.
 

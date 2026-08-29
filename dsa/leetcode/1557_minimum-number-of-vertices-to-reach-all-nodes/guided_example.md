@@ -63,7 +63,7 @@ The returned order is increasing vertex number because `range(n)` is scanned in 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each vertex `i` from zero through `n-1`, the list compre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This proves a lower bound: no solution can use fewer starting vertices than the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean target array:** Mark every destination:** - **Boolean target array:** Mark every destination true and return false entries. It uses $O(N)$ space and avoids storing exact counts.
+- **Boolean target array:** Mark every destination true and return false entries. It uses $O(N)$ space and avoids storing exact counts.
 - **Full DFS from candidate sources:** It repeats reachability work that the DAG in-degree proof makes unnecessary.
 - **Topological sorting:** Its initial queue contains the same zero-in-degree vertices, but producing the complete ordering is extra work.
 - **Vertex with several incoming edges:** It is excluded just like a vertex with one incoming edge.
@@ -117,8 +117,8 @@ This proves a lower bound: no solution can use fewer starting vertices than the 
 - **Duplicate edges:** The contract excludes duplicate pairs, but duplicates would only increase a positive count and would not change the zero/nonzero classification.
 - **Self-loop:** It is incompatible with a DAG and would also invalidate the reachability argument.
 - **Unique solution:** It follows from every zero-in-degree vertex being mandatory and the entire set being sufficient.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

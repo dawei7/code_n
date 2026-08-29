@@ -51,7 +51,7 @@ The source builds `arr` containing one for a qualifying index and zero otherwise
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source builds `arr` containing one for a qualifying inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source builds `arr` containing one for a qualifying index and zero otherwise
 
 ## 6. Traps This Instance Exposes
 
-- **- **Evaluate the predicate inline:** Replace `arr`:** - **Evaluate the predicate inline:** Replace `arr` with direct iteration over `nums` and update `s` immediately. This preserves $O(n)$ time and reduces space to $O(\min(n,\texttt{modulo}))$.
+- **Evaluate the predicate inline:** Replace `arr` with direct iteration over `nums` and update `s` immediately. This preserves $O(n)$ time and reduces space to $O(\min(n,\texttt{modulo}))$.
 - **Fixed remainder array:** If `modulo` is small, a list of that length can replace the Counter. Since modulo can be $10^9$, allocating it unconditionally is unsafe.
 - **Brute-force every subarray:** Maintaining counts for all $O(n^2)$ endpoint pairs is too slow at $10^5$ elements.
 - **`k = 0`:** Equal prefix remainders are paired, correctly including subarrays with zero qualifying indices.
@@ -97,8 +97,8 @@ The source builds `arr` containing one for a qualifying index and zero otherwise
 - **Large modulo:** Only remainders actually encountered are stored in the Counter.
 - **Negative intermediate `s-k`:** Python modulo normalizes it to the correct nonnegative key.
 - **Input preservation:** The source creates a binary representation and does not modify `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

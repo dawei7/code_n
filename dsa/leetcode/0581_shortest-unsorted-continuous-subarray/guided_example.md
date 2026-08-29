@@ -59,11 +59,7 @@ When this loop stops, either all positions matched, or `l` is the first index wh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left pointer begins at zero:
-
-
-
-As long as the original ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +100,7 @@ The result is `r - l + 1`, the inclusive interval length. If the whole array was
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear-time constant-space boundary discovery::** - **Linear-time constant-space boundary discovery:** Scan left-to-right while tracking the maximum seen; whenever a value is below that maximum, update the right boundary. Scan right-to-left while tracking the minimum seen; whenever a value is above that minimum, update the left boundary. This achieves the manifest’s $O(n)$ time and $O(1)$ space but is not the exact source shown here.
+- **Linear-time constant-space boundary discovery:** Scan left-to-right while tracking the maximum seen; whenever a value is below that maximum, update the right boundary. Scan right-to-left while tracking the minimum seen; whenever a value is above that minimum, update the left boundary. This achieves the manifest’s $O(n)$ time and $O(1)$ space but is not the exact source shown here.
 - **Monotonic stacks:** One increasing-stack pass finds the left boundary and one decreasing-stack pass finds the right. Time is $O(n)$ but stack space is $O(n)$.
 - **Find disorder, then expand by its minimum and maximum:** Detect the first and last local inversions, find the interval’s minimum and maximum, and expand into the sorted prefix/suffix where needed. This is $O(n)$ and $O(1)$ but requires a careful multi-step proof.
 - **Already sorted array:** Every position matches `arr`; crossed pointers make the returned length zero.
@@ -115,8 +111,8 @@ The result is `r - l + 1`, the inclusive interval length. If the whole array was
 - **Inclusive length:** Boundaries $l$ and $r$ are both included, so the formula must be $r-l+1$, not $r-l$.
 - **Input preservation:** `sorted(nums)` returns a copy. Using `nums.sort()` would destroy the original before comparison unless another copy were made.
 - **Metadata fidelity:** Do not describe this particular implementation as $O(n)$/$O(1)$. That improvement belongs to an alternative implementation, even though the manifest requests it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -10,7 +10,7 @@ For example, the power of $x = 3$ is `7` because `3` needs `7` steps to become `
 
 Given three integers `lo`, `hi` and `k`. The task is to sort all integers in the interval `[lo, hi]` by the power value in **ascending order**, if two or more integers have **the same** power value sort them by **ascending order**.
 
-Return the $$k^{\text{th}}$$ integer in the range `[lo, hi]` sorted by the power value.
+Return the $k^{\text{th}}$ integer in the range `[lo, hi]` sorted by the power value.
 
 Notice that for any integer `x` $(lo \le x \le hi)$ it is **guaranteed** that `x` will transform into `1` using these steps and that the power of `x` is will **fit** in a 32-bit signed integer.
 

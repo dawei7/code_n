@@ -83,7 +83,7 @@ The two products being unequal is exactly the statement that the cross product i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After unpacking the three points, consider the vector from p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ Taking the cross product with `\overrightarrow{P_1P_2}`, the self-cross-product 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Slope comparison:** It expresses the same geom:** - **Slope comparison:** It expresses the same geometry but needs vertical-line handling and may suffer floating-point precision problems. Cross multiplication is exact and uniform.
+- **Slope comparison:** It expresses the same geometry but needs vertical-line handling and may suffer floating-point precision problems. Cross multiplication is exact and uniform.
 - **Shoelace area formula:** Compute twice the triangle area from all three coordinates and test whether it is nonzero. This is algebraically equivalent to the cross product.
 - **Pairwise distance checks:** Distances can prove points are distinct, but they do not by themselves detect collinearity. An area or orientation test is still needed.
 - **Explicit duplicate set:** Checking `len(set(map(tuple, points))) == 3` can enforce distinctness, followed by a collinearity test. The determinant already rejects duplicates, making the set unnecessary.
@@ -142,8 +142,8 @@ Taking the cross product with `\overrightarrow{P_1P_2}`, the self-cross-product 
 - **First and third points identical:** The vectors are opposites, still giving zero cross product and returning false.
 - **Very small nonzero area:** Integer arithmetic distinguishes it exactly; there is no epsilon threshold.
 - **Point order:** Permuting three distinct noncollinear points may change determinant sign but never whether it is zero, so boomerang validity is order-independent.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

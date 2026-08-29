@@ -6,7 +6,7 @@ You want to construct another array `nums2` of length `n` such that the elements
 
 For each index `i`, you must choose **exactly one** of the following (in any order):
 
-- $\text{nums2}[i] = \text{nums1}[i]$​​​​​​​
+- $\text{nums2}[i] = \text{nums1}[i]$
 
 - $\text{nums2}[i] = \text{nums1}[i] - \text{nums1}[j]$, for an index $j \neq i$, such that $\text{nums1}[i] - \text{nums1}[j] \ge 1$
 
@@ -34,7 +34,7 @@ Return `true` if one legal choice per index can make every constructed value odd
 
 - **Output:** true
 
-- **Explanation:** ​​​​​​​​​​​​​​
+- **Explanation:** 
 
 - Set $\text{nums2}[0] = \text{nums1}[0] = 1$.
 

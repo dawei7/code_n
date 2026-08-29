@@ -10,7 +10,7 @@ You are also given a 2D integer array `queries` of length `q`, where each $\text
 
 A **substring** is **alternating** if no two **adjacent** characters are **equal**. A substring of length 1 is always alternating.
 
-Return an integer array `answer`, where $\text{answer}[i]$ is the result of the $$i^{\text{th}}$$ query of type `[2, l, r]`.
+Return an integer array `answer`, where $\text{answer}[i]$ is the result of the $i^{\text{th}}$ query of type `[2, l, r]`.
 
 ### 2. Function Contract
 

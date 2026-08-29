@@ -63,7 +63,7 @@ If the second digit is also `'?'`, the chained comparison does not identify it a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `t[0]` is hidden, choosing two would ordinarily be best.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The input guarantee ensures a fixed leading digit cannot make all replacements i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all 1440 times:** Test which valid t:** - **Enumerate all 1440 times:** Test which valid times match the pattern and keep the latest. It is still constant under a 24-hour clock but much more work and code.
+- **Enumerate all 1440 times:** Test which valid times match the pattern and keep the latest. It is still constant under a 24-hour clock but much more work and code.
 - **Try replacements recursively:** At most four hidden digits create up to 10,000 candidates, unnecessary when digit constraints are direct.
 - **Both hour digits hidden:** Rules produce 23.
 - **Second hour digit four through nine:** A hidden first digit must become one, not two.
@@ -119,8 +119,8 @@ The input guarantee ensures a fixed leading digit cannot make all replacements i
 - **Colon:** Index two is never inspected as a replacement position.
 - **Validity promise:** The algorithm need not reject impossible fixed combinations such as `"29:00"`.
 - **String immutability:** The temporary list enables positional updates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

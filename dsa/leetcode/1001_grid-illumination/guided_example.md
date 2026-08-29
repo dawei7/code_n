@@ -59,11 +59,7 @@ Deduplication must occur before the line counters are built. Otherwise, counters
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The set comprehension
-
-`s = {(i, j) for i, j in lamps}`
-
-sto... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +103,7 @@ Every active lamp in the deduplicated set increments one entry in each counter.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Materialize the grid:** Impossible when `n` ca:** - **Materialize the grid:** Impossible when `n` can be one billion; sparse lamp state is mandatory.
+- **Materialize the grid:** Impossible when `n` can be one billion; sparse lamp state is mandatory.
 - **Scan all active lamps per query:** It can test shared lines directly but costs `O(LQ)` in the worst case.
 - **Store Boolean line presence only:** Counts are necessary because turning off one lamp must not clear a line still illuminated by another.
 - **Duplicate input lamps:** The set collapses them before counters are incremented, preventing phantom multiplicity.
@@ -119,8 +115,8 @@ Every active lamp in the deduplicated set increments one entry in each counter.
 - **Repeated queries:** Each uses the current state after all earlier shutdowns; previously removed lamps cannot be removed twice.
 - **Two diagonal types:** Checking only `i - j` or only `i + j` would miss half of diagonal illumination.
 - **Input preservation:** The original `lamps` and `queries` lists are not modified; the active set is separate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

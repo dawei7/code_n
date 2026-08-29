@@ -67,9 +67,7 @@ If squares are equal, the `else` branch chooses the right value. Either choice i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `i` starts at zero and `j` at the final index.
-
-Each... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ One could instead preallocate an array and fill it from right to left. The exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Square then sort:** Correct but costs `O(N log:** - **Square then sort:** Correct but costs `O(N log N)`.
+- **Square then sort:** Correct but costs `O(N log N)`.
 - **Fill result from the end:** Avoids the final reversed copy while keeping linear time.
 - **All nonnegative:** Right pointer supplies values in reverse order.
 - **All nonpositive:** Left pointer usually supplies the largest magnitudes.
@@ -118,8 +116,8 @@ One could instead preallocate an array and fill it from right to left. The exact
 - **Zero:** Its square is zero and naturally appears near the final descending position.
 - **Duplicate values:** Each occurrence contributes one square.
 - **Input preservation:** The method reads but does not mutate `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

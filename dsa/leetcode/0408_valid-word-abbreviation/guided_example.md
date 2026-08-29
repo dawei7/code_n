@@ -70,11 +70,7 @@ Consecutive digit characters form one number token. This also reflects the non-a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a digit, the update
-
-
-
-appends that decimal digit.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +113,9 @@ A zero after a nonzero prefix is legal. In `"10"`, `x` is already one when the z
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand the abbreviation:** Replacing numeric t:** - **Expand the abbreviation:** Replacing numeric tokens with placeholder characters and comparing could use $O(w)$ extra space and unnecessary construction. Pointer arithmetic performs the same validation directly.
-- **- **Regular expression:** A generated pattern coul:** - **Regular expression:** A generated pattern could represent skips, but parsing numeric lengths and leading-zero rules explicitly is clearer and avoids regex complexity.
-- **- **Recursive parser:** Recursion over tokens is p:** - **Recursive parser:** Recursion over tokens is possible but adds call-stack state without any branching benefit.
+- **Expand the abbreviation:** Replacing numeric tokens with placeholder characters and comparing could use $O(w)$ extra space and unnecessary construction. Pointer arithmetic performs the same validation directly.
+- **Regular expression:** A generated pattern could represent skips, but parsing numeric lengths and leading-zero rules explicitly is clearer and avoids regex complexity.
+- **Recursive parser:** Recursion over tokens is possible but adds call-stack state without any branching benefit.
 
 ---
 

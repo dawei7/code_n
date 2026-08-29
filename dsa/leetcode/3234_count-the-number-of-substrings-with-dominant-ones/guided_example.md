@@ -51,7 +51,7 @@ Checking all $O(n^2)$ substrings is too slow for $n$ up to $4\cdot10^4$. The squ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Checking all $O(n^2)$ substrings is too slow for $n$ up to $... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Checking all $O(n^2)$ substrings is too slow for $n$ up to $4\cdot10^4$. The squ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all substrings with prefix sums:** P:** - **Enumerate all substrings with prefix sums:** Prefix zero and one counts make checking one substring $O(1)$, but there are still $O(n^2)$ substrings. This is useful as a brute-force verifier for small strings, not for the full constraint.
+- **Enumerate all substrings with prefix sums:** Prefix zero and one counts make checking one substring $O(1)$, but there are still $O(n^2)$ substrings. This is useful as a brute-force verifier for small strings, not for the full constraint.
 - **Editorial's reversed orientation:** One can fix a right endpoint and jump left through previous-zero positions. It uses the same grouping and arithmetic idea. The source solution fixes the left endpoint and uses next-zero positions; mixing the two orientations would make the endpoint formula incorrect.
 - **Count zero-free substrings separately:** Runs of ones contribute $L(L+1)/2$ valid substrings and could be counted in a separate pass. The exact solution includes them naturally as the `cnt0 = 0` group, avoiding a separate case.
 - **Use a list of zero indices:** Storing only zero positions with sentinels can support similar enumeration. The `nxt` array consumes $O(n)$ space but gives direct constant-time jumps from any starting position.
@@ -96,8 +96,8 @@ Checking all $O(n^2)$ substrings is too slow for $n$ up to $4\cdot10^4$. The squ
 - **Sentinel access:** Because `nxt` has length `n + 1`, reading `nxt[j + 1]` is safe whenever `j < n`, including `j = n - 1`. The sentinel value `n` also makes the final run of ones behave like an ordinary gap before a next zero.
 - **Nonempty substrings only:** In the zero-free group, the cap `nxt[j + 1] - j` prevents the extra “plus one” in the surplus expression from accidentally counting an empty substring.
 - **Large answer:** The number of valid substrings can be quadratic even though the algorithm is subquadratic. A fixed-width implementation should use a 64-bit result; Python integers expand automatically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -29,7 +29,7 @@ Return the number of occurrences in `nums` for which at least `k` other array va
 
 - **Explanation:** The elements 1 and 2 each have at least $k = 1$ element greater than themselves.
 
-​​​​​​​No element is greater than 3. Therefore, the answer is 2.
+No element is greater than 3. Therefore, the answer is 2.
 
 #### Example 2
 

@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -88,10 +88,10 @@ df[['Department', 'name', 'salary']].rename(columns = {'name': 'Employee', 'sala
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
-​
+
 def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
 
     Employee_Department = employee.merge(department, left_on='departmentId', right_on='id').rename(columns = {'name_y': 'Department'})
@@ -158,7 +158,7 @@ return employee_department.rename(columns = {'name_y': 'Department', 'name_x': '
 
 ```python
 import pandas as pd
-​
+
 def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
 
     top_salary = employee[employee.groupby('departmentId').salary.rank(method='dense', ascending=False) <= 3]
@@ -176,7 +176,7 @@ def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.D
 
 <!-- h4 for sections -->
 #### Algorithm
-​<!-- Describe your approach to solving the problem. -->
+<!-- Describe your approach to solving the problem. -->
 We can build a [correlated subquery](https://dev.mysql.com/doc/refman/8.0/en/correlated-subqueries.html) to identify the top N records from more than one category. Since the correlated subquery is dependent on the main query, the idea behind this approach is to compare the values between the main query and the subquery, so that in the subquery, at most N-1 salaries can be greater than each selected salary from the main query.
 
 To do this, we first build the main query. In the main query, we can also join the table `Employee` to the table `Department` on `departmentId` to get the `name` of the departments and rename the columns as requested by the final output.
@@ -217,7 +217,7 @@ WHERE
         FROM Employee e2
         WHERE e2.salary > e1.salary AND e1.departmentId = e2.departmentId);
 ```
-​
+
 <!-- an empty line to separate approaches -->
 
 <!-- h3 for approaches -->
@@ -225,7 +225,7 @@ WHERE
 
 <!-- h4 for sections -->
 #### Algorithm
-​<!-- Describe your approach to solving the problem. -->
+<!-- Describe your approach to solving the problem. -->
 Unlike the previous approach that utilized a correlated subquery, in this approach, we sorted the salaries in descending order, ranked employees based on their salaries within the department, and selected only the first 3 employees for the final output.
 
 We first create a subquery or CTE to rank the employees. Since the definition of a high earner is the employee who has a salary in the top three **unique** salaries for the department, we can use the function $\text{DENSE}_{RANK}()$ to avoid the scenario that employees from the same department make the same amount of salary. In this step, we can also join the table `Department` on `departmentId` to get the `name` of the departments and rename the columns for the final output.
@@ -282,6 +282,6 @@ SELECT Department, Employee, Salary
 FROM employee_department
 WHERE rnk <= 3
 ```
-​
+
 ----
 <!-- an empty line to separate approaches -->

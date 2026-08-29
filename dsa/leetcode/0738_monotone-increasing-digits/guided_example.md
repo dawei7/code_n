@@ -62,7 +62,7 @@ After lowering that digit, every later position should eventually be made as lar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At a descent such as the `3, 2` boundary in `332`, leaving t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,9 +105,9 @@ Every decremented digit was at least one: it was strictly greater than a decimal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every smaller number:** Decrement `n` unti:** - **Try every smaller number:** Decrement `n` until finding a monotone candidate. This can inspect an enormous number of integers and is far slower than repairing digits directly.
-- **- **Construct the answer with digit dynamic progra:** - **Construct the answer with digit dynamic programming:** A tight-prefix DP can maximize a monotone sequence under the upper bound. It is general but significantly more complex for a property solved by one greedy repair.
-- **- **Decrement only the first offending digit once::** - **Decrement only the first offending digit once:** This fails when the decrement creates a new descent to its left, as in `332`. The repair must propagate.
+- **Try every smaller number:** Decrement `n` until finding a monotone candidate. This can inspect an enormous number of integers and is far slower than repairing digits directly.
+- **Construct the answer with digit dynamic programming:** A tight-prefix DP can maximize a monotone sequence under the upper bound. It is general but significantly more complex for a property solved by one greedy repair.
+- **Decrement only the first offending digit once:** This fails when the decrement creates a new descent to its left, as in `332`. The repair must propagate.
 
 ---
 

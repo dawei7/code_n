@@ -94,7 +94,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution computes the two position counts as `(n + 1) >>... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ For $n=5$, there are three even indices, $0,2,4$, and two odd indices, $1,3$. Th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual binary exponentiation:** A loop can squ:** - **Manual binary exponentiation:** A loop can square the base, multiply it into an accumulator when the current exponent bit is one, and halve the exponent each round. This has the same $O(\log n)$ time and $O(1)$ space, but Python's three-argument `pow` is shorter and highly optimized.
+- **Manual binary exponentiation:** A loop can square the base, multiply it into an accumulator when the current exponent bit is one, and halve the exponent each round. This has the same $O(\log n)$ time and $O(1)$ space, but Python's three-argument `pow` is shorter and highly optimized.
 - **Linear repeated multiplication:** Multiplying by five and four once per position is conceptually simple but takes $O(n)$ time, which is impossible for $n$ up to $10^{15}$.
 - **Constructing or enumerating strings:** There are exponentially many valid strings. Generation is unnecessary because independent choices give the count directly.
 - **Using floating-point powers:** Floating-point numbers cannot represent such enormous exact counts and do not preserve the required modular value. Modular integer exponentiation is the correct tool.
@@ -141,8 +141,8 @@ For $n=5$, there are three even indices, $0,2,4$, and two odd indices, $1,3$. Th
 - **Leading zero:** The string `"0"` and longer strings beginning with zero are valid candidates. Treating the result as a number and disallowing leading zeroes would violate the contract.
 - **Modulo placement:** Reducing each power and reducing the final product is mathematically exact. Omitting the final remainder could return a product larger than the requested range even though each factor was already reduced.
 - **Prime-index misconception:** The word prime describes the digit placed at an odd index, not the index itself. Odd positions use digits `2`, `3`, `5`, or `7`; even positions use even digits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

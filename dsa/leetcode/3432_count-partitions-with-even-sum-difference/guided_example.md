@@ -51,7 +51,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Total-parity formula:** Return `len(nums) - 1 :** - **Total-parity formula:** Return `len(nums) - 1 if sum(nums) % 2 == 0 else 0`. This is equally linear in time and genuinely $O(1)$ auxiliary space.
+- **Total-parity formula:** Return `len(nums) - 1 if sum(nums) % 2 == 0 else 0`. This is equally linear in time and genuinely $O(1)$ auxiliary space.
 - **Prefix-sum array:** It can calculate both side sums at every boundary, but storing all prefixes uses unnecessary $O(n)$ space beyond the slice already present here.
 - **Recompute each side:** Summing left and right subarrays separately for every partition takes $O(n^2)$ time.
 - **Two elements:** There is exactly one legal partition. It qualifies precisely when the total of the two elements is even.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Non-empty sides:** Iterating only through `nums[:-1]` prevents a split after the final element.
 - **Boolean arithmetic:** In Python, adding the comparison result increments by one only for true, making the compact count valid.
 - **Input preservation:** Slicing copies references but does not modify `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

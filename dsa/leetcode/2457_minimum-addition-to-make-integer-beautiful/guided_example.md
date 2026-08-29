@@ -67,7 +67,7 @@ For 467, there are initially no trailing zeros, so `p=10` and the next candidate
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At one iteration, `y = n+x` is the current candidate.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Since the current candidate is known not to be beautiful, no number before the n
 
 ## 6. Traps This Instance Exposes
 
-- **- **Incremental decimal processing:** Walk digits :** - **Incremental decimal processing:** Walk digits from right to left, add the amount needed to round each position, and update the digit sum through carries. This can achieve $O(\log n)$ time.
+- **Incremental decimal processing:** Walk digits from right to left, add the amount needed to round each position, and update the digit sum through carries. This can achieve $O(\log n)$ time.
 - **Try every addition:** Increment `x` one by one until the digit sum qualifies. Numeric gaps can be enormous, making this infeasible.
 - **Convert to a digit list:** Explicit digits can make carry logic clearer but uses $O(\log n)$ storage.
 - **Already beautiful:** The method returns zero without rounding.
@@ -116,8 +116,8 @@ Since the current candidate is known not to be beautiful, no number before the n
 - **Large target:** Since digit sums of the bounded input are modest, many cases terminate immediately.
 - **Strictly increasing candidates:** Every rounding moves to a larger multiple, ensuring progress.
 - **Metadata mismatch:** Recomputing the full digit sum at each of up to $O(\log n)$ stages makes the exact worst-case time quadratic in digit count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

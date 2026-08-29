@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-L_i=\max_{j\le i}\texttt{height}[j],
-\qquad
-R_i=\max_{j\g... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,7 +90,7 @@ The water surface cannot exceed the tallest boundary available on the left or th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subqueries for each side maximum:**:** - **Correlated subqueries for each side maximum:** They express the formula directly but may rescan large portions of the table for every bar, causing quadratic work.
+- **Correlated subqueries for each side maximum:** They express the formula directly but may rescan large portions of the table for every bar, causing quadratic work.
 - **Self joins and grouping:** Joining all left and right candidates creates large intermediate relations; window maxima are much cleaner.
 - **Two-pointer algorithm outside SQL:** In an imperative language it reaches $O(N)$ time and $O(1)$ space, but relational SQL naturally favors windows.
 - **Monotonically increasing heights:** Right boundaries never create a basin, so every contribution is zero.
@@ -107,8 +104,8 @@ The water surface cannot exceed the tallest boundary available on the left or th
 - **Boundary bars:** At the global tallest bar, both directional maxima equal its own height and contribution is zero. Exterior endpoints likewise cannot trap water beyond the landscape.
 - **Multiple equal maxima:** Window functions retain the same boundary height across the plateau; basins between equal peaks are handled without selecting a unique wall.
 - **No negative correction required:** Since both running maxima include the current row, `LEAST(l,r)` is always at least `height`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

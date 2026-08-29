@@ -77,7 +77,7 @@ therefore recognizes the entire pattern without comparing characters one by one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before processing the current character, the stack represent... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Thus `== k` is the correct online trigger; `>= k` is unnecessary and could obscu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated global replacement:** Searching for t:** - **Repeated global replacement:** Searching for the pattern and rebuilding the string after each round can take $O(n^2)$ time because many characters may be copied repeatedly.
+- **Repeated global replacement:** Searching for the pattern and rebuilding the string after each round can take $O(n^2)$ time because many characters may be copied repeatedly.
 - **Character stack with suffix comparison:** Storing every character and checking the last $2k$ positions after each push can cost $O(nk)$. Run lengths make the suffix test constant time.
 - **Regular-expression replacement:** Repeated regex passes still require fixed-point iteration and repeated whole-string scans.
 - **`k = 1`:** The pattern is `"()"`, and the run stack behaves like online adjacent-pair cancellation.
@@ -126,8 +126,8 @@ Thus `== k` is the correct online trigger; `>= k` is unnecessary and could obscu
 - **No removable pattern:** The stack expands to the original string unchanged.
 - **Complete removal:** All runs are popped, and joining produces `""`.
 - **Run entry reaches zero:** It must be popped so no zero-length entry interferes with future adjacency.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

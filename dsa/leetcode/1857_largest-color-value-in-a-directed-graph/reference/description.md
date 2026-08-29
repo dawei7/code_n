@@ -2,7 +2,7 @@
 
 There is a **directed graph** of `n` colored nodes and `m` edges. The nodes are numbered from `0` to $n - 1$.
 
-You are given a string `colors` where $\text{colors}[i]$ is a lowercase English letter representing the **color** of the $$i^{\text{th}}$$ node in this graph (**0-indexed**). You are also given a 2D array `edges` where $\text{edges}[j] = [a_{j}, b_{j}]$ indicates that there is a **directed edge** from node $a_{j}$ to node $b_{j}$.
+You are given a string `colors` where $\text{colors}[i]$ is a lowercase English letter representing the **color** of the $i^{\text{th}}$ node in this graph (**0-indexed**). You are also given a 2D array `edges` where $\text{edges}[j] = [a_{j}, b_{j}]$ indicates that there is a **directed edge** from node $a_{j}$ to node $b_{j}$.
 
 A valid **path** in the graph is a sequence of nodes $x_{1} -> x_{2} -> x_{3} -> ... -> x_{k}$ such that there is a directed edge from $x_{i}$ to $x_{i}+1$ for every $1 \le i < k$. The **color value** of the path is the number of nodes that are colored the **most frequently** occurring color along that path.
 

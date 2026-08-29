@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The $$i^{\text{th}}$$coupon has:
+You are given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The $i^{\text{th}}$coupon has:
 
 The objective is to compute `["___"]` from `{"code": ["___"], "businessLine": ["electronics"], "isActive": [true]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -83,8 +83,7 @@ The loop uses:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The allowed categories are stored in the constant-size set:
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +120,7 @@ The original arrays also remain the source of truth for sorting. For an index `i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four category buckets:** Use an explicit rank :** - **Four category buckets:** Use an explicit rank map, append codes to four lists, sort each list, and concatenate. This remains correct even if the category names' alphabetical order differs from their required priority.
+- **Four category buckets:** Use an explicit rank map, append codes to four lists, sort each list, and concatenate. This remains correct even if the category names' alphabetical order differs from their required priority.
 - **Explicit numeric category rank:** Sort by `(rank[businessLine[i]], code[i])`. It makes the custom order obvious and is safer against future category renaming.
 - **Regular expression validation:** A full match such as an ASCII-constrained alphanumeric/underscore pattern can be concise, but the character loop makes early rejection and the allowed symbols explicit.
 - **Use `str.isalnum`:** Under the printable-ASCII guarantee, `c.isalnum() or c == "_"` is equivalent to the source's separate letter and digit checks.
@@ -140,8 +139,8 @@ The original arrays also remain the source of truth for sorting. For an index `i
 - **Equal-length-array contract:** The source relies on it; otherwise `zip` would silently ignore entries beyond the shortest array.
 - **Future category changes:** Direct string sorting is correct only while the required order matches alphabetical order; an explicit rank map avoids that hidden dependency.
 - **Input preservation:** The algorithm sorts only the index list. It never reorders or modifies `code`, `businessLine`, or `isActive`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

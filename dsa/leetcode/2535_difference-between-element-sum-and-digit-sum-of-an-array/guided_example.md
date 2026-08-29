@@ -69,7 +69,7 @@ Its digit-sum contribution is six.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The last digit of positive integer `v` is `v%10`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The full original value has already been added to `x` before digit extraction be
 
 ## 6. Traps This Instance Exposes
 
-- **- **String conversion:** Sum `int(c)` for every ch:** - **String conversion:** Sum `int(c)` for every character of every decimal representation; it is simpler but allocates strings.
+- **String conversion:** Sum `int(c)` for every character of every decimal representation; it is simpler but allocates strings.
 - **Single-digit array:** Element sum and digit sum are equal, producing zero.
 - **Multi-digit value:** It guarantees a positive individual difference.
 - **Repeated digits:** Count every occurrence.
@@ -116,8 +116,8 @@ The full original value has already been added to `x` before digit extraction be
 - **No overflow:** The stated sums fit ordinary integer ranges, and Python grows automatically.
 - **Absolute difference:** `x-y` is already nonnegative.
 - **One pass:** Both totals are accumulated together.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

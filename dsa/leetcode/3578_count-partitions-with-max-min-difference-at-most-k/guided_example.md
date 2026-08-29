@@ -70,7 +70,7 @@ All later starts `l+1,\ldots,r` are valid too. Removing elements from a valid se
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop uses one-based prefix endpoint `r` while actual arr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ extends the prefix-sum table.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic minimum and maximum deques:** Each i:** - **Monotonic minimum and maximum deques:** Each index enters and leaves each deque once, reducing window maintenance to `O(n)` total and realizing the manifest summary.
+- **Monotonic minimum and maximum deques:** Each index enters and leaves each deque once, reducing window maintenance to `O(n)` total and realizing the manifest summary.
 - **Two heaps with lazy deletion:** They can maintain extrema but require more bookkeeping than deques or SortedList and still have logarithmic operations.
 - **Quadratic DP:** Testing every possible final-segment start directly costs `O(n^2)` even if segment validity is known; prefix sums remove that inner summation.
 - **k equals zero:** A segment is valid only when all its values are equal. Duplicate handling in SortedList preserves this condition.
@@ -139,8 +139,8 @@ extends the prefix-sum table.
 - **Modulo subtraction:** Adding the modulus before remainder keeps the stored count nonnegative.
 - **Third-party structure:** The source assumes `SortedList` is available in the execution environment; a deque version avoids that dependency.
 - **Monotonic left boundary:** `l` never moves backward as `r` advances. Once a start makes a window invalid, adding more elements on the right cannot reduce that already-observed range enough to make the removed start necessary again. This one-way movement is why total removals remain linear even though each ordered-multiset removal costs logarithmic time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

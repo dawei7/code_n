@@ -59,7 +59,7 @@ The constraint of at least two points guarantees that `pairwise` yields at least
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `points.sort()` applies Python's lexicographic list ordering... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Taking their maximum produces the widest valid vertical area.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Extract and sort only x-coordinates:** `xs = s:** - **Extract and sort only x-coordinates:** `xs = sorted(x for x, _ in points)` makes the relevant dimension explicit but allocates another $O(n)$ list rather than sorting the supplied points.
+- **Extract and sort only x-coordinates:** `xs = sorted(x for x, _ in points)` makes the relevant dimension explicit but allocates another $O(n)$ list rather than sorting the supplied points.
 - **Deduplicate x-coordinates first:** Sorting a set can reduce repeated zeros, but building the set uses extra storage and is not necessary for correctness.
 - **Bucket or counting sort:** Coordinates range up to $10^9$, so a direct coordinate-sized bucket array is impractical.
 - **Maximum-gap linear algorithms:** With numeric bucketing, the maximum adjacent sorted gap can be found in linear expected time, but the implementation is much more complex and ordinary sorting fits $n\le10^5$.
@@ -111,8 +111,8 @@ Taking their maximum produces the widest valid vertical area.
 - **Arbitrary y-coordinates:** They never influence an infinitely tall vertical area's width or emptiness.
 - **Input mutation:** `points.sort()` changes the original ordering. Use `sorted(points)` if caller-visible preservation were required.
 - **At least two points guarantee:** Without it, `max` over `pairwise` would be empty and raise an error; the stated constraints rule that out.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

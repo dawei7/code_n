@@ -64,7 +64,7 @@ The goal asks only that all values become equal, not that they equal an original
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The allowed subarray may be any nonempty contiguous interval... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The array is guaranteed nonempty, so accessing `nums[0]` is safe.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `len(set(nums))`:** Returning whether the :** - **Use `len(set(nums))`:** Returning whether the set size exceeds one is correct but allocates `O(n)` space.
+- **Use `len(set(nums))`:** Returning whether the set size exceeds one is correct but allocates `O(n)` space.
 - **Compare adjacent elements:** Checking whether every `nums[i] == nums[i-1]` also works in `O(n)` time and `O(1)` space.
 - **Compute the whole-array AND:** It can construct the eventual common value but is not needed to return the operation count.
 - **Simulate interval operations:** This solves a harder problem than required because one global interval always suffices.
@@ -120,8 +120,8 @@ The array is guaranteed nonempty, so accessing `nums[0]` is safe.
 - **Nonempty guarantee:** It makes `nums[0]` safe. An empty-array variant would need a separate convention.
 - **Input preservation:** The source only tests values and never applies the conceptual operation.
 - **Missing import:** The stored source uses `List` without importing it. Standalone Python needs `from typing import List` unless the harness provides the name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

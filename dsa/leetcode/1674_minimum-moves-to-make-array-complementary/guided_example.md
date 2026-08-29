@@ -84,7 +84,7 @@ This step pattern changes only at a few known boundaries, which makes a differen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take one pair and reorder its values so `x <= y`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +131,7 @@ All mirrored pairs update the same `d`. Difference arrays are additive, so at an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute force every target and pair:** This foll:** - **Brute force every target and pair:** This follows the definition but costs $O(nL)$, repeating the same piecewise-cost reasoning for every target.
+- **Brute force every target and pair:** This follows the definition but costs $O(nL)$, repeating the same piecewise-cost reasoning for every target.
 - **Binary-search counting:** Sort smaller and larger pair members and count zero-, one-, and two-move cases for every target with binary searches. It is correct but slower by logarithmic factors and uses more involved statistics.
 - **Combine redundant updates:** The two operations at `x+1` can be written as `d[x+1] -= 1`, and those at `y+L+1` as `d[y+L+1] += 1`. The exact source leaves their derivational components separate.
 - **Pair values already equal the chosen target:** The update at `x+y` makes that pair contribute zero.
@@ -142,8 +142,8 @@ All mirrored pairs update the same `d`. Difference arrays are additive, so at an
 - **Repeated mirrored pairs:** Their identical difference updates simply add, correctly multiplying their contribution.
 - **Even-length guarantee:** Every element belongs to exactly one pair. An unpaired center in an odd-length array would need separate treatment.
 - **Replacement bounds:** The interval endpoints `x+1` and `y+L` come directly from keeping one value and choosing the other in `[1,L]`; overlooking these bounds gives incorrect one-move ranges.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

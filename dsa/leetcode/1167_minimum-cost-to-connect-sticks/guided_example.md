@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You have some number of sticks with positive integer lengths. These lengths are given as an array `sticks`, where $\text{sticks}[i]$ is the length of the $$i^{\text{th}}$$ stick.
+You have some number of sticks with positive integer lengths. These lengths are given as an array `sticks`, where $\text{sticks}[i]$ is the length of the $i^{\text{th}}$ stick.
 
 The objective is to compute `14` from `{"sticks": [2, 4, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -64,7 +64,7 @@ Two sticks disappear and one replaces them, so the collection size decreases by 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `heapify(sticks)` rearranges the input list in place into a ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Therefore, there exists an optimal solution whose first merge joins the two smal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly sort the list:** Selecting two smal:** - **Repeatedly sort the list:** Selecting two smallest values after a full sort works, but sorting after each merge can raise time to roughly `O(n^2 log n)`. A heap maintains just enough order.
+- **Repeatedly sort the list:** Selecting two smallest values after a full sort works, but sorting after each merge can raise time to roughly `O(n^2 log n)`. A heap maintains just enough order.
 - **Sort once and pair adjacent originals:** New sums must reenter the ordering, so a fixed original pairing can miss the optimum.
 - **Merge the two largest first:** Large intermediate sticks are charged repeatedly and generally produce a much higher cost.
 - **Two-queue optimal merge:** With an initially sorted list, one queue for originals and one for generated sums can achieve `O(n log n)` due to sorting and linear merging afterward. It needs additional indexing structure.
@@ -120,8 +120,8 @@ Therefore, there exists an optimal solution whose first merge joins the two smal
 - **Positive lengths:** The greedy proof relies on nonnegative weight behavior, and the contract supplies strictly positive values.
 - **Input mutation:** `heapify` and subsequent heap operations reorder and shrink `sticks`. Callers needing the original array must copy it explicitly.
 - **Cost growth:** `ans` may exceed any individual input length because each stick can contribute at multiple merge depths.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

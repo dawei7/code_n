@@ -72,11 +72,7 @@ Only a free-free adjacent pair creates joined rows.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The rest of the join condition is:
-
-
-
-In MySQL Boolean conte... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ The join is symmetric, so adjacent pair 3–4 produces one result with `a=3,b=4`
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LAG` and `LEAD`:** Order rows by `seat_id` an:** - **`LAG` and `LEAD`:** Order rows by `seat_id` and inspect neighboring IDs/free flags. Avoids a self-join but must verify ID difference one, not merely row adjacency if gaps are possible.
+- **`LAG` and `LEAD`:** Order rows by `seat_id` and inspect neighboring IDs/free flags. Avoids a self-join but must verify ID difference one, not merely row adjacency if gaps are possible.
 - **Two explicit joins or `EXISTS`:** Check for a free row at `seat_id - 1` or `seat_id + 1`. Equality predicates can use an index more directly than `ABS`.
 - **Union oriented neighbor pairs:** Select both endpoints of every free pair with `UNION`. Naturally deduplicates but repeats query structure.
 - **Missing `DISTINCT`:** A middle seat in a run appears once per free neighbor and would be duplicated.
@@ -128,8 +124,8 @@ The join is symmetric, so adjacent pair 3–4 produces one result with `a=3,b=4`
 - **Boolean semantics:** `a.free` and `b.free` rely on 1/0 truth values stated by the schema.
 - **Ordinal ordering:** `ORDER BY 1` means selected seat ID ascending.
 - **Physical-plan caveat:** An `ABS` join can degrade to quadratic pair testing; asymptotic performance is not guaranteed solely by the manifest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

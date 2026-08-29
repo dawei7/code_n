@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are playing a simplified PAC-MAN game on an infinite 2-D grid. You start at the point `[0, 0]`, and you are given a destination point $target = [x_{target}, y_{target}]$ that you are trying to get to. There are several ghosts on the map with their starting positions given as a 2D array `ghosts`, where $\text{ghosts}[i] = [x_{i}, y_{i}]$ represents the starting position of the $$i^{\text{th}}$$ ghost. All inputs are **integral coordinates**.
+You are playing a simplified PAC-MAN game on an infinite 2-D grid. You start at the point `[0, 0]`, and you are given a destination point $target = [x_{target}, y_{target}]$ that you are trying to get to. There are several ghosts on the map with their starting positions given as a 2D array `ghosts`, where $\text{ghosts}[i] = [x_{i}, y_{i}]$ represents the starting position of the $i^{\text{th}}$ ghost. All inputs are **integral coordinates**.
 
 Each turn, you and all the ghosts may independently choose to either **move 1 unit** in any of the four cardinal directions: north, east, south, or west, or **stay still**. All actions happen **simultaneously**.
 

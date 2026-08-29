@@ -60,9 +60,7 @@ Both are necessary for the way this implementation is organized. An interval cou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code maintains:
-
-- `vis[position]`, which is `true` exac... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +115,9 @@ counts lit positions from `x+1` through `y-1`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear sliding-window method:** Convert the ac:** - **Linear sliding-window method:** Convert the activation order into an array `day[position]`, where each entry records when that bulb turns on. A carefully maintained window of endpoints at distance `k+1` can solve the problem in `O(n)` time and `O(n)` space. It is asymptotically faster, but its window-reset condition is subtler: an interior position invalidates the current endpoint pair when it turns on no later than either endpoint.
-- **- **Ordered set of lit positions:** Insert each ne:** - **Ordered set of lit positions:** Insert each newly lit position into a balanced search tree and inspect its immediate predecessor and successor. If either neighbor is exactly `k+1` positions away, there cannot be another lit bulb between them. This also takes `O(n\log n)` time and `O(n)` space, but Python's standard library does not provide a built-in balanced ordered set.
-- **- **Scan every interior interval:** After each bul:** - **Scan every interior interval:** After each bulb turns on, one could test possible endpoints and inspect all `k` interior positions directly. Repeated scanning can become quadratic and discards the prefix-count benefit supplied by the Fenwick tree.
+- **Linear sliding-window method:** Convert the activation order into an array `day[position]`, where each entry records when that bulb turns on. A carefully maintained window of endpoints at distance `k+1` can solve the problem in `O(n)` time and `O(n)` space. It is asymptotically faster, but its window-reset condition is subtler: an interior position invalidates the current endpoint pair when it turns on no later than either endpoint.
+- **Ordered set of lit positions:** Insert each newly lit position into a balanced search tree and inspect its immediate predecessor and successor. If either neighbor is exactly `k+1` positions away, there cannot be another lit bulb between them. This also takes `O(n\log n)` time and `O(n)` space, but Python's standard library does not provide a built-in balanced ordered set.
+- **Scan every interior interval:** After each bulb turns on, one could test possible endpoints and inspect all `k` interior positions directly. Repeated scanning can become quadratic and discards the prefix-count benefit supplied by the Fenwick tree.
 
 ---
 

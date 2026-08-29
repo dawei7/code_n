@@ -69,9 +69,7 @@ The output order may differ from the Reference example, which is allowed. The si
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, the array is unchanged.
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ Once that multiplicity is fixed, recursion continues with the next distinct valu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative cascading:** Start with `[[]]` and e:** - **Iterative cascading:** Start with `[[]]` and extend all existing subsets for a new value, but extend only the subsets created in the immediately preceding step when seeing another copy of that value. This avoids recursion and has the same output-sensitive time bound.
+- **Iterative cascading:** Start with `[[]]` and extend all existing subsets for a new value, but extend only the subsets created in the immediately preceding step when seeing another copy of that value. This avoids recursion and has the same output-sensitive time bound.
 - **Frequency-map recursion:** Compress the sorted input into `(value, count)` groups, then explicitly loop over choosing zero through `count` copies. This can make the multiplicity model especially clear, at the cost of building the compressed representation.
 - **Bitmask plus a set:** Enumerate all $2^n$ position masks, canonicalize each produced subset, and deduplicate with a hash set. It is easier to adapt from the distinct-elements problem but deliberately creates duplicates and uses output-scale auxiliary storage.
 - **Do not skip duplicates in the include branch:** Later equal copies must remain available so subsets containing two or more copies can be formed. Skipping belongs only to the branch that chooses no further copy of the current value.
@@ -117,8 +115,8 @@ Once that multiplicity is fixed, recursion continues with the next distinct valu
 - **All values distinct:** The `while` loop never advances extra positions, reducing the method to ordinary include/exclude subset generation with $2^n$ outputs.
 - **Negative values and zero:** Sorting and equality are the only value-sensitive operations. Their signs have no effect on the argument.
 - **Single element:** The two leaves return the one-element subset and the empty subset, each exactly once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

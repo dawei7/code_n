@@ -62,7 +62,7 @@ No later placement can overwrite an earlier one because each cursor always moves
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop `for x in nums` visits elements from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ For `[3,1,-2,-5,2,-4]`, positive encounters fill indexes zero, two, and four wit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate positive and negative lists:** Filter:** - **Separate positive and negative lists:** Filter both signs, then alternate values from the two lists. This is also $O(n)$ time but uses two extra collections in addition to the result.
+- **Separate positive and negative lists:** Filter both signs, then alternate values from the two lists. This is also $O(n)$ time but uses two extra collections in addition to the result.
 - **In-place stable rearrangement:** Rotating misplaced elements can preserve order but may degrade to $O(n^2)$ time. More advanced stable partitioning is unnecessarily complex here.
 - **Sort by sign:** Sorting can place signs into blocks rather than alternating them and generally destroys relative order.
 - **Use one output append cursor:** Maintain queues of signs and append alternately. This works but needs extra sign collections; direct parity cursors fill positions in one source pass.
@@ -113,8 +113,8 @@ For `[3,1,-2,-5,2,-4]`, positive encounters fill indexes zero, two, and four wit
 - **Maximum length:** The single pass remains linear for $2\cdot10^5$ values.
 - **Placeholder zeros:** They are never observable in the returned legal result because every slot receives one input value.
 - **Input preservation:** Returning a new list honors the statement that modification in place is unnecessary and leaves `nums` unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The exact query computes both values on every joined salary row with window func
 
 ## 6. Traps This Instance Exposes
 
-- **- **Partition by formatted month:** Replace both u:** - **Partition by formatted month:** Replace both uses of `pay_date` in the window partitions with `DATE_FORMAT(pay_date, '%Y-%m')`. This preserves the convenient window design and correctly combines payments made on different days of the same month.
+- **Partition by formatted month:** Replace both uses of `pay_date` in the window partitions with `DATE_FORMAT(pay_date, '%Y-%m')`. This preserves the convenient window design and correctly combines payments made on different days of the same month.
 - **Two grouped CTEs:** Compute one company average per month and one department average per month, then join them on `pay_month`. This mirrors the editorial, produces already-collapsed rows, and removes the need for outer `DISTINCT`.
 - **Conditional comparison without floating rounding:** Compare the database's `AVG` results directly, as the source does. Manually rounding averages before comparing can turn genuinely different values into `'same'`.
 - **One department in a month:** Its average equals the company average, so the label must be `'same'`.
@@ -97,8 +97,8 @@ The exact query computes both values on every joined salary row with window func
 - **Multiple employee rows for one identifier:** The employee primary key excludes this case. Otherwise the join would duplicate salary amounts and corrupt the averages.
 - **Months with no salary rows:** They do not appear because there is no input evidence from which to form a department-month.
 - **Result ordering:** The contract allows any order, so the absence of `ORDER BY` is intentional and harmless.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

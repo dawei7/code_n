@@ -61,7 +61,7 @@ This avoids a separate Boolean flag or special branch for the first one. After t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | uses negative infinity as a sentinel meaning no earlier one ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Zeros need no direct action. They contribute to the gap automatically through th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count zeros since the last one:** Reset a coun:** - **Count zeros since the last one:** Reset a counter to zero after each one and increment it on zeros. This is equivalent and avoids using infinity.
+- **Count zeros since the last one:** Reset a counter to zero after each one and increment it on zeros. This is equivalent and avoids using infinity.
 - **Store every one index:** Compare adjacent stored positions afterward. It is correct but uses $O(n)$ space unnecessarily.
 - **Convert to a large integer:** Bit tricks can count zeros between set bits, but conversion is less direct and fixed-width languages may overflow.
 - **First one:** It has no predecessor, so it must never cause failure.
@@ -108,8 +108,8 @@ Zeros need no direct action. They contribute to the gap automatically through th
 - **Exactly `k` zeros:** The strict `< k` test accepts equality.
 - **Trailing zeros:** They do not matter because spacing is required only between ones.
 - **Early return:** Once one violating pair is found, later values cannot make that already-observed gap larger.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

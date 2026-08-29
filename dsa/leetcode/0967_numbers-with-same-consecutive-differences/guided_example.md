@@ -57,9 +57,7 @@ The constraints give `n >= 2`, so there is no special one-digit zero case.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop starts DFS from digits one through nine.
-
-An ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +96,7 @@ The helper appends it and returns before adding another digit. It cannot jump fr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** Grow all prefixes one :** - **Breadth-first search:** Grow all prefixes one digit at a time. Work is similar, but a full frontier is stored.
+- **Breadth-first search:** Grow all prefixes one digit at a time. Work is similar, but a full frontier is stored.
 - **Test every `n`-digit integer:** It performs enormous unnecessary work.
 - **String construction:** It works, but integer arithmetic makes last-digit access and output direct.
 - **`k = 0`:** Only repeated-digit numbers are valid, and the second identical branch must be skipped.
@@ -108,8 +106,8 @@ The helper appends it and returns before adding another digit. It cannot jump fr
 - **Both branches valid:** They are distinct when `k > 0`.
 - **One branch out of range:** Its bounds check prunes it.
 - **Output order:** Sorting is unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

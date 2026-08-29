@@ -51,7 +51,7 @@ By definition, this directed reachability set is exactly the set that should be 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | By definition, this directed reachability set is exactly the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ By definition, this directed reachability set is exactly the set that should be 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan every directed edge after reachability:**:** - **Scan every directed edge after reachability:** If any edge has a normal source and suspicious destination, return `list(range(n))`; otherwise return the complement. This is simpler and equally $O(n+m)$.
+- **Scan every directed edge after reachability:** If any edge has a normal source and suspicious destination, return `list(range(n))`; otherwise return the complement. This is simpler and equally $O(n+m)$.
 - **In-degree adjustment:** While removing reachable outgoing edges, decrement target indegrees. Any suspicious node with remaining indegree has an incoming normal edge, as described in the editorial.
 - **Iterative BFS or DFS:** Explicit stacks or a deque avoid Python recursion-limit failures on long chains while preserving the same bounds.
 - **No invocations:** Only $k$ is suspicious, no normal edge enters it, and the method removes just $k$.
@@ -99,8 +99,8 @@ By definition, this directed reachability set is exactly the set that should be 
 - **Deep chain:** Recursive depth can be $\Theta(n)$ and may fail in standard Python even though the abstract complexity is linear.
 - **Output order:** The final range-based comprehension returns ascending IDs, a valid choice under the any-order contract.
 - **All-or-none behavior:** The undirected method is correct only because all suspicious nodes are connected to $k$ and no outgoing crossing edge can exist; stating these facts is essential.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

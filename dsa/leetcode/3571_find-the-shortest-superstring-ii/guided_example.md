@@ -59,7 +59,7 @@ After containment fails, a shortest result must include characters unique to bot
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `s1 in s2`, returning `s2` is optimal.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Full overlap length `m` at `i=0` cannot succeed after containment unless the str
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP prefix functions:** Combining strings with:** - **KMP prefix functions:** Combining strings with a delimiter and computing prefix functions can find each maximum boundary overlap in linear time. This would realize the manifest summary, but it is not the current source.
+- **KMP prefix functions:** Combining strings with a delimiter and computing prefix functions can find each maximum boundary overlap in linear time. This would realize the manifest summary, but it is not the current source.
 - **Z algorithm:** Z-values on appropriate concatenations also find containment and maximum overlaps in `O(m+n)` time.
 - **Try every merged string:** Brute-force alignment across both directions is similar in spirit to the source but can be expressed more explicitly; boundary overlap checks are the compact version.
 - **One string contained in the other:** Return the containing string immediately, including middle containment.
@@ -111,8 +111,8 @@ Full overlap length `m` at `i=0` cannot succeed after containment unless the str
 - **Lexicographic order:** The problem asks only for minimum length, not the lexicographically smallest among ties, so returning the first equal-length candidate is correct.
 - **Lowercase alphabet:** No delimiter concerns arise in the current scanning method. A KMP concatenation would need a separator outside the lowercase alphabet.
 - **Substring versus subsequence:** Containment and overlaps require contiguous equality; the Python operations used enforce exactly that.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

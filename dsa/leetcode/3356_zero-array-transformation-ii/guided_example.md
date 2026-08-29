@@ -53,8 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-C_i(k)=\sum_{\substack{j<k\\l_j\le i\le r_j}}\texttt{val}... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ It can be reduced exactly to zero if and only if `C_i(k) >= nums[i]`. Extra capa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Editorial line sweep:** Process array indices :** - **Editorial line sweep:** Process array indices left to right and consume each query only when current capacity is insufficient. It achieves the manifest's intended $O(n+q)$ time and $O(n)$ space.
+- **Editorial line sweep:** Process array indices left to right and consume each query only when current capacity is insufficient. It achieves the manifest's intended $O(n+q)$ time and $O(n)$ space.
 - **Binary search without slicing:** Loop over indices `range(k)` instead of `queries[:k]` to remove the $O(k)$ temporary list, though time remains $O((n+q)\log q)$.
 - **Apply every query directly:** Updating each covered element can cost $O(nq)$.
 - **Already-zero input:** `check(0)` succeeds and binary search returns zero.
@@ -105,8 +104,8 @@ It can be reduced exactly to zero if and only if `C_i(k) >= nums[i]`. Extra capa
 - **Early failure in `check`:** It can shorten some probes but does not improve the worst-case bound.
 - **Input preservation:** Neither `nums` nor the original nested query records are mutated; only a slice of references and a new difference array are created.
 - **Import/version requirement:** The exact call requires `bisect_left` with `key` support, available in modern Python.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

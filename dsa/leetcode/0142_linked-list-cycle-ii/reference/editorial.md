@@ -69,7 +69,7 @@ We have to store all nodes in the hash set.
 
 > This algorithm is very difficult to derive on your own and you would not be expected to do so in an interview without any help.
 
-![Tortoise and Hare](images/142_tortoise_and_hare.png)​
+![Tortoise and Hare](images/142_tortoise_and_hare.png)
 
 Floyd's Tortoise and Hare Algorithm is a clever technique that is used to detect cycles in sequences or linked lists. You can imagine it as a race between a fast "hare" and a slow "tortoise." We will explain it in a beginner-friendly way:
 
@@ -81,7 +81,7 @@ If the path does not contain a cycle (no circular path), the hare will reach the
 
 At some point, if there is a cycle (a circular path) in the park, the hare will enter this cycle earlier due to its speed. Eventually, the tortoise will also enter the cycle. Since the hare is moving faster, it will lap the tortoise at some point inside the cycle.
 
-![Cycle](images/142_cycle.drawio.png)​
+![Cycle](images/142_cycle.drawio.png)
 
 * Let's define $a$ as the length of the path from the start of the list to the entrance of the cycle.
 * Let's define $b$ as the length of the path from the cycle's entrance to the meeting point of the hare and the tortoise inside the cycle.

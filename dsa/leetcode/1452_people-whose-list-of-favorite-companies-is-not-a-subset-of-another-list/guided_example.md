@@ -51,7 +51,7 @@ For each person's list, the corresponding set `nums[i]` receives those identifie
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each person's list, the corresponding set `nums[i]` rece... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The input already guarantees that a person's company strings are distinct, but u
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use string sets directly:** Convert each list :** - **Use string sets directly:** Convert each list with `set(ss)` and test `nums[i] <= nums[j]`. This is shorter and avoids the identifier dictionary, while retaining the same asymptotic bounds.
+- **Use string sets directly:** Convert each list with `set(ss)` and test `nums[i] <= nums[j]`. This is shorter and avoids the identifier dictionary, while retaining the same asymptotic bounds.
 - **Use issubset:** `nums[i].issubset(nums[j])` states the intention more directly and avoids explicitly materializing an intersection. It can reduce temporary allocation while performing the same membership logic.
 - **Length precheck:** If `len(nums[i]) > len(nums[j])`, containment is impossible. Skipping the set test in that case can improve constants but not the worst-case bound.
 - **Sort every company list:** A two-pointer subset test on sorted lists is possible, but sorting adds preprocessing and string comparisons. Hash sets provide direct membership.
@@ -102,8 +102,8 @@ The input already guarantees that a person's company strings are distinct, but u
 - **Input order inside a list:** Set conversion intentionally ignores it because subset membership has no ordering component.
 - **Output order:** Scanning `i` upward already satisfies the required increasing indices.
 - **Hash behavior:** Complexity assumes expected constant-time dictionary and set operations. Pathological collision behavior is outside the standard expected analysis.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

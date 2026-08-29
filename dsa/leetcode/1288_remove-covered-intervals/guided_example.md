@@ -63,7 +63,7 @@ It is sufficient to remember only the maximum end rather than a particular full 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `pre` stores the largest right endpoint among inter... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ When an interval is covered, replacing `pre` with its smaller or equal end would
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic pair checks:** Compare every interva:** - **Quadratic pair checks:** Compare every interval with every other interval. It is straightforward but costs $O(n^2)$ time.
+- **Quadratic pair checks:** Compare every interval with every other interval. It is straightforward but costs $O(n^2)$ time.
 - **Sort only by start:** This fails when equal-start intervals appear shortest first; the descending-end tie-break is essential.
 - **Track the immediately previous end only:** The maximum end is needed because a much earlier interval may cover the current one even when the immediately previous interval does not.
 - **No covered intervals:** Ends strictly increase through the sorted scan, so every interval is counted.
@@ -108,8 +108,8 @@ When an interval is covered, replacing `pre` with its smaller or equal end would
 - **Disjoint intervals:** Their ends increase with starts, so they all remain.
 - **Unique interval guarantee:** Exact duplicate pairs do not occur, though the same logic would count only one duplicate.
 - **Input mutation:** Copy the list before sorting if caller-visible order must remain unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

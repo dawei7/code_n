@@ -59,7 +59,7 @@ Digits are therefore generated in nondecreasing order without building a sorted 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code repeatedly extracts `num % 10`, increments that dig... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Alternating assignments by `i & 1` guarantees precisely these lengths.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort a digit string:** Sorting then alternatin:** - **Sort a digit string:** Sorting then alternating is conceptually identical and costs $O(d\log d)$ time with $O(d)$ storage.
+- **Sort a digit string:** Sorting then alternating is conceptually identical and costs $O(d\log d)$ time with $O(d)$ storage.
 - **Try every split and permutation:** The possibilities grow factorially and ignore the place-value exchange structure.
 - **Put all small digits in one number:** This unbalances lengths and creates larger high-place weights, usually increasing the sum.
 - **Repeated digits:** Counter multiplicities ensure every occurrence is assigned exactly once.
@@ -107,8 +107,8 @@ Alternating assignments by `i & 1` guarantees precisely these lengths.
 - **Odd digit count:** The first result receives one extra digit, and the smallest digit occupies its extra highest place.
 - **Two-digit input:** One digit goes to each one-digit result, so the answer is simply their sum.
 - **Exact implementation:** It uses counting over ten digits, not comparison sorting as the manifest summary suggests.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

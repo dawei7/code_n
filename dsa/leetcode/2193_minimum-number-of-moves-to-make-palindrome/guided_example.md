@@ -61,7 +61,7 @@ Thus the greedy pair can be fixed while preserving the existence of an optimal c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left-boundary character must eventually be paired with a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The list mutation is important for later searches: all unpaired characters now a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Standard two-ended greedy:** Search for a matc:** - **Standard two-ended greedy:** Search for a match to the left character; if none exists, swap that character one step toward the center and retry. It is easier to visualize but may perform center moves explicitly rather than charging them at once.
+- **Standard two-ended greedy:** Search for a match to the left character; if none exists, swap that character one step toward the center and retry. It is easier to visualize but may perform center moves explicitly rather than charging them at once.
 - **Build a target palindrome then count inversions:** Choose a pairing and use a Fenwick tree to count adjacent swaps. This can improve asymptotic performance but makes correct duplicate pairing more involved.
 - **Breadth-first search over strings:** It guarantees a minimum only for tiny inputs; the permutation state space is far too large for length 2000.
 - **Already a palindrome:** Every boundary finds its match at `j`, so no swaps are added.
@@ -117,8 +117,8 @@ The list mutation is important for later searches: all unpaired characters now a
 - **Palindrome feasibility guarantee:** It rules out two different unmatched character types, which the shortcut would not handle.
 - **Adjacent-swap accounting:** Each physical bubble increments `ans` once, exactly matching the allowed operation.
 - **Input preservation:** The immutable string remains unchanged; mutations occur in the copied list `cs`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

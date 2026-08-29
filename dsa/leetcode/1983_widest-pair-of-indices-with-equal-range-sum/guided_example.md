@@ -71,7 +71,7 @@ Every valid equal-sum range can be described this way: the prefix difference imm
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `s` after index `j` be the sum of differences from index... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Without the sentinel, ranges beginning at zero would need a separate condition a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every range directly:** $O(N^2)$ ranges,:** - **Check every range directly:** $O(N^2)$ ranges, even with prefix sums, are too slow for $N=10^5$.
+- **Check every range directly:** $O(N^2)$ ranges, even with prefix sums, are too slow for $N=10^5$.
 - **Store all positions for each prefix value:** Correct but unnecessary; only the earliest produces the widest range for future endpoints.
 - **Overwrite the earliest index:** This can lose the optimal width and is therefore incorrect.
 - **Range starting at zero:** The sentinel `0: -1` handles it automatically.
@@ -122,8 +122,8 @@ Without the sentinel, ranges beginning at zero would need a separate condition a
 - **Binary constraint:** It bounds each update to -1, 0, or 1 but is not essential to the prefix-equality proof.
 - **Equal-length guarantee:** It makes `zip` safe for all positions.
 - **Input preservation:** The method reads aligned values and does not modify either array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

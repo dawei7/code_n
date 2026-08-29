@@ -51,7 +51,7 @@ One `"1"` must therefore be reserved for the last position. After reserving it, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | One `"1"` must therefore be reserved for the last position.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ One `"1"` must therefore be reserved for the last position. After reserving it, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort then rearrange:** Sorting the characters :** - **Sort then rearrange:** Sorting the characters and moving a one to the end works, but costs $O(n\log n)$ time when a linear count is sufficient.
+- **Sort then rearrange:** Sorting the characters and moving a one to the end works, but costs $O(n\log n)$ time when a linear count is sufficient.
 - **Two-pointer partition:** Move ones left and zeros right, then reserve the last one. It remains $O(n)$ but needs mutable character storage and more moving parts.
 - **Exactly one one-bit:** That bit must be last, so every preceding character is zero; leading zeros are allowed.
 - **All one-bits:** There are no zeros, and the construction returns the unchanged all-ones string, which is already odd and maximal.
@@ -94,8 +94,8 @@ One `"1"` must therefore be reserved for the last position. After reserving it, 
 - **Leading zeros:** They do not invalidate the answer because the required return value is a fixed-length rearranged string, not a canonical integer spelling.
 - **Missing-one scenario:** The source relies on the promise that at least one `"1"` exists. Without it, no odd rearrangement would be possible and `cnt - 1` would be negative.
 - **Lexicographic versus numeric order:** For equal-length binary strings, lexicographic order and numeric order agree, so placing ones as far left as possible maximizes both.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

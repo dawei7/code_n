@@ -61,9 +61,7 @@ The exact code makes a second `pairwise` traversal rather than storing all gaps.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise(arr)` yields consecutive tuples:
-
-`(arr[0], arr[1]... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ For `[3, 8, -10, 23, 19, -4, -14, 27]`, the sorted values are `[-14, -10, -4, 3,
 
 ## 6. Traps This Instance Exposes
 
-- **- **One post-sort pass:** Track the smallest gap a:** - **One post-sort pass:** Track the smallest gap and current answer simultaneously, clearing the answer when a smaller gap appears. It removes one linear pass but retains the same $O(n\log n)$ bound.
+- **One post-sort pass:** Track the smallest gap and current answer simultaneously, clearing the answer when a smaller gap appears. It removes one linear pass but retains the same $O(n\log n)$ bound.
 - **Counting over the bounded value range:** Mark all values from the allowed range and scan in numerical order. This can take $O(n+R)$ time and $O(R)$ space for range width $R$.
 - **Brute-force all pairs:** It is simple but costs $O(n^2)$ time and ignores the ordering insight.
 - **Exactly two values:** There is one adjacent pair, `min` receives one gap, and that pair is returned.
@@ -114,8 +112,8 @@ For `[3, 8, -10, 23, 19, -4, -14, 27]`, the sorted values are `[-14, -10, -4, 3,
 - **Output ordering:** Scanning adjacent pairs from left to right after sorting automatically gives lexicographic pair order.
 - **Consumed iterator:** The first `pairwise` generator cannot be reused after `min`. The code correctly constructs a second iterator.
 - **Input mutation:** Use a sorted copy if preserving the caller’s original order is required outside this contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

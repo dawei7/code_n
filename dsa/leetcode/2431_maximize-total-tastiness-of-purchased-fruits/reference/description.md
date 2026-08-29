@@ -4,9 +4,9 @@ You are given two non-negative integer arrays `price` and `tastiness`, both arra
 
 For every integer `i` in range `[0, n - 1]`:
 
-- $\text{price}[i]$ describes the price of $$i^{\text{th}}$$ fruit.
+- $\text{price}[i]$ describes the price of $i^{\text{th}}$ fruit.
 
-- $\text{tastiness}[i]$ describes the tastiness of $$i^{\text{th}}$$ fruit.
+- $\text{tastiness}[i]$ describes the tastiness of $i^{\text{th}}$ fruit.
 
 You want to purchase some fruits such that total tastiness is maximized and the total price does not exceed `maxAmount`.
 

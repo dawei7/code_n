@@ -70,7 +70,7 @@ If the maximum appears late, its streak may still be below $n-1$ when the loop e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If no player reaches the needed streak before every original... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Thus for any requested $k\ge n-1$, winner identity is determined solely by maxim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal deque simulation:** It may require $k$:** - **Literal deque simulation:** It may require $k$ games, which is impossible for $k$ up to $10^9$.
+- **Literal deque simulation:** It may require $k$ games, which is impossible for $k$ up to $10^9$.
 - **Find global maximum immediately:** Correct only for sufficiently large $k$; a weaker early champion may reach a small threshold first.
 - **Track champion skill only:** The answer requires original index, so `i` must be retained.
 - **k equals one:** Winner of the first game is returned.
@@ -121,8 +121,8 @@ Thus for any requested $k\ge n-1$, winner identity is determined solely by maxim
 - **First winner:** Immediate break preserves chronological firstness.
 - **Losers moved to back:** They do not reappear before all unseen challengers have faced the champion.
 - **Input preservation:** No physical queue operations or array mutations occur.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -79,7 +79,7 @@ The answer variable retains the minimum of these peak-specific candidates.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | During a left-to-right pass, `left` records the minimum valu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ Every index is examined as the peak, so the smallest recorded candidate is the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cubic enumeration:** Trying every $i<j<k$ is e:** - **Cubic enumeration:** Trying every $i<j<k$ is easy to reason about but costs $O(n^3)$ time, which is unsuitable for the larger constraints of this second version.
+- **Cubic enumeration:** Trying every $i<j<k$ is easy to reason about but costs $O(n^3)$ time, which is unsuitable for the larger constraints of this second version.
 - **Quadratic peak expansion:** Fixing each $j$ and rescanning both sides takes $O(n^2)$ time. It discovers the same two minima repeatedly instead of reusing them.
 - **Two full range-minimum arrays:** A prefix-minimum array plus a suffix-minimum array also yields $O(n)$ time and $O(n)$ space. Keeping `left` as a scalar is simpler because the forward scan needs only the current prefix minimum.
 - **Strict inequality:** A side value equal to the peak is invalid. The two `<` checks must not be weakened to `<=`.
@@ -132,8 +132,8 @@ Every index is examined as the peak, so the smallest recorded candidate is the s
 - **Smallest values on the same side:** The globally smallest two values are not automatically a usable pair; both could lie to the left or both to the right of a peak. The range-specific minima preserve the ordering constraint.
 - **No mountain exists:** Strictly increasing, strictly decreasing, or otherwise unsuitable arrays never update `ans` and correctly return `-1`.
 - **Large sums:** The Python implementation uses arbitrary-precision integers, so adding three legal values does not overflow. In a fixed-width language, the maximum possible sum should be checked when choosing the numeric type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

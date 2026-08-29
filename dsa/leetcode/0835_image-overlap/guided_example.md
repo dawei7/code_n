@@ -65,7 +65,7 @@ The maximum counter value is consequently the largest possible overlap.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution examines every one-cell in `img1` and every one... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ There is no need to enumerate an arbitrary unbounded range of shifts. Only shift
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shift and compare every matrix cell:** There a:** - **Shift and compare every matrix cell:** There are `O(n^2)` shifts and `O(n^2)` cells per shift, also giving `O(n^4)` time in a direct implementation.
-- **- **Extract one-cell coordinate lists first:** Thi:** - **Extract one-cell coordinate lists first:** This makes the work visibly `O(ab)` and avoids repeatedly testing zero-cells, while retaining the same voting proof.
-- **- **Bitset rows:** Encode rows as integers, shift :** - **Bitset rows:** Encode rows as integers, shift bits, and use bit counts. This can reduce practical and asymptotic factors and more closely support the manifest's tighter target.
+- **Shift and compare every matrix cell:** There are `O(n^2)` shifts and `O(n^2)` cells per shift, also giving `O(n^4)` time in a direct implementation.
+- **Extract one-cell coordinate lists first:** This makes the work visibly `O(ab)` and avoids repeatedly testing zero-cells, while retaining the same voting proof.
+- **Bitset rows:** Encode rows as integers, shift bits, and use bit counts. This can reduce practical and asymptotic factors and more closely support the manifest's tighter target.
 
 ---
 

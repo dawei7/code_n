@@ -69,7 +69,7 @@ After no further beneficial deletion is possible, the method appends `c`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `stk` contains the digits provisionally kept from the proces... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ For example, with `112` and one deletion, popping the first `1` when the second 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate deletion combinations:** There are $:** - **Enumerate deletion combinations:** There are $\binom{n}{k}$ choices, which is exponential in the worst case. Greedy monotonicity avoids exploring them.
-- **- **Repeatedly remove the first descent from a str:** - **Repeatedly remove the first descent from a string:** Applying the same rule directly is correct but repeated string deletion and rescanning can cost $O(kn)$ time. The stack performs all deletions in one pass.
-- **- **Non-decreasing input:** No stack pop occurs. T:** - **Non-decreasing input:** No stack pop occurs. The prefix slice removes the largest rightmost digits, which is optimal.
+- **Enumerate deletion combinations:** There are $\binom{n}{k}$ choices, which is exponential in the worst case. Greedy monotonicity avoids exploring them.
+- **Repeatedly remove the first descent from a string:** Applying the same rule directly is correct but repeated string deletion and rescanning can cost $O(kn)$ time. The stack performs all deletions in one pass.
+- **Non-decreasing input:** No stack pop occurs. The prefix slice removes the largest rightmost digits, which is optimal.
 
 ---
 

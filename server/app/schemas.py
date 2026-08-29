@@ -113,9 +113,8 @@ class SolutionVariantDetail(BaseModel):
     approach_markdown: str
     sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
     leetcode_sources: dict[PrimaryLanguage, str] = Field(default_factory=dict)
-    implementations: list[SolutionImplementationDetail] = Field(default_factory=list)
-    submission_status: str
-    verified_submission_id: str
+    submission_status: str = "accepted"
+    verified_submission_id: str = ""
 
 
 class ChallengeDetail(ChallengeSummary):
@@ -292,6 +291,22 @@ class LevelRecordOut(BaseModel):
     attempts: int
 
 
+class SpacedReviewRecordOut(BaseModel):
+    challenge_id: str
+    repetition_count: int = 0
+    ease_factor: float = 2.5
+    interval_days: int = 1
+    last_reviewed_at: str = ""
+    next_due_date: str = ""
+    retention_score: int = 5
+    state: str = "learning"
+
+
+class RecordReviewRequest(BaseModel):
+    challenge_id: str
+    quality: int = Field(default=5, ge=0, le=5)
+
+
 class ProgressOut(BaseModel):
     player_name: str
     completed: list[str]
@@ -312,6 +327,7 @@ class ProgressOut(BaseModel):
     pane_font_scales: dict[str, float] = Field(default_factory=dict)
     pane_sizes: dict[str, float] = Field(default_factory=dict)
     accent_colors: dict[str, str] = Field(default_factory=dict)
+    spaced_reviews: dict[str, dict] = Field(default_factory=dict)
 
 
 class ProgressUpdate(BaseModel):
@@ -336,6 +352,7 @@ class ProgressUpdate(BaseModel):
     accent_colors: Optional[dict[str, str]] = None
     active_set: Optional[str] = None
     active_custom_set_id: Optional[str] = Field(default=None, max_length=160)
+    spaced_reviews: Optional[dict[str, dict]] = None
 
 
 class ProgressResetRequest(BaseModel):

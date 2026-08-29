@@ -6,7 +6,7 @@
 
 In this problem, we are given a 2D integer matrix. Our goal is to pick a path that starts from the top-left cell and ends at the bottom-right cell. As described in the problem, the **score** of a path is defined by the minimum value in this path.
 
-For example, in the matrix below, the path colored in green has values of $[5, 1, 7, 4, 6]$, so the **score** of the green path is the minimum value $1$. The path colored in red has values of $[5, 4, 5, 6, 6]$, so the **score** of the red path is the minimum value $4$. We can tell that the **score** of the red path is larger than that of the green path.
+For example, in the matrix below, the path colored in green has values of `[5, 1, 7, 4, 6]`, so the **score** of the green path is the minimum value $1$. The path colored in red has values of `[5, 4, 5, 6, 6]`, so the **score** of the red path is the minimum value $4$. We can tell that the **score** of the red path is larger than that of the green path.
 
 ![limits](images/1102-example.drawio.png)
 

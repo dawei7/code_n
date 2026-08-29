@@ -64,7 +64,7 @@ This is the same acceleration used by the Euclidean algorithm.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Repeatedly subtracting the smaller coordinate is correct but... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,9 +103,9 @@ The loop also stops if `tx == ty`. For equal positive coordinates, subtracting o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated reverse subtraction:** It follows the:** - **Repeated reverse subtraction:** It follows the same unique-parent proof, but cases such as a huge `tx` with small `ty` can require nearly $10^9$ iterations.
-- **- **Forward breadth-first or depth-first search:**:** - **Forward breadth-first or depth-first search:** Each point has two children and the reachable tree grows too quickly for the coordinate limits.
-- **- **Memoized forward search:** Avoiding duplicate :** - **Memoized forward search:** Avoiding duplicate states does not solve the enormous two-dimensional search-space problem.
+- **Repeated reverse subtraction:** It follows the same unique-parent proof, but cases such as a huge `tx` with small `ty` can require nearly $10^9$ iterations.
+- **Forward breadth-first or depth-first search:** Each point has two children and the reachable tree grows too quickly for the coordinate limits.
+- **Memoized forward search:** Avoiding duplicate states does not solve the enormous two-dimensional search-space problem.
 
 ---
 

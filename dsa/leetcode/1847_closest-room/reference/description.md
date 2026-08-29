@@ -2,7 +2,7 @@
 
 There is a hotel with `n` rooms. The rooms are represented by a 2D integer array `rooms` where $\text{rooms}[i] = [\text{roomId}_{i}, \text{size}_{i}]$ denotes that there is a room with room number $\text{roomId}_{i}$ and size equal to $\text{size}_{i}$. Each $\text{roomId}_{i}$ is guaranteed to be **unique**.
 
-You are also given `k` queries in a 2D array `queries` where $\text{queries}[j] = [\text{preferred}_{j}, \text{minSize}_{j}]$. The answer to the $$j^{\text{th}}$$ query is the room number `id` of a room such that:
+You are also given `k` queries in a 2D array `queries` where $\text{queries}[j] = [\text{preferred}_{j}, \text{minSize}_{j}]$. The answer to the $j^{\text{th}}$ query is the room number `id` of a room such that:
 
 - The room has a size of **at least** $\text{minSize}_{j}$, and
 
@@ -10,7 +10,7 @@ You are also given `k` queries in a 2D array `queries` where $\text{queries}[j] 
 
 If there is a **tie** in the absolute difference, then use the room with the **smallest** such `id`. If there is **no such room**, the answer is `-1`.
 
-Return *an array *`answer`* of length *`k`* where *$\text{answer}[j]$* contains the answer to the *$$j^{\text{th}}$$* query*.
+Return *an array *`answer`* of length *`k`* where *$\text{answer}[j]$* contains the answer to the *$j^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

@@ -68,11 +68,7 @@ Self-loops are also retained. They must be detected as cycles, and the DFS color
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The graph representation is:
-
-
-
-`g[i]` contains every node r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ Making the requirement explicit also simplifies the interpretation of the recurs
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative three-color DFS:** Store explicit st:** - **Iterative three-color DFS:** Store explicit stack frames containing a node and its next neighbor index. This preserves `O(V + E)` bounds while avoiding Python recursion-depth limits on a chain of up to 10000 nodes.
+- **Iterative three-color DFS:** Store explicit stack frames containing a node and its next neighbor index. This preserves `O(V + E)` bounds while avoiding Python recursion-depth limits on a chain of up to 10000 nodes.
 - **Topological processing of the reachable subgraph:** One can first identify reachable nodes, reject reachable cycles with a topological count, and verify all reachable terminals. This is valid but needs more bookkeeping than the direct DFS.
 - **A simple visited Boolean is insufficient:** Seeing an already visited node does not say whether it is an active back edge or a safely completed shared subgraph. Three states are necessary for directed-cycle reasoning.
 - **Destination has an outgoing edge:** The explicit precheck returns false, including when that edge is a self-loop.
@@ -130,8 +126,8 @@ Making the requirement explicit also simplifies the interpretation of the recurs
 - **No edges:** The answer is true only when `source == destination`; otherwise source is a wrong terminal.
 - **Long chain:** Correctness is straightforward, but recursive depth may exceed the interpreter's configured limit. An iterative stack is safer in environments with a low recursion limit.
 - **At least one path condition:** In a finite reachable acyclic graph, following edges must end at a terminal. If DFS returns true, that terminal can only be destination, so existence follows from the other verified conditions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The solution stores the current displayed characters in a Python list named `t`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution stores the current displayed characters in a Py... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution stores the current displayed characters in a Python list named `t`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque plus direction flag:** Toggle a Boolean :** - **Deque plus direction flag:** Toggle a Boolean instead of reversing stored characters. Append new characters to the logical back, which is one physical end or the other depending on the flag, and materialize in the correct direction once. This gives $O(n)$ time and $O(n)$ space and matches the manifest.
+- **Deque plus direction flag:** Toggle a Boolean instead of reversing stored characters. Append new characters to the logical back, which is one physical end or the other depending on the flag, and materialize in the correct direction once. This gives $O(n)$ time and $O(n)$ space and matches the manifest.
 - **List plus two buffers:** Accumulate runs between faulty keys and combine them with direction awareness. This can also avoid repeated full reversals but is more complex than a deque.
 - **In-place `list.reverse`:** It avoids allocating a new list for every reversal but still scans the current output each time, so worst-case time remains $O(n^2)$.
 - **No faulty key:** Every character appends, and the result equals the input.
@@ -98,8 +98,8 @@ The solution stores the current displayed characters in a Python list named `t`.
 - **Empty output outside the constraints:** An input consisting only of faulty keys would leave the list empty and return an empty string, though the first-character guarantee prevents that exact valid case.
 - **Do not use reversal parity alone:** The positions of ordinary characters relative to reversal events affect the answer, so total count parity lacks enough information without direction-aware insertion.
 - **Input preservation:** The immutable input string is only read, while all simulation state lives in the new list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

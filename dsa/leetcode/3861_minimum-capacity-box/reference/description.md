@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given an integer array `capacity`, where $\text{capacity}[i]$ represents the capacity of the $$i^{\text{th}}$$ box, and an integer `itemSize` representing the size of an item.
+You are given an integer array `capacity`, where $\text{capacity}[i]$ represents the capacity of the $i^{\text{th}}$ box, and an integer `itemSize` representing the size of an item.
 
-The $$i^{\text{th}}$$ box can store the item if $\text{capacity}[i] \ge itemSize$.
+The $i^{\text{th}}$ box can store the item if $\text{capacity}[i] \ge itemSize$.
 
 Return an integer denoting the index of the box with the **minimum** capacity that can store the item. If multiple such boxes exist, return the **smallest index**.
 

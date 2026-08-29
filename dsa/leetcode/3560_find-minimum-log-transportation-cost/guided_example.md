@@ -57,7 +57,7 @@ This is why the solution does not examine cuts of both logs or decide which log 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose both `n > k` and `m > k`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ At the other endpoint, the same two lengths appear in reverse order. Both fit ex
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all cut positions:** Testing every i:** - **Enumerate all cut positions:** Testing every integer `a` and retaining feasible minimum cost takes `O(x)` time. It is correct under the small numeric bound but unnecessary once concavity proves an endpoint is optimal.
+- **Enumerate all cut positions:** Testing every integer `a` and retaining feasible minimum cost takes `O(x)` time. It is correct under the small numeric bound but unnecessary once concavity proves an endpoint is optimal.
 - **Compare both logs as cut candidates:** Feasibility guarantees that at most one exceeds `k`. Cutting the shorter log cannot make an over-capacity longer log fit, and cutting an already fitting log only adds cost.
 - **Balanced split:** Splitting near `x/2` maximizes rather than minimizes `a(x-a)` for a fixed sum. It is the wrong optimization direction.
 - **Both logs fit:** If `max(n,m) <= k`, zero is unbeatable and the third truck may remain unused.
@@ -126,8 +126,8 @@ At the other endpoint, the same two lengths appear in reverse order. Both fit ex
 - **Positive piece lengths:** In the cutting branch `x>k`, the remainder `x-k` is at least one, so the formula never creates a zero-length log.
 - **Feasibility promise:** Without it, the source would return a number even for a case where both logs exceed `k` and four pieces are required. Its correctness relies on the stated promise.
 - **Integer arithmetic:** All lengths are integers, and the endpoint split uses integer lengths automatically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given a 2D integer array `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ represents the coordinates $(x_{i}, y_{i})$ and quality factor $q_{i}$ of the $$i^{\text{th}}$$ tower.
+You are given a 2D integer array `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ represents the coordinates $(x_{i}, y_{i})$ and quality factor $q_{i}$ of the $i^{\text{th}}$ tower.
 
-You are also given an integer array $center = [cx, cy​​​​​​​]$ representing your location, and an integer `radius`.
+You are also given an integer array $center = [cx, cy]$ representing your location, and an integer `radius`.
 
 A tower is **reachable** if its **Manhattan distance** from `center` is **less than or equal** to `radius`.
 
@@ -90,6 +90,6 @@ No tower is reachable within the given radius, so `[-1, -1]` is returned.
 
 - $center = [cx, cy]$
 
-- $0 \le x_{i}, y_{i}, q_{i}, cx, cy \le 10^{5}$​​​​​​​
+- $0 \le x_{i}, y_{i}, q_{i}, cx, cy \le 10^{5}$
 
 - $0 \le radius \le 10^{5}$

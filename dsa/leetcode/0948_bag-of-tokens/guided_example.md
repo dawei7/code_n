@@ -63,7 +63,7 @@ After gaining score, the code updates `ans = max(ans, score)`. This records the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `power >= tokens[i]`, the solution plays the smallest tok... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Selling a smaller token would leave no more score and strictly less or equal pow
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every play sequence:** Each token has mult:** - **Try every play sequence:** Each token has multiple choices, producing exponential search. Sorting exposes exchange-dominant choices.
+- **Try every play sequence:** Each token has multiple choices, producing exponential search. Sorting exposes exchange-dominant choices.
 - **Always play face-up only:** This misses beneficial score-for-power trades that can unlock several later purchases.
 - **Sell the smallest token:** It sacrifices the same one score but gains less power than selling the largest remaining token.
 - **Return final score:** A late trade can make final score smaller than an earlier maximum, so `ans` is necessary.
@@ -114,8 +114,8 @@ Selling a smaller token would leave no more score and strictly less or equal pow
 - **Already enough power for all tokens:** Every token is bought from smallest to largest and the answer is `n`.
 - **Input mutation:** `tokens.sort()` changes token order. Use a sorted copy if the caller needs the original order.
 - **Equal token values:** Their identities do not matter; every token is still consumed at most once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

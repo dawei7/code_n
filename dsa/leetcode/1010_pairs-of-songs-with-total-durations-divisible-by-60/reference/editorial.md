@@ -77,7 +77,7 @@ We can use Approach 1 to implement this logic by repeatedly examining the rest o
 
 ![Slide 7](images/slideshow_1010_Pairs_of_Songs_With_Total_Durations_Divisible_by_60_1010-7.png)
 
-We would initiate an array `remainders` with size $60$ to record the frequencies of each remainder - as the range of remainders is $[0,59]$.  Then we can loop through the array once and for each element `a` we would:
+We would initiate an array `remainders` with size $60$ to record the frequencies of each remainder - as the range of remainders is `[0,59]`.  Then we can loop through the array once and for each element `a` we would:
 
 1. if $a \space \% \space 60=0$, add $\text{remainders}[0]$ to the result; else, add $remainders[60 - a \% 60]$ to the result;
 2. update `remainders[a % 60]`.

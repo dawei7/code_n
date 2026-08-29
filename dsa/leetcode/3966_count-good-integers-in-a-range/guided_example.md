@@ -74,11 +74,7 @@ No real digit has started, so `previous=10` is a sentinel rather than an actual 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The cached function is
-
-
-
-Each argument answers one question... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,9 +119,9 @@ Choosing a smaller digit makes the constructed prefix permanently smaller. Later
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every integer in the range:** Direct:** - **Enumerate every integer in the range:** Direct checking takes time proportional to `r-l+1` times the digit length, which is infeasible for a range spanning values near `10^{15}`.
-- **- **Generate only good numbers:** A DFS that grows:** - **Generate only good numbers:** A DFS that grows valid digit strings can work, but it still needs careful upper-bound handling and leading-length logic. Digit DP provides that structure systematically and shares repeated suffix states.
-- **- **Count exactly `D`-digit numbers only:** That w:** - **Count exactly `D`-digit numbers only:** That would omit all shorter positive integers below the bound. Leading-zero padding lets one DP count every permitted length at once.
+- **Enumerate every integer in the range:** Direct checking takes time proportional to `r-l+1` times the digit length, which is infeasible for a range spanning values near `10^{15}`.
+- **Generate only good numbers:** A DFS that grows valid digit strings can work, but it still needs careful upper-bound handling and leading-length logic. Digit DP provides that structure systematically and shares repeated suffix states.
+- **Count exactly `D`-digit numbers only:** That would omit all shorter positive integers below the bound. Leading-zero padding lets one DP count every permitted length at once.
 
 ---
 

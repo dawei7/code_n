@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Implement one feasibility check literally.** `check(k)` cr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The original string is not rebuilt. Instead, two pointers scan it logically. Poi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Removal-time array:** Store for each index the:** - **Removal-time array:** Store for each index the step at which it is removed, then a check treats positions with time below `k` as absent. This avoids a fresh prefix slice and repeated marking while preserving $O(n\log r)$ time.
+- **Removal-time array:** Store for each index the step at which it is removed, then a check treats positions with time below `k` as absent. This avoids a fresh prefix slice and repeated marking while preserving $O(n\log r)$ time.
 - **Try every `k` sequentially:** Monotonicity permits binary search; checking all prefixes can cost $O(nr)$.
 - **Rebuild the surviving string:** Joining unremoved characters and then testing a subsequence works but allocates another length-$n$ string per check. Logical skipping is sufficient.
 - **Maximum answer zero:** The first listed removal can destroy the only possible embedding. Initial zero remains the last feasible bound.
@@ -95,8 +95,8 @@ The original string is not rebuilt. Instead, two pointers scan it logically. Poi
 - **Repeated letters:** Earliest greedy matching remains correct and avoids backtracking among equivalent occurrences.
 - **Empty removable list:** Both bounds are zero, the loop does not run, and zero is returned.
 - **Distinct-index guarantee:** Boolean marking naturally supports it. The guarantee also means `k` truly represents removing `k` characters rather than fewer unique positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

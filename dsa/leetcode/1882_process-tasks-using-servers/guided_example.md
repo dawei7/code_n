@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two **0-indexed** integer arrays `servers` and `tasks` of lengths `n`​​​​​​ and `m`​​​​​​ respectively. $\text{servers}[i]$ is the **weight** of the $i^​​​​​​th$​​​​ server, and $\text{tasks}[j]$ is the **time needed** to process the $j^​​​​​​th$​​​​ task **in seconds**.
+You are given two **0-indexed** integer arrays `servers` and `tasks` of lengths `n` and `m` respectively. $\text{servers}[i]$ is the **weight** of the $i^th$ server, and $\text{tasks}[j]$ is the **time needed** to process the $j^th$ task **in seconds**.
 
 The objective is to compute `[2, 2, 0, 2, 1, 2]` from `{"servers": [3, 3, 2], "tasks": [1, 2, 3, 2, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Initialize every server as available.** The list comprehen... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan all servers for every task:** This can fi:** - **Scan all servers for every task:** This can find the right choice but costs $O(NM)$ and wastes work on servers that cannot win. Heaps expose only the relevant minimum.
+- **Scan all servers for every task:** This can find the right choice but costs $O(NM)$ and wastes work on servers that cannot win. Heaps expose only the relevant minimum.
 - **One heap for all servers:** Free-server priority begins with weight, while busy-server priority begins with finish time. Combining the states without an availability distinction makes comparisons incorrect or forces repeated rebuilding.
 - **Explicit second-by-second simulation:** Advancing through empty time intervals is unnecessary and can be enormous. The busy heap jumps directly to the next completion event.
 - **One server:** Every task is assigned to index zero. When work queues up, the else branch repeatedly extends that server's finish time correctly.
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **A server finishes exactly at task arrival:** The `<= j` release condition makes it free before assignment at second `j`, as required.
 - **Long queue extending beyond all arrival times:** Tasks are still processed in input order. Repeated earliest-finish pops schedule each one at the next legal event even though the loop variable remains its original arrival index.
 - **Output versus auxiliary memory:** The answer necessarily stores $M$ indices. The manifest's $O(N)$ describes heap state; including output makes the total $O(N+M)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

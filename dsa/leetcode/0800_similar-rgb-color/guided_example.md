@@ -75,7 +75,7 @@ Because squaring preserves the ordering of nonnegative absolute differences, min
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A shorthand digit `x` expands to a two-digit hexadecimal cha... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,9 +124,9 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try all shorthand colors:** Testing $16^3=4096:** - **Try all shorthand colors:** Testing $16^3=4096$ complete colors is still constant under fixed RGB width, but it ignores channel independence.
-- **- **Try 16 values per channel:** Check every `00,1:** - **Try 16 values per channel:** Check every `00,11,...,ff` candidate independently. This is simple and also constant-time, with 48 comparisons.
-- **- **Floating-point rounding:** Computing `round(q/:** - **Floating-point rounding:** Computing `round(q/17)` is concise, but explicit quotient and remainder make the tie rule and boundary behavior unambiguous.
+- **Try all shorthand colors:** Testing $16^3=4096$ complete colors is still constant under fixed RGB width, but it ignores channel independence.
+- **Try 16 values per channel:** Check every `00,11,...,ff` candidate independently. This is simple and also constant-time, with 48 comparisons.
+- **Floating-point rounding:** Computing `round(q/17)` is concise, but explicit quotient and remainder make the tie rule and boundary behavior unambiguous.
 
 ---
 

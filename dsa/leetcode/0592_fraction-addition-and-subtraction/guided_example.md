@@ -61,7 +61,7 @@ The input grammar guarantees a valid sequence, positive raw numerators and denom
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The sign becomes `-1` for `-` and `1` otherwise.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,10 +114,10 @@ The parser repeats until every term has contributed its signed count of $1/y$ un
 
 ## 6. Traps This Instance Exposes
 
-- **- **Running cross multiplication:** Maintain `num/:** - **Running cross multiplication:** Maintain `num/den` and combine `a/b` as `(num*b + sign*a*den)/(den*b)`, reducing along the way or at the end. It works for arbitrary denominators but can grow intermediates.
+- **Running cross multiplication:** Maintain `num/den` and combine `a/b` as `(num*b + sign*a*den)/(den*b)`, reducing along the way or at the end. It works for arbitrary denominators but can grow intermediates.
 - **Running LCM:** Use `lcm(den,b)` as the smallest next common denominator. It limits intermediate size and generalizes beyond denominators 1–10.
 - **Regular-expression tokenization:** Extract signed numerator/denominator pairs directly. Concise, but manual scanning is easier to derive and avoids regex-specific knowledge.
-- **Hard-coded 30240:** Correct only because every denominator is in $[1,10]$. If that contract changes, the constant must not be reused blindly.
+- **Hard-coded 30240:** Correct only because every denominator is in `[1,10]`. If that contract changes, the constant must not be reused blindly.
 - **First positive fraction:** The source prepends `+` so every loop starts at a sign.
 - **First negative fraction:** Its existing sign is parsed directly.
 - **Zero total:** GCD reduction produces exactly `"0/1"`.
@@ -127,8 +127,8 @@ The parser repeats until every term has contributed its signed count of $1/y$ un
 - **One fraction:** It is converted to the common denominator and reduced back to its already irreducible value.
 - **No intermediate reduction:** Safe under the small bounded term count and final 32-bit guarantee, though other languages might need wider intermediate integers.
 - **Space fidelity:** Prepending to an immutable Python string is an actual $O(n)$ allocation; the manifest’s $O(1)$ target belongs to a parser that avoids copying the input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -83,7 +83,7 @@ Repeated adjacent exchanges transform any take order into descending combined va
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider two stones `i` and `j` that will be taken on consec... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ The stored original index is necessary because the combined priority is not eith
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort indices by combined value:** This avoids :** - **Sort indices by combined value:** This avoids storing the sum in each tuple but still needs an $O(n)$ index list and $O(n\log n)$ time.
+- **Sort indices by combined value:** This avoids storing the sum in each tuple but still needs an $O(n)$ index list and $O(n\log n)$ time.
 - **Priority queue:** Repeatedly pop the largest combined value for alternating turns. It has the same $O(n\log n)$ time and more per-operation overhead.
 - **Sort by Alice’s value alone:** This ignores the value denied to Bob and can choose a strategically inferior stone.
 - **Sort by value difference:** The pairwise exchange derives the sum, not `a_i-b_i`; using the difference is incorrect.
@@ -140,8 +140,8 @@ The stored original index is necessary because the combined priority is not eith
 - **Positive values:** Scores are nonnegative and every stone is taken; no pass action is available or useful.
 - **Input preservation:** The source sorts a new `vals` list and does not reorder either value array.
 - **Slice allocation:** A more memory-conscious loop could iterate through `vals` once and add to Alice or Bob by parity, but the exact source materializes the two slices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

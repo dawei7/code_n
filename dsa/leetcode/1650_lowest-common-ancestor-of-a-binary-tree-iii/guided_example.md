@@ -59,7 +59,7 @@ The contract guarantees both nodes belong to the same tree, so their chains shar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second loop starts `node = q` and tests `node not in vis... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Thus there is no lower common ancestor on `q`'s path. In a tree, every common an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer chain switching:** Move one pointe:** - **Two-pointer chain switching:** Move one pointer up from `p` and one from `q`; when a pointer reaches null, redirect it to the other start. They align path lengths and meet at the LCA in $O(h)$ time and $O(1)$ space, matching the manifest.
+- **Two-pointer chain switching:** Move one pointer up from `p` and one from `q`; when a pointer reaches null, redirect it to the other start. They align path lengths and meet at the LCA in $O(h)$ time and $O(1)$ space, matching the manifest.
 - **Compute depths first:** Raise the deeper node until depths match, then move both upward together. This also uses constant auxiliary space but requires separate depth walks.
 - **Store both chains as lists:** Compare from the root end until they diverge. It is correct but stores $O(h_p+h_q)$ references instead of one set.
 - **One node is the other's ancestor:** Starting nodes are included, so the ancestor itself is returned.
@@ -106,8 +106,8 @@ Thus there is no lower common ancestor on `q`'s path. In a tree, every common an
 - **Same tree guarantee:** Without it, `node` could become null and remain absent from `vis`; a defensive implementation would handle that case.
 - **Distinct nodes:** The contract says `p != q`, though the method would also return `p` immediately if they were identical.
 - **Manifest space mismatch:** The exact source is not constant-space because `vis` grows with the ancestor chain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

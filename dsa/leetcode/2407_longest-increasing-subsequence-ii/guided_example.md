@@ -61,7 +61,7 @@ After computing the best length ending at the current index, the tree is updated
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop reads `nums` from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Every internal node stores the maximum of its two children. Consequently, a rang
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fenwick tree with transformed queries:** A sta:** - **Fenwick tree with transformed queries:** A standard Fenwick tree gives prefix maxima, not arbitrary interval maxima; additional techniques or a segment tree are needed for `[v-k,v-1]`.
+- **Fenwick tree with transformed queries:** A standard Fenwick tree gives prefix maxima, not arbitrary interval maxima; additional techniques or a segment tree are needed for `[v-k,v-1]`.
 - **Coordinate-compressed segment tree:** Compress occurring values and binary-search range endpoints. This reduces space when $M$ is much larger than the number of distinct values.
 - **Quadratic DP:** Check every earlier index for each current value. It is simple but costs $O(n^2)$.
 - **Repeated value:** It cannot precede itself under strict increase, but later best state for that value safely overwrites an earlier no-larger state.
@@ -109,8 +109,8 @@ Every internal node stores the maximum of its two children. Consequently, a rang
 - **No legal predecessor:** Zero query result produces a singleton.
 - **Increasing gap too large:** The lower range bound excludes that predecessor.
 - **Input order:** Tree updates occur only after querying the current item, preserving subsequence index order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

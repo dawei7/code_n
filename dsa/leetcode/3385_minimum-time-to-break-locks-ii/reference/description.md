@@ -1,6 +1,6 @@
 ### 1. Description
 
-Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $$i^{\text{th}}$$ lock.
+Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $i^{\text{th}}$ lock.
 
 To break a lock, Bob uses a sword with the following characteristics:
 
@@ -10,7 +10,7 @@ To break a lock, Bob uses a sword with the following characteristics:
 
 - Every minute, the energy of the sword increases by the current factor `X`.
 
-- To break the $$i^{\text{th}}$$ lock, the energy of the sword must reach at least $\text{strength}[i]$.
+- To break the $i^{\text{th}}$ lock, the energy of the sword must reach at least $\text{strength}[i]$.
 
 - After breaking a lock, the energy of the sword resets to 0, and the factor `X` increases by 1.
 

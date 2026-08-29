@@ -46,4 +46,4 @@ Return the maximum number of elements in a subsequence that is strictly increasi
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $0 \le \text{nums}[i] \le 10^{9}$​​​​​​​
+- $0 \le \text{nums}[i] \le 10^{9}$

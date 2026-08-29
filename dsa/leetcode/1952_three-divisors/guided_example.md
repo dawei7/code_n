@@ -61,7 +61,7 @@ $n=1$ is a special mathematical boundary because one and $n$ are the same diviso
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Starting at two deliberately excludes divisor one, and the h... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The concrete source does not use this theorem. It reaches the same answer by exp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prime-square theorem:** Compute the integer sq:** - **Prime-square theorem:** Compute the integer square root, require its square to equal $n$, and test that root for primality up to its square root. This takes $O(\sqrt[4]{n})$ trial divisions and matches the manifest's intended bound.
+- **Prime-square theorem:** Compute the integer square root, require its square to equal $n$, and test that root for primality up to its square root. This takes $O(\sqrt[4]{n})$ trial divisions and matches the manifest's intended bound.
 - **Count divisors only to $\sqrt n$:** Add divisor pairs, treating a square-root divisor once. This improves time to $O(\sqrt n)$ while remaining straightforward.
 - **Early exit enumeration:** Stop as soon as two internal divisors are found. It improves many inputs in practice but remains $O(n)$ in the worst case.
 - **$n=1$:** The empty candidate range sums to zero, so the answer is false.
@@ -110,8 +110,8 @@ The concrete source does not use this theorem. It reaches the same answer by exp
 - **Upper constraint:** At $n=10^4$, the loop performs just under ten thousand modulo tests, which is practical even though it is asymptotically linear.
 - **Exactly three, not at most three:** Both zero and two internal divisors return false; equality with one enforces the precise requirement.
 - **No short-circuit:** `sum` examines the entire range even when the final answer is already known to be false.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

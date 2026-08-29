@@ -83,10 +83,7 @@ These formulas remain safe when a category is not genuinely present. For example
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, name:
-
-- `a = nums[0]`, the smallest value.
--... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -137,7 +134,7 @@ For `[0,10,0]`, every pair contains zero, so all possible three-factor products 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track four extremes in one pass:** Maintaining:** - **Track four extremes in one pass:** Maintaining the two smallest and two largest values yields $O(n)$ time and $O(1)$ space and would match the manifest. It is a valid optimization, but the exact source sorts and therefore has different actual bounds.
+- **Track four extremes in one pass:** Maintaining the two smallest and two largest values yields $O(n)$ time and $O(1)$ space and would match the manifest. It is a valid optimization, but the exact source sorts and therefore has different actual bounds.
 - **Try every pair:** Evaluating $O(n^2)$ original pairs and selecting the replacement sign is correct but unnecessary because monotonicity confines the best pair to sorted extremes.
 - **Replace with zero or an interior magnitude:** A smaller absolute replacement cannot improve a fixed pair. The optimum always uses `+10^5` or `-10^5`.
 - **Consider only the three largest numeric values:** Two large negative magnitudes can create the best positive pair, so the smallest sorted values are equally important.
@@ -150,8 +147,8 @@ For `[0,10,0]`, every pair contains zero, so all possible three-factor products 
 - **Values already at replacement bounds:** The inclusive range still permits boundary replacements. Magnitude cannot exceed `B`.
 - **Input mutation:** Callers needing the original order would have to sort a copy, adding another explicit $O(n)$ allocation; the current source modifies the list.
 - **Manifest mismatch:** Complexity documentation must follow the executed sort, not the summary's aspirational one-pass bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

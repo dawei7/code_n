@@ -4,7 +4,7 @@ There are several consecutive houses along a street, each of which has some mone
 
 The **capability** of the robber is the maximum amount of money he steals from one house of all the houses he robbed.
 
-You are given an integer array `nums` representing how much money is stashed in each house. More formally, the $$i^{\text{th}}$$ house from the left has $\text{nums}[i]$ dollars.
+You are given an integer array `nums` representing how much money is stashed in each house. More formally, the $i^{\text{th}}$ house from the left has $\text{nums}[i]$ dollars.
 
 You are also given an integer `k`, representing the **minimum** number of houses the robber will steal from. It is always possible to steal at least `k` houses.
 

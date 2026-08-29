@@ -67,7 +67,7 @@ The map's frequency for a value is exact because every input occurrence incremen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter` is a dictionary-like collection.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ The problem permits any output order. The library's descending-frequency order i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency buckets:** Create `n + 1` lists wher:** - **Frequency buckets:** Create `n + 1` lists where bucket `f` holds values occurring `f` times. Scan frequencies from `n` down until `k` values are collected. Counting, bucket insertion, and scanning are all $O(n)$, with $O(n)$ space. This meets the follow-up and matches the manifest.
-- **- **Min-heap of size `k`:** Count frequencies, the:** - **Min-heap of size `k`:** Count frequencies, then keep only the `k` largest while scanning distinct values. This takes $O(n+u\log k)$ time and $O(u+k)$ space, useful when `k` is small.
-- **- **Quickselect:** Partition the distinct values b:** - **Quickselect:** Partition the distinct values by frequency and return the top side. It has $O(n+u)$ expected time but $O(u^2)$ worst-case selection time without a worst-case pivot strategy.
+- **Frequency buckets:** Create `n + 1` lists where bucket `f` holds values occurring `f` times. Scan frequencies from `n` down until `k` values are collected. Counting, bucket insertion, and scanning are all $O(n)$, with $O(n)$ space. This meets the follow-up and matches the manifest.
+- **Min-heap of size `k`:** Count frequencies, then keep only the `k` largest while scanning distinct values. This takes $O(n+u\log k)$ time and $O(u+k)$ space, useful when `k` is small.
+- **Quickselect:** Partition the distinct values by frequency and return the top side. It has $O(n+u)$ expected time but $O(u^2)$ worst-case selection time without a worst-case pivot strategy.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
+You are given a 2D integer array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $i^{\text{th}}$ point on the Cartesian plane.
 
 Return *the number of unique **trapezoids* that can be formed by choosing any four distinct points from `points`.
 

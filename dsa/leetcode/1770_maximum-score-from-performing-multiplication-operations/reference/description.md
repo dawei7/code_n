@@ -2,7 +2,7 @@
 
 You are given two **0-indexed** integer arrays `nums` and `multipliers`** **of size `n` and `m` respectively, where $n \ge m$.
 
-You begin with a score of `0`. You want to perform **exactly** `m` operations. On the $$i^{\text{th}}$$ operation (**0-indexed**) you will:
+You begin with a score of `0`. You want to perform **exactly** `m` operations. On the $i^{\text{th}}$ operation (**0-indexed**) you will:
 
 - Choose one integer `x` from **either the start or the end **of the array `nums`.
 

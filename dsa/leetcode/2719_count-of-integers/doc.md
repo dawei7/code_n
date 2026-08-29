@@ -20,14 +20,14 @@ Count the integers from `num1` through `num2` whose digit sum lies in the inclus
 
 ### Function Contract
 
-Let $L=\max(\lvert\texttt{num1}\rvert,\lvert\texttt{num2}\rvert)$ and $S=\texttt{max_sum}$.
+Let $L=\max(\lvert\texttt{num1}\rvert,\lvert\texttt{num2}\rvert)$ and $S=\texttt{max\_sum}$.
 
 **Inputs**
 
 - `num1`: The lower interval endpoint as a decimal string, where $1 \le \texttt{num1} \le 10^{22}$.
 - `num2`: The upper interval endpoint as a decimal string, where $\texttt{num1} \le \texttt{num2} \le 10^{22}$.
-- `min_sum`: The inclusive minimum allowed digit sum, where $1 \le \texttt{min_sum} \le 400$.
-- `max_sum`: The inclusive maximum allowed digit sum, where $\texttt{min_sum} \le \texttt{max_sum} \le 400$.
+- `min_sum`: The inclusive minimum allowed digit sum, where $1 \le \texttt{min\_sum} \le 400$.
+- `max_sum`: The inclusive maximum allowed digit sum, where $\texttt{min\_sum} \le \texttt{max\_sum} \le 400$.
 
 **Return value**
 

@@ -77,7 +77,7 @@ Every integer `c` in this interval is achievable by choosing arbitrary occurrenc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the current state has `cur` zeros and `n - cur` ones... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ They all have parity `l % 2`, equivalently `(cur + k) % 2`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form parity/capacity analysis:** The ma:** - **Closed-form parity/capacity analysis:** The manifest describes deriving the smallest feasible operation count arithmetically. That would avoid BFS if fully proven, but it is not the stored implementation.
+- **Closed-form parity/capacity analysis:** The manifest describes deriving the smallest feasible operation count arithmetically. That would avoid BFS if fully proven, but it is not the stored implementation.
 - **BFS over complete strings:** It has up to `2^n` states and is infeasible.
 - **BFS over zero counts with ordinary interval loops:** It has only `n + 1` states but can rescan the same destinations quadratically.
 - **Disjoint-set “next unvisited” structure:** Successor pointers can enumerate and delete interval states in near-linear time without a third-party ordered set.
@@ -146,8 +146,8 @@ They all have parity `l % 2`, equivalently `(cur + k) % 2`.
 - **Removing while iterating:** The source keeps the same ordered-set index after deletion so the shifted successor is examined next.
 - **Input preservation:** The string is immutable and only its zero count is stored.
 - **Missing imports/dependency:** The stored source uses `SortedSet` and `deque` without imports. It requires the appropriate ordered-set package and `collections.deque` in a standalone environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

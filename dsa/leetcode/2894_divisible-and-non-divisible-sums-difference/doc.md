@@ -41,7 +41,7 @@ Return the sum of the non-divisible values minus the sum of the divisible values
 
 - **Input:** `n = 5, m = 6`
 - **Output:** `15`
-- **Explanation:** No value in $[1,5]$ is divisible by $6$, so the entire range contributes positively.
+- **Explanation:** No value in `[1,5]` is divisible by $6$, so the entire range contributes positively.
 
 #### Example 3
 

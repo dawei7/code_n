@@ -68,11 +68,7 @@ Starting `y` at zero also naturally handles leading zeros in the rotated represe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first assignment is:
-
-
-
-`x` is a working copy that will ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ An array is a convenient map here because every decimal digit is already a small
 
 ## 6. Traps This Instance Exposes
 
-- **- **String transformation:** Convert `n` to text, :** - **String transformation:** Convert `n` to text, map each character, reverse the mapped characters, parse the result, and compare it with `n`. This is straightforward but uses `O(D)` auxiliary space for the transformed representation.
+- **String transformation:** Convert `n` to text, map each character, reverse the mapped characters, parse the result, and compare it with `n`. This is straightforward but uses `O(D)` auxiliary space for the transformed representation.
 - **Dictionary mapping:** A dictionary from valid digits to rotated digits expresses the same rule. The fixed ten-entry list is simpler and guarantees direct constant-time indexing.
 - **Large conditional chain:** Separate cases for zero, one, six, eight, and nine can avoid a table, but they are more verbose and easier to implement inconsistently.
 - **Zero:** The loop is skipped and zero is compared with zero, correctly returning false.
@@ -127,8 +123,8 @@ An array is a convenient map here because every decimal digit is already a small
 - **Original leading zeros:** An integer input has no represented leading zeros, so there is nothing additional to preserve.
 - **Upper bound:** The largest legal input still has only ten decimal digits at most under the stated bound, and the same loop handles it without a separate case.
 - **Input preservation:** `x` is reduced destructively, but `n` is never changed. The final comparison therefore uses the true original value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

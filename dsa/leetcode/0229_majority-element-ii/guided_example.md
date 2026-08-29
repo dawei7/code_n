@@ -77,7 +77,7 @@ the counters compactly record the same cancellation effect.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each current value `m`, the exact source evaluates these... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ candidate variable.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency dictionary:** Count every value, the:** - **Frequency dictionary:** Count every value, then filter counts above $\lfloor n/3\rfloor$. It is simpler but uses $O(n)$ space in the all-distinct case, missing the constant-space follow-up.
+- **Frequency dictionary:** Count every value, then filter counts above $\lfloor n/3\rfloor$. It is simpler but uses $O(n)$ space in the all-distinct case, missing the constant-space follow-up.
 - **Sorting:** Equal values become contiguous, allowing run counts in $O(n\log n)$ time. It may mutate the input or require a copy and does not improve on voting.
 - **General threshold $n/k$:** Keep at most $k-1$ candidates, cancel one vote from all when a new distinct value finds every slot occupied, then verify. This solution is the $k=3$ case.
 - **One element:** Since the threshold is `0`, its real count 1 qualifies. One initialized candidate slot is activated and verification returns that value.
@@ -139,8 +139,8 @@ candidate variable.
 - **Initial values 0 or 1 present:** Equality increments the relevant zero-count slot, which is equivalent to selecting that value as a candidate.
 - **Negative and large integers:** Only equality and counting are used, so numeric range and sign do not affect the algorithm.
 - **Input preservation:** Voting changes only local candidates and counters; `nums` remains unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

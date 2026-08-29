@@ -80,7 +80,7 @@ The wildcards do not have to use different directions. The contract says they ma
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At least one direction can be chosen so that each wildcard e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,9 +117,9 @@ For example, fixed moves `U` and `D` cancel regardless of where underscores appe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try all wildcard assignments:** With `z` under:** - **Try all wildcard assignments:** With `z` underscores there are `4^z` possible replacements. The triangle-inequality upper bound and matching construction collapse that exponential search to one count.
-- **- **Dynamic programming over reachable coordinates:** - **Dynamic programming over reachable coordinates:** Tracking all positions after each command can require quadratic or larger state. Only the most distant final position is needed, and every wildcard can be made to contribute one to the fixed Manhattan norm.
-- **- **Greedily choose while following the route:** O:** - **Greedily choose while following the route:** One may assign each underscore to increase the current distance at that moment, but temporary position is unnecessary. Summarizing fixed displacement first gives a simpler global argument.
+- **Try all wildcard assignments:** With `z` underscores there are `4^z` possible replacements. The triangle-inequality upper bound and matching construction collapse that exponential search to one count.
+- **Dynamic programming over reachable coordinates:** Tracking all positions after each command can require quadratic or larger state. Only the most distant final position is needed, and every wildcard can be made to contribute one to the fixed Manhattan norm.
+- **Greedily choose while following the route:** One may assign each underscore to increase the current distance at that moment, but temporary position is unnecessary. Summarizing fixed displacement first gives a simpler global argument.
 
 ---
 

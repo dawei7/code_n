@@ -63,7 +63,7 @@ Kruskal scans edges from smallest to largest weight. It accepts an edge exactly 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `UnionFind` starts with every vertex in its own component.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The generator calls `union` as its filter. A weight enters the sum only when tha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Weight-group bridge classification:** Process :** - **Weight-group bridge classification:** Process edges of equal weight together after contracting components formed by lighter edges, then find bridges in the temporary multigraph. This can achieve the manifest's $O(E \log E)$ target but is substantially more intricate.
+- **Weight-group bridge classification:** Process edges of equal weight together after contracting components formed by lighter edges, then find bridges in the temporary multigraph. This can achieve the manifest's $O(E \log E)$ target but is substantially more intricate.
 - **Repeated Kruskal with rank and path compression:** This matches the editorial's near-constant union operations but remains $O(E^2 \alpha(V))$, not $O(E \log E)$.
 - **Enumerating all spanning trees:** It can classify edges by direct observation but is exponential and unnecessary.
 - **Unique MST:** Every edge in that one MST is critical, while edges outside it are neither critical nor pseudo-critical.
@@ -113,8 +113,8 @@ The generator calls `union` as its filter. A weight enters the sum only when tha
 - **Input mutation:** The source appends a fourth field and sorts the provided list. Reusing the original three-field order afterward would be unsafe.
 - **Equal weights:** Python's stable ordering is not needed for correctness; Kruskal may choose any safe edge among equal weights.
 - **No union by rank:** Path compression is present, but the data structure can temporarily build less balanced parent trees than a fully optimized implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

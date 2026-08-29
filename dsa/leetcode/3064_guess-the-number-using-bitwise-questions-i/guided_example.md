@@ -51,7 +51,7 @@ This number has exactly one set bit, at position $i$. Therefore `n & num` is eit
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This number has exactly one set bit, at position $i$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source includes `1 << i` in the answer whenever the API result is truthy:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Query all legal bits with `range(30)`:** This :** - **Query all legal bits with `range(30)`:** This is the direct correction and deterministically reconstructs every allowed secret.
+- **Query all legal bits with `range(30)`:** This is the direct correction and deterministically reconstructs every allowed secret.
 - **Group-testing queries:** Asking about several bits at once returns only their count, not identities, so decoding requires a more elaborate scheme and provides no benefit in this first version.
 - **Binary search:** The API does not compare magnitudes, so ordinary higher/lower binary search is unavailable.
 - **Secret is a power of two:** Exactly one legal single-bit query is truthy, and the sum returns that power.
@@ -100,8 +100,8 @@ The source includes `1 << i` in the answer whenever the API result is truthy:
 - **Highest legal bit:** Position 29 corresponds to $2^{29}$ and is included in `range(30)`. Position 30 corresponds to $2^{30}$ and already exceeds the maximum legal query.
 - **Unreliable does not mean guaranteed zero:** The API warning forbids assuming benign behavior outside range. Correctness must hold for every behavior permitted by the contract, which the 32-query source cannot guarantee.
 - **Fixed query strategy:** Results from earlier calls do not influence later queries. This makes the reasoning simple and allows each bit to be verified independently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Let the grid have `m` rows and `n` columns. The matrix `g` begins with infinity 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the grid have `m` rows and `n` columns.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let the grid have `m` rows and `n` columns. The matrix `g` begins with infinity 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Combined event simulation:** Expand water and :** - **Combined event simulation:** Expand water and traveler layer by layer in one loop, always spreading water first for each second. This can work, but precomputed flood times make the simultaneous-arrival rule easier to verify.
+- **Combined event simulation:** Expand water and traveler layer by layer in one loop, always spreading water first for each second. This can work, but precomputed flood times make the simultaneous-arrival rule easier to verify.
 - **Priority-queue search:** A heap is unnecessary because every traveler move costs one second. BFS already returns the minimum time.
 - **No initial flood:** The water queue is empty and every `g` entry stays infinity, so the second BFS reduces to an ordinary shortest-path search around stones.
 - **Start eventually floods:** The water BFS includes `S` as floodable. The traveler may leave before its flood time; it need not remain safe after departure.
@@ -98,8 +98,8 @@ Let the grid have `m` rows and `n` columns. The matrix `g` begins with infinity 
 - **Unreachable destination:** When stones, water, or timing eliminate every path, the traveler queue empties and the method returns negative one.
 - **Rectangular grid:** The code separately tracks row count `m` and column count `n` and checks both boundaries correctly.
 - **No waiting transition:** The problem permits movement each second and waiting would never improve safety because water only advances. Omitting a stay-in-place edge cannot lose an optimal route.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

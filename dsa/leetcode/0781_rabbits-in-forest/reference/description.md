@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is a forest with an unknown number of rabbits. We asked n rabbits **"How many other rabbits have the same color as you?"** and collected the answers in an integer array `answers` where $\text{answers}[i]$ is the answer of the $$i^{\text{th}}$$ rabbit.
+There is a forest with an unknown number of rabbits. We asked n rabbits **"How many other rabbits have the same color as you?"** and collected the answers in an integer array `answers` where $\text{answers}[i]$ is the answer of the $i^{\text{th}}$ rabbit.
 
 Given the array `answers`, return *the minimum number of rabbits that could be in the forest*.
 

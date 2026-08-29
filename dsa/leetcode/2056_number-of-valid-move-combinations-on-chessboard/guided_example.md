@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is an `8 x 8` chessboard containing `n` pieces (rooks, queens, or bishops). You are given a string array `pieces` of length `n`, where $\text{pieces}[i]$ describes the type (rook, queen, or bishop) of the $$i^{\text{th}}$$ piece. In addition, you are given a 2D integer array `positions` also of length `n`, where $\text{positions}[i] = [r_{i}, c_{i}]$ indicates that the $$i^{\text{th}}$$ piece is currently at the **1-based** coordinate $(r_{i}, c_{i})$ on the chessboard.
+There is an `8 x 8` chessboard containing `n` pieces (rooks, queens, or bishops). You are given a string array `pieces` of length `n`, where $\text{pieces}[i]$ describes the type (rook, queen, or bishop) of the $i^{\text{th}}$ piece. In addition, you are given a 2D integer array `positions` also of length `n`, where $\text{positions}[i] = [r_{i}, c_{i}]$ indicates that the $i^{\text{th}}$ piece is currently at the **1-based** coordinate $(r_{i}, c_{i})$ on the chessboard.
 
 The objective is to compute `15` from `{"pieces": ["rook"], "positions": [[1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ For each direction, the source advances one square at a time until it leaves coo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The four rook directions are horizontal and vertical.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Both phases matter when checking another piece.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all destinations, then simulate:** S:** - **Enumerate all destinations, then simulate:** Simpler conceptually, but it delays collision pruning until complete combinations are built.
+- **Enumerate all destinations, then simulate:** Simpler conceptually, but it delays collision pruning until complete combinations are built.
 - **Pairwise trajectory formulas:** Compare two selected moves algebraically without route grids; less storage but easier to get stopping times wrong.
 - **Stationary piece:** Occupies its starting square forever, so no other route may visit it at any time.
 - **Two moving pieces meet:** Equal square and equal time is rejected.
@@ -115,8 +115,8 @@ Both phases matter when checking another piece.
 - **Queen direction variable:** `queue_dirs` is only a naming typo; it contains all eight queen directions.
 - **At most one queen:** Further limits the already fixed search space.
 - **Distinct starts:** Prevents a collision at time zero before moves begin.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ All three low bits are set, producing $111_2=7$. The result does not need to equ
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take `nums = [3, 5, 6]` and $k=2$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The constraint places each input below $2^{31}$, so positions $0$ through $30$ c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build binary strings:** Converting every value:** - **Build binary strings:** Converting every value to text and counting characters adds allocations and padding concerns. Shifts inspect bits directly.
+- **Build binary strings:** Converting every value to text and counting characters adds allocations and padding concerns. Shifts inspect bits directly.
 - **Maintain a count array:** Scanning each number's set bits into a 31-entry array has the same asymptotic behavior but uses explicit $O(B)$ storage.
 - **Confuse K-or with choosing $k$ numbers:** The threshold is evaluated independently at each position, and different bits may be supported by different subsets.
 - **Values equal to zero:** They contribute zero to every bit count and are handled naturally.
@@ -107,8 +107,8 @@ The constraint places each input below $2^{31}$, so positions $0$ through $30$ c
 - **No carry between positions:** Even when many low bits qualify, their numeric sum cannot create a higher result bit. The answer is assembled with OR masks, not arithmetic addition of occurrence counts.
 - **Input order:** Reordering `nums` cannot change any per-position frequency, so K-or depends only on the multiset of values.
 - **Generator behavior:** `sum` consumes all $n$ inputs separately for each of 32 bits. It saves storage but does not reduce the $32n$ bit checks.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

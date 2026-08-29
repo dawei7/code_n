@@ -53,8 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{t}[i]\leftarrow(\texttt{t}[i]+\texttt{t}[i+1])\bm... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ The outer loop uses `k` values $n-1,n-2,\ldots,2$. Its first iteration writes th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Allocate a new list each round:** It is simple:** - **Allocate a new list each round:** It is simpler but repeatedly allocates memory. Left-to-right overwrite is safe and more economical.
+- **Allocate a new list each round:** It is simpler but repeatedly allocates memory. Left-to-right overwrite is safe and more economical.
 - **Binomial coefficients modulo ten:** They can compute the final two weighted sums more directly, but modular combinations modulo composite ten require care.
 - **Stop at three digits:** One more operation is needed; the requested comparison is after exactly two remain.
 - **Leading zeros:** Integer conversion preserves them as zero-valued positions, and sequence length remains unchanged.
@@ -99,8 +98,8 @@ The outer loop uses `k` values $n-1,n-2,\ldots,2$. Its first iteration writes th
 - **Update direction:** Left-to-right is safe; an arbitrary overwrite scheme could read a newly written neighbor and be wrong.
 - **Equal final digits:** Only numeric equality matters, so integer representation is natural.
 - **Complexity mismatch:** Documentation should describe the quadratic protected source, not the separate linear technique in the manifest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

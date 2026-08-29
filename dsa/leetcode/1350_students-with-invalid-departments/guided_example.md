@@ -61,7 +61,7 @@ The use of primary keys also means a matching department appears at most once. M
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a student passes the predicate, its `department_id` is un... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ If `Students.department_id` itself is null, `NULL NOT IN (...)` is unknown and t
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS`:** A correlated anti-membership t:** - **`NOT EXISTS`:** A correlated anti-membership test using matching IDs is robust to nulls and often optimized into an anti-join.
+- **`NOT EXISTS`:** A correlated anti-membership test using matching IDs is robust to nulls and often optimized into an anti-join.
 - **Left anti-join:** Left-join departments on the identifier and keep rows where the joined department ID is null. It makes the missing-match interpretation visually explicit.
 - **Application-side filtering:** Loading both tables and comparing identifiers outside SQL duplicates database work and moves unnecessary data.
 - **Empty department table:** Every student with a non-null `department_id` passes because the right-hand set is empty.
@@ -111,8 +111,8 @@ If `Students.department_id` itself is null, `NULL NOT IN (...)` is unknown and t
 - **No `DISTINCT` needed:** `Students.id` is a primary key, and the subquery is used as a membership set rather than joined multiplicatively. Each qualifying student row can appear only once in the output.
 - **Missing foreign-key enforcement:** The very existence of invalid department identifiers means this dataset is not relying on an active foreign-key constraint that rejects them. The query intentionally detects those orphan references.
 - **Department renamed but ID retained:** Validity depends only on the identifier. Changing a department’s name does not make its students invalid as long as the same `Departments.id` remains present.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

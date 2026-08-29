@@ -65,9 +65,7 @@ It then explicitly sets `t[0]="z"`. The resulting joined string is the canonical
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For first character `t[0]`, the shift amount is
-
-`k = ord("z... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ For the length-one case, every word normalizes to `"z"`, which is correct becaus
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every word pair:** This costs $O(N^2M):** - **Compare every word pair:** This costs $O(N^2M)$ instead of grouping once.
+- **Compare every word pair:** This costs $O(N^2M)$ instead of grouping once.
 - **Store numeric offset tuples:** They are an equally valid canonical key; the source stores a normalized string.
 - **Shift without modulo:** Letters near `z` must wrap to `a`.
 - **Normalize each position independently:** One uniform shift must be applied to the whole word.
@@ -122,8 +120,8 @@ For the length-one case, every word normalizes to `"z"`, which is correct becaus
 - **First position:** It is assigned directly after later positions use the shared shift.
 - **Uniformity:** One shift amount governs every position.
 - **Unique grouping:** Each word contributes to exactly one canonical-key counter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

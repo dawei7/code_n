@@ -51,7 +51,7 @@ Name the start corner bottom-left and the destination top-right. Group the left 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Name the start corner bottom-left and the destination top-ri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Name the start corner bottom-left and the destination top-right. Group the left 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Disjoint-set union:** Create two conceptual bo:** - **Disjoint-set union:** Create two conceptual boundary nodes and union every relevant overlapping circle pair plus each circle's boundary contacts. Testing whether the boundary nodes become connected gives the same $O(n^2)$ time and $O(n)$ space, avoids recursion depth, and often makes the connectivity interpretation explicit.
+- **Disjoint-set union:** Create two conceptual boundary nodes and union every relevant overlapping circle pair plus each circle's boundary contacts. Testing whether the boundary nodes become connected gives the same $O(n^2)$ time and $O(n)$ space, avoids recursion depth, and often makes the connectivity interpretation explicit.
 - **Explicit adjacency lists:** Precomputing all relevant edges and then running BFS or DFS is straightforward, but it can store $O(n^2)$ edges. The source recomputes pair relations while scanning and needs only `vis`.
 - **Union every intersecting pair in the plane:** This simpler test is unsafe. An overlap outside the rectangle must not connect two obstacles for a path constrained to the rectangle; the weighted coordinate filter prevents that false connection.
 - **Grid search:** Rasterizing the rectangle loses exactness and is impossible when coordinates reach $10^9$. Narrow passages can also disappear or appear depending on grid resolution.
@@ -99,8 +99,8 @@ Name the start corner bottom-left and the destination top-right. Group the left 
 - **Strict weighted upper-bound tests:** The source uses `<` rather than `<=` for the weighted point's right/top coordinates. This is part of its definition of an overlap relevant to the rectangle interior; changing the comparisons without a fresh geometric proof can alter boundary-only configurations.
 - **Long chains of circles:** Connectivity is transitive. No single circle needs to touch both boundary groups; DFS correctly detects a chain in which neighboring disks overlap and only the two end disks touch the respective sides.
 - **Deep recursion:** With up to one thousand vertices, an iterative DFS or DSU is operationally safer in Python. The recursive source may encounter a `RecursionError` on a sufficiently deep overlap chain even though its geometric reasoning and asymptotic bounds are otherwise sound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

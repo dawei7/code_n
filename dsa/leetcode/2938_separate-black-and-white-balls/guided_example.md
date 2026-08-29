@@ -70,10 +70,7 @@ For `"101"`, the rightmost one contributes zero. The leftmost one sees a suffix 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `s = "100"`:
-
-- At index $2$, the character is zero.
-- A... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +107,7 @@ Each adjacent `10 -> 01` swap changes the relative order of exactly that pair an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Forward inversion count:** Track ones seen so :** - **Forward inversion count:** Track ones seen so far and add that count at every zero. It is equivalent to the exact reverse formulation.
+- **Forward inversion count:** Track ones seen so far and add that count at every zero. It is equivalent to the exact reverse formulation.
 - **Track white destinations:** For each zero, add the distance from its current index to its next final white position. This also sums the same inversions.
 - **Simulate adjacent swaps:** Correct but may take $O(n^2)$ time and mutable storage when the answer itself is large.
 - **Already separated:** A string of zeros followed by ones has no inverted pair and returns zero.
@@ -125,8 +122,8 @@ Each adjacent `10 -> 01` swap changes the relative order of exactly that pair an
 - **Stable order within a color:** Adjacent swaps need never exchange two equal-color balls. Their relative identities are irrelevant, and avoiding such swaps preserves the minimum.
 - **Worst arrangement:** A prefix of $p$ ones followed by $q$ zeros contains $pq$ inversions. This demonstrates why simulation can be quadratic even though counting is linear.
 - **Reverse-loop boundary:** Starting at `n - 1` and ending at zero ensures every later character has already been classified when a one's contribution is calculated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

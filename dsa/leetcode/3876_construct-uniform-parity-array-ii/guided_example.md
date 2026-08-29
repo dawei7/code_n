@@ -65,7 +65,7 @@ The source expresses the condition indirectly through the smallest odd value.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because all values are distinct and positive, the global min... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ If an odd value exists, compare every even value with `mn`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use the global minimum directly:** If all valu:** - **Use the global minimum directly:** If all values are even, return true; otherwise a mixed or all-odd array succeeds exactly when its global minimum is odd. This is equivalent but differs from the protected source's smallest-odd scan.
+- **Use the global minimum directly:** If all values are even, return true; otherwise a mixed or all-odd array succeeds exactly when its global minimum is odd. This is equivalent but differs from the protected source's smallest-odd scan.
 - **Try every possible subtrahend:** This takes `O(N^2)` and obscures the fact that only the smallest odd reference matters.
 - **Reuse the Version I proof:** Incorrect because an odd reference larger than an even minuend produces a nonpositive forbidden difference.
 - **Construct all odd:** It works exactly when the smallest odd is below every even.
@@ -120,8 +120,8 @@ If an odd value exists, compare every even value with `mn`.
 - **Distinctness:** It makes the global minimum unique and ensures a different index for any subtraction. Opposite parities also rule out equal values in the central comparison.
 - **Do not build `nums2`:** Only existence is requested. The method proves and reports it without allocating an output array.
 - **Sentinel dependency:** `inf` must be imported; alternatively, `null` could represent absence of an odd value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

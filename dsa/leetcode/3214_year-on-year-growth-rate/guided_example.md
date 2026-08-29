@@ -51,7 +51,7 @@ Doing this before previous-year matching is essential. Joining raw transactions 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Doing this before previous-year matching is essential.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Doing this before previous-year matching is essential. Joining raw transactions 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window `LAG` with gap check:** Compute lagged :** - **Window `LAG` with gap check:** Compute lagged year and spend, then use the prior spend only when `previous_year = year - 1`. The explicit gap check makes it equivalent to the self-join.
+- **Window `LAG` with gap check:** Compute lagged year and spend, then use the prior spend only when `previous_year = year - 1`. The explicit gap check makes it equivalent to the self-join.
 - **Bare `LAG`:** Shorter, but incorrect for exact previous-calendar-year semantics when a product skips a year.
 - **Correlated subquery:** Look up the same product at `year-1` for each annual row. It is readable but may execute less efficiently without suitable indexing.
 - **First recorded year:** No exact prior row exists, so both `prev_year_spend` and `yoy_rate` are null.
@@ -101,8 +101,8 @@ Doing this before previous-year matching is essential. Joining raw transactions 
 - **Datetime extraction:** Transactions at any time within the same calendar year share the extracted year.
 - **Positional ordering:** `ORDER BY 2,1` depends on select-column positions; explicit names would be safer during schema changes.
 - **Manifest mismatch:** The exact implementation is annual aggregation plus exact-year self-join, not a partitioned lag.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

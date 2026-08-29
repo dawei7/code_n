@@ -67,7 +67,7 @@ The generator inside `all` is evaluated lazily. It stops at the first mismatched
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition, `cnt[0] % 2 == 0`, requires an even num... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This is a subtle reliance on the input contract. An explicit parity check for `c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed remainder array:** Allocate a list of le:** - **Fixed remainder array:** Allocate a list of length `k` and count directly by index. It has the same $O(N+k)$ time and $O(k)$ space with predictable storage.
+- **Fixed remainder array:** Allocate a list of length `k` and count directly by index. It has the same $O(N+k)$ time and $O(k)$ space with predictable storage.
 - **Explicit half-range validation:** Check zero parity, compare $r$ with $k-r$ only while $r<k-r$, and separately check the half remainder when k is even. This avoids duplicate comparisons and makes every special case visible.
 - **Greedy element pairing:** Searching the remaining array for each element's partner can become quadratic and is unnecessary because remainder counts capture feasibility.
 - **Negative values:** Python's positive-divisor modulo already maps them into zero through `k-1`, so complementary counting works unchanged.
@@ -116,8 +116,8 @@ This is a subtle reliance on the input contract. An explicit parity check for `c
 - **Missing complement:** `Counter` supplies count zero, causing an immediate false result.
 - **Repeated values:** Only remainder multiplicities matter, so duplicates require no special treatment.
 - **Pair order:** The method proves existence and need not identify or order the actual pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

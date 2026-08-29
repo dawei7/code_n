@@ -59,7 +59,7 @@ No alternative exists. If either quota becomes negative, the requested row has a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `v == 2`, both cells must be one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The goal is to consume the larger outstanding requirement first and keep the res
 
 ## 6. Traps This Instance Exposes
 
-- **- **Process all sum-two columns first:** Subtract :** - **Process all sum-two columns first:** Subtract their forced contributions, then distribute sum-one columns according to the residual upper count. This is equally linear and can simplify the feasibility formula.
+- **Process all sum-two columns first:** Subtract their forced contributions, then distribute sum-one columns according to the residual upper count. This is equally linear and can simplify the feasibility formula.
 - **Closed-form feasibility test:** After forced twos, require nonnegative quotas and require their sum to equal the number of ones in `colsum`.
 - **All column sums zero:** A solution exists only when both requested row sums are zero.
 - **Too many sum-two columns:** A quota becomes negative and the method returns empty.
@@ -111,8 +111,8 @@ The goal is to consume the larger outstanding requirement first and keep the res
 - **Maximum length:** The one-pass method handles \(10^5\) columns without recursion.
 - **Output space:** \(O(n)\) is unavoidable because a valid matrix itself contains \(2n\) entries.
 - **Column values restricted to zero, one, or two:** The case analysis relies on this guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

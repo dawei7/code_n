@@ -61,8 +61,7 @@ Thus a single row is good exactly when it contains no ones, which is mask zero. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For subset size $k=1$, the permitted sum in each column is:
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +102,7 @@ The nested dictionary loops examine every pair of present patterns. When a disjo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all row subsets:** Exponential in $m:** - **Enumerate all row subsets:** Exponential in $m$ and impossible for ten thousand rows.
+- **Enumerate all row subsets:** Exponential in $m$ and impossible for ten thousand rows.
 - **Check every original row pair:** Costs $O(m^2n)$; mask compression reduces the pair universe to at most 32 patterns.
 - **Enumerate complementary submasks:** Can find a disjoint present mask in roughly $O(3^n)$ or related small-mask bounds, but is unnecessary for $n\le5$.
 - **Zero row:** Return it immediately because a size-one subset is good.
@@ -113,8 +112,8 @@ The nested dictionary loops examine every pair of present patterns. When a disjo
 - **All-one rows:** No zero or disjoint pair exists, so return empty.
 - **Bit direction:** Using bit `j` for column `j` is arbitrary but consistent; only shared-bit tests matter.
 - **Column limit:** The guarantee $n\le5$ is essential to the structural reduction and tiny mask universe.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,9 +63,7 @@ That reversal is harmless because the final score is a sum. Addition is commutat
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting a row of length $n$:
-
-- column $n-1$ represent... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +104,7 @@ This turns a changing-matrix simulation into a static column calculation.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate with repeated row scans:** Correct bu:** - **Simulate with repeated row scans:** Correct but can cost $O(mn^2)$ because maxima are rediscovered.
+- **Simulate with repeated row scans:** Correct but can cost $O(mn^2)$ because maxima are rediscovered.
 - **Max-heap per row:** Supports repeated removals in $O(mn\log n)$ but uses additional heap storage.
 - **Counting frequencies:** Values are bounded, so counts can avoid comparison sorting, though the implementation is more specialized.
 - **Sort rows descending:** Then columns correspond to chronological rounds directly; the final sum is unchanged.
@@ -118,8 +116,8 @@ This turns a changing-matrix simulation into a static column calculation.
 - **Ragged input:** The exact `zip` behavior would truncate to the shortest row and is not intended for that case.
 - **Mutation:** Every inner row is reordered in place.
 - **Maximum versus sum:** Each column contributes only its largest value.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

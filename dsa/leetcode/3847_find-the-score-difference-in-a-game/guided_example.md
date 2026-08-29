@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `nums`, where $\text{nums}[i]$ represents the points scored in the $$i^{\text{th}}$$ game.
+You are given an integer array `nums`, where $\text{nums}[i]$ represents the points scored in the $i^{\text{th}}$ game.
 
 The objective is to compute `0` from `{"nums": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -79,7 +79,7 @@ Even values leave `k` unchanged.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each game value `x`, the first rule says an odd value sw... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ This is placed after the odd-value condition, matching the stated rule order. Si
 
 ## 6. Traps This Instance Exposes
 
-- **- **Maintain two score variables:** Track the acti:** - **Maintain two score variables:** Track the active player as a Boolean and add to `score1` or `score2`. This is equally correct but uses a final subtraction; the sign directly maintains the requested quantity.
+- **Maintain two score variables:** Track the active player as a Boolean and add to `score1` or `score2`. This is equally correct but uses a final subtraction; the sign directly maintains the requested quantity.
 - **Precompute all active players:** Store which player handles every game, then sum scores. This wastes $O(N)$ space for a state that can be updated online.
 - **Use if/elif for swaps:** This is wrong when an odd value occurs on a sixth game because both swaps must happen.
 - **First game odd:** Player two becomes active before scoring, so the contribution is negative.
@@ -132,8 +132,8 @@ This is placed after the odd-value condition, matching the stated rule order. Si
 - **Negative final difference:** It is valid and returned directly, as in the single odd-value example.
 - **One game:** Only its parity rule can apply because index 0 is not a sixth-game index.
 - **Game numbering:** The positional rule uses `i % 6 == 5` because the description's sixth games are one-based while the loop index is zero-based.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

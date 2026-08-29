@@ -65,7 +65,7 @@ Existing masks remain in `s`, representing the choice to skip the current string
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `s` begins as `[0]`, representing the choice to sel... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Thus the operation terminates and has the intended effect. Taking a snapshot of 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Snapshot before extending:** Iterate over `s[::** - **Snapshot before extending:** Iterate over `s[:]` or its original length. This makes “use the current string at most once” explicit, at the cost of a temporary list.
+- **Snapshot before extending:** Iterate over `s[:]` or its original length. This makes “use the current string at most once” explicit, at the cost of a temporary list.
 - **Set of masks:** Deduplicate equivalent character sets and often reduce work. Hashing adds overhead but preserves the same worst-case exponential bound.
 - **Backtracking with one mask:** Explore take/skip choices recursively using only \(O(n)\) stack space, though time remains exponential.
 - **String with internal duplicates:** It is discarded because no valid concatenation can include it.
@@ -114,8 +114,8 @@ Thus the operation terminates and has the intended effect. Taking a snapshot of 
 - **Different subsequences with the same mask:** The list may store duplicates, which affects constants but not the result.
 - **Alphabet bound:** Only 26 bits are needed because every character is lowercase English.
 - **Required Python version:** `int.bit_count` must be available; older versions can count set bits with another method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

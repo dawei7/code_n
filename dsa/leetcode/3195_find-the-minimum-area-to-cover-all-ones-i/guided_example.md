@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-r_{\min}=\min\{i:\texttt{grid}[i][j]=1\},
-\qquad
-r_{\max}... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -93,7 +90,7 @@ and similarly define $c_{\min}$ and $c_{\max}$ over the column coordinates of al
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four directional boundary scans:** Search from:** - **Four directional boundary scans:** Search from the top until finding a one, then from the bottom, left, and right. It can stop early in favorable layouts but still costs $O(RC)$ in the worst case and may revisit cells.
+- **Four directional boundary scans:** Search from the top until finding a one, then from the bottom, left, and right. It can stop early in favorable layouts but still costs $O(RC)$ in the worst case and may revisit cells.
 - **Collect all one coordinates:** Taking minima and maxima from a coordinate list is correct, but storing up to $RC$ pairs wastes $O(RC)$ space when four running extremes suffice.
 - **Row and column presence arrays:** Mark which rows and columns contain a one, then find first and last marked positions. This uses $O(R+C)$ extra space without improving worst-case scan time.
 - **Prefix sums plus binary search:** A 2D prefix structure can answer whether regions contain ones and locate boundaries, but building it already costs $O(RC)$ time and $O(RC)$ space for a one-time query.
@@ -107,8 +104,8 @@ and similarly define $c_{\min}$ and $c_{\max}$ over the column coordinates of al
 - **No-one input outside the contract:** The infinity sentinels would remain and the return expression would be invalid. A general-purpose version would handle this separately, but the exact source correctly relies on the stated at-least-one-one guarantee.
 - **Rectangles cannot rotate:** “Horizontal and vertical sides” means an axis-aligned bounding box. A tilted geometric rectangle is outside the problem definition.
 - **Input preservation:** The method only reads each cell and leaves the grid unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -64,7 +64,7 @@ Players absent from all matches never become keys. That precisely enforces the i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A player can first appear as a winner, first appear as a los... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Players with two or more losses are ignored. Since the traversal is sorted, both
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three status sets:** Maintain separate sets fo:** - **Three status sets:** Maintain separate sets for zero, one, and multiple losses and move losers between them. This works but requires more transition cases than storing the numeric count directly.
+- **Three status sets:** Maintain separate sets for zero, one, and multiple losses and move losers between them. This works but requires more transition cases than storing the numeric count directly.
 - **A seen set plus a loser counter:** Record every participant in one set and only losses in a map. It is correct, but the exact solution folds participation and loss count into one structure.
 - **Fixed counting array:** Player IDs are bounded by `100000`, so an array initialized with a sentinel can count losses and be scanned in numeric order in `O(m + U)` time, where `U` is the ID range. It avoids sorting but allocates space for IDs that never appear.
 - **Sort only after filtering:** Collect the zero-loss and one-loss IDs from an unsorted map and sort both lists. This has the same asymptotic bound; sorting all items once makes the exact output ordering straightforward.
@@ -121,8 +121,8 @@ Players with two or more losses are ignored. Since the traversal is sorted, both
 - **Participant-only rule:** IDs never appearing in `matches` are absent from the counter and never returned, even though they could be described informally as having zero losses.
 - **Increasing order:** Iterating an ordinary map is not a numeric-order guarantee. `sorted(cnt.items())` is the step that establishes the required ordering.
 - **Output positions:** Count zero maps to index zero and count one to index one; swapping the lists would violate the contract even if their contents were correct.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

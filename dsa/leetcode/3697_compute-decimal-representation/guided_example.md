@@ -88,11 +88,7 @@ The components sum to $102$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `v` is nonzero, the source appends:
-
-`p * v`
-
-At that mom... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -135,7 +131,7 @@ Every returned value is legal because each term uses one digit from one through 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a decimal string:** Scanning charac:** - **Convert to a decimal string:** Scanning characters with their positions also takes $O(\log n)$ time and space. Repeated `divmod` keeps the logic numeric.
+- **Convert to a decimal string:** Scanning characters with their positions also takes $O(\log n)$ time and space. Repeated `divmod` keeps the logic numeric.
 - **Sort the components:** Sorting is unnecessary because extraction order is already increasing by place value; one reversal is linear.
 - **Append zero-place components:** Zero is not a positive base-10 component and adds nothing. Skipping zero digits is necessary for minimum cardinality.
 - **One-digit input:** The first extracted digit forms the input itself, and reversing a one-element list changes nothing.
@@ -145,8 +141,8 @@ Every returned value is legal because each term uses one digit from one through 
 - **Carries in alternative sums:** Combining several smaller components can reproduce higher digits, but it cannot use fewer components than the number of target nonzero digits.
 - **Descending requirement:** Reversing is required because `divmod` discovers the units component first.
 - **Positive-input guarantee:** Zero would produce an empty list under the loop, but zero is outside the contract and is not a positive base-10 component.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

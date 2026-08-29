@@ -51,7 +51,7 @@ Let $L$, $R$, and $B$ be the counts of `L`, `R`, and underscore respectively. Be
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $L$, $R$, and $B$ be the counts of `L`, `R`, and undersc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal single loop:** Maintain a signed fixed:** - **Literal single loop:** Maintain a signed fixed displacement and underscore count in one traversal, then return absolute displacement plus blanks. This performs one physical pass with the same bounds.
+- **Literal single loop:** Maintain a signed fixed displacement and underscore count in one traversal, then return absolute displacement plus blanks. This performs one physical pass with the same bounds.
 - **Try both extremes:** Compute final coordinate when all underscores are left and when all are right, then take the larger absolute value. These are the only extreme assignments needed and yield the same formula.
 - **Enumerate underscore choices:** Testing all $2^B$ assignments is unnecessary because the triangle inequality proves an extreme assignment is optimal.
 - **No underscores:** The answer is simply the absolute difference between fixed left and right counts.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Move order:** It would matter for a maximum intermediate distance question, but not for the final coordinate asked here.
 - **Three physical scans:** The exact count-based expression is still $O(n)$ even though it is not a single traversal internally.
 - **Input preservation:** Strings are immutable, and no modified movement string is built.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

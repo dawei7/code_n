@@ -55,7 +55,7 @@ Without `vis`, the graph’s cycles would cause endless repeated exploration. A 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The deque `q` initially contains `(0, 0)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Starting with `ans = 0` is important. The origin is reachable in zero moves. If 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Symmetry-reduced memoized recursion:** Reflect:** - **Symmetry-reduced memoized recursion:** Reflect the target into the first quadrant and recursively approach the origin with two move patterns plus small base cases. Memoization reduces repeated work.
+- **Symmetry-reduced memoized recursion:** Reflect the target into the first quadrant and recursively approach the origin with two move patterns plus small base cases. Memoization reduces repeated work.
 - **Bidirectional BFS:** Expand from both origin and target until the visited regions meet. It can reduce explored constants, though its asymptotic two-dimensional bound remains similar.
 - **Closed-form knight-distance formula:** A mathematical solution can run in $O(1)$ time but requires careful exceptions near the origin and is harder to derive safely.
 - **Target is the origin:** The first queue removal matches and returns zero.
@@ -106,8 +106,8 @@ Starting with `ans = 0` is important. The origin is reachable in zero moves. If 
 - **Visited-on-enqueue:** Marking before append prevents duplicate queue entries from different parents in the same layer.
 - **Layer length capture:** `range(len(q))` evaluates the current size once, so newly appended neighbors wait for the next distance layer.
 - **Unreachable fallback:** `-1` should never occur under the guarantee; it exists only as a defensive final return.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

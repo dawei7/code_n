@@ -51,7 +51,7 @@ The source appends the knight's initial coordinate to `positions` after recordin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source appends the knight's initial coordinate to `posit... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each pawn and the starting location, BFS runs over all fifty-by-fifty cells.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute knight distance during every game tran:** - **Compute knight distance during every game transition:** This repeats board searches exponentially. Precomputation separates geometry from game choices.
+- **Compute knight distance during every game transition:** This repeats board searches exponentially. Precomputation separates geometry from game choices.
 - **Manhattan distance:** Knight movement does not follow Manhattan distance; BFS is required on the bounded board.
 - **Greedy farthest pawn for Alice:** Bob's future minimizing choices can make a locally longest capture globally worse. Full minimax is necessary.
 - **Greedy nearest pawn for Bob:** The same look-ahead issue applies symmetrically.
@@ -103,8 +103,8 @@ For each pawn and the starting location, BFS runs over all fifty-by-fifty cells.
 - **Distance source indexing:** `dist[last][x][y]` uses the current pawn or appended start as a BFS source and the selected pawn's coordinates as destination. Knight distances are symmetric, but the stored orientation remains consistent.
 - **BFS layer counter:** `step` increments before expanding the current layer, so newly discovered neighbors receive distance one from the source, then two, and so forth.
 - **Infinity in Bob's branch:** At least one pawn bit is set whenever that branch runs, so some candidate always replaces infinity before return.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ The Drivers table is irrelevant to this question because accepted-ride records a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `Ride` CTE left joins each generated month to `Rides` wh... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The source applies `AVG(ride_distance)` over a three-row window and similarly fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correctly ordered forward window:** Add `ORDER:** - **Correctly ordered forward window:** Add `ORDER BY month` inside each `OVER` clause. This is the smallest change needed for deterministic three-calendar-month frames.
+- **Correctly ordered forward window:** Add `ORDER BY month` inside each `OVER` clause. This is the smallest change needed for deterministic three-calendar-month frames.
 - **Self-join monthly totals:** Join each start month to totals whose month lies from start through start+2, then divide their sum by three. It is more verbose but makes the window membership explicit.
 - **Use `SUM(...) / 3` instead of `AVG`:** With all twelve zero-filled months present, both are equivalent for valid three-row frames.
 - **Month with no requests:** The calendar left join preserves it and monthly sums become zero.
@@ -115,8 +115,8 @@ The source applies `AVG(ride_distance)` over a three-row window and similarly fo
 - **Outer ordering is insufficient:** It controls presentation only, not the order used to evaluate an unordered window frame.
 - **Rounding:** The source rounds the three-month average, not each monthly total.
 - **Drivers table unused:** No driver property is needed to compute totals from accepted rides.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

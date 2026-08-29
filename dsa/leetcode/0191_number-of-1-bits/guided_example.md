@@ -70,7 +70,7 @@ and fills the three lower zero positions with ones.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider a positive integer `n` and locate its least signifi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ never remove two set bits and can never create a set bit.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every bit:** AND with a moving mask for :** - **Check every bit:** AND with a moving mask for 32 iterations; simpler fixed work but ignores sparsity.
+- **Check every bit:** AND with a moving mask for 32 iterations; simpler fixed work but ignores sparsity.
 - **Parallel mask-and-add:** Sum neighboring bit counts in five fixed stages, as the competitive variant does.
 - **Byte lookup table:** Four fixed lookups per call make a useful repeated-call optimization with a 256-entry cache.
 - **Built-in population count:** `n.bit_count()` is concise and usually highly optimized, though it hides the interview technique.
@@ -123,8 +123,8 @@ never remove two set bits and can never create a set bit.
 - **Zero:** Returns zero naturally even though the Reference says positive.
 - **Negative Python integer:** Mask to the intended width first; otherwise the finite-word reasoning does not apply.
 - **Variable-width integers:** Report complexity in the word length or popcount instead of calling it unconditional $O(1)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

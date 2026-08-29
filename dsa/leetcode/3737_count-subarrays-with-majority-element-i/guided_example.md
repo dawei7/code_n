@@ -77,7 +77,7 @@ For `nums=[1,2,2,3]` and `target=2`, fixing `i=1` produces candidates `[2]`, `[2
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop fixes each possible left endpoint `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Resetting `cnt` for the next left endpoint is necessary because the candidate fa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount every candidate from scratch:** This i:** - **Recount every candidate from scratch:** This is correct but costs $O(n^3)$. Incremental right-end extension removes the extra scan.
+- **Recount every candidate from scratch:** This is correct but costs $O(n^3)$. Incremental right-end extension removes the extra scan.
 - **Transform target to `+1` and others to `-1`:** A subarray has target majority when its transformed sum is positive. Counting positive-sum subarrays with prefix sums and an order-statistics structure can improve scaling, but that is not the exact source.
 - **Use a sliding window:** Majority is not monotonic under arbitrary expansion and shrinking, so a standard two-pointer rule cannot count all valid ranges safely.
 - **Follow the manifest's claimed linear method:** Counting earlier smaller prefix balances generally requires a Fenwick tree or equivalent and is not constant time per position without structure. It must not be attributed to these nested loops.
@@ -126,8 +126,8 @@ Resetting `cnt` for the next left endpoint is necessary because the candidate fa
 - **Every value is target:** Every subarray is valid, yielding `n(n+1)/2`.
 - **Duplicate value sequences at different indices:** They are different subarrays and are each counted because the task is index-based.
 - **Large numeric values:** Only equality with `target` matters; magnitude does not affect memory or running time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

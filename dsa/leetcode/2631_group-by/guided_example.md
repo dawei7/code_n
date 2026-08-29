@@ -65,7 +65,7 @@ The method reads source items and returns a separate grouping object. It never r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation defines `Array.prototype.groupBy` as a no... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The callback is invoked exactly once per source item. Its result is reused for t
 
 ## 6. Traps This Instance Exposes
 
-- **- **`reduce` construction:** Can build the same ob:** - **`reduce` construction:** Can build the same object but is no more efficient and adds accumulator callback syntax.
+- **`reduce` construction:** Can build the same object but is no more efficient and adds accumulator callback syntax.
 - **Use a `Map`:** Avoids prototype-name concerns naturally, but the contract requires an object result.
 - **Plain assignment for new keys:** Usually works but mishandles special names such as `__proto__` on ordinary objects.
 - **Empty array:** The loop performs no callback calls and returns an empty object.
@@ -117,8 +117,8 @@ The callback is invoked exactly once per source item. Its result is reused for t
 - **Key `"__proto__"`:** `Object.defineProperty` safely creates a data property instead of changing the result's prototype.
 - **Object or array items:** Buckets store the original references without cloning.
 - **Callback order:** `fn` is called once per item from left to right.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

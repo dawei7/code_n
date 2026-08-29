@@ -138,7 +138,7 @@ All divisions are exact integer divisions. For any integer $q$, $q(q-1)$ and $q(
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Write $X=P_e$ for the current endpoint sum and $Y=P_j$ for a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -188,7 +188,7 @@ No binary search over line intersections and no general Li Chao tree is necessar
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic partition DP:** Implement the recurr:** - **Quadratic partition DP:** Implement the recurrence directly by trying every split. It is the clearest reference model but costs $O(KN^2)$ time.
+- **Quadratic partition DP:** Implement the recurrence directly by trying every split. It is the clearest reference model but costs $O(KN^2)$ time.
 - **Li Chao tree:** A general minimum-line structure handles arbitrary slope and query order in $O(\log C)$ per operation. It would give roughly $O(KN\log C)$ time and is unnecessary because positive values provide both monotonicities.
 - **Floating-point intersection deque:** Storing intersection coordinates can work, but exact cross multiplication avoids rounding errors for large integer costs and tied boundaries.
 - **k equals one:** Only split 0 is legal, so the answer is the triangular value of the total array sum.
@@ -199,8 +199,8 @@ No binary search over line intersections and no general Li Chao tree is necessar
 - **Large values:** Python integer arithmetic keeps expanded costs and cross products exact without overflow.
 - **Tied line values:** Front removal keeps the newer, smaller-slope line, which cannot be worse at future larger query coordinates.
 - **Impossible intermediate states:** Infinite entries are not inserted as lines, preventing a sentinel from contaminating valid hull arithmetic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

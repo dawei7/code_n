@@ -55,7 +55,7 @@ There is no separate initial test for a blocked destination. That is still corre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Any clear path must include the top-left cell.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The method intentionally mutates `grid`. Reusing the input later as the original
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate visited matrix:** Preserve `grid` and:** - **Separate visited matrix:** Preserve `grid` and store discovery state in another Boolean matrix. The time remains $O(n^2)$ and the space remains $O(n^2)$, but the caller’s input is not modified.
+- **Separate visited matrix:** Preserve `grid` and store discovery state in another Boolean matrix. The time remains $O(n^2)$ and the space remains $O(n^2)$, but the caller’s input is not modified.
 - **Store distance in each queue entry:** Enqueue `(row, column, distance)` and return that distance at the target. This avoids the layer-size loop but adds one integer to every queued record.
 - **Write distances into the grid:** Replace each discovered zero with its distance rather than a generic one. This can make debugging clearer, though original blocked ones then overlap with the start distance unless the interpretation is handled carefully.
 - **Depth-first search:** DFS can determine reachability but does not discover paths in increasing length. Finding the shortest path would require exploring many alternatives and maintaining a best value.
@@ -109,8 +109,8 @@ The method intentionally mutates `grid`. Reusing the input later as the original
 - **Multiple shortest paths:** A cell is kept only on its first discovery, but BFS first discovery already has minimum distance. Other equally short routes need not enqueue it again.
 - **No path:** Emptying the queue means the entire reachable component of the start was explored without finding the target.
 - **Input reuse:** Because open visited cells are overwritten with one, callers that need the original matrix must copy it before calling this method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

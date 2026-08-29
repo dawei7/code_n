@@ -64,9 +64,7 @@ Adding this result to the appropriate counter increments it only for a set bit. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `n & 1` isolates the least-significant bit:
-
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ Since consecutive bit indices alternate parity, this is all the state required t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert to a binary string:** Reverse `bin(n)`:** - **Convert to a binary string:** Reverse `bin(n)` and inspect characters by index. This is clear but allocates $O(\log n)$ string space.
+- **Convert to a binary string:** Reverse `bin(n)` and inspect characters by index. This is clear but allocates $O(\log n)$ string space.
 - **Alternating bit masks:** Mask even and odd positions separately and use a population-count operation, offering another constant-space bit solution.
 - **Full integer index:** Incrementing an absolute index and taking modulo two works, but a one-bit parity toggle stores exactly what is needed.
 - **Power of two at even index:** The result is `[1,0]`.
@@ -120,8 +118,8 @@ Since consecutive bit indices alternate parity, this is all the state required t
 - **Leading zeros:** They are not processed and would contribute nothing anyway.
 - **Positive-input guarantee:** At least one significant bit exists.
 - **Local right shifts:** They do not mutate any caller-visible structure.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

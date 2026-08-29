@@ -51,7 +51,7 @@ The outer loop enumerates every such circular alignment.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop enumerates every such circular alignment.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The outer loop enumerates every such circular alignment.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Materialize each rotation:** It keeps $O(n^2)$:** - **Materialize each rotation:** It keeps $O(n^2)$ time but spends $O(n)$ temporary space per shift.
+- **Materialize each rotation:** It keeps $O(n^2)$ time but spends $O(n)$ temporary space per shift.
 - **Frequency correlation/FFT:** It can accelerate matching for compressible value domains but is much more complex for arbitrary integers.
 - **Group indices by value:** Difference-frequency counting can derive best offsets in expected $O(n^2)$ worst case and may improve sparse matches.
 - **Zero shift:** It is included by `k=0`.
@@ -104,8 +104,8 @@ The outer loop enumerates every such circular alignment.
 - **Modulo:** It guarantees source index remains within bounds.
 - **Input preservation:** No sorting or rotation mutation occurs.
 - **Annotation import:** `List` must be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

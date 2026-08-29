@@ -227,6 +227,17 @@ export interface LevelRecordOut {
   attempts: number;
 }
 
+export interface SpacedReviewRecord {
+  challenge_id: string;
+  repetition_count: number;
+  ease_factor: number;
+  interval_days: number;
+  last_reviewed_at: string;
+  next_due_date: string;
+  retention_score: number;
+  state: 'learning' | 'review' | 'mastered';
+}
+
 export interface ProgressOut {
   player_name: string;
   completed: string[];
@@ -252,6 +263,7 @@ export interface ProgressOut {
   pane_font_scales: Record<string, number>;
   pane_sizes: Record<string, number>;
   accent_colors: { light: string; dark: string };
+  spaced_reviews?: Record<string, SpacedReviewRecord>;
 }
 
 export interface CustomProblemNode {

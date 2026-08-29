@@ -63,7 +63,7 @@ The same reasoning applies to the outer power. Even though its base is already b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A direct evaluation of `a ** b` can have a number of digits ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -76,7 +76,7 @@ $$
 \left(a^b \bmod 10\right)^c \bmod m.
 $$
 
-Notice that the outer modulus is generally different from ten. The inner result is an actual integer in $[0,9]$, and the outer exponentiation starts from that integer. One must not replace the inner calculation with `pow(a, b, m)`, because that asks a different modular question.
+Notice that the outer modulus is generally different from ten. The inner result is an actual integer in `[0,9]`, and the outer exponentiation starts from that integer. One must not replace the inner calculation with `pow(a, b, m)`, because that asks a different modular question.
 
 For example, for `[3, 4, 2, 5]`, the inner value is `pow(3, 4, 10) = 1` because $3^4 = 81$. The outer value is then `pow(1, 2, 5) = 1`. Computing $3^{4\cdot2} \bmod 5$ happens to give one here, but that coincidence is not an identity and cannot justify exponent multiplication.
 
@@ -106,7 +106,7 @@ For example, for `[3, 4, 2, 5]`, the inner value is `pow(3, 4, 10) = 1` because 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary exponentiation first:** Computing `(a:** - **Ordinary exponentiation first:** Computing `(a ** b % 10) ** c % m` is mathematically correct but may allocate integers with an enormous number of digits before reducing them.
+- **Ordinary exponentiation first:** Computing `(a ** b % 10) ** c % m` is mathematically correct but may allocate integers with an enormous number of digits before reducing them.
 - **Multiplying exponents:** Replacing the expression with `pow(a, b * c, m)` is generally wrong because the required inner reduction modulo ten occurs before the outer exponentiation.
 - **Cycle tables for last digits:** Powers modulo ten are periodic, so the inner stage can be implemented with cases. Built-in modular exponentiation is clearer and already logarithmic.
 - **Manual repeated squaring:** It gives the same asymptotic behavior and can be educational, but Python’s three-argument `pow` is optimized and expresses the intent directly.
@@ -115,8 +115,8 @@ For example, for `[3, 4, 2, 5]`, the inner value is `pow(3, 4, 10) = 1` because 
 - **Repeated qualifying rows:** Each row contributes its own index. Equal data does not cause deduplication.
 - **No qualifying rows:** The comprehension naturally returns an empty list.
 - **Index order:** Sorting variables or results by value would break the required original indices; `enumerate` preserves input order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

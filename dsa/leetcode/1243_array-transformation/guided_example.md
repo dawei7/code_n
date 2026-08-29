@@ -62,7 +62,7 @@ Equality with either neighbor makes both strict conditions false, so plateaus ar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An element cannot be simultaneously strictly greater and str... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ If a complete scan makes no change, `f` stays false and the while loop ends. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute a separate next array:** Build each ne:** - **Compute a separate next array:** Build each new day from the old array and then replace it. This makes simultaneity explicit and has the same \(O(n)\) space per day.
+- **Compute a separate next array:** Build each new day from the old array and then replace it. This makes simultaneity explicit and has the same \(O(n)\) space per day.
 - **Event-driven active indices:** Recheck only positions near a change. With careful scheduling by days, this can approach an \(O(n+C)\)-style bound, but preserving simultaneous semantics is more complex.
 - **Already stable input:** The loop still performs one copy and scan, makes no changes, and returns.
 - **Strict comparisons:** Equality with either neighbor prevents an update; using non-strict comparisons would alter plateaus incorrectly.
@@ -109,8 +109,8 @@ If a complete scan makes no change, `f` stays false and the while loop ends. The
 - **Termination:** Integer total variation decreases on every changing day, ruling out cycles.
 - **In-place result:** The caller’s original list is mutated; copy it first if preservation is required.
 - **Minimum allowed length:** With three elements, only the center can change, and the same simulation and termination proof apply.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

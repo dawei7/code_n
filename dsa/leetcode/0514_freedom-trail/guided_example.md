@@ -51,7 +51,7 @@ Let `n = len(ring)` and `m = len(key)`. The dictionary `pos` maps each character
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `n = len(ring)` and `m = len(key)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let `n = len(ring)` and `m = len(key)`. The dictionary `pos` maps each character
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy nearest occurrence:** It can choose a l:** - **Greedy nearest occurrence:** It can choose a locally short rotation that leaves the ring poorly aligned for later key characters. DP is needed for global optimality.
+- **Greedy nearest occurrence:** It can choose a locally short rotation that leaves the ring poorly aligned for later key characters. DP is needed for global optimality.
 - **Top-down memoization:** Cache states `(key_index, ring_index)` and recursively try matching occurrences. It expresses the same recurrence.
 - **Space-compressed DP:** Retain only the preceding row because each transition depends only on `i - 1`. This achieves $O(R)$ table space.
 - **Shortest-path formulation:** Treat `(key progress, ring position)` as graph states and use a priority queue. It can avoid some dense transitions but adds graph machinery.
@@ -95,8 +95,8 @@ Let `n = len(ring)` and `m = len(key)`. The dictionary `pos` maps each character
 - **First ring character already matches:** Initialization charges zero rotation plus exactly one press.
 - **Several final occurrences:** The answer must minimize across all of them rather than assume the first position list entry.
 - **Guaranteed spellability:** Every key character has at least one ring occurrence, so no unreachable-key branch is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

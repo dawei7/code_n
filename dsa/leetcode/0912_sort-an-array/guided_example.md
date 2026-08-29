@@ -51,7 +51,7 @@ Three-way partitioning is particularly important when many values are equal. An 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Three-way partitioning is particularly important when many v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Merge sort:** Guarantees $O(n\log n)$ time but:** - **Merge sort:** Guarantees $O(n\log n)$ time but needs $O(n)$ merge storage.
+- **Merge sort:** Guarantees $O(n\log n)$ time but needs $O(n)$ merge storage.
 - **Heap sort:** Guarantees $O(n\log n)$ time with $O(1)$ auxiliary array storage and avoids recursion, though it is often less cache-friendly.
 - **Counting sort:** Values lie in a bounded range, so frequency counting can run in $O(n+K)$ time with $O(K)$ space.
 - **Two-way quicksort:** It can perform poorly on many duplicates; three-way partitioning removes the entire equal block.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Do not advance `k` after a greater swap:** The incoming element is unclassified and must be examined.
 - **Input mutation:** The returned object is the now-sorted original list.
 - **Random worst case:** Randomization improves expected behavior but does not create a deterministic worst-case guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

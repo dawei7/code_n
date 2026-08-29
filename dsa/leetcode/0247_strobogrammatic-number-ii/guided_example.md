@@ -58,7 +58,7 @@ The empty-string base case is especially important. If the recursion instead beg
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every recursive call decreases the remaining length by two, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ For `n = 4`, recursion first computes `dfs(2)` as an **inner** level. Here `u = 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking into a fixed character array:** F:** - **Backtracking into a fixed character array:** Fill mirrored positions from the outside inward and emit a copy at the center. It generates the same search space and can avoid repeatedly concatenating intermediate strings, though each completed answer still needs an $O(n)$ copy.
+- **Backtracking into a fixed character array:** Fill mirrored positions from the outside inward and emit a copy at the center. It generates the same search space and can avoid repeatedly concatenating intermediate strings, though each completed answer still needs an $O(n)$ copy.
 - **Iterative center expansion:** Start with `['']` for even `n` or `['0', '1', '8']` for odd `n`, then wrap level by level. It mirrors this recursion exactly and removes call-stack usage.
 - **Generate all digit strings and filter:** Trying $10^n$ strings ignores the strong pair constraints and is exponentially much larger than generating only valid candidates.
 - **`n = 1`:** Return `0`, `1`, and `8`. These are the only digits unchanged by rotation and `0` is a valid one-digit number.
@@ -112,8 +112,8 @@ For `n = 4`, recursion first computes `dfs(2)` as an **inner** level. Here `u = 
 - **Pair orientation:** `69` and `96` are both valid and distinct. Pairs `66` and `99` are invalid because each digit rotates into the other digit, not itself.
 - **Output ordering:** The exact code emits wrappers in the order `11`, `88`, `69`, `96`, followed by internal `00`. Sorting is unnecessary and would add work because any return order is accepted.
 - **Duplicate generation:** Each result has one unique sequence of outer pairs and optional center, so different construction paths cannot produce the same string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

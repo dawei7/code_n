@@ -31,7 +31,7 @@ Return `s` *after all rounds have been completed*.
 - **Output:** `"135"`
 - **Explanation:** 
 - For the first round, we divide s into groups of size 3: "111", "112", "222", and "23".
-​​​​​Then we calculate the digit sum of each group: 1 + 1 + 1 = 3, 1 + 1 + 2 = 4, 2 + 2 + 2 = 6, and 2 + 3 = 5.
+Then we calculate the digit sum of each group: 1 + 1 + 1 = 3, 1 + 1 + 2 = 4, 2 + 2 + 2 = 6, and 2 + 3 = 5.
 So, s becomes "3" + "4" + "6" + "5" = "3465" after the first round.
 - For the second round, we divide s into "346" and "5".
 Then we calculate the digit sum of each group: 3 + 4 + 6 = 13, 5 = 5.

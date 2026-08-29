@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** integer array `costs` where $\text{costs}[i]$ is the cost of hiring the $$i^{\text{th}}$$ worker.
+You are given a **0-indexed** integer array `costs` where $\text{costs}[i]$ is the cost of hiring the $i^{\text{th}}$ worker.
 
 The objective is to compute `11` from `{"costs": [17, 12, 10, 2, 7, 2, 11, 20, 8], "k": 3, "candidates": 4}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -55,7 +55,7 @@ The exact shortcut sorts all costs and sums the first `k`. It does not include i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `2*candidates >= n`, the first and last candidate regions... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Calling `heapify` after already using `heappush` is redundant but harmless: the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two heaps:** Maintain separate left and right :** - **Two heaps:** Maintain separate left and right min-heaps, compare their tops, and replenish the chosen side. This is equivalent but requires explicit cross-heap tie handling by index.
+- **Two heaps:** Maintain separate left and right min-heaps, compare their tops, and replenish the chosen side. This is equivalent but requires explicit cross-heap tie handling by index.
 - **Sort all workers unconditionally:** It ignores exposure rules when candidate regions do not cover the middle, so it is valid only in the overlap shortcut.
 - **Repeated linear scans:** Searching exposed workers in every session costs $O(kc)$, which can be quadratic.
 - **Candidate regions overlap:** The shortcut prevents inserting the same worker twice.
@@ -104,8 +104,8 @@ Calling `heapify` after already using `heappush` is redundant but harmless: the 
 - **One candidate per side:** The heap compares only the current leftmost and rightmost remaining workers.
 - **Tie behavior in shortcut:** Equal-cost worker order does not affect the requested total, even though the exact hired identities would follow indices.
 - **Input preservation:** The heap branch does not mutate `costs`; the shortcut uses `sorted` rather than in-place sorting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

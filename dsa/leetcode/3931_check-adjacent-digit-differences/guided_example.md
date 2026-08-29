@@ -57,7 +57,7 @@ Calling `list` before `map` is not necessary for the algorithm, because a string
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The string must remain a string at the interface because lea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Taking the absolute value makes the comparison independent of direction. A chang
 
 ## 6. Traps This Instance Exposes
 
-- **- **Required source import:** The file needs `from:** - **Required source import:** The file needs `from itertools import pairwise` or an equivalent definition before it can run. Without it, every valid call raises `NameError`.
+- **Required source import:** The file needs `from itertools import pairwise` or an equivalent definition before it can run. Without it, every valid call raises `NameError`.
 - **Direct index loop:** Iterate $i$ from zero through $N-2$ and compare `int(s[i])` with `int(s[i + 1])`. This is self-contained, naturally short-circuits, and genuinely uses $O(1)$ auxiliary space.
 - **Stream the string directly:** `pairwise(map(int, s))` preserves the source's concise structure while avoiding the $O(N)$ character list.
 - **Convert the whole string to one integer:** This loses digit boundaries and leading zeroes, so it cannot check the required pairs.
@@ -111,8 +111,8 @@ Taking the absolute value makes the comparison independent of direction. A chang
 - **Minimum permitted length:** A two-character string produces exactly one pair and returns that comparison.
 - **Digits in descending order:** Absolute value handles decreasing and increasing transitions identically.
 - **Non-digit characters:** The contract excludes them. If supplied anyway, `int` could raise `ValueError` rather than returning a Boolean.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

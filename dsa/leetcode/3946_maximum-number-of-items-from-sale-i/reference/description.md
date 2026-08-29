@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $$i^{\text{th}}$$ item. You are also given an integer `budget`.
+You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $i^{\text{th}}$ item. You are also given an integer `budget`.
 
 There are unlimited copies of each item available for purchase.You may buy any number of copies of any items such that the total cost of the purchased copies is at most `budget`.
 
@@ -21,7 +21,7 @@ Return the **maximum total number of item copies** you can obtain, including bot
 - `items`: A nonempty list of rows $[\text{factor}_{i}, \text{price}_{i}]$, one for each indexed item type.
 - `budget`: The maximum total amount that may be spent on purchased copies.
 
-Let $n=\lvert\texttt{items}\rvert$, let $B=\texttt{budget}$, and let $F=\max_i \texttt{factor_i}$.
+Let $n=\lvert\texttt{items}\rvert$, let $B=\texttt{budget}$, and let $F=\max_i \texttt{factor\_i}$.
 
 **Return value**
 

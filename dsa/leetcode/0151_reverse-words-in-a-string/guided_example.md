@@ -68,7 +68,7 @@ The condition order checks `i < n` before indexing `s[i]`, preventing an out-of-
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the top of each outer iteration, the first inner loop adv... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ For `"a good   example"`, it stores `["a", "good", "example"]` even though the m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in split and reversed:** `" ".join(rever:** - **Built-in split and reversed:** `" ".join(reversed(s.split()))` performs the same task concisely in Python and has the same asymptotic bounds.
+- **Built-in split and reversed:** `" ".join(reversed(s.split()))` performs the same task concisely in Python and has the same asymptotic bounds.
 - **Deque with front insertion:** Parse each word and add it to the deque’s front, then join. It avoids a reversed list copy but still uses $O(n)$ storage.
 - **Reverse a mutable character array:** Trim/collapse spaces, reverse the whole buffer, then reverse each word. In a language with mutable strings, this can meet the $O(1)$ auxiliary follow-up.
 - **One word:** It is extracted and joined unchanged, while surrounding spaces disappear.
@@ -119,8 +119,8 @@ For `"a good   example"`, it stores `["a", "good", "example"]` even though the m
 - **At least one word:** The contract guarantees `words` is nonempty; `join` would still return an empty string for unsupported all-space input.
 - **Whitespace definition:** The source treats only literal ASCII space as a separator, exactly matching the stated input alphabet.
 - **Immutable-string limitation:** The function cannot truly reorder the supplied Python string object in place; it must return a new string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

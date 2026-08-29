@@ -59,7 +59,7 @@ This tree explains why exponential work cannot be avoided: the required output i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At depth zero there is one undecided path.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Unlike combinations of a fixed size, there is no success condition based on `len
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cascading iteration:** Start with `[[]]`; for :** - **Cascading iteration:** Start with `[[]]`; for each value, copy every existing subset and append that value. It produces the same doubling pattern without recursion.
+- **Cascading iteration:** Start with `[[]]`; for each value, copy every existing subset and append that value. It produces the same doubling pattern without recursion.
 - **Bitmask enumeration:** Treat integers from zero through $2^n-1$ as membership patterns. It is compact and directly exposes the one-bit-per-element correspondence.
 - **Backtrack and append at every node:** Record `t` immediately, then loop over possible next indices. This visits one node per subset and avoids explicit exclude calls.
 - **Input of length one:** The two leaves are the empty subset and the singleton.
@@ -111,8 +111,8 @@ Unlike combinations of a fixed size, there is no success condition based on `len
 - **Any output order:** Exclusion-first DFS order is acceptable and needs no sorting.
 - **Maximum length ten:** At most 1024 subsets are generated, but the general complexity remains exponential.
 - **Input preservation:** The source never sorts or modifies `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ Sorting the y-values serves two purposes. It lets the nested loops enumerate eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `d` maps each x-coordinate to a list of all y... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ After checking the candidate, it assigns `pos[(y1, y2)] = x`, even if the pair h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Point-set diagonal test:** Put every point in :** - **Point-set diagonal test:** Put every point in a hash set, choose every pair as potential opposite corners, and test the other two corners. This also takes `O(N^2)` expected time and `O(N)` set space, but must reject equal x or y and may examine diagonal pairs that cannot improve the answer.
+- **Point-set diagonal test:** Put every point in a hash set, choose every pair as potential opposite corners, and test the other two corners. This also takes `O(N^2)` expected time and `O(N)` set space, but must reject equal x or y and may examine diagonal pairs that cannot improve the answer.
 - **Store all x-values per y-pair:** It is correct but unnecessary. For a future right column, the closest previous x always gives the smallest width for that fixed height.
 - **Enumerate pairs of x-columns:** Intersect their y-sets and choose two common y-values. This can work, but repeated set intersections may be expensive and the latest-pair map expresses the minimum-width logic directly.
 - **No rectangle:** If no vertical y-pair repeats across two columns, `ans` remains infinity and the required result is zero.
@@ -114,8 +114,8 @@ After checking the candidate, it assigns `pos[(y1, y2)] = x`, even if the pair h
 - **Several rectangles with equal minimum area:** The method stores only the numeric minimum, which is sufficient because coordinates do not need to be returned.
 - **Coordinate value zero:** Zero is an ordinary valid coordinate. The algorithm uses dictionary membership rather than truthiness, so it handles stored x-coordinate zero correctly.
 - **Axis alignment:** The y-pair method intentionally ignores rotated rectangles. Those do not satisfy this problem's side-orientation requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

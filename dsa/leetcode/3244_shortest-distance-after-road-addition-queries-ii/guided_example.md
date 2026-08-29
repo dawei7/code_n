@@ -51,7 +51,7 @@ The array `nxt` is a successor structure for that path. Initially `nxt[i] = i + 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The array `nxt` is a successor structure for that path.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run BFS after every query:** This works as in :** - **Run BFS after every query:** This works as in problem 3243 but costs $O(q(n+q))$, which is too large when both limits are $10^5$.
+- **Run BFS after every query:** This works as in problem 3243 but costs $O(q(n+q))$, which is too large when both limits are $10^5$.
 - **Disjoint-set “next active” structure:** A union-find successor technique can also skip removed indices. The explicit `nxt` links already act as a simple deletion structure under noncrossing intervals and achieve linear amortized time.
 - **Maintain all-pairs or all-source distances:** The graph is much too large for quadratic state, and only the zero-to-destination distance is requested.
 - **Crossing queries:** The algorithm relies critically on their absence. With roads such as `u1 < u2 < v1 < v2`, marking bypassed endpoints inactive can discard a later useful combination.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Direct road from zero to `n - 1`:** All intermediate active cities are removed, `cnt` becomes one, and later answers remain at the theoretical minimum.
 - **Tuple assignment:** Reading the old successor and clearing the current link must be logically simultaneous. A two-statement implementation should save the old successor in a temporary variable before writing zero.
 - **No destination entry in `nxt`:** The loop stops when `i == v` and never reads `nxt[v]` at that point. Query constraints also ensure every source `u` has a valid array index.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

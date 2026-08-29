@@ -53,7 +53,7 @@ Each grid cell $(i,j)$ holds a vertical tower of `grid[i][j]` unit cubes. A proj
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - From above onto the $xy$ plane, only whether a tower exist... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ The solution calculates these three areas independently and adds them.
 
 ## 6. Traps This Instance Exposes
 
-- **- **One explicit nested loop:** Track positive cel:** - **One explicit nested loop:** Track positive cells, row maxima, and column maxima manually. This has the same time bound and uses an $O(n)$ column-maximum array.
+- **One explicit nested loop:** Track positive cells, row maxima, and column maxima manually. This has the same time bound and uses an $O(n)$ column-maximum array.
 - **Build a transposed matrix:** Then take row maxima of both orientations. It works but allocates $O(n^2)$ data unnecessarily.
 - **Model every unit cube:** Expanding towers takes time proportional to the sum of all heights, even though only occupancy and maxima matter.
 - **Sum tower heights for side views:** This double-counts overlapping shadow levels along the viewing direction.
@@ -100,8 +100,8 @@ The solution calculates these three areas independently and adds them.
 - **Equal maxima:** Equal-height towers aligned in one viewing line still create one shadow of that height, not multiple copies.
 - **Square-grid guarantee:** Every row is nonempty and has equal length, so `max(row)` and `zip(*grid)` are safe.
 - **Value magnitude:** Heights affect maxima but not the number of grid positions traversed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

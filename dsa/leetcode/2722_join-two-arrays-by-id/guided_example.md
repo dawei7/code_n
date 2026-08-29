@@ -59,9 +59,7 @@ An object that appears only in `arr1` remains this copy through the end of mergi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop visits every object in `arr1` and executes:
-
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ The new merged object is stored back under the same ID.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested search for matching IDs:** Avoids a map:** - **Nested search for matching IDs:** Avoids a map but can take $O(\lvert arr1\rvert\lvert arr2\rvert)$ time.
+- **Nested search for matching IDs:** Avoids a map but can take $O(\lvert arr1\rvert\lvert arr2\rvert)$ time.
 - **Sort both inputs and use two pointers:** Works in $O(N\log N)$ time and then linear merging, but mutates or copies both arrays and is more elaborate.
 - **Plain object keyed by ID:** Can work for integer IDs, though `Map` avoids property-name and prototype concerns and makes key intent explicit.
 - **Deep merge:** Incorrect; when both objects contain a nested property, the entire `arr2` value must replace the `arr1` value.
@@ -114,8 +112,8 @@ The new merged object is stored back under the same ID.
 - **Nonconflicting property:** It survives from whichever source contains it.
 - **Input mutation:** Top-level input objects are not mutated, although nested values remain shared references.
 - **Large object bodies:** Property-copy cost may dominate sorting, which is why the detailed bound includes $P$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

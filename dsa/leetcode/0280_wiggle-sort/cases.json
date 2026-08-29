@@ -372,7 +372,13 @@
           3
         ]
       },
-      "expected": null,
+      "expected": [
+        3
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
       "tags": [
         "boundary",
         "single-element"
@@ -389,7 +395,14 @@
           3
         ]
       },
-      "expected": null,
+      "expected": [
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "wiggle_sort",
+        "strict": false
+      },
       "tags": [
         "boundary",
         "duplicates"

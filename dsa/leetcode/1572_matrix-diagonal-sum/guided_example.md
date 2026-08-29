@@ -67,7 +67,7 @@ No matrix-value condition is involved; membership is determined solely by coordi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `row[i]` is the primary-diagonal entry for the current row.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ For an even-sized matrix, no integer row satisfies the equality, so every row co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add both then subtract center:** Sum `mat[i][i:** - **Add both then subtract center:** Sum `mat[i][i]` and `mat[i][n-i-1]` for all rows, then subtract the center for odd `n`. It is equivalent.
+- **Add both then subtract center:** Sum `mat[i][i]` and `mat[i][n-i-1]` for all rows, then subtract the center for odd `n`. It is equivalent.
 - **Scan every cell:** Check whether `i == j` or `i+j == n-1`, but this costs $O(N^2)$.
 - **Build diagonal arrays:** It adds unnecessary $O(N)$ storage.
 - **Odd dimension:** Exactly one center cell lies on both diagonals.
@@ -126,8 +126,8 @@ For an even-sized matrix, no integer row satisfies the equality, so every row co
 - **Square guarantee:** It makes primary and secondary diagonal lengths both equal to `N`.
 - **No mutation:** Matrix values and row structure remain unchanged.
 - **Overlap test:** Comparing coordinates, not values, is the correct way to prevent double counting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

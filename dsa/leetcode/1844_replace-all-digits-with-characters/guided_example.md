@@ -51,7 +51,7 @@ Characters cannot be added directly to integers in Python, so the solution uses 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Characters cannot be added directly to integers in Python, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ Characters cannot be added directly to integers in Python, so the solution uses 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Output builder without mutation:** Append each:** - **Output builder without mutation:** Append each even letter and its computed shifted character to a new list. It has the same `O(n)` time and space and can make the alternating structure explicit.
+- **Output builder without mutation:** Append each even letter and its computed shifted character to a new list. It has the same `O(n)` time and space and can make the alternating structure explicit.
 - **Named `shift` helper:** A helper returning `chr(ord(c) + x)` mirrors the problem wording but does not change the algorithm.
 - **Alphabet lookup string:** Find the source index in `"abcdefghijklmnopqrstuvwxyz"` and index forward. It is more verbose than using consecutive character codes.
 - **Digit zero:** The replacement equals the preceding letter because the code-point offset is zero.
@@ -100,8 +100,8 @@ Characters cannot be added directly to integers in Python, so the solution uses 
 - **Single-digit assumption:** `int(s[i])` is correct because each odd position contains one digit character, not a multi-character number.
 - **Input preservation:** The original Python string is immutable; only the newly created list is changed.
 - **Broader character sets:** The arithmetic relies on lowercase English letters occupying consecutive code points and on the stated no-overflow guarantee.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Due to a bug, there are many duplicate folders in a file system. You are given a 2D array `paths`, where $\text{paths}[i]$ is an array representing an absolute path to the $$i^{\text{th}}$$ folder in the file system.
+Due to a bug, there are many duplicate folders in a file system. You are given a 2D array `paths`, where $\text{paths}[i]$ is an array representing an absolute path to the $i^{\text{th}}$ folder in the file system.
 
 The objective is to compute `[["d"], ["d", "a"]]` from `{"paths": [["a"], ["c"], ["d"], ["a", "b"], ["c", "b"], ["d", "a"]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ A leaf returns the empty string immediately and is not registered in `g`. This p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two folders are identical based on their nonempty set of nam... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The virtual root is serialized too, but it cannot share a serialization with a p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Assign integer subtree IDs:** Intern sorted tu:** - **Assign integer subtree IDs:** Intern sorted tuples of child-name and child-ID pairs instead of retaining long strings. This avoids large serialization copies while preserving structural equality.
+- **Assign integer subtree IDs:** Intern sorted tuples of child-name and child-ID pairs instead of retaining long strings. This avoids large serialization copies while preserving structural equality.
 - **Delete while serializing:** This is wrong because ancestors must be compared using the original structure; deletion runs only once.
 - **Treat leaves as duplicates:** The definition requires a nonempty subfolder set, so empty serializations must not be counted.
 - **Same structure under different folder names:** The node's own name is excluded from its serialization, so such folders are correctly considered identical.
@@ -113,8 +113,8 @@ The virtual root is serialized too, but it cannot share a serialization with a p
 - **No duplicate nonempty structures:** No `deleted` flag is set, and all original paths are collected.
 - **Mutable path list:** Appending `path[:]` stores a snapshot; appending `path` itself would corrupt earlier answers during backtracking.
 - **Input parent guarantee:** Every nonroot folder's parent path exists, so trie insertion represents a complete folder hierarchy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

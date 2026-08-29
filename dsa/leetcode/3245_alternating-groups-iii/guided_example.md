@@ -51,7 +51,7 @@ Call circular edge `i` the adjacency between tile `i` and tile `(i + 1) % n`. It
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Call circular edge `i` the adjacency between tile `i` and ti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If one such arc has $L$ tiles, the number of contiguous groups of size $k$ fully
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount every circular window:** Testing $n$ s:** - **Recount every circular window:** Testing $n$ starts and up to $k$ adjacencies for every type-one query can cost $O(nk)$ per query. Even using a run-length scan still costs $O(n)$ after each update, too much for $5\cdot10^4$ operations.
+- **Recount every circular window:** Testing $n$ starts and up to $k$ adjacencies for every type-one query can cost $O(nk)$ per query. Even using a run-length scan still costs $O(n)$ after each update, too much for $5\cdot10^4$ operations.
 - **Ordered set plus length multiset:** A balanced search tree can maintain bad-edge predecessors and successors, while another augmented tree stores arc lengths and sums. This matches the conceptual solution, but Python lacks these structures in its standard library. Fenwick trees exploit the bounded integer indices and lengths.
 - **Segment tree:** It can provide breakpoint order statistics and length-frequency aggregates with the same $O(\log n)$ operations. It is more code and memory but supports the same invariants.
 - **Duplicate every color into a length-$2n$ array:** Duplication simplifies static circular-window scanning, but point updates affect two copies and fast group-size queries still need an augmented run-length structure.
@@ -103,8 +103,8 @@ If one such arc has $L$ tiles, the number of contiguous groups of size $k$ fully
 - **Output order:** Only type-one results are appended, exactly when encountered. Updates change future state but do not insert placeholder values into `answer`.
 - **Input mutation:** Genuine type-two queries assign into `colors`. Callers should not expect the original color array to remain unchanged after this stateful simulation.
 - **Order-statistic precondition:** `find_by_order` is called only with an order between one and `bad_count`. The wraparound formulas enforce that range; calling it with zero would not represent a valid breakpoint rank.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -85,7 +85,7 @@ For `tomatoSlices = 16` and `cheeseSlices = 7`, `k` is `28 - 16 = 12`. Thus `y =
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Write $C=\texttt{cheeseSlices}$ and $T=\texttt{tomatoSlices}... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -132,7 +132,7 @@ The return expression checks `k % 2 or y < 0 or x < 0`. If any invalid condition
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every possible jumbo count:** Testing valu:** - **Try every possible jumbo count:** Testing values from zero through `cheeseSlices` eventually finds the same pair but takes $O(C)$ time despite the system having a direct algebraic solution.
+- **Try every possible jumbo count:** Testing values from zero through `cheeseSlices` eventually finds the same pair but takes $O(C)$ time despite the system having a direct algebraic solution.
 - **Solve for jumbo burgers first:** Substituting `y = C - x` gives `x = (T - 2C) / 2`. This is equivalent; the exact source instead derives the small count through `4C - T`.
 - **Odd tomato total:** Both burger types use an even number of tomato slices, so an odd `tomatoSlices` can never be consumed exactly; this appears as odd `k`.
 - **Too many tomatoes:** If $T>4C$, even all jumbo burgers are insufficient and `y` becomes negative.
@@ -142,8 +142,8 @@ The return expression checks `k % 2 or y < 0 or x < 0`. If any invalid condition
 - **No ingredients:** `[0, 0]` is valid because it leaves no unused slice.
 - **One ingredient type absent:** A positive amount of only tomatoes or only cheese cannot form burgers and is rejected by nonnegativity.
 - **Uniqueness:** Two linear equations with different tomato coefficients leave at most one candidate pair, so the method never needs to choose among several valid answers.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

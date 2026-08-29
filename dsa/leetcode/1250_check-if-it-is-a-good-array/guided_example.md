@@ -65,7 +65,7 @@ Consequently, a combination can equal one if and only if the GCD of the whole ar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For integers \(a_1,\ldots,a_n\), the set of all integer line... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This proves no array with GCD greater than one can be good. For `[3,6]`, every i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit GCD loop with early exit:** Return tr:** - **Explicit GCD loop with early exit:** Return true as soon as the running GCD reaches one. It preserves the worst-case bound and can be faster in practice.
+- **Explicit GCD loop with early exit:** Return true as soon as the running GCD reaches one. It preserves the worst-case bound and can be faster in practice.
 - **Extended Euclidean algorithm:** Also produce the actual integer coefficients witnessing the sum. It is unnecessary because the contract asks only for a Boolean.
 - **Subset enumeration:** Exponential and conceptually incomplete because coefficients are unbounded integers.
 - **Array contains one:** The full GCD is immediately one, so the array is good.
@@ -112,8 +112,8 @@ This proves no array with GCD greater than one can be good. For `[3,6]`, every i
 - **Negative coefficients:** They are essential to Bézout’s identity and permitted by the examples.
 - **Nonempty list:** The contract guarantees at least one value, so `reduce` without an initializer is safe.
 - **Required imports:** Missing `reduce` or `gcd` would be an environment error, not an algorithmic issue.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

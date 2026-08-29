@@ -52,8 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `a` is the XOR of positions `i` through `j - 1`.
-- `b` is ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ The crucial XOR facts are that a value XOR itself is zero and XOR is associative
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear prefix-XOR aggregation:** Maintain the :** - **Linear prefix-XOR aggregation:** Maintain the running prefix XOR, the number of times each prefix value has appeared, and the sum of its prior prefix indices. Equal prefix values identify every zero-XOR segment ending at the current position, and the stored count and index sum combine all `k - i` contributions in constant time. This reaches the manifest's `O(n)` time and `O(n)` space but requires a more delicate formula.
+- **Linear prefix-XOR aggregation:** Maintain the running prefix XOR, the number of times each prefix value has appeared, and the sum of its prior prefix indices. Equal prefix values identify every zero-XOR segment ending at the current position, and the stored count and index sum combine all `k - i` contributions in constant time. This reaches the manifest's `O(n)` time and `O(n)` space but requires a more delicate formula.
 - **Prefix XOR with quadratic endpoint pairs:** Build a prefix XOR array so any segment XOR is available in constant time, then enumerate all `i, k` pairs. This remains `O(n^2)` time and uses `O(n)` extra space, so the stored running-XOR version is simpler and more space-efficient for the same time class.
 - **Direct three-index enumeration:** Looping over every `i`, `j`, and `k` and computing or comparing the two sides is much slower. Even with prefix XOR queries, there can be cubic many index triples. The zero-segment identity is what removes the middle loop.
 - **Recompute every segment XOR:** XORing `arr[i..k]` from scratch for every endpoint pair introduces another linear factor. Carrying `s` forward is essential to the quadratic bound.
@@ -100,8 +99,8 @@ The crucial XOR facts are that a value XOR itself is zero and XOR is associative
 - **Integer XOR semantics:** The reasoning uses bitwise XOR properties, not arithmetic addition or logical exclusive-or on Boolean truth values. Python's `^` operator on the given integers implements the required operation.
 - **Large answer:** One zero-XOR endpoint pair can contribute many triplets, and many such pairs can overlap. `ans` must accumulate counts rather than a Boolean. Python integers grow as needed, so the stored implementation does not overflow.
 - **Manifest mismatch:** When evaluating this exact file, report `O(n^2)` time and `O(1)` auxiliary space. Use `O(n)` and `O(n)` only for a genuinely implemented prefix-aggregation version.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -77,7 +77,7 @@ The source does not explicitly call `reverse()`. It later removes values from th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates lists `a` and `b`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ Using the example, the letter slots receive `f, a, d, c, b, e`. The special slot
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly reverse both lists:** Use `a.revers:** - **Explicitly reverse both lists:** Use `a.reverse()` and `b.reverse()`, then advance forward pointers while rebuilding. This has the same $O(N)$ bounds; end-popping combines reverse access with consumption.
+- **Explicitly reverse both lists:** Use `a.reverse()` and `b.reverse()`, then advance forward pointers while rebuilding. This has the same $O(N)$ bounds; end-popping combines reverse access with consumption.
 - **Two-pointer swaps on a character array:** One pass can reverse only letters by skipping special positions, followed by another pass reversing only special characters. It follows the statement literally but requires more pointer logic and a mutable $O(N)$ character array.
 - **Store category indices:** Record letter and special positions and assign reversed values into them. This is correct but stores indices in addition to values when the original second scan already reveals the slot pattern.
 - **Only letters:** `b` stays empty, and every output position consumes `a` from the end, so the whole string is reversed.
@@ -131,8 +131,8 @@ Using the example, the letter slots receive `f, a, d, c, b, e`. The special slot
 - **Category preservation:** The classification during reconstruction uses the original character at each position, ensuring a special character can never be written into a letter slot or vice versa.
 - **Unicode outside the contract:** `isalpha()` recognizes non-English alphabetic symbols too. Valid inputs contain only lowercase English letters and the listed special characters, so this broader behavior does not affect required cases.
 - **Order of the two conceptual reversals:** Their position sets are disjoint, so combining them in one reconstruction pass produces exactly the ordered operation's final state.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

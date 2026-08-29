@@ -24,7 +24,7 @@ Return the **minimum** total time taken to visit the houses.
 
 - **Output:** 12
 
-- **Explanation:** The path followed is $<u>0</u>^(0) → <u>1</u>^(1) →​​​​​​​ <u>2</u>^(5) <u>→</u> 1^(7) <u>→</u>​​​​​​​ <u>0</u>^(8) <u>→</u> <u>2</u>^(12)$.
+- **Explanation:** The path followed is $<u>0</u>^(0) → <u>1</u>^(1) → <u>2</u>^(5) <u>→</u> 1^(7) <u>→</u> <u>0</u>^(8) <u>→</u> <u>2</u>^(12)$.
 
 ### 4. Note
 
@@ -36,7 +36,7 @@ The notation used is $node^(total time)$, `→` represents forward road, and `<u
 
 - **Output:** 4
 
-- **Explanation:** The path travelled is `<u>0</u> →​​​​​​​ <u>1</u> →​​​​​​​ <u>2</u> →​​​​​​​ <u>3</u> → <u>0</u>`. Each step is in the forward direction and requires 1 second.
+- **Explanation:** The path travelled is `<u>0</u> → <u>1</u> → <u>2</u> → <u>3</u> → <u>0</u>`. Each step is in the forward direction and requires 1 second.
 
 ### 5. Constraints
 

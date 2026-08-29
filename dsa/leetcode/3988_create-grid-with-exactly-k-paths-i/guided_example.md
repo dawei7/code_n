@@ -55,7 +55,7 @@ The later corridor carries that one path to the actual destination. This works f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The core dimensions are `1\times1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ If either grid dimension is one, every valid route is forced along a single line
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search all obstacle patterns:** There are `2^{:** - **Search all obstacle patterns:** There are `2^{mn}` grids. Small fixed cores give the requested counts directly.
-- **- **Open the whole grid:** Its path count is a bin:** - **Open the whole grid:** Its path count is a binomial coefficient and often exceeds `k`. Obstacles are needed to control counts.
-- **- **Dynamic-programming construction search:** DP :** - **Dynamic-programming construction search:** DP can count paths in a proposed grid but does not by itself find obstacles efficiently. The source uses DP reasoning only to validate a known core.
+- **Search all obstacle patterns:** There are `2^{mn}` grids. Small fixed cores give the requested counts directly.
+- **Open the whole grid:** Its path count is a binomial coefficient and often exceeds `k`. Obstacles are needed to control counts.
+- **Dynamic-programming construction search:** DP can count paths in a proposed grid but does not by itself find obstacles efficiently. The source uses DP reasoning only to validate a known core.
 
 ---
 

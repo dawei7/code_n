@@ -57,7 +57,7 @@ One original zero can mark a row and a column that were already marked by anothe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `row[i]` means that original row `i` contained at least one ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ For the matrix `[[1,1,1],[1,0,1],[1,1,1]]`, discovery produces `row = [false, tr
 
 ## 6. Traps This Instance Exposes
 
-- **- **First row and first column as markers:** Store:** - **First row and first column as markers:** Store dimension flags inside the matrix and keep separate Booleans for whether the original first row and column contained zeroes. This achieves $O(1)$ auxiliary space.
+- **First row and first column as markers:** Store dimension flags inside the matrix and keep separate Booleans for whether the original first row and column contained zeroes. This achieves $O(1)$ auxiliary space.
 - **Sets of affected indices:** Record only rows and columns actually seen with zeroes. It still uses up to $O(m+n)$ space and has hashing overhead, but can be convenient in sparse cases.
 - **Full copied matrix:** Read from an untouched copy while writing the original. It is straightforward but uses $O(mn)$ extra space.
 - **Immediate zeroing:** Clearing a row and column during discovery is incorrect because written zeroes can trigger unrelated dimensions later.
@@ -109,8 +109,8 @@ For the matrix `[[1,1,1],[1,0,1],[1,1,1]]`, discovery produces `row = [false, tr
 - **Negative and large values:** Only equality with integer zero matters; other values are preserved unless their row or column is affected.
 - **Rectangular shape:** Separate `m` and `n` marker lengths support non-square matrices.
 - **Return behavior:** Mutation is the result, and the implicit return value is `null`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

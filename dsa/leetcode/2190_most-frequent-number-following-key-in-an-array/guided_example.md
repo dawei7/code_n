@@ -61,7 +61,7 @@ Notice that `b` may itself equal `key`. Consecutive copies of the key are valid:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code enters its counting block only when `a == key`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The contract guarantees that the final maximum target is unique. Temporary ties 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count then call `most_common`:** First build a:** - **Count then call `most_common`:** First build all follower counts, then select the maximum. It is correct but performs a separate pass over distinct targets.
+- **Count then call `most_common`:** First build all follower counts, then select the maximum. It is correct but performs a separate pass over distinct targets.
 - **Fixed frequency array:** Values are at most 1000, so a 1001-entry list can replace the Counter and make the constant-space interpretation explicit.
 - **Manual index loop:** Iterate `i` through `range(len(nums) - 1)` and inspect `nums[i + 1]`. It has identical behavior.
 - **Consecutive keys:** The key itself is a valid target when one key immediately follows another.
@@ -113,8 +113,8 @@ The contract guarantees that the final maximum target is unique. Temporary ties 
 - **Lazy adjacency:** `pairwise` avoids an $O(n)$ list of tuples.
 - **Input preservation:** The array and key are only read.
 - **Fixed-domain space:** The Counter is logically bounded by 1000 possible positive values under the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

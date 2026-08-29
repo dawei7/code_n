@@ -62,7 +62,7 @@ Return the lexicographically maximum array of prefix MEX values obtainable by re
 
 - **Output:** [0,0]
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Take $k = 1$, first element `[3]` has MEX = 0. Current $result = [0]$.
 

@@ -79,7 +79,7 @@ These two violations are joined by `or` in the condition. If the pair already sa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `i` is odd, the pair occupies an even index followed by... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Thus one adjacent swap is always sufficient to repair the newly considered inequ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort then swap neighboring positions:** Sortin:** - **Sort then swap neighboring positions:** Sorting first and exchanging selected adjacent values can create the wiggle pattern, but costs $O(n\log n)$ time and is unnecessary for non-strict inequalities.
+- **Sort then swap neighboring positions:** Sorting first and exchanging selected adjacent values can create the wiggle pattern, but costs $O(n\log n)$ time and is unnecessary for non-strict inequalities.
 - **Build a separate result:** Selecting alternating low and high values into another list is possible but uses $O(n)$ extra space and often still requires sorting.
 - **Check only odd peaks:** Ensuring each odd index dominates both neighbors is equivalent, but the one-pass adjacent formulation repairs the right relationship as it arrives and proves preservation locally.
 - **Length one:** The loop is empty, and the one-element array vacuously satisfies every adjacent inequality.
@@ -129,8 +129,8 @@ Thus one adjacent swap is always sufficient to repair the newly considered inequ
 - **Negative values outside the stated range:** The logic uses only comparisons, so it would still work unchanged even though legal values are non-negative.
 - **Input mutation:** Swapping changes the caller's list. That is required by the function contract; callers needing the original order must copy it before calling.
 - **Existence guarantee:** For this non-strict version, the greedy proof itself constructs a valid arrangement for any array. The stated guarantee is therefore consistent but not additionally needed by the implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

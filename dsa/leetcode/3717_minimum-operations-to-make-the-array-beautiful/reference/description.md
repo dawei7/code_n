@@ -48,4 +48,4 @@ Return the minimum total number of single-unit increments that can make every el
 
 - $1 \le \text{nums.length} \le 100$
 
-- $1 \le \text{nums}[i] \le 50​​​$
+- $1 \le \text{nums}[i] \le 50$

@@ -63,7 +63,7 @@ If `v<i`, that character cannot participate at this common frequency.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose character `c` occurs `v` times in the original strin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Characters with `v<i` contribute only the forced exclude choice one, so the sour
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backward inverse-factorial fill:** Compute one:** - **Backward inverse-factorial fill:** Compute one inverse at `N-1` and derive the rest in $O(N)$ preprocessing.
+- **Backward inverse-factorial fill:** Compute one inverse at `N-1` and derive the rest in $O(N)$ preprocessing.
 - **All characters distinct:** Only common frequency one contributes, producing $2^n-1$ non-empty subsequences.
 - **One repeated character:** Every non-empty choice of its occurrences is good.
 - **Character frequency below `i`:** It must be excluded for that iteration.
@@ -117,8 +117,8 @@ Characters with `v<i` contribute only the forced exclude choice one, so the sour
 - **Modulo inverse:** It is valid because factorial factors are below the prime modulus.
 - **Maximum table index:** 10,000 fits inside arrays of length 10,001.
 - **Global cost:** Exact preprocessing uses repeated `pow` calls.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

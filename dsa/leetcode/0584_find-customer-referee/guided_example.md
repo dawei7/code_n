@@ -70,11 +70,7 @@ That form explicitly names both categories. The `COALESCE` form compresses them 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact query uses:
-
-
-
-`COALESCE` returns its first non-`N... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ Result order is unrestricted, so `ORDER BY` is intentionally absent.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit disjunction:** `referee_id <> 2 OR re:** - **Explicit disjunction:** `referee_id <> 2 OR referee_id IS NULL` most directly mirrors the two requirements and avoids choosing a sentinel.
+- **Explicit disjunction:** `referee_id <> 2 OR referee_id IS NULL` most directly mirrors the two requirements and avoids choosing a sentinel.
 - **Null-safe comparison:** In MySQL, `NOT (referee_id <=> 2)` uses the null-safe equality operator and negates it. It is compact but less portable and less familiar.
 - **Plain inequality:** `referee_id != 2` is incorrect because rows with `NULL` evaluate to unknown and are filtered out.
 - **Equality to `NULL`:** `referee_id = NULL` is also unknown, never the proper null test. Use `IS NULL`.
@@ -128,8 +124,8 @@ Result order is unrestricted, so `ORDER BY` is intentionally absent.
 - **Duplicate customer names:** The output can contain repeated names from distinct customer rows. Adding `DISTINCT` would change the row semantics without a requirement.
 - **Any result order:** No `ORDER BY` is needed, avoiding unnecessary sorting.
 - **Sentinel caution:** `COALESCE(referee_id, 0)` is valid because both missing and actual zero should pass `!= 2`. A sentinel must be reconsidered whenever the comparison changes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

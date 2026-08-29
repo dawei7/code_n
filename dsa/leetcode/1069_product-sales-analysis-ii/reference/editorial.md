@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -33,7 +33,7 @@ pd = sales.groupby(['product_id'], as_index = False)['quantity'].sum().rename(co
 
 ```python
 import pandas as pd
-​
+
 def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
 
     pd = sales.groupby(['product_id'], as_index = False)['quantity'].sum().rename(columns = {'quantity': 'total_quantity'})
@@ -42,17 +42,17 @@ def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
 ```
 
 ----
-​
+
 ## Database
 
 <!-- h3 for approaches -->
 ### Approach: Get Aggregated Sum by Using GROUP BY and SUM()
 
 <!-- h4 for sections -->
-#### Algorithm​
+#### Algorithm
 <!-- Describe your approach to solving the problem. -->
 To get the total quantity sold for every product id, we need the two columns `quantity` and $\text{product}_{id}$. Since both are stored in the table `Sales`, we only need to use this one table and calculate the aggregated sum of `quantity` for each $\text{product}_{id}$. To get the final output, we also need to rename the column name to $\text{total}_{quantity}$.
-​
+
 <!-- h4 for sections -->
 #### Implementation
 
@@ -62,6 +62,6 @@ SELECT product_id,
 FROM Sales
 GROUP BY product_id
 ```
-​
+
 <!-- an empty line to separate approaches -->
 <br>

@@ -93,10 +93,7 @@ Adding `p` before taking the modulus prevents a negative intermediate representa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the prefix remainder through index `i` be:
-
-$$
-P_i=(\tex... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -139,7 +136,7 @@ After checking, the assignment `last[cur] = i` records the current prefix as the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Rolling sums reduc:** - **Enumerate every subarray:** Rolling sums reduce each candidate check to constant time but still produce $O(N^2)$ candidates, which is too slow at the maximum length.
+- **Enumerate every subarray:** Rolling sums reduce each candidate check to constant time but still produce $O(N^2)$ candidates, which is too slow at the maximum length.
 - **Store every index per remainder:** This is unnecessary for the shortest answer. Only the latest prior index can minimize length for a future endpoint.
 - **Store the earliest index:** That strategy is useful for longest-subarray problems, but here it produces longer removals and can miss the minimum.
 - **Sliding window:** Ordinary window movement relies on monotonic sums. The target is a modular remainder, which can wrap around, so prefix remainders are the appropriate tool even though values are positive.
@@ -153,8 +150,8 @@ After checking, the assignment `last[cur] = i` records the current prefix as the
 - **Large values:** Only their remainders affect the scan. Python handles the initial sum without overflow; fixed-width languages should reduce while summing or use a wide type.
 - **Positive-number contract:** The prefix-modulo proof does not depend on positivity, though the input guarantees it.
 - **Expected hash performance:** The linear bound assumes expected constant-time dictionary operations; the stored-key count remains bounded by $\min(N,p)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -73,7 +73,7 @@ Thus no information about other first rides is needed after finding `min_end`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Fix one candidate second ride with opening `a` and duration ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ A ride with a late opening may lose despite short duration because the tourist m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every pair and both orders:** It is :** - **Enumerate every pair and both orders:** It is correct but costs `O(nm)` instead of exploiting monotonicity.
+- **Enumerate every pair and both orders:** It is correct but costs `O(nm)` instead of exploiting monotonicity.
 - **Sort rides:** Sorting is unnecessary because only a minimum first completion and minimum final expression are needed.
 - **One ride in each category:** The two calls compare the only two possible orders.
 - **Second ride already open:** It starts immediately at `min_end`.
@@ -127,8 +127,8 @@ A ride with a late opening may lose despite short duration because the tourist m
 - **Paired-array contract:** Equal start/duration lengths make `zip` safe.
 - **Input preservation:** The source reads all four arrays without sorting or mutation.
 - **Missing `List` import:** Standalone use must provide the type name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

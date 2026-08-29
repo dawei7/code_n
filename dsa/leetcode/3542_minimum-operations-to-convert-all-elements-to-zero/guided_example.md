@@ -64,7 +64,7 @@ The source delays counting an open component until it closes or until the scan e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `stk` is strictly increasing from bottom to top.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Popping several levels handles nested components that all terminate at this smal
 
 ## 6. Traps This Instance Exposes
 
-- **- **Increment answer on push:** Equivalent to the :** - **Increment answer on push:** Equivalent to the protected delayed-pop counting because every pushed entry is eventually popped or remains at the end.
+- **Increment answer on push:** Equivalent to the protected delayed-pop counting because every pushed entry is eventually popped or remains at the end.
 - **Simulate minimum operations directly:** Repeatedly finding minima and zeroing ranges can become quadratic. The stack counts the component hierarchy in one pass.
 - **Use a set of distinct values:** The same value may require multiple operations when smaller values or zeros separate its components.
 - **Keep a non-monotonic stack:** Larger levels must close when a smaller boundary arrives; strict increasing order exposes exactly those levels at the top.
@@ -121,8 +121,8 @@ Popping several levels handles nested components that all terminate at this smal
 - **Larger values between equals:** They are popped when the equal lower value returns, while the lower level stays open and is shared.
 - **Minimum includes zero:** Selecting a subarray containing zero cannot clear positive values, which is why zeros are permanent separators.
 - **Final stack addition:** Omitting it would forget every component that reaches the array's right boundary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

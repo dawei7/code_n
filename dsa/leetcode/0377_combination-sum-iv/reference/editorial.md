@@ -33,7 +33,7 @@ While, for the problem of [Coin Changes II](https://leetcode.com/problems/coin-c
 Since the **order** is important, let us build the solution **recursively** and in the **backward** manner.
 We elaborate the idea with an example in the following:
 
-Given the `target=4` and the candidates array $nums=[1, 2, 3]$, each candidate number potentially can be the **last** number in the final combination.
+Given the `target=4` and the candidates array `nums = [1, 2, 3]`, each candidate number potentially can be the **last** number in the final combination.
 Here are a few steps on how we can work out a _subset_ of valid combinations.
 
 - 1). Suppose we place the number `1` as the last number in the combinations.
@@ -181,7 +181,7 @@ In this approach though, we start from the base case (_i.e._ $\text{dp}[0]$) and
 
 Here we demonstrate how to calculate the $\text{dp}[i]$ array values in _bottom-up_ manner, with the same example we used before.
 
-Given the input of $nums=[1, 2, 3]$ and `target=4`, here is what the $\text{dp}[i]$ array looks like at the beginning.
+Given the input of `nums = [1, 2, 3]` and `target=4`, here is what the $\text{dp}[i]$ array looks like at the beginning.
 
 ![DP array init](images/377_dp_init.png)
 

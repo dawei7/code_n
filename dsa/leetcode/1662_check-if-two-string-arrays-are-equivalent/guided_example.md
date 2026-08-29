@@ -61,7 +61,7 @@ The source invokes `join` once for each side. Each call creates a new Python str
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider `word1 = ["abc", "d", "defg"]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ An explicit preliminary length check is unnecessary because string equality alre
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four-pointer streaming comparison:** Keep a pi:** - **Four-pointer streaming comparison:** Keep a piece index and a character index for each array, advance across piece boundaries, and compare one character at a time. This gives $O(L_1 + L_2)$ time and $O(1)$ auxiliary space, matching the manifest, but requires more boundary logic.
+- **Four-pointer streaming comparison:** Keep a piece index and a character index for each array, advance across piece boundaries, and compare one character at a time. This gives $O(L_1 + L_2)$ time and $O(1)$ auxiliary space, matching the manifest, but requires more boundary logic.
 - **Character iterators with a sentinel:** Chain the pieces from each side into character iterators and compare with `zip_longest` using a unique sentinel. This avoids full joined strings conceptually, though iterator objects and library semantics should be explained carefully.
 - **Repeated `+=` concatenation:** It is easy to write but can repeatedly copy growing immutable strings, leading to $O(N^2)$ time in unfavorable implementations. `join` is the correct materializing approach.
 - **Different numbers of pieces:** This has no effect by itself. `["abc"]` and `["a", "b", "c"]` are equivalent.
@@ -111,8 +111,8 @@ An explicit preliminary length check is unnecessary because string equality alre
 - **Single piece on each side:** The method still works; joining a one-element array produces that element unchanged in value.
 - **Nonempty-piece guarantee:** Every input piece has at least one character. The method would also handle empty pieces correctly because an empty separator plus an empty piece contributes no character.
 - **Original arrays remain reusable:** `join` creates new strings and never alters the list entries or their order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

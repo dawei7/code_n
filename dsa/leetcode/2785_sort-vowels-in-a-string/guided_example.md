@@ -59,7 +59,7 @@ The original character is appended to `vs`, not its lowercase version. Case must
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The test `c.lower() in "aeiou"` converts one character to lo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `s = "lEetcOde"`, collected vowels are `["E", "e", "O", "e"]`. Sorting yield
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count the ten vowel characters:** A fixed freq:** - **Count the ten vowel characters:** A fixed frequency table and the order `AEIOUaeiou` yield `O(n)` time and constant counting storage beyond the output. This matches the manifest but not the exact code.
+- **Count the ten vowel characters:** A fixed frequency table and the order `AEIOUaeiou` yield `O(n)` time and constant counting storage beyond the output. This matches the manifest but not the exact code.
 - **Sort the whole string:** It moves consonants and violates the fixed-position requirement.
 - **Use lowercase characters in the collected list:** That loses original case and produces the wrong ASCII order.
 - **No vowels:** `vs` is empty, no positions are replaced, and joining returns the original string.
@@ -112,8 +112,8 @@ For `s = "lEetcOde"`, collected vowels are `["E", "e", "O", "e"]`. Sorting yield
 - **Immutable strings:** The character list is necessary for indexed replacement in Python.
 - **Input preservation:** The original string cannot be mutated; the method returns a newly joined string.
 - **Manifest mismatch:** Real worst-case time is `O(n log n)` because `vs.sort()` is present.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

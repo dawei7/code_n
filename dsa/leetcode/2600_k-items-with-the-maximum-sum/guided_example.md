@@ -63,7 +63,7 @@ Unused zeros and negative ones are irrelevant.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `numOnes >= k`, choose $k$ one-valued items.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The second condition is written `numZeros >= k - numOnes` and returns `numOnes`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand and sort the bag:** This gives the same:** - **Expand and sort the bag:** This gives the same top-$k$ choice but wastes time and space proportional to the number of items.
+- **Expand and sort the bag:** This gives the same top-$k$ choice but wastes time and space proportional to the number of items.
 - **Priority queue:** Repeatedly extracting the maximum is unnecessary when only three known values exist.
 - **Zero selections:** `k=0` returns zero immediately.
 - **No ones:** Zeros are taken first, followed by forced negative ones.
@@ -117,8 +117,8 @@ The second condition is written `numZeros >= k - numOnes` and returns `numOnes`.
 - **Exactly enough nonnegative items:** All ones and required zeros are used, with no negative penalty.
 - **Negative result:** When forced negative ones outnumber selected ones, the optimal sum can legitimately be below zero.
 - **Unused `numNegOnes` in code:** Feasibility constraints guarantee its count covers the final deficit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

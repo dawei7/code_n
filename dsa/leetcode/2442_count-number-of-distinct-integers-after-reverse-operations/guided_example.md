@@ -66,7 +66,7 @@ All inputs are positive, so no minus sign needs special handling. The reversal o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a value `x`, `str(x)` creates its ordinary decimal repre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ For `[2,2,2]`, the initial set contains only 2, and every reversal is also 2. It
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic reversal:** Repeatedly take `x % 10:** - **Arithmetic reversal:** Repeatedly take `x % 10` and build `rev = rev * 10 + digit` while dividing `x //= 10`. It avoids strings and matches the manifest wording, with the same $O(D)$ time.
+- **Arithmetic reversal:** Repeatedly take `x % 10` and build `rev = rev * 10 + digit` while dividing `x //= 10`. It avoids strings and matches the manifest wording, with the same $O(D)$ time.
 - **Create the full appended array:** Concatenate all reversed values to a list and convert the final list to a set. It is correct but stores an unnecessary extra $O(n)$ sequence.
 - **Reverse only distinct originals:** Iterate over a snapshot of the initial set to avoid repeated work for duplicates. This can reduce operations but requires a separate snapshot because adding to a set during iteration is unsafe.
 - **Trailing zeros:** They become leading zeros after reversal and disappear when parsed, so 10 and 100 can both reverse to 1.
@@ -115,8 +115,8 @@ For `[2,2,2]`, the initial set contains only 2, and every reversal is also 2. It
 - **One element:** The answer is one if the value is palindromic and two otherwise, unless its reversal numerically equals it after leading-zero removal.
 - **Positive-only input:** String reversal never needs to account for a sign character.
 - **Original-array scope:** Reversals are not recursively reversed as new operations; the loop remains tied to `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

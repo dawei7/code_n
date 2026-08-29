@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a tree with `n` nodes numbered from `0` to $n - 1$ in the form of a parent array `parent` where $\text{parent}[i]$ is the parent of the $$i^{\text{th}}$$ node. The root of the tree is node `0`, so $\text{parent}[0] = -1$ since it has no parent. You want to design a data structure that allows users to lock, unlock, and upgrade nodes in the tree.
+You are given a tree with `n` nodes numbered from `0` to $n - 1$ in the form of a parent array `parent` where $\text{parent}[i]$ is the parent of the $i^{\text{th}}$ node. The root of the tree is node `0`, so $\text{parent}[0] = -1$ since it has no parent. You want to design a data structure that allows users to lock, unlock, and upgrade nodes in the tree.
 
 The data structure should support the following functions:
 

@@ -73,7 +73,7 @@ Assigning `parent[0]=0` gives the temporary root a harmless self-marker. Task ze
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source first stores both directions of every edge in `gr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,9 +120,9 @@ This completes every message directed from a node toward its temporary parent. I
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute from every root:** Running a complet:** - **Recompute from every root:** Running a complete postorder evaluation `n` times is easy to conceptualize but costs `O(n^2)` in the worst case. Directed edge messages reuse the unchanged component results.
-- **- **Recursive rerooting:** Two recursive DFS passe:** - **Recursive rerooting:** Two recursive DFS passes can express the same message equations, but a chain of length `10^5` can exceed Python's recursion limit. The stored iterative order avoids that failure mode.
-- **- **Rescan all other neighbors for every child:** :** - **Rescan all other neighbors for every child:** At a star center, excluding each child and scanning the remaining `O(n)` messages would make that one node cost `O(n^2)`. First and second extrema make every exclusion constant time after one scan.
+- **Recompute from every root:** Running a complete postorder evaluation `n` times is easy to conceptualize but costs `O(n^2)` in the worst case. Directed edge messages reuse the unchanged component results.
+- **Recursive rerooting:** Two recursive DFS passes can express the same message equations, but a chain of length `10^5` can exceed Python's recursion limit. The stored iterative order avoids that failure mode.
+- **Rescan all other neighbors for every child:** At a star center, excluding each child and scanning the remaining `O(n)` messages would make that one node cost `O(n^2)`. First and second extrema make every exclusion constant time after one scan.
 
 ---
 

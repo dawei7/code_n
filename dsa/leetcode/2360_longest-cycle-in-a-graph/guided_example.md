@@ -66,7 +66,7 @@ The loop continues only while `j != -1` and `vis[j]` is false. Every newly appen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop considers every node `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ If `j` was visited by an earlier traversal, it is not in the current list. The g
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three-state visitation:** Mark nodes as unseen:** - **Three-state visitation:** Mark nodes as unseen, active in the current traversal, or completely processed. This detects current-path revisits in $O(1)$ without searching the list, but requires storing an entry time or depth to calculate length.
+- **Three-state visitation:** Mark nodes as unseen, active in the current traversal, or completely processed. This detects current-path revisits in $O(1)$ without searching the list, but requires storing an entry time or depth to calculate length.
 - **Traversal identifier and timestamps:** Arrays can record which traversal first saw each node and at what step. A repeated matching identifier proves that the node belongs to the current walk. This is often clearer than the `inf` sentinel trick.
 - **Kahn's algorithm:** Repeatedly remove indegree-zero nodes. The remaining nodes belong to cycles, which can then be counted. It is also $O(n)$ but needs indegrees and a queue.
 - **Recursive DFS:** Recursion can model active and finished states naturally, but a chain of length $10^5$ risks exceeding Python's recursion limit.
@@ -125,8 +125,8 @@ If `j` was visited by an earlier traversal, it is not in the current list. The g
 - **Several disconnected cycles:** Separate unvisited starts discover them, and `max` retains the longest length.
 - **Equal-length cycles:** Only the length is returned, so no tie-breaking by node is necessary.
 - **No cycles anywhere:** `ans` is never raised above its initial value and the method returns `-1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

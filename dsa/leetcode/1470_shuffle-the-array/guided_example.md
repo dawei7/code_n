@@ -51,7 +51,7 @@ Because `nums.length = 2n`, both slices have exactly `n` elements. Position zero
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Because `nums.length = 2n`, both slices have exactly `n` ele... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Because `nums.length = 2n`, both slices have exactly `n` elements. Position zero
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit result loop:** Append `nums[i]` and `:** - **Explicit result loop:** Append `nums[i]` and `nums[n+i]` for every `i`. It avoids the two half slices while still using `O(n)` output space.
+- **Explicit result loop:** Append `nums[i]` and `nums[n+i]` for every `i`. It avoids the two half slices while still using `O(n)` output space.
 - **Preallocated result:** Create a length-`2n` list and assign positions `2i` and `2i+1`. It makes the index mapping explicit.
 - **In-place bit packing:** Given the bounded values, two numbers can temporarily share one integer's bits. This can achieve constant auxiliary space but is much harder to read and mutates input.
 - **Generator output:** A generator could yield alternating values with constant working space, but the required return type is a list.
@@ -99,8 +99,8 @@ Because `nums.length = 2n`, both slices have exactly `n` elements. Position zero
 - **Order inside a pair:** Iterating the tuple yields first-half value before second-half value, as required.
 - **Slice allocation:** The concise implementation uses linear temporary storage in addition to the linear output.
 - **Value bounds:** They do not matter to this direct construction; they matter only for optional bit-packing alternatives.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

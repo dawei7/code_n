@@ -18,7 +18,7 @@ Implement the `Bitset` class:
 
 - `int count()` Returns the **total number** of bits in the Bitset which have value `1`.
 
-- `String toString()` Returns the current composition of the Bitset. Note that in the resultant string, the character at the $$i^{\text{th}}$$ index should coincide with the value at the $$i^{\text{th}}$$ bit of the Bitset.
+- `String toString()` Returns the current composition of the Bitset. Note that in the resultant string, the character at the $i^{\text{th}}$ index should coincide with the value at the $i^{\text{th}}$ bit of the Bitset.
 
 ### 2. Function Contract
 

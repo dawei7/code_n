@@ -77,4 +77,4 @@ Return the largest sum of values at distinct covered indices obtainable when eve
 
 - $1 \le \text{nums}[i] \le 10^{5}$
 
-- ​​​​​​​$s[i]$ is either `'0'` or `'1'`
+- $s[i]$ is either `'0'` or `'1'`

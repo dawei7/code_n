@@ -51,7 +51,7 @@ Enumerating every subarray and finding its minimum would be quadratic or worse. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | > For how many subarrays is `arr[i]` the chosen minimum?... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If that count is known, index `i` contributes its value multiplied by the count.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Maintaining a runni:** - **Enumerate all subarrays:** Maintaining a running minimum for every start costs $O(n^2)$ time.
+- **Enumerate all subarrays:** Maintaining a running minimum for every start costs $O(n^2)$ time.
 - **Dynamic programming with a monotonic stack:** Compute the sum of minima for subarrays ending at each index. It also reaches $O(n)$ time.
 - **Use strict comparisons on both sides:** Equal minima double-count shared subarrays.
 - **Use non-strict comparisons on both sides:** Equal minima can leave shared subarrays unassigned.
@@ -98,8 +98,8 @@ If that count is known, index `i` contributes its value multiplied by the count.
 - **Positive values:** The contract ensures every minimum is positive, though the contribution proof also works with other integers.
 - **Modulo timing:** Reducing only after the sum is mathematically valid in Python; fixed-width languages may reduce during accumulation.
 - **Store indices, not values:** Boundaries need distances, so stack entries must retain positions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

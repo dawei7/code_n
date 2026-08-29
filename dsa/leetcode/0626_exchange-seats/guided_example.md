@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Seat AS s1` is the output-seat side.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **`CASE` on odd and even IDs:** Count rows, map :** - **`CASE` on odd and even IDs:** Count rows, map complete odd IDs to `id + 1`, even IDs to `id - 1`, and retain the final odd ID. This is more verbose but avoids bit manipulation.
+- **`CASE` on odd and even IDs:** Count rows, map complete odd IDs to `id + 1`, even IDs to `id - 1`, and retain the final odd ID. This is more verbose but avoids bit manipulation.
 - **Window functions:** Use `LEAD(student)` for odd rows and `LAG(student)` for even rows after ordering by ID. This states the neighboring-row intent clearly but still needs the last-row fallback.
 - **Fully parenthesized bit expression:** Write `((s1.id + 1) ^ 1) - 1` to make precedence explicit.
 - **Even number of rows:** Every ID has a partner, so `COALESCE` always chooses `s2.student`.
@@ -97,8 +97,8 @@ We maintain the core conceptual parameters and state variables:
 - **Nullable student names:** If a real partner row existed with `student = NULL`, `COALESCE` would fall back to the wrong original name. The intended challenge data treats student names as present; otherwise partner existence should be tested separately.
 - **`ORDER BY 1`:** It depends on the first projection remaining `s1.id`. Naming the column is more maintainable.
 - **Dialect portability:** `^` is bitwise XOR in MySQL but can mean something else elsewhere; a `CASE` or modulo expression is easier to port.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

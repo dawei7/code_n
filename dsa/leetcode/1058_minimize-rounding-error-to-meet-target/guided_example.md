@@ -72,7 +72,7 @@ Every non-integral price rounded up therefore adds exactly one to the all-floor 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside the same loop, the fractional part is computed and co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ Exactly `d` non-integral prices must use their ceilings. Fewer would make the to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Thousandths frequency buckets for the manifest:** - **Thousandths frequency buckets for the manifest target:** Parse prices as exact scaled integers, count fractional values from zero through 999, and consume buckets from largest to smallest for upward rounding. This gives `O(N + K)` time and `O(K)` space.
+- **Thousandths frequency buckets for the manifest target:** Parse prices as exact scaled integers, count fractional values from zero through 999, and consume buckets from largest to smallest for upward rounding. This gives `O(N + K)` time and `O(K)` space.
 - **Exact integer parsing with sorting:** Convert each price string to thousandths and sort the nonzero remainder values. This retains `O(N + F log F)` time but avoids all binary floating-point representation concerns.
 - **Maximum heap:** Keep fractional parts in a heap and extract the `d` largest. This takes `O(N + d log F)` time and `O(F)` space, which can help when `d` is very small but is not as strong as bounded-domain counting.
 - **Dynamic programming:** A DP over price count and rounded sum can find a minimum, but every non-integral choice changes the sum by exactly one. The required number of ceilings is already known, so DP is unnecessary.
@@ -135,8 +135,8 @@ Exactly `d` non-integral prices must use their ceilings. Fewer would make the to
 - **Floating-point accumulation:** The exact source relies on final three-decimal formatting to round small representation noise. Parsing scaled thousandths as integers is a more explicit exact-arithmetic alternative.
 - **Walrus-name reuse:** `d` first denotes a fractional part inside the loop and later denotes the number of ceilings. The earlier value is no longer needed, so reuse is safe even though separate names would be clearer.
 - **Input preservation:** The list of price strings is not modified. Parsed fractions are stored separately in `arr`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

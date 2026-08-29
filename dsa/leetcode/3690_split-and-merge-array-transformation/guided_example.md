@@ -83,7 +83,7 @@ If the arrays are already equal, `start` is found in layer zero and the method c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Instead of a deque storing a distance alongside each state, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -134,7 +134,7 @@ This reproduces the split step from the statement. Both relative orders are pres
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedily move the first mismatched element:** :** - **Greedily move the first mismatched element:** This can produce a valid transformation but need not minimize operations because a larger moved block may fix several mismatches simultaneously.
+- **Greedily move the first mismatched element:** This can produce a valid transformation but need not minimize operations because a larger moved block may fix several mismatches simultaneously.
 - **Depth-first search:** DFS can discover the target but does not naturally guarantee the fewest unit-cost moves. It would need depth bounds or exhaustive distance tracking.
 - **Bidirectional BFS:** Searching simultaneously from start and target can reduce the explored state count, since the move graph is reversible, but the single-source BFS is already adequate for $n\le6$.
 - **Store arrays as lists in `vis`:** Lists are unhashable. Tuple conversion provides stable value-based state identity.
@@ -144,8 +144,8 @@ This reproduces the split step from the statement. Both relative orders are pres
 - **Reinsert at the original gap:** This is another legal no-op result. It does not create a search cycle because `cur` is already visited.
 - **Move a one-element block:** This guarantees reachability of every permutation of the same multiset, even though larger blocks may reach the target faster.
 - **No explicit fallback return:** Valid inputs guarantee reachability. If `nums2` were not a permutation, the frontier could eventually become empty and the infinite counter would continue, but that situation is outside the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

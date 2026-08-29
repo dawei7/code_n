@@ -71,7 +71,7 @@ The output does not recursively clone elements. Python copies references into th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | List addition differs from `extend` and `+=`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ An explicit algorithm could allocate length $2N$ and assign two positions for ea
 
 ## 6. Traps This Instance Exposes
 
-- **- **List repetition:** `nums * 2` produces the sam:** - **List repetition:** `nums * 2` produces the same sequence and has the same $O(N)$ time and returned-space costs. Addition mirrors the statement's word “concatenation” particularly directly.
+- **List repetition:** `nums * 2` produces the same sequence and has the same $O(N)$ time and returned-space costs. Addition mirrors the statement's word “concatenation” particularly directly.
 - **Explicit append loop:** Append every item once, then repeat the loop. This is correct but longer and still takes $O(N)$ time and space.
 - **Preallocated result:** Create `ans = [0] * (2 * N)` and assign `ans[i]` and `ans[i + N]`. It follows the formula literally but adds indexing code without improving the bounds.
 - **In-place `nums += nums`:** This mutates the caller's input and returns no new expression result in the same way. It does not match the side-effect-free behavior of the exact solution.
@@ -117,8 +117,8 @@ An explicit algorithm could allocate length $2N$ and assign two positions for ea
 - **Input independence at list level:** Appending to the returned list later does not change the length of `nums` because the outer list object is new.
 - **Shallow copying:** With the stated integer elements this is harmless. General nested mutable objects would be shared by reference, but the problem does not contain them.
 - **Output lower bound:** Since a length-$2N$ list must be materialized, the linear runtime and space cannot be asymptotically improved.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

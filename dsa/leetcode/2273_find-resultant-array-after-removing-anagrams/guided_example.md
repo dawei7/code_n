@@ -59,7 +59,7 @@ Deleting earlier members does not change this boundary classification. For examp
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact list expression compares each pair of adjacent wor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ If the lengths differ, the words cannot use the same multiset of letters, so the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare with the last retained word:** It also:** - **Compare with the last retained word:** It also works because run signatures are transitive, and appending incrementally avoids the extra concatenation list.
+- **Compare with the last retained word:** It also works because run signatures are transitive, and appending incrementally avoids the extra concatenation list.
 - **Sort each word as its signature:** It is concise but costs `O(L \log L)` per word of length `L` instead of linear counting.
 - **Precompute 26-count tuples:** Comparing neighboring signatures becomes constant time after `O(S)` preprocessing, at the cost of storing one signature per word.
 - **Simulate deletions in the input list:** Repeated removals shift elements and can lead to quadratic list operations.
@@ -111,8 +111,8 @@ If the lengths differ, the words cannot use the same multiset of letters, so the
 - **Helper naming:** `check` means “should retain because different,” not “these are anagrams.”
 - **Output references:** Words are immutable strings and are reused rather than copied.
 - **Input preservation:** The method constructs new lists and never deletes from or reorders `words`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

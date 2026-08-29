@@ -2,7 +2,7 @@
 
 There are `n` cars at given miles away from the starting mile 0, traveling to reach the mile `target`.
 
-You are given two integer arrays `position` and `speed`, both of length `n`, where $\text{position}[i]$ is the starting mile of the $$i^{\text{th}}$$ car and $\text{speed}[i]$ is the speed of the $$i^{\text{th}}$$ car in miles per hour.
+You are given two integer arrays `position` and `speed`, both of length `n`, where $\text{position}[i]$ is the starting mile of the $i^{\text{th}}$ car and $\text{speed}[i]$ is the speed of the $i^{\text{th}}$ car in miles per hour.
 
 A car cannot pass another car, but it can catch up and then travel next to it at the speed of the slower car.
 

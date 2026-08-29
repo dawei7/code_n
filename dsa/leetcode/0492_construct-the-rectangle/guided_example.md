@@ -51,7 +51,7 @@ To see why, write `L = area / W` for a valid divisor `W`. As `W` grows from `1` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To see why, write `L = area / W` for a valid divisor `W`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ therefore becomes smaller. Once `W` exceeds the square root, the factors swap or
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search upward from one:** Every divisor can be:** - **Search upward from one:** Every divisor can be remembered as the latest width, but this always scans to the square root. Descending search can stop as soon as the optimal divisor appears.
+- **Search upward from one:** Every divisor can be remembered as the latest width, but this always scans to the square root. Descending search can stop as soon as the optimal divisor appears.
 - **Enumerate all factor pairs:** This is unnecessary because factor closeness is monotonic as the smaller factor approaches the square root.
 - **Exact integer square root:** `math.isqrt(area)` would compute the starting width without floating point and is preferable if the numeric constraint were much larger.
 - **Perfect square:** The square root divides immediately, returning equal dimensions and the minimum possible difference zero.
@@ -94,8 +94,8 @@ therefore becomes smaller. Once `W` exceeds the square root, the factors swap or
 - **`area = 1`:** The starting width is one and the result is `[1, 1]`.
 - **Ordering requirement:** Returning `[w, area // w]` would reverse length and width for non-square areas. The source returns the larger quotient first.
 - **Guaranteed termination:** Width one divides every positive area, so the decrement loop cannot pass below one under the stated constraints.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

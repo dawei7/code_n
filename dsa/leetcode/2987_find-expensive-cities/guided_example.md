@@ -65,7 +65,7 @@ No row-level price threshold is applied. A city may have some cheap listings and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `WHERE` filters individual source rows before grouping and c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For a city with $r$ listings and sum $S$, its value is $S/r$. The city survives 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Average the city averages:** This weights citi:** - **Average the city averages:** This weights cities equally rather than listings and gives a different national statistic when city sizes differ.
+- **Average the city averages:** This weights cities equally rather than listings and gives a different national statistic when city sizes differ.
 - **Filter rows in `WHERE` by national average:** That would select expensive individual listings before averaging and solve a different problem.
 - **CTE for the national mean:** Computing it once in a named CTE is equivalent; the uncorrelated scalar subquery is compact.
 - **Window average:** `AVG(price) OVER ()` can attach the national value to rows before grouping, but introduces an intermediate relation.
@@ -117,8 +117,8 @@ For a city with $r$ listings and sum $S$, its value is $S/r$. The city survives 
 - **Cities with different row counts:** The national mean remains listing-weighted, as required.
 - **Duplicate prices or names:** They are ordinary separate listings because `listing_id` identifies rows.
 - **Output ordering:** `ORDER BY 1` sorts city names ascending.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

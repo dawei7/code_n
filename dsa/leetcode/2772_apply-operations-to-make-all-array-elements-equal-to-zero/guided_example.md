@@ -61,7 +61,7 @@ The local loop variable `x` begins as the original `nums[i]` from `enumerate`. C
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Applying `x` operations explicitly to `k` array entries woul... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ When the window fits, `s -= x` activates `x` additional decrements beginning at 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Apply every operation to all `k` entries:** Th:** - **Apply every operation to all `k` entries:** This directly simulates the process but can cost `O(nk)` or time proportional to the number of repeated operations.
+- **Apply every operation to all `k` entries:** This directly simulates the process but can cost `O(nk)` or time proportional to the number of repeated operations.
 - **Queue of expiring operation counts:** A queue or circular buffer can track active starts and expirations with `O(k)` space. The exact solution uses a length-`n + 1` difference array for simpler indexed expiry.
 - **Mutate `nums` as a difference array:** In-place variants can reduce extra space, but they alter caller-owned input. The exact code keeps effects separate.
 - **Effective value already zero:** No operation starts; doing so would irreversibly make the position negative.
@@ -116,8 +116,8 @@ When the window fits, `s -= x` activates `x` additional decrements beginning at 
 - **Overlapping windows:** Their effects add in `s` and expire independently through accumulated entries in `d`.
 - **Large element values:** The method aggregates `x` identical operations into one arithmetic update instead of looping `x` times.
 - **Input preservation:** `x += s` changes only the loop variable, not the corresponding item in `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

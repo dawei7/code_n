@@ -64,7 +64,7 @@ If `f == t`, removal temporarily clears the coordinate and addition immediately 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The paired loops `for f, t in zip(moveFrom, moveTo)` process... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ There is no operation that moves only one marble, tests a count, or splits the m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency map of marble counts:** It can simul:** - **Frequency map of marble counts:** It can simulate exact quantities, but counts are never queried and every move transfers the complete source count. A set contains all information needed for the output and future transitions.
+- **Frequency map of marble counts:** It can simulate exact quantities, but counts are never queried and every move transfers the complete source count. A set contains all information needed for the output and future transitions.
 - **Move every marble individually:** This repeats work for duplicates and can become much more expensive when many marbles share a coordinate.
 - **Maintain a sorted set throughout:** It supports ordered output but makes each update logarithmic. Hash updates plus one final sort are simpler and match the exact code.
 - **Sort after every move:** Intermediate order is irrelevant, so repeated sorting wastes work.
@@ -117,8 +117,8 @@ There is no operation that moves only one marble, tests a count, or splits the m
 - **Guaranteed occupied source:** `remove` is appropriate because invalid absence need not be handled; `discard` would silently hide a broken precondition.
 - **Equal move-array lengths:** `zip` covers every operation under the contract. Unequal arrays would be truncated, but that input is excluded.
 - **Final set has one coordinate:** Sorting returns a one-element list, including after many merges.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

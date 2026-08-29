@@ -51,7 +51,7 @@ The result is another Series with the same index labels and one doubled value pe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The result is another Series with the same index labels and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The result is another Series with the same index labels and one doubled value pe
 
 ## 6. Traps This Instance Exposes
 
-- **- **`assign` method:** `employees.assign(bonus=emp:** - **`assign` method:** `employees.assign(bonus=employees['salary'] * 2)` returns a transformed DataFrame and is convenient in method chains, but the exact source deliberately mutates `employees`.
+- **`assign` method:** `employees.assign(bonus=employees['salary'] * 2)` returns a transformed DataFrame and is convenient in method chains, but the exact source deliberately mutates `employees`.
 - **Row-wise `apply`:** Applying a lambda per value is more flexible but adds Python-level overhead for simple scalar multiplication.
 - **Manual loop:** It is verbose, slower in pandas, and risks confusing positional and label indexes.
 - **Empty DataFrame:** Assignment creates an empty `bonus` column with no rows, preserving the requested schema.
@@ -94,8 +94,8 @@ The result is another Series with the same index labels and one doubled value pe
 - **Existing `bonus` column:** It would be overwritten, not duplicated.
 - **Missing salary:** Standard numeric multiplication propagates missingness; this problem does not request filling it.
 - **Input mutation:** Callers needing the original unchanged should copy first, because this source modifies the provided object.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

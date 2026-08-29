@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** integer array `nums` of size `n` representing the cost of collecting different chocolates. The cost of collecting the chocolate at the index `i` is $\text{nums}[i]$. Each chocolate is of a different type, and initially, the chocolate at the index `i` is of $$i^{\text{th}}$$ type.
+You are given a **0-indexed** integer array `nums` of size `n` representing the cost of collecting different chocolates. The cost of collecting the chocolate at the index `i` is $\text{nums}[i]$. Each chocolate is of a different type, and initially, the chocolate at the index `i` is of $i^{\text{th}}$ type.
 
 The objective is to compute `13` from `{"nums": [20, 1, 15], "x": 5}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -73,7 +73,7 @@ Because chocolates may be collected at different stages, each type can use the c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Initially, the chocolate at index `p` has type `p`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Python's modulo makes a negative index expression wrap into the range zero throu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rolling minimum array:** Maintain one best pri:** - **Rolling minimum array:** Maintain one best price per type as `j` grows, achieving the same $O(n^2)$ time with $O(n)$ auxiliary space.
+- **Rolling minimum array:** Maintain one best price per type as `j` grows, achieving the same $O(n^2)$ time with $O(n)$ auxiliary space.
 - **Try every purchase plan:** Exponential and unnecessary because choices become independent once the rotation count is fixed.
 - **Perform n or more rotations:** Never beneficial because type configurations repeat while every additional operation has positive cost.
 - **Zero rotations optimal:** When rotations are too expensive, candidate `j=0` returns `sum(nums)`.
@@ -132,8 +132,8 @@ Python's modulo makes a negative index expression wrap into the range zero throu
 - **Repeated prices:** Minima remain correct; source identity is irrelevant.
 - **Large costs:** Python integers avoid overflow when summing prices and rotation fees.
 - **Manifest mismatch:** The exact table is $O(n^2)$ space even though a straightforward optimization can realize $O(n)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

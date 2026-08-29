@@ -51,7 +51,7 @@ rounds, because the most frequent letters require $F$ removals, while every less
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | rounds, because the most frequent letters require $F$ remova... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate every round:** Repeatedly scan and re:** - **Simulate every round:** Repeatedly scan and rebuild the string. A frequent letter can force many rounds, leading to quadratic total work.
+- **Simulate every round:** Repeatedly scan and rebuild the string. A frequent letter can force many rounds, leading to quadratic total work.
 - **Queues of occurrence indices:** They model removals directly but store $O(N)$ positions when only frequency and last position are needed.
 - **Sort maximum-frequency letters:** This loses the survivor order, which must follow original indices.
 - **All characters distinct:** The answer is the full string because the only operation is also the last.
@@ -98,8 +98,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Input preservation:** All structures are derived from `s`; the source does not modify it.
 - **Why one last-position dictionary is enough:** Earlier indices of a maximum-frequency letter determine intermediate rounds but never the final surviving copy. Once frequency establishes that the letter reaches the final round, only its greatest index is needed to reconstruct the requested snapshot.
 - **Output length bound:** At most one occurrence per lowercase letter survives, so the answer has length at most 26 even when the input has half a million characters. This follows from simultaneous per-letter removal, not from truncating the result artificially.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The source initializes `v` to the starting digit, then moves once before testing
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes `v` to the starting digit, then moves... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Thus it generates every prefix of length at least two along that ray. Single-cel
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoize primality by value:** Repeated generat:** - **Memoize primality by value:** Repeated generated numbers could reuse one result, improving practical speed. The manifest describes this, but the exact source does not implement it.
+- **Memoize primality by value:** Repeated generated numbers could reuse one result, improving practical speed. The manifest describes this, but the exact source does not implement it.
 - **Sieve:** The largest six-digit value is bounded, so a sieve is conceivable, but allocating through that entire range may be wasteful for few tested values.
 - **Skip even divisors after testing 2:** It halves trial checks but does not change asymptotic complexity.
 - **One-cell matrix:** No direction can take one step, the counter stays empty, and the result is $-1$ even if the digit itself is prime.
@@ -99,8 +99,8 @@ Thus it generates every prefix of length at least two along that ray. Single-cel
 - **Path prefixes, not only maximal rays:** Primality is checked after every appended digit. A prime such as 19 is counted even when the same ray continues to form 191; testing only the final value would omit required numbers.
 - **Leading digit behavior:** Matrix digits range from 1 through 9, so generated decimal numbers never contain an artificial leading zero and numeric construction with multiplication by ten exactly matches digit concatenation.
 - **Counter iteration order:** The final answer does not depend on dictionary order because frequency comparisons and explicit `max` tie handling fully determine the winner.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

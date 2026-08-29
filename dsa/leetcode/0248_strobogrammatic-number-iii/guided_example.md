@@ -59,7 +59,7 @@ For each inner string `v`, four pairs are always allowed: `11`, `88`, `69`, and 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested helper `dfs(u)` generates strobogrammatic strings... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For `n = 2`, recursion reaches the empty center. The outer layer creates `11`, `
 
 ## 6. Traps This Instance Exposes
 
-- **- **In-place backtracking with a character buffer::** - **In-place backtracking with a character buffer:** Fill mirrored positions and check a completed candidate immediately instead of returning a list. This preserves the $O(d\cdot5^{d/2})$ time but can reduce auxiliary working space to $O(d)$ excluding recursion and the count, matching the manifest's space claim.
+- **In-place backtracking with a character buffer:** Fill mirrored positions and check a completed candidate immediately instead of returning a list. This preserves the $O(d\cdot5^{d/2})$ time but can reduce auxiliary working space to $O(d)$ excluding recursion and the count, matching the manifest's space claim.
 - **Lexicographic boundary comparison:** For equal-length canonical decimal strings, compare directly with `low` and `high` rather than converting to integers. This is useful in languages without arbitrary-precision integers; the exact Python source safely uses `int`.
 - **Test every integer in the range:** This can require work proportional to the numeric width of the interval, potentially near $10^{15}$, and ignores the sparse constructive structure.
 - **Inclusive endpoints:** The `<=` checks count `low` or `high` whenever the endpoint itself is strobogrammatic.
@@ -109,8 +109,8 @@ For `n = 2`, recursion reaches the empty center. The outer layer creates `11`, `
 - **Pair direction:** Both `69` and `96` must be generated. Neither `66` nor `99` is valid.
 - **Repeated generation by length:** `dfs` has no cache, but each call forms a single chain of decreasing lengths, so no sublength is recomputed within one outer iteration. A later outer-loop length starts a fresh generation.
 - **Closure over `n`:** The zero-pair rule relies on the current target length captured from the loop. Moving the helper elsewhere or evaluating it later would require passing the final length explicitly to preserve this meaning.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

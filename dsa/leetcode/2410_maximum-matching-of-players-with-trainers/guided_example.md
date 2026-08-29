@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** integer array `players`, where $\text{players}[i]$ represents the **ability** of the $$i^{\text{th}}$$ player. You are also given a **0-indexed** integer array `trainers`, where $\text{trainers}[j]$ represents the **training capacity **of the $$j^{\text{th}}$$ trainer.
+You are given a **0-indexed** integer array `players`, where $\text{players}[i]$ represents the **ability** of the $i^{\text{th}}$ player. You are also given a **0-indexed** integer array `trainers`, where $\text{trainers}[j]$ represents the **training capacity **of the $j^{\text{th}}$ trainer.
 
 The objective is to compute `2` from `{"players": [4, 7, 9], "trainers": [8, 2, 5, 8]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ If `j < n` after skipping, `trainers[j] >= p`. This is the smallest remaining su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `j` is the index of the first trainer not already consumed o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Repeated exchanges transform an optimal matching into the greedy form. Therefore
 
 ## 6. Traps This Instance Exposes
 
-- **- **Largest-first greedy:** Match the strongest pl:** - **Largest-first greedy:** Match the strongest player with the smallest capable trainer from the high end. It can also be formulated correctly, but weakest-first two pointers are simpler.
+- **Largest-first greedy:** Match the strongest player with the smallest capable trainer from the high end. It can also be formulated correctly, but weakest-first two pointers are simpler.
 - **Bipartite matching:** General maximum matching is unnecessary because feasibility is totally ordered by numeric thresholds.
 - **Trainer too weak for current player:** It is also too weak for every later stronger player and can be discarded.
 - **No trainer fits the weakest remaining player:** No later player can be matched, so early return is safe.
@@ -105,8 +105,8 @@ Repeated exchanges transform an optimal matching into the greedy form. Therefore
 - **More trainers than players:** All players may be matched; extras are unused.
 - **Exact equality:** Capacity equal to ability is sufficient.
 - **Input mutation:** Both arrays are sorted in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

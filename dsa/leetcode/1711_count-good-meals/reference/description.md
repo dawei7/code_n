@@ -4,7 +4,7 @@ A **good meal** is a meal that contains **exactly two different food items** wit
 
 You can pick **any** two different foods to make a good meal.
 
-Given an array of integers `deliciousness` where $\text{deliciousness}[i]$ is the deliciousness of the $i^​​​​​​th​​​​$​​​​ item of food, return *the number of different **good meals** you can make from this list modulo* $10^{9} + 7$.
+Given an array of integers `deliciousness` where $\text{deliciousness}[i]$ is the deliciousness of the $i^th$ item of food, return *the number of different **good meals** you can make from this list modulo* $10^{9} + 7$.
 
 Note that items with different indices are considered different even if they have the same deliciousness value.
 

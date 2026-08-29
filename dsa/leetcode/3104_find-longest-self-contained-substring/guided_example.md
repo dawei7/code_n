@@ -51,7 +51,7 @@ This can be expressed with global first and last occurrences. If a character `c`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This can be expressed with global first and last occurrences... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +90,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Partition-label intervals:** Build closed inte:** - **Partition-label intervals:** Build closed intervals from first and last occurrences and merge dependencies. It can express the same closure idea but needs care to consider the longest proper union.
+- **Partition-label intervals:** Build closed intervals from first and last occurrences and merge dependencies. It can express the same closure idea but needs care to consider the longest proper union.
 - **Try every substring:** Checking outside occurrences for all $O(n^2)$ candidates is far slower.
 - **Prefix frequency counts:** They can test one candidate quickly but still leave too many candidate boundaries without the first-occurrence reduction.
 - **Whole string only:** It is explicitly forbidden, so the length check must reject it even though it is always occurrence-closed.
@@ -105,8 +105,8 @@ $$
 - **Dictionary iteration order:** It follows first insertion order in Python, but answer correctness does not depend on candidate order.
 - **Length at least two for input:** The full-string exclusion can therefore still leave meaningful proper candidates.
 - **No input mutation:** The source only records positions and scans `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

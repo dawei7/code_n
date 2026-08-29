@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` gas stations along a circular route, where the amount of gas at the $$i^{\text{th}}$$ station is $\text{gas}[i]$.
+There are `n` gas stations along a circular route, where the amount of gas at the $i^{\text{th}}$ station is $\text{gas}[i]$.
 
 The objective is to compute `3` from `{"gas": [1, 2, 3, 4, 5], "cost": [3, 4, 5, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -72,7 +72,7 @@ If `s` becomes negative, starting at `i` cannot finish the enlarged block. The i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop appends station `j` by adding its net change ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ This proves the maintained fact: whenever an iteration finishes with `s >= 0`, e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Standard forward greedy reset:** Accumulate a :** - **Standard forward greedy reset:** Accumulate a candidate’s tank from left to right. When it becomes negative at `k`, eliminate every start in the current segment and restart at `k + 1`. A separate total sum decides whether any start exists.
+- **Standard forward greedy reset:** Accumulate a candidate’s tank from left to right. When it becomes negative at `k`, eliminate every start in the current segment and restart at `k + 1`. A separate total sum decides whether any start exists.
 - **Brute force every station:** Simulate up to $n$ legs from each of $n$ starts. It is easy to understand but takes $O(n^2)$ time.
 - **Prefix-sum minimum:** A valid circular start can be chosen immediately after a minimum prefix sum when total net gas is nonnegative. This gives another $O(n)$ proof and implementation.
 - **One station:** Return zero exactly when `gas[0] >= cost[0]`; otherwise return `-1`.
@@ -127,8 +127,8 @@ This proves the maintained fact: whenever an iteration finishes with `s >= 0`, e
 - **Unique-answer guarantee:** The source returns the `i` constructed by its deterministic growth order. The Reference guarantees uniqueness when a feasible answer exists, so no tie policy is needed.
 - **Nonempty arrays:** The contract has $n \ge 1$. With empty arrays, modulo by `n` would be invalid.
 - **Runtime dependency:** The selected source uses `List` in type annotations without importing it. A standalone module needs `from typing import List` unless the harness supplies that name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

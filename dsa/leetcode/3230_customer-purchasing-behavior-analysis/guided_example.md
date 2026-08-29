@@ -51,7 +51,7 @@ The inner join relies on the product ID relationship being complete. A transacti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The inner join relies on the product ID relationship being c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The inner join relies on the product ID relationship being complete. A transacti
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` with a deterministic final key:**:** - **`ROW_NUMBER` with a deterministic final key:** Order by count, latest date, then category (or another specified key) and keep row one. This prevents multiple top rows and aggregate multiplication.
+- **`ROW_NUMBER` with a deterministic final key:** Order by count, latest date, then category (or another specified key) and keep row one. This prevents multiple top rows and aggregate multiplication.
 - **Aggregate customer totals before joining the winner:** Build one CTE for customer metrics and another for exactly one top category, then join their one-row-per-customer results. This isolates totals from category-ranking multiplicity.
 - **`DENSE_RANK`:** It has the same rank-one tie problem as `RANK` and does not fix the defect.
 - **One transaction:** Its category is top, total equals average, and transaction count is one.
@@ -101,8 +101,8 @@ The inner join relies on the product ID relationship being complete. A transacti
 - **Output ties:** Equal loyalty scores are ordered by ascending customer ID.
 - **Positional order references:** `7` and `1` depend on select-list layout and are less maintainable than explicit aliases.
 - **Strict grouping mode:** Selecting top category outside `GROUP BY` may rely on permissive MySQL behavior or inferred functional dependence.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

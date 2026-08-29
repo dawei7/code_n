@@ -61,7 +61,7 @@ Only after this check does the code let `x` act as a possible “3.” Checking 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each reverse-scanned value `x`, the first operation is `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ After all smaller tops are removed, `x` is appended. The remaining top, if any, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every triple:** It directly follows the :** - **Check every triple:** It directly follows the definition but takes $O(n^3)$ time.
+- **Check every triple:** It directly follows the definition but takes $O(n^3)$ time.
 - **Prefix minimum plus suffix scan:** Fix the “3,” use the minimum value to its left, and scan its right side for a middle value. This improves to $O(n^2)$ but repeats suffix work.
 - **Prefix minima plus a monotonic stack:** Another linear method explicitly stores the best “1” for every position and searches right-side “2” candidates. It uses $O(n)$ space but more state than the exact reverse-stack solution.
 - **Balanced search structure:** Scanning possible middle indices while querying a suffix set can take $O(n\log n)$ time.
@@ -110,8 +110,8 @@ After all smaller tops are removed, `x` is appended. The remaining top, if any, 
 - **Strictly decreasing input:** Nothing is popped because reverse-scanned values keep getting smaller; `vk` remains negative infinity.
 - **Negative values:** Starting `vk` at `-inf` works below every legal integer, and comparisons are otherwise unchanged.
 - **Reversed-copy cost:** The exact syntax duplicates the array. An iterator can remove that copy if constant factors matter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

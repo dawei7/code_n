@@ -63,7 +63,7 @@ ASCII/Unicode lowercase code points are consecutive, so no lookup table is neede
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `map(ord, s)` lazily converts letters to code points.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If the condition fails, `cnt` resets to one because the current character begins
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare characters directly:** Test `ord(y) ==:** - **Compare characters directly:** Test `ord(y) == ord(x) + 1` without mapping the entire iterator. It has the same complexity.
+- **Compare characters directly:** Test `ord(y) == ord(x) + 1` without mapping the entire iterator. It has the same complexity.
 - **Split at failures:** Record maximal runs and take their lengths. This is equivalent but needs more bookkeeping.
 - **Enumerate substrings:** Testing every substring takes quadratic or worse time.
 - **One character:** Initialization returns one.
@@ -112,8 +112,8 @@ If the condition fails, `cnt` resets to one because the current character begins
 - **Decreasing pair:** Negative difference breaks the run.
 - **`"za"`:** There is no wraparound, so it forms only singleton runs.
 - **Substring requirement:** Characters cannot be skipped to repair a broken adjacency.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -80,7 +80,7 @@ If the remaining heap is nonempty, its top gives candidate distance `row[i][0][0
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `row[i]` stores entries `(distance, column)` for reachable c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Thus every heap value actually consulted is both minimum-distance and currently 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Balanced successor sets with BFS:** Enumerate :** - **Balanced successor sets with BFS:** Enumerate each still-unvisited reachable cell once, but row and column bookkeeping is more involved.
+- **Balanced successor sets with BFS:** Enumerate each still-unvisited reachable cell once, but row and column bookkeeping is more involved.
 - **Segment trees:** Range minima can support the same recurrence, usually with $O(N\log N)$ time and heavier implementation.
 - **Scan every jump destination:** A cell may reach $O(N)$ later cells, leading to quadratic work.
 - **Single-cell grid:** The start is the destination, so the answer is one.
@@ -130,8 +130,8 @@ Thus every heap value actually consulted is both minimum-distance and currently 
 - **Two possible directions:** Both heaps must be queried before the cell is pushed.
 - **Destination unreachable:** Its initialized `-1` is returned unchanged.
 - **Input preservation:** The grid is only read; distances and heaps are stored separately.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

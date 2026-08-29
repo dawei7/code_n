@@ -64,7 +64,7 @@ Only contests represented in `Register` form groups. That matches the data model
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query reads `Register` and groups by the first sel... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ The alias `percentage` gives the calculated column its required output name. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `COUNT(DISTINCT user_id)`:** This is robus:** - **Use `COUNT(DISTINCT user_id)`:** This is robust to duplicate registration rows, but the composite primary key already forbids them. Distinct aggregation can require extra work.
+- **Use `COUNT(DISTINCT user_id)`:** This is robust to duplicate registration rows, but the composite primary key already forbids them. Distinct aggregation can require extra work.
 - **Cross join a one-row total CTE:** Compute the Users count once in a CTE and cross join it to contest aggregates. This can make denominator reuse explicit but produces the same result.
 - **Join Register to Users:** It is unnecessary when registration user IDs conform to the intended schema and no user attributes are needed. A join adds work without changing the numerator.
 - **Spell out column names:** `GROUP BY contest_id ORDER BY percentage DESC, contest_id ASC` is more resilient to select-list reordering than positional ordinals. The exact source uses positions.
@@ -119,8 +119,8 @@ The alias `percentage` gives the calculated column its required output name. The
 - **Empty Users table:** Division by zero would be undefined. The intended problem data assumes a user population for percentages; a broader production query would need an explicit zero-denominator policy.
 - **Rounding point:** The source rounds the final percentage, not the numerator or denominator separately.
 - **Changing select order:** Because `GROUP BY 1` and `ORDER BY 2, 1` are positional, such a refactor must update the ordinals or replace them with names.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

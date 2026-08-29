@@ -65,7 +65,7 @@ Subtraction matters. Calling `sort()` without a comparator would convert values 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When the sorting engine asks how `left` and `right` should b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For nested arrays such as `[[3,4],[5,2],[10,1]]` with `fn = x => x[1]`, the seco
 
 ## 6. Traps This Instance Exposes
 
-- **- **Decorate, sort, undecorate:** Compute `fn` onc:** - **Decorate, sort, undecorate:** Compute `fn` once per element, sort key-element pairs, and strip keys; this helps when `fn` is expensive but allocates $O(n)$ explicit records.
+- **Decorate, sort, undecorate:** Compute `fn` once per element, sort key-element pairs, and strip keys; this helps when `fn` is expensive but allocates $O(n)$ explicit records.
 - **Copy before sorting:** `[...arr].sort(...)` preserves the input array at the cost of $O(n)$ additional visible storage.
 - **Default `sort()`:** Incorrect for numeric keys because it uses string ordering.
 - **Handwritten merge sort:** Gives direct control over stability and storage but adds substantial code without changing the target order.
@@ -114,8 +114,8 @@ For nested arrays such as `[[3,4],[5,2],[10,1]]` with `fn = x => x[1]`, the seco
 - **Mutation:** Callers holding `arr` observe its new order after the function returns.
 - **Expensive `fn`:** Repeated comparator evaluation can dominate the runtime; precomputing keys would then be preferable.
 - **Side-effecting `fn`:** Can make comparisons inconsistent and should be avoided even though the contract focuses only on numeric return values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

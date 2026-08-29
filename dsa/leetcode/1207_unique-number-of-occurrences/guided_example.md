@@ -69,7 +69,7 @@ For the first example, both sizes are three because frequencies one, two, and th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt.values()` provides one count for every distinct input v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ No sorting is required because the problem asks only whether a collision exists,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency map plus incremental seen set:** Ite:** - **Frequency map plus incremental seen set:** Iterate counts and return false immediately when a count already exists in the set. This can short-circuit instead of constructing the complete set first.
+- **Frequency map plus incremental seen set:** Iterate counts and return false immediately when a count already exists in the set. This can short-circuit instead of constructing the complete set first.
 - **Sort the frequencies:** After counting, sort the $k$ counts and compare adjacent entries. This costs $O(k\log k)$ time and is unnecessary for a collision test.
 - **Fixed counting array:** The bounded value range permits an array of 2001 counters, followed by a set or sorted uniqueness check over nonzero entries.
 - **One distinct value:** There is one frequency and therefore nothing it can collide with; the method returns true.
@@ -120,8 +120,8 @@ No sorting is required because the problem asks only whether a collision exists,
 - **Frequency zero:** Values absent from the array are not counter keys, so zero is not part of the frequency collection.
 - **Nonempty guarantee:** The method would also return true for an empty array because both sizes would be zero, but the contract always supplies at least one element.
 - **Expected hashing complexity:** Adversarial collision details are abstracted by the normal expected $O(1)$ dictionary and set model.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

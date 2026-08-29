@@ -69,7 +69,7 @@ For `text = "hello world"` and `brokenLetters = "ad"`, the set is `{"a", "d"}`. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer generator produces one Boolean per word.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Repeated letters need no special counting. If a repeated character is broken, th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Streaming character scan:** Track whether the :** - **Streaming character scan:** Track whether the current word has encountered a broken key, count it at each space, and handle the final word afterward. This gives $O(N+B)$ time and $O(B)$ space without materializing word substrings.
+- **Streaming character scan:** Track whether the current word has encountered a broken key, count it at each space, and handle the final word afterward. This gives $O(N+B)$ time and $O(B)$ space without materializing word substrings.
 - **Set intersection per word:** `set(w).isdisjoint(s)` is expressive but allocates another set for every word. The exact `all` approach can short-circuit and avoids those sets.
 - **Search the broken string directly:** Testing `c not in brokenLetters` avoids building a set but costs $O(B)$ per tested character; with $B\le26$ it is still asymptotically linear but has a less robust bound.
 - **No broken letters:** The set is empty, every membership test succeeds, and all words are counted.
@@ -118,8 +118,8 @@ Repeated letters need no special counting. If a repeated character is broken, th
 - **Spaces are not keys being tested:** Splitting removes separators before character checks, so a space can never make a word fail.
 - **Input formatting guarantee:** Single separators and no outer spaces ensure no empty words. The chosen `split()` would also ignore extra whitespace if it appeared.
 - **Exact-space caveat:** Although the fixed broken-letter set is constant-sized, the word list and substring objects created by `split` make this source $O(N)$ in peak auxiliary space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

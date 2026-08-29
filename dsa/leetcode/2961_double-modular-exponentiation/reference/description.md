@@ -6,7 +6,7 @@ An index `i` is **good** if the following formula holds:
 
 - $0 \le i < \text{variables.length}$
 
-- $((a_{i}^b_{i} \% 10)^c_{i}) \% m_{i} = target$
+- $((a_{i}^{b_{i}} \% 10)^c_{i}) \% m_{i} = target$
 
 Return *an array consisting of **good** indices in **any order***.
 

@@ -2,7 +2,7 @@
 
 There is an undirected connected tree with `n` nodes labeled from `0` to $n - 1$ and $n - 1$ edges.
 
-You are given a **0-indexed** integer array `nums` of length `n` where $\text{nums}[i]$ represents the value of the $$i^{\text{th}}$$ node. You are also given a 2D integer array `edges` of length $n - 1$ where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
+You are given a **0-indexed** integer array `nums` of length `n` where $\text{nums}[i]$ represents the value of the $i^{\text{th}}$ node. You are also given a 2D integer array `edges` of length $n - 1$ where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
 Remove two **distinct** edges of the tree to form three connected components. For a pair of removed edges, the following steps are defined:
 
@@ -10,7 +10,7 @@ Remove two **distinct** edges of the tree to form three connected components. Fo
 
 - The **difference** between the **largest** XOR value and the **smallest** XOR value is the **score** of the pair.
 
-- For example, say the three components have the node values: `[4,5,7]`, `[1,9]`, and `[3,3,3]`. The three XOR values are $4 ^ 5 ^ 7 = <u>**6**</u>$, $1 ^ 9 = <u>**8**</u>$, and $3 ^ 3 ^ 3 = <u>**3**</u>$. The largest XOR value is `8` and the smallest XOR value is `3`. The score is then $8 - 3 = 5$.
+- For example, say the three components have the node values: `[4,5,7]`, `[1,9]`, and `[3,3,3]`. The three XOR values are `4 ^ 5 ^ 7 = <u>**6**</u>`, `1 ^ 9 = <u>**8**</u>`, and `3 ^ 3 ^ 3 = <u>**3**</u>`. The largest XOR value is `8` and the smallest XOR value is `3`. The score is then $8 - 3 = 5$.
 
 Return *the **minimum** score of any possible pair of edge removals on the given tree*.
 

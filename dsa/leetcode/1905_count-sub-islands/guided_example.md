@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Use `grid2` itself as the visited structure.** On entering... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ This mutation is intentional and observable: after the method returns, all land 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS or BFS:** An explicit stack or q:** - **Iterative DFS or BFS:** An explicit stack or queue avoids Python recursion limits while keeping $O(mn)$ time and worst-case space. It can still clear `grid2` in place.
+- **Iterative DFS or BFS:** An explicit stack or queue avoids Python recursion limits while keeping $O(mn)$ time and worst-case space. It can still clear `grid2` in place.
 - **Separate visited matrix:** Preserves `grid2` but allocates $O(mn)$ additional memory. The exact source chooses destructive marking.
 - **Erase invalid land first:** Remove every `grid2` cell lying over `grid1` water, then count remaining islands. Care is needed because removing one cell can split an original invalid island into pieces that must not be counted.
 - **Grid2 island over multiple Grid1 islands:** If every corresponding cell is land and cells are four-connected, they cannot actually belong to different `grid1` islands; their same adjacencies connect them there too.
@@ -95,8 +95,8 @@ This mutation is intentional and observable: after the method returns, all land 
 - **Invalid cell found early:** DFS must continue clearing the component. The source preserves exploration even after `ok` becomes zero.
 - **Input mutation:** All visited `grid2` land is changed to water. Pass a copy if the caller must retain the original grid.
 - **Large solid island:** Correct asymptotic work is linear, but recursive depth may exceed Python's default limit; iterative traversal is safer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

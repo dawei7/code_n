@@ -60,7 +60,7 @@ For each sandwich value `v`, `cnt[v]` is the number of still-waiting students wh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The description says index zero is the top of the sandwich s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ This abstraction preserves everything that matters: which sandwich is next, and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal deque simulation:** Rotate mismatching:** - **Literal deque simulation:** Rotate mismatching students and track how many consecutive failures have occurred. It mirrors the story but can perform $O(n^2)$ rotations in a direct implementation.
+- **Literal deque simulation:** Rotate mismatching students and track how many consecutive failures have occurred. It mirrors the story but can perform $O(n^2)$ rotations in a direct implementation.
 - **Two scalar counters:** Because there are only two types, count zeros and derive or separately count ones. This achieves the same $O(n)$ time and $O(1)$ space without `Counter`.
 - **Sorting preferences:** It loses the useful simplicity of direct counting and does not remove the need to respect sandwich order.
 - **One student:** Equal array lengths do not guarantee matching types. If the only preference differs from the top sandwich, the check immediately returns one; if they match, the loop ends and returns zero.
@@ -110,8 +110,8 @@ This abstraction preserves everything that matters: which sandwich is next, and 
 - **Top-of-stack convention:** The scan is correct specifically because index zero is defined as the top; reversing `sandwiches` would model a different process.
 - **Binary-type assumption:** The expression `v ^ 1` is valid only because every type is exactly zero or one.
 - **Counter missing key:** It evaluates to zero, so an absent preference type triggers the stopping rule without a key error.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

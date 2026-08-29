@@ -51,7 +51,7 @@ Let the running prefix sum `s` after reading the current element equal the sum f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the running prefix sum `s` after reading the current ele... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Maintaining a runn:** - **Enumerate every subarray:** Maintaining a running sum per start still takes $O(n^2)$ time.
+- **Enumerate every subarray:** Maintaining a running sum per start still takes $O(n^2)$ time.
 - **Prefix array plus nested endpoints:** Sum queries become constant time, but there remain quadratic pairs.
 - **Sliding window:** It is not correct when values may be negative.
 - **Use a set:** It undercounts when the same prefix sum occurs at several indices.
@@ -97,8 +97,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Negative `k`:** The same equation `p=s-k` applies.
 - **No qualifying subarray:** Every lookup contributes zero and the result remains zero.
 - **Repeated value patterns:** Index-distinct subarrays are counted separately.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

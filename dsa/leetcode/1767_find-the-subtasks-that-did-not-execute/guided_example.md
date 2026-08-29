@@ -63,7 +63,7 @@ The constraint `subtasks_count >= 2` is not required for the recursion's correct
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a task with count $c$, the anchor emits `(task_id, c)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ keeps only unmatched expected rows. Since valid `Executed.subtask_id` values are
 
 ## 6. Traps This Instance Exposes
 
-- **- **Numbers helper table:** Join each task to pree:** - **Numbers helper table:** Join each task to preexisting integers from one through `subtasks_count`. It avoids recursion when such a table is available.
+- **Numbers helper table:** Join each task to preexisting integers from one through `subtasks_count`. It avoids recursion when such a table is available.
 - **Recursive sequence upward:** Anchor at one and increment while below the task count. It is equally correct and naturally describes ascending identifiers.
 - **NOT EXISTS:** Generate candidates, then retain those for which no matching execution row exists. It expresses the anti-join directly.
 - **NOT IN:** Null semantics can be troublesome in general; a composite `NOT EXISTS` or left anti-join is safer.
@@ -121,12 +121,12 @@ keeps only unmatched expected rows. Since valid `Executed.subtask_id` values are
 - **Any-order main contract:** The exact query satisfies membership but promises no ordering.
 - **Ascending-order stricter contract:** Add an explicit `ORDER BY` if that local requirement must be enforced.
 - **Empty missing set:** The query naturally returns no rows when everything executed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(T)$. Let $T=\sum \texttt{subtasks_count}$ be the total number of valid task-subtask pairs. The recursive CTE generates exactly $T$ rows, taking $O(T)$ logical work and $O(T)$ CTE storage.
+- **Time Complexity:** $O(T)$. Let $T=\sum \texttt{subtasks\_count}$ be the total number of valid task-subtask pairs. The recursive CTE generates exactly $T$ rows, taking $O(T)$ logical work and $O(T)$ CTE storage.
 - **Auxiliary Space Complexity:** $O(T)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,10 +1,10 @@
 ### 1. Description
 
-You are given an array of network towers `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ denotes the $$i^{\text{th}}$$ network tower with location $(x_{i}, y_{i})$ and quality factor $q_{i}$. All the coordinates are **integral coordinates** on the X-Y plane, and the distance between the two coordinates is the **Euclidean distance**.
+You are given an array of network towers `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ denotes the $i^{\text{th}}$ network tower with location $(x_{i}, y_{i})$ and quality factor $q_{i}$. All the coordinates are **integral coordinates** on the X-Y plane, and the distance between the two coordinates is the **Euclidean distance**.
 
 You are also given an integer `radius` where a tower is **reachable** if the distance is **less than or equal to** `radius`. Outside that distance, the signal becomes garbled, and the tower is **not reachable**.
 
-The signal quality of the $$i^{\text{th}}$$ tower at a coordinate `(x, y)` is calculated with the formula $⌊q_{i} / (1 + d)⌋$, where `d` is the distance between the tower and the coordinate. The **network quality** at a coordinate is the sum of the signal qualities from all the **reachable** towers.
+The signal quality of the $i^{\text{th}}$ tower at a coordinate `(x, y)` is calculated with the formula $⌊q_{i} / (1 + d)⌋$, where `d` is the distance between the tower and the coordinate. The **network quality** at a coordinate is the sum of the signal qualities from all the **reachable** towers.
 
 Return *the array *`[c_x, c_y]`* representing the **integral** coordinate *$(c_{x}, c_{y})$* where the **network quality** is maximum. If there are multiple coordinates with the same **network quality**, return the lexicographically minimum **non-negative** coordinate.*
 

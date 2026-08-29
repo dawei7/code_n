@@ -51,7 +51,7 @@ total index choices, where $L=\texttt{index}$ and $R=n-\texttt{index}-1$. The so
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | total index choices, where $L=\texttt{index}$ and $R=n-\text... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all five-index subsequences:** It co:** - **Enumerate all five-index subsequences:** It costs $O(n^5)$ and is impossible at $n=1000$.
+- **Enumerate all five-index subsequences:** It costs $O(n^5)$ and is impossible at $n=1000$.
 - **Enumerate competing values per middle:** It can become $O(n^2)$; maintained moments collapse those sums.
 - **At least three middle copies:** The middle is automatically unique mode.
 - **Exactly two middle copies:** Any other value appearing twice creates a tie and is invalid.
@@ -100,8 +100,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Moment exclusion:** Middle-value contributions are subtracted before counting competitors.
 - **Generated source:** No local editorial exists; the explanation follows the exact inclusion-exclusion formulas.
 - **Input preservation:** Only counters and scalar moments change.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

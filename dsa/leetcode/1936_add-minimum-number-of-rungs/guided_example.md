@@ -81,7 +81,7 @@ Using `g // dist` directly would be wrong when $g$ is an exact multiple of `dist
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose $k$ new rungs are inserted strictly between heights ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ The implementation does not need to construct these heights because the output a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track a previous height:** Initialize `previou:** - **Track a previous height:** Initialize `previous = 0`, scan original rungs, add `(height - previous - 1) // dist`, then update `previous`. This preserves $O(N)$ time and achieves true $O(1)$ auxiliary space.
+- **Track a previous height:** Initialize `previous = 0`, scan original rungs, add `(height - previous - 1) // dist`, then update `previous`. This preserves $O(N)$ time and achieves true $O(1)$ auxiliary space.
 - **Actually insert rungs:** Constructing every new height is unnecessary and can be enormous relative to the input length when a gap is large. Arithmetic gives the count directly.
 - **Binary search the answer:** Feasibility is monotone, but there is a closed-form independent answer for every gap, so binary search adds complexity.
 - **Gap at most `dist`:** It contributes zero, including a gap exactly equal to `dist`.
@@ -131,8 +131,8 @@ The implementation does not need to construct these heights because the output a
 - **Strictly increasing input:** Positive gaps are guaranteed. Duplicate or descending heights would invalidate the independent climbing interpretation but are outside the contract.
 - **Choice of insertion heights:** Many placements may achieve the minimum. Only the count matters, so the algorithm need not select one.
 - **Imported helper:** The exact solution assumes `pairwise` is available in its execution environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

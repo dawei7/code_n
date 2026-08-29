@@ -57,7 +57,7 @@ This matrix gives constant-time road-weight lookup, but it is dense storage even
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source allocates an $n$-by-$n$ matrix `g` filled with in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The graph is guaranteed connected, so some finite-distance unvisited vertex exis
 
 ## 6. Traps This Instance Exposes
 
-- **- **Heap Dijkstra with adjacency lists:** This ach:** - **Heap Dijkstra with adjacency lists:** This achieves $O((V+E)\log V)$ time and $O(V+E)$ space and matches the manifest, especially benefiting sparse graphs.
+- **Heap Dijkstra with adjacency lists:** This achieves $O((V+E)\log V)$ time and $O(V+E)$ space and matches the manifest, especially benefiting sparse graphs.
 - **Floyd-Warshall:** It can compute all-pairs distances but costs $O(V^3)$ and is unnecessary for one source.
 - **Ordinary BFS:** It is incorrect because road times are positive but not necessarily equal.
 - **Strictly shorter relaxation:** Replace both the distance and count; keeping the old count would include nonshortest paths.
@@ -109,8 +109,8 @@ The graph is guaranteed connected, so some finite-distance unvisited vertex exis
 - **Large path count:** Python avoids overflow, and the result is reduced modulo $10^9+7$.
 - **No early exit:** The source processes all vertices even after the destination is finalized; this does not affect correctness.
 - **Input preservation:** Road rows are read into a new matrix and are not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

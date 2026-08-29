@@ -51,7 +51,7 @@ After deleting those elements, the next operation—if valid—must use original
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After deleting those elements, the next operation—if valid—m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The only question is how long the prefix of pairs has the same sum as the first 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Actually delete the first two list elements:**:** - **Actually delete the first two list elements:** It mirrors the statement but can cost quadratic time due to repeated shifts and unnecessarily mutates input.
+- **Actually delete the first two list elements:** It mirrors the statement but can cost quadratic time due to repeated shifts and unnecessarily mutates input.
 - **Build all pair sums:** Comparing their equal prefix works but uses $O(N)$ extra space.
 - **Dynamic programming:** There is no branching choice to optimize in this version, so DP adds no value.
 - **Exactly two elements:** The first pair establishes the target and is counted, returning one.
@@ -99,8 +99,8 @@ The only question is how long the prefix of pairs has the same sum as the first 
 - **Input preservation:** The algorithm simulates removals by indices and leaves `nums` intact.
 - **Why the first score cannot be chosen differently:** At least one operation is always possible because the array begins with two elements, and that operation must remove them. Any claimed solution using another target score would already violate the rule on its first step.
 - **Maximum possible answer:** Each operation consumes exactly two elements, so no method could exceed $\lfloor N/2\rfloor$. When every complete pair has the target sum, the scan reaches this upper bound and is therefore visibly optimal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

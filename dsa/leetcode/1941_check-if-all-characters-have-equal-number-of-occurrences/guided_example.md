@@ -61,7 +61,7 @@ This is different from initializing a 26-element array and placing all its count
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The definition quantifies over characters that appear in `s`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ These two directions prove the Boolean test is equivalent to the definition.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed 26-element frequency array:** Count with:** - **Fixed 26-element frequency array:** Count with character indices, find the first positive frequency, and verify every other positive frequency matches. This also gives $O(N)$ time and fixed space.
+- **Fixed 26-element frequency array:** Count with character indices, find the first positive frequency, and verify every other positive frequency matches. This also gives $O(N)$ time and fixed space.
 - **Compare minimum and maximum positive counts:** All frequencies are equal exactly when their minimum equals their maximum. This still requires counting and handling the appearing-character set.
 - **Repeated `s.count` calls:** Calling `count` once per distinct character can scan the string repeatedly. With only 26 letters it remains $O(N)$ under a fixed-alphabet view, but the counter is cleaner and more general.
 - **One distinct character:** Any positive number of repetitions is good because there is only one appearing frequency to compare.
@@ -111,8 +111,8 @@ These two directions prove the Boolean test is equivalent to the definition.
 - **Nonempty input:** It guarantees the frequency set contains at least one value; the exact equality-to-one test relies on that contract.
 - **Lowercase-only alphabet:** This makes the data structures constant-sized in asymptotic space, though the code itself would also work for other hashable characters.
 - **Counter import:** The exact source assumes `Counter` is available in the execution environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

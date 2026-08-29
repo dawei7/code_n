@@ -51,7 +51,7 @@ The initial comprehension creates one pair for every array element. `heapify(pq)
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The initial comprehension creates one pair for every array e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For each of the $k$ operations, `heappop` removes the lexicographically smallest
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full scan per operation:** Find the earliest m:** - **Full scan per operation:** Find the earliest minimum with a left-to-right scan and update it. This uses $O(1)$ space and $O(nk)$ time, which is perfectly acceptable for the small version-I limits.
+- **Full scan per operation:** Find the earliest minimum with a left-to-right scan and update it. This uses $O(1)$ space and $O(nk)$ time, which is perfectly acceptable for the small version-I limits.
 - **Sorted balanced structure:** An ordered multiset of value-index pairs supports the same updates in $O(\log n)$ but is not built into Python.
 - **Heap of values only:** It loses the original index needed both for mutation and deterministic tie-breaking.
 - **Lazy stale entries:** Some heap-update problems push new pairs without deleting old ones and validate on pop. Here the selected old entry is already at the root, so immediate pop-and-push keeps one clean entry per index.
@@ -100,8 +100,8 @@ For each of the $k$ operations, `heappop` removes the lexicographically smallest
 - **Heap and array synchronization:** Immediately after every push, the pair stored for index `i` uses the newly written `nums[i]`. If the array were updated without replacing its heap pair, a stale smaller value could be selected later and break correctness.
 - **Exactly `k` operations:** The loop does not stop merely because values become equal or large. Every iteration performs one mandated multiplication, including cases where the numerical array does not change because the multiplier is one.
 - **Tie created by an update:** When multiplication makes the selected value equal to another entry, reinserting its original index lets the next heap comparison apply the first-occurrence rule afresh rather than favoring whichever element was updated most recently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

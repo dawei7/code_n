@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - an upward step increases the value by at least `1` and at ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The lower bound of `1` is important. The elements are integers and the inequalit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over positions and values::** - **Dynamic programming over positions and values:** One could track reachable high and low values after every position, but `n` can be as large as `10^9`. The extremal rise/fall argument collapses all of that state into one formula.
+- **Dynamic programming over positions and values:** One could track reachable high and low values after every position, but `n` can be as large as `10^9`. The extremal rise/fall argument collapses all of that state into one formula.
 - **Building the maximizing sequence:** Repeatedly adding `m` and subtracting `1` makes the construction visible, but it takes `O(n)` time and stores information the return value does not require.
 - **Starting with a fall:** This orientation is legal, but every upward move is preceded by a loss of at least `1`. It cannot recover the one-unit advantage of rising first.
 - **Length one:** There are no adjacent comparisons, so the only element `s` is the answer. This is why the early return must precede the closed formula.
@@ -97,8 +97,8 @@ The lower bound of `1` is important. The elements are integers and the inequalit
 - **Strict inequalities:** Treating a fall as allowed to have size zero would incorrectly change each two-step gain from `m - 1` to `m`. The extra `+1` in the final expression follows directly from paying only `q - 1` falls before the last peak.
 - **Values below zero:** The fixed start is positive, but the sequence elements are otherwise integers. The maximizing construction never needs a large downward move, so no lower-bound assumption is used.
 - **Overflow outside Python:** The product `(n // 2) * (m - 1)` can exceed a 32-bit signed integer even though each individual input fits. Use 64-bit arithmetic in languages with fixed-width integer types.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

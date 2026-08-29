@@ -63,7 +63,7 @@ For example, in `nums = [4,1,4]` and `target = [5,1,4]`, only index 0 is mismatc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `nums[i] == target[i]`, index `i` does not force any oper... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This lower bound explains why counting occurrences would be wrong. Ten mismatche
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct operation simulation:** Repeatedly scan:** - **Direct operation simulation:** Repeatedly scanning the array, finding maximal segments, and writing targets can reproduce a valid sequence, but it may cost $O(NK)$ time and obscures the fact that segment boundaries do not affect the count.
+- **Direct operation simulation:** Repeatedly scanning the array, finding maximal segments, and writing targets can reproduce a valid sequence, but it may cost $O(NK)$ time and obscures the fact that segment boundaries do not affect the count.
 - **Frequency map:** Counting how many mismatched indices begin with each value also leads to the answer by taking the number of keys. The frequencies themselves are unnecessary; only distinctness matters, so a set is simpler.
 - **Boolean seen array:** Because values lie between 1 and $10^5$, an indexed boolean array can mark required values. It has deterministic access but reserves space for the entire value domain even when few values occur.
 - **All positions already match:** The comprehension inserts nothing, and the answer is zero. The operation may be used zero times, exactly as the statement permits.
@@ -114,8 +114,8 @@ This lower bound explains why counting occurrences would be wrong. Ten mismatche
 - **Cycles of desired values:** Transformations such as 1 becoming 2 and 2 becoming 1 do not require cycle detection. Later operations cannot damage completed positions because every write uses that position's final target.
 - **Targets introducing a previously processed value:** No second operation is required. A position receiving that value has just been written to its target and is already correct.
 - **Equal-length guarantee:** Python's `zip` would silently stop at the shorter array if lengths differed. The contract guarantees equal lengths, so the concise source covers every index; outside that contract, explicit length validation would be necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

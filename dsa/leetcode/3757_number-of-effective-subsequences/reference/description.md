@@ -50,7 +50,7 @@ Return the number of nonempty subsequences whose removal strictly lowers the bit
 
 - **Output:** 4
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - The Bitwise OR of the array is $7 OR 4 OR 6 = 7$.
 

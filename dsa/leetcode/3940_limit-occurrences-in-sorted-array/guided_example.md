@@ -68,7 +68,7 @@ No dictionary is required. In an unsorted array, equal values could reappear aft
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At position `r`, comparing `nums[r]` with `nums[r - 1]` tell... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ The meaningful prefix becomes `[1, 1, 2, 2, 3]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare with the compacted value `k` positions:** - **Compare with the compacted value `k` positions back:** Retain `value` when fewer than `k` outputs exist or `value != nums[l - k]`. This is the manifest's summarized method and also uses $O(1)$ working space, but it is not the source's run counter.
+- **Compare with the compacted value `k` positions back:** Retain `value` when fewer than `k` outputs exist or `value != nums[l - k]`. This is the manifest's summarized method and also uses $O(1)$ working space, but it is not the source's run counter.
 - **Use a frequency dictionary:** It works even for unsorted input but spends $O(D)$ space for $D$ distinct values. Sorted contiguity makes it unnecessary.
 - **Build a separate output with append:** This is simple and linear but uses output-sized storage beyond the in-place prefix. The source writes retained values directly into `nums`.
 - **Delete excess entries while scanning:** Repeated deletion from the middle of a Python list shifts later values and can produce quadratic time.
@@ -130,8 +130,8 @@ The meaningful prefix becomes `[1, 1, 2, 2, 3]`.
 - **Nonempty input assumption:** Initializing `cnt` and `l` to one relies on index zero being present. The stated constraints guarantee this.
 - **Positive `k` assumption:** The first element is retained unconditionally, which is correct only because `k >= 1`.
 - **Returned slice versus original object:** The returned list has the requested length. The supplied `nums` is compacted in its prefix but is not resized by the source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

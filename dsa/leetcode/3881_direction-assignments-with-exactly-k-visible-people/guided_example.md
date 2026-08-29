@@ -101,13 +101,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are
-
-$$
-\binom la
-$$
-
-ways to choose which left-side p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -148,7 +142,7 @@ Every assignment with exactly `k` visible people has one unique value of `a`, th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use Vandermonde directly:** Return `2*C(n-1,k):** - **Use Vandermonde directly:** Return `2*C(n-1,k)`. This is simpler, independent of `pos`, and constant-time per query after factorial preprocessing.
+- **Use Vandermonde directly:** Return `2*C(n-1,k)`. This is simpler, independent of `pos`, and constant-time per query after factorial preprocessing.
 - **Enumerate all direction strings:** There are `2^n` assignments and is infeasible.
 - **Dynamic programming by people and visible count:** Correct in `O(nk)` time but unnecessary because each visible subset uniquely fixes directions.
 - **Pascal-triangle combinations:** Avoid modular inverses but requires `O(nk)` preprocessing or space.
@@ -161,8 +155,8 @@ Every assignment with exactly `k` visible people has one unique value of `a`, th
 - **Modulo arithmetic:** Reduce the sum because the number of assignments may be large.
 - **Position independence:** Though side-specific directions differ, the total count is always `2\binom{n-1}{k}`.
 - **Global source cost:** Do not describe the exact file as truly constant-space without stating that it allocates two large shared arrays.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

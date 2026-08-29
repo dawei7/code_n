@@ -51,7 +51,7 @@ The helper `match(s, t)` compares a candidate word `s` with pattern `t` using tw
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `match(s, t)` compares a candidate word `s` with ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The helper `match(s, t)` compares a candidate word `s` with pattern `t` using tw
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two dictionaries:** Store pattern-to-word and :** - **Two dictionaries:** Store pattern-to-word and word-to-pattern mappings explicitly. This is equally correct and often more readable, with $O(L)$ per-check mapping space.
+- **Two dictionaries:** Store pattern-to-word and word-to-pattern mappings explicitly. This is equally correct and often more readable, with $O(L)$ per-check mapping space.
 - **Normalize each string:** Replace each character by the index of its first occurrence and compare normalized forms. This also tests the same equality pattern in $O(L)$ time.
 - **Only one forward map:** It ensures a pattern letter stays consistent but does not stop two different pattern letters from mapping to the same word letter. A reverse constraint is required.
 - **Compare character frequency counts:** Equal multiplicities alone do not preserve positions; strings can have the same counts but different occurrence patterns.
@@ -100,8 +100,8 @@ The helper `match(s, t)` compares a candidate word `s` with pattern `t` using tw
 - **ASCII-sized arrays:** `ord` values for lowercase letters fit within 128. A broader Unicode alphabet would require dictionaries.
 - **Any answer order:** The comprehension preserves input order, which is valid even though the problem does not require it.
 - **Original words returned:** The output contains the existing strings, not transformed versions or mappings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

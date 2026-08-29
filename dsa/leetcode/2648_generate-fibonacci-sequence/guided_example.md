@@ -74,10 +74,7 @@ No earlier Fibonacci number is needed once the newest pair is known.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The Fibonacci recurrence is:
-
-$$
-F_0=0,\qquad F_1=1,\qquad F... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +118,7 @@ This resume-then-advance behavior continues for every call.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precomputed array:** Simple for a fixed limit :** - **Precomputed array:** Simple for a fixed limit but uses $O(q)$ memory and is not naturally infinite.
+- **Precomputed array:** Simple for a fixed limit but uses $O(q)$ memory and is not naturally infinite.
 - **Recursive Fibonacci:** Recomputes overlapping subproblems and can take exponential time per value.
 - **Memoized recursion:** Avoids recomputation but stores all prior values, unnecessary for sequential generation.
 - **Zero requested calls:** No sequence value is produced.
@@ -131,8 +128,8 @@ This resume-then-advance behavior continues for every call.
 - **Infinite loop:** Safe because `yield` suspends on every iteration and the caller controls demand.
 - **Large indices:** Ordinary Number precision eventually fails, though not within 50 calls.
 - **Generator completion:** This implementation intentionally never returns `done: true` under continued requests.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

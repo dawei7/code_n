@@ -70,7 +70,7 @@ For a one-digit number such as 7, reversal produces the same one-character strin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python slicing has the form `sequence[start:stop:step]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Zeros in other positions remain meaningful. Reversing 102 produces `"201"`, so i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic reversal:** Repeatedly append `n%10:** - **Arithmetic reversal:** Repeatedly append `n%10` to a numeric accumulator and apply `n//=10`. It uses constant scalar storage and matches the editorial, but is not the exact source.
+- **Arithmetic reversal:** Repeatedly append `n%10` to a numeric accumulator and apply `n//=10`. It uses constant scalar storage and matches the editorial, but is not the exact source.
 - **Manual character loop:** Prepending or collecting digits can reproduce the slice but is more verbose.
 - **Forget `int` conversion:** Subtracting strings is invalid, and preserving `"01"` as text misses its numeric value of one.
 - **Strip every zero:** Only leading zeros of the reversed spelling lose significance; internal and trailing reversed zeros remain part of the number.
@@ -124,8 +124,8 @@ Zeros in other positions remain meaningful. Reversing 102 produces `"201"`, so i
 - **Maximum legal input:** At most ten digits are processed.
 - **Positive-input guarantee:** There is no minus sign to position during string reversal.
 - **Source/manifest mismatch:** This exact implementation uses $O(D)$ temporary string storage even though the arithmetic alternative can use $O(1)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

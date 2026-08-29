@@ -61,7 +61,7 @@ Therefore `d` deci-binary numbers are always sufficient. Together with the lower
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If fewer than `d` summands are used, their count `q` is at m... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Their sum is `11 + 11 + 10 = 32`. Two summands could contribute at most two to t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop:** Convert each digit character :** - **Explicit loop:** Convert each digit character and track the largest numeric value. It has the same $O(L)$ time and $O(1)$ space.
+- **Explicit loop:** Convert each digit character and track the largest numeric value. It has the same $O(L)$ time and $O(1)$ space.
 - **Construct all summands:** The layered proof can generate the actual deci-binary numbers, but the problem asks only for their count and generation would use much more space.
 - **Convert the full decimal string to an integer:** This is unnecessary, may be restricted for very long strings, and loses the simple digit-level insight.
 - **Maximum digit nine:** Exactly nine summands are necessary and sufficient; no answer can exceed nine.
@@ -113,8 +113,8 @@ Their sum is `11 + 11 + 10 = 32`. Two summands could contribute at most two to t
 - **Repeated maximum digit:** The same `d` layers simultaneously supply all such columns; counts do not add across positions.
 - **Carries:** A carry-based representation cannot beat the per-column lower bound in a way that defeats the explicit carry-free optimum.
 - **String comparison safety:** The digit alphabet’s lexical order matches numeric order, which is why `max(n)` can run before `int`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

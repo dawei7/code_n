@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Filter the reporting period.** The expression:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **DataFrame `explode`:** Use `str.findall(...).e:** - **DataFrame `explode`:** Use `str.findall(...).explode()` and then `value_counts` or `groupby`. This keeps the flattening within pandas rather than a Python comprehension.
+- **DataFrame `explode`:** Use `str.findall(...).explode()` and then `value_counts` or `groupby`. This keeps the flattening within pandas rather than a Python comprehension.
 - **SQL recursive extraction:** A database solution can repeatedly locate hashtag starts and split tokens, but it is not this implementation.
 - **One-hashtag extraction from problem 3087:** Taking only text after the final `#` is incorrect here because tweets may contain several hashtags.
 - **February 29:** The inclusive upper bound correctly includes the leap day.
@@ -102,8 +102,8 @@ We maintain the core conceptual parameters and state variables:
 - **Result index:** Sorting and `head` preserve the aggregate DataFrame's existing index; the contract cares about columns and row order, not a reset index.
 - **Empty occurrence set:** Modern pandas produces an empty count table that can flow to an empty top-three result; the problem examples assume meaningful hashtag data.
 - **Manifest discrepancy:** Documentation must describe pandas regex extraction, not the manifest's recursive SQL summary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

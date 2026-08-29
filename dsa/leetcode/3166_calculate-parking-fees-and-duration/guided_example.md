@@ -70,7 +70,7 @@ Using total fee divided by total duration is a weighted hourly average. It is no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query starts from original transactions `t1` becau... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ If total fee is 18 and total duration is 7.5 hours, average hourly fee is $18/7.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`ROW_NUMBER` with lot tie-breaker:** Order by :** - **`ROW_NUMBER` with lot tie-breaker:** Order by duration descending and lot ID ascending to select one deterministic winner and prevent join multiplication.
+- **`ROW_NUMBER` with lot tie-breaker:** Order by duration descending and lot ID ascending to select one deterministic winner and prevent join multiplication.
 - **Aggregate car totals separately:** Compute fee and duration per car in one CTE, winner lots in another, then join one row to one row.
 - **Return all tied lots:** If that were the intended policy, totals must be aggregated before joining so they are not duplicated.
 - **Average transaction rates:** Incorrect; overall hourly fee is total fee divided by total hours.
@@ -122,8 +122,8 @@ If total fee is 18 and total duration is 7.5 hours, average hourly fee is $18/7.
 - **Zero-duration transaction:** It could cause division by zero if all duration is zero; the statement implicitly expects valid positive parking intervals.
 - **Car independence:** Both grouping and ranking partition by car.
 - **Final ordering:** `ORDER BY 1` means ascending car ID.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

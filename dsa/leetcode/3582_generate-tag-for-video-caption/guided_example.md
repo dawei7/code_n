@@ -62,9 +62,7 @@ For example, `"dAILY"` becomes `"Daily"`, not `"DAILY"`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each word `s`, `s.capitalize()`:
-
-- uppercases its first... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +101,7 @@ The `if words` guard avoids indexing an empty list. Although typical captions co
 
 ## 6. Traps This Instance Exposes
 
-- **- **Streaming state machine:** Scan characters, de:** - **Streaming state machine:** Scan characters, detect word boundaries, normalize as characters are emitted, and stop at 99 body characters. This realizes `O(1)` extra space and the manifest summary.
+- **Streaming state machine:** Scan characters, detect word boundaries, normalize as characters are emitted, and stop at 99 body characters. This realizes `O(1)` extra space and the manifest summary.
 - **Regular-expression cleanup:** It can remove arbitrary nonletters, but the constraints contain only letters and spaces, so `split` is sufficient and simpler.
 - **Repeated spaces:** `split()` collapses them and creates no empty camelCase component.
 - **Leading or trailing spaces:** They are ignored automatically.
@@ -118,8 +116,8 @@ The `if words` guard avoids indexing an empty list. Although typical captions co
 - **Hash placement:** Prefixing after slicing reserves exactly one character and prevents the hash from being truncated.
 - **Full-input processing:** Unlike the advertised streaming method, long discarded suffixes are still normalized before the slice.
 - **CamelCase word boundary after truncation:** Truncation may keep only a prefix of a later word, including just its capitalized first letter. That remains correct because truncation is applied after full camelCase construction; the algorithm is not required to keep or discard whole words at the length boundary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

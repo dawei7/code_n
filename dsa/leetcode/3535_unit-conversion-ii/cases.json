@@ -155,39 +155,7 @@
         "trial",
         "self-query"
       ]
-    },
-    {
-      "id": "trial-reversed-root-edge",
-      "name": "trial: stated edge points toward the root",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "conversions": [
-          [
-            1,
-            0,
-            2
-          ]
-        ],
-        "queries": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            0
-          ]
-        ]
-      },
-      "expected": [
-        500000004,
-        2
-      ],
-      "tags": [
-        "trial",
-        "reverse-orientation"
-      ]
+
     },
     {
       "id": "trial-long-chain",
@@ -241,54 +209,7 @@
         "real",
         "chain"
       ]
-    },
-    {
-      "id": "trial-unit-factors",
-      "name": "unit factors preserve every ratio",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "conversions": [
-          [
-            0,
-            1,
-            1
-          ],
-          [
-            2,
-            1,
-            1
-          ],
-          [
-            2,
-            3,
-            1
-          ]
-        ],
-        "queries": [
-          [
-            0,
-            3
-          ],
-          [
-            3,
-            0
-          ],
-          [
-            2,
-            1
-          ]
-        ]
-      },
-      "expected": [
-        1,
-        1,
-        1
-      ],
-      "tags": [
-        "real",
-        "factor-one"
-      ]
+
     },
     {
       "id": "trial-largest-factor",

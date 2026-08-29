@@ -8,7 +8,7 @@ An **undirected **edge exists between nodes `i` and `j` if the **absolute** diff
 
 You are also given a 2D integer array `queries`. For each $\text{queries}[i] = [u_{i}, v_{i}]$, find the **minimum** distance between nodes $u_{i}$ and $v_{i}$_. If no path exists between the two nodes, return -1 for that query.
 
-Return an array `answer`, where $\text{answer}[i]$ is the result of the $$i^{\text{th}}$$ query.
+Return an array `answer`, where $\text{answer}[i]$ is the result of the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 

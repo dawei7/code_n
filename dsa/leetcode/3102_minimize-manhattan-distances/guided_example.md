@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-u=x+y
-\qquad\text{and}\qquad
-v=x-y.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ For any two points, their Manhattan distance satisfies:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two smallest and two largest values:** For eac:** - **Two smallest and two largest values:** For each transform, retain extrema with point indices so deleting one point can expose the next. This achieves $O(n)$ time and $O(1)$ extra space and matches the manifest idea.
+- **Two smallest and two largest values:** For each transform, retain extrema with point indices so deleting one point can expose the next. This achieves $O(n)$ time and $O(1)$ extra space and matches the manifest idea.
 - **Recompute all pair distances:** Trying every removal and every remaining pair can take $O(n^3)$.
 - **Recompute transformed extrema after each removal:** It avoids an ordered multiset but still takes $O(n^2)$ time.
 - **Duplicate points:** Their Manhattan distance is zero, and multiset multiplicity preserves all remaining copies correctly.
@@ -109,8 +105,8 @@ For any two points, their Manhattan distance satisfies:
 - **Why two transforms:** Using only `x+y` misses point pairs whose coordinate differences have opposite signs.
 - **Why no square root:** Manhattan distance is not Euclidean distance; the diagonal transform gives an exact max identity.
 - **Source/manifest discrepancy:** The exact multiset solution is correct but has $O(n\log n)$ time and $O(n)$ space, not the advertised extrema-only bounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There exist `n` rectangles in a 2D plane with edges parallel to the x and y axis. You are given two 2D integer arrays `bottomLeft` and `topRight` where $\text{bottomLeft}[i] = [a_{i}, b_{i}]$ and $\text{topRight}[i] = [c_{i}, d_{i}]$ represent the **bottom-left** and **top-right** coordinates of the $$i^{\text{th}}$$ rectangle, respectively.
+There exist `n` rectangles in a 2D plane with edges parallel to the x and y axis. You are given two 2D integer arrays `bottomLeft` and `topRight` where $\text{bottomLeft}[i] = [a_{i}, b_{i}]$ and $\text{topRight}[i] = [c_{i}, d_{i}]$ represent the **bottom-left** and **top-right** coordinates of the $i^{\text{th}}$ rectangle, respectively.
 
 The objective is to compute `1` from `{"bottomLeft": [[1, 1], [2, 2], [3, 1]], "topRight": [[3, 3], [4, 4], [6, 6]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested index loops:** They compute the same pa:** - **Nested index loops:** They compute the same pairs and can avoid `combinations`' tuple pool, reaching genuine $O(1)$ extra space.
+- **Nested index loops:** They compute the same pairs and can avoid `combinations`' tuple pool, reaching genuine $O(1)$ extra space.
 - **Plane sweep:** It is useful for more complex overlap queries but unnecessary for $N\le1000$ and pairwise square maximization.
 - **Check only intersection area:** A large narrow rectangle may have large area but support only a small square; the relevant value is the smaller dimension.
 - **Disjoint rectangles:** A negative width or height makes `e <= 0`, so the pair contributes nothing.
@@ -101,8 +101,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Why area is computed after side maximization:** Maximizing positive side length also maximizes its square because $e^2$ is increasing for $e>0$. Comparing areas or sides would select the same pair.
 - **No need to construct square coordinates:** Once positive overlap width and height are known, placing a side-$e$ square at the overlap's bottom-left corner witnesses feasibility. Only its area is requested.
 - **Unordered pair generation:** Intersecting rectangle $i$ with $j$ is identical to intersecting $j$ with $i$, so `combinations` avoids duplicate geometric work without losing candidates.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

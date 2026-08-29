@@ -75,7 +75,7 @@ For the first example's user 1, `t` contains counts 4 for `like` and 1 for `wow`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second common table expression, `s`, groups the rows of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The last clause, `ORDER BY 3 DESC, 1`, refers to result columns by position. Col
 
 ## 6. Traps This Instance Exposes
 
-- **- **Conditional window functions:** Windowed `COUN:** - **Conditional window functions:** Windowed `COUNT(*)` values can attach each user's total and each user/type count to grouped data, after which a rank chooses the dominant type. This can be expressive, but it usually carries more repeated values and still needs careful handling of the threshold, uniqueness, and final ordering.
+- **Conditional window functions:** Windowed `COUNT(*)` values can attach each user's total and each user/type count to grouped data, after which a rank chooses the dominant type. This can be expressive, but it usually carries more repeated values and still needs careful handling of the threshold, uniqueness, and final ordering.
 - **Rank every reaction type:** `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY cnt DESC)` can select the largest type directly instead of joining `s` back to `t`. It removes the recovery join, although the current join is safe because every admitted user has a unique maximum.
 - **Test exact counts before formatting:** The essential repair is to use `MAX(cnt) * 5 >= SUM(cnt) * 3`, or an equivalent unrounded comparison, and apply `ROUND` only to the output expression. This prevents shares from roughly 59.5% through just under 60% from entering the result.
 - **Exactly five reactions:** A user with five rows is eligible for consideration. Three matching reactions give exactly 60% and qualify; two give 40% and do not.
@@ -123,8 +123,8 @@ The last clause, `ORDER BY 3 DESC, 1`, refers to result columns by position. Col
 - **Equal displayed ratios:** Different exact shares can round to the same two-decimal number. The query correctly breaks such output ties by ascending `user_id` because it orders by the displayed `reaction_ratio` and then the identifier.
 - **No qualifying users:** Both `s` and the final result can be empty; SQL naturally returns an empty result table without requiring a special sentinel row.
 - **Primary-key implication:** Because `(user_id, content_id)` is unique, `COUNT(1)` truly counts different content items for a user. No `COUNT(DISTINCT content_id)` is needed under the stated schema.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

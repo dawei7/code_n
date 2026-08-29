@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `(user_id1,user_id2)` and `(user_id2,user_id1)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Thus every row in `T` can be read as “the first user has the second user as a 
 
 ## 6. Traps This Instance Exposes
 
-- **- **`NOT EXISTS` correlated anti-join:** It avoids:** - **`NOT EXISTS` correlated anti-join:** It avoids tuple `NOT IN` null semantics and can stop at the first mutual friend, often giving the optimizer a clearer anti-join.
+- **`NOT EXISTS` correlated anti-join:** It avoids tuple `NOT IN` null semantics and can stop at the first mutual friend, often giving the optimizer a clearer anti-join.
 - **Store normalized undirected edges:** Normalization helps uniqueness but still requires checking adjacency from both endpoints; the bidirectional CTE makes that explicit.
 - **One mutual friend:** A single shared neighbor is enough to exclude the friendship.
 - **Several mutual friends:** The subquery may emit the endpoint pair repeatedly, but membership remains true and the outer friendship is excluded once.
@@ -98,8 +98,8 @@ Thus every row in `T` can be read as “the first user has the second user as a 
 - **Output orientation:** The query preserves the orientation stored in `Friends` and sorts those columns as requested.
 - **Why `UNION ALL` does not create false mutual friends:** The two orientations represent genuine adjacency. A common-neighbor match still requires identical neighbor identifiers, so merely duplicating direction does not invent a third connection.
 - **High-degree user:** A popular mutual friend creates many endpoint combinations in the self-join, explaining why runtime depends on degree distribution rather than only the number of original friendship rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

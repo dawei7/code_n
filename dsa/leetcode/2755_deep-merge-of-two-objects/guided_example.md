@@ -59,7 +59,7 @@ The top-level compatible container is not mutated in place; a new result contain
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For compatible arrays, `[...obj1]` shallowly copies the firs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Each key from `obj2` must appear in the result. The only question is whether to 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate obj1 in place:** Uses fewer new contain:** - **Mutate obj1 in place:** Uses fewer new containers but changes caller-owned input and differs from this source.
+- **Mutate obj1 in place:** Uses fewer new containers but changes caller-owned input and differs from this source.
 - **JSON serialization clone:** Loses the recursive override logic and performs unnecessary copying.
 - **Array versus object:** Types are incompatible, so the entire second value replaces the first.
 - **Null:** Explicitly treated as a replacement value, not a mergeable object.
@@ -106,8 +106,8 @@ Each key from `obj2` must appear in the result. The only question is whether to 
 - **Different array lengths:** Overlapping indices merge and the longer tail survives.
 - **Deep nesting:** Correct recursively but may approach JavaScript call-stack limits.
 - **Reference independence:** Only overlapping compatible container paths are newly copied; unique nested objects are shared.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Each restriction applies `min(bounds[index],maximum)`. Indices are unique under 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `bounds` begins with a very large sentinel at every position... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For example, if the first two edge limits are three and five, the zero anchor al
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every restriction with every position::** - **Compare every restriction with every position:** This costs $O(NR)$; two line sweeps combine all cones.
+- **Compare every restriction with every position:** This costs $O(NR)$; two line sweeps combine all cones.
 - **Forward pass only:** It misses restrictions located to the right of a position.
 - **Backward pass only:** It misses the required zero anchor's influence to the right.
 - **Propagate with the wrong edge:** Between `i` and `i+1`, the limit is `diff[i]`.
@@ -117,8 +117,8 @@ For example, if the first two edge limits are three and five, the zero anchor al
 - **Input preservation:** Restrictions and differences are read only.
 - **Large sentinel:** It is an initialization device, not a candidate returned after propagation.
 - **Line structure:** Two sweeps are sufficient because every influence travels uniquely left or right.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

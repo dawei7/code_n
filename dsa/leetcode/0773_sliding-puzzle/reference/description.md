@@ -22,7 +22,7 @@ Given the puzzle board `board`, return *the least number of moves required so th
 
 ![](images/slide1-grid.jpg)
 
-- **Input:** $board = [[1,2,3],[4,0,5]]$
+- **Input:** `board = [[1,2,3],[4,0,5]]`
 - **Output:** `1`
 - **Explanation:** Swap the 0 and the 5 in one move.
 
@@ -30,7 +30,7 @@ Given the puzzle board `board`, return *the least number of moves required so th
 
 ![](images/slide2-grid.jpg)
 
-- **Input:** $board = [[1,2,3],[5,4,0]]$
+- **Input:** `board = [[1,2,3],[5,4,0]]`
 - **Output:** `-1`
 - **Explanation:** No number of moves will make the board solved.
 
@@ -38,7 +38,7 @@ Given the puzzle board `board`, return *the least number of moves required so th
 
 ![](images/slide3-grid.jpg)
 
-- **Input:** $board = [[4,1,2],[5,0,3]]$
+- **Input:** `board = [[4,1,2],[5,0,3]]`
 - **Output:** `5`
 - **Explanation:** 5 is the smallest number of moves that solves the board.
 An example path:

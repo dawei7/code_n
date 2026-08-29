@@ -51,7 +51,7 @@ The first CTE, `T`, represents all employees reached from the root together with
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first CTE, `T`, represents all employees reached from th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The recursive member joins the rows already in `T`, aliased as `t`, to `Employee
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed self-joins:** Joining `Employees` to its:** - **Fixed self-joins:** Joining `Employees` to itself once finds direct reports, twice finds second-level reports, and so forth. This cannot handle an unknown hierarchy depth without hard-coding a maximum.
+- **Fixed self-joins:** Joining `Employees` to itself once finds direct reports, twice finds second-level reports, and so forth. This cannot handle an unknown hierarchy depth without hard-coding a maximum.
 - **Application-side traversal:** Fetching rows and running BFS or DFS in application code can compute levels in $O(e)$ after building child lists, but the task asks for a SQL result and the recursive CTE keeps traversal close to the data.
 - **Carry CEO salary inside `T`:** The anchor could add a `ceo_salary` column and propagate it unchanged through recursion. That would remove CTE `P` and its cross join while producing the same calculation.
 - **Explicit `CROSS JOIN`:** Writing `CROSS JOIN P p` would communicate the intended one-row Cartesian product more clearly than `JOIN P p` without an `ON` clause. The exact MySQL query relies on their equivalent behavior here.
@@ -96,8 +96,8 @@ The recursive member joins the rows already in `T`, aliased as `t`, to `Employee
 - **Higher-paid subordinate:** `t.salary - p.salary` becomes positive. A lower salary becomes negative and an equal salary becomes zero; all three signs are meaningful.
 - **Multiple null managers:** The query would cross every traversed row with every root salary and duplicate output. Correctness depends on the single-CEO hierarchy promised by the problem.
 - **Cycles or multiple-parent data:** A valid `manager_id` hierarchy gives each employee one parent and has no cycle reachable from the CEO. `UNION ALL` performs no cycle elimination, so malformed cyclic input is not protected against.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given two arrays of integers, `fruits` and `baskets`, each of length `n`, where $\text{fruits}[i]$ represents the **quantity** of the $$i^{\text{th}}$$ type of fruit, and $\text{baskets}[j]$ represents the **capacity** of the $$j^{\text{th}}$$ basket.
+You are given two arrays of integers, `fruits` and `baskets`, each of length `n`, where $\text{fruits}[i]$ represents the **quantity** of the $i^{\text{th}}$ type of fruit, and $\text{baskets}[j]$ represents the **capacity** of the $j^{\text{th}}$ basket.
 
 From left to right, place the fruits according to these rules:
 

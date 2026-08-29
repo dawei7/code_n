@@ -62,7 +62,7 @@ The stopping value `y` has one of two meanings:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current `x`, `y` starts at `x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Therefore, when a newly removed block reaches a previously processed consecutive
 
 ## 6. Traps This Instance Exposes
 
-- **- **Start-only hash-set scan:** Begin a run only w:** - **Start-only hash-set scan:** Begin a run only when `x - 1` is absent, then count upward. It is the standard and easier-to-prove expected $O(n)$ solution.
+- **Start-only hash-set scan:** Begin a run only when `x - 1` is absent, then count upward. It is the standard and easier-to-prove expected $O(n)$ solution.
 - **Boundary-length interval merging:** Store interval lengths at their endpoints and merge neighboring components as values arrive.
 - **Sorting:** Sort distinct or original values and scan, handling duplicates. It takes $O(n\log n)$ time and may mutate the input.
 - **Union-find:** Connect present neighboring integers. It works but adds more structure than the interval nature requires.
@@ -115,8 +115,8 @@ Therefore, when a newly removed block reaches a previously processed consecutive
 - **Hash complexity:** Linear time is expected, based on expected constant-time set and dictionary access.
 - **Missing imports:** `List` and `defaultdict` must be supplied.
 - **Input preservation:** Only the copied set is destructively reduced.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

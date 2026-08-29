@@ -51,7 +51,7 @@ The goal is to assign as many intervals as possible distinct integer points.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The goal is to assign as many intervals as possible distinct... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The goal is to assign as many intervals as possible distinct integer points.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Process from right to left:** Assign the large:** - **Process from right to left:** Assign the largest feasible decreasing targets; the symmetric greedy also works.
+- **Process from right to left:** Assign the largest feasible decreasing targets; the symmetric greedy also works.
 - **Bipartite matching over all integers:** The coordinate range can be huge and is unnecessary for equal-radius intervals.
 - **No adjustment `k=0`:** Answer is original distinct count.
 - **Single element:** It always contributes one.
@@ -102,8 +102,8 @@ The goal is to assign as many intervals as possible distinct integer points.
 - **Strictly increasing certificate:** Every accepted target is automatically distinct from all earlier accepted targets.
 - **Zero addition:** Keeping `x` is included in the interval.
 - **Infinity sentinel:** It makes the first interval choose its left endpoint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

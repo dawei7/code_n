@@ -79,7 +79,7 @@ where segment-tree root `maximum_overlap[1]` stores the largest overlap over all
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `D` be the number of distinct prime values currently pre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ After the sieve, primality of any old or new query value is a constant-time arra
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute every split after each query:** Coun:** - **Recompute every split after each query:** Counting distinct primes independently in every prefix and suffix would cost at least linear time per query and can become quadratic overall.
+- **Recompute every split after each query:** Counting distinct primes independently in every prefix and suffix would cost at least linear time per query and can become quadratic overall.
 - **Fenwick tree alone:** Range addition and point query are easy, but the task needs the maximum across all split positions after each update. A lazy segment tree maintains that global maximum directly.
 - **Balanced sorted occurrence sets:** They provide exact first and last indices with `O(\log n)` insertion and deletion. Python lacks a built-in balanced tree, so active sets plus lazy min/max heaps implement the required extremes.
 - **One occurrence of a prime:** It raises `distinct_prime_count` by one but contributes no overlap interval, so it can be counted on only one side of any split.
@@ -135,8 +135,8 @@ After the sieve, primality of any old or new query value is a constant-time arra
 - **At least one split:** The constraint `n\ge2` guarantees `split_count=n-1\ge1`, so the segment-tree root represents a real split domain.
 - **Why internal occurrences do not matter:** Any split between first and last automatically has at least one occurrence on each side; splits outside cannot be rescued by internal points.
 - **Value limit selection:** Including all future query values ensures every replacement has a valid sieve lookup without extending the sieve online.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

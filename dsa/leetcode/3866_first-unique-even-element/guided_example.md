@@ -65,7 +65,7 @@ For the first example `[3,4,2,5,4,6]`, the counter records frequency two for val
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(nums)` creates a mapping from each distinct a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Notice that the function returns the even value, not its index. The scan order i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed array of 101 counts:** Count by value di:** - **Fixed array of 101 counts:** Count by value directly, then perform the same original-order scan. This gives deterministic `O(N+100)` time and explicit `O(1)` bounded-domain space.
+- **Fixed array of 101 counts:** Count by value directly, then perform the same original-order scan. This gives deterministic `O(N+100)` time and explicit `O(1)` bounded-domain space.
 - **One pass with first positions and counts:** Record each value's count and earliest index, then scan the at-most-100 value domain for the eligible even value with minimum first index. This is correct but stores more state than the simple second pass.
 - **Return the first even value immediately:** Incorrect because a later duplicate may make it non-unique.
 - **Use a set of seen values only:** A set distinguishes seen from unseen but not frequency one from frequency two or more. Exact counts are necessary.
@@ -128,8 +128,8 @@ Notice that the function returns the even value, not its index. The scan order i
 - **Value zero:** It is excluded by the stated range, though it is mathematically even and the source would treat it as such if supplied.
 - **Generalized value domain:** Without the one-to-one-hundred bound, describe counter memory as `O(U)` rather than constant.
 - **Hash-table qualification:** Counter operations are expected constant time. A fixed array removes hashing if worst-case deterministic behavior matters under this bounded domain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

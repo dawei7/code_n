@@ -90,11 +90,7 @@ For `[4,4,5]`, the result is `5*3-13=2`. Both fours receive one increment.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An element `nums[i]` needs exactly
-
-$$
-M-\texttt{nums}[i]
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -131,7 +127,7 @@ The order of moves is irrelevant. One may finish an element completely before to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate one increment at a time:** This produ:** - **Simulate one increment at a time:** This produces the correct result but its running time depends on the numerical answer rather than just `n`. Algebraic deficits avoid all simulation.
+- **Simulate one increment at a time:** This produces the correct result but its running time depends on the numerical answer rather than just `n`. Algebraic deficits avoid all simulation.
 - **Sort the array:** The maximum would then be at the end, but sorting costs $O(n\log n)$ and is unnecessary because order has no role.
 - **Raise values to the average:** The average may be below the maximum and therefore unreachable without decreasing a maximum element.
 - **Use the median:** A median minimizes absolute deviations when both increases and decreases are allowed. It is not valid under increase-only operations.
@@ -143,8 +139,8 @@ The order of moves is irrelevant. One may finish an element completely before to
 - **Input order:** Reordering does not affect maximum, sum, or required moves.
 - **Positive-value guarantee:** The proof actually works for arbitrary integers as long as increments are the only operation, but no extra handling is needed.
 - **No input mutation:** Unlike a sorting approach, the aggregation leaves `nums` unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

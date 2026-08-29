@@ -59,7 +59,7 @@ Thus a letter creates two branches and a digit creates one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The mutable list `t = list(s)` holds the characters of the c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ The index advances by one in every recursive call, so every path eventually reac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative answer doubling:** Start with one pr:** - **Iterative answer doubling:** Start with one prefix and duplicate all existing prefixes for every letter. It has the same output-sensitive complexity but may allocate more intermediate strings.
-- **- **Bit-mask enumeration:** Number the $\ell$ lett:** - **Bit-mask enumeration:** Number the $\ell$ letters and let each mask choose their cases. It is direct but scans or maps positions for every one of the $2^\ell$ masks.
-- **- **Cartesian product:** Build a one-choice collec:** - **Cartesian product:** Build a one-choice collection for each digit and a two-choice collection for each letter, then join every product tuple. This is concise when a suitable library is available.
+- **Iterative answer doubling:** Start with one prefix and duplicate all existing prefixes for every letter. It has the same output-sensitive complexity but may allocate more intermediate strings.
+- **Bit-mask enumeration:** Number the $\ell$ letters and let each mask choose their cases. It is direct but scans or maps positions for every one of the $2^\ell$ masks.
+- **Cartesian product:** Build a one-choice collection for each digit and a two-choice collection for each letter, then join every product tuple. This is concise when a suitable library is available.
 
 ---
 

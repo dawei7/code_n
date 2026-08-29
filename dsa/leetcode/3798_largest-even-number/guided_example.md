@@ -61,7 +61,7 @@ This separates forced deletions from harmful ones. Every character after the las
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the final retained digit is the `2` at index `p`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Within that maximum length, there is only one subsequence: retaining every posit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search explicitly for the last `2`:** `s.rfind:** - **Search explicitly for the last `2`:** `s.rfind("2")` followed by a prefix slice expresses the same logic, but `rstrip` is shorter.
+- **Search explicitly for the last `2`:** `s.rfind("2")` followed by a prefix slice expresses the same logic, but `rstrip` is shorter.
 - **Keep only all twos:** Internal ones can remain without hurting parity and increase digit count, so deleting them is suboptimal.
 - **Choose the first `2`:** A later `2` permits a longer and therefore larger result.
 - **Delete arbitrary trailing digits:** Only trailing ones are forced; deleting a trailing two would lose the best final digit.
@@ -114,8 +114,8 @@ Within that maximum length, there is only one subsequence: retaining every posit
 - **Input preservation:** Strings are immutable; trimming returns a string result without modifying `s`.
 - **`rstrip` semantics:** It removes only the maximal trailing run of ones.
 - **Maximum-length uniqueness:** Keeping the whole last-two prefix is the sole candidate of that length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

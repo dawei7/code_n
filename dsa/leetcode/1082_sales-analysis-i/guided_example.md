@@ -67,11 +67,7 @@ Because the condition uses an aggregate after groups are formed, it appears in `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer aggregate is:
-
-
-
-Every stored row contributes its ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ For totals 2800, 800, and 2800, the subquery yields those three numbers.
 
 ## 6. Traps This Instance Exposes
 
-- **- **CTE plus MAX:** Compute seller totals once, th:** - **CTE plus MAX:** Compute seller totals once, then keep rows whose total equals `MAX(total_price)`. This is often the clearest explicit form.
+- **CTE plus MAX:** Compute seller totals once, then keep rows whose total equals `MAX(total_price)`. This is often the clearest explicit form.
 - **RANK window function:** Rank grouped totals descending and keep rank one. `RANK` or `DENSE_RANK` preserves ties; `ROW_NUMBER` would not.
 - **ORDER BY with LIMIT:** Plain `LIMIT 1` loses tied sellers and is incorrect unless tie-aware syntax is available.
 - **Product join:** It is unnecessary because the measure is `Sales.price`.
@@ -125,8 +121,8 @@ For totals 2800, 800, and 2800, the subquery yields those three numbers.
 - **Empty Sales:** No outer group exists, so the result is empty.
 - **GROUP BY positional form:** The exact query names `seller_id` directly, avoiding dependence on select position.
 - **Any order:** No final sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

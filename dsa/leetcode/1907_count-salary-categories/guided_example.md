@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Classify every account exactly once.** CTE `T` uses a `CAS... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The order of branches makes the boundaries precise. Exactly 20000 fails the low 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three conditional aggregates with `UNION ALL`::** - **Three conditional aggregates with `UNION ALL`:** Each branch can count one category and always returns a row, but may conceptually scan `Accounts` three times. It is correct and simple for three fixed labels.
+- **Three conditional aggregates with `UNION ALL`:** Each branch can count one category and always returns a row, but may conceptually scan `Accounts` three times. It is correct and simple for three fixed labels.
 - **Single-row conditional sums then unpivot:** Compute all three counts in columns and convert them to rows. This can ensure one scan but uses more SQL machinery.
 - **Inner join from `S` to `T`:** Incorrect when a category is empty because that required row disappears.
 - **Income exactly 20000:** It belongs to Average Salary through the `ELSE` branch.
@@ -96,8 +96,8 @@ The order of branches makes the boundaries precise. Exactly 20000 fails the low 
 - **Positional grouping:** `GROUP BY 1` refers to computed category because it is selected first. Naming it explicitly would be more maintainable but equivalent.
 - **Double-quoted low label:** MySQL normally treats `"Low Salary"` as a string unless ANSI_QUOTES mode changes quoting semantics; single quotes are more portable, but the exact source uses both styles.
 - **Count reconciliation:** Because each non-null income reaches exactly one `CASE` result, the three returned counts should add up to the number of accounts. A different total signals altered null or boundary assumptions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

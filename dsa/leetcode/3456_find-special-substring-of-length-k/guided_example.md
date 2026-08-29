@@ -51,7 +51,7 @@ Any substring satisfying the problem's neighbor conditions cannot be a strict in
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Any substring satisfying the problem's neighbor conditions c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Any substring satisfying the problem's neighbor conditions cannot be a strict in
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every length-\(k\) window:** This works :** - **Check every length-\(k\) window:** This works in $O(nk)$ naively or with extra state, but maximal-run scanning is simpler and linear.
+- **Check every length-\(k\) window:** This works in $O(nk)$ naively or with extra state, but maximal-run scanning is simpler and linear.
 - **Use global character counts:** A character may have several separated runs; global frequency does not determine local validity.
 - **Run longer than \(k\):** It must be rejected because any length-$k$ slice has an equal neighbor.
 - **Run shorter than \(k\):** It cannot contain a qualifying substring.
@@ -96,8 +96,8 @@ Any substring satisfying the problem's neighbor conditions cannot be a strict in
 - **First run:** No preceding character is required.
 - **Last run:** No following character is required.
 - **Early return:** Only existence is requested, so scanning later runs after a match is unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

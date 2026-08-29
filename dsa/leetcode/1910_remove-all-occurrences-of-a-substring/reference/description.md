@@ -48,4 +48,4 @@ Now s has no occurrences of "xy".
 
 - $1 \le \text{part.length} \le 1000$
 
-- `s`​​​​​​ and `part` consists of lowercase English letters.
+- `s` and `part` consists of lowercase English letters.

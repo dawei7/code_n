@@ -67,7 +67,7 @@ A product with frequency zero cannot exist in the dictionary, and frequency one 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If product $P$ occurs for $v$ unordered pairs, any two diffe... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Both positivity and distinctness support this shortcut. With zeros or repeated v
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four nested loops:** Test every ordered quadru:** - **Four nested loops:** Test every ordered quadruple directly in $O(n^4)$ time, far beyond the constraints.
+- **Four nested loops:** Test every ordered quadruple directly in $O(n^4)$ time, far beyond the constraints.
 - **Store and sort all pair products:** Group equal adjacent products in $O(n^2\log n)$ time and $O(n^2)$ space.
 - **Incremental tuple counting:** When a new pair product has appeared `v` times, add `8v` immediately. This avoids the final frequency pass with the same asymptotic bounds.
 - **Fewer than four values:** No two disjoint pairs exist, and all product frequencies contribute zero combinations.
@@ -124,8 +124,8 @@ Both positivity and distinctness support this shortcut. With zeros or repeated v
 - **Tuple order:** The final factor eight restores all ordered arrangements.
 - **Bit shift:** `<<3` is exact multiplication by eight for the nonnegative sum.
 - **Input preservation:** The array is never sorted or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ The code does not construct a mutable copy of the string. The jump is sufficient
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the leftmost unresolved `X` occurs at index `i` and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ That overlap is harmless: applying a move to `O` leaves it `O`, and there are no
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate a character array:** Explicitly write `:** - **Mutate a character array:** Explicitly write `O` into three positions after each move; it is still $O(N)$ but uses $O(N)$ space and performs unnecessary writes.
+- **Mutate a character array:** Explicitly write `O` into three positions after each move; it is still $O(N)$ but uses $O(N)$ space and performs unnecessary writes.
 - **Dynamic programming:** One can model which recent positions are covered, but the forced leftmost-`X` choice makes that machinery unnecessary.
 - **Count each run independently:** This can overlook a move that covers `X` characters on both sides of a short `O` gap.
 - **All `O` characters:** The loop only takes one-step advances and returns zero.
@@ -109,8 +109,8 @@ That overlap is harmless: applying a move to `O` leaves it `O`, and there are no
 - **Long `X` run:** Each move handles the next three unresolved positions, giving the unavoidable ceiling of run length divided by three when no neighboring coverage changes the grouping.
 - **Minimum input length:** The guarantee $N\ge3$ ensures a valid final three-character window exists for a tail `X`.
 - **Input preservation:** The algorithm reasons about moves without modifying `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

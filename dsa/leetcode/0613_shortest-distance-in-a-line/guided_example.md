@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Why the self-join is needed.** A row contains only one poi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The join condition `p1.x < p2.x` solves all three concerns at once:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and compare adjacent points:** After coor:** - **Sort and compare adjacent points:** After coordinates are ordered, the globally closest pair must be adjacent; any coordinate between two nonadjacent endpoints would create an equal or smaller neighboring gap. This gives the manifest's intended $O(P\log P)$ bound and is the preferable large-input algorithm.
+- **Sort and compare adjacent points:** After coordinates are ordered, the globally closest pair must be adjacent; any coordinate between two nonadjacent endpoints would create an equal or smaller neighboring gap. This gives the manifest's intended $O(P\log P)$ bound and is the preferable large-input algorithm.
 - **Already ordered input:** If ascending order is guaranteed by an index scan or another explicit ordering contract, use a previous-row operation such as `LAG(x)` and minimize `x - previous_x`. The scan is linear after the ordered access.
 - **Unrestricted self-join plus `ABS`:** Joining on `p1.x != p2.x` is correct, but it emits both orientations of every pair. The strict `<` condition performs half as much pair work and removes the need for `ABS`.
 - **Self-pairs:** Omitting the inequality condition makes every row pair with itself, forcing the minimum to zero. The primary key does not prevent that mistake because the two aliases may refer to the same row.
@@ -94,8 +94,8 @@ The join condition `p1.x < p2.x` solves all three concerns at once:
 - **Exactly two rows:** The join produces one candidate, so that sole distance is returned.
 - **Fewer than two rows:** The official contract excludes this case. If it occurred, the aggregate would still return one row, but its `shortest` value would be `NULL`.
 - **Duplicate coordinates:** The primary key forbids them. If duplicates were allowed, two distinct rows at the same coordinate would have distance zero, but the strict `<` condition would omit that valid pair; the query relies on uniqueness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

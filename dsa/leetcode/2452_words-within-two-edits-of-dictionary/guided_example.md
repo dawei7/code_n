@@ -67,7 +67,7 @@ An exact dictionary match has distance zero and is valid because “a maximum of
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop preserves the order of `queries`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ Because queries are considered in their original order and appends happen only i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual mismatch counter:** Increment on differ:** - **Manual mismatch counter:** Increment on differing characters and break immediately at three. This matches the manifest wording and improves comparisons that differ early while preserving the same worst-case bound.
+- **Manual mismatch counter:** Increment on differing characters and break immediately at three. This matches the manifest wording and improves comparisons that differ early while preserving the same worst-case bound.
 - **Trie search with mismatch budget:** Traverse dictionary characters while allowing at most two mismatched edges. It may share work among dictionary words but is more complex for arrays limited to 100 words.
 - **Precompute wildcard patterns:** Generate forms with up to two wildcard positions. The number of combinations grows quadratically with word length and requires careful collision handling.
 - **Exact match:** Zero edits is within the maximum and must be included.
@@ -119,8 +119,8 @@ Because queries are considered in their original order and appends happen only i
 - **Word length one or two:** Every pair differs in at most the word length, so length-one words always qualify and length-two words qualify against any dictionary word.
 - **Equal-length guarantee:** It makes `zip` a complete positional comparison rather than a truncating one.
 - **Metadata nuance:** The source short-circuits across dictionary words after success, but it does not stop a single mismatch sum at three.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

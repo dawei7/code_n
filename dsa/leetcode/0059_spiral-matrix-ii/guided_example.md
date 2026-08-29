@@ -60,7 +60,7 @@ The final zero lets the up direction read a valid pair. `(k + 1) % 4` turns cloc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dirs = (0, 1, 0, -1, 0)` stores four overlapping delta pair... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ If blocked, `k` rotates once. The code then advances `(i,j)` using the updated o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shrinking boundaries:** Fill the top, right, b:** - **Shrinking boundaries:** Fill the top, right, bottom, and left edges of each remaining square. It has the same bounds and makes layers explicit.
+- **Shrinking boundaries:** Fill the top, right, bottom, and left edges of each remaining square. It has the same bounds and makes layers explicit.
 - **Separate visited matrix:** It would duplicate information already encoded by zero versus positive output and waste $O(n^2)$ extra space.
 - **Four-cell layer formulas:** Write rings by calculated offsets. This can be efficient but makes center and boundary arithmetic more error-prone.
 - **`n = 1`:** The single iteration writes 1. The later coordinate update is irrelevant.
@@ -109,8 +109,8 @@ If blocked, `k` rotates once. The code then advances `(i,j)` using the updated o
 - **Positive-value requirement:** Nonzero truthiness is safe specifically because all written numbers begin at 1.
 - **No input mutation:** The only input is integer `n`; the returned matrix is newly allocated.
 - **Maximum value:** `range(1, n*n+1)` includes $n^2$ and excludes $n^2+1$, producing exactly the required count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

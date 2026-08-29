@@ -57,7 +57,7 @@ There is no optimization involving combinations of columns. Every unsorted colum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Deleting one column does not alter the vertical order inside... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The inner loop begins at row one because row zero has no row above it. It tests 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Transpose the grid:** Construct columns with `:** - **Transpose the grid:** Construct columns with `zip` and compare each with a sorted copy. This allocates tuples and lists and performs unnecessary `O(r log r)` sorting per column.
+- **Transpose the grid:** Construct columns with `zip` and compare each with a sorted copy. This allocates tuples and lists and performs unnecessary `O(r log r)` sorting per column.
 - **Compare every pair of rows:** Testing all earlier-later pairs costs `O(r^2 c)`. Adjacent comparisons already prove the complete order through transitivity.
 - **Count inversions:** The inversion count is irrelevant. A bad column contributes exactly one deletion regardless of how many violations it contains.
 - **One row:** Every column has one character and is automatically sorted. The inner loop is empty.
@@ -108,8 +108,8 @@ The inner loop begins at row one because row zero has no row above it. It tests 
 - **All columns unsorted:** Every column increments the answer once, so the result equals the string length.
 - **Complete-row order:** Rows may be globally unordered while their individual columns satisfy this problem. Whole-string comparisons would answer a different question.
 - **Equal-length guarantee:** Direct indexing depends on it. Ragged strings would require a different contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

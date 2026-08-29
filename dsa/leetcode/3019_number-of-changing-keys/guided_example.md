@@ -51,7 +51,7 @@ The exact solution expresses that definition in one line:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution expresses that definition in one line:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact solution expresses that definition in one line:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual one-pass normalization:** Keep the lowe:** - **Manual one-pass normalization:** Keep the lowercase form of only the previous character, lowercase each new character, compare, and update the previous value. That preserves $O(N)$ time while reducing auxiliary space to $O(1)$, but it is not the exact implementation shown here.
+- **Manual one-pass normalization:** Keep the lowercase form of only the previous character, lowercase each new character, compare, and update the previous value. That preserves $O(N)$ time while reducing auxiliary space to $O(1)$, but it is not the exact implementation shown here.
 - **Compare character codes with a fixed offset:** ASCII arithmetic can ignore case, but it is less clear and easier to get wrong. The language's lowercase operation directly communicates the intended equivalence.
 - **Count runs after normalization:** The answer equals the number of normalized runs minus one. Building or grouping all runs works, but directly counting unequal adjacent pairs obtains the same value with less machinery.
 - **Count distinct normalized letters:** This is incorrect because a key may be revisited many times. `"ababa"` has two distinct keys but four changes.
@@ -96,8 +96,8 @@ The exact solution expresses that definition in one line:
 - **A key is revisited:** A sequence such as `"aba"` changes at both boundaries. The fact that A appeared before does not cancel the later transition back to it.
 - **Input preservation:** `lower()` returns a new string rather than editing `s`, so the caller's original casing remains intact.
 - **Space accounting:** Calling the generator lazy does not make the whole expression constant-space, because the complete lowercase string already exists before `pairwise` begins.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

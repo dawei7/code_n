@@ -33,21 +33,6 @@
       ]
     },
     {
-      "id": "trial-single-character",
-      "name": "minimum-length string is already a palindrome",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "s": "z",
-        "k": 1
-      },
-      "expected": true,
-      "tags": [
-        "minimum-length",
-        "palindrome"
-      ]
-    },
-    {
       "id": "trial-two-distinct",
       "name": "one of two distinct characters may be removed",
       "kind": "trial",
@@ -178,21 +163,6 @@
         "maximum-length",
         "maximum-budget",
         "palindrome"
-      ]
-    },
-    {
-      "id": "trial-boundary-13",
-      "name": "single character in s",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "s": "a",
-        "k": 2
-      },
-      "expected": false,
-      "tags": [
-        "boundary",
-        "single-char"
       ]
     },
     {

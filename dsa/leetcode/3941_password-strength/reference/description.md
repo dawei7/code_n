@@ -50,7 +50,7 @@ Return the integer sum of the category weight for every distinct character prese
 
 - The distinct characters are `'b'`, `'B'`, `'1'` and `'#'`.
 
-- Thus, the $strength = 1 + 2 + 3 + 5 = 11$.​​​​​​​
+- Thus, the $strength = 1 + 2 + 3 + 5 = 11$.
 
 ### 4. Constraints
 

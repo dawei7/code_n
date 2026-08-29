@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `people` where $\text{people}[i]$ is the weight of the $$i^{\text{th}}$$ person, and an **infinite number of boats** where each boat can carry a maximum weight of `limit`. Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most `limit`.
+You are given an array `people` where $\text{people}[i]$ is the weight of the $i^{\text{th}}$ person, and an **infinite number of boats** where each boat can carry a maximum weight of `limit`. Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most `limit`.
 
 The objective is to compute `1` from `{"people": [1, 2], "limit": 3}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -52,8 +52,7 @@ Each boat carries at most two people, so the heaviest remaining person must take
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `i` points to the lightest person not yet assigned.
-- `j` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +87,7 @@ Each loop iteration assigns the person at `j` to one boat and increments `ans`. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every pairing:** Searching all pair combin:** - **Try every pairing:** Searching all pair combinations or matchings is far more expensive and unnecessary because sorted extremes determine a safe greedy choice.
+- **Try every pairing:** Searching all pair combinations or matchings is far more expensive and unnecessary because sorted extremes determine a safe greedy choice.
 - **Pair the two heaviest:** This often exceeds the limit and can waste opportunities to place light passengers with heavy ones.
 - **Fill boats starting from the lightest:** Pairing two light people may leave two heavy people needing separate boats, whereas each light person could potentially share with a heavy one.
 - **Counting sort:** Weight and limit are bounded by $3\cdot10^4$, so frequency counts can avoid comparison sorting and approach $O(n+\texttt{limit})$ time, at the cost of an additional weight-frequency array.
@@ -100,8 +99,8 @@ Each loop iteration assigns the person at `j` to one boat and increments `ans`. 
 - **Duplicate weights:** Sorting and pointer movement treat each occurrence as a distinct person.
 - **Input mutation:** `people.sort()` changes the caller's order. Use `sorted(people)` if preservation is required.
 - **At most two people:** Even when three or more light people have a combined weight under the limit, a boat cannot carry more than two; the algorithm never assigns a third passenger.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

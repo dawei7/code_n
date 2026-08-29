@@ -6,7 +6,7 @@ You can do the following operation **any** number of times:
 
 - Increase or decrease **any** element of the array `nums` by `1`.
 
-The cost of doing one operation on the $$i^{\text{th}}$$ element is $\text{cost}[i]$.
+The cost of doing one operation on the $i^{\text{th}}$ element is $\text{cost}[i]$.
 
 Return *the **minimum** total cost such that all the elements of the array *`nums`* become **equal***.
 

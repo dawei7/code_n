@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $$i^{\text{th}}$$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $$n^{\text{th}}$$ friend brings you to the $1^st$ friend.
+There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $i^{\text{th}}$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $n^{\text{th}}$ friend brings you to the $1^st$ friend.
 
 The rules of the game are as follows:
 

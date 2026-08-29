@@ -51,7 +51,7 @@ For each later word `t`, the condition is written directly:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each later word `t`, the condition is written directly:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Both sides must be true. A prefix match alone is insufficient, and a suffix matc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index-based nested loops:** It implements the :** - **Index-based nested loops:** It implements the same comparisons without suffix-list allocation and would meet $O(1)$ auxiliary space.
+- **Index-based nested loops:** It implements the same comparisons without suffix-list allocation and would meet $O(1)$ auxiliary space.
 - **Paired-character trie:** The larger version uses one to process total input length efficiently, but it is unnecessary for these small limits.
 - **Compare string slices manually:** Built-in prefix and suffix predicates are clearer and avoid creating substring objects.
 - **Candidate longer than target:** The built-ins return false without special handling.
@@ -100,8 +100,8 @@ Both sides must be true. A prefix match alone is insufficient, and a suffix matc
 - **Suffix checked before prefix:** Short-circuit order affects only performance, not correctness. A target that fails its suffix test contributes false immediately; a target that passes still undergoes the required independent prefix test.
 - **Character-comparison worst case:** Long repeated strings can make both built-ins inspect nearly all candidate characters for many pairs. That is why the length factor remains in the worst-case bound even though mismatches often terminate early.
 - **Indices rather than distinct contents:** If the same candidate text occurs at two earlier positions and both qualify against one later word, they form two different $(i,j)$ pairs. Pair enumeration naturally counts both.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

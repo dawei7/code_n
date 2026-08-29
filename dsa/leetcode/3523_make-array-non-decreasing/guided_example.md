@@ -77,9 +77,7 @@ The source counts three.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Call position `i` a weak prefix record when:
-
-`nums[i] >= ma... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -136,7 +134,7 @@ with maxima `[4,5,5]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over partitions:** One cou:** - **Dynamic programming over partitions:** One could define the best block count for prefixes and possible last maxima, but the weak-record upper bound collapses the problem to one greedy scan.
+- **Dynamic programming over partitions:** One could define the best block count for prefixes and possible last maxima, but the weak-record upper bound collapses the problem to one greedy scan.
 - **Monotonic stack simulation:** Stacks are useful for related merge problems, but here every merge takes a maximum and only the count is requested. Prefix records already characterize the optimum.
 - **Actually perform subarray replacements:** Searching and mutating blocks adds work and indexing complexity. The partition proof shows the answer without constructing the operations.
 - **Count strict prefix maxima:** This is wrong for non-decreasing output because equal adjacent block maxima are allowed. Weak records with `x == mx` must count.
@@ -150,8 +148,8 @@ with maxima `[4,5,5]`.
 - **A later equal maximum:** It can end a separate block, which is why the comparison is inclusive.
 - **Positive-value guarantee:** Starting `mx` at zero would fail for an all-negative generalization, but it is correct for the stated domain.
 - **Input preservation:** The protected method returns only a count and leaves the original list untouched.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

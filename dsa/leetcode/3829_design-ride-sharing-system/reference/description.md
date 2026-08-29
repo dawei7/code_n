@@ -101,4 +101,4 @@ rideSharingSystem.matchDriverWithRider(); // returns [-1, -1]
 
 - Each `driverId` is **unique** among drivers and is added at most **once**.
 
-- At most 1000 calls will be made in **total** to `addRider`​​​​​​​, `addDriver`, `matchDriverWithRider`, and `cancelRider`.
+- At most 1000 calls will be made in **total** to `addRider`, `addDriver`, `matchDriverWithRider`, and `cancelRider`.

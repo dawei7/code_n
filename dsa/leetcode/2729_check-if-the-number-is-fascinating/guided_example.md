@@ -59,7 +59,7 @@ Therefore sorting all characters of `s` and comparing the result with this targe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition says that digits one through nine each appear ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This catches cases where `2n` or `3n` has four digits. Although `n` itself has e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nine-entry frequency array:** Scan the digits :** - **Nine-entry frequency array:** Scan the digits and require frequency one for one through nine and zero for zero; generalized time is $O(d)$.
+- **Nine-entry frequency array:** Scan the digits and require frequency one for one through nine and zero for zero; generalized time is $O(d)$.
 - **Set comparison alone:** Insufficient because a set loses multiplicity; repeated digits could be hidden without also checking length.
 - **Arithmetic digit extraction:** Avoids strings but is longer and must still track counts and zero.
 - **n equal to 192:** Produces the canonical nine-digit multiset and returns true.
@@ -106,8 +106,8 @@ This catches cases where `2n` or `3n` has four digits. Although `n` itself has e
 - **Four-digit multiple:** Makes the combined length exceed nine and therefore returns false.
 - **No leading zeros:** Positive integer conversion uses canonical decimal representations, matching numerical concatenation.
 - **Fixed input range:** Justifies the stated constant complexity despite use of sorting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

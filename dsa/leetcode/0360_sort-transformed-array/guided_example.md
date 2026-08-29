@@ -61,7 +61,7 @@ These endpoint properties continue to hold after one pointer moves inward, becau
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider only the currently unprocessed values `nums[i]` thr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ Filling from the back is essential. The first extremes found for an upward parab
 
 ## 6. Traps This Instance Exposes
 
-- **- **Transform then sort:** Map every input through:** - **Transform then sort:** Map every input through `f` and sort the results. This is simple and correct but costs $O(n\log n)$ time, missing the linear follow-up.
-- **- **Find the vertex and merge outward:** Locate $-:** - **Find the vertex and merge outward:** Locate $-b/(2a)$, split inputs around it, and merge transformed monotone runs. This can also run in $O(n)$ but requires more careful boundary and sign handling than endpoint extremes.
-- **- **`a = 0`, positive `b`:** The transformation is:** - **`a = 0`, positive `b`:** The transformation is increasing, so the left endpoint is repeatedly selected and the output follows input order.
+- **Transform then sort:** Map every input through `f` and sort the results. This is simple and correct but costs $O(n\log n)$ time, missing the linear follow-up.
+- **Find the vertex and merge outward:** Locate $-b/(2a)$, split inputs around it, and merge transformed monotone runs. This can also run in $O(n)$ but requires more careful boundary and sign handling than endpoint extremes.
+- **`a = 0`, positive `b`:** The transformation is increasing, so the left endpoint is repeatedly selected and the output follows input order.
 
 ---
 

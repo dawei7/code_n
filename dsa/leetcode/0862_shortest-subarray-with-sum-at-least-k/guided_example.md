@@ -78,9 +78,7 @@ The loop processes prefix index `i` and value `v=s[i]` from left to right.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Deque `q` stores candidate prefix indices in:
-
-- increasing ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,9 +121,9 @@ It continues while the condition holds, because later deque entries have larger 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary sliding window:** It fails with negat:** - **Ordinary sliding window:** It fails with negative numbers because removing or adding an element need not move the sum predictably.
-- **- **Priority queue of prefix sums:** It can find f:** - **Priority queue of prefix sums:** It can find feasible starts in `O(n\log n)` time, but does not exploit both index and prefix dominance as efficiently.
-- **- **Monotonic stack plus binary search:** Another :** - **Monotonic stack plus binary search:** Another valid approach, generally `O(n\log n)`.
+- **Ordinary sliding window:** It fails with negative numbers because removing or adding an element need not move the sum predictably.
+- **Priority queue of prefix sums:** It can find feasible starts in `O(n\log n)` time, but does not exploit both index and prefix dominance as efficiently.
+- **Monotonic stack plus binary search:** Another valid approach, generally `O(n\log n)`.
 
 ---
 

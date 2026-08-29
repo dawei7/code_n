@@ -63,7 +63,7 @@ This `g` is the board on which reverse processing begins. It may contain brick c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method deep-copies `grid` into `g` so the original remai... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ The roof component's stored size includes the virtual node itself. Differences o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Add union by size or rank:** Choose the smalle:** - **Add union by size or rank:** Choose the smaller/ranked root as the child while updating sizes. Together with path compression, this supports the manifest's inverse-Ackermann bound.
-- **- **Forward flood fill after every hit:** Recomput:** - **Forward flood fill after every hit:** Recomputing roof reachability costs up to $O(HN)$.
-- **- **Delete from DSU directly:** Standard union-fin:** - **Delete from DSU directly:** Standard union-find cannot split components efficiently, which motivates reverse time.
+- **Add union by size or rank:** Choose the smaller/ranked root as the child while updating sizes. Together with path compression, this supports the manifest's inverse-Ackermann bound.
+- **Forward flood fill after every hit:** Recomputing roof reachability costs up to $O(HN)$.
+- **Delete from DSU directly:** Standard union-find cannot split components efficiently, which motivates reverse time.
 
 ---
 

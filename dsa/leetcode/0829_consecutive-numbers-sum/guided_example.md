@@ -83,7 +83,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The statement `n <<= 1` replaces `n` with `2n` using a left ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,9 +128,9 @@ which represents `2a`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every starting number and extend a running:** - **Try every starting number and extend a running sum:** This can perform far more work and repeatedly constructs overlapping sequences. Searching by length reduces the question to divisibility and parity.
-- **- **Sliding window of positive integers:** A two-p:** - **Sliding window of positive integers:** A two-pointer window can also find representations in roughly linear time relative to `n`, but `O(\sqrt n)` arithmetic is much faster for targets up to `10^9`.
-- **- **Count odd divisors:** The number of consecutiv:** - **Count odd divisors:** The number of consecutive positive representations is related to the number of odd divisors of `n`. Factoring can produce another square-root solution, but the length formula follows the sequence definition more directly.
+- **Try every starting number and extend a running sum:** This can perform far more work and repeatedly constructs overlapping sequences. Searching by length reduces the question to divisibility and parity.
+- **Sliding window of positive integers:** A two-pointer window can also find representations in roughly linear time relative to `n`, but `O(\sqrt n)` arithmetic is much faster for targets up to `10^9`.
+- **Count odd divisors:** The number of consecutive positive representations is related to the number of odd divisors of `n`. Factoring can produce another square-root solution, but the length formula follows the sequence definition more directly.
 
 ---
 

@@ -51,7 +51,7 @@ Dividing by five gives $15a+2b=23$. The right side is odd, so $a$ must be odd. I
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Dividing by five gives $15a+2b=23$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every legal turn consumes exactly one 75-value coin and four 10-value coins. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct turn parity:** Compute `turns = min(x, :** - **Direct turn parity:** Compute `turns = min(x, y // 4)` and return Alice if `turns % 2 == 1`. This is clearer and has the same constant bounds.
+- **Direct turn parity:** Compute `turns = min(x, y // 4)` and return Alice if `turns % 2 == 1`. This is clearer and has the same constant bounds.
 - **Turn-by-turn simulation:** Subtract one and four while possible, toggling the player. It is correct but takes $O(T)$ time and hides the closed form.
 - **Search other coin combinations:** Unnecessary; the Diophantine equation has only $(1,4)$ in nonnegative integers.
 - **Exactly one turn:** Alice makes it and wins.
@@ -99,8 +99,8 @@ Every legal turn consumes exactly one 75-value coin and four 10-value coins. The
 - **No strategic branching:** Every move consumes the same resources, so “optimal” players cannot change game length.
 - **Method-name mismatch:** The implementation defines `losingPlayer` while submission metadata names `winningPlayer`; this should be reconciled outside the documentation campaign if runtime wiring relies on metadata.
 - **Relation to the direct turn count:** `min(x // 2, y // 8)` equals the number of complete pairs inside `min(x, y // 4)` playable turns. Removing those pairs leaves precisely the total-turn parity as a one-move feasibility test.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

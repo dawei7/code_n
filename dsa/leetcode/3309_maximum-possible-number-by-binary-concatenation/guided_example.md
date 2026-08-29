@@ -51,7 +51,7 @@ The source loops over `permutations(nums)`. For each tuple `arr`, it converts ea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source loops over `permutations(nums)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ All inputs are positive. Therefore each digit string starts with `"1"` and has n
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bit shifts and OR:** Build a candidate by shif:** - **Bit shifts and OR:** Build a candidate by shifting the accumulated value left by the next number's bit length and OR-ing that number. It avoids string construction and matches the manifest summary.
+- **Bit shifts and OR:** Build a candidate by shifting the accumulated value left by the next number's bit length and OR-ing that number. It avoids string construction and matches the manifest summary.
 - **Pairwise concatenation comparator:** Sort pieces so $a$ precedes $b$ when binary `a+b` is larger than `b+a`. This generalizes the “largest concatenated number” idea, but it is needless complexity for three elements.
 - **Recursive permutation generation:** It reaches the same six orders but `itertools.permutations` is concise and less error-prone.
 - **Duplicate numbers:** Several permutations produce identical strings. Repeated evaluation is harmless and bounded by six.
@@ -99,8 +99,8 @@ All inputs are positive. Therefore each digit string starts with `"1"` and has n
 - **Manifest discrepancy:** The exact implementation uses `bin`, string joining, and base-two parsing rather than shifts and bitwise OR.
 - **Input preservation:** `permutations` reads `nums` without sorting or mutating it.
 - **Fixed-size complexity:** Calling the method $O(1)$ is justified only by the hard constraint of exactly three bounded integers, not by permutation enumeration in general.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

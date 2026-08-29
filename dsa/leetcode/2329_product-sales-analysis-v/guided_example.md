@@ -67,7 +67,7 @@ There is intentionally no grouping by `product_id`. The task asks for one total 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A user may have many purchases, including repeated purchases... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Ordering keys are applied left to right. A smaller user ID never moves ahead of 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subquery for each user:** Select di:** - **Correlated subquery for each user:** Select distinct users and recompute their sales total in a subquery. This can repeat work and is more complex than one grouped join.
+- **Correlated subquery for each user:** Select distinct users and recompute their sales total in a subquery. This can repeat work and is more complex than one grouped join.
 - **Pre-aggregate quantities by product and user:** Sum quantity per user-product first, join prices, then sum per user. This is correct and may help some data shapes, but the direct grouped line amounts already express the result.
 - **Group by user and product:** That reports per-product spending rather than the requested total per user.
 - **Sum quantity only:** Products have different prices, so unit count is not monetary spending.
@@ -129,8 +129,8 @@ Ordering keys are applied left to right. A smaller user ID never moves ahead of 
 - **Invalid missing product row:** The foreign key excludes this. Without it, the inner join would drop the unmatched sale.
 - **Duplicate Product IDs:** Uniqueness excludes them. If duplicates existed, joining would multiply sale rows and overcount.
 - **Ordinal expressions:** They are correct for the current select list but should be updated if column positions change.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

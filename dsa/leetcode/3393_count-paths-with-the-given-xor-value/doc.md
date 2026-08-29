@@ -22,8 +22,8 @@ The value of a path is the bitwise XOR of every grid value it visits, including 
 
 **Inputs**
 
-- `grid`: A rectangular list of integer rows with $1\le m,n\le300$. Every cell value is in $[0,15]$.
-- `k`: The required path XOR, also in $[0,15]$.
+- `grid`: A rectangular list of integer rows with $1\le m,n\le300$. Every cell value is in `[0,15]`.
+- `k`: The required path XOR, also in `[0,15]`.
 
 Let $m$ be the row count and $n$ the column count. Every valid path visits exactly $m+n-1$ cells.
 

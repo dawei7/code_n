@@ -65,7 +65,7 @@ Another way to see the structure is to imagine group maxima in sorted order. Eac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider the smallest value not yet assigned, call it $x$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ With `nums = [1, 2, 3, 7, 8, 9]` and `k = 2`, both consecutive differences are t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backtracking over group assignments:** Trying :** - **Backtracking over group assignments:** Trying arbitrary triples explores a combinatorial number of partitions. Sorting exposes the forced local feasibility checks.
+- **Backtracking over group assignments:** Trying arbitrary triples explores a combinatorial number of partitions. Sorting exposes the forced local feasibility checks.
 - **Heap extraction in triples:** Repeatedly taking the three smallest values also works but costs $O(N\log N)$ with a heap and is less direct than one sort followed by a scan.
 - **Check all three pair differences:** For a sorted triple, maximum minus minimum dominates the other two, so extra comparisons are redundant.
 - **A failed first block:** If even the two closest partners are too far from the smallest value, no rearrangement can rescue it.
@@ -111,8 +111,8 @@ With `nums = [1, 2, 3, 7, 8, 9]` and `k = 2`, both consecutive differences are t
 - **`k = 0`:** Every group must contain three equal values; the endpoint test enforces exactly that condition.
 - **Input mutation:** The exact implementation sorts `nums` in place. Copy first if caller-visible preservation were required, but that would add another $O(N)$ list.
 - **Failure output:** The required signal is the completely empty list, not a partial list of groups formed before the failing block.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

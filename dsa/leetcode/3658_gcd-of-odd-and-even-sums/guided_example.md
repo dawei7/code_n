@@ -101,13 +101,7 @@ The common-factor identity is exact because every common divisor of `a` and `b` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Both numbers contain a factor of `n`:
-
-`n^2 = n * n`
-
-and
-
-`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -154,7 +148,7 @@ That is why the exact Optimal source can immediately return `n`. It is not skipp
 
 ## 6. Traps This Instance Exposes
 
-- **- **Euclidean algorithm on the closed forms:** Com:** - **Euclidean algorithm on the closed forms:** Compute `gcd(n^2, n(n + 1))` in `O(log n)` time. It is correct but slower and less specialized than returning the proven result.
+- **Euclidean algorithm on the closed forms:** Compute `gcd(n^2, n(n + 1))` in `O(log n)` time. It is correct but slower and less specialized than returning the proven result.
 - **Sum both sequences explicitly:** This takes `O(n)` time and adds unnecessary loop state.
 - **Use arithmetic-series formulas only:** Computing both sums in `O(1)` and passing them to a library GCD is acceptable, but the remaining GCD also has a closed form.
 - **Forget the common factor:** The factorization by `n` is what exposes consecutive integers and makes the final simplification possible.
@@ -164,8 +158,8 @@ That is why the exact Optimal source can immediately return `n`. It is not skipp
 - **Positive-input guarantee:** Factoring the GCD as `n * gcd(n, n+1)` uses positive `n`. The constraints exclude zero and negative inputs.
 - **Different sequence definitions:** The result `n` is specific to these exact first-`n` odd and even sums and should not be generalized blindly.
 - **Input preservation:** The integer argument is immutable and no external state is changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

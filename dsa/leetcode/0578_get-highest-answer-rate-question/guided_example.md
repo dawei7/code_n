@@ -74,11 +74,7 @@ That alias is required by the requested result schema. It does not mean the resu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query orders the groups with:
-
-
-
-`DESC` places the large... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ For a tie example, imagine question 10 and question 20 both have two answers fro
 
 ## 6. Traps This Instance Exposes
 
-- **- **`CASE` expressions:** `SUM(CASE WHEN action = :** - **`CASE` expressions:** `SUM(CASE WHEN action = 'answer' THEN 1 ELSE 0 END)` is portable across more SQL systems. The exact query’s Boolean sums are concise MySQL syntax with the same meaning.
+- **`CASE` expressions:** `SUM(CASE WHEN action = 'answer' THEN 1 ELSE 0 END)` is portable across more SQL systems. The exact query’s Boolean sums are concise MySQL syntax with the same meaning.
 - **Separate show and answer subqueries:** Group each action independently and join the counts. This works but scans or materializes more intermediate data than one conditional aggregation.
 - **Window ranking:** Compute rates in a CTE and apply `ROW_NUMBER() OVER (ORDER BY rate DESC, question_id ASC)`. It makes ranking explicit but is longer than ordering and limiting one row.
 - **Cross-multiplication:** Rates $a/b$ and $c/d$ can be compared as $ad$ and $cb$, avoiding floating-point representation. SQL then needs a more elaborate pairwise maximum computation; the direct quotient is adequate here.
@@ -126,8 +122,8 @@ For a tie example, imagine question 10 and question 20 both have two answers fro
 - **Duplicate event rows:** The table explicitly may contain duplicates. The query counts rows as logged events rather than deduplicating them.
 - **Ordinal references:** `GROUP BY 1` and `ORDER BY ..., 1` are concise but less self-documenting than spelling out `question_id`. Both refer to the selected ID expression, not to the literal number one.
 - **Output shape:** `LIMIT 1` guarantees one row, and the alias `survey_log` guarantees the requested column name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ Set membership filters generated strings to dictionary words. This avoids scanni
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current word `p`, the source converts it to mutable char... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This level boundary is essential. Once `endWord` is found, the algorithm must st
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bidirectional BFS plus DAG backtracking:** Exp:** - **Bidirectional BFS plus DAG backtracking:** Expands the smaller frontier and may inspect far fewer words, but edge orientation must remain from begin to end.
+- **Bidirectional BFS plus DAG backtracking:** Expands the smaller frontier and may inspect far fewer words, but edge orientation must remain from begin to end.
 - **Wildcard-pattern buckets:** Map patterns such as `h*t` to words and retrieve neighbors through shared buckets. It trades preprocessing memory for neighbor lookup.
 - **Pairwise word comparison:** Check every dictionary pair for one-character difference. It is simple but can cost $O(W^2L)$.
 - **Store complete paths in the BFS queue:** Easy to write but duplicates long prefixes and can consume enormous memory.
@@ -110,8 +110,8 @@ This level boundary is essential. Once `endWord` is found, the algorithm must st
 - **Path snapshots:** `path[::-1]` must create a new list before backtracking mutates `path`.
 - **No longer paths:** Removing discovered words and stopping after the found layer prevent them.
 - **Missing imports:** `List`, `defaultdict`, and `deque` must be supplied.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

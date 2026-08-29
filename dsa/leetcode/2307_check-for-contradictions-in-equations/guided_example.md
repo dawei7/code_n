@@ -69,7 +69,7 @@ For a root, `p[x] == x` and `w[x] == 1.0`, matching `x / x = 1`. Repeated calls 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `x` is not a root, `find(x)` first recursively finds and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ The implementation always attaches `pb` under `pa`. It does not use a rank or si
 
 ## 6. Traps This Instance Exposes
 
-- **- **Weighted graph traversal for every equation:**:** - **Weighted graph traversal for every equation:** Store both directed ratios for each accepted equation, then run DFS or BFS to discover the implied ratio when checking a new connection. This is conceptually direct but may revisit much of a component for many equations, leading to roughly `O(M(V + M))` work in a dense repeated-query scenario.
+- **Weighted graph traversal for every equation:** Store both directed ratios for each accepted equation, then run DFS or BFS to discover the implied ratio when checking a new connection. This is conceptually direct but may revisit much of a component for many equations, leading to roughly `O(M(V + M))` work in a dense repeated-query scenario.
 - **Logarithmic transformation:** Convert multiplicative equations into additive differences with logarithms and use a potential-based structure. This can clarify the algebra but still uses floating-point approximations and adds logarithm operations; positive values make it possible, but the direct ratios are simpler.
 - **Union by rank or size:** Maintain a balancing array and attach the smaller or shallower component beneath the other. This improves the formal amortized bound, but the root-weight formula must be inverted appropriately when the attachment direction is reversed.
 - **Ordinary unweighted union-find:** It can tell whether `a` and `b` are connected but cannot recover the ratio implied between them, so it cannot decide whether a cycle-forming equation is consistent.
@@ -138,8 +138,8 @@ The implementation always attaches `pb` under `pa`. It does not use a rank or si
 - **Tolerance boundary:** The code accepts only differences strictly smaller than `1e-5`. A difference exactly equal to `1e-5` satisfies the `>=` test and is reported as contradictory.
 - **Relative versus absolute error:** The implementation uses the absolute comparison required by the local contract. Replacing it with relative error would change behavior for very large or very small ratios.
 - **Long parent chain:** Always attaching `pb` under `pa` can temporarily create a deep tree. Path compression flattens every traversed route, but Python recursion depth is still a practical reason that rank or an iterative `find` could be preferable for much larger unconstrained inputs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

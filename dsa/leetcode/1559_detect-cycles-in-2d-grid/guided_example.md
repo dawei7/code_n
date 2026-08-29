@@ -62,9 +62,7 @@ Any different already-visited same-character neighbor represents an alternate co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each stack entry is `(x, y, px, py)`:
-
-- `x, y` are the curr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +101,7 @@ The list is named `q`, but `q.pop()` removes from its end. It therefore behaves 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive DFS:** It uses the same parent rule :** - **Recursive DFS:** It uses the same parent rule but risks Python recursion overflow on a large component.
+- **Recursive DFS:** It uses the same parent rule but risks Python recursion overflow on a large component.
 - **Breadth-first search:** A deque with parent coordinates is equally correct; traversal order does not affect detection.
 - **Union-find:** Process each equal-character edge once and report a cycle when endpoints are already connected. It uses $O(RC)$ storage.
 - **Skip no parent edge:** That would falsely call every ordinary undirected edge a cycle.
@@ -116,8 +114,8 @@ The list is named `q`, but `q.pop()` removes from its end. It therefore behaves 
 - **Mark on push:** It prevents duplicate scheduling and makes frontier cross-edges visible as cycles.
 - **Minimum cycle length:** Orthogonal grid structure rules out a same-character triangle, while parent skipping rules out immediate two-edge backtracking.
 - **Iterator dependency:** `pairwise(dirs)` must be supplied by the execution environment exactly as the stored source expects.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

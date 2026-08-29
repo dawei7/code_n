@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are `n` projects numbered from `0` to $n - 1$. You are given an integer array `milestones` where each $\text{milestones}[i]$ denotes the number of milestones the $$i^{\text{th}}$$ project has.
+There are `n` projects numbered from `0` to $n - 1$. You are given an integer array `milestones` where each $\text{milestones}[i]$ denotes the number of milestones the $i^{\text{th}}$ project has.
 
 You can work on the projects following these two rules:
 
@@ -29,7 +29,7 @@ Return *the **maximum** number of weeks you would be able to work on the project
 - **Input:** $milestones = [1,2,3]$
 - **Output:** `6`
 - **Explanation:** One possible scenario is:
-​​​​- During the 1^st week, you will work on a milestone of project 0.
+- During the 1^st week, you will work on a milestone of project 0.
 - During the 2^nd week, you will work on a milestone of project 2.
 - During the 3^rd week, you will work on a milestone of project 1.
 - During the 4^th week, you will work on a milestone of project 2.

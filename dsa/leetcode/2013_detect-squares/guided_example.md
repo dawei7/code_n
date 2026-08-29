@@ -59,7 +59,7 @@ is the signed horizontal displacement. The square side length is $\lvert d\rvert
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For query point $(x_1,y_1)$, any axis-aligned square has ano... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The signed formulas also guarantee equal side lengths without calling `abs`. The
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store one global pair counter:** Query could e:** - **Store one global pair counter:** Query could enumerate y-levels or columns, but the nested column structure matches the square geometry directly.
+- **Store one global pair counter:** Query could enumerate y-levels or columns, but the nested column structure matches the square geometry directly.
 - **Enumerate all stored point triples:** Cubic and ignores axis alignment until late.
 - **Precompute every square on add:** Makes additions expensive and requires updating many query answers.
 - **Duplicate points:** Multiply the number of distinct selection triples.
@@ -118,8 +118,8 @@ The signed formulas also guarantee equal side lengths without calling `abs`. The
 - **Add complexity:** One nested counter increment is expected constant time.
 - **Environment imports:** The exact source assumes `defaultdict` and `Counter` are available.
 - **Query-time dimension:** `count` loops over distinct stored x-coordinates, not every added point. Repeated additions change multiplicities but do not lengthen this outer scan.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

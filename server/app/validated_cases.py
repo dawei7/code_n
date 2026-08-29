@@ -45,6 +45,7 @@ class ValidatedCase:
     kind: CaseKind
     input: dict[str, Any]
     expected: Any = None
+    has_expected: bool = False
     visible: bool = False
     tags: list[str] = field(default_factory=list)
     size: int | None = None
@@ -91,7 +92,10 @@ def load_case_suite(challenge_id: str) -> list[ValidatedCase]:
     result = _load_case_file(path, challenge_id, benchmark_sidecar=False)
     benchmark_path = _benchmark_case_path(path)
     if benchmark_path is not None and benchmark_path.is_file():
-        result.extend(_load_case_file(benchmark_path, challenge_id, benchmark_sidecar=True))
+        try:
+            result.extend(_load_case_file(benchmark_path, challenge_id, benchmark_sidecar=True))
+        except NoValidatedCases:
+            pass
     return result
 
 
@@ -129,13 +133,14 @@ def _load_case_file(path: Path, challenge_id: str, *, benchmark_sidecar: bool) -
                 id=str(raw.get("id") or f"case-{len(result) + 1}"),
                 name=str(raw.get("name") or raw.get("id") or f"Case {len(result) + 1}"),
                 kind=kind,  # type: ignore[arg-type]
-                input=copy.deepcopy(raw_input),
-                expected=copy.deepcopy(raw.get("expected")),
+                input=raw_input,
+                expected=raw.get("expected"),
+                has_expected="expected" in raw,
                 visible=bool(raw.get("visible", kind in {"sample", "trial"})),
                 tags=[str(tag) for tag in raw.get("tags") or []],
                 size=raw_size,
                 timeout_ms=int(raw["timeout_ms"]) if raw.get("timeout_ms") is not None else None,
-                validator=copy.deepcopy(raw.get("validator") or {}),
+                validator=raw.get("validator") or {},
             )
         )
     if benchmark_sidecar and len(result) >= 2:

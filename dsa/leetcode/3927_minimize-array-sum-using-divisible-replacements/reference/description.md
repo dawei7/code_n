@@ -72,4 +72,4 @@ Return the minimum possible sum of all array elements. The result may exceed the
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $1 \le \text{nums}[i] \le 10^​​​​​​​5$
+- $1 \le \text{nums}[i] \le 10^5$

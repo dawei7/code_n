@@ -64,7 +64,7 @@ The center `[k]` alone is always valid, so `ans` starts at one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code locates `k` at index `i` with `nums.index(k)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Notice that the empty right extension is not put in `cnt`. Right-empty subarrays
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-balance map over the whole array:** Cou:** - **Prefix-balance map over the whole array:** Count compatible prefix states while enforcing inclusion of `k`. It is equivalent but often harder to organize without counting subarrays that omit `k`.
+- **Prefix-balance map over the whole array:** Count compatible prefix states while enforcing inclusion of `k`. It is equivalent but often harder to organize without counting subarrays that omit `k`.
 - **Brute-force sorting:** Enumerating subarrays and sorting each one is far too slow.
 - **Distinct values:** They ensure every non-`k` value contributes exactly $+1$ or $-1$ and that `k` has one center position.
 - **Even-length median:** Because the left middle is used, valid balance is one as well as zero.
@@ -115,8 +115,8 @@ Notice that the empty right extension is not put in `cnt`. Right-empty subarrays
 - **Repeated balances:** Counter frequencies, not mere membership, are required because different endpoints define different subarrays.
 - **Negative balance keys:** Python's counter accepts them normally.
 - **Boolean arithmetic:** `true` contributes one and `false` contributes zero in the exact implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

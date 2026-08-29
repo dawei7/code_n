@@ -59,7 +59,7 @@ The two copies of `z` at the boundary of `cs` are deliberate. The forward phase 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | During the forward half, letters are examined from smallest ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ For `"aaaabbbbcccc"`, the first forward half takes `abc` and the reverse half ta
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly sort remaining characters:** It dir:** - **Repeatedly sort remaining characters:** It directly exposes the smallest and largest choices but wastes work by sorting after removals, potentially becoming much slower.
+- **Repeatedly sort remaining characters:** It directly exposes the smallest and largest choices but wastes work by sorting after removals, potentially becoming much slower.
 - **Ordered set plus frequencies:** Maintain the currently available letters in a balanced structure and traverse it both ways. This generalizes to a large alphabet but is unnecessary for 26 fixed letters.
 - **Explicit two loops:** Scan `ascii_lowercase` and then its reverse in separate loops. It is equally correct and may make the phase boundary clearer; the exact solution concatenates them into `cs`.
 - **One character:** The forward sweep takes it and the outer loop ends immediately.
@@ -107,8 +107,8 @@ For `"aaaabbbbcccc"`, the first forward half takes `abc` and the reverse half ta
 - **Input immutability:** Only `cnt` is changed. Strings are immutable, and `s` remains untouched.
 - **Lowercase guarantee:** The traversal includes only lowercase English letters. Unexpected characters outside that alphabet would never be appended and would make the loop fail to finish.
 - **Required names:** The environment must provide `Counter` and `ascii_lowercase`, normally from `collections` and `string` respectively.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

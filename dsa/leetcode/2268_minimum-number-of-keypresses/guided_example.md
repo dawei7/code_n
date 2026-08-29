@@ -61,7 +61,7 @@ Letters absent from `s` do not appear in the counter. That is safe even though a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(s)` builds a mapping from every character that occu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ Therefore, placing the more frequent letter in the cheaper slot never makes the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly construct the keypad:** It can real:** - **Explicitly construct the keypad:** It can realize the same greedy assignment, but button identities are irrelevant when only total cost is requested.
+- **Explicitly construct the keypad:** It can realize the same greedy assignment, but button identities are irrelevant when only total cost is requested.
 - **Try all letter mappings:** There are far too many permutations; the exchange argument removes the need to search assignments.
 - **Alphabet-sized frequency array:** A 26-entry list can replace `Counter` and gives the same bounds.
 - **Ascending frequency sort:** It would place rare letters in cheap positions and frequent letters in expensive ones, maximizing the wrong tendency.
@@ -132,8 +132,8 @@ Therefore, placing the more frequent letter in the cheaper slot never makes the 
 - **Tier boundary after eighteen:** Entries nineteen onward correctly receive multiplier three.
 - **Capacity guarantee:** Nine buttons times three characters gives 27 positions, enough for the 26-letter alphabet.
 - **Input preservation:** Counting and sorting derived frequencies do not alter `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

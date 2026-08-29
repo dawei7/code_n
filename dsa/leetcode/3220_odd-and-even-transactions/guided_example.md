@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 1` uses positional notation: the first selected ex... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Standard `CASE` expressions:** `SUM(CASE WHEN :** - **Standard `CASE` expressions:** `SUM(CASE WHEN amount % 2 <> 0 THEN amount ELSE 0 END)` is more portable than MySQL `IF` and handles negative odd remainders when using `<> 0`.
+- **Standard `CASE` expressions:** `SUM(CASE WHEN amount % 2 <> 0 THEN amount ELSE 0 END)` is more portable than MySQL `IF` and handles negative odd remainders when using `<> 0`.
 - **Two aggregate subqueries joined by date:** One can filter odds and evens separately, but full outer handling is needed to preserve dates missing one parity. Conditional aggregation is simpler.
 - **`UNION ALL` then regroup:** Tag parity totals in separate branches and combine them. It repeats work and still needs zero filling.
 - **Date with only odd amounts:** `even_sum` is zero because every even conditional returns zero.
@@ -100,8 +100,8 @@ We maintain the core conceptual parameters and state variables:
 - **Null amounts:** `IF` conditions involving null are not true and return zero here, effectively ignoring such values. A nullable schema would need an explicit policy.
 - **Ordering:** `ORDER BY 1` is positional and depends on transaction date remaining the first selected expression.
 - **No rounding:** Amounts are integers and requested totals are exact sums.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

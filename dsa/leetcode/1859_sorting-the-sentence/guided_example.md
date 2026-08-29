@@ -51,7 +51,7 @@ The algorithm splits the sentence, allocates an output slot for every word, plac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The algorithm splits the sentence, allocates an output slot ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The algorithm splits the sentence, allocates an output slot for every word, plac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort tokens by suffix:** Sorting at most nine :** - **Sort tokens by suffix:** Sorting at most nine tokens is simple, but direct placement is linear and avoids comparisons.
+- **Sort tokens by suffix:** Sorting at most nine tokens is simple, but direct placement is linear and avoids comparisons.
 - **Dictionary from position to word:** It works but a fixed list naturally represents the complete consecutive positions.
 - **One word:** Its suffix is one, it fills the only slot, and joining returns the word without the digit.
 - **Nine words:** Every suffix is still one character, so `w[-1]` remains sufficient.
@@ -99,8 +99,8 @@ The algorithm splits the sentence, allocates an output slot for every word, plac
 - **More than nine words outside constraints:** Multi-digit positions would require separating the full numeric suffix rather than reading one character.
 - **Whitespace robustness:** `split()` tolerates repeated whitespace even though the contract uses single spaces.
 - **No input mutation:** The source string is immutable; reconstruction uses new lists and strings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

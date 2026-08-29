@@ -61,7 +61,7 @@ The Counter begins with `{0: 1}`. This represents the empty prefix before index 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s` is current prefix remainder, not the full potentially la... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Pairing it with the initial empty prefix creates that entire prefix as a valid s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every subarray:** Prefix sums reduce sum:** - **Check every subarray:** Prefix sums reduce sum lookup but still leave `O(N^2)` pairs.
+- **Check every subarray:** Prefix sums reduce sum lookup but still leave `O(N^2)` pairs.
 - **Fixed array of `k` counts:** Avoid hash overhead and gives the same logic.
 - **Set of remainders:** Cannot count multiple starts.
 - **Single divisible element:** Matches an earlier equal remainder and is counted.
@@ -108,8 +108,8 @@ Pairing it with the initial empty prefix creates that entire prefix as a valid s
 - **Update before query:** Would incorrectly count an empty subarray.
 - **All prefix remainders equal:** Each new endpoint adds all earlier prefixes.
 - **Nonempty requirement:** Enforced by count-before-increment order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$ plant is located at $x = i$.
+Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $i^{\text{th}}$ plant is located at $x = i$.
 
 Each plant needs a specific amount of water. Alice and Bob have a watering can each, **initially full**. They water the plants in the following way:
 
@@ -12,7 +12,7 @@ Each plant needs a specific amount of water. Alice and Bob have a watering can e
 
 - In case both Alice and Bob reach the same plant, the one with **more** water currently in his/her watering can should water this plant. If they have the same amount of water, then Alice should water this plant.
 
-Given a **0-indexed** integer array `plants` of `n` integers, where $\text{plants}[i]$ is the amount of water the $$i^{\text{th}}$$ plant needs, and two integers `capacityA` and `capacityB` representing the capacities of Alice's and Bob's watering cans respectively, return *the **number of times** they have to refill to water all the plants*.
+Given a **0-indexed** integer array `plants` of `n` integers, where $\text{plants}[i]$ is the amount of water the $i^{\text{th}}$ plant needs, and two integers `capacityA` and `capacityB` representing the capacities of Alice's and Bob's watering cans respectively, return *the **number of times** they have to refill to water all the plants*.
 
 ### 2. Function Contract
 

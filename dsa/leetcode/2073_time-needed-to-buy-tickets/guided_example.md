@@ -88,7 +88,7 @@ Now consider `tickets = [5, 1, 1, 1]` and `k = 1`. Here $T=1$. Indices 0 and 1 c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Being offered $T$ turns does not mean a person necessarily u... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,7 +125,7 @@ For an earlier person, the $T$th opportunity occurs earlier in the same pass as 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal queue simulation:** Repeatedly decreme:** - **Literal queue simulation:** Repeatedly decrementing the front person's tickets is easy to visualize and can be correct, but it takes one step per elapsed second. The contribution formula compresses all full and partial queue passes into $O(n)$ work.
+- **Literal queue simulation:** Repeatedly decrementing the front person's tickets is easy to visualize and can be correct, but it takes one step per elapsed second. The contribution formula compresses all full and partial queue passes into $O(n)$ work.
 - **Using a queue data structure:** A queue models the rotations but stores indices or remaining counts and still processes every purchase. It adds space without improving the purchase-proportional running time.
 - **Counting full rounds globally:** It is possible to reason about complete rounds and then a partial round, but people leave at different times, which complicates the bookkeeping. The per-person minimum expresses the same effect locally and directly.
 - **Person `k` at index zero:** No one appears before `k`. Later people receive at most $T-1$ turns, and when $T=1$ they contribute zero because the process stops after the very first purchase.
@@ -135,8 +135,8 @@ For an earlier person, the $T$th opportunity occurs earlier in the same pass as 
 - **Another person needs many more tickets:** Their contribution is limited by the number of times their position is reached before `k` finishes. Tickets they would buy afterward do not belong in the answer.
 - **The `i <= k` boundary:** Changing it to `i < k` undercounts person `k` by one. Changing it to apply $T$ to every index overcounts later people who are not reached in the final partial pass.
 - **Input preservation:** The exact solution never decrements `tickets`. This is useful when the caller expects the input array to remain unchanged and reinforces that the computation is analytical rather than simulated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

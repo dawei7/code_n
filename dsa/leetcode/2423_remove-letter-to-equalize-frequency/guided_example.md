@@ -65,7 +65,7 @@ After every distinct letter has been tried without producing one positive freque
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A set stores each distinct frequency value once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Consider `word = "abb"`. Trying the only `a` reduces its count to zero, which is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delete every position and recount:** Construct:** - **Delete every position and recount:** Constructing `word[:i] + word[i+1:]` for all $n$ positions is easy to imagine but can require $O(n^2)$ time and repeated string allocation.
+- **Delete every position and recount:** Constructing `word[:i] + word[i+1:]` for all $n$ positions is easy to imagine but can require $O(n^2)$ time and repeated string allocation.
 - **Reason from the frequency-of-frequencies table:** One can derive a constant-case characterization, such as removing the sole letter of frequency 1 or reducing one uniquely high frequency by one. That can be slightly faster after counting, but it is easier to miss the “exactly one” condition; trying at most 26 letter types is already constant-sized.
 - **Sort the frequencies:** For each possible removed letter, sorting remaining counts would test equality but adds unnecessary work. A set directly asks how many distinct positive values exist.
 - **All characters identical:** Removing one occurrence leaves one letter type with a positive frequency, so the answer is always true for length at least 2.
@@ -114,8 +114,8 @@ Consider `word = "abb"`. Trying the only `a` reduces its count to zero, which is
 - **A common frequency greater than one:** A result such as a single remaining letter with frequency 2 is valid; equal frequency does not mean every count must equal 1.
 - **Exactly one removal:** The counter is restored after every failed trial, ensuring each experiment contains one deletion rather than an accumulation of deletions.
 - **Repeated positions of the same letter:** They are behaviorally identical at the frequency level, so testing the letter once loses no possible outcome.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -71,9 +71,7 @@ When the characters match, `i, j = i + 1, j + 1` consumes both. Pattern characte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | While a pattern character remains, the code runs:
-
-`while i ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ Thus, among all legal alignments, using the earliest available exact match is al
 
 ## 6. Traps This Instance Exposes
 
-- **- **Ordinary subsequence matching:** Checking only:** - **Ordinary subsequence matching:** Checking only whether `pattern` is a subsequence of a query is insufficient because it would skip unmatched uppercase letters. The lowercase-only insertion restriction must be enforced.
+- **Ordinary subsequence matching:** Checking only whether `pattern` is a subsequence of a query is insufficient because it would skip unmatched uppercase letters. The lowercase-only insertion restriction must be enforced.
 - **Delete lowercase letters and compare uppercase skeletons:** Matching the uppercase sequences is necessary but not sufficient when the pattern itself contains lowercase letters. The exact positions and order of every pattern character still matter.
 - **Regular expression construction:** One could place a lowercase-letter wildcard around pattern characters, but escaping and anchoring are easy to mishandle, and a two-pointer scan is simpler and strictly linear.
 - **Dynamic programming:** A table over query and pattern positions can model skip-or-match choices, but lowercase skips and forced uppercase matches make the greedy earliest-match argument sufficient. DP adds `O(MP)` time or space without benefit.
@@ -124,8 +122,8 @@ Thus, among all legal alignments, using the earliest available exact match is al
 - **Repeated characters:** The earliest matching occurrence is consumed. This is safe because pointers only need to preserve order, and earlier consumption leaves at least as much suffix for later pattern characters.
 - **One-character pattern:** The method finds that exact character, rejects any blocking uppercase before it, and then requires every remaining query character to be lowercase.
 - **Nonempty contract:** Both queries and pattern contain at least one character, so the exact code does not need a special empty-pattern branch. Its trailing logic would still describe the right restriction for an empty pattern: only all-lowercase queries could match.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

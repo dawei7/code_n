@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given an array of integers `citations` where $\text{citations}[i]$ is the number of citations a researcher received for their $$i^{\text{th}}$$ paper, return *the researcher's h-index*.
+Given an array of integers `citations` where $\text{citations}[i]$ is the number of citations a researcher received for their $i^{\text{th}}$ paper, return *the researcher's h-index*.
 
 The objective is to compute `3` from `{"citations": [3, 0, 6, 1, 5]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,7 +65,7 @@ Sorting is useful here because it converts the global question “how many entri
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact protected solution calls `citations.sort(reverse=t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ If no positive candidate succeeds, the method returns zero. This occurs, for exa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Citation buckets capped at `n`:** Count each v:** - **Citation buckets capped at `n`:** Count each value in bucket `min(citation, n)`, accumulate qualifying-paper counts from `n` downward, and return the first threshold with enough papers. This achieves the manifest's $O(n)$ time and $O(n)$ space and avoids comparison sorting, but it is not the exact source.
+- **Citation buckets capped at `n`:** Count each value in bucket `min(citation, n)`, accumulate qualifying-paper counts from `n` downward, and return the first threshold with enough papers. This achieves the manifest's $O(n)$ time and $O(n)$ space and avoids comparison sorting, but it is not the exact source.
 - **Ascending sort:** Sort normally and test the corresponding ranked positions from the end. It has the same $O(n\log n)$ time; descending order makes the `h - 1` index direct.
 - **Binary search after sorting:** Feasibility across ranks is monotone, so binary search can reduce the post-sort scan to $O(\log n)$. The initial $O(n\log n)$ sort still dominates, making the simpler linear scan reasonable.
 - **Recount for every candidate:** For each $h$, scanning all citations to count values at least $h$ costs $O(n^2)$ in the worst case. Sorting once avoids repeated counting.
@@ -116,8 +116,8 @@ If no positive candidate succeeds, the method returns zero. This occurs, for exa
 - **More than `h` qualifying papers:** This is allowed. The definition requires at least `h`, so no condition on exactly how many remaining papers fall above or below the threshold is needed.
 - **Input mutation:** `sort(reverse=true)` changes the caller's list. If preserving input order were required, use `sorted(citations, reverse=true)` and account for the copied list.
 - **Non-negative guarantee:** Negative citation counts are outside the contract. The proof assumes ordinary non-negative counts, though the rank comparisons would simply treat negative values as unable to qualify.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

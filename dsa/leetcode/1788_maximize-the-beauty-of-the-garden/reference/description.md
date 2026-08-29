@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is a garden of `n` flowers, and each flower has an integer beauty value. The flowers are arranged in a line. You are given an integer array `flowers` of size `n` and each $\text{flowers}[i]$ represents the beauty of the $$i^{\text{th}}$$ flower.
+There is a garden of `n` flowers, and each flower has an integer beauty value. The flowers are arranged in a line. You are given an integer array `flowers` of size `n` and each $\text{flowers}[i]$ represents the beauty of the $i^{\text{th}}$ flower.
 
 A garden is **valid** if it meets these conditions:
 

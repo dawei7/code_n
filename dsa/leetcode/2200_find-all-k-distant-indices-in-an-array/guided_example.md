@@ -59,7 +59,7 @@ The expression checks distance first. If it is too large, Python short-circuits 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The generator iterates `j` over the complete array.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This matches the existential definition exactly. One witness is sufficient, and 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Emit uncovered interval suffixes:** Scan key p:** - **Emit uncovered interval suffixes:** Scan key positions left to right and append only indices beyond the last emitted endpoint. This achieves the manifest's $O(n)$ time.
+- **Emit uncovered interval suffixes:** Scan key positions left to right and append only indices beyond the last emitted endpoint. This achieves the manifest's $O(n)$ time.
 - **Boolean difference array:** Mark the start and end of every key neighborhood, prefix-sum coverage, and emit covered indices in $O(n)$ time and space.
 - **Precollect key positions:** Binary search the nearest key for each `i` in $O(n\log q)$ time, where $q$ is the number of key occurrences.
 - **Candidate equals key position:** Distance zero is within every positive `k`, so all key positions qualify.
@@ -112,8 +112,8 @@ This matches the existential definition exactly. One witness is sufficient, and 
 - **Sorted output:** Increasing outer iteration supplies the order directly.
 - **Input preservation:** The array, key, and distance are only read.
 - **Manifest discrepancy:** The stored code is quadratic enumeration rather than linear interval merging.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ When several purchases occur on the same date, their tie order is immaterial. At
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The common table expression `t` selects every `user_id` and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For the first row in each partition, the previous date is `NULL`, so `DATEDIFF` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Self-join every user's purchases:** Join two r:** - **Self-join every user's purchases:** Join two rows on equal `user_id` and a date gap at most seven. It is straightforward but can generate quadratically many row pairs for a user with many purchases.
+- **Self-join every user's purchases:** Join two rows on equal `user_id` and a date gap at most seven. It is straightforward but can generate quadratically many row pairs for a user with many purchases.
 - **Correlated existence subquery:** Test each row for another qualifying row. An optimizer and suitable index may execute it well, but the window formulation directly exploits sorted adjacency.
 - **Compare only minimum and maximum dates:** A user can have a close pair amid a much wider overall span, so the extremes alone are insufficient.
 - **Same-day purchases:** `DATEDIFF` is zero, and zero is correctly within seven days.
@@ -114,8 +114,8 @@ For the first row in each partition, the previous date is `NULL`, so `DATEDIFF` 
 - **Partition boundary:** `PARTITION BY user_id` prevents one user's last purchase from becoming another user's previous date.
 - **First row null:** SQL does not treat null as zero; `WHERE d <= 7` discards it.
 - **Required ordering:** `DISTINCT` alone does not guarantee order. The final `ORDER BY user_id` is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

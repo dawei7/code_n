@@ -71,13 +71,7 @@ After this pass, looking up the smallest value from any index through the end co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Define
-
-$$
-R_i=\min_{i\le j<n}\texttt{nums}[j].
-$$
-
-The base... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +120,7 @@ The source begins with zero. That works because the contract guarantees nonnegat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Quadratic direct evaluation:** Compute a fresh:** - **Quadratic direct evaluation:** Compute a fresh prefix maximum and suffix minimum for each $i$. It matches the definition but cannot scale to $10^5$ elements.
+- **Quadratic direct evaluation:** Compute a fresh prefix maximum and suffix minimum for each $i$. It matches the definition but cannot scale to $10^5$ elements.
 - **Two full aggregate arrays:** Prefix maxima plus suffix minima make every score a constant-time lookup, but the source saves one array by maintaining the prefix online.
 - **Segment tree:** Range maximum and minimum queries would cost $O(\log N)$ per index after preprocessing, making the solution slower and more complex than static linear passes.
 - **Sparse table:** Constant-time range queries after $O(N\log N)$ preprocessing are unnecessary because only one fixed prefix and suffix per index are queried.
@@ -138,8 +132,8 @@ The source begins with zero. That works because the contract guarantees nonnegat
 - **Nonnegative initialization:** `left = 0` is valid only because the documented domain excludes negative values.
 - **No qualifying index:** The source returns `-1` only after testing every exact score in ascending index order.
 - **No input mutation:** The algorithm allocates its own suffix list and does not reorder or overwrite `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

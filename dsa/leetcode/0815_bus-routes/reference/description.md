@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an array `routes` representing bus routes where $\text{routes}[i]$ is a bus route that the $$i^{\text{th}}$$ bus repeats forever.
+You are given an array `routes` representing bus routes where $\text{routes}[i]$ is a bus route that the $i^{\text{th}}$ bus repeats forever.
 
 - For example, if $\text{routes}[0] = [1, 5, 7]$, this means that the $0^th$ bus travels in the sequence `1 -> 5 -> 7 -> 1 -> 5 -> 7 -> 1 -> ...` forever.
 

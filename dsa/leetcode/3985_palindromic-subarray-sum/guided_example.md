@@ -67,11 +67,7 @@ This avoids walking across a palindrome after its boundaries have been found.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source builds:
-
-
-
-For a half-open range `[a,b)`, its sum... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,9 +110,9 @@ The array `odd[c]` stores the maximum such radius.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** There are `O(n^2)` :** - **Enumerate all subarrays:** There are `O(n^2)` candidates before palindrome checking. This is too slow for `n=10^5`.
-- **- **Expand independently around every center:** Th:** - **Expand independently around every center:** This is simple and correct but can take `O(n^2)` time on an array whose values are all equal. Manacher reuses symmetry.
-- **- **String conversion:** Joining integer values in:** - **String conversion:** Joining integer values into text can confuse multi-digit value boundaries and is unnecessary. Manacher operates directly on array equality.
+- **Enumerate all subarrays:** There are `O(n^2)` candidates before palindrome checking. This is too slow for `n=10^5`.
+- **Expand independently around every center:** This is simple and correct but can take `O(n^2)` time on an array whose values are all equal. Manacher reuses symmetry.
+- **String conversion:** Joining integer values into text can confuse multi-digit value boundaries and is unnecessary. Manacher operates directly on array equality.
 
 ---
 

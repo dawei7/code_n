@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Generate week numbers one through four.** Recursive CTE `T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Its recursive branch adds one while the existing value is less than four. The pr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal dimension tables:** Replace recursive :** - **Literal dimension tables:** Replace recursive `T` with four `UNION ALL` rows. The domain is fixed, but recursion is reusable and clear.
+- **Literal dimension tables:** Replace recursive `T` with four `UNION ALL` rows. The domain is fixed, but recursion is reusable and clear.
 - **Conditional aggregation:** Cross join weeks and memberships, then sum a case expression from purchases; it can express the same zero-preserving grid.
 - **Start from purchases only:** Incorrect because missing combinations would have no row to convert to zero.
 - **Friday mapping:** MySQL `DAYOFWEEK` uses 6 for Friday, not 5.
@@ -101,8 +101,8 @@ Its recursive branch adds one while the existing value is less than four. The pr
 - **Primary key uniqueness:** Individual purchase rows remain distinct before aggregation.
 - **Null amount after left join:** `SUM` would be null for an empty group, so `COALESCE` is necessary.
 - **Output columns:** Only week, membership, and total are selected.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -50,4 +50,4 @@ Return the smallest prefix length whose removal leaves a strictly increasing arr
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $-10^{9} \le \text{nums}[i] \le 10^{9}​​​​​​​$
+- $-10^{9} \le \text{nums}[i] \le 10^{9}$

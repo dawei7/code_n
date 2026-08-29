@@ -35,13 +35,13 @@ Return the fewest operations required to transform `nums` into `target` exactly.
 
 - **Output:** 2
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Choose $x = 1$: maximal segment `[0, 0]` updated -> nums becomes `[2, 2, 3]`
 
 - Choose $x = 2$: maximal segment `[0, 1]` updated ($\text{nums}[0]$ stays 2, $\text{nums}[1]$ becomes 1) -> `nums` becomes `[2, 1, 3]`
 
-- Thus, 2 operations are required to convert `nums` to `target`.​​​​​​​​​​​​​​
+- Thus, 2 operations are required to convert `nums` to `target`.
 
 #### Example 2
 

@@ -56,9 +56,9 @@ We could implement the recursive function in the following steps:
 
 - Deducting the difference `K` from the last digit, _i.e._ $\text{tail}_{digit} - K$.
 
-- If the result of either above case falls into the valid digit range (_i.e._ $[0, 9]$), we then continue the exploration by invoking the function itself.
+- If the result of either above case falls into the valid digit range (_i.e._ `[0, 9]`), we then continue the exploration by invoking the function itself.
 
-Once we implement the `DFS(N, num)` function, we then simply call this function over the scope of $[1, 9]$, _i.e._ the valid digits for the highest position.
+Once we implement the `DFS(N, num)` function, we then simply call this function over the scope of `[1, 9]`, _i.e._ the valid digits for the highest position.
 
 **Note**: _If we are asked to return numbers of a single digit (_i.e._ `N=1`), then regardless of `K`, all digits are valid, including zero._
 We treat this as a special case in the code, since in our implementation of DFS function, we will never return zero as the result.

@@ -73,7 +73,7 @@ If no suffix value is valid, `bisect_left` returns `j + 1`, so `k = j` and the c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `bisect_left(nums, target, lo=j + 1)` returns the first inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Sorting mutates `nums` in place. The result depends only on the multiset of valu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer largest-side scan:** Fix largest i:** - **Two-pointer largest-side scan:** Fix largest index $k$, move left/right pointers, and when a pair works count all positions between them. Achieves $O(n^2)$ after sorting.
+- **Two-pointer largest-side scan:** Fix largest index $k$, move left/right pointers, and when a pair works count all positions between them. Achieves $O(n^2)$ after sorting.
 - **Monotone third pointer:** For fixed $i$, advance `k` as `j` increases rather than binary-searching from scratch. Also $O(n^2)$.
 - **Brute-force triples:** Tests all $\binom n3$ choices in $O(n^3)$ time.
 - **Zero lengths:** Cannot participate in a nondegenerate triangle; the strict inequality naturally contributes zero.
@@ -125,8 +125,8 @@ Sorting mutates `nums` in place. The result depends only on the multiset of valu
 - **Boundary with no valid `k`:** Contribution formula becomes zero, not negative.
 - **Boundary beyond array:** `bisect_left` returns `n`, correctly counting the full suffix.
 - **Complexity fidelity:** Binary search inside both loops adds a logarithmic factor; do not describe this exact implementation as $O(n^2)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

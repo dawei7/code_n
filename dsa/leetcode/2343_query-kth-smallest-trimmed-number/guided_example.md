@@ -61,7 +61,7 @@ This lets the code avoid converting possibly long digit strings to integers.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All original strings have equal length.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The generator passed to `sorted` visits `nums` in original index order, but expl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stable LSD radix preprocessing:** Start with i:** - **Stable LSD radix preprocessing:** Start with indices in original order and stably bucket them by digits from right to left. Save the order after each trim length, yielding roughly `O(NL + Q)` time and `O(NL + Q)` storage if all answers/orders are retained.
+- **Stable LSD radix preprocessing:** Start with indices in original order and stably bucket them by digits from right to left. Save the order after each trim length, yielding roughly `O(NL + Q)` time and `O(NL + Q)` storage if all answers/orders are retained.
 - **Group queries by trim length:** Sort once per distinct trim value rather than once per query. This improves repeated queries while retaining comparison sorting.
 - **Convert suffixes to integers:** Numeric ordering works, but conversion may process the same digits repeatedly and discards the visible leading-zero representation; string comparison is already exact for equal lengths.
 - **Sort only suffix strings without indices:** Equal trimmed values would lack the required lower-index tie key.
@@ -114,8 +114,8 @@ The generator passed to `sorted` visits `nums` in original index order, but expl
 - **`k = N`:** The last sorted tuple supplies the largest item under the tie rule.
 - **One input number:** Every valid query returns index zero.
 - **Input reset:** No restoration is necessary because slices are copies and source strings are immutable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

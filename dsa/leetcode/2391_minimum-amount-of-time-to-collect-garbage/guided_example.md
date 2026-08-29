@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **0-indexed** array of strings `garbage` where $\text{garbage}[i]$ represents the assortment of garbage at the $$i^{\text{th}}$$ house. $\text{garbage}[i]$ consists only of the characters `'M'`, `'P'` and `'G'` representing one unit of metal, paper and glass garbage respectively. Picking up **one** unit of any type of garbage takes `1` minute.
+You are given a **0-indexed** array of strings `garbage` where $\text{garbage}[i]$ represents the assortment of garbage at the $i^{\text{th}}$ house. $\text{garbage}[i]$ consists only of the characters `'M'`, `'P'` and `'G'` representing one unit of metal, paper and glass garbage respectively. Picking up **one** unit of any type of garbage takes `1` minute.
 
 The objective is to compute `21` from `{"garbage": ["G", "P", "GP", "GG"], "travel": [2, 4, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ The dictionary contains at most three entries. Repeated units of the same type a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop adds `len(s)` for each house string to `ans`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ A type found only at house zero has last index zero. The travel loop begins at h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix travel array:** Precompute travel time :** - **Prefix travel array:** Precompute travel time to every house, then add the entries at the three last positions. It is clear but uses $O(n)$ extra space.
+- **Prefix travel array:** Precompute travel time to every house, then add the entries at the three last positions. It is clear but uses $O(n)$ extra space.
 - **Separate scan per garbage type:** Find each last occurrence and count pickups independently. With only three types it remains linear but repeats work.
 - **Simulate truck movements house by house:** Correct if stopped at each final occurrence, but explicit scheduling is unnecessary because times simply add.
 - **Type absent entirely:** It has no `last` entry, so neither pickup nor travel time is added for its truck.
@@ -124,8 +124,8 @@ A type found only at house zero has last index zero. The travel loop begins at h
 - **No return trip:** Trucks stop after their last collection, so prefix travel is not doubled.
 - **Houses beyond a truck's last type occurrence:** That truck never visits them.
 - **Serialized operation rule:** It justifies adding all truck pickup and travel durations rather than taking a maximum across trucks.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

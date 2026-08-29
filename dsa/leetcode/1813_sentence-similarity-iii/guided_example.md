@@ -66,7 +66,7 @@ Only the shorter sentence could need an insertion to become the longer one. Norm
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution splits both input strings into word arrays.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ After the loop, the first `i` words of the shorter sentence match the longer sen
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque popping:** Remove matching words from bo:** - **Deque popping:** Remove matching words from both fronts, then both backs, and accept if the shorter deque empties. It expresses the same invariant with deque storage.
+- **Deque popping:** Remove matching words from both fronts, then both backs, and accept if the shorter deque empties. It expresses the same invariant with deque storage.
 - **Character prefix/suffix matching:** It can split words illegally and is incorrect without careful space-boundary checks.
 - **Search for the shorter sentence as a contiguous substring:** The shorter words may be separated by the inserted middle, so contiguity is not required.
 - **Dynamic programming edit distance:** It solves a much broader problem and permits operations that this task forbids.
@@ -118,8 +118,8 @@ After the loop, the first `i` words of the shorter sentence match the longer sen
 - **Single-space guarantee:** `split()` returns the intended word sequence without empty tokens.
 - **No leading or trailing spaces:** There are no phantom boundary words to handle.
 - **One insertion only:** Two separate unmatched longer regions cannot both be inserted, which the coverage condition rejects.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

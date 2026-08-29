@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Keep the product accumulated so far.** The variable `produ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ At the start of iteration $v$, `product` equals $(v-1)!$. Multiplying by $v$ cha
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute every factorial independently:** For:** - **Recompute every factorial independently:** For each $i$, multiply one through $i$. This performs $1+2+\cdots+n=O(n^2)$ multiplications and throws away useful previous work.
+- **Recompute every factorial independently:** For each $i$, multiply one through $i$. This performs $1+2+\cdots+n=O(n^2)$ multiplications and throws away useful previous work.
 - **Return an array:** An eager loop can fill and return all factorials in $O(n)$ time, but it always performs all work and stores $O(n)$ values even if the caller needs only a prefix.
 - **Recursive generator:** Recursion can produce the sequence, but it adds call-stack state and is less direct than retaining one running product.
 - **Use `BigInt`:** This is required if the supported range extends beyond safe Number factorials. Every operand and expected output would then need consistent BigInt semantics.
@@ -98,8 +98,8 @@ At the start of iteration $v$, `product` equals $(v-1)!$. Multiplying by $v$ cha
 - **Independent iterators:** Two calls to `factorial(n)` do not share `product`; each generator maintains its own progress.
 - **Invalid negative input outside the contract:** `Math.max(n, 1)` would still yield one, which is not a defined negative factorial sequence. The constraints are what make the compact bound valid.
 - **Non-integer input outside the contract:** The loop would yield factorial-like prefix products through the last integer not exceeding the bound, not a gamma-function value. Only integer `n` is supported.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

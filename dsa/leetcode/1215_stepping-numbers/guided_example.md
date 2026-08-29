@@ -61,7 +61,7 @@ Conversely, remove the final digit from any multi-digit positive stepping number
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After removing value `v`, the code takes its last digit with... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ This ordering justifies `if v > high: break`. Once one dequeued value exceeds `h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first generation plus sorting:** DFS can:** - **Depth-first generation plus sorting:** DFS can generate the same tree, but its natural order is not globally numeric and would require a final sort.
+- **Depth-first generation plus sorting:** DFS can generate the same tree, but its natural order is not globally numeric and would require a final sort.
 - **Scan every integer:** Testing all values from `low` through `high` wastes work when stepping numbers are sparse.
 - **Digit dynamic programming:** It can count stepping numbers efficiently over much larger string bounds, but listing every answer still requires output-proportional work.
 - **`low = 0`:** Zero is inserted once; it is never used as a leading-digit seed.
@@ -112,8 +112,8 @@ This ordering justifies `if v > high: break`. Once one dequeued value exceeds `h
 - **Inclusive endpoints:** Both `v >= low` and the pre-break `v <= high` logic include qualifying boundary values.
 - **Sorted output:** BFS numeric ordering removes the need for a separate sort.
 - **Unique generation:** Each number has exactly one parent formed by deleting its last decimal digit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

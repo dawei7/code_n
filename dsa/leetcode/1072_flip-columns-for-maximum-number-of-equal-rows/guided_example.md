@@ -77,7 +77,7 @@ Conversely, two rows producing the same normalized tuple must be identical or co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution chooses a canonical representation whose first ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ To see the flip pattern, take the normalized key. Flip precisely the columns whe
 
 ## 6. Traps This Instance Exposes
 
-- **- **String pattern key:** Record whether each bit :** - **String pattern key:** Record whether each bit equals the row's first bit using characters such as `T` and `F`. It is equivalent to the normalized tuple and has the same bounds.
+- **String pattern key:** Record whether each bit equals the row's first bit using characters such as `T` and `F`. It is equivalent to the normalized tuple and has the same bounds.
 - **Compare every row pair:** Count identical or complementary rows for each reference row. This takes `O(M^2N)` time and repeats the same class work.
 - **Encode rows as integers:** With manageable column counts, pack the normalized bits into one integer key. This can reduce object overhead while preserving the same conceptual normalization.
 - **One row:** Its pattern frequency is one, and any row can be made uniform by choosing flips based on that row.
@@ -132,8 +132,8 @@ To see the flip pattern, take the normalized key. Flip precisely the columns whe
 - **Binary constraint:** XOR one is a complement only because every cell is zero or one.
 - **Nonempty rows:** Accessing `row[0]` is safe under the matrix constraints.
 - **Input preservation:** Tuples and complemented generators are new objects; the matrix rows are never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

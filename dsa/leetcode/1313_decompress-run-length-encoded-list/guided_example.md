@@ -72,7 +72,7 @@ It therefore concatenates runs rather than interleaving them.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed `i`, `range(nums[i])` has exactly `nums[i]` iter... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ For `[1,1,2,3]`, pair zero emits one `1` and pair one emits two `3` values, prod
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit nested loops:** Initialize `ans`, ite:** - **Explicit nested loops:** Initialize `ans`, iterate pair starts, and append in an inner loop. It has identical behavior and complexity and may be easier to debug for beginners.
+- **Explicit nested loops:** Initialize `ans`, iterate pair starts, and append in an inner loop. It has identical behavior and complexity and may be easier to debug for beginners.
 - **List multiplication and extension:** `ans.extend([value] * frequency)` handles one run compactly. It creates a temporary list for each pair in addition to the final output.
 - **Iterator repetition utilities:** Functions such as `repeat` and `chain` can express runs lazily, but returning a list still requires materializing all $S$ entries.
 - **Single pair:** The outer range contains only index zero, and the output is that value repeated by its frequency.
@@ -124,8 +124,8 @@ For `[1,1,2,3]`, pair zero emits one `1` and pair one emits two `3` values, prod
 - **Output can exceed input:** Space and time must be measured using $S$, not only the compressed length $n$.
 - **Order of comprehension clauses:** Swapping them would not preserve independent pair-specific repetition and would either be invalid or emit a different order.
 - **Underscore variable:** `_` is an ordinary loop variable by language rules, but convention indicates its value is intentionally unused.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

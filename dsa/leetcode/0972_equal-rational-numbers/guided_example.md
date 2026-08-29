@@ -59,9 +59,7 @@ For `"123.00(1212)"`, main is `"123.00"` and repeating is `"1212"`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `repeating` begins empty.
-
-If `"("` appears, `text[... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +98,7 @@ Initial value is `Fraction(int(integer), 1)`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Expand repetitions many times:** Approximate a:** - **Expand repetitions many times:** Approximate and may miss equality beyond the cutoff.
+- **Expand repetitions many times:** Approximate and may miss equality beyond the cutoff.
 - **Floating point:** Rounding makes exact equality unsafe.
 - **Manual normalized numerator:** Correct but duplicates `Fraction` behavior.
 - **No decimal point:** Only integer contributes.
@@ -110,8 +108,8 @@ Initial value is `Fraction(int(integer), 1)`.
 - **Leading fractional zeros:** Denominator length preserves positions.
 - **Different period spellings:** Equivalent blocks normalize identically.
 - **Nonnegative inputs:** No sign parsing is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

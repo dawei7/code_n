@@ -4,7 +4,7 @@ You are given an integer array `nums` and an integer `k`.
 
 An array is considered **balanced** if the value of its **maximum** element is **at most** `k` times the **minimum** element.
 
-You may remove **any** number of elements from `nums`​​​​​​​ without making it **empty**.
+You may remove **any** number of elements from `nums` without making it **empty**.
 
 Return the **minimum** number of elements to remove so that the remaining array is balanced.
 

@@ -63,11 +63,7 @@ The mutation is not necessary—residues could be computed while reading—but i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop performs
-
-`nums[i] = v % k`
-
-in place.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +116,7 @@ No route wrapping around more than once can improve the result because it adds a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Required source repair:** Replace or define `i:** - **Required source repair:** Replace or define `inf`, for example with a sufficiently large integer or a proper infinity import. Without that, no valid input reaches a return statement.
+- **Required source repair:** Replace or define `inf`, for example with a sufficiently large integer or a proper infinity import. Without that, no valid input reaches a return statement.
 - **Precompute parity costs:** Build `even_cost[x]` and `odd_cost[y]` in $O(NK)$, then choose distinct residues. This is the approach described by the manifest, not the present source.
 - **Use the best and second-best odd costs:** After precomputation, remember the cheapest two odd residues. Each even choice can combine with the cheapest odd residue unless it is equal, otherwise with the second cheapest, reducing combination work to $O(K)$.
 - **Use direct absolute difference only:** This misses cheaper transformations crossing the modulus boundary, such as residue 9 to residue 1 modulo 10.
@@ -133,8 +129,8 @@ No route wrapping around more than once can improve the result because it adds a
 - **Large original values:** Taking modulo first is arithmetically safe because the nearest-congruence distance depends only on the original residue.
 - **Residue zero from a positive multiple of `k`:** It is treated as the valid residue zero, not confused with the original integer value zero.
 - **Ordered pair symmetry:** Swapping `x` and `y` changes which index parity receives each residue, so both orders must remain in the search.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

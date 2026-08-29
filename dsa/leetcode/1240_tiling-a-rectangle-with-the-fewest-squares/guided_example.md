@@ -59,7 +59,7 @@ If the current cell is already covered, `filled[i] >> j & 1` is one, and the fun
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `j == m`, the current row is finished, so the function ad... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This canonical anchoring prevents exploring arbitrary placement orders for the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoized skyline DP:** Normalize the lower fil:** - **Memoized skyline DP:** Normalize the lower filled boundary into column heights and cache profiles. This can realize the manifest-style state bound but requires careful profile transitions.
+- **Memoized skyline DP:** Normalize the lower filled boundary into column heights and cache profiles. This can realize the manifest-style state bound but requires careful profile transitions.
 - **Largest-square-first backtracking:** Trying larger `w` first often finds a good upper bound earlier and improves pruning, though worst-case complexity remains exponential.
 - **Square rectangle:** One square covers the entire board, and the branch with side `n == m` reaches answer one.
 - **One-row or one-column rectangle:** Only unit-width squares fit, so the answer is the longer dimension.
@@ -106,8 +106,8 @@ This canonical anchoring prevents exploring arbitrary placement orders for the s
 - **Symmetry:** Swapping \(n\) and \(m\) does not change the mathematical answer. The exact source does not normalize orientation, which can affect search performance.
 - **No memoization:** Equivalent coverage frontiers reached by different placement histories may be recomputed.
 - **Recursion depth:** It is bounded by the finite cell scan, but the number of branches is the main cost.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

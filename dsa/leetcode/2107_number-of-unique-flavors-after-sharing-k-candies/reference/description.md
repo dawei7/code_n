@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `candies`, where $\text{candies}[i]$ represents the flavor of the $$i^{\text{th}}$$ candy. Your mom wants you to share these candies with your little sister by giving her `k` **consecutive** candies, but you want to keep as many flavors of candies as possible.
+You are given a **0-indexed** integer array `candies`, where $\text{candies}[i]$ represents the flavor of the $i^{\text{th}}$ candy. Your mom wants you to share these candies with your little sister by giving her `k` **consecutive** candies, but you want to keep as many flavors of candies as possible.
 
 Return *the **maximum** number of **unique** flavors of candy you can keep after sharing ** with your sister.*
 

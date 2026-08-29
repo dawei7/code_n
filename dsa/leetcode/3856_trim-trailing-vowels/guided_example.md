@@ -68,11 +68,7 @@ The return expression `s[: i + 1]` handles both cases. When `i` is a consonant i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes
-
-`i = len(s) - 1`,
-
-the index of the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +112,7 @@ This invariant explains why the algorithm never needs to inspect characters from
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `rstrip("aeiou")`:** Python's `rstrip` tre:** - **Use `rstrip("aeiou")`:** Python's `rstrip` treats its argument as a set of removable characters, so it can express this exact operation concisely. The explicit loop makes the boundary logic and complexity visible and transfers easily to other languages.
+- **Use `rstrip("aeiou")`:** Python's `rstrip` treats its argument as a set of removable characters, so it can express this exact operation concisely. The explicit loop makes the boundary logic and complexity visible and transfers easily to other languages.
 - **Scan forward and remember the last consonant:** A left-to-right pass can update `last_non_vowel` whenever it sees a consonant and slice afterward. It is correct but always examines the full string, whereas the backward scan stops immediately when the trailing suffix is short.
 - **Filter every vowel:** This solves a different problem. Internal and leading vowels must remain whenever they are not part of the final contiguous vowel suffix.
 - **Repeatedly create `s = s[:-1]`:** Removing one trailing vowel with a new immutable slice on every iteration can copy progressively shorter strings and take `O(N^2)` time. Moving one index and slicing once remains linear.
@@ -129,8 +125,8 @@ This invariant explains why the algorithm never needs to inspect characters from
 - **Character `'y'`:** It is not included in `"aeiou"` and therefore stops the scan, exactly as the stated definition requires.
 - **Uppercase letters:** The contract permits only lowercase English letters. If uppercase input were allowed, the literal or normalization rules would need to change; the protected source intentionally handles only the stated domain.
 - **Empty input:** The contract excludes it. Interestingly, the same slice logic would return empty because `i=-1`, but correctness is established only for the promised nonempty input.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

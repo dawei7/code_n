@@ -67,11 +67,7 @@ The names `a` and `b` initially mean letter list and digit list. Later, after a 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The two comprehensions are:
-
-
-
-Under the input guarantee, ev... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ If the difference is zero or one, a valid arrangement exists. No examination of 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fill even and odd indices:** Put the majority :** - **Fill even and odd indices:** Put the majority type at indices 0, 2, 4, and so on, then put the other type at indices 1, 3, 5, and so on. This also gives $O(n)$ time and makes the positional alternation explicit.
+- **Fill even and odd indices:** Put the majority type at indices 0, 2, 4, and so on, then put the other type at indices 1, 3, 5, and so on. This also gives $O(n)$ time and makes the positional alternation explicit.
 - **Two queues:** Enqueue letters and digits, then alternate dequeues beginning with the larger queue. It works but offers no advantage over the two lists.
 - **Repeated search in the original string:** Selecting a next opposite-type character by scanning can become quadratic and complicates tracking used positions.
 - **All one type with length greater than one:** The count difference exceeds one, so returning empty is necessary.
@@ -122,8 +118,8 @@ If the difference is zero or one, a valid arrangement exists. No examination of 
 - **One extra letter:** No swap is needed, and the result begins and ends with a letter.
 - **Order within each type:** The comprehensions preserve it, but preservation is not required for correctness.
 - **Unicode classification:** `islower` and `isdigit` recognize more than ASCII in general. The problem guarantees lowercase English letters and decimal digits, so the classification is unambiguous here.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given `n`​​​​​​ tasks labeled from `0` to $n - 1$ represented by a 2D integer array `tasks`, where $\text{tasks}[i] = [\text{enqueueTime}_{i}, \text{processingTime}_{i}]$ means that the $i^​​​​​​th$​​​​ task will be available to process at $\text{enqueueTime}_{i}$ and will take $\text{processingTime}_{i}$_ to finish processing.
+You are given `n` tasks labeled from `0` to $n - 1$ represented by a 2D integer array `tasks`, where $\text{tasks}[i] = [\text{enqueueTime}_{i}, \text{processingTime}_{i}]$ means that the $i^th$ task will be available to process at $\text{enqueueTime}_{i}$ and will take $\text{processingTime}_{i}$_ to finish processing.
 
 The objective is to compute `[0, 2, 3, 1]` from `{"tasks": [[1, 2], [2, 4], [3, 2], [4, 1]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ The solution represents those groups with two ordered structures:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution represents those groups with two ordered struct... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The solution represents those groups with two ordered structures:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly scan all tasks:** At each decision,:** - **Repeatedly scan all tasks:** At each decision, searching all unprocessed tasks for eligible minimum work can take `O(n^2)` time.
+- **Repeatedly scan all tasks:** At each decision, searching all unprocessed tasks for eligible minimum work can take `O(n^2)` time.
 - **Sort the available list after every completion:** This models the policy but repeatedly sorts overlapping collections. A heap maintains the next minimum incrementally.
 - **Build non-mutating triples:** Creating `(enqueue, processing, index)` tuples preserves the caller’s input and has the same `O(n log n)` time and `O(n)` space.
 - **Long idle gap:** When `q` is empty, time jumps directly to the next enqueue time rather than advancing unit by unit.
@@ -99,8 +99,8 @@ The solution represents those groups with two ordered structures:
 - **All tasks already available:** The heap receives them together and drains according to the scheduling priority.
 - **Large accumulated time:** Python avoids overflow, while other languages should not store `t` in a 32-bit integer.
 - **Input mutation:** Every inner list gains an index and the outer list is sorted. Callers requiring preservation must pass a copy or use a separate triple list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

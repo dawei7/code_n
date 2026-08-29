@@ -55,7 +55,7 @@ Thus, the minimum number of operations is 2.
 
 ### 4. Constraints
 
-- $1 \le \text{s.length} \le 10^​​​​​​​5$
+- $1 \le \text{s.length} \le 10^5$
 
 - $s[i]$ is either `'0'` or `'1'`.
 

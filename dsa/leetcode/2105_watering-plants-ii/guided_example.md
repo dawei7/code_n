@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$ plant is located at $x = i$.
+Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $i^{\text{th}}$ plant is located at $x = i$.
 
 The objective is to compute `1` from `{"plants": [2, 2, 3, 3], "capacityA": 5, "capacityB": 5}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ The capacity guarantee ensures a full can is always sufficient for one plant.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `a < plants[i]`, Alice cannot fully water the plant.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Each plant in these paired iterations is handled once, and each gardener's remai
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate full simulations for Alice and Bob:**:** - **Separate full simulations for Alice and Bob:** This risks double-processing plants near the meeting point. Inward pointers encode ownership directly.
+- **Separate full simulations for Alice and Bob:** This risks double-processing plants near the meeting point. Inward pointers encode ownership directly.
 - **Queue or deque of plants:** Removing from both ends models the process but adds unnecessary storage or mutation.
 - **Refill on equality:** Incorrect; a gardener with exactly enough water must water directly and end with zero.
 - **One plant:** The loop is skipped and the gardener with more remaining water is considered.
@@ -110,8 +110,8 @@ Each plant in these paired iterations is handled once, and each gardener's remai
 - **Initial fills:** They are provided by the setup and are not refill events.
 - **Boolean arithmetic:** The final condition contributes exactly zero or one in Python.
 - **Input preservation:** Plant demands remain unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

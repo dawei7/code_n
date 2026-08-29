@@ -6,7 +6,7 @@ The problem involves tracking the frequency of IDs in a collection that changes 
 
 - **Removal of IDs:** If $\text{freq}[i]$ is negative, it means $-\text{freq}[i]$ IDs with the value $\text{nums}[i]$ are removed from the collection at step `i`.
 
-Return an array `ans` of length `n`, where $\text{ans}[i]$ represents the **count** of the *most frequent ID* in the collection after the $$i^{\text{th}}$$ step. If the collection is empty at any step, $\text{ans}[i]$ should be 0 for that step.
+Return an array `ans` of length `n`, where $\text{ans}[i]$ represents the **count** of the *most frequent ID* in the collection after the $i^{\text{th}}$ step. If the collection is empty at any step, $\text{ans}[i]$ should be 0 for that step.
 
 ### 2. Function Contract
 

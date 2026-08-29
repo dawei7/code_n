@@ -83,7 +83,7 @@ So whenever a smaller-gap task appears before a larger-gap task, swapping the pa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider two adjacent tasks `A = [a, m]` and `B = [b, q]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ After the threshold is met, `cur -= a` pays the actual energy cost. Because `a <
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by `m-a` descending:** This is mathematic:** - **Sort by `m-a` descending:** This is mathematically identical to sorting `a-m` ascending and may express the scheduling intuition more directly.
+- **Sort by `m-a` descending:** This is mathematically identical to sorting `a-m` ascending and may express the scheduling intuition more directly.
 - **Reverse construction with ascending gap:** One can derive the necessary initial budget while conceptually placing tasks from the end. It reaches the same order but often makes the energy invariant harder to explain.
 - **Binary search the initial energy:** For a fixed order feasibility is easy, but choosing the right order remains the main problem. Binary search adds a logarithmic factor and does not replace the exchange proof.
 - **Sort only by minimum requirement:** A large minimum may also have a large actual cost; minimum alone does not capture how much useful energy remains afterward. The gap is the correct comparison key.
@@ -138,8 +138,8 @@ After the threshold is met, `cur -= a` pays the actual energy cost. Because `a <
 - **Already sufficient current energy:** The branch does not add anything to `ans` and spends only `a`.
 - **Large deficit:** Raising `cur` to exactly `m` is sufficient even after previous tasks because added initial energy propagates unchanged through their fixed costs.
 - **Input mutation:** Using `sorted` preserves the original order in `tasks`. An in-place `sort` could reduce the list-allocation distinction but would modify the caller’s array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

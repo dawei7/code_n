@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a string `s` of length `n` and an integer array `cost` of the same length, where $\text{cost}[i]$ is the cost to **delete** the $$i^{\text{th}}$$ character of `s`.
+You are given a string `s` of length `n` and an integer array `cost` of the same length, where $\text{cost}[i]$ is the cost to **delete** the $i^{\text{th}}$ character of `s`.
 
 The objective is to compute `11` from `{"s": "aabaac", "cost": [1, 2, 3, 4, 1, 10]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -68,7 +68,7 @@ and `g[c]` is the sum of costs at exactly those positions whose character equals
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source scans `s` and `cost` in parallel with `zip`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Because `tot` is the same constant for every candidate, comparing `tot-g[c]` val
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count character frequency only:** Frequency ig:** - **Count character frequency only:** Frequency ignores unequal deletion costs and may retain the wrong letter.
+- **Count character frequency only:** Frequency ignores unequal deletion costs and may retain the wrong letter.
 - **Try deleting positions independently with dynamic programming:** Once the final character is chosen, every decision is forced; subset DP is unnecessary.
 - **Keep only the most expensive single occurrence:** All same-character occurrences can remain for free and should have their costs saved together.
 - **Delete some copies of the retained letter:** Positive costs make this strictly worse while preserving the same final character.
@@ -128,8 +128,8 @@ Because `tot` is the same constant for every candidate, comparing `tot-g[c]` val
 - **Nonempty requirement:** Iterating only present dictionary keys guarantees at least one survivor.
 - **Input preservation:** The string and cost list are only read.
 - **Fixed alphabet:** At most 26 dictionary totals justify the manifest's $O(1)$ space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

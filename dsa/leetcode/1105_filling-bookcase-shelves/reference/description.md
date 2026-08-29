@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an array `books` where $\text{books}[i] = [\text{thickness}_{i}, \text{height}_{i}]$ indicates the thickness and height of the $$i^{\text{th}}$$ book. You are also given an integer `shelfWidth`.
+You are given an array `books` where $\text{books}[i] = [\text{thickness}_{i}, \text{height}_{i}]$ indicates the thickness and height of the $i^{\text{th}}$ book. You are also given an integer `shelfWidth`.
 
 We want to place these books in order onto bookcase shelves that have a total width `shelfWidth`.
 

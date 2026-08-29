@@ -64,7 +64,7 @@ Changing this order is a common bug. Adding to `l` before comparing or subtracti
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At each loop iteration, `r -= x` removes `nums[i]` from the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ This trace also shows why negative values cause no problem. Subtracting a negati
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix-sum array:** Allows direct left/right q:** - **Prefix-sum array:** Allows direct left/right queries but uses $O(N)$ extra space that the rolling sums avoid.
+- **Prefix-sum array:** Allows direct left/right queries but uses $O(N)$ extra space that the rolling sums avoid.
 - **Recompute both sides for every index:** Straightforward but takes $O(N^2)$ time and Python slicing may allocate extra memory.
 - **Equation with total and left only:** Check `2 * left + nums[i] == total`; it is equivalent and also uses constant space.
 - **Valid index zero:** Detected when the remaining total after removing the first value is zero.
@@ -121,8 +121,8 @@ This trace also shows why negative values cause no problem. Subtracting a negati
 - **Total sum zero:** It does not automatically make every index valid; the current value and left sum still matter.
 - **Update order:** Subtract current from right, compare, then add current to left.
 - **Input preservation:** The method reads values without changing `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

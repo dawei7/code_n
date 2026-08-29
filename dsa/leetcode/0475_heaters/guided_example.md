@@ -67,9 +67,7 @@ Each pointer moves only forward, so one feasibility check is linear rather than 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Compare the current house with that heater interval:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ When the algorithm advances a heater, its right endpoint is already left of the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary-search heaters for each house:** After :** - **Binary-search heaters for each house:** After sorting heaters, find each house's insertion point and compare its nearest left and right heater. This takes $O(T\log T+H\log T)$ time and directly computes the maximum nearest distance.
+- **Binary-search heaters for each house:** After sorting heaters, find each house's insertion point and compare its nearest left and right heater. This takes $O(T\log T+H\log T)$ time and directly computes the maximum nearest distance.
 - **Two-pointer nearest-distance sweep:** Sort both lists and move the heater pointer toward each house's closest heater, achieving linear work after sorting without radius binary search.
 - **Test every radius sequentially:** Coordinates reach one billion, so linear search over radius is infeasible.
 - **House exactly at a heater:** Radius zero covers it because intervals are closed.
@@ -114,8 +112,8 @@ When the algorithm advances a heater, its right endpoint is already left of the 
 - **Large coordinate gap:** The one-billion upper bound remains sufficient under the source limits.
 - **Input mutation:** Both arrays are reordered by in-place sorting.
 - **Common radius:** Different houses may use different heaters, but every heater shares the same binary-searched radius.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

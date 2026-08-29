@@ -51,7 +51,7 @@ For obstacle $(x,y)$, the required Manhattan distance is `abs(x) + abs(y)`. Push
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For obstacle $(x,y)$, the required Manhattan distance is `ab... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Every new distance is pushed. Once query index `i` is at least `k`, there are `k
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store all distances and sort after every query:** - **Store all distances and sort after every query:** This repeats sorting and can cost $O(n^2\log n)$.
+- **Store all distances and sort after every query:** This repeats sorting and can cost $O(n^2\log n)$.
 - **Balanced ordered multiset:** It can maintain all distances and select the $k$-th, but uses $O(n)$ space rather than discarding irrelevant values.
 - **Min-heap of all distances:** Its root gives the nearest, not the $k$-th nearest, unless elements are destructively removed.
 - **Negated max-heap:** This is the exact source technique because Python's standard heap is a min-heap.
@@ -106,8 +106,8 @@ Every new distance is pushed. Once query index `i` is at least `k`, there are `k
 - **`k` larger than total query count:** Every output is minus one. The heap may grow to all query distances but never exceeds `k`, which is still within the stated space bound.
 - **Negating zero:** Distance zero remains zero, and `-pq[0]` returns zero correctly.
 - **Streaming behavior:** Each answer is finalized using only previous obstacles and the current query. Future queries are never needed, making the method suitable for an online stream.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

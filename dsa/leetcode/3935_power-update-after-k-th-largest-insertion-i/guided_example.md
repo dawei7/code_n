@@ -61,7 +61,7 @@ Initially, `r` contains all values from `nums` and `l` is empty. The ordering pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Immediately after a query has been rebalanced to its request... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The add-then-transfer also keeps `r` at its previous target size before adapting
 
 ## 6. Traps This Instance Exposes
 
-- **- **Required source dependency:** The file must im:** - **Required source dependency:** The file must import or define `SortedList` before the intended partition logic can execute. This documentation does not modify the protected solution.
+- **Required source dependency:** The file must import or define `SortedList` before the intended partition logic can execute. This documentation does not modify the protected solution.
 - **Two heaps with lazy boundary management:** This is the strategy claimed by the manifest and can exploit the small rank changes. It requires careful handling of insertion, duplicates, and movement in both directions; it is not the checked source.
 - **One full sorted list:** Insert each value and use negative index `-k`, as in problem II. This is simpler but does not use the adjacent-rank constraint to maintain a small upper partition.
 - **Sort from scratch per query:** Repeated sorting discards all previously maintained order and is much slower.
@@ -120,8 +120,8 @@ The add-then-transfer also keeps `r` at its previous target size before adapting
 - **`k = 1`:** `r` contains only the current maximum, and `r[0]` selects it.
 - **`k` equals the current multiset size:** Every value moves into `r`, and `r[0]` is the global minimum, which is the last largest rank.
 - **Power state becomes zero or one:** Modular exponentiation naturally keeps zero at zero for positive exponents and keeps one at one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

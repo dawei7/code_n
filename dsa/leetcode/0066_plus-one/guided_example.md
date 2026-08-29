@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a **large integer** represented as an integer array `digits`, where each $\text{digits}[i]$ is the $$i^{\text{th}}$$ digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading `0`'s.
+You are given a **large integer** represented as an integer array `digits`, where each $\text{digits}[i]$ is the $i^{\text{th}}$ digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading `0`'s.
 
 The objective is to compute `[1, 2, 4]` from `{"digits": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,9 +61,7 @@ The test `digits[i] != 0` is therefore equivalent to “the carry has ended” f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the current digit, the source performs:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +98,7 @@ For `[1,2,9]`, the final 9 becomes 0 and the loop continues. The 2 becomes 3, so
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit carry variable:** Start `carry = 1`, :** - **Explicit carry variable:** Start `carry = 1`, use `divmod(digit + carry, 10)`, and stop when carry becomes zero. It generalizes more easily to adding other values.
+- **Explicit carry variable:** Start `carry = 1`, use `divmod(digit + carry, 10)`, and stop when carry becomes zero. It generalizes more easily to adding other values.
 - **Check for 9 directly:** Set a 9 to zero; otherwise increment and return. This is the competitive branch's more verbal form of the same logic.
 - **Convert to an integer:** It is concise in Python but defeats the digit-array exercise and would overflow fixed-width types for long input.
 - **Final digit below 9:** Only one array entry changes, giving best-case constant time.
@@ -110,8 +108,8 @@ For `[1,2,9]`, the final 9 becomes 0 and the loop continues. The 2 becomes 3, so
 - **Single nine:** The original list becomes `[0]`, and the returned new list is `[1,0]`.
 - **No leading zeros:** The algorithm never needs to normalize or discard a prefix.
 - **Caller-visible mutation:** The input is modified even in the branch that ultimately returns a newly allocated list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

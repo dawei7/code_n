@@ -78,7 +78,7 @@ has OR `x` and uses `i` as its leftmost OR-valued witness.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A good subarray may contain its OR value more than once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ After popping all allowable strict subsets, the remaining top is the closest blo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every subarray:** Maintain its OR an:** - **Enumerate every subarray:** Maintain its OR and search for a matching element, but there are `O(N^2)` intervals. The witness-boundary products count many intervals together.
+- **Enumerate every subarray:** Maintain its OR and search for a matching element, but there are `O(N^2)` intervals. The witness-boundary products count many intervals together.
 - **Store all distinct ORs ending at each position:** This is useful for many OR-subarray problems and gives an extra bit-width factor, but it still needs witness-presence accounting. The subset stacks exploit this problem's stronger condition.
 - **Assign to the rightmost witness:** A symmetric algorithm is possible, but equal values would need opposite boundary treatment. The protected source assigns to the leftmost witness.
 - **Use numeric `<=` without the OR test:** Numeric order does not imply bit-subset order. For example, a smaller number can contain a bit absent from a larger one.
@@ -134,8 +134,8 @@ After popping all allowable strict subsets, the remaining top is the closest blo
 - **Incompatible nearby value:** It becomes a boundary even if it is numerically smaller, because bit containment—not magnitude—is decisive.
 - **Nonnegative constraint:** The subset/numeric strictness equivalence relies on ordinary nonnegative bit representations, which the contract guarantees.
 - **Manifest wording:** Do not describe this exact source as rightmost-witness counting; its equal-value boundary rules prove the opposite convention.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

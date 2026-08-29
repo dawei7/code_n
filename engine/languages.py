@@ -85,6 +85,11 @@ def app_solution_filename(language: str | None) -> str:
     return f"solution.{language_extension(language)}"
 
 
+def candidate_solution_filename(language: str | None) -> str:
+    """Return the inert candidate solution filename for a language."""
+    return f"candidate.{language_extension(language)}"
+
+
 def leetcode_solution_filename(language: str | None) -> str:
     """Return the native solution filename for a language."""
     canonical = normalize_language(language)

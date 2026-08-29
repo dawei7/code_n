@@ -57,7 +57,7 @@ The extracted order does not matter because the digits may be rearranged arbitra
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop repeatedly appends `num % 10` and performs `num //=... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ The remaining digits $d_2$ and $d_3$ occupy units positions. It does not matter 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all assignments:** Four digits have :** - **Enumerate all assignments:** Four digits have only a constant number of permutations and split points, so brute force can work, but it obscures the positional-weight proof.
+- **Enumerate all assignments:** Four digits have only a constant number of permutations and split points, so brute force can work, but it obscures the positional-weight proof.
 - **Convert through a string:** Sorting `str(num)` is concise but still needs converting digit characters back to integers. Arithmetic extraction follows the exact source.
 - **Three-digit plus one-digit split:** Its hundreds coefficient cannot improve on two tens coefficients for nonnegative digits.
 - **Repeated digits:** Sorting retains all copies, and the same weighted argument applies.
@@ -115,8 +115,8 @@ The remaining digits $d_2$ and $d_3$ occupy units positions. It does not matter 
 - **Equal choice of pairings:** Once tens digits are fixed, pairing either units digit with either tens digit leaves the sum unchanged.
 - **Four-digit guarantee:** It ensures `nums[0]` through `nums[3]` always exist after the loop.
 - **Pair labels:** Swapping `new1` and `new2` changes neither legality nor their sum, so no tie-breaking rule is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-There is a computer that can run an unlimited number of tasks **at the same time**. You are given a 2D integer array `tasks` where $\text{tasks}[i] = [\text{start}_{i}, \text{end}_{i}, \text{duration}_{i}]$ indicates that the $$i^{\text{th}}$$ task should run for a total of $\text{duration}_{i}$ seconds (not necessarily continuous) within the **inclusive** time range $[\text{start}_{i}, \text{end}_{i}]$.
+There is a computer that can run an unlimited number of tasks **at the same time**. You are given a 2D integer array `tasks` where $\text{tasks}[i] = [\text{start}_{i}, \text{end}_{i}, \text{duration}_{i}]$ indicates that the $i^{\text{th}}$ task should run for a total of $\text{duration}_{i}$ seconds (not necessarily continuous) within the **inclusive** time range $[\text{start}_{i}, \text{end}_{i}]$.
 
 You may turn on the computer only when it needs to run a task. You can also turn it off if it is idle.
 

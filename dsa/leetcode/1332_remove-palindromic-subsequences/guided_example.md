@@ -67,7 +67,7 @@ This argument would not automatically give two operations over a larger alphabet
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a concrete non-palindrome such as `s = "abbaba"`, select... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The nonempty-input constraint also explains why the code has no zero case. For e
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer palindrome test:** Compare `s[left:** - **Two-pointer palindrome test:** Compare `s[left]` and `s[right]` while moving the indices inward. It preserves the $O(n)$ time bound and reduces auxiliary space to $O(1)$ because it does not create `s[::-1]`.
+- **Two-pointer palindrome test:** Compare `s[left]` and `s[right]` while moving the indices inward. It preserves the $O(n)$ time bound and reduces auxiliary space to $O(1)$ because it does not create `s[::-1]`.
 - **Simulating removals:** Building the selected subsequence and the leftover string can produce the same answer, but it adds code and allocations without helping determine the minimum. The one-or-two proof makes simulation unnecessary.
 - **Searching for a longest palindromic subsequence:** This solves a much more general and expensive problem. The binary alphabet and unrestricted subsequence removal collapse this task to a single palindrome test.
 - **Confusing subsequence with substring:** Requiring selected characters to be contiguous would invalidate the “remove every `a`” argument. The statement explicitly permits a subsequence, so separated equal letters may be chosen together.
@@ -112,8 +112,8 @@ The nonempty-input constraint also explains why the code has no zero case. For e
 - **Non-palindromic input:** The answer is exactly two. It cannot be one because the full string fails the palindrome test, and it cannot exceed two because the `a` and `b` groups are palindromes.
 - **Empty input outside the contract:** Mathematically, an empty string would require zero removals. The checked-in expression would return one, but the stated constraints guarantee that `s` is nonempty, so this unsupported case does not affect correctness.
 - **Larger alphabets outside the contract:** The two-operation upper bound depends on having only `a` and `b`. Reusing this solution when other characters are allowed would require a new proof and could return an incorrect minimum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

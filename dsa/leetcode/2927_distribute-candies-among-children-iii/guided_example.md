@@ -63,7 +63,7 @@ This includes valid distributions and distributions where one or more children e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ignore the upper bounds temporarily.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ This term exists only when `n > limit`. The guard prevents calling `comb` with a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate the first child's amount:** For ever:** - **Enumerate the first child's amount:** For every $x$, count the legal range for $y$. This takes $O(\min(n,\texttt{limit}))$ time and is unnecessary for values up to $10^8$.
+- **Enumerate the first child's amount:** For every $x$, count the legal range for $y$. This takes $O(\min(n,\texttt{limit}))$ time and is unnecessary for values up to $10^8$.
 - **Three nested loops:** It directly checks all triples but is far too slow and repeats the sum constraint.
 - **Dynamic programming:** Counting bounded compositions with a table is general but excessive for exactly three children and large $n$.
 - **Total equals capacity:** When `n == 3 * limit`, exactly `(limit, limit, limit)` is valid; the formula returns one.
@@ -128,8 +128,8 @@ This term exists only when `n > limit`. The guard prevents calling `comb` with a
 - **One excessive child versus a named set:** Multiplication by three chooses which child owns the violation. It does not assume the three bad sets are disjoint; their overlaps are exactly why the pair term is added.
 - **Large equal parameters:** Even when $n$ and `limit` approach $10^8$, the formula evaluates the same fixed number of terms and never iterates over candy units.
 - **Guard order matters:** Returning for `n > 3 * limit` before the shortened formula is what makes the omitted triple-intersection term provably zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

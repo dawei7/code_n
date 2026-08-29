@@ -63,11 +63,7 @@ If the generator reaches the end without a false membership test, every characte
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a word `w`, the expression
-
-`all(c in s for c in w)`
-
-te... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +104,7 @@ No list of per-word results is created. `sum` consumes one Boolean at a time and
 
 ## 6. Traps This Instance Exposes
 
-- **- **26-element Boolean array:** Map each character:** - **26-element Boolean array:** Map each character to `ord(c)-ord('a')` and test a fixed slot. This gives deterministic constant-time lookup and constant space.
+- **26-element Boolean array:** Map each character to `ord(c)-ord('a')` and test a fixed slot. This gives deterministic constant-time lookup and constant space.
 - **26-bit mask:** Store allowed letters in one integer and test character bits. It is compact and matches the fixed alphabet but less immediately readable to beginners.
 - **Search `allowed` directly:** `c in allowed` can scan up to 26 characters for every word character. It remains bounded here but repeats work that preprocessing avoids.
 - **Explicit nested loops:** They can maintain a counter and break on the first forbidden character. This is semantically identical to the generator and `all`.
@@ -119,8 +115,8 @@ No list of per-word results is created. `sum` consumes one Boolean at a time and
 - **Distinctness of `allowed`:** Set construction would remove duplicates even without the guarantee, so behavior remains natural.
 - **Nonempty words:** The constraints avoid the vacuous-empty-word case; mathematically `all` of an empty generator would be true.
 - **Lowercase-only guarantee:** It keeps the lookup universe at 26 and makes the constant-space claim valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

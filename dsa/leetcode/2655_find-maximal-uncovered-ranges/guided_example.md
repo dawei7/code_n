@@ -62,9 +62,7 @@ The sort mutates the input interval list.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ranges.sort()` orders pairs lexicographically:
-
-- increasin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ This removes the need for a separate “gap before the first interval” branch.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean coverage array:** Requires $O(n)$ time:** - **Boolean coverage array:** Requires $O(n)$ time and space and is impossible for $n$ up to $10^9$.
+- **Boolean coverage array:** Requires $O(n)$ time and space and is impossible for $n$ up to $10^9$.
 - **Explicitly merge ranges first:** Correct but unnecessary; the gap sweep merges coverage implicitly.
 - **Difference map of endpoints:** Can avoid cell storage but still needs sorted events and more bookkeeping.
 - **No covered ranges:** Return the single full interval `[0,n-1]`.
@@ -120,8 +118,8 @@ This removes the need for a separate “gap before the first interval” branch.
 - **Adjacent covered intervals:** They leave no uncovered integer between them.
 - **Single-cell gap:** Strict condition detects and emits equal endpoints.
 - **Input mutation:** `ranges.sort()` changes the caller-visible order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `ranks` where $\text{ranks}[i]$ represents the rank of the $$i^{\text{th}}$$ student arriving **in order**. A lower number indicates a **better** rank.
+You are given an integer array `ranks` where $\text{ranks}[i]$ represents the rank of the $i^{\text{th}}$ student arriving **in order**. A lower number indicates a **better** rank.
 
 The objective is to compute `1` from `{"ranks": [4, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,11 +65,7 @@ If `x > cur`, the new student has a worse numeric rank and also cannot replace t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each value `x`, the source checks:
-
-`if x < cur`.
-
-If tr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +102,7 @@ Starting instead from `ranks[1:]` would be slightly more explicit, but the sourc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute prefix minima array:** It can identify:** - **Compute prefix minima array:** It can identify every change but uses `O(n)` space when only the count is required.
+- **Compute prefix minima array:** It can identify every change but uses `O(n)` space when only the count is required.
 - **Sort ranks:** Sorting destroys arrival order, which is essential to defining replacements, and costs unnecessary `O(n\log n)` time.
 - **Compare adjacent students:** This is incorrect because the current selection is the best rank seen, not necessarily the immediately previous rank.
 - **One student:** The initial selection is not a replacement, so the answer is zero.
@@ -119,8 +115,8 @@ Starting instead from `ranks[1:]` would be slightly more explicit, but the sourc
 - **Loop includes index zero:** Its value equals initialized `cur`, so it is harmless and uncounted.
 - **Nonempty guarantee:** It justifies direct initialization from `ranks[0]`.
 - **Input preservation:** The source never changes the ordering or values in `ranks`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,11 +63,7 @@ For a one-element array, the range is empty and `i` is also `-1`, which correctl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source uses
-
-
-
-`range(n - 2, -1, -1)` visits candi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +103,7 @@ So `if ~i:` is a compact but less beginner-friendly spelling of `if i != -1:`. T
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer suffix reversal:** Swap suffix end:** - **Two-pointer suffix reversal:** Swap suffix endpoints while moving inward. It preserves $O(n)$ time and achieves genuine $O(1)$ auxiliary space.
+- **Two-pointer suffix reversal:** Swap suffix endpoints while moving inward. It preserves $O(n)$ time and achieves genuine $O(1)$ auxiliary space.
 - **Sort the suffix:** Correct after the pivot swap but costs $O(n\log n)$ rather than exploiting its known reverse order.
 - **Generate all permutations:** Factorial time and large storage are unnecessary.
 - **Single element:** No pivot exists; reversing the length-one slice leaves it unchanged.
@@ -117,8 +113,8 @@ So `if ~i:` is a compact but less beginner-friendly spelling of `if i != -1:`. T
 - **Repeated maximum suffix:** The rightmost greater successor remains the smallest legal replacement.
 - **No return value:** The function's result is communicated solely through mutation of `nums`.
 - **`~i` readability:** It works because only `-1` and nonnegative indices are possible; `i != -1` would express the intent more directly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

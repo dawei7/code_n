@@ -85,9 +85,7 @@ This equals 25 minutes and 4 seconds. No manual borrowing from hours to minutes 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider `startTime="12:34:56"` and `endTime="13:00:00"`.
-
-T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,9 +128,9 @@ If the problem described an interval crossing midnight, an end time numerically 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Subtract fields with borrowing:** This can wor:** - **Subtract fields with borrowing:** This can work, but it needs branches for negative seconds and minutes. Converting to one unit is shorter and less error-prone.
-- **- **Parse with `split(":")`:** Splitting and mappi:** - **Parse with `split(":")`:** Splitting and mapping integers is readable and still constant under fixed length. The source uses known character positions directly.
-- **- **Use date-time libraries:** They add parsing an:** - **Use date-time libraries:** They add parsing and object overhead for a same-day calculation with a rigid eight-character format.
+- **Subtract fields with borrowing:** This can work, but it needs branches for negative seconds and minutes. Converting to one unit is shorter and less error-prone.
+- **Parse with `split(":")`:** Splitting and mapping integers is readable and still constant under fixed length. The source uses known character positions directly.
+- **Use date-time libraries:** They add parsing and object overhead for a same-day calculation with a rigid eight-character format.
 
 ---
 

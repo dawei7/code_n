@@ -2,7 +2,7 @@
 
 There is a tree (i.e., a connected, undirected graph that has no cycles) consisting of `n` nodes numbered from `0` to $n - 1$ and exactly $n - 1$ edges. Each node has a value associated with it, and the **root** of the tree is node `0`.
 
-To represent this tree, you are given an integer array `nums` and a 2D array `edges`. Each $\text{nums}[i]$ represents the $$i^{\text{th}}$$ node's value, and each $\text{edges}[j] = [u_{j}, v_{j}]$ represents an edge between nodes $u_{j}$ and $v_{j}$ in the tree.
+To represent this tree, you are given an integer array `nums` and a 2D array `edges`. Each $\text{nums}[i]$ represents the $i^{\text{th}}$ node's value, and each $\text{edges}[j] = [u_{j}, v_{j}]$ represents an edge between nodes $u_{j}$ and $v_{j}$ in the tree.
 
 Two values `x` and `y` are **coprime** if $gcd(x, y) = 1$ where `gcd(x, y)` is the **greatest common divisor** of `x` and `y`.
 

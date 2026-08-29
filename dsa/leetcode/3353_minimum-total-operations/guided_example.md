@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-d_i=\texttt{nums}[i]-\texttt{nums}[i+1].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ The target condition is simply $d_i=0$ for all $0\le i<n-1$. It does not matter 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit difference array:** Building every $d:** - **Explicit difference array:** Building every $d_i$ makes the proof visible but uses $O(n)$ storage merely to count nonzero entries.
+- **Explicit difference array:** Building every $d_i$ makes the proof visible but uses $O(n)$ storage merely to count nonzero entries.
 - **Simulate prefix operations:** It can find a construction but may repeatedly rewrite long prefixes, leading to $O(n^2)$ time.
 - **Process left to right:** A valid construction is possible with careful bookkeeping, but later longer-prefix changes can disturb already fixed left boundaries; right-to-left is the clearer witness.
 - **Single element:** There are no adjacent pairs, `pairwise` is empty, and zero operations are necessary.
@@ -103,8 +101,8 @@ The target condition is simply $d_i=0$ for all $0\le i<n-1$. It does not matter 
 - **Boolean summation:** Python's `true == 1` and `false == 0` make the one-line count exact.
 - **Import requirement:** On Python versions before 3.10, `itertools.pairwise` is unavailable and an equivalent adjacent zip would be needed.
 - **Input name inconsistency:** The description mentions both `nums` and `arr`, but the executable contract and source consistently use `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

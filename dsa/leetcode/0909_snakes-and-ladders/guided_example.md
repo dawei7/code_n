@@ -51,7 +51,7 @@ Each die roll costs one move and creates at most six possible next states. The b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Convert a label to matrix coordinates.** Labels begin at t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Each die roll costs one move and creates at most six possible next states. The b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search:** It can explore reachabil:** - **Depth-first search:** It can explore reachability but does not naturally guarantee the fewest rolls without additional distance relaxation.
+- **Depth-first search:** It can explore reachability but does not naturally guarantee the fewest rolls without additional distance relaxation.
 - **Dijkstra's algorithm:** All moves have equal cost one, so BFS is simpler and faster.
 - **Flatten the board first:** Building a label-to-destination array makes BFS coordinate lookup simpler at $O(n^2)$ preprocessing space and time.
 - **Follow a chain of ladders in one roll:** Incorrect; only the initially selected destination triggers one snake or ladder.
@@ -100,8 +100,8 @@ Each die roll costs one move and creates at most six possible next states. The b
 - **Start and final squares:** The contract guarantees neither begins a snake or ladder.
 - **Smallest board:** The same coordinate formula and six-outcome cap work for $n=2$.
 - **Level counter:** Check for the target when dequeuing before incrementing the next layer, so square 1 correctly has distance zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

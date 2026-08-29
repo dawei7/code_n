@@ -71,7 +71,7 @@ The expression then applies `& 1`. An integer’s lowest binary bit is one exact
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Scanning all characters inside every query would be too slow... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For substring `"abcd"`, the four letters each occur once, so `cnt = 4`. The mini
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix parity bitmasks:** Store one 26-bit par:** - **Prefix parity bitmasks:** Store one 26-bit parity mask per prefix and XOR the two masks for a query. The number of set bits is the number of odd counts. This can reduce each query to a few bit operations while retaining $O(n)$ prefix storage, but it is not the exact representation used by this solution.
+- **Prefix parity bitmasks:** Store one 26-bit parity mask per prefix and XOR the two masks for a query. The number of set bits is the number of odd counts. This can reduce each query to a few bit operations while retaining $O(n)$ prefix storage, but it is not the exact representation used by this solution.
 - **Scan each queried substring:** Counting letters directly is conceptually simple, but a collection of long overlapping queries can require $O(nq)$ total work.
 - **One-character substring:** It needs no replacement. The odd count is one, and integer division by two correctly produces zero.
 - **Two distinct characters with no replacements:** There are two odd counts, so one replacement is required and the answer is false when `k = 0`.
@@ -115,8 +115,8 @@ For substring `"abcd"`, the four letters each occur once, so `cnt = 4`. The mini
 - **Inclusive right endpoint:** The query ends at `r`, so the correct upper prefix is `r + 1`. Using `ss[r]` would omit the final character.
 - **Queries remain independent:** The algorithm never mutates `s` or its prefix table while answering. A hypothetical replacement for one query must not affect any later query.
 - **Repeated letters:** Only frequency parity controls the number of required replacements. A high even frequency contributes no obstruction, while a high odd frequency contributes exactly one odd-count flag.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

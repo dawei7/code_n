@@ -63,7 +63,7 @@ Waiting releases the condition lock. Therefore, an ineligible thread does not pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each worker acquires the condition lock and enters an outer ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Waking every worker is simple and safe. At most one predicate matches the new va
 
 ## 6. Traps This Instance Exposes
 
-- **- **Four semaphores with explicit handoff:** The c:** - **Four semaphores with explicit handoff:** The current worker could release the semaphore for the next category. This can avoid waking all threads but requires routing logic after every integer and careful termination signaling.
+- **Four semaphores with explicit handoff:** The current worker could release the semaphore for the next category. This can avoid waking all threads but requires routing logic after every integer and careful termination signaling.
 - **Busy-wait on a shared counter:** Repeated predicate checks waste CPU and require additional memory-visibility synchronization. A condition variable provides blocking waits.
 - **One worker prints everything:** It would be simpler but violates the required four-method, four-thread interface.
 - **Use `if` around `wait`:** This is unsafe because notifications are not promises that the awakened thread’s predicate is now true, and spurious wakeups are permitted. The condition must be rechecked in a loop.
@@ -114,8 +114,8 @@ Waking every worker is simple and safe. At most one predicate matches the new va
 - **Spurious wakeup:** The nested predicate loop simply sends the thread back to sleep without producing an incorrect token.
 - **Progress assumption:** As with ordinary condition-variable algorithms, a runnable eligible thread must eventually be scheduled. The code introduces no circular lock dependency.
 - **No output buffering in the class:** The provided callbacks own printing or capture. The class coordinates when to invoke them and does not accumulate the sequence itself.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

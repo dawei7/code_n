@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $$i^{\text{th}}$$ lock.
+Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $i^{\text{th}}$ lock.
 
 The objective is to compute `4` from `{"strength": [3, 4, 1], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ Trying all $n!$ permutations repeats the same remaining problem many times. A su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Trying all $n!$ permutations repeats the same remaining prob... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Trying all $n!$ permutations repeats the same remaining problem many times. A su
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all permutations:** It costs $O(n!)$:** - **Enumerate all permutations:** It costs $O(n!)$ and repeats suffix subproblems.
+- **Enumerate all permutations:** It costs $O(n!)$ and repeats suffix subproblems.
 - **Bottom-up subset DP:** It has the same bounds and avoids recursion while propagating costs to larger masks.
 - **Sort strengths greedily:** It lacks a general exchange proof because ceiling rounding can affect order choices.
 - **Single lock:** The answer is its strength because the initial factor is one.
@@ -101,8 +101,8 @@ Trying all $n!$ permutations repeats the same remaining problem many times. A su
 - **Cache import:** `cache` must be available from `functools`.
 - **Infinity initialization:** At every nonterminal state at least one lock is unbroken, so `ans` becomes finite.
 - **Input preservation:** `strength` is only enumerated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -59,7 +59,7 @@ The base case also ensures that `max(nums)` is called only for a nonempty list. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the current list is empty, there is no value from which t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ The source guarantee that all values are unique matters. It ensures the maximum 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic decreasing stack:** Scan values once:** - **Monotonic decreasing stack:** Scan values once. Pop smaller nodes to become the current node's left child, and make the current node the right child of the remaining stack top. This constructs the same tree in `O(N)` time and `O(N)` space and matches the manifest.
-- **- **Recursion with index boundaries:** Pass `left`:** - **Recursion with index boundaries:** Pass `left` and `right` rather than slices. This avoids quadratic slice storage but still rescans ranges for maxima, so worst-case time remains `O(N^2)`.
-- **- **Range-maximum data structure:** Preprocess max:** - **Range-maximum data structure:** Preprocess maximum-index queries, then recurse by boundaries. It can reduce repeated maximum search but is more machinery than the linear stack.
+- **Monotonic decreasing stack:** Scan values once. Pop smaller nodes to become the current node's left child, and make the current node the right child of the remaining stack top. This constructs the same tree in `O(N)` time and `O(N)` space and matches the manifest.
+- **Recursion with index boundaries:** Pass `left` and `right` rather than slices. This avoids quadratic slice storage but still rescans ranges for maxima, so worst-case time remains `O(N^2)`.
+- **Range-maximum data structure:** Preprocess maximum-index queries, then recurse by boundaries. It can reduce repeated maximum search but is more machinery than the linear stack.
 
 ---
 

@@ -63,9 +63,7 @@ Dictionary-based children store only edges that actually exist, which is useful 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each `Trie` node contains:
-
-- `children`: a dictionary from ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +105,9 @@ Shared prefixes reuse nodes. The dictionary words are distinct, but marking the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare with every dictionary word:** Filter t:** - **Compare with every dictionary word:** Filter to equal lengths and count character differences, stopping above one. This is simple but costs `O(DL)` per query for `D` words.
-- **- **Wildcard-pattern index:** For each dictionary :** - **Wildcard-pattern index:** For each dictionary word, replace each position with a marker and index the resulting patterns. Queries can check `L` patterns in near-linear time, but the structure must distinguish an identical word from a genuinely different word to enforce exactly one change.
-- **- **Group words by length:** This quickly rejects :** - **Group words by length:** This quickly rejects impossible lengths and can reduce brute-force comparisons, but does not exploit shared prefixes.
+- **Compare with every dictionary word:** Filter to equal lengths and count character differences, stopping above one. This is simple but costs `O(DL)` per query for `D` words.
+- **Wildcard-pattern index:** For each dictionary word, replace each position with a marker and index the resulting patterns. Queries can check `L` patterns in near-linear time, but the structure must distinguish an identical word from a genuinely different word to enforce exactly one change.
+- **Group words by length:** This quickly rejects impossible lengths and can reduce brute-force comparisons, but does not exploit shared prefixes.
 
 ---
 

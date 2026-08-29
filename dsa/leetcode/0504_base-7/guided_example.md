@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-d_k7^k+d_{k-1}7^{k-1}+\cdots+d_1 7+d_0.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Repeated division by seven discovers these digits from the opposite direction: t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in base conversion:** Some languages pro:** - **Built-in base conversion:** Some languages provide formatting for arbitrary bases, but manual repeated division demonstrates the required representation and is portable.
+- **Built-in base conversion:** Some languages provide formatting for arbitrary bases, but manual repeated division demonstrates the required representation and is portable.
 - **Recursive digit extraction:** Recurse on `num // 7` and append the remainder while unwinding. It naturally produces high-to-low order but uses $O(\log N)$ call-stack depth.
 - **Prepend every digit to a string:** This avoids a final reversal but repeatedly copying an immutable growing string can make the implementation quadratic in the number of digits.
 - **Zero:** It must return `"0"` explicitly because the positive extraction loop would execute zero times.
@@ -98,8 +96,8 @@ Repeated division by seven discovers these digits from the opposite direction: t
 - **Exact multiple of seven:** A zero remainder is a real interior or final digit and must be appended, as shown by decimal seven becoming `"10"`.
 - **Single base-seven digit:** Values zero through six return their ordinary one-character decimal digit strings.
 - **No leading zeros:** The final extracted quotient is from one through six for positive input, so reversal automatically places a nonzero leading digit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

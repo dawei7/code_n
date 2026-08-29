@@ -83,7 +83,7 @@ so all three elements are kept.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the complete XOR is nonzero, the entire array is a valid ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ This is the only situation in which no nonzero-XOR subsequence exists. Any nonze
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over reachable XORs:** Tra:** - **Dynamic programming over reachable XORs:** Tracking the best length for every XOR value is unnecessary and could use enormous time and space. The full-XOR removal identity yields a three-case solution.
+- **Dynamic programming over reachable XORs:** Tracking the best length for every XOR value is unnecessary and could use enormous time and space. The full-XOR removal identity yields a three-case solution.
 - **Try removing every element:** Recomputing or testing $n$ candidate subsequences is avoidable. When total XOR is zero, removing any nonzero element is guaranteed to work.
 - **Use only the complete XOR:** A zero total does not distinguish an all-zero array, where no answer exists, from arrays such as `[1,2,3]`, where length $n-1$ works. The zero count supplies that distinction.
 - **One nonzero element:** Its full XOR is nonzero, so the answer is one.
@@ -132,8 +132,8 @@ This is the only situation in which no nonzero-XOR subsequence exists. Any nonze
 - **Duplicate nonzero values:** The argument uses occurrences, and removing one occurrence still applies `T XOR x`.
 - **Empty subsequence:** Its XOR is conventionally zero and does not qualify, so it cannot rescue the all-zero case.
 - **Relative order:** Removing one element from the full array automatically preserves the order of every retained element.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -74,7 +74,7 @@ is true exactly when both neighboring bits are one.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pre` stores the bit processed during the preceding loop ite... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ When all set bits have shifted out and `n` becomes zero, the loop ends. Returnin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Shift-and-AND mask:** `pairs = n & (n >> 1)` m:** - **Shift-and-AND mask:** `pairs = n & (n >> 1)` marks all adjacent `11` pairs. Testing `pairs != 0 and pairs & (pairs - 1) == 0` checks whether exactly one marked position exists. This is the manifest's summarized algorithm, not the source.
+- **Shift-and-AND mask:** `pairs = n & (n >> 1)` marks all adjacent `11` pairs. Testing `pairs != 0 and pairs & (pairs - 1) == 0` checks whether exactly one marked position exists. This is the manifest's summarized algorithm, not the source.
 - **Convert to a binary string:** Count occurrences of `"11"` with overlapping positions. A naive non-overlapping substring count can mishandle `"111"`, and string allocation is unnecessary.
 - **Count runs of ones:** A run of length $r$ contributes $r-1$ adjacent pairs, not merely one run. The source's pairwise scan avoids that confusion.
 - **`n = 0`:** The loop is skipped and `vis` is false, correctly reporting no pair.
@@ -133,8 +133,8 @@ When all set bits have shifted out and `n` becomes zero, the loop ends. Returnin
 - **Trailing zero bits:** They are processed normally and separate any later set bit from the previous one.
 - **Early exit:** Once two pairs exist, unprocessed higher bits cannot restore validity, so returning immediately is safe.
 - **Local right shifts:** Rebinding `n` has no external side effect.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

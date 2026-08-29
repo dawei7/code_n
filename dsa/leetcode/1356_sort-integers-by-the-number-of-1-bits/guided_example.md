@@ -67,7 +67,7 @@ For the input `[0, 1, 2, 3, 4, 5, 6, 7, 8]`, the keys begin as `(0, 0)` for zero
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The key for each number is the pair `(bit count, numeric val... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The key is evaluated once for each occurrence, not on every pairwise comparison.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brian Kernighan bit counting:** Repeatedly set:** - **Brian Kernighan bit counting:** Repeatedly set `x = x & (x - 1)`. Each iteration clears one set bit, so the iteration count is the Hamming weight.
+- **Brian Kernighan bit counting:** Repeatedly set `x = x & (x - 1)`. Each iteration clears one set bit, so the iteration count is the Hamming weight.
 - **Shift and inspect:** Repeatedly test `x & 1` and shift right. This is easy to derive but examines every represented bit rather than only set bits.
 - **Binary-string conversion:** `bin(x).count("1")` is readable but allocates a string and adds conversion overhead.
 - **Bucket by bit count:** Because values have few bits, group numbers by their count, sort each group numerically, and concatenate. It is more code and still needs sorting within groups.
@@ -123,8 +123,8 @@ The key is evaluated once for each occurrence, not on every pairwise comparison.
 - **Input preservation:** `sorted` returns a fresh list. Use `arr.sort` only if mutation is acceptable.
 - **Negative numbers outside the contract:** Python’s `bit_count` uses the absolute value’s ones, while signed fixed-width representations have different interpretations. The stated nonnegative domain avoids that issue.
 - **Unsorted equal-weight input:** Explicitly using the value as the second key is what turns an arbitrary original order into the required ascending tie order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

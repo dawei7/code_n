@@ -51,7 +51,7 @@ No operation can move a character from an even index to an odd index or vice ver
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | No operation can move a character from an even index to an o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Within each two-position group, either leave the characters as they are or swap 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit four-case comparison:** Check unchang:** - **Explicit four-case comparison:** Check unchanged, even-swapped, odd-swapped, and both-swapped arrangements. It is constant time but more verbose and easier to omit a case.
+- **Explicit four-case comparison:** Check unchanged, even-swapped, odd-swapped, and both-swapped arrangements. It is constant time but more verbose and easier to omit a case.
 - **Sort each two-character group:** Sorted even and odd slices can be compared. It expresses multiset equality but Counter is equally direct.
 - **Generate reachable strings:** There are at most four arrangements, so enumeration works, but it obscures the parity invariant.
 - **Strings already equal:** Both Counter comparisons succeed, corresponding to zero operations.
@@ -97,8 +97,8 @@ Within each two-position group, either leave the characters as they are or swap 
 - **Same total string characters but wrong parity groups:** Transformation is impossible because characters cannot cross parity.
 - **Swapping either string:** Reachability remains governed by the same invariant.
 - **Slice allocation:** It is constant-size only because length is fixed at four.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

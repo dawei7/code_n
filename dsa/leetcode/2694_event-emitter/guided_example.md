@@ -59,7 +59,7 @@ Appending preserves chronological registration order. The contract guarantees ca
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When `subscribe(eventName, callback)` sees a new event, it f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The caller does not need to pass the event or callback again. The returned handl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set per event:** Offers expected constant-time:** - **Set per event:** Offers expected constant-time deletion, but array order and snapshot semantics are more explicit here.
+- **Set per event:** Offers expected constant-time deletion, but array order and snapshot semantics are more explicit here.
 - **Linked list per event:** Can support constant-time removal with stored nodes, but emission and implementation become more complex.
 - **Map callback to index:** Splicing shifts indices, so maintaining them correctly adds bookkeeping.
 - **No listeners:** Returns a fresh empty array.
@@ -116,8 +116,8 @@ The caller does not need to pass the event or callback again. The returned handl
 - **Callback throws:** The exact synchronous `map` stops and propagates the exception.
 - **Subscribe during emit:** New listener is absent from the current snapshot and appears next time.
 - **Unsubscribe during emit:** Current snapshot remains stable; future emissions use the updated live list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

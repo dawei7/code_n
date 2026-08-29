@@ -57,7 +57,7 @@ The minimum is important because the description explicitly allows duplicate sou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every letter can remain itself for zero cost, so the diagona... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ All costs are positive, so there are no negative cycles or incentives to repeat 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run Dijkstra only when a pair is needed:** Pos:** - **Run Dijkstra only when a pair is needed:** Positive weights permit Dijkstra, but with only 26 nodes, one Floyd–Warshall pass is simpler and makes every later lookup constant time.
+- **Run Dijkstra only when a pair is needed:** Positive weights permit Dijkstra, but with only 26 nodes, one Floyd–Warshall pass is simpler and makes every later lookup constant time.
 - **Use only direct rules:** This misses cheaper or uniquely possible multi-step conversions through intermediate letters.
 - **Treat rules as undirected:** Conversions are directional. Adding reverse edges would invent operations not present in the input.
 - **Duplicate rules:** The matrix must keep the cheapest direct edge before shortest paths are computed.
@@ -108,8 +108,8 @@ All costs are positive, so there are no negative cycles or incentives to repeat 
 - **Repeated character pairs:** Their shortest cost is computed once in `g` but added once per position, because each occurrence needs its own operations.
 - **Large total cost:** The sum can exceed a 32-bit integer; Python integers represent it safely.
 - **Input preservation:** The algorithm builds a separate matrix and only reads all supplied sequences.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

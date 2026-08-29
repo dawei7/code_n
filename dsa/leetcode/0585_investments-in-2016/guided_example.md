@@ -71,11 +71,7 @@ In the sample, policies 1, 3, and 4 all have `tiv_2015 = 10`, so each gets `cnt1
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query applies:
-
-
-
-`AND` is essential.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ Rounding after summation follows the requested operation. Rounding every individ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two grouped subqueries and joins:** One subque:** - **Two grouped subqueries and joins:** One subquery finds `tiv_2015` groups with count above one, another finds location groups with count one, and the base table joins both. This is correct but more verbose than annotating each row once with window counts.
+- **Two grouped subqueries and joins:** One subquery finds `tiv_2015` groups with count above one, another finds location groups with count one, and the base table joins both. This is correct but more verbose than annotating each row once with window counts.
 - **Correlated `EXISTS` and `NOT EXISTS`:** Check for another row with equal `tiv_2015` and ensure none with the same location but a different `pid`. Clear logic, but without suitable indexes it may repeatedly scan the table.
 - **Grouped counts joined back:** Precompute both count maps and join them to `Insurance`. This mirrors the window logic explicitly and can be portable where window functions are unavailable.
 - **Concatenated location key:** Avoid it because formatting and delimiter collisions can merge different coordinate pairs. Partition by both columns.
@@ -126,8 +122,8 @@ Rounding after summation follows the requested operation. Rounding every individ
 - **Rounding order:** Sum first, round once. Per-row rounding can alter the final answer.
 - **Non-null coordinates:** The schema guarantee avoids special window grouping semantics for missing locations.
 - **Exact float grouping:** SQL groups stored values according to their exact database equality semantics; visually similar floating-point inputs need not compare equal if stored differently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -4,7 +4,7 @@ This is an ***interactive problem***.
 
 You have a sorted array of **unique** elements and an **unknown size**. You do not have an access to the array but you can use the `ArrayReader` interface to access it. You can call `ArrayReader.get(i)` that:
 
-- returns the value at the $$i^{\text{th}}$$ index (**0-indexed**) of the secret array (i.e., $\text{secret}[i]$), or
+- returns the value at the $i^{\text{th}}$ index (**0-indexed**) of the secret array (i.e., $\text{secret}[i]$), or
 
 - returns $2^{31} - 1$ if the `i` is out of the boundary of the array.
 

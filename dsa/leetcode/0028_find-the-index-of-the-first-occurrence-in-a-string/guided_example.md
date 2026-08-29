@@ -73,7 +73,7 @@ If `needle` is longer than `haystack`, then `n - m + 1` is zero or negative. Pyt
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `range(stop)` excludes `stop`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ There is no hash and therefore no collision risk. A true comparison is an exact 
 
 ## 6. Traps This Instance Exposes
 
-- **- **KMP prefix table:** Preprocess `needle` so a m:** - **KMP prefix table:** Preprocess `needle` so a mismatch reuses the longest matching border instead of restarting. It guarantees $O(n+m)$ time and uses $O(m)$ extra space.
+- **KMP prefix table:** Preprocess `needle` so a mismatch reuses the longest matching border instead of restarting. It guarantees $O(n+m)$ time and uses $O(m)$ extra space.
 - **Character-by-character naive windows:** Compare without creating slices. It still has $O(nm)$ worst-case time but uses $O(1)$ auxiliary space and can stop a candidate at its first mismatch.
 - **Rabin–Karp rolling hash:** Update a window hash in constant time and verify hash matches. It can be linear on average, but modular hashes require collision handling for deterministic correctness.
 - **Built-in `haystack.find(needle)`:** In production Python it is concise and highly optimized, but it hides the algorithm and is not the selected source being explained.
@@ -129,8 +129,8 @@ There is no hash and therefore no collision risk. A true comparison is an exact 
 - **Lowercase restriction:** The algorithm itself works for any Python string characters; the contract's lowercase alphabet needs no special handling.
 - **Strings are not mutated:** Slicing creates temporary strings, while both `haystack` and `needle` remain unchanged.
 - **Non-empty needle:** Guaranteed locally. For an out-of-contract empty pattern, the exact implementation returns zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

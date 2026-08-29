@@ -67,7 +67,7 @@ The generator expression computes this value for every pair `(i, x)` produced by
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After `beans.sort()`, the counts are in nondecreasing order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ So, in an optimal plan, the target equals the original size of at least one surv
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix sums after sorting:** Explicit prefix s:** - **Prefix sums after sorting:** Explicit prefix sums can calculate removal from the emptied prefix and reduced suffix separately. They are correct but unnecessary because total original beans minus total retained beans gives the candidate in one formula.
+- **Prefix sums after sorting:** Explicit prefix sums can calculate removal from the emptied prefix and reduced suffix separately. They are correct but unnecessary because total original beans minus total retained beans gives the candidate in one formula.
 - **Frequency counting by value:** Since bag sizes are bounded, a frequency array can aggregate equal counts and scan possible targets. This can avoid comparison sorting but uses space tied to the maximum value and is less direct than the stored solution.
 - **Try every positive target:** Values between consecutive bag sizes cannot be better than raising the target to the next eligible bag size, so testing them wastes work.
 - **Keep only the largest bag:** This is always legal and corresponds to the last sorted index, providing a fallback candidate.
@@ -120,8 +120,8 @@ So, in an optimal plan, the target equals the original size of at least one surv
 - **Input mutation:** `beans.sort()` permanently reorders the caller's list. The returned count is correct, but callers that need the original order must pass a copy or use `sorted(beans)` in a different implementation.
 - **Generator memory:** `min` consumes candidate values lazily, so the formula does not allocate a separate length-$n$ list.
 - **Large totals:** With up to $10^5$ bags and $10^5$ beans per bag, the total can reach $10^{10}$; Python handles this exactly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

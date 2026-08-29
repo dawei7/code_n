@@ -31,7 +31,7 @@ do so.
 
 - **Output:** 1
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Sort substring `"og"` to `"go"`.
 

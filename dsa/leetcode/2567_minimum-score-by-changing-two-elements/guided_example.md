@@ -73,7 +73,7 @@ Changing any less-extreme combination cannot produce a smaller surviving interva
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Changing an element strictly inside the current minimum and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ The changed values can, for example, both be assigned `nums[2]`. This keeps them
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track six extremes:** Maintain the three small:** - **Track six extremes:** Maintain the three smallest and three largest values in one pass, then evaluate the same formulas in $O(n)$ time and $O(1)$ space.
+- **Track six extremes:** Maintain the three smallest and three largest values in one pass, then evaluate the same formulas in $O(n)$ time and $O(1)$ space.
 - **Try all changed pairs:** Choosing two indices gives $O(n^2)$ possibilities and is unnecessary because only extreme removals can shrink the range.
 - **Change interior elements:** Unless an extreme is also changed, the old minimum or maximum survives and prevents the high score from shrinking.
 - **Exactly three elements:** Two can be changed to the third, so the answer is always zero.
@@ -122,8 +122,8 @@ The changed values can, for example, both be assigned `nums[2]`. This keeps them
 - **Large values:** Only subtraction is used, and Python integers avoid overflow.
 - **Input mutation:** `nums.sort()` changes the original order. Sorting a copy would preserve caller state at $O(n)$ explicit storage.
 - **Manifest distinction:** The three-case method is optimal in insight, but this exact implementation uses full sorting rather than constant-space extrema selection.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

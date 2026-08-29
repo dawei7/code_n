@@ -34,9 +34,9 @@ Let $F$ be the number of rows in `Flights` and $P$ the number of rows in `Passen
 Return a relation with columns `flight_id`, `booked_cnt`, and `waitlist_cnt`. For a flight with capacity $c$ and $r$ matching passenger requests,
 
 $$
-\texttt{booked_cnt}=\min(c,r),
+\texttt{booked\_cnt}=\min(c,r),
 \qquad
-\texttt{waitlist_cnt}=\max(r-c,0).
+\texttt{waitlist\_cnt}=\max(r-c,0).
 $$
 
 Rows must be ordered by `flight_id` ascending.

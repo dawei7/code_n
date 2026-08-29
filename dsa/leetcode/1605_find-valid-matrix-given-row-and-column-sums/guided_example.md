@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two arrays `rowSum` and `colSum` of non-negative integers where $\text{rowSum}[i]$ is the sum of the elements in the $$i^{\text{th}}$$ row and $\text{colSum}[j]$ is the sum of the elements of the $$j^{\text{th}}$$ column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.
+You are given two arrays `rowSum` and `colSum` of non-negative integers where $\text{rowSum}[i]$ is the sum of the elements in the $i^{\text{th}}$ row and $\text{colSum}[j]$ is the sum of the elements of the $j^{\text{th}}$ column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.
 
 The objective is to compute `[[3, 0], [1, 7]]` from `{"rowSum": [3, 8], "colSum": [4, 7]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ The algorithm does not need to reserve capacity through lookahead. Total row dem
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Any cell value must be no larger than the row’s remaining su... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The source does not skip these completed rows or columns, so it performs all $MN
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pointer-optimized northwest-corner traversal:*:** - **Pointer-optimized northwest-corner traversal:** Advance the row when its remainder reaches zero, otherwise advance the column. It fills only $O(M+N)$ potentially nonzero positions, though allocating the dense output still costs $O(MN)$.
+- **Pointer-optimized northwest-corner traversal:** Advance the row when its remainder reaches zero, otherwise advance the column. It fills only $O(M+N)$ potentially nonzero positions, though allocating the dense output still costs $O(MN)$.
 - **Separate current row and column totals:** This avoids mutating inputs but adds $O(M+N)$ auxiliary arrays.
 - **Network flow:** The problem can be modeled as transportation flow, but equal totals and unrestricted non-negative cells make the greedy construction sufficient.
 - **Try to reconstruct a unique original matrix:** No unique original is promised or required; any valid margins are accepted.
@@ -121,8 +121,8 @@ The source does not skip these completed rows or columns, so it performs all $MN
 - **Non-negativity:** Taking the minimum of non-negative remainders and never overspending keeps every cell and remainder non-negative.
 - **Input mutation:** Both requirement lists are consumed to zeros; pass copies when preservation matters.
 - **Guaranteed equal totals:** The proof relies on `sum(rowSum) == sum(colSum)`. Without it, no valid completion may exist.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ Equal values are popped, so they do not block current index `i` from claiming su
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The left-to-right monotonic stack stores indices whose stren... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The asymmetric comparisons are deliberate. For equal minima at positions `p < i`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Even with a running:** - **Enumerate all subarrays:** Even with a running sum and minimum, `O(n^2)` work is too slow for `n=10^5`.
+- **Enumerate all subarrays:** Even with a running sum and minimum, `O(n^2)` work is too slow for `n=10^5`.
 - **Segment tree for minima:** It can divide by minimum positions, but summing all subarray sums still requires careful aggregation and is more complex.
 - **Symmetric stack inequalities:** Using strict or non-strict comparisons on both sides double-counts or omits subarrays with equal minima.
 - **Opposite tie ownership:** Smaller-or-equal on the left and strict-smaller on the right is also valid if formulas are adjusted consistently; the exact source chooses rightmost ownership.
@@ -110,8 +110,8 @@ The asymmetric comparisons are deliberate. For equal minima at positions `p < i`
 - **Boundary sentinels:** Minus one and `n` make `l` and `r` valid without separate edge branches.
 - **Inclusive choice counts:** Start count is `i-l+1` and end count is `r-i+1`.
 - **Input preservation:** Stacks and prefix arrays are derived; `strength` is never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -60,7 +60,7 @@ The minus sign cannot be confused with subtraction because the operator is spell
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `expression[i]` is a digit or minus sign, the expression ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For `div(mul(4,sub(9,5)),add(1,1))`, the innermost literal calls return first, `
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit value/operator stacks:** A left-to-ri:** - **Explicit value/operator stacks:** A left-to-right iterative parser avoids Python recursion limits and matches the manifest summary, but it is not the shown source.
+- **Explicit value/operator stacks:** A left-to-right iterative parser avoids Python recursion limits and matches the manifest summary, but it is not the shown source.
 - **Evaluate with Python `eval`:** The grammar uses custom function names and untrusted-text evaluation would be inappropriate and harder to constrain safely.
 - **Repeatedly find innermost parentheses:** This can rescan the string and become quadratic. Returned end indices avoid that.
 - **Single literal:** The first parse branch returns it directly, including negative values.
@@ -118,8 +118,8 @@ For `div(mul(4,sub(9,5)),add(1,1))`, the innermost literal calls return first, `
 - **No whitespace:** The parser does not skip spaces because the contract says none exist.
 - **Valid grammar guarantee:** There is no error handling for unknown operators, missing delimiters, or division by zero.
 - **Index after root:** The caller ignores it because validity guarantees the root consumes the complete string.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

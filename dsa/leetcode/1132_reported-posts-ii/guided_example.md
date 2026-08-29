@@ -57,7 +57,7 @@ Removals has primary key `post_id`, so a post matches at most one removal row an
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Actions AS t1 LEFT JOIN Removals AS t2 ON t1.post_id = t2.p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Their quotient is the fraction removed. Multiplication by 100 converts it to a p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-deduplicate date-post pairs:** Select dist:** - **Pre-deduplicate date-post pairs:** Select distinct spam report pairs first, left join removals, then average daily conditional counts.
+- **Pre-deduplicate date-post pairs:** Select distinct spam report pairs first, left join removals, then average daily conditional counts.
 - **Conditional numerator:** Count distinct `CASE WHEN removal matched THEN post_id END`; it makes the removed test explicit.
 - **Global ratio:** Incorrect because it weights dates by their post counts.
 - **Inner join:** Incorrect because it removes unremoved posts from the denominator.
@@ -110,8 +110,8 @@ Their quotient is the fraction removed. Multiplication by 100 converts it to a p
 - **Final rounding:** Only the average is rounded to two decimals.
 - **No qualifying rows:** The aggregate row contains null unless an explicit fallback is added.
 - **Equal weighting across dates:** `AVG(percent)` gives every reporting date one vote regardless of how many distinct spam posts it contains, which is the required daily-average interpretation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

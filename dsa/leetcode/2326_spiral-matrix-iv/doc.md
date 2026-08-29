@@ -32,7 +32,7 @@ contain `-1`; return the complete matrix.
 - `n`: The number of columns, with $1 \le n \le 10^5$ and
   $1 \le mn \le 10^5$.
 - `head`: The head of a singly linked list containing between 1 and $mn$
-  nodes. Every node value lies in $[0,1000]$.
+  nodes. Every node value lies in `[0,1000]`.
 
 **Return value**
 

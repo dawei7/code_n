@@ -23,7 +23,7 @@ For each `queries[i] = [from_i, to_i]`, determine whether the subarray from `num
 **Inputs**
 
 - `nums`: A list of $n$ positive integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^5$.
-- `queries`: A list of $q$ pairs `[from_i, to_i]`, where $1 \le q \le 10^5$ and $0 \le \texttt{from_i} \le \texttt{to_i} < n$.
+- `queries`: A list of $q$ pairs `[from_i, to_i]`, where $1 \le q \le 10^5$ and $0 \le \texttt{from\_i} \le \texttt{to\_i} < n$.
 
 **Return value**
 

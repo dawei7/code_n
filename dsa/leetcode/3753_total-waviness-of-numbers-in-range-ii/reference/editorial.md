@@ -22,7 +22,7 @@ The DFS returns two values:
 We use two three-dimensional arrays for memoization:
 - $\textit{memo\_cnt}[\textit{pos}][\textit{prev}][\textit{curr}]$ stores the number of valid numbers reachable from the current state.
 - $\textit{memo\_sum}[\textit{pos}][\textit{prev}][\textit{curr}]$ stores the total waviness of all valid numbers reachable from the current state.
-- Both arrays are initialized to $-1$ to indicate that a state has not yet been computed. The arrays are indexed by digit values in $[0, 9]$, so states where $\textit{prev}$ or $\textit{curr}$ is $-1$ (meaning no digit has been placed yet) cannot be indexed and are simply recomputed on every call rather than cached.
+- Both arrays are initialized to $-1$ to indicate that a state has not yet been computed. The arrays are indexed by digit values in `[0, 9]`, so states where $\textit{prev}$ or $\textit{curr}$ is $-1$ (meaning no digit has been placed yet) cannot be indexed and are simply recomputed on every call rather than cached.
 
 For each position, we enumerate the digit placed at position $\textit{pos}$:
 - Determine the range of digits that can be chosen. If $\textit{isLimit}$ is true, the current digit can range from $0$ to $\textit{num}_{\textit{pos}}$; otherwise, it can range from $0$ to $9$. Let the upper bound be $\textit{up}$.

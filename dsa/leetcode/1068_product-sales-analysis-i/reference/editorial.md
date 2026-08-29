@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 ### Approach: Inner Join
@@ -41,7 +41,7 @@ df = sales_and_product[['product_name', 'year', 'price']]
 
 ```python
 import pandas as pd
-​
+
 def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
     sales_and_product = sales.merge(
         product,
@@ -51,12 +51,12 @@ def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
 
     return df
 ```
-​
+
 
 <br>
 
 ---
-​
+
 ## Database
 
 ### Approach: Inner Join
@@ -65,7 +65,7 @@ def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
 #### Algorithm
 <!-- Describe your approach to solving the problem. -->
 The information we want to display belongs to two separate tables. It's important to note that these two tables are related through the $\text{product}_{id}$ column. Therefore, we will join these two tables using this column. This way, we will be able to present information from both tables simultaneously. We `JOIN` the two tables `ON` the $\text{product}_{id}$ column and `SELECT` the columns needed for the final output.
-​
+
 <!-- h4 for sections -->
 #### Implementation
 
@@ -79,6 +79,6 @@ JOIN
 ON
     s.product_id = p.product_id
 ```
-​
+
 <!-- an empty line to separate approaches -->
 <br>

@@ -75,9 +75,7 @@ In Python, zero is falsy and positive indices are truthy, so `i` safely guards t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At turn $i$, current pin count is $x$.
-
-Its multiplier is tw... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +114,7 @@ This distinction prevents multiplier effects from propagating incorrectly beyond
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track a two-turn bonus countdown:** Maintain h:** - **Track a two-turn bonus countdown:** Maintain how many future turns remain doubled after strikes; correct but raw-array lookback is simpler.
+- **Track a two-turn bonus countdown:** Maintain how many future turns remain doubled after strikes; correct but raw-array lookback is simpler.
 - **Precompute multipliers:** Uses $O(n)$ space unnecessarily.
 - **First turn strike:** It scores ten normally but doubles turns one and two.
 - **Strike one turn ago:** Current pins are doubled.
@@ -126,8 +124,8 @@ This distinction prevents multiplier effects from propagating incorrectly beyond
 - **One-turn game:** No bonus can apply to the only turn.
 - **Equal totals:** Return zero.
 - **Raw versus scored prior value:** Only raw ten triggers the bonus.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

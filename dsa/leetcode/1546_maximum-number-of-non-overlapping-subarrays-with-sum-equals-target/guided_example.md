@@ -65,7 +65,7 @@ Negative array values cause no problem. Prefix sums need not be increasing becau
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the current search segment, `s` is the running sum throu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ If the scan reaches the array end without finding another match, the inner loop 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over all intervals:** It c:** - **Dynamic programming over all intervals:** It can solve the problem but is unnecessary once earliest finishing is recognized.
+- **Dynamic programming over all intervals:** It can solve the problem but is unnecessary once earliest finishing is recognized.
 - **Store every target-sum interval:** Generating and sorting intervals uses more time and space than selecting during the scan.
 - **Global prefix set without reset:** It can detect overlapping intervals and overcount, so history must be cleared after a selection.
 - **Sliding window:** It is invalid with negative numbers because expanding or shrinking does not change sums monotonically.
@@ -119,8 +119,8 @@ If the scan reaches the array end without finding another match, the inner loop 
 - **Duplicate prefix sums:** A set is enough because only existence, not which starting index, matters for earliest-end selection.
 - **Nonempty requirement:** The lookup uses a previously stored prefix, so a detected difference corresponds to at least one processed element.
 - **Nested loops:** Their total work is linear because `i` never resets backward.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

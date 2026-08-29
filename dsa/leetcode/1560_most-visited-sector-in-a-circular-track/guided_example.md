@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given an integer `n` and an integer array `rounds`. We have a circular track which consists of `n` sectors labeled from `1` to `n`. A marathon will be held on this track, the marathon consists of `m` rounds. The $$i^{\text{th}}$$ round starts at sector $rounds[i - 1]$ and ends at sector $\text{rounds}[i]$. For example, round 1 starts at sector $\text{rounds}[0]$ and ends at sector $\text{rounds}[1]$
+Given an integer `n` and an integer array `rounds`. We have a circular track which consists of `n` sectors labeled from `1` to `n`. A marathon will be held on this track, the marathon consists of `m` rounds. The $i^{\text{th}}$ round starts at sector $rounds[i - 1]$ and ends at sector $\text{rounds}[i]$. For example, round 1 starts at sector $\text{rounds}[0]$ and ends at sector $\text{rounds}[1]$
 
 The objective is to compute `[1, 2]` from `{"n": 4, "rounds": [1, 3, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,7 +63,7 @@ This conclusion remains true when several rounds stop and restart conceptually a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The starting sector is visited before any movement.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ If start and finish are equal, this branch returns just that one sector. It has 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Visit-count simulation:** Follow every round a:** - **Visit-count simulation:** Follow every round and count sectors. It is correct but does unnecessary work compared with the endpoint invariant.
+- **Visit-count simulation:** Follow every round and count sectors. It is correct but does unnecessary work compared with the endpoint invariant.
 - **Difference array on the circle:** It can count interval coverage efficiently for more general movement, but is excessive here.
 - **Start below finish:** Return one contiguous inclusive numeric interval.
 - **Start above finish:** Return the low-label interval followed by the high-label interval to preserve ascending output.
@@ -118,8 +118,8 @@ If start and finish are equal, this branch returns just that one sector. It has 
 - **Inclusive finish:** The upper range bound adds one so the ending sector is present.
 - **Traversal order versus output order:** Wrapped traversal starts with high labels, but output must be numerically ascending.
 - **Output space:** The returned list can contain all $N$ sectors even though auxiliary computation is constant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

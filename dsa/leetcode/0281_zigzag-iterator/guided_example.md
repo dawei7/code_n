@@ -67,7 +67,7 @@ The saved indices advance independently. Returning an element from one vector do
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When called in the intended protocol, `next()` assumes `cur`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ This state-changing behavior is intentional. `hasNext()` is not a purely observa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Deque of active positions:** Enqueue each none:** - **Deque of active positions:** Enqueue each nonempty vector's `(vector index, element index)`, pop one for `next()`, and re-enqueue its advanced position only if elements remain. This avoids repeatedly scanning exhausted vectors and extends cleanly to $K$ vectors, but it is not the exact source.
+- **Deque of active positions:** Enqueue each nonempty vector's `(vector index, element index)`, pop one for `next()`, and re-enqueue its advanced position only if elements remain. This avoids repeatedly scanning exhausted vectors and extends cleanly to $K$ vectors, but it is not the exact source.
 - **Precompute the merged result:** Building the complete zigzag list makes later calls simple but costs $O(N)$ additional storage and performs work even if the caller stops early.
 - **One vector empty initially:** `hasNext()` rotates to the nonempty vector before `next()`, so all of its values are returned in order.
 - **One vector exhausts early:** The exhausted vector is skipped on later turns, and the longer vector supplies its remaining suffix without loss.
@@ -119,8 +119,8 @@ This state-changing behavior is intentional. `hasNext()` is not a purely observa
 - **Values and duplicates:** Element magnitude, sign, and equality do not affect scheduling. The iterator preserves all values and each vector's internal order.
 - **Generalized cyclic order:** With $K$ vectors, advancing modulo $K$ yields round-robin order, while exhausted vectors must be skipped. The same structure works functionally, though a deque improves worst-case per-call efficiency.
 - **Input mutation by callers:** The iterator keeps references rather than snapshots. Changing vector lengths or contents during iteration can invalidate saved indices or alter returned values; such concurrent mutation is outside the intended contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

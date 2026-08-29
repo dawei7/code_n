@@ -57,7 +57,7 @@ Python’s sort is stable, but stability is not essential among equal numeric co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a value `x` found in `pos`, the sorting key is `pos[x]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Among two unlisted values $a$ and $b$, their keys are `1000 + a` and `1000 + b`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting sort:** Count every value from zero t:** - **Counting sort:** Count every value from zero through one thousand, emit `arr2` values by priority, then emit remaining values in numeric order. This achieves the manifest’s $O(n+m+V)$ time and $O(V)$ space.
+- **Counting sort:** Count every value from zero through one thousand, emit `arr2` values by priority, then emit remaining values in numeric order. This achieves the manifest’s $O(n+m+V)$ time and $O(V)$ space.
 - **Tuple key:** Use listed key `(0, pos[x])` and unlisted key `(1, x)`. It avoids numeric-sentinel assumptions and is easier to generalize.
 - **Custom comparator:** It can express the same cases but is more verbose and often slower in Python than key extraction.
 - **Repeated listed value:** Every copy receives the same priority and appears in one block.
@@ -109,8 +109,8 @@ Among two unlisted values $a$ and $b$, their keys are `1000 + a` and `1000 + b`.
 - **Every `arr2` value occurs in `arr1`:** No requested priority block is empty under the contract.
 - **Input preservation:** `sorted` returns a new list rather than mutating `arr1`.
 - **Manifest mismatch:** The approach must distinguish the exact comparison sort from the theoretically optimal bounded counting method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

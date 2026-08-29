@@ -67,7 +67,7 @@ This is the exact width mask needed for `num`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `1 << b` shifts a single one left by `b` posi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The returned expression is therefore
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flip one bit at a time:** Walk through `num`'s:** - **Flip one bit at a time:** Walk through `num`'s bits with a shifting one-bit mask. It is correct but uses a loop instead of one same-width XOR.
+- **Flip one bit at a time:** Walk through `num`'s bits with a shifting one-bit mask. It is correct but uses a loop instead of one same-width XOR.
 - **Propagate the highest bit downward:** Repeated OR-with-shift operations turn every lower position into one, then XOR. This avoids `bit_length` but is more verbose.
 - **Use `~num` directly:** Incorrect in Python because it flips unbounded leading sign bits and returns a negative value.
 - **Subtract from the mask:** `(1 << b) - 1 - num` is algebraically equivalent to XOR for this all-ones width.
@@ -124,8 +124,8 @@ The returned expression is therefore
 - **Leading zeros:** They are intentionally excluded by `bit_length`; complementing a fixed 32-bit width would solve a different problem.
 - **Zero outside the contract:** A separate definition would be needed because its ordinary representation policy varies by problem; this source guarantees positive input.
 - **Why XOR stays within the intended width:** The mask contains zeros above the highest meaningful bit, so XOR leaves every higher position zero while toggling precisely the represented binary digits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

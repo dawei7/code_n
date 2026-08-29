@@ -30,7 +30,7 @@ Return *an *`n x m`* matrix representing the box after the rotation described ab
 
 ![](images/rotatingtheboxleetcodewithstones.png)
 
-- **Input:** $boxGrid = [["#",".","#"]]$
+- **Input:** `boxGrid = [["#",".","#"]]`
 - **Output:** `[["."],`
 ["#"],
 ["#"]]

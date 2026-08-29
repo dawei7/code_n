@@ -10,7 +10,7 @@ Each cell contributes a specific score and incurs an associated cost, according 
 
 - 1: adds 1 to your score and costs 1.
 
-- 2: adds 2 to your score and costs 1. ​​​​​​​
+- 2: adds 2 to your score and costs 1. 
 
 Return the **maximum** score achievable without exceeding a total cost of `k`, or -1 if no valid path exists.
 
@@ -45,7 +45,7 @@ If you reach the last cell but the total cost exceeds `k`, the path is invalid.
 
 - **Output:** 2
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 The optimal path is:
 
@@ -100,14 +100,14 @@ Thus, the maximum possible score is 2.
 
 - **Output:** -1
 
-- **Explanation:** There is no path that reaches cell `(1, 1)`​​​​​​​ without exceeding cost k. Thus, the answer is -1.
+- **Explanation:** There is no path that reaches cell `(1, 1)` without exceeding cost k. Thus, the answer is -1.
 
 ### 5. Constraints
 
 - $1 \le m, n \le 200$
 
-- $0 \le k \le 10^{3}​​​​​​​$
+- $0 \le k \le 10^{3}$
 
-- $^​​​​​​​\text{grid}[0][0] = 0$
+- $^\text{grid}[0][0] = 0$
 
 - $0 \le \text{grid}[i][j] \le 2$

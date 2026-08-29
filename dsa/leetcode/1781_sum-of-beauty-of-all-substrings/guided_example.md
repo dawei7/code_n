@@ -63,7 +63,7 @@ This detail is essential. If absent letters with count zero participated, almost
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The beauty is the maximum frequency minus the minimum freque... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Although those scans occur inside nested substring loops, 26 is a fixed constrai
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recount every substring:** Scanning each range:** - **Recount every substring:** Scanning each range from scratch can take $O(n^3)$ time.
+- **Recount every substring:** Scanning each range from scratch can take $O(n^3)$ time.
 - **Fixed array of 26 counts:** It avoids hash overhead and makes the bounded alphabet explicit, while retaining the same complexity.
 - **Maintain frequency-of-frequencies:** It can update minima and maxima more cleverly, but is unnecessary for only 26 letters.
 - **One-character string:** Its sole substring has beauty zero.
@@ -114,8 +114,8 @@ Although those scans occur inside nested substring loops, 26 is a fixed constrai
 - **Lowercase guarantee:** It bounds Counter size by 26.
 - **No modulo:** The problem requests the full integer sum, and Python handles its magnitude.
 - **Input preservation:** The string is read only and no substrings are materialized.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

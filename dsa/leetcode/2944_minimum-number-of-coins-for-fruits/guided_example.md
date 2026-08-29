@@ -70,7 +70,7 @@ The generator `range(i + 1, i * 2 + 2)` implements that inclusive endpoint.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When $2i<n$, buying fruit $i$ gives free access through frui... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ No earlier reward can provide the first fruit. Every valid acquisition plan must
 
 ## 6. Traps This Instance Exposes
 
-- **- **Backward DP with monotonic deque:** Maintain t:** - **Backward DP with monotonic deque:** Maintain the minimum future cost over each changing interval to achieve $O(N)$ time, matching the manifest but not the source.
+- **Backward DP with monotonic deque:** Maintain the minimum future cost over each changing interval to achieve $O(N)$ time, matching the manifest but not the source.
 - **Bottom-up quadratic DP:** Evaluate the same recurrence from large indices downward, avoiding recursion while keeping $O(N^2)$ time.
 - **Always take free fruit:** Suboptimal because purchasing a free fruit can activate a valuable longer reward.
 - **Always buy the cheapest reachable fruit:** A low immediate price may lead to expensive future coverage; the recurrence compares full continuation costs.
@@ -119,8 +119,8 @@ No earlier reward can provide the first fruit. Every valid acquisition plan must
 - **Generator minimum:** `min(dfs(j) for ...)` evaluates all legal next purchases in the exact source. Cache hits save subtree recomputation, but the generator still visits every outgoing transition.
 - **Positive prices:** There is no reason to purchase an extra fruit unless it serves as the selected next reward source. The recurrence represents only these useful purchases.
 - **Coverage, not ownership state:** Once a next purchase position is chosen, the exact identities of earlier free fruits no longer affect future costs, which makes one index sufficient for the memo key.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

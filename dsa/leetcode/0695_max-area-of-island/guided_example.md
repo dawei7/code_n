@@ -62,7 +62,7 @@ The grid mutation replaces a separate visited structure.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a land cell, `ans = 1` counts the current cell.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,9 +108,9 @@ The returned neighbor areas are added into `ans`. Since visited cells become zer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS:** Use a stack, mark cells when :** - **Iterative DFS:** Use a stack, mark cells when pushing them, and increment a counter when popping. This avoids recursion depth limits while retaining `O(RC)` time and space.
-- **- **Breadth-first search:** A queue explores one i:** - **Breadth-first search:** A queue explores one island level by level. It computes the same component size with the same asymptotic bounds.
-- **- **Separate visited set:** Preserve `grid` by tra:** - **Separate visited set:** Preserve `grid` by tracking coordinates externally. This uses explicit `O(RC)` storage but avoids input mutation.
+- **Iterative DFS:** Use a stack, mark cells when pushing them, and increment a counter when popping. This avoids recursion depth limits while retaining `O(RC)` time and space.
+- **Breadth-first search:** A queue explores one island level by level. It computes the same component size with the same asymptotic bounds.
+- **Separate visited set:** Preserve `grid` by tracking coordinates externally. This uses explicit `O(RC)` storage but avoids input mutation.
 
 ---
 

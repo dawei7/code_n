@@ -72,7 +72,7 @@ This is a standard streaming-minimum pattern: keep the smallest value seen and a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `mi` starts at positive infinity, meaning no common string h... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ Scanning `list1` finds `"happy"` at sum $0+1=1$, so `mi` becomes one and the ans
 
 ## 6. Traps This Instance Exposes
 
-- **- **Map the shorter list:** Can reduce auxiliary e:** - **Map the shorter list:** Can reduce auxiliary entries, but the implementation must preserve each list’s actual index when adding sums.
+- **Map the shorter list:** Can reduce auxiliary entries, but the implementation must preserve each list’s actual index when adding sums.
 - **Nested loops:** Compare every pair in $O(mnL)$ time and track the same streaming minimum. Simple but unnecessarily slow.
 - **Enumerate sums diagonally:** Try index sums from zero upward and stop at the first diagonal containing matches. Avoids a map but can do quadratic comparison work.
 - **Sort strings with indices:** Merge two sorted name/index lists to find common names, then minimize sums. Costs sorting time and extra records.
@@ -123,8 +123,8 @@ Scanning `list1` finds `"happy"` at sum $0+1=1$, so `mi` becomes one and the ans
 - **Any answer order:** Scan order from `list1` is valid; no result sorting is needed.
 - **Spaces and letter case:** Strings are dictionary keys compared exactly. Spaces and uppercase/lowercase differences remain significant.
 - **Early termination:** Once `i > mi`, later sums cannot improve because `j\ge0`, but omitting this optimization does not change asymptotic time.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

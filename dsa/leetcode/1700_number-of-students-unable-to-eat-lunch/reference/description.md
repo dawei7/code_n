@@ -10,7 +10,7 @@ The number of sandwiches in the cafeteria is equal to the number of students. Th
 
 This continues until none of the queue students want to take the top sandwich and are thus unable to eat.
 
-You are given two integer arrays `students` and `sandwiches` where $\text{sandwiches}[i]$ is the type of the $i^​​​​​​th$ sandwich in the stack ($i = 0$ is the top of the stack) and $\text{students}[j]$ is the preference of the $j^​​​​​​th$ student in the initial queue ($j = 0$ is the front of the queue). Return *the number of students that are unable to eat.*
+You are given two integer arrays `students` and `sandwiches` where $\text{sandwiches}[i]$ is the type of the $i^th$ sandwich in the stack ($i = 0$ is the top of the stack) and $\text{students}[j]$ is the preference of the $j^th$ student in the initial queue ($j = 0$ is the front of the queue). Return *the number of students that are unable to eat.*
 
 ### 2. Function Contract
 

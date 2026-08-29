@@ -55,7 +55,7 @@ A stack is a natural fit because moving to a child directory appends a name, whi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list `stk` holds the real directory or file-name compone... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Every remaining nonempty token is a literal name and is appended. The ordering o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual character scanner:** Build one token at:** - **Manual character scanner:** Build one token at a time without creating the complete split list. It can reduce temporary storage but introduces more boundary logic around slashes and the final token.
+- **Manual character scanner:** Build one token at a time without creating the complete split list. It can reduce temporary storage but introduces more boundary logic around slashes and the final token.
 - **Deque as a stack:** It supports the same append and pop operations, but a Python list already provides efficient operations at its end and is simpler here.
 - **Repeated textual replacement:** Replacing `//`, `/./`, or name-plus-`/..` patterns is fragile because changes interact, root has special behavior, and periods may be valid names.
 - **Leading slash:** Splitting produces an empty token, which is ignored; reconstruction adds exactly one leading slash.
@@ -107,8 +107,8 @@ Every remaining nonempty token is a literal name and is appended. The ordering o
 - **Names containing periods:** Tokens such as `.config` or `a..b` are ordinary names.
 - **Root result:** An empty stack joins to an empty suffix, making `'/' + ''` exactly `/`.
 - **Input mutation:** The input string is immutable and only read; the stack stores derived component strings.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

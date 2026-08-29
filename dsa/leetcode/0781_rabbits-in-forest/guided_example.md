@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There is a forest with an unknown number of rabbits. We asked n rabbits **"How many other rabbits have the same color as you?"** and collected the answers in an integer array `answers` where $\text{answers}[i]$ is the answer of the $$i^{\text{th}}$$ rabbit.
+There is a forest with an unknown number of rabbits. We asked n rabbits **"How many other rabbits have the same color as you?"** and collected the answers in an integer array `answers` where $\text{answers}[i]$ is the answer of the $i^{\text{th}}$ rabbit.
 
 The objective is to compute `5` from `{"answers": [1, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ A rabbit answering one belongs to a two-rabbit color, while a rabbit answering t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every rabbit of one color sees the same number of other rabb... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +110,9 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort the answers:** Equal values become consec:** - **Sort the answers:** Equal values become consecutive and can be grouped in $O(n \log n)$ time with little extra storage, but hashing reaches linear expected time.
-- **- **Track remaining capacity online:** A map can r:** - **Track remaining capacity online:** A map can remember open spots in the current color group for each answer. It is valid but more stateful than rounding a final frequency.
-- **- **Count only respondents:** Incorrect whenever a:** - **Count only respondents:** Incorrect whenever a color group is not filled by questioned rabbits, because unquestioned members still exist.
+- **Sort the answers:** Equal values become consecutive and can be grouped in $O(n \log n)$ time with little extra storage, but hashing reaches linear expected time.
+- **Track remaining capacity online:** A map can remember open spots in the current color group for each answer. It is valid but more stateful than rounding a final frequency.
+- **Count only respondents:** Incorrect whenever a color group is not filled by questioned rabbits, because unquestioned members still exist.
 
 ---
 

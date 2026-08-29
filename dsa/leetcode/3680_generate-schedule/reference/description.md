@@ -30,7 +30,7 @@ If no schedule exists that meets the conditions, return an empty array.
 
 - **Output:** []
 
-- **Explanation:** ​​​​​​​Since each team plays every other team exactly twice, a total of 6 matches need to be played: `[0,1],[0,2],[1,2],[1,0],[2,0],[2,1]`.
+- **Explanation:** Since each team plays every other team exactly twice, a total of 6 matches need to be played: `[0,1],[0,2],[1,2],[1,0],[2,0],[2,1]`.
 
 It's not possible to create a schedule without at least one team playing consecutive days.
 
@@ -46,4 +46,4 @@ The output shows one of the schedules that meet the conditions. No team plays on
 
 ### 4. Constraints
 
-- $2 \le n \le 50$​​​​​​​
+- $2 \le n \le 50$

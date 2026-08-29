@@ -39,6 +39,6 @@ Return the number of positions among those $S$ positions whose value equals `dig
 
 - $1 \le \text{nums.length} \le 1000$
 
-- $1 \le \text{nums}[i] \le 10^{6}​​​​​​​$
+- $1 \le \text{nums}[i] \le 10^{6}$
 
 - $0 \le digit \le 9$

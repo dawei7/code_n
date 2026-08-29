@@ -62,9 +62,7 @@ The constraints guarantee no malformed string, so the else branch safely means d
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | All valid operation strings have length three:
-
-- `"++X"` ha... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +99,7 @@ No intermediate list of $N$ changes is created. `sum` starts from zero, matching
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit simulation loop:** Initialize zero an:** - **Explicit simulation loop:** Initialize zero and add or subtract for each operation; equally correct and sometimes clearer to beginners.
+- **Explicit simulation loop:** Initialize zero and add or subtract for each operation; equally correct and sometimes clearer to beginners.
 - **Count strings containing plus:** Compute increments minus decrements, but it still scans all operations.
 - **Compare full strings:** Check membership in `{"++X","X++"}`; more verbose but robust if string layout rules changed.
 - **All increments:** The answer is the number of operations.
@@ -113,8 +111,8 @@ No intermediate list of $N$ changes is created. `sum` starts from zero, matching
 - **Negative final value:** Fully valid; `sum` begins at zero and handles negative deltas.
 - **Generator laziness:** Avoids an $O(N)$ temporary list.
 - **Input preservation:** Strings and the operations list are read without modification.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

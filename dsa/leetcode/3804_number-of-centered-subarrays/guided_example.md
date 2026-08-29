@@ -57,7 +57,7 @@ This makes each interval check expected constant time after its extension. Recom
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Moving `j` one step adds one element.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ It does not attempt a sliding-window optimization because values may be negative
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute sum and set per interval:** This rai:** - **Recompute sum and set per interval:** This raises time toward $O(N^3)$.
+- **Recompute sum and set per interval:** This raises time toward $O(N^3)$.
 - **Prefix sums only:** They give interval sums quickly but do not answer whether that sum appears inside the interval.
 - **Sliding window:** Negative values and nonmonotone membership provide no safe one-direction shrink rule.
 - **Count each matching occurrence:** A centered interval counts once even if its sum appears several times.
@@ -108,8 +108,8 @@ It does not attempt a sliding-window optimization because values may be negative
 - **Nonmonotone validity:** Extension may destroy or restore the property.
 - **Fresh outer state:** Each left endpoint resets sum and membership.
 - **Right endpoint witness:** Add it to the set before testing the extended interval.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

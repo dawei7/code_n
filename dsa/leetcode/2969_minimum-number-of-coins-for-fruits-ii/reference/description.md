@@ -2,11 +2,11 @@
 
 You are at a fruit market with different types of exotic fruits on display.
 
-You are given a **1-indexed** array `prices`, where $\text{prices}[i]$ denotes the number of coins needed to purchase the $$i^{\text{th}}$$ fruit.
+You are given a **1-indexed** array `prices`, where $\text{prices}[i]$ denotes the number of coins needed to purchase the $i^{\text{th}}$ fruit.
 
 The fruit market has the following offer:
 
-- If you purchase the $$i^{\text{th}}$$ fruit at $\text{prices}[i]$ coins, you can get the next `i` fruits for free.
+- If you purchase the $i^{\text{th}}$ fruit at $\text{prices}[i]$ coins, you can get the next `i` fruits for free.
 
 ### 2. Function Contract
 

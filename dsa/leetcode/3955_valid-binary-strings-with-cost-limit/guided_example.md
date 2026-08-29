@@ -64,7 +64,7 @@ This prevents `"11"` from ever becoming a prefix. Once two consecutive ones appe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After the zero branch has been popped, `path` again contains... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Index zero contributes zero. This is why a one at the first position remains leg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all $2^n$ strings then filter:** Thi:** - **Enumerate all $2^n$ strings then filter:** This wastes work on prefixes that already contain `11` or exceed the cost. Backtracking prunes both immediately.
+- **Enumerate all $2^n$ strings then filter:** This wastes work on prefixes that already contain `11` or exceed the cost. Backtracking prunes both immediately.
 - **Dynamic programming that only counts strings:** Counting can be faster when only a number is required, but it cannot produce the requested list without reconstruction.
 - **Track remaining budget instead of total cost:** This is equivalent; subtract index `i` when placing one and require the result to remain nonnegative.
 - **Check adjacency only at the leaf:** Invalid `11` prefixes would generate exponentially many useless descendants.
@@ -120,8 +120,8 @@ Index zero contributes zero. This is why a one at the first position remains leg
 - **Backtracking pop operations:** Each append is paired with a pop, ensuring sibling branches begin from the same prefix.
 - **No duplicates:** Each leaf corresponds to one unique sequence of binary choices.
 - **Recursion depth:** The constraint $n\le12$ keeps Python recursion safely shallow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

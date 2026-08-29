@@ -65,7 +65,7 @@ When `cnt \le k`, the current subarray satisfies the restriction and receives a 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `cnt` records how many elements in the current ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The hashes are reset when `i` changes because the next outer-loop iteration begi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Value trie:** Insert every eligible subarray a:** - **Value trie:** Insert every eligible subarray as a path whose edges are array values, and count newly created nodes. This gives deterministic `O(n^2)` time and space and avoids rolling-hash collisions, but it is not the data structure used by the exact solution.
+- **Value trie:** Insert every eligible subarray as a path whose edges are array values, and count newly created nodes. This gives deterministic `O(n^2)` time and space and avoids rolling-hash collisions, but it is not the data structure used by the exact solution.
 - **Store tuples of subarray values:** A set of tuples is collision-safe because Python resolves hash collisions with equality, but constructing or comparing length-proportional tuples across all ranges can push total work toward `O(n^3)`.
 - **Single rolling hash:** It uses a smaller signature but has a substantially higher accidental-collision risk than the two independent residues.
 - **Suffix structures:** Suffix arrays, suffix automata, or tries can deduplicate sequence content, but incorporating the at-most-`k` eligibility boundary adds complexity unnecessary for `n \le 200`.
@@ -132,8 +132,8 @@ The hashes are reset when `i` changes because the next outer-loop iteration begi
 - **Non-empty requirement:** Each signature is inserted only after the inner loop appends `nums[j]`, so the empty subarray is never counted.
 - **Single-element input:** The only length-one subarray is inserted if its divisible count is at most `k`, which holds because `k \ge 1`.
 - **Input preservation:** Values are read and hashed; `nums` is never modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

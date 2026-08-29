@@ -72,7 +72,7 @@ The exact closure holds a reference to the input array rather than copying it. U
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `compose(functions)` does not evaluate any supplied function... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ After index zero runs, `result` is the full nested expression and is returned.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`reduceRight`:** Naturally expresses right-to-:** - **`reduceRight`:** Naturally expresses right-to-left accumulation but adds a callback layer and is no clearer than the loop.
+- **`reduceRight`:** Naturally expresses right-to-left accumulation but adds a callback layer and is no clearer than the loop.
 - **Recursive composition:** Mirrors the nested formula but uses $O(n)$ call-stack space.
 - **Left-to-right loop:** Computes the reverse composition and is generally incorrect.
 - **Empty function list:** The loop is skipped and input is returned unchanged.
@@ -125,8 +125,8 @@ After index zero runs, `result` is the full nested expression and is returned.
 - **Function-array mutation:** Because the closure retains the original array reference, later external mutations would affect future calls.
 - **Thrown error:** The wrapper does not catch it; an exception from a supplied function propagates immediately.
 - **Method receiver:** The exact solution does not forward `this` because the challenge functions are argument-only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

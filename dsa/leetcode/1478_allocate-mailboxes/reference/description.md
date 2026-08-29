@@ -1,6 +1,6 @@
 ### 1. Description
 
-Given the array `houses` where $\text{houses}[i]$ is the location of the $$i^{\text{th}}$$ house along a street and an integer `k`, allocate `k` mailboxes in the street.
+Given the array `houses` where $\text{houses}[i]$ is the location of the $i^{\text{th}}$ house along a street and an integer `k`, allocate `k` mailboxes in the street.
 
 Return *the **minimum** total distance between each house and its nearest mailbox*.
 

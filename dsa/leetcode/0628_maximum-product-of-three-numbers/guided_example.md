@@ -51,7 +51,7 @@ After sorting `nums` in ascending order, the only two products that can be optim
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting `nums` in ascending order, the only two produc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ After sorting `nums` in ascending order, the only two products that can be optim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single scan over five extrema:** Track the two:** - **Single scan over five extrema:** Track the two smallest and three largest values in $O(n)$ time and $O(1)$ space. This is the true optimal implementation and matches the manifest.
+- **Single scan over five extrema:** Track the two smallest and three largest values in $O(n)$ time and $O(1)$ space. This is the true optimal implementation and matches the manifest.
 - **Heap selection:** Find three maxima and two minima with small heaps. It remains linear up to constant heap factors but is more complex than five scalar variables.
 - **Brute-force triplets:** Checking every triple costs $O(n^3)$ and ignores the extreme-value structure.
 - **All positive values:** The three-largest candidate wins.
@@ -99,8 +99,8 @@ After sorting `nums` in ascending order, the only two products that can be optim
 - **Input mutation:** `sort()` changes `nums`; use `sorted(nums)` to copy or a single scan to preserve order.
 - **Manifest mismatch:** Do not claim $O(n)$/$O(1)$ for the literal Python source merely because a different algorithm can attain those bounds.
 - **Integer range:** The constraint bounds the product by $10^9$ in absolute value, so fixed-width 32-bit signed arithmetic is safe.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an array `prices` where $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day.
+You are given an array `prices` where $\text{prices}[i]$ is the price of a given stock on the $i^{\text{th}}$ day.
 
 Find the maximum profit you can achieve. You may complete **at most two transactions**.
 

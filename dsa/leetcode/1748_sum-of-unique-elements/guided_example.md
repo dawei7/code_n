@@ -62,7 +62,7 @@ This makes the correctness condition visible in the code rather than requiring c
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | It is tempting to add a value the first time it appears.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The order in which the counter entries are visited does not matter because integ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed frequency array:** Use 101 counters inde:** - **Fixed frequency array:** Use 101 counters indexed by value. It provides deterministic constant-time updates and makes the bounded-domain space explicit, but is less flexible than `Counter`.
+- **Fixed frequency array:** Use 101 counters indexed by value. It provides deterministic constant-time updates and makes the bounded-domain space explicit, but is less flexible than `Counter`.
 - **Set only:** A plain set loses occurrence counts and would incorrectly include values that repeat.
 - **Nested counting:** Calling `nums.count(x)` for every element is simple but can take $O(n^2)$ time.
 - **One-pass adjusted sum:** Add a value on its first occurrence and subtract it on its second. This can work with frequency tracking, but later occurrences add state-transition complexity.
@@ -119,8 +119,8 @@ The order in which the counter entries are visited does not matter because integ
 - **Bounded domain:** At most 100 counter entries justify the stated $O(1)$ space.
 - **Input preservation:** `Counter` reads `nums` and does not reorder or modify it.
 - **Hash behavior:** The $O(n)$ time is the standard expected bound for Python dictionary-based counting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

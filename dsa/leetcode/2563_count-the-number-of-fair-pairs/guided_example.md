@@ -64,7 +64,7 @@ Even when values are equal, their array occurrences have different sorted positi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits sorted index $i$ with value `x`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Passing `lo=i + 1` is essential. Without it, the binary search could return the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two threshold sweeps:** Count pairs with sum b:** - **Two threshold sweeps:** Count pairs with sum below `upper + 1` using two pointers, subtract the count below `lower`, and obtain the same answer after sorting in $O(n)$ scan time.
+- **Two threshold sweeps:** Count pairs with sum below `upper + 1` using two pointers, subtract the count below `lower`, and obtain the same answer after sorting in $O(n)$ scan time.
 - **Check every pair:** Two nested loops take $O(n^2)$ time, which is too slow for $10^5$ values.
 - **Frequency map:** Counting by value can help when the number of distinct values is small, but duplicate multiplicities and range queries make the sorted method simpler and reliably $O(n\log n)$.
 - **Exact single sum:** When `lower == upper`, the two boundaries isolate partners producing exactly that sum.
@@ -116,8 +116,8 @@ Passing `lo=i + 1` is essential. Without it, the binary search could return the 
 - **All pairs valid:** Each fixed index contributes the size of its suffix, and the total becomes $n(n-1)/2$.
 - **Input mutation:** `nums.sort()` changes the original order; sort a copy if the caller requires preservation.
 - **Inclusive bounds:** The lower search uses “at least,” while `upper - x + 1` converts the inclusive upper condition into an exclusive lower-bound search.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

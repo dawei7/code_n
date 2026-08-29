@@ -1,6 +1,6 @@
 ### 1. Description
 
-Alice is throwing `n` darts on a very large wall. You are given an array `darts` where $\text{darts}[i] = [x_{i}, y_{i}]$ is the position of the $$i^{\text{th}}$$ dart that Alice threw on the wall.
+Alice is throwing `n` darts on a very large wall. You are given an array `darts` where $\text{darts}[i] = [x_{i}, y_{i}]$ is the position of the $i^{\text{th}}$ dart that Alice threw on the wall.
 
 Bob knows the positions of the `n` darts on the wall. He wants to place a dartboard of radius `r` on the wall so that the maximum number of darts that Alice throws lie on the dartboard.
 

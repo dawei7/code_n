@@ -2,7 +2,7 @@
 
 You are given an empty 2D binary grid `grid` of size `m x n`. The grid represents a map where `0`'s represent water and `1`'s represent land. Initially, all the cells of `grid` are water cells (i.e., all the cells are `0`'s).
 
-We may perform an add land operation which turns the water at position into a land. You are given an array `positions` where $\text{positions}[i] = [r_{i}, c_{i}]$ is the position $(r_{i}, c_{i})$ at which we should operate the $$i^{\text{th}}$$ operation.
+We may perform an add land operation which turns the water at position into a land. You are given an array `positions` where $\text{positions}[i] = [r_{i}, c_{i}]$ is the position $(r_{i}, c_{i})$ at which we should operate the $i^{\text{th}}$ operation.
 
 Return *an array of integers* `answer` *where* $\text{answer}[i]$ *is the number of islands after turning the cell* $(r_{i}, c_{i})$ *into a land*.
 

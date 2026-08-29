@@ -55,7 +55,7 @@ Thus `i` is both a lower bound and the exact isolated cost for the first require
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Value `1` starts at index `i`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Again, this is unavoidable because a swap moves `n` at most one position right, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate adjacent swaps:** Produces the final :** - **Simulate adjacent swaps:** Produces the final permutation but does unnecessary mutations when only the minimum count is requested.
+- **Simulate adjacent swaps:** Produces the final permutation but does unnecessary mutations when only the minimum count is requested.
 - **One combined scan:** The positions of `1` and `n` can be recorded in one traversal; it keeps the same $O(n)$ time and $O(1)$ space.
 - **Breadth-first search over permutations:** Finds a shortest sequence for tiny $n$ but has factorial state growth and ignores the endpoint structure.
 - **Already semi-ordered:** When `i=0` and `j=n-1`, the formula returns zero.
@@ -106,8 +106,8 @@ Again, this is unavoidable because a swap moves `n` at most one position right, 
 - **Adjacent n and 1 in reversed order:** Their one mutual swap is the shared operation counted by the subtraction.
 - **Distinctness guarantee:** The permutation property ensures `index` finds one unique position for each special value.
 - **Unrestricted middle:** No sorting of values `2` through `n-1` is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

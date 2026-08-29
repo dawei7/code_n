@@ -51,7 +51,7 @@ The exact source expresses both operations with nested generators:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source expresses both operations with nested gener... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source expresses both operations with nested generators:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Arithmetic extraction:** Repeatedly add `x % 1:** - **Arithmetic extraction:** Repeatedly add `x % 10` and update `x //= 10`. It avoids the temporary string and matches the editorial and manifest summary, while retaining $O(S)$ time and $O(1)$ working space.
+- **Arithmetic extraction:** Repeatedly add `x % 10` and update `x //= 10`. It avoids the temporary string and matches the editorial and manifest summary, while retaining $O(S)$ time and $O(1)$ working space.
 - **Precompute digit sums:** With values limited to $10^4$, a table can answer each number in constant time, but preparing or storing it is unnecessary for at most 100 inputs.
 - **Create the replaced array:** A list comprehension followed by `min` is readable but uses $O(n)$ extra space that the lazy outer generator avoids.
 - **Sort digit sums:** Sorting costs $O(n\log n)$ when only the minimum is required. A single pass is sufficient.
@@ -99,8 +99,8 @@ The exact source expresses both operations with nested generators:
 - **Zero input:** Also excluded by the positive lower bound. If allowed, the string method would correctly produce digit sum zero, whereas a naive `while x > 0` arithmetic loop would need to understand that its initial sum zero is the answer.
 - **Input mutation:** The method returns the minimum transformation without changing `nums`, even though the statement describes replacement conceptually.
 - **Manifest discrepancy:** The protected source is string-based rather than arithmetic; explanations should not claim remainder/division operations that never execute.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

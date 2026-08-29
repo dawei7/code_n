@@ -61,7 +61,7 @@ For `s="coaching"` and `t="coding"`, the scan matches `c` and then `o`. The next
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `j` is the index of the next unmatched characte... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Therefore, after the complete scan, no method can match a longer prefix of `t` i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit two-pointer loop:** Maintain indices :** - **Explicit two-pointer loop:** Maintain indices into both strings with a `while` loop. It has the same greedy invariant and complexity but requires manually advancing the source index.
+- **Explicit two-pointer loop:** Maintain indices into both strings with a `while` loop. It has the same greedy invariant and complexity but requires manually advancing the source index.
 - **Next-occurrence lookup:** Preprocess positions of letters and binary-search successive matches. That is useful for many target queries against one fixed `s`, but unnecessary for one query.
 - **Dynamic programming:** A general subsequence DP uses far more time or space than needed because only the longest matched target prefix matters.
 - **`t` already a subsequence:** `j` reaches `n` and the answer is zero.
@@ -110,8 +110,8 @@ Therefore, after the complete scan, no method can match a longer prefix of `t` i
 - **Order mismatch:** Having all target letters in `s` is insufficient if they do not occur in target order.
 - **Completed target early:** The `j<n` guard prevents an out-of-range target access during the rest of the source scan.
 - **Append-only restriction:** New characters cannot be inserted between existing positions, which is why the unmatched portion must be a suffix of `t`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

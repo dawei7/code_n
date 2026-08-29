@@ -64,7 +64,7 @@ The separator itself is omitted from returned pieces by `split`, exactly as the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `str.split(separator)` treats `separator` as a lite... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For `"|||"` split by `"|"`, every region is empty, producing four empty strings.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual character scan:** Build the current pie:** - **Manual character scan:** Build the current piece character by character and flush it at separators. It can avoid each word's temporary split list but requires more code.
+- **Manual character scan:** Build the current piece character by character and flush it at separators. It can avoid each word's temporary split list but requires more code.
 - **Regular expressions:** They are unnecessary and punctuation separators would require careful escaping.
 - **Append empty pieces then remove them later:** It uses extra output work and storage. The comprehension filters before appending.
 - **Leading separator:** The leading empty piece is discarded.
@@ -120,8 +120,8 @@ For `"|||"` split by `"|"`, every region is empty, producing four empty strings.
 - **Punctuation separator:** `str.split` is literal, so no regex escaping is needed.
 - **One-character separator guarantee:** The code would also accept a longer nonempty separator, but the stated contract supplies one character.
 - **Input mutation:** The original array and strings remain untouched.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

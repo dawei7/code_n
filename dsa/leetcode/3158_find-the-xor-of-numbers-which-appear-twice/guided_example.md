@@ -73,7 +73,7 @@ For `[1,2,3]`, the filtered list is empty. `reduce` returns its initializer 0, m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | We must XOR the numbers that appear twice, not XOR every occ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,7 +125,7 @@ The reduction then computes the XOR of every selected value exactly once and not
 
 ## 6. Traps This Instance Exposes
 
-- **- **Seen bit mask:** Set bit $x$ on first occurren:** - **Seen bit mask:** Set bit $x$ on first occurrence; on second occurrence, XOR $x$ into the answer. This matches the manifest and uses one fixed-size integer for values up to 50.
+- **Seen bit mask:** Set bit $x$ on first occurrence; on second occurrence, XOR $x$ into the answer. This matches the manifest and uses one fixed-size integer for values up to 50.
 - **Seen set:** Add unseen values and XOR a value when it is already present. It uses $O(u)$ space but avoids a second pass and filtered list.
 - **Frequency array of length 51:** Count values in fixed slots, then XOR indices with count two. It has constant domain-bounded storage.
 - **XOR the whole input:** Incorrect because duplicate pairs cancel and singletons remain.
@@ -137,8 +137,8 @@ The reduction then computes the XOR of every selected value exactly once and not
 - **Duplicate list allocation:** A generator expression could feed `reduce` lazily and avoid this extra list, but the exact code builds it.
 - **Fixed small domain:** It enables the constant-space alternatives but does not change the source's data structures.
 - **Input preservation:** Counting reads the array and leaves it intact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

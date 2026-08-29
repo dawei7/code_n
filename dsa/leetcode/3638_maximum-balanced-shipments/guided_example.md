@@ -61,7 +61,7 @@ Closing at the earliest possible endpoint leaves the longest possible suffix for
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When a balanced endpoint appears, the source increments `ans... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Thus no valid shipment—regardless of where it starts inside the unfinished reg
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming by endpoint:** It can mode:** - **Dynamic programming by endpoint:** It can model the same choices but is unnecessary because earliest closing has the exchange property.
+- **Dynamic programming by endpoint:** It can model the same choices but is unnecessary because earliest closing has the exchange property.
 - **Monotonic stack:** It can find earlier heavier elements, but one running maximum is enough after each reset.
 - **Try every subarray:** It costs quadratic or worse time.
 - **Strictly increasing weights:** No last parcel is below the segment maximum, so answer is zero.
@@ -113,8 +113,8 @@ Thus no valid shipment—regardless of where it starts inside the unfinished reg
 - **Non-overlap:** Resetting after closure ensures future shipments start later.
 - **Input preservation:** The source scans `weight` without modifying it.
 - **Missing `List` import:** Standalone execution must provide the annotation name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

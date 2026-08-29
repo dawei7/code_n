@@ -7,7 +7,7 @@
 
 #### Intuition
 
-Since the string $s$ only contains digit characters $[0, 4]$, we can first enumerate the characters $a$ and $b$ described in the problem, where $a$ must appear an odd number of times, $b$ must appear an even number of times, and $a$ and $b$ must be different. The parity of the number of occurrences of a character can be represented by a binary bit, where $0$ indicates an even count and $1$ indicates an odd count. We place the parity of $a$'s occurrences in front and the parity of $b$'s at the end, resulting in 4 possible cases: $[00, 01, 10, 11]$. The string we are looking for must correspond to the $10$ case.
+Since the string $s$ only contains digit characters `[0, 4]`, we can first enumerate the characters $a$ and $b$ described in the problem, where $a$ must appear an odd number of times, $b$ must appear an even number of times, and $a$ and $b$ must be different. The parity of the number of occurrences of a character can be represented by a binary bit, where $0$ indicates an even count and $1$ indicates an odd count. We place the parity of $a$'s occurrences in front and the parity of $b$'s at the end, resulting in 4 possible cases: `[00, 01, 10, 11]`. The string we are looking for must correspond to the $10$ case.
 
 We consider a two-pointer approach, where the right pointer $\textit{right}$ moves one step at a time, representing the right endpoint of the current substring. As it moves, we update the count of $a$ and $b$ up to index $\textit{right}$, denoted as $\textit{cnt}_a$ and $\textit{cnt}_b$, and compute the corresponding state:
 
@@ -73,7 +73,7 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the length of the string $s$, and let $|\Sigma|$ denote the size of the character set. Since $s$ contains only the digits $[0, 4]$, we have $|\Sigma| = 5$.
+Let $n$ be the length of the string $s$, and let $|\Sigma|$ denote the size of the character set. Since $s$ contains only the digits `[0, 4]`, we have $|\Sigma| = 5$.
 
 - Time complexity: $O(n\times|\Sigma|^2)$.
 

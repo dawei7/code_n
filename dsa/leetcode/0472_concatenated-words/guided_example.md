@@ -57,7 +57,7 @@ Excluding concatenated words from the trie does not lose solutions. Any concaten
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `words.sort(key=lambda x: len(x))` ensures the trie contains... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Only after every possible stored prefix fails does the function return false.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Memoize DFS by start index:** Cache whether ea:** - **Memoize DFS by start index:** Cache whether each suffix position is segmentable. This reduces a candidate to polynomial work and is the direct repair for the exact source's exponential repetition.
+- **Memoize DFS by start index:** Cache whether each suffix position is segmentable. This reduces a candidate to polynomial work and is the direct repair for the exact source's exponential repetition.
 - **Word-break dynamic programming:** A Boolean array over prefix lengths tests all splits in $O(L^2)$ dictionary queries per candidate and naturally prevents whole-word self-use.
 - **Global set with temporary removal:** Remove the current word, run word break, then restore it. This avoids length sorting but performs mutation around every query.
 - **Insert concatenated words too:** Correctness would remain if self-matching were prevented, but excluding them keeps the trie smaller because their primitive components are sufficient.
@@ -110,8 +110,8 @@ Only after every possible stored prefix fails does the function return false.
 - **One-word candidate:** It is absent from the trie during its own test and cannot be falsely accepted as one component.
 - **Input mutation:** Sorting changes the order of `words`; callers needing the original order must pass a copy.
 - **Manifest mismatch:** The exact recursive search is not memoized, so the quadratic-sum time bound is not guaranteed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

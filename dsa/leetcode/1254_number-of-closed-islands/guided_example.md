@@ -59,7 +59,7 @@ is one for an interior cell and zero for a boundary cell.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An island touches the outside world exactly when at least on... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The result values are integers zero and one, so bitwise AND acts exactly like lo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Flood boundary land first:** Remove every isla:** - **Flood boundary land first:** Remove every island connected to an edge, then count remaining components. This separates openness detection from counting and remains \(O(N)\).
+- **Flood boundary land first:** Remove every island connected to an edge, then count remaining components. This separates openness detection from counting and remains \(O(N)\).
 - **Breadth-first search:** Use a queue and a boundary flag, avoiding recursion-limit risk.
 - **Separate visited matrix:** Preserve the input grid at the cost of \(O(N)\) explicit memory.
 - **All water:** No DFS starts and the sum is zero.
@@ -110,8 +110,8 @@ The result values are integers zero and one, so bitwise AND acts exactly like lo
 - **Eager bitwise AND:** Replacing `&=` with short-circuit logic carelessly could leave part of an open island unvisited.
 - **Input mutation:** The exact method converts land to water; copy the grid first if preservation is needed.
 - **Required helper:** Standalone code needs `pairwise` from `itertools`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

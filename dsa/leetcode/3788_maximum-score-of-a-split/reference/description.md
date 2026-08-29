@@ -58,4 +58,4 @@ Return the maximum of $sum(nums[0:i+1]) - min(nums[i+1:n])$ over every $0 \le i 
 
 - $2 \le \text{nums.length} \le 10^{5}$
 
-- $-10^{9}​​​​​​​ \le \text{nums}[i] \le 10^{9}$
+- $-10^{9} \le \text{nums}[i] \le 10^{9}$

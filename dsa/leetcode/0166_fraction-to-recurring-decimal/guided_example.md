@@ -79,7 +79,7 @@ loop ends with `"0.5"`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a nonzero remainder, the source appends `"."` and repeat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +129,7 @@ Therefore the dictionary entry is not incorrectly overwritten.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate with a string builder and saved posit:** - **Simulate with a string builder and saved positions:** Equivalent to the list representation; insertion may be expressed with final slicing instead.
+- **Simulate with a string builder and saved positions:** Equivalent to the list representation; insertion may be expressed with final slicing instead.
 - **Floating-point conversion:** Incorrect because finite precision cannot preserve arbitrary recurring structure or exact digits.
 - **Reduce by the greatest common divisor first:** May shorten the denominator but is not required for correctness or asymptotic output work.
 - **Zero numerator:** Return `"0"` without a negative sign or decimal point.
@@ -139,8 +139,8 @@ Therefore the dictionary entry is not incorrectly overwritten.
 - **Negative operands:** Exactly one negative sign is emitted when signs differ.
 - **Internal zero digits:** Quotient zero is appended normally during long division.
 - **Fixed-width overflow:** Convert to a wider type before absolute value and multiplication outside Python.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

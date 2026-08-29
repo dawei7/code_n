@@ -2,7 +2,7 @@
 
 There is a tree (i.e. a connected, undirected graph with no cycles) consisting of `n` nodes numbered from `0` to $n - 1$ and exactly $n - 1$ edges.
 
-You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $$i^{\text{th}}$$ node. You are also given a 2D integer array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ denotes that there exists an **undirected** edge connecting nodes $a_{i}$ and $b_{i}$.
+You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $i^{\text{th}}$ node. You are also given a 2D integer array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ denotes that there exists an **undirected** edge connecting nodes $a_{i}$ and $b_{i}$.
 
 A **good path** is a simple path that satisfies the following conditions:
 

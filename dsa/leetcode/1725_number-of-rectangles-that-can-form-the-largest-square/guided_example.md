@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array `rectangles` where $\text{rectangles}[i] = [l_{i}, w_{i}]$ represents the $$i^{\text{th}}$$ rectangle of length $l_{i}$ and width $w_{i}$.
+You are given an array `rectangles` where $\text{rectangles}[i] = [l_{i}, w_{i}]$ represents the $i^{\text{th}}$ rectangle of length $l_{i}$ and width $w_{i}$.
 
 The objective is to compute `3` from `{"rectangles": [[5, 8], [3, 9], [5, 12], [16, 5]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ For every `l,w`, it computes `x = min(l,w)` and handles three logical cases.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source initializes `mx = 0` and `ans = 0`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Resetting rather than incrementing is essential. The requested count concerns on
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two passes:** First compute the maximum shorte:** - **Two passes:** First compute the maximum shorter side, then count it. It remains $O(n)$ time and $O(1)$ space but repeats traversal.
+- **Two passes:** First compute the maximum shorter side, then count it. It remains $O(n)$ time and $O(1)$ space but repeats traversal.
 - **Build a candidate list:** Mapping every rectangle to `min(l,w)` makes the reduction explicit but uses $O(n)$ extra space.
 - **Sort candidates:** The largest values become adjacent, but $O(n\log n)$ time is unnecessary.
 - **One rectangle:** It establishes the maximum and count one.
@@ -110,8 +110,8 @@ Resetting rather than incrementing is essential. The requested count concerns on
 - **Positive dimensions:** Initial `mx=0` guarantees the first candidate takes the new-maximum branch.
 - **Non-square rectangle guarantee:** It is not needed by the algorithm; an already square rectangle would still have candidate equal to either side.
 - **Input preservation:** Only dimension values are read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

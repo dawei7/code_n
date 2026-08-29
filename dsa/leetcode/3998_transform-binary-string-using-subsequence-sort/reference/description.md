@@ -168,4 +168,4 @@ Thus, $ans = [true]$.
 
 - $\text{strs}[i].length = n$
 
-- $\text{strs}[i]$ is either `'0'`, `'1'`, or `'?'`​​​​​​​.
+- $\text{strs}[i]$ is either `'0'`, `'1'`, or `'?'`.

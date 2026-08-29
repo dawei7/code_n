@@ -1,12 +1,12 @@
 ### 1. Description
 
-You want to build some obstacle courses. You are given a **0-indexed** integer array `obstacles` of length `n`, where $\text{obstacles}[i]$ describes the height of the $$i^{\text{th}}$$ obstacle.
+You want to build some obstacle courses. You are given a **0-indexed** integer array `obstacles` of length `n`, where $\text{obstacles}[i]$ describes the height of the $i^{\text{th}}$ obstacle.
 
 For every index `i` between `0` and $n - 1$ (**inclusive**), find the length of the **longest obstacle course** in `obstacles` such that:
 
 - You choose any number of obstacles between `0` and `i` **inclusive**.
 
-- You must include the $$i^{\text{th}}$$ obstacle in the course.
+- You must include the $i^{\text{th}}$ obstacle in the course.
 
 - You must put the chosen obstacles in the **same order** as they appear in `obstacles`.
 

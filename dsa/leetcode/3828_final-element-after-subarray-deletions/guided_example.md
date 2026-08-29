@@ -72,13 +72,7 @@ This already proves why an interior maximum does not automatically decide the ga
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let
-
-$$
-M=\max(\texttt{nums}[0],\texttt{nums}[N-1]).
-$$
-
-If ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,7 +119,7 @@ Thus, regardless of Alice's first deletion, Bob has a response ensuring the fina
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive minimax:** Enumerating every removab:** - **Recursive minimax:** Enumerating every removable subarray at every state creates an explosive game tree and repeats many array states. It is useful only as a tiny-input verification model.
+- **Recursive minimax:** Enumerating every removable subarray at every state creates an explosive game tree and repeats many array states. It is useful only as a tiny-input verification model.
 - **Dynamic programming over intervals:** Surviving arrays after middle deletion can concatenate separated original pieces, so an interval DP is not even a natural complete state; the endpoint theorem eliminates the need.
 - **Choose the global maximum:** This is wrong when the maximum is strictly interior. Alice cannot isolate an interior element by deleting one contiguous proper block.
 - **One element:** No move is possible or necessary, and `nums[0]` equals `nums[-1]`.
@@ -135,8 +129,8 @@ Thus, regardless of Alice's first deletion, Bob has a response ensuring the fina
 - **Alice ends immediately:** Removing a prefix or suffix of length $N-1$ is legal because the condition is strictly less than the current length, not at most $N-2$.
 - **Bob's cap after a middle deletion:** At least one original endpoint survives as a current endpoint, and Bob keeps the smaller current endpoint.
 - **Positive-value constraint:** The proof uses only ordering and would remain valid for arbitrary integers; positivity is not needed by the source.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

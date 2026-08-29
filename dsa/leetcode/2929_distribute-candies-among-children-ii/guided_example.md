@@ -59,7 +59,7 @@ The source initializes `ans` to this value. At this stage, distributions with sh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If shares have no upper limit, the number of nonnegative sol... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ There are three choices for which child violates the cap. When `n > limit`, the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate the first child:** For each legal $a:** - **Enumerate the first child:** For each legal $a$, count the interval of possible $b$. This costs $O(\min(n,\texttt{limit}))$ time.
+- **Enumerate the first child:** For each legal $a$, count the interval of possible $b$. This costs $O(\min(n,\texttt{limit}))$ time.
 - **Two nested loops:** Choosing $a$ and $b$ then deriving $c$ is simple but can take quadratic time in the limit.
 - **Generating functions:** The answer is the coefficient of $x^n$ in $(1+x+\cdots+x^{limit})^3$, but inclusion–exclusion evaluates it more directly.
 - **Total above capacity:** Return zero; attempting the formula without careful generalized binomial handling could produce meaningless terms.
@@ -120,8 +120,8 @@ There are three choices for which child violates the cap. When `n > limit`, the 
 - **No negative combinations:** The two conditions are mathematical existence checks as well as API guards; they prevent asking `comb` to represent a bad set with insufficient candies.
 - **Second-version scale:** With inputs up to $10^6$, enumeration may already be expensive, while the exact formula's operation count is unchanged.
 - **Exact integer answer:** No probability, approximation, or modular reduction is involved; inclusion–exclusion produces the full count.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

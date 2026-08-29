@@ -75,7 +75,7 @@ Return the maximum possible final selected value minus the number of changed arr
 
 - $modificationCost = 1$
 
-- The score is ​​​​​​​$2 - 1 = 1$
+- The score is $2 - 1 = 1$
 
 ### 4. Constraints
 
@@ -83,4 +83,4 @@ Return the maximum possible final selected value minus the number of changed arr
 
 - $1 \le \text{nums}[i] \le 10^{5}$
 
-- $1 \le maxVal \le 10^​​​​​​​5$
+- $1 \le maxVal \le 10^5$

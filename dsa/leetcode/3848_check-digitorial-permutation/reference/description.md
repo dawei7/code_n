@@ -50,7 +50,7 @@ Return `true` if some valid digit permutation $x$ satisfies $F(x)=x$; otherwise,
 
 - **Output:** false
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 10 is not digitorial since $1! + 0! = 2$ is not equal to 10, and the permutation `"01"` is invalid because it starts with zero.
 

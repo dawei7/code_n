@@ -61,7 +61,7 @@ The first loop tests this for every adjacent pair `(x, y)`, covering every possi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose a reversed prefix ends at element `x`, followed by `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Together, these two formulas cover every reversal touching exactly one array end
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every subarray and recompute:** It can tak:** - **Try every subarray and recompute:** It can take cubic time and repeats unchanged internal contributions.
+- **Try every subarray and recompute:** It can take cubic time and repeats unchanged internal contributions.
 - **Try every boundary pair using the gain formula:** Recognizing boundary-only changes reduces recomputation but remains $O(n^2)$.
 - **Prefix reversal:** Exactly one original adjacent edge changes, handled by the first candidate formula.
 - **Suffix reversal:** Exactly one edge changes, handled by the second formula.
@@ -113,8 +113,8 @@ Together, these two formulas cover every reversal touching exactly one array end
 - **No beneficial reversal:** Initializing `ans = s` and clipping interior gain at zero returns the original value.
 - **Four sign pairs:** Omitting any can miss an absolute-value orientation and therefore the optimal reversal.
 - **Lazy `pairwise`:** It does not allocate all adjacent tuples, preserving constant auxiliary space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

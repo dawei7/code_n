@@ -67,7 +67,7 @@ For `arr = [49,18,16]` and piece `[16,18,49]`, no piece begins with 49, so it re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After locating `pieces[k]`, `j` starts at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The intended invariant is: before an outer iteration, `arr[:i]` equals the conca
 
 ## 6. Traps This Instance Exposes
 
-- **- **First-value hash map:** Build `{piece[0]: piec:** - **First-value hash map:** Build `{piece[0]: piece}` once, then find each next piece in expected $O(1)$ time. Comparing all piece entries gives $O(n)$ total time and $O(p)$ space, matching the manifest.
+- **First-value hash map:** Build `{piece[0]: piece}` once, then find each next piece in expected $O(1)$ time. Comparing all piece entries gives $O(n)$ total time and $O(p)$ space, matching the manifest.
 - **Sort pieces and binary search first values:** This gives $O(p\log p+n\log p)$ time and mutates or copies the piece order. It is slower than hashing but faster than repeated full scans.
 - **Explicit full-piece validation:** After the inner loop, immediately return false unless `j == len(piece)`. Also check `i < len(arr)` before each target access. This makes failure behavior direct and bounds-safe.
 - **No piece begins with the next target value:** The source returns false through `k == len(pieces)`.
@@ -117,8 +117,8 @@ The intended invariant is: before an outer iteration, `arr[:i]` equals the conca
 - **Equal total length:** A successful full target match necessarily accounts for every available piece entry; this is central to the no-used-set reasoning.
 - **Exact-source complexity:** Calling this variant “Optimal” does not change the fact that it linearly rescans `pieces` at every boundary.
 - **Defensive indexing:** The matching condition should normally include `i < len(arr)` even when global constraints make an overrun difficult or impossible on conforming data.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

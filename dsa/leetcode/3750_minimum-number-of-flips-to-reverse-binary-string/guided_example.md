@@ -61,7 +61,7 @@ The middle position of an odd-length string mirrors itself. It always equals its
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `rev[i]=s[m-1-i]`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ For `n=6`, `s="110"` and the fixed target is `"011"`. The outer pair one and zer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the reversed string explicitly:** Compar:** - **Build the reversed string explicitly:** Comparing `s` with `s[::-1]` is correct and still $O(B)$, but it allocates another length-$B$ string. The exact source indexes mirrored positions directly.
+- **Build the reversed string explicitly:** Comparing `s` with `s[::-1]` is correct and still $O(B)$, but it allocates another length-$B$ string. The exact source indexes mirrored positions directly.
 - **Make `s` any palindrome:** That is a different goal. The required target is the reversal of the original string, even though equality with one's reverse characterizes palindromes only when no changes occur.
 - **Count mismatched pairs without multiplying by two:** Each unequal mirrored pair requires two positional flips, not one.
 - **Compare all `B` positions and also multiply:** That would double-count. The source compares half and doubles once.
@@ -119,8 +119,8 @@ For `n=6`, `s="110"` and the fixed target is `"011"`. The outer pair one and zer
 - **Leading zeros:** The canonical representation has none, and reversal keeps the same fixed length even if its first target character is zero.
 - **Positive-input guarantee:** It avoids the special representation of zero and ensures `bin(n)[2:]` is nonempty.
 - **Independent flips:** No operation couples positions, which is why Hamming distance is exact.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

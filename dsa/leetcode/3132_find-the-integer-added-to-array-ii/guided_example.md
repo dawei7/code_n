@@ -71,9 +71,7 @@ The helper accepts when `cnt <= 2`. The length relation makes this sufficient ev
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed $x$, helper `f(x)` uses two pointers:
-
-- `i` sca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ For that candidate, the greedy scan finds the target as a shifted subsequence be
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every source-target difference:** Testing :** - **Try every source-target difference:** Testing $O(n^2)$ candidates and scanning for each is unnecessary; only the first three sorted source values can become the smallest target.
+- **Try every source-target difference:** Testing $O(n^2)$ candidates and scanning for each is unnecessary; only the first three sorted source values can become the smallest target.
 - **Remove every pair explicitly:** There are $O(n^2)$ removal pairs, and comparing the remaining arrays would make the approach at least quadratic, usually cubic without care.
 - **Frequency maps per candidate:** Frequencies can validate shifts, but ordered two-pointer matching is simpler after sorting and handles duplicates naturally.
 - **Backtracking over removals:** Branching between “remove” and “match” is exponential without memoization. Sorted greedy matching always preserves the best chance for later values.
@@ -122,8 +120,8 @@ For that candidate, the greedy scan finds the target as a shifted subsequence be
 - **Invalid candidate with too many mismatches:** `cnt > 2` means more source values would have to be deleted than allowed, so that shift cannot work.
 - **Guaranteed existence:** `ans` begins at positive infinity, but the problem guarantee ensures at least one candidate is accepted and a finite integer is returned.
 - **Input mutation:** Both arrays are sorted in place. This is acceptable for the judge method but would matter to a caller that expected its lists to remain in original order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

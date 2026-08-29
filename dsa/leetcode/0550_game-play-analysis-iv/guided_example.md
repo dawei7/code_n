@@ -51,7 +51,7 @@ The requested fraction has one denominator unit per distinct player and a numera
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Find each player's first date.** Derived table `a` runs:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The requested fraction has one denominator unit per distinct player and a numera
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner join:** It removes non-returning players:** - **Inner join:** It removes non-returning players and corrupts the denominator.
+- **Inner join:** It removes non-returning players and corrupts the denominator.
 - **Correlated `EXISTS`:** For each player's first date, test whether next-day activity exists. It is logically valid and may optimize similarly.
 - **Conditional distinct counts:** Divide qualifying distinct players by all distinct players explicitly; this is more verbose than averaging one indicator per player.
 - **Use any login instead of `MIN`:** The criterion is specifically relative to the first login.
@@ -97,8 +97,8 @@ The requested fraction has one denominator unit per distinct player and a numera
 - **Primary-key uniqueness:** It prevents multiple next-day join rows from overweighting a player.
 - **Rounding:** `ROUND(..., 2)` applies only after averaging all players.
 - **`GROUP BY 1`:** It is valid MySQL positional syntax, though naming `player_id` explicitly may be clearer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

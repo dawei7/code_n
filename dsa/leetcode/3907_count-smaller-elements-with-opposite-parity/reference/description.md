@@ -50,7 +50,7 @@ Thus, the $answer = [2, 1, 2, 0, 0]$.
 
 - **Output:** [1,1,0]
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 For $i = 0$ and $i = 1$, the element $\text{nums}[2] = 1$ is smaller and has different parity. Thus, the $answer = [1, 1, 0]$.
 
@@ -66,4 +66,4 @@ For $i = 0$ and $i = 1$, the element $\text{nums}[2] = 1$ is smaller and has dif
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
-- $1 \le \text{nums}[i] \le 10^{9}$​​​​​​​
+- $1 \le \text{nums}[i] \le 10^{9}$

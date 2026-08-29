@@ -69,7 +69,7 @@ Because one push occurs on every iteration, the $i$-th callback result becomes t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `transformed` begins as a new empty array.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ The order is important: `arr[index]` is the first argument, and `index` is the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `Array.map`:** Directly expresses the:** - **Built-in `Array.map`:** Directly expresses the operation but is explicitly forbidden.
+- **Built-in `Array.map`:** Directly expresses the operation but is explicitly forbidden.
 - **Preallocate result length:** Assign `transformed[index]` instead of pushing; same $O(n)$ bounds.
 - **In-place transformation:** Saves output allocation but mutates the source and violates the new-array requirement.
 - **Empty array:** Returns a new empty array without invoking `fn`.
@@ -124,8 +124,8 @@ The order is important: `arr[index]` is the first argument, and `index` is the s
 - **Negative source values:** They are passed unchanged to `fn`; the mapping helper imposes no arithmetic assumption.
 - **Repeated output values:** They remain separate positions, preserving output length.
 - **Callback side effects:** They occur exactly once per source element in left-to-right order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

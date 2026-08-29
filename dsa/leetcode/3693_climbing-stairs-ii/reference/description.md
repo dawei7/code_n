@@ -104,6 +104,6 @@ Thus, the minimum total cost is $5 + 6 = 11$
 
 ### 4. Constraints
 
-- $1 \le n = \text{costs.length} \le 10^{5}​​​​​​​$
+- $1 \le n = \text{costs.length} \le 10^{5}$
 
 - $1 \le \text{costs}[i] \le 10^{4}$

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `power` where $\text{power}[i]$ is the power of the $$i^{\text{th}}$$ monster.
+You are given an integer array `power` where $\text{power}[i]$ is the power of the $i^{\text{th}}$ monster.
 
 You start with `0` mana points, and each day you increase your mana points by `gain` where `gain` initially is equal to `1`.
 

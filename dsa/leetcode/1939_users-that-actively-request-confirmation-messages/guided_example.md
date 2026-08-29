@@ -61,7 +61,7 @@ Because the preceding predicate already establishes `c1` as earlier, the differe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `TIMESTAMPDIFF(SECOND, c1.time_stamp, c2.time_stamp)` return... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ There is no `ORDER BY` because the requested result may appear in any order.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window function with `LAG`:** Sort each user's:** - **Window function with `LAG`:** Sort each user's requests and compare each timestamp with the immediately previous timestamp. If any pair lies within 24 hours, then some consecutive pair does too, giving an efficient $O(C\log C)$-style solution after sorting.
+- **Window function with `LAG`:** Sort each user's requests and compare each timestamp with the immediately previous timestamp. If any pair lies within 24 hours, then some consecutive pair does too, giving an efficient $O(C\log C)$-style solution after sorting.
 - **Correlated `EXISTS`:** For each request, search an indexed same-user range ending 24 hours later. This can stop at the first match and avoid emitting all pairs under a suitable index.
 - **Join without time ordering:** It produces reversed duplicates and self-pairs; a self-pair would always have zero difference and falsely qualify every user.
 - **Strictly less than 24 hours:** That would incorrectly exclude pairs exactly 24 hours apart. The exact query correctly uses `<= 24 * 60 * 60`.
@@ -112,8 +112,8 @@ There is no `ORDER BY` because the requested result may appear in any order.
 - **Equal timestamps:** The per-user primary key rules them out. The strict predicate would exclude them in any event.
 - **Signups rows without confirmations:** They cannot have two requests and need not be joined into the query.
 - **Result order:** `DISTINCT` does not promise ordering, which is acceptable.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

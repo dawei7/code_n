@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `heights` of size `n`, where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ block in an exercise routine.
+You are given an integer array `heights` of size `n`, where $\text{heights}[i]$ represents the height of the $i^{\text{th}}$ block in an exercise routine.
 
 The objective is to compute `181` from `{"heights": [1, 7, 9]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -68,7 +68,7 @@ Starting from a smaller height would spend that block without gaining the full g
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The ground is zero and all heights are positive.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ This exchange view is important: “choose the farthest next block” is not bei
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every visiting order:** This require:** - **Enumerate every visiting order:** This requires $n!$ permutations. Sorting plus the convex extreme exchange determines an optimal order directly.
+- **Enumerate every visiting order:** This requires $n!$ permutations. Sorting plus the convex extreme exchange determines an optimal order directly.
 - **Visit heights in sorted order:** Consecutive gaps are small and waste the benefit of squaring. Alternating extremes maximizes large cross-range jumps.
 - **Start at the smallest height:** Because the fixed ground is below all blocks, this sacrifices the largest possible initial square. The high-first extreme orientation is superior.
 - **Alternate extremes but begin low:** This may be optimal for a different free endpoint, but not with the fixed zero start and positive heights.
@@ -126,8 +126,8 @@ This exchange view is important: “choose the farthest next block” is not bei
 - **All heights equal:** The first jump contributes `h²` and every later jump contributes zero.
 - **Input mutation:** `heights.sort()` changes the list order. The problem permits arbitrary rearrangement and does not require preserving the input.
 - **Ground cannot be revisited:** The sequence includes zero only as `pre` before the first jump; no later transition uses it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

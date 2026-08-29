@@ -64,7 +64,7 @@ The source uses sets `left` and `right`. Different subsets can have the same sum
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `getSubSeqSum(i, curr, arr, result)` processes one half.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ for some `l` in `left` and `r` in `right`. Conversely, every such pair correspon
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all full-array subsets:** It takes $:** - **Enumerate all full-array subsets:** It takes $O(2^n)$ time and is infeasible at $n=40$.
+- **Enumerate all full-array subsets:** It takes $O(2^n)$ time and is infeasible at $n=40$.
 - **Dynamic programming by possible sum:** Numeric values reach $10^7$, so the total sum range can be enormous and include negatives.
 - **Sort both halves and use two pointers:** After sorting, one pointer from each side can search close sums in linear time after enumeration; deduplication and traversal details differ.
 - **Store lists instead of sets:** It preserves duplicate subset sums that cannot improve closeness and may increase sorting work.
@@ -125,8 +125,8 @@ for some `l` in `left` and `r` in `right`. Conversely, every such pair correspon
 - **Large magnitudes:** Python integers safely store all half sums and differences.
 - **Recursion depth:** Each generator reaches only about $n/2 \le 20$ levels, so stack depth is modest.
 - **Input preservation:** Slicing creates half lists; the original `nums` is not modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

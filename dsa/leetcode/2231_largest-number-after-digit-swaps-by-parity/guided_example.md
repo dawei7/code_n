@@ -57,7 +57,7 @@ Applying this argument from left to right proves the greedy placement.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Two positive integers with the same number of digits are com... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For an original digit `x`, `x & 1` is zero when `x` is even and one when it is o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort odd and even lists descending:** Then con:** - **Sort odd and even lists descending:** Then consume the next digit from the appropriate list at each position. This is simpler conceptually but costs `O(d \log d)` sorting time; with at most ten digits the practical difference is tiny.
+- **Sort odd and even lists descending:** Then consume the next digit from the appropriate list at each position. This is simpler conceptually but costs `O(d \log d)` sorting time; with at most ten digits the practical difference is tiny.
 - **Try all same-parity swaps:** Exploring reachable permutations is factorial in the number of digits and repeats equivalent arrangements when digits duplicate.
 - **Globally sort every digit:** This may place an odd digit into an originally even position or vice versa, violating the swap invariant.
 - **One digit:** Its parity pool contains only itself, so the number is unchanged.
@@ -112,8 +112,8 @@ For an original digit `x`, `x & 1` is zero when `x` is even and one when it is o
 - **Duplicate maximum digit:** The pointer remains at that value until its count reaches zero.
 - **Pointer exhaustion:** It cannot fall below zero or one while a position of that parity remains, because the remaining counts and remaining parity positions are equal.
 - **Input preservation:** `num` is immutable; the method builds a new numeric result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

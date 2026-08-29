@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\text{answer}[c][r] = \text{matrix}[r][c].
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ This exchange of the two indices also exchanges the dimensions. An $m \times n$ 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit nested loops:** Allocate an $n \times:** - **Explicit nested loops:** Allocate an $n \times m$ result and assign `answer[c][r] = matrix[r][c]` for every pair of indices. This has the same optimal complexity and may be clearer in languages without an operation like `zip`, but it is more verbose than the exact solution.
+- **Explicit nested loops:** Allocate an $n \times m$ result and assign `answer[c][r] = matrix[r][c]` for every pair of indices. This has the same optimal complexity and may be clearer in languages without an operation like `zip`, but it is more verbose than the exact solution.
 - **Nested list comprehension:** A construction such as one output row per column also has $O(mn)$ time and space. It can return actual lists instead of tuples, although it must still express both index ranges correctly.
 - **In-place swapping:** Swapping `matrix[r][c]` with `matrix[c][r]` is only straightforward for a square matrix. Rectangular matrices change dimensions, so a general in-place index swap does not fit this contract.
 - **Single row:** An input with shape $1 \times n$ becomes $n \times 1$. Each produced tuple contains one value, so `zip` handles it naturally.
@@ -100,8 +98,8 @@ This exchange of the two indices also exchanges the dimensions. An $m \times n$ 
 - **Negative values, zero, and duplicates:** Transposition depends only on positions. The magnitude, sign, and uniqueness of cell values do not affect the operation.
 - **Ragged rows:** Python's `zip` stops at the shortest iterable, which would silently discard trailing cells in uneven rows. The problem supplies a proper rectangular matrix, so all rows have the same length and this behavior cannot occur for a valid input.
 - **Tuple output rows:** `zip` creates tuples rather than lists. The judge accepts these ordered rows as the requested matrix representation; code requiring mutable row lists could convert each tuple separately without changing the underlying algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

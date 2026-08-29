@@ -59,7 +59,7 @@ return a + b;
 inputs = [5,10]
 t = 150
 - **Output:** `{"resolved":15,"time":120}`
-- **Explanation:** ​​​​The function resolved 5 + 10 = 15 at t=120ms. The time limit is never reached.
+- **Explanation:** The function resolved 5 + 10 = 15 at t=120ms. The time limit is never reached.
 
 #### Example 4
 

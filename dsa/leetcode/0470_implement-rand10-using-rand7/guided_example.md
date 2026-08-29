@@ -67,7 +67,7 @@ Conditioning on acceptance preserves equality: each accepted cell originally had
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ten output values need equal-sized groups.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The mapping is rotated compared with the common formula `(x - 1) % 10 + 1`, but 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Modulo a single `rand7` result:** Seven source:** - **Modulo a single `rand7` result:** Seven source outcomes cannot produce ten values at all.
+- **Modulo a single `rand7` result:** Seven source outcomes cannot produce ten values at all.
 - **Use two draws and take modulo 10 without rejection:** Forty-nine is not divisible by ten, so nine outputs would create uneven remainder frequencies and bias the result.
 - **Reuse rejected entropy:** Values `41..49` form nine uniform states that can be combined with another `rand7()` call, then further leftovers can be reused. This lowers the expected call count to about 2.193, but the exact source uses simpler two-draw rejection.
 - **Built-in random API:** Forbidden by the contract; all entropy must come from `rand7()`.
@@ -117,8 +117,8 @@ The mapping is rotated compared with the common formula `(x - 1) % 10 + 1`, but 
 - **Endpoint `x = 40`:** Accepted because it completes the fourth cell for one output class.
 - **Endpoint `x = 41`:** Rejected because accepting any of `41..49` would make equal ten-way grouping impossible.
 - **Independence assumption:** Correlated `rand7()` results would invalidate the 49-cell uniformity proof; the provided API guarantees independent uniform draws.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

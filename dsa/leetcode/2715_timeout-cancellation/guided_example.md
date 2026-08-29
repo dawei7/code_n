@@ -63,9 +63,7 @@ Spreading passes the array elements as separate positional arguments in their or
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `setTimeout` needs a zero-argument callback to run later.
-
-T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ The caller does not need to know or store the environment-specific handle; invok
 
 ## 6. Traps This Instance Exposes
 
-- **- **Boolean cancellation flag:** The timer can che:** - **Boolean cancellation flag:** The timer can check a flag before calling `fn`, but the callback still wakes; `clearTimeout` removes it directly.
+- **Boolean cancellation flag:** The timer can check a flag before calling `fn`, but the callback still wakes; `clearTimeout` removes it directly.
 - **Promise wrapper:** Does not inherently cancel the underlying timer.
 - **`setInterval`:** Incorrect because it can call `fn` repeatedly.
 - **Cancel before `t`:** Prevents the target invocation.
@@ -116,8 +114,8 @@ The caller does not need to know or store the environment-specific handle; invok
 - **Event-loop delay:** Execution may occur later than nominal `t`.
 - **Equal scheduling boundary:** Task ordering decides the race.
 - **Exactly one timer:** The implementation never reschedules or repeats.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

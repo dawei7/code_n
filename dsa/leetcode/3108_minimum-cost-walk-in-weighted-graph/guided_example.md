@@ -51,7 +51,7 @@ Each vertex begins as its own parent with size one. `find(x)` follows parent lin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each vertex begins as its own parent with size one.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first edge loop ignores weights and calls `union(u,v)`. After it finishes, e
 
 ## 6. Traps This Instance Exposes
 
-- **- **DFS or BFS components:** Traverse adjacency li:** - **DFS or BFS components:** Traverse adjacency lists and AND all edge weights in each component. This is $O(n+m+q)$ time but stores $O(n+m)$ graph structure.
+- **DFS or BFS components:** Traverse adjacency lists and AND all edge weights in each component. This is $O(n+m+q)$ time but stores $O(n+m)$ graph structure.
 - **Merge AND values during union:** It is possible with careful handling of edges inside already merged components, but a clean second pass avoids mistakes.
 - **Disconnected endpoints:** Different roots produce -1 immediately.
 - **Component with one low-weight edge:** That edge can clear many bits for every connected query through a detour.
@@ -101,8 +101,8 @@ The first edge loop ignores weights and calls `union(u,v)`. After it finishes, e
 - **Root changes during unions:** Costs are accumulated only after all unions, so every edge uses the final representative.
 - **No adjacency list:** DSU avoids storing both directions of every edge.
 - **Output reuse:** Every pair in one component shares the same precomputed answer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

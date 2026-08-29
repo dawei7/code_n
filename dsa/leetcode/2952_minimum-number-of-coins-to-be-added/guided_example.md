@@ -65,7 +65,7 @@ Each such patch increments `ans`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If there is no remaining coin at most $s$, current coins can... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Applying the argument at every gap proves the number of added coins is minimal.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Subset-sum DP:** Track every reachable total t:** - **Subset-sum DP:** Track every reachable total through `target` in $O(n\cdot target)$ time and space; continuous coverage makes this unnecessary.
+- **Subset-sum DP:** Track every reachable total through `target` in $O(n\cdot target)$ time and space; continuous coverage makes this unnecessary.
 - **Add coin one at every gap:** It may fill the immediate value but expands coverage far less than adding `s`.
 - **Use an unprocessed coin greater than `s`:** It cannot help form exactly `s` because all values are positive.
 - **Coin exactly `s`:** Consume it; it doubles the coverage endpoint without adding a new coin.
@@ -120,8 +120,8 @@ Applying the argument at every gap proves the number of added coins is minimal.
 - **Patch lower bound repeats:** Each time a gap appears, at least one additional coin is independently necessary before any larger original coin becomes useful. Counting these forced events proves minimal quantity, not merely maximal coverage.
 - **Coins consumed once:** Pointer `i` enforces the subsequence's 0/1 use of each occurrence; a coin is never reused to extend coverage twice.
 - **Doubling termination:** Even with no useful input coins, repeated patches $1,2,4,\ldots$ exceed `target` after $O(\log target)$ iterations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

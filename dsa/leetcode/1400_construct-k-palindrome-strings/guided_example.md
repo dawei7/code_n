@@ -58,7 +58,7 @@ When $n=k$, every character can be a one-character palindrome. The code does not
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the string has $n$ characters, $k$ nonempty strings need ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ computes. For an integer frequency `v`, its lowest binary bit is one exactly whe
 
 ## 6. Traps This Instance Exposes
 
-- **- **Parity bitmask:** Toggle one of 26 bits for ea:** - **Parity bitmask:** Toggle one of 26 bits for each character, then count set bits. It stores only odd/even state and also uses $O(1)$ space.
+- **Parity bitmask:** Toggle one of 26 bits for each character, then count set bits. It stores only odd/even state and also uses $O(1)$ space.
 - **Fixed frequency array:** A 26-element list avoids hash-table overhead while retaining full counts.
 - **Construct the strings explicitly:** It can demonstrate sufficiency but is unnecessary because the task asks only for a Boolean.
 - **`k > len(s)`:** Impossible because all output palindromes must be nonempty.
@@ -112,8 +112,8 @@ computes. For an integer frequency `v`, its lowest binary bit is one exactly whe
 - **Many copies of one character:** Any requested $k\le n$ satisfying parity can be made from singleton and repeated-character palindromes.
 - **Original order:** It has no effect because characters may be rearranged freely.
 - **Required import:** `Counter` must be available, normally from `collections`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

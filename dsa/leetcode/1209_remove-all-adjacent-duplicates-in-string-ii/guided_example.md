@@ -59,7 +59,7 @@ For `"deeedbbcccbdaa"` with `k = 3`, the `eee` and `ccc` runs reduce to zero. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the stack is nonempty and its final character equals `s[i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Because the final reduced string is unique, the stack’s deterministic left-to-
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character-by-character run stack:** Push or in:** - **Character-by-character run stack:** Push or increment one character at a time and pop at count `k`. It has the same $O(n)$ bounds and may be simpler to recognize.
+- **Character-by-character run stack:** Push or increment one character at a time and pop at count `k`. It has the same $O(n)$ bounds and may be simpler to recognize.
 - **Repeated immutable-string deletion:** Rescanning and slicing after every removal can take quadratic time.
 - **No removable group:** Every residual run remains and reconstruction returns the original string.
 - **Whole run length is a multiple of `k`:** Its remainder is zero and it contributes nothing.
@@ -108,8 +108,8 @@ Because the final reduced string is unique, the stack’s deterministic left-to-
 - **`k = 2`:** Counts are only one after reduction, and matching adjacent runs cancel in pairs.
 - **Unique final answer:** The invariant computes the canonical reduced prefix, so no removal-order branching is needed.
 - **Output may be empty:** An empty stack reconstructs to `""` through `join`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

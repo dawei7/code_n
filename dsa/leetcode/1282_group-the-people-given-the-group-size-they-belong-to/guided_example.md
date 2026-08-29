@@ -61,7 +61,7 @@ The variable name `i` serves a different role in the comprehension than it did i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | In the return comprehension, `i` is the dictionary key repre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This divisibility guarantee means the final slice in every bucket contains exact
 
 ## 6. Traps This Instance Exposes
 
-- **- **Emit full buckets immediately:** Append each i:** - **Emit full buckets immediately:** Append each identifier to a temporary list for its size and move that list to the answer when full. It has the same asymptotic bounds and may retain fewer waiting identifiers.
+- **Emit full buckets immediately:** Append each identifier to a temporary list for its size and move that list to the answer when full. It has the same asymptotic bounds and may retain fewer waiting identifiers.
 - **Sort people by required size:** Sorting then chunking works but costs $O(n\log n)$ time when hashing already gives linear grouping.
 - **Incomplete final chunk:** It cannot occur under the valid-solution guarantee; without that guarantee, the exact source would return an undersized invalid group.
 - **Group size one:** Every person in that bucket becomes a singleton slice.
@@ -108,8 +108,8 @@ This divisibility guarantee means the final slice in every bucket contains exact
 - **Output order:** Dictionary and list order make one deterministic answer, but callers must not depend on a particular order because the contract permits any.
 - **Unique identifiers:** Array indices provide the required IDs from zero through $n-1$ without a separate field.
 - **Positive sizes:** The lower bound of one prevents a zero step in `range` and makes every group meaningful.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

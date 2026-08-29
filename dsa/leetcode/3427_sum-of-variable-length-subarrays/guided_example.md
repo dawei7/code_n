@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\textit{start}_i
-=
-\max(0,i-\texttt{nums}[i]).
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ Computing that subarray by looping over its elements would repeat work because n
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested summation:** Summing `nums[start:i+1]` :** - **Nested summation:** Summing `nums[start:i+1]` separately for every index can take $O(n^2)$ time when many starts clamp to zero.
+- **Nested summation:** Summing `nums[start:i+1]` separately for every index can take $O(n^2)$ time when many starts clamp to zero.
 - **Slice plus `sum`:** This also allocates temporary slices and repeats additions; prefix differences avoid both.
 - **Running total only:** A single total of the entire prefix cannot answer arbitrary earlier start points because each `nums[i]` chooses a different start. The complete prefix array provides random access.
 - **Start clamped to zero:** When `nums[i] > i`, the range simply includes the entire prefix through $i$.
@@ -104,8 +100,8 @@ Computing that subarray by looping over its elements would repeat work because n
 - **Length interpretation:** An unclamped range contains `nums[i] + 1` elements because it includes the current index and that many positions before it.
 - **Large total:** An element may contribute to many subarray sums. Python integers grow as necessary and avoid fixed-width overflow.
 - **Input preservation:** The source allocates `s` but never sorts, slices, or changes `nums` itself.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ The snapshot also makes the generation boundary explicit. `available` is created
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A literal simulation could reconsider every pair in `known` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ For each retained pair, the code computes the three floored averages with intege
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute every pair after every generation:**:** - **Recompute every pair after every generation:** This mirrors the definition directly and is a useful conceptual oracle, but it repeatedly examines old-old pairs. With as many as $U$ generations and $O(U^2)$ pairs per generation, a loose bound is $O(U^3)$ instead of the source's $O(U^2)$ total pair work.
+- **Recompute every pair after every generation:** This mirrors the definition directly and is a useful conceptual oracle, but it repeatedly examines old-old pairs. With as many as $U$ generations and $O(U^2)$ pairs per generation, a loose bound is $O(U^3)$ instead of the source's $O(U^2)$ total pair work.
 - **Use newly found points immediately:** Updating `known` while iterating and allowing those points to participate in the same pass changes the meaning of a generation. It can report a target too early, so the separate `produced` set is not merely an implementation convenience.
 - **Track derivation trees for every point:** Remembering every pair that can produce every midpoint is unnecessary when the requested output is only the earliest generation. The frontier level already records all timing information needed.
 - **Target initially present:** The answer is `0` even if the target could also be generated later. The source handles this before initializing generation one.
@@ -112,8 +112,8 @@ For each retained pair, the code computes the three floored averages with intege
 - **Odd coordinate sums:** Python's `// 2` performs the required floor. Because all allowed coordinates are nonnegative, there is no negative-number rounding subtlety.
 - **No point is produced:** An empty `produced` proves that the finite closure is complete. Returning `-1` is conclusive rather than an early guess.
 - **Target appears alongside other new points:** Membership is checked after the full generation has been formed. The algorithm returns that generation without needing to merge the other new points, because only the target's earliest generation is requested.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

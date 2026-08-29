@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an array of people, `people`, which are the attributes of some people in a queue (not necessarily in order). Each $\text{people}[i] = [h_{i}, k_{i}]$ represents the $$i^{\text{th}}$$ person of height $h_{i}$ with **exactly** $k_{i}$ other people in front who have a height greater than or equal to $h_{i}$.
+You are given an array of people, `people`, which are the attributes of some people in a queue (not necessarily in order). Each $\text{people}[i] = [h_{i}, k_{i}]$ represents the $i^{\text{th}}$ person of height $h_{i}$ with **exactly** $k_{i}$ other people in front who have a height greater than or equal to $h_{i}$.
 
 The objective is to compute `[[5, 0], [7, 0], [5, 2], [6, 1], [4, 4], [7, 1]]` from `{"people": [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -63,11 +63,7 @@ For example, among height-seven people `[7,0]` and `[7,1]`, `[7,0]` must be plac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method sorts with key
-
-
-
-Negating height puts larger hei... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,9 +106,9 @@ for each sorted person. The person pair itself is inserted; no new pair needs to
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fenwick tree over empty positions:** Sort shor:** - **Fenwick tree over empty positions:** Sort shorter people first with an appropriate tie order and use a Fenwick tree to locate the required empty slot in $O(\log n)$. This realizes $O(n\log n)$ time but is much harder to explain and implement.
-- **- **Balanced order-statistics sequence:** Supports:** - **Balanced order-statistics sequence:** Supports insertion by rank in $O(\log n)$, preserving the same tall-first greedy idea. Python’s built-in list does not provide that bound.
-- **- **Sort shortest first without empty-slot logic:*:** - **Sort shortest first without empty-slot logic:** Direct insertion at `k` would be invalid because existing shorter people would not all count for the new person. Tall-first ordering is what makes list index equal the qualifying count.
+- **Fenwick tree over empty positions:** Sort shorter people first with an appropriate tie order and use a Fenwick tree to locate the required empty slot in $O(\log n)$. This realizes $O(n\log n)$ time but is much harder to explain and implement.
+- **Balanced order-statistics sequence:** Supports insertion by rank in $O(\log n)$, preserving the same tall-first greedy idea. Python’s built-in list does not provide that bound.
+- **Sort shortest first without empty-slot logic:** Direct insertion at `k` would be invalid because existing shorter people would not all count for the new person. Tall-first ordering is what makes list index equal the qualifying count.
 
 ---
 

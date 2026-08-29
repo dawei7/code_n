@@ -57,7 +57,7 @@ Its keys are array values in sorted order, and each key maps to the smallest fut
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A jump must go to a larger index.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Odd jumps need the smallest future value greater than or equal to `arr[i]`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monotonic-stack preprocessing:** Sort indices :** - **Monotonic-stack preprocessing:** Sort indices by values in two orders to compute next destinations in `O(N log N)` without a tree map.
+- **Monotonic-stack preprocessing:** Sort indices by values in two orders to compute next destinations in `O(N log N)` without a tree map.
 - **Scan all future indices:** Direct but `O(N^2)`.
 - **Iterative DP right to left:** Once destinations are known, compute odd/even reachability without recursion.
 - **Final index:** Always good with zero jumps.
@@ -104,8 +104,8 @@ Odd jumps need the smallest future value greater than or equal to `arr[i]`.
 - **Repeated values:** Map overwrite during reverse scan enforces tie-breaking.
 - **Strictly increasing indices:** Prevent cycles.
 - **Deep path:** Recursive implementation may approach Python's recursion limit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

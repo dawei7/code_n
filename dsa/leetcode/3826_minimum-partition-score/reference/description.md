@@ -49,7 +49,7 @@ Return the minimum integer score over all partitions of `nums` into exactly $K$ 
 
 - Since we must partition the array into $k = 1$ subarray, all elements belong to the same subarray: `[1, 2, 3, 4]`.
 
-- This subarray has $sumArr = 1 + 2 + 3 + 4 = 10$ and $value = 10 × 11 / 2 = 55$.​​​​​​​
+- This subarray has $sumArr = 1 + 2 + 3 + 4 = 10$ and $value = 10 × 11 / 2 = 55$.
 
 - The score of this partition is 55, which is the minimum possible score.
 

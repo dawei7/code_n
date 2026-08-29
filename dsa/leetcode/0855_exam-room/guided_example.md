@@ -79,7 +79,7 @@ The function returns `(r-l) >> 1` for this case.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Nested function `dist(x)` calculates the maximum closest-per... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,9 +120,9 @@ Negating distance means a gap with larger achievable distance sorts earlier. If 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store occupied seats and scan every gap on `se:** - **Store occupied seats and scan every gap on `seat`:** Leaving is easy, but each seating call can take `O(q)` time.
-- **- **Allocate an array of `n` seats:** Impossible w:** - **Allocate an array of `n` seats:** Impossible when `n` is up to `10^9` and unnecessary for only `10^4` operations.
-- **- **Priority queue with lazy deletion:** It can ch:** - **Priority queue with lazy deletion:** It can choose maximum gaps but needs stale-entry handling and neighbor maps. `SortedList` supports direct deletion.
+- **Store occupied seats and scan every gap on `seat`:** Leaving is easy, but each seating call can take `O(q)` time.
+- **Allocate an array of `n` seats:** Impossible when `n` is up to `10^9` and unnecessary for only `10^4` operations.
+- **Priority queue with lazy deletion:** It can choose maximum gaps but needs stale-entry handling and neighbor maps. `SortedList` supports direct deletion.
 
 ---
 

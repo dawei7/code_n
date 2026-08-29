@@ -57,7 +57,7 @@ For each start `i`, the slice `s[i:i+len(sub)]` extracts the candidate text.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A matching result must occupy a contiguous substring of `s` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The orientation `a in d[b]` matches old-to-new semantics. Reversing the lookup w
 
 ## 6. Traps This Instance Exposes
 
-- **- **Avoid window slicing:** Compare `s[i+j]` direc:** - **Avoid window slicing:** Compare `s[i+j]` directly to reduce temporary space while keeping the same time bound.
+- **Avoid window slicing:** Compare `s[i+j]` directly to reduce temporary space while keeping the same time bound.
 - **Boolean character matrix:** The fixed alphanumeric alphabet permits constant-size direct lookup instead of sets.
 - **Transitive closure:** It would incorrectly allow more than one replacement per character.
 - **Regular expressions:** Per-character directed mappings are possible to encode but less transparent.
@@ -117,8 +117,8 @@ The orientation `a in d[b]` matches old-to-new semantics. Reversing the lookup w
 - **Short-circuit success:** The first passing alignment proves existence, so later starts need not be tested.
 - **Mismatching lengths:** Every candidate slice has exactly `len(sub)` characters, making `zip` cover all required positions.
 - **Default dictionary access:** Looking up an unmapped old character creates an empty set in this `defaultdict`, which makes the membership test false.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

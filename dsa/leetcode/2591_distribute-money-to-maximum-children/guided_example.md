@@ -67,7 +67,7 @@ When money equals exactly `8 * children`, this branch does not apply; giving eve
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `money > 8 * children`, it is impossible for all children... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ Reducing the count to `children - 2` leaves two non-eight children with a combin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every count downward:** Testing candidate :** - **Try every count downward:** Testing candidate numbers of eight-dollar children is simple but unnecessary once the two exceptional formulas are derived.
+- **Try every count downward:** Testing candidate numbers of eight-dollar children is simple but unnecessary once the two exceptional formulas are derived.
 - **Dynamic programming over children and money:** The small constraints permit it, but it obscures the constant-time arithmetic structure.
 - **Insufficient money:** Fewer dollars than children makes the mandatory minimum impossible, yielding $-1$.
 - **Exact all-eight total:** When `money == 8 * children`, every child can count.
@@ -121,8 +121,8 @@ Reducing the count to `children - 2` leaves two non-eight children with a combin
 - **Three-dollar remainder with two spare children:** Split the extra to make amounts two and three rather than four and one.
 - **All money distributed:** Constructions explicitly assign every leftover dollar; unused money is never allowed.
 - **No upper amount per child:** The excess case can safely place arbitrarily many remaining dollars on one non-eight child.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

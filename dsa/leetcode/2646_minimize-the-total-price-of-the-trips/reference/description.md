@@ -2,11 +2,11 @@
 
 There exists an undirected and unrooted tree with `n` nodes indexed from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
-Each node has an associated price. You are given an integer array `price`, where $\text{price}[i]$ is the price of the $$i^{\text{th}}$$ node.
+Each node has an associated price. You are given an integer array `price`, where $\text{price}[i]$ is the price of the $i^{\text{th}}$ node.
 
 The **price sum** of a given path is the sum of the prices of all nodes lying on that path.
 
-Additionally, you are given a 2D integer array `trips`, where $\text{trips}[i] = [\text{start}_{i}, \text{end}_{i}]$ indicates that you start the $$i^{\text{th}}$$ trip from the node $\text{start}_{i}$ and travel to the node $\text{end}_{i}$ by any path you like.
+Additionally, you are given a 2D integer array `trips`, where $\text{trips}[i] = [\text{start}_{i}, \text{end}_{i}]$ indicates that you start the $i^{\text{th}}$ trip from the node $\text{start}_{i}$ and travel to the node $\text{end}_{i}$ by any path you like.
 
 Before performing your first trip, you can choose some **non-adjacent** nodes and halve the prices.
 

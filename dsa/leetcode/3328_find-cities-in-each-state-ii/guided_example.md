@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Build the alphabetized city list inside the aggregate.** T... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correct MySQL aggregate:** Replace `STRING_AGG:** - **Correct MySQL aggregate:** Replace `STRING_AGG(...)` with `GROUP_CONCAT(city ORDER BY city SEPARATOR ', ')` so the query parses in MySQL.
+- **Correct MySQL aggregate:** Replace `STRING_AGG(...)` with `GROUP_CONCAT(city ORDER BY city SEPARATOR ', ')` so the query parses in MySQL.
 - **CTE before filtering:** Compute city count, matching count, and concatenation in a grouped CTE, then filter aliases in an outer `WHERE`. This is more portable and explicit.
 - **`SUM(CASE ... THEN 1 ELSE 0 END)`:** It computes the same matching count and makes the zero contribution explicit.
 - **Exactly three cities:** The state qualifies because the requirement and predicate both use “at least.”
@@ -99,8 +99,8 @@ We maintain the core conceptual parameters and state variables:
 - **Long aggregate text:** MySQL's `GROUP_CONCAT` can be truncated by `group_concat_max_len` in real deployments, an engine setting outside the challenge's logical model.
 - **Positional references:** `GROUP BY 1` and `ORDER BY 3,1` are concise but fragile if select-column order changes.
 - **Dialect defect:** As written, the exact source cannot execute in MySQL because `STRING_AGG` is unsupported.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

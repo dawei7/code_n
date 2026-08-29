@@ -67,7 +67,7 @@ Materializing the group is important to understanding the exact source: `g` does
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `groupby(s)` groups consecutive equal characters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ For `"aaabaaa"`, the run lengths are 3, 1, and 3. The length-three counter reach
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual two-pointer scan:** Advancing an end po:** - **Manual two-pointer scan:** Advancing an end pointer to each character change obtains the same lengths without materializing group lists.
+- **Manual two-pointer scan:** Advancing an end pointer to each character change obtains the same lengths without materializing group lists.
 - **Count total character frequencies:** Widely separated occurrences do not form one run, so global letter counts answer a different question.
 - **Count by character and length:** This wrongly prevents different letters with equal run length from being selected together.
 - **Split a long run into smaller runs:** Runs must be maximal and cannot be divided to increase a length frequency.
@@ -119,8 +119,8 @@ For `"aaabaaa"`, the run lengths are 3, 1, and 3. The length-three counter reach
 - **Nonempty guarantee:** It ensures `max` never receives an empty sequence.
 - **Iterator lifetime:** Each `g` must be consumed before `groupby` advances, which `list(g)` does.
 - **Input preservation:** Strings are immutable; the scan creates counts but does not alter `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

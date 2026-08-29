@@ -81,7 +81,7 @@ Every non-root state at level `i` represents a subset whose largest selected ind
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The losses are sorted in non-decreasing order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -122,7 +122,7 @@ Because the array is sorted and nonnegative, adding `nums[i]` cannot decrease th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subsequences:** It generates $2^:** - **Enumerate all subsequences:** It generates $2^n$ sums and is impossible for $n=10^5$.
+- **Enumerate all subsequences:** It generates $2^n$ sums and is impossible for $n=10^5$.
 - **Keep only the smallest `k` losses by iterative merging:** Other bounded-list techniques exist but require careful duplicate handling; the heap tree generates ranks lazily.
 - **All positive values:** `mx` is their total, and each loss represents omitted positives.
 - **All negative values:** `mx = 0` from the empty subsequence, and losses represent included magnitudes.
@@ -131,8 +131,8 @@ Because the array is sorted and nonnegative, adding `nums[i]` cannot decrease th
 - **Duplicate magnitudes:** Separate indices create separate heap states, preserving “not necessarily distinct” ranking.
 - **Input mutation:** Negatives are replaced by magnitudes and the list is sorted; copy first if caller-visible preservation is required.
 - **Large sums:** Python integers handle totals beyond fixed 32-bit range.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

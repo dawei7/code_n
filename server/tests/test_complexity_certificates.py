@@ -90,6 +90,8 @@ for mod in (math, collections, itertools, heapq, bisect, functools):
 
 def _optimal_solution_path(package: Path, ext: str = "py") -> str:
     candidates = [
+        package / f"solution.{ext}",
+        package / "solutions" / f"solution.{ext}",
         package / "variants" / "optimal" / f"solution.{ext}",
         package / "variants" / "optimal" / "solutions" / f"solution.{ext}",
         package / "variants" / "optimal" / "solutions" / f"leetcode.{ext}",
@@ -98,7 +100,7 @@ def _optimal_solution_path(package: Path, ext: str = "py") -> str:
     for c in candidates:
         if c.is_file():
             return str(c)
-    return str(package / "variants" / "optimal" / f"solution.{ext}")
+    return str(package / f"solution.{ext}")
 
 def _run_native_module(path: str, init_globals: dict | None = None) -> dict:
     g = dict(LEETCODE_GLOBALS)

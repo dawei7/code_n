@@ -51,7 +51,7 @@ For each target character `c`, the source takes `s = ans[-1] if ans else ""`. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each target character `c`, the source takes `s = ans[-1]... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The first produced state in every outer iteration represents pressing key 1: the
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mutate a character buffer:** It can update the:** - **Mutate a character buffer:** It can update the last character in constant internal time, but every required output state must still be copied into a string, so output size remains quadratic.
+- **Mutate a character buffer:** It can update the last character in constant internal time, but every required output state must still be copied into a string, so output size remains quadratic.
 - **Search arbitrary key sequences:** Breadth-first search is unnecessary because each position's shortest path from `a` is forced.
 - **Target character `a`:** Only key 1 is needed for that position, so the inner loop emits one state and stops immediately.
 - **Target character `z`:** It emits all 26 last-character states from `a` through `z`; wrapping would be extra work.
@@ -98,8 +98,8 @@ The first produced state in every outer iteration represents pressing key 1: the
 - **Import requirement:** The snippet needs `ascii_lowercase` available from the surrounding harness.
 - **Output dominance:** Even with only $O(n)$ presses, materializing all length-growing states requires $\Theta(n^2)$ total characters.
 - **No input mutation:** The target is read only, and every screen state is newly allocated.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `groups`, where $\text{groups}[i]$ represents the size of the $$i^{\text{th}}$$ group. You are also given an integer array `elements`.
+You are given an integer array `groups`, where $\text{groups}[i]$ represents the size of the $i^{\text{th}}$ group. You are also given an integer array `elements`.
 
 Your task is to assign **one** element to each group based on the following rules:
 

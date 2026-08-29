@@ -51,7 +51,7 @@ The exact implementation realizes this greedy rule by sorting `costs` in ascendi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact implementation realizes this greedy rule by sortin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact implementation realizes this greedy rule by sorting `costs` in ascendi
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting sort:** Build a frequency array throu:** - **Counting sort:** Build a frequency array through maximum cost `M` and process price buckets from low to high. This meets the statement’s explicit requirement and runs in `O(n + M)` time with `O(M)` space.
+- **Counting sort:** Build a frequency array through maximum cost `M` and process price buckets from low to high. This meets the statement’s explicit requirement and runs in `O(n + M)` time with `O(M)` space.
 - **Min-heap:** Heapifying all costs and repeatedly removing the cheapest produces the same greedy order in `O(n + k log n)` time for `k` purchases, but full sorting is simpler.
 - **Dynamic programming:** Knapsack-style state is unnecessary because every bar contributes identical objective value; it consumes far more time and memory.
 - **No affordable bar:** The first sorted price exceeds the budget, so the method returns zero immediately.
@@ -98,8 +98,8 @@ The exact implementation realizes this greedy rule by sorting `costs` in ascendi
 - **Input mutation:** `costs.sort()` permanently reorders the caller’s list. Use `sorted(costs)` if preserving the original order is required.
 - **Counting-sort mandate:** Although the greedy choice is optimal, the exact source violates the local “must solve by counting sort” instruction and should not be described as a counting-sort implementation.
 - **Complexity claim:** The manifest’s `O(n + M)` bound applies to the absent frequency-array variant, not to this exact call to `sort`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

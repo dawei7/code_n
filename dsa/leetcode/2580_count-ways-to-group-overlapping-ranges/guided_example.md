@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `ranges` where $\text{ranges}[i] = [\text{start}_{i}, \text{end}_{i}]$ denotes that all integers between $\text{start}_{i}$ and $\text{end}_{i}$ (both **inclusive**) are contained in the $$i^{\text{th}}$$ range.
+You are given a 2D integer array `ranges` where $\text{ranges}[i] = [\text{start}_{i}, \text{end}_{i}]$ denotes that all integers between $\text{start}_{i}$ and $\text{end}_{i}$ (both **inclusive**) are contained in the $i^{\text{th}}$ range.
 
 The objective is to compute `2` from `{"ranges": [[6, 10], [5, 15]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -69,7 +69,7 @@ After either case, `mx = max(mx, end)` extends or preserves the farthest reach.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code sorts `ranges` lexicographically, which primarily o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ If `start > mx`, every previous range ends at or before `mx`, strictly before th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the overlap graph:** Testing every pair :** - **Build the overlap graph:** Testing every pair can require $O(n^2)$ edges and work; sorted interval merging finds components directly.
+- **Build the overlap graph:** Testing every pair can require $O(n^2)$ edges and work; sorted interval merging finds components directly.
 - **Union-find after pair checks:** Disjoint-set union captures transitivity but still needs an efficient way to discover overlaps, which sorting already solves more simply.
 - **Touching endpoints:** `[1,3]` and `[3,7]` overlap at $3$ and must stay in one component.
 - **Nested ranges:** A contained range never decreases `mx` and remains in the enclosing component.
@@ -120,8 +120,8 @@ If `start > mx`, every previous range ends at or before `mx`, strictly before th
 - **Duplicate ranges:** They overlap completely and remain in the same component.
 - **Empty groups:** Explicitly allowed, so the two all-in-one-side assignments count.
 - **Input mutation:** `ranges.sort()` changes range order; sort a copy if caller order matters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

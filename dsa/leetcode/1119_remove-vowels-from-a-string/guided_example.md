@@ -57,7 +57,7 @@ The empty string before `join` is the separator, so retained characters are plac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python strings are immutable.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ This property is important because the operation removes characters; it does not
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit loop with list:** Append consonants t:** - **Explicit loop with list:** Append consonants to a list and join at the end. It has the same asymptotic bounds and may be easier for beginners to debug.
+- **Explicit loop with list:** Append consonants to a list and join at the end. It has the same asymptotic bounds and may be easier for beginners to debug.
 - **Set membership:** Use `set("aeiou")` for expected constant lookup. With only five vowels, the string test is already constant and avoids constructing a set per call.
 - **Repeated `replace` calls:** Replace each vowel with empty text. Five full scans are still $O(n)$ because five is constant, but they create several intermediate strings.
 - **Regular expression:** A vowel character class can remove matches, but regex machinery is unnecessary for five fixed characters.
@@ -108,8 +108,8 @@ This property is important because the operation removes characters; it does not
 - **Lowercase guarantee:** No uppercase vowel conversion is needed.
 - **Input immutability:** The original string cannot be modified; a new result is returned.
 - **Stable order:** Filtering never sorts or rearranges retained characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

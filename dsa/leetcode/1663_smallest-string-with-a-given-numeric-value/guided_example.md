@@ -65,7 +65,7 @@ This yields a simple shape: zero or more leading `a` characters, possibly one pa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Lexicographic order is determined by the first position at w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ At the maximum input `k = 26n`, the initial extra value is `25n`. The loop fills
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedy construction from the left:** At each p:** - **Greedy construction from the left:** At each position, choose the smallest character that leaves at most `26` value for every remaining position and at least one for each. This is also $O(n)$ and correct, but its feasibility formula is slightly less intuitive than filling extra value from the right.
+- **Greedy construction from the left:** At each position, choose the smallest character that leaves at most `26` value for every remaining position and at least one for each. This is also $O(n)$ and correct, but its feasibility formula is slightly less intuitive than filling extra value from the right.
 - **Fill all `a` characters and scan every position backward:** Add `min(d, 25)` at each index until `d` becomes zero. This is nearly identical; the exact source accelerates full increments with a loop and performs one residual assignment afterward.
 - **Enumerate strings or use dynamic programming:** Both are unnecessary because lexicographic order and uniform per-position bounds give a direct greedy exchange argument. Enumeration is exponential.
 - **Minimum value `k == n`:** Then `d == 0`, the loop is skipped, the last `a` remains unchanged, and the answer is all `a` characters.
@@ -115,8 +115,8 @@ At the maximum input `k = 26n`, the initial extra value is `25n`. The loop fills
 - **Large `n`:** Work and storage grow linearly up to the $10^5$ constraint; there is no recursion-depth or combinatorial issue.
 - **Why not fill from the left:** Spending extra value early makes the first differing character larger even when later positions still have capacity, so it cannot produce the lexicographically smallest result.
 - **Input feasibility:** The bounds on `k` are necessary. Below `n` no length-`n` lowercase string has small enough value, and above `26n` the positions lack sufficient capacity; the source relies on the guarantee rather than checking these cases.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -72,7 +72,7 @@ Parity test `k & 1` distinguishes these cases.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After an even number of complete traversals, the ball is at ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ For $n=5$, $k=6$ gives quotient 1 and remainder 2. One traversal ends at child 4
 
 ## 6. Traps This Instance Exposes
 
-- **- **Second-by-second simulation:** Correct but cos:** - **Second-by-second simulation:** Correct but costs $O(k)$ time.
+- **Second-by-second simulation:** Correct but costs $O(k)$ time.
 - **Modulo full period:** Let `r = k % (2*(n-1))` and return `r` on outbound leg or `2*(n-1)-r` on return leg.
 - **Direction variable simulation:** Still unnecessary once traversal parity is known.
 - **Remainder zero:** Ball is exactly at an endpoint.
@@ -122,8 +122,8 @@ For $n=5$, $k=6$ gives quotient 1 and remainder 2. One traversal ends at child 4
 - **Variable shadowing:** Returned behavior uses quotient `k`, not original seconds, after `divmod`.
 - **Same as pass-the-pillow:** The triangular periodic motion is identical despite different story wording.
 - **Quotient parity as direction:** Every complete traversal of `n - 1` edges ends at the opposite endpoint. An even quotient means movement is forward from child zero; an odd quotient reflects the remainder from child `n - 1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

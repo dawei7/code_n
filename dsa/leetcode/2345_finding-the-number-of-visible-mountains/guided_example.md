@@ -65,7 +65,7 @@ The Counter lets the scan distinguish a unique exposed interval from overlapping
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(arr)` records how many mountains have each id... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Without the descending tie rule, a narrow interval might temporarily look visibl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair of mountains:** Direct geom:** - **Compare every pair of mountains:** Direct geometric containment is easy to state but costs `O(n^2)`.
+- **Compare every pair of mountains:** Direct geometric containment is easy to state but costs `O(n^2)`.
 - **Sweep with explicit interval stack:** A stack can retain nested intervals, but the farthest-right scalar already decides containment after the chosen sort.
 - **Sort right endpoints ascending on equal left:** This can process contained intervals before their container and count incorrectly.
 - **Ignore duplicate counts:** The first of two identical mountains might be counted even though each hides the other.
@@ -119,8 +119,8 @@ Without the descending tie rule, a narrow interval might temporarily look visibl
 - **Negative left endpoint:** Mountains may extend left of zero in coordinates; interval arithmetic remains valid.
 - **A duplicate interval contained by a larger one:** It is invisible for both reasons; the scan skips it through coverage.
 - **Input preservation:** Only transformed interval storage is sorted.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -79,7 +79,7 @@ which is needed in languages whose remainder for a negative dividend may remain 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A left rotation by one moves the element at logical index 0 ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ The mapping also preserves the cyclic order. The value from source index `k % M`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Slice-based rotation:** After extraction, comp:** - **Slice-based rotation:** After extraction, compute `r = k % M` and use `t[r:] + t[:r]`. This is shorter but must branch when $M=0$ before taking the modulo; it has the same $O(N)$ time and $O(M)$ space.
+- **Slice-based rotation:** After extraction, compute `r = k % M` and use `t[r:] + t[:r]`. This is shorter but must branch when $M=0$ before taking the modulo; it has the same $O(N)$ time and $O(M)$ space.
 - **Queue of movable values:** A deque can rotate the extracted sequence and then feed values back into movable slots. It expresses the cyclic operation directly but still needs $O(M)$ storage.
 - **In-place cycle decomposition:** Store the movable indices and permute their values by rotation cycles. This can avoid the second value array but requires careful visited or gcd-cycle handling and still stores indices unless they are repeatedly rediscovered.
 - **All values negative:** No element is movable, both logical rotation loops do no effective work, and the input remains unchanged.
@@ -135,8 +135,8 @@ The mapping also preserves the cyclic order. The value from source index `k % M`
 - **Negative barriers:** They retain both value and physical index, but non-negative values on opposite sides still participate in one shared cyclic sequence.
 - **Large k:** The formula normalizes `k` implicitly at every destination; performing the rotation one step at a time would waste $O(kM)$ work.
 - **Returned object identity:** The exact implementation mutates and returns `nums`. A non-mutating interface would first copy the array, increasing output allocation but not changing asymptotic complexity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

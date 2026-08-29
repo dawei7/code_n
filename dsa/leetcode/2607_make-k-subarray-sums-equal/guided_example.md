@@ -81,10 +81,7 @@ Although stepping by $g$ is not literally the same traversal order as repeatedly
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Starting at index $i$, repeatedly add $k$ modulo $n$:
-
-$$
-i,... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +118,7 @@ The earlier derivation also proves necessity. Therefore cycles can be optimized 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Solve window equations directly:** Subtracting:** - **Solve window equations directly:** Subtracting neighboring equations immediately yields the same cycle equalities; building a large linear system is unnecessary.
+- **Solve window equations directly:** Subtracting neighboring equations immediately yields the same cycle equalities; building a large linear system is unnecessary.
 - **Use the mean:** Mean minimizes squared error, not absolute unit-change cost. Median is required.
 - **One global median:** This overconstrains different gcd cycles, which may choose independent values.
 - **`k = n`:** Every index is its own cycle and no operations are needed.
@@ -130,8 +127,8 @@ The earlier derivation also proves necessity. Therefore cycles can be optimized 
 - **Duplicate values:** Sorting and absolute deviations handle them naturally.
 - **Circular wraparound:** The modulo jump is captured by gcd residue cycles.
 - **Input preservation:** Slices are sorted copies, leaving `arr` unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

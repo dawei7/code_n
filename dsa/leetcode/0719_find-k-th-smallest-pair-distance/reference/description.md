@@ -2,7 +2,7 @@
 
 The **distance of a pair** of integers `a` and `b` is defined as the absolute difference between `a` and `b`.
 
-Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$ *smallest **distance among all the pairs*** $\text{nums}[i]$ *and* $\text{nums}[j]$ *where* $0 \le i < j < \text{nums.length}$.
+Given an integer array `nums` and an integer `k`, return *the* $k^{\text{th}}$ *smallest **distance among all the pairs*** $\text{nums}[i]$ *and* $\text{nums}[j]$ *where* $0 \le i < j < \text{nums.length}$.
 
 ### 2. Function Contract
 

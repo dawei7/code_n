@@ -51,7 +51,7 @@ The helper `f(x)` builds this digit signature. It starts with a ten-element list
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(x)` builds this digit signature.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The helper `f(x)` builds this digit signature. It starts with a ten-element list
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all digit permutations:** Test every :** - **Generate all digit permutations:** Test every ordering, reject leading zero, convert it to an integer, and test whether it is a power of two. This can require factorial time and repeats work when digits are duplicated.
+- **Generate all digit permutations:** Test every ordering, reject leading zero, convert it to an integer, and test whether it is a power of two. This can require factorial time and repeats work when digits are duplicated.
 - **Sort decimal strings:** Sorting the digits of `n` and every candidate power provides another canonical signature. It is correct, but sorting costs $O(d\log d)$ per number instead of counting over the fixed ten-digit alphabet.
 - **String counter or frequency map:** A language-provided multiset counter expresses the same idea. The ten-slot list is simpler, has fixed memory, and makes equality deterministic.
 - **Precomputed signature set:** All eligible power-of-two signatures could be stored in a set and queried. That makes repeated calls convenient, but a single call needs only 30 comparisons and does not require global precomputation.
@@ -97,8 +97,8 @@ The helper `f(x)` builds this digit signature. It starts with a ten-element list
 - **Different digit lengths:** Equal signatures imply equal total digit counts, so a shorter power cannot accidentally match a longer input.
 - **Upper bound:** The loop includes powers at or below $10^9$ and stops after doubling past it. The stopping rule prevents irrelevant larger candidates while retaining $2^{29}$.
 - **Helper and zero:** The helper's loop would return an all-zero signature for `x = 0`, but neither the input nor any candidate is zero under the contract, so that special representation is never used.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

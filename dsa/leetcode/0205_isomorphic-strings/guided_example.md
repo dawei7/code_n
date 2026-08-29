@@ -69,7 +69,7 @@ required before the loop.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `for a, b in zip(s, t)` pairs the character at each source p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ and returns false.
 
 ## 6. Traps This Instance Exposes
 
-- **- **First-occurrence pattern:** Transform each str:** - **First-occurrence pattern:** Transform each string into the sequence of first-occurrence indices and compare those sequences; correct but builds proportional output.
+- **First-occurrence pattern:** Transform each string into the sequence of first-occurrence indices and compare those sequences; correct but builds proportional output.
 - **Last-seen arrays:** Two fixed 128-entry arrays can replace dictionaries for strict ASCII input.
 - **One dictionary only:** Insufficient because it allows two source characters to share one target.
 - **Set of paired characters:** Comparing counts of source, target, and pair sets can work but is less direct than inverse maps.
@@ -125,8 +125,8 @@ and returns false.
 - **Same-length guarantee:** Makes `zip` complete; otherwise compare lengths first.
 - **One-character strings:** Always isomorphic because one correspondence suffices.
 - **Empty strings:** Outside the minimum-length constraint, but two empty strings would return true naturally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The exact solution constructs this histogram through closed-form pieces instead 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact solution constructs this histogram through closed-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact solution constructs this histogram through closed-form pieces instead 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every ordered pair:** Running a shor:** - **Enumerate every ordered pair:** Running a shortest-distance formula for all $N(N-1)$ pairs is conceptually direct but costs $O(N^2)$ time, which does not meet the large input bound.
+- **Enumerate every ordered pair:** Running a shortest-distance formula for all $N(N-1)$ pairs is conceptually direct but costs $O(N^2)$ time, which does not meet the large input bound.
 - **Breadth-first search from every house:** The graph has only $O(N)$ edges, but $N$ BFS traversals still cost $O(N^2)$ time and add considerable overhead.
 - **Difference-array pair counting:** One can derive another linear solution by classifying endpoint ranges and applying range increments. That can be elegant, but it is not what this exact source implements; this source builds explicit cycle-and-tail histograms.
 - **Self-loop, $x=y$:** The edge returns to the same house and cannot shorten a path. The `abs(x - y) <= 1` branch correctly returns the ordinary path counts.
@@ -97,8 +97,8 @@ The exact solution constructs this histogram through closed-form pieces instead 
 - **Odd cycle:** There is no single antipodal vertex. Two directions remain distinct up to distance $\lfloor L/2\rfloor$, so the general $2L$ cycle count applies.
 - **Ordered rather than unordered pairs:** Every geometric relationship contributes in both directions. The factors of two and four in the formulas encode those orientations; dividing the result by two would answer a different question.
 - **Last bucket:** Distance $N$ is impossible between distinct houses in an $N$-vertex connected graph, so the last result entry is always zero.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

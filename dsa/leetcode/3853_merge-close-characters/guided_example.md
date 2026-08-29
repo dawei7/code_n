@@ -63,7 +63,7 @@ Thus there is at most one eligible equal left partner for the new character, and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose `ans` is already stable: no two equal retained chara... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The priority rule cannot change this conclusion. If other deletions in the full 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Literal repeated simulation:** Search the curr:** - **Literal repeated simulation:** Search the current string for the priority pair, delete its right endpoint, and restart. This follows the statement directly but repeatedly scans and shifts a mutable sequence; depending on the data structure and search strategy, it can take quadratic or even cubic time.
+- **Literal repeated simulation:** Search the current string for the priority pair, delete its right endpoint, and restart. This follows the statement directly but repeatedly scans and shifts a mutable sequence; depending on the data structure and search strategy, it can take quadratic or even cubic time.
 - **Original-index distance:** Comparing original loop indices is incorrect because earlier deletions shorten the current string. The source's `len(ans)` is the exact current index after all skipped characters have been removed.
 - **Track every occurrence per character:** A list or deque of retained positions is unnecessary. Stability guarantees that if the newest retained equal character is too far away, every older one is farther; if it is close, no other retained equal occurrence can also be close.
 - **Stack without per-character lookup:** Scanning backward through `ans` for an equal character can degrade to `O(N^2)`. The dictionary locates the only relevant retained occurrence directly.
@@ -116,8 +116,8 @@ The priority rule cannot change this conclusion. If other deletions in the full 
 - **Dictionary indices after skips:** Skipping a new right character does not shift any character already in `ans`, so stored indices remain valid. The construction never physically deletes an element from the middle of `ans`.
 - **Priority ties:** Once the processed prefix is stable, a new rightmost character has at most one close equal survivor. The smallest-left and smallest-right tie rules therefore do not require an explicit comparison in the one-pass representation.
 - **Empty result:** The input is nonempty and merges always preserve the left endpoint, so at least the first input character survives. The returned string cannot be empty under this contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

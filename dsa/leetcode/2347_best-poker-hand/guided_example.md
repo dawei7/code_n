@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `ranks` and a character array `suits`. You have `5` cards where the $$i^{\text{th}}$$ card has a rank of $\text{ranks}[i]$ and a suit of $\text{suits}[i]$.
+You are given an integer array `ranks` and a character array `suits`. You have `5` cards where the $i^{\text{th}}$ card has a rank of $\text{ranks}[i]$ and a suit of $\text{suits}[i]$.
 
 The objective is to compute `"Flush"` from `{"ranks": [13, 2, 3, 1, 9], "suits": ["a", "a", "a", "a", "a"]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ The commented-out set expression shows an alternative but is not executed.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise(suits)` yields the four adjacent pairs of the five... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This check precedes pair detection because any frequency of three or four also c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set of suits:** `len(set(suits)) == 1` is an e:** - **Set of suits:** `len(set(suits)) == 1` is an equally direct flush test using fixed-size storage.
+- **Set of suits:** `len(set(suits)) == 1` is an equally direct flush test using fixed-size storage.
 - **Fixed rank-frequency array:** An array of 14 counts avoids a Counter and remains constant-size.
 - **Sort ranks:** Equal ranks become consecutive, but sorting is unnecessary for five fixed cards and may mutate input.
 - **Check Pair before Three of a Kind:** A triple contains a pair subset and would be misclassified, so stronger categories must come first.
@@ -115,8 +115,8 @@ This check precedes pair detection because any frequency of three or four also c
 - **Pairwise helper availability:** The exact source relies on `pairwise`, conventionally from `itertools`.
 - **Counter helper availability:** Rank frequencies rely on `Counter`, conventionally from `collections`.
 - **Input preservation:** Both arrays are read only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

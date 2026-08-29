@@ -62,4 +62,4 @@ All arrays meet the ZigZag conditions.
 
 - $3 \le n \le 200$
 
-- $1 \le l < r \le 10^​​​​​​​9$
+- $1 \le l < r \le 10^9$

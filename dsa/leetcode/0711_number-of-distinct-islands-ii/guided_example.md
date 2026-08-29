@@ -68,7 +68,7 @@ These sign changes and coordinate swaps enumerate the full eight-element dihedra
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The symmetries of a square grid that preserve distances and ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,9 +111,9 @@ This moves the anchor to `(0,0)` and expresses every other cell relative to it. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Traversal signatures for each symmetry:** Tran:** - **Traversal signatures for each symmetry:** Transform coordinates or traversal directions and choose a canonical signature. Coordinate sets are usually easier to reason about.
-- **- **Only translation normalization:** That solves :** - **Only translation normalization:** That solves Distinct Islands I but would incorrectly separate rotated or reflected copies here.
-- **- **Single-cell islands:** All eight variants norm:** - **Single-cell islands:** All eight variants normalize to `((0,0),)`, so every isolated cell shares one class.
+- **Traversal signatures for each symmetry:** Transform coordinates or traversal directions and choose a canonical signature. Coordinate sets are usually easier to reason about.
+- **Only translation normalization:** That solves Distinct Islands I but would incorrectly separate rotated or reflected copies here.
+- **Single-cell islands:** All eight variants normalize to `((0,0),)`, so every isolated cell shares one class.
 
 ---
 

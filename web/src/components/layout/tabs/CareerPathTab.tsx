@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAppStore } from '../../../store/useAppStore';
+import { TopicRoadmapView } from '../../visualization/TopicRoadmapView';
 import {
   buildCustomCareerUnlockMap,
   collectCustomCareerLeaves,
@@ -61,8 +62,10 @@ export function CareerPathTab({ onSelectCodenTab }: CareerPathTabProps) {
   const selectChallenge = useAppStore((s) => s.selectChallenge);
   const currentChallengeId = useAppStore((s) => s.currentDetail?.id ?? null);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
+  const progress = useAppStore((s) => s.progress);
   const activeSet = useAppStore((s) => s.activeSet);
   const selectedNodeRef = useRef<HTMLButtonElement | null>(null);
+  const [viewMode, setViewMode] = useState<'roadmap' | 'sequential'>('roadmap');
 
   useEffect(() => {
     if (!currentChallengeId) return;
@@ -98,18 +101,61 @@ export function CareerPathTab({ onSelectCodenTab }: CareerPathTabProps) {
           </span>
           <div className="min-w-0">
             <h3 className="text-sm font-bold text-coden-text leading-tight truncate">
-              {activeSet === 'neetcode' ? 'NeetCode Interview Roadmap' : 'LeetCode Study Plan Roadmap'}
+              DSA Curriculum & Study Roadmap
             </h3>
             <p className="text-[11px] text-slate-600 dark:text-coden-muted font-mono truncate">
-              Solve challenges sequentially within each topic to progress
+              Master algorithm patterns progressively from fundamentals to advanced dynamic programming
             </p>
           </div>
+        </div>
+
+        {/* View Mode Toggle */}
+        <div className="flex items-center gap-1 rounded-lg border border-coden-border bg-coden-surface p-0.5 text-xs">
+          <button
+            type="button"
+            onClick={() => setViewMode('roadmap')}
+            className={`rounded px-2.5 py-1 font-semibold transition-colors ${
+              viewMode === 'roadmap'
+                ? 'bg-coden-accent text-white'
+                : 'text-coden-muted hover:text-coden-text'
+            }`}
+          >
+            Roadmap DAG
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('sequential')}
+            className={`rounded px-2.5 py-1 font-semibold transition-colors ${
+              viewMode === 'sequential'
+                ? 'bg-coden-accent text-white'
+                : 'text-coden-muted hover:text-coden-text'
+            }`}
+          >
+            Topic List
+          </button>
         </div>
       </div>
 
       <div className="flex-grow overflow-y-auto pr-1 space-y-4 scrollbar-thin">
-        {CATEGORY_NODES.map((node) => {
-          const catChallenges = getCategoryChallenges(node.id);
+        {viewMode === 'roadmap' && progress ? (
+          <TopicRoadmapView
+            challenges={challenges}
+            progress={progress}
+            onSelectTopic={(_topicId, tags) => {
+              const matched = challenges.find((c) => {
+                const topicNames = (c.leetcode_topics || []).map((t: any) =>
+                  typeof t === 'string' ? t : t.name
+                );
+                return tags.some((tag) => topicNames.includes(tag) || c.category === tag);
+              });
+              if (matched) {
+                handleNodeClick(matched.id);
+              }
+            }}
+          />
+        ) : (
+          CATEGORY_NODES.map((node) => {
+            const catChallenges = getCategoryChallenges(node.id);
           const total = catChallenges.length;
           if (total === 0) return null;
 
@@ -232,7 +278,8 @@ export function CareerPathTab({ onSelectCodenTab }: CareerPathTabProps) {
               </div>
             </div>
           );
-        })}
+        })
+      )}
       </div>
     </div>
   );

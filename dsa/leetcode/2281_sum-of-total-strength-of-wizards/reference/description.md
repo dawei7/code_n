@@ -2,7 +2,7 @@
 
 As the ruler of a kingdom, you have an army of wizards at your command.
 
-You are given a **0-indexed** integer array `strength`, where $\text{strength}[i]$ denotes the strength of the $$i^{\text{th}}$$ wizard. For a **contiguous** group of wizards (i.e. the wizards' strengths form a **subarray** of `strength`), the **total strength** is defined as the **product** of the following two values:
+You are given a **0-indexed** integer array `strength`, where $\text{strength}[i]$ denotes the strength of the $i^{\text{th}}$ wizard. For a **contiguous** group of wizards (i.e. the wizards' strengths form a **subarray** of `strength`), the **total strength** is defined as the **product** of the following two values:
 
 - The strength of the **weakest** wizard in the group.
 

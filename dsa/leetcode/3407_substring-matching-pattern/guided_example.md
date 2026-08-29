@@ -51,7 +51,7 @@ where $A$ is the fixed text before the star and $B$ is the fixed text after it. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | where $A$ is the fixed text before the star and $B$ is the f... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ where $A$ is the fixed text before the star and $B$ is the fixed text after it. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual scan:** One can locate $A$ and then $B$:** - **Manual scan:** One can locate $A$ and then $B$ with explicit loops. This avoids relying on `str.find` but requires careful substring-comparison code and offers no conceptual advantage here.
+- **Manual scan:** One can locate $A$ and then $B$ with explicit loops. This avoids relying on `str.find` but requires careful substring-comparison code and offers no conceptual advantage here.
 - **Regular expression:** Converting `*` to something like `.*` can solve the task, but escaping, substring-versus-full-match semantics, and greedy behavior add avoidable complexity.
 - **Dynamic programming wildcard matcher:** General wildcard matching DP handles many stars and question marks, but it is excessive for exactly one star and usually costs $O(nm)$ time or substantial state.
 - **Empty prefix:** For a pattern such as `"*abc"`, `find("", 0)` succeeds at zero. The method then searches for `"abc"` anywhere in `s`, which is exactly the required meaning.
@@ -99,8 +99,8 @@ where $A$ is the fixed text before the star and $B$ is the fixed text after it. 
 - **Repeated prefix occurrences:** The earliest prefix is always safe; it ends no later than any later equal-length occurrence and therefore leaves the largest possible suffix of `s` for finding $B$.
 - **Pattern longer than the text:** A match can still exist only if the star's removal makes the fixed parts fit in order. The two searches test this directly without needing a separate length rule.
 - **Exactly one star:** The correctness proof uses exactly two fixed pieces. Inputs with no star or multiple stars are outside the contract and should not be used to reinterpret this implementation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

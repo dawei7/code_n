@@ -54,7 +54,7 @@ Three separator indices `i < j < k` are excluded from the four subarrays. The go
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +89,7 @@ Trying every triplet would take cubic time. The solution fixes the middle separa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all triplets:** Prefix sums make eac:** - **Enumerate all triplets:** Prefix sums make each check constant time, but $O(n^3)$ triplets are still too many.
+- **Enumerate all triplets:** Prefix sums make each check constant time, but $O(n^3)$ triplets are still too many.
 - **Two sets split around `j`:** The implemented one-set method builds left possibilities and streams right checks, avoiding extra storage.
 - **Assume positive values:** Values may be negative, so sliding-window monotonicity does not apply.
 - **Fewer than seven elements:** Three separators plus four nonempty sections cannot fit; loop ranges naturally return false.
@@ -99,8 +99,8 @@ Trying every triplet would take cubic time. The solution fixes the middle separa
 - **Several left indices with one sum:** The set intentionally stores the sum once because only existence matters.
 - **Valid split at extreme legal indices:** Loop endpoints include `i = 1` and `k = n - 2` while preserving one-element outer sections.
 - **No valid middle separator:** Completing all loops returns false.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

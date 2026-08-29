@@ -62,7 +62,7 @@ Only parity matters. Applying the same edge twice restores both signs and wastes
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When processing index `i`, `sign` records the effect of the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ Thus the greedy rule is not a heuristic; every choice is uniquely determined by 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Linear algebra over parity bits:** Each edge o:** - **Linear algebra over parity bits:** Each edge operation is a binary variable, and each position equation determines adjacent variables. Solving those equations left to right produces the same greedy recurrence.
+- **Linear algebra over parity bits:** Each edge operation is a binary variable, and each position equation determines adjacent variables. Solving those equations left to right produces the same greedy recurrence.
 - **Breadth-first search over arrays:** There are up to `2^n` sign configurations, making state search unnecessary and infeasible when the forced linear solution exists.
 - **Try only the sign of nums[0]:** This can miss a feasible all-opposite result. Both signs must be tested.
 - **One-element array:** No operation exists, but the element is already all equal by itself. The first target check succeeds with zero operations.
@@ -116,8 +116,8 @@ Thus the greedy rule is not a heuristic; every choice is uniquely determined by 
 - **Neither target possible within k:** A structurally possible target can still fail the operation limit; both conditions are checked.
 - **Input preservation:** `sign` models prior flips without changing `nums`.
 - **Values outside ±1:** The proof relies on sign negation being the only state change and on the two-target set; such inputs are excluded.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

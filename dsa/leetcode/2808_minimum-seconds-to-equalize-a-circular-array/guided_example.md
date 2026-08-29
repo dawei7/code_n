@@ -51,7 +51,7 @@ The algorithm considers each distinct original value as a candidate target. It g
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The algorithm considers each distinct original value as a ca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The algorithm considers each distinct original value as a candidate target. It g
 
 ## 6. Traps This Instance Exposes
 
-- **- **Multi-source BFS for each value:** Treat all o:** - **Multi-source BFS for each value:** Treat all occurrences of one value as sources and compute the farthest circular distance. This is correct but can take $O(n)$ per distinct value, or $O(n^2)$ overall.
+- **Multi-source BFS for each value:** Treat all occurrences of one value as sources and compute the farthest circular distance. This is correct but can take $O(n)$ per distinct value, or $O(n^2)$ overall.
 - **Binary search on time:** Check whether some value can cover the circle within a proposed number of seconds. The gap formula already yields each exact time directly, so search is unnecessary.
 - **Simulate every second:** Repeatedly copy values until the array is equal. This can be complicated by simultaneous-state handling and does more work than measuring propagation distances.
 - **Array already equal:** Every cyclic gap for the sole value is one, so `1 // 2` is zero and no operation is needed.
@@ -98,8 +98,8 @@ The algorithm considers each distinct original value as a candidate target. It g
 - **Duplicate values:** More occurrences create more, usually smaller gaps; every position index is retained because source multiplicity and spacing matter.
 - **Final value not initially present:** This is impossible because operations only copy existing neighbor values; the dictionary therefore covers every feasible target.
 - **Simultaneous copying:** The distance model assumes at most one-edge propagation per second, exactly as required by using the previous second's values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

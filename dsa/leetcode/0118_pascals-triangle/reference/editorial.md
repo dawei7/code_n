@@ -15,7 +15,7 @@ construct each row based on the previous row.
 
 First, we generate the overall `triangle` list, which will store each row as
 a sublist. Then, we check for the special case of $0$, as we would otherwise
-return $[1]$. Since $numRows$ is always greater than $0$, we can initialize `triangle` with $[1]$
+return `[1]`. Since $numRows$ is always greater than $0$, we can initialize `triangle` with `[1]`
 as its first row, and proceed to fill the rows as follows:
 
 ![Slide 1](images/slideshow_118_Pascals_Triangle_Slide1.PNG)

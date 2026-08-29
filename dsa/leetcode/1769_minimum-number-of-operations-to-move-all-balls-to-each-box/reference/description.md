@@ -1,10 +1,10 @@
 ### 1. Description
 
-You have `n` boxes. You are given a binary string `boxes` of length `n`, where $\text{boxes}[i]$ is `'0'` if the $$i^{\text{th}}$$ box is **empty**, and `'1'` if it contains **one** ball.
+You have `n` boxes. You are given a binary string `boxes` of length `n`, where $\text{boxes}[i]$ is `'0'` if the $i^{\text{th}}$ box is **empty**, and `'1'` if it contains **one** ball.
 
 In one operation, you can move **one** ball from a box to an adjacent box. Box `i` is adjacent to box `j` if $abs(i - j) = 1$. Note that after doing so, there may be more than one ball in some boxes.
 
-Return an array `answer` of size `n`, where $\text{answer}[i]$ is the **minimum** number of operations needed to move all the balls to the $$i^{\text{th}}$$ box.
+Return an array `answer` of size `n`, where $\text{answer}[i]$ is the **minimum** number of operations needed to move all the balls to the $i^{\text{th}}$ box.
 
 Each $\text{answer}[i]$ is calculated considering the **initial** state of the boxes.
 

@@ -1,10 +1,10 @@
 ### 1. Description
 
-There are `n` houses evenly lined up on the street, and each house is beautifully painted. You are given a **0-indexed** integer array `colors` of length `n`, where $\text{colors}[i]$ represents the color of the $$i^{\text{th}}$$ house.
+There are `n` houses evenly lined up on the street, and each house is beautifully painted. You are given a **0-indexed** integer array `colors` of length `n`, where $\text{colors}[i]$ represents the color of the $i^{\text{th}}$ house.
 
 Return *the **maximum** distance between **two** houses with **different** colors*.
 
-The distance between the $$i^{\text{th}}$$ and $$j^{\text{th}}$$ houses is $abs(i - j)$, where `abs(x)` is the **absolute value** of `x`.
+The distance between the $i^{\text{th}}$ and $j^{\text{th}}$ houses is $abs(i - j)$, where `abs(x)` is the **absolute value** of `x`.
 
 ### 2. Function Contract
 

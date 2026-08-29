@@ -67,7 +67,7 @@ At the end, `cnt < 2` requires at most one internal mismatch, and `i == len(w1)`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `check(w1, w2)` first requires `len(w2) - len(w1)... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The same logic handles an insertion at the beginning or middle through one count
 
 ## 6. Traps This Instance Exposes
 
-- **- **Delete-one-character predecessor map:** For ea:** - **Delete-one-character predecessor map:** For each length-sorted word, generate all `L` deletion strings and look up their best chains. This reaches the manifest's `O(W \log W + WL^2)` time and avoids all word pairs.
+- **Delete-one-character predecessor map:** For each length-sorted word, generate all `L` deletion strings and look up their best chains. This reaches the manifest's `O(W \log W + WL^2)` time and avoids all word pairs.
 - **Top-down memoized deletion:** Store all words in a set, recursively delete one character, and memoize the best chain from each word. It has similar deletion-generation complexity.
 - **Build an explicit graph:** Add an edge for every predecessor relation and find the longest DAG path. The pairwise DP already performs this implicitly without storing edges.
 - **Insertion at the beginning:** The first mismatch is skipped in `w2`, after which matching continues.
@@ -120,8 +120,8 @@ The same logic handles an insertion at the beginning or middle through one count
 - **Several predecessors:** `max` chooses the one carrying the longest earlier chain.
 - **Input mutation:** Sorting changes the order of `words`. A caller needing original order must sort a copy.
 - **Extra DP slot:** The exact array has length `n + 1` although indices zero through `n - 1` are used. The spare entry is harmless.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

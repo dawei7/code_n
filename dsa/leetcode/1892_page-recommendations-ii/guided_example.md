@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Expand each friend into pages they like.** `S AS s LEFT JO... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Inner join to `Likes`:** This is the appropria:** - **Inner join to `Likes`:** This is the appropriate general solution because a friend with no likes contributes no candidate. It prevents the exact source's possible null-page recommendation.
+- **Inner join to `Likes`:** This is the appropriate general solution because a friend with no likes contributes no candidate. It prevents the exact source's possible null-page recommendation.
 - **Add `l.page_id IS NOT NULL`:** Keeping the left join but filtering null candidate pages also restores correctness, though an inner join communicates the requirement more directly.
 - **`UNION ALL` instead of `UNION`:** It is faster only if the input guarantees each undirected friendship is stored exactly once and never in both directions. Otherwise duplicate directed relationships inflate `friends_likes`.
 - **Self anti-join:** Left join recipient likes on user and page, then require the recipient match to be null. This is equivalent to `NOT EXISTS` when written carefully.
@@ -95,8 +95,8 @@ We maintain the core conceptual parameters and state variables:
 - **Friend with no liked pages:** Under the exact `LEFT JOIN` this can create a null group, which is a correctness defect under the unrestricted schema; inner joining avoids it.
 - **User with no friends:** The user has no row in `S` and therefore no recommendations, as intended.
 - **No explicit ordering:** Any output order is valid. Adding `ORDER BY` would affect presentation and cost, not recommendation membership.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

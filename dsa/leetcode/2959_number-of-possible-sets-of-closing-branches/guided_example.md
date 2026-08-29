@@ -55,7 +55,7 @@ The diagonal for each open node is set to zero during the Floyd–Warshall proce
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution creates an $N \times N$ distance matrix `g` fil... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ The update `g[i][j] = min(g[i][j], g[i][k] + g[k][j])` is safe even when one ope
 
 ## 6. Traps This Instance Exposes
 
-- **- **Precompute all-pairs distances once:** This is:** - **Precompute all-pairs distances once:** This is incorrect because a shortest route in the full graph may use a branch that a particular mask closes.
+- **Precompute all-pairs distances once:** This is incorrect because a shortest route in the full graph may use a branch that a particular mask closes.
 - **Run Dijkstra for every open source and mask:** With nonnegative road weights this is valid, but for the very small $N$ that permits $2^N$ masks, Floyd–Warshall is simpler and gives a clear $O(N^3)$ per-mask bound.
 - **DFS connectivity only:** Connectivity is not enough; connected branches can still have shortest distance greater than `maxDistance`.
 - **Parallel roads:** The distance matrix must retain the minimum direct weight for a pair. Simply assigning the last seen road can make a valid set appear invalid.
@@ -104,8 +104,8 @@ The update `g[i][j] = min(g[i][j], g[i][k] + g[k][j])` is safe even when one ope
 - **Disconnected open branches:** Their matrix distance remains infinity, so the mask is rejected automatically.
 - **Zero or generous distance limits:** A very small limit may leave only empty/singleton sets, while a sufficiently large limit can admit many masks; the same validation handles both without special cases.
 - **Roads incident to closed nodes:** They are ignored completely, even if they might connect two open regions through the closed endpoint.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

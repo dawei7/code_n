@@ -156,7 +156,7 @@
         ],
         "s": "google"
       },
-      "expected": 6,
+      "expected": 5,
       "tags": [
         "full-word",
         "duplicates"

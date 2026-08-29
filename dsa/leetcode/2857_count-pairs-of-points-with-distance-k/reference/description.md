@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **2D** integer array `coordinates` and an integer `k`, where $\text{coordinates}[i] = [x_{i}, y_{i}]$ are the coordinates of the $$i^{\text{th}}$$ point in a 2D plane.
+You are given a **2D** integer array `coordinates` and an integer `k`, where $\text{coordinates}[i] = [x_{i}, y_{i}]$ are the coordinates of the $i^{\text{th}}$ point in a 2D plane.
 
 We define the **distance** between two points $(x_{1}, y_{1})$ and $(x_{2}, y_{2})$ as $(x1 XOR x2) + (y1 XOR y2)$ where `XOR` is the bitwise `XOR` operation.
 

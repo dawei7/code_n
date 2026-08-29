@@ -62,7 +62,7 @@ Tabs are indentation markers only when they appear at the beginning of an entry.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the beginning of an entry, `ident` starts at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,9 +101,9 @@ After the name loop, `i += 1` skips the newline. When the final entry ends at th
 
 ## 6. Traps This Instance Exposes
 
-- **- **Map from depth to cumulative length:** Store t:** - **Map from depth to cumulative length:** Store the latest path length for each depth in a dictionary or array. Each entry can read its parent from `depth - 1` and overwrite its own depth. This is also $O(n)$ time and $O(d)$ space; the stack more directly represents the active ancestor chain.
-- **- **Build complete path strings:** Concatenating p:** - **Build complete path strings:** Concatenating parent paths and names is easy to visualize but stores and repeatedly copies characters that the answer never returns. Keeping only lengths is more memory-efficient.
-- **- **Split into lines first:** `input.split('\n')` :** - **Split into lines first:** `input.split('\n')` simplifies entry parsing but allocates a list and copies or references all line substrings, using $O(n)$ extra space. The exact pointer scan avoids that allocation and retains the $O(d)$ auxiliary bound.
+- **Map from depth to cumulative length:** Store the latest path length for each depth in a dictionary or array. Each entry can read its parent from `depth - 1` and overwrite its own depth. This is also $O(n)$ time and $O(d)$ space; the stack more directly represents the active ancestor chain.
+- **Build complete path strings:** Concatenating parent paths and names is easy to visualize but stores and repeatedly copies characters that the answer never returns. Keeping only lengths is more memory-efficient.
+- **Split into lines first:** `input.split('\n')` simplifies entry parsing but allocates a list and copies or references all line substrings, using $O(n)$ extra space. The exact pointer scan avoids that allocation and retains the $O(d)$ auxiliary bound.
 
 ---
 

@@ -51,7 +51,7 @@ The input dashes describe an old grouping that must be discarded. Only the alpha
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Determine the only valid first-group length.** Let `m` be ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Python's `or` returns `k` when the remainder is zero and otherwise keeps the pos
 
 ## 6. Traps This Instance Exposes
 
-- **- **Traverse right to left:** Building fixed group:** - **Traverse right to left:** Building fixed groups from the end removes the need to precompute the first-group length. The collected characters and separators must then be reversed, and a provisional separator at the reverse end still needs cleanup. It has the same $O(n)$ time and space bounds.
+- **Traverse right to left:** Building fixed groups from the end removes the need to precompute the first-group length. The collected characters and separators must then be reversed, and a provisional separator at the reverse end still needs cleanup. It has the same $O(n)$ time and space bounds.
 - **Clean first, then slice:** One can form an uppercase string with all old dashes removed, compute the first length, and slice it into groups. This is very readable but materializes an additional full cleaned string; the current scan combines cleaning and grouping into one construction pass after counting.
 - **Repeated string concatenation:** Adding one character at a time to an immutable Python string can repeatedly copy the existing prefix and become quadratic. Accumulating pieces in `ans` and calling `join` once avoids that risk.
 - **Remainder zero:** The first group must contain `k` characters, not zero. The `or k` portion of the initialization handles this exact case.
@@ -95,8 +95,8 @@ Python's `or` returns `k` when the remainder is zero and otherwise keeps the pos
 - **Digits and mixed case:** Digits remain unchanged under `upper()`, while lowercase letters become uppercase and existing uppercase letters remain uppercase.
 - **A group ends before trailing old dashes:** The scan may append a provisional dash because the current source index is not the last index. Joining and stripping removes it, ensuring the output never ends with a dash.
 - **Preserve character order:** Formatting is not sorting. The left-to-right scan appends every non-dash character exactly once in its original relative order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

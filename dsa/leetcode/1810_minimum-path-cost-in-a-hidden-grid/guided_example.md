@@ -62,7 +62,7 @@ Value -1 means not yet discovered. A discovered cell stores the cost returned wh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The real grid has at most 100 rows and 100 columns, but its ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ This restoration is the DFS invariant: whenever `dfs(x,y)` begins and ends, the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra while physically exploring:** It is d:** - **Dijkstra while physically exploring:** It is difficult to preserve heap order while the robot occupies only one cell; mapping first cleanly separates concerns.
+- **Dijkstra while physically exploring:** It is difficult to preserve heap order while the robot occupies only one cell; mapping first cleanly separates concerns.
 - **Breadth-first search after mapping:** It minimizes moves, not total cost, and is wrong when cell costs differ.
 - **Iterative DFS:** An explicit stack can preserve backtracking actions while avoiding recursion-depth failure.
 - **Mark the start immediately:** Using a separate visited structure or a special start marker avoids the exact source's one redundant start rediscovery.
@@ -120,8 +120,8 @@ This restoration is the DFS invariant: whenever `dfs(x,y)` begins and ends, the 
 - **Positive costs:** They justify Dijkstra and early return on the first target pop.
 - **Physical-state invariant:** Every recursive call must backtrack before returning, or later coordinates would no longer match the robot.
 - **API ownership:** `GridMaster` is provided by the platform and is not implemented by the solution.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

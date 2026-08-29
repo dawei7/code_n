@@ -71,7 +71,7 @@ This supplies the exact requested output column name and makes it available to t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `COUNT(1)` evaluates the non-null constant one for every row... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Primary key `id` guarantees rows themselves are distinct.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`COUNT(*)`:** Equivalent row-count expression :** - **`COUNT(*)`:** Equivalent row-count expression and often the clearest spelling.
+- **`COUNT(*)`:** Equivalent row-count expression and often the clearest spelling.
 - **`COUNT(artist)`:** Would ignore rows with null artist and is not identical if nulls are possible.
 - **Window count:** Could annotate every original row but would then require deduplication; grouping is simpler.
 - **One artist only:** Produces one row with the total table row count.
@@ -120,8 +120,8 @@ Primary key `id` guarantees rows themselves are distinct.
 - **Primary key:** Unique `id` prevents duplicate physical ranking rows by identifier.
 - **Alias use:** `occurrences` can be referenced in result ordering.
 - **Default second direction:** Omitted direction on `artist` means ascending.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

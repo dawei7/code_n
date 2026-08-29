@@ -59,7 +59,7 @@ Variable `mx` stores that prefix maximum.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | When examining index `i`, only values through index `i - 2` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ The code uses a walrus assignment to update and compare in one expression, but i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check `abs(nums[i] - i) <= 1`:** For a permuta:** - **Check `abs(nums[i] - i) <= 1`:** For a permutation, this is another characterization of ideal permutations, but the prefix-maximum proof connects directly to nonlocal inversions.
-- **- **Merge-sort inversion counting:** It can count :** - **Merge-sort inversion counting:** It can count all global inversions in `O(n log n)`, then compare with local count, but counting is unnecessary.
-- **- **Nested pair loops:** Directly testing every gl:** - **Nested pair loops:** Directly testing every global pair costs `O(n^2)`.
+- **Check `abs(nums[i] - i) <= 1`:** For a permutation, this is another characterization of ideal permutations, but the prefix-maximum proof connects directly to nonlocal inversions.
+- **Merge-sort inversion counting:** It can count all global inversions in `O(n log n)`, then compare with local count, but counting is unnecessary.
+- **Nested pair loops:** Directly testing every global pair costs `O(n^2)`.
 
 ---
 

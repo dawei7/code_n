@@ -61,7 +61,7 @@ Therefore the remaining palindrome question is entirely inside the current inter
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before each iteration, all meaningful characters strictly ou... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ When both endpoints are non-alphanumeric, the left one is skipped first and the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Normalize and reverse:** Filter alphanumerics,:** - **Normalize and reverse:** Filter alphanumerics, lowercase them, and compare the result with its reverse. It is concise but uses $O(n)$ additional space.
+- **Normalize and reverse:** Filter alphanumerics, lowercase them, and compare the result with its reverse. It is concise but uses $O(n)$ additional space.
 - **Competitive run-skipping loops:** Skip all ignored characters at each side before one comparison. It has the same asymptotic bounds and may use fewer outer iterations.
 - **Regular-expression filtering:** Can remove non-alphanumerics, but character-class details and extra string allocation make it less direct.
 - **Recursive outer comparison:** Mirrors the definition but can use $O(n)$ call-stack space.
@@ -116,8 +116,8 @@ When both endpoints are non-alphanumeric, the left one is skipped first and the 
 - **Even normalized length:** Pointers cross after the final pair.
 - **First mismatch:** Immediate false is safe because normalized outer order is fixed.
 - **Printable ASCII domain:** Python's broader Unicode classification is irrelevant to the stated inputs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

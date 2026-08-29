@@ -73,11 +73,7 @@ The inputs come from valid JSON, so problematic primitive cases such as `NaN` do
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first line is:
-
-`if (o1 === o2) return true`.
-
-This hand... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +112,7 @@ Returning false here ensures recursion proceeds only when both values are non-nu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Serialize both values:** Plain `JSON.stringify:** - **Serialize both values:** Plain `JSON.stringify` is sensitive to object key order, so logically equal objects can produce different strings.
+- **Serialize both values:** Plain `JSON.stringify` is sensitive to object key order, so logically equal objects can produce different strings.
 - **Iterative stack:** Avoid recursive call-stack limits while applying the same category checks.
 - **Lodash `isEqual`:** General-purpose but explicitly forbidden and broader than JSON semantics.
 - **Both values null:** The initial strict-equality branch returns true.
@@ -126,8 +122,8 @@ Returning false here ensures recursion proceeds only when both values are non-nu
 - **Same key count but different keys:** The own-property check detects the mismatch.
 - **Number versus numeric string:** Strict equality rejects them.
 - **Maximum nesting:** Recursive depth follows the JSON tree and may motivate an iterative implementation in runtimes with small stacks.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

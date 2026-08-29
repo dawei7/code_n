@@ -61,7 +61,7 @@ These components identify the closest rectangle point implicitly. Its x-coordina
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper `f(i, j, k)` returns the distance from coordinate... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The same formula handles all cases without separate edge and corner logic.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit clamping:** Compute `closest_x = max(:** - **Explicit clamping:** Compute `closest_x = max(x1, min(xCenter, x2))` and similarly for y, then test squared distance. It is equivalent and often visually intuitive.
+- **Explicit clamping:** Compute `closest_x = max(x1, min(xCenter, x2))` and similarly for y, then test squared distance. It is equivalent and often visually intuitive.
 - **Separate edge and corner cases:** This works but creates many branches and makes it easy to miss a geometric position.
 - **Rectangle-center projection:** Comparing only rectangle and circle centers is insufficient because rectangle dimensions matter.
 - **Circle center inside rectangle:** Both gaps are zero, so overlap is true.
@@ -116,8 +116,8 @@ The same formula handles all cases without separate edge and corner logic.
 - **Large coordinates:** Squared comparison avoids floating-point square roots.
 - **Axis alignment:** Independent coordinate clamping relies on the rectangle being axis-aligned, as guaranteed.
 - **No mutation:** The method computes from scalar inputs and changes no shape representation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

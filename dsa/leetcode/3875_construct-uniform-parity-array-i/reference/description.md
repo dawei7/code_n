@@ -40,7 +40,7 @@ Return `true` if one legal choice per index can make every constructed value odd
 
 - Choose $\text{nums2}[1] = \text{nums1}[1] = 3$.
 
-- $nums2 = [-1, 3]$, and both elements are odd. Thus, the answer is `true`​​​​​​​.
+- $nums2 = [-1, 3]$, and both elements are odd. Thus, the answer is `true`.
 
 #### Example 2
 
@@ -48,7 +48,7 @@ Return `true` if one legal choice per index can make every constructed value odd
 
 - **Output:** true
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Choose $\text{nums2}[0] = \text{nums1}[0] = 4$.
 

@@ -70,7 +70,7 @@ Since `perm` is a permutation of those integers, $b$ is also the XOR of every hi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `b` begins at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +120,7 @@ Thus `a` is the XOR of every permutation element except the last.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Derive the first value instead:** XOR all perm:** - **Derive the first value instead:** XOR all permutation values with encoded entries at odd indices, then reconstruct forward. It is the symmetric common formulation.
+- **Derive the first value instead:** XOR all permutation values with encoded entries at odd indices, then reconstruct forward. It is the symmetric common formulation.
 - **Try every possible first value:** Validate each reconstruction as a permutation, but this adds unnecessary quadratic work.
 - **Odd length:** It is essential for alternating encoded pairs to cover all but one permutation element.
 - **Minimum `n=3`:** One even-indexed encoding pair covers the first two hidden values.
@@ -131,8 +131,8 @@ Thus `a` is the XOR of every permutation element except the last.
 - **Order independence:** XORing one through $n$ equals XORing the permuted sequence.
 - **Input validity promise:** No explicit duplicate or range check is performed.
 - **Output length:** It is exactly `len(encoded)+1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

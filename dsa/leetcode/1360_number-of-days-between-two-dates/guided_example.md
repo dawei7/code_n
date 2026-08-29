@@ -62,7 +62,7 @@ The function receives a one-based month and indexes the list with `month - 1`. V
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `daysInMonth` constructs the twelve month lengths.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For two consecutive dates, the later ordinal is exactly one greater. At a year b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Standard date library:** Parse both dates and :** - **Standard date library:** Parse both dates and subtract date objects. It is concise, but an interview may expect the calendar arithmetic to be implemented directly.
+- **Standard date library:** Parse both dates and subtract date objects. It is concise, but an interview may expect the calendar arithmetic to be implemented directly.
 - **Closed-form ordinal:** Count ordinary days plus leap years using divisions by four, one hundred, and four hundred. This avoids the year loop and stays $O(1)$ for unbounded years.
 - **Simulate day by day:** Correct but unnecessarily slow for large date ranges and much more prone to month-boundary mistakes.
 - **Equal dates:** Their ordinal difference is zero.
@@ -119,8 +119,8 @@ For two consecutive dates, the later ordinal is exactly one greater. At a year b
 - **One-based ordinal:** Mapping the reference date to one instead of zero does not affect differences.
 - **Valid-date guarantee:** The code does not reject malformed strings or impossible dates; the contract guarantees correct formatting and calendar validity.
 - **Reference-year inclusion:** The year loop excludes the target year and the month loop supplies only its completed months, preventing the current year’s days from being counted twice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

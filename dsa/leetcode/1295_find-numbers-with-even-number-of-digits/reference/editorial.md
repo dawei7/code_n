@@ -405,7 +405,7 @@ OR
 
 > $1 \leq nums[i] \leq 100000$
 
-Let's take a look at the integers in the range $[1, 100000]$.
+Let's take a look at the integers in the range `[1, 100000]`.
 - $1 \rightsquigarrow 9$ have 1, hence an odd number of digits.
 - $10 \rightsquigarrow 99$ have 2, hence an even number of digits.
 - $100 \rightsquigarrow 999$ have 3, hence an odd number of digits.
@@ -413,13 +413,13 @@ Let's take a look at the integers in the range $[1, 100000]$.
 - $10000 \rightsquigarrow 99999$ have 5, hence an odd number of digits.
 - $100000$ has 6, hence an even number of digits.
 
-Thus, if an integer $nums[i]$ has an even number of digits, then it will be in the range of $[10, 99]$ or $[1000, 9999]$, or will be $100000$. Hence, we can use this fact to check if an integer has an even number of digits. Due to the constraint promise, we won't be missing any integer.
+Thus, if an integer $nums[i]$ has an even number of digits, then it will be in the range of `[10, 99]` or `[1000, 9999]`, or will be $100000$. Hence, we can use this fact to check if an integer has an even number of digits. Due to the constraint promise, we won't be missing any integer.
 
 #### Algorithm
 
 1. Initialize a counter `evenDigitCount` to `0`.
 
-2. For every `num` in `nums`, check if it is in the range of $[10, 99]$ or $[1000, 9999]$, or is $100000$. If it is, increment `evenDigitCount` by `1`.
+2. For every `num` in `nums`, check if it is in the range of `[10, 99]` or `[1000, 9999]`, or is $100000$. If it is, increment `evenDigitCount` by `1`.
 
 3. Return `evenDigitCount`.
 
@@ -445,7 +445,7 @@ Let $N$ be the length of `nums`, which represents the number of integers for whi
 
 * Time complexity: $O(N)$
 
-    We have a `for` loop which checks if each `num` is in the range of $[10, 99]$ or $[1000, 9999]$, or is $100000$. We do this for $N$ integers. Now, checking and incrementing (if required) will take $O(1)$ time.
+    We have a `for` loop which checks if each `num` is in the range of `[10, 99]` or `[1000, 9999]`, or is $100000$. We do this for $N$ integers. Now, checking and incrementing (if required) will take $O(1)$ time.
 
     Hence, for $N$ integers, the time complexity of `findNumbers` is $O(N)$.
 

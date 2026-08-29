@@ -65,7 +65,7 @@ Only event coordinates need inspection. A new maximum brightness can first appea
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s` is the brightness after applying all events at the curre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Because event coordinates are processed from smallest to largest, the first coor
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly visit every illuminated position:**:** - **Explicitly visit every illuminated position:** Impossible when ranges span up to $10^8$; event compression avoids coordinate-range dependence.
+- **Explicitly visit every illuminated position:** Impossible when ranges span up to $10^8$; event compression avoids coordinate-range dependence.
 - **Separate sorted start and end arrays:** A two-list sweep is possible, but difference events are simpler.
 - **Use a heap of active intervals:** More machinery than needed when only counts and endpoints matter.
 - **Zero range:** Produces +1 at the lamp position and -1 at the next integer.
@@ -114,8 +114,8 @@ Because event coordinates are processed from smallest to largest, the first coor
 - **Inclusive right endpoint:** Requires subtraction at `r+1`, not `r`.
 - **At least one lamp:** Ensures the zero answer initialization is replaced.
 - **Input preservation:** The source builds a separate event map.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -71,7 +71,7 @@ For $x\le10^5$, such a prime is below 200000. The special input $x=1$ reaches pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Input values are at most $10^5$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ If `x` is already prime, the left-biased search finds `x` itself and the contrib
 
 ## 6. Traps This Instance Exposes
 
-- **- **Input-sized sieve:** Sieve only through a prov:** - **Input-sized sieve:** Sieve only through a proven bound above the current maximum input. This may reduce work for small arrays but requires computing a safe next-prime ceiling.
+- **Input-sized sieve:** Sieve only through a proven bound above the current maximum input. This may reduce work for small arrays but requires computing a safe next-prime ceiling.
 - **Next-prime lookup table:** A reverse pass can store the next prime for every value, reducing even-index queries from binary search to $O(1)$ at the cost of another $O(U)$ array.
 - **Per-value trial division:** Testing successive numbers avoids global storage, but repeated primality tests can be much slower across $10^5$ elements.
 - **Even index already prime:** `bisect_left` returns that same value, so its cost is zero.
@@ -126,8 +126,8 @@ If `x` is already prime, the left-biased search finds `x` itself and the contrib
 - **Index parity is zero-based:** Positions 0, 2, 4, and so on require primes; reversing the parity would solve a different problem.
 - **Fixed preprocessing mismatch:** The source's setup cost depends on 200000 rather than the observed input maximum, despite the manifest's $M$ notation.
 - **Required library name:** Standalone execution needs `bisect_left` from Python's `bisect` module to be available.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - a position is either left unchanged, which is possible onl... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The chosen rule intervals are pairwise disjoint. If they are sorted by their lef
 
 ## 6. Traps This Instance Exposes
 
-- **- **Search over complete intermediate strings:** A:** - **Search over complete intermediate strings:** Applying every matching rule in every order creates an enormous state graph. Disjointness means order is irrelevant, so prefix dynamic programming avoids that exponential search.
+- **Search over complete intermediate strings:** Applying every matching rule in every order creates an enormous state graph. Disjointness means order is irrelevant, so prefix dynamic programming avoids that exponential search.
 - **A used-position bitmask state:** Tracking which positions have been consumed is a faithful brute-force model, but it has up to `2^n` masks. Processing non-overlapping intervals from left to right makes the used prefix implicit in one index.
 - **Shortest path interpretation:** Prefix lengths `0` through `n` form a directed acyclic graph. Unchanged characters and applicable rules are forward edges, and `dp` computes the shortest path in topological order. A general Dijkstra heap is unnecessary because every edge moves to a larger index.
 - **Rule chaining on one interval:** Applying one rule and then another to the same characters is forbidden, even if the first replacement matches the second pattern. The source correctly offers only one rule transition for a finalized interval.
@@ -101,8 +101,8 @@ The chosen rule intervals are pairwise disjoint. If they are sorted by their lef
 - **Impossible target:** If every possible path stops before `n`, `dp[n]` remains `infinity` and the method returns `-1`.
 - **Already-equal strings:** The dynamic program can advance through every character at zero cost, so the result is `0` even if no rule is useful.
 - **Short-circuit behavior:** `startswith` and `all` often stop at their first mismatch, improving practical speed, but the worst-case analysis must still allow all `L` characters to match.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

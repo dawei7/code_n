@@ -57,7 +57,7 @@ The solution builds a separate zero-filled matrix `ans`. It does not overwrite `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The list comprehension creates tuples `(v, i, j)` for all ce... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Because cells are processed in increasing original value and assigned a score ab
 
 ## 6. Traps This Instance Exposes
 
-- **- **Min-heap:** Push all value-coordinate tuples a:** - **Min-heap:** Push all value-coordinate tuples and pop them in increasing order. It has the same $O(N\log N)$ time and $O(N)$ space but sorting once is simpler.
+- **Min-heap:** Push all value-coordinate tuples and pop them in increasing order. It has the same $O(N\log N)$ time and $O(N)$ space but sorting once is simpler.
 - **Explicit dependency graph:** Add ordering edges between relevant cells and compute longest-path ranks in topological order. It is more complex, and global value sorting already supplies a valid order.
 - **Equal original values:** The contract forbids them. If allowed, equal-value cells would need batch processing so same-value updates do not constrain each other.
 - **Single cell:** Both maxima are zero, so the only cell receives the optimal positive score one.
@@ -114,8 +114,8 @@ Because cells are processed in increasing original value and assigned a score ab
 - **Very large original values:** Only their ordering matters. Replacement scores depend on row and column chains, not numeric gaps.
 - **Input preservation:** The exact implementation returns a separate `ans` matrix and does not mutate `grid`.
 - **Distinctness and tuple sorting:** Because values are unique, the coordinate fields never determine the processing order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

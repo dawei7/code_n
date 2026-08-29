@@ -336,7 +336,14 @@
           "session_duration_minutes",
           "scroll_count"
         ],
-        "rows": []
+        "rows": [
+          [
+            "T030",
+            301,
+            30,
+            5
+          ]
+        ]
       },
       "validator": {
         "kind": "ordered_table"

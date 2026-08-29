@@ -68,7 +68,7 @@ Otherwise, it attaches the smaller component tree beneath the larger one using `
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `UnionFind` object begins with every stone in its own co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Thus `ans` counts only unions that merge two previously separate components. Red
 
 ## 6. Traps This Instance Exposes
 
-- **- **Row and column representative maps:** Union ea:** - **Row and column representative maps:** Union each stone with a previously seen stone in its row and column. This avoids all-pairs comparison and can achieve `O(n alpha(n))` expected time.
+- **Row and column representative maps:** Union each stone with a previously seen stone in its row and column. This avoids all-pairs comparison and can achieve `O(n alpha(n))` expected time.
 - **Coordinate-node Union-Find:** Treat each row and each encoded column as graph nodes and union a stone's row with its column. Count connected coordinate roots afterward.
 - **Depth-first search:** Build row and column adjacency and count graph components. It is correct, but naive pairwise adjacency construction still costs `O(n^2)`.
 - **Single stone:** No pair or successful union exists, so zero stones can be removed.
@@ -123,8 +123,8 @@ Thus `ans` counts only unions that merge two previously separate components. Red
 - **Transitive connection:** Stones need not directly share coordinates with every component member; a path of row and column relationships is enough.
 - **Unique coordinates:** No two stones occupy the same point, though sharing one coordinate is precisely what creates edges.
 - **Boolean addition:** The code relies on Python treating true as one and false as zero. An explicit conditional would be needed in languages without that behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

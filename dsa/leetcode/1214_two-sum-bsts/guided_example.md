@@ -65,7 +65,7 @@ Each move discards an entire impossible row or column of conceptual pairs, not m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Pointer `i` starts at zero, the smallest first-tree value.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Thus, in this specific monotone-decrement context, `~j` acts like `j >= 0`. It i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash one tree’s values:** Store second-tree va:** - **Hash one tree’s values:** Store second-tree values in a set and scan the first tree for complements. This also takes expected $O(n+m)$ time and linear space.
+- **Hash one tree’s values:** Store second-tree values in a set and scan the first tree for complements. This also takes expected $O(n+m)$ time and linear space.
 - **Two explicit BST iterators:** Traverse the first tree ascending and the second descending with stacks, reducing auxiliary storage to $O(h_1+h_2)$.
 - **Search the second BST for every first value:** This is $O(nh_2)$ and can become quadratic in a skewed tree.
 - **Morris iterators:** They can achieve constant auxiliary traversal space by temporarily threading trees, but mutation and cleanup make them advanced.
@@ -116,8 +116,8 @@ Thus, in this specific monotone-decrement context, `~j` acts like `j >= 0`. It i
 - **Cross-tree requirement:** Separate lists ensure the method never pairs two nodes from the same tree.
 - **`~j` readability:** Replacing it with `j >= 0` preserves behavior and communicates intent more clearly.
 - **Skewed trees:** Time stays linear, but recursive call depth becomes linear as well.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

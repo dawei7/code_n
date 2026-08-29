@@ -78,7 +78,7 @@ Python’s `divmod(a, b)` returns the quotient and remainder satisfying `a = quo
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If there are $W$ words, there are $W-1$ internal gaps betwee... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,7 +121,7 @@ For `text = " practice makes perfect"`, there are seven spaces and three words. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manual character scan:** One can count spaces :** - **Manual character scan:** One can count spaces and build words with an explicit loop. It has the same $O(L)$ complexity but duplicates behavior already provided clearly by `count` and `split`.
+- **Manual character scan:** One can count spaces and build words with an explicit loop. It has the same $O(L)$ complexity but duplicates behavior already provided clearly by `count` and `split`.
 - **Repeated string insertion:** Inserting spaces into an existing immutable Python string can repeatedly copy prefixes and become quadratic. Constructing once with `join` is linear.
 - **Preserve original space runs:** Their positions do not matter; only the total space count is relevant. Keeping each run complicates redistribution without adding information.
 - **Exactly one word:** There are no internal gaps, so all spaces are placed after the word and division by zero is avoided.
@@ -133,8 +133,8 @@ For `text = " practice makes perfect"`, there are seven spaces and three words. 
 - **Several spaces between words:** They are collapsed during extraction and reallocated through the quotient and remainder.
 - **Maximum length preservation:** The quotient-remainder identity proves no space is lost or invented.
 - **At-least-one-word guarantee:** The source assumes `words` is non-empty. An all-space string would need separate behavior but is outside the contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

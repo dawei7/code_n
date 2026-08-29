@@ -61,7 +61,7 @@ It stops at the first non-`a` character in the left half. If it finds one, `s[i]
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `a` is the smallest lowercase letter.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The middle character of an odd-length palindrome is deliberately excluded by `i 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every replacement:** Generating all altern:** - **Try every replacement:** Generating all alternatives and comparing strings is correct but can take quadratic time.
+- **Try every replacement:** Generating all alternatives and comparing strings is correct but can take quadratic time.
 - **Change a right-half non-`a` to `a`:** It breaks the palindrome but is lexicographically worse than changing its earlier left mirror.
 - **Change the middle character:** In an odd-length palindrome, this preserves the palindrome and is invalid.
 - **Length one:** No replacement can make it non-palindromic, so the answer is empty.
@@ -110,8 +110,8 @@ The middle character of an odd-length palindrome is deliberately excluded by `i 
 - **Even length:** Every position has a distinct mirror, and the same first-half rule applies.
 - **Exactly one replacement:** The fallback changes `a` to `b` rather than leaving the input unchanged.
 - **Immutable input:** The list conversion enables one character assignment and explains the linear space bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

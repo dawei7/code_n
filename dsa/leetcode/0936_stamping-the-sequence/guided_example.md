@@ -61,7 +61,7 @@ The name `indeg` reflects that mismatches behave like unresolved prerequisites. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are `n - m + 1` legal stamp starts.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This graph lets the algorithm notify only the windows affected by a newly erased
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly scan every window:** Find any curre:** - **Repeatedly scan every window:** Find any currently erasable window, erase it, and restart scanning. This is easier to derive but may revisit the same comparisons many times, producing a substantially slower worst case.
+- **Repeatedly scan every window:** Find any currently erasable window, erase it, and restart scanning. This is easier to derive but may revisit the same comparisons many times, producing a substantially slower worst case.
 - **Store sets of matching and mismatching positions:** A direct backward simulation can maintain a todo set per window. It expresses the concept clearly, but hash-set overhead is larger than the integer counts and reverse adjacency lists used here.
 - **Forward greedy stamping:** A locally matching placement can overwrite characters needed later, and question marks provide no final-character guidance at the beginning. Backward erasure exposes dependencies much more cleanly.
 - **Stamp equals target:** The only window has dependency count zero, is processed, marks every position, and returns start `0`.
@@ -111,8 +111,8 @@ This graph lets the algorithm notify only the windows affected by a newly erased
 - **Target length equals stamp length:** There is one possible window. It succeeds only when it matches exactly; no overlapping move exists to erase a mismatch first.
 - **Multiple valid answers:** Queue order selects one valid dependency order. The problem permits any sequence within the move limit, so uniqueness is unnecessary.
 - **Move limit:** The answer contains at most one occurrence of each legal window start, hence no more than `n` moves, which is stronger than the allowed `10 * n`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

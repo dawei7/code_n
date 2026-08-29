@@ -71,7 +71,7 @@ Using the column position is legal MySQL syntax, although `GROUP BY stock_name` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 1` groups by the first expression in the `SELECT` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ This equals the sum of the three separately described trade gains, but the query
 
 ## 6. Traps This Instance Exposes
 
-- **- **`CASE` expression:** Use `CASE WHEN operation :** - **`CASE` expression:** Use `CASE WHEN operation = 'Buy' THEN -price ELSE price END`. It is standard and often more portable than MySQL `IF`.
+- **`CASE` expression:** Use `CASE WHEN operation = 'Buy' THEN -price ELSE price END`. It is standard and often more portable than MySQL `IF`.
 - **Separate buy and sell aggregates:** Sum buys and sells in separate expressions and subtract. It is correct but repeats conditions and is longer.
 - **Pair transactions with window functions:** This is unnecessary for net gain and adds assumptions about matching individual trades.
 - **Self-join buys to sells:** It risks multiplicative matches when a stock trades several times and is much harder to make correct.
@@ -129,8 +129,8 @@ This equals the sum of the three separately described trade gains, but the query
 - **Positional grouping:** `GROUP BY 1` means the first selected expression, `stock_name`; explicit naming is more maintainable.
 - **Any result order:** The lack of `ORDER BY` is intentional.
 - **Null prices outside the contract:** `SUM` would ignore null contributions, so valid data must provide the stated integer price.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

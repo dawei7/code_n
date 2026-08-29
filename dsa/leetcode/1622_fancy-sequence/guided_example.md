@@ -75,7 +75,7 @@ That is why a multiplication update multiplies both the node's `mul` and its `ad
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A `Node` represents the inclusive interval from `node.l` thr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ For partial overlap, `pushdown` first makes the children current, and recursion 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Single global affine transform with modular in:** - **Single global affine transform with modular inverses:** Store each appended value normalized against a global multiplier and addition, then answer with one affine evaluation. This gives constant-time global updates and queries, while append needs a modular inverse. It is elegant under the given multipliers, but the checked-in source deliberately uses a segment tree and does not rely on invertibility.
+- **Single global affine transform with modular inverses:** Store each appended value normalized against a global multiplier and addition, then answer with one affine evaluation. This gives constant-time global updates and queries, while append needs a modular inverse. It is elegant under the given multipliers, but the checked-in source deliberately uses a segment tree and does not rely on invertibility.
 - **Store an operation snapshot per append:** One can record the global transform when each value is inserted and reconcile that snapshot at query time. This also uses modular inverses and requires careful algebra about operation order.
 - **Update a plain list eagerly:** This is easy to understand, but every `addAll` and `multAll` costs $O(A)$. Alternating appends with global updates can make total work $O(Q^2)$.
 - **Use a static full segment-tree array:** Preallocating about four times the maximum coordinate count simplifies child handling but reserves $O(U)$ memory immediately. Dynamic nodes allocate only paths reached by actual operations.
@@ -126,8 +126,8 @@ For partial overlap, `pushdown` first makes the children current, and recursion 
 - **Addition after pending multiplication:** Adding `inc` changes only the additive tag, giving $mx+(a+\textit{inc})$. It must not change the multiplier.
 - **Modulo arithmetic:** Node sums and composed multiplication tags are reduced modulo $10^9+7$. The public API asks only for modular values, and addition and multiplication are compatible with reducing intermediate results.
 - **The extra coordinate 100001:** At most 100000 appends can occur, so that final spare leaf is never required for an element. It does not affect correctness because all public operations stop at `n`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -171,7 +171,7 @@ Let $n$ be the length of the array `arr`.
 - In C++, the sort() function is implemented as a hybrid of Quick Sort, Heap Sort and Insertion Sort, with a worst case space complexity of $O(\log n)$.
 - In Java, Arrays.sort() is implemented using a variant of the Quick Sort algorithm which has a space complexity of $O(\log n)$.
 - In Javascript, the space complexity of sort() is $O(\log n)$.
-- We then traverse the array and update the output array `answer` as we go. While the output itself does not count towards the space complexity, the space used by the `answer` array that is not part of the output is counted. For example, if the array is $[1, 3, 5, 7, 8]$, at some point, the `answer` array will contain $n - 2$ pairs, each with a difference of $2$, but the output will only consist of $1$ pair with a difference of $1$. Thus, the answer array requires $O(n)$ space.
+- We then traverse the array and update the output array `answer` as we go. While the output itself does not count towards the space complexity, the space used by the `answer` array that is not part of the output is counted. For example, if the array is `[1, 3, 5, 7, 8]`, at some point, the `answer` array will contain $n - 2$ pairs, each with a difference of $2$, but the output will only consist of $1$ pair with a difference of $1$. Thus, the answer array requires $O(n)$ space.
 - To sum up, the overall space complexity is $O(n)$.
 <br/>
 

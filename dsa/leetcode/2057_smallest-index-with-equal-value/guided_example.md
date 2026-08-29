@@ -57,7 +57,7 @@ Because no larger index is examined before a smaller one, the first successful i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `enumerate(nums)` produces pairs `(i,x)` in increasing index... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ This periodicity is why array values outside zero through nine could never match
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect every matching index:** Correct but wa:** - **Collect every matching index:** Correct but wastes $O(N)$ output storage when only the smallest is needed.
+- **Collect every matching index:** Correct but wastes $O(N)$ output storage when only the smallest is needed.
 - **Use a generator with `next`:** Can express the same left-to-right early search, though the explicit loop is clearer.
 - **Sort the array:** Incorrect because the condition depends on original indices.
 - **Index zero:** Matches exactly when the first value is zero.
@@ -112,8 +112,8 @@ This periodicity is why array values outside zero through nine could never match
 - **Values zero through nine:** Exactly match the possible modulo results.
 - **Nonnegative indexing:** `enumerate` begins at zero, matching the problem's indexing.
 - **Input preservation:** No sorting or mutation occurs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ Leading zeros are not a concern in the negative branch: if any nonzero digit exi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a negative input, minimizing the signed value means maxi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For `310`, the smallest nonzero digit one is placed first. The remaining digits 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort digit characters:** Sorting ascending for:** - **Sort digit characters:** Sorting ascending for positives and descending for negatives is concise, but the positive leading-zero repair is still required.
+- **Sort digit characters:** Sorting ascending for positives and descending for negatives is concise, but the positive leading-zero repair is still required.
 - **Enumerate permutations:** This is factorial in the digit count and repeats arrangements when digits are duplicated.
 - **Positive number with no zero:** All digits are appended in ordinary ascending order.
 - **Positive number with several zeros:** Exactly one smallest nonzero digit leads, followed immediately by all zeros, then remaining positive digits.
@@ -116,8 +116,8 @@ For `310`, the smallest nonzero digit one is placed first. The remaining digits 
 - **No leading-zero string is built:** The method constructs an integer arithmetically, and its positive first appended digit enforces legality.
 - **Bounded digit alphabet:** Scanning all ten digit values is constant regardless of how often each occurs.
 - **Input immutability:** Reassigning local integer `num` cannot mutate the caller’s integer object.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

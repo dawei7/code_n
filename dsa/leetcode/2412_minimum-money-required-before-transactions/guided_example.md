@@ -71,7 +71,7 @@ The code writes the two cases explicitly to make their different affordability a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a losing transaction `a>b`, the loop considers `S+b`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ Therefore, every losing transaction's cashback can define a necessary reserve af
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass accumulation:** Total loss and maximu:** - **One-pass accumulation:** Total loss and maximum `min(a,b)` can be accumulated together, then added. It has the same bounds.
+- **One-pass accumulation:** Total loss and maximum `min(a,b)` can be accumulated together, then added. It has the same bounds.
 - **Sort transactions:** Ordering is irrelevant to computing the worst-order guarantee; sorting adds unnecessary $O(n\log n)$ work.
 - **All transactions non-losing:** `S=0`, and answer is the largest cost because an adversary may place that transaction first.
 - **All transactions losing:** Answer is total loss plus the largest cashback.
@@ -135,8 +135,8 @@ Therefore, every losing transaction's cashback can define a necessary reserve af
 - **Cost equals cashback:** It is non-losing and may require its full cost as reserve.
 - **Profitable cashback:** Its future gain cannot be assumed before the transaction under arbitrary order.
 - **Large total:** Use a wide integer type outside Python.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Using integer second boundaries avoids division and makes inclusivity explicit.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `duration` is stored in seconds.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ counts sessions below five minutes. Session durations are nonnegative measuremen
 
 ## 6. Traps This Instance Exposes
 
-- **- **`UNION ALL`:** The labels are guaranteed disti:** - **`UNION ALL`:** The labels are guaranteed distinct, so it returns the same four rows without unnecessary duplicate elimination and is the more direct set-combination operator.
+- **`UNION ALL`:** The labels are guaranteed distinct, so it returns the same four rows without unnecessary duplicate elimination and is the more direct set-combination operator.
 - **Conditional aggregation:** One scan can compute four sums such as `SUM(duration < 300)`, but producing those sums as four rows requires unpivoting or a fixed bins table.
 - **Computed-bin `GROUP BY`:** It counts nonempty categories efficiently but omits empty bins unless joined against a four-row bin definition.
 - **Fixed bins table and left join:** Define the four intervals as rows, join Sessions by boundaries, and group. This is scalable when many bins are configured.
@@ -107,8 +107,8 @@ counts sessions below five minutes. Session durations are nonnegative measuremen
 - **Empty middle interval:** Its branch returns zero rather than disappearing.
 - **Equal totals across bins:** Distinct labels prevent `UNION` from deduplicating the rows.
 - **Any-order result:** Absence of `ORDER BY` is valid and avoids an unnecessary ordering assumption.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

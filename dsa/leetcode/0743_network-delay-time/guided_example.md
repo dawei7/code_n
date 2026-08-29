@@ -59,7 +59,7 @@ Infinity means there is no direct edge. Pair uniqueness guarantees no competing 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The matrix `g` has `n` rows and `n` columns and starts fille... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,9 +98,9 @@ The Boolean array `vis` records nodes whose shortest distance has been finalized
 
 ## 6. Traps This Instance Exposes
 
-- **- **Adjacency list plus min-heap:** Store only rea:** - **Adjacency list plus min-heap:** Store only real edges and repeatedly pop the smallest tentative distance. This gives `O((n + e) log n)` time and `O(n + e)` space and is preferable for sparse large graphs.
-- **- **Bellman-Ford:** Repeatedly relax every edge an:** - **Bellman-Ford:** Repeatedly relax every edge and handle negative weights. It is unnecessary here because all weights are nonnegative and costs `O(ne)` time.
-- **- **Breadth-first search:** It finds shortest path:** - **Breadth-first search:** It finds shortest paths only when all edges have equal weight. Varying travel times require weighted shortest-path logic.
+- **Adjacency list plus min-heap:** Store only real edges and repeatedly pop the smallest tentative distance. This gives `O((n + e) log n)` time and `O(n + e)` space and is preferable for sparse large graphs.
+- **Bellman-Ford:** Repeatedly relax every edge and handle negative weights. It is unnecessary here because all weights are nonnegative and costs `O(ne)` time.
+- **Breadth-first search:** It finds shortest paths only when all edges have equal weight. Varying travel times require weighted shortest-path logic.
 
 ---
 

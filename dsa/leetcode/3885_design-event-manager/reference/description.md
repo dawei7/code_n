@@ -4,7 +4,7 @@ You are given an initial list of events, where each event has a unique `eventId`
 
 Implement the `EventManager` class:
 
-- `EventManager(int[][] events)` Initializes the manager with the given events, where $\text{events}[i] = [\text{eventId}_{i}, priority_​​​​​​​i]$.
+- `EventManager(int[][] events)` Initializes the manager with the given events, where $\text{events}[i] = [\text{eventId}_{i}, priority_i]$.
 
 - `void updatePriority(int eventId, int newPriority)` Updates the priority of the **active** event with id `eventId` to `newPriority`.
 

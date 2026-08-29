@@ -70,11 +70,7 @@ In the sample:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer query groups by the first column:
-
-
-
-Ordinal 1 ref... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +109,7 @@ The final aliases `id` and `num` provide the requested schema.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Aggregate each role separately, then combine c:** - **Aggregate each role separately, then combine counts:** Count requester and accepter occurrences per ID and outer-join/sum the two results. Correct but more complicated than symmetric expansion.
+- **Aggregate each role separately, then combine counts:** Count requester and accepter occurrences per ID and outer-join/sum the two results. Correct but more complicated than symmetric expansion.
 - **Use `UNION` instead of `UNION ALL`:** Risks discarding occurrences and undercounting; every friendship endpoint contribution must remain.
 - **Window `RANK`:** Group counts, rank descending, and keep rank one. This naturally returns all tied leaders for the follow-up.
 - **Maximum-count subquery:** Compare each grouped count with the maximum grouped count to return every leader.
@@ -127,8 +123,8 @@ The final aliases `id` and `num` provide the requested schema.
 - **Self-friend row:** Would be emitted twice for one ID; intended friendship data should exclude it or define special handling.
 - **Ordinal references:** `GROUP BY 1` and `ORDER BY 2` are concise but explicit aliases are easier to maintain.
 - **Empty table:** No groups exist and no row is returned; intended tests supply a unique maximum.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

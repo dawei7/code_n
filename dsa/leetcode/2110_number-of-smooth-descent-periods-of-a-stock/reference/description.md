@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array `prices` representing the daily price history of a stock, where $\text{prices}[i]$ is the stock price on the $$i^{\text{th}}$$ day.
+You are given an integer array `prices` representing the daily price history of a stock, where $\text{prices}[i]$ is the stock price on the $i^{\text{th}}$ day.
 
 A **smooth descent period** of a stock consists of **one or more contiguous** days such that the price on each day is **lower** than the price on the **preceding day** by **exactly** `1`. The first day of the period is exempted from this rule.
 

@@ -60,7 +60,7 @@ Rest syntax collects all invocation arguments in their original order. `fn(...ar
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `timeLimit(fn, t)` stores `fn` and `t` in a closure and retu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -103,7 +103,7 @@ The unused `resolve` parameter is present only because Promise executors receive
 
 ## 6. Traps This Instance Exposes
 
-- **- **Wrap everything in one manually settled Promis:** - **Wrap everything in one manually settled Promise:** Correct but requires explicit success, failure, timeout, and cleanup wiring that `Promise.race` already provides.
+- **Wrap everything in one manually settled Promise:** Correct but requires explicit success, failure, timeout, and cleanup wiring that `Promise.race` already provides.
 - **Race without clearing the timer:** Returns correctly but leaves unnecessary timer callbacks after fast source completion.
 - **AbortController:** Can cooperatively cancel supported underlying work, but the problem only asks to time-limit the wrapper result.
 - **`t = 0`:** The timer is scheduled immediately, though an already-settled source Promise may compete through event-loop ordering.
@@ -113,8 +113,8 @@ The unused `resolve` parameter is present only because Promise executors receive
 - **Multiple wrapper calls:** Each owns an independent timer and race.
 - **Several arguments:** Rest and spread preserve their order.
 - **Cleanup on every path:** `finally` runs after both fulfillment and rejection.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

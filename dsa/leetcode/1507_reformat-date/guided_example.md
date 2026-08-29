@@ -73,9 +73,7 @@ Using one concatenated string is compact. A dictionary mapping abbreviations to 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source stores all month abbreviations in one string:
-
-`"... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ The validity guarantee means the code does not need to verify that suffixes agre
 
 ## 6. Traps This Instance Exposes
 
-- **- **Month dictionary:** Map each abbreviation dire:** - **Month dictionary:** Map each abbreviation directly to its two-digit string. This is more explicit and avoids relying on string offsets, with the same bounded complexity.
+- **Month dictionary:** Map each abbreviation directly to its two-digit string. This is more explicit and avoids relying on string offsets, with the same bounded complexity.
 - **Date parsing library:** It can parse and format dates robustly but is unnecessary for the constrained English grammar and may introduce locale behavior.
 - **Regular expression:** Capture day digits, month, and year. It is flexible but more machinery than a three-token split needs.
 - **Single-digit day:** Removing the suffix leaves one character, and `zfill(2)` supplies the leading zero.
@@ -125,8 +123,8 @@ The validity guarantee means the code does not need to verify that suffixes agre
 - **Leading-zero year concerns:** The contract always provides a valid four-digit year, and the source preserves it as text.
 - **Invalid date:** Validation is intentionally absent because inputs are guaranteed valid.
 - **Extra whitespace:** `split()` collapses it even though the formal representation uses single spaces.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

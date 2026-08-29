@@ -4,7 +4,7 @@ You are given a **0-indexed** string `s` consisting of only lowercase English le
 
 Each letter in the alphabet is numbered from `0` to `25` (i.e. `'a' -> 0`, `'b' -> 1`, `'c' -> 2`, ... , `'z' -> 25`).
 
-In a **well-spaced** string, the number of letters between the two occurrences of the $$i^{\text{th}}$$ letter is $\text{distance}[i]$. If the $$i^{\text{th}}$$ letter does not appear in `s`, then $\text{distance}[i]$ can be **ignored**.
+In a **well-spaced** string, the number of letters between the two occurrences of the $i^{\text{th}}$ letter is $\text{distance}[i]$. If the $i^{\text{th}}$ letter does not appear in `s`, then $\text{distance}[i]$ can be **ignored**.
 
 Return `true`* if *`s`* is a **well-spaced** string, otherwise return *`false`.
 

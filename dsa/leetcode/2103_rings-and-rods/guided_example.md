@@ -79,7 +79,7 @@ Bitwise OR is exactly the desired accumulation operation: once a bit becomes 1, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The string alternates color and rod characters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ This idempotence is useful because the question asks whether each color is prese
 
 ## 6. Traps This Instance Exposes
 
-- **- **Set per rod:** Ten sets of color characters ar:** - **Set per rod:** Ten sets of color characters are easy to understand and correct, but bit masks encode the same three Boolean facts more compactly.
+- **Set per rod:** Ten sets of color characters are easy to understand and correct, but bit masks encode the same three Boolean facts more compactly.
 - **Three Boolean arrays:** Separate red, green, and blue presence arrays also use constant space, but a single mask makes the final completeness test one equality.
 - **Count rings per rod:** A rod can have three rings of the same color and still be incomplete. Counts alone do not prove color diversity.
 - **Duplicate color on a rod:** OR is idempotent, so duplicates do not change the result.
@@ -128,8 +128,8 @@ This idempotence is useful because the question asks whether each color is prese
 - **Pair alignment:** Stepping by two is essential; iterating every character would confuse colors with rod digits.
 - **Mask value seven:** It is not an arbitrary magic number; it is the OR of the three assigned single-bit values.
 - **Input preservation:** The string is read-only.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

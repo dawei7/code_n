@@ -8,7 +8,7 @@ For each $\text{queries}[i]$, extract the **substring** $s[l_{i}..r_{i}]$. Then,
 
 - Let `sum` be the **sum of digits** in `x`. The answer is $x * sum$.
 
-Return an array of integers `answer` where $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
+Return an array of integers `answer` where $\text{answer}[i]$ is the answer to the $i^{\text{th}}$ query.
 
 Since the answers may be very large, return them **modulo** $10^{9} + 7$.
 

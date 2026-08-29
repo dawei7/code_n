@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two positive integer arrays `spells` and `potions`, of length `n` and `m` respectively, where $\text{spells}[i]$ represents the strength of the $$i^{\text{th}}$$ spell and $\text{potions}[j]$ represents the strength of the $$j^{\text{th}}$$ potion.
+You are given two positive integer arrays `spells` and `potions`, of length `n` and `m` respectively, where $\text{spells}[i]$ represents the strength of the $i^{\text{th}}$ spell and $\text{potions}[j]$ represents the strength of the $j^{\text{th}}$ potion.
 
 The objective is to compute `[4, 0, 3]` from `{"spells": [5, 1, 3], "potions": [1, 2, 3, 4, 5], "success": 7}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -69,11 +69,7 @@ The exact source calculates the right side as Python floating point with `succes
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A potion is successful when
-
-$$
-v\cdot potion \ge success.
-$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ Thus, the float comparison locates the same integer boundary for the source cons
 
 ## 6. Traps This Instance Exposes
 
-- **- **Integer ceiling threshold:** Search `(success+:** - **Integer ceiling threshold:** Search `(success+v-1)//v` to avoid floating arithmetic while producing the same boundary.
+- **Integer ceiling threshold:** Search `(success+v-1)//v` to avoid floating arithmetic while producing the same boundary.
 - **Sort spells with indices and use two pointers:** It can reduce post-sort searching to linear time but needs index restoration.
 - **Test every pair:** It takes `O(nm)` time and ignores monotonicity.
 - **Largest potion still fails:** Binary search returns `m` and the count is zero.
@@ -130,8 +126,8 @@ Thus, the float comparison locates the same integer boundary for the source cons
 - **Wide product avoidance:** Searching a divided threshold avoids computing every spell-potion product, although Python could represent those products safely.
 - **Return allocation:** The list comprehension necessarily creates the requested length-`n` result.
 - **Binary-search equality:** A potion exactly at the threshold belongs on the successful side because the search is left-biased.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

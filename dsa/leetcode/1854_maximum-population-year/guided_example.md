@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given a 2D integer array `logs` where each $\text{logs}[i] = [\text{birth}_{i}, \text{death}_{i}]$ indicates the birth and death years of the $$i^{\text{th}}$$ person.
+You are given a 2D integer array `logs` where each $\text{logs}[i] = [\text{birth}_{i}, \text{death}_{i}]$ indicates the birth and death years of the $i^{\text{th}}$ person.
 
 The objective is to compute `1993` from `{"args": [[[1993, 1999], [2000, 2010]]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - plus one at the birth year, when the person starts being c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ A prefix sum of these changes then reconstructs the population for every year.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Increment every lifetime year:** With this tin:** - **Increment every lifetime year:** With this tiny domain it can pass, but it repeats work for long lifetimes and obscures the half-open interval idea.
+- **Increment every lifetime year:** With this tiny domain it can pass, but it repeats work for long lifetimes and obscures the half-open interval idea.
 - **Sort birth and death events:** A chronological event sweep works in `O(n log n)` time and generalizes to large year ranges.
 - **Separate birth and death counters:** Two arrays can be prefix-scanned, but one signed difference array contains the same information more compactly.
 - **Death-year exclusion:** Subtracting at `death` ensures the person is absent in that year.
@@ -99,8 +99,8 @@ A prefix sum of these changes then reconstructs the population for every year.
 - **Death at 2050:** Bucket index 100 safely stores the removal event.
 - **No overflow concern:** At most 100 people contribute, and Python integers are unbounded anyway.
 - **Offset mapping:** Returning `j + 1950` converts the internal index back to the calendar year.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ For a prime $x$, the greatest proper divisor is one, so the operation leaves $x$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a prime $x$, the greatest proper divisor is one, so the ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For a prime $x$, the greatest proper divisor is one, so the operation leaves $x$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Factor each violating value on demand:** Trial:** - **Factor each violating value on demand:** Trial division costs up to $O(\sqrt U)$ per changed element but avoids the large global sieve for few calls.
+- **Factor each violating value on demand:** Trial division costs up to $O(\sqrt U)$ per changed element but avoids the large global sieve for few calls.
 - **Linear sieve:** It can compute smallest prime factors in $O(U)$ time with comparable storage.
 - **Process left to right:** Future right values are not finalized, making greedy decisions unclear. Right-to-left directly enforces each required upper bound.
 - **Prime violating value:** Its smallest prime factor equals itself, so it cannot be reduced and the answer is `-1`.
@@ -99,8 +99,8 @@ For a prime $x$, the greatest proper divisor is one, so the operation leaves $x$
 - **Upper-bound dependency:** Access is safe only because all values are at most $10^6$.
 - **Minimum count:** Every performed operation repairs a pair that was otherwise invalid, so none of the counted operations can be omitted.
 - **Greatest-divisor wording:** The operation may look as though many divisors must be considered, but the quotient is forced to the smallest prime factor. Establishing this equivalence is what collapses repeated-operation search into one greedy check.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

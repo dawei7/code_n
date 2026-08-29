@@ -87,7 +87,7 @@ When `pre` is still zero, `cur * pre` is zero rather than negative, so the first
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pre` stores the most recent nonzero cross product.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -124,7 +124,7 @@ For `i = n - 2`, the triple is the second-last point, last point, and first poin
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute a convex hull:** Compare the hull with:** - **Compute a convex hull:** Compare the hull with all input vertices. This costs $O(n\log n)$ and is unnecessary because vertices already arrive in boundary order.
+- **Compute a convex hull:** Compare the hull with all input vertices. This costs $O(n\log n)$ and is unnecessary because vertices already arrive in boundary order.
 - **Check every diagonal:** Verifying that all other vertices lie on one side of every edge can take $O(n^2)$ time; consecutive-turn signs capture the same property for a simple ordered polygon.
 - **Use dot products:** Dot products measure angles and lengths but do not directly encode clockwise versus counterclockwise orientation.
 - **Clockwise input:** All nonzero cross products are negative and the polygon is still accepted.
@@ -134,8 +134,8 @@ For `i = n - 2`, the triple is the second-last point, last point, and first poin
 - **Self-intersection outside the contract:** Local turn checks alone should not replace a simplicity test for arbitrary vertex lists.
 - **Three vertices:** Any valid nondegenerate simple triangle has one consistent orientation and is convex.
 - **Repeated points:** The source guarantees uniqueness; duplicates could create zero-length edges and would require separate validation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

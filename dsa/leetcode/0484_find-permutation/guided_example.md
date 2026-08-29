@@ -51,7 +51,7 @@ An `I` already agrees with that ascending order. A maximal run of `D` characters
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An `I` already agrees with that ascending order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ An `I` already agrees with that ascending order. A maximal run of `D` characters
 
 ## 6. Traps This Instance Exposes
 
-- **- **Stack construction:** Push increasing values w:** - **Stack construction:** Push increasing values while reading `D`s and flush the stack at each `I`. Popping reverses each decrease block and also runs in $O(n)$ time, but it uses a separate stack.
+- **Stack construction:** Push increasing values while reading `D`s and flush the stack at each `I`. Popping reverses each decrease block and also runs in $O(n)$ time, but it uses a separate stack.
 - **In-place two-pointer reversal:** Swap endpoints of every affected block rather than assigning reversed slices. This preserves the same reasoning and reduces temporary auxiliary storage, at the cost of a few more implementation lines.
 - **Brute-force permutations:** Enumerating all $(n+1)!$ permutations and selecting the first match is impossible for `n` up to $10^5$. The block structure determines the minimum directly.
 - **All `I` characters:** Every processed slice has length one, so the answer remains `[1, 2, ..., n + 1]`, the smallest permutation overall.
@@ -94,8 +94,8 @@ An `I` already agrees with that ascending order. A maximal run of `D` characters
 - **Run at the end:** The answer slice includes position `n` through the `j + 1` endpoint, so the final value is not omitted.
 - **One `D`:** Two adjacent values are reversed. A single pattern comparison always affects two permutation positions.
 - **Repeated values are impossible:** `ans` begins as the exact range `1` through `n + 1`, and reversal only changes order, so the permutation property is preserved automatically.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

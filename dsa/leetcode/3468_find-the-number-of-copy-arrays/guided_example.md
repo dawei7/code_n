@@ -55,10 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{copy}[i]-\texttt{copy}[i-1]
-=
-\texttt{original}[i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +94,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over possible copied value:** - **Dynamic programming over possible copied values:** Bounds can span up to $10^9$, making value-by-value states infeasible and unnecessary.
+- **Dynamic programming over possible copied values:** Bounds can span up to $10^9$, making value-by-value states infeasible and unnecessary.
 - **Construct each candidate array:** There may be up to a billion possible first values, while interval intersection counts all of them at once.
 - **Track the global shift \(c\) instead of the first value:** This is equally valid; each bound becomes `bounds[i][0] - original[i] <= c <= bounds[i][1] - original[i]`.
 - **Use only the tightest original bound width:** Offsets move intervals relative to one another, so their full translated intersection is required.
@@ -109,8 +106,8 @@ $$
 - **Inclusive endpoints:** The `+1` is necessary because both lower and upper bound values are allowed.
 - **No input mutation:** The method derives scalar restrictions and leaves `original` and `bounds` unchanged.
 - **Early exit opportunity:** The code could return zero as soon as `lower > upper`, but continuing the linear scan does not change correctness or asymptotic complexity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

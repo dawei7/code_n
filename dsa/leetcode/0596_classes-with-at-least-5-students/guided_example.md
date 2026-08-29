@@ -61,7 +61,7 @@ For the sample, Math’s group contains rows for A, C, E, G, H, and I, giving co
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `COUNT(1)` counts every row in a group because the literal 1... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The aggregate count guides filtering but is not selected. The output needs only 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Grouped subquery:** Compute `class, COUNT(*) A:** - **Grouped subquery:** Compute `class, COUNT(*) AS total` in a subquery and filter `total >= 5` outside. Correct, but `HAVING` expresses the same operation more directly.
+- **Grouped subquery:** Compute `class, COUNT(*) AS total` in a subquery and filter `total >= 5` outside. Correct, but `HAVING` expresses the same operation more directly.
 - **`COUNT(DISTINCT student)`:** Robust if duplicate enrollment rows are possible, but redundant under the composite primary key.
 - **`WHERE COUNT(...)`:** Invalid logical placement because `WHERE` runs before aggregate groups exist.
 - **Window count:** Annotate each row with `COUNT(*) OVER (PARTITION BY class)`, filter, then use `DISTINCT class`. It retains unnecessary row detail and needs deduplication.
@@ -117,8 +117,8 @@ The aggregate count guides filtering but is not selected. The output needs only 
 - **Ordinal grouping:** `GROUP BY 1` means the selected `class` column here; explicit naming is clearer if columns may be reordered.
 - **Counting a nullable column:** `COUNT(1)` avoids null-sensitive undercounting. Every row contributes exactly one.
 - **Output schema:** The count is used only by `HAVING`; returning it would add an unrequested column.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

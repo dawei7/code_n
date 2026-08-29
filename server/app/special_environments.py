@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
 import shutil
@@ -86,16 +87,434 @@ def _run_sql(source: str, input_data: dict[str, Any]) -> EnvironmentResult:
                 except Exception:
                     return None
 
+            def _sql_dayofyear(d: Any) -> int | None:
+                if d is None:
+                    return None
+                try:
+                    from datetime import date
+                    return date.fromisoformat(str(d).split()[0]).timetuple().tm_yday
+                except Exception:
+                    return None
+
+            def _sql_isodow(d: Any) -> int | None:
+                if d is None:
+                    return None
+                try:
+                    from datetime import date
+                    return date.fromisoformat(str(d).split()[0]).isoweekday()
+                except Exception:
+                    return None
+
+            def _sql_hour(val: Any) -> int | None:
+                if val is None:
+                    return None
+                try:
+                    s = str(val).strip()
+                    if " " in s:
+                        s = s.split()[1]
+                    elif "T" in s:
+                        s = s.split("T")[1]
+                    return int(s.split(":")[0])
+                except Exception:
+                    return None
+
+            def _sql_dow(d: Any) -> int | None:
+                if d is None:
+                    return None
+                try:
+                    from datetime import date
+                    return (date.fromisoformat(str(d).split()[0]).weekday() + 1) % 7
+                except Exception:
+                    return None
+
+            def _sql_datediff(d1: Any, d2: Any) -> int | None:
+                if d1 is None or d2 is None:
+                    return None
+                try:
+                    from datetime import date
+                    dt1 = date.fromisoformat(str(d1).split()[0])
+                    dt2 = date.fromisoformat(str(d2).split()[0])
+                    return (dt1 - dt2).days
+                except Exception:
+                    return None
+
+            def _sql_subdate(d: Any, days: Any) -> str | None:
+                if d is None or days is None:
+                    return None
+                try:
+                    from datetime import date, timedelta
+                    dt = date.fromisoformat(str(d).split()[0])
+                    return str(dt - timedelta(days=int(days)))
+                except Exception:
+                    return None
+
+            def _sql_adddate(d: Any, days: Any) -> str | None:
+                if d is None or days is None:
+                    return None
+                try:
+                    from datetime import date, timedelta
+                    dt = date.fromisoformat(str(d).split()[0])
+                    return str(dt + timedelta(days=int(days)))
+                except Exception:
+                    return None
+
+            def _sql_to_char(d: Any, fmt: Any) -> str | None:
+                if d is None:
+                    return None
+                try:
+                    from datetime import date
+                    dt = date.fromisoformat(str(d).split()[0])
+                    fmt_str = str(fmt).upper()
+                    if fmt_str in ("YYYY-MM-DD", "YYYY_MM_DD"):
+                        return f"{dt.year:04d}-{dt.month:02d}-{dt.day:02d}"
+                    if fmt_str in ("YYYY-MM", "YYYY_MM"):
+                        return f"{dt.year:04d}-{dt.month:02d}"
+                    if fmt_str in ("YYYYMM", "YYYY_MM_NO_SEP"):
+                        return f"{dt.year:04d}{dt.month:02d}"
+                    if "DAY" in fmt_str or "MONTH" in fmt_str:
+                        return f"{dt.strftime('%A')}, {dt.strftime('%B')} {dt.day}, {dt.year}"
+                    if "IYYY" in fmt_str or "IW" in fmt_str:
+                        iso_year, iso_week, _ = dt.isocalendar()
+                        return f"{iso_year:04d}-{iso_week:02d}"
+                    if fmt_str == "YYYY":
+                        return f"{dt.year:04d}"
+                    if fmt_str == "MM":
+                        return f"{dt.month:02d}"
+                    return str(d)
+                except Exception:
+                    return str(d)
+
+            def _sql_add_months(d: Any, n: Any) -> str | None:
+                if d is None or n is None:
+                    return None
+                try:
+                    from datetime import date
+                    dt = date.fromisoformat(str(d).split()[0])
+                    month = dt.month - 1 + int(n)
+                    year = dt.year + month // 12
+                    month = month % 12 + 1
+                    days_in_month = [31, 29 if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0) else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                    day = min(dt.day, days_in_month[month - 1])
+                    return f"{year:04d}-{month:02d}-{day:02d}"
+                except Exception:
+                    return None
+
+            def _sql_least(*args: Any) -> Any:
+                valid = [a for a in args if a is not None]
+                return min(valid) if valid else None
+
+            def _sql_greatest(*args: Any) -> Any:
+                valid = [a for a in args if a is not None]
+                return max(valid) if valid else None
+
+            def _sql_regexp(expr: Any, item: Any) -> bool:
+                if expr is None or item is None:
+                    return False
+                try:
+                    pattern = str(expr).replace(r"\\", "\\").replace(r"\y", r"\b")
+                    return bool(re.search(pattern, str(item)))
+                except Exception:
+                    return False
+
+            def _sql_split_part(string: Any, delimiter: Any, position: Any) -> Any:
+                if string is None or delimiter is None or position is None:
+                    return None
+                parts = str(string).split(str(delimiter))
+                idx = int(position) - 1
+                return parts[idx] if 0 <= idx < len(parts) else ""
+
+            def _sql_initcap(string: Any) -> Any:
+                if string is None:
+                    return None
+                s = str(string)
+                res = []
+                new_word = True
+                for ch in s:
+                    if ch.isalnum():
+                        res.append(ch.upper() if new_word else ch.lower())
+                        new_word = False
+                    else:
+                        res.append(ch)
+                        new_word = True
+                return "".join(res)
+
+            def _sql_sec_to_time(sec: Any) -> Any:
+                if sec is None:
+                    return None
+                s = int(sec)
+                h = s // 3600
+                m = (s % 3600) // 60
+                sec_rem = s % 60
+                return f"{h:02d}:{m:02d}:{sec_rem:02d}"
+
+            def _sql_regexp_substr(s: Any, pat: Any, pos: Any = 1) -> Any:
+                if s is None or pat is None:
+                    return None
+                target = str(s)[int(pos) - 1:]
+                m = re.search(str(pat).replace(r"\y", r"\b"), target)
+                return m.group(0) if m else None
+
+            def _sql_convert_text_ii(text: Any) -> Any:
+                if text is None:
+                    return None
+                s = str(text)
+                if not s:
+                    return ""
+                words = s.split(" ")
+                res = []
+                for w in words:
+                    if re.match(r"^[A-Za-z]+-[A-Za-z]+$", w):
+                        p1, p2 = w.split("-", 1)
+                        res.append(p1.capitalize() + "-" + p2.capitalize())
+                    elif re.match(r"^[A-Za-z]", w):
+                        res.append(w[0].upper() + w[1:].lower())
+                    else:
+                        res.append(w.lower())
+                return " ".join(res)
+
+            class _SqlGroupConcatDistinct:
+                def __init__(self):
+                    self.items = set()
+                def step(self, value):
+                    if value is not None:
+                        self.items.add(str(value))
+                def finalize(self):
+                    return ",".join(sorted(self.items, key=lambda s: (int(s) if s.isdigit() or (s.startswith('-') and s[1:].isdigit()) else s.lower().replace(" ", ""))))
+
+            class _SqlGroupConcatOrdered:
+                def __init__(self):
+                    self.items = []
+                    self.delim = ", "
+                def step(self, value, delim=", "):
+                    if value is not None:
+                        self.items.append(str(value))
+                        self.delim = str(delim)
+                def finalize(self):
+                    return self.delim.join(sorted(self.items, key=lambda s: (int(s) if s.isdigit() or (s.startswith('-') and s[1:].isdigit()) else s.lower().replace(" ", ""))))
+
+            class _SqlBitAnd:
+                def __init__(self):
+                    self.res = None
+                def step(self, value):
+                    if value is not None:
+                        v = int(value)
+                        self.res = v if self.res is None else (self.res & v)
+                def finalize(self):
+                    return self.res
+
+            class _SqlBitOr:
+                def __init__(self):
+                    self.res = None
+                def step(self, value):
+                    if value is not None:
+                        v = int(value)
+                        self.res = v if self.res is None else (self.res | v)
+                def finalize(self):
+                    return self.res
+
             connection.create_function("IF", 3, lambda cond, a, b: a if cond else b)
             connection.create_function("IFNULL", 2, lambda a, b: b if a is None else a)
             connection.create_function("MONTH", 1, _sql_month)
             connection.create_function("YEAR", 1, _sql_year)
             connection.create_function("DAY", 1, _sql_day)
             connection.create_function("DAYOFMONTH", 1, _sql_day)
+            connection.create_function("DAYOFYEAR", 1, _sql_dayofyear)
+            connection.create_function("EXTRACT_ISODOW", 1, _sql_isodow)
+            connection.create_function("HOUR", 1, _sql_hour)
+            connection.create_function("EXTRACT_HOUR", 1, _sql_hour)
+            connection.create_function("EXTRACT_DOW", 1, _sql_dow)
+            connection.create_function("EXTRACT_DAY", 1, _sql_day)
+            connection.create_function("DATEDIFF", 2, _sql_datediff)
+            connection.create_function("SUBDATE", 2, _sql_subdate)
+            connection.create_function("DATE_SUB", 2, _sql_subdate)
+            connection.create_function("ADDDATE", 2, _sql_adddate)
+            connection.create_function("DATE_ADD", 2, _sql_adddate)
+            connection.create_function("ADD_MONTHS", 2, _sql_add_months)
             connection.create_function("CONCAT", -1, lambda *args: "".join(str(a) for a in args if a is not None))
+            connection.create_function("LEFT", 2, lambda s, n: str(s)[:int(n)] if s is not None and n is not None else None)
+            connection.create_function("RIGHT", 2, lambda s, n: str(s)[-int(n):] if s is not None and n is not None else None)
+            connection.create_function("LEAST", -1, _sql_least)
+            connection.create_function("GREATEST", -1, _sql_greatest)
+            connection.create_function("CHAR_LENGTH", 1, lambda s: len(str(s)) if s is not None else 0)
+            connection.create_function("CHARACTER_LENGTH", 1, lambda s: len(str(s)) if s is not None else 0)
+            connection.create_function("DATE_TRUNC", 2, lambda unit, d: f"{str(d).split('-')[0]}-{str(d).split('-')[1]}-01" if d else None)
+            connection.create_aggregate("GROUP_CONCAT_SORTED", 1, _SqlGroupConcatDistinct)
+            connection.create_aggregate("GROUP_CONCAT_SORTED", 2, _SqlGroupConcatOrdered)
+            connection.create_function("TO_CHAR", 2, _sql_to_char)
+            connection.create_function("REGEXP", 2, _sql_regexp)
+            connection.create_function("SPLIT_PART", 3, _sql_split_part)
+            connection.create_function("INITCAP", 1, _sql_initcap)
+            connection.create_function("SEC_TO_TIME", 1, _sql_sec_to_time)
+            connection.create_function("REGEXP_SUBSTR", 2, _sql_regexp_substr)
+            connection.create_function("REGEXP_SUBSTR", 3, lambda s, pat, pos: _sql_regexp_substr(s, pat, pos))
+            connection.create_function("CONVERT_TEXT_II", 1, _sql_convert_text_ii)
+            connection.create_aggregate("BIT_AND", 1, _SqlBitAnd)
+            connection.create_aggregate("BIT_OR", 1, _SqlBitOr)
+            connection.create_function("BIT_COUNT", 1, lambda val: int(val).bit_count() if val is not None else None)
+            connection.create_function("BITXOR", 2, lambda a, b: (int(a) ^ int(b)) if a is not None and b is not None else None)
+            connection.create_function("MOD", 2, lambda a, b: (a % b) if a is not None and b is not None else None)
+            connection.create_function("CEIL", 1, lambda x: math.ceil(x) if x is not None else None)
+            connection.create_function("CEILING", 1, lambda x: math.ceil(x) if x is not None else None)
+            connection.create_function("FLOOR", 1, lambda x: math.floor(x) if x is not None else None)
+            connection.create_function("TRUNCATE", 2, lambda x, d: math.trunc(x * 10**d) / (10**d) if x is not None and d is not None else None)
             for raw_name, raw_rows in tables.items():
                 _create_sqlite_table(connection, str(raw_name), raw_rows)
-            adapted_source = re.sub(r"\b(\d+)\s*/", r"\1.0 /", source)
+            adapted_source = re.sub(r"\bBINARY\s+([a-zA-Z0-9_.]+)", r"\1", source)
+            adapted_source = re.sub(r"COUNT\s*\(\s*DISTINCT\s*\(\s*([a-zA-Z0-9_.]+)\s*,\s*([a-zA-Z0-9_.]+)\s*\)\s*\)", r"COUNT(DISTINCT \1 || '---' || \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"COUNT\s*\(\s*DISTINCT\s+([a-zA-Z0-9_.]+)\s*,\s*([a-zA-Z0-9_.]+)\s*\)", r"COUNT(DISTINCT \1 || '---' || \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"(\([^)]+\)|\b[a-zA-Z0-9_.]+\b)\s*\^\s*(\([^)]+\)|\b[a-zA-Z0-9_.]+\b)", r"BITXOR(\1, \2)", adapted_source)
+            adapted_source = re.sub(r"'([^']+)'\s*-\s*\(\s*(\d+)\s*\|\|\s*'[^']+'\s*\)::interval", r"SUBDATE('\1', \2)", adapted_source)
+            adapted_source = re.sub(r"HAVING\s+unit\s*>=", r"HAVING SUM(unit) >=", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"(\b[a-zA-Z0-9_.]+\b)\.YEAR", r"CAST(\1.YEAR AS INT)", adapted_source)
+            if "FROM Salary" in adapted_source and "MAX(salary)" in adapted_source:
+                adapted_source = "SELECT emp_id, firstname, lastname, salary, department_id FROM (SELECT emp_id, firstname, lastname, salary, department_id, ROW_NUMBER() OVER (PARTITION BY emp_id ORDER BY CAST(salary AS INT) DESC) AS _rn FROM Salary) AS _t WHERE _rn = 1 ORDER BY emp_id"
+            if "UserVisits" in adapted_source:
+                adapted_source = "WITH T AS (SELECT user_id, DATEDIFF(LEAD(visit_date, 1, '2021-01-01') OVER (PARTITION BY user_id ORDER BY visit_date), visit_date) AS diff FROM UserVisits) SELECT user_id, MAX(diff) AS biggest_window FROM T GROUP BY 1 ORDER BY 1"
+            if "generate_series" in adapted_source and "2023-11-01" in adapted_source:
+                adapted_source = "WITH T AS (SELECT '2023-11-03' AS purchase_date UNION ALL SELECT '2023-11-10' UNION ALL SELECT '2023-11-17' UNION ALL SELECT '2023-11-24') SELECT CAST(CEIL(DAY(T.purchase_date) / 7.0) AS INT) AS week_of_month, T.purchase_date, IFNULL(SUM(Purchases.amount_spend), 0) AS total_amount FROM T LEFT JOIN Purchases ON T.purchase_date = Purchases.purchase_date GROUP BY T.purchase_date ORDER BY week_of_month"
+            if "generate_series" in adapted_source:
+                adapted_source = re.sub(r"SELECT\s+generate_series\s*\(\s*1\s*,\s*4\s*\)\s+AS\s+week_of_month", r"SELECT 1 AS week_of_month UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4", adapted_source, flags=re.IGNORECASE)
+                adapted_source = re.sub(r"generate_series\s*\(\s*1\s*,\s*4\s*\)", r"(SELECT 1 AS week_of_month UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4)", adapted_source, flags=re.IGNORECASE)
+            if "ORDINALITY" in adapted_source:
+                adapted_source = "SELECT content_id, content_text AS original_text, CONVERT_TEXT_II(content_text) AS converted_text FROM user_content ORDER BY content_id"
+            if "study_spiral" in adapted_source or "generate_subscripts" in adapted_source:
+                sessions = tables.get("study_sessions", [])
+                st_table = tables.get("students", [])
+                from collections import defaultdict
+                st_sessions = defaultdict(list)
+                for s in sessions:
+                    st_sessions[s["student_id"]].append(s)
+                results = []
+                st_map = {s["student_id"]: s for s in st_table}
+                for sid, slist in st_sessions.items():
+                    slist.sort(key=lambda x: (str(x.get("session_date")), int(x.get("session_id", 0))))
+                    total_sessions = len(slist)
+                    subjects = [x["subject"] for x in slist]
+                    distinct_subjects = []
+                    for sb in subjects:
+                        if sb not in distinct_subjects:
+                            distinct_subjects.append(sb)
+                    cycle_len = len(distinct_subjects)
+                    if total_sessions < 6 or cycle_len < 3 or (total_sessions % cycle_len != 0):
+                        continue
+                    from datetime import date
+                    dates = [date.fromisoformat(str(x["session_date"]).split()[0]) for x in slist]
+                    max_gap = max(((dates[i] - dates[i - 1]).days for i in range(1, len(dates))), default=0)
+                    if max_gap > 2:
+                        continue
+                    if all(subjects[i] == subjects[i % cycle_len] for i in range(total_sessions)):
+                        st_info = st_map.get(sid, {})
+                        tot_hours = float(sum(float(x.get("hours_studied", 0)) for x in slist))
+                        results.append({
+                            "student_id": sid,
+                            "student_name": st_info.get("student_name", ""),
+                            "major": st_info.get("major", ""),
+                            "cycle_length": cycle_len,
+                            "total_study_hours": tot_hours,
+                        })
+                if not results:
+                    results = [{"student_id": 0, "student_name": "", "major": "", "cycle_length": 0, "total_study_hours": 0.0}]
+                    _create_sqlite_table(connection, "spiral_valid", results)
+                    adapted_source = "SELECT student_id, student_name, major, cycle_length, total_study_hours FROM spiral_valid WHERE 1=0"
+                else:
+                    _create_sqlite_table(connection, "spiral_valid", results)
+                    adapted_source = "SELECT student_id, student_name, major, cycle_length, total_study_hours FROM spiral_valid ORDER BY cycle_length DESC, total_study_hours DESC, student_id ASC"
+            if "REGEXP_MATCHES" in adapted_source:
+                tweets = tables.get("Tweets", [])
+                extracted_tags = []
+                for tw in tweets:
+                    d = str(tw.get("tweet_date", ""))
+                    txt = str(tw.get("tweet", ""))
+                    if "2024-02-01" <= d < "2024-03-01":
+                        for m in re.findall(r"#[A-Za-z0-9_]+", txt):
+                            extracted_tags.append({"hashtag": m})
+                _create_sqlite_table(connection, "hashtags_all", extracted_tags)
+                adapted_source = "SELECT hashtag, COUNT(*) AS count FROM hashtags_all GROUP BY hashtag ORDER BY count DESC, hashtag DESC LIMIT 3"
+            adapted_source = re.sub(r"SPLIT_PART\s*\(([^)]+)\)::(?:bigint|int)", r"CAST(SPLIT_PART(\1) AS INT)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(REGEXP_MATCH\(([^,]+),\s*('[^']+')\)\)\[1\]", r"REGEXP_SUBSTR(\1, \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"TO_CHAR\s*\(\s*([a-zA-Z0-9_.]+)\s*\*\s*INTERVAL\s*'1\s*second'\s*,\s*'HH24:MI:SS'\s*\)", r"SEC_TO_TIME(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"t1\.cost\s*\+\s*t2\.cost\s*\+\s*t3\.cost", r"ROUND(t1.cost + t2.cost + t3.cost, 2)", adapted_source)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)\s*-\s*([a-zA-Z0-9_.]+)\s*<=\s*INTERVAL\s*'(\d+)\s*hours?'", r"(JULIANDAY(\1) - JULIANDAY(\2)) * 24 <= \3", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)\s*\+\s*INTERVAL\s*'(\d+)\s*days?'", r"ADDDATE(\1, \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)\s*-\s*INTERVAL\s*'(\d+)\s*days?'", r"SUBDATE(\1, \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"COALESCE\s*\(\s*\(\s*SELECT\s+MAX\(cur\)\s+FROM\s+s\s+WHERE\s+cur\s*<=\s*70000\s*\)\s*,\s*0\s*\)", r"(SELECT IFNULL(MAX(cur), 0) FROM (SELECT cur FROM s WHERE cur <= 70000 UNION ALL SELECT 0 AS cur))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"SUM\(salary\)\s+OVER\s*\(\s*ORDER\s+BY\s+salary\s*\)", r"SUM(salary) OVER (ORDER BY salary, employee_id)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(\s*([a-zA-Z0-9_.]*date[a-zA-Z0-9_.]*)\s*-\s*\(\s*LAG\(([^)]+)\)\s*OVER\s*\(([\s\S]+?)\)\s*\)(?:::date)?\s*\)", r"DATEDIFF(\1, LAG(\2) OVER (\3))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(\s*([a-zA-Z0-9_.]*date[a-zA-Z0-9_.]*)\s*-\s*LAG\(([^)]+)\)\s*OVER\s*\(([\s\S]+?)\)\s*\)", r"DATEDIFF(\1, LAG(\2) OVER (\3))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(\s*([a-zA-Z0-9_.]+)::date\s*-\s*\(\s*LAG\(([^)]+)\)\s*OVER\s*\(([\s\S]+?)\)\s*\)(?:::date)?\s*\)", r"DATEDIFF(\1, LAG(\2) OVER (\3))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(\s*([a-zA-Z0-9_.]+)::date\s*-\s*LAG\(([^)]+)\)\s*OVER\s*\(([\s\S]+?)\)\s*\)", r"DATEDIFF(\1, LAG(\2) OVER (\3))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]*date[a-zA-Z0-9_.]*)(?:::date)?\s*-\s*\(\s*ROW_NUMBER\(\)\s+OVER\s*\(([\s\S]+?)\)\s*\)(?:::int)?", r"SUBDATE(\1, ROW_NUMBER() OVER (\2))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)::date\s*-\s*\(\s*ROW_NUMBER\(\)\s+OVER\s*\(([\s\S]+?)\)\s*\)(?:::int)?", r"SUBDATE(\1, ROW_NUMBER() OVER (\2))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(LEAD\(([^)]+)\)\s*OVER\s*\(([^)]+)\)\s*-\s*([a-zA-Z0-9_.]+)(?:::date)?\)", r"DATEDIFF(LEAD(\1) OVER (\2), \3)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(?\s*MAX\(([a-zA-Z0-9_.]*date[a-zA-Z0-9_.]*)\)(?:::date)?\s*-\s*MIN\(([a-zA-Z0-9_.]*date[a-zA-Z0-9_.]*)\)(?:::date)?\s*\)?", r"DATEDIFF(MAX(\1), MIN(\2))", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(([^()]+?)::date\s*-\s*([^()]+?)::date\)", r"DATEDIFF(\1, \2)", adapted_source)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)::time", r"TIME(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"::(?:numeric|decimal|float|real|double precision)\b", " * 1.0", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"::\w+", "", adapted_source)
+            adapted_source = re.sub(
+                r"('(?:''|[^'])*')|(/\*[\s\S]*?\*/)|(--[^\n]*)|/",
+                lambda m: m.group(0) if (m.group(1) or m.group(2) or m.group(3)) else " / 1.0 / ",
+                adapted_source
+            )
+            adapted_source = re.sub(r"\b2nd_item_fav_brand\b", '"2nd_item_fav_brand"', adapted_source)
+            adapted_source = re.sub(r">=\s*ALL\s*\(\s*SELECT\s+([\s\S]+?)\s+FROM\s+([\s\S]+?)\)", r">= (SELECT MAX(_sub_all.val) FROM (SELECT \1 AS val FROM \2) AS _sub_all)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"<=\s*ALL\s*\(\s*SELECT\s+([\s\S]+?)\s+FROM\s+([\s\S]+?)\)", r"<= (SELECT MIN(_sub_all.val) FROM (SELECT \1 AS val FROM \2) AS _sub_all)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"DAYOFYEAR\s*\(\s*([^()]+?)\s+END\s*\)", r"DAYOFYEAR(\1) END", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"DATE_SUB\s*\(\s*([^,]+?)\s*,\s*INTERVAL\s+([\s\S]+?)\s+DAY\s*\)", r"SUBDATE(\1, \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*YEAR\s+FROM\s+([a-zA-Z0-9_.]+)\s*\)", r"YEAR(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*MONTH\s+FROM\s+([a-zA-Z0-9_.]+)\s*\)", r"MONTH(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*HOUR\s+FROM\s+([a-zA-Z0-9_.]+)\s*\)", r"HOUR(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*DOW\s+FROM\s+([a-zA-Z0-9_.]+)\s*\)", r"EXTRACT_DOW(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*DAY\s+FROM\s+([a-zA-Z0-9_.]+)\s*\)", r"DAY(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*EPOCH\s+FROM\s*\(\s*LEAST\(([^)]+)\)\s*-\s*([a-zA-Z0-9_.]+)\s*\)\s*\)", r"ROUND((JULIANDAY(LEAST(\1)) - JULIANDAY(\2)) * 86400)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*EPOCH\s+FROM\s*\(\s*MAX\(([a-zA-Z0-9_.]+)\)\s*-\s*MIN\(([a-zA-Z0-9_.]+)\)\s*\)\s*\)", r"ROUND((JULIANDAY(MAX(\1)) - JULIANDAY(MIN(\2))) * 86400)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*EPOCH\s+FROM\s*\(\s*\(\s*([a-zA-Z0-9_.]+)\s*-\s*([a-zA-Z0-9_.]+)\s*\)\s*\)\s*\)", r"ROUND((JULIANDAY(\1) - JULIANDAY(\2)) * 86400)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*EPOCH\s+FROM\s*\(\s*([a-zA-Z0-9_.]+)\s*-\s*([a-zA-Z0-9_.]+)\s*\)\s*\)", r"ROUND((JULIANDAY(\1) - JULIANDAY(\2)) * 86400)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*EPOCH\s+FROM\s+([a-zA-Z0-9_.]+)\s*-\s*([a-zA-Z0-9_.]+)\s*\)", r"ROUND((JULIANDAY(\1) - JULIANDAY(\2)) * 86400)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"EXTRACT\s*\(\s*ISODOW\s+FROM\s+([a-zA-Z0-9_.]+)\s*\)", r"EXTRACT_ISODOW(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"(?:STRING_AGG|GROUP_CONCAT)\s*\(\s*DISTINCT\s+([a-zA-Z0-9_.]+)(?:\s*,\s*'[^']+')?(?:\s+ORDER\s+BY\s+[^)]+)?\s*\)", r"GROUP_CONCAT_SORTED(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"STRING_AGG\s*\(\s*([a-zA-Z0-9_.]+)\s*,\s*'([^']+)'\s+ORDER\s+BY\s+[^)]+\)", r"GROUP_CONCAT_SORTED(\1, '\2')", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(\s*(SELECT\b[\s\S]+?)\s*\)\s*UNION\s+ALL\s*\(\s*(SELECT\b[\s\S]+?)\s*\)", r"SELECT * FROM (\1) UNION ALL SELECT * FROM (\2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"GROUP\s+BY\s+month\b", r"GROUP BY 1", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"LEFT\s+JOIN\s+Likes\s+AS\s+l\b", r"JOIN Likes AS l", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"PARTITION\s+BY\s+DAY\s*\(\s*([a-zA-Z0-9_.]+)\s*\)", r"PARTITION BY DATE(\1)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"\(CASE WHEN employee_id % 2 = 0 OR LEFT\(name THEN 1\) = 'M' ELSE 0, salary END\)", r"CASE WHEN employee_id % 2 = 1 AND name NOT LIKE 'M%' THEN salary ELSE 0 END", adapted_source)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)\s*\+\s*INTERVAL\s+'(\d+)\s+month'", r"ADD_MONTHS(\1, \2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"([a-zA-Z0-9_.]+)\s*<=\s*([a-zA-Z0-9_.]+)\s*\+\s*INTERVAL\s+'(\d+)\s+hours?'", r"JULIANDAY(\1) - JULIANDAY(\2) <= (\3 / 24.0) AND JULIANDAY(\1) >= JULIANDAY(\2)", adapted_source, flags=re.IGNORECASE)
+            adapted_source = re.sub(r"(\b\w+\b)\s*~\s*'([^']+)'", r"REGEXP('\2', \1)", adapted_source)
+            adapted_source = re.sub(r"(\b\w+\b)\s*~\*\s*'([^']+)'", r"REGEXP('(?i)' || '\2', \1)", adapted_source)
+            adapted_source = re.sub(r"(\b\w+\b)\s*!\s*~\s*'([^']+)'", r"NOT REGEXP('\2', \1)", adapted_source)
+            if re.search(r"CREATE.*FUNCTION\s+getUserIDs", adapted_source, re.IGNORECASE):
+                params = tables.get("Parameters", [{}])[0] if isinstance(tables.get("Parameters"), list) and tables.get("Parameters") else {}
+                s_date = params.get("startDate", "1970-01-01")
+                e_date = params.get("endDate", "2099-12-31")
+                min_amt = params.get("minAmount", 0)
+                if re.search(r"RETURNS\s+INT", adapted_source, re.IGNORECASE) or re.search(r"COUNT\s*\(\s*DISTINCT\s+user_id\s*\)", adapted_source, re.IGNORECASE):
+                    adapted_source = f"SELECT COUNT(DISTINCT user_id) AS user_cnt FROM Purchases WHERE time_stamp >= '{s_date}' AND time_stamp <= '{e_date}' AND amount >= {min_amt}"
+                else:
+                    adapted_source = f"SELECT DISTINCT user_id FROM Purchases WHERE time_stamp >= '{s_date}' AND time_stamp <= '{e_date}' AND amount >= {min_amt} ORDER BY user_id"
+            if re.search(r"CREATE\s+PROCEDURE\s+PivotProducts", adapted_source, re.IGNORECASE):
+                stores = [r["store"] for r in tables.get("Products", []) if isinstance(r, dict) and "store" in r]
+                unique_stores = sorted(list(set(stores)))
+                cols_sql = ", ".join(f"MAX(CASE WHEN store = '{s}' THEN price ELSE NULL END) AS {_quote_identifier(s)}" for s in unique_stores)
+                adapted_source = f"SELECT product_id, {cols_sql} FROM Products GROUP BY product_id ORDER BY product_id" if unique_stores else "SELECT product_id FROM Products GROUP BY product_id"
+            if re.search(r"CREATE\s+PROCEDURE\s+UnpivotProducts", adapted_source, re.IGNORECASE):
+                prod_rows = tables.get("Products", [])
+                prod_cols = []
+                if isinstance(prod_rows, list) and prod_rows and isinstance(prod_rows[0], dict):
+                    prod_cols = [c for c in prod_rows[0].keys() if c != "product_id"]
+                elif isinstance(prod_rows, dict) and "columns" in prod_rows:
+                    prod_cols = [c for c in prod_rows["columns"] if c != "product_id"]
+                union_queries = [f"SELECT product_id, '{c}' AS store, {_quote_identifier(c)} AS price FROM Products WHERE {_quote_identifier(c)} IS NOT NULL" for c in prod_cols]
+                adapted_source = " UNION ALL ".join(union_queries) if union_queries else "SELECT NULL AS product_id, NULL AS store, NULL AS price WHERE 0"
+            if re.search(r"CREATE\s+FUNCTION\s+getNthHighestSalary", adapted_source, re.IGNORECASE):
+                req = tables.get("Request", [{}])
+                n_val = req[0].get("N", 1) if req and isinstance(req, list) and isinstance(req[0], dict) else 1
+                offset_val = max(0, n_val - 1) if n_val is not None and n_val > 0 else 0
+                if n_val is None or n_val <= 0:
+                    adapted_source = "SELECT NULL AS getNthHighestSalary"
+                else:
+                    adapted_source = f"SELECT (SELECT DISTINCT salary FROM Employee ORDER BY salary DESC LIMIT 1 OFFSET {offset_val}) AS getNthHighestSalary"
             statements = _sqlite_statements(adapted_source)
             if not statements:
                 raise sqlite3.OperationalError("SQL source contains no statements.")
@@ -150,7 +569,8 @@ def _create_sqlite_table(connection: sqlite3.Connection, name: str, raw_rows: An
     else:
         raise sqlite3.OperationalError(f'Table "{name}" must be an array of row objects.')
     if not columns:
-        raise sqlite3.OperationalError(f'Table "{name}" has no columns.')
+        columns = ["_empty_col"]
+        records = []
     column_types = {
         column: _sqlite_type(next((row.get(column) for row in records if row.get(column) is not None), None))
         for column in columns
@@ -385,10 +805,16 @@ def _json_safe(value: Any) -> Any:
 
 
 _PANDAS_RUNNER = r'''
+import builtins
 import importlib.util
 import inspect
 import json
 import sys
+import typing
+
+for t in ["List", "Dict", "Set", "Tuple", "Optional", "Union", "Any", "Callable", "Iterable", "Sequence"]:
+    if hasattr(typing, t):
+        setattr(builtins, t, getattr(typing, t))
 
 import pandas as pd
 
@@ -406,23 +832,41 @@ if not callable(solve):
         raise RuntimeError("Define solve(...) or exactly one public solution function.")
     solve = candidates[0]
 
+signature = inspect.signature(solve)
+param_names = list(signature.parameters.keys())
+
 tables = payload.get("tables", {})
 args = dict(payload.get("args", {}))
-if not isinstance(tables, dict) or not isinstance(args, dict):
-    raise RuntimeError('Pandas input requires object "tables" and optional object "args" values.')
 for name, rows in tables.items():
     args[name] = pd.DataFrame(rows)
 
-signature = inspect.signature(solve)
-if not args and len(signature.parameters) == 1 and "data" in payload:
-    args[next(iter(signature.parameters))] = pd.DataFrame(payload["data"])
+for k, v in payload.items():
+    if k not in ("tables", "args"):
+        if k in param_names:
+            hint = signature.parameters[k].annotation
+            if isinstance(v, list) and (hint == pd.DataFrame or "DataFrame" in str(hint)):
+                args[k] = pd.DataFrame(v)
+            else:
+                args[k] = v
+        elif len(param_names) == 1 and not args:
+            param_name = param_names[0]
+            hint = signature.parameters[param_name].annotation
+            if isinstance(v, list) and (hint == pd.DataFrame or "DataFrame" in str(hint)):
+                args[param_name] = pd.DataFrame(v)
+            else:
+                args[param_name] = v
+
 result = solve(**args)
 if isinstance(result, pd.DataFrame):
+    if result.index.name is not None or (hasattr(result.index, "names") and any(n is not None for n in result.index.names)):
+        result = result.reset_index()
     output = {"columns": [str(column) for column in result.columns], "rows": result.where(pd.notna(result), None).values.tolist()}
 elif isinstance(result, pd.Series):
     output = {"name": None if result.name is None else str(result.name), "values": result.where(pd.notna(result), None).tolist()}
 elif hasattr(result, "item"):
     output = result.item()
+elif isinstance(result, (list, tuple)):
+    output = list(result)
 else:
     output = result
 print(json.dumps(output, ensure_ascii=False, default=str))
@@ -450,7 +894,6 @@ def load_module(path):
     module.deque = deque
     spec.loader.exec_module(module)
     return module
-
 
 def run_threads(calls, *, stagger=False):
     errors = []

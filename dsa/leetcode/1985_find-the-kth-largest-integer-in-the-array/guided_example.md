@@ -59,7 +59,7 @@ For `["2", "21", "12", "1"]` with $k=3$, the numeric descending order is 21, 12,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `nlargest(k, nums, key=...)` returns a list containing the $... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The key values may be equal, but the result list still contains both source elem
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full numeric sort:** Simpler conceptually and :** - **Full numeric sort:** Simpler conceptually and costs $O(N\log N)$ comparisons, but retains/order all elements rather than only the top $k$.
+- **Full numeric sort:** Simpler conceptually and costs $O(N\log N)$ comparisons, but retains/order all elements rather than only the top $k$.
 - **Length then lexicographic key:** Avoids big integers; care is needed to express descending rank and retain duplicates.
 - **Min-heap of size $k$:** This is the underlying selection idea and offers $O(N\log k)$ comparisons.
 - **Quickselect:** Expected linear comparisons but requires a custom numeric-string ordering and may mutate an array.
@@ -109,8 +109,8 @@ The key values may be equal, but the result list still contains both source elem
 - **Very long strings:** Python arbitrary-precision integers prevent overflow.
 - **Input preservation:** `nlargest` does not reorder or modify `nums`.
 - **Environment import:** The exact source assumes `nlargest` is available from the execution environment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

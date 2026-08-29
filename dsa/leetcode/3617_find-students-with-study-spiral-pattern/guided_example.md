@@ -59,7 +59,7 @@ The first session has no predecessor, so `date_diff` is NULL. A difference of 0,
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `grouped_sessions` uses `LAG(session_date)` within each stud... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ As a result, each student begins at group 1, and every excessive gap starts the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use valid MySQL aggregation:** Replace `STRING:** - **Use valid MySQL aggregation:** Replace `STRING_AGG` with correctly ordered `GROUP_CONCAT`, while considering its configurable maximum output length.
+- **Use valid MySQL aggregation:** Replace `STRING_AGG` with correctly ordered `GROUP_CONCAT`, while considering its configurable maximum output length.
 - **Avoid concatenated strings:** Keep one row per session and use row numbers plus self-joins or window logic for modulo-aligned comparisons.
 - **Generate candidate periods:** Test every `d >= 3` satisfying two complete cycles and compare all positions to `((pos-1) mod d)+1`.
 - **Six nonrepeating subjects:** The exact query incorrectly accepts them because its length-3 `LIKE` condition matches the sequence's own prefix.
@@ -120,8 +120,8 @@ As a result, each student begins at group 1, and every excessive gap starts the 
 - **Runtime defect:** As MySQL, the query fails at `STRING_AGG` before any logical result is returned.
 - **Manifest mismatch:** The source never performs the stated modulo-position equality test.
 - **Read-only behavior:** Despite its defects, the query contains no data-modification statement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

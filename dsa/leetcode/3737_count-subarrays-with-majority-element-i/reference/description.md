@@ -49,7 +49,7 @@ So there are 5 such subarrays.
 
 - **Explanation:** 
 
-**​​​​​​​**All 10 subarrays have 1 as the majority element.
+****All 10 subarrays have 1 as the majority element.
 
 #### Example 3
 
@@ -63,6 +63,6 @@ So there are 5 such subarrays.
 
 - $1 \le \text{nums.length} \le 1000$
 
-- $1 \le \text{nums}[i] \le 10^​​​​​​​9$
+- $1 \le \text{nums}[i] \le 10^9$
 
 - $1 \le target \le 10^{9}$

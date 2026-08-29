@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -85,10 +85,10 @@ df3 = df1.merge(df2, how='outer', on=['month', 'country']).fillna(0)
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
-​
+
 def monthly_transactions(transactions: pd.DataFrame, chargebacks: pd.DataFrame) -> pd.DataFrame:
 
     df = transactions.merge(chargebacks, left_on='id', right_on='trans_id', how='left')
@@ -215,6 +215,6 @@ FROM (
     GROUP BY month, country) AS t0
 GROUP BY month, country
 ```
-​
+
 
 ----

@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-In a row of dominoes, $\text{tops}[i]$ and $\text{bottoms}[i]$ represent the top and bottom halves of the $$i^{\text{th}}$$ domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.)
+In a row of dominoes, $\text{tops}[i]$ and $\text{bottoms}[i]$ represent the top and bottom halves of the $i^{\text{th}}$ domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.)
 
 The objective is to compute `2` from `{"tops": [2, 1, 2, 4, 2, 2], "bottoms": [5, 2, 6, 2, 3, 2]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -61,7 +61,7 @@ This condition checks feasibility for making either the top row or the bottom ro
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For target `x`, each domino pair `(a, b)` must contain `x` o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ which is algebraically the minimum of those two rotation counts.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try all six domino values:** Check feasibility:** - **Try all six domino values:** Check feasibility and rotations for values one through six. This remains linear because six is fixed, but the first-domino observation reduces unnecessary scans.
+- **Try all six domino values:** Check feasibility and rotations for values one through six. This remains linear because six is fixed, but the first-domino observation reduces unnecessary scans.
 - **Count frequencies separately without pair feasibility:** Large top or bottom counts are insufficient if some domino lacks the target entirely. Each pair must be checked.
 - **Physically simulate rotations:** Once a target row is chosen, simulation can construct it, but the problem asks only for the count and every required position is directly identifiable.
 - **Both first faces equal:** The same candidate is checked twice; the result remains correct.
@@ -128,8 +128,8 @@ which is algebraically the minimum of those two rotation counts.
 - **Both candidates feasible:** The algorithm compares their best top/bottom rotation counts and returns the smaller.
 - **Unique minimum not required:** Different rotation plans may use the same minimum number; only the numeric count is returned.
 - **Input preservation:** The paired arrays are read-only and retain their original orientation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

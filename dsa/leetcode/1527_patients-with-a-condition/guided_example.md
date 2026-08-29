@@ -66,7 +66,7 @@ It rejects `XDIAB100` because the required prefix is not at the string start.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `'DIAB1%'` requires the string's first five characters to be... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Multiple spaces before a code still contain some final space directly followed b
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expression boundary:** `(^|[[:space:]]:** - **Regular expression boundary:** `(^|[[:space:]])DIAB1` expresses the two positions in one pattern and can recognize broader whitespace.
+- **Regular expression boundary:** `(^|[[:space:]])DIAB1` expresses the two positions in one pattern and can recognize broader whitespace.
 - **Tokenized normalized table:** Store one condition code per row linked to a patient. Queries and indexes become cleaner, but the schema changes substantially.
 - **BINARY LIKE:** Apply binary comparison when exact uppercase matching must be guaranteed independently of collation.
 - **Condition at string start:** The first pattern finds it without requiring a leading space.
@@ -116,8 +116,8 @@ Multiple spaces before a code still contain some final space directly followed b
 - **Null conditions:** Both predicates evaluate to unknown, so the row is excluded.
 - **Several matching codes:** The patient row is still returned once because filtering does not join or duplicate rows.
 - **Unrestricted order:** No `ORDER BY` is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

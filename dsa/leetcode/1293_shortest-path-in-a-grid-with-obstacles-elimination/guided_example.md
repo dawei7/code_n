@@ -67,7 +67,7 @@ For the initial state, the first outer iteration changes `ans` to one, and all g
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If the shortcut does not apply, the queue starts with `(0, 0... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ Marking a state visited when it is enqueued, rather than later when it is dequeu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Coordinate-only BFS:** Remembering only `(row,:** - **Coordinate-only BFS:** Remembering only `(row, column)` is incorrect. An earlier arrival with no eliminations left can block a later, still-shortest-enough arrival with quota remaining, even though the latter can cross a necessary obstacle afterward.
+- **Coordinate-only BFS:** Remembering only `(row, column)` is incorrect. An earlier arrival with no eliminations left can block a later, still-shortest-enough arrival with quota remaining, even though the latter can cross a necessary obstacle afterward.
 - **Best-quota dominance per cell:** Instead of storing every triple, a BFS can remember the greatest remaining quota seen at each coordinate and discard arrivals with no more quota than that value. This can reduce memory and repeated states, but it requires a careful dominance argument and is not what the exact solution implements.
 - **Dijkstra's algorithm:** It is valid on the expanded state graph, but every movement has equal cost one. A priority queue adds logarithmic overhead without improving the shortest-path guarantee that an ordinary queue already provides.
 - **Depth-first search:** DFS does not naturally discover paths in increasing length order. It would need extensive pruning or dynamic programming and can explore many long routes before a shortest route.
@@ -121,8 +121,8 @@ Marking a state visited when it is enqueued, rather than later when it is dequeu
 - **Exactly enough quota:** If a route uses precisely `k` obstacles, its final relevant states carry zero remaining eliminations and remain legal. The condition `k > 0` is checked before spending the next unit, so quota never becomes negative.
 - **Impossible grid:** When barriers require more eliminations than any possible route can afford, the finite queue eventually empties and the method returns `-1`.
 - **Large initial quota:** The `m + n - 3` shortcut avoids building an unnecessarily large state space when enough eliminations guarantee a direct monotone path.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

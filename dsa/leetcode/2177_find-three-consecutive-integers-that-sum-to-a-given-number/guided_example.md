@@ -68,7 +68,7 @@ For `num = 4`, division gives quotient one and remainder one. The nearby triple 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `mod` is nonzero, `num` is not divisible by three.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For `num = 33`, `divmod` returns `x = 11` and `mod = 0`. The resulting list `[10
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use remainder then integer division:** Check `:** - **Use remainder then integer division:** Check `num % 3` and compute `num // 3` separately. This is equally clear but performs two explicit operations instead of obtaining both results together.
+- **Use remainder then integer division:** Check `num % 3` and compute `num // 3` separately. This is equally clear but performs two explicit operations instead of obtaining both results together.
 - **Solve from the first value:** From `a + (a + 1) + (a + 2) = num`, derive `a = num / 3 - 1`. It reaches the same list but centering at the middle makes the cancellation more obvious.
 - **Brute-force search:** Trying possible triples is unnecessary and becomes slow for values up to $10^{15}$.
 - **Remainder zero:** The quotient is an integer middle, so the constructed triple is always valid.
@@ -121,8 +121,8 @@ For `num = 33`, `divmod` returns `x = 11` and `mod = 0`. The resulting list `[10
 - **Uniqueness:** A fixed sum determines a unique middle value, so no tie-breaking is necessary.
 - **No input mutation:** `num` is an immutable integer and the method creates a fresh result list.
 - **Output length:** Success always returns exactly three values; failure always returns zero values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

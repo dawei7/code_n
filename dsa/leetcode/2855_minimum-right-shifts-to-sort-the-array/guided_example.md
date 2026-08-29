@@ -51,7 +51,7 @@ The intended solution is therefore to find the first descent, verify that everyt
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The intended solution is therefore to find the first descent... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The intended solution is therefore to find the first descent, verify that everyt
 
 ## 6. Traps This Instance Exposes
 
-- **- **Corrected boundary scan:** Find the first desc:** - **Corrected boundary scan:** Find the first descent, reject a second descent, require `nums[-1] < nums[0]` when a descent exists, and return the suffix length. This retains $O(n)$ time and $O(1)$ space.
+- **Corrected boundary scan:** Find the first descent, reject a second descent, require `nums[-1] < nums[0]` when a descent exists, and return the suffix length. This retains $O(n)$ time and $O(1)$ space.
 - **Count circular descents:** A rotation of a distinct sorted array has exactly one circular descent unless already sorted. Care is needed because the wrap pair in an already sorted array is itself a circular descent.
 - **Try every right shift:** Construct or compare all rotations in $O(n^2)$ time. It is simple at $n=100$ but unnecessary.
 - **Already sorted:** `i == n` and zero shifts are returned.
@@ -98,8 +98,8 @@ The intended solution is therefore to find the first descent, verify that everyt
 - **Distinctness:** It turns nondecreasing checks into strict comparisons and guarantees a unique sorted rotation.
 - **Input preservation:** The method calculates a shift count without performing rotations.
 - **Manifest claim:** The intended boundary validation is sound, but the exact implementation omits one required edge check.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

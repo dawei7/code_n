@@ -61,7 +61,7 @@ The code stores `n = len(board)` and uses it for both row and column bounds. Thi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested loops scan the square board until `board[i][j] ==... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ For direction `(a, b)`, the first examined square is `(i + a, j + b)`. Repeatedl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan complete rook row and column:** One can i:** - **Scan complete rook row and column:** One can inspect all aligned squares and track blockers, but stopping at the first piece in each direction is simpler and avoids irrelevant cells.
+- **Scan complete rook row and column:** One can inspect all aligned squares and track blockers, but stopping at the first piece in each direction is simpler and avoids irrelevant cells.
 - **Simulate rook moves:** Generate every reachable empty square and capture. This reaches the same result but adds state the direct ray scan does not need.
 - **Precompute piece coordinates:** Building sets or maps is unnecessary for a fixed 64-cell board and uses extra memory.
 - **Bishop immediately adjacent:** The ray loop stops before entering it, contributing zero.
@@ -119,8 +119,8 @@ For direction `(a, b)`, the first examined square is `(i + a, j + b)`. Repeatedl
 - **No capturable pawns:** All rays end at bishops or edges, and the initialized answer zero is returned.
 - **Maximum result:** At most one pawn can be attacked in each of four directions, so the answer cannot exceed four.
 - **Input preservation:** The board is read-only; the method changes only local coordinates and the counter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

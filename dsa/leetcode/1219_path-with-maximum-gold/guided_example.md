@@ -57,9 +57,7 @@ returns zero when the coordinates are outside the grid or the cell value is zero
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The condition
-
-`not (0 <= i < m and 0 <= j < n and grid[i][j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ Before returning, `grid[i][j] = v` restores the cell. This undo step is the hear
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit visited set:** Store coordinates used:** - **Explicit visited set:** Store coordinates used by the current path instead of changing the grid. This can make mutation concerns more visible, but membership records consume \(O(g)\) additional space and require their own add-and-remove discipline.
+- **Explicit visited set:** Store coordinates used by the current path instead of changing the grid. This can make mutation concerns more visible, but membership records consume \(O(g)\) additional space and require their own add-and-remove discipline.
 - **Visited bitmask:** Number the at most 25 gold cells and represent visited status in an integer. It avoids mutating the input and supports memoization by state, but requires preprocessing adjacency and more complex state handling.
 - **Breadth-first enumeration:** A queue can hold partial paths and their visited sets, but many large path states coexist at once. DFS backtracking retains only one active path and is much more space-efficient.
 - **Greedy neighbor choice:** Always taking the richest adjacent cell can miss a longer route with greater total gold. Backtracking is necessary because immediate reward does not determine future connectivity.
@@ -116,8 +114,8 @@ Before returning, `grid[i][j] = v` restores the cell. This undo step is the hear
 - **Input restoration:** Each visited cell is restored after its descendants finish, so ordinary completion preserves `grid`. Removing that restoration would incorrectly erase cells for sibling branches and later starting calls.
 - **Positive-gold guarantee:** Using zero as a visited marker is valid because zero cells are forbidden and all collectable values are positive. The same technique would need reconsideration if legitimate zero-valued traversable cells were allowed.
 - **Required helper import:** The exact source uses `pairwise`, introduced in `itertools`. A standalone execution environment must import it; the algorithm assumes the package harness supplies the name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

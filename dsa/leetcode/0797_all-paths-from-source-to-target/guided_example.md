@@ -63,7 +63,7 @@ Each appended entry represents exactly one additional directed edge from its pre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `u` is not the target, the algorithm visits every outgoin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ The target-ending list can be stored directly because that queue entry will neve
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first backtracking:** Maintain one mutab:** - **Depth-first backtracking:** Maintain one mutable path, copy it only at the target, and undo each choice. It has the same unavoidable output cost but usually smaller frontier memory.
-- **- **Memoized paths from each vertex:** Reuse suffi:** - **Memoized paths from each vertex:** Reuse suffix paths in the DAG, but constructing prefixed copies still incurs output-sized work and may store many intermediate lists.
-- **- **Vertex-level visited set:** Incorrect because :** - **Vertex-level visited set:** Incorrect because different prefixes reaching the same vertex represent different answers.
+- **Depth-first backtracking:** Maintain one mutable path, copy it only at the target, and undo each choice. It has the same unavoidable output cost but usually smaller frontier memory.
+- **Memoized paths from each vertex:** Reuse suffix paths in the DAG, but constructing prefixed copies still incurs output-sized work and may store many intermediate lists.
+- **Vertex-level visited set:** Incorrect because different prefixes reaching the same vertex represent different answers.
 
 ---
 

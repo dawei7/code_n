@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **The inner query forms one group per value.** `GROUP BY 1` ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort descending and test counts:** Group value:** - **Sort descending and test counts:** Group values with their counts, sort qualifying groups by `num DESC`, and take the first. This can find the same value but needs special handling to return one `NULL` row when no group qualifies.
+- **Sort descending and test counts:** Group values with their counts, sort qualifying groups by `num DESC`, and take the first. This can find the same value but needs special handling to return one `NULL` row when no group qualifies.
 - **Correlated frequency subquery:** Filter each row where a subquery counts one matching value, then take `MAX`. It is readable but can repeat work without effective optimization.
 - **Window count:** Attach `COUNT(*) OVER (PARTITION BY num)` to every row, filter count 1, and aggregate the maximum. This avoids a grouped derived table but usually carries more repeated rows through the plan.
 - **All values duplicated:** The inner query is empty, and outer `MAX` correctly returns one row containing `NULL`.
@@ -96,8 +96,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Many copies of one value:** Its group still occupies one aggregate entry and fails because its count is greater than one.
 - **Null input value:** The statement describes integers but does not explicitly state nullability. `COUNT(1)` would treat one null row as a size-one group, while outer `MAX(num)` ignores null and returns `NULL`; this is indistinguishable from no qualifying numeric value. If null semantics mattered, they should be specified explicitly.
 - **`GROUP BY 1` maintainability:** It is concise but positional. `GROUP BY num` communicates intent more directly and cannot silently change meaning after select-list reordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

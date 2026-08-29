@@ -119,7 +119,7 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the length of $\textit{num}$, and let $S$ be half the sum of the digits of $\textit{num}$. Since each digit has a value in the range $[0, 9]$, the possible range of $S$ is $[0, \dfrac{9n}{2}]$.
+Let $n$ be the length of $\textit{num}$, and let $S$ be half the sum of the digits of $\textit{num}$. Since each digit has a value in the range `[0, 9]`, the possible range of $S$ is $[0, \dfrac{9n}{2}]$.
 
 - Time complexity: $O(n^2 \cdot S)$. Computing the combination numbers requires $O(n^2)$ time. Enumerating each digit and the number of times it appears requires $O(n)$ time. Additionally, we need to compute values for $nS$ substates. Therefore, the total time complexity is $O(n^2 \cdot S)$.
 
@@ -192,7 +192,7 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the length of $\textit{num}$, and let $S$ be half the sum of the digits of $\textit{num}$. Since each digit has a value range of $[0, 9]$, the value range of $S$ is $[0, \dfrac{9n}{2}]$.
+Let $n$ be the length of $\textit{num}$, and let $S$ be half the sum of the digits of $\textit{num}$. Since each digit has a value range of `[0, 9]`, the value range of $S$ is $[0, \dfrac{9n}{2}]$.
 
 - Time complexity: $O(n^2 \cdot S)$.
 

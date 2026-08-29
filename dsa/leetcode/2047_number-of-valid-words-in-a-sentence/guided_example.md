@@ -57,7 +57,7 @@ Early return is safe because no later character can remove an already present di
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside `check`, the loop scans every character with its inde... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ This also enforces the “at most one” rule. If a token contained two punctuat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Regular expression:** A carefully anchored pat:** - **Regular expression:** A carefully anchored pattern can validate tokens, but boundary and count rules are easier to audit explicitly.
+- **Regular expression:** A carefully anchored pattern can validate tokens, but boundary and count rules are easier to audit explicitly.
 - **Manual sentence scan:** Validate tokens between spaces without materializing `split()` output, reducing auxiliary space.
 - **Only punctuation token:** `!`, `.`, or `,` is valid because the mark is at the end and unique.
 - **Punctuation before a letter:** Invalid immediately.
@@ -109,8 +109,8 @@ This also enforces the “at most one” rule. If a token contained two punctuat
 - **Letters only:** Always valid under the constrained alphabet.
 - **Mixed unsupported character outside constraints:** The exact helper relies on the input alphabet and does not explicitly reject it.
 - **Boolean summation:** Each valid token contributes exactly one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

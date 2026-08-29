@@ -67,10 +67,7 @@ The union direction does not affect connectivity correctness.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For $n$ columns, cell $(i,j)$ maps to integer
-
-$$
-i\cdot n+j... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +111,7 @@ The outer loops visit every cell, inspect its type, and call those two helpers.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** Traverse from the star:** - **Breadth-first search:** Traverse from the start and enqueue only reciprocally connected neighbors. It gives direct $O(mn)$ time and space and can stop when the target is reached.
+- **Breadth-first search:** Traverse from the start and enqueue only reciprocally connected neighbors. It gives direct $O(mn)$ time and space and can stop when the target is reached.
 - **Depth-first search:** The same reciprocal-direction test works recursively or with an explicit stack. Recursive depth can reach all cells.
 - **Direction bitmasks:** Encode the two openings of each type and verify that a neighbor has the opposite bit. This removes four specialized helper membership lists but requires careful bit mapping.
 - **Union by rank or size:** Adding it to path compression gives the standard strongest amortized union-find guarantee and prevents unnecessarily tall parent trees.
@@ -127,8 +124,8 @@ The outer loops visit every cell, inspect its type, and call those two helpers.
 - **Start or target with unusable exits:** They remain disconnected unless another reciprocal opening joins them.
 - **No grid mutation:** The method reads street types and changes only the separate parent array.
 - **Recursive `find` depth:** Without union by rank, an adversarial parent chain can deepen recursion before compression; an iterative find or rank heuristic improves robustness.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

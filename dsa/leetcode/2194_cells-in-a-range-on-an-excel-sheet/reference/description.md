@@ -6,7 +6,7 @@ A cell `(r, c)` of an excel sheet is represented as a string `"<col><row>"` wher
 
 		- For example, the $1^st$ column is denoted by `'A'`, the $2^nd$ by `'B'`, the $3^rd$ by `'C'`, and so on.
 
-- `<row>` is the row number `r` of the cell. The $$r^{\text{th}}$$ row is represented by the **integer** `r`.
+- `<row>` is the row number `r` of the cell. The $r^{\text{th}}$ row is represented by the **integer** `r`.
 
 You are given a string `s` in the format `"<col1><row1>:<col2><row2>"`, where `<col1>` represents the column `c1`, `<row1>` represents the row `r1`, `<col2>` represents the column `c2`, and `<row2>` represents the row `r2`, such that $r1 \le r2$ and $c1 \le c2$.
 

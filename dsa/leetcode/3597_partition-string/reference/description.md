@@ -10,7 +10,7 @@ Given a string `s`, partition it into **unique segments** according to the follo
 
 - Repeat until you reach the end of `s`.
 
-Return an array of strings `segments`, where $\text{segments}[i]$ is the $$i^{\text{th}}$$ segment created.
+Return an array of strings `segments`, where $\text{segments}[i]$ is the $i^{\text{th}}$ segment created.
 
 ### 2. Function Contract
 

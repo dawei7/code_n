@@ -59,7 +59,7 @@ Thus even parity at every bit is both necessary and sufficient, not merely a use
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If every bit position contains an even number of ones, take ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ This transformation is the main insight. No operation sequence needs to be simul
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate operations:** Choosing bit pairs expl:** - **Simulate operations:** Choosing bit pairs explicitly is unnecessary and combinatorial; parity completely characterizes feasibility.
+- **Simulate operations:** Choosing bit pairs explicitly is unnecessary and combinatorial; parity completely characterizes feasibility.
 - **Check every subarray:** Computing XOR for all $O(n^2)$ subarrays is too slow for $10^5$ elements.
 - **Track parity per bit:** A vector of bit parities works, but XOR packs the same state into one integer.
 - **Single zero:** Its XOR is zero, so the one-element subarray is beautiful.
@@ -114,8 +114,8 @@ This transformation is the main insight. No operation sequence needs to be simul
 - **Empty prefix seed:** Omitting `cnt[0] = 1` would miss beautiful subarrays starting at index zero.
 - **Nonempty requirement:** Updating the answer before the frequency prevents pairing a prefix with itself.
 - **Expected hashing:** Linear time assumes standard expected constant-time Counter lookup.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -69,7 +69,7 @@ In a `LIKE` pattern, the period is an ordinary literal rather than the regex any
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | MySQL regular-expression matching can be case-insensitive de... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The query returns `SELECT *`, which produces `user_id`, `name`, and `mail` from 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Case-sensitive regex collation:** Apply a bina:** - **Case-sensitive regex collation:** Apply a binary or case-sensitive collation to the entire regex and omit the extra `LIKE`. Syntax varies by MySQL version.
+- **Case-sensitive regex collation:** Apply a binary or case-sensitive collation to the entire regex and omit the extra `LIKE`. Syntax varies by MySQL version.
 - **REGEXP_LIKE with match flags:** Newer MySQL versions can request case-sensitive matching explicitly, making intent clearer.
 - **String functions without regex:** Prefix and suffix tests plus illegal-character detection are possible but more verbose and easier to get wrong.
 - **One-letter prefix:** It is valid because the remainder class uses zero-or-more repetition.
@@ -119,8 +119,8 @@ The query returns `SELECT *`, which produces `user_id`, `name`, and `mail` from 
 - **Extra suffix text:** The regex end anchor and suffix comparison reject it.
 - **Null mail:** SQL predicates evaluate to unknown, so the row is not returned.
 - **Unrestricted order:** No sorting clause is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

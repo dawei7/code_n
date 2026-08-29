@@ -14,9 +14,9 @@ We call some integer **wonderful** if it is a **permutation** of the digits in `
 
 - The 4^th smallest wonderful integer is `"5489355421"`.
 
-Return *the **minimum number of adjacent digit swaps** that needs to be applied to *`num`* to reach the *$$k^{\text{th}}$$*** smallest wonderful** integer*.
+Return *the **minimum number of adjacent digit swaps** that needs to be applied to *`num`* to reach the *$k^{\text{th}}$*** smallest wonderful** integer*.
 
-The tests are generated in such a way that $$k^{\text{th}}$$ smallest wonderful integer exists.
+The tests are generated in such a way that $k^{\text{th}}$ smallest wonderful integer exists.
 
 ### 2. Function Contract
 

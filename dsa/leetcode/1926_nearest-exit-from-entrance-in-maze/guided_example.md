@@ -61,7 +61,7 @@ If a usable neighbor lies on row $0$, row $m-1$, column $0$, or column $n-1$, it
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `ans` starts at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The method modifies the supplied `maze` rather than allocating a separate visite
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search:** DFS can determine reacha:** - **Depth-first search:** DFS can determine reachability, but the first exit it encounters need not be the closest. Finding a shortest path would require exploring more routes and maintaining best distances.
+- **Depth-first search:** DFS can determine reachability, but the first exit it encounters need not be the closest. Finding a shortest path would require exploring more routes and maintaining best distances.
 - **Dijkstra's algorithm:** Dijkstra also finds shortest paths, but every move has unit cost, so its priority queue is unnecessary overhead. BFS is the specialized optimal method.
 - **Separate visited set or matrix:** This avoids changing `maze` and still gives $O(RC)$ time and space. The exact solution chooses in-place marking to save that additional structure.
 - **Entrance on the border:** It is explicitly not an exit. Marking it before the search and testing only newly discovered neighbors enforces this rule naturally.
@@ -110,8 +110,8 @@ The method modifies the supplied `maze` rather than allocating a separate visite
 - **Cycles in open corridors:** Immediate marking ensures each cell is visited once, preventing endless movement around a cycle.
 - **Input mutation:** The exact method replaces visited `"."` cells with `"+"`. If the caller needs the original maze later, it must pass a copy or use a separate visited structure.
 - **No exit:** Exhausting the deque proves that no reachable non-entrance border opening exists, so `-1` is the required sentinel.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

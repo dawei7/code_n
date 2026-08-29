@@ -74,10 +74,7 @@ The algorithm never mutates `arr` and never simulates deletion. It reasons only 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the frequencies in descending order are
-
-$$
-f_1 \ge ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +109,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bucket frequencies:** A frequency cannot excee:** - **Bucket frequencies:** A frequency cannot exceed $n$, so count how many values occur with each possible frequency and scan buckets downward. This yields $O(n)$ time and $O(n)$ space, avoiding comparison sorting.
+- **Bucket frequencies:** A frequency cannot exceed $n$, so count how many values occur with each possible frequency and scan buckets downward. This yields $O(n)$ time and $O(n)$ space, avoiding comparison sorting.
 - **Sort the original array:** Equal values become adjacent, allowing run lengths to be counted and then sorted. It still takes $O(n\log n)$ time and mutates the input unless a copy is made.
 - **Max-heap of frequencies:** Repeatedly pop the largest count until the target is reached. Heap construction can be linear, and each selected value costs $O(\log u)$, which can help when very few values are needed.
 - **Choosing values in input order:** This is not optimal because a rare value can consume one set entry while removing very few elements. Frequency order is the property supported by the exchange argument.
@@ -124,8 +121,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Large integer values:** The counter keys need not form a small numeric range. Complexity depends on the number of elements and distinct keys, not the magnitude of the values.
 - **Odd length outside the contract:** The multiplication test would require removal of at least the ceiling of half and still works correctly, even though the stated array length is even.
 - **Empty input outside the contract:** The code would return zero because the loop has no entries. The official constraints begin at length two, so the normal proof assumes a positive target.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

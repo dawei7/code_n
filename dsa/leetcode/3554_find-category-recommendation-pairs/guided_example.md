@@ -87,7 +87,7 @@ For a user with Books, Clothing, and Electronics, the generated rows are Books-C
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pair_per_user` joins `user_category` to itself.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ Given the preceding `DISTINCT` and strict pair construction, each user already c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated existence checks:** One could enume:** - **Correlated existence checks:** One could enumerate category pairs and test how many users have purchases in both categories, but repeated scans or correlated subqueries tend to do much more work than building memberships and grouping once.
+- **Correlated existence checks:** One could enumerate category pairs and test how many users have purchases in both categories, but repeated scans or correlated subqueries tend to do much more work than building memberships and grouping once.
 - **Conditional aggregation:** Pivoting categories into columns can count co-occurrence for a small fixed category set, but categories here are data values rather than a fixed schema, so a self-join is the general solution.
 - **Skip the membership deduplication:** Joining raw purchase rows to themselves would multiply combinations when a customer owns several products in one category. Even `COUNT(DISTINCT user_id)` could recover the final count, but the intermediate join could become dramatically larger.
 - **Use `COUNT(*)`:** It is correct after the exact `DISTINCT user_id, category` CTE because one user-pair row is unique. `COUNT(DISTINCT user_id)` communicates the contract more defensively.
@@ -142,8 +142,8 @@ Given the preceding `DISTINCT` and strict pair construction, each user already c
 - **No reportable pairs:** After `HAVING`, the query returns an empty result table, which is the correct representation.
 - **String collation:** Both `<` and the ascending order use the database collation. If a system requires a specific case-sensitive or locale-specific lexical definition, the query would need an explicit collation; the supplied category data and MySQL environment define the intended behavior here.
 - **Positional clauses:** `GROUP BY 1, 2` and `ORDER BY 3 DESC, 1, 2` are concise but depend on select-column order. Naming the expressions explicitly would be more resilient to later reordering without changing the algorithm.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

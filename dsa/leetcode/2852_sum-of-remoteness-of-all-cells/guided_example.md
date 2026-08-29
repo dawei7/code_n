@@ -51,7 +51,7 @@ If component $C$ has size $t_C$ and value sum $s_C$, every cell in $C$ has remot
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If component $C$ has size $t_C$ and value sum $s_C$, every c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If component $C$ has size $t_C$ and value sum $s_C$, every cell in $C$ has remot
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative BFS per component:** Compute size an:** - **Iterative BFS per component:** Compute size and sum with a queue, then use either contribution formula. It avoids recursion overflow and is the safest direct replacement.
+- **Iterative BFS per component:** Compute size and sum with a queue, then use either contribution formula. It avoids recursion overflow and is the safest direct replacement.
 - **Direct total-sum formula:** Precompute total positive value sum `S` and add `t * (S - s)` per component. This is easier to relate to the definition than the source's dual formula.
 - **Disjoint set union:** Merge adjacent positive cells, aggregate component sums and sizes, then compute contributions. It uses extra arrays and is useful when connectivity is built incrementally.
 - **All positive cells connected:** There are no unreachable positive cells, so the only component contribution is zero.
@@ -97,8 +97,8 @@ If component $C$ has size $t_C$ and value sum $s_C$, every cell in $C$ has remot
 - **Grid mutation:** Callers needing original values must pass a copy or use a separate visited structure.
 - **Deep component:** The exact recursion can fail on standard Python despite correct asymptotic reasoning.
 - **Dual contribution identity:** `(total_count - component_size) * component_sum` is valid only after summing over every component, not as the remoteness of that component's own cells.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

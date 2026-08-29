@@ -61,7 +61,7 @@ Words that never occur in `synonyms` are absent from `d` and do not need a one-e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `g` maps each component root to a list of wor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ When `i` reaches `len(sentence)`, all positions have been chosen. The code joins
 
 ## 6. Traps This Instance Exposes
 
-- **- **Graph search per component:** An adjacency lis:** - **Graph search per component:** An adjacency list plus DFS or breadth-first search can also discover connected synonym groups in $O(P+V)$ time. It is perfectly suitable here, but union-find expresses repeated equivalence merging compactly.
+- **Graph search per component:** An adjacency list plus DFS or breadth-first search can also discover connected synonym groups in $O(P+V)$ time. It is perfectly suitable here, but union-find expresses repeated equivalence merging compactly.
 - **Generate then sort all sentences:** Unsorted choices followed by `ans.sort()` are simpler to reason about, but sorting $K$ complete strings adds roughly $O(K\log K)$ comparisons on top of unavoidable generation. Sorting each small component once avoids that final cost.
 - **Pairwise-only replacement is incorrect:** Considering only words directly paired with the current word misses transitive synonyms such as `happy` and `cheerful` connected through `joy`.
 - **No synonym pairs:** `words`, `d`, and `g` are empty. Every sentence position follows the fixed-word branch, and the original text is returned as the sole result.
@@ -110,8 +110,8 @@ When `i` reaches `len(sentence)`, all positions have been chosen. The code joins
 - **Arbitrary set order:** The initial indices are nondeterministic, but sorting every completed group by `words[i]` removes that nondeterminism from the returned order.
 - **Backtracking cleanup:** Every append is matched by a pop after recursion. Omitting a pop would leave a previous branch's word in the prefix and corrupt later sentences.
 - **Short recursion depth:** The sentence contains at most ten words, so the recursive generator cannot approach Python's normal recursion limit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -138,4 +138,4 @@ Thus, $ans = [1, 0, 3]$.
 
 - $1 \le \text{nums.length} \le 5000$
 
-- $^​​​​​​​1 \le \text{nums}[i] \le ^ 5000$
+- $^1 \le \text{nums}[i] \le ^ 5000$

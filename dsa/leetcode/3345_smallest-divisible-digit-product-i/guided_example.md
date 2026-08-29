@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Compute one decimal digit product arithmetically.** Local ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If any digit is zero, `p` becomes zero and stays zero as remaining digits are mu
 
 ## 6. Traps This Instance Exposes
 
-- **- **String digit product:** Convert each candidate:** - **String digit product:** Convert each candidate to text and multiply converted characters. It has the same small bounds but allocates a temporary string.
+- **String digit product:** Convert each candidate to text and multiply converted characters. It has the same small bounds but allocates a temporary string.
 - **Stop immediately at zero digit:** Once product becomes zero, the candidate is guaranteed valid and remaining digit extraction can be skipped.
 - **Candidate already valid:** The first loop iteration returns `n`.
 - **Next multiple of ten:** It is the fallback guaranteeing termination for every positive `t`.
@@ -99,8 +99,8 @@ If any digit is zero, `p` becomes zero and stays zero as remaining digits are mu
 - **No overflow:** Python integers handle products, and candidates here have very few digits.
 - **Import requirement:** `itertools.count` must be available.
 - **Minimality:** Increasing enumeration, not any property of digit products, is what proves the first passing candidate is smallest.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

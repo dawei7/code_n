@@ -68,7 +68,7 @@ The total cost is $2 + 2 + 2 + 10 = 16$.
 
 - $n = \text{s.length} = \text{t.length}$
 
-- $1 \le n \le 10^{5}$​​​​​​​
+- $1 \le n \le 10^{5}$
 
 - $1 \le flipCost, swapCost, crossCost \le 10^{9}$
 

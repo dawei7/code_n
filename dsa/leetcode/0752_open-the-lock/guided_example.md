@@ -60,7 +60,7 @@ The helper temporarily changes one character in a list, joins it into a string f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each of four wheel positions, the helper creates two sta... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,9 +99,9 @@ Marking at enqueue time prevents the same combination from being added through m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bidirectional BFS:** Search simultaneously fro:** - **Bidirectional BFS:** Search simultaneously from start and target and expand the smaller frontier. It can greatly reduce explored states while preserving shortest paths.
-- **- **Depth-first search:** DFS can find a route but:** - **Depth-first search:** DFS can find a route but does not naturally guarantee the minimum number of moves.
-- **- **Dijkstra’s algorithm:** It works, but all edge:** - **Dijkstra’s algorithm:** It works, but all edges have equal weight, so a priority queue is unnecessary overhead.
+- **Bidirectional BFS:** Search simultaneously from start and target and expand the smaller frontier. It can greatly reduce explored states while preserving shortest paths.
+- **Depth-first search:** DFS can find a route but does not naturally guarantee the minimum number of moves.
+- **Dijkstra’s algorithm:** It works, but all edges have equal weight, so a priority queue is unnecessary overhead.
 
 ---
 

@@ -65,7 +65,7 @@ This is the core greedy idea: use two of the majority character when possible, b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose more `a` characters remain than `b` characters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ No count can become negative. Every appended block contains exactly the characte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character-by-character greedy:** Append the mo:** - **Character-by-character greedy:** Append the more frequent remaining character unless it would match the previous two characters. This is also linear and more directly checks the forbidden pattern, but it performs a decision for every character instead of using safe blocks.
+- **Character-by-character greedy:** Append the more frequent remaining character unless it would match the previous two characters. This is also linear and more directly checks the forbidden pattern, but it performs a decision for every character instead of using safe blocks.
 - **Pure alternation:** Alternating `"ab"` works only when counts are close. It can leave too many copies of the majority character at the end.
 - **Backtracking over all strings:** It can search for a valid arrangement but explores many equivalent prefixes even though the feasibility guarantee makes a deterministic greedy construction sufficient.
 - **Always append two of the majority:** The minority must be inserted as a separator. Appending majority pairs without the trailing opposite character could create a triple where blocks meet.
@@ -112,8 +112,8 @@ No count can become negative. Every appended block contains exactly the characte
 - **Difference of one:** The larger side may first use a three-character block, after which the remainder becomes equal and alternates safely.
 - **Maximum counts:** The construction depends only on counts, not on recursion or search, so inputs up to one hundred are handled with the same linear work.
 - **Any valid answer accepted:** The method does not try to produce lexicographically smallest output because the contract does not require a unique ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

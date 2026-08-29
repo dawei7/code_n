@@ -73,7 +73,7 @@ The source sums that slice and applies modulo $10^9+7$ to the final total.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `arr.sort()` rearranges all generated sums into nondecreasin... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ Subarray sums themselves must not be reduced before sorting. Modulo can change t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search plus sliding-window counting:** :** - **Binary search plus sliding-window counting:** Compute the sum of the first k ranked subarray sums without materializing them, then subtract two prefix-rank sums. Positivity enables $O(n\log S)$ time and low auxiliary space.
+- **Binary search plus sliding-window counting:** Compute the sum of the first k ranked subarray sums without materializing them, then subtract two prefix-rank sums. Positivity enables $O(n\log S)$ time and low auxiliary space.
 - **Min-heap merge:** Start one growing subarray at each index and repeatedly pop the next smallest sum. It uses $O(n)$ heap space and can stop after rank right, with time depending on right.
 - **Prefix sums plus enumeration:** Each subarray sum becomes constant-time subtraction, but storing and sorting all $M$ values retains the same asymptotic bottleneck.
 - **One-element input:** `arr` contains one sum, and every valid rank interval selects it.
@@ -128,8 +128,8 @@ Subarray sums themselves must not be reduced before sorting. Modulo can change t
 - **n parameter:** The source trusts `n` to match `len(nums)` as guaranteed by the contract.
 - **Input mutation:** `nums` is not changed; only the derived `arr` is sorted.
 - **Inclusive right rank:** Python's exclusive slice endpoint is exactly why the upper index is `right` rather than `right - 1`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

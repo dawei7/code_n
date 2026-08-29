@@ -27,7 +27,7 @@ the proposed move is legal.
 **Inputs**
 
 - `board`: an 8-by-8 matrix containing only `"."`, `"W"`, and `"B"`.
-- `rMove`, `cMove`: zero-based coordinates in $[0,7]$ identifying a free cell.
+- `rMove`, `cMove`: zero-based coordinates in `[0,7]` identifying a free cell.
 - `color`: either `"W"` or `"B"`, the color placed by the proposed move.
 
 **Return value**

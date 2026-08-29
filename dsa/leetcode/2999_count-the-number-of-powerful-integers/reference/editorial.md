@@ -76,7 +76,7 @@ class Solution:
 
 - Time complexity: $O(\log (\textit{finish})\times 10)$.
 
-We enumerate the numbers we can fill in for each digit, the length of the number of digits is $\log (\textit{finish})$, and there is only $[0,9]$ with a total of $10$ digits.
+We enumerate the numbers we can fill in for each digit, the length of the number of digits is $\log (\textit{finish})$, and there is only `[0,9]` with a total of $10$ digits.
 
 - Space complexity: $O(\log (\textit{finish}))$.
 

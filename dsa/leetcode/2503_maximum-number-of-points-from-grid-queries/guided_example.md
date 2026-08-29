@@ -57,7 +57,7 @@ After finishing threshold `v`, it writes the current reachable count into `ans[k
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `qs` contains pairs `(query_value,original_index)` sorted by... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ If the smallest boundary value is at least `v`, no heap cell is eligible. Becaus
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fresh BFS per query:** It is correct but can c:** - **Fresh BFS per query:** It is correct but can cost $O(kmn)$ and repeats reachability work.
+- **Fresh BFS per query:** It is correct but can cost $O(kmn)$ and repeats reachability work.
 - **Union-find offline:** Sort cells by value, activate them below each sorted query, and track the component containing the start. It has comparable offline efficiency.
 - **Equal cell and query values:** The cell is not eligible because the comparison is strict.
 - **Blocked start:** The answer is zero and no neighbors can be reached.
@@ -106,8 +106,8 @@ If the smallest boundary value is at least `v`, no heap cell is eligible. Becaus
 - **Multiple paths to one cell:** Marking on push prevents duplicates.
 - **Revisiting allowed:** It cannot earn another point, so visited-state counting remains correct.
 - **Heap frontier:** If its minimum is blocked, every route to undiscovered cells is blocked for that threshold.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ For example, if a value occurs at indices `[0,2,3,8]`, all good triples using it
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `g` maps each array value to its list of indi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Overlapping consecutive triples are all considered. In `[0,2,3,8]`, windows `[0,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Three nested loops:** The small constraints pe:** - **Three nested loops:** The small constraints permit $O(n^3)$ enumeration, but occurrence grouping is both clearer and asymptotically better.
+- **Three nested loops:** The small constraints permit $O(n^3)$ enumeration, but occurrence grouping is both clearer and asymptotically better.
 - **Check all triples within each list:** A value appearing many times still creates cubic combinations. Consecutive windows are sufficient.
 - **Track only frequencies:** A count tells whether a triple exists but not its index span, so positions are required.
 - **Use the middle index in the formula:** Its two adjacent gaps telescope; only the outer span matters.
@@ -119,8 +119,8 @@ Overlapping consecutive triples are all considered. In `[0,2,3,8]`, windows `[0,
 - **Several values qualify:** Their best windows compete in the same global minimum.
 - **Tuple ordering:** Permuting the same three indices does not change pairwise absolute distances.
 - **Input values bounded by `n`:** The dictionary works without relying on that bound and uses space proportional to actual occurrences.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

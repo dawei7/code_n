@@ -66,11 +66,7 @@ The decimal count may contain several digits. It is appended as a string, so len
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a string of length at least three, `abbr` returns:
-
-
-
-Th... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +105,7 @@ If the dictionary instead contains `"cake"` twice, both insertions target `"c2e"
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sole word or ambiguity marker:** Map an abbrev:** - **Sole word or ambiguity marker:** Map an abbreviation to its one owner until a different owner appears, then replace it with a conflict sentinel. This preserves enough information for queries with less retained collision data and matches the manifest summary, but it is not the exact source.
+- **Sole word or ambiguity marker:** Map an abbreviation to its one owner until a different owner appears, then replace it with a conflict sentinel. This preserves enough information for queries with less retained collision data and matches the manifest summary, but it is not the exact source.
 - **Scan the dictionary per query:** Compare the query against every word's length and endpoint characters. It uses little preprocessing space but costs $O(C)$ per query.
 - **Map abbreviation to count only:** A count cannot distinguish repeated copies of the same dictionary word from different colliding words, and it cannot confirm that a singleton owner equals the query without another dictionary set.
 - **Duplicate identical dictionary entries:** Set insertion deduplicates them, so querying that word remains unique if no different word shares its abbreviation.
@@ -122,8 +118,8 @@ If the dictionary instead contains `"cake"` twice, both insertions target `"c2e"
 - **Different lengths:** Their numeric interior counts differ, so words with the same endpoints but different lengths normally occupy different keys.
 - **Set iteration order:** It is irrelevant to the Boolean result. Short-circuit timing may vary, but a conflicting group always contains a differing member.
 - **Lowercase contract:** Stored and queried words are case-sensitive strings; the legal domain uses lowercase only, so no normalization is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

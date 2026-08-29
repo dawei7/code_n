@@ -92,10 +92,7 @@ The update happens before the stability test because `nums[i]` belongs to both r
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variable `left` represents
-
-$$
-\max(\texttt{nums}[0..i])... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -150,7 +147,7 @@ uses an inclusive comparison, so a score equal to $k$ is stable.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recompute both ranges at every index:** This d:** - **Recompute both ranges at every index:** This direct method is easy to derive but costs $O(N^2)$ time because overlapping prefixes and suffixes are rescanned.
+- **Recompute both ranges at every index:** This direct method is easy to derive but costs $O(N^2)$ time because overlapping prefixes and suffixes are rescanned.
 - **Prefix and suffix arrays:** Storing both aggregates also gives $O(N)$ time but uses two $O(N)$ arrays; the running variable removes the need for the prefix array.
 - **Range-query structures:** Segment trees or sparse tables can answer maxima and minima, but they add complexity without improving this one-pass static problem.
 - **Single element:** Both the prefix maximum and suffix minimum equal that value, so the score is zero and index 0 is stable for every allowed $k$.
@@ -161,8 +158,8 @@ uses an inclusive comparison, so a score equal to $k$ is stable.
 - **Nonnegative-value assumption:** Initializing `left` to zero relies on all values being at least zero. With unrestricted negatives, initialization should use the first element or negative infinity.
 - **No stable index:** Exhausting the ascending scan proves every candidate failed, so the method returns `-1`.
 - **Input preservation:** Only `right` and scalar variables are changed; `nums` retains its original contents.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

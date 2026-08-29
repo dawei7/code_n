@@ -80,7 +80,7 @@ This exactly simulates the operation without branches.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | There are exactly 100 bulbs, numbered 1 through 100.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -123,7 +123,7 @@ When all operations are processed, a stored one identifies exactly an odd-count 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Toggle membership in a set:** Add an absent bu:** - **Toggle membership in a set:** Add an absent bulb and remove a present bulb, then sort the set. This uses up to 100 entries and adds an $O(B\log B)$ final sort for $B$ on bulbs.
+- **Toggle membership in a set:** Add an absent bulb and remove a present bulb, then sort the set. This uses up to 100 entries and adds an $O(B\log B)$ final sort for $B$ on bulbs.
 - **Counter frequencies:** Count every bulb and filter odd values. It stores more information than needed and still requires ordering the keys.
 - **Boolean negation:** `st[x] = not st[x]` also flips state, though it changes entries from integers to booleans; XOR keeps the explicit parity representation.
 - **Every bulb toggled an even number of times:** All states return to zero and the result is `[]`.
@@ -133,8 +133,8 @@ When all operations are processed, a stored one identifies exactly an odd-count 
 - **Already sorted requirement:** Scanning the fixed state array from low to high satisfies it without sorting.
 - **Single toggle:** That bulb alone is returned.
 - **Input length at most 100:** The fixed-domain method remains valid even if the same bulb appears many times.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

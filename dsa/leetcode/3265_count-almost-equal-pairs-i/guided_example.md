@@ -51,7 +51,7 @@ Sorting is more than a performance convenience. A swap can move zero to the fron
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Sorting is more than a performance convenience.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For current integer `x`, set `vis` begins with `x` itself, representing the allo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare every pair directly:** Generate swaps :** - **Compare every pair directly:** Generate swaps or compare digit mismatch positions for all $O(n^2)$ pairs. This fits $n=100$ but repeats transformation work.
+- **Compare every pair directly:** Generate swaps or compare digit mismatch positions for all $O(n^2)$ pairs. This fits $n=100$ but repeats transformation work.
 - **Canonical signatures:** Grouping by sorted digits is insufficient because arbitrary permutations may require more than one swap. The exact operation distance must be respected.
 - **Generate from both numbers:** This duplicates work. Sorted processing plus inverse-swap reasoning makes one-sided generation sufficient.
 - **Do not sort:** Leading-zero transformations can make a longer number equal a shorter one only in one direction. Without sorting, generating only from the current number could miss such a pair.
@@ -97,8 +97,8 @@ For current integer `x`, set `vis` begins with `x` itself, representing the allo
 - **Three-cycle permutation:** Values like 123 and 231 require more than one transposition and are correctly not generated from each other.
 - **Input mutation:** `nums.sort()` changes caller-visible order. A preservation requirement would require sorting a copy and add explicit $O(n)$ storage.
 - **Positive integers:** There is no minus sign in the digit list. Supporting negatives would require separate sign handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

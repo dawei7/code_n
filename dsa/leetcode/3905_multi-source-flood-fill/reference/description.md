@@ -2,7 +2,7 @@
 
 You are given two integers `n` and `m` representing the number of rows and columns of a grid, respectively.
 
-You are also given a 2D integer array `sources`, where $\text{sources}[i] = [r_{i}, c_{i}, color_​​​​​​​i]$ indicates that the cell $(r_{i}, c_{i})$ is initially colored with $\text{color}_{i}$. All other cells are initially uncolored and represented as 0.
+You are also given a 2D integer array `sources`, where $\text{sources}[i] = [r_{i}, c_{i}, color_i]$ indicates that the cell $(r_{i}, c_{i})$ is initially colored with $\text{color}_{i}$. All other cells are initially uncolored and represented as 0.
 
 At each time step, every currently colored cell spreads its color to all adjacent **uncolored** cells in the four directions: up, down, left, and right. All spreads happen simultaneously.
 
@@ -38,7 +38,7 @@ Return an $n$-by-$m$ integer matrix containing the final color of every cell aft
 
 ![](images/g50new.png)
 
-​​​​​​​
+
 
 At time step 2, cells `(0, 2)`, `(1, 1)`, and `(2, 0)` are reached by both colors, so they are assigned color 2 as it has the maximum value among them.
 
@@ -62,7 +62,7 @@ At time step 2, cells `(0, 2)`, `(1, 1)`, and `(2, 0)` are reached by both color
 
 ![](images/g52new.png)
 
-​​​​​​​
+
 
 Since there is only one source, all cells are assigned the same color.
 
@@ -80,6 +80,6 @@ Since there is only one source, all cells are assigned the same color.
 
 - $0 \le c_{i} \le m - 1$
 
-- $1 \le \text{color}_{i} \le 10^{6}​​​​​​​$
+- $1 \le \text{color}_{i} \le 10^{6}$
 
-- All $(r_{i}, c_{i}​​​​​​​)$ in `sources` are distinct.
+- All $(r_{i}, c_{i})$ in `sources` are distinct.

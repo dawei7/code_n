@@ -2,7 +2,7 @@
 
 You are given a string `s` and an integer `k`. Encrypt the string using the following algorithm:
 
-- For each character `c` in `s`, replace `c` with the $$k^{\text{th}}$$ character after `c` in the string (in a cyclic manner).
+- For each character `c` in `s`, replace `c` with the $k^{\text{th}}$ character after `c` in the string (in a cyclic manner).
 
 Return the *encrypted string*.
 

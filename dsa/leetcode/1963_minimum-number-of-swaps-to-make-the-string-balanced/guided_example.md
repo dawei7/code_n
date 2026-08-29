@@ -61,7 +61,7 @@ If an unmatched opening had appeared before an unmatched closing, the greedy sca
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Once all possible ordered matches are removed, unmatched clo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ If `x` is even, every swap repairs two units. If it is odd, the final swap repai
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit stack:** Push unmatched openings and :** - **Explicit stack:** Push unmatched openings and pop on closings. It derives the same `x` but uses $O(N)$ space.
+- **Explicit stack:** Push unmatched openings and pop on closings. It derives the same `x` but uses $O(N)$ space.
 - **Track minimum prefix balance:** Treat `"["` as plus one and `"]"` as minus one; the deepest negative deficit leads to an equivalent ceiling formula.
 - **Greedy matching interpretation:** Ignoring a closing only when no opening is available isolates exactly the brackets whose order must be repaired.
 - **Simulate swaps:** Finding actual indices and rebuilding the string is unnecessary when only the minimum count is requested.
@@ -121,8 +121,8 @@ If `x` is even, every swap repairs two units. If it is odd, the final swap repai
 - **Arbitrary-index swaps:** One operation may exchange distant brackets; an adjacent-swap problem would require a different cost analysis.
 - **Final balance:** Equal total bracket counts guarantee the completed string can reach balance zero after prefix deficits are fixed.
 - **No mutation:** The scan calculates the count without changing `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ An index can be omitted when a later index has an equal or greater score. Suppos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The deque `q` stores indices, not scores.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ sets `f[0]` to `nums[0]`. This works because the zero came from array initializa
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct dynamic programming:** Scan all up to `:** - **Direct dynamic programming:** Scan all up to `k` predecessors for each destination. It follows the same recurrence but costs $O(nk)$ time and is impractical at the maximum constraints.
+- **Direct dynamic programming:** Scan all up to `k` predecessors for each destination. It follows the same recurrence but costs $O(nk)$ time and is impractical at the maximum constraints.
 - **Maximum heap:** Keep score-index pairs in a heap and lazily remove expired maximums. It is easier for some readers but costs $O(n\log n)$ time and can retain stale entries.
 - **Segment tree:** Range-maximum queries and point updates also implement the recurrence, but take $O(n\log n)$ time and substantially more machinery.
 - **Compressed deque state:** Store pairs of index and score directly in the deque and keep only the latest scalar score. That can reduce space from $O(n)$ to $O(k)$; the exact source intentionally retains the full `f` array.
@@ -110,8 +110,8 @@ sets `f[0]` to `nums[0]`. This works because the zero came from array initializa
 - **All negative values:** The algorithm chooses the least harmful legal accumulated score at each step. Initial zeros outside established states never enter later comparisons.
 - **Equal DP scores:** Removing the older equal state is safe because the newer index remains usable for at least as long.
 - **Single expiration check:** It is correct only because indices are processed consecutively and the deque was valid on the prior iteration; changing the traversal pattern would require re-evaluating that assumption.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

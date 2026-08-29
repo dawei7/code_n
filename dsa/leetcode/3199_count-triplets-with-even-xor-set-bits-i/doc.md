@@ -26,7 +26,7 @@ For each such triplet, compute `a[i] XOR b[j] XOR c[k]`. A set bit is a binary d
 - `b`: A nonempty array of integers.
 - `c`: A nonempty array of integers.
 
-Each array length is between $1$ and $100$, and every element lies in $[0,100]$.
+Each array length is between $1$ and $100$, and every element lies in `[0,100]`.
 
 Let $A=\lvert\texttt{a}\rvert$, $B=\lvert\texttt{b}\rvert$, and $C=\lvert\texttt{c}\rvert$.
 

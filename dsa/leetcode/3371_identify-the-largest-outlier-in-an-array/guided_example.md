@@ -51,7 +51,7 @@ If `x` is chosen as the outlier, the only possible sum-element value is
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `x` is chosen as the outlier, the only possible sum-eleme... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every pair of excluded indices:** It direc:** - **Try every pair of excluded indices:** It directly assigns outlier and sum roles but costs $O(n^2)$ before even checking remaining sums.
+- **Try every pair of excluded indices:** It directly assigns outlier and sum roles but costs $O(n^2)$ before even checking remaining sums.
 - **Sort and use two pointers:** Value bounds permit alternatives, but frequency counting makes the algebraic condition direct and linear.
 - **Candidate equals sum value:** At least two occurrences are mandatory.
 - **Candidate differs from sum value:** One occurrence of each is enough.
@@ -101,8 +101,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Distinct indices, not distinct values:** The frequency condition captures this crucial distinction.
 - **No reconstruction needed:** Once the sum identity holds, all remaining indices are necessarily the special set.
 - **Input preservation:** Summation and counting do not modify `nums`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

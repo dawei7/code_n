@@ -61,7 +61,7 @@ This converts a substring search into a repeated-state search: at each right end
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the parity mask after index $j$ equals the mask afte... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ The `else` branch stores `d[mask] = i` only when the mask is new. Once recorded,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Five-bit contiguous mapping:** Map `a, e, i, o:** - **Five-bit contiguous mapping:** Map `a, e, i, o, u` to bit positions zero through four. It is more compact visually and has the same 32 states; the exact code derives distinct positions directly from character codes.
+- **Five-bit contiguous mapping:** Map `a, e, i, o, u` to bit positions zero through four. It is more compact visually and has the same 32 states; the exact code derives distinct positions directly from character codes.
 - **Array of 32 first positions:** With contiguous bits, a fixed array can replace the dictionary. The current sparse masks are not indices from zero through 31, so a dictionary is convenient.
 - **Five parity booleans:** A tuple of booleans can serve as the prefix state. It is correct but more verbose to update and hash than one integer mask.
 - **Brute-force substrings:** Count vowels for every possible substring. Even with prefix counts, examining $O(n^2)$ endpoint pairs is too slow for strings up to $5\cdot10^5$ characters.
@@ -110,8 +110,8 @@ The `else` branch stores `d[mask] = i` only when the mask is new. Once recorded,
 - **Consonants:** They leave `mask` unchanged but extend the distance from the stored state, which can increase the answer.
 - **Empty string outside the contract:** The loop would not run and zero would be returned, consistent with an empty valid substring.
 - **Lowercase guarantee:** The membership test explicitly recognizes lowercase `aeiou`, matching the stated input alphabet.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

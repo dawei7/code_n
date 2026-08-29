@@ -67,7 +67,7 @@ Because this cost accumulates, after the subtraction for `x`, the current `newFl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `newFlowers` is mutated into the budget remaining for the cu... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ As `p` grows, this leveling cost never decreases. The code binary-searches the l
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary-search the minimum flower value for eve:** - **Binary-search the minimum flower value for every `x`:** This can yield the manifest's `O(n \log target)` component, but the exact code searches prefix endpoints and derives the level arithmetically.
+- **Binary-search the minimum flower value for every `x`:** This can yield the manifest's `O(n \log target)` component, but the exact code searches prefix endpoints and derives the level arithmetically.
 - **Try every flower allocation:** The number of distributions is enormous and ignores the sorted exchange and water-filling structure.
 - **Always make as many gardens complete as possible:** A high `partial` reward can make leaving one garden incomplete at a large minimum more valuable than completing all gardens.
 - **Never complete additional gardens:** A high `full` reward can make the opposite choice optimal; enumeration handles both extremes.
@@ -127,8 +127,8 @@ As `p` grows, this leveling cost never decreases. The code binary-searches the l
 - **Repeated flower counts:** Sorting and prefix-cost formulas work unchanged; leveling equal values costs zero.
 - **Large budget:** Python integers safely store cumulative costs and beauty values.
 - **Input order:** Sorting mutates the list; callers needing original order must copy it.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

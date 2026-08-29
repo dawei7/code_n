@@ -66,7 +66,7 @@ The `map` call lazily applies this expression to each character in `s`. The loop
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Array `widths` is aligned with the lowercase alphabet.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,9 +111,9 @@ The first character will either fit that initially empty line or, under a broade
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build explicit line strings:** It can reproduc:** - **Build explicit line strings:** It can reproduce the layout but stores information the answer does not request.
-- **- **Precompute all character widths:** A list make:** - **Precompute all character widths:** A list makes the iteration explicit but uses $O(n)$ extra space unnecessarily.
-- **- **Start with zero lines:** Then the first charac:** - **Start with zero lines:** Then the first character needs a special case. Nonempty `s` makes one initially open line simpler.
+- **Build explicit line strings:** It can reproduce the layout but stores information the answer does not request.
+- **Precompute all character widths:** A list makes the iteration explicit but uses $O(n)$ extra space unnecessarily.
+- **Start with zero lines:** Then the first character needs a special case. Nonempty `s` makes one initially open line simpler.
 
 ---
 

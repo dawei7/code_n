@@ -51,7 +51,7 @@ Thus the task is to choose a pattern embedding that maximizes how many `targetIn
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Thus the task is to choose a pattern embedding that maximize... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Let $S=\lvert\texttt{source}\rvert$ and $P=\lvert\texttt{pattern}\rvert$. State 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-row compression:** Every transition reads :** - **Two-row compression:** Every transition reads only row `i-1`, so retaining previous and current arrays reduces DP space to $O(P)$ without changing $O(SP)$ time.
+- **Two-row compression:** Every transition reads only row `i-1`, so retaining previous and current arrays reduces DP space to $O(P)$ without changing $O(SP)$ time.
 - **One-row dynamic programming:** Update pattern positions in descending order while carefully incorporating skip rewards. It can reduce storage further but is easier to implement incorrectly.
 - **Minimize kept target positions:** Compute the minimum number of eligible indices used by an embedding, then subtract from `len(targetIndices)`. This is algebraically equivalent to the source's direct maximization.
 - **Greedy earliest subsequence:** It may consume removable indices unnecessarily; a later embedding can allow more operations, so DP is required.
@@ -99,8 +99,8 @@ Let $S=\lvert\texttt{source}\rvert$ and $P=\lvert\texttt{pattern}\rvert$. State 
 - **Impossible states:** Negative infinity prevents a path that has not embedded enough pattern characters from competing with a legal plan.
 - **Pattern guarantee:** Because an embedding exists initially, the final state is finite even if zero removals are possible.
 - **Manifest discrepancy:** The exact two-dimensional allocation is $O(SP)$ space; only a compressed variant would meet the listed linear-space claim.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

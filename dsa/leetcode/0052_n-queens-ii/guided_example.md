@@ -57,7 +57,7 @@ The code computes those two indices once as `a` and `b`. A candidate is safe onl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cols[j]` says whether an earlier queen occupies column `j`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ This is safe for the official domain but not a general implementation for arbitr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Return subtree counts:** Have each recursive c:** - **Return subtree counts:** Have each recursive call sum counts returned by its children instead of mutating a nonlocal counter. This makes data flow explicit and is the competitive branch's style.
+- **Return subtree counts:** Have each recursive call sum counts returned by its children instead of mutating a nonlocal counter. This makes data flow explicit and is the competitive branch's style.
 - **Bit masks:** Store occupied columns and diagonals in integers and recurse over available set bits. It uses compact state and is often substantially faster.
 - **Symmetry reduction:** Explore only half of the first-row columns and double mirrored counts, handling a center column separately for odd `n`. It improves constants but complicates the proof.
 - **Full board construction:** It is unnecessary when only a count is requested and would add $O(n^2)$ active or per-leaf work.
@@ -104,8 +104,8 @@ This is safe for the official domain but not a general implementation for arbitr
 - **Unused diagonal slot:** The shifted-difference formula starts at 1, leaving index 0 unused; this is harmless.
 - **No input mutation:** The integer argument is unchanged, and all search state is internal.
 - **No result-order issue:** Only a scalar count is returned, so traversal order has no observable significance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

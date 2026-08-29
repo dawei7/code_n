@@ -72,7 +72,7 @@ The source uses exactly this rule.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If one source bit is zero and the other is one, XOR with the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ with fixed sum, minimizing $|A-B|$ maximizes the product. The high-to-low greedy
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every $x$:** There are $2^n$ possibi:** - **Enumerate every $x$:** There are $2^n$ possibilities, which is infeasible for $n=50$.
+- **Enumerate every $x$:** There are $2^n$ possibilities, which is infeasible for $n=50$.
 - **Dynamic programming over bit states:** Possible but unnecessary because matching bits have a forced best choice and differing bits reduce to balancing.
 - **Apply modulo during construction:** Incorrect; modular residues do not preserve magnitude or product ordering.
 - **$a=b$ in variable bits:** Every low matching bit can be made one in both results, maximizing both simultaneously.
@@ -126,8 +126,8 @@ with fixed sum, minimizing $|A-B|$ maximizes the product. The high-to-low greedy
 - **$n=0$:** Only $x=0$ is legal, and the initialization already gives the answer.
 - **High bits:** They cannot be changed by legal $x$ and must be copied before low-bit decisions.
 - **Actual $x$ not returned:** Each decision corresponds to some legal bit of $x$, but reconstructing it is unnecessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

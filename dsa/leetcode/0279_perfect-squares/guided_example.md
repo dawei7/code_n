@@ -69,13 +69,7 @@ The row dimension controls which square types are allowed. The column dimension 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let
-
-$$
-m=\left\lfloor\sqrt n\right\rfloor.
-$$
-
-The source b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +114,7 @@ This fictional empty-sum base case is what allows a perfect square to be recogni
 
 ## 6. Traps This Instance Exposes
 
-- **- **Number-theory classification:** Lagrange's fou:** - **Number-theory classification:** Lagrange's four-square theorem bounds the answer by four, and Legendre's three-square theorem identifies forced four-square cases; checking one and two squares distinguishes the rest. This achieves the manifest's $O(\sqrt n)$ time and $O(1)$ space but relies on deeper mathematical theorems and is not the exact source.
+- **Number-theory classification:** Lagrange's four-square theorem bounds the answer by four, and Legendre's three-square theorem identifies forced four-square cases; checking one and two squares distinguishes the rest. This achieves the manifest's $O(\sqrt n)$ time and $O(1)$ space but relies on deeper mathematical theorems and is not the exact source.
 - **One-dimensional DP:** Initialize `dp[0] = 0`, then for each square update subtotals upward with `dp[j] = min(dp[j], dp[j-square] + 1)`. It preserves the unbounded recurrence while reducing space to $O(n)$.
 - **Remainder BFS:** Treat each remainder as a node and subtract every usable square. The first level reaching zero gives the minimum term count. It is conceptually direct but requires a queue and visited-state storage.
 - **Naïve recursion:** Trying every next square recomputes the same remainders many times and grows exponentially without memoization.
@@ -132,8 +126,8 @@ This fictional empty-sum base case is what allows a perfect square to be recogni
 - **Square 1 guarantees reachability:** Even if no larger square helps, `n` copies of 1 form `n`; the returned value is never infinity for legal positive input.
 - **Positive-input guarantee:** The contract begins at 1. If zero were passed, the table would return `f[0][0] = 0`, which is the natural minimum empty sum.
 - **Downward subtotal iteration:** This would block reuse of the current square within the same row and solve a different problem where each square is available once.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

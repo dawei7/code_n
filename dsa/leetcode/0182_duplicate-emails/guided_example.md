@@ -70,7 +70,7 @@ email group.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 1` is MySQL shorthand for grouping by the first ex... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +118,7 @@ they were allowed.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit named grouping:** `GROUP BY email` is:** - **Explicit named grouping:** `GROUP BY email` is clearer than positional `GROUP BY 1`.
+- **Explicit named grouping:** `GROUP BY email` is clearer than positional `GROUP BY 1`.
 - **Derived count table:** Group and count in a subquery, then filter `num > 1` outside; correct but more verbose than `HAVING`.
 - **Self-join on equal email and different IDs:** Can find duplicates but may create many row pairs and then require `DISTINCT`.
 - **Exactly two occurrences:** The group passes and emits one row.
@@ -128,8 +128,8 @@ they were allowed.
 - **Non-null guarantee:** Makes `COUNT(1)`, `COUNT(*)`, and `COUNT(email)` equivalent here.
 - **Output case:** Add `AS Email` if exact displayed capitalization is enforced.
 - **Any order:** No sorting is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

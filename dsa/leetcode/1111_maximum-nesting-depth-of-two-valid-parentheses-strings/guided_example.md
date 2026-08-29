@@ -59,7 +59,7 @@ This order difference is essential. If both characters used depth before updatin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Variable `x` is the number of unmatched opening parentheses ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Therefore, the algorithm never separates the two endpoints of a matched pair.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Assign by depth after opening:** One may incre:** - **Assign by depth after opening:** One may increment first and use the new depth parity, provided closing characters use parity before decrementing. This swaps group labels but remains optimal.
+- **Assign by depth after opening:** One may increment first and use the new depth parity, provided closing characters use parity before decrementing. This swaps group labels but remains optimal.
 - **Explicit stack of pair indices:** Match every pair, then assign by nesting depth. It works but uses extra stack state that the running depth already summarizes.
 - **Split contiguous halves:** Contiguous division does not generally balance nested levels and may not even produce two valid parentheses strings.
 - **Put complete primitive components alternately:** This balances separate top-level pieces but fails to divide depth inside one deeply nested component.
@@ -108,8 +108,8 @@ Therefore, the algorithm never separates the two endpoints of a matched pair.
 - **Valid-input guarantee:** The algorithm assumes depth never becomes negative and finishes at zero; it does not validate malformed parentheses.
 - **Multiple optimal answers:** Swapping every zero and one yields another equally good split.
 - **Output length:** Every original character is assigned exactly once, so the two subsequence lengths sum to the input length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

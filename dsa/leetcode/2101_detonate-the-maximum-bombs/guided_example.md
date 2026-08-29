@@ -66,7 +66,7 @@ The task therefore becomes: compute the reachable-set size from every possible s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If graph edge `i -> j` exists, detonating `i` triggers `j`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ After traversal, `len(vis)` is the exact number detonated from `k`. If it equals
 
 ## 6. Traps This Instance Exposes
 
-- **- **Undirected connectivity:** Incorrect because o:** - **Undirected connectivity:** Incorrect because one bomb's radius may reach another without reciprocal reach.
+- **Undirected connectivity:** Incorrect because one bomb's radius may reach another without reciprocal reach.
 - **Floyd-Warshall transitive closure:** It also costs $O(n^3)$ time and $O(n^2)$ space, but repeated graph traversal is simpler.
 - **Run DFS instead of the growing list:** DFS and BFS produce the same reachable set; traversal order does not affect the count.
 - **Squared integer distance:** Avoids `hypot` and floating-point boundary comparisons while retaining $O(1)$ work per pair.
@@ -123,8 +123,8 @@ After traversal, `len(vis)` is the exact number detonated from `k`. If it equals
 - **Early full reachability:** Returning `n` is safe because no answer can exceed the number of bombs.
 - **Queue-list behavior:** Python's list iterator observes appended elements, which is why `for i in q` completes the traversal.
 - **Input preservation:** The graph is separate; bomb coordinates and radii are not changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

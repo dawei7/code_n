@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D character grid `matrix` of size `m x n`, represented as an array of strings, where $\text{matrix}[i][j]$ represents the cell at the intersection of the $$i^{\text{th}}$$ row and $$j^{\text{th}}$$ column. Each cell is one of the following:
+You are given a 2D character grid `matrix` of size `m x n`, represented as an array of strings, where $\text{matrix}[i][j]$ represents the cell at the intersection of the $i^{\text{th}}$ row and $j^{\text{th}}$ column. Each cell is one of the following:
 
 - `'.'` representing an empty cell.
 

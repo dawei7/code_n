@@ -57,7 +57,7 @@ This parser is intentionally tied to the contract. It is not a general URL parse
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every URL uses the literal `http://` prefix and has no port.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ It also guarantees that `htmlParser.getUrls(url)` is called at most once for eac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative DFS stack:** Preserve the same trave:** - **Iterative DFS stack:** Preserve the same traversal while avoiding recursion-limit risk. It uses \(O(V)\) explicit stack and visited storage.
+- **Iterative DFS stack:** Preserve the same traversal while avoiding recursion-limit risk. It uses \(O(V)\) explicit stack and visited storage.
 - **Breadth-first search:** Use a queue instead of recursion. It visits the same graph and has the same asymptotic bounds; only visitation order changes.
 - **Cache `start_host`:** Compute the starting hostname once and compare every neighbor against it. This avoids repeatedly parsing the current URL.
 - **Standard URL parser:** Necessary for HTTPS, ports, authentication, or other general URL syntax. The seven-character slice is valid only under this problem’s restricted format.
@@ -106,8 +106,8 @@ It also guarantees that `htmlParser.getUrls(url)` is called at most once for eac
 - **Trailing slash:** It changes the URL identity, though it does not change the hostname.
 - **Start page with no outgoing links:** It is added and returned as the sole result.
 - **Any output order:** Converting a set yields unspecified order, which the contract explicitly permits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

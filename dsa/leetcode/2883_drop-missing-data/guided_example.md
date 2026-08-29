@@ -51,7 +51,7 @@ It then uses the mask to filter the entire DataFrame:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | It then uses the mask to filter the entire DataFrame:... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`dropna(subset=['name'])`:** This directly exp:** - **`dropna(subset=['name'])`:** This directly expresses row removal based on one column and returns a new DataFrame when `inplace` is omitted.
+- **`dropna(subset=['name'])`:** This directly expresses row removal based on one column and returns a new DataFrame when `inplace` is omitted.
 - **Editorial in-place version:** It changes the supplied object, unlike the protected Boolean-filter source.
 - **Missing values in `age`:** They do not cause removal because the predicate examines only `name`.
 - **Empty string:** It is not normally considered null and remains in the result.
@@ -94,8 +94,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Every name missing:** The result is an empty DataFrame with the same three columns.
 - **Custom index:** Filtering preserves surviving labels and does not reset them.
 - **Multiple null representations:** `notnull` handles pandas-recognized `null`, `NaN`, and nullable missing markers consistently.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

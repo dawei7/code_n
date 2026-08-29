@@ -63,7 +63,7 @@ Counter lookup returns zero for a missing key, so a letter absent from `chars` a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each word `w`, `wc = Counter(w)` records how many copies... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Mutating one shared counter across the outer loop would answer a different probl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a 26-element integer array:** Converting l:** - **Use a 26-element integer array:** Converting letters to offsets gives the same `O(S)` time and constant space with lower hashing overhead. `Counter` expresses frequency intent more directly.
+- **Use a 26-element integer array:** Converting letters to offsets gives the same `O(S)` time and constant space with lower hashing overhead. `Counter` expresses frequency intent more directly.
 - **Sort every word and `chars`:** Sorted comparisons can test supply but add logarithmic sorting work and repeated processing of the same inventory.
 - **Use sets:** A set records only presence and incorrectly accepts words that require more copies than available.
 - **Decrement the shared inventory:** That prevents later words from reusing characters, contrary to the independent-per-word rule.
@@ -113,8 +113,8 @@ Mutating one shared counter across the outer loop would answer a different probl
 - **A word shorter than `chars`:** Length alone does not guarantee formation; its exact character counts still matter.
 - **A word equal to `chars` up to permutation:** All counts match and its complete length is included.
 - **Lowercase alphabet:** This bound is what makes the counter storage asymptotically constant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

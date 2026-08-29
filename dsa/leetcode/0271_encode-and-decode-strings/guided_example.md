@@ -68,7 +68,7 @@ The width specification is a minimum width rather than a maximum. A length of 10
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a payload `s`, the encoder creates `"{:4}".format(len(s)... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ The visual spaces before each `5` are real header padding. There is no separator
 
 ## 6. Traps This Instance Exposes
 
-- **- **Variable-length header plus separator:** Encod:** - **Variable-length header plus separator:** Encode `str(len(payload))`, a non-digit separator such as `#`, and the payload. The decoder scans digits to the separator and then consumes the declared payload length. This supports lengths beyond four digits and remains safe even if `#` occurs in the payload, because the decoder searches for it only while reading the numeric header.
+- **Variable-length header plus separator:** Encode `str(len(payload))`, a non-digit separator such as `#`, and the payload. The decoder scans digits to the separator and then consumes the declared payload length. This supports lengths beyond four digits and remains safe even if `#` occurs in the payload, because the decoder searches for it only while reading the numeric header.
 - **Escaped delimiter:** Reserve a terminator and escape every occurrence of the terminator and escape character inside payloads. This can work, but the encoder and decoder need more cases, and expansion depends on payload contents. Length framing is simpler here.
 - **Non-ASCII delimiter:** Choosing a character outside the stated ASCII payload domain is tempting, but transport systems may normalize or encode Unicode differently, and the generalized follow-up allows no permanently safe delimiter. Length prefixes avoid that dependency.
 - **Serialization helpers:** Formats such as JSON could represent the list, but the problem explicitly forbids solving it with serialization methods. The custom framing scheme demonstrates the required algorithm.
@@ -126,8 +126,8 @@ The visual spaces before each `5` are real header padding. There is no separator
 - **Malformed encoded input:** A short or nonnumeric header makes `int(...)` fail, while an overstated size can yield a short slice. The required decoder receives its own encoder's output, so error detection and checksums are outside this contract.
 - **Hypothetical empty input list:** Although the stated list has at least one element, the encoder returns `""` and the decoder returns `[]`, so the round trip extends naturally to this case.
 - **Unicode generalization within Python:** `len` and slicing both count Python string code points consistently, so the same in-process codec can round-trip characters beyond ASCII as long as payload lengths remain at most four digits. A byte-oriented network protocol should instead define lengths in encoded bytes and use the same character encoding at both endpoints.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `nums`, where $\text{nums}[i]$ represents the score of the $$i^{\text{th}}$$ student. You are also given an integer `k`.
+You are given a **0-indexed** integer array `nums`, where $\text{nums}[i]$ represents the score of the $i^{\text{th}}$ student. You are also given an integer `k`.
 
 Pick the scores of any `k` students from the array so that the **difference** between the **highest** and the **lowest** of the `k` scores is **minimized**.
 

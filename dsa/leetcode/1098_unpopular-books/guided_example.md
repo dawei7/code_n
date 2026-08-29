@@ -55,7 +55,7 @@ The strict operator is an exact detail of the protected SQL: a book first availa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `WHERE` clause keeps rows satisfying `available_from < '... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ For a book with no orders, `dispatch_date` is null. The comparison is not true, 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Preaggregate the date window:** Group qualifyi:** - **Preaggregate the date window:** Group qualifying Orders by `book_id` first, then left join those totals to eligible Books and use `COALESCE(total, 0) < 10`. This often makes the zero-sale logic especially clear.
+- **Preaggregate the date window:** Group qualifying Orders by `book_id` first, then left join those totals to eligible Books and use `COALESCE(total, 0) < 10`. This often makes the zero-sale logic especially clear.
 - **Correlated subquery:** For each book, compute the sum of its in-window orders. With an appropriate index this can be efficient, but the grouped left join is usually easier to inspect.
 - **`NOT EXISTS` with grouped orders:** Exclude books whose in-window quantity reaches ten. This is possible but less direct than comparing an aggregate total.
 - **Inner join:** Incorrectly removes books with zero relevant orders, even though they should qualify when old enough.
@@ -106,8 +106,8 @@ For a book with no orders, `dispatch_date` is null. The comparison is not true, 
 - **Release on May 23, 2019:** The exact query excludes it because it uses `<`; the local Reference’s `<=` statement would include it.
 - **Duplicate book names:** Grouping by primary-key book ID keeps distinct books separate even when names match.
 - **Any result order:** Omitting `ORDER BY` is correct and avoids unnecessary sorting solely for presentation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

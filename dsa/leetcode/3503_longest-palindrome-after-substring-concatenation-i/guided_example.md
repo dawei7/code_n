@@ -51,7 +51,7 @@ If a palindrome uses characters from both strings, its outer part taken from `s`
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If a palindrome uses characters from both strings, its outer... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The source computes exactly these two ingredients: longest palindromes beginning
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate every substring pair and test concat:** - **Enumerate every substring pair and test concatenations:** There are far too many pairs, and repeated palindrome checks add more work.
+- **Enumerate every substring pair and test concatenations:** There are far too many pairs, and repeated palindrome checks add more work.
 - **Longest common subsequence:** It permits gaps, but selected pieces and mirrored outer blocks must be contiguous.
 - **Rolling the common-substring DP:** Only the previous row is needed, reducing space to $O(n)$; the protected source does not apply it.
 - **Use only crossing palindromes:** Either substring may be empty, so palindromes wholly inside one source must be considered.
@@ -98,8 +98,8 @@ The source computes exactly these two ingredients: longest palindromes beginning
 - **Reversing `t`:** This turns a needed reverse match into ordinary substring equality.
 - **Duplicate candidate constructions:** Only maximum length matters, so the source does not reconstruct or deduplicate strings.
 - **Manifest fidelity:** The exact file uses quadratic center expansion and a full two-dimensional table.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

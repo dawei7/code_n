@@ -69,7 +69,7 @@ For `nums = [9,3,1,2,6,3]` and `k=3`, starting at index 0 produces running GCDs 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a fixed outer index `i`, the first inner iteration repre... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ The comparison increments `ans` exactly when this value equals `k`. Because nest
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compressed ending-GCD states:** For each new v:** - **Compressed ending-GCD states:** For each new value, transform every prior distinct GCD with `gcd(old,x)`, merge equal results by count, and add the multiplicity at `k`. This matches the manifest and exploits the short divisor chain.
+- **Compressed ending-GCD states:** For each new value, transform every prior distinct GCD with `gcd(old,x)`, merge equal results by count, and add the multiplicity at `k`. This matches the manifest and exploits the short divisor chain.
 - **Early termination:** While extending one start, stop once `g < k` or `g % k != 0`, because future GCDs can only divide the current value and cannot become `k`.
 - **Avoid suffix slices:** Iterate end indices directly and read `nums[j]`. This preserves quadratic enumeration but reduces peak auxiliary space to $O(1)$.
 - **Recompute each subarray GCD:** Starting a fresh GCD calculation for every start-end pair adds another linear factor and can reach cubic time.
@@ -127,8 +127,8 @@ The comparison increments `ans` exactly when this value equals `k`. Because nest
 - **Repeated values equal to `k`:** Every contiguous subarray entirely within such a run has GCD `k`.
 - **`k=1`:** Once a running GCD becomes one, every longer extension from the same start also qualifies.
 - **Manifest mismatch:** The exact file is quadratic enumeration with slices, not distinct-GCD compression, so its true time and space bounds are larger.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

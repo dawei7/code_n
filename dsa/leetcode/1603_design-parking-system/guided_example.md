@@ -63,7 +63,7 @@ The three types are independent. A free medium slot cannot accept a big car, and
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An alternative representation could store both the original ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +110,7 @@ The order is important. A failed request does not decrement capacity below zero.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Zero-based capacity array:** Store `[big, medi:** - **Zero-based capacity array:** Store `[big, medium, small]` and access `carType - 1`. It is equally correct; the checked-in source uses a dummy zero slot for direct indexing.
+- **Zero-based capacity array:** Store `[big, medium, small]` and access `carType - 1`. It is equally correct; the checked-in source uses a dummy zero slot for direct indexing.
 - **Separate fields per type:** Three named counters work for this fixed problem but repeat branching logic. An indexed array makes the method uniform.
 - **Dictionary keyed by type:** It provides constant expected access and could support sparse or dynamic types, but is unnecessary for three dense integer codes.
 - **Store occupied and capacity counts:** The availability decision uses only their difference. Remaining capacity is sufficient and simpler.
@@ -124,8 +124,8 @@ The order is important. A failed request does not decrement capacity below zero.
 - **Dummy index zero:** It is never read by a valid call and costs only one constant list entry.
 - **Persistent object state:** Capacities must live on `self` so successive judge calls observe earlier successful admissions.
 - **No removal operation:** Because cars never leave through the interface, remaining capacity only decreases and no additional event handling is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

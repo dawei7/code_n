@@ -79,7 +79,7 @@ Both length and every digit must match. If they do, `i` is appended to `ans`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `str(i)` produces the ordinary decimal representation requir... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ The candidate slice always lies fully inside `s[0:i+1]` and ends at the required
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compare characters without slicing:** Walk bac:** - **Compare characters without slicing:** Walk backward through the digits of `i` and compare them directly with `s`. This avoids allocating a substring and can reduce temporary space, but still performs $O(D)$ digit work per index.
+- **Compare characters without slicing:** Walk backward through the digits of `i` and compare them directly with `s`. This avoids allocating a substring and can reduce temporary space, but still performs $O(D)$ digit work per index.
 - **Use `endswith` on each processed prefix:** `s.startswith(t, i + 1 - k, i + 1)` or an equivalent bounded comparison can avoid an explicit slice. It represents the same unique-candidate test.
 - **Parse numeric suffixes:** Maintaining values of suffixes up to $D$ digits can work, but numeric equality needs extra care with leading zeros. Direct representation comparison matches the contract more transparently.
 - **Rolling hash:** Hashing could compare candidates in constant expected time after preprocessing, but constructing `str(i)` still costs digit time, and collision handling makes it unnecessarily complex for at most five characters here.
@@ -127,8 +127,8 @@ The candidate slice always lies fully inside `s[0:i+1]` and ends at the required
 - **No good indices:** `ans` remains empty and the function returns `[]` without special handling.
 - **Every index good:** The result can contain $N$ integers, so output space is necessarily $O(N)$ even though working memory is only $O(D)$.
 - **Increasing-order requirement:** The source's left-to-right scan already establishes the required order; sorting afterward would add unnecessary $O(G\log G)$ work for $G$ good indices.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

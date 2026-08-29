@@ -59,7 +59,7 @@ The set also contains non-feature survey words such as `"i"` and `"like"`. The e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `s.split()` separates a response at whitespace.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ After all responses, `cnt[w]` is exactly the number of response sets containing 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Filter response words to features:** Build a f:** - **Filter response words to features:** Build a feature set and increment only recognized words, reducing Counter entries for irrelevant survey language.
+- **Filter response words to features:** Build a feature set and increment only recognized words, reducing Counter entries for irrelevant survey language.
 - **Explicit pair sort:** Sort tuples `(-count, original index, feature)`. It makes tie behavior visible but stores an index map or decorated list.
 - **Count raw split words:** It is incorrect because repeated words in one response would inflate popularity.
 - **Substring search:** It would wrongly count feature `"lock"` inside response word `"locker"`.
@@ -112,8 +112,8 @@ After all responses, `cnt[w]` is exactly the number of response sets containing 
 - **Negative key:** It reverses only popularity direction without reversing tied elements.
 - **Spaces:** `split()` handles the guaranteed formatting and would also tolerate extra whitespace.
 - **Input preservation:** `sorted` returns a new list rather than rearranging `features` in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

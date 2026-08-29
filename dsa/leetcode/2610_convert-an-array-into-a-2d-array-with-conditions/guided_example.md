@@ -72,7 +72,7 @@ Thus a value occurring $v$ times appears once in each of the first $v$ rows. It 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter(nums)` creates a mapping from each distinct value `... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ The construction therefore meets the lower bound proved earlier. It is not merel
 
 ## 6. Traps This Instance Exposes
 
-- **- **Process occurrences online:** Track the count :** - **Process occurrences online:** Track the count already seen for each value and put the next copy directly into the row with that index. This also runs in $O(n)$ time and avoids a separate counting pass.
+- **Process occurrences online:** Track the count already seen for each value and put the next copy directly into the row with that index. This also runs in $O(n)$ time and avoids a separate counting pass.
 - **Repeatedly build sets:** Removing one distinct copy of every remaining value per round works conceptually but may rescan data and become quadratic.
 - **Sort the array:** Equal values become grouped, but sorting adds $O(n\log n)$ time and is unnecessary.
 - **All values distinct:** Maximum frequency is one, so exactly one row is produced.
@@ -121,8 +121,8 @@ The construction therefore meets the lower bound proved earlier. It is not merel
 - **Input order:** The output need not reproduce it; only multiplicities and row validity matter.
 - **Nonempty input:** At least one mapping entry exists, so the result always contains at least one row.
 - **Input preservation:** `Counter` reads `nums`, and the construction never mutates the original array.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

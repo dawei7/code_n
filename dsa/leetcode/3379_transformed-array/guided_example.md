@@ -51,7 +51,7 @@ The only extra work is wrapping that integer into the valid circular range 0 thr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The only extra work is wrapping that integer into the valid ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The only extra work is wrapping that integer into the valid circular range 0 thr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Step-by-step movement:** Simulating every step:** - **Step-by-step movement:** Simulating every step can cost proportional to the magnitudes of values and repeats full cycles.
+- **Step-by-step movement:** Simulating every step can cost proportional to the magnitudes of values and repeats full cycles.
 - **Branch on sign:** Separate positive, negative, and zero formulas work but are unnecessary.
 - **In-place transformation:** It would corrupt later reads unless a full original copy were retained.
 - **Single-element array:** Every movement wraps to index zero, so the result equals the input.
@@ -103,8 +103,8 @@ The only extra work is wrapping that integer into the valid circular range 0 thr
 - **Copied value versus index:** The output stores `nums[destination]`, not `destination`.
 - **Input preservation:** The list comprehension never mutates `nums`.
 - **Type imports:** `List` must be available for annotations.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,16 +57,16 @@ Return *an array of the results of all range XOR queries* in the order they were
 
 - $1 \le \text{queries.length} \le 10^{5}$
 
-- $\text{queries}[i].length = 3​$
+- $\text{queries}[i].length = 3$
 
-- $\text{queries}[i][0] ∈ {1, 2, 3}​$
+- $\text{queries}[i][0] ∈ {1, 2, 3}$
 
-- If $\text{queries}[i][0] = 1$:`​`
+- If $\text{queries}[i][0] = 1$:``
 
-		- $0 \le index < \text{nums.length}​$
+		- $0 \le index < \text{nums.length}$
 
 - $0 \le value \le 10^{9}$
 
-- If $\text{queries}[i][0] = 2$ or $\text{queries}[i][0] = 3$:`​`
+- If $\text{queries}[i][0] = 2$ or $\text{queries}[i][0] = 3$:``
 
-		- $0 \le left \le right < \text{nums.length}​$
+		- $0 \le left \le right < \text{nums.length}$

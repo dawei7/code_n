@@ -61,7 +61,7 @@ The `union(a, b)` operation finds both roots. If the roots already match, the ac
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For `n` account rows, `p[i]` is the current parent of accoun... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ The account name is deliberately not used as a union key. Different people may h
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit account graph plus DFS or BFS:** Conn:** - **Explicit account graph plus DFS or BFS:** Connect account indices that share emails, then traverse connected components. This is correct but may store more adjacency data than union-find. Care is needed not to create a quadratic clique for an email appearing in many accounts; connecting all occurrences to one representative is sufficient.
-- **- **Email-node graph:** Treat emails as vertices, :** - **Email-node graph:** Treat emails as vertices, connect all emails within each account, and traverse components. This also works and can associate a name with each component, but it creates graph edges and traversal state that the union-find solution avoids.
-- **- **Union emails instead of accounts:** Assign an :** - **Union emails instead of accounts:** Assign an identifier to every unique email and union addresses appearing in the same row. This is a valid design, but the exact solution’s account-index nodes make selecting a guaranteed component name particularly direct.
+- **Explicit account graph plus DFS or BFS:** Connect account indices that share emails, then traverse connected components. This is correct but may store more adjacency data than union-find. Care is needed not to create a quadratic clique for an email appearing in many accounts; connecting all occurrences to one representative is sufficient.
+- **Email-node graph:** Treat emails as vertices, connect all emails within each account, and traverse components. This also works and can associate a name with each component, but it creates graph edges and traversal state that the union-find solution avoids.
+- **Union emails instead of accounts:** Assign an identifier to every unique email and union addresses appearing in the same row. This is a valid design, but the exact solution’s account-index nodes make selecting a guaranteed component name particularly direct.
 
 ---
 

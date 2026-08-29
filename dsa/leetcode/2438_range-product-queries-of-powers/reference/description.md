@@ -4,7 +4,7 @@ Given a positive integer `n`, there exists a **0-indexed** array called `powers`
 
 You are also given a **0-indexed** 2D integer array `queries`, where $\text{queries}[i] = [\text{left}_{i}, \text{right}_{i}]$. Each $\text{queries}[i]$ represents a query where you have to find the product of all $\text{powers}[j]$ with $\text{left}_{i} \le j \le \text{right}_{i}$.
 
-Return* an array *`answers`*, equal in length to *`queries`*, where *$\text{answers}[i]$* is the answer to the *$$i^{\text{th}}$$* query*. Since the answer to the $$i^{\text{th}}$$ query may be too large, each $\text{answers}[i]$ should be returned **modulo** $10^{9} + 7$.
+Return* an array *`answers`*, equal in length to *`queries`*, where *$\text{answers}[i]$* is the answer to the *$i^{\text{th}}$* query*. Since the answer to the $i^{\text{th}}$ query may be too large, each $\text{answers}[i]$ should be returned **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 

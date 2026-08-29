@@ -61,7 +61,7 @@ The separation guarantee ensures the scan cannot accidentally continue directly 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After discovering top-left coordinate `(i, j)`, the source i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The result `[i, j, x, y]` is exactly top-left row, top-left column, bottom-right
 
 ## 6. Traps This Instance Exposes
 
-- **- **DFS or BFS:** Finds each connected component a:** - **DFS or BFS:** Finds each connected component and its maximum coordinates in $O(MN)$ time, but uses a visited structure or mutates the grid.
+- **DFS or BFS:** Finds each connected component and its maximum coordinates in $O(MN)$ time, but uses a visited structure or mutates the grid.
 - **Mark the whole rectangle as zero:** Also avoids duplicates, but changes the input and writes every farmland cell.
 - **Visited matrix:** Preserves input but spends $O(MN)$ extra space unnecessarily under the rectangle guarantee.
 - **Single-cell group:** Both scans stay in place and all four coordinates use that cell.
@@ -113,8 +113,8 @@ The result `[i, j, x, y]` is exactly top-left row, top-left column, bottom-right
 - **Rectangle guarantee:** Essential; an irregular component could make the bottom-row width unrepresentative of upper rows.
 - **Any answer order:** Row-major discovery is valid even though no specific order is required.
 - **Input side effects:** The exact solution does not mutate `land`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

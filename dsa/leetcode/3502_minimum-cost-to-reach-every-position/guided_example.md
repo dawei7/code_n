@@ -51,7 +51,7 @@ After that swap, every position with index greater than or equal to $j$ lies beh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After that swap, every position with index greater than or e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore, to reach target $i$, it is sufficient to choose one paid swap with an
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate swaps for every target:** This repeat:** - **Simulate swaps for every target:** This repeats line-state work and can become quadratic, while reachability depends only on one cheapest prefix payment.
+- **Simulate swaps for every target:** This repeats line-state work and can become quadratic, while reachability depends only on one cheapest prefix payment.
 - **Dynamic programming over positions:** The transition collapses to a running minimum; a full table is unnecessary.
 - **Use suffix minima:** A person after target $i$ does not directly unlock $i$ for free, so the relevant range is the prefix.
 - **Add several swap costs:** One paid jump followed by free behind swaps is always sufficient; positive extra payments cannot help.
@@ -98,8 +98,8 @@ Therefore, to reach target $i$, it is sufficient to choose one paid swap with an
 - **Single-element array:** The loop writes the only cost, which is the sole possible paid swap.
 - **Positive-cost guarantee:** It supports the argument that extra paid swaps cannot reduce total cost.
 - **Independent outputs:** The source does not mutate `cost` or share a performed swap sequence between targets.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

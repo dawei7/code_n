@@ -51,7 +51,7 @@ The queue begins with `(board, hand)`. A queue entry contains the current reduce
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The queue begins with `(board, hand)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The code does not store depth explicitly. Every transition removes exactly one c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Depth-first search with memoization:** Explore:** - **Depth-first search with memoization:** Explore insertions recursively and return the minimum remaining cost. It can use the same collapse routine, but breadth-first search obtains the minimum naturally from levels.
+- **Depth-first search with memoization:** Explore insertions recursively and return the minimum remaining cost. It can use the same collapse routine, but breadth-first search obtains the minimum naturally from levels.
 - **Count-based run removal search:** Process maximal board runs and insert only the number of matching balls required to reach three. This prunes many unproductive placements but needs careful reasoning about cascades and hand counts.
 - **Full state deduplication:** Use `(board, sorted_remaining_hand)` as the visited key. This avoids merging equal boards that retain different color resources and gives the cleanest general correctness argument, at the cost of more states.
 - **Insertion at index zero:** The source tries boundaries `1` through the end. A fully exhaustive formulation includes zero as well; same-color insertion at the first run is already equivalent to an internal position.
@@ -96,8 +96,8 @@ The code does not store depth explicitly. Every transition removes exactly one c
 - **Hand becomes empty while the board remains:** That state generates no children because `set(balls)` is empty. If every branch reaches this condition, the queue drains and the result is `-1`.
 - **Initial board stability:** The contract guarantees no initial run of three, so the source does not call `remove` before starting BFS.
 - **Color alphabet:** The regular expression explicitly lists all five allowed colors. A new color outside that contract would never be removed and would require updating the pattern.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

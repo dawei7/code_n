@@ -69,10 +69,7 @@ There are initially $k$ such levels, so at least $k$ operations are necessary. T
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let the distinct positive values in increasing order be
-
-$$
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +112,7 @@ For `nums = [1, 5, 0, 3, 5]`, the comprehension produces `{1, 3, 5}`. Its length
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit simulation with the minimum:** Repeat:** - **Explicit simulation with the minimum:** Repeatedly finding the smallest positive value and subtracting it works, but it performs work that the distinct-level proof makes unnecessary. A naive implementation can take $O(nk)$ time.
+- **Explicit simulation with the minimum:** Repeatedly finding the smallest positive value and subtracting it works, but it performs work that the distinct-level proof makes unnecessary. A naive implementation can take $O(nk)$ time.
 - **Sorting the positive values:** After sorting, one can count transitions between different positive numbers in $O(n \log n)$ time. This is correct but slower than expected-linear set construction.
 - **Boolean frequency array:** Because values lie between `0` and `100`, a fixed array can mark positive values and then count marks. This uses constant domain-sized storage and linear scanning, but the set is shorter and generalizes without relying on the bound.
 - **All entries are zero:** The comprehension produces the empty set, so its length is `0` and no operation is needed.
@@ -124,8 +121,8 @@ For `nums = [1, 5, 0, 3, 5]`, the comprehension produces `{1, 3, 5}`. Its length
 - **Values with gaps:** For values such as `2` and `100`, the gaps change the chosen subtraction amounts but not the number of operations. There are still two levels.
 - **Input mutation:** The exact approach only reads `nums`. It returns the minimum count without changing the caller's array.
 - **Truth-value filter:** `if x` is safe specifically because inputs are non-negative. It excludes zero and includes every allowed positive integer.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ The chained string methods each return a new Python string. Variable `t` holds o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The chained operations `replace('0', 'O').replace('1', 'I')`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If validation succeeds, the conditional expression returns `t`. Otherwise it ret
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated division by sixteen:** Extract remain:** - **Repeated division by sixteen:** Extract remainders, map zero and one, reject two through nine, then reverse collected symbols. It avoids Python's `hex` formatting details but needs explicit digit ordering.
+- **Repeated division by sixteen:** Extract remainders, map zero and one, reject two through nine, then reverse collected symbols. It avoids Python's `hex` formatting details but needs explicit digit ordering.
 - **Translation table:** `str.translate` can map zero and one in one pass. Validation is still necessary for digits two through nine.
 - **Validate before replacement:** One may allow hexadecimal digits zero and one plus letters `A` through `F`, then map the two digits. The exact source maps first and validates the final alphabet, which aligns directly with the output definition.
 - **Decimal value one:** Hexadecimal `1` becomes the valid one-character result `"I"`.
@@ -112,8 +112,8 @@ If validation succeeds, the conditional expression returns `t`. Otherwise it ret
 - **No leading decimal zeroes:** Parsing would discard them anyway, but the contract rules them out and gives one canonical input representation.
 - **Positive number guarantee:** Negative values would introduce a differently positioned minus sign in Python's hexadecimal text and are outside the method's intended contract.
 - **Set construction cost:** Building the eight-character set on every call is constant work and does not change the asymptotic bounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

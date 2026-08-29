@@ -59,7 +59,7 @@ Deposits never replace existing notes; they accumulate. Zero entries leave a den
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `deposit` enumerates the five supplied counts and adds each ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Taking the maximum possible count at every denomination exactly implements “pr
 
 ## 6. Traps This Instance Exposes
 
-- **- **General coin-change search:** It could find a :** - **General coin-change search:** It could find a combination that succeeds when greedy fails, but that would violate the ATM's mandated behavior.
+- **General coin-change search:** It could find a combination that succeeds when greedy fails, but that would violate the ATM's mandated behavior.
 - **Backtracking after a greedy dead end:** The `600` example explicitly forbids replacing the selected `500` with three `200` notes.
 - **Mutate inventory during planning:** This requires rollback on failure and risks corrupting state. Staging `ans` keeps failure atomic.
 - **Deposit zero notes:** The corresponding inventory counts remain unchanged.
@@ -114,8 +114,8 @@ Taking the maximum possible count at every denomination exactly implements “pr
 - **Denomination order:** Internal storage and returned arrays are ascending even though withdrawal processing is descending.
 - **Amount not divisible by any available combination:** The nonzero remainder detects failure.
 - **Fixed denomination count:** Constant-time claims rely on exactly five supported values.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The exact source therefore converts the string to `s = set(word)`. A set keeps o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source therefore converts the string to `s = set(w... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The exact source therefore converts the string to `s = set(word)`. A set keeps o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two bit masks:** Set a lowercase or uppercase :** - **Two bit masks:** Set a lowercase or uppercase bit for each character, AND the masks, then count set bits. This matches the manifest and uses constant integer state.
+- **Two bit masks:** Set a lowercase or uppercase bit for each character, AND the masks, then count set bits. This matches the manifest and uses constant integer state.
 - **Two Boolean arrays:** Store 26 lowercase flags and 26 uppercase flags; equally clear and constant-sized.
 - **Nested string membership without a set:** Test every alphabet character directly in `word`, costing up to $O(26n)$, still linear for a fixed alphabet but repeatedly scanning.
 - **Only lowercase characters:** No uppercase partner exists, so answer is zero.
@@ -101,8 +101,8 @@ The exact source therefore converts the string to `s = set(word)`. A set keeps o
 - **Lazy zip:** It aligns corresponding alphabet positions without building a pair list.
 - **No input mutation:** `word` is read to create a separate set.
 - **Source/manifest mismatch:** Exact source uses a set rather than bit masks, though both have $O(n)$ time and fixed-alphabet $O(1)$ space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

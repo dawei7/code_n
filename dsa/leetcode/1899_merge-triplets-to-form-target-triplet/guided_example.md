@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-A **triplet** is an array of three integers. You are given a 2D integer array `triplets`, where $\text{triplets}[i] = [a_{i}, b_{i}, c_{i}]$ describes the $$i^{\text{th}}$$ **triplet**. You are also given an integer array $target = [x, y, z]$ that describes the **triplet** you want to obtain.
+A **triplet** is an array of three integers. You are given a 2D integer array `triplets`, where $\text{triplets}[i] = [a_{i}, b_{i}, c_{i}]$ describes the $i^{\text{th}}$ **triplet**. You are also given an integer array $target = [x, y, z]$ that describes the **triplet** you want to obtain.
 
 The objective is to compute `true` from `{"triplets": [[2, 5, 3], [1, 8, 4], [1, 7, 5]], "target": [2, 7, 5]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Aggregate every safe contribution.** Variables `d`, `e`, a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The initialization at zero is safe because all triplet and target coordinates ar
 
 ## 6. Traps This Instance Exposes
 
-- **- **Track three reached flags:** For each eligible:** - **Track three reached flags:** For each eligible triplet, mark whether it supplies target `x`, `y`, or `z`. Returning true when all flags are set is equivalent to the coordinatewise maxima.
+- **Track three reached flags:** For each eligible triplet, mark whether it supplies target `x`, `y`, or `z`. Returning true when all flags are set is equivalent to the coordinatewise maxima.
 - **Enumerate subsets:** There are exponentially many subsets, but taking every eligible triplet is always safe, so subset search is unnecessary.
 - **Simulate arbitrary merges:** Simulation may alter inputs and depends on operation order even though coordinatewise maximum does not. Aggregation directly computes the final reachable maximum.
 - **Triplet already equals target:** It is eligible and makes all three aggregate coordinates reach target; zero operations are allowed.
@@ -96,8 +96,8 @@ The initialization at zero is safe because all triplet and target coordinates ar
 - **No eligible triplet:** The aggregate remains zero and cannot equal the positive target.
 - **Positive-value assumption:** Zero initialization relies on target coordinates being at least one, as guaranteed. A generalized domain with negatives would need a lower sentinel or explicit flags.
 - **Order of legal merges:** Maximum is associative, so merging eligible contributors in a different order produces the same aggregate. No backtracking over operation sequences is necessary.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

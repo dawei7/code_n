@@ -65,7 +65,7 @@ Normalization ensures edges `(u,v)` and `(v,u)` would use the same key. Only con
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt` stores each node's degree.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Starting at `j + 1` enforces two distinct sorted positions and counts each unord
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two pointers per query:** Count raw degree pai:** - **Two pointers per query:** Count raw degree pairs in $O(n)$ after sorting, achieving the manifest's tighter query bound.
+- **Two pointers per query:** Count raw degree pairs in $O(n)$ after sorting, achieving the manifest's tighter query bound.
 - **Check every node pair:** It costs $O(Qn^2)$ and is too slow.
 - **Ignore shared edges:** It overcounts connected pairs because their mutual edges appear in both degrees.
 - **Single edge between pair:** Subtract one from raw degree sum for true incident count.
@@ -120,8 +120,8 @@ Starting at `j + 1` enforces two distinct sorted positions and counts each unord
 - **One false positive:** Each dictionary pair can cause at most one subtraction per query.
 - **Zero threshold:** Every pair with at least one incident edge may qualify according to the same formula.
 - **Input preservation:** Endpoints are normalized in local variables; `edges` is not changed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

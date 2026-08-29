@@ -59,7 +59,7 @@ Thus every index congruent to two modulo three—`2, 5, 8, ...`—is a legal fre
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source calls `cost.sort(reverse=true)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For `[6,5,7,9,2,2]`, sorting gives `[9,7,6,5,2,2]`. The freebies are prices six 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Loop over sorted indexes:** Add `cost[i]` only:** - **Loop over sorted indexes:** Add `cost[i]` only when `i % 3 != 2`. This avoids the free-candy slice allocation but keeps the same sorting time and greedy proof.
+- **Loop over sorted indexes:** Add `cost[i]` only when `i % 3 != 2`. This avoids the free-candy slice allocation but keeps the same sorting time and greedy proof.
 - **Counting sort:** Prices are between one and 100, so a frequency array can compute the answer in $O(n+100)$ time and $O(100)$ space. It is asymptotically linear under the fixed price range but is not the exact source.
 - **Sort ascending:** One can process from the end in groups of three, but the index pattern is less direct. Taking every third element from the front of ascending order would be wrong.
 - **Choose cheapest candy free globally:** Taking the globally cheapest freebies satisfies legality but may waste the opportunity to save more expensive eligible candies.
@@ -113,8 +113,8 @@ For `[6,5,7,9,2,2]`, sorting gives `[9,7,6,5,2,2]`. The freebies are prices six 
 - **Duplicate prices:** Candy identity does not affect cost minimization, and stable ordering among equal values is irrelevant.
 - **Input mutation:** Callers that need the original order must copy `cost` before invoking this exact implementation.
 - **Savings viewpoint:** Subtraction is safe because every sliced price corresponds to one valid free candy and no price is subtracted twice.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

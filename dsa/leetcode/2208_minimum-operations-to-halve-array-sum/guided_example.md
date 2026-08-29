@@ -55,7 +55,7 @@ The source pushes all $n$ values individually. Popping and negating returns the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's `heapq` is a min-heap.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,7 +99,7 @@ After every iteration, the heap contains exactly one entry for each original arr
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `heapify`:** Construct the negative-value :** - **Use `heapify`:** Construct the negative-value heap in $O(n)$ time instead of $n$ individual pushes, improving the setup constant and bound.
+- **Use `heapify`:** Construct the negative-value heap in $O(n)$ time instead of $n$ individual pushes, improving the setup constant and bound.
 - **Sort after every operation:** It finds the maximum but repeated sorting is much slower than heap updates.
 - **Fixed-point arithmetic:** Represent values with scaled integers to avoid floats, though repeated halvings require managing growing powers of two.
 - **One element:** Repeatedly halve it; the first operation already reduces its sum by exactly half, so the answer is one.
@@ -111,8 +111,8 @@ After every iteration, the heap contains exactly one entry for each original arr
 - **Operation counter:** It increments exactly once per pop/halve/push cycle.
 - **Input preservation:** Current values live in the separate heap; `nums` is not modified.
 - **Diminishing returns:** Each element's next reduction is half its previous one, supporting the marginal-gain greedy rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

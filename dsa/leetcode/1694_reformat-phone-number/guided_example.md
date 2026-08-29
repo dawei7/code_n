@@ -61,7 +61,7 @@ When a remainder exists, the final behavior depends on whether it is one or two.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let `n` be the number of cleaned digits.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ For eight digits, the initial list contains the first six as two blocks of three
 
 ## 6. Traps This Instance Exposes
 
-- **- **Character filtering:** Build the clean digits :** - **Character filtering:** Build the clean digits with a comprehension testing `c.isdigit()`. It is a single conceptual pass but still uses $O(N)$ output storage.
+- **Character filtering:** Build the clean digits with a comprehension testing `c.isdigit()`. It is a single conceptual pass but still uses $O(N)$ output storage.
 - **Manual scanner and block builder:** It can emit blocks as digits arrive, though recognizing the final four requires buffering or knowing the cleaned length.
 - **Regular expression removal:** It works but is unnecessary for two literal separator characters.
 - **Exactly two digits:** No provisional three-block exists; the remainder-two branch appends the full pair.
@@ -109,8 +109,8 @@ For eight digits, the initial list contains the first six as two blocks of three
 - **Leading zero digit:** String slicing preserves it; integer parsing would not.
 - **Remainder one:** It must never be emitted as a one-digit block, which is why the last provisional triple is rebalanced.
 - **At most two two-blocks:** Only the final four digits create two such blocks, and earlier blocks remain length three.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

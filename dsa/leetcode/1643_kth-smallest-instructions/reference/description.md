@@ -10,9 +10,9 @@ The **instructions** are represented as a string, where each character is either
 
 Multiple **instructions** will lead Bob to `destination`. For example, if `destination` is `(2, 3)`, both `"HHHVV"` and `"HVHVH"` are valid **instructions**.
 
-However, Bob is very picky. Bob has a lucky number `k`, and he wants the $$k^{\text{th}}$$ **lexicographically smallest instructions** that will lead him to `destination`. `k` is **1-indexed**.
+However, Bob is very picky. Bob has a lucky number `k`, and he wants the $k^{\text{th}}$ **lexicographically smallest instructions** that will lead him to `destination`. `k` is **1-indexed**.
 
-Given an integer array `destination` and an integer `k`, return *the *$$k^{\text{th}}$$* **lexicographically smallest instructions** that will take Bob to *`destination`.
+Given an integer array `destination` and an integer `k`, return *the *$k^{\text{th}}$* **lexicographically smallest instructions** that will take Bob to *`destination`.
 
 ### 2. Function Contract
 
@@ -64,4 +64,4 @@ Given an integer array `destination` and an integer `k`, return *the *$$k^{\text
 
 - $1 \le row, column \le 15$
 
-- $1 \le k \le nCr(row + column, row)$, where `nCr(a, b)` denotes `a` choose `b`​​​​​.
+- $1 \le k \le nCr(row + column, row)$, where `nCr(a, b)` denotes `a` choose `b`.

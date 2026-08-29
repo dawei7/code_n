@@ -51,7 +51,7 @@ This necessary condition is also sufficient because a subarray of length two may
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | This necessary condition is also sufficient because a subarr... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Thus the allowed operations erase every ordering restriction. The question reduc
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed-size frequency array:** Increment counts:** - **Fixed-size frequency array:** Increment counts for `target` and decrement for `arr` across the bounded value domain. This achieves the manifest's `O(n)` time and `O(1)` space.
+- **Fixed-size frequency array:** Increment counts for `target` and decrement for `arr` across the bounded value domain. This achieves the manifest's `O(n)` time and `O(1)` space.
 - **Hash frequency map:** Compare counters in expected `O(n)` time and `O(n)` space. It generalizes beyond bounded values.
 - **In-place sorting:** Sorting both input lists in place avoids the two returned copies but mutates caller-owned data and Python sorting still uses implementation workspace.
 - **Simulate adjacent reversals:** It can construct an actual transformation but may take quadratic operations. The problem asks only whether transformation is possible.
@@ -101,8 +101,8 @@ Thus the allowed operations erase every ordering restriction. The question reduc
 - **Unlimited operations:** Sufficiency relies on being allowed enough adjacent swaps; there is no operation-count limit.
 - **Input preservation:** `sorted` leaves both original arrays unchanged.
 - **Complexity reporting:** Use `O(n log n)` time and `O(n)` space for this source, not the fixed-domain counting bounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

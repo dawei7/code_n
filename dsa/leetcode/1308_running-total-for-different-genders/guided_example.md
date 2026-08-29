@@ -61,7 +61,7 @@ For example, female scores $17$, $23$, $17$, and $23$ in ascending date order pr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Inside each partition, `ORDER BY gender, day` determines the... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ would make the running-row intent clearer. Under the key guarantee, it produces 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subquery:** For each row, sum same-:** - **Correlated subquery:** For each row, sum same-gender scores with dates at or before the current date. It is logically direct but can approach $O(n^2)$ without effective indexing or optimizer rewriting.
+- **Correlated subquery:** For each row, sum same-gender scores with dates at or before the current date. It is logically direct but can approach $O(n^2)$ without effective indexing or optimizer rewriting.
 - **Self-join and group:** Joining each row to all earlier same-gender rows and grouping by the current row also works, but creates a large intermediate relation.
 - **Explicit `ROWS` frame:** Adding `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` makes cumulative semantics explicit and avoids peer-group surprises if uniqueness changes.
 - **Required outer ordering:** The exact source needs final `ORDER BY gender, day`. Window-local order alone is not a result-order guarantee.
@@ -115,8 +115,8 @@ would make the running-row intent clearer. Under the key guarantee, it produces 
 - **Unique date within gender:** The composite primary key ensures no tied `day` peers in one partition, so implicit `RANGE` and explicit cumulative `ROWS` agree.
 - **Negative score outside the likely scenario:** `SUM` would still compute an arithmetic running total, which could decrease. The algorithm does not require monotone scores.
 - **No guaranteed natural order:** Table storage and index choice do not replace an outer `ORDER BY` when ordering is part of the answer contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

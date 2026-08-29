@@ -65,7 +65,7 @@ Thus the contribution of operational round $t$ is the maximum of one aligned sor
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution sorts every `row` in place.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The generator computes `max(col)` for every transposed column and `sum` adds tho
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeated row maxima:** Simulate each round wit:** - **Repeated row maxima:** Simulate each round with `max` and deletion. It is simpler conceptually but can cost $O(mn^2)$.
+- **Repeated row maxima:** Simulate each round with `max` and deletion. It is simpler conceptually but can cost $O(mn^2)$.
 - **Max-heaps per row:** Heapify negated values and pop once per round for $O(mn\log n)$ time with extra storage.
 - **Single row:** Each round contributes its one deleted value, so the answer is the row sum.
 - **Single column:** One round removes every entry and contributes the column maximum.
@@ -114,8 +114,8 @@ The generator computes `max(col)` for every transposed column and `sum` adds tho
 - **Positive values:** The result is positive, but no special initialization is needed because `max` sees a non-empty column.
 - **Mutation:** Sorting occurs directly inside `grid`.
 - **No explicit deletion:** Rank alignment simulates all rounds without shrinking rows.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -90,7 +90,7 @@ For `pref = [5,2,0,3,1]`, the augmented sequence is `[0,5,2,0,3,1]`. Adjacent XO
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The expression `[0] + pref` creates a new list whose first v... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ The adjacent-pair construction applies these forced equations at every index. It
 
 ## 6. Traps This Instance Exposes
 
-- **- **One previous-prefix variable:** Set `prev=0`, :** - **One previous-prefix variable:** Set `prev=0`, append `prev ^ current` for each prefix, then update `prev=current`. This keeps $O(n)$ output time while avoiding the $O(n)$ augmented list.
+- **One previous-prefix variable:** Set `prev=0`, append `prev ^ current` for each prefix, then update `prev=current`. This keeps $O(n)$ output time while avoiding the $O(n)$ augmented list.
 - **Modify `pref` in place from right to left:** For each index from $n-1$ down to 1, replace `pref[i]` by `pref[i] ^ pref[i-1]`. This uses $O(1)$ auxiliary space but mutates the caller's input.
 - **Forward in-place mutation:** Updating from left to right would destroy the previous prefix value before it is used for the next element, so a right-to-left order or saved scalar is required.
 - **Single element:** The only pair is `(0,pref[0])`, and the result correctly contains that value.
@@ -136,8 +136,8 @@ The adjacent-pair construction applies these forced equations at every index. It
 - **Uniqueness:** No search or tie-breaking is necessary because each adjacent XOR forces exactly one element.
 - **Input preservation:** The augmented list and result are new lists, so `pref` remains unchanged.
 - **Library availability:** `pairwise` is part of modern Python iterator tools; older runtimes would need an explicit loop or equivalent pairing logic.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

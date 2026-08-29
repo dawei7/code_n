@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `DATE_FORMAT(day, '%Y-%m-01')` normalizes every timestamp to... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Monthly aggregation CTE:** Group creditor tran:** - **Monthly aggregation CTE:** Group creditor transactions by account and year-month, sum income, and retain only over-limit months before self-joining. This removes transaction-level duplication.
+- **Monthly aggregation CTE:** Group creditor transactions by account and year-month, sum income, and retain only over-limit months before self-joining. This removes transaction-level duplication.
 - **`LAG` over qualifying months:** After monthly aggregation, compare each over-limit month with the preceding month using a window function. Care is needed because filtering out nonqualifying months before checking gaps must still verify calendar adjacency.
 - **`PERIOD_DIFF` self-join:** Formatting as `YYYYMM` and comparing periods is another direct way to recognize consecutive months.
 - **Exactly equal to `max_income`:** The strict greater-than comparison marks it false, as required.
@@ -98,8 +98,8 @@ We maintain the core conceptual parameters and state variables:
 - **No matching account row:** A null threshold prevents `marked = 1`, assuming ordinary SQL null semantics.
 - **Left join in the outer query:** The marked condition on `s2` eliminates unmatched rows, so an inner join would express the effective requirement more clearly.
 - **Final ordering:** Any order is allowed; `ORDER BY s1.tx` is unnecessary and can conflict with strict handling of `SELECT DISTINCT`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

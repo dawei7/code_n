@@ -65,7 +65,7 @@ Conversely, when a tested consecutive triple has span below 60, those three actu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An employee is high-access if at least three accesses occur ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Times exactly one hour apart do not qualify. The source correctly uses `< 60`, n
 
 ## 6. Traps This Instance Exposes
 
-- **- **Check every triple:** It directly follows the :** - **Check every triple:** It directly follows the definition but can take cubic time per employee. Sorting reduces the test to consecutive triples.
+- **Check every triple:** It directly follows the definition but can take cubic time per employee. Sorting reduces the test to consecutive triples.
 - **Sliding window with two pointers:** After sorting, maintain a left boundary less than 60 minutes behind and test window size. It is also correct but more state than needed for threshold three.
 - **Compare `HHMM` integers directly:** Subtraction fails across hour boundaries; for example, 06:00 minus 05:30 is numerically 70 rather than 30.
 - **Exactly 60 minutes:** Must be rejected by the strict inequality.
@@ -115,8 +115,8 @@ Times exactly one hour apart do not qualify. The source correctly uses `< 60`, n
 - **Hour parsing:** Leading zeros are safely accepted by `int`, so `"0002"` becomes minute two and `"0808"` becomes 488.
 - **Same employee only:** Grouping before sorting prevents close times belonging to different employees from being combined.
 - **Short-circuiting:** Once `any` finds one triple, later accesses cannot change the employee's already-true classification.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

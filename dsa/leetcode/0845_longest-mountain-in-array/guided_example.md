@@ -66,7 +66,7 @@ Thus, `f[i]` is exactly the number of consecutive elements in the maximal strict
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every `f[i]` begins at one because a single element is a tri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,9 +107,9 @@ Therefore, `g[i]` is the length of the maximal strictly decreasing prefix starti
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass mountain window:** Skip flat/down reg:** - **One-pass mountain window:** Skip flat/down regions, climb strictly, then descend strictly while measuring boundaries. It achieves `O(1)` space and `O(n)` time but requires careful pointer transitions.
-- **- **Expand left and right from every peak:** Witho:** - **Expand left and right from every peak:** Without reusing slope lengths, repeated expansion can become `O(n^2)`.
-- **- **Entirely increasing array:** Every `g[i]` rema:** - **Entirely increasing array:** Every `g[i]` remains one, so no peak has a descending side and answer is zero.
+- **One-pass mountain window:** Skip flat/down regions, climb strictly, then descend strictly while measuring boundaries. It achieves `O(1)` space and `O(n)` time but requires careful pointer transitions.
+- **Expand left and right from every peak:** Without reusing slope lengths, repeated expansion can become `O(n^2)`.
+- **Entirely increasing array:** Every `g[i]` remains one, so no peak has a descending side and answer is zero.
 
 ---
 

@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point. All coordinates in `points` are **distinct**.
+You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $i^{\text{th}}$ point. All coordinates in `points` are **distinct**.
 
 If a point is **activated**, then all points that have the **same** x-coordinate **or** y-coordinate become **activated** as well.
 

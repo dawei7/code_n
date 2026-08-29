@@ -4,15 +4,15 @@ You are given two categories of theme park attractions: **land rides** and **wat
 
 - **Land rides**
 
-		- $\text{landStartTime}[i]$ – the earliest time the $$i^{\text{th}}$$ land ride can be boarded.
+		- $\text{landStartTime}[i]$ – the earliest time the $i^{\text{th}}$ land ride can be boarded.
 
-- $\text{landDuration}[i]$ – how long the $$i^{\text{th}}$$ land ride lasts.
+- $\text{landDuration}[i]$ – how long the $i^{\text{th}}$ land ride lasts.
 
 - **Water rides**
 
-		- $\text{waterStartTime}[j]$ – the earliest time the $$j^{\text{th}}$$ water ride can be boarded.
+		- $\text{waterStartTime}[j]$ – the earliest time the $j^{\text{th}}$ water ride can be boarded.
 
-- $\text{waterDuration}[j]$ – how long the $$j^{\text{th}}$$ water ride lasts.
+- $\text{waterDuration}[j]$ – how long the $j^{\text{th}}$ water ride lasts.
 
 A tourist must experience **exactly one** ride from **each** category, in **either order**.
 
@@ -45,7 +45,7 @@ Return the **earliest possible time** at which the tourist can finish both rides
 
 - **Output:** 9
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Plan A (land ride 0 → water ride 0):
 
@@ -79,7 +79,7 @@ Plan A gives the earliest finish time of 9.
 
 - **Output:** 14
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Plan A (water ride 0 → land ride 0):
 
@@ -93,7 +93,7 @@ Plan A gives the earliest finish time of 9.
 
 - Water ride 0 opened at $\text{waterStartTime}[0] = 1$. Start immediately at `8` and finish at $8 + \text{waterDuration}[0] = 18$.
 
-Plan A provides the earliest finish time of 14.**​​​​​​​**
+Plan A provides the earliest finish time of 14.****
 
 ### 4. Constraints
 

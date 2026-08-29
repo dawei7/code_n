@@ -66,9 +66,7 @@ Aliases are required because both sources have a column named `team_name`. `t1.t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query reads `Teams` twice:
-
-- `t1` supplies the home-tea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +109,7 @@ The query uses `JOIN Teams AS t2` without an `ON` relation and places the relati
 
 ## 6. Traps This Instance Exposes
 
-- **- **`CROSS JOIN` with a WHERE filter:** This is th:** - **`CROSS JOIN` with a WHERE filter:** This is the clearest spelling of the same Cartesian pairing and inequality logic.
+- **`CROSS JOIN` with a WHERE filter:** This is the clearest spelling of the same Cartesian pairing and inequality logic.
 - **Inequality in the `ON` clause:** `JOIN Teams t2 ON t1.team_name != t2.team_name` returns the same directed pairs.
 - **Use `t1.team_name < t2.team_name`:** This emits only one unordered orientation per team pair and would miss the reverse home-away match.
 - **Union two orientations of unordered pairs:** Select each pair once, then union its reversal. This is correct but longer than allowing the Cartesian product to generate both naturally.
@@ -125,8 +123,8 @@ The query uses `JOIN Teams AS t2` without an `ON` relation and places the relati
 - **Column aliases:** Without them, both output expressions would share the source name `team_name` and fail to present the requested role labels clearly.
 - **Output-size lower bound:** Any correct solution must produce quadratic rows for many teams, so quadratic time is inherent.
 - **No aggregation:** Each pair is already one desired match and should not be grouped.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

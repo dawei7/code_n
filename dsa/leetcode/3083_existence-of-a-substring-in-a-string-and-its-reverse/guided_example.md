@@ -51,7 +51,7 @@ The exact source constructs the reversed string `s[::-1]`, enumerates its adjace
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The exact source constructs the reversed string `s[::-1]`, e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ It then scans adjacent pairs in original `s` and returns whether any pair is pre
 
 ## 6. Traps This Instance Exposes
 
-- **- **Original-only pair set:** Store all original a:** - **Original-only pair set:** Store all original adjacent pairs and test reverse orientations, avoiding the $O(N)$ reversed-string copy and reaching fixed-alphabet $O(1)$ space.
+- **Original-only pair set:** Store all original adjacent pairs and test reverse orientations, avoiding the $O(N)$ reversed-string copy and reaching fixed-alphabet $O(1)$ space.
 - **Boolean 26-by-26 table:** It replaces hashing with a constant array and makes the alphabet bound explicit.
 - **Naive substring searches:** Searching every pair inside the reverse can cost $O(N^2)$.
 - **Length one:** No pair exists and false is returned.
@@ -106,8 +106,8 @@ It then scans adjacent pairs in original `s` and returns whether any pair is pre
 - **Set construction completes before searching:** The comprehension consumes every reversed pair, ensuring a witness later in the reverse is available when the first original pair is tested.
 - **Different textual occurrences:** The matching substring need not refer to the same physical characters; only equal two-character content in both strings matters.
 - **Fixed versus general alphabet:** Without the lowercase bound, the set could grow to $O(N)$ distinct pairs in addition to the already linear reversed copy.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

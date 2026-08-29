@@ -64,7 +64,7 @@ In the example, counts are three for Eating, two for Singing, and one for Horse 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SELECT MIN(cnt) FROM t` returns the smallest participant co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ Depending on the MySQL optimizer, the CTE may be materialized once and reused by
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window functions:** Compute each count togethe:** - **Window functions:** Compute each count together with `MIN(count) OVER ()` and `MAX(count) OVER ()`, then filter in an outer query. This makes the single grouped pass explicit.
+- **Window functions:** Compute each count together with `MIN(count) OVER ()` and `MAX(count) OVER ()`, then filter in an outer query. This makes the single grouped pass explicit.
 - **Ranking both directions:** Assign ascending and descending ranks to counts and keep rows whose two ranks are not one. Ties are handled naturally.
 - **Anti-join against extreme counts:** Build a two-row set containing minimum and maximum, then keep grouped activities that do not join it.
 - **Using `Activities` with a left join:** Required if catalog activities could have zero participants. The current guarantee makes that extra work unnecessary.
@@ -120,8 +120,8 @@ Depending on the MySQL optimizer, the CTE may be materialized once and reused by
 - **Activity name identity:** Grouping uses the activity text stored in `Friends`. The data contract must keep that text aligned with the unique catalog activity names; inconsistent spellings would form separate groups.
 - **Null activity outside the intended model:** A null activity would form its own SQL group and influence the extrema. The problem describes every friend as taking part in a named catalog activity, so the intended data excludes that ambiguity.
 - **Repeated scalar subqueries:** Both extrema read `t`. A materialized CTE avoids regrouping `Friends`, while an optimizer may produce another equivalent plan; the logical answer is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

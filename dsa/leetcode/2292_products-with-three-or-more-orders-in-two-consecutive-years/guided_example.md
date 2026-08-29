@@ -59,7 +59,7 @@ Grouping by the full date would split orders too finely. Grouping only by produc
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `YEAR(purchase_date)` maps every date to its calendar year.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ This two-phase layout separates “calculate yearly status” from “find adjac
 
 ## 6. Traps This Instance Exposes
 
-- **- **Filter with** `HAVING COUNT(*) >= 3`: The CTE :** - **Filter with** `HAVING COUNT(*) >= 3`: The CTE could retain only qualifying product-years, eliminating `mark` and the outer Boolean filter; the exact query keeps a mark column instead.
+- **Filter with** `HAVING COUNT(*) >= 3`: The CTE could retain only qualifying product-years, eliminating `mark` and the outer Boolean filter; the exact query keeps a mark column instead.
 - **Window function over yearly groups:** `LAG` can compare the preceding qualifying year, but gaps and count filtering must be handled carefully.
 - **Correlated subquery:** It can test for an adjacent qualifying year but may repeat aggregate work without suitable optimization.
 - **Use** `SUM(quantity)`: That answers how many units were ordered, not how many orders occurred, and is incorrect here.
@@ -111,8 +111,8 @@ This two-phase layout separates “calculate yearly status” from “find adjac
 - **Several products:** Product equality in the join prevents years from different products being paired.
 - **Unique order IDs:** Each table row is one distinct order, supporting `COUNT(1)`.
 - **Any output order:** Omitting `ORDER BY` is intentional.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

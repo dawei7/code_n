@@ -73,11 +73,7 @@ This ordered suffix lets the second right-to-left scan identify the best swap pa
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer loop is:
-
-
-
-The loop begins at the final index and... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +110,7 @@ So no one-swap permutation can have its first decrease strictly to the right of 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate all swaps:** Trying every pair, keepi:** - **Generate all swaps:** Trying every pair, keeping only smaller results, and selecting the largest takes `O(N^3)` time if every candidate array is copied and compared naively. It ignores the strong lexicographic structure used by the two scans.
+- **Generate all swaps:** Trying every pair, keeping only smaller results, and selecting the largest takes `O(N^3)` time if every candidate array is copied and compared naively. It ignores the strong lexicographic structure used by the two scans.
 - **Sort candidate permutations:** Materializing all one-swap results also requires quadratic candidate count and substantial memory. The pivot argument identifies the winner directly in linear time.
 - **Choose the first smaller suffix value:** Scanning the suffix from left to right and accepting the first smaller value can place a value much smaller than necessary at the pivot. The result is valid but not lexicographically largest.
 - **Choose the rightmost duplicate blindly:** When the best candidate value appears more than once, using its rightmost occurrence puts the displaced pivot later. Choosing the leftmost duplicate makes the suffix larger.
@@ -126,8 +122,8 @@ So no one-swap permutation can have its first decrease strictly to the right of 
 - **Exactly one swap wording:** When a smaller permutation exists, the code performs exactly one swap. When none exists, the contract explicitly permits returning the unchanged array.
 - **Input mutation:** The solution changes `arr` in place. This matches the returned-array contract, but callers retaining the old order must pass a copy.
 - **Positive-value constraint:** The reasoning depends only on comparisons, so it would also work for zero or negative integers. Positivity does not require special handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

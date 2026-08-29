@@ -76,7 +76,7 @@ The tree operation is additive. It does not mean “replace this value with `del
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `tree.update(x, delta)` adds `delta` to logical one-based po... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ The first prefix includes original column `col2`; the second removes every colum
 
 ## 6. Traps This Instance Exposes
 
-- **- **true two-dimensional Fenwick tree:** Store par:** - **true two-dimensional Fenwick tree:** Store partial sums across both row and column lowbit ranges. Point updates and prefix rectangles then cost $O(\log m\log n)$, and inclusion-exclusion answers a rectangle with four prefix queries. This matches the manifest, but it is not the exact source.
+- **true two-dimensional Fenwick tree:** Store partial sums across both row and column lowbit ranges. Point updates and prefix rectangles then cost $O(\log m\log n)$, and inclusion-exclusion answers a rectangle with four prefix queries. This matches the manifest, but it is not the exact source.
 - **Avoid the row slice:** Iterate row indices or use `itertools.islice` so a query does not allocate $O(h)$ temporary references. Time remains proportional to the number of included rows.
 - **Keep a matrix of current values:** Reading `prev` becomes $O(1)$ during assignment, at the cost of another $O(mn)$ structure. The exact source instead isolates the cell with two prefix queries.
 - **One segment tree per row:** It gives the same broad tradeoff: logarithmic column updates and row intervals, but linear dependence on query height.
@@ -144,8 +144,8 @@ The first prefix includes original column `col2`; the second removes every colum
 - **Negative cell values:** Fenwick trees require only additive inverses, so negative values and negative update deltas are handled exactly.
 - **Assigning the existing value:** The delta is zero; all rectangle sums remain unchanged.
 - **Rectangular guarantee:** Every row has the same `n`, so each row tree uses a consistent column coordinate system.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

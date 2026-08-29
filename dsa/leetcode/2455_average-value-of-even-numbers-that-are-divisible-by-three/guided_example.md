@@ -66,7 +66,7 @@ The conditional return `0 if n == 0 else s // n` prevents division by zero and i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The variables `s` and `n` begin at zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -111,7 +111,7 @@ For `[1,2,4,7,10]`, no value is divisible by 6. The count remains zero, and the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Separate tests:** Use `x % 2 == 0 and x % 3 ==:** - **Separate tests:** Use `x % 2 == 0 and x % 3 == 0`. This is equally correct but performs two remainder checks instead of one least-common-multiple test.
+- **Separate tests:** Use `x % 2 == 0 and x % 3 == 0`. This is equally correct but performs two remainder checks instead of one least-common-multiple test.
 - **Build a filtered list:** Select all qualifying values and compute `sum(values)//len(values)`. It is concise but uses $O(N)$ extra space and still needs an empty-case check.
 - **Functional aggregation:** A generator can feed qualifying values to a sum, but the count must also be obtained, often requiring another pass or materialization.
 - **No qualifying values:** Returning zero avoids division by zero and matches the contract.
@@ -121,8 +121,8 @@ For `[1,2,4,7,10]`, no value is divisible by 6. The count remains zero, and the 
 - **Even but not divisible by 3:** Values such as 10 are also excluded.
 - **Flooring:** `//` performs the required round down for the positive total and count.
 - **Variable naming:** Local `n` counts qualifying values rather than representing the full array length; reading it with that meaning avoids confusion.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -57,7 +57,7 @@ The alias `unique_leads` gives the aggregate its required output name.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `COUNT(DISTINCT lead_id)` forms the set of distinct lead IDs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ For example, one lead can appear with three partners. It contributes one to `uni
 
 ## 6. Traps This Instance Exposes
 
-- **- **`SELECT DISTINCT` before grouping:** Deduplica:** - **`SELECT DISTINCT` before grouping:** Deduplicating whole rows first is unnecessary because distinct lead and partner counts are independent; whole-row duplicates already have no effect.
+- **`SELECT DISTINCT` before grouping:** Deduplicating whole rows first is unnecessary because distinct lead and partner counts are independent; whole-row duplicates already have no effect.
 - **Count distinct pairs:** `COUNT(DISTINCT lead_id, partner_id)` answers how many unique relationships exist, not either requested metric.
 - **Two separate subqueries:** They can compute leads and partners then join by date and make, but one grouped scan is clearer.
 - **Duplicate rows:** Both distinct counts remain unchanged.
@@ -104,8 +104,8 @@ For example, one lead can appear with three partners. It contributes one to `uni
 - **Null IDs outside the stated model:** `COUNT(DISTINCT column)` ignores null, which should be confirmed against any generalized business rule.
 - **Ordinal grouping:** `GROUP BY 1, 2` is concise but sensitive to select-list reordering; explicit column names are more maintainable.
 - **Any-order result:** No ordering clause is needed, and consumers must not assume a stable implicit order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

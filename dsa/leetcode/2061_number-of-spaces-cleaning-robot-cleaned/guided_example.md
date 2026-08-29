@@ -59,7 +59,7 @@ There are at most four states per cell, so indefinite physical running becomes a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | At the beginning of `dfs`, the source checks whether `(i,j,k... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Objects remain value one and are never entered. Thus the matrix itself doubles a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Iterative simulation:** Use a loop until a sta:** - **Iterative simulation:** Use a loop until a state repeats, avoiding recursion-limit failure with the same $O(MN)$ bounds.
+- **Iterative simulation:** Use a loop until a state repeats, avoiding recursion-limit failure with the same $O(MN)$ bounds.
 - **Separate cleaned set:** Preserves `room` but adds another $O(MN)$ structure.
 - **Visited cell only:** Insufficient because direction changes future behavior.
 - **Starting cell:** Always empty and is counted immediately.
@@ -110,8 +110,8 @@ Objects remain value one and are never entered. Thus the matrix itself doubles a
 - **Repeated full state:** Proves the future is periodic.
 - **Input mutation:** Cleaned spaces are changed from zero to negative one.
 - **Recursion risk:** A long state path can raise `RecursionError` under default Python limits.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -65,7 +65,7 @@ These are the first two candidates in:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Without a zero, neither forbidden pattern can occur.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -116,7 +116,7 @@ The two ones are the first and last characters, and every interior character is 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over forbidden-subsequence:** - **Dynamic programming over forbidden-subsequence automata:** This can minimize flips for arbitrary forbidden patterns, but the three-family characterization makes this instance much simpler.
+- **Dynamic programming over forbidden-subsequence automata:** This can minimize flips for arbitrary forbidden patterns, but the three-family characterization makes this instance much simpler.
 - **Enumerate all coherent targets:** There are only structured families, so explicit exponential enumeration is unnecessary.
 - **Avoid the slice:** Compute interior ones as `ones - (s[0] == "1") - (s[-1] == "1")` to retain $O(1)$ auxiliary space.
 - **Length one:** Every one-character string is coherent; the source skips the endpoint-pattern calculation and returns zero.
@@ -129,8 +129,8 @@ The two ones are the first and last characters, and every interior character is 
 - **Three or more ones plus any zero:** The zero has at least two ones on one side or the other, making a forbidden subsequence unavoidable.
 - **Subsequence versus substring:** Characters need not be adjacent, so local window checking alone cannot establish coherence.
 - **Manifest mismatch:** Runtime is linear as declared, but Python's interior slice makes actual auxiliary space linear rather than constant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

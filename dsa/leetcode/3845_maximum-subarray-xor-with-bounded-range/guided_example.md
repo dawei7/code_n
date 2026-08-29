@@ -79,10 +79,7 @@ As `r` increases, extending a window cannot reduce its range. A previously inval
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The range condition is:
-
-$$
-\max(\texttt{nums}[l..r])-\min(\... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -129,7 +126,7 @@ When an extreme deque's front equals the outgoing index, that front is popped. O
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all valid subarrays:** Maintaining r:** - **Enumerate all valid subarrays:** Maintaining range and XOR incrementally still requires $O(N^2)$ endpoint pairs.
+- **Enumerate all valid subarrays:** Maintaining range and XOR incrementally still requires $O(N^2)$ endpoint pairs.
 - **Balanced range structure plus XOR scan:** Fast min/max alone is insufficient; scanning all eligible prefix XORs per endpoint remains quadratic.
 - **Linear XOR basis:** A basis maximizes XOR over arbitrary combinations of values, not XOR with one selected prefix, so it solves a different problem.
 - **k equals zero:** The valid window contains only subarrays whose values are all equal; the sliding range logic enforces this.
@@ -140,8 +137,8 @@ When an extreme deque's front equals the outgoing index, that front is popped. O
 - **Value zero:** Its all-zero bit path is handled normally.
 - **Inclusive range bound:** Shrinking occurs only when range is `> k`, so equality remains valid.
 - **Fixed bit width:** Bits 14 through 0 cover both inputs and every prefix XOR because XOR cannot introduce a bit absent from all operands.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

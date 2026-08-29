@@ -20,7 +20,7 @@ You are also given a 2D integer array `queries`, where each $\text{queries}[i]$ 
 
 - `[2, idx, val]` - **Update** $\text{nums}[idx]$ to `val`.
 
-Return an integer array `answer`, where $\text{answer}[i]$ is the number of indices for the $$i^{\text{th}}$$ query of type `[1, l, r, k]`.
+Return an integer array `answer`, where $\text{answer}[i]$ is the number of indices for the $i^{\text{th}}$ query of type `[1, l, r, k]`.
 
 ### 2. Function Contract
 

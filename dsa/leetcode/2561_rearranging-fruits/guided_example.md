@@ -76,7 +76,7 @@ The list `nums` stores every misplaced copy from both sides with exactly this re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Across both baskets, the total number of copies of every cos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ The implementation does not need to construct the actual pairs or track which ba
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate arbitrary swaps:** Local choices can :** - **Simulate arbitrary swaps:** Local choices can be suboptimal because an expensive direct swap may be cheaper through the global minimum. Frequency balancing exposes the real structure.
+- **Simulate arbitrary swaps:** Local choices can be suboptimal because an expensive direct swap may be cheaper through the global minimum. Frequency balancing exposes the real structure.
 - **Use two frequency maps:** Separate basket counters are conceptually clear, but one signed counter stores the same information more compactly.
 - **Already equal baskets:** Every difference is zero, `nums` is empty, `m=0`, and the sum correctly returns zero.
 - **Odd total frequency:** An odd `cnt` difference means an odd combined multiplicity, so no sequence of swaps can split that value equally.
@@ -127,8 +127,8 @@ The implementation does not need to construct the actual pairs or track which ba
 - **Indirect route cheaper:** When $x>2\cdot\texttt{mi}$, routing through the minimum saves cost.
 - **Meaning of `min(cnt)`:** Python iterates the counter's keys for `min`, so this produces the smallest fruit value. It does not inspect signed counts.
 - **Large answer:** Python integers avoid overflow; fixed-width languages should accumulate the total in a 64-bit type.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

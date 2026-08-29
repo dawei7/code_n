@@ -59,7 +59,7 @@ Thus the maximum across row histograms is exactly the maximum matrix rectangle, 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Take any all-one rectangle in the matrix.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ The width is `right[i] - left[i] - 1`, and the candidate area is the width times
 
 ## 6. Traps This Instance Exposes
 
-- **- **One-pass histogram stack:** Finalize bar areas:** - **One-pass histogram stack:** Finalize bar areas as soon as a lower-or-equal bar appears and flush at a virtual zero. It avoids `left` and `right` arrays but still uses $O(n)$ stack space.
+- **One-pass histogram stack:** Finalize bar areas as soon as a lower-or-equal bar appears and flush at a virtual zero. It avoids `left` and `right` arrays but still uses $O(n)$ stack space.
 - **Dynamic left/right/height arrays across rows:** Update rectangle boundaries directly for each row. It also achieves $O(mn)$ time and $O(n)$ space but has more coupled state.
 - **Upward scan from every cell:** Maintain horizontal widths and scan previous rows, which can take $O(m^2n)$ time.
 - **All zeroes:** Every height remains zero and all candidate areas are zero.
@@ -109,8 +109,8 @@ The width is `right[i] - left[i] - 1`, and the candidate area is the width times
 - **String cells:** Comparisons correctly use `"1"` and `"0"`, not integers.
 - **Nonempty guarantee:** Direct `matrix[0]` and nonempty `max` depend on it.
 - **Input preservation:** Only derived height and boundary arrays change.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

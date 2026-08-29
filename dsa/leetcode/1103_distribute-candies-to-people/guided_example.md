@@ -57,7 +57,7 @@ Thus the expression simultaneously represents row position and repeated rounds. 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For turns zero through `num_people - 1`, the remainder equal... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +94,7 @@ Calling `min` twice produces the same amount because `candies` is not changed be
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closed-form complete rounds:** Solve the trian:** - **Closed-form complete rounds:** Solve the triangular-number inequality to find how many gifts are fully paid, then use arithmetic-series formulas for each person and distribute the remaining candies. This can achieve the manifest’s $O(P)$ time.
+- **Closed-form complete rounds:** Solve the triangular-number inequality to find how many gifts are fully paid, then use arithmetic-series formulas for each person and distribute the remaining candies. This can achieve the manifest’s $O(P)$ time.
 - **Binary-search the number of full gifts:** Find the greatest $T$ with $T(T+1)/2 \le C$, compute per-person progressions, and place the remainder. This avoids floating-point square-root concerns.
 - **Round-by-round nested loops:** Iterate people inside rounds and stop on exhaustion. It is equivalent but requires more bookkeeping than a single turn index with modulo.
 - **Fewer candies than people:** The first few people receive increasing gifts until a partial gift consumes the remainder; later entries stay zero.
@@ -104,8 +104,8 @@ Calling `min` twice produces the same amount because `candies` is not changed be
 - **Large candy count:** The simulation is far smaller than $C$ iterations because gifts increase, but it is still not strictly $O(P)$.
 - **Answer sum:** Each subtraction has an equal addition to one slot, preserving the total until the remainder reaches zero.
 - **Positive inputs:** Both candy count and people count are at least one, so modulo is valid and the loop initially runs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

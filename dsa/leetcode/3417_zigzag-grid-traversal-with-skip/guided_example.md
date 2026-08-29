@@ -54,8 +54,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - row $0$ is read from left to right;
-- row $1$ is read from... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +89,7 @@ After flattening cells conceptually in that order, â€œskip every alternate cellâ
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build the full zigzag sequence first:** Flatte:** - **Build the full zigzag sequence first:** Flattening all rows and then slicing every other value is correct but allocates an unnecessary additional $O(RC)$ list.
+- **Build the full zigzag sequence first:** Flattening all rows and then slicing every other value is correct but allocates an unnecessary additional $O(RC)$ list.
 - **Use `reversed(row)`:** Iterating odd rows through a reverse iterator preserves the input while keeping $O(1)$ auxiliary traversal space. The protected source instead mutates odd rows.
 - **Index arithmetic:** Loops over column indices can choose `range(C)` or `range(C-1,-1,-1)` by row parity. This avoids mutation but is more verbose.
 - **Reset the toggle per row:** This is wrong whenever the column count is odd because skipping alternates globally through the zigzag path.
@@ -100,8 +99,8 @@ After flattening cells conceptually in that order, â€œskip every alternate cellâ
 - **Duplicate values:** Decisions depend on traversal positions, not values. Equal cell values are appended or skipped independently.
 - **Positive-value guarantee:** Positivity is irrelevant to traversal mechanics; the algorithm would order any stored values the same way.
 - **Post-call grid state:** Callers that need the original grid later must copy it before this method or replace in-place reversal with reverse iteration.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

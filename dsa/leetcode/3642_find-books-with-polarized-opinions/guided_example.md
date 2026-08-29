@@ -65,7 +65,7 @@ Those same endpoints also prove that both polarities exist. The condition `MAX(s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The rating spread is the largest rating minus the smallest r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +112,7 @@ For example, ratings `[5, 1, 4, 2, 5]` contribute three high comparisons and two
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate in a common table expression:** :** - **Pre-aggregate in a common table expression:** A CTE can first produce one row per `book_id` with `session_count`, `low_count`, `high_count`, `min_rating`, and `max_rating`, then join qualifying summaries to `books`. This makes the data flow and raw-score filter clearer, while a capable optimizer can produce essentially the same physical plan.
+- **Pre-aggregate in a common table expression:** A CTE can first produce one row per `book_id` with `session_count`, `low_count`, `high_count`, `min_rating`, and `max_rating`, then join qualifying summaries to `books`. This makes the data flow and raw-score filter clearer, while a capable optimizer can produce essentially the same physical plan.
 - **Correlated subqueries per book:** Separate subqueries for the count, minimum, maximum, and extreme count are easier to write piecemeal but may repeatedly scan `reading_sessions` for every book. One grouped aggregation exposes all required statistics together and is generally more efficient.
 - **Conditional `CASE` expressions:** `SUM(CASE WHEN session_rating <= 2 THEN 1 ELSE 0 END)` is more portable across SQL dialects than summing Boolean comparisons. The stored solution intentionally uses MySQL’s numeric Boolean behavior.
 - **Rounded-threshold defect:** Filtering with `polarization_score >= 0.6` compares the rounded alias. Raw ratios in `[0.595, 0.6)` can round to `0.60` and pass incorrectly. Compare the unrounded numerator and denominator—preferably by cross multiplication—then round only the displayed result.
@@ -126,8 +126,8 @@ For example, ratings `[5, 1, 4, 2, 5]` contribute three high comparisons and two
 - **Ties after rounding:** `ORDER BY polarization_score` sorts the returned two-decimal scores. Distinct raw ratios that round to the same value are broken by `title DESC`, not by their hidden raw ratios.
 - **Descending title order:** The secondary order is deliberately `DESC`. Replacing it with the more common ascending alphabetical order would contradict the requested output ordering.
 - **Division behavior:** MySQL’s `/` operator performs non-integer division here. In a dialect where integer division truncates, the numerator or denominator would need an explicit decimal cast.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

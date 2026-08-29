@@ -51,7 +51,7 @@ For example, rows `[1,1]` and `[1,1]` each become set $\{1\}$. Their intersectio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For example, rows `[1,1]` and `[1,1]` each become set $\{1\}... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For example, rows `[1,1]` and `[1,1]` each become set $\{1\}$. Their intersectio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bit mask plus union-find:** Values lie in $1..:** - **Bit mask plus union-find:** Values lie in $1..100$, so each row can be encoded compactly and intersections can use bit operations. This matches the manifest but is not the protected code.
+- **Bit mask plus union-find:** Values lie in $1..100$, so each row can be encoded compactly and intersections can use bit operations. This matches the manifest but is not the protected code.
 - **Count duplicate matches:** The definition requires distinct common integers, so duplicates must collapse through sets or equivalent frequency logic.
 - **Compare ordered pairs:** Testing both $(i,j)$ and $(j,i)$ doubles work without adding information to an undirected graph.
 - **Count edges instead of components:** Several edges may belong to one component, while isolated nodes have no edges but still count.
@@ -98,8 +98,8 @@ For example, rows `[1,1]` and `[1,1]` each become set $\{1\}$. Their intersectio
 - **One node:** No pair checks run, one DFS starts, and the answer is one.
 - **Dense graph:** The adjacency list may use quadratic space even though a union-find version would not store edges.
 - **Disconnected isolated nodes:** Each unvisited isolated index starts and completes its own DFS.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

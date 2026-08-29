@@ -2,7 +2,7 @@
 
 You are given an integer array `nums` and a **positive** integer `k`. You can choose any **subsequence** of the array and sum all of its elements together.
 
-We define the **K-Sum** of the array as the $$k^{\text{th}}$$ **largest** subsequence sum that can be obtained (**not** necessarily distinct).
+We define the **K-Sum** of the array as the $k^{\text{th}}$ **largest** subsequence sum that can be obtained (**not** necessarily distinct).
 
 Return *the K-Sum of the array*.
 

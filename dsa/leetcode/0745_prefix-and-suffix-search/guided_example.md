@@ -63,7 +63,7 @@ Although the stated queries have nonempty prefixes, including the empty prefix m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a word `w` of length `n`, the loop `i in range(n + 1)` c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,9 +106,9 @@ For `"apple"`, the table includes keys such as `("a", "e")`, `("app", "ple")`, a
 
 ## 6. Traps This Instance Exposes
 
-- **- **Combined prefix-suffix trie:** Insert forms su:** - **Combined prefix-suffix trie:** Insert forms such as suffix plus separator plus word and search prefix/suffix jointly. This can avoid enumerating all string-pair keys but is more complex and still stores substantial trie data.
-- **- **Two tries with index lists:** One trie indexes:** - **Two tries with index lists:** One trie indexes prefixes and another suffixes; a query intersects their descending index lists. This can save some preprocessing but makes queries more expensive.
-- **- **Scan words backward per query:** The first mat:** - **Scan words backward per query:** The first match found is the largest index. It uses little extra memory but can cost `O(wL)` per query and becomes expensive for many calls.
+- **Combined prefix-suffix trie:** Insert forms such as suffix plus separator plus word and search prefix/suffix jointly. This can avoid enumerating all string-pair keys but is more complex and still stores substantial trie data.
+- **Two tries with index lists:** One trie indexes prefixes and another suffixes; a query intersects their descending index lists. This can save some preprocessing but makes queries more expensive.
+- **Scan words backward per query:** The first match found is the largest index. It uses little extra memory but can cost `O(wL)` per query and becomes expensive for many calls.
 
 ---
 

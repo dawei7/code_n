@@ -63,7 +63,7 @@ This is why the short case does not separately scan repeated runs. Their repairs
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `n < 6`, at least `6 - n` insertions are unavoidable beca... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ When a new character begins, `cnt // 3` for the completed run is added to `repla
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search over edited strings:** It:** - **Breadth-first search over edited strings:** It could find a minimum in principle, but the branching factor over insertions, deletions, positions, and characters makes the state space enormous.
+- **Breadth-first search over edited strings:** It could find a minimum in principle, but the branching factor over insertions, deletions, positions, and characters makes the state space enormous.
 - **Add all violation counts:** Summing length deficit, missing types, and repetition replacements overcounts because one replacement or insertion can repair a repetition and a missing category together.
 - **Replace every third repeated character before deleting:** For strings longer than twenty, this wastes mandatory deletions. Deleting from carefully chosen runs can eliminate some replacements for free beyond the deletion cost.
 - **Delete from longest runs only:** Length alone does not determine immediate efficiency. A length-six run needs one deletion to save a replacement, while a length-five run needs three; modulo three controls the priority.
@@ -113,8 +113,8 @@ When a new character begins, `cnt // 3` for the completed run is added to `repla
 - **Exactly length six or twenty:** These belong to the middle regime; no length edit is required.
 - **Exactly length twenty-one:** One deletion is mandatory and is preferentially assigned to a remainder-zero run if one exists.
 - **Several missing types inside repeated runs:** Replacement characters can be chosen from different missing categories, allowing repair costs to overlap.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

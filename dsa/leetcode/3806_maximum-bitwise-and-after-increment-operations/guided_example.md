@@ -71,7 +71,7 @@ At the highest differing low bit, target has one and `x` has zero, so the target
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For original value `x` and required mask `target`, the final... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The computed final low pattern sets non-required lower bits to zero where doing 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary search the numeric answer:** Feasibilit:** - **Binary search the numeric answer:** Feasibility is not monotone in ordinary numeric order; bitwise greedy uses mask containment.
+- **Binary search the numeric answer:** Feasibility is not monotone in ordinary numeric order; bitwise greedy uses mask containment.
 - **Try every subset:** There may be exponentially many size-`m` choices; sorting costs selects the cheapest.
 - **Increase every chosen value to `target` exactly:** Values may already exceed target while containing its bits; the low-bit formula finds the next minimal satisfying value.
 - **Ignore carries:** Selecting through the highest missing bit is what makes the subtraction and higher-bit preservation valid.
@@ -120,8 +120,8 @@ The computed final low pattern sets non-required lower bits to zero where doing 
 - **Bit range:** No bit above `max(nums)+k` can appear.
 - **Input preservation:** Sorting applies to `cost`, not `nums`.
 - **Reused buffer:** Every cost slot is overwritten before the next sort.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

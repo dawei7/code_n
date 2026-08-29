@@ -59,9 +59,7 @@ If `promise1` rejects, `await` throws inside the async function. Because there i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | JavaScript evaluates the expression:
-
-`(await promise1) + (a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +96,7 @@ The two numeric fulfillment values are added using JavaScript's `+` operator, an
 
 ## 6. Traps This Instance Exposes
 
-- **- **`Promise.all` with destructuring:** Makes conc:** - **`Promise.all` with destructuring:** Makes concurrent waiting explicit and is also correct, but allocates a small result array for only two fixed inputs.
+- **`Promise.all` with destructuring:** Makes concurrent waiting explicit and is also correct, but allocates a small result array for only two fixed inputs.
 - **Nested `then` calls:** Can produce the same sum but is usually less direct than `async` and `await`.
 - **Manual Promise constructor:** Unnecessary because an async function already returns a promise and propagates awaited errors.
 - **Second promise fulfills first:** Its value remains settled and is immediately available once evaluation reaches the second await.
@@ -108,8 +106,8 @@ The two numeric fulfillment values are added using JavaScript's `+` operator, an
 - **Rejected first promise:** The returned async promise rejects and the addition is never evaluated.
 - **Rejected second promise:** It rejects the returned promise when the second await observes it, outside the stated always-resolve contract.
 - **Already fulfilled inputs:** Both awaits resume through promise microtasks and the result still arrives asynchronously as a promise fulfillment.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

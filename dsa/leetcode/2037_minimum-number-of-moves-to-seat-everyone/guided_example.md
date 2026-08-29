@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $$i^{\text{th}}$$ seat. You are also given the array `students` of length `n`, where $\text{students}[j]$ is the position of the $$j^{\text{th}}$$ student.
+There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $i^{\text{th}}$ seat. You are also given the array `students` of length `n`, where $\text{students}[j]$ is the position of the $j^{\text{th}}$ student.
 
 The objective is to compute `4` from `{"seats": [3, 1, 5], "students": [2, 7, 4]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -59,7 +59,7 @@ computes the movement cost of every rank-matched pair, and `sum` returns their t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source sorts `seats` and `students` in ascending order.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ This inequality holds regardless of the relative placement of the four coordinat
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting by coordinate:** Positions are bounde:** - **Counting by coordinate:** Positions are bounded by one hundred, so frequency differences can compute the cost in $O(N+U)$ time with $U=100$.
+- **Counting by coordinate:** Positions are bounded by one hundred, so frequency differences can compute the cost in $O(N+U)$ time with $U=100$.
 - **Minimum-cost bipartite matching:** General but far more expensive; one-dimensional absolute distance has the uncrossing property.
 - **Nearest free seat per student:** Can be suboptimal because early choices may force later crossings.
 - **Already matched sorted positions:** Every absolute difference is zero.
@@ -118,8 +118,8 @@ This inequality holds regardless of the relative placement of the four coordinat
 - **Tied optimal assignments:** The method returns the minimum cost without needing to reconstruct a unique assignment.
 - **Equal input lengths:** This guarantee makes `zip` cover all entries.
 - **Input mutation:** Both arrays are sorted in place.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

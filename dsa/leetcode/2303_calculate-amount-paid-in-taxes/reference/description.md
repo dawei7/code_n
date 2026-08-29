@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $$i^{\text{th}}$$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
+You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $i^{\text{th}}$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
 
 Tax is calculated as follows:
 

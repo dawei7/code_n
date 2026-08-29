@@ -77,9 +77,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, write:
-
-`a[0] <= a[1] <= ...... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +118,7 @@ Every sorted array position is used once, so these triples form a valid sequence
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-pointer construction:** Sort, then pair va:** - **Two-pointer construction:** Sort, then pair values from the upper end while consuming fillers from the lower end. It yields the same medians without materializing a slice.
+- **Two-pointer construction:** Sort, then pair values from the upper end while consuming fillers from the lower end. It yields the same medians without materializing a slice.
 - **Heap-based selection:** It can identify large values but is more complex and does not beat comparison sorting for the full grouping.
 - **Enumerate triple partitions:** The number of partitions is enormous and unnecessary after the exchange argument.
 - **Three elements:** `g=1`, and the slice selects the ordinary median of the whole array.
@@ -133,8 +131,8 @@ Every sorted array position is used once, so these triples form a valid sequence
 - **Removal order:** Any constructed partition can be removed in arbitrary sequence.
 - **Input mutation:** The exact source reorders `nums` in place.
 - **Slice allocation:** The concise expression uses linear extra memory for selected medians.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -63,7 +63,7 @@ The conversion and final join do not alter character content. They only provide 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python strings cannot be changed at individual indices.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,9 +102,9 @@ Because the membership collection always has length ten, each membership check i
 
 ## 6. Traps This Instance Exposes
 
-- **- **Collect vowel indices or values first:** Store:** - **Collect vowel indices or values first:** Store every vowel, reverse that list, and write values back into vowel positions. This is easy to structure but uses additional space proportional to the number of vowels on top of the mutable output buffer.
-- **- **Use a vowel set:** Replacing the ten-character:** - **Use a vowel set:** Replacing the ten-character string with a set makes membership expected $O(1)$, but asymptotic behavior is unchanged because the current membership scan has a fixed bound of ten.
-- **- **Repeated string concatenation:** Building the :** - **Repeated string concatenation:** Building the result one character at a time can become quadratic in languages with immutable strings. The list buffer plus one final join avoids that cost.
+- **Collect vowel indices or values first:** Store every vowel, reverse that list, and write values back into vowel positions. This is easy to structure but uses additional space proportional to the number of vowels on top of the mutable output buffer.
+- **Use a vowel set:** Replacing the ten-character string with a set makes membership expected $O(1)$, but asymptotic behavior is unchanged because the current membership scan has a fixed bound of ten.
+- **Repeated string concatenation:** Building the result one character at a time can become quadratic in languages with immutable strings. The list buffer plus one final join avoids that cost.
 
 ---
 

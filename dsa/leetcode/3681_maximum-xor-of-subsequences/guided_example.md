@@ -76,7 +76,7 @@ where `basis[bit]` is either zero or a vector whose highest set bit is `bit`. Th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | XOR behaves like addition over the two-element field: each b... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ It follows that the basis and the full processed prefix generate exactly the sam
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate subsequences:** There are $2^n$ inde:** - **Enumerate subsequences:** There are $2^n$ index subsets, so evaluating every subset XOR is infeasible for $n$ up to $10^5$.
+- **Enumerate subsequences:** There are $2^n$ index subsets, so evaluating every subset XOR is infeasible for $n$ up to $10^5$.
 - **Maintain every reachable XOR:** Repeatedly add `old_xor ^ value` to a set of reachable values. The set can grow to $2^B$ distinct values, which is far larger than the 31-vector basis.
 - **Use a bitwise trie for array elements:** A trie can maximize the XOR of two stored elements, but the optimum here may require XORing many elements. It does not directly represent the span of all subset XORs.
 - **Treat the subsequences as disjoint:** The statement explicitly allows overlap. More importantly, the symmetric-difference reduction already accounts for overlap: occurrences chosen twice cancel, and every remaining subset is achievable.
@@ -138,8 +138,8 @@ It follows that the basis and the full processed prefix generate exactly the sam
 - **Duplicate or dependent values:** A value that reduces to zero adds no new combination. Discarding it from the basis does not discard any achievable XOR.
 - **All values zero:** Every basis slot remains zero, every maximization step leaves `answer` unchanged, and the method correctly returns zero.
 - **Highest bit handling:** The loop includes bit $30$, while values up to $10^9$ need only bits $0$ through $29$. The extra zero slot is safe and keeps the implementation within a conventional 31-bit nonnegative range.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

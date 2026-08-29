@@ -64,7 +64,7 @@ For Alice's invoice in the example, the contacts join produces rows for Bob, Joh
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first join is `Invoices AS t1 LEFT JOIN Customers AS t2 ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ Similarly, `COUNT(t4.email)` counts only contacts that found a matching customer
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate contacts first:** Group `Contact:** - **Pre-aggregate contacts first:** Group `Contacts` by `user_id`, compute total and trusted counts, and then join that compact result to `Invoices`. This can avoid repeating the same aggregation work for customers with many invoices, but it requires a longer query or a common table expression.
+- **Pre-aggregate contacts first:** Group `Contacts` by `user_id`, compute total and trusted counts, and then join that compact result to `Invoices`. This can avoid repeating the same aggregation work for customers with many invoices, but it requires a longer query or a common table expression.
 - **Conditional aggregation:** A query can use a condition inside `SUM` or `COUNT` to identify trusted contacts. This makes the predicate explicit, although the extra customer-email lookup is still required.
 - **`EXISTS` for trust membership:** Testing whether a customer email exists avoids multiplying rows when `Customers.email` is not unique. The exact solution instead counts rows produced by its final join, so it relies on each contact email matching at most one relevant customer row.
 - **No contacts:** The contact left join creates a null placeholder. Both counted columns are null, producing `0` and `0` while keeping the invoice.
@@ -111,8 +111,8 @@ Similarly, `COUNT(t4.email)` counts only contacts that found a matching customer
 - **Duplicate customer emails:** The local schema explicitly makes `customer_id` unique but does not state the same property for `email`. If duplicate email rows are legal, the final join duplicates a contact and the exact `COUNT` expressions overcount; pre-deduplicating emails or using `EXISTS` is the robust remedy.
 - **Missing owner row:** The first left join preserves such an invoice but returns a null customer name. Normal problem data is expected to associate invoices with customers; preserving the row is still safer than silently discarding it.
 - **Ordering:** `GROUP BY` does not promise sorted output. `ORDER BY invoice_id` is essential, including when the sample input already appears nearly ordered.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

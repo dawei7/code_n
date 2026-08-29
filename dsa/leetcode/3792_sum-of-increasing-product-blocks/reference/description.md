@@ -8,7 +8,7 @@ A sequence is formed as follows:
 
 - The $2^nd$ block contains $2 * 3$.
 
-- The $$i^{\text{th}}$$ block is the product of the next `i` consecutive integers.
+- The $i^{\text{th}}$ block is the product of the next `i` consecutive integers.
 
 Let `F(n)` be the sum of the first `n` blocks.
 
@@ -34,7 +34,7 @@ Return the sum of the first `n` block products, reduced modulo $1{,}000{,}000{,}
 
 - **Output:** 127
 
-- **Explanation:** ​​​​​​​
+- **Explanation:** 
 
 - Block 1: `1`
 

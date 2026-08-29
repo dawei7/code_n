@@ -1,10 +1,10 @@
-​
+
 <!-- Don't delete this -->
-​
+
 # Solution
-​
+
 ---
-​
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -75,7 +75,7 @@ df = df.assign(average_daily_percent = df['removed_spam']*100/df['total_spam'])
 | ----------- | ------------ | ---------- | --------------------- |
 | 2019-07-02  | 1            | 1          | 100                   |
 | 2019-07-04  | 1            | 2          | 50                    |
-​
+
 
 Now we can calculate the overall average from the daily percentage. We can use the function `agg()` again and round the result to 2 decimal places.
 
@@ -88,7 +88,7 @@ avg = df.agg({'average_daily_percent': ['mean']}).round(2)
 
 ```python
 import pandas as pd
-​
+
 def reported_posts(actions: pd.DataFrame, removals: pd.DataFrame) -> pd.DataFrame:
 
     spam = actions[actions['extra'] == 'spam'].drop_duplicates(['action_date', 'post_id'])
@@ -110,7 +110,7 @@ def reported_posts(actions: pd.DataFrame, removals: pd.DataFrame) -> pd.DataFram
 <!-- an empty line to separate approaches -->
 
 -------
-​
+
 ## Database
 
 <!-- h3 for approaches -->
@@ -158,6 +158,6 @@ FROM (
     GROUP BY action_date
     )t0
 ```
-​
+
 <!-- an empty line to separate approaches -->
 -----

@@ -59,7 +59,7 @@ The queue is initialized with every current participant `u` for which `vis[u]` i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For meetings `i` through `j`, the code builds an undirected ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ After BFS, the temporary graph is discarded and the scan advances to the next ti
 
 ## 6. Traps This Instance Exposes
 
-- **- **Process rows individually:** This can miss ins:** - **Process rows individually:** This can miss instantaneous chains when equal-time rows are ordered unfavorably. Equal timestamps must be handled as one connectivity event.
+- **Process rows individually:** This can miss instantaneous chains when equal-time rows are ordered unfavorably. Equal timestamps must be handled as one connectivity event.
 - **Permanent union-find:** Components formed at one time must not persist for people who never learned the secret. A temporary graph avoids leaking same-time connectivity into later times.
 - **Timestamp-group union-find with reset:** DSU can union participants within one time, retain only components connected to knowledgeable people, then reset the others. It is valid but more intricate than temporary BFS.
 - **Priority traversal by earliest knowledge time:** A time-aware graph search can compute earliest learning times. Sorting and grouping makes the instantaneous equivalence at each timestamp especially explicit.
@@ -111,8 +111,8 @@ After BFS, the temporary graph is discarded and the scan advances to the next ti
 - **People with no meetings:** Only person 0 or `firstPerson` can know without attending a meeting.
 - **Input order:** Sorting deliberately mutates `meetings`; correctness depends on chronological rather than original row order.
 - **Answer order:** The final enumeration is increasing, though the contract permits any ordering.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

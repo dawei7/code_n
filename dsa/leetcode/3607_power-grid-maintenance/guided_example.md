@@ -73,9 +73,7 @@ This invariant directly answers both cases of a maintenance query.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source creates:
-
-`st = [SortedList() for _ in range(c + ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -118,7 +116,7 @@ The source appends an answer only for type-1 queries, so the returned array natu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reverse processing:** Count all offline operat:** - **Reverse processing:** Count all offline operations, start from the final online state, and restore stations while scanning queries backward. Per-component minima can then be updated without deletions, but repeated offline operations require careful counting.
+- **Reverse processing:** Count all offline operations, start from the final online state, and restore stations while scanning queries backward. Per-component minima can then be updated without deletions, but repeated offline operations require careful counting.
 - **Lazy min-heaps:** Store all component IDs in heaps and mark stations offline separately. Pop offline minima only when needed; each station is removed from a heap at most once.
 - **Balanced binary search tree:** Any ordered set supporting membership, deletion, and minimum can replace `SortedList` with the same high-level algorithm.
 - **Unordered set only:** It supports status and deletion but cannot find the smallest online ID efficiently without scanning the whole component.
@@ -137,8 +135,8 @@ The source appends an answer only for type-1 queries, so the returned array natu
 - **All queries are checks:** Every station remains online and resolves its own request.
 - **Missing imports:** The exact file requires its environment to provide `SortedList` and `List`; standalone use must import them.
 - **Input preservation:** The source mutates only Union-Find and sorted-list state. `connections` and `queries` retain their original order and contents.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

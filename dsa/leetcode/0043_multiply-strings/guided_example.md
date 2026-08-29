@@ -63,7 +63,7 @@ This explains the otherwise mysterious extra `+ 1`. For `123 * 456`, the product
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Digit `num1[i]` is $m - 1 - i$ positions from the right, whi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ For example, the tens-position bucket may receive contributions from the units d
 
 ## 6. Traps This Instance Exposes
 
-- **- **Carry after every digit multiplication:** A de:** - **Carry after every digit multiplication:** A destination slot can be normalized immediately and its carry added leftward. This uses the same array and bounds but intertwines accumulation with normalization, making ordering harder to reason about.
+- **Carry after every digit multiplication:** A destination slot can be normalized immediately and its carry added leftward. This uses the same array and bounds but intertwines accumulation with normalization, making ordering harder to reason about.
 - **Reverse both input strings:** Reversed digits let index `i + j` directly represent the power of ten. The result must then be normalized and reversed back, which is equally valid but adds reversal steps.
 - **Build shifted partial strings:** This mirrors paper multiplication visually, but storing and summing all partial rows uses more intermediate space and more complicated string addition.
 - **Convert whole strings with `int`:** It is concise in Python but explicitly violates the problem's restriction and hides the intended arbitrary-precision arithmetic.
@@ -111,8 +111,8 @@ For example, the tens-position bucket may receive contributions from the units d
 - **Maximum carry chains:** Right-to-left normalization propagates carries through as many positions as necessary because each left bucket is processed only after all rightward carries have reached it.
 - **No leading zeros in inputs:** This guarantee justifies removing at most one unused result slot after excluding zero operands.
 - **Inputs remain unchanged:** Strings are immutable and the algorithm only reads their characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

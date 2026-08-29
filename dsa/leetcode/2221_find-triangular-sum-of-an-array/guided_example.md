@@ -72,9 +72,7 @@ If the loop ran right to left, it would overwrite `nums[i + 1]` before the calcu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `i` in `range(k)`, the assignment is
-
-`nums[i] = (n... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +111,7 @@ Before the first round, the meaningful prefix is the entire input, which is the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Allocate a new row each round:** This follows :** - **Allocate a new row each round:** This follows the statement literally and is easy to visualize. It has the same `O(n^2)` time but requires `O(n)` peak extra space and repeated allocations.
+- **Allocate a new row each round:** This follows the statement literally and is easy to visualize. It has the same `O(n^2)` time but requires `O(n)` peak extra space and repeated allocations.
 - **Binomial-coefficient formula:** The final value is a weighted sum using row `n - 1` of Pascal's triangle modulo ten. Computing coefficients safely modulo the composite number ten requires additional number theory, such as separate moduli two and five plus reconstruction; it is more complex than needed for `n <= 1000`.
 - **Naively compute full binomial coefficients:** Python can hold them, but they become very large and add unnecessary big-integer work. Fixed-width languages can overflow.
 - **Right-to-left in-place update:** This is incorrect because `nums[i + 1]` would already contain a new-row value when computing `nums[i]`. The exact left-to-right direction preserves both old operands.
@@ -125,8 +123,8 @@ Before the first round, the meaningful prefix is the entire input, which is the 
 - **Input mutation:** The caller's list is destroyed as an original-data record. If preservation were required, a copy would add `O(n)` space before running the same algorithm.
 - **Stale suffix entries:** They are harmless because outer value `k` strictly decreases and subsequent loops access only the meaningful prefix through index `k`.
 - **Digits-only guarantee:** Every input begins between zero and nine, and modulo keeps every written value in that range. No normalization branch is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

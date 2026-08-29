@@ -68,7 +68,7 @@ The manifest mentions `LEFT`, and `LEFT(profession,1)` would be equivalent here.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `SUBSTRING(profession,1,1)` uses MySQL's one-based string po... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ This exactly matches the formatting requirement.
 
 ## 6. Traps This Instance Exposes
 
-- **- **`LEFT(profession,1)`:** It is equivalent to th:** - **`LEFT(profession,1)`:** It is equivalent to the exact `SUBSTRING` call for extracting one leading character.
+- **`LEFT(profession,1)`:** It is equivalent to the exact `SUBSTRING` call for extracting one leading character.
 - **`CONCAT_WS`:** It is unnecessary because no separator should appear between components.
 - **Whitespace:** Do not insert a blank before the opening parenthesis.
 - **Profession enum:** Every allowed profession is non-empty and contributes one initial.
@@ -125,8 +125,8 @@ This exactly matches the formatting requirement.
 - **Alias collision:** `AS name` labels the output and does not mutate the source column.
 - **No filtering:** Every person row belongs in the answer.
 - **Manifest wording:** The exact query uses `SUBSTRING` rather than `LEFT`, though their result here is the same.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

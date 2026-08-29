@@ -60,7 +60,7 @@ Every surviving ID has a name row but no salary row.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first SELECT starts from `Employees` and keeps rows whos... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -97,7 +97,7 @@ The second SELECT reverses the tables. It starts from `Salaries` and retains IDs
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two `NOT EXISTS` branches:** They express anti:** - **Two `NOT EXISTS` branches:** They express anti-joins and avoid `NULL` pitfalls associated with `NOT IN`.
+- **Two `NOT EXISTS` branches:** They express anti-joins and avoid `NULL` pitfalls associated with `NOT IN`.
 - **Full outer join:** Join on employee ID and keep rows where either side is null. MySQL lacks direct full outer join syntax, so it must be simulated.
 - **Left join plus right join:** Union two outer-join directions and filter missing sides. It is more verbose but equivalent.
 - **ID in both tables:** It fails both anti-membership tests and is correctly omitted.
@@ -111,8 +111,8 @@ The second SELECT reverses the tables. It starts from `Salaries` and retains IDs
 - **One anti-join direction:** It catches only one missing-information category; both are required.
 - **Ascending order:** `ORDER BY 1` uses the sole selected column and defaults to ascending.
 - **Nullable IDs:** A different schema allowing null identifiers should prefer `NOT EXISTS`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

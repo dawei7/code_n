@@ -22,7 +22,7 @@ Determine the maximum number of unique students recorded on any one bench. Repea
 
 - `students`: A list of $n$ pairs `[student_id, bench_id]`.
 
-The constraints are $0 \le n \le 100$, $1 \le \texttt{student_id} \le 100$, and $1 \le \texttt{bench_id} \le 100$.
+The constraints are $0 \le n \le 100$, $1 \le \texttt{student\_id} \le 100$, and $1 \le \texttt{bench\_id} \le 100$.
 
 **Return value**
 

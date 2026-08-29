@@ -1,8 +1,8 @@
 ### 1. Description
 
-You are given an array `nums`​​​ and an integer `k`​​​​​. The XOR of a segment `[left, right]` where $left \le right$ is the `XOR` of all the elements with indices between `left` and `right`, inclusive: $\text{nums}[left] XOR nums[left+1] XOR ... XOR \text{nums}[right]$.
+You are given an array `nums` and an integer `k`. The XOR of a segment `[left, right]` where $left \le right$ is the `XOR` of all the elements with indices between `left` and `right`, inclusive: $\text{nums}[left] XOR nums[left+1] XOR ... XOR \text{nums}[right]$.
 
-Return *the minimum number of elements to change in the array *such that the `XOR` of all segments of size `k`​​​​​​ is equal to zero.
+Return *the minimum number of elements to change in the array *such that the `XOR` of all segments of size `k` is equal to zero.
 
 ### 2. Function Contract
 
@@ -39,4 +39,4 @@ Return *the minimum number of elements to change in the array *such that the `XO
 
 - $1 \le k \le \text{nums.length} \le 2000$
 
-- $​​​​​​0 \le \text{nums}[i] < 2^{10}$
+- $0 \le \text{nums}[i] < 2^{10}$

@@ -4,13 +4,13 @@ You are given an undirected graph defined by an integer `n`, the number of nodes
 
 Let `incident(a, b)` be defined as the **number of edges** that are connected to **either** node `a` or `b`.
 
-The answer to the $$j^{\text{th}}$$ query is the **number of pairs** of nodes `(a, b)` that satisfy **both** of the following conditions:
+The answer to the $j^{\text{th}}$ query is the **number of pairs** of nodes `(a, b)` that satisfy **both** of the following conditions:
 
 - `a < b`
 
 - $incident(a, b) > \text{queries}[j]$
 
-Return *an array *`answers`* such that *$\text{answers.length} = \text{queries.length}$* and *$\text{answers}[j]$* is the answer of the *$$j^{\text{th}}$$* query*.
+Return *an array *`answers`* such that *$\text{answers.length} = \text{queries.length}$* and *$\text{answers}[j]$* is the answer of the *$j^{\text{th}}$* query*.
 
 Note that there can be **multiple edges** between the same two nodes.
 

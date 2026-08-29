@@ -1,6 +1,6 @@
 ### 1. Description
 
-There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $$i^{\text{th}}$$ robot. You are also given a 2D integer array `factory` where $\text{factory}[j] = [\text{position}_{j}, \text{limit}_{j}]$ indicates that $\text{position}_{j}$ is the position of the $$j^{\text{th}}$$ factory and that the $$j^{\text{th}}$$ factory can repair at most $\text{limit}_{j}$ robots.
+There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $i^{\text{th}}$ robot. You are also given a 2D integer array `factory` where $\text{factory}[j] = [\text{position}_{j}, \text{limit}_{j}]$ indicates that $\text{position}_{j}$ is the position of the $j^{\text{th}}$ factory and that the $j^{\text{th}}$ factory can repair at most $\text{limit}_{j}$ robots.
 
 The positions of each robot are **unique**. The positions of each factory are also **unique**. Note that a robot can be **in the same position** as a factory initially.
 

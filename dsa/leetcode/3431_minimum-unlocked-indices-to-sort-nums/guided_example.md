@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\texttt{nums}[i]-\texttt{nums}[i+1]=1.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +88,7 @@ Therefore, the only value pairs that can swap are $(2,1)$ and $(3,2)$. A pair $(
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate swaps after every unlock choice:** Ex:** - **Simulate swaps after every unlock choice:** Exploring subsets of locked boundaries is exponential and unnecessary once mandatory intervals are characterized.
+- **Simulate swaps after every unlock choice:** Exploring subsets of locked boundaries is exponential and unnecessary once mandatory intervals are characterized.
 - **Unlock every inversion position in the original array only:** Swaps create new adjacent inversions at different boundaries. Entire movement intervals, not just initially inverted adjacencies, must be available.
 - **Standard unrestricted inversion count:** This problem does not allow arbitrary adjacent swaps. A $3$ and $1$ can never cross, which creates the explicit impossibility test.
 - **Already sorted input:** Both mandatory intervals are empty, so the answer is zero regardless of unrelated locked positions.
@@ -100,8 +98,8 @@ Therefore, the only value pairs that can swap are $(2,1)$ and $(3,2)$. A pair $(
 - **Overlapping intervals:** A locked boundary in both is counted once because one unlock operation changes that single `locked[i]` to zero.
 - **Boundary versus element index:** `locked[i]` controls the swap between positions $i$ and $i+1$. Half-open endpoint intervals correctly enumerate those boundaries.
 - **Sentinel values:** `n` for a missing first occurrence and `-1` for a missing last occurrence make all empty intervals fail their chained comparisons naturally.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

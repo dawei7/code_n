@@ -69,11 +69,7 @@ Starting reduction with `k` avoids first computing $v$ in a separate statement a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code evaluates:
-
-`reduce(xor, nums, k)`.
-
-`reduce` start... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +104,7 @@ Suppose $v$ and $k$ differ at $d$ bit positions. At each such position, the pari
 
 ## 6. Traps This Instance Exposes
 
-- **- **Compute the array XOR explicitly:** A loop fol:** - **Compute the array XOR explicitly:** A loop followed by `(value ^ k).bit_count()` is equivalent and may be easier to read.
+- **Compute the array XOR explicitly:** A loop followed by `(value ^ k).bit_count()` is equivalent and may be easier to read.
 - **Compare binary strings:** Padding and scanning strings works but adds conversions and risks alignment mistakes.
 - **Simulate actual flips:** The problem asks only for the count; constructing a final array is unnecessary.
 - **Count set bits of the current XOR alone:** The target matters. Required flips are set bits of `current_xor ^ k`.
@@ -118,8 +114,8 @@ Suppose $v$ and $k$ differ at $d$ bit positions. At each such position, the pari
 - **Repeated values:** XOR cancellation is handled automatically by reduction.
 - **Large operation count:** It cannot exceed the relevant bit width, not the array length times that width.
 - **Initializer meaning:** Passing `k` as `reduce`'s initializer computes `k XOR nums[0] XOR ...` directly, which is exactly the bitwise mismatch mask between the current array XOR and target.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

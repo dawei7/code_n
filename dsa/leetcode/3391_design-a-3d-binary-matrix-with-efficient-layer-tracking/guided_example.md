@@ -51,7 +51,7 @@ The cell array is needed to make repeated set/unset calls idempotent. The count 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The cell array is needed to make repeated set/unset calls id... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The cell array is needed to make repeated set/unset calls idempotent. The count 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sparse set of active cells:** Store only coord:** - **Sparse set of active cells:** Store only coordinates currently one and reduce space from cubic to $O(m)$.
+- **Sparse set of active cells:** Store only coordinates currently one and reduce space from cubic to $O(m)$.
 - **Heap with lazy counts:** It matches the manifest summary but requires stale-entry validation.
 - **Scan `cnt` on every query:** Updates become constant-time, but each largest query costs $O(n)$.
 - **Repeated set:** It is a no-op and must not double-count.
@@ -102,8 +102,8 @@ The cell array is needed to make repeated set/unset calls idempotent. The count 
 - **Class-name casing:** Exact source defines `matrix3D` even though description says `Matrix3D`; harness compatibility depends on platform expectations.
 - **Manifest mismatch:** Source is eager SortedList plus dense cubic matrix, not lazy heap plus linear storage.
 - **Input coordinates:** Constraints guarantee they are in range, so no bounds checks are added.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ Stopping on the first different character makes each group maximal. The next out
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current `i`, set `j = i + 1` and advance while `j < n` a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ Finally `i = j` advances to the next group.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build a separate compressed list:** It simplif:** - **Build a separate compressed list:** It simplifies writing but violates the constant-extra-space requirement.
+- **Build a separate compressed list:** It simplifies writing but violates the constant-extra-space requirement.
 - **Use repeated string concatenation:** Besides not updating `chars` directly, immutable concatenation can copy growing results repeatedly.
 - **Write `1` for singletons:** This violates the required format and increases the result unnecessarily.
 - **Write a multi-digit count as one list item:** Each position must contain one character, so count digits must be emitted separately.
@@ -114,8 +114,8 @@ Finally `i = j` advances to the next group.
 - **Group length ten or more:** `str(...)` naturally preserves digit order, such as `12` becoming `'1','2'`.
 - **Symbols and digit characters:** Grouping compares character equality only; an input digit used as data is distinct from count digits by position/context, as allowed by the compression format.
 - **Trailing stale cells:** They are intentionally ignored beyond returned `k` and need not be erased.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

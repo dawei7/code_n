@@ -64,7 +64,7 @@ Changing the flag before any later external call can arrive establishes the clos
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The returned function accepts arbitrary arguments with `...a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ The trailing execution later uses `fn.apply(call.context, call.args)`. Therefore
 
 ## 6. Traps This Instance Exposes
 
-- **- **Schedule every blocked call:** Incorrect becau:** - **Schedule every blocked call:** Incorrect because intermediate calls must be coalesced, not queued.
+- **Schedule every blocked call:** Incorrect because intermediate calls must be coalesced, not queued.
 - **Debounce:** It waits for activity to stop before executing and therefore does not provide the required immediate leading call.
 - **Fixed `setInterval`:** It can implement the same state machine, but it must be cleared when a whole interval has no pending work.
 - **Timestamp plus replaceable timeout:** Also valid, but it needs careful delay calculations and timer cancellation.
@@ -117,8 +117,8 @@ The trailing execution later uses `fn.apply(call.context, call.args)`. Therefore
 - **Callback throws:** The exact source does not catch errors; a thrown trailing callback can prevent scheduling the next release and is outside the ordinary promised-call behavior.
 - **Return values:** The wrapper does not return `fn`'s result; the problem evaluates execution timing and arguments.
 - **Sustained activity:** Each trailing execution starts another complete interval, enforcing the frequency limit continuously.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

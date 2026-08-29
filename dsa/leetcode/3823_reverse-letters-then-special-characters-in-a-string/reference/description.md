@@ -38,7 +38,7 @@ Return a string of length $N$. Every original letter position must still contain
 
 - `s` becomes `")fad#cb@e("`
 
-- ​​​​​​​The special characters in the string are `[')', '#', '@', '(']`:
+- The special characters in the string are `[')', '#', '@', '(']`:
 
 		- Reversing them gives `['(', '@', '#', ')']`
 
@@ -64,4 +64,4 @@ Return a string of length $N$. Every original letter position must still contain
 
 - $1 \le \text{s.length} \le 100$
 
-- `s` consists only of lowercase English letters and the special characters in $"!@#$%^&*()"$.
+- `s` consists only of lowercase English letters and the special characters in `"!@#$%^&*()"`.

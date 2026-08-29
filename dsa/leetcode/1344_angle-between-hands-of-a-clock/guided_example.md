@@ -69,7 +69,7 @@ The source does not reduce `hour` modulo twelve. At twelve o’clock it represen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The hour hand completes one full rotation in twelve hours, s... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ The formulas give exact physical positions for the idealized clock. The absolute
 
 ## 6. Traps This Instance Exposes
 
-- **- **Normalize the hour first:** Use `hour % 12` be:** - **Normalize the hour first:** Use `hour % 12` before computing its angle. This keeps both positions in the range from zero up to but not including $360$ degrees and gives the same smaller result.
+- **Normalize the hour first:** Use `hour % 12` before computing its angle. This keeps both positions in the range from zero up to but not including $360$ degrees and gives the same smaller result.
 - **Integer half-degrees:** Multiply every angle by two, compute with integers, and divide the final minimum by two. This avoids floating-point arithmetic entirely.
 - **Ignoring minute movement of the hour hand:** Using only `30 * hour` is incorrect except at minute zero. The extra `0.5 * minutes` term is essential.
 - **Returning only the absolute difference:** A direct difference above $180$ degrees is the larger angle. The complementary `360 - diff` must also be considered.
@@ -127,8 +127,8 @@ The formulas give exact physical positions for the idealized clock. The absolute
 - **Minute fifty-nine:** Continuous hour-hand movement is still included, and the same formulas need no end-of-hour special case.
 - **Why the result never exceeds $180$ degrees:** The two candidate routes sum to $360$ degrees, so at least one of them is no greater than half a circle. Taking their minimum enforces the conventional smaller-angle range.
 - **Accepted numeric type:** Returning an integer-looking value as a Python float is valid because the contract accepts a numeric angle within the stated tolerance.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -10,7 +10,7 @@ You may recall that an array `arr` is a **mountain array** if and only if:
 
 - $\text{arr}[i] > arr[i + 1] > ... > arr[\text{arr.length} - 1]$
 
-Given an integer array `nums`​​​, return *the **minimum** number of elements to remove to make *`nums*​​​*`* **a **mountain array**.*
+Given an integer array `nums`, return *the **minimum** number of elements to remove to make *`nums**`* **a **mountain array**.*
 
 ### 2. Function Contract
 

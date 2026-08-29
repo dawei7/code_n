@@ -63,9 +63,7 @@ These alternatives are joined by logical OR. A box with small individual dimensi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `v=length*width*height` is the box volume.
-
-The box is bulky... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ Boundary equality matters: `>=` correctly classifies a dimension exactly 10,000 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Nested conditionals:** Explicitly test both, b:** - **Nested conditionals:** Explicitly test both, bulky only, heavy only, and neither; it is equally correct but longer.
+- **Nested conditionals:** Explicitly test both, bulky only, heavy only, and neither; it is equally correct but longer.
 - **Tuple lookup:** Use `(bulky,heavy)` as a dictionary key instead of a bit index.
 - **Dimension exactly 10,000:** It is bulky.
 - **Volume exactly $10^9$:** It is bulky.
@@ -118,8 +116,8 @@ Boundary equality matters: `>=` correctly classifies a dimension exactly 10,000 
 - **Neither threshold met:** Return `"Neither"`.
 - **Overflow:** Fixed-width implementations need safe volume arithmetic.
 - **Independent predicates:** Compute both before selecting a label.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

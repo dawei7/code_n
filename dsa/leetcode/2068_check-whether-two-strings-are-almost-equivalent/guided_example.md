@@ -63,7 +63,7 @@ Letters appearing in neither string have difference zero and need no stored entr
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Counter` behaves like a dictionary with default count zero.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ For example, signed differences four and negative four both violate the allowed 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Length-26 difference array:** Increment for `w:** - **Length-26 difference array:** Increment for `word1` and decrement for `word2` using character indices.
+- **Length-26 difference array:** Increment for `word1` and decrement for `word2` using character indices.
 - **Two Counters:** Subtract their values during a 26-letter scan, but one difference counter is sufficient.
 - **Sort both strings:** Frequencies could be derived after sorting, but $O(N\log N)$ work is unnecessary.
 - **Difference exactly three:** Allowed by the inclusive threshold.
@@ -112,8 +112,8 @@ For example, signed differences four and negative four both violate the allowed 
 - **Several violating letters:** One is enough for `all` to return false.
 - **Equal lengths:** Ensures total signed difference sums to zero but does not replace per-letter checks.
 - **Input preservation:** Neither immutable string is modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

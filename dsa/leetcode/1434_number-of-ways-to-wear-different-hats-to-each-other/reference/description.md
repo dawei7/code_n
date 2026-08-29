@@ -2,7 +2,7 @@
 
 There are `n` people and `40` types of hats labeled from `1` to `40`.
 
-Given a 2D integer array `hats`, where $\text{hats}[i]$ is a list of all hats preferred by the $$i^{\text{th}}$$ person.
+Given a 2D integer array `hats`, where $\text{hats}[i]$ is a list of all hats preferred by the $i^{\text{th}}$ person.
 
 Return the number of ways that `n` people can wear **different** hats from each other.
 

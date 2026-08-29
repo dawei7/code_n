@@ -4,7 +4,7 @@ There is an undirected connected tree with `n` nodes labeled from `0` to $n - 1$
 
 You are given the integer `n` and the array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
-Return an array `answer` of length `n` where $\text{answer}[i]$ is the sum of the distances between the $$i^{\text{th}}$$ node in the tree and all other nodes.
+Return an array `answer` of length `n` where $\text{answer}[i]$ is the sum of the distances between the $i^{\text{th}}$ node in the tree and all other nodes.
 
 ### 2. Function Contract
 

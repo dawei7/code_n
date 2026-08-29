@@ -89,7 +89,13 @@
               "subtasks_count": 1
             }
           ],
-          "Executed": []
+          "Executed": {
+            "columns": [
+              "task_id",
+              "subtask_id"
+            ],
+            "rows": []
+          }
         }
       },
       "expected": {

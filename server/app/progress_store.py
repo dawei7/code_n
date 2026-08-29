@@ -109,8 +109,49 @@ def update_milestones(progress: PlayerProgress) -> list[str]:
 
 def mark(challenge_id: str, ops: int, complexity: str) -> PlayerProgress:
     """Mark a challenge done and persist the new progress."""
+    from datetime import date, timedelta
     progress = load()
     progress.complete(challenge_id, ops, complexity)
+    if challenge_id not in progress.spaced_reviews:
+        today = date.today()
+        progress.spaced_reviews[challenge_id] = {
+            "challenge_id": challenge_id,
+            "repetition_count": 1,
+            "ease_factor": 2.5,
+            "interval_days": 1,
+            "last_reviewed_at": today.isoformat(),
+            "next_due_date": (today + timedelta(days=1)).isoformat(),
+            "retention_score": 5,
+            "state": "review",
+        }
+    save(progress)
+    return progress
+
+
+def record_review(challenge_id: str, quality: int) -> PlayerProgress:
+    """Record a spaced repetition review result with SM-2 calculation."""
+    from datetime import date, timedelta
+    from engine.progress import calculate_sm2_step
+    progress = load()
+    current = progress.spaced_reviews.get(challenge_id, {})
+    reps = int(current.get("repetition_count", 0))
+    ef = float(current.get("ease_factor", 2.5))
+    interval = int(current.get("interval_days", 1))
+
+    new_reps, new_ef, new_interval, state = calculate_sm2_step(reps, ef, interval, quality)
+    today = date.today()
+    next_date = today + timedelta(days=new_interval)
+
+    progress.spaced_reviews[challenge_id] = {
+        "challenge_id": challenge_id,
+        "repetition_count": new_reps,
+        "ease_factor": round(new_ef, 2),
+        "interval_days": new_interval,
+        "last_reviewed_at": today.isoformat(),
+        "next_due_date": next_date.isoformat(),
+        "retention_score": quality,
+        "state": state,
+    }
     save(progress)
     return progress
 
@@ -164,4 +205,5 @@ def to_out(progress: PlayerProgress) -> dict:
         "pane_font_scales": dict(progress.pane_font_scales),
         "pane_sizes": dict(progress.pane_sizes),
         "accent_colors": dict(progress.accent_colors),
+        "spaced_reviews": dict(progress.spaced_reviews),
     }

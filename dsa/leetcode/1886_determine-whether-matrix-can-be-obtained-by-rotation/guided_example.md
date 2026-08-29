@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Store surviving orientations as bits.** Variable `ok` star... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Although Python's `~` produces a negative integer with conceptually unbounded le
 
 ## 6. Traps This Instance Exposes
 
-- **- **Rotate in place up to four times:** Compare af:** - **Rotate in place up to four times:** Compare after each rotation and mutate layers of `mat`. This also uses $O(1)$ extra space and $O(n^2)$ time, but changes the input and has more error-prone swap logic.
+- **Rotate in place up to four times:** Compare after each rotation and mutate layers of `mat`. This also uses $O(1)$ extra space and $O(n^2)$ time, but changes the input and has more error-prone swap logic.
 - **Build a new rotated matrix:** A comprehension such as transposed reversed rows makes each orientation easy to see, but allocates $O(n^2)$ additional space for every rotation.
 - **Compare only counts of zeros and ones:** Equal counts are necessary but not sufficient because rotation must preserve exact relative positions. Coordinate comparisons are required.
 - **One-by-one matrix:** All four coordinate formulas refer to the sole cell. The result is simply whether the two cells are equal.
@@ -95,8 +95,8 @@ Although Python's `~` produces a negative integer with conceptually unbounded le
 - **No orientation works:** Bits may fail at different cells. Early false occurs as soon as the last remaining orientation receives its first mismatch.
 - **Direction terminology:** The source checks both quarter-turn directions plus 180 degrees and identity. Since repeated 90-degree rotations generate all four, the result does not depend on naming one direction as the primary rotation.
 - **Bitwise complement in Python:** `~bit` is negative, but AND with the nonnegative four-bit candidate mask has the intended low-bit clearing behavior. Using `ok ^= bit` would be unsafe because it could turn an already-cleared candidate back on.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

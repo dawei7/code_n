@@ -63,9 +63,7 @@ The coefficient 1 is not omitted because the required format always includes `<f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The `CASE power` expression separates the required syntax:
-
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ For powers 2, 1, and 0 with factors 1, -4, and 2, ordered fragments are `+1X^2`,
 
 ## 6. Traps This Instance Exposes
 
-- **- **Valid MySQL aggregation:** Use `GROUP_CONCAT(i:** - **Valid MySQL aggregation:** Use `GROUP_CONCAT(it ORDER BY power DESC SEPARATOR '')` instead of the nonstandard exact expression.
+- **Valid MySQL aggregation:** Use `GROUP_CONCAT(it ORDER BY power DESC SEPARATOR '')` instead of the nonstandard exact expression.
 - **Concatenate without ordering:** Incorrect because SQL row order is not guaranteed and powers must descend.
 - **Omit the leading plus:** The format requires an explicit sign even for the first positive term.
 - **Power zero:** Include neither `X` nor an exponent.
@@ -118,8 +116,8 @@ For powers 2, 1, and 0 with factors 1, -4, and 2, ordered fragments are `+1X^2`,
 - **Dialect mismatch:** The algorithm is sound, but the exact aggregate call is not standard MySQL syntax.
 - **Empty separator:** Required because signs already delimit adjacent terms.
 - **Single term:** Ordered aggregation returns that one signed fragment, followed by `=0`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

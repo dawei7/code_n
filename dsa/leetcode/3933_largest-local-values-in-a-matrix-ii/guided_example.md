@@ -63,7 +63,7 @@ This descending sweep transforms a value comparison into a count query. A candid
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The main loop visits `value` from 200 down to 1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -119,7 +119,7 @@ The four terms respectively take the large origin rectangle, remove the portion 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan every neighborhood literally:** This is s:** - **Scan every neighborhood literally:** This is simple but a candidate of value $x$ may inspect $\Theta(x^2)$ cells. Across a $200$ by $200$ matrix, repeated large neighborhoods are much more expensive than shared prefix counts.
+- **Scan every neighborhood literally:** This is simple but a candidate of value $x$ may inspect $\Theta(x^2)$ cells. Across a $200$ by $200$ matrix, repeated large neighborhoods are much more expensive than shared prefix counts.
 - **Use a prefix sum of raw values:** A sum cannot reveal whether any entry exceeds $x$. The binary `greater` grid encodes exactly the disqualifying predicate for the current threshold.
 - **Mark equal-valued cells before checking their bucket:** Equal values are allowed and must not count as larger. Delaying the marks until after the whole bucket is essential.
 - **Forget the four excluded corners:** A greater value at an exact-distance corner is explicitly ignored by the definition. The rectangle query must be corrected for those positions.
@@ -131,8 +131,8 @@ The four terms respectively take the large origin rectangle, remove the portion 
 - **Several greater cells in the neighborhood:** The algorithm needs only whether the corrected count is zero; their exact positions are irrelevant except for excluded corners.
 - **One-row or one-column matrix:** The prefix formula remains valid. For positive $x$, no position can usually satisfy both exact row and column distances in the missing dimension, so the corner loops simply find no in-bounds excluded corner.
 - **Largest value 200:** Its bucket is processed while `greater` is entirely zero, so all cells of global maximum value are accepted, as no strictly greater matrix value exists.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

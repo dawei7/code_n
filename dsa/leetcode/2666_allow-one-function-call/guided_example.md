@@ -68,7 +68,7 @@ Thus, a call `onceFn(1,2,3)` behaves like `fn(1,2,3)` on its one permitted execu
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The wrapper accepts `...args`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ This matches “called at most once” more robustly than setting the flag only 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cache and return the first result:** Implement:** - **Cache and return the first result:** Implements a different contract because later calls should return undefined.
+- **Cache and return the first result:** Implements a different contract because later calls should return undefined.
 - **Set flag after `fn` returns:** Allows reentrant calls or retries after an exception, violating strict at-most-once semantics.
 - **Numeric call counter:** Works but stores more state than a Boolean needs.
 - **First call returns undefined:** It still consumes the one allowed invocation.
@@ -124,8 +124,8 @@ This matches “called at most once” more robustly than setting the flag only 
 - **No arguments:** Empty argument list forwards correctly.
 - **Independent wrappers:** Each factory call owns a separate flag.
 - **Method receiver:** The exact source forwards arguments but not dynamic `this`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

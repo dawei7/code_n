@@ -63,7 +63,7 @@ An inner join would discard exactly the missing dates that this version must sho
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `T LEFT JOIN Purchases USING (purchase_date)` matches every ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The four generated dates are November 3, 10, 17, and 24. Filtering after the lef
 
 ## 6. Traps This Instance Exposes
 
-- **- **Drive from `Purchases`:** This cannot emit Fri:** - **Drive from `Purchases`:** This cannot emit Fridays with no rows and would solve version I instead.
+- **Drive from `Purchases`:** This cannot emit Fridays with no rows and would solve version I instead.
 - **Hard-code four `UNION ALL` dates:** It works for this fixed month but is less systematic than generating the calendar.
 - **Use a permanent calendar table:** In production analytics this is often preferable and avoids recursive generation.
 - **Use an inner join:** It drops zero-purchase Fridays and violates the core requirement.
@@ -110,8 +110,8 @@ The four generated dates are November 3, 10, 17, and 24. Filtering after the lef
 - **MySQL weekday numbering:** Friday is six because Sunday is one.
 - **Recursive termination:** The strict “less than November 30” condition generates November 30 once and stops before December.
 - **Output order:** `ORDER BY 1` gives weeks one through four.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-x_A\le x_B
-\quad\text{and}\quad
-y_A\ge y_B.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ The axis-aligned rectangle between them, including all four boundaries, may cont
 
 ## 6. Traps This Instance Exposes
 
-- **- **Third-point scan for every pair:** It directly:** - **Third-point scan for every pair:** It directly implements the definition but takes $O(N^3)$ time.
+- **Third-point scan for every pair:** It directly implements the definition but takes $O(N^3)$ time.
 - **Coordinate compression plus 2D prefix sums:** Rectangle population queries become constant time after preprocessing, but the compressed grid may use quadratic space and is unnecessary for the one-frontier insight.
 - **Range trees or Fenwick structures:** More advanced geometric data structures can answer related dominance queries, but they add implementation complexity without improving this source's needed $O(N^2)$ pair traversal.
 - **Index-based suffix traversal:** It preserves the exact skyline logic and time bound while removing slice allocations. The protected implementation uses slicing, so its real peak space remains linear.
@@ -106,8 +102,8 @@ The axis-aligned rectangle between them, including all four boundaries, may cont
 - **Point above Alice:** It is ignored for this Alice because it cannot enter any rectangle extending downward from her.
 - **Distinct points but repeated coordinates:** Complete coordinate pairs are distinct, yet $x$ or $y$ alone may repeat, so both sort and strictness details remain necessary.
 - **Input mutation:** The method returns only the count but leaves `points` sorted by $(x,-y)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

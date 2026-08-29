@@ -61,7 +61,7 @@ The queue starts with server zero, and `vis = {0}` prevents revisiting it. A ser
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Each channel permits messages in both directions, so the sou... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The loop over `range(len(q))` freezes the current level size. Nodes appended dur
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dijkstra's algorithm:** Unnecessary because ev:** - **Dijkstra's algorithm:** Unnecessary because every channel has the same one-second weight; BFS already gives shortest paths.
+- **Dijkstra's algorithm:** Unnecessary because every channel has the same one-second weight; BFS already gives shortest paths.
 - **Simulate every message by second:** Can be enormous when patience is small and distances are large; the resend formula replaces simulation.
 - **All servers adjacent to master:** Every round trip is two seconds, though patience can still determine whether a resend happens at second one.
 - **Patience at least round-trip time:** Only the initial message is sent.
@@ -113,8 +113,8 @@ The loop over `range(len(q))` freezes the current level size. Nodes appended dur
 - **Arrival versus idle start:** The extra `+1` is required because a reply still arrives during its final arrival second.
 - **Out-of-order adjacency entries:** BFS level structure, not neighbor order, determines distances.
 - **Input preservation:** The source builds a separate graph and does not modify `edges` or `patience`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

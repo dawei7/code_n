@@ -51,7 +51,7 @@ The final integer is special when its remainder modulo 25 is zero. Rather than f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The final integer is special when its remainder modulo 25 is... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The final integer is special when its remainder modulo 25 is zero. Rather than f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Match terminal pairs 00, 25, 50, and 75:** Sca:** - **Match terminal pairs 00, 25, 50, and 75:** Scan from the right for each pattern and count deletions around the selected digits. Also consider keeping one zero or deleting all digits. This gives $O(n)$ time and $O(1)$ space and matches the manifest.
+- **Match terminal pairs 00, 25, 50, and 75:** Scan from the right for each pattern and count deletions around the selected digits. Also consider keeping one zero or deleting all digits. This gives $O(n)$ time and $O(1)$ space and matches the manifest.
 - **Bottom-up remainder DP:** Maintain minimum deletions for 25 remainders while scanning digits, avoiding recursion with $O(25)$ rolling space.
 - **Brute-force subsequences:** It takes $O(2^n)$ time and is infeasible even at length 100.
 - **Already divisible by 25:** Keeping every digit reaches remainder zero with zero deletions.
@@ -97,8 +97,8 @@ The final integer is special when its remainder modulo 25 is zero. Rather than f
 - **Invalid-path penalty:** Returning `n` is safe because delete-all provides a valid solution of cost exactly `n`.
 - **Cached closure:** `num` and `n` remain fixed during the method call, so `(i,k)` is a complete key.
 - **Manifest mismatch:** The exact algorithm is DP with linear storage, not greedy two-digit suffix matching.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

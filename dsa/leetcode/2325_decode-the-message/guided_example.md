@@ -65,7 +65,7 @@ The source guarantees that every lowercase English letter appears in the key at 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The loop visits key characters from left to right.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ Repeated message letters are translated repeatedly to the same plaintext letter 
 
 ## 6. Traps This Instance Exposes
 
-- **- **A 26-entry array indexed by character code:** :** - **A 26-entry array indexed by character code:** Record each cipher letter's plaintext character at `ord(c) - ord('a')`. This has the same asymptotic bounds but needs a separate branch for spaces and explicit index arithmetic.
+- **A 26-entry array indexed by character code:** Record each cipher letter's plaintext character at `ord(c) - ord('a')`. This has the same asymptotic bounds but needs a separate branch for spaces and explicit index arithmetic.
 - **Build an ordered distinct-key string first:** Remove spaces and duplicates, then zip with the alphabet. This can be readable but may create extra strings or sets; the one-pass dictionary builds the mapping directly.
 - **Use the last appearance of each key letter:** Overwriting mappings would violate the first-appearance order and could assign several alphabet positions incorrectly.
 - **Advance `i` for spaces:** Spaces are not one of the 26 substitution letters. Preloading them in `d` ensures they never consume an alphabet position.
@@ -123,8 +123,8 @@ Repeated message letters are translated repeatedly to the same plaintext letter 
 - **Non-lowercase characters:** The source excludes them. The mapping covers only lowercase English letters and space.
 - **Input preservation:** Both strings are read only, and the result is newly constructed.
 - **Output length:** Substitution replaces each input character with exactly one character, so decoded length equals message length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

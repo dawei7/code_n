@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an integer array ​​​​​​​`nums`.
+You are given an integer array `nums`.
 
 Define a **frequency balance subarray** as follows:
 
@@ -62,6 +62,6 @@ Return the maximum length of a frequency balanced subarray. At least one single-
 
 ### 4. Constraints
 
-- $1 \le \text{nums.length} \le 10^​​​​​​​3$
+- $1 \le \text{nums.length} \le 10^3$
 
-- $1 \le \text{nums}[i] \le 10^​​​​​​​9$
+- $1 \le \text{nums}[i] \le 10^9$

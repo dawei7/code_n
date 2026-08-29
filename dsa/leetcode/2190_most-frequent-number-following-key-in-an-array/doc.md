@@ -30,7 +30,7 @@ target has the maximum count.
 **Inputs**
 
 - `nums`: an integer array of length $n$, where $2\le n\le1000$ and every
-  value lies in $[1,1000]$.
+  value lies in `[1,1000]`.
 - `key`: a value that occurs in `nums`.
 
 **Return value**

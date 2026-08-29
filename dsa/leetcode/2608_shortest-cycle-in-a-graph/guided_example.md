@@ -62,7 +62,7 @@ Sets make the adjacency representation insensitive to repeated insertion, althou
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `g` maps each vertex to a set of its neighbor... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ After exploration, the helper returns `dist[v] + 1`. A finite result is the leng
 
 ## 6. Traps This Instance Exposes
 
-- **- **BFS from every vertex:** Track distances and p:** - **BFS from every vertex:** Track distances and parents, and use an already-visited neighbor that is not the parent to form a cycle. This can achieve $O(n(n+m))$ time and matches the manifest summary, but its cycle-length formula and parent handling require care.
+- **BFS from every vertex:** Track distances and parents, and use an already-visited neighbor that is not the parent to form a cycle. This can achieve $O(n(n+m))$ time and matches the manifest summary, but its cycle-length formula and parent handling require care.
 - **Floyd–Warshall:** All-pairs dynamic programming can be adapted to cycle detection in $O(n^3)$ time and $O(n^2)$ space, which is unnecessary for this sparse constraint range.
 - **Depth-first search alone:** DFS detects whether a cycle exists, but ordinary DFS depth does not guarantee the shortest cycle length.
 - **Disconnected graph:** Each search naturally remains within its component; the minimum can come from any component.
@@ -117,8 +117,8 @@ After exploration, the helper returns `dist[v] + 1`. A finite result is the leng
 - **Multiple shortest cycles:** The outer minimum needs only their common length and does not need to reconstruct a particular cycle.
 - **Undirected deletion:** Both ordered forms of the selected edge must be skipped during BFS.
 - **Infinity arithmetic:** In Python, `inf + 1` is still `inf`, so unreachable endpoints flow safely into the final minimum and conditional.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

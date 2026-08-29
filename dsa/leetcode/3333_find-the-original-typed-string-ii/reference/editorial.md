@@ -6,7 +6,7 @@ To obtain a result with a length of at least $k$, we can first calculate the tot
 
 For any result length, we can use the multiplication principle: if a character appears consecutively $p$ times in the string $\textit{word}$, then Alice may choose to input it $1, 2, \cdots, p$ times, giving $p$ possible choices. Multiplying all such values of $p$ gives the total number of valid results for all lengths.
 
-> For example, if $\textit{word} = \text{abbcccaa}$, then the run lengths $p$ are $[1, 2, 3, 2]$, and the total number of results is $1 \times 2 \times 3 \times 2 = 12$.
+> For example, if $\textit{word} = \text{abbcccaa}$, then the run lengths $p$ are `[1, 2, 3, 2]`, and the total number of results is $1 \times 2 \times 3 \times 2 = 12$.
 
 To count the number of results with lengths less than $k$, we use dynamic programming. First, we record all the $p$ values in a frequency array $\textit{freq}$, and define $f(i, j)$ as the number of ways to construct a string using the first $i+1$ elements of $\textit{freq}$ such that the total constructed length is $j$.
 

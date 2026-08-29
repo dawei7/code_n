@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Attach listen histories for both endpoints.** The first jo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Although both joins are written `LEFT JOIN`, the equality predicates in `WHERE` 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-deduplicate `Listens`:** A distinct user/s:** - **Pre-deduplicate `Listens`:** A distinct user/song/day CTE prevents duplicate join multiplication and preserves semantics.
+- **Pre-deduplicate `Listens`:** A distinct user/song/day CTE prevents duplicate join multiplication and preserves semantics.
 - **Use explicit inner joins:** Produces the same qualifying rows and makes the effective null-rejecting behavior clearer.
 - **Start from all listener pairs:** Then friendship must be joined afterward; beginning with `Friendship` naturally preserves canonical pair order.
 - **Duplicate listen records:** `COUNT(DISTINCT song_id)` ensures one song counts once.
@@ -97,8 +97,8 @@ Although both joins are written `LEFT JOIN`, the equality predicates in `WHERE` 
 - **Any output order:** Absence of `ORDER BY` is valid.
 - **Exactly three distinct matches:** The inclusive `>= 3` threshold accepts the pair.
 - **Friend with no listen rows:** Null-extended join rows fail equality predicates, so the pair produces no qualifying group.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

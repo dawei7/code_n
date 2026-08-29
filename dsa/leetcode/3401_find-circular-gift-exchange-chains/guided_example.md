@@ -51,7 +51,7 @@ The recursive branch follows an exchange whose `giver_id` equals the current rec
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The recursive branch follows an exchange whose `giver_id` eq... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The recursive branch follows an exchange whose `giver_id` equals the current rec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Canonical cycle ID:** Carry the minimum member:** - **Canonical cycle ID:** Carry the minimum member ID and group by it to keep equal-statistic cycles separate.
+- **Canonical cycle ID:** Carry the minimum member ID and group by it to keep equal-statistic cycles separate.
 - **Visited-path string/set:** Prevent revisiting a node other than the start, though SQL representation is more complex.
 - **Functional-graph traversal:** Enforce one outgoing edge and discover each cycle once procedurally.
 - **Single self-loop:** It completes at length one, if such a row is allowed.
@@ -102,8 +102,8 @@ The recursive branch follows an exchange whose `giver_id` equals the current rec
 - **Row-number stability:** A corrected query would need a tie breaker for equal statistics.
 - **Generated source:** No authoritative editorial supports stronger assumptions.
 - **Read-only query:** Source table is unchanged.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,8 +1,8 @@
 ### 1. Description
 
-There is a class with `m` students and `n` exams. You are given a **0-indexed** `m x n` integer matrix `score`, where each row represents one student and $\text{score}[i][j]$ denotes the score the $$i^{\text{th}}$$ student got in the $$j^{\text{th}}$$ exam. The matrix `score` contains **distinct** integers only.
+There is a class with `m` students and `n` exams. You are given a **0-indexed** `m x n` integer matrix `score`, where each row represents one student and $\text{score}[i][j]$ denotes the score the $i^{\text{th}}$ student got in the $j^{\text{th}}$ exam. The matrix `score` contains **distinct** integers only.
 
-You are also given an integer `k`. Sort the students (i.e., the rows of the matrix) by their scores in the $$k^{\text{th}}$$ (**0-indexed**) exam from the highest to the lowest.
+You are also given an integer `k`. Sort the students (i.e., the rows of the matrix) by their scores in the $k^{\text{th}}$ (**0-indexed**) exam from the highest to the lowest.
 
 Return *the matrix after sorting it.*
 

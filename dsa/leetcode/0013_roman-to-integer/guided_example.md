@@ -64,7 +64,7 @@ The dictionary `d` contains the fixed symbol table. Dictionary access makes each
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dictionary `d` contains the fixed symbol table.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Every character except the last appears once as `a`, so every one of those symbo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Consume subtractive pairs explicitly:** Scan w:** - **Consume subtractive pairs explicitly:** Scan with an index; when the current value is smaller than the next, add their difference and advance two positions. It is equally linear but needs variable pointer increments and an end check.
+- **Consume subtractive pairs explicitly:** Scan with an index; when the current value is smaller than the next, add their difference and advance two positions. It is equally linear but needs variable pointer increments and an end check.
 - **Scan right to left:** Start with the last value and subtract a current symbol when it is smaller than the symbol to its right. This expresses the same sign rule without `pairwise`.
 - **Thirteen-token lookup:** Recognize the six two-character forms before falling back to one-character symbols. This is clear but uses substring/token checks rather than the simple value comparison.
 - **One symbol:** The adjacent generator is empty and the last symbol is returned.
@@ -118,8 +118,8 @@ Every character except the last appears once as `a`, so every one of those symbo
 - **Non-empty guarantee:** `d[s[-1]]` depends on at least one character, which the Reference guarantees.
 - **Immediate-neighbor rule:** A symbol is never subtracted merely because some larger symbol appears later; only a larger next symbol changes its sign in valid canonical notation.
 - **Strict comparison:** Equal repeated symbols remain additive, which is required for values such as `III`, `XXX`, and `CCC`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

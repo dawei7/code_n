@@ -51,7 +51,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Direct bit-length formula:** Return `(1 << n.b:** - **Direct bit-length formula:** Return `(1 << n.bit_length()) - 1`; this matches the manifest summary but is not the exact source.
+- **Direct bit-length formula:** Return `(1 << n.bit_length()) - 1`; this matches the manifest summary but is not the exact source.
 - **Editorial candidate recurrence:** Start at one and repeatedly compute `candidate = candidate * 2 + 1` until it reaches `n`.
 - **Enumerate ordinary integers:** Testing every value between `n` and the answer is unnecessary.
 - **`n = 1`:** The loop shifts once from candidate zero and returns one.
@@ -100,8 +100,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Arbitrary-precision integers:** Python avoids overflow if constraints are generalized.
 - **Manifest discrepancy:** The code loops logarithmically and does not read bit length directly.
 - **Editorial equivalence:** Tracking `x` then returning `x-1` generates the same sequence as repeatedly doubling an all-ones candidate and adding one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ The solution reads bits from right to left, beginning with the least significant
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution reads bits from right to left, beginning with t... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The solution reads bits from right to left, beginning with the least significant
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store all set-bit positions:** First collect e:** - **Store all set-bit positions:** First collect every position containing `1`, then compare neighboring positions in the list. This is correct and still takes $O(\log n)$ time, but it uses $O(\log n)$ space that the one-pass state makes unnecessary.
+- **Store all set-bit positions:** First collect every position containing `1`, then compare neighboring positions in the list. This is correct and still takes $O(\log n)$ time, but it uses $O(\log n)$ space that the one-pass state makes unnecessary.
 - **Convert to a binary string:** Scanning `bin(n)` can be visually intuitive. It also takes $O(\log n)$ time, but creates an $O(\log n)$ string and requires careful treatment of indices or counts between ones.
 - **Count zeros between ones:** One can reset a counter whenever a `1` appears and translate a run of zeros into a distance by adding one. This is equivalent, but tracking absolute bit positions makes the definition of distance more direct.
 - **Compare every pair of ones:** This does extra work and, more importantly, includes pairs that are not adjacent because another `1` may separate them. Only consecutive set bits are valid candidates.
@@ -96,8 +96,8 @@ The solution reads bits from right to left, beginning with the least significant
 - **Three or more ones:** Only neighboring ones in positional order are compared. For `10101`, the outer ones are not a valid pair because the middle one separates them.
 - **Least significant bit set:** If the rightmost bit is `1`, it is simply recorded at position zero; no special indexing adjustment is needed.
 - **Maximum allowed value:** The constraint $n \le 10^9$ means at most 30 relevant bits, but the loop is written generically and naturally stops after the actual most significant set bit.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

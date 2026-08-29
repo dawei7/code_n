@@ -63,7 +63,7 @@ No other road can be directly connected to both distinct cities: an edge has two
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For two different cities `a` and `b`, adding their degrees c... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ A tied rank does not require an update because only the maximum numeric value is
 
 ## 6. Traps This Instance Exposes
 
-- **- **Degree array plus Boolean adjacency matrix:** :** - **Degree array plus Boolean adjacency matrix:** It gives deterministic constant-time connectivity tests and $O(N^2)$ space. The checked-in sets use space proportional to actual roads.
+- **Degree array plus Boolean adjacency matrix:** It gives deterministic constant-time connectivity tests and $O(N^2)$ space. The checked-in sets use space proportional to actual roads.
 - **Degree array plus encoded road set:** Store normalized pairs such as `(min(a,b), max(a,b))` for expected constant membership and $O(N+M)$ space.
 - **Count incident roads separately for every pair:** Scanning all roads per pair costs $O(N^2M)$ and repeats degree work.
 - **Run BFS or DFS:** Connectivity paths do not affect direct network rank, so traversal is irrelevant.
@@ -119,8 +119,8 @@ A tied rank does not require an update because only the maximum numeric value is
 - **Self-loops:** The contract excludes them; the rank formula assumes roads join two different cities.
 - **Tied maximum pairs:** Only the numeric maximum is requested, so pair identities need not be stored.
 - **Boolean subtraction:** Python converts membership truth to one or zero; another language may require an explicit conditional.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

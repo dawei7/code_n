@@ -78,7 +78,7 @@ They cannot contribute more: taking over `a` characters from the left or over `b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Consider two adjacent runs with lengths `a` and `b`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -121,9 +121,9 @@ Then `pre = cur` prepares the next boundary. Only the immediately preceding run 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Store every run length:** Build a list such as:** - **Store every run length:** Build a list such as `[2, 3, 4]` and sum minima of adjacent entries. It has the same time but uses `O(n)` worst-case space.
-- **- **Character-by-character rolling counts:** Track:** - **Character-by-character rolling counts:** Track current and previous run lengths in one for-loop and add a boundary contribution when the character changes, plus one final contribution. This is equivalent to the exact run-skipping implementation.
-- **- **Enumerate every substring:** Checking counts a:** - **Enumerate every substring:** Checking counts and grouping for all substrings is at least quadratic and ignores the key one-boundary structure.
+- **Store every run length:** Build a list such as `[2, 3, 4]` and sum minima of adjacent entries. It has the same time but uses `O(n)` worst-case space.
+- **Character-by-character rolling counts:** Track current and previous run lengths in one for-loop and add a boundary contribution when the character changes, plus one final contribution. This is equivalent to the exact run-skipping implementation.
+- **Enumerate every substring:** Checking counts and grouping for all substrings is at least quadratic and ignores the key one-boundary structure.
 
 ---
 

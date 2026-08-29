@@ -61,11 +61,7 @@ For original `n=15`, binary `1111`, the extracted values are 1, 2, 4, and 8. For
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For a positive integer `n`, the expression
-
-`x = n & -n`
-
-is... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -120,7 +116,7 @@ The exact source nevertheless multiplies the stored factors directly rather than
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix sums of bit indices:** Store exponent p:** - **Prefix sums of bit indices:** Store exponent prefix sums and answer `[l,r]` with one difference, then compute `pow(2, exponent, mod)`. This matches the summary and gives $O(\log n+q\log E)$ if modular exponentiation cost is explicit, with tiny exponents here.
+- **Prefix sums of bit indices:** Store exponent prefix sums and answer `[l,r]` with one difference, then compute `pow(2, exponent, mod)`. This matches the summary and gives $O(\log n+q\log E)$ if modular exponentiation cost is explicit, with tiny exponents here.
 - **Prefix products plus modular inverses:** Store products modulo the prime modulus and divide ranges with inverses. This is more complicated than exponent sums because all factors are powers of two.
 - **Direct binary scan:** Inspect every bit position and append `1 << b` when set. It takes $O(\log n)$ regardless of popcount, while low-bit extraction performs only $p$ iterations.
 - **One set bit:** `powers` has one entry, and every legal query returns that value modulo the modulus.
@@ -130,8 +126,8 @@ The exact source nevertheless multiplies the stored factors directly rather than
 - **Large products:** Reduction after each multiplication prevents unbounded intermediate growth while preserving the modular answer.
 - **Mutation of local `n`:** Extraction reduces the parameter variable to zero, but the original integer object outside the method is unaffected and no later logic needs the original value.
 - **Manifest mismatch:** Queries are answered by direct range loops, not by prefix exponents, so the exact general runtime depends on total queried range length.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

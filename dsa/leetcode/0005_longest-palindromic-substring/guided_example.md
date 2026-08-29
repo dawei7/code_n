@@ -75,11 +75,7 @@ Entries above the diagonal correspond to real substrings of length at least two.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The code creates
-
-
-
-At first this can look surprising: surel... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +122,7 @@ This ordering is essential. Scanning `i` from left to right would ask for states
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manacher's algorithm:** Transform the string t:** - **Manacher's algorithm:** Transform the string to unify odd and even centers, reuse mirrored palindrome radii, and expand only beyond the farthest known boundary. It achieves $O(n)$ time and $O(n)$ space, matching the manifest, but is substantially more intricate than this DP recurrence.
+- **Manacher's algorithm:** Transform the string to unify odd and even centers, reuse mirrored palindrome radii, and expand only beyond the farthest known boundary. It achieves $O(n)$ time and $O(n)$ space, matching the manifest, but is substantially more intricate than this DP recurrence.
 - **Expand around every center:** Treat each character and each gap as a possible palindrome center. It uses $O(1)$ auxiliary space and $O(n^2)$ worst-case time, avoiding the full table while remaining interview-friendly.
 - **Check all substrings independently:** Testing $O(n^2)$ substrings with an $O(n)$ two-pointer palindrome check costs $O(n^3)$ in the worst case and repeats inner comparisons that DP reuses.
 - **Store only recent DP rows:** Because `f[i][j]` depends on row `i + 1`, memory can be compressed with careful iteration. However, reconstructing or tracking the answer must remain explicit, and center expansion is often simpler for $O(1)$ auxiliary space.
@@ -139,8 +135,8 @@ This ordering is essential. Scanning `i` from left to right would ask for states
 - **Contiguous requirement:** Every state uses a complete inclusive interval `s[i:j+1]`; the recurrence never skips interior characters, so it cannot return a subsequence.
 - **Digits and letter case:** Characters are compared exactly. Digits participate like letters, and uppercase and lowercase letters are distinct.
 - **Input preservation:** The string and table states are read independently; the method never changes `s`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

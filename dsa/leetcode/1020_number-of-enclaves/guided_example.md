@@ -64,7 +64,7 @@ Marking happens before exploring neighbors. If two adjacent land cells call each
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested function `dfs(i, j)` is called only for a known i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ first proves that the coordinates are inside the matrix and then checks whether 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search from the boundary:** Put :** - **Breadth-first search from the boundary:** Put every boundary land cell into a queue, mark it, and expand through four-directional neighbors. This has the same `O(RC)` time and `O(RC)` worst-case space while avoiding recursion-depth concerns.
+- **Breadth-first search from the boundary:** Put every boundary land cell into a queue, mark it, and expand through four-directional neighbors. This has the same `O(RC)` time and `O(RC)` worst-case space while avoiding recursion-depth concerns.
 - **Separate visited matrix:** Mark boundary-connected land in an `R \times C` Boolean structure rather than changing `grid`. This preserves the caller's input but always allocates `O(RC)` explicit memory.
 - **Explore every component:** A DFS can count each land component and record whether any cell touches the boundary. Add its size only when it does not. This is correct and linear, but needs more per-component state than deleting all boundary-reachable land first.
 - **Union-find:** Join adjacent land cells and connect boundary land to a virtual outside vertex. Count cells not joined to outside. It works, but parent and rank arrays add complexity and `O(RC)` storage without improving the time bound.
@@ -117,8 +117,8 @@ first proves that the coordinates are inside the matrix and then checks whether 
 - **A narrow connection to the boundary:** Even a one-cell-wide land corridor makes the entire connected component non-enclosed. DFS follows that corridor and erases all connected land.
 - **Input mutation:** The exact solution intentionally changes `grid`. If the surrounding application needs the original matrix afterward, it must pass a copy or use a visited structure instead.
 - **Recursive depth:** The mathematical algorithm supports up to `RC` connected cells, but a runtime with a small recursion limit may need the iterative BFS or DFS form to avoid stack overflow.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

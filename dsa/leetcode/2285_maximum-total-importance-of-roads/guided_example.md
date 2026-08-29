@@ -67,7 +67,7 @@ Cities without roads retain degree zero.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `deg = [0] * n` creates one degree counter per city.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ Thus, removing an inverted assignment never decreases total importance. Repeated
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort city indices by degree:** It can construc:** - **Sort city indices by degree:** It can construct an explicit assignment, but sorting the degree values alone is sufficient for the maximum total.
+- **Sort city indices by degree:** It can construct an explicit assignment, but sorting the degree values alone is sufficient for the maximum total.
 - **Priority queue:** Repeatedly pairing largest degrees and values works but is more complex than one sort.
 - **Try all assignments:** There are `n!` possibilities and the exchange argument makes enumeration unnecessary.
 - **Use road endpoints during scoring:** After degrees are counted, the dot-product identity already incorporates every road.
@@ -133,8 +133,8 @@ Thus, removing an inverted assignment never decreases total importance. Repeated
 - **Ascending versus descending:** Ascending degrees paired with ascending values is equivalent to descending degrees paired with descending values.
 - **Constraint on unique values:** `enumerate(..., 1)` supplies every value from one through `n` exactly once.
 - **Graph shape:** Stars, chains, cycles, and disconnected components need no separate cases because only degree multiplicity affects the rewritten objective.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

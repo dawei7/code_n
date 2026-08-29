@@ -51,7 +51,7 @@ Let $n$ be the length of `word` and let $k=\texttt{numFriends}$. If one chosen p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let $n$ be the length of `word` and let $k=\texttt{numFriend... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Call this maximum permitted length $L=n-k+1$. A piece beginning at index $i$ als
 
 ## 6. Traps This Instance Exposes
 
-- **- **Largest-suffix two-pointer algorithm:** One ca:** - **Largest-suffix two-pointer algorithm:** One can find the lexicographically greatest suffix in $O(n)$ comparisons, then take at most $L$ characters from it. That is the method described by the manifest and is preferable for the larger constraints of the related “Box II” problem, but it is not what this protected source implements.
+- **Largest-suffix two-pointer algorithm:** One can find the lexicographically greatest suffix in $O(n)$ comparisons, then take at most $L$ characters from it. That is the method described by the manifest and is preferable for the larger constraints of the related “Box II” problem, but it is not what this protected source implements.
 - **Sort all candidates:** Building every candidate and sorting them would still find the answer, but sorting retains $O(n)$ strings and performs many unnecessary comparisons. Only a running maximum is needed.
 - **Enumerate every split:** Generating all ways to place $k-1$ dividers is far more expensive and repeatedly produces the same pieces. The length bound reduces the problem to only one candidate per starting position.
 - **One friend:** When `numFriends == 1`, no divider exists and returning `word` is essential. Applying the general maximum-piece length also gives $L=n$, but the early return avoids needless enumeration.
@@ -94,8 +94,8 @@ Call this maximum permitted length $L=n-k+1$. A piece beginning at index $i$ als
 - **Repeated letters:** Equal candidates are harmless because `max` may choose either identical string. Long equal prefixes are also the reason the implementation's worst-case comparison time is quadratic.
 - **Candidate near the end:** A slice extending past $n$ is safely truncated by Python. Such a shorter suffix remains a valid candidate because enough characters lie before it to form the other non-empty pieces.
 - **Lexicographic order is not length order:** A shorter string beginning with a larger letter can beat a longer string. Length is maximized only among candidates with the same start, after which `max` must compare their actual characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

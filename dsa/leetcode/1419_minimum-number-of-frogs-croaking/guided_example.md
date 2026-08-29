@@ -67,7 +67,7 @@ Divisibility is necessary but not sufficient. A string can contain the correct t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every completed croak has exactly five characters.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The completed `k` count at `cnt[4]` is allowed to accumulate because no later ch
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit five counters:** Separate variables f:** - **Explicit five counters:** Separate variables for frogs after `c`, `r`, `o`, and `a` avoid indexing but duplicate transition code. The array expresses the same state uniformly.
+- **Explicit five counters:** Separate variables for frogs after `c`, `r`, `o`, and `a` avoid indexing but duplicate transition code. The array expresses the same state uniformly.
 - **Track a state per frog:** Assign characters to individual frog objects. It can work but may require searching for a frog at the needed stage, while aggregate counts contain all necessary information.
 - **Repeatedly remove `"croak"` subsequences:** Extracting one frog at a time can become quadratic and makes minimum concurrency harder to derive.
 - **Length divisible by five:** This alone does not prove validity; `"croakcrook"` has ten characters but contains an impossible stage order.
@@ -116,8 +116,8 @@ The completed `k` count at `cnt[4]` is allowed to accumulate because no later ch
 - **Incomplete final croak:** A suffix such as `"cro"` leaves `x` positive and is rejected at the end.
 - **Single complete croak:** All five transfers succeed, the peak is one, and final active count is zero.
 - **Tied stage populations:** Counts may contain several frogs at the same stage; any one can consume the next matching character because frogs are indistinguishable for counting.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

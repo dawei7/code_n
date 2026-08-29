@@ -2,9 +2,9 @@
 
 You are given a positive integer `n` representing the number of nodes in a tree, numbered from `0` to $n - 1$ (**inclusive**). You are also given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [\text{node1}_{i}, \text{node2}_{i}]$ denotes that there is a **bidirectional** edge connecting $\text{node1}_{i}$ and $\text{node2}_{i}$ in the tree.
 
-You are given a **0-indexed** integer array `query` of length `m` where $\text{query}[i] = [\text{start}_{i}, \text{end}_{i}, \text{node}_{i}]$ means that for the $$i^{\text{th}}$$ query, you are tasked with finding the node on the path from $\text{start}_{i}$ to $\text{end}_{i}$ that is **closest** to $\text{node}_{i}$.
+You are given a **0-indexed** integer array `query` of length `m` where $\text{query}[i] = [\text{start}_{i}, \text{end}_{i}, \text{node}_{i}]$ means that for the $i^{\text{th}}$ query, you are tasked with finding the node on the path from $\text{start}_{i}$ to $\text{end}_{i}$ that is **closest** to $\text{node}_{i}$.
 
-Return *an integer array *`answer`* of length *`m`*, where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
+Return *an integer array *`answer`* of length *`m`*, where *$\text{answer}[i]$* is the answer to the *$i^{\text{th}}$* query*.
 
 ### 2. Function Contract
 

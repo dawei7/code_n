@@ -51,7 +51,7 @@ An original edge `[u, v, cnt]` becomes a chain with `cnt` inserted nodes and `cn
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An original edge `[u, v, cnt]` becomes a chain with `cnt` in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ An original edge `[u, v, cnt]` becomes a chain with `cnt` inserted nodes and `cn
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicitly build the subdivided graph:** This :** - **Explicitly build the subdivided graph:** This is conceptually simple but may add up to $10^4$ nodes per edge and consume excessive time and memory.
+- **Explicitly build the subdivided graph:** This is conceptually simple but may add up to $10^4$ nodes per edge and consume excessive time and memory.
 - **Correct priority-queue Dijkstra:** Use `heappush(q, (t, v))` and optionally skip stale pops with `if d != dist[u]: continue`. This realizes the intended complexity.
 - **Plain breadth-first search on compressed edges:** Edge weights are `cnt + 1` rather than all one, so BFS among original nodes does not compute shortest move counts.
 - **Bellman-Ford-style relaxation:** It can compute distances with positive weights but is much slower than properly implemented Dijkstra.
@@ -100,8 +100,8 @@ An original edge `[u, v, cnt]` becomes a chain with `cnt` inserted nodes and `cn
 - **Extra distance-array entry:** The $n+1$-st infinity is harmless but unnecessary; a length-$n$ array would be cleaner.
 - **Stale scheduled distances:** A correct Dijkstra implementation should skip them for efficiency. The relaxation condition prevents a stale record from overwriting a better distance.
 - **No multiple original edges:** Each internal chain belongs to one edge, which makes independent per-edge counting valid.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

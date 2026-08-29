@@ -2,9 +2,9 @@
 
 You are given two integer arrays `startTime` and `endTime` of length `n`.
 
-- $\text{startTime}[i]$ represents the start time of the $$i^{\text{th}}$$ employee.
+- $\text{startTime}[i]$ represents the start time of the $i^{\text{th}}$ employee.
 
-- $\text{endTime}[i]$ represents the end time of the $$i^{\text{th}}$$ employee.
+- $\text{endTime}[i]$ represents the end time of the $i^{\text{th}}$ employee.
 
 Two employees `i` and `j` can interact if their time intervals **overlap**. Two intervals are considered overlapping if they share **at least one** common time point.
 

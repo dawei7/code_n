@@ -53,8 +53,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - a contiguous block $A$ from `s`;
-- an optional palindromic... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ The code reverses `t` so the two outer blocks can be found as ordinary equal sub
 
 ## 6. Traps This Instance Exposes
 
-- **- **Manacher preprocessing:** It can compute palin:** - **Manacher preprocessing:** It can compute palindrome radii in linear time and matches the manifest, but it is absent from the protected source.
+- **Manacher preprocessing:** It can compute palindrome radii in linear time and matches the manifest, but it is absent from the protected source.
 - **Rolling common-substring rows:** It reduces DP space to $O(n)$ because only the previous diagonal row is needed; the source stores all rows.
 - **Longest common subsequence:** Gaps would violate substring selection, so diagonal-only common-substring recurrence is required.
 - **Use only a palindrome inside one input:** This misses cross-boundary mirrored constructions.
@@ -101,8 +100,8 @@ The code reverses `t` so the two outer blocks can be found as ordinary equal sub
 - **Palindrome entirely in reversed `t`:** Reversal preserves palindromicity and length, so it represents a valid original-`t` answer.
 - **Memory pressure:** The exact full table is the primary distinction between this source and a rolling implementation.
 - **Manifest fidelity:** Do not describe this protected file as Manacher plus linear-space DP.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

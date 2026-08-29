@@ -63,7 +63,7 @@ The exact source mutates the caller-provided `pipes` list by appending virtual e
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `enumerate(wells, 1)` pairs the first well cost with house o... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ The implementation does not keep rank or component size, so it attaches `pa` dir
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prim's algorithm:** Starting from the virtual :** - **Prim's algorithm:** Starting from the virtual source and growing a tree through a heap also solves the augmented MST in `O(e log n)` time. Kruskal is natural when all choices are already an edge list.
+- **Prim's algorithm:** Starting from the virtual source and growing a tree through a heap also solves the augmented MST in `O(e log n)` time. Kruskal is natural when all choices are already an edge list.
 - **Choose the cheapest well only:** Cheap pipes may not connect every house to that well, and building several wells can be better than expensive pipes. The MST evaluates all combinations.
 - **Build a well at every house:** This is always feasible but can be unnecessarily expensive when cheap pipes share one well.
 - **Ignore the virtual node:** Treating wells separately complicates the choice. Virtual edges unify both purchase types under one cut-property proof.
@@ -116,8 +116,8 @@ The implementation does not keep rank or component size, so it attaches `pa` dir
 - **Cycle-forming edge:** It is skipped because it adds cost without connecting a new component.
 - **Input mutation:** The exact method appends to and sorts `pipes`. Reusing that list after the call will expose the virtual edges and new order.
 - **No union-by-rank array:** The source uses path compression only. Its behavior remains correct; rank would affect efficiency constants and tighter disjoint-set analysis, not MST validity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

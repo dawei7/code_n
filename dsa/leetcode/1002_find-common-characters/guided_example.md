@@ -61,9 +61,7 @@ The input guarantees at least one word, so accessing `words[0]` is safe.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(words[0])`
-
-records the complete frequency of... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +102,7 @@ Counts only decrease as more words are processed. Once a character has been show
 
 ## 6. Traps This Instance Exposes
 
-- **- **Fixed arrays of length twenty-six:** Count let:** - **Fixed arrays of length twenty-six:** Count letters by `ord(c) - ord('a')` and take elementwise minima. This avoids hashing and makes the constant-space bound explicit.
+- **Fixed arrays of length twenty-six:** Count letters by `ord(c) - ord('a')` and take elementwise minima. This avoids hashing and makes the constant-space bound explicit.
 - **Set intersection:** Finds distinct common letters but cannot return duplicate copies, so it is insufficient.
 - **Sort every word:** Common characters can be found with several pointers, but sorting costs extra time and mutates or copies the strings' character order.
 - **Repeated list removal:** Start with the first word's characters and remove matches while scanning others. It can become quadratic because list search and deletion are linear.
@@ -115,8 +113,8 @@ Counts only decrease as more words are processed. Once a character has been show
 - **Zero-count keys retained:** They use at most constant alphabet space and are ignored by `elements()`.
 - **Output order:** Counter iteration order is irrelevant because any character order is accepted.
 - **Input preservation:** Strings and the word list are only read.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

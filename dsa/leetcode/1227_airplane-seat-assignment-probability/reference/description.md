@@ -6,7 +6,7 @@
 
 - Pick other seats randomly when they find their seat occupied
 
-Return *the probability that the *$$n^{\text{th}}$$* person gets his own seat*.
+Return *the probability that the *$n^{\text{th}}$* person gets his own seat*.
 
 ### 2. Function Contract
 

@@ -63,7 +63,7 @@ This reachability fact is why adjacency does not force a more complicated local 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | An operation flips the signs at the two endpoints of one gri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ The resulting sum is exactly `s`, the absolute-value upper bound. Since no arran
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate adjacent flips greedily:** Local choi:** - **Simulate adjacent flips greedily:** Local choices are difficult to coordinate and do unnecessary work; the parity invariant determines the answer directly.
+- **Simulate adjacent flips greedily:** Local choices are difficult to coordinate and do unnecessary work; the parity invariant determines the answer directly.
 - **Search over sign configurations:** There are exponentially many patterns, while only the negative-count parity and minimum magnitude matter.
 - **Explicitly construct operations:** This can demonstrate reachability using paths, but the problem requests only the maximum sum, not an operation sequence.
 - **Even negative count:** Every negative sign can be removed, so return the full sum of absolute values.
@@ -114,8 +114,8 @@ The resulting sum is exactly `s`, the absolute-value upper bound. Since no arran
 - **Connectedness is essential to the proof:** A rectangular grid linked by shared borders is connected, so path operations can realize every even endpoint set.
 - **Diagonal cells:** They are not directly adjacent, but a border-connected path can still transfer flips between them.
 - **Input side effects:** The exact method reads the matrix only and returns a number without changing any entry.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

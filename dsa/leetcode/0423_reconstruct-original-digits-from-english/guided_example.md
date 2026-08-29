@@ -65,9 +65,7 @@ For instance, if `z` occurs three times, the valid-input guarantee means exactly
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Across the English names `zero` through `nine`:
-
-- `z` appea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +112,7 @@ Again, each relevant name contains its marker once. The order is crucial: these 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly search for whole digit names:** Shu:** - **Repeatedly search for whole digit names:** Shuffling removes contiguity, and greedy word removal can misassign shared letters. It also performs avoidable repeated scans.
+- **Repeatedly search for whole digit names:** Shuffling removes contiguity, and greedy word removal can misassign shared letters. It also performs avoidable repeated scans.
 - **General backtracking over digit counts:** Trying combinations could eventually match letter frequencies, but the unique-marker dependency makes exponential search unnecessary.
 - **Solve a full linear system:** Ten digit variables and letter equations can be handled algebraically, but the elimination order used here is that system reduced to simple integer formulas.
 - **Use `n` to find one:** The name `nine` contains two `n` characters while `one` and `seven` contain one, making the equation easier to mishandle. The exact solution uses `o` after zero, two, and four are known.
@@ -123,8 +121,8 @@ Again, each relevant name contains its marker once. The order is crucial: these 
 - **No occurrence of a digit:** Its formula evaluates to zero and contributes an empty piece to the join.
 - **Invalid shuffled letters:** Subtractions could become negative for arbitrary input. The contract guarantees validity, so defensive rejection logic is unnecessary.
 - **Ascending order:** Iterating indices `0..9` is essential; iterating a counter's arbitrary discovery order would not satisfy the output contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -53,9 +53,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-\neg(\text{odd and not-M}) = \text{even or M}.
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,15 +88,15 @@ Because integer parity has only two possibilities, “not odd” is “even.” 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Positive-form `IF`:** `IF(employee_id % 2 = 1 :** - **Positive-form `IF`:** `IF(employee_id % 2 = 1 AND LEFT(name, 1) <> 'M', salary, 0)` mirrors the statement directly. It is equivalent for the stated non-null data, while the source's disqualifier form makes the zero cases especially visible.
+- **Positive-form `IF`:** `IF(employee_id % 2 = 1 AND LEFT(name, 1) <> 'M', salary, 0)` mirrors the statement directly. It is equivalent for the stated non-null data, while the source's disqualifier form makes the zero cases especially visible.
 - **`CASE WHEN`:** A standard `CASE WHEN ... THEN 0 ELSE salary END` expression can replace MySQL-specific `IF` and is often more portable across database systems; it does not improve asymptotic complexity.
 - **Regular-expression name test:** `name REGEXP '^M'` can detect the initial, but a regular-expression engine is unnecessary for a fixed one-character prefix. `LEFT(name, 1) = 'M'` states the exact operation simply.
 - **Uppercase versus lowercase:** The rule names uppercase `'M'`. Whether a lowercase `m` compares equal can depend on the column collation in MySQL. The exact query follows the database's collation semantics rather than forcing binary case sensitivity.
 - **Names with one character:** `LEFT(name, 1)` returns that character, so a name equal to `M` is correctly disqualified. No special length branch is necessary.
 - **Null values:** The supplied table contract normally treats the relevant fields as populated. If `name` were `NULL`, SQL three-valued logic could make the condition `NULL` for an odd ID and MySQL `IF` would take its false branch, granting salary. A nullable extension would need an explicit policy and perhaps `COALESCE`; inventing one would change the stated contract.
 - **Output ordering:** Omitting `ORDER BY` is incorrect even if a sample run happens to appear sorted, because relational tables have no guaranteed default row order. `ORDER BY 1` is valid here only because `employee_id` is the first selected expression.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

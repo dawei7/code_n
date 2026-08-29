@@ -74,7 +74,7 @@ The sum is $4+12=16$.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `x` occurs `v` times and its frequency qualifies, all `v`... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -113,7 +113,7 @@ This cannot mix frequencies between values. Each dictionary entry is independent
 
 ## 6. Traps This Instance Exposes
 
-- **- **Scan `nums` again after counting:** Adding eac:** - **Scan `nums` again after counting:** Adding each `x` when its stored frequency qualifies also works in $O(n)$ time. Multiplying once per distinct value avoids the second occurrence scan.
+- **Scan `nums` again after counting:** Adding each `x` when its stored frequency qualifies also works in $O(n)$ time. Multiplying once per distinct value avoids the second occurrence scan.
 - **Fixed 101-element frequency array:** The bounded values permit an ordinary array instead of `Counter`, with deterministic $O(n+100)$ time and $O(100)$ space.
 - **Add each qualifying value once:** This is incorrect because the note requires including every occurrence. The product `x * v` preserves multiplicity.
 - **`k = 1`:** Every positive frequency is divisible by one, so the result is the ordinary sum of the entire array.
@@ -123,8 +123,8 @@ This cannot mix frequencies between values. Each dictionary entry is independent
 - **Repeated values:** Counter records their exact multiplicity rather than deduplicating without counts.
 - **Value versus frequency:** The divisibility condition applies to `v`, not `x`.
 - **Positive inputs:** Products are nonnegative, but the counting argument would work with signed values as well.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Therefore each maximal block of one or more zeros is one obstacle that earlier o
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore each maximal block of one or more zeros is one obs... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Therefore each maximal block of one or more zeros is one obstacle that earlier o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit block loop:** Skip across each maxima:** - **Explicit block loop:** Skip across each maximal zero run and add the number of earlier ones once. It expresses blocks directly but needs a manual index loop.
+- **Explicit block loop:** Skip across each maximal zero run and add the number of earlier ones once. It expresses blocks directly but needs a manual index loop.
 - **Simulate operations:** Repeated string movement can take quadratic or worse time and is unnecessary for counting.
 - **Count every inversion `1...0`:** Individual zero inversions overcount consecutive zeros because one operation crosses an entire block.
 - **No ones:** No operation is possible and all block contributions are zero.
@@ -99,8 +99,8 @@ Therefore each maximal block of one or more zeros is one obstacle that earlier o
 - **Single character:** No adjacent `"10"` pair exists.
 - **Relative order of ones:** Operations do not swap ones with each other, which supports the labeled crossing interpretation.
 - **Input preservation:** The source derives the maximum from the original string without constructing intermediate states.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

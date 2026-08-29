@@ -59,7 +59,7 @@ Formatting includes the year, preventing February from another year from enterin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `WHERE DATE_FORMAT(order_date, '%Y-%m') = '2020-02'` keeps e... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ In SQL modes or database systems requiring every nonaggregated selected column t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Half-open date range:** It expresses the same :** - **Half-open date range:** It expresses the same month and can use an ordinary date index more effectively.
+- **Half-open date range:** It expresses the same month and can use an ordinary date index more effectively.
 - **Conditional aggregation:** Group all orders and sum a `CASE` only for February, but extra logic is needed to exclude zero-total or absent-period products.
 - **Correlated subquery per product:** It is valid but may repeatedly scan `Orders` without good indexing.
 - **Exactly 100 units:** The inclusive `>=` condition retains the product.
@@ -109,8 +109,8 @@ In SQL modes or database systems requiring every nonaggregated selected column t
 - **Functional dependency:** Grouping by product ID identifies one name under the primary-key join, but explicit name grouping is more portable.
 - **Aggregate alias in `HAVING`:** MySQL permits `unit` there; other dialects may require repeating `SUM(o.unit)`.
 - **Any-order output:** No final sort is necessary, so consumers must not assume incidental order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

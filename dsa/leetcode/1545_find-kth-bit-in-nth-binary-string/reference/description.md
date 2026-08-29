@@ -18,7 +18,7 @@ For example, the first four strings in the above sequence are:
 
 - $S_{4} = "0111001**1**0110001"$
 
-Return *the* $$k^{\text{th}}$$ *bit* *in* $S_{n}$. It is guaranteed that `k` is valid for the given `n`.
+Return *the* $k^{\text{th}}$ *bit* *in* $S_{n}$. It is guaranteed that `k` is valid for the given `n`.
 
 ### 2. Function Contract
 

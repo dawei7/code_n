@@ -62,9 +62,7 @@ Values greater than the maximum are excluded because they lie outside the reques
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first outer predicate is:
-
-`n < (SELECT MAX(customer_id)... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ The query selects `n AS ids` to give the single output column its required name.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Recursive CTE stopping at the actual maximum:*:** - **Recursive CTE stopping at the actual maximum:** Seed one and recurse while `n < MAX(customer_id)` through a prepared bound, avoiding generation beyond the needed range.
+- **Recursive CTE stopping at the actual maximum:** Seed one and recurse while `n < MAX(customer_id)` through a prepared bound, avoiding generation beyond the needed range.
 - **Permanent numbers table:** It is efficient and reusable in production schemas but adds an external dependency.
 - **`NOT EXISTS`:** A correlated anti-join avoids `NOT IN` null hazards and expresses absence directly.
 - **Left anti-join:** Left-join candidates to customers and keep rows with a null matched key.
@@ -119,12 +117,12 @@ The query selects `n AS ids` to give the single output column its required name.
 - **Empty customer table:** `MAX` would be null and no candidate would pass. The task’s notion of a present maximum implicitly assumes data exists.
 - **Missing explicit ordering:** Add `ORDER BY ids ASC` for guaranteed compliance; generation order alone is not a SQL ordering contract.
 - **Hard-coded domain bound:** It is valid only because the reference guarantees a maximum no larger than 100.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O((m+c)\log(c+1))$. Let $C$ be the number of customer rows and $M=\max(\texttt{customer_id})$, with $M\le100$.
+- **Time Complexity:** $O((m+c)\log(c+1))$. Let $C$ be the number of customer rows and $M=\max(\texttt{customer\_id})$, with $M\le100$.
 - **Auxiliary Space Complexity:** $O(m+c)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

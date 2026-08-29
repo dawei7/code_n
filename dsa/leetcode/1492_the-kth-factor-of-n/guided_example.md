@@ -61,7 +61,7 @@ For `n = 12` and original `k = 3`, candidates one and two both divide twelve, re
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Suppose the original request is the third factor.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ If the method reaches the final return, every possible positive factor has been 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two-direction square-root scan:** Enumerate sm:** - **Two-direction square-root scan:** Enumerate small divisors upward and their complements in reverse small-divisor order. It achieves $O(\sqrt n)$ time and $O(1)$ space while preserving ascending rank.
+- **Two-direction square-root scan:** Enumerate small divisors upward and their complements in reverse small-divisor order. It achieves $O(\sqrt n)$ time and $O(1)$ space while preserving ascending rank.
 - **Store both factor halves:** Gather small and large factors during a square-root scan, then combine them in order. It is easy to understand but uses $O(\sqrt n)$ space in the worst case.
 - **Sort discovered factors:** Generate divisor pairs and sort the resulting list. This is correct but adds storage and sorting work that the ordered two-direction scan can avoid.
 - **Prime n:** Its factors are only one and `n`. Requests beyond rank two return minus one.
@@ -110,8 +110,8 @@ If the method reaches the final return, every possible positive factor has been 
 - **Largest factor requested:** The source eventually reaches `i = n` and returns it if its rank matches.
 - **Early factor requested:** The method returns as soon as the countdown reaches zero and does not scan unused larger candidates.
 - **Ascending order:** Testing candidates from one upward is what makes countdown rank correspond directly to sorted-factor rank.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

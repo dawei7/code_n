@@ -51,7 +51,7 @@ The only restrictive dimension is horizontal. One rectangle covers points whose 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The only restrictive dimension is horizontal.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The two-dimensional problem therefore reduces to covering all point $x$-coordina
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort only the $x$-coordinates:** Extracting th:** - **Sort only the $x$-coordinates:** Extracting them makes the reduction explicit but allocates another $O(n)$ list.
+- **Sort only the $x$-coordinates:** Extracting them makes the reduction explicit but allocates another $O(n)$ list.
 - **Interval dynamic programming:** It can model coverage choices, but the leftmost-uncovered exchange argument makes it unnecessary.
 - **Unsorted greedy scan:** It is incorrect because a later unseen point might lie left of the chosen interval.
 - **`w = 0`:** One rectangle covers exactly one distinct $x$-coordinate, so the answer is the number of distinct $x$ values.
@@ -101,8 +101,8 @@ The two-dimensional problem therefore reduces to covering all point $x$-coordina
 - **Maximum width:** Using less than `w` at a leftmost uncovered point cannot cover more future points.
 - **Overlapping rectangles:** Allowed but never needed by the greedy proof.
 - **Return only the count:** Rectangle coordinates need not be materialized.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

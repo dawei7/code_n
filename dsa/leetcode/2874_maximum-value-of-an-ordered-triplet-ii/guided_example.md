@@ -54,8 +54,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-(\texttt{nums[i]}-\texttt{nums[j]})\cdot\texttt{nums[k]},... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -90,7 +89,7 @@ The second version allows $10^5$ elements, so enumerating triplets or even pairs
 
 ## 6. Traps This Instance Exposes
 
-- **- **Cubic brute force:** It is conceptually direct:** - **Cubic brute force:** It is conceptually direct but performs $O(n^3)$ work, which is infeasible for $10^5$ elements.
+- **Cubic brute force:** It is conceptually direct but performs $O(n^3)$ work, which is infeasible for $10^5$ elements.
 - **Quadratic pair scan:** Maintaining the best `i` while enumerating `j,k` reduces one loop but remains far too slow for this version.
 - **Prefix/suffix arrays:** They provide an $O(n)$ solution by fixing `j`, but use $O(n)$ extra memory compared with the source's streaming state.
 - **All increasing values:** No positive earlier-minus-later difference exists; `mx_diff` stays zero and the required result is zero.
@@ -98,8 +97,8 @@ The second version allows $10^5$ elements, so enumerating triplets or even pairs
 - **Current-index reuse:** Updating `mx_diff` before `ans` would illegally allow current `x` to be both `j` and `k`.
 - **Overflow:** Store the result in a 64-bit or wider integer outside Python.
 - **Positive inputs:** The one-maximum-difference compression relies on future multipliers being positive; signed inputs would require tracking both extreme differences.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

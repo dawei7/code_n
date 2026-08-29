@@ -44,7 +44,7 @@ that the testcases are generated such that the file system is valid and no file 
 
 ![](images/dir1.jpg)
 
-- **Input:** $input = "dir\n\tsubdir1\n\tsubdir2\n\t\\text{tfile.ext}"$
+- **Input:** `input = "dir\n\tsubdir1\n\tsubdir2\n\t\\text{tfile.ext}"`
 - **Output:** `20`
 - **Explanation:** We have only one file, and the absolute path is "dir/subdir2/file.ext" of length 20.
 
@@ -52,7 +52,7 @@ that the testcases are generated such that the file system is valid and no file 
 
 ![](images/dir2.jpg)
 
-- **Input:** $input = "dir\n\tsubdir1\n\t\\text{tfile1.ext}\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\\text{tfile2.ext}"$
+- **Input:** `input = "dir\n\tsubdir1\n\t\\text{tfile1.ext}\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\\text{tfile2.ext}"`
 - **Output:** `32`
 - **Explanation:** We have two files:
 "dir/subdir1/file1.ext" of length 21
@@ -61,7 +61,7 @@ We return 32 since it is the longest absolute path to a file.
 
 #### Example 3
 
-- **Input:** $input = "a"$
+- **Input:** `input = "a"`
 - **Output:** `0`
 - **Explanation:** We do not have any files, just a single directory named "a".
 

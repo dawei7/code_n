@@ -65,7 +65,7 @@ Positions outside both rearrangeable intervals are fixed, so any mismatch there 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pre1[i]` stores a 26-letter frequency vector for `s[:i]`, a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Before those cases, `check` rejects mismatches before `a` or after `max(b,d)`. W
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate permutations:** Enumerating rearrange:** - **Simulate permutations:** Enumerating rearrangements is factorial and unnecessary because only character multisets matter.
+- **Simulate permutations:** Enumerating rearrangements is factorial and unnecessary because only character multisets matter.
 - **Recheck the entire string per query:** That costs $O(NQ)$. Prefix mismatch and count arrays reduce each query to constant alphabet work.
 - **Forget to reverse the second half:** Palindrome partners run in opposite directions; reversal is what aligns them index by index.
 - **Intervals in reverse normalized order:** Swapping the two half roles lets one checker handle all queries symmetrically.
@@ -112,8 +112,8 @@ Before those cases, `check` rejects mismatches before `a` or after `max(b,d)`. W
 - **Partial overlap:** Fixed exclusive demands are subtracted first; equal nonnegative leftovers fill the overlap.
 - **All-zero leftover vector:** It is a valid 26-element list and remains truthy; only `[]` represents insufficient supply.
 - **Independent queries:** Precomputed data always describes the original string, as required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

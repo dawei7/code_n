@@ -57,7 +57,7 @@ Therefore, the answer is the number of maximal consecutive runs of equal edge sl
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every adjacent pair must be connected, but several consecuti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Cross multiplication avoids floating-point rounding. Two rational slopes such as
 
 ## 6. Traps This Instance Exposes
 
-- **- **Floating-point slopes:** They are easy to writ:** - **Floating-point slopes:** They are easy to write but can misclassify mathematically equal rational slopes due to rounding.
+- **Floating-point slopes:** They are easy to write but can misclassify mathematically equal rational slopes due to rounding.
 - **Reduced fraction pairs:** Dividing `dy` and `dx` by their greatest common divisor gives exact comparable slopes, but cross multiplication is simpler.
 - **Store every slope:** Only the immediately previous direction is needed because the goal is consecutive slope runs.
 - **Compare all triples after sorting:** It gives the same collinearity test; the stored previous direction is its constant-state form.
@@ -117,8 +117,8 @@ Cross multiplication avoids floating-point rounding. Two rational slopes such as
 - **Input order:** Sorting is required before adjacency has chart meaning.
 - **Input mutation:** `stockPrices.sort()` changes the caller's list order.
 - **Inclusive point connection:** Each line run shares endpoints with its neighboring run, which is allowed in the chart.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

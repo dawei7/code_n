@@ -63,11 +63,7 @@ If several events occur at one coordinate, the difference array combines them be
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each `[l, r]`, the code performs
-
-
-
-This represents a ha... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +106,7 @@ After each update, `ans = max(ans, s)` remembers the greatest simultaneous count
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sorted start and end arrays:** Sort the two ev:** - **Sorted start and end arrays:** Sort the two event lists and sweep them with pointers, reusing a room when an end is no later than the next start. This gives $O(n\log n)$ time and $O(n)$ space independent of coordinate magnitude and is the algorithm summarized by the manifest.
+- **Sorted start and end arrays:** Sort the two event lists and sweep them with pointers, reusing a room when an end is no later than the next start. This gives $O(n\log n)$ time and $O(n)$ space independent of coordinate magnitude and is the algorithm summarized by the manifest.
 - **Min-heap of room end times:** Sort meetings by start, reuse the room with the earliest end when possible, and push each current end. It takes $O(n\log n)$ time and up to $O(n)$ space and can also support explicit room assignments.
 - **Sparse event map:** Store deltas only at observed times, sort those keys, and prefix-sum them. It avoids $O(M)$ dense storage while retaining the event-count idea, at the cost of $O(n\log n)$ sorting.
 - **Meetings touching at an endpoint:** `d[r] -= 1` and `d[r] += 1` from another start combine at the same coordinate, so the ending room is immediately reused and no extra room is counted.
@@ -122,8 +118,8 @@ After each update, `ans = max(ans, s)` remembers the greatest simultaneous count
 - **One meeting:** Its prefix count peaks at one and returns to zero, so exactly one room is returned.
 - **Empty input:** The formal constraints require at least one meeting. Outside the contract, `max` would raise an exception, so supporting emptiness would require an early `return 0`.
 - **Very sparse huge coordinates:** Dense allocation becomes undesirable if endpoint bounds are relaxed. A sorted-event or heap approach would then be more memory-efficient.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

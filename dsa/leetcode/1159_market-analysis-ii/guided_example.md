@@ -69,7 +69,7 @@ Keeping `o.rk = 2` inside the `ON` clause is crucial. Users with fewer than two 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `Users AS u` is the base relation because the report must co... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ The query does not need `buyer_id` or `join_date`. They do not affect which item
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use `ROW_NUMBER` instead of `RANK`:** Under th:** - **Use `ROW_NUMBER` instead of `RANK`:** Under the no-same-day-sales guarantee, both assign the same consecutive positions. `ROW_NUMBER` would also force one arbitrary second row if ties existed.
+- **Use `ROW_NUMBER` instead of `RANK`:** Under the no-same-day-sales guarantee, both assign the same consecutive positions. `ROW_NUMBER` would also force one arbitrary second row if ties existed.
 - **Use `DENSE_RANK`:** It also matches `RANK` under unique seller dates. With ties, it would rank distinct sale dates rather than individual items, which would require a clarified contract.
 - **Correlated subqueries with `LIMIT`:** A per-user query can sort sales and select offset one, but it may repeat sorting or index work for every user.
 - **Put `rk = 2` in `WHERE`:** This removes users without a second sale and violates the required one-row-per-user result.
@@ -120,8 +120,8 @@ The query does not need `buyer_id` or `join_date`. They do not affect which item
 - **Second brand differs:** The explicit `ELSE` returns no.
 - **Unique sale dates per seller:** This guarantee prevents rank ties and makes “second item by date” unambiguous.
 - **Any output order:** No sorting clause is needed for the final relation.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

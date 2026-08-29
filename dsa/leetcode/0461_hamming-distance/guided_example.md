@@ -63,7 +63,7 @@ Leading zeros need no explicit padding. Above the highest set bit of both inputs
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Python's integer method `bit_count()` returns the number of ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If one input is zero, XOR returns the other input. The distance is then the numb
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brian Kernighan's method:** Repeatedly replace:** - **Brian Kernighan's method:** Repeatedly replace `z` with `z & (z - 1)`. Each iteration clears the lowest set bit, so the iteration count equals the answer. It is useful when a built-in population count is unavailable.
+- **Brian Kernighan's method:** Repeatedly replace `z` with `z & (z - 1)`. Each iteration clears the lowest set bit, so the iteration count equals the answer. It is useful when a built-in population count is unavailable.
 - **Shift and inspect:** Repeatedly add `z & 1` and shift `z` right. It is straightforward but examines zero bits between set bits as well.
 - **Convert to a binary string:** `bin(x ^ y).count('1')` is concise but allocates a textual representation and performs more conversion work than `bit_count`.
 - **Compare decimal digits:** Hamming distance concerns binary positions, not decimal notation; decimal comparison gives unrelated results.
@@ -111,8 +111,8 @@ If one input is zero, XOR returns the other input. The distance is then the numb
 - **Different bit lengths:** Conceptual leading zeros are handled automatically by integer XOR.
 - **Maximum allowed value:** At most 31 relevant bits are processed, so no loop or recursion depth concern exists.
 - **Negative values outside the contract:** Python defines bitwise operations using an infinite two's-complement model, which changes how leading sign bits should be interpreted. The nonnegative-input guarantee avoids that ambiguity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

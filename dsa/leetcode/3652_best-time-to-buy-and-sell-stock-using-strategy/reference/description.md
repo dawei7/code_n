@@ -2,9 +2,9 @@
 
 You are given two integer arrays `prices` and `strategy`, where:
 
-- $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day.
+- $\text{prices}[i]$ is the price of a given stock on the $i^{\text{th}}$ day.
 
-- $\text{strategy}[i]$ represents a trading action on the $$i^{\text{th}}$$ day, where:
+- $\text{strategy}[i]$ represents a trading action on the $i^{\text{th}}$ day, where:
 
 		- `-1` indicates buying one unit of the stock.
 
@@ -79,7 +79,7 @@ There are no constraints on budget or stock ownership, so all buy and sell opera
 	</tbody>
 </table>
 
-Thus, the maximum possible profit is 10, which is achieved by modifying the subarray `[0, 1]`​​​​​​​.
+Thus, the maximum possible profit is 10, which is achieved by modifying the subarray `[0, 1]`.
 
 #### Example 2
 

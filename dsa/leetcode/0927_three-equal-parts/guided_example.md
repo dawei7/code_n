@@ -51,7 +51,7 @@ Let total ones be $T$. The solution computes
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Let total ones be $T$.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Build three significant slices:** Locate start:** - **Build three significant slices:** Locate starts and compare array slices. This is clear but uses $O(n)$ temporary space, matching the editorial rather than the exact constant-space scan.
+- **Build three significant slices:** Locate starts and compare array slices. This is clear but uses $O(n)$ temporary space, matching the editorial rather than the exact constant-space scan.
 - **Convert parts to integers:** Binary values may be extremely large, and trying cut pairs is quadratic.
 - **Try every two cuts:** There are $O(n^2)$ partitions and expensive value comparisons.
 - **Total ones not divisible by three:** Immediately impossible.
@@ -100,8 +100,8 @@ $$
 - **Third pointer reaches end:** This is the success condition proving full significant patterns matched.
 - **Nonempty parts:** The selected one positions and returned boundaries satisfy the required cut ordering in successful cases.
 - **Any valid answer:** Other placements of leading zeros may give different accepted cuts; only one is needed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

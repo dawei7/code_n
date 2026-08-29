@@ -67,7 +67,7 @@ Every friend is guaranteed to appear in `order`, so all dictionary lookups succe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The input `friends` is sorted by numeric ID, but numeric ID ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -106,7 +106,7 @@ Every input friend appears once in the returned list because `sorted` rearranges
 
 ## 6. Traps This Instance Exposes
 
-- **- **Filter `order` with a friend set:** Build a se:** - **Filter `order` with a friend set:** Build a set of the at-most-eight IDs and retain finishers belonging to it. This matches the manifest’s `O(n)` time and bounded `O(1)` auxiliary space.
+- **Filter `order` with a friend set:** Build a set of the at-most-eight IDs and retain finishers belonging to it. This matches the manifest’s `O(n)` time and bounded `O(1)` auxiliary space.
 - **Call `order.index` for each friend:** It avoids a map but scans up to `n` elements per friend, costing `O(nf)`; with `f <= 8` it is still linear up to a constant but less scalable.
 - **Sort friends by ID:** They are already ID-sorted, which does not represent finishing order.
 - **Sort the complete order:** `order` already has the desired ranking; sorting it numerically would destroy that information.
@@ -117,8 +117,8 @@ Every input friend appears once in the returned list because `sorted` rearranges
 - **Missing friend ID:** The contract guarantees membership. Without it, `d[x]` would raise `KeyError`.
 - **Input preservation:** `sorted` returns a new list, and dictionary construction does not mutate either input.
 - **Missing import:** The stored source uses `List` without importing it. Standalone Python needs `from typing import List` unless the harness provides the name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

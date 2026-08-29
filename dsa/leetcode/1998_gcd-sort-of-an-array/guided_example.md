@@ -59,7 +59,7 @@ This is a factor-list version of the sieve of Eratosthenes and avoids trial-divi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `f[value]` is a list of distinct prime divisors.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ If two values share a factor, both become connected to the same prime node. If t
 
 ## 6. Traps This Instance Exposes
 
-- **- **Factor each number by trial division:** Avoids:** - **Factor each number by trial division:** Avoids a full sieve when values are sparse, but repeated factorization can cost more.
+- **Factor each number by trial division:** Avoids a full sieve when values are sparse, but repeated factorization can cost more.
 - **Graph over array indices:** Connect indices sharing factors, but efficiently discovering those edges still needs factor buckets.
 - **Attempt adjacent array swaps only:** The operation permits any two positions, and connectivity is over values, not neighboring indices.
 - **Prime value:** Connects only through occurrences or other multiples of that prime.
@@ -114,8 +114,8 @@ If two values share a factor, both become connected to the same prime node. If t
 - **No union by rank:** Correctness remains, though rank/size could improve robustness.
 - **Values at maximum bound:** Fixed DSU allocation includes them safely.
 - **Input preservation:** `sorted(nums)` creates a new target list and the original order is retained.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

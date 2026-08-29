@@ -64,9 +64,7 @@ This explicit comparison is necessary because Counter iteration order reflects f
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The desired ranking has two levels:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +103,7 @@ The tie clause `ans > x` is not used before a real answer exists because every f
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort even values:** Sorting groups equal value:** - **Sort even values:** Sorting groups equal values but costs $O(n\log n)$ time; hashing counts in expected linear time.
+- **Sort even values:** Sorting groups equal values but costs $O(n\log n)$ time; hashing counts in expected linear time.
 - **Frequency array:** Values are bounded by `10^5`, so a fixed count array is possible. It uses domain-sized space and can scan even indices in ascending order.
 - **Counter all values then filter:** Correct but stores irrelevant odd keys.
 - **No even values:** The empty loop leaves the answer at `-1`.
@@ -114,8 +112,8 @@ The tie clause `ans > x` is not used before a real answer exists because every f
 - **Zero:** It is even and can be returned.
 - **Separated occurrences:** Counter combines them globally.
 - **Arbitrary Counter iteration order:** Correctness does not depend on it because both ranking criteria are checked explicitly.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

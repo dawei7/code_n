@@ -51,7 +51,7 @@ To make a palindrome of length $L$, its mirrored positions require
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | To make a palindrome of length $L$, its mirrored positions r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Full 26-entry frequency array:** Summing `coun:** - **Full 26-entry frequency array:** Summing `count // 2` over letters also computes the pair supply and is perfectly valid. The parity-mask identity obtains the same total with constant compact state.
+- **Full 26-entry frequency array:** Summing `count // 2` over letters also computes the pair supply and is perfectly valid. The parity-mask identity obtains the same total with constant compact state.
 - **Try to preserve each word's original letters:** That ignores the global-swap permission and can underestimate the answer. Character ownership is completely transferable.
 - **Construct actual palindrome strings:** It is possible after selecting lengths, but unnecessary because only the maximum count is returned.
 - **Sort by pair demand directly:** Using `2 * (len(w) // 2)` is conceptually exact. Sorting by length gives the same nondecreasing demand order; adjacent odd/even lengths can tie without harming greediness.
@@ -100,8 +100,8 @@ $$
 - **First unaffordable word:** All later words have at least as large a pair demand, so breaking is safe.
 - **Repeated word lengths:** Their demands tie, and their relative order cannot change the maximum count.
 - **Input mutation:** The method leaves `words` sorted by length, even though it does not change any string's characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

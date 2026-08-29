@@ -81,7 +81,7 @@ Because every required magnitude from zero through `limit` is legal, there is no
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Every added element must satisfy $\lvert x\rvert\leq\texttt{... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -130,7 +130,7 @@ For `nums = [1, -10, 9, 1]`, the sum is 1 and the goal is 0. Here $d=1$ and `lim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate additions:** Repeatedly subtracting `:** - **Simulate additions:** Repeatedly subtracting `limit` from the gap reaches the same answer but takes $O(d/\texttt{limit})$ iterations, which is unnecessary and can be enormous.
+- **Simulate additions:** Repeatedly subtracting `limit` from the gap reaches the same answer but takes $O(d/\texttt{limit})$ iterations, which is unnecessary and can be enormous.
 - **Greedy construction:** Explicitly appending signed `limit` values and one remainder proves achievability, but storing them wastes memory when only the count is requested.
 - **Floating-point ceiling:** Calling a floating-point ceiling function risks precision problems for larger integer domains; integer ceiling division is exact.
 - **Dynamic programming:** There is no combinatorial choice to optimize because every integer magnitude up to `limit` is allowed. DP would obscure the direct lower-bound argument.
@@ -143,8 +143,8 @@ For `nums = [1, -10, 9, 1]`, the sum is 1 and the goal is 0. Here $d=1$ and `lim
 - **Positive limit guarantee:** The constraint `limit >= 1` makes division valid and ensures progress is always possible.
 - **Input array unchanged:** The solution computes a number and never mutates or extends `nums`.
 - **Large totals:** Wide-integer arithmetic is required outside Python even though the returned count itself may be much smaller.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

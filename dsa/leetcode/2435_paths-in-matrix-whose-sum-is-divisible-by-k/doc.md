@@ -25,7 +25,7 @@ For every such path, include both endpoints and every visited cell in its sum. C
 - `grid`: A nonempty rectangular matrix of non-negative integers.
 - `k`: The positive divisor used to classify path sums.
 
-The dimensions satisfy $1 \le m,n \le 5\cdot10^4$ and $1 \le mn \le 5\cdot10^4$. Cell values lie in $[0,100]$, and $1 \le k \le 50$.
+The dimensions satisfy $1 \le m,n \le 5\cdot10^4$ and $1 \le mn \le 5\cdot10^4$. Cell values lie in `[0,100]`, and $1 \le k \le 50$.
 
 **Return value**
 

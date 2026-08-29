@@ -61,7 +61,7 @@ Grouping produces at most one recovery date per patient. A positive-only patient
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The second CTE joins every test `t` to that patient’s positi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ An inner join between the two CTEs keeps only patients having both an earliest p
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated subqueries:** Find each patient’s m:** - **Correlated subqueries:** Find each patient’s minimum positive and then a correlated minimum negative. It is readable but may repeat scans without good indexes.
+- **Correlated subqueries:** Find each patient’s minimum positive and then a correlated minimum negative. It is readable but may repeat scans without good indexes.
 - **Window functions:** Ordered conditional dates can solve the problem, but two grouped anchors express the definition directly.
 - **Negative before positive:** It is ignored by the strict date join.
 - **Negative on the same date:** It is not “later” and is excluded.
@@ -118,8 +118,8 @@ An inner join between the two CTEs keeps only patients having both an earliest p
 - **Positive after recovery:** A later positive does not change the first recovery interval defined by the statement. Once the earliest later negative is selected, subsequent tests are outside this calculation.
 - **Database date semantics:** `test_date` is a date rather than a timestamp, so strict comparison and `DATEDIFF` operate in whole calendar days. If time-of-day ordering mattered, the schema and expression would need timestamp precision.
 - **Returned age:** Age is read from the patient catalog at query time and does not participate in recovery qualification. Tests establish eligibility and duration; the catalog join supplies descriptive fields only after those medical-date aggregates are fixed.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

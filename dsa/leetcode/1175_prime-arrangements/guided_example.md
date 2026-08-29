@@ -64,7 +64,7 @@ The sieve starts marking at `i + i` rather than `i * i`. Starting at the square 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The helper creates `primes = [true] * (n + 1)`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ There is no binomial factor for choosing which positions are prime positions bec
 
 ## 6. Traps This Instance Exposes
 
-- **- **Trial division for every integer:** Testing di:** - **Trial division for every integer:** Testing divisors up to each square root is simple but slower than a sieve when counting all primes through `n`.
+- **Trial division for every integer:** Testing divisors up to each square root is simple but slower than a sieve when counting all primes through `n`.
 - **Start sieve marking at `i * i`:** Smaller multiples were already marked by smaller prime factors, so this standard optimization reduces repeated work without changing the result.
 - **Hard-code the prime count up to 100:** The domain is small enough, but a sieve derives the answer transparently and generalizes naturally.
 - **Choose prime positions with a binomial coefficient:** Prime-index positions are predetermined; there is no choice of position subset, so such a factor would overcount.
@@ -117,8 +117,8 @@ There is no binomial factor for choosing which positions are prime positions bec
 - **Modulo timing:** Python safely computes the exact product first for `n <= 100`. Fixed-width implementations should reduce during multiplication.
 - **Distinct values:** The integers one through `n` are all distinct, which is why ordinary factorials count placements.
 - **Prime count equals prime-position count:** Both are defined over the identical range one through `n`, enabling the direct partition.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

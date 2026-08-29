@@ -44,7 +44,7 @@ Return the total number of valid length-`n` ZigZag arrays, reduced modulo $10^9+
 
 - `[4, 5, 4]`
 
-- `[5, 4, 5]`​​​​​​​
+- `[5, 4, 5]`
 
 #### Example 2
 

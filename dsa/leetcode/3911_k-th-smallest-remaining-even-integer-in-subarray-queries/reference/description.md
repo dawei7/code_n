@@ -14,7 +14,7 @@ For each query $[l_{i}, r_{i}, k_{i}]$:
 
 - Find the $k_{i}^th$ **smallest integer** remaining in the sequence after the removals.
 
-Return an integer array `ans`, where $\text{ans}[i]$ is the result for the $$i^{\text{th}}$$ query.
+Return an integer array `ans`, where $\text{ans}[i]$ is the result for the $i^{\text{th}}$ query.
 
 ### 2. Function Contract
 
@@ -201,4 +201,4 @@ Thus, $ans = [2, 8]$.
 
 - $0 \le l_{i} \le r_{i} < \text{nums.length}$
 
-- $1 \le k_{i} \le 10^{9}$​​​​​​​
+- $1 \le k_{i} \le 10^{9}$

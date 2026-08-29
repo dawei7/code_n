@@ -75,7 +75,7 @@ So every non-root computer is eligible immediately, independently of which other
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Now suppose every `complexity[i]` for `i>0` is strictly grea... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -127,7 +127,7 @@ ensures this produces the required factorial residue without building the enormo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort by complexity:** Sorting can reveal wheth:** - **Sort by complexity:** Sorting can reveal whether the root is uniquely smallest, but costs `O(n\log n)` and loses the simplicity of a direct scan.
+- **Sort by complexity:** Sorting can reveal whether the root is uniquely smallest, but costs `O(n\log n)` and loses the simplicity of a direct scan.
 - **Build dependency edges:** Explicitly connecting each computer to eligible helpers can create quadratic work. The root-minimum observation makes the graph unnecessary.
 - **Topological permutation DP:** General dependency-order counting is difficult, but this instance collapses to either no order or all orders of the non-root labels.
 - **Root tied for minimum:** Strict inequality is required, so any later equal minimum makes the answer zero.
@@ -140,8 +140,8 @@ ensures this produces the required factorial residue without building the enormo
 - **Modulo:** Applying it incrementally preserves the factorial residue and bounds intermediate values.
 - **Computer zero fixed first:** It is pre-unlocked by label, not chosen dynamically from the permutation.
 - **Unique passwords:** Password identity does not alter the count; only complexity comparisons and labels matter.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

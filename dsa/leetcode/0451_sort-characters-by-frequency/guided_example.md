@@ -61,7 +61,7 @@ Python's sort is stable, and `Counter` preserves the first-insertion order of ke
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt.items()` supplies `(character, frequency)` pairs.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ For `s = "Aabb"`, `b` has frequency two, while `A` and `a` each have frequency o
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bucket sort by frequency:** Place each distinc:** - **Bucket sort by frequency:** Place each distinct character in a bucket indexed by its count, then scan frequencies from `n` down to `1`. This gives $O(n)$ time even for a growing alphabet, at the cost of an $O(n)$ bucket structure.
+- **Bucket sort by frequency:** Place each distinct character in a bucket indexed by its count, then scan frequencies from `n` down to `1`. This gives $O(n)$ time even for a growing alphabet, at the cost of an $O(n)$ bucket structure.
 - **Heap of distinct characters:** A max-heap can repeatedly extract the largest frequency in $O(k\log k)$ time. It is useful for streaming variants but adds complexity here.
 - **Sort all input characters:** A comparator based on frequency can sort all `n` occurrences, but that costs $O(n\log n)$ and must still ensure identical characters remain grouped.
 - **Repeated string concatenation:** Logically correct, but immutable-string copying can make construction quadratic. Building pieces and calling `join` avoids that trap.
@@ -114,8 +114,8 @@ For `s = "Aabb"`, `b` has frequency two, while `A` and `a` each have frequency o
 - **Uppercase versus lowercase:** `A` and `a` are separate counter keys and may have different frequencies.
 - **Digits:** Digits are ordinary one-character keys; numeric value plays no role.
 - **Empty string outside this contract:** The exact code would return an empty string naturally, although the stated input is nonempty.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -61,7 +61,7 @@ The release occurs only after the zero callback returns. Therefore, the chosen n
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The zero loop has `n` iterations, one for every integer that... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +102,7 @@ Because the loops generate their own values, neither number thread needs a share
 
 ## 6. Traps This Instance Exposes
 
-- **- **Condition variable with next-role state:** Sto:** - **Condition variable with next-role state:** Store whether zero, odd, or even should run and notify after each callback. It is flexible but requires guarded wait loops.
+- **Condition variable with next-role state:** Store whether zero, odd, or even should run and notify after each callback. It is flexible but requires guarded wait loops.
 - **Locks as gates:** Three one-use handoff locks can implement the same cycle, though semaphores express repeatable permits naturally.
 - **Busy-wait flags:** Polling wastes CPU and still requires synchronization for visibility.
 - **One shared number counter:** Zero could inspect a shared next integer and wake parity accordingly. The separate ranges here avoid extra shared mutation.
@@ -115,8 +115,8 @@ Because the loops generate their own values, neither number thread needs a share
 - **Release after callback:** Moving a release before printing would permit overlap and break the completed-output order.
 - **Leftover final zero permit:** No zero-loop iteration remains, so it creates no extra output.
 - **Callback exception:** Normal completion is assumed for progress.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

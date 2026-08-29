@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | **Unwrap an overnight session.** Let `a` be login minutes an... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ For example, `21:30` becomes 1290 and `03:00` becomes 180. Since login is later 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate quarter-hour starts:** Checking all a:** - **Simulate quarter-hour starts:** Checking all at most 96 daily rounds is bounded and correct, but arithmetic directly counts them without iteration.
+- **Simulate quarter-hour starts:** Checking all at most 96 daily rounds is bounded and correct, but arithmetic directly counts them without iteration.
 - **Adjust minute fields manually:** Separate hour/minute carry logic invites boundary errors. Total minutes makes ceiling, floor, and midnight addition uniform.
 - **Login exactly on a boundary:** Ceiling retains that boundary, so the immediately starting round can count.
 - **Logout exactly on a boundary:** Floor retains it as a completed ending boundary, so the round ending then counts.
@@ -96,8 +96,8 @@ For example, `21:30` becomes 1290 and `03:00` becomes 180. Since login is later 
 - **Partial first and last rounds:** Upward login rounding and downward logout rounding exclude them independently.
 - **Integer ceiling:** `(a + 14) // 15` is valid because minutes are nonnegative. Using ordinary floor division for login would incorrectly count a round already in progress.
 - **Longest possible session:** An overnight interval can approach but not exceed 24 hours because equal clock times are disallowed; the boundary difference remains within one day's 96 scheduled rounds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

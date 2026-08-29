@@ -135,28 +135,6 @@
       ]
     },
     {
-      "id": "trial-ext-1",
-      "name": "blocked start",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "forest": [
-          [
-            0,
-            2
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "blocked-start"
-      ]
-    },
-    {
       "id": "trial-ext-2",
       "name": "detour around obstacles",
       "kind": "trial",

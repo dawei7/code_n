@@ -89,7 +89,7 @@ A departure from `u` is legal exactly when the current power is at least $\text{
 
 ![](images/g23.png)
 
-​​​​​​​
+
 
 - **Input:** n = 4, edges = [[0,1,3],[2,3,4]], power = 3, cost = [1,1,1,1], source = 0, target = 3
 

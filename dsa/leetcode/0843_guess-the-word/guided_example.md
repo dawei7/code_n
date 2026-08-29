@@ -59,7 +59,7 @@ All words have length six, so `zip` compares every position.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Helper `matches(first, second)` zips the two six-letter stri... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,9 +104,9 @@ The actual secret necessarily satisfies this equality because `score` came from 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Guess candidates in arbitrary order:** It even:** - **Guess candidates in arbitrary order:** It eventually finds the secret but may exceed the limited call budget.
-- **- **Random guessing:** Often works on generated ca:** - **Random guessing:** Often works on generated cases but provides no deliberate worst-bucket control and makes behavior nondeterministic.
-- **- **Choose from all original words, not only candi:** - **Choose from all original words, not only candidates:** A noncandidate probe can sometimes partition better, but the exact source restricts guesses to current candidates and guarantees every guess remains valid.
+- **Guess candidates in arbitrary order:** It eventually finds the secret but may exceed the limited call budget.
+- **Random guessing:** Often works on generated cases but provides no deliberate worst-bucket control and makes behavior nondeterministic.
+- **Choose from all original words, not only candidates:** A noncandidate probe can sometimes partition better, but the exact source restricts guesses to current candidates and guarantees every guess remains valid.
 
 ---
 

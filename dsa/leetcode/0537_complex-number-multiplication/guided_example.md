@@ -53,7 +53,7 @@ Ensure every candidate decision satisfies the required constraints.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Ensure every candidate decision satisfies the required const... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -88,7 +88,7 @@ Synthesize the final answer directly from validated sub-states.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use a regular expression:** It can capture sig:** - **Use a regular expression:** It can capture signed components, but the fixed plus-delimited format makes slicing and splitting simpler.
+- **Use a regular expression:** It can capture signed components, but the fixed plus-delimited format makes slicing and splitting simpler.
 - **Use a built-in complex type:** It introduces floating-point representation and output-format concerns for an integer-only task.
 - **Four-term direct string manipulation:** Arithmetic should occur after integer parsing; manipulating signs as text is more error-prone.
 - **Negative imaginary input:** The format appears as `"+-"`, and splitting at plus preserves the negative sign.
@@ -99,8 +99,8 @@ Synthesize the final answer directly from validated sub-states.
 - **Both inputs purely real:** Both imaginary coefficients are zero and the formula reduces to real multiplication.
 - **Both inputs purely imaginary:** The product is negative real because `i^2=-1`.
 - **Valid-format guarantee:** It allows direct two-value unpacking without error handling.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

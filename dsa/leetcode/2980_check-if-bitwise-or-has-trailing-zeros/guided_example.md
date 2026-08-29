@@ -67,9 +67,7 @@ Parentheses would make this intent easier for a beginner to see, but the unparen
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation is:
-
-`sum(x & 1 ^ 1 for x in nums) >= 2`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ The two implications prove exact equivalence.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit even counter:** Testing `x % 2 == 0` :** - **Explicit even counter:** Testing `x % 2 == 0` is more immediately readable and yields the same $O(N)$ result.
+- **Explicit even counter:** Testing `x % 2 == 0` is more immediately readable and yields the same $O(N)$ result.
 - **Early-exit loop:** Increment a count for evens and return true at two. This improves best-case work but is not the exact `sum` behavior.
 - **Try every pair:** Pair enumeration takes $O(N^2)$ time, even though pair validity depends only on the individual parities.
 - **OR all array elements:** This can return false after an odd value is included even when two evens elsewhere form a valid smaller selection.
@@ -117,8 +115,8 @@ The two implications prove exact equivalence.
 - **All values odd:** Every possible nonempty OR has least-significant bit one, so the answer is false.
 - **Repeated even values:** They are separate array elements and may both be selected; value uniqueness is not required.
 - **Operator precedence:** The source relies on `&` binding before `^`. Adding parentheses would clarify but not change behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

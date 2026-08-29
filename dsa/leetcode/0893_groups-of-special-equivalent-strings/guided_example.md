@@ -51,7 +51,7 @@ Therefore a string's special-equivalence class is completely determined by two m
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Therefore a string's special-equivalence class is completely... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Therefore a string's special-equivalence class is completely determined by two m
 
 ## 6. Traps This Instance Exposes
 
-- **- **Two frequency arrays:** Count 26 letters separ:** - **Two frequency arrays:** Count 26 letters separately at even and odd indices. This gives an $O(L)$ signature and avoids sorting.
+- **Two frequency arrays:** Count 26 letters separately at even and odd indices. This gives an $O(L)$ signature and avoids sorting.
 - **Simulate allowed swaps:** Exploring permutations is factorial and unnecessary because parity multisets fully characterize reachability.
 - **Sort the whole word:** This loses the distinction between even and odd positions and can merge strings that are not special-equivalent.
 - **Compare only even positions:** Odd-position character counts are independently invariant and must also match.
@@ -100,8 +100,8 @@ Therefore a string's special-equivalence class is completely determined by two m
 - **Every signature distinct:** Each word forms its own maximal group.
 - **Same-length guarantee:** It makes delimiter-free signature concatenation unambiguous. Mixed lengths would need the length or a separator in the key.
 - **Maximal group wording:** Equivalence classes are automatically maximal sets under an equivalence relation; counting unique signatures counts those classes.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

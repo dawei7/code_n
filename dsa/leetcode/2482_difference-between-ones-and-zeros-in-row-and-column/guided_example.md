@@ -87,7 +87,7 @@ but the source's unsimplified expression mirrors the statement and makes the zer
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For row-one count `r` and column-one count `c`, the assignme... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -133,7 +133,7 @@ The second pass substitutes those exact four quantities into the required formul
 
 ## 6. Traps This Instance Exposes
 
-- **- **Signed contribution sums:** Treat one as +1 an:** - **Signed contribution sums:** Treat one as +1 and zero as -1, accumulate row and column balances, then add them per cell. This directly computes one-minus-zero counts.
+- **Signed contribution sums:** Treat one as +1 and zero as -1, accumulate row and column balances, then add them per cell. This directly computes one-minus-zero counts.
 - **Recount per cell:** Scanning a row and column for every output position costs $O(mn(m+n))$ and repeats work.
 - **Separate zero arrays:** They are unnecessary because binary row and column sizes determine zero counts.
 - **All ones:** Every cell value is `n+m` because zero counts vanish.
@@ -143,8 +143,8 @@ The second pass substitutes those exact four quantities into the required formul
 - **Negative results:** They correctly indicate more zeros than ones across the combined row and column counts.
 - **Intersection cell:** It is intentionally included in both row and column statistics.
 - **Output storage:** The result itself is $O(mn)$ even though reusable auxiliary counts are only $O(m+n)$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Symmetrically, when there are `h` horizontal pieces, a vertical boundary of cost
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Symmetrically, when there are `h` horizontal pieces, a verti... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The order matters because each cut increases the multiplier for every future per
 
 ## 6. Traps This Instance Exposes
 
-- **- **Dynamic programming over cut subsets:** For Ca:** - **Dynamic programming over cut subsets:** For Cake I's tiny $m,n\le20$, richer DP is conceivable, but it ignores the exchange property and scales poorly compared with sorting.
+- **Dynamic programming over cut subsets:** For Cake I's tiny $m,n\le20$, richer DP is conceivable, but it ignores the exchange property and scales poorly compared with sorting.
 - **Min-cost-first greedy:** Incorrect. Cheap early cuts increase the multiplier paid by later expensive perpendicular cuts.
 - **One combined tagged list:** Store every cost with its orientation, sort globally descending, and update piece counts. This is equivalent but allocates an additional combined array.
 - **Equal horizontal and vertical costs:** Either can go first; the source chooses vertical and remains optimal.
@@ -99,8 +99,8 @@ The order matters because each cut increases the multiplier for every future per
 - **Short-circuit safety:** Exhausted-array checks must precede indexed comparisons.
 - **Input mutation:** Both cost arrays are permanently sorted descending.
 - **Constraint difference from Cake II:** This source and proof already scale beyond the small Cake I limits; the greedy rule does not rely on $m,n\le20$.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

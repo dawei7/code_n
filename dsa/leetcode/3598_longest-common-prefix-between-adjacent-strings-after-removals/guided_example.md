@@ -59,7 +59,7 @@ The current maximum is `sl[-1]` when the multiset is nonempty.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `pairwise(words)` produces all original adjacent pairs.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ The answer is its largest value, except an empty multiset or a nonpositive maxim
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix/suffix maxima:** Precompute original pa:** - **Prefix/suffix maxima:** Precompute original pair LCPs, prefix maxima, and suffix maxima. Each removal combines unaffected maxima with one bridge in constant time, realizing `O(S+n)`.
+- **Prefix/suffix maxima:** Precompute original pair LCPs, prefix maxima, and suffix maxima. Each removal combines unaffected maxima with one bridge in constant time, realizing `O(S+n)`.
 - **Rebuild after every removal:** It costs `O(n^2)` pair work and repeats most comparisons.
 - **Use a set:** Duplicate LCP scores would be collapsed, so removing one pair could incorrectly erase another pair’s maximum.
 - **First word removed:** Only pair `(0,1)` disappears; no bridge exists.
@@ -118,8 +118,8 @@ The answer is its largest value, except an empty multiset or a nonpositive maxim
 - **Different lengths:** Zip stops at the shorter string after all shared characters.
 - **Repeated word contents:** Cache keys by string values may reuse work across different positions, while multiset multiplicity still counts separate pairs.
 - **Third-party dependency:** The source assumes `SortedList` is available; prefix/suffix arrays avoid that requirement.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

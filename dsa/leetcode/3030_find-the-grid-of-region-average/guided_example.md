@@ -51,7 +51,7 @@ The two outer loops enumerate exactly those positions. Since a region's dimensio
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The two outer loops enumerate exactly those positions.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The two outer loops enumerate exactly those positions. Since a region's dimensio
 
 ## 6. Traps This Instance Exposes
 
-- **- **Prefix sum for region totals:** It can obtain :** - **Prefix sum for region totals:** It can obtain every $3\times3$ sum in $O(1)$ after $O(NM)$ preprocessing, but fixed nine-cell summation is already $O(1)$ and avoids another grid.
+- **Prefix sum for region totals:** It can obtain every $3\times3$ sum in $O(1)$ after $O(NM)$ preprocessing, but fixed nine-cell summation is already $O(1)$ and avoids another grid.
 - **Difference arrays for region contributions:** One might range-add averages over each valid square and recover totals later, but separately averaging many region values still requires careful count handling; the nine-cell direct update is simple and constant-sized.
 - **Early exit on invalid adjacency:** It may save constant work for invalid windows, but it does not change complexity. The exact source evaluates all 12 comparisons.
 - **Diagonal differences:** They are irrelevant because adjacency means sharing an edge. Only six horizontal and six vertical comparisons belong to a $3\times3$ region.
@@ -98,8 +98,8 @@ The two outer loops enumerate exactly those positions. Since a region's dimensio
 - **Border pixels:** They participate in fewer possible regions, but direct window membership updates automatically produce the right count.
 - **Two-stage flooring:** First use `tot // 9` for each region, then divide the accumulated rounded values by membership count. Reversing or postponing the first floor can be wrong.
 - **Input preservation:** All validation reads original `image`, while results are written only to newly allocated grids.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

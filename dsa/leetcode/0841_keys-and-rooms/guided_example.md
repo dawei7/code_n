@@ -61,7 +61,7 @@ Otherwise, it adds `i` to `vis` before following any key. Marking before recursi
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Set `vis` starts empty.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,9 +100,9 @@ Taking keys is never harmful and has no capacity cost, so exploring every listed
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** A queue-based traversa:** - **Breadth-first search:** A queue-based traversal discovers the same reachable set and avoids recursion depth concerns.
-- **- **Repeatedly scan for newly unlocked rooms:** It:** - **Repeatedly scan for newly unlocked rooms:** It can require many passes. Graph traversal processes each room and key once.
-- **- **No visited set:** Cycles such as room 0 keying:** - **No visited set:** Cycles such as room 0 keying room 1 and room 1 keying room 0 would recurse forever or repeat work.
+- **Breadth-first search:** A queue-based traversal discovers the same reachable set and avoids recursion depth concerns.
+- **Repeatedly scan for newly unlocked rooms:** It can require many passes. Graph traversal processes each room and key once.
+- **No visited set:** Cycles such as room 0 keying room 1 and room 1 keying room 0 would recurse forever or repeat work.
 
 ---
 

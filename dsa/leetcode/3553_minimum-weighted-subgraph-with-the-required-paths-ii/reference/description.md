@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given an **undirected weighted** tree with `n` nodes, numbered from `0` to $n - 1$. It is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight $w_{i}$.​
+You are given an **undirected weighted** tree with `n` nodes, numbered from `0` to $n - 1$. It is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight $w_{i}$.
 
 Additionally, you are given a 2D integer array `queries`, where $\text{queries}[j] = [\text{src1}_{j}, \text{src2}_{j}, \text{dest}_{j}]$.
 

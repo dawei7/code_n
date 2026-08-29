@@ -55,11 +55,7 @@ $$
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | $$
-1,1,1,1,1,1,1,1,\;
-2,2,2,2,2,2,2,2,\;
-3,3,\ldots
-$$... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -94,7 +90,7 @@ Once this is noticed, there is no need to construct an actual mapping from lette
 
 ## 6. Traps This Instance Exposes
 
-- **- **Explicit key simulation:** One could build eig:** - **Explicit key simulation:** One could build eight arrays of assigned letters and repeatedly select the currently shortest key, but that records layout information the answer never uses. Sorting frequencies and pairing them with the implicit cost sequence is simpler and proves the same optimum.
+- **Explicit key simulation:** One could build eight arrays of assigned letters and repeatedly select the currently shortest key, but that records layout information the answer never uses. Sorting frequencies and pairing them with the implicit cost sequence is simpler and proves the same optimum.
 - **Priority queue of key depths:** A min-heap containing the next cost for each of eight keys can assign frequencies one at a time. It works, but every operation pays a heap factor and obscures the fact that the costs are simply eight copies of each positive integer.
 - **Brute-force letter assignment:** Trying mappings grows combinatorially and is unnecessary because letter identities do not interact. Only the frequency-cost products matter, which is exactly the setting handled by the exchange argument.
 - **Fewer than eight distinct letters:** Every used letter receives a one-push position, so the answer is just the length of `word`. The formula handles this because every relevant index has `i // 8 == 0`.
@@ -103,8 +99,8 @@ Once this is noticed, there is no need to construct an actual mapping from lette
 - **One overwhelmingly frequent letter:** Sorting places it first and gives it a one-push position. Its particular key number is immaterial because every key has an equally cheap first slot.
 - **All 26 lowercase letters:** The layout uses eight one-push slots, eight two-push slots, eight three-push slots, and two four-push slots. The expression `i // 8 + 1` naturally reaches cost four for indices 24 and 25.
 - **No reconstruction:** The method returns only the minimum number of pushes, as requested. If an actual keypad mapping were required, the algorithm would also need to retain each letter beside its frequency and assign concrete keys, but that extra output is not part of this contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

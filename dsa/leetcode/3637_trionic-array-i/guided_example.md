@@ -69,10 +69,7 @@ After these checks, q is a valid valley satisfying `0<p<q<n-1`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `q` starts at p and advances while:
-
-`nums[q] > nums[q+1]`.
-... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +106,7 @@ The final condition `q==n-1` succeeds only if this third increasing phase consum
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count sign changes:** Reject zero differences :** - **Count sign changes:** Reject zero differences and require edge signs `+,-,+` with exactly two turns. This matches the second editorial approach.
+- **Count sign changes:** Reject zero differences and require edge signs `+,-,+` with exactly two turns. This matches the second editorial approach.
 - **Try every p and q:** It is unnecessary and can cost `O(n^3)` with repeated segment checks.
 - **Length three:** No indices can satisfy `0<p<q<n-1`, so false.
 - **Exactly four values:** Each phase must contain exactly one edge.
@@ -123,8 +120,8 @@ The final condition `q==n-1` succeeds only if this third increasing phase consum
 - **Turning-point elements:** nums[p] belongs to both first and second segments, and nums[q] belongs to middle and final segments, as required by inclusive ranges.
 - **Input preservation:** The source only reads `nums`.
 - **Missing `List` import:** Standalone execution must provide the annotation name.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -81,7 +81,7 @@ The left side does not need `left - 1`. Because `s[left]` already represents all
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Prefix index `k` is a boundary, not the index of the last in... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -128,7 +128,7 @@ Adjacent prefix boundaries differ by exactly the original element between them.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sum every query directly:** Loop from `left` t:** - **Sum every query directly:** Loop from `left` through `right`. It uses $O(1)$ extra space but costs $O(right-left+1)$ per query and can repeat the same additions up to $10^4$ times.
+- **Sum every query directly:** Loop from `left` through `right`. It uses $O(1)$ extra space but costs $O(right-left+1)$ per query and can repeat the same additions up to $10^4$ times.
 - **Precompute every possible range:** Store a sum for all pairs `(left, right)`. Queries become constant-time, but construction and storage both grow to $O(n^2)$, far more than the one-dimensional prefix array requires.
 - **Fenwick tree:** It supports prefix sums and point updates in $O(\log n)$ time. Updates are absent here, so its logarithmic queries and more complex indexing are unnecessary compared with $O(1)$ prefix subtraction.
 - **Segment tree:** It supports mutable range queries but needs more code and $O(\log n)$ query time. Immutability lets prefix sums do better.
@@ -144,8 +144,8 @@ Adjacent prefix boundaries differ by exactly the original element between them.
 - **Repeated queries:** No cache lookup keyed by the query is needed; every query is already constant-time, whether repeated or new.
 - **Mutation after construction:** If the original data could change, stored prefixes would become stale from the changed index onward. The immutable contract is what makes one-time preprocessing correct.
 - **Bounds guarantee:** The method performs no explicit index validation because every query is guaranteed to satisfy `0 <= left <= right < n`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -1,8 +1,8 @@
-​
+
 
 # Solution
-​
-​
+
+
 ## pandas
 
 <!-- h3 for approaches -->
@@ -52,10 +52,10 @@ return df[['product_name', 'product_id', 'order_id', 'order_date']].sort_values(
 
 <!-- h4 for sections -->
 #### Implementation
-​
+
 ```python
 import pandas as pd
-​
+
 def most_recent_orders(customers: pd.DataFrame, orders: pd.DataFrame, products: pd.DataFrame) -> pd.DataFrame:
 
     df = orders.groupby(['product_id'], as_index=False).order_date.max()
@@ -76,7 +76,7 @@ def most_recent_orders(customers: pd.DataFrame, orders: pd.DataFrame, products: 
 
 <!-- h4 for sections -->
 #### Algorithm
-​<!-- Describe your approach to solving the problem. -->
+<!-- Describe your approach to solving the problem. -->
 For this approach, we first merge the DataFrame `orders` and `products` since we need columns from both DataFrames for the final output. The below step creates a new DataFrame to store the result.
 
 ```python
@@ -84,7 +84,7 @@ df = orders.merge(products, on='product_id').reset_index()
 ```
 
 In this new `df`, we can evaluate each record within each group of $\text{product}_{id}$ by applying a lambda function to filter rows. For each group $\text{product}_{id}$, we filter rows where the $\text{order}_{date}$ column is equal to the maximum $\text{order}_{date}$ value within that group. In other words, we select the row(s) with the latest $\text{order}_{date}$ for each $\text{product}_{id}$.
-​
+
 ```python
 df = df.groupby('product_id').apply(lambda x:x[x.order_date == x.order_date.max()]).reset_index(drop=True)
 ```
@@ -106,10 +106,10 @@ return df[['product_name', 'product_id', 'order_id', 'order_date']].sort_values(
 
 <!-- h4 for sections -->
 #### Implementation
-​​
+
 ```python
 import pandas as pd
-​
+
 def most_recent_orders(customers: pd.DataFrame, orders: pd.DataFrame, products: pd.DataFrame) -> pd.DataFrame:
 
     df = orders.merge(products, on='product_id').reset_index()
@@ -121,7 +121,7 @@ def most_recent_orders(customers: pd.DataFrame, orders: pd.DataFrame, products: 
 
 ---
 
-​
+
 ## Database
 
 Similar to the question [1890](https://leetcode.com/problems/the-latest-login-in-2020/editorial/), there are two main methods to get the maximum or most recent records: using aggregate function `MAX()` or window function `RANK()`/$\text{DENSE}_{RANK}()$/$\text{FIRST}_{VALUE}()$/$\text{ROW}_{NUMBER}()$ to sort the values in a column so that the wanted result will have the highest rank.
@@ -243,6 +243,6 @@ ORDER BY p.product_name,
     o.order_id
 ```
 ----
-​
+
 <!-- an empty line to separate approaches -->
 <br>

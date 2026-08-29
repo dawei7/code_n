@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `nums[0] XOR nums[1] XOR ...... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ can be viewed as `xs XOR k`, where `xs` is the XOR of every value still present.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Mask expression:** With `mask = (1 << maximumB:** - **Mask expression:** With `mask = (1 << maximumBit) - 1`, the same answer is `xs ^ mask`. It computes the width-limited complement in constant arithmetic work per query and makes the total time `O(n)` without relying on the bound of 20.
+- **Mask expression:** With `mask = (1 << maximumBit) - 1`, the same answer is `xs ^ mask`. It computes the width-limited complement in constant arithmetic work per query and makes the total time `O(n)` without relying on the bound of 20.
 - **Prefix XOR array:** Precomputing every prefix XOR lets queries read aggregates in reverse order, but it uses another `O(n)` array when one rolling XOR is enough.
 - **Recompute XOR for every shortened array:** This direct simulation takes `O(n^2)` time because almost the same prefix is scanned repeatedly.
 - **Direct bitwise NOT:** In Python, `~xs` represents an unbounded signed complement and becomes negative. It must be masked to the lowest `maximumBit` bits before it can be a legal `k`.
@@ -98,8 +98,8 @@ can be viewed as `xs XOR k`, where `xs` is the XOR of every value still present.
 - **Sortedness:** The implementation does not use ascending order; correctness depends only on the specified last-to-first removal order.
 - **Reversed-slice memory:** `nums[::-1]` is convenient but allocates a copy. `reversed(nums)` would preserve behavior with constant auxiliary traversal space.
 - **Legal width:** Every set bit of `k` comes from an index below `maximumBit`, so `0 <= k < 2^maximumBit` always holds.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

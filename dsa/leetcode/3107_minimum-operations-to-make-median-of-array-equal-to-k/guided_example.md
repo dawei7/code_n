@@ -51,7 +51,7 @@ After sorting, making the median equal to `k` is an order-statistics requirement
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | After sorting, making the median equal to `k` is an order-st... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ After sorting, making the median equal to `k` is an order-statistics requirement
 
 ## 6. Traps This Instance Exposes
 
-- **- **Selection instead of full sorting:** Find the :** - **Selection instead of full sorting:** Find the upper median with a linear-time selection algorithm, then partition and sum required deviations. It can reduce expected time but is more complex.
+- **Selection instead of full sorting:** Find the upper median with a linear-time selection algorithm, then partition and sum required deviations. It can reduce expected time but is more complex.
 - **Sort and scan all values:** Sum every relevant excess using index conditions without early breaks. It remains $O(n)$ after sorting but does extra constant work.
 - **Odd length:** `n // 2` is the unique middle.
 - **Even length:** `n // 2` selects the larger of the two central sorted values as required.
@@ -101,8 +101,8 @@ After sorting, making the median equal to `k` is an order-statistics requirement
 - **One-element array:** The answer is simply the absolute difference from `k`.
 - **Large total:** Use a wide integer outside Python.
 - **Why not change an opposite-side value:** It cannot repair the rank condition more cheaply than moving a violating value directly to `k`.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

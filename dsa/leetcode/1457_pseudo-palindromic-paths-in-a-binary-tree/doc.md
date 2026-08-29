@@ -31,7 +31,7 @@ even when their paths contain the same values.
 **Inputs**
 
 - `root`: the root of a binary tree containing $n$ nodes, where
-  $1 \le n \le 10^5$ and every `Node.val` lies in $[1,9]$.
+  $1 \le n \le 10^5$ and every `Node.val` lies in `[1,9]`.
 
 Let $h$ denote the tree height, measured as the maximum number of nodes on a
 root-to-leaf path.

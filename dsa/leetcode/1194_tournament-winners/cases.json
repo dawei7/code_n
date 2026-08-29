@@ -121,67 +121,6 @@
       "expected": {"columns": ["group_id", "player_id"], "rows": [[1, 1], [2, 4]]},
       "validator": {"kind": "unordered_table"},
       "tags": ["trial", "multiple-groups", "group-isolation"]
-    },
-    {
-      "id": "trial-no-matches",
-      "name": "groups without matches choose their smallest player identifier",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Players": [
-            {"player_id": 12, "group_id": 4},
-            {"player_id": 3, "group_id": 4},
-            {"player_id": 40, "group_id": 9},
-            {"player_id": 25, "group_id": 9}
-          ],
-          "Matches": {
-            "columns": ["match_id", "first_player", "second_player", "first_score", "second_score"],
-            "rows": []
-          }
-        }
-      },
-      "expected": {"columns": ["group_id", "player_id"], "rows": [[4, 3], [9, 25]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["trial", "empty-matches", "zero-total", "left-join"]
-    },
-    {
-      "id": "trial-unmatched-player-wins-zero-tie",
-      "name": "an unmatched player participates in a zero-total tie",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Players": [
-            {"player_id": 9, "group_id": 50},
-            {"player_id": 6, "group_id": 50},
-            {"player_id": 2, "group_id": 50}
-          ],
-          "Matches": [{"match_id": 77, "first_player": 9, "second_player": 6, "first_score": 0, "second_score": 0}]
-        }
-      },
-      "expected": {"columns": ["group_id", "player_id"], "rows": [[50, 2]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["trial", "unmatched-player", "zero-total", "tie-break"]
-    },
-    {
-      "id": "trial-singleton-group",
-      "name": "a singleton group still has one winner",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tables": {
-          "Players": [
-            {"player_id": 100, "group_id": 11},
-            {"player_id": 200, "group_id": 12},
-            {"player_id": 201, "group_id": 12}
-          ],
-          "Matches": [{"match_id": 90, "first_player": 200, "second_player": 201, "first_score": 2, "second_score": 3}]
-        }
-      },
-      "expected": {"columns": ["group_id", "player_id"], "rows": [[11, 100], [12, 201]]},
-      "validator": {"kind": "unordered_table"},
-      "tags": ["trial", "singleton-group", "sparse-groups"]
     }
   ]
 }

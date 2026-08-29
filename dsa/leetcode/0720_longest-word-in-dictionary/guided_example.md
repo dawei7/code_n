@@ -57,7 +57,7 @@ After the final character, `node.is_end = true` records that the complete word b
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For each input word, `insert` starts at the root and process... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -99,9 +99,9 @@ The full-word check may seem redundant because every candidate came from `words`
 
 ## 6. Traps This Instance Exposes
 
-- **- **Hash set of words:** Put every word into a set:** - **Hash set of words:** Put every word into a set, then test each candidate’s prefixes with set membership. This is simpler and also efficient, though constructing or slicing every prefix may add character-copying cost in Python. The trie represents prefix boundaries directly.
-- **- **Sort by length and lexicographic order:** Afte:** - **Sort by length and lexicographic order:** After sorting, maintain a set of buildable words and accept a word when its immediate prefix without the last character is buildable. If shorter words are processed first, that single-prefix fact is enough by induction. This approach is concise but pays sorting cost and depends on careful ordering.
-- **- **Trie depth-first traversal:** One can traverse:** - **Trie depth-first traversal:** One can traverse only through child nodes whose `is_end` flag is true and track the deepest reachable word. Visiting children in alphabetical order can handle the tie rule. The exact solution instead searches the original words, which keeps result construction simple.
+- **Hash set of words:** Put every word into a set, then test each candidate’s prefixes with set membership. This is simpler and also efficient, though constructing or slicing every prefix may add character-copying cost in Python. The trie represents prefix boundaries directly.
+- **Sort by length and lexicographic order:** After sorting, maintain a set of buildable words and accept a word when its immediate prefix without the last character is buildable. If shorter words are processed first, that single-prefix fact is enough by induction. This approach is concise but pays sorting cost and depends on careful ordering.
+- **Trie depth-first traversal:** One can traverse only through child nodes whose `is_end` flag is true and track the deepest reachable word. Visiting children in alphabetical order can handle the tie rule. The exact solution instead searches the original words, which keeps result construction simple.
 
 ---
 

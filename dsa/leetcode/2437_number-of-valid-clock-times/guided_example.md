@@ -65,7 +65,7 @@ The colon is inserted at position 2 for every candidate. The input is guaranteed
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The nested comprehension loops over `h in range(24)` and `m ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Python's `all` returns true only if every one of the five positions is compatibl
 
 ## 6. Traps This Instance Exposes
 
-- **- **Count hour and minute choices independently:**:** - **Count hour and minute choices independently:** Derive the number of valid completions for positions 0–1 and 3–4, then multiply. This is also $O(1)$ and matches the manifest summary, but requires careful conditional cases for an hour beginning with 2.
+- **Count hour and minute choices independently:** Derive the number of valid completions for positions 0–1 and 3–4, then multiply. This is also $O(1)$ and matches the manifest summary, but requires careful conditional cases for an hour beginning with 2.
 - **Enumerate question-mark replacements:** Try all $10^q$ assignments for $q$ unknown digits and validate the result. With at most four unknowns it is bounded, but it explores invalid hours and minutes unnecessarily.
 - **No question marks:** Exactly one generated time matches the fully specified valid input, so the answer is 1.
 - **All question marks:** Every one of the 1,440 generated candidates matches.
@@ -117,8 +117,8 @@ Python's `all` returns true only if every one of the five positions is compatibl
 - **Colon position:** It is compared like any other fixed character and always agrees for a contract-valid pattern.
 - **Impossible pattern outside the stated guarantee:** No generated candidate would pass, and the method would return zero without special handling.
 - **Metadata wording:** The exact code enumerates all valid times rather than multiplying separately counted hour and minute completions.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -67,7 +67,7 @@ For August 16, the prefix sums January through July, then adds sixteen. Comparin
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The month-length tuple lists the twelve non-leap-year month ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ returns zero instead of a negative day count.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Convert all four dates first:** Then compute m:** - **Convert all four dates first:** Then compute max ordinal arrivals and min ordinal departures. It is equally correct but performs two extra conversions.
+- **Convert all four dates first:** Then compute max ordinal arrivals and min ordinal departures. It is equally correct but performs two extra conversions.
 - **Precomputed month-prefix array:** Store cumulative days before each month and convert with one lookup. Useful for many queries but unnecessary for one call.
 - **Simulate every calendar day:** It works over one year but is more complex than interval arithmetic.
 - **Same one shared day:** Inclusive plus one returns one.
@@ -124,8 +124,8 @@ returns zero instead of a negative day count.
 - **February:** It has 28 days because the year is explicitly non-leap.
 - **Fixed-width requirement:** Lexicographic date comparison depends on leading zeros.
 - **Same-year requirement:** Without a year field, cross-year chronology could not be inferred.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

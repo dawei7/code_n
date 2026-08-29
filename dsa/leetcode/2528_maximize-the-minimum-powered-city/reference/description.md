@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a **0-indexed** integer array `stations` of length `n`, where $\text{stations}[i]$ represents the number of power stations in the $$i^{\text{th}}$$ city.
+You are given a **0-indexed** integer array `stations` of length `n`, where $\text{stations}[i]$ represents the number of power stations in the $i^{\text{th}}$ city.
 
 Each power station can provide power to every city in a fixed **range**. In other words, if the range is denoted by `r`, then a power station at city `i` can provide power to all cities `j` such that $|i - j| \le r$ and $0 \le i, j \le n - 1$.
 

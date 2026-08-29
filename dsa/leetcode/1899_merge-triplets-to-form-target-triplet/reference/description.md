@@ -1,6 +1,6 @@
 ### 1. Description
 
-A **triplet** is an array of three integers. You are given a 2D integer array `triplets`, where $\text{triplets}[i] = [a_{i}, b_{i}, c_{i}]$ describes the $$i^{\text{th}}$$ **triplet**. You are also given an integer array $target = [x, y, z]$ that describes the **triplet** you want to obtain.
+A **triplet** is an array of three integers. You are given a 2D integer array `triplets`, where $\text{triplets}[i] = [a_{i}, b_{i}, c_{i}]$ describes the $i^{\text{th}}$ **triplet**. You are also given an integer array $target = [x, y, z]$ that describes the **triplet** you want to obtain.
 
 To obtain `target`, you may apply the following operation on `triplets` **any number** of times (possibly **zero**):
 

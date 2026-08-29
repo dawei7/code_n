@@ -61,7 +61,7 @@ For example, six available `a` characters and a requirement of two `a` character
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If target needs `v` copies of character `c` and the source p... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ Every target copy needs every required character simultaneously. If one characte
 
 ## 6. Traps This Instance Exposes
 
-- **- **Repeatedly remove one target:** It simulates c:** - **Repeatedly remove one target:** It simulates construction and can redo scans; frequency quotients obtain the answer directly.
+- **Repeatedly remove one target:** It simulates construction and can redo scans; frequency quotients obtain the answer directly.
 - **Sort both strings:** Sorting loses no multiplicity information but costs extra `O(S\log S+T\log T)` time.
 - **Use sets:** Sets discard repeated-letter requirements and are incorrect for targets such as `"aaaaa"`.
 - **Binary search the number of copies:** Feasibility checks are easy, but the minimum quotient already gives the exact boundary.
@@ -121,8 +121,8 @@ Every target copy needs every required character simultaneously. If one characte
 - **No letter reuse:** Multiplying each per-copy requirement by the proposed number explicitly accounts for distinct source occurrences.
 - **Maximum source length:** Counts are small here, but the same quotient proof applies without changing the algorithm.
 - **Returned value only:** The method deliberately does not construct the target copies or report leftover characters.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

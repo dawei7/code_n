@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the $$i^{\text{th}}$$ line are `(i, 0)` and $(i, \text{height}[i])$.
+You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the $i^{\text{th}}$ line are `(i, 0)` and $(i, \text{height}[i])$.
 
 The objective is to compute `49` from `{"height": [1, 8, 6, 2, 5, 4, 8, 3, 7]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -73,11 +73,7 @@ Recording the current area first is essential because the elimination argument u
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The method places
-
-
-
-at the two outermost lines.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -138,7 +134,7 @@ Moving `r` instead would reduce the width while keeping `height[l]` as the limit
 
 ## 6. Traps This Instance Exposes
 
-- **- **Brute-force all pairs:** Evaluate the exact ar:** - **Brute-force all pairs:** Evaluate the exact area for every $l < r$. This uses constant auxiliary space but $O(n^2)$ time, which is too slow for up to $10^5$ lines.
+- **Brute-force all pairs:** Evaluate the exact area for every $l < r$. This uses constant auxiliary space but $O(n^2)$ time, which is too slow for up to $10^5$ lines.
 - **Sort lines by height:** Height alone is insufficient because width is equally important. Sorting also destroys direct positional relationships unless indices are carried and does not simplify the maximum-product tradeoff as cleanly as two pointers.
 - **Move the taller pointer:** With the shorter height unchanged and width reduced, no immediate or future pair retaining the shorter endpoint can improve. This move lacks the safe-elimination proof.
 - **Move both pointers on unequal heights:** This can skip a tall line that should pair with the retained taller endpoint. Only the known limiting side is safe to discard.
@@ -150,8 +146,8 @@ Moving `r` instead would reduce the width while keeping `height[l]` as the limit
 - **Strictly decreasing heights:** The right endpoint is symmetrically discarded.
 - **No slanting:** The formula intentionally uses the shorter vertical height; averaging heights or using the taller height would describe a different, invalid geometry.
 - **Input preservation:** Only indices move. The height array is never sorted or modified.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

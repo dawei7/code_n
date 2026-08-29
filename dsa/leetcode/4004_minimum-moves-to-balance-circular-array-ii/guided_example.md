@@ -51,7 +51,7 @@ If `sum(balance) < 0`, the circle has more total deficit than total supply. No s
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `sum(balance) < 0`, the circle has more total deficit tha... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If the total is non-negative, the positive entries contain at least enough units
 
 ## 6. Traps This Instance Exposes
 
-- **- **Greedily use the nearest surplus:** Local near:** - **Greedily use the nearest surplus:** Local nearest choices can consume supply needed more efficiently elsewhere. Residual min-cost flow supports global reassignment.
+- **Greedily use the nearest surplus:** Local nearest choices can consume supply needed more efficiently elsewhere. Residual min-cost flow supports global reassignment.
 - **Expand every unit into a graph node:** This makes the graph depend on balance magnitudes. Capacities represent many identical units compactly.
 - **Dijkstra without potentials:** Negative reverse-edge costs appear after augmentation, so ordinary Dijkstra is not valid on the residual graph.
 - **Heap Dijkstra with reduced-cost potentials:** This is a standard faster min-cost-flow implementation and resembles the manifest summary, but it is not the algorithm in the exact source.
@@ -102,8 +102,8 @@ If the total is non-negative, the positive entries contain at least enough units
 - **Disconnected-path check:** With sufficient total supply and the fully connected circle, a path should exist until every deficit is filled. The final conditional still returns `-1` if the requested flow was not achieved.
 - **Missing dependencies:** Actual execution requires `List`, `inf`, and `deque` to be defined or imported.
 - **Manifest complexity:** `O(n^2 \log n)` should not be attributed to this exact SPFA implementation; its worst-case analysis must include `F` and SPFA's `O(VE)` behavior.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

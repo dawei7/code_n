@@ -80,9 +80,7 @@ This is not a general conversion that should be applied blindly to every printab
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For an uppercase character `c`, the expression:
-
-`ord(c) | 3... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -125,9 +123,9 @@ For lowercase ASCII letters, OR with 32 would happen to leave the code unchanged
 
 ## 6. Traps This Instance Exposes
 
-- **- **Built-in `s.lower()`:** It is concise and corr:** - **Built-in `s.lower()`:** It is concise and correct for the input, but using the ASCII relationship demonstrates the requested conversion mechanics.
-- **- **Add 32 arithmetically:** `chr(ord(c) + 32)` wo:** - **Add 32 arithmetically:** `chr(ord(c) + 32)` works for guarded ASCII uppercase letters. Bitwise OR makes the specific differing bit explicit.
-- **- **Dictionary mapping:** Map every uppercase lett:** - **Dictionary mapping:** Map every uppercase letter to its lowercase partner. It remains linear but stores a fixed mapping.
+- **Built-in `s.lower()`:** It is concise and correct for the input, but using the ASCII relationship demonstrates the requested conversion mechanics.
+- **Add 32 arithmetically:** `chr(ord(c) + 32)` works for guarded ASCII uppercase letters. Bitwise OR makes the specific differing bit explicit.
+- **Dictionary mapping:** Map every uppercase letter to its lowercase partner. It remains linear but stores a fixed mapping.
 
 ---
 

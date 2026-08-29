@@ -66,7 +66,7 @@ This seed allows a valid subarray beginning at index zero to be measured. If the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Before reading any element, XOR and balance are both zero at... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -109,7 +109,7 @@ As a small trace, begin from `(0,0)` at boundary `-1`. Reading odd value three c
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all subarrays:** Incremental XOR and:** - **Enumerate all subarrays:** Incremental XOR and counts still require $O(n^2)$ endpoint pairs. Prefix-state hashing reduces this to linear expected time.
+- **Enumerate all subarrays:** Incremental XOR and counts still require $O(n^2)$ endpoint pairs. Prefix-state hashing reduces this to linear expected time.
 - **Store latest state indices:** This finds valid ranges but can miss the longest one. Earliest indices maximize length.
 - **Track even count and odd count separately:** Only their difference matters for equality, so one signed balance is sufficient.
 - **Use element sum parity:** Equal numbers of even and odd elements is not determined by numeric sum parity.
@@ -122,8 +122,8 @@ As a small trace, begin from `(0,0)` at boundary `-1`. Reading odd value three c
 - **Duplicate values:** XOR and parity updates operate per position, so every occurrence is accounted for.
 - **State repeats many times:** The first occurrence stays stored, while every later repeat tests a potentially longer endpoint.
 - **Even and odd counts both zero:** Only the empty interval has this property before scanning; nonempty valid intervals contain at least one of each parity.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

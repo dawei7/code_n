@@ -72,7 +72,7 @@ The table includes entries for substrings shorter than `k` even though they can 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `dp[i][j]` means whether `s[i:j+1]` is a palindrome.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +115,7 @@ Taking the maximum over skip and every valid endpoint gives the optimal suffix r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Earliest-ending greedy:** Scan for the next pa:** - **Earliest-ending greedy:** Scan for the next palindrome and commit the earliest possible end; a proof shows only lengths `k` and `k+1` need checking. This matches the manifest and uses much less space.
+- **Earliest-ending greedy:** Scan for the next palindrome and commit the earliest possible end; a proof shows only lengths `k` and `k+1` need checking. This matches the manifest and uses much less space.
 - **Bottom-up interval DP:** Keep the full palindrome table but compute suffix answers iteratively, avoiding recursion depth.
 - **Expand around centers:** Generate palindromic intervals without a full table, then perform interval scheduling. Care is needed to preserve efficient endpoint selection.
 - **$k=1$:** Every character is a palindrome, so selecting all $n$ singletons is optimal.
@@ -125,8 +125,8 @@ Taking the maximum over skip and every valid endpoint gives the optimal suffix r
 - **Two-character palindrome:** The initialized empty-interior table entry makes equal endpoints valid.
 - **Cache clearing:** It releases state after the answer and does not affect correctness.
 - **Metadata mismatch:** The source is quadratic table plus suffix DP, not constant-space greedy checking two lengths.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

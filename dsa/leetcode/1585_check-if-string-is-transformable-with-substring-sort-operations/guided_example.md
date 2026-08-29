@@ -61,7 +61,7 @@ Using deques makes removing an accepted earliest occurrence efficient: `popleft(
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution builds `pos`, a dictionary from each digit to a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If no smaller digit blocks `x`, the target character is feasible. `pos[x].poplef
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate arbitrary substring sorts:** Searchin:** - **Simulate arbitrary substring sorts:** Searching operation sequences has an enormous state space and hides the simple invariant about which digits can cross. Position queues decide reachability without constructing the operations.
+- **Simulate arbitrary substring sorts:** Searching operation sequences has an enormous state space and hides the simple invariant about which digits can cross. Position queues decide reachability without constructing the operations.
 - **Compare only digit frequencies:** Matching frequencies is necessary but not sufficient. Relative blocking by smaller digits can make two anagram strings non-transformable.
 - **Repeatedly find characters with `str.index`:** Searching the source for every target position can become quadratic and still needs careful tracking of consumed occurrences. Deques provide ordered unused indices directly.
 - **Balanced trees of positions:** Ordered sets can retrieve and delete earliest occurrences in $O(\log N)$ time, but per-digit deques are enough because occurrences are always consumed from left to right.
@@ -122,8 +122,8 @@ If no smaller digit blocks `x`, the target character is feasible. `pos[x].poplef
 - **Smaller preceding digits:** They are intentionally rejected because ascending sorting preserves their order before `x`.
 - **Equal-length guarantee:** The source and target have the same number of positions. If lengths were not guaranteed equal, the method should reject unequal lengths before building queues.
 - **Only decimal digits:** Converting with `int(c)` and checking `range(x)` relies on the alphabet being digits zero through nine with their natural numeric order.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

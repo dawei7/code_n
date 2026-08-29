@@ -2,13 +2,13 @@
 
 You are given an integer array `nums` of size `n`. You are asked to solve `n` queries for each integer `i` in the range $0 \le i < n$.
 
-To solve the $$i^{\text{th}}$$ query:
+To solve the $i^{\text{th}}$ query:
 
 - Find the **minimum value** in each possible subarray of size $i + 1$ of the array `nums`.
 
 - Find the **maximum** of those minimum values. This maximum is the **answer** to the query.
 
-Return *a **0-indexed** integer array* `ans` *of size *`n` *such that *$\text{ans}[i]$ *is the answer to the *$$i^{\text{th}}$$ *query*.
+Return *a **0-indexed** integer array* `ans` *of size *`n` *such that *$\text{ans}[i]$ *is the answer to the *$i^{\text{th}}$ *query*.
 
 A **subarray** is a contiguous sequence of elements in an array.
 

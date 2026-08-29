@@ -53,8 +53,7 @@ The task counts index triples, not merely distinct value triples. Two occurrence
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - choose middle index $j$ in the outer loop;
-- enumerate eve... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -89,7 +88,7 @@ The task counts index triples, not merely distinct value triples. Two occurrence
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency-domain case analysis:** Loop over or:** - **Frequency-domain case analysis:** Loop over ordered values $a\le b\le c$ and use combinations for all-distinct, two-equal, and three-equal cases. With values 0 through 100, it reaches $O(n+V^2)$.
+- **Frequency-domain case analysis:** Loop over ordered values $a\le b\le c$ and use combinations for all-distinct, two-equal, and three-equal cases. With values 0 through 100, it reaches $O(n+V^2)$.
 - **Sorted two pointers:** Sort the array and count multiplicities around matching pairs in $O(n^2)$ time, but sorting changes index order and requires careful combination counts.
 - **Triple enumeration:** Directly checking all $i<j<k$ costs $O(n^3)$.
 - **Index loops without slicing:** Replace `arr[:j]` with indexed access to preserve $O(n^2)$ time while reducing temporary space.
@@ -102,8 +101,8 @@ The task counts index triples, not merely distinct value triples. Two occurrence
 - **Index order:** Removing through the middle and reading only the prefix is what enforces $i<j<k$.
 - **Large answer:** Incremental modulo returns the required residue.
 - **Manifest mismatch:** Complexity must reflect the exact nested index enumeration rather than the alternative bounded-value method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

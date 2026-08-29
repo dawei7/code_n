@@ -51,7 +51,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `cnt = Counter(nums2)` maps each value to the number of indi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ We maintain the core conceptual parameters and state variables:
 
 ## 6. Traps This Instance Exposes
 
-- **- **Frequency maps for both arrays:** Iterate the :** - **Frequency maps for both arrays:** Iterate the smaller distinct-key set and multiply both frequencies, which can help when `nums1` has many duplicates.
+- **Frequency maps for both arrays:** Iterate the smaller distinct-key set and multiply both frequencies, which can help when `nums1` has many duplicates.
 - **Scan both arrays for every count:** This costs `O(n1 * n2)` per query and is unnecessary.
 - **Remove zero-count keys:** It preserves the same results while keeping counter size tied to current distinct `nums2` values.
 - **Old and new value equal outside constraints:** Positive `val` means values always increase, so an add always changes the value.
@@ -98,8 +98,8 @@ We maintain the core conceptual parameters and state variables:
 - **Caller-visible mutation:** `nums2` is changed in place because the original reference is retained.
 - **Large totals:** Complement values may be negative or absent; counter lookup still safely returns zero.
 - **Ordered indices:** Pair multiplicity is based on positions, not unique numeric pairs.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

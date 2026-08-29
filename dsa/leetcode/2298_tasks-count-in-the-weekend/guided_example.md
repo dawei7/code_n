@@ -61,11 +61,7 @@ Because the two conditions are complements for every non-null valid date, each t
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For one task row,
-
-`WEEKDAY(submit_date) IN (5, 6)`
-
-evaluat... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +98,7 @@ Each Saturday or Sunday task contributes one regardless of its assignee or task 
 
 ## 6. Traps This Instance Exposes
 
-- **- **CASE expressions:** `SUM(CASE WHEN ... THEN 1 :** - **CASE expressions:** `SUM(CASE WHEN ... THEN 1 ELSE 0 END)` is more portable and has the same meaning as MySQL Boolean summation.
+- **CASE expressions:** `SUM(CASE WHEN ... THEN 1 ELSE 0 END)` is more portable and has the same meaning as MySQL Boolean summation.
 - **DAYOFWEEK:** It uses a different numbering convention, so weekend constants must be adjusted carefully.
 - **Count total minus weekend:** Working count can be `COUNT(*)-weekend_cnt`, but the exact query states both classifications independently.
 - **Group by weekday:** It would produce up to seven rows and require another pivot or aggregation to reach the requested two columns.
@@ -119,8 +115,8 @@ Each Saturday or Sunday task contributes one regardless of its assignee or task 
 - **Boolean arithmetic:** This compact syntax is MySQL-specific behavior; databases without numeric Booleans should use `CASE`.
 - **No double counting:** `IN` and `NOT IN` are complementary for non-null weekday values, so the two totals sum to the task-row count.
 - **Date rather than timestamp:** The schema's date type avoids timezone-dependent day changes during classification.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

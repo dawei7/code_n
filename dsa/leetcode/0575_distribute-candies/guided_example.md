@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Alice has `n` candies, where the $$i^{\text{th}}$$ candy is of type $\text{candyType}[i]$. Alice noticed that she started to gain weight, so she visited a doctor.
+Alice has `n` candies, where the $i^{\text{th}}$ candy is of type $\text{candyType}[i]$. Alice noticed that she started to gain weight, so she visited a doctor.
 
 The objective is to compute `3` from `{"candyType": [1, 1, 2, 2, 3, 3]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,11 +67,7 @@ Finally, `min` returns the tighter of the capacity limit and the availability li
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The solution is one expression:
-
-
-
-`set(candyType)` inserts ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ Negative type labels cause no complication. Values such as `-7` are ordinary has
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sort and count adjacent changes:** Sorting mak:** - **Sort and count adjacent changes:** Sorting makes equal types consecutive, so one scan can count distinct runs. It needs $O(n \log n)$ time and may modify the input; its extra memory depends on the language’s sorting implementation.
+- **Sort and count adjacent changes:** Sorting makes equal types consecutive, so one scan can count distinct runs. It needs $O(n \log n)$ time and may modify the input; its extra memory depends on the language’s sorting implementation.
 - **Boolean presence array:** Because the constraints bound type values, an offset-indexed boolean array could mark seen types. It can run in $O(n+R)$ initialization time and $O(R)$ space for value range $R$, but a hash set is simpler and stores only types that occur.
 - **Manual hash-set loop with early stopping:** Insert values until the set reaches $n/2$ types, then return immediately. This can save work on favorable inputs, though its worst-case time and space remain $O(n)$.
 - **Frequency map:** A dictionary of type-to-count also reveals how many types exist, but the counts are unnecessary. A set records exactly the information the answer needs.
@@ -123,8 +119,8 @@ Negative type labels cause no complication. Values such as `-7` are ordinary has
 - **Smallest valid input:** With $n=2$, Alice eats one candy, so the answer is always one. The bit shift correctly produces one.
 - **Even-length guarantee:** The exact code would compute floor division for an odd length. The problem promises even $n$, so no policy for a fractional half is needed.
 - **Bit-shift readability:** `n >> 1` is correct for this nonnegative length, but `n // 2` is often clearer when explaining the domain rule. This is a readability distinction, not an algorithmic one.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

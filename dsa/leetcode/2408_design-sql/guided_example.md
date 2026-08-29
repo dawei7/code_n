@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You are given two string arrays, `names` and `columns`, both of size `n`. The $$i^{\text{th}}$$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
+You are given two string arrays, `names` and `columns`, both of size `n`. The $i^{\text{th}}$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
 
 The objective is to compute `[null, true, "third", true, ["1,first,second,third", "2,fourth,fifth,sixth"], null, "fifth", ["2,fourth,fifth,sixth"]]` from `{"operations": ["SQL", "ins", "sel", "ins", "exp", "rmv", "sel", "exp"], "arguments": [[["one", "two", "three"], [2, 3, 1]], ["two", ["first", "second", "third"]], ["two", 1, 3], ["two", ["fourth", "fifth", "sixth"]], ["two"], ["two", 1], ["two", 2, 2], ["two"]]}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -65,11 +65,7 @@ It performs no validation of table name or row length. It also stores the caller
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `insertRow(name, row)` appends the row to the list:
-
-
-
-List ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -112,7 +108,7 @@ Python negative indexing introduces another discrepancy: `rowId = 0` or `columnI
 
 ## 6. Traps This Instance Exposes
 
-- **- **Sparse ID-to-row dictionaries:** Store only su:** - **Sparse ID-to-row dictionaries:** Store only surviving rows plus a monotone next-ID counter. This is the appropriate full-contract design when many deletions create holes.
+- **Sparse ID-to-row dictionaries:** Store only surviving rows plus a monotone next-ID counter. This is the appropriate full-contract design when many deletions create holes.
 - **List with tombstones:** Keep row IDs as stable indices and replace deleted rows with `null`. Lookup is simple, but memory remains proportional to the largest assigned ID.
 - **Unknown table insertion:** The exact defaultdict silently creates it, contrary to required validation.
 - **Wrong row width:** The exact method appends it because constructor column counts are ignored.
@@ -122,8 +118,8 @@ Python negative indexing introduces another discrepancy: `rowId = 0` or `columnI
 - **Export:** It is absent from the source and would require CSV formatting plus stable surviving-row order.
 - **Caller mutates a row list:** The exact implementation stores the same object; copying on insert would isolate database state.
 - **Artifact status:** The exact code supports only a narrow valid append/select subset and does not satisfy the complete local reference contract.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

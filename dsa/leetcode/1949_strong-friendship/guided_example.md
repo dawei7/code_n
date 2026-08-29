@@ -55,7 +55,7 @@ Although `t` contains both orientations, the predicate `t1.user1_id < t1.user2_i
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Alias `t1` is the friendship being evaluated.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -96,7 +96,7 @@ Grouping by the candidate endpoints and computing `COUNT(1)` gives the number of
 
 ## 6. Traps This Instance Exposes
 
-- **- **Normalize with a separate adjacency table:** M:** - **Normalize with a separate adjacency table:** Materialize both directions once and index by user. This can simplify repeated graph queries but is unnecessary for a single statement.
+- **Normalize with a separate adjacency table:** Materialize both directions once and index by user. This can simplify repeated graph queries but is unnecessary for a single statement.
 - **Correlated common-neighbor count:** Count intersection per friendship with subqueries. It is readable but may repeat neighbor scans.
 - **Omit symmetrization:** Then friendships stored with a user in the second column would be missed when looking up that user's neighbors.
 - **Use `UNION` instead of `UNION ALL`:** Duplicate elimination is unnecessary because the schema and endpoint order already make the two directed sets disjoint.
@@ -108,8 +108,8 @@ Grouping by the candidate endpoints and computing `COUNT(1)` gives the number of
 - **Only actual friendships:** Driving the query from `t1` prevents reporting nonfriends who happen to share neighbors.
 - **Candidate endpoints:** Neither endpoint is counted as a common friend because the directed adjacency CTE contains no self-edges.
 - **Any output order:** No `ORDER BY` is required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

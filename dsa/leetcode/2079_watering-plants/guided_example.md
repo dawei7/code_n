@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-You want to water `n` plants in your garden with a watering can. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$ plant is located at $x = i$. There is a river at $x = -1$ that you can refill your watering can at.
+You want to water `n` plants in your garden with a watering can. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $i^{\text{th}}$ plant is located at $x = i$. There is a river at $x = -1$ that you can refill your watering can at.
 
 The objective is to compute `14` from `{"plants": [2, 2, 3, 3], "capacity": 5}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -67,7 +67,7 @@ If a next plant exists, its own iteration will observe the zero remainder, find 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `water >= p`, the current supply can completely water pla... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -126,7 +126,7 @@ The input guarantees `p <= capacity` for every plant, so a full refill is always
 
 ## 6. Traps This Instance Exposes
 
-- **- **Step-by-step movement simulation:** Moving a c:** - **Step-by-step movement simulation:** Moving a coordinate one unit at a time would reproduce the story but spend work proportional to the potentially large answer. The formula `2 * i + 1` compresses each forced refill trip into constant time.
+- **Step-by-step movement simulation:** Moving a coordinate one unit at a time would reproduce the story but spend work proportional to the potentially large answer. The formula `2 * i + 1` compresses each forced refill trip into constant time.
 - **Refilling whenever the can is not full:** This violates the rule forbidding early refills and can change the total route. A refill occurs only when the remaining water cannot completely satisfy the current next plant.
 - **Prefix-sum grouping:** One can divide plants into maximal segments watered by each full can using cumulative sums. The direct state loop is simpler and already linear.
 - **Exact equality:** If `water == p`, water the plant immediately without refilling. The `>=` condition correctly leaves zero afterward.
@@ -138,8 +138,8 @@ The input guarantees `p <= capacity` for every plant, so a full refill is always
 - **Large capacity:** If the can covers all demands, every plant costs one forward step and the answer is $n$.
 - **Capacity guarantee:** Because every `plants[i] <= capacity`, one refill always suffices. Without this guarantee, the branch would need to handle an impossible-to-water plant.
 - **No array mutation:** The source records only the remaining total in `water`; plant demands remain intact throughout the traversal.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

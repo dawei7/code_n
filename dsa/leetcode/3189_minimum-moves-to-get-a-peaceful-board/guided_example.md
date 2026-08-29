@@ -51,7 +51,7 @@ moves, and a monotone route using exactly that many vertical and horizontal step
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | moves, and a monotone route using exactly that many vertical... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ A peaceful $n\times n$ board with exactly $n$ rooks has exactly one rook in ever
 
 ## 6. Traps This Instance Exposes
 
-- **- **Counting rows and columns:** Count how many ro:** - **Counting rows and columns:** Count how many rooks occupy each row and column, then sweep the imbalance. If a prefix has $b$ excess rooks, exactly $\lvert b\rvert$ rooks must cross the next boundary; summing these absolute imbalances gives the minimum. This runs in $O(n)$ time and $O(n)$ space and is asymptotically faster than the exact sorting implementation.
+- **Counting rows and columns:** Count how many rooks occupy each row and column, then sweep the imbalance. If a prefix has $b$ excess rooks, exactly $\lvert b\rvert$ rooks must cross the next boundary; summing these absolute imbalances gives the minimum. This runs in $O(n)$ time and $O(n)$ space and is asymptotically faster than the exact sorting implementation.
 - **Minimum-cost bipartite matching:** One could build assignment costs from rooks to complete destination cells and run a general matching algorithm. That obscures the separable one-dimensional structure and is dramatically more expensive.
 - **Greedily move a rook to the nearest currently empty row and column:** Without sorted global matching, local tie choices can cross and increase later travel. The exchange argument is what justifies the rank-based assignment.
 - **Duplicate rows:** Sorting places all equal row coordinates together and assigns them distinct target rows. No special duplicate handling is needed.
@@ -98,8 +98,8 @@ A peaceful $n\times n$ board with exactly $n$ rooks has exactly one rook in ever
 - **No initial duplicate cells:** This input guarantee is important for legal starting state and collision-free scheduling. Duplicate rows or columns are allowed; only the complete coordinate pair must be unique.
 - **Input mutation:** The first lexicographic sort and second column-key sort both reorder `rooks`. Callers that need its original order must pass a copy.
 - **Integer size:** The maximum total is safely small for the stated $n\le500$, and Python integer arithmetic would remain exact even without that small bound.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -51,7 +51,7 @@ Instead of considering four independent boundaries, the algorithm considers each
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Instead of considering four independent boundaries, the algo... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Instead of considering four independent boundaries, the algorithm considers each
 
 ## 6. Traps This Instance Exposes
 
-- **- **One rolling prefix row:** Keep previous and cu:** - **One rolling prefix row:** Keep previous and current rows for both channels, reducing space to $O(C)$ while preserving $O(RC)$ time.
+- **One rolling prefix row:** Keep previous and current rows for both channels, reducing space to $O(C)$ while preserving $O(RC)$ time.
 - **Column accumulators plus horizontal totals:** Update per-column X/Y counts as each new row arrives and scan their prefix across columns. This also achieves the manifest's $O(C)$ space.
 - **Balance plus X-presence:** Store X as $+1$, Y as $-1$, dot as zero, along with either an X count or Boolean presence. Balance zero plus presence is equivalent to two counts.
 - **Rescan every anchored rectangle:** There are $RC$ corners and each rectangle may contain $RC$ cells, leading to much worse time.
@@ -99,8 +99,8 @@ Instead of considering four independent boundaries, the algorithm considers each
 - **Padding row and column:** They remove boundary condition branches from the recurrence.
 - **Input preservation:** Only the separate prefix table is written.
 - **Manifest mismatch:** Attribute $O(C)$ space only to a compressed alternative; the exact artifact is $O(RC)$ space.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

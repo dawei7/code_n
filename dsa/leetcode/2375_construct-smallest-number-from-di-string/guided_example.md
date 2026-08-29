@@ -57,7 +57,7 @@ The first complete candidate satisfying the pattern is therefore the lexicograph
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `t` is a list of digit characters forming the current prefix... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -100,7 +100,7 @@ Checking the constraint immediately prunes invalid prefixes. No extension can re
 
 ## 6. Traps This Instance Exposes
 
-- **- **Reverse consecutive `D` runs:** Start with dig:** - **Reverse consecutive `D` runs:** Start with digits `1` through `n+1` and reverse the positions covered by each maximal decreasing run. This constructs the smallest answer in $O(n)$ time.
+- **Reverse consecutive `D` runs:** Start with digits `1` through `n+1` and reverse the positions covered by each maximal decreasing run. This constructs the smallest answer in $O(n)$ time.
 - **Stack-based greedy:** Push successive digits and flush the stack at each `I` or at the end. Popping reverses precisely the required decreasing segments.
 - **Try all permutations then filter:** It is correct but misses the safe prefix pruning used by the exact DFS and performs much more work.
 - **All `I` symbols:** The first path chooses `1, 2, ..., n+1` and succeeds without backtracking.
@@ -110,8 +110,8 @@ Checking the constraint immediately prunes invalid prefixes. No extension can re
 - **Maximum pattern length eight:** Exactly nine distinct digits are required, consuming the full allowed set.
 - **First position:** With `u = 0` there is no prior digit or pattern relation, so every unused digit is structurally eligible.
 - **Successful early exit:** `ans` stops all lexicographically larger branches after the first valid complete string is found.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

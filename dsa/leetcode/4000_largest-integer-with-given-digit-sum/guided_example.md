@@ -51,7 +51,7 @@ If `s > 9n`, no arrangement of at most `n` digits can supply enough digit sum, a
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `s > 9n`, no arrangement of at most `n` digits can supply... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ If `s <= 9n`, a solution always exists. The required sum can be distributed acro
 
 ## 6. Traps This Instance Exposes
 
-- **- **Enumerate all numbers with at most `n` digits::** - **Enumerate all numbers with at most `n` digits:** This examines up to `10^n` candidates. The place-value exchange argument identifies the unique largest digit arrangement directly.
+- **Enumerate all numbers with at most `n` digits:** This examines up to `10^n` candidates. The place-value exchange argument identifies the unique largest digit arrangement directly.
 - **Dynamic programming over positions and remaining sum:** A DP can establish feasibility, but feasibility has the simple condition `s <= 9n`, and the lexicographically largest digits follow greedily.
 - **Build a digit string:** Appending characters and converting at the end is also `O(n)` time but uses `O(n)` temporary space. The exact source accumulates the integer in constant auxiliary space.
 - **Requested sum zero:** The answer is `0` for every legal `n`. Leading or trailing zero representations do not create a different integer.
@@ -98,8 +98,8 @@ If `s <= 9n`, a solution always exists. The required sum can be distributed acro
 - **No leading-zero problem:** When `s > 0`, `min(s, 9)` is positive at the first iteration. When `s = 0`, the valid integer is the single value zero.
 - **Trailing zeros after exhaustion:** The loop must continue after `s` becomes zero. Stopping early would return a smaller integer such as `9` instead of `90`.
 - **Input parameter mutation:** Only the local binding `s` is reduced. The method has no mutable input collection and no external side effect.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

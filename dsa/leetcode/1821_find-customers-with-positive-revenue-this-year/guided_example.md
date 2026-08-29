@@ -63,9 +63,7 @@ Rows from every other year are rejected regardless of revenue. A customer with p
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first condition is `year = '2021'`.
-
-Column `year` has i... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +106,7 @@ The source explicitly notes that revenue may be negative, so testing only that r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Unquoted numeric literal:** `year = 2021` avoi:** - **Unquoted numeric literal:** `year = 2021` avoids relying on MySQL string-to-integer coercion.
+- **Unquoted numeric literal:** `year = 2021` avoids relying on MySQL string-to-integer coercion.
 - **`BETWEEN 1 AND ...` for revenue:** It is unnecessary; `> 0` directly states strict positivity.
 - **Aggregate by customer:** It could accidentally mix years and is unnecessary because each customer-year row is unique.
 - **`DISTINCT customer_id`:** It is redundant after filtering one year under the composite primary key.
@@ -122,8 +120,8 @@ The source explicitly notes that revenue may be negative, so testing only that r
 - **Any result order:** No sorting is required.
 - **Projection:** Only `customer_id` is returned, exactly matching the requested table.
 - **Index dependence:** Performance may improve with a year-leading index without changing query semantics.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -79,7 +79,7 @@ when either pairs are not cheaper than two singles or there are at most two elem
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | If `cost2 >= 2 * cost1`, one pair operation costs at least a... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -137,7 +137,7 @@ $$
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every target:** The optimum may lie above :** - **Try every target:** The optimum may lie above the maximum, and scanning an unbounded or large target range is unnecessary. The piecewise-linear analysis reduces it to four candidates.
+- **Try every target:** The optimum may lie above the maximum, and scanning an unbounded or large target range is unnecessary. The piecewise-linear analysis reduces it to four candidates.
 - **Priority queue of deficits:** Repeatedly pair the two largest remaining deficits. It can realize the fixed-target pairing count but would be far slower than the closed formula and still needs target selection.
 - **Use singles only:** This is optimal when `cost2 >= 2 * cost1`, but can be much more expensive when pairs are cheap.
 - **Always target the maximum:** It fails when a dominant minimum deficit forces many singles and a slightly larger target creates enough other deficits for cheap pairing.
@@ -150,8 +150,8 @@ $$
 - **Ceiling boundary:** Both `balance - 1` and `balance` are evaluated because the formula changes regimes at the first balanced integer.
 - **Modulo timing:** Taking each candidate cost modulo before `min` could select a much larger true cost whose residue is small; the exact source correctly minimizes first.
 - **Generated-source note:** The repository solution is marked AI-generated because its upstream source was unavailable. The mathematical derivation above validates the behavior of this exact implementation rather than relying on that provenance note.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

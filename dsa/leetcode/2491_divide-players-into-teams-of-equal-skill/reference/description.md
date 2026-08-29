@@ -1,6 +1,6 @@
 ### 1. Description
 
-You are given a positive integer array `skill` of **even** length `n` where $\text{skill}[i]$ denotes the skill of the $$i^{\text{th}}$$ player. Divide the players into $n / 2$ teams of size `2` such that the total skill of each team is **equal**.
+You are given a positive integer array `skill` of **even** length `n` where $\text{skill}[i]$ denotes the skill of the $i^{\text{th}}$ player. Divide the players into $n / 2$ teams of size `2` such that the total skill of each team is **equal**.
 
 The **chemistry** of a team is equal to the **product** of the skills of the players on that team.
 

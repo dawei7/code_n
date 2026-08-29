@@ -67,11 +67,7 @@ The slice has fixed length three, so allocation and summation are constant work 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For current index `i`:
-
-
-
-The slice contains left neighbor, ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -115,7 +111,7 @@ Another view uses runs of zeros. For each empty run bounded by existing flowers 
 
 ## 6. Traps This Instance Exposes
 
-- **- **In-place boundary checks:** Test current zero :** - **In-place boundary checks:** Test current zero plus `i == 0 or left zero` and `i == m-1 or right zero`. Achieves $O(1)$ auxiliary space but mutates the caller’s array.
+- **In-place boundary checks:** Test current zero plus `i == 0 or left zero` and `i == m-1 or right zero`. Achieves $O(1)$ auxiliary space but mutates the caller’s array.
 - **Previous/next state without mutation:** Track whether the previous plot is occupied and inspect the next input value. Can preserve input with constant extra state if carefully advanced.
 - **Count zero runs mathematically:** Derive capacity for interior and edge runs. Avoids mutation but requires separate formulas for boundary runs.
 - **Early return:** As soon as remaining `n <= 0`, return true. Improves best-case time but not the $O(m)$ worst case.
@@ -129,8 +125,8 @@ Another view uses runs of zeros. For each empty run bounded by existing flowers 
 - **Input preservation:** Because of list concatenation, the original `flowerbed` object remains unchanged.
 - **Fixed-size slice:** It is constant time per position but still allocates a tiny temporary; direct comparisons are leaner.
 - **Space fidelity:** Padding is an $O(m)$ copy. The manifest’s $O(1)$ space describes a different implementation of the same greedy rule.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -68,7 +68,7 @@ This invariant explains why an adjacent-looking swap between `k` and `i` is safe
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Immediately before processing index `i`, the array has this ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +107,7 @@ Skipping writes for zeros is useful: a two-pass overwrite solution might later r
 
 ## 6. Traps This Instance Exposes
 
-- **- **Overwrite then fill zeros:** Copy nonzeros for:** - **Overwrite then fill zeros:** Copy nonzeros forward with a write pointer, then assign zero to every remaining suffix position. This is also stable, $O(n)$ time, and $O(1)$ space, but it always performs a second filling phase.
+- **Overwrite then fill zeros:** Copy nonzeros forward with a write pointer, then assign zero to every remaining suffix position. This is also stable, $O(n)$ time, and $O(1)$ space, but it always performs a second filling phase.
 - **Extra result array:** Append all nonzeros and then enough zeros to a new list. It is simple but violates the in-place $O(1)$-space requirement.
 - **Unstable two-ended partition:** Swapping zeros with arbitrary nonzeros from the right can group zeros at the end but reverses or otherwise changes nonzero relative order.
 - **No zeros:** `k == i` at every iteration, so the exact source self-swaps every value and leaves the list unchanged.
@@ -120,8 +120,8 @@ Skipping writes for zeros is useful: a two-pass overwrite solution might later r
 - **Length one:** Either the single zero is skipped or the single nonzero is self-swapped; both outcomes are valid.
 - **Cached loop value `x`:** `enumerate` supplies the current value before the swap. The decision is therefore based on the element originally encountered at index `i`, while subsequent iterations read the array's then-current contents. The invariant ensures swaps only place zero into an already processed index `i`, never corrupting the unprocessed suffix.
 - **Input mutation:** In-place modification is required. Callers that need the original arrangement must make their own copy before invoking the method.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

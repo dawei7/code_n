@@ -61,7 +61,7 @@ The schema says `passenger_id` is unique, so counting rows and counting distinct
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `GROUP BY 1` groups by the first selected expression, which ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ If demand is below capacity, all `P` passengers are confirmed. If demand equals 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Pre-aggregate passengers in a subquery:** Coun:** - **Pre-aggregate passengers in a subquery:** Count requests by flight first, then left-join those counts to Flights and replace null with zero. It is equivalent but more verbose.
+- **Pre-aggregate passengers in a subquery:** Count requests by flight first, then left-join those counts to Flights and replace null with zero. It is equivalent but more verbose.
 - **Inner join:** It incorrectly omits flights with no passengers.
 - **`COUNT(*)`:** It counts the left-join placeholder and reports one passenger for an empty flight.
 - **`COUNT(DISTINCT passenger_id)`:** It is unnecessary because passenger IDs are unique, though it would produce the same logical count.
@@ -116,8 +116,8 @@ If demand is below capacity, all `P` passengers are confirmed. If demand equals 
 - **Functional dependency:** Unique `flight_id` determines one capacity; stricter SQL dialects may still require capacity in the group list.
 - **Individual booking order:** It is irrelevant when reporting counts only. The later passenger-status problem requires chronological ranking, but this query does not.
 - **Physical indexes:** They affect execution cost without changing the relational reasoning or result.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

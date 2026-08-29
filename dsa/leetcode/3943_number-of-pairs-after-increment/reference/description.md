@@ -8,7 +8,7 @@ Each $\text{queries}[i]$ is one of the following types:
 
 - `[2, tot]` – **Compute** the number of pairs `(j, k)` such that $\text{nums1}[j] + \text{nums2}[k] = tot$.
 
-Return an integer array `answer`, where $\text{answer}[j]$ is the number of pairs for the $$j^{\text{th}}$$ query of type 2.
+Return an integer array `answer`, where $\text{answer}[j]$ is the number of pairs for the $j^{\text{th}}$ query of type 2.
 
 ### 2. Function Contract
 
@@ -68,7 +68,7 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 
 - $\text{queries}[0] = [2, 9]$: Only valid pair is $\text{nums1}[2] + \text{nums2}[0] = 8 + 1 = 9$.
 
-- $\text{queries}[1] = [1, 1, 2, 1]$: Add 1 to $\text{nums2}[1]$ and $\text{nums2}[2]$, resulting in​​​​​​​ $nums2 = [1, 4, 9]$.
+- $\text{queries}[1] = [1, 1, 2, 1]$: Add 1 to $\text{nums2}[1]$ and $\text{nums2}[2]$, resulting in $nums2 = [1, 4, 9]$.
 
 - $\text{queries}[2] = [2, 10]$: No pair sums to `10`.
 
@@ -94,4 +94,4 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 
 - $1 \le val \le 10^{5}$
 
-- $1 \le tot \le 10^{9}​​​​​​​$
+- $1 \le tot \le 10^{9}$

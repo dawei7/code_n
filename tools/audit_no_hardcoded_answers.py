@@ -53,7 +53,9 @@ def audit_corpus(start_p=1, end_p=1007):
         if not canonical_ans:
             continue
 
-        sol_file = pkg / "variants" / "optimal" / "solutions" / "solution.py"
+        sol_file = pkg / "solution.py"
+        if not sol_file.is_file():
+            sol_file = pkg / "variants" / "optimal" / "solutions" / "solution.py"
         if not sol_file.is_file():
             continue
 

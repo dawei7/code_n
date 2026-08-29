@@ -51,7 +51,7 @@ The output needs only timestamps that appear in at least one input. This is the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The output needs only timestamps that appear in at least one... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ The output needs only timestamps that appear in at least one input. This is the 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Binary-search each union timestamp:** One coul:** - **Binary-search each union timestamp:** One could build the union and use lower-bound searches in both series, taking `O((m+n)(\log m+\log n))` time. The monotone pointers reuse search progress and give a linear merge.
+- **Binary-search each union timestamp:** One could build the union and use lower-bound searches in both series, taking `O((m+n)(\log m+\log n))` time. The monotone pointers reuse search progress and give a linear merge.
 - **Hash maps by exact timestamp:** A map does not directly answer “first timestamp at least `t`.” Extra sorting or successor queries would still be required.
 - **Scan every integer timestamp:** Timestamp values can be as large as `10^9`, and only input timestamps belong in the result. Iterating through gaps is both unnecessary and potentially enormous.
 - **Merge from right to left:** A reverse traversal could maintain different state, but it is not what the exact source does. The current implementation moves from smallest to largest timestamp.
@@ -100,8 +100,8 @@ The output needs only timestamps that appear in at least one input. This is the 
 - **Large values:** A sum can reach `2 \times 10^9` under the stated bounds. Python handles it directly; fixed-width implementations should choose a type that safely covers the required sum.
 - **Input mutation:** Pointer movement changes only local indices. The source never edits the input arrays or their rows.
 - **Tail-row aliasing:** Because remaining rows are appended by reference, mutating a returned tail row later could also mutate the corresponding input row. This is an exact Python object-sharing detail, not a numerical error in the produced aggregate.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

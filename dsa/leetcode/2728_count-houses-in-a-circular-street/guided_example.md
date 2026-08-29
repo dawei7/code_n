@@ -60,9 +60,7 @@ At the end of this phase, every door is definitely open. The current position de
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The first loop repeats $k$ times:
-
-1.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -107,7 +105,7 @@ Thus `ans` has been incremented exactly once for every house.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Use an initially open door as a marker:** Inco:** - **Use an initially open door as a marker:** Incorrect because several doors may begin open, causing an early stop.
+- **Use an initially open door as a marker:** Incorrect because several doors may begin open, causing an early stop.
 - **First close every door, then open one marker:** A symmetric strategy can work, but the exact solution uses the all-open state and closes while counting.
 - **Store visited house identities:** Impossible through the supplied interface because houses expose no IDs, and unnecessary.
 - **Move inconsistently:** Reversing direction during counting can hit the marker before a full lap.
@@ -117,8 +115,8 @@ Thus `ans` has been incremented exactly once for every house.
 - **All doors initially open:** Initialization is redundant but harmless.
 - **All doors initially closed:** Initialization creates the uniform marker-ready state.
 - **Final door states:** Every door is closed after counting; restoration is not required.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -30,7 +30,7 @@ So first of all, we sort the original list. And as it turns out, this is another
 Here is our attempt, which you will see some theoretical support later.
 >For an ordered list $[X_1, X_2, ... X_n]$, we claim that the *largest* divisible subset from this list is the largest subset among all possible divisible subsets that **end with** each of the number in the list.
 
-Let us define a function named $\text{EDS}(X_i)$, which gives the largest divisible subset that ends with the number $X_i$. By "_ends with_", we mean that the number $X_i$ should be the largest number in the subset. For example, given the list $[2, 4, 7, 8]$, let us calculate $\text{EDS}(4)$ by enumeration. First, we list all divisible subsets that ends with $4$, which should be $\{4\}$ and $\{2, 4\}$. Then by definition, we have $\text{EDS}(4) = \{2, 4\}$. Similarly, one can obtain that $\text{EDS}(2) = \{2\}$ and $\text{EDS}(7) = \{7\}$.
+Let us define a function named $\text{EDS}(X_i)$, which gives the largest divisible subset that ends with the number $X_i$. By "_ends with_", we mean that the number $X_i$ should be the largest number in the subset. For example, given the list `[2, 4, 7, 8]`, let us calculate $\text{EDS}(4)$ by enumeration. First, we list all divisible subsets that ends with $4$, which should be $\{4\}$ and $\{2, 4\}$. Then by definition, we have $\text{EDS}(4) = \{2, 4\}$. Similarly, one can obtain that $\text{EDS}(2) = \{2\}$ and $\text{EDS}(7) = \{7\}$.
 
 **Note:** A single number itself forms a divisible subset as well, though it might not be clearly stated in the problem statement.
 
@@ -43,7 +43,7 @@ We could prove the above formula literally _by definition_. First of all, $\fora
 
 **Algorithm**
 
-Let us explain the algorithm on how to calculate $\text{EDS}(X_i)$, following the above example with the list of $[2, 4, 7, 8]$. As a reminder, previously we have obtained the $\text{EDS}(X_i)$ value for all elements less than 8, _i.e._:
+Let us explain the algorithm on how to calculate $\text{EDS}(X_i)$, following the above example with the list of `[2, 4, 7, 8]`. As a reminder, previously we have obtained the $\text{EDS}(X_i)$ value for all elements less than 8, _i.e._:
 $\text{EDS}(2) = \{2\} \quad \text{EDS}(4) = \{2, 4\} \quad \text{EDS}(7) = \{7\}$
 To obtain $\text{EDS}(8)$, we simply enumerate all elements before $8$ and their $\text{EDS}(X_i)$ values respectively, with the following procedure:
 

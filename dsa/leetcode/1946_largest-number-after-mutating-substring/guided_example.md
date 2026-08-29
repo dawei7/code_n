@@ -61,9 +61,7 @@ Starting later than this first strict improvement would preserve the smaller ori
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | While `changed` is false:
-
-- if `d < c`, mutating here would... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -102,7 +100,7 @@ At the first position where `d < c` after mutation began, the code breaks. Inclu
 
 ## 6. Traps This Instance Exposes
 
-- **- **Try every substring:** Mutate each of $O(N^2)$:** - **Try every substring:** Mutate each of $O(N^2)$ intervals and compare results, leading to at least quadratic and often cubic work with string construction.
+- **Try every substring:** Mutate each of $O(N^2)$ intervals and compare results, leading to at least quadratic and often cubic work with string construction.
 - **Dynamic programming states:** States for “not started,” “inside,” and “finished” can model the rule, but lexicographic greed makes the transitions deterministic.
 - **Start on an equal mapping:** It is harmless but unnecessary. Delaying the recorded start until the first strict improvement leaves the output and future options unchanged.
 - **Equal mapping after start:** It must not end the interval; the code continues so later improvements remain reachable.
@@ -113,8 +111,8 @@ At the first position where `d < c` after mutation began, the code breaks. Inclu
 - **Mapped digit smaller before start:** It is skipped because the chosen substring can start later.
 - **Same-length comparison:** The greedy proof relies on every mapping producing exactly one digit, which the length-ten change array guarantees.
 - **Input preservation:** `num` is immutable; the result is built through a separate list.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

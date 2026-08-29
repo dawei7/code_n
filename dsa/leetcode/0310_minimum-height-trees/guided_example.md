@@ -62,7 +62,7 @@ This explains both why leaf peeling works and why there can be no more than two 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A diameter is a longest simple path in the tree.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -101,7 +101,7 @@ The graph is guaranteed to be a tree, so it is connected and has $n-1$ edges. Fo
 
 ## 6. Traps This Instance Exposes
 
-- **- **Run BFS or DFS from every possible root:** Mea:** - **Run BFS or DFS from every possible root:** Measuring every root's farthest distance is direct but costs $O(n^2)$ time on a tree, which is too slow for $n=2\cdot10^4$.
+- **Run BFS or DFS from every possible root:** Measuring every root's farthest distance is direct but costs $O(n^2)$ time on a tree, which is too slow for $n=2\cdot10^4$.
 - **Find a diameter, then take its middle:** Run BFS or DFS from any node to find a farthest endpoint, run again from that endpoint while recording parents, and return the middle one or two nodes of the resulting diameter. This is also $O(n)$ time and $O(n)$ space.
 - **Stop when at most two nodes remain:** Track a remaining-node count and halt before peeling the center layer. This is the common variant. The exact source instead processes all layers and preserves the last one in `ans`.
 - **Process newly enqueued leaves immediately:** That would mix distance layers and could erase the intended final-layer distinction. Snapshotting `len(q)` keeps rounds simultaneous.
@@ -116,8 +116,8 @@ The graph is guaranteed to be a tree, so it is connected and has $n-1$ edges. Fo
 - **Answer order:** The queue's discovery order determines output order, but any order is accepted.
 - **Tree guarantee:** Connectivity and acyclicity are essential. A general graph may have no degree-one node or may leave a cyclic core, so this leaf-peeling proof would not apply.
 - **No repeated edges:** Degree counts match actual distinct neighbors, and no duplicate adjacency entry can cause premature decrements.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

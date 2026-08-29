@@ -59,7 +59,7 @@ For a direct one-letter transformation, the first outer iteration changes `ans` 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `ans` starts at one because a sequence containing only `begi... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -98,7 +98,7 @@ If the code processed the growing queue without a fixed size, it could mix dista
 
 ## 6. Traps This Instance Exposes
 
-- **- **Bidirectional BFS:** Search from both endpoint:** - **Bidirectional BFS:** Search from both endpoints and expand the smaller frontier. It often reduces the explored search space substantially.
+- **Bidirectional BFS:** Search from both endpoints and expand the smaller frontier. It often reduces the explored search space substantially.
 - **Wildcard buckets:** Precompute patterns like `h*t` to retrieve neighbors sharing one erased position. This trades preprocessing space for faster adjacency lookup.
 - **Compare against every dictionary word:** Checking one-character difference costs $O(WL)$ per expanded vertex and can become quadratic in word count.
 - **Queue full paths:** Unnecessary when only length is requested and duplicates prefixes in memory.
@@ -113,8 +113,8 @@ If the code processed the growing queue without a fixed size, it could mix dista
 - **First discovery:** Safe to return because BFS layers are ordered.
 - **Missing imports:** `List` and `deque` must be supplied.
 - **Output meaning:** Return words in the sequence, which is one more than the number of transformation edges.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

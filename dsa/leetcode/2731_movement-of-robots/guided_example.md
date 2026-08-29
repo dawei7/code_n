@@ -71,7 +71,7 @@ The exact implementation mutates `nums` in place. After this loop, the array no 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | A robot beginning at `nums[i]` and moving right travels dist... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -114,7 +114,7 @@ Equal final coordinates are allowed after movement. Their pairwise distance is z
 
 ## 6. Traps This Instance Exposes
 
-- **- **Simulate collisions over time:** Can require e:** - **Simulate collisions over time:** Can require enormous work for large `d` and adds identity bookkeeping that the aggregate answer does not need.
+- **Simulate collisions over time:** Can require enormous work for large `d` and adds identity bookkeeping that the aggregate answer does not need.
 - **Enumerate all pairs after movement:** Correct but costs $O(n^2)$ time instead of using sorted prefix sums.
 - **Reduce modulo at every iteration:** Also correct and can be useful in fixed-width languages; Python safely delays it.
 - **d equal to zero:** Coordinates remain unchanged, and the same sorted pair-sum computation applies.
@@ -124,8 +124,8 @@ Equal final coordinates are allowed after movement. Their pairwise distance is z
 - **Many collisions:** Pass-through equivalence removes them all from the computation.
 - **Input mutation:** Callers observe `nums` changed into sorted final coordinates.
 - **Robot labels:** The method is valid because the result depends only on positions, not on which original label occupies each position.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -70,7 +70,7 @@ If neither condition is true for any string, the complete column matches and the
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | For the current position `i`, the inner loop examines each r... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -117,7 +117,7 @@ If `s` is shorter and has length exactly `i`, then `s[:i]` is the whole string. 
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index the original list instead of `strs[1:]`::** - **Index the original list instead of `strs[1:]`:** `for j in range(1, len(strs))` preserves the same comparisons and removes the $O(q)$ temporary list, achieving constant auxiliary space excluding output.
+- **Index the original list instead of `strs[1:]`:** `for j in range(1, len(strs))` preserves the same comparisons and removes the $O(q)$ temporary list, achieving constant auxiliary space excluding output.
 - **Horizontal scanning:** Start with the first string as a candidate and repeatedly shorten it against each later string. It is also $O(S)$ but may revisit prefix characters through slicing or prefix searches.
 - **Sort and compare extremes:** After lexicographic sorting, only the first and last strings determine the common prefix. Sorting costs $O(q\log q)$ comparisons and mutates or copies ordering, which is unnecessary for one query.
 - **Trie:** Useful when the same string set serves many prefix queries, but building it costs $O(S)$ extra space and is excessive for one result.
@@ -130,8 +130,8 @@ If `s` is shorter and has length exactly `i`, then `s[:i]` is the whole string. 
 - **Duplicates mixed with longer strings:** Duplicate entries do not change the proof; every column still must pass for every entry.
 - **Lowercase contract:** Comparisons are exact and case normalization is neither needed nor performed.
 - **Input preservation:** Strings are immutable and the list is not reordered; only a temporary reference slice is created.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

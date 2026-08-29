@@ -51,7 +51,7 @@ The dimensions `m` and `n` are read once. The clicked coordinates become `i, j`.
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The dimensions `m` and `n` are read once.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ The dimensions `m` and `n` are read once. The clicked coordinates become `i, j`.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Breadth-first search:** A queue can perform th:** - **Breadth-first search:** A queue can perform the same reveal expansion iteratively, avoiding recursion-depth limits while using up to $O(RC)$ space.
+- **Breadth-first search:** A queue can perform the same reveal expansion iteratively, avoiding recursion-depth limits while using up to $O(RC)$ space.
 - **Separate visited set:** It prevents repeated visits but is unnecessary because changing `"E"` before recursion serves as the visited mark.
 - **Recurse before marking:** Neighboring blank cells could repeatedly revisit one another, causing duplicate work or infinite recursion.
 - **Clicked mine:** Only that cell becomes `"X"` and no neighbor is revealed.
@@ -97,8 +97,8 @@ The dimensions `m` and `n` are read once. The clicked coordinates become `i, j`.
 - **Existing revealed cells:** DFS selects only `"E"` neighbors, preserving `"B"` and digit cells.
 - **One-cell board:** A mine becomes `"X"`; an empty cell has count zero and becomes `"B"`.
 - **Multiple routes to one empty cell:** The first route changes it from `"E"`, preventing later routes from launching another DFS call.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

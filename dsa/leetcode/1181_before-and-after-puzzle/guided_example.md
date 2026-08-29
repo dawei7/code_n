@@ -61,7 +61,7 @@ Because the loops examine both `(i, j)` and `(j, i)` when the indices differ, th
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer index `i` represents the first phrase in a candida... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -104,7 +104,7 @@ If the second phrase consists of only the shared word, the slice begins at the s
 
 ## 6. Traps This Instance Exposes
 
-- **- **Index phrases by first word:** Build a map fro:** - **Index phrases by first word:** Build a map from each first word to compatible second-phrase indices, then visit only matching groups for each first phrase. This can avoid many of the $N^2$ failed comparisons, though all successful candidate strings still have to be constructed.
+- **Index phrases by first word:** Build a map from each first word to compatible second-phrase indices, then visit only matching groups for each first phrase. This can avoid many of the $N^2$ failed comparisons, though all successful candidate strings still have to be constructed.
 - **Insert directly into a set:** Deduplicating as candidates are generated can avoid storing repeated strings in an intermediate list. The exact code instead builds `ans` first and converts it at the end.
 - **One phrase only:** Every potential pair has equal indices and is rejected. The returned list is empty.
 - **Duplicate phrases at different indices:** They may legally pair because the restriction is on indices, not text equality. Duplicate merged outputs are removed only afterward.
@@ -114,8 +114,8 @@ If the second phrase consists of only the shared word, the slice begins at the s
 - **Several pairs produce the same puzzle:** `set(ans)` retains one copy, satisfying the distinct-output rule.
 - **Lexicographic order:** A set has no guaranteed order. Calling `sorted` after deduplication is necessary to meet the output contract.
 - **Space at the merge boundary:** The suffix slice starts after the second phrase’s first word but preserves the following space. Manually adding another space would create two spaces, while slicing past that space would join words together.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

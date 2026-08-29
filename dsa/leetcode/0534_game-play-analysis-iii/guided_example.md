@@ -51,7 +51,7 @@ The query keeps `player_id` and `event_date` from each source row and computes:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The query keeps `player_id` and `event_date` from each sourc... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -86,7 +86,7 @@ Unlike ordinary aggregation with `GROUP BY`, a window aggregate does not collaps
 
 ## 6. Traps This Instance Exposes
 
-- **- **Correlated cumulative subquery:** It is logica:** - **Correlated cumulative subquery:** It is logically direct but may rescan one player's history for every date and become quadratic.
+- **Correlated cumulative subquery:** It is logically direct but may rescan one player's history for every date and become quadratic.
 - **Non-equi self-join:** Join earlier rows to each current row and aggregate them. It works but can create a much larger intermediate relation.
 - **Ordinary `GROUP BY player_id`:** It returns only one total per player and loses the required per-date history.
 - **Window without partitioning:** It would mix games from different players.
@@ -97,8 +97,8 @@ Unlike ordinary aggregation with `GROUP BY`, a window aggregate does not collaps
 - **Unique player-date key:** It removes ambiguity among equal-date peers within one partition.
 - **Output order:** The problem accepts any order; internal window ordering does not promise final row presentation.
 - **Current-row inclusion:** The default cumulative frame includes the event's own games, matching “through that date.”
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

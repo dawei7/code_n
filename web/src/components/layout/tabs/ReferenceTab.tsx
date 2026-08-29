@@ -419,42 +419,46 @@ function SolutionVariantPanel({
   const eloLabel = eloSource === 'elo_rating' ? 'Real Elo' : 'Estimated Elo';
   return (
     <section className="not-prose my-5">
-      <div
-        data-pdf-exclude="true"
-        role="tablist"
-        aria-label="Solution approach"
-        className="flex gap-1 border-b border-coden-border"
-      >
-        {variants.map((variant) => {
-          const selected = variant.id === selectedVariant.id;
-          return (
-            <button
-              key={variant.id}
-              id={`solution-variant-tab-${variant.id}`}
-              type="button"
-              role="tab"
-              aria-selected={selected}
-              aria-controls={`solution-variant-panel-${variant.id}`}
-              onClick={() => onSelect(variant.id)}
-              className={`-mb-px rounded-t border px-4 py-2 text-sm font-semibold transition-colors ${
-                selected
-                  ? 'border-coden-border border-b-coden-surface bg-coden-surface text-coden-accent'
-                  : 'border-transparent text-coden-muted hover:border-coden-border hover:text-coden-text'
-              }`}
-            >
-              {variant.label}
-            </button>
-          );
-        })}
-      </div>
+      {variants.length > 1 && (
+        <div
+          data-pdf-exclude="true"
+          role="tablist"
+          aria-label="Solution approach"
+          className="flex gap-1 border-b border-coden-border"
+        >
+          {variants.map((variant) => {
+            const selected = variant.id === selectedVariant.id;
+            return (
+              <button
+                key={variant.id}
+                id={`solution-variant-tab-${variant.id}`}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                aria-controls={`solution-variant-panel-${variant.id}`}
+                onClick={() => onSelect(variant.id)}
+                className={`-mb-px rounded-t border px-4 py-2 text-sm font-semibold transition-colors ${
+                  selected
+                    ? 'border-coden-border border-b-coden-surface bg-coden-surface text-coden-accent'
+                    : 'border-transparent text-coden-muted hover:border-coden-border hover:text-coden-text'
+                }`}
+              >
+                {variant.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
       <div
         id={`solution-variant-panel-${selectedVariant.id}`}
         role="tabpanel"
         aria-labelledby={`solution-variant-tab-${selectedVariant.id}`}
-        className="rounded-b border border-t-0 border-coden-border bg-coden-surface/40 p-3"
+        className={`rounded-b border ${variants.length > 1 ? 'border-t-0' : 'rounded-t'} border-coden-border bg-coden-surface/40 p-3`}
       >
-        <p className="m-0 text-sm leading-6 text-coden-text">{selectedVariant.summary}</p>
-        <VariantRequiredComplexity variant={selectedVariant} />
+        {selectedVariant.summary && <p className="m-0 text-sm leading-6 text-coden-text">{selectedVariant.summary}</p>}
+        {(selectedVariant.time_complexity || selectedVariant.space_complexity) && (
+          <VariantRequiredComplexity variant={selectedVariant} />
+        )}
         {selectedVariant.kind === 'simplified'
           && effectiveElo !== null
           && simplifiedEloCeiling !== null && (

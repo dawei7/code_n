@@ -64,7 +64,7 @@ This check is also essential before using `zip`. Python's `zip(pattern, ws)` sto
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The source uses `s.split()` to obtain the sequence of words.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -105,7 +105,7 @@ If `a` has never appeared, no forward commitment exists yet, so this direction a
 
 ## 6. Traps This Instance Exposes
 
-- **- **One forward map only:** It detects one charact:** - **One forward map only:** It detects one character mapping to several words but misses two characters mapping to the same word. A reverse map or used-word set is required.
+- **One forward map only:** It detects one character mapping to several words but misses two characters mapping to the same word. A reverse map or used-word set is required.
 - **Forward map plus used-word set:** For a new character, reject an already-used word; otherwise record both. This enforces the same bijection with slightly less reverse information.
 - **First-occurrence indices:** Record where each character and each word first appeared and require paired first-occurrence indices to match. It can use one carefully namespaced map but is less direct than explicit inverse maps.
 - **Scan map values for collisions:** A single map can test whether a new word is already among its values, but value lookup is linear in the number of mappings rather than expected constant time.
@@ -118,8 +118,8 @@ If `a` has never appeared, no forward commitment exists yet, so this direction a
 - **Single position:** One character and one nonempty word always form a valid bijection.
 - **Whitespace behavior:** Legal input uses single spaces. No-argument `split()` would also normalize multiple whitespace characters rather than creating empty words.
 - **Case sensitivity:** Legal strings are lowercase. Without that restriction, Python keys would still treat uppercase and lowercase forms as distinct.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

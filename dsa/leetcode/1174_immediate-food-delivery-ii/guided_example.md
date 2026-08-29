@@ -65,9 +65,7 @@ The uniqueness guarantee matters. If one customer could place two orders on the 
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The outer `WHERE` condition tests
-
-`(customer_id, order_date... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -110,7 +108,7 @@ Multiplying by 100 converts the fraction to a percentage, and `ROUND(..., 2)` su
 
 ## 6. Traps This Instance Exposes
 
-- **- **Window function with `ROW_NUMBER`:** Partition:** - **Window function with `ROW_NUMBER`:** Partition by customer, order by date, keep row one, and average its indicator. This is explicit and also relies on or resolves tie rules.
+- **Window function with `ROW_NUMBER`:** Partition by customer, order by date, keep row one, and average its indicator. This is explicit and also relies on or resolves tie rules.
 - **Correlated minimum subquery:** Compare each row's date to a per-customer minimum. It can be concise but may repeat work without an index.
 - **Average all deliveries:** Customers with later orders would be included and the result would answer version I, not version II.
 - **Match only minimum date:** Different customers can share dates, so the customer identifier must be part of the comparison.
@@ -120,8 +118,8 @@ Multiplying by 100 converts the fraction to a percentage, and `ROUND(..., 2)` su
 - **Scheduled first order:** Its Boolean contributes zero.
 - **Immediate first order:** Its Boolean contributes one.
 - **No ordering requirement:** The aggregate returns one row, so final row order is irrelevant.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

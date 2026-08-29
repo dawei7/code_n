@@ -4,7 +4,7 @@ You are given an integer `n` and an integer `p` representing an array `arr` of l
 
 - Reverse a **subarray** with size `k` if the single 1 is not set to a position in `banned`.
 
-Return an integer array `answer` with `n` results where the $$i^{\text{th}}$$ result is* *the **minimum** number of operations needed to bring the single 1 to position `i` in `arr`, or -1 if it is impossible.
+Return an integer array `answer` with `n` results where the $i^{\text{th}}$ result is* *the **minimum** number of operations needed to bring the single 1 to position `i` in `arr`, or -1 if it is impossible.
 
 ### 2. Function Contract
 

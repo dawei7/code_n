@@ -11,7 +11,7 @@ This instance is chosen because it demonstrates non-trivial state evolution, bou
 
 ## 1. Instance & Teaching Goal
 
-Given two integers `n` and `k`, return *the* $$k^{\text{th}}$$ *lexicographically smallest integer in the range* `[1, n]`.
+Given two integers `n` and `k`, return *the* $k^{\text{th}}$ *lexicographically smallest integer in the range* `[1, n]`.
 
 The objective is to compute `10` from `{"n": 13, "k": 2}` while avoiding redundant calculations and unnecessary overhead.
 
@@ -71,7 +71,7 @@ For `n = 13` and prefix `1`, level one contributes `1`, and level two contribute
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | `count(curr)` initializes `next = curr + 1`.... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +108,7 @@ If `k` becomes zero immediately, the answer is one.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Generate strings `1..n` and sort them:** This :** - **Generate strings `1..n` and sort them:** This needs $O(n)$ storage and at least $O(n\log n)$ comparison work, infeasible for $n=10^9$.
+- **Generate strings `1..n` and sort them:** This needs $O(n)$ storage and at least $O(n\log n)$ comparison work, infeasible for $n=10^9$.
 - **Generate lexicographical order one number at a time:** It can use constant space but may require $O(k)$ steps; subtree counting skips enormous blocks.
 - **Explicit trie:** It reproduces the conceptual structure but would contain one node per integer and defeat the purpose.
 - **Count with `min(n+1,next)-curr`:** This is equivalent to the exact formula and may make the half-open interval interpretation more obvious.
@@ -119,8 +119,8 @@ If `k` becomes zero immediately, the answer is one.
 - **Powers of ten:** Values such as 10 are the first child of 1 and appear immediately after 1 lexicographically.
 - **Shadowing the name `next`:** The helper uses it as an integer boundary, not Python's iterator built-in; the local shadowing does not affect correctness.
 - **One-based versus zero-based rank:** The initial `k -= 1` is essential because `curr = 1` already occupies the first position.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -22,7 +22,7 @@ Note that points **on the edge** of a vertical area **are not** considered inclu
 
 ![](images/points3.png)
 
-​
+
 
 - **Input:** $points = [[8,7],[9,9],[7,4],[9,7]]$
 - **Output:** `1`

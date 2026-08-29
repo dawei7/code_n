@@ -59,11 +59,7 @@ The string `'({['` is used only as an opening-bracket membership collection. Und
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | The implementation creates
-
-
-
-Each set member is a complete ... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -108,7 +104,7 @@ checks both.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Closer-to-opener dictionary:** Map each closer:** - **Closer-to-opener dictionary:** Map each closer to its expected opener, then compare it with the popped top. This avoids constructing a two-character pair and is equally $O(n)$ time and space.
+- **Closer-to-opener dictionary:** Map each closer to its expected opener, then compare it with the popped top. This avoids constructing a two-character pair and is equally $O(n)$ time and space.
 - **Repeated string replacement:** Repeatedly remove `()`, `[]`, and `{}` until nothing changes. It mirrors eliminating innermost pairs but can repeatedly rescan and rebuild the string, leading to $O(n^2)$ time.
 - **One or three counters:** Counts can detect surplus brackets but cannot detect crossing order, so `([)]` defeats this approach.
 - **Recursive parsing:** A grammar-based parser can validate nesting, but it adds recursion overhead and may use $O(n)$ call-stack depth without improving the bound.
@@ -120,8 +116,8 @@ checks both.
 - **Correct counts but wrong order:** `"([)]"` is rejected at the first mismatched closer; balanced totals do not override nesting.
 - **Non-bracket characters:** The contract excludes them. In this exact source they would enter the closer branch and be rejected, but that behavior is not intended as a general-purpose filtering policy.
 - **Non-empty input guarantee:** The stated input is non-empty. If called with `""`, the exact code would return `true`, which is mathematically consistent with an empty balanced sequence but outside the supplied domain.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 

@@ -52,7 +52,7 @@ We maintain the core conceptual parameters and state variables:
 
 | Parameter | Current Observed Sub-state | Transition Decision | Updated State |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | - `common_perms` should contain bit $b$ only when every user... | Invariant satisfied |
+| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
 | Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
@@ -87,7 +87,7 @@ Bitwise AND and OR implement these definitions position by position.
 
 ## 6. Traps This Instance Exposes
 
-- **- **Application-side fold:** Fetch masks and reduc:** - **Application-side fold:** Fetch masks and reduce them with language-level AND and OR. It computes the same values but transfers all rows and moves simple aggregation out of the database.
+- **Application-side fold:** Fetch masks and reduce them with language-level AND and OR. It computes the same values but transfers all rows and moves simple aggregation out of the database.
 - **Recursive SQL fold:** A dialect without `BIT_AND` or `BIT_OR` aggregates can number rows and combine masks recursively. It is longer and dialect-specific but preserves the linear reduction.
 - **Per-bit conditional aggregation:** Test each known permission bit with Boolean counts. This becomes verbose, requires a predetermined bit width, and reconstructs operations the native aggregates already provide.
 - **Use `MIN` and `MAX`:** Incorrect because numeric order is not set intersection or union.
@@ -102,8 +102,8 @@ Bitwise AND and OR implement these definitions position by position.
 - **Empty table:** Ungrouped aggregates still return one row, commonly with null aggregate values because no identity seed is specified by SQL. The exact source adds no fallback.
 - **Signed integer representation:** Permission masks are intended as nonnegative encoded sets. Negative masks would expose sign-bit and width semantics tied to the SQL type.
 - **Manifest mismatch:** No sorting or row-proportional aggregate table is visible. The exact operation is a one-pass constant-state fold.
-- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
+- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
