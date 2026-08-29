@@ -92,33 +92,41 @@ export function GuidedExampleTab() {
   return (
     <div className="coden-reading-container">
       {/* Lesson Header Banner */}
-      <div className="mb-6 rounded-xl border border-coden-border bg-coden-surface p-5 shadow-sm">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-coden-border pb-3 mb-3">
+      <div className="coden-hero-banner">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-coden-border/70 pb-3.5 mb-3.5">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-bold text-indigo-500">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-500/15 text-sm font-bold text-indigo-500 shadow-xs">
               🎓
             </span>
             <div>
-              <h1 className="text-lg font-bold text-coden-text m-0">
+              <h1 className="text-xl font-extrabold text-coden-text m-0 tracking-tight">
                 {`Guided Example: ${detail?.name ?? challengeId}`}
               </h1>
               <span className="text-xs text-coden-muted">Step-by-step code-free pedagogical walkthrough of representative input</span>
             </div>
           </div>
+          {guidedSteps.length > 0 && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 px-3 py-1 text-xs font-semibold border border-indigo-500/30 font-mono">
+              <span>🎯</span> {guidedSteps.length} {guidedSteps.length === 1 ? 'Step' : 'Interactive Steps'}
+            </span>
+          )}
         </div>
 
         {/* Step Jump Pills */}
         {guidedSteps.length > 1 && (
-          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          <div className="flex flex-wrap items-center gap-2 pt-0.5">
             <span className="text-xs font-semibold text-coden-muted mr-1">Steps:</span>
-            {guidedSteps.map((s) => (
+            {guidedSteps.map((s, idx) => (
               <button
                 key={s.id}
                 type="button"
                 onClick={() => scrollToStep(s.id)}
-                className="rounded-full border border-coden-border bg-coden-surface-elevated px-3 py-1 text-xs font-medium text-coden-text hover:border-coden-accent hover:text-coden-accent transition-colors"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-coden-border bg-coden-surface px-3 py-1 text-xs font-semibold text-coden-text hover:border-indigo-500 hover:text-indigo-500 hover:shadow-xs transition-all"
               >
-                {s.stepNumber ? `Step ${s.stepNumber}` : s.title}
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-indigo-500/20 text-[10px] font-bold text-indigo-500 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                  {s.stepNumber || idx + 1}
+                </span>
+                <span>{s.stepNumber ? `Step ${s.stepNumber}` : s.title}</span>
               </button>
             ))}
           </div>
@@ -135,7 +143,7 @@ export function GuidedExampleTab() {
                           prose-strong:text-coden-text prose-strong:font-semibold
                           prose-em:text-coden-text
                           prose-a:text-coden-accent prose-a:font-medium hover:prose-a:underline
-                          prose-blockquote:border-coden-accent prose-blockquote:bg-coden-surface-elevated/40 prose-blockquote:px-4 prose-blockquote:py-1.5 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-coden-text
+                          prose-blockquote:text-coden-text prose-blockquote:border-coden-accent prose-blockquote:bg-coden-surface-elevated/40 prose-blockquote:rounded-r-lg prose-blockquote:py-1 prose-blockquote:px-4
                           prose-code:before:content-none prose-code:after:content-none prose-code:text-coden-accent prose-code:font-mono
                           prose-pre:my-4 prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:border prose-pre:border-coden-border prose-pre:bg-coden-surface-elevated prose-pre:text-coden-text">
         <ReactMarkdown
@@ -147,16 +155,14 @@ export function GuidedExampleTab() {
               const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
               const stepMatch = /^Step\s+(\d+|[A-Za-z]+)[:\-]?\s*(.*)$/i.exec(text.trim());
               return (
-                <div id={id} className="mt-8 mb-4">
+                <div id={id} className="mt-10 mb-4">
                   {stepMatch ? (
-                    <div className="flex items-center gap-3 border-b border-coden-border pb-2">
+                    <div className="flex items-center gap-3 border-b border-coden-border pb-2.5">
                       <span className="coden-step-badge">Step {stepMatch[1]}</span>
-                      <h2 {...props} className="text-lg font-bold text-coden-text m-0 border-0 p-0">
-                        {stepMatch[2] || `Step ${stepMatch[1]}`}
-                      </h2>
+                      <h2 {...props} className="text-lg font-bold text-coden-text m-0 border-0 p-0" />
                     </div>
                   ) : (
-                    <h2 {...props} className="text-lg font-bold text-coden-text border-b border-coden-border pb-2" />
+                    <h2 {...props} className="text-lg font-bold text-coden-text border-b border-coden-border pb-2.5" />
                   )}
                 </div>
               );
@@ -164,6 +170,32 @@ export function GuidedExampleTab() {
             h3: ({ node, ...props }) => (
               <h3 {...props} className="text-base font-semibold mt-6 mb-2 text-coden-text" />
             ),
+            blockquote: ({ children }) => {
+              const rawText = textFromReactNode(children).trim();
+              let calloutClass = 'coden-callout-note';
+              let badge = 'NOTE';
+              if (/^\[!TIP\]/i.test(rawText) || /^Tip:/i.test(rawText)) {
+                calloutClass = 'coden-callout-tip';
+                badge = 'TIP';
+              } else if (/^\[!WARNING\]/i.test(rawText) || /^Warning:/i.test(rawText)) {
+                calloutClass = 'coden-callout-warning';
+                badge = 'WARNING';
+              } else if (/^\[!IMPORTANT\]/i.test(rawText) || /^Important:/i.test(rawText)) {
+                calloutClass = 'coden-callout-important';
+                badge = 'IMPORTANT';
+              } else if (/^\[!CAUTION\]/i.test(rawText) || /^Caution:/i.test(rawText)) {
+                calloutClass = 'coden-callout-caution';
+                badge = 'CAUTION';
+              }
+              return (
+                <div className={`coden-callout ${calloutClass} not-prose text-sm text-coden-text my-4`}>
+                  <div className="text-[11px] font-bold tracking-wider text-indigo-500 mb-1 uppercase">
+                    {badge}
+                  </div>
+                  <div>{children}</div>
+                </div>
+              );
+            },
             img: ({ node, ...props }) => (
               <img
                 {...props}

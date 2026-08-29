@@ -198,11 +198,26 @@ export function ReferenceTab() {
           rehypePlugins={[rehypeRaw, rehypeKatex]}
           components={{
             h1: ({ node, ...props }) => (
-              <h1 {...props} className="text-xl font-bold mt-0 mb-4 text-coden-text" />
+              <h1 {...props} className="text-xl font-extrabold mt-0 mb-4 text-coden-text tracking-tight" />
             ),
-            h2: ({ node, ...props }) => (
-              <h2 {...props} className="text-lg font-bold mt-8 mb-3 pb-2 border-b border-coden-border text-coden-text" />
-            ),
+            h2: ({ node, ...props }) => {
+              const text = textFromReactNode(props.children).trim();
+              let icon = '📌';
+              if (/description/i.test(text)) icon = '📝';
+              else if (/contract/i.test(text)) icon = '⚡';
+              else if (/example/i.test(text)) icon = '💡';
+              else if (/constraint/i.test(text)) icon = '🛡️';
+              else if (/follow-?up/i.test(text)) icon = '🚀';
+
+              return (
+                <div className="mt-8 mb-4">
+                  <div className="flex items-center gap-2.5 border-b border-coden-border pb-2.5">
+                    <span className="text-base select-none">{icon}</span>
+                    <h2 {...props} className="text-lg font-bold text-coden-text m-0 border-0 p-0" />
+                  </div>
+                </div>
+              );
+            },
             h3: ({ node, ...props }) => {
               const text = textFromReactNode(props.children);
               const isExample = /^Example\s+\d+/i.test(text.trim());
@@ -211,10 +226,36 @@ export function ReferenceTab() {
                   {...props}
                   className={
                     isExample
-                      ? 'text-sm font-bold uppercase tracking-wider text-coden-accent mt-6 mb-2 flex items-center gap-2'
+                      ? 'text-xs font-bold uppercase tracking-wider text-coden-accent mt-5 mb-2 inline-flex items-center gap-1.5 rounded-md bg-coden-accent/10 px-2.5 py-1 border border-coden-accent/20'
                       : 'text-base font-semibold mt-5 mb-2 text-coden-text'
                   }
                 />
+              );
+            },
+            blockquote: ({ children }) => {
+              const rawText = textFromReactNode(children).trim();
+              let calloutClass = 'coden-callout-note';
+              let badge = 'NOTE';
+              if (/^\[!TIP\]/i.test(rawText) || /^Tip:/i.test(rawText)) {
+                calloutClass = 'coden-callout-tip';
+                badge = 'TIP';
+              } else if (/^\[!WARNING\]/i.test(rawText) || /^Warning:/i.test(rawText)) {
+                calloutClass = 'coden-callout-warning';
+                badge = 'WARNING';
+              } else if (/^\[!IMPORTANT\]/i.test(rawText) || /^Important:/i.test(rawText)) {
+                calloutClass = 'coden-callout-important';
+                badge = 'IMPORTANT';
+              } else if (/^\[!CAUTION\]/i.test(rawText) || /^Caution:/i.test(rawText)) {
+                calloutClass = 'coden-callout-caution';
+                badge = 'CAUTION';
+              }
+              return (
+                <div className={`coden-callout ${calloutClass} not-prose text-sm text-coden-text my-4`}>
+                  <div className="text-[11px] font-bold tracking-wider text-coden-accent mb-1 uppercase">
+                    {badge}
+                  </div>
+                  <div>{children}</div>
+                </div>
               );
             },
             details: ({ node, ...props }) => <CollapsibleDetails node={node} {...props} />,
@@ -344,54 +385,84 @@ function ChallengeHeaderBar({
   if (!detail) return null;
 
   const difficulty = detail.difficulty_label || 'Medium';
-  const diffColor =
-    difficulty.toLowerCase() === 'easy'
-      ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-      : difficulty.toLowerCase() === 'hard'
-      ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30'
-      : 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30';
+  const isHard = difficulty.toLowerCase().includes('hard') || difficulty.toLowerCase().includes('level 8') || difficulty.toLowerCase().includes('level 9');
+  const isEasy = difficulty.toLowerCase().includes('easy') || difficulty.toLowerCase().includes('level 0') || difficulty.toLowerCase().includes('level 1');
+  const diffColor = isEasy
+    ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
+    : isHard
+    ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30'
+    : 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30';
 
-  const frontendId = detail.leetcode_frontend_id || detail.id?.replace(/^lc_/, '') || '';
+  const frontendId = detail.leetcode_frontend_id || detail.id?.replace(/^(lc_|pe_)/, '') || '';
   const category = detail.category || detail.leetcode_category || '';
+  const isEuler = challengeId.startsWith('pe_') || category.toLowerCase().includes('euler');
+  const eulerUrl = isEuler ? `https://projecteuler.net/problem=${frontendId.replace(/^0+/, '')}` : null;
+  const officialUrl = detail.leetcode_url || eulerUrl;
+
+  const timeComplexity = detail?.time_complexity || detail?.solution_variant_complexity?.time || '';
+  const spaceComplexity = detail?.space_complexity || detail?.solution_variant_complexity?.space || '';
 
   return (
-    <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-coden-border pb-4 pt-1">
-      <div className="flex flex-wrap items-center gap-2.5">
-        {frontendId && (
-          <span className="rounded-md bg-coden-surface-elevated px-2 py-0.5 font-mono text-xs font-bold text-coden-muted border border-coden-border">
-            #{frontendId}
+    <div className="coden-hero-banner">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-coden-border/70 pb-3.5 mb-3.5">
+        <div className="flex flex-wrap items-center gap-2.5">
+          {frontendId && (
+            <span className="rounded-lg bg-coden-surface-elevated px-2.5 py-1 font-mono text-xs font-bold text-coden-accent border border-coden-border shadow-xs">
+              #{frontendId}
+            </span>
+          )}
+          <h1 className="text-xl font-extrabold text-coden-text m-0 tracking-tight">
+            {detail.name || challengeId}
+          </h1>
+          <span className={`rounded-full px-3 py-0.5 text-xs font-semibold border ${diffColor} shadow-xs`}>
+            {difficulty}
           </span>
-        )}
-        <h1 className="text-xl font-bold text-coden-text m-0 tracking-tight">
-          {detail.name || challengeId}
-        </h1>
-        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold border ${diffColor}`}>
-          {difficulty}
-        </span>
-        {category && (
-          <span className="rounded-full bg-coden-surface-elevated px-2.5 py-0.5 text-xs font-medium text-coden-muted border border-coden-border">
-            {category}
-          </span>
-        )}
-        {detail.elo_rating && (
-          <span className="rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 px-2.5 py-0.5 text-xs font-medium border border-indigo-500/30 font-mono">
-            Elo {Math.round(detail.elo_rating)}
-          </span>
-        )}
+          {category && (
+            <span className="rounded-full bg-coden-surface-elevated px-3 py-0.5 text-xs font-medium text-coden-muted border border-coden-border">
+              {category}
+            </span>
+          )}
+          {detail.elo_rating && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 px-3 py-0.5 text-xs font-semibold border border-indigo-500/30 font-mono">
+              <span>★</span> Elo {Math.round(detail.elo_rating)}
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          {officialUrl && (
+            <a
+              href={officialUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-coden-border bg-coden-surface-elevated px-3.5 py-1.5 text-xs font-semibold text-coden-text hover:border-coden-accent hover:text-coden-accent transition-all shadow-xs"
+              title={isEuler ? 'Open official Project Euler problem' : 'Open official LeetCode problem'}
+            >
+              {isEuler ? <span className="font-bold font-serif text-amber-500">PE</span> : <LeetCodeIcon />}
+              <span>{isEuler ? 'Project Euler' : 'LeetCode'}</span>
+              <span className="text-coden-muted text-[10px]">↗</span>
+            </a>
+          )}
+        </div>
       </div>
 
-      {detail.leetcode_url && (
-        <a
-          href={detail.leetcode_url}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-lg border border-coden-border bg-coden-surface-elevated px-3 py-1.5 text-xs font-semibold text-coden-text hover:border-coden-accent hover:text-coden-accent transition-all shadow-sm"
-          title="Open official LeetCode problem"
-        >
-          <LeetCodeIcon />
-          <span>LeetCode</span>
-          <span className="text-coden-muted text-[10px]">↗</span>
-        </a>
+      {/* Target Complexities Bar if present */}
+      {(timeComplexity || spaceComplexity) && (
+        <div className="flex flex-wrap items-center gap-2 pt-0.5">
+          <span className="text-xs font-semibold text-coden-muted mr-1">Target Complexities:</span>
+          {timeComplexity && (
+            <span className="coden-complexity-pill" title="Time Complexity Target">
+              <span className="text-coden-muted text-[11px] uppercase tracking-wider font-mono">Time</span>
+              <span className="text-coden-accent font-semibold">{timeComplexity}</span>
+            </span>
+          )}
+          {spaceComplexity && (
+            <span className="coden-complexity-pill" title="Space Complexity Target">
+              <span className="text-coden-muted text-[11px] uppercase tracking-wider font-mono">Space</span>
+              <span className="text-coden-accent font-semibold">{spaceComplexity}</span>
+            </span>
+          )}
+        </div>
       )}
     </div>
   );
