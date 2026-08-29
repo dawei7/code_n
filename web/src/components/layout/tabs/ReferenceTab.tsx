@@ -179,14 +179,14 @@ export function ReferenceTab() {
       {detail && <ChallengeHeaderBar detail={detail} challengeId={challengeId ?? ''} />}
 
       {/* Main Documentation Body */}
-      <article className="prose prose-base max-w-none text-coden-text text-[15px] leading-relaxed
+      <article className="prose prose-base max-w-none text-coden-text text-[16px] leading-relaxed
                           prose-headings:text-coden-text prose-headings:tracking-tight
                           prose-h1:text-2xl prose-h1:font-extrabold prose-h1:mt-0 prose-h1:mb-4
                           prose-h2:text-xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3
                           prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-2
                           prose-h4:text-base prose-h4:font-semibold prose-h4:mt-4 prose-h4:mb-2
-                          prose-p:text-[15px] prose-p:leading-7 prose-p:my-3.5 prose-p:text-coden-text
-                          prose-li:text-[15px] prose-li:leading-7 prose-li:my-1 prose-li:text-coden-text
+                          prose-p:text-[16px] prose-p:leading-relaxed prose-p:my-4 prose-p:text-coden-text
+                          prose-li:text-[16px] prose-li:leading-relaxed prose-li:my-1.5 prose-li:text-coden-text
                           prose-strong:text-coden-text prose-strong:font-semibold
                           prose-em:text-coden-text
                           prose-hr:border-coden-border prose-hr:my-6
@@ -199,7 +199,7 @@ export function ReferenceTab() {
           rehypePlugins={[rehypeRaw, rehypeKatex]}
           components={{
             h1: ({ node, ...props }) => (
-              <h1 {...props} className="text-xl font-extrabold mt-0 mb-4 text-coden-text tracking-tight" />
+              <h1 {...props} className="text-2xl font-extrabold mt-0 mb-4 text-coden-text tracking-tight" />
             ),
             h2: ({ node, ...props }) => {
               const text = textFromReactNode(props.children).trim();
@@ -211,10 +211,10 @@ export function ReferenceTab() {
               else if (/follow-?up/i.test(text)) icon = '🚀';
 
               return (
-                <div className="mt-8 mb-4">
+                <div className="mt-10 mb-4">
                   <div className="flex items-center gap-2.5 border-b border-coden-border pb-2.5">
                     <span className="text-base select-none">{icon}</span>
-                    <h2 {...props} className="text-lg font-bold text-coden-text m-0 border-0 p-0" />
+                    <h2 {...props} className="text-xl font-bold text-coden-text m-0 border-0 p-0" />
                   </div>
                 </div>
               );
@@ -228,7 +228,7 @@ export function ReferenceTab() {
                   className={
                     isExample
                       ? 'text-xs font-bold uppercase tracking-wider text-coden-accent mt-5 mb-2 inline-flex items-center gap-1.5 rounded-md bg-coden-accent/10 px-2.5 py-1 border border-coden-accent/20'
-                      : 'text-base font-semibold mt-5 mb-2 text-coden-text'
+                      : 'text-lg font-semibold mt-6 mb-2 text-coden-text'
                   }
                 />
               );
