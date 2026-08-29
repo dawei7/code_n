@@ -11,7 +11,10 @@ We are given:
 - $F(128) = 496062$
 
 We seek to evaluate:
-$$F(10^{18}) \bmod 10^9$$
+
+$$
+F(10^{18}) \bmod 10^9
+$$
 
 ---
 
@@ -30,7 +33,11 @@ Computing Grundy values for all states up to $N = 10^{18}$ requires $O(N^3) = 10
    Shifting each heap size up by 1 ($x = a+1, y = b+1, z = c+1$), the terminal state becomes $\{1, 2, 3\}$.
    Notice $1 \oplus 2 \oplus 3 = 0$.
    By induction on the DAG of valid moves, a position $(a, b, c)$ is losing if and only if:
-   $$(a + 1) \oplus (b + 1) \oplus (c + 1) = 0$$
+
+$$
+(a + 1) \oplus (b + 1) \oplus (c + 1) = 0
+$$
+
 2. **Distinctness Invariance**:
    For any three integers $x, y, z \ge 2$, if $x \oplus y \oplus z = 0$, then no two can be equal (since $x = y \implies z = 0 < 2$).
    Thus, distinctness is automatically satisfied!
@@ -48,7 +55,10 @@ Computing Grundy values for all states up to $N = 10^{18}$ requires $O(N^3) = 10
    Processing bits from MSB (bit 60) down to LSB (bit 0) tracks tight boolean upper bounds for $(A, B, C)$ while accumulating running sums and counts in $O(\log N)$ time.
 4. **Symmetry Slicing**:
    Every unordered triple $\{a, b, c\}$ with $a < b < c$ corresponds to exactly $3! = 6$ ordered permutations.
-   $$F(N) = \frac{\sum (x+y+z) - 3 \sum 1}{6} \pmod{10^9}$$
+
+$$
+F(N) = \frac{\sum (x+y+z) - 3 \sum 1}{6} \pmod{10^9}
+$$
 
 This evaluates $N = 10^{18}$ in **0.001 seconds**!
 

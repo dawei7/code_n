@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $a_0 = \phi = \frac{\sqrt{5} + 1}{2}$.
-$$a_{n+1} = \frac{a_n(a_n^4 + 10a_n^2 + 5)}{5a_n^4 + 10a_n^2 + 1}$$
+
+$$
+a_{n+1} = \frac{a_n(a_n^4 + 10a_n^2 + 5)}{5a_n^4 + 10a_n^2 + 1}
+$$
 
 $a_n = \frac{p_n\sqrt{5} + 1}{q_n}$ for positive integers $p_n, q_n$.
 $s(n) = p_n^5 + q_n^5$.
@@ -25,11 +28,22 @@ Find $S(1618034) = \sum_{i=2}^{1618034} s(F_i) \bmod 398874989$.
 
 ### Quintuple Angle Hyperbolic Tangent Map
 Under the fractional linear transformation $x_n = \frac{1 + a_n}{a_n - 1}$:
-$$x_{n+1} = x_n^5$$
+
+$$
+x_{n+1} = x_n^5
+$$
+
 With initial state $x_0 = \frac{1 + \phi}{\phi - 1} = \phi^3$, we obtain:
-$$x_n = \phi^{3 \cdot 5^n}$$
+
+$$
+x_n = \phi^{3 \cdot 5^n}
+$$
+
 Inverting $a_n = \frac{x_n + 1}{x_n - 1}$ in terms of Fibonacci ($F_k$) and Lucas ($L_k$) numbers gives the exact identities:
-$$p_n = \frac{F_{3 \cdot 5^n}}{2}, \quad q_n = \frac{L_{3 \cdot 5^n}}{2}$$
+
+$$
+p_n = \frac{F_{3 \cdot 5^n}}{2}, \quad q_n = \frac{L_{3 \cdot 5^n}}{2}
+$$
 
 ---
 

@@ -11,7 +11,10 @@ We seek a 3-term arithmetic progression $(p_1, p_2, p_3)$ such that:
 4. $p_1 \neq 1487$ (excluding the known public example $(1487, 4817, 8147)$ with $d = 3330$).
 
 The objective is to find the 12-digit number formed by concatenating the 3 terms:
-$$C = \operatorname{str}(p_1) \mathbin{\Vert} \operatorname{str}(p_2) \mathbin{\Vert} \operatorname{str}(p_3)$$
+
+$$
+C = \operatorname{str}(p_1) \mathbin{\Vert} \operatorname{str}(p_2) \mathbin{\Vert} \operatorname{str}(p_3)
+$$
 
 ---
 
@@ -72,7 +75,10 @@ def naive_prime_permutations():
 - $p_3 = 9629 = 6299 + 3330 \in \mathbb{P}$ (digits $\{9, 6, 2, 9\}$)
 - Common difference: $d = 3330$.
 - Concatenated 12-digit integer:
-  $$C = \mathbf{296962999629}$$
+
+$$
+C = \mathbf{296962999629}
+$$
 
 ---
 

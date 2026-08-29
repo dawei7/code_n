@@ -10,7 +10,10 @@ We are given:
 - $F(10, 100) = 12492$
 
 We seek to evaluate:
-$$F(10^6, 10^9)$$
+
+$$
+F(10^6, 10^9)
+$$
 
 ---
 
@@ -25,10 +28,17 @@ Checking all triplets $-X \le a < b < c \le X$ for each $k \le K$ takes $O(K X^3
 
 ### Chord Slopes on a Parabola
 The slope of the chord connecting $(u, u^2/k)$ and $(v, v^2/k)$ is:
-$$m = \frac{v^2/k - u^2/k}{v - u} = \frac{u + v}{k}$$
+
+$$
+m = \frac{v^2/k - u^2/k}{v - u} = \frac{u + v}{k}
+$$
+
 Let $m_1 = \frac{a+b}{k}, m_2 = \frac{b+c}{k}, m_3 = \frac{a+c}{k}$.
 The condition that the angle between two lines with slopes $m_1, m_2$ is $45^\circ$ is:
-$$\left| \frac{m_2 - m_1}{1 + m_1 m_2} \right| = 1 \iff k(c - a) = \left| k^2 + (a+b)(b+c) \right|$$
+
+$$
+\left| \frac{m_2 - m_1}{1 + m_1 m_2} \right| = 1 \iff k(c - a) = \left| k^2 + (a+b)(b+c) \right|
+$$
 
 ---
 
@@ -37,16 +47,26 @@ $$\left| \frac{m_2 - m_1}{1 + m_1 m_2} \right| = 1 \iff k(c - a) = \left| k^2 + 
 ### Diophantine Hyperbolic Factorization
 Let $s = a+b, t = a+c$.
 The $45^\circ$ condition at vertex $A$ simplifies to:
-$$(t + k)(k - s) = 2k^2$$
+
+$$
+(t + k)(k - s) = 2k^2
+$$
+
 Similarly, at vertex $B$ with $p = a+b, q = b+c$:
-$$(q - k)(-(p + k)) = 2k^2$$
+
+$$
+(q - k)(-(p + k)) = 2k^2
+$$
 
 For each $k \in [1, K]$, the pairs of slopes correspond bijectively to positive divisors $d \mid 2k^2$ with $u = 2k^2 / d$:
 - For vertex $A$: $t = d - k, s = k - u$.
 - For vertex $B$: $q = k + d, p = -(k + u)$.
 
 For each pair of chord sums $(s, t)$ or $(p, q)$, the number of valid integer triples $(a, b, c)$ lying within $[-X, X]$ is evaluated in $O(1)$ time via 1D interval intersections:
-$$\max(t - X, -X) \le a \le \min(s + X, X, \lfloor (s - 1)/2 \rfloor)$$
+
+$$
+\max(t - X, -X) \le a \le \min(s + X, X, \lfloor (s - 1)/2 \rfloor)
+$$
 
 Inclusion-exclusion subtracts triangles with two $45^\circ$ angles (right isosceles triangles) where $A, B$ or $A, C$ are both $45^\circ$.
 

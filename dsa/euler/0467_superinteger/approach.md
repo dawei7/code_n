@@ -12,7 +12,10 @@ We are given:
 - $f(100) \equiv 771661825 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$f(10000) \pmod{10^9+7}$$
+
+$$
+f(10000) \pmod{10^9+7}
+$$
 
 ---
 
@@ -38,10 +41,14 @@ There are exponentially many common supersequences of two length-$10000$ strings
 ### 2D Backward Dynamic Programming & Forward Greedy Tracing
 1. **Backward SCS Dynamic Programming**:
    Let $\text{dp}[i][j]$ be the length of the SCS of suffixes $P_n[i:]$ and $C_n[j:]$:
-   $$\text{dp}[i][j] = \begin{cases} 
+
+$$
+\text{dp}[i][j] = \begin{cases}
    1 + \text{dp}[i+1][j+1] & \text{if } P_n[i] = C_n[j] \\
    1 + \min(\text{dp}[i+1][j], \text{dp}[i][j+1]) & \text{if } P_n[i] \ne C_n[j]
-   \end{cases}$$
+\end{cases}
+$$
+
    with boundary conditions $\text{dp}[i][n] = n - i$ and $\text{dp}[n][j] = n - j$.
 2. **Flat 2-Byte Array Storage**:
    Using a flat `array('H')` (uint16) for $(n+1) \times (n+1) \approx 10^8$ elements requires only $200\text{ MB}$ of memory and computes in $13.64$ seconds.

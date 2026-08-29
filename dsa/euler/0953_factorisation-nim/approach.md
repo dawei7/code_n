@@ -4,7 +4,10 @@
 
 In Factorisation Nim, $n = p_1 p_2 \dots p_k$ starts with $k$ piles of sizes $p_1, \dots, p_k$.
 By Bouton's Nim Theorem, the first player to move loses if and only if the XOR sum is 0:
-$$\bigoplus_{i=1}^k p_i = 0$$
+
+$$
+\bigoplus_{i=1}^k p_i = 0
+$$
 
 $S(N)$ is the sum of all such $n \le N$.
 Given:

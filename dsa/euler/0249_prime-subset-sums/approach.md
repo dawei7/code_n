@@ -4,7 +4,10 @@
 
 Let $S = \{2, 3, 5, \dots, 4999\}$ be the set of all prime numbers less than $5000$.
 There are $|S| = 669$ primes in $S$, and their total sum is:
-$$S_{\max} = \sum_{p \in S} p = 1\,548\,136$$
+
+$$
+S_{\max} = \sum_{p \in S} p = 1\,548\,136
+$$
 
 Find the number of subsets of $S$ whose sum of elements is a prime number.
 Output the **rightmost $16$ digits** (i.e. modulo $10^{16}$).
@@ -25,15 +28,28 @@ def naive_prime_subsets():
 ### Dynamic Programming 0-1 Knapsack
 1. **Generating Function Polynomial:**
    The number of subsets of $S$ with sum $s$ is given by the coefficient of $x^s$ in:
-   $$G(x) = \prod_{p \in S} (1 + x^p) \pmod{10^{16}}$$
+
+$$
+G(x) = \prod_{p \in S} (1 + x^p) \pmod{10^{16}}
+$$
+
 2. **Reverse Knapsack DP:**
    Let $\text{dp}[s]$ be the number of subsets summing to $s$.
    Initialize $\text{dp}[0] = 1$. For each prime $p \in S$:
-   $$\text{dp}[s + p] = (\text{dp}[s + p] + \text{dp}[s]) \bmod 10^{16} \quad (\text{for } s = \text{curr\_max} \dots 0)$$
+
+$$
+\text{dp}[s + p] = (\text{dp}[s + p] + \text{dp}[s]) \bmod 10^{16} \quad (\text{for } s = \text{curr\_max} \dots 0)
+$$
+
 3. **Prime Sum Query:**
    We precompute a prime sieve up to $S_{\max} = 1\,548\,136$.
    The total number of prime subset sums modulo $10^{16}$ is:
-   $$\text{Answer} = \sum_{\substack{q \le S_{\max} \\ q \text{ is prime}}} \text{dp}[q] \pmod{10^{16}}$$
+
+$$
+\begin{aligned}
+\text{Answer} = \sum_{\substack{q \le S_{\max} \\ q \text{ is prime}}} \text{dp}[q] \pmod{10^{16}}
+\end{aligned}
+$$
 
 ---
 
@@ -74,7 +90,10 @@ def solve(limit: int = 5000, mod: int = 10**16) -> int:
 ```
 
 Evaluating for $S < 5000$:
-$$\text{Rightmost 16 digits} = \mathbf{9275262564250418}$$
+
+$$
+\text{Rightmost 16 digits} = \mathbf{9275262564250418}
+$$
 
 ---
 
@@ -96,7 +115,10 @@ $$\text{Rightmost 16 digits} = \mathbf{9275262564250418}$$
 ### Example 2: Target Evaluation for $S < 5000$
 - $669$ primes in $S$, summing up to $1\,548\,136$.
 - Summing $\text{dp}[q]$ for all $117\,336$ primes $q \le S_{\max}$:
-  $$\text{Total} \equiv \mathbf{9275262564250418} \pmod{10^{16}}$$
+
+$$
+\text{Total} \equiv \mathbf{9275262564250418} \pmod{10^{16}}
+$$
 
 ---
 

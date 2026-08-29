@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$ with decimal digits $d_1 d_2 \dots d_m$:
-$$f(n) = \sum_{j=1}^m d_j!$$
+
+$$
+f(n) = \sum_{j=1}^m d_j!
+$$
+
 Let $\text{sf}(n)$ denote the sum of the digits of $f(n)$.
 For an integer $i \ge 1$, let $g(i)$ be the smallest positive integer $n$ such that $\text{sf}(n) = i$.
 Let $\text{sg}(i)$ be the sum of the digits of $g(i)$.
@@ -29,7 +33,11 @@ A naive approach tests $n = 1, 2, 3, \dots$ for each $i$:
 
 ### Factorial Digit Multiset Formulation
 Notice that $f(n)$ depends only on the **multiset of digits** $\{c_1, c_2, \dots, c_9\}$ (where $c_d$ is the count of digit $d$ in $n$, with $c_0 = 0$ since $0! = 1! = 1$ and non-zero digits minimize $n$):
-$$f(n) = \sum_{d=1}^9 c_d \cdot d!$$
+
+$$
+f(n) = \sum_{d=1}^9 c_d \cdot d!
+$$
+
 To minimize the integer $n$:
 1. Minimize the number of digits $L = \sum_{d=1}^9 c_d$.
 2. For fixed $L$, arrange the digits in non-decreasing order $d_1 \le d_2 \le \dots \le d_L$.
@@ -45,7 +53,11 @@ For each target digit sum $i \in [1, 150]$:
 2. The number of 9s in $f(n)$ dominates for large $i$:
    $f(n) = a \cdot 10^k - b$, where $f(n)$ ends in many 9s.
 3. We generate candidate digit count tuples $(c_1, \dots, c_9)$ using branch-and-bound DFS on the small digits $1 \dots 8$, letting $c_9$ absorb the bulk sum:
-   $$c_9 = \lfloor (f(n) - \text{rem}) / 9! \rfloor$$
+
+$$
+c_9 = \lfloor (f(n) - \text{rem}) / 9! \rfloor
+$$
+
 4. For each $i \in [1, 150]$, we find the minimal canonical tuple $(c_1, \dots, c_9)$ and evaluate its digit sum $\text{sg}(i) = \sum_{d=1}^9 d \cdot c_d$.
 5. Summing over all $i \in [1, 150]$ executes in under $0.5$ seconds in pure Python.
 
@@ -57,7 +69,11 @@ For each target digit sum $i \in [1, 150]$:
 1. $i = 5$: $g(5) = 25 \implies f(25) = 2! + 5! = 2 + 120 = 122 \implies \text{sf}(25) = 1 + 2 + 2 = 5$.
    $\text{sg}(5) = 2 + 5 = 7$.
 2. Summing $\text{sg}(i)$ for $i = 1 \dots 20$:
-   $$\sum_{i=1}^{20} \text{sg}(i) = \mathbf{280}$$ (Matches sample sum 280 exactly! $\checkmark$)
+
+$$
+\sum_{i=1}^{20} \text{sg}(i) = \mathbf{280}
+$$
+(Matches sample sum 280 exactly! $\checkmark$)
 
 ---
 

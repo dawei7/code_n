@@ -4,11 +4,19 @@
 
 For an odd prime $p$, partition the set $\{1, 2, \dots, p - 1\}$ into $\frac{p - 1}{2}$ disjoint pairs $(a, b)$.
 Each pair has cost:
-$$\operatorname{cost}(a, b) = (ab) \bmod p$$
+
+$$
+\operatorname{cost}(a, b) = (ab) \bmod p
+$$
+
 The total cost of a pairing is $\sum (ab \bmod p)$.
 A pairing is optimal if its total cost is minimal.
 The cost product of a pairing is:
-$$\prod (ab \bmod p)$$
+
+$$
+\prod (ab \bmod p)
+$$
+
 We seek to evaluate the invariant cost product for $p = 2\,000\,000\,011$.
 
 We are given:

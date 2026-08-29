@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$, let $C(n)$ be the number of integers $x$ such that:
-$$1 \le x \le n \quad \text{and} \quad x^3 \equiv 1 \pmod n$$
+
+$$
+1 \le x \le n \quad \text{and} \quad x^3 \equiv 1 \pmod n
+$$
+
 Find the sum of all integers $n \le 10^{11}$ such that $C(n) = 243 = 3^5$.
 
 ---

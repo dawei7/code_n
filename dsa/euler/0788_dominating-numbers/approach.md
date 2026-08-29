@@ -10,7 +10,10 @@ We are given:
 - $D(10) = 21893256$
 
 We seek to evaluate:
-$$D(2022) \bmod 1\,000\,000\,007$$
+
+$$
+D(2022) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -30,12 +33,23 @@ Testing integers up to $10^{2022}$ is astronomical and completely intractable.
    Therefore, the events for distinct dominating digits $d$ are strictly mutually exclusive!
 2. **Nonzero Dominating Digit $d \in \{1, \dots, 9\}$ (9 choices)**:
    - If the first digit is $d$: choose $k - 1$ of the remaining $L - 1$ positions to be $d$, and the other $L - k$ positions can be any of the 9 digits $\neq d$:
-     $$\binom{L-1}{k-1} 9^{L-k}$$
+
+$$
+\binom{L-1}{k-1} 9^{L-k}
+$$
+
    - If the first digit is not $d$ (8 choices in $\{1, \dots, 9\} \setminus \{d\}$): choose $k$ of the remaining $L - 1$ positions to be $d$, and the other $L - 1 - k$ positions can be any of the 9 digits $\neq d$:
-     $$8 \binom{L-1}{k} 9^{L-1-k}$$
+
+$$
+8 \binom{L-1}{k} 9^{L-1-k}
+$$
+
 3. **Zero Dominating Digit $d = 0$ (1 choice)**:
    The leading digit cannot be 0 (9 choices in $\{1, \dots, 9\}$). Choose $k$ of the remaining $L - 1$ positions to be 0:
-   $$9 \binom{L-1}{k} 9^{L-1-k} = \binom{L-1}{k} 9^{L-k}$$
+
+$$
+9 \binom{L-1}{k} 9^{L-1-k} = \binom{L-1}{k} 9^{L-k}
+$$
 
 ---
 

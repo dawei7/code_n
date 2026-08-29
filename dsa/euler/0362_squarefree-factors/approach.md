@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For any integer $n \ge 2$, let $\operatorname{Fsf}(n)$ denote the number of unordered factorizations of $n$ into one or more squarefree integers larger than $1$:
-$$n = d_1 \cdot d_2 \cdots d_m \quad \text{with } 2 \le d_1 \le d_2 \le \dots \le d_m \text{ and } \mu^2(d_i) = 1$$
+
+$$
+n = d_1 \cdot d_2 \cdots d_m \quad \text{with } 2 \le d_1 \le d_2 \le \dots \le d_m \text{ and } \mu^2(d_i) = 1
+$$
 
 We define $S(n)$ as the cumulative sum:
-$$S(n) = \sum_{k=2}^n \operatorname{Fsf}(k)$$
+
+$$
+S(n) = \sum_{k=2}^n \operatorname{Fsf}(k)
+$$
 
 For example:
 - $\operatorname{Fsf}(54) = 2$ ($54 = 3 \times 3 \times 6 = 2 \times 3 \times 3 \times 3$).
@@ -28,7 +34,10 @@ A naive approach would factor every integer $k \in [2, 10^{10}]$, find the prime
 
 ### Reformulation as Multiset Counting
 Rather than iterating over integers $k$ and decomposing them, we directly count the number of valid non-decreasing squarefree multisets $\{d_1, d_2, \dots, d_m\}$ whose product is $\le N$:
-$$S(N) = \# \left\{ (d_1, \dots, d_m) : 2 \le d_1 \le d_2 \le \dots \le d_m, \; \mu^2(d_i) = 1, \; \prod_{i=1}^m d_i \le N \right\}$$
+
+$$
+S(N) = \# \left\{ (d_1, \dots, d_m) : 2 \le d_1 \le d_2 \le \dots \le d_m, \; \mu^2(d_i) = 1, \; \prod_{i=1}^m d_i \le N \right\}
+$$
 
 This reformulates the global sum into a sub-linear branch-and-bound tree over the sorted factors.
 
@@ -41,11 +50,18 @@ Let $C(L, i)$ denote the number of squarefree sequences $d_1 \le d_2 \le \dots \
 We partition $C(L, i)$ into two disjoint classes:
 1. **Single-factor sequences ($m = 1$)**:
    The number of squarefree numbers in $[\text{sqfree}[i], L]$:
-   $$\text{Singles}(L, i) = Q(L) - Q(\text{sqfree}[i] - 1)$$
+
+$$
+\text{Singles}(L, i) = Q(L) - Q(\text{sqfree}[i] - 1)
+$$
+
    where $Q(x) = \sum_{k=1}^{\lfloor \sqrt{x} \rfloor} \mu(k) \lfloor x / k^2 \rfloor$ is the squarefree counting function.
 2. **Multi-factor sequences ($m \ge 2$)**:
    For each possible smallest factor $d_1 = \text{sqfree}[j]$ with $j \ge i$ and $d_1 \le \lfloor \sqrt{L} \rfloor$:
-   $$\text{Multis}(L, i) = \sum_{j \ge i, \; \text{sqfree}[j] \le \sqrt{L}} C(\lfloor L / \text{sqfree}[j] \rfloor, j)$$
+
+$$
+\text{Multis}(L, i) = \sum_{j \ge i, \; \text{sqfree}[j] \le \sqrt{L}} C(\lfloor L / \text{sqfree}[j] \rfloor, j)
+$$
 
 ### Precomputation & Memoization
 - All squarefree integers up to $\sqrt{N} = 10^5$ are precomputed via a linear Möbius sieve ($60\,793$ values).

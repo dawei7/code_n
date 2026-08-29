@@ -13,7 +13,10 @@ We are given:
 - $C(13, 4) \equiv 540318329 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$C(10^7, 10^7) \bmod 1\,000\,000\,007$$
+
+$$
+C(10^7, 10^7) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -30,14 +33,22 @@ The number of initial configurations is $2^{n s} = 2^{10^{14}}$, which is comple
 1. **Disjunctive Sum of Suits**:
    Since moves within different suits are completely independent, the game is the disjunctive sum of $s$ identical 1-suit games.
    A position is a P-position if and only if:
-   $$\bigoplus_{i=1}^s G(S_i) = 0$$
+
+$$
+\bigoplus_{i=1}^s G(S_i) = 0
+$$
+
    where $G(S)$ is the Sprague-Grundy value of the visible card subset $S$ within a single suit.
 2. **Exact Single-Suit Grundy Distribution**:
    Let $a[g]$ be the number of subsets $S \subseteq \{1, \dots, n\}$ with $G(S) = g$.
    By combinatorial poset structure, $a[g]$ obeys a diagonal hypergeometric recurrence parameterized by binomial moments $Q(X, k)$ and $F(X, k)$ along $X + 2k = n - \text{const}$.
 3. **FWHT XOR-Convolution**:
    The number of $s$-tuples with XOR sum 0 is:
-   $$C(n, s) = \frac{1}{L} \sum_{t=0}^{L-1} (\widehat{a}[t])^s \pmod{10^9+7}$$
+
+$$
+C(n, s) = \frac{1}{L} \sum_{t=0}^{L-1} (\widehat{a}[t])^s \pmod{10^9+7}
+$$
+
    where $\widehat{a} = \operatorname{FWHT}(a)$ and $L = 2^{\lceil \log_2 n \rceil}$.
 
 ---

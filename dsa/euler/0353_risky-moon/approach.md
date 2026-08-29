@@ -3,20 +3,38 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $C(r)$ be a 2-sphere embedded in $\mathbb{R}^3$ defined by the equation:
-$$x^2 + y^2 + z^2 = r^2$$
+
+$$
+x^2 + y^2 + z^2 = r^2
+$$
+
 where $r \in \mathbb{Z}^+$ is the sphere's radius. A station is located at every integer lattice point $(x, y, z) \in \mathbb{Z}^3$ on the surface of $C(r)$.
 The North Pole station is located at $\mathbf{p}_{\text{north}} = (0, 0, r)$, and the South Pole station is located at $\mathbf{p}_{\text{south}} = (0, 0, -r)$.
 
 A journey between any two stations $\mathbf{u} = (x_1, y_1, z_1)$ and $\mathbf{v} = (x_2, y_2, z_2)$ traverses the shortest great-circle arc on the sphere. The angular distance $\theta \in [0, \pi]$ subtended at the sphere's origin is given by:
-$$\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{r^2} = \frac{x_1 x_2 + y_1 y_2 + z_1 z_2}{r^2}$$
+
+$$
+\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{r^2} = \frac{x_1 x_2 + y_1 y_2 + z_1 z_2}{r^2}
+$$
+
 The great-circle arc length is $d = r \theta$. The risk associated with this single road segment is defined quadratically:
-$$\text{Risk}(\mathbf{u}, \mathbf{v}) = \left(\frac{d}{\pi r}\right)^2 = \left(\frac{\theta}{\pi}\right)^2$$
+
+$$
+\text{Risk}(\mathbf{u}, \mathbf{v}) = \left(\frac{d}{\pi r}\right)^2 = \left(\frac{\theta}{\pi}\right)^2
+$$
 
 For a multi-hop path $P = (\mathbf{v}_0, \mathbf{v}_1, \dots, \mathbf{v}_k)$ where $\mathbf{v}_0 = \mathbf{p}_{\text{north}}$ and $\mathbf{v}_k = \mathbf{p}_{\text{south}}$, the total journey risk is the sum of the individual road risks:
-$$\text{Risk}(P) = \sum_{i=1}^k \left(\frac{\theta_i}{\pi}\right)^2$$
+
+$$
+\text{Risk}(P) = \sum_{i=1}^k \left(\frac{\theta_i}{\pi}\right)^2
+$$
 
 Let $M(r) = \min_{P} \text{Risk}(P)$ be the minimal risk of traveling from the North Pole to the South Pole on $C(r)$. We must compute the cumulative sum:
-$$\sum_{n=1}^{15} M(2^n - 1)$$
+
+$$
+\sum_{n=1}^{15} M(2^n - 1)
+$$
+
 rounded to 10 decimal places.
 
 ---
@@ -38,13 +56,21 @@ rounded to 10 decimal places.
 
 ### Quadratic Convexity of Arc Risk
 The cost function $f(\theta) = \theta^2$ is strictly convex. By Cauchy-Schwarz / Jensen's inequality:
-$$\sum_{i=1}^k \left(\frac{\theta_i}{\pi}\right)^2 \ge k \left(\frac{\sum \theta_i}{k \pi}\right)^2 = \frac{\Theta^2}{k \pi^2}$$
+
+$$
+\sum_{i=1}^k \left(\frac{\theta_i}{\pi}\right)^2 \ge k \left(\frac{\sum \theta_i}{k \pi}\right)^2 = \frac{\Theta^2}{k \pi^2}
+$$
+
 where $\Theta = \sum \theta_i$ is the total angular displacement. Splitting an angular distance into $k$ equal sub-steps reduces the total risk by a factor of $k$.
 Consequently, an optimal path will always make many small, localized hops between neighboring stations rather than large leaps across the sphere.
 
 ### Gaussian Integer Point Generation
 To find all integer solutions $(x, y, z)$ to $x^2 + y^2 + z^2 = r^2$, we rewrite the equation as:
-$$x^2 + y^2 = r^2 - z^2 = (r - z)(r + z)$$
+
+$$
+x^2 + y^2 = r^2 - z^2 = (r - z)(r + z)
+$$
+
 For each $z \in [0, r]$, we prime-factor $(r - z)$ and $(r + z)$ using a precomputed Smallest Prime Factor (SPF) sieve. In the Gaussian integer ring $\mathbb{Z}[i]$:
 - Primes $p \equiv 3 \pmod 4$ must appear with even multiplicity.
 - Primes $p \equiv 1 \pmod 4$ factor as $(a + bi)(a - bi)$.
@@ -58,12 +84,20 @@ All solutions $(x, y)$ are obtained directly from the Gaussian prime factorizati
 Because optimal paths consist of small steps, we restrict edge consideration to pairs of vertices with angular separation $\theta \le \theta_{\max}$.
 
 1. **Latitude Gap Bound**: For any radius $r$, the maximum angular gap $\Delta \theta_{\text{gap}}$ between consecutive non-empty latitude rings $z$ is:
-   $$\Delta \theta_{\text{gap}} = \max_{z_i} \arccos\left(\frac{\sqrt{r^2 - z_i^2}\sqrt{r^2 - z_{i+1}^2} + z_i z_{i+1}}{r^2}\right)$$
+
+$$
+\Delta \theta_{\text{gap}} = \max_{z_i} \arccos\left(\frac{\sqrt{r^2 - z_i^2}\sqrt{r^2 - z_{i+1}^2} + z_i z_{i+1}}{r^2}\right)
+$$
+
 2. **Adaptive Horizon**: We set $\theta_{\max} = \min\left(\pi, \max\left(0.025, 2.2 \times \Delta \theta_{\text{gap}}\right)\right)$, ensuring graph connectivity while strictly capping the maximum vertex degree.
 3. **3D Voxel Hash Grid**:
    We partition the unit sphere $\mathbb{R}^3$ into cubic cells of width $s = 2 \sin(\theta_{\max} / 2)$.
    Each station $(x, y, z)$ maps to grid index:
-   $$\mathbf{g} = \left(\left\lfloor \frac{x}{r \cdot s} \right\rfloor, \left\lfloor \frac{y}{r \cdot s} \right\rfloor, \left\lfloor \frac{z}{r \cdot s} \right\rfloor\right)$$
+
+$$
+\mathbf{g} = \left(\left\lfloor \frac{x}{r \cdot s} \right\rfloor, \left\lfloor \frac{y}{r \cdot s} \right\rfloor, \left\lfloor \frac{z}{r \cdot s} \right\rfloor\right)
+$$
+
    For any station, neighboring candidates are restricted to the 27 adjacent grid cells, reducing candidate evaluation from $O(|V|)$ to $O(1)$ per vertex.
 
 ---
@@ -80,7 +114,11 @@ Because optimal paths consist of small steps, we restrict edge consideration to 
    - Hop 1: $(0, 0, 7) \to (2, 3, 6)$, angle $\theta = \arccos(42/49) = \arccos(6/7) \approx 0.5411$ rad. Risk: $(0.5411/\pi)^2 \approx 0.02964$.
    - Subsequent hops navigate through symmetric latitude bands down to $(0, 0, -7)$.
    - Dijkstra determines the minimal path risk:
-     $$M(7) = 0.1784943998$$
+
+$$
+M(7) = 0.1784943998
+$$
+
    This matches the public test value given in the problem statement.
 
 ---

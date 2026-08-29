@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $N$ is *stealthy* if there exist positive integers $a, b, c, d$ such that:
-$$ab = cd = N \quad \text{and} \quad a + b = c + d + 1$$
+
+$$
+ab = cd = N \quad \text{and} \quad a + b = c + d + 1
+$$
 
 We are given:
 - $36 = 4 \times 9 = 6 \times 6$ is stealthy ($4 + 9 = 6 + 6 + 1$).
@@ -26,16 +29,35 @@ Factoring all $10^{14}$ integers to check for stealthy divisor pairs requires $1
 ### Exact Diophantine Parameterization
 1. **Rational Ratio Parameterization**:
    Assuming without loss of generality $a \le c \le d \le b$, the condition $ab = cd$ implies:
-   $$\frac{a}{c} = \frac{d}{b} = \frac{x}{y} \quad \text{with } \gcd(x, y) = 1, x \le y$$
+
+$$
+\frac{a}{c} = \frac{d}{b} = \frac{x}{y} \quad \text{with } \gcd(x, y) = 1, x \le y
+$$
+
    Let $a = xk, c = yk, d = xm, b = ym$.
 2. **Sum Difference Invariant**:
-   $$a + b - (c + d) = xk + ym - (yk + xm) = (y - x)(m - k) = 1$$
+
+$$
+a + b - (c + d) = xk + ym - (yk + xm) = (y - x)(m - k) = 1
+$$
+
    Since $x, y, k, m \in \mathbb{Z}^+$:
-   $$y - x = 1 \implies y = x + 1 \quad \text{and} \quad m - k = 1 \implies m = k + 1$$
+
+$$
+y - x = 1 \implies y = x + 1 \quad \text{and} \quad m - k = 1 \implies m = k + 1
+$$
+
 3. **Canonical Closed Form**:
-   $$N = ab = x(x + 1) k(k + 1)$$
+
+$$
+N = ab = x(x + 1) k(k + 1)
+$$
+
    Every stealthy number is uniquely parameterized by pairs of positive integers $(x, y)$ as:
-   $$N = x(x + 1) y(y + 1) \quad \text{with } 1 \le x \le y$$
+
+$$
+N = x(x + 1) y(y + 1) \quad \text{with } 1 \le x \le y
+$$
 
 ---
 
@@ -44,7 +66,11 @@ Factoring all $10^{14}$ integers to check for stealthy divisor pairs requires $1
 ### Sub-second Hyperbolic Enumeration & Radix Sort
 1. **Bounding Variables**:
    Since $N = x(x + 1) y(y + 1) \le M = 10^{14}$ and $x \le y$:
-   $$x^4 \le M \implies x \le M^{1/4} \approx 3162$$
+
+$$
+x^4 \le M \implies x \le M^{1/4} \approx 3162
+$$
+
    For each $x$, $y \le \sqrt{M / (x(x + 1))} \approx 10^7 / x$.
 2. **Total Candidate Count**:
    The number of pairs is $\sum_{x=1}^{3162} \frac{10^7}{x} \approx 10^7 \ln(3162) \approx 7.5 \times 10^7$.

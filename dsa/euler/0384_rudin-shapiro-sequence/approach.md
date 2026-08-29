@@ -11,7 +11,10 @@ Let $g(t, c)$ be the $0$-based index in $s(n)$ where value $t$ occurs for the $c
 We define $GF(t) = g(F(t), F(t-1))$ where $F(0) = 1, F(1) = 1, F(n) = F(n-1) + F(n-2)$.
 
 We seek to evaluate:
-$$\sum_{t=2}^{45} GF(t)$$
+
+$$
+\sum_{t=2}^{45} GF(t)
+$$
 
 ---
 
@@ -40,9 +43,16 @@ For any power of two $h = 2^k \le t < 2^{k+1}$ with remainder $d = t - h$:
 Let $h = 2^{\lfloor \log_2 t \rfloor}$ and $d = t - h$:
 1. **Base Case**: $g(1, 1) = 0$.
 2. **Pure Power of Two ($d = 0$)**:
-   $$g(t, c) = \begin{cases} \frac{t^2}{4} + g\left(\frac{t}{2}, c\right) & \text{if } c \le \frac{t}{2} \\ \frac{t^2}{2} + g\left(t, c - \frac{t}{2}\right) & \text{if } c > \frac{t}{2} \end{cases}$$
+
+$$
+g(t, c) = \begin{cases} \frac{t^2}{4} + g\left(\frac{t}{2}, c\right) & \text{if } c \le \frac{t}{2} \\ \frac{t^2}{2} + g\left(t, c - \frac{t}{2}\right) & \text{if } c > \frac{t}{2} \end{cases}
+$$
+
 3. **General Case ($d > 0$)**:
-   $$g(t, c) = \begin{cases} h^2 + g(2h - d, c - h) & \text{if } c > h \\ h^2 + g(d, c + d - h) & \text{if } h - d < c \le h \\ \frac{h^2}{2} + g(d, c) & \text{if } c \le d \\ \frac{h^2}{2} + g(2h - t, c) & \text{if } d < c \le h - d \end{cases}$$
+
+$$
+g(t, c) = \begin{cases} h^2 + g(2h - d, c - h) & \text{if } c > h \\ h^2 + g(d, c + d - h) & \text{if } h - d < c \le h \\ \frac{h^2}{2} + g(d, c) & \text{if } c \le d \\ \frac{h^2}{2} + g(2h - t, c) & \text{if } d < c \le h - d \end{cases}
+$$
 
 Each recursive step reduces the highest set bit, evaluating $g(t, c)$ in strictly $O(\log t)$ depth!
 

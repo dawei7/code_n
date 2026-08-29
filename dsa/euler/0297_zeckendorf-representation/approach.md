@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 By **Zeckendorf's Theorem**, every positive integer $n$ can be uniquely expressed as the sum of one or more non-consecutive Fibonacci numbers ($F_1 = 1, F_2 = 2, F_3 = 3, F_4 = 5, \dots$):
-$$n = \sum_{j} F_{k_j} \quad (|k_i - k_j| \ge 2)$$
+
+$$
+n = \sum_{j} F_{k_j} \quad (|k_i - k_j| \ge 2)
+$$
+
 Let $z(n)$ be the number of Fibonacci terms in the Zeckendorf representation of $n$.
 We seek $\sum_{n=1}^{10^{17} - 1} z(n)$.
 
@@ -24,12 +28,20 @@ Let $S(N) = \sum_{n=1}^{N - 1} z(n)$.
 For the base interval $[1, F_k - 1]$:
 Let $A(k) = \sum_{n=1}^{F_k - 1} z(n)$.
 Any integer $n \in [F_{k-1}, F_k - 1]$ can be written as:
-$$n = F_{k-1} + m \quad \text{where } 0 \le m < F_k - F_{k-1} = F_{k-2}$$
+
+$$
+n = F_{k-1} + m \quad \text{where } 0 \le m < F_k - F_{k-1} = F_{k-2}
+$$
+
 In the Zeckendorf decomposition of $n = F_{k-1} + m$:
 - $F_{k-1}$ is always included (contributing $+1$ to $z(n)$).
 - The remaining terms form the exact Zeckendorf decomposition of $m$.
 Thus:
-$$\mathbf{A(k) = A(k - 1) + A(k - 2) + F_{k-2}}$$
+
+$$
+\mathbf{A(k) = A(k - 1) + A(k - 2) + F_{k-2}}
+$$
+
 with base cases $A(1) = 0, A(2) = 0, A(3) = 1$.
 
 ---

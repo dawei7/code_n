@@ -3,11 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 How many $20$-digit numbers $n$ (without any leading zero) have the property that no three consecutive digits have a sum greater than $9$?
-$$\forall i \in \{1, 2, \dots, 18\}, \quad d_i + d_{i+1} + d_{i+2} \le 9$$
+
+$$
+\forall i \in \{1, 2, \dots, 18\}, \quad d_i + d_{i+1} + d_{i+2} \le 9
+$$
+
 where $n = d_1 d_2 \dots d_{20}$ with $d_1 \in \{1, \dots, 9\}$ and $d_i \in \{0, \dots, 9\}$ for $i \ge 2$.
 
 The objective is to find the **total number of valid $20$-digit numbers satisfying the consecutive 3-digit sum limit**:
-$$N_{\text{valid}} = \left| \left\{ (d_1, \dots, d_{20}) \in \{0..9\}^{20} \;\middle|\; d_1 \neq 0 \land \forall i \in \{1..18\}, \; d_i + d_{i+1} + d_{i+2} \le 9 \right\} \right|$$
+
+$$
+N_{\text{valid}} = \left| \left\{ (d_1, \dots, d_{20}) \in \{0..9\}^{20} \;\middle|\; d_1 \neq 0 \land \forall i \in \{1..18\}, \; d_i + d_{i+1} + d_{i+2} \le 9 \right\} \right|
+$$
 
 ---
 
@@ -25,13 +32,23 @@ def naive_digit_sum_limit():
 1. **Markov Property:**
    To decide whether the next digit $d_{k+1}$ can be appended, we only need to know the **last two digits** $(d_{k-1}, d_k)$.
    The validity condition is simply:
-   $$d_{k-1} + d_k + d_{k+1} \le 9 \iff 0 \le d_{k+1} \le 9 - (d_{k-1} + d_k)$$
+
+$$
+d_{k-1} + d_k + d_{k+1} \le 9 \iff 0 \le d_{k+1} \le 9 - (d_{k-1} + d_k)
+$$
+
 2. **State Space Compression:**
    There are only $\sum_{s=0}^9 (10 - s) = 55$ valid state pairs $(d_1, d_2)$ with $d_1 + d_2 \le 9$.
 3. **Iterative DP Transitions:**
    - For length 2: initialize `dp[(d1, d2)] = 1` for all $d_1 \in [1, 9]$ and $d_2 \in [0, 9 - d_1]$.
    - For length $k = 3 \dots 20$:
-     $$\text{new\_dp}[(d_2, d_3)] = \sum_{\substack{d_1 \\ d_1 + d_2 + d_3 \le 9}} \text{dp}[(d_1, d_2)]$$
+
+$$
+\begin{aligned}
+\text{new\_dp}[(d_2, d_3)] = \sum_{\substack{d_1 \\ d_1 + d_2 + d_3 \le 9}} \text{dp}[(d_1, d_2)]
+\end{aligned}
+$$
+
 4. Evaluating all 18 DP steps over 55 states takes $\approx 11\,000$ operations in $\approx 0.001$ seconds.
 
 ---
@@ -74,7 +91,10 @@ def solve(length: int = 20) -> int:
     return sum(dp.values())
 ```
 Evaluating for $L = 20$:
-$$N_{\text{valid}} = \mathbf{378\,158\,756\,814\,587}$$
+
+$$
+N_{\text{valid}} = \mathbf{378\,158\,756\,814\,587}
+$$
 
 ---
 
@@ -84,12 +104,19 @@ $$N_{\text{valid}} = \mathbf{378\,158\,756\,814\,587}$$
 - For length 2: $45$ pairs $(d_1, d_2)$.
 - For each pair $(d_1, d_2)$, $d_3$ can range from $0$ to $9 - (d_1 + d_2)$ ($10 - d_1 - d_2$ choices).
 - Total count for $L = 3$:
-  $$\sum_{d_1=1}^9 \sum_{d_2=0}^{9-d_1} (10 - d_1 - d_2) = \sum_{d_1=1}^9 \frac{(10 - d_1)(11 - d_1)}{2} = \mathbf{165}$$
+
+$$
+\sum_{d_1=1}^9 \sum_{d_2=0}^{9-d_1} (10 - d_1 - d_2) = \sum_{d_1=1}^9 \frac{(10 - d_1)(11 - d_1)}{2} = \mathbf{165}
+$$
+
 - Matches exact DP output! $\checkmark$
 
 ### Example 2: Target Evaluation for $L = 20$
 - Summing all 55 final DP state path counts:
-  $$N_{\text{valid}} = \mathbf{378\,158\,756\,814\,587}$$
+
+$$
+N_{\text{valid}} = \mathbf{378\,158\,756\,814\,587}
+$$
 
 ---
 

@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In the hexadecimal number system, numbers are represented using $16$ digits:
-$$0, 1, 2, 3, 4, 5, 6, 7, 8, 9, \text{A}, \text{B}, \text{C}, \text{D}, \text{E}, \text{F}$$
+
+$$
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, \text{A}, \text{B}, \text{C}, \text{D}, \text{E}, \text{F}
+$$
 
 The hexadecimal number $10\text{AF}$ uses the four digits $0, 1, \text{A}$, and $\text{F}$, where each of the three digits $0, 1$, and $\text{A}$ occurs at least once.
 
 We wish to count how many hexadecimal numbers containing at most sixteen ($16$) hexadecimal digits (with no leading zeros) contain **at least one $0$, at least one $1$, and at least one $\text{A}$**.
 
 The objective is to find the **total number of such hexadecimal numbers of length at most 16, giving the answer as a hexadecimal string with uppercase letters**:
-$$N_{\text{total}} = \sum_{L=3}^{16} N_{\text{hex}}(L)$$
+
+$$
+N_{\text{total}} = \sum_{L=3}^{16} N_{\text{hex}}(L)
+$$
 
 ---
 
@@ -27,7 +33,11 @@ def naive_hex_numbers():
 ### The Principle of Inclusion-Exclusion (PIE)
 1. **Universe of Length $L$ Hex Numbers:**
    The first digit cannot be $0$ ($15$ choices: $1 \dots \text{F}$). The remaining $L-1$ digits can be any of the $16$ digits:
-   $$|U| = 15 \times 16^{L-1}$$
+
+$$
+|U| = 15 \times 16^{L-1}
+$$
+
 2. **Missing 1 Digit:**
    - Missing $0$: First digit $\in \{1 \dots \text{F}\}$ ($15$), others $\in \{1 \dots \text{F}\}$ ($15$) $\implies 15 \times 15^{L-1}$.
    - Missing $1$: First digit $\in \{2 \dots \text{F}\}$ ($14$), others $\in \{0, 2 \dots \text{F}\}$ ($15$) $\implies 14 \times 15^{L-1}$.
@@ -41,7 +51,11 @@ def naive_hex_numbers():
 4. **Missing 3 Digits $(0, 1, \text{A})$:**
    - First digit $13$, others $13 \implies 13 \times 13^{L-1}$.
 5. **Exact Closed-Form Formula by PIE:**
-   $$N_{\text{hex}}(L) = 15 \cdot 16^{L-1} - 43 \cdot 15^{L-1} + 41 \cdot 14^{L-1} - 13 \cdot 13^{L-1}$$
+
+$$
+N_{\text{hex}}(L) = 15 \cdot 16^{L-1} - 43 \cdot 15^{L-1} + 41 \cdot 14^{L-1} - 13 \cdot 13^{L-1}
+$$
+
 6. Summing across $L \in [3, 16]$ takes 14 arithmetic operations in $\approx 0.0000$ seconds.
 
 ---
@@ -67,10 +81,17 @@ def naive_hex_numbers():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Summation
-$$\text{Total} = \sum_{L=3}^{16} \left( 15 \cdot 16^{L-1} - 43 \cdot 15^{L-1} + 41 \cdot 14^{L-1} - 13 \cdot 13^{L-1} \right)$$
+
+$$
+\text{Total} = \sum_{L=3}^{16} \left( 15 \cdot 16^{L-1} - 43 \cdot 15^{L-1} + 41 \cdot 14^{L-1} - 13 \cdot 13^{L-1} \right)
+$$
+
 In decimal: $\text{Total} = 1258880788635852103168$.
 In uppercase hexadecimal:
-$$\text{hex}(\text{Total}) = \mathbf{"3D541B9455E3D561"}$$
+
+$$
+\text{hex}(\text{Total}) = \mathbf{"3D541B9455E3D561"}
+$$
 
 ---
 
@@ -87,7 +108,10 @@ $$\text{hex}(\text{Total}) = \mathbf{"3D541B9455E3D561"}$$
 
 ### Example 2: Target Evaluation for $L \le 16$
 - Summing for all $L \in [3, 16]$:
-  $$\text{Hex Result} = \mathbf{"3D541B9455E3D561"}$$
+
+$$
+\text{Hex Result} = \mathbf{"3D541B9455E3D561"}
+$$
 
 ---
 

@@ -11,7 +11,10 @@ We are given:
 - $f(5) = 70$
 
 We seek to evaluate:
-$$f(10^8) \pmod{1\,008\,691\,207}$$
+
+$$
+f(10^8) \pmod{1\,008\,691\,207}
+$$
 
 ---
 
@@ -30,7 +33,10 @@ For $n = 10^8$, $10^8!$ is astronomically large, making exhaustive board travers
 2. **Left Factorial Identity**:
    Let $!n = \sum_{k=0}^{n-1} k!$ denote Kurepa's left factorial.
    Counting unblocked permutations via inclusion-exclusion on prefix blocks yields the exact formula:
-   $$f(n) = (n - 3) \cdot (!n) + 2 \pmod{1\,008\,691\,207}$$
+
+$$
+f(n) = (n - 3) \cdot (!n) + 2 \pmod{1\,008\,691\,207}
+$$
 
 ---
 
@@ -40,7 +46,10 @@ For $n = 10^8$, $10^8!$ is astronomically large, making exhaustive board travers
 1. **Recurrence**:
    Maintain running factorial $k! \pmod M$ and cumulative sum $S = \sum_{k=0}^{n-1} k! \pmod M$.
 2. **Direct Modulo Arithmetic**:
-   $$f(n) \equiv (n - 3) S + 2 \pmod{1\,008\,691\,207}$$
+
+$$
+f(n) \equiv (n - 3) S + 2 \pmod{1\,008\,691\,207}
+$$
 
 This evaluates $f(10^8) \pmod{1\,008\,691\,207}$ in **$\approx 0.26$ seconds**!
 

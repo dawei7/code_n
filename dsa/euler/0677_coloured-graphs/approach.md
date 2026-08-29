@@ -13,7 +13,10 @@ We are given:
 - $g(100) \equiv 919747298 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$g(10\,000) \bmod 1\,000\,000\,007$$
+
+$$
+g(10\,000) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,7 +32,11 @@ Generating all non-isomorphic trees of size up to $10\,000$ via canonical form c
 ### Pólya Symmetric Powers & Otter's Dissymmetry Theorem
 1. **Dissymmetry Theorem for Unrooted Trees (Otter's Formula)**:
    For any family of unrooted trees:
-   $$\text{Unrooted}(z) = \text{Vertex-Rooted}(z) + \text{Undirected-Edge-Rooted}(z) - \text{Directed-Edge-Rooted}(z)$$
+
+$$
+\text{Unrooted}(z) = \text{Vertex-Rooted}(z) + \text{Undirected-Edge-Rooted}(z) - \text{Directed-Edge-Rooted}(z)
+$$
+
 2. **Planted Tree Decomposition**:
    A *planted tree* has an external edge connected to its root.
    - For a Red root: parent takes $1$ edge $\implies$ $\le 3$ child subtrees.
@@ -58,7 +65,10 @@ Generating all non-isomorphic trees of size up to $10\,000$ via canonical form c
    - Directed edges $D(n) = [z^n] (A(z)^2 - PY(z)^2)$
    - Undirected edges $E(n) = [z^n] \frac{1}{2} (A(z)^2 + A(z^2) - PY(z)^2 - PY(z^2))$.
 3. **Dissymmetry Combination**:
-   $$g(n) = V(n) + E(n) - D(n) \pmod{1\,000\,000\,007}$$
+
+$$
+g(n) = V(n) + E(n) - D(n) \pmod{1\,000\,000\,007}
+$$
 
 This evaluates $g(10\,000) \bmod 1\,000\,000\,007$ in **$\approx 7.72$ seconds** in pure Python!
 

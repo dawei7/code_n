@@ -12,7 +12,10 @@ We are given:
 - $F(1000) = 1019$
 
 We seek to evaluate:
-$$F(10^7)$$
+
+$$
+F(10^7)
+$$
 
 ---
 
@@ -43,7 +46,11 @@ The existence of two distinct square roots with positive entries corresponds to 
 Let $u > v \ge 1$ such that $\text{tr}(M) = u^2 + v^2 < N$.
 1. Let $g = \gcd(u, v)$. The fundamental parameter $K = \gcd(u+v, u-v)$ is given by $K = g \cdot \delta$ where $\delta = 2$ if both $u/g, v/g$ are odd, and $\delta = 1$ otherwise.
 2. For each valid $a$ in the interval:
-   $$\frac{v K}{u + v} < a < \frac{u K}{u + v}$$
+
+$$
+\frac{v K}{u + v} < a < \frac{u K}{u + v}
+$$
+
    the number of valid matrix configurations equals the divisor count $d(a(K - a))$.
 3. We precompute $d(n)$ via a linear sieve and store prefix sums $\text{prefix}[K][a] = \sum_{t=1}^a d(t(K - t))$, enabling each $(u, v)$ query to execute in $O(1)$!
 

@@ -52,17 +52,26 @@ For each shell $j$ of side length $k = 2j + 1$:
 
 ### Closed-Form Polynomial Summation
 Summing the 4 corners of shell $j$:
-$$S(j) = 4(2j+1)^2 - 12j = 4(4j^2 + 4j + 1) - 12j = 16j^2 + 4j + 4$$
+
+$$
+S(j) = 4(2j+1)^2 - 12j = 4(4j^2 + 4j + 1) - 12j = 16j^2 + 4j + 4
+$$
 
 Summing across all $m = (N - 1) / 2$ shells:
-$$S(N) = 1 + \sum_{j=1}^m (16j^2 + 4j + 4) = 1 + 16 \sum_{j=1}^m j^2 + 4 \sum_{j=1}^m j + 4m$$
+
+$$
+S(N) = 1 + \sum_{j=1}^m (16j^2 + 4j + 4) = 1 + 16 \sum_{j=1}^m j^2 + 4 \sum_{j=1}^m j + 4m
+$$
 
 Substituting Faulhaber's formulas $\sum j^2 = \frac{m(m+1)(2m+1)}{6}$ and $\sum j = \frac{m(m+1)}{2}$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 S(N) &= 1 + \frac{8m(m+1)(2m+1)}{3} + 2m(m+1) + 4m \\
 &= \frac{3 + 8m(2m^2 + 3m + 1) + 6m^2 + 6m + 12m}{3} \\
 &= \boxed{\frac{16m^3 + 30m^2 + 26m + 3}{3}}
-\end{aligned}$$
+\end{aligned}
+$$
 
 ---
 
@@ -70,20 +79,27 @@ S(N) &= 1 + \frac{8m(m+1)(2m+1)}{3} + 2m(m+1) + 4m \\
 
 ### Example 1: Evaluation for $5 \times 5$ Spiral ($N = 5 \implies m = 2$)
 Using the closed-form cubic polynomial:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 S(5) &= \frac{16(2^3) + 30(2^2) + 26(2) + 3}{3} \\
 &= \frac{16(8) + 30(4) + 52 + 3}{3} \\
 &= \frac{128 + 120 + 55}{3} = \frac{303}{3} = \mathbf{101}
-\end{aligned}$$
+\end{aligned}
+$$
+
 Matches problem statement sample value **101**! $\checkmark$
 
 ### Example 2: Exact Evaluation for $1001 \times 1001$ Spiral ($m = 500$)
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 S(1001) &= \frac{16(500^3) + 30(500^2) + 26(500) + 3}{3} \\
 &= \frac{16(125\,000\,000) + 30(250\,000) + 13\,000 + 3}{3} \\
 &= \frac{2\,000\,000\,000 + 7\,500\,000 + 13\,003}{3} \\
 &= \frac{2\,007\,513\,003}{3} = \mathbf{669\,171\,001}
-\end{aligned}$$
+\end{aligned}
+$$
 
 ---
 

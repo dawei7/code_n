@@ -3,13 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define sequences $x(k)$ and $y_n(k)$ for $k \ge 0$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 x(0) &= 0, \quad x(1) = 1 \\
 x(2k) &= (3x(k) + 2x(\lfloor k/2 \rfloor)) \bmod 2^{60} \\
 x(2k+1) &= (2x(k) + 3x(\lfloor k/2 \rfloor)) \bmod 2^{60} \\
 y_n(k) &= \begin{cases} x(k) & \text{if } k \ge n \\ 2^{60} - 1 - \max(y_n(2k), y_n(2k+1)) & \text{if } k < n \end{cases} \\
 A(n) &= y_n(1)
-\end{aligned}$$
+\end{aligned}
+$$
 
 We are given:
 - $A(4) = 8$
@@ -17,7 +20,10 @@ We are given:
 - $A(10^3) = 101881$
 
 We seek to evaluate:
-$$A(10^{12})$$
+
+$$
+A(10^{12})
+$$
 
 ---
 
@@ -45,7 +51,11 @@ The tree of $y_n(k)$ for $n = 10^{12}$ has $2n - 1 \approx 2 \times 10^{12}$ nod
 ### Linear Recurrence of Minimax Evaluation
 1. **Subtree Linearity**:
    For any complete binary subtree of depth $d$ rooted at node $k$ with state $(x(k), x(\lfloor k/2 \rfloor))$, the minimax value is a strict linear function:
-   $$\text{minimax}(x, p, d) = (cx_d \cdot x + cp_d \cdot p) \bmod 2^{60}$$
+
+$$
+\text{minimax}(x, p, d) = (cx_d \cdot x + cp_d \cdot p) \bmod 2^{60}
+$$
+
 2. **Exact 2-Step Coefficient Recurrence**:
    Starting with $(cx_1, cp_1) = (3, 2)$:
    - For odd $d \to d+1$: $cx_{d+1} = (2 cx_d + cp_d) \bmod 2^{60}, \quad cp_{d+1} = (3 cx_d) \bmod 2^{60}$

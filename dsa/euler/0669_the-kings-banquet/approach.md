@@ -12,7 +12,10 @@ We are given:
 
 We seek to evaluate:
 The knight in the $10\,000\,000\,000\,000\,000$-th chair from the King's left for:
-$$n = 99\,194\,853\,094\,755\,497$$
+
+$$
+n = 99\,194\,853\,094\,755\,497
+$$
 
 ---
 
@@ -32,13 +35,27 @@ Finding a Hamiltonian path through a graph with $10^{17}$ vertices via DFS/backt
    When $n = F_k$, the unique Hamiltonian path of Fibonacci sums has a rigid self-similar alternating reflection structure:
    Let $y = F_k$ and $z = F_{k-1}$.
    The step transformations alternate between:
-   $$x \mapsto y - x \equiv -x \pmod{F_k}$$
-   $$x \mapsto z - x \pmod{F_k}$$
+
+$$
+x \mapsto y - x \equiv -x \pmod{F_k}
+$$
+
+$$
+x \mapsto z - x \pmod{F_k}
+$$
+
 3. **Group Composition**:
    Composing the two reflections yields a pure modular shift:
-   $$x \mapsto -(-x - z) \equiv x - z \pmod{F_k}$$
+
+$$
+x \mapsto -(-x - z) \equiv x - z \pmod{F_k}
+$$
+
    Repeated $m$ times, the position after $2m$ steps is simply:
-   $$y - m \cdot z \pmod{F_k}$$
+
+$$
+y - m \cdot z \pmod{F_k}
+$$
 
 ---
 

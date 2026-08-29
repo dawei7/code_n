@@ -38,10 +38,17 @@ At any point in the emulation, if we have $r \in \{0, 1, \dots, n - 1\}$ leftove
 Let $V(r)$ be the expected future rolls per state with $r$ leftover outcomes.
 Scaling by $r$, let $W(r) = r \cdot V(r)$.
 The Dynamic Programming Bellman equation is:
-$$W(r) = \min_{d \in \{5, 6\}} \left( r + \frac{1}{d} W((r \cdot d) \bmod n) \right)$$
+
+$$
+W(r) = \min_{d \in \{5, 6\}} \left( r + \frac{1}{d} W((r \cdot d) \bmod n) \right)
+$$
+
 with terminal condition $W(0) = 0$.
 The expected rolls for an $n$-sided die is:
-$$R(n) = V(1) = W(1)$$
+
+$$
+R(n) = V(1) = W(1)
+$$
 
 ### Exponential Contraction Mapping
 Because $\gamma = \max(1/5, 1/6) = 0.2 < 1$:

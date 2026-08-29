@@ -4,15 +4,23 @@
 
 Let $\varphi(n)$ be Euler's totient function.
 Define:
-$$f(n) = \left( \sum_{i=1}^n \varphi(n^i) \right) \bmod (n + 1)$$
 
-$$g(n) = \sum_{i=1}^n f(i)$$
+$$
+f(n) = \left( \sum_{i=1}^n \varphi(n^i) \right) \bmod (n + 1)
+$$
+
+$$
+g(n) = \sum_{i=1}^n f(i)
+$$
 
 We are given:
 - $g(100) = 2007$
 
 We seek to evaluate:
-$$g(5 \times 10^8)$$
+
+$$
+g(5 \times 10^8)
+$$
 
 ---
 
@@ -28,17 +36,34 @@ Evaluating $\sum_{i=1}^n \varphi(n^i) \bmod (n+1)$ sequentially for each $n \le 
 ### The Alternating Geometric Sum Collapse
 1. **Totient Power Multiplicativity**:
    For any integer $n \ge 1$:
-   $$\varphi(n^i) = n^{i-1} \varphi(n)$$
+
+$$
+\varphi(n^i) = n^{i-1} \varphi(n)
+$$
+
 2. **Sum of Powers**:
-   $$\sum_{i=1}^n \varphi(n^i) = \varphi(n) \sum_{i=1}^n n^{i-1} = \varphi(n) \left( 1 + n + n^2 + \dots + n^{n-1} \right)$$
+
+$$
+\sum_{i=1}^n \varphi(n^i) = \varphi(n) \sum_{i=1}^n n^{i-1} = \varphi(n) \left( 1 + n + n^2 + \dots + n^{n-1} \right)
+$$
+
 3. **Reduction Modulo $(n + 1)$**:
    Since $n \equiv -1 \pmod{n + 1}$:
-   $$1 + n + n^2 + \dots + n^{n-1} \equiv 1 - 1 + 1 - 1 + \dots + (-1)^{n-1} \pmod{n + 1}$$
+
+$$
+1 + n + n^2 + \dots + n^{n-1} \equiv 1 - 1 + 1 - 1 + \dots + (-1)^{n-1} \pmod{n + 1}
+$$
+
    - When $n$ is **even**: There are an even number of alternating terms summing to $0$. Thus, $f(n) = 0$.
    - When $n$ is **odd**: There are an odd number of alternating terms summing to $1$. Thus, $f(n) = \varphi(n)$.
 
 Therefore, $g(n)$ is strictly the sum of Euler's totient function over odd integers:
-$$g(n) = \sum_{\substack{1 \le k \le n \\ k \text{ odd}}} \varphi(k)$$
+
+$$
+\begin{aligned}
+g(n) = \sum_{\substack{1 \le k \le n \\ k \text{ odd}}} \varphi(k)
+\end{aligned}
+$$
 
 ---
 
@@ -48,11 +73,23 @@ $$g(n) = \sum_{\substack{1 \le k \le n \\ k \text{ odd}}} \varphi(k)$$
 1. **Relation between Totient Summatory Function and Odd Totients**:
    Let $S(x) = \sum_{k=1}^x \varphi(k)$. Every integer $k$ factors uniquely as $k = 2^j m$ with $m$ odd and $\varphi(2^j m) = \varphi(2^j) \varphi(m)$.
    Summing over all powers $j \ge 0$ yields:
-   $$S(x) = g(x) + g(\lfloor x/2 \rfloor) + 2 g(\lfloor x/4 \rfloor) + 4 g(\lfloor x/8 \rfloor) + \dots$$
+
+$$
+S(x) = g(x) + g(\lfloor x/2 \rfloor) + 2 g(\lfloor x/4 \rfloor) + 4 g(\lfloor x/8 \rfloor) + \dots
+$$
+
    Subtracting $2 S(\lfloor x/2 \rfloor)$ gives the elegant telescoping relation:
-   $$g(x) = S(x) - \sum_{j=1}^{\lfloor \log_2 x \rfloor} S(\lfloor x/2^j \rfloor)$$
+
+$$
+g(x) = S(x) - \sum_{j=1}^{\lfloor \log_2 x \rfloor} S(\lfloor x/2^j \rfloor)
+$$
+
 2. **Sublinear Totient Summation (Du Sieve / Mertens-type)**:
-   $$S(x) = \frac{x(x+1)}{2} - \sum_{m=2}^x S(\lfloor x/m \rfloor)$$
+
+$$
+S(x) = \frac{x(x+1)}{2} - \sum_{m=2}^x S(\lfloor x/m \rfloor)
+$$
+
    With linear sieve precomputation up to $M = \lfloor N^{2/3} \rfloor \approx 6.3 \times 10^5$, $S(x)$ evaluates in $O(N^{2/3})$ time.
 
 This evaluates $N = 5 \times 10^8$ in **$0.68$ seconds**!

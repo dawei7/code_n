@@ -13,7 +13,10 @@ It is possible to write five as a sum in exactly six different ways:
 Let $p(n)$ denote the unrestricted integer partition function counting the number of ways to write $n \in \mathbb{N}$ as a sum of positive integers.
 
 The objective is to find how many different ways one hundred ($100$) can be written as a sum of **at least two positive integers**:
-$$N_{\text{ways}} = p(100) - 1$$
+
+$$
+N_{\text{ways}} = p(100) - 1
+$$
 
 ---
 
@@ -29,9 +32,17 @@ def naive_partitions(n, max_val):
 
 ### 1D Dynamic Programming Generating Function
 1. The generating function for partitions using integers from $1$ to $99$ is:
-   $$P_{\le 99}(x) = \prod_{k=1}^{99} \frac{1}{1 - x^k} = \sum_{n=0}^{\infty} p_{\le 99}(n) x^n$$
+
+$$
+P_{\le 99}(x) = \prod_{k=1}^{99} \frac{1}{1 - x^k} = \sum_{n=0}^{\infty} p_{\le 99}(n) x^n
+$$
+
 2. Using an unbounded 1D knapsack DP:
-   $$DP[i] \leftarrow DP[i] + DP[i - k] \quad \text{for } k \in [1, 99], \, i \in [k, 100]$$
+
+$$
+DP[i] \leftarrow DP[i] + DP[i - k] \quad \text{for } k \in [1, 99], \, i \in [k, 100]
+$$
+
 3. This computes $p(100) - 1$ in exactly $\sum_{k=1}^{99} (101 - k) = 4950$ additions in $\approx 0.0001$ seconds.
 
 ---
@@ -58,7 +69,11 @@ def naive_partitions(n, max_val):
 1. Initialize array $DP = [1, 0, 0, \dots, 0]$ of length $101$.
 2. For coin $c = 1 \dots 99$:
    - For $i = c \dots 100$:
-     $$DP[i] \leftarrow DP[i] + DP[i - c]$$
+
+$$
+DP[i] \leftarrow DP[i] + DP[i - c]
+$$
+
 3. By stopping at $c = 99$, the single-summand partition $100 = 100$ is never introduced.
 4. $DP[100]$ yields $190\,569\,291$.
 
@@ -76,7 +91,10 @@ def naive_partitions(n, max_val):
 
 ### Example 2: Target Evaluation for $N = 100$
 - Running DP for coins $1 \dots 99$:
-  $$N_{\text{ways}} = \mathbf{190\,569\,291}$$
+
+$$
+N_{\text{ways}} = \mathbf{190\,569\,291}
+$$
 
 ---
 

@@ -8,7 +8,10 @@ We are given:
 - $20! = 21\text{C}3677\text{C}82\text{B}40000_{16} \implies f(20) = \text{"21C3677C82B4"}$
 
 We seek to evaluate:
-$$f(20!) \quad \text{formatted as 12 uppercase hexadecimal digits}$$
+
+$$
+f(20!) \quad \text{formatted as 12 uppercase hexadecimal digits}
+$$
 
 ---
 
@@ -26,11 +29,23 @@ Computing $(2.43 \times 10^{18})!$ directly requires $> 10^{18}$ arithmetic oper
 1. **Base-16 Trailing Zeros**:
    $16 = 2^4$. The number of trailing hexadecimal zeros is $z = \lfloor v_2(N!) / 4 \rfloor$.
    Removing them leaves an odd component scaled by $2^{v_2(N!) \bmod 4}$:
-   $$f(N) = \left( \text{odd\_part}(N!) \times 2^{v_2(N!) \bmod 4} \right) \pmod{2^{48}}$$
+
+$$
+f(N) = \left( \text{odd\_part}(N!) \times 2^{v_2(N!) \bmod 4} \right) \pmod{2^{48}}
+$$
+
 2. **Legendre 2-adic Valuation**:
-   $$v_2(N!) = N - S_2(N) \implies v_2(N!) \equiv (N - \operatorname{popcount}(N)) \pmod 4$$
+
+$$
+v_2(N!) = N - S_2(N) \implies v_2(N!) \equiv (N - \operatorname{popcount}(N)) \pmod 4
+$$
+
 3. **Logarithmic Decomposition of Odd Part**:
-   $$\text{odd\_part}(N!) = \prod_{j \ge 0} \operatorname{oddprod}\left(\lfloor N / 2^j \rfloor\right) \pmod{2^{48}}$$
+
+$$
+\text{odd\_part}(N!) = \prod_{j \ge 0} \operatorname{oddprod}\left(\lfloor N / 2^j \rfloor\right) \pmod{2^{48}}
+$$
+
    where $\operatorname{oddprod}(x) = \prod_{1 \le 2j+1 \le x} (2j+1)$.
 4. **Periodicity Modulo $2^{48}$**:
    The sequence of odd integers modulo $2^{48}$ has period $2^{47}$, and their full product is $\equiv 1 \pmod{2^{48}}$.
@@ -46,7 +61,11 @@ Computing $(2.43 \times 10^{18})!$ directly requires $> 10^{18}$ arithmetic oper
 2. **Power Sums via Stirling Numbers**:
    $\sum_{i=0}^{n-1} i^p = \sum_{t=0}^p S(p, t) t! \binom{n}{t+1}$, computed exactly for $p \le 24$.
 3. **Log-Exp Series Convergence**:
-   $$\log(1 + 4t) = \sum_{m=1}^{24} (-1)^{m+1} \frac{(4t)^m}{m} \pmod{2^{48}}$$
+
+$$
+\log(1 + 4t) = \sum_{m=1}^{24} (-1)^{m+1} \frac{(4t)^m}{m} \pmod{2^{48}}
+$$
+
    Because $4^m / m$ has 2-adic valuation $\ge 48$ for $m \ge 25$, only 24 terms are required.
    Exponentiating the sum via the 2-adic exponential series computes $\prod u_j \pmod{2^{48}}$ in sub-millisecond time.
 

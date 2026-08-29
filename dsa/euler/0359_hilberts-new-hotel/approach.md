@@ -14,7 +14,10 @@ We are given sample values:
 - $P(10, 20) = 440$, $P(25, 75) = 4863$, $P(99, 100) = 19454$
 
 We seek to evaluate the last $8$ digits (modulo $10^8$) of:
-$$\sum_{f \times r = 71328803586048} P(f, r) \pmod{10^8}$$
+
+$$
+\sum_{f \times r = 71328803586048} P(f, r) \pmod{10^8}
+$$
 
 ---
 
@@ -39,13 +42,23 @@ Analyzing the starting occupant of each floor $f$:
 - $f = 5$: $P(5, 1) = 12 = \frac{5^2 - 1}{2}$
 - $f = 6$: $P(6, 1) = 18 = \frac{6^2}{2}$
 In general:
-$$P(f, 1) = \begin{cases} 1 & \text{if } f = 1 \\ \frac{f^2}{2} & \text{if } f \text{ is even} \\ \frac{f^2 - 1}{2} & \text{if } f \text{ is odd and } f > 1 \end{cases}$$
+
+$$
+P(f, 1) = \begin{cases} 1 & \text{if } f = 1 \\ \frac{f^2}{2} & \text{if } f \text{ is even} \\ \frac{f^2 - 1}{2} & \text{if } f \text{ is odd and } f > 1 \end{cases}
+$$
 
 ### Square Base Progression $B(f, r)$
 For any floor $f$, consecutive room occupants satisfy:
-$$P(f, r) + P(f, r-1) = (B(f, 2) + r - 2)^2$$
+
+$$
+P(f, r) + P(f, r-1) = (B(f, 2) + r - 2)^2
+$$
+
 where the base square for room 2 is:
-$$B(f, 2) = \begin{cases} 2 & \text{if } f = 1 \\ f + 1 & \text{if } f \text{ is even} \\ f & \text{if } f \text{ is odd and } f > 1 \end{cases}$$
+
+$$
+B(f, 2) = \begin{cases} 2 & \text{if } f = 1 \\ f + 1 & \text{if } f \text{ is even} \\ f & \text{if } f \text{ is odd and } f > 1 \end{cases}
+$$
 
 ---
 
@@ -56,19 +69,36 @@ Let $m = r - 1$ denote the number of transitions along floor $f$.
 Using the alternating sum of consecutive square differences $(x+1)^2 - x^2 = 2x + 1$, the sum telescopes into closed-form quadratic expressions:
 
 1. **For $f = 1$**:
-   $$P(1, r) = \frac{r(r + 1)}{2}$$
+
+$$
+P(1, r) = \frac{r(r + 1)}{2}
+$$
 
 2. **For Even $f$**:
    - If $r = 2k + 1$ (odd room):
-     $$P(f, 2k+1) = \frac{f^2}{2} + (2f + 1)k + 2k^2$$
+
+$$
+P(f, 2k+1) = \frac{f^2}{2} + (2f + 1)k + 2k^2
+$$
+
    - If $r = 2k$ (even room):
-     $$P(f, 2k) = 2k^2 + (2f - 1)k + \frac{f^2}{2}$$
+
+$$
+P(f, 2k) = 2k^2 + (2f - 1)k + \frac{f^2}{2}
+$$
 
 3. **For Odd $f > 1$**:
    - If $r = 2k + 1$ (odd room):
-     $$P(f, 2k+1) = \frac{f^2 - 1}{2} + (2f - 1)k + 2k^2$$
+
+$$
+P(f, 2k+1) = \frac{f^2 - 1}{2} + (2f - 1)k + 2k^2
+$$
+
    - If $r = 2k$ (even room):
-     $$P(f, 2k) = 2k^2 + (2f - 3)k + \frac{(f-1)^2}{2} - (f - 1)$$
+
+$$
+P(f, 2k) = 2k^2 + (2f - 3)k + \frac{(f-1)^2}{2} - (f - 1)
+$$
 
 ### Divisor Enumeration
 $N = 71328803586048 = 2^{27} \times 3^{12}$.

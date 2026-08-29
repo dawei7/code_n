@@ -21,9 +21,16 @@ Find the sum of all $n < 1\,000\,000\,000$ for which $\pi(n) = 120$.
 
 ### Divisibility Criterion for Pisano Periods
 A modulus $n$ has Pisano period dividing $L$ if and only if the period cycle restarts at step $L$:
-$$F_L \equiv 0 \pmod n \quad \text{and} \quad F_{L+1} \equiv 1 \pmod n$$
+
+$$
+F_L \equiv 0 \pmod n \quad \text{and} \quad F_{L+1} \equiv 1 \pmod n
+$$
+
 This holds if and only if $n$ divides both $F_L$ and $F_{L+1} - 1$, which is equivalent to:
-$$n \mid G_L = \gcd(F_L, F_{L+1} - 1)$$
+
+$$
+n \mid G_L = \gcd(F_L, F_{L+1} - 1)
+$$
 
 ---
 
@@ -31,12 +38,19 @@ $$n \mid G_L = \gcd(F_L, F_{L+1} - 1)$$
 
 ### Exact Period Identification
 For $L = 120$:
-$$G_{120} = \gcd(F_{120}, F_{121} - 1) = 1548008755920 = 2^4 \cdot 3^2 \cdot 5 \cdot 11 \cdot 31 \cdot 41 \cdot 61 \cdot 2521$$
+
+$$
+G_{120} = \gcd(F_{120}, F_{121} - 1) = 1548008755920 = 2^4 \cdot 3^2 \cdot 5 \cdot 11 \cdot 31 \cdot 41 \cdot 61 \cdot 2521
+$$
 
 $G_{120}$ has exactly $(4+1)(2+1)(2)(2)(2)(2)(2)(2) = 960$ divisors.
 
 A divisor $n \mid G_{120}$ has period **exactly** 120 (and not a proper divisor of 120) if and only if:
-$$n \nmid G_d \quad \text{for all maximal proper divisors } d \in \{60, 40, 24\} \text{ of } 120$$
+
+$$
+n \nmid G_d \quad \text{for all maximal proper divisors } d \in \{60, 40, 24\} \text{ of } 120
+$$
+
 Testing this condition on each of the 960 divisors takes under 1 millisecond.
 
 ---

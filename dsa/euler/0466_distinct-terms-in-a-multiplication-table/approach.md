@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $P(m, n)$ be the number of distinct terms in an $m \times n$ multiplication table:
-$$P(m, n) = |\{ i \cdot j : 1 \le i \le m, \, 1 \le j \le n \}|$$
+
+$$
+P(m, n) = |\{ i \cdot j : 1 \le i \le m, \, 1 \le j \le n \}|
+$$
 
 We are given:
 - $P(64, 64) = 1263$
@@ -11,7 +14,10 @@ We are given:
 - $P(32, 10^{15}) = 13\,826\,382\,602\,124\,302$
 
 We seek to evaluate:
-$$P(64, 10^{16})$$
+
+$$
+P(64, 10^{16})
+$$
 
 ---
 
@@ -26,7 +32,11 @@ Generating $m \cdot n = 64 \times 10^{16} = 6.4 \times 10^{17}$ elements and ins
 
 ### Partition by Maximal Bounded Divisor
 For any integer $x$, let $d(x)$ be the **largest divisor of $x$ that is $\le m$**:
-$$d(x) = \max \{ d \le m : d \mid x \}$$
+
+$$
+d(x) = \max \{ d \le m : d \mid x \}
+$$
+
 - Every product $x$ in the $m \times n$ table has a unique, well-defined $d(x) \in \{1, \dots, m\}$.
 - Therefore, the set of all table products partitions into $m$ disjoint sets based on $d(x) = d$.
 
@@ -34,7 +44,10 @@ For a fixed $d \in \{1, \dots, m\}$:
 - We write $x = d \cdot r$ where $1 \le r \le n$.
 - The condition $d(x) = d$ holds if and only if **no larger integer $e \in (d, m]$ divides $x$**.
 - Since $e \mid (d \cdot r) \iff \frac{e}{\gcd(e, d)} \mid r$, $r$ is valid if and only if $r$ is **not divisible by any element in the forbidden set**:
-  $$F_d = \left\{ \frac{e}{\gcd(e, d)} : d < e \le m \right\}$$
+
+$$
+F_d = \left\{ \frac{e}{\gcd(e, d)} : d < e \le m \right\}
+$$
 
 ---
 
@@ -46,7 +59,10 @@ For a fixed $d \in \{1, \dots, m\}$:
 2. **Memoized Inclusion-Exclusion**:
    Count the number of $r \in [1, n]$ divisible by at least one element in $F_d$ via depth-first inclusion-exclusion over LCM combinations.
 3. **Summation over All Rows**:
-   $$P(m, n) = \sum_{d=1}^m \left( n - \text{CountDivisible}(n, F_d) \right)$$
+
+$$
+P(m, n) = \sum_{d=1}^m \left( n - \text{CountDivisible}(n, F_d) \right)
+$$
 
 This evaluates $(m, n) = (64, 10^{16})$ in **4.33 seconds**!
 

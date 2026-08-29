@@ -14,7 +14,10 @@ We are given:
 - $C(10000, 10000, 4) \equiv 395913804 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$\sum_{k=1}^7 C(10^k + k, 10^k + k, k) \pmod{10^9 + 7}$$
+
+$$
+\sum_{k=1}^7 C(10^k + k, 10^k + k, k) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -31,9 +34,16 @@ A 2D DP matrix requires over $100\text{ TB}$ of memory and $10^{14}$ operations.
 ### The Gaussian Binomial Coefficient (q-Binomial)
 1. **Lattice Path Generating Function**:
    By MacMahon's partition theorem, the area generating function over lattice paths in an $a \times b$ grid is the Gaussian $q$-binomial coefficient:
-   $$C(a, b, k) = \binom{a + b}{a}_k = \frac{[a + b]_k!}{[a]_k! [b]_k!} = \prod_{j=1}^a \frac{k^{b + j} - 1}{k^j - 1}$$
+
+$$
+C(a, b, k) = \binom{a + b}{a}_k = \frac{[a + b]_k!}{[a]_k! [b]_k!} = \prod_{j=1}^a \frac{k^{b + j} - 1}{k^j - 1}
+$$
+
 2. **Symmetric Case $a = b = N$**:
-   $$C(N, N, k) = \prod_{j=1}^N \frac{k^{N + j} - 1}{k^j - 1} = \frac{\prod_{j=N+1}^{2N} (k^j - 1)}{\prod_{j=1}^N (k^j - 1)}$$
+
+$$
+C(N, N, k) = \prod_{j=1}^N \frac{k^{N + j} - 1}{k^j - 1} = \frac{\prod_{j=N+1}^{2N} (k^j - 1)}{\prod_{j=1}^N (k^j - 1)}
+$$
 
 ---
 

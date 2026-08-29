@@ -3,11 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A unit fraction $\frac{1}{d}$ for an integer $d \ge 2$ has a decimal representation:
-$$\frac{1}{d} = 0.a_1 a_2 \dots a_k (r_1 r_2 \dots r_\lambda)^\infty$$
+
+$$
+\frac{1}{d} = 0.a_1 a_2 \dots a_k (r_1 r_2 \dots r_\lambda)^\infty
+$$
+
 where $\lambda(d) \in \mathbb{N}_0$ denotes the length of the recurring decimal cycle.
 
 The objective is to find the value of $d < 1000$ for which $\frac{1}{d}$ contains the longest recurring cycle:
-$$d_{\text{max}} = \operatorname*{arg\,max}_{2 \le d < 1000} \lambda(d)$$
+
+$$
+d_{\text{max}} = \operatorname*{arg\,max}_{2 \le d < 1000} \lambda(d)
+$$
 
 ---
 
@@ -32,10 +39,16 @@ def naive_longest_cycle(limit):
 ## 3. Core Intuition & Mathematical Structure
 
 For any integer $d$ coprime to 10 ($\gcd(d, 10) = 1$), the period length $\lambda(d)$ equals the multiplicative order of $10$ modulo $d$:
-$$\lambda(d) = \operatorname{ord}_d(10) = \min \{ k \ge 1 \mid 10^k \equiv 1 \pmod d \}$$
+
+$$
+\lambda(d) = \operatorname{ord}_d(10) = \min \{ k \ge 1 \mid 10^k \equiv 1 \pmod d \}
+$$
 
 By Euler's Totient Theorem:
-$$\lambda(d) \le \varphi(d) \le d - 1$$
+
+$$
+\lambda(d) \le \varphi(d) \le d - 1
+$$
 
 When $d$ is a prime and $10$ is a primitive root modulo $d$, $\lambda(d) = d - 1$ (Full Reptend Prime).
 
@@ -58,7 +71,11 @@ When $d$ is a prime and $10$ is a primitive root modulo $d$, $\lambda(d) = d - 1
 ### Descending Pruning Bound
 1. Let $\lambda_{\text{max}}$ be the maximum recurring period discovered so far.
 2. If we test candidate $d$ in descending order from $999$ downwards:
-   $$\lambda(d) \le d - 1 < d$$
+
+$$
+\lambda(d) \le d - 1 < d
+$$
+
 3. As soon as $d \le \lambda_{\text{max}}$, no remaining divisor $d' \le d$ can ever exceed $\lambda_{\text{max}}$.
 4. When $d = 983$ is evaluated, $\lambda(983) = 982$.
 5. The next candidate is $d = 982 \le 982 = \lambda_{\text{max}}$, halting the search immediately after only $17$ candidate evaluations!

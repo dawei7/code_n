@@ -314,11 +314,11 @@ def run_challenge(challenge_id: str, body: RunRequest, background_tasks: Backgro
 def analyze_error(challenge_id: str, body: AnalyzeRequest) -> AnalyzeResponse:
     from server.app import progress_store
     progress = progress_store.load()
-    api_key = progress.gemini_api_key.strip()
+    api_key = (os.environ.get("GEMINI_API_KEY") or progress.gemini_api_key or "").strip()
     if not api_key:
         raise HTTPException(
             status_code=400,
-            detail="Please configure your Gemini API Key in the Profile settings first."
+            detail="Please configure your Gemini API Key in the Profile settings first (starts with AIzaSy...)."
         )
 
     # Resolve challenge description
@@ -357,8 +357,9 @@ def analyze_error(challenge_id: str, body: AnalyzeRequest) -> AnalyzeResponse:
     }
 
     models_to_try = [
-        "gemma-4-31b-it",
-        "gemma-4-26b-a4b-it",
+        "gemini-3.5-flash-lite",
+        "gemini-2.5-flash-lite",
+        "gemini-2.0-flash-lite",
         "gemini-3.5-flash",
         "gemini-2.5-flash"
     ]

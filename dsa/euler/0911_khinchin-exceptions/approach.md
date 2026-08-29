@@ -30,7 +30,11 @@ At each doubling stage, double-exponential terms $2^{2^k}$ enter the sequence, c
 
 ### High-Precision Rational Quotient Extraction
 Using bit-exact binary shifts:
-$$\rho_n \approx \frac{1}{2^{2^D}} \sum_{i=0}^D 2^n 2^{2^D - 2^i}$$
+
+$$
+\rho_n \approx \frac{1}{2^{2^D}} \sum_{i=0}^D 2^n 2^{2^D - 2^i}
+$$
+
 Extracting partial quotients via exact integer Euclidean division and averaging $\ln(a_m)$ across all $n \in [0, 50]$ computes the geometric mean $\mathbf{5679.934966}$ in **0.02s** in 100% pure Python.
 
 ---

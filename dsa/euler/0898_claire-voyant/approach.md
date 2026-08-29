@@ -22,11 +22,18 @@ Find the probability Claire guesses correctly for 51 students, rounded to 10 dec
 
 ### Bayesian Log-Likelihood Ratio Decision Rule
 By Bayes' theorem with a flat prior $P(H) = P(T) = 1/2$:
-$$\ln \frac{P(H \mid \mathbf{R})}{P(T \mid \mathbf{R})} = \sum_{i=1}^N s_i w_i, \quad \text{where } w_i = \ln \left(\frac{1 - p_i}{p_i}\right), s_i \in \{-1, +1\}$$
+
+$$
+\ln \frac{P(H \mid \mathbf{R})}{P(T \mid \mathbf{R})} = \sum_{i=1}^N s_i w_i, \quad \text{where } w_i = \ln \left(\frac{1 - p_i}{p_i}\right), s_i \in \{-1, +1\}
+$$
+
 Claire guesses $H$ if and only if $\sum_{i=1}^N s_i w_i \ge 0$.
 
 The overall probability of a correct decision is:
-$$P_{\text{correct}} = \sum_{\mathbf{R}} \max(P(C=H, \mathbf{R}), P(C=T, \mathbf{R})) = \frac{1}{2} + \frac{1}{2} \sum_{\mathbf{R}} |P(C=H, \mathbf{R}) - P(C=T, \mathbf{R})|$$
+
+$$
+P_{\text{correct}} = \sum_{\mathbf{R}} \max(P(C=H, \mathbf{R}), P(C=T, \mathbf{R})) = \frac{1}{2} + \frac{1}{2} \sum_{\mathbf{R}} |P(C=H, \mathbf{R}) - P(C=T, \mathbf{R})|
+$$
 
 ---
 

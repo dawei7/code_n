@@ -26,11 +26,19 @@ def naive_robot_walks():
 ### Regular Pentagonal Zero-Displacement & Direction State DP
 1. **5 Unit Heading Vectors:**
    The robot's tangent velocity is always along one of the $5$ fifth-roots of unity:
-   $$\mathbf{v}_k = e^{2\pi i k / 5} \quad (k \in \{0, 1, 2, 3, 4\})$$
+
+$$
+\mathbf{v}_k = e^{2\pi i k / 5} \quad (k \in \{0, 1, 2, 3, 4\})
+$$
+
 2. **Closed Path Displacement Invariant:**
    The vector sum $\sum_{k=0}^4 c_k \mathbf{v}_k = \mathbf{0}$ iff **$c_0 = c_1 = c_2 = c_3 = c_4$**.
    For $n = 70$, a journey returns to the origin and initial heading iff:
-   $$c_0 = c_1 = c_2 = c_3 = c_4 = \frac{70}{5} = \mathbf{14}, \quad \text{and final orientation } o = 0$$
+
+$$
+c_0 = c_1 = c_2 = c_3 = c_4 = \frac{70}{5} = \mathbf{14}, \quad \text{and final orientation } o = 0
+$$
+
 3. **Dynamic Programming Transitions:**
    State: $(c_0, c_1, c_2, c_3, c_4, o)$ with $c_k \le 14$ and $o \in \{0, \dots, 4\}$.
    - **Clockwise (CW):** traverses arc in direction $o$, new orientation $(o - 1) \bmod 5$.
@@ -82,7 +90,10 @@ def solve(n: int = 70) -> int:
     return dp.get((target_c, target_c, target_c, target_c, target_c, 0), 0)
 ```
 Evaluating for $n = 70$:
-$$W(70) = \mathbf{331\,951\,449\,665\,644\,800}$$
+
+$$
+W(70) = \mathbf{331\,951\,449\,665\,644\,800}
+$$
 
 ---
 
@@ -91,13 +102,20 @@ $$W(70) = \mathbf{331\,951\,449\,665\,644\,800}$$
 ### Example 1: Sample Verification for $n = 25$
 - Target count per direction: $c_k = 25 / 5 = 5$.
 - Running DP for 25 steps:
-  $$W(25) = \mathbf{70\,932}$$
+
+$$
+W(25) = \mathbf{70\,932}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $n = 70$
 - Target count per direction: $c_k = 70 / 5 = 14$.
 - Running DP for 70 steps:
-  $$W(70) = \mathbf{331\,951\,449\,665\,644\,800}$$
+
+$$
+W(70) = \mathbf{331\,951\,449\,665\,644\,800}
+$$
 
 ---
 

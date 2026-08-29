@@ -33,7 +33,10 @@ Each decimal digit $0 \dots 9$ is mapped to a 7-bit binary bitmask representing 
   - Sam's transitions: $2 \cdot \text{popcount}(M_A) + 2 \cdot \text{popcount}(M_B) + \dots$.
   - Max's transitions: $\text{popcount}(M_A \oplus M_B)$ between steps, plus turning on the first mask and turning off the final mask.
 - The transition savings for a step $A \to B$ is:
-  $$\Delta = 2 \cdot \text{popcount}(M_A \land M_B)$$
+
+$$
+\Delta = 2 \cdot \text{popcount}(M_A \land M_B)
+$$
 
 ---
 
@@ -43,7 +46,11 @@ Each decimal digit $0 \dots 9$ is mapped to a 7-bit binary bitmask representing 
 1. Segmented prime sieve over the range $[10^7, 2 \times 10^7]$.
 2. Precompute the segment mask and digital sum transition chains for all integers up to $2 \times 10^7$:
    Since digital root chains have at most 4 steps (e.g. $19\,999\,999 \to 73 \to 10 \to 1$), we compute the total savings for each prime $p$:
-   $$\text{Savings}(p) = \sum_{i=1}^{k-1} 2 \cdot \text{popcount}(M_{v_i} \land M_{v_{i+1}})$$
+
+$$
+\text{Savings}(p) = \sum_{i=1}^{k-1} 2 \cdot \text{popcount}(M_{v_i} \land M_{v_{i+1}})
+$$
+
 3. Summing $\text{Savings}(p)$ over all primes in $[10^7, 2 \times 10^7]$ executes in under $1.5$ seconds in pure Python!
 
 ---

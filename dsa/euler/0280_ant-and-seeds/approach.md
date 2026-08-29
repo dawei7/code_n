@@ -26,7 +26,11 @@ A naive approach simulates thousands of random walks:
 
 ### Absorbing Markov Chain with State Space Symmetries
 A state in the Markov chain is defined by:
-$$(\text{ant\_position } (r, c), \text{bottom\_seeds\_bitmask} \in [0, 31], \text{top\_seeds\_bitmask} \in [0, 31], \text{carrying} \in \{0, 1\})$$
+
+$$
+(\text{ant\_position } (r, c), \text{bottom\_seeds\_bitmask} \in [0, 31], \text{top\_seeds\_bitmask} \in [0, 31], \text{carrying} \in \{0, 1\})
+$$
+
 - Number of bottom masks: $\binom{5}{k}$ for $k$ seeds left.
 - Number of top masks: $\binom{5}{5 - k - \text{carrying}}$ seeds placed.
 - Grid positions: $25$.
@@ -38,7 +42,11 @@ $$(\text{ant\_position } (r, c), \text{bottom\_seeds\_bitmask} \in [0, 31], \tex
 
 ### Linear System of Expected Hitting Times
 For each transient state $u$, let $E(u)$ be the expected steps to reach the absorbing goal state (all 5 seeds on top):
-$$E(u) = 1 + \sum_{v \in \text{neighbors}(u)} P(u \to v) E(v)$$
+
+$$
+E(u) = 1 + \sum_{v \in \text{neighbors}(u)} P(u \to v) E(v)
+$$
+
 with boundary condition $E(\text{goal}) = 0$.
 1. Because the number of seeds deposited increases monotonically:
    - The Markov chain has a natural **feed-forward block triangular structure** partitioned by the number of completed seed transfers $k \in \{0, 1, 2, 3, 4, 5\}$!

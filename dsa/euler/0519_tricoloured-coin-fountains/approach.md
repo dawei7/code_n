@@ -10,7 +10,10 @@ We are given:
 - $T(10) = 17760$
 
 We seek to evaluate:
-$$T(20000) \bmod 10^9 \text{ (as a 9-digit string)}$$
+
+$$
+T(20000) \bmod 10^9 \text{ (as a 9-digit string)}
+$$
 
 ---
 
@@ -30,7 +33,11 @@ The number of valid fountains with $n = 20000$ coins grows asymptotically as $f(
 2. **Dyck-Path / Column-Height Frontier Decomposition**:
    A coin fountain can be encoded by the sequence of column heights $h_1, h_2, \dots, h_m$ where $|h_{i+1} - h_i| \le 1$.
    The number of valid 3-colouring extensions when transitioning from a boundary height $h$ to a new column of height $k$ has weight:
-   $$w(h, k) = \begin{cases} 2 & \text{if } h = 1 \text{ or } k = 1 \\ 1 & \text{otherwise} \end{cases}$$
+
+$$
+w(h, k) = \begin{cases} 2 & \text{if } h = 1 \text{ or } k = 1 \\ 1 & \text{otherwise} \end{cases}
+$$
+
    for $1 \le k \le h + 1$.
 
 ---
@@ -43,7 +50,11 @@ The number of valid fountains with $n = 20000$ coins grows asymptotically as $f(
 2. **Boundary Height Bound**:
    Since a fountain of size $s$ with height $h$ requires at least $h(h+1)/2$ coins, $h \le \lfloor \sqrt{2s} \rfloor + 1 \le 202$.
 3. **Transition Acceleration via Suffix Sums**:
-   $$\text{suff}[t] = \sum_{h \ge t} dp[s][h]$$
+
+$$
+\text{suff}[t] = \sum_{h \ge t} dp[s][h]
+$$
+
    - For $k = 1$: $dp[s+1][1] \leftarrow dp[s+1][1] + 2 \cdot \text{suff}[1]$
    - For $k = 2$: $dp[s+2][2] \leftarrow dp[s+2][2] + \text{suff}[1] + dp[s][1]$
    - For $k \ge 3$: $dp[s+k][k] \leftarrow dp[s+k][k] + \text{suff}[k - 1]$

@@ -8,7 +8,11 @@ In the polynomial ring $\mathbb{F}_2[x]$, numbers correspond to polynomials via 
 - $2 \leftrightarrow x$ and $5 \leftrightarrow x^2 + 1$.
 
 We solve:
-$$A^2 \oplus (x \otimes A \otimes B) \oplus B^2 = x^2 + 1$$
+
+$$
+A^2 \oplus (x \otimes A \otimes B) \oplus B^2 = x^2 + 1
+$$
+
 for $0 \le a \le b \le N$.
 $X(N)$ is the XOR sum of all valid $b \le N$.
 Given:
@@ -30,9 +34,16 @@ Find $X(10^{18})$.
 ### Polynomial Pell / Lucas Recurrence in $\mathbb{F}_2[x]$
 The equation $A^2 + x A B + B^2 = x^2 + 1$ is symmetric in $A$ and $B$.
 Viewing this as a quadratic in a third polynomial $C$:
-$$C^2 + x B C + (B^2 + x^2 + 1) = 0$$
+
+$$
+C^2 + x B C + (B^2 + x^2 + 1) = 0
+$$
+
 Because $A$ is a known root and the sum of roots in characteristic 2 is $x B$:
-$$C = x B \oplus A$$
+
+$$
+C = x B \oplus A
+$$
 
 ---
 
@@ -40,11 +51,18 @@ $$C = x B \oplus A$$
 
 ### Linear Recurrence of Solutions
 All non-negative solutions $(a, b)$ form an infinite chain of polynomial pairs $(B_{n-1}, B_n)$:
-$$B_0 = 0$$
 
-$$B_1 = 3 \quad (x + 1)$$
+$$
+B_0 = 0
+$$
 
-$$B_{n+1} = (2 \otimes B_n) \oplus B_{n-1} = (B_n \ll 1) \oplus B_{n-1}$$
+$$
+B_1 = 3 \quad (x + 1)
+$$
+
+$$
+B_{n+1} = (2 \otimes B_n) \oplus B_{n-1} = (B_n \ll 1) \oplus B_{n-1}
+$$
 
 For $N = 10^{18} < 2^{60}$, there are only 58 terms in the sequence.
 The answer $X(N)$ is computed by XORing the terms $B_n \le N$ in $\mathcal{O}(\log N)$ time ($< 0.001\text{ s}$).

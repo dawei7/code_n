@@ -13,7 +13,10 @@ We are given:
 - $S(5) = \frac{4213}{871}$
 
 We seek to evaluate:
-$$S(52) \quad \text{rounded to 8 decimal places}$$
+
+$$
+S(52) \quad \text{rounded to 8 decimal places}
+$$
 
 ---
 
@@ -34,7 +37,10 @@ For $n = 52$, the state space consists of $52! \approx 8.07 \times 10^{67}$ perm
    If a permutation of $m$ blocks has $r$ successions, those $r$ adjacent pairs merge, leaving $m - r$ blocks.
 3. **Inclusion-Exclusion Counting**:
    The number of permutations of $m$ elements with exactly $r$ successions is:
-   $$a(m, r) = \binom{m-1}{r} \sum_{j=0}^{m-1-r} (-1)^j \binom{m-1-r}{j} (m - r - j)!$$
+
+$$
+a(m, r) = \binom{m-1}{r} \sum_{j=0}^{m-1-r} (-1)^j \binom{m-1-r}{j} (m - r - j)!
+$$
 
 ---
 
@@ -43,12 +49,23 @@ For $n = 52$, the state space consists of $52! \approx 8.07 \times 10^{67}$ perm
 ### Absorbing Markov Chain DP ($O(n^2)$)
 1. **Conditional Expectation Recurrence**:
    Let $T[m]$ be the expected shuffles from an initial $m$-block configuration:
-   $$T[m] = 1 + \frac{a(m, 0)}{m!} T[m] + \sum_{r=1}^{m-1} \frac{a(m, r)}{m!} T[m - r]$$
+
+$$
+T[m] = 1 + \frac{a(m, 0)}{m!} T[m] + \sum_{r=1}^{m-1} \frac{a(m, r)}{m!} T[m - r]
+$$
+
    Solving for $T[m]$:
-   $$T[m] = \frac{m! + \sum_{r=1}^{m-1} a(m, r) T[m - r]}{m! - a(m, 0)}$$
+
+$$
+T[m] = \frac{m! + \sum_{r=1}^{m-1} a(m, r) T[m - r]}{m! - a(m, 0)}
+$$
+
 2. **Initial Permutation Distribution**:
    The first observation occurs before any shuffle:
-   $$S(n) = \sum_{r=0}^{n-1} \frac{a(n, r)}{n!} T[n - r]$$
+
+$$
+S(n) = \sum_{r=0}^{n-1} \frac{a(n, r)}{n!} T[n - r]
+$$
 
 This evaluates $S(52)$ in exact rational arithmetic in **$\approx 0.02$ seconds** in pure Python!
 

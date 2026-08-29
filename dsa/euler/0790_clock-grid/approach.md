@@ -5,7 +5,11 @@
 Consider a 2D discrete grid of dimensions $M \times M$ where $M = 50515093$.
 A 12-hour analogue clock is placed at each grid point, initially showing $12$ (or $0 \equiv 12 \pmod{12}$).
 A pseudo-random generator defines:
-$$S_0 = 290797, \quad S_t = S_{t-1}^2 \bmod 50515093$$
+
+$$
+S_0 = 290797, \quad S_t = S_{t-1}^2 \bmod 50515093
+$$
+
 At each step $t \ge 1$, the bounding box $[x_{\min}, x_{\max}] \times [y_{\min}, y_{\max}]$ formed by $(S_{4t-4}, S_{4t-3}, S_{4t-2}, S_{4t-1})$ has all of its clocks advanced by $+1$ hour.
 Let $C(t)$ be the sum of clock hours across the entire grid after $t$ steps.
 
@@ -16,7 +20,10 @@ We are given:
 - $C(100) = 16190667393984172$
 
 We seek to evaluate:
-$$C(10^5)$$
+
+$$
+C(10^5)
+$$
 
 ---
 
@@ -32,10 +39,14 @@ An explicit grid contains $M^2 \approx 2.55 \times 10^{15}$ clocks, requiring pe
 ### Sweep-Line Segment Tree with 12-Residue Bucket Cyclic Rotations
 1. **Order Independence**:
    Because addition modulo 12 is abelian, the final hour at $(x, y)$ depends solely on the total number of covering rectangles modulo 12:
-   $$\operatorname{Hour}(x, y) = \begin{cases}
+
+$$
+\operatorname{Hour}(x, y) = \begin{cases}
    12 & \text{if } \text{overlaps}(x, y) \equiv 0 \pmod{12} \\
    \text{overlaps}(x, y) \bmod 12 & \text{otherwise}
-   \end{cases}$$
+\end{cases}
+$$
+
 2. **Sweep-Line Discretization**:
    We project the $t$ rectangles onto the $x$-axis as $2t$ vertical sweep-line events:
    - Entering boundary $x = x_{\min}$: add $+1$ on the $y$-interval $[y_{\min}, y_{\max} + 1)$.

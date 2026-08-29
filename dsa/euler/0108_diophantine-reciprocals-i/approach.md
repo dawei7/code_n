@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In the following equation $x, y,$ and $n$ are positive integers:
-$$\frac{1}{x} + \frac{1}{y} = \frac{1}{n}$$
+
+$$
+\frac{1}{x} + \frac{1}{y} = \frac{1}{n}
+$$
 
 For $n = 4$ there are exactly three ($3$) distinct solutions with $x \le y$:
 - $\frac{1}{5} + \frac{1}{20} = \frac{1}{4}$
@@ -11,7 +14,10 @@ For $n = 4$ there are exactly three ($3$) distinct solutions with $x \le y$:
 - $\frac{1}{8} + \frac{1}{8} = \frac{1}{4}$
 
 The objective is to find the **least value of $n$** for which the number of distinct solutions exceeds one-thousand ($1000$):
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; S(n) > 1000 \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; S(n) > 1000 \right\}
+$$
 
 ---
 
@@ -28,14 +34,30 @@ def naive_count_solutions(n):
 
 ### Algebraic Transformation to $u \cdot v = n^2$
 1. Multiplying both sides of $\frac{1}{x} + \frac{1}{y} = \frac{1}{n}$ by $nxy$:
-   $$n(x + y) = xy \iff xy - nx - ny = 0$$
+
+$$
+n(x + y) = xy \iff xy - nx - ny = 0
+$$
+
 2. Adding $n^2$ to both sides (Simon's Favorite Factoring Trick):
-   $$(x - n)(y - n) = n^2$$
+
+$$
+(x - n)(y - n) = n^2
+$$
+
 3. Let $u = x - n$ and $v = y - n$. Each positive factor pair $(u, v)$ with $u \cdot v = n^2$ uniquely corresponds to a solution $(x, y) = (n + u, n + v)$.
 4. For unordered pairs $x \le y \iff u \le v$, the number of distinct solutions is:
-   $$S(n) = \frac{d(n^2) + 1}{2}$$
+
+$$
+S(n) = \frac{d(n^2) + 1}{2}
+$$
+
 5. If $n = \prod_{i=1}^k p_i^{a_i}$, then $n^2 = \prod_{i=1}^k p_i^{2a_i}$, and:
-   $$d(n^2) = \prod_{i=1}^k (2a_i + 1)$$
+
+$$
+d(n^2) = \prod_{i=1}^k (2a_i + 1)
+$$
+
 6. This reduces solution counting to prime factorization of $n$ in $\mathcal{O}(\sqrt{n})$ time ($\approx 0.15$ seconds total).
 
 ---
@@ -61,7 +83,11 @@ def naive_count_solutions(n):
 1. Loop $n = 1, 2, 3, \dots$:
    - Prime factorize $n = \prod_{i=1}^k p_i^{a_i}$ via trial division.
    - Compute:
-     $$d(n^2) = \prod_{i=1}^k (2a_i + 1)$$
+
+$$
+d(n^2) = \prod_{i=1}^k (2a_i + 1)
+$$
+
    - Calculate $S(n) = \frac{d(n^2) + 1}{2}$.
    - If $S(n) > 1000$: return $n$.
 
@@ -78,10 +104,20 @@ def naive_count_solutions(n):
 
 ### Example 2: Target Evaluation for $S(n) > 1000$
 - At $n = 180\,180 = 2^2 \times 3^2 \times 5^1 \times 7^1 \times 11^1 \times 13^1$:
-  $$d(n^2) = (2\cdot 2 + 1)(2\cdot 2 + 1)(2\cdot 1 + 1)^4 = 5 \times 5 \times 3^4 = 2025$$
-  $$S(180\,180) = \frac{2025 + 1}{2} = \mathbf{1013} > 1000$$
+
+$$
+d(n^2) = (2\cdot 2 + 1)(2\cdot 2 + 1)(2\cdot 1 + 1)^4 = 5 \times 5 \times 3^4 = 2025
+$$
+
+$$
+S(180\,180) = \frac{2025 + 1}{2} = \mathbf{1013} > 1000
+$$
+
 - Least integer $n$:
-  $$n_{\text{min}} = \mathbf{180\,180}$$
+
+$$
+n_{\text{min}} = \mathbf{180\,180}
+$$
 
 ---
 

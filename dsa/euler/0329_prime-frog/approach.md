@@ -11,7 +11,11 @@ A frog hops randomly on a 1D grid of 500 squares numbered $1$ to $500$:
 The frog makes $14$ hops (visiting $15$ squares in total).
 
 Find the probability that the frog's 15 croaks spell the string:
-$$\text{TARGET} = \text{"PPPPNNPPPNPPNPN"}$$
+
+$$
+\text{TARGET} = \text{"PPPPNNPPPNPPNPN"}
+$$
+
 Give your answer as an exact irreducible fraction $p/q$.
 
 ---
@@ -31,14 +35,24 @@ A naive approach enumerates all possible 15-step hop paths:
 The process is a classic Hidden Markov Model:
 - **Hidden States:** Square index $x \in \{1, 2, \dots, 500\}$.
 - **Transition Matrix $T$:**
-  $$T(x, x+1) = T(x, x-1) = \frac{1}{2} \quad (1 < x < 500)$$
-  $$T(1, 2) = 1, \quad T(500, 499) = 1$$
+
+$$
+T(x, x+1) = T(x, x-1) = \frac{1}{2} \quad (1 < x < 500)
+$$
+
+$$
+T(1, 2) = 1, \quad T(500, 499) = 1
+$$
+
 - **Emission Matrix $E(x, c)$:**
   For croak character $c \in \{'P', 'N'\}$:
-  $$E(x, c) = \begin{cases}
+
+$$
+E(x, c) = \begin{cases}
   2/3 & \text{if } (x \text{ is prime and } c = \text{'P'}) \text{ or } (x \text{ is composite and } c = \text{'N'}) \\
   1/3 & \text{otherwise}
-  \end{cases}$$
+\end{cases}
+$$
 
 ---
 
@@ -47,11 +61,23 @@ The process is a classic Hidden Markov Model:
 ### Exact Rational Forward Algorithm
 Let $F_t(x)$ be the exact joint probability that the frog is at square $x$ at step $t \in [0, 14]$ and emitted the prefix $\text{TARGET}[0 \dots t]$:
 1. **Base Case ($t = 0$):**
-   $$F_0(x) = \frac{1}{500} \cdot E(x, \text{TARGET}[0])$$
+
+$$
+F_0(x) = \frac{1}{500} \cdot E(x, \text{TARGET}[0])
+$$
+
 2. **Forward Induction ($t = 1 \dots 14$):**
-   $$F_t(x) = \left( \sum_{y} F_{t-1}(y) \cdot T(y, x) \right) \cdot E(x, \text{TARGET}[t])$$
+
+$$
+F_t(x) = \left( \sum_{y} F_{t-1}(y) \cdot T(y, x) \right) \cdot E(x, \text{TARGET}[t])
+$$
+
 3. **Total Probability:**
-   $$P(\text{TARGET}) = \sum_{x=1}^{500} F_{14}(x)$$
+
+$$
+P(\text{TARGET}) = \sum_{x=1}^{500} F_{14}(x)
+$$
+
 Using exact integer numerators with common denominator $500 \cdot 2^{14} \cdot 3^{15}$ gives the exact reduced fraction $\frac{p}{q}$ in $\mathcal{O}(\text{steps} \cdot \text{squares})$ time.
 
 ---
@@ -63,7 +89,10 @@ Using exact integer numerators with common denominator $500 \cdot 2^{14} \cdot 3
 2. Advance through 14 forward transitions.
 3. Sum probability across all 500 squares at step 14.
 4. Reduce fraction via $\gcd(p, q)$:
-   $$\mathbf{P = \frac{199740353}{29386561536000}}$$
+
+$$
+\mathbf{P = \frac{199740353}{29386561536000}}
+$$
 
 ---
 

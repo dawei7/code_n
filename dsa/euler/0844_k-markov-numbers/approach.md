@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $k \ge 3$, the $k$-Markov equation is:
-$$\sum_{i=1}^k x_i^2 = k \prod_{i=1}^k x_i, \quad x_i \in \mathbb{Z}^+$$
+
+$$
+\sum_{i=1}^k x_i^2 = k \prod_{i=1}^k x_i, \quad x_i \in \mathbb{Z}^+
+$$
+
 A $k$-Markov number is any integer that appears in at least one solution tuple $(x_1, \dots, x_k)$.
 Let $M_k(N)$ be the sum of all distinct $k$-Markov numbers $\le N$.
 Let $S(K, N) = \sum_{k=3}^K M_k(N)$.
@@ -29,9 +33,17 @@ Find $S(10^{18}, 10^{18}) \bmod 1405695061$.
 
 ### Vieta Jumping Tree
 Fixing any $k-1$ coordinates $(x_1, \dots, \hat{x_i}, \dots, x_k)$, the equation is quadratic in $x_i$:
-$$x_i^2 - \left( k \prod_{j \ne i} x_j \right) x_i + \sum_{j \ne i} x_j^2 = 0$$
+
+$$
+x_i^2 - \left( k \prod_{j \ne i} x_j \right) x_i + \sum_{j \ne i} x_j^2 = 0
+$$
+
 By Vieta's relations, the companion root is:
-$$x_i' = k \prod_{j \ne i} x_j - x_i$$
+
+$$
+x_i' = k \prod_{j \ne i} x_j - x_i
+$$
+
 All positive integer solutions lie on the tree rooted at the fundamental base solution $(1, 1, \dots, 1)$.
 
 ---
@@ -44,13 +56,19 @@ For $N = 10^{18}$:
    - The second jump produces $k(k-1) - 1 \approx k^2 > 10^{18}$.
    - The only valid Markov numbers are $\{1, k - 1\}$, so $M_k(N) = 1 + (k - 1) = k$.
    - Evaluated in $\mathcal{O}(1)$ via arithmetic progression:
-     $$\sum_{k=10^9+1}^{10^{18}} k = \frac{(10^{18} + 10^9 + 1)(10^{18} - 10^9)}{2} \pmod M$$
+
+$$
+\sum_{k=10^9+1}^{10^{18}} k = \frac{(10^{18} + 10^9 + 1)(10^{18} - 10^9)}{2} \pmod M
+$$
 
 2. **Range $2$ ($10^6 < k \le 10^9$)**:
    - The third jump produces $k(k-1)(k^2-k-1) - 1 \approx k^4 > 10^{18}$ and $k(k^2-k-1) - (k-1) \approx k^3 > 10^{18}$.
    - The only valid Markov numbers are $\{1, k - 1, k^2 - k - 1\}$, so $M_k(N) = k^2 - 1$.
    - Evaluated in $\mathcal{O}(1)$ via sum of squares:
-     $$\sum_{k=10^6+1}^{10^9} (k^2 - 1) = \left[ \frac{n(n+1)(2n+1)}{6} - n \right]_{10^6}^{10^9} \pmod M$$
+
+$$
+\sum_{k=10^6+1}^{10^9} (k^2 - 1) = \left[ \frac{n(n+1)(2n+1)}{6} - n \right]_{10^6}^{10^9} \pmod M
+$$
 
 3. **Range $3$ ($3 \le k \le 10^6$)**:
    - Sparse state representation: since all but a few coordinates are $1$, each node in the tree is compactly represented by its tuple of non-$1$ values.

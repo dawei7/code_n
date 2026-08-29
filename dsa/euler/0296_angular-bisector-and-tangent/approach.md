@@ -24,19 +24,36 @@ A naive search tests all integer triangles $(a, b, c)$ with $a \le b \le c$ and 
 
 ### Alternate Segment Theorem & Similarity
 By the alternate segment theorem:
-$$\angle BCE = \angle CAB = A$$
+
+$$
+\angle BCE = \angle CAB = A
+$$
+
 In $\triangle BCE$ and $\triangle CAE$:
 - Angle $E$ is common ($\angle CEB = \angle AEC$).
 - $\angle BCE = \angle CAE = A$.
 - Therefore, $\triangle BCE \sim \triangle CAE$ (similar triangles)!
 From similarity ratios:
-$$\frac{BE}{CE} = \frac{BC}{AC} = \frac{a}{b} \implies CE = \frac{b}{a} BE$$
 
-$$\frac{CE}{AE} = \frac{BC}{AC} = \frac{a}{b} \implies AE = \frac{b}{a} CE = \frac{b^2}{a^2} BE$$
+$$
+\frac{BE}{CE} = \frac{BC}{AC} = \frac{a}{b} \implies CE = \frac{b}{a} BE
+$$
+
+$$
+\frac{CE}{AE} = \frac{BC}{AC} = \frac{a}{b} \implies AE = \frac{b}{a} CE = \frac{b^2}{a^2} BE
+$$
+
 Since $AE = AB + BE = c + BE$:
-$$\frac{b^2}{a^2} BE = c + BE \iff \left( \frac{b^2 - a^2}{a^2} \right) BE = c \iff \mathbf{BE = \frac{a^2 c}{b^2 - a^2} = \frac{a^2 c}{(b - a)(b + a)}}$$
+
+$$
+\frac{b^2}{a^2} BE = c + BE \iff \left( \frac{b^2 - a^2}{a^2} \right) BE = c \iff \mathbf{BE = \frac{a^2 c}{b^2 - a^2} = \frac{a^2 c}{(b - a)(b + a)}}
+$$
+
 Using the angle bisector property and triangle similarity with $k$, this simplifies to:
-$$\mathbf{BE \in \mathbb{Z} \iff (a + b) \mid a c}$$
+
+$$
+\mathbf{BE \in \mathbb{Z} \iff (a + b) \mid a c}
+$$
 
 ---
 
@@ -48,7 +65,11 @@ Let $s = a + b$ and $g = \gcd(a, b)$:
 - Then $a + b = g(u + v)$.
 - Divisibility $(a + b) \mid a c \iff g(u + v) \mid g u c \iff (u + v) \mid u c$.
 - Since $\gcd(u, u + v) = \gcd(u, v) = 1$, this requires:
-  $$\mathbf{(u + v) \mid c}$$
+
+$$
+\mathbf{(u + v) \mid c}
+$$
+
 - Thus, $c$ must be a multiple of $u + v$: $c = k(u + v)$.
 - Triangle inequality $c < a + b \implies k(u + v) < g(u + v) \implies k < g$.
 - Side ordering $c \ge b \implies k(u + v) \ge g v \implies k \ge \lceil g v / (u + v) \rceil$.

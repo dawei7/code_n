@@ -9,7 +9,10 @@ We are given:
 - For $n = 6$, $D(6) = 0.03828125$ (the 7 most significant digits are $3828125$).
 
 We seek to evaluate:
-$$\text{The 7 most significant digits of } D(123456789) \text{ after stripping leading zeros}$$
+
+$$
+\text{The 7 most significant digits of } D(123456789) \text{ after stripping leading zeros}
+$$
 
 ---
 
@@ -25,11 +28,19 @@ Evaluating $D(n) = J_B(n) - J_A(n)$ by computing $J_B(n)$ and $J_A(n)$ separatel
 ### The Harmonic Exponential Identity
 1. **Exact Algebraic Difference**:
    By expanding the generating functions for reciprocal binomials and Poisson sums:
-   $$D(n) = J_B(n) - J_A(n) = \frac{H_n}{2^n}$$
+
+$$
+D(n) = J_B(n) - J_A(n) = \frac{H_n}{2^n}
+$$
+
    where $H_n = \sum_{k=1}^n \frac{1}{k}$ is the $n$-th harmonic number!
 2. **Logarithmic Decomposition**:
    To extract the leading digits of $D(n) = H_n \cdot 2^{-n}$ without computing the full $3.7 \times 10^7$-digit integer $2^n$:
-   $$\log_{10}(D(n)) = \log_{10}(H_n) - n \log_{10}(2)$$
+
+$$
+\log_{10}(D(n)) = \log_{10}(H_n) - n \log_{10}(2)
+$$
+
 3. **Mantissa Extraction**:
    Let $\log_{10}(D(n)) = E + F$ where $E = \lfloor \log_{10} D(n) \rfloor$ is the integer characteristic and $F \in [0, 1)$ is the fractional mantissa.
    The significant decimal digits are given directly by $\lfloor 10^{F + 6} \rfloor$!
@@ -41,7 +52,11 @@ Evaluating $D(n) = J_B(n) - J_A(n)$ by computing $J_B(n)$ and $J_A(n)$ separatel
 ### High-Precision Decimal Logarithm ($O(1)$)
 1. **Euler-Maclaurin Expansion for $H_n$**:
    Evaluate $H_n$ with 120 digits of decimal precision using:
-   $$H_n = \ln(n) + \gamma + \frac{1}{2n} - \frac{1}{12n^2} + \frac{1}{120n^4} - \frac{1}{252n^6} + \dots$$
+
+$$
+H_n = \ln(n) + \gamma + \frac{1}{2n} - \frac{1}{12n^2} + \frac{1}{120n^4} - \frac{1}{252n^6} + \dots
+$$
+
 2. **Arbitrary-Precision Base-10 Mantissa**:
    Compute $F = (\log_{10}(H_n) - n \log_{10}(2)) \bmod 1$ with 120 digits of precision, exponentiate $10^F$, and scale by $10^6$ to obtain the first 7 significant digits.
 

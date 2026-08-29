@@ -30,7 +30,11 @@ A naive approach tests multiples $k \cdot n$ for $k = 1, 2, 3, \dots$ and checks
 We construct a directed graph where:
 - Nodes represent remainder residues $r \in \{0, 1, \dots, n - 1\}$ modulo $n$.
 - From residue $r$, appending a decimal digit $d \in \{0, 1, 2\}$ transitions to:
-  $$r' = (10 r + d) \bmod n$$
+
+$$
+r' = (10 r + d) \bmod n
+$$
+
 - We seek the shortest path from start digit $d \in \{1, 2\}$ (starting residue $d \bmod n$) to the target residue $0 \bmod n$.
 - Because BFS visits states in order of increasing number of digits and digits are tried in increasing numerical order ($0 < 1 < 2$), the first time state $0$ is reached, the reconstructed number is guaranteed to be the minimal positive multiple $f(n)$.
 

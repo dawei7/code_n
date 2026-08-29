@@ -4,7 +4,11 @@
 
 Pentagonal numbers are given by $P_n = \frac{n(3n-1)}{2}$.
 We seek the smallest pentagonal number $P_k$ that can be expressed as the sum of two pentagonal numbers:
-$$P_k = P_a + P_b \quad (1 \le a \le b)$$
+
+$$
+P_k = P_a + P_b \quad (1 \le a \le b)
+$$
+
 in more than $100$ distinct ways (i.e. at least $101$ ways).
 
 We are given:
@@ -26,9 +30,17 @@ Iterating over all pairs $(a, b)$ with $b \le 3 \times 10^7$ involves $\approx 4
 ### Gaussian Integer Factorization & Binary Quadratic Form
 1. **Transformation to Sum of Squares**:
    Using the pentagonal identity $24 P_n + 1 = (6n - 1)^2$:
-   $$24(P_a + P_b) + 1 = (6a - 1)^2 + (6b - 1)^2 - 1$$
+
+$$
+24(P_a + P_b) + 1 = (6a - 1)^2 + (6b - 1)^2 - 1
+$$
+
    Setting $x = 6k - 1, y = 6a - 1, z = 6b - 1$, the equation $P_k = P_a + P_b$ is equivalent to:
-   $$y^2 + z^2 = x^2 + 1$$
+
+$$
+y^2 + z^2 = x^2 + 1
+$$
+
    subject to $y \equiv 5 \pmod 6, z \equiv 5 \pmod 6$, and $1 \le y \le z < x$.
 2. **Number of Representations via Prime Factorization**:
    The number of representations of $N = x^2 + 1$ as a sum of two squares is determined by factoring $N$ over the Gaussian integers $\mathbb{Z}[i]$.

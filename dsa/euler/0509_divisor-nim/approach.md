@@ -12,7 +12,10 @@ We are given:
 - $S(100) = 735494$
 
 We seek to evaluate:
-$$S(123456787654321) \bmod 1234567890$$
+
+$$
+S(123456787654321) \bmod 1234567890
+$$
 
 ---
 
@@ -28,7 +31,11 @@ Testing $n^3 \approx (1.23 \times 10^{14})^3 \approx 1.88 \times 10^{42}$ triple
 ### The 2-Adic Valuation Isomorphism
 1. **Grundy Function Theorem**:
    For any pile size $x \ge 1$:
-   $$g(x) = v_2(x)$$
+
+$$
+g(x) = v_2(x)
+$$
+
    where $v_2(x)$ is the 2-adic valuation (highest power of 2 dividing $x$).
 2. **Proof of $g(x) = v_2(x)$**:
    Let $x = 2^k \cdot m$ with $m$ odd.
@@ -44,12 +51,23 @@ Testing $n^3 \approx (1.23 \times 10^{14})^3 \approx 1.88 \times 10^{42}$ triple
 ### Nim-Sum Convolution via 2-Adic Frequency Buckets
 1. **Losing Condition (P-positions)**:
    By the Sprague-Grundy theorem, a triple $(a, b, c)$ is a losing position for the first player if and only if:
-   $$v_2(a) \oplus v_2(b) \oplus v_2(c) = 0$$
+
+$$
+v_2(a) \oplus v_2(b) \oplus v_2(c) = 0
+$$
+
 2. **Frequency of 2-Adic Valuations**:
    For each $k \in \{0, 1, \dots, \lfloor \log_2 n \rfloor\}$:
-   $$C(k) = \left\lfloor \frac{n}{2^k} \right\rfloor - \left\lfloor \frac{n}{2^{k+1}} \right\rfloor$$
+
+$$
+C(k) = \left\lfloor \frac{n}{2^k} \right\rfloor - \left\lfloor \frac{n}{2^{k+1}} \right\rfloor
+$$
+
 3. **Total Winning Positions**:
-   $$S(n) \equiv n^3 - \sum_{i \oplus j \oplus k = 0} C(i) C(j) C(k) \pmod{1234567890}$$
+
+$$
+S(n) \equiv n^3 - \sum_{i \oplus j \oplus k = 0} C(i) C(j) C(k) \pmod{1234567890}
+$$
 
 Since $\log_2(1.23 \times 10^{14}) \le 47$, the sum has only $48 \times 48 = 2304$ terms, evaluating in **$0.0001$ seconds**!
 

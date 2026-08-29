@@ -3,13 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $\mathcal{F}$ denote the set of all fractions strictly less than 1 formed by two-digit numerators and denominators:
-$$\mathcal{F} = \left\{ \frac{a}{b} \;\middle|\; 10 \le a < b \le 99 \right\}$$
+
+$$
+\mathcal{F} = \left\{ \frac{a}{b} \;\middle|\; 10 \le a < b \le 99 \right\}
+$$
 
 A fraction $\frac{a}{b} \in \mathcal{F}$ is defined as a **non-trivial digit-cancelling fraction** if:
 1. $a \not\equiv 0 \pmod{10}$ or $b \not\equiv 0 \pmod{10}$ (excluding trivial multiples of 10 such as $\frac{30}{50} = \frac{3}{5}$).
 2. The decimal representations of $a$ and $b$ share a common non-zero digit $d \in \{1, 2, \dots, 9\}$.
 3. Cancelling that common digit $d$ leaves remaining single-digit integers $c, e$ such that:
-$$\frac{a}{b} = \frac{c}{e}$$
+
+$$
+\frac{a}{b} = \frac{c}{e}
+$$
 
 The objective is to find the denominator of the product of the four non-trivial fractions when reduced to lowest terms.
 
@@ -25,7 +31,11 @@ A naive approach uses floating-point division `a / b == c / e`:
 
 ### Exact Cross-Multiplication Principle
 1. Two rational fractions $\frac{a}{b} = \frac{c}{e}$ are equal if and only if their integer cross-product matches:
-   $$a \cdot e = b \cdot c$$
+
+$$
+a \cdot e = b \cdot c
+$$
+
 2. The search domain is finite with only $\binom{90}{2} = 4005$ total fraction pairs, easily searchable in $\approx 0.001$ seconds.
 
 ---
@@ -47,13 +57,21 @@ A naive approach uses floating-point division `a / b == c / e`:
 
 ### Product Reduction to Lowest Terms
 Multiplying all four non-trivial fractions together:
-$$\prod_{i=1}^4 \frac{a_i}{b_i} = \frac{16}{64} \times \frac{19}{95} \times \frac{26}{65} \times \frac{49}{98} = \frac{1}{4} \times \frac{1}{5} \times \frac{2}{5} \times \frac{1}{2}$$
 
-$$= \frac{1 \times 1 \times 2 \times 1}{4 \times 5 \times 5 \times 2} = \frac{2}{200} = \mathbf{\frac{1}{100}}$$
+$$
+\prod_{i=1}^4 \frac{a_i}{b_i} = \frac{16}{64} \times \frac{19}{95} \times \frac{26}{65} \times \frac{49}{98} = \frac{1}{4} \times \frac{1}{5} \times \frac{2}{5} \times \frac{1}{2}
+$$
+
+$$
+= \frac{1 \times 1 \times 2 \times 1}{4 \times 5 \times 5 \times 2} = \frac{2}{200} = \mathbf{\frac{1}{100}}
+$$
 
 The greatest common divisor is $\gcd(2, 200) = 2$.
 Dividing numerator and denominator by $\gcd$:
-$$\text{Simplified Denominator} = \frac{200}{2} = \mathbf{100}$$
+
+$$
+\text{Simplified Denominator} = \frac{200}{2} = \mathbf{100}
+$$
 
 ---
 
@@ -71,7 +89,10 @@ $$\text{Simplified Denominator} = \frac{200}{2} = \mathbf{100}$$
 - Product denominator: $64 \times 95 \times 65 \times 98 = 38\,729\,600$.
 - $\gcd(387296, 38729600) = 387296$.
 - Reduced denominator:
-  $$\text{Denominator} = \frac{38\,729\,600}{387\,296} = \mathbf{100}$$
+
+$$
+\text{Denominator} = \frac{38\,729\,600}{387\,296} = \mathbf{100}
+$$
 
 ---
 

@@ -7,13 +7,21 @@ A natural number $n$ is called an **$S$-number** if:
 - The decimal representation of $n$ can be partitioned into $m \ge 2$ positive substrings $d_1, \dots, d_m$ such that $\sum_{i=1}^m d_i = k = \sqrt{n}$.
 
 Define:
-$$T(N) = \sum_{\substack{n \le N \\ n \text{ is } S\text{-number}}} n$$
+
+$$
+\begin{aligned}
+T(N) = \sum_{\substack{n \le N \\ n \text{ is } S\text{-number}}} n
+\end{aligned}
+$$
 
 We are given:
 - $T(10^4) = 41333$
 
 We seek to evaluate:
-$$T(10^{12})$$
+
+$$
+T(10^{12})
+$$
 
 ---
 
@@ -29,8 +37,15 @@ Testing all $10^{12}$ numbers individually is infeasible. We only need to examin
 ### Digital Root Modulo 9 Invariant
 1. **Modulo 9 Constraint**:
    If a partition $\sum_{i=1}^m d_i = k$ exists, then reducing modulo 9 gives:
-   $$\text{digit\_sum}(k^2) \equiv k^2 \equiv \sum_{i=1}^m d_i \equiv k \pmod 9$$
-   $$k(k - 1) \equiv 0 \pmod 9 \implies k \equiv 0 \text{ or } 1 \pmod 9$$
+
+$$
+\text{digit\_sum}(k^2) \equiv k^2 \equiv \sum_{i=1}^m d_i \equiv k \pmod 9
+$$
+
+$$
+k(k - 1) \equiv 0 \pmod 9 \implies k \equiv 0 \text{ or } 1 \pmod 9
+$$
+
    This immediately eliminates $\frac{7}{9} \approx 77.8\%$ of all candidates $k$ before testing!
 2. **Recursive Suffix Partitioning**:
    For each candidate $n = k^2$ (with $\le 12$ digits), greedily peel off decimal tails $t = n \bmod 10^d \le \text{rem}$ and recursively search the remaining prefix.

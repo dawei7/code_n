@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For $N \in \mathbb{N}$, define the sum of the first $N$ natural numbers:
-$$S_1(N) = \sum_{k=1}^N k$$
+
+$$
+S_1(N) = \sum_{k=1}^N k
+$$
 
 Define the sum of the squares of the first $N$ natural numbers:
-$$S_2(N) = \sum_{k=1}^N k^2$$
+
+$$
+S_2(N) = \sum_{k=1}^N k^2
+$$
 
 The objective is to compute the difference between the square of the sum and the sum of the squares:
-$$\Delta(N) = \left( \sum_{k=1}^N k \right)^2 - \sum_{k=1}^N k^2 = (S_1(N))^2 - S_2(N)$$
+
+$$
+\Delta(N) = \left( \sum_{k=1}^N k \right)^2 - \sum_{k=1}^N k^2 = (S_1(N))^2 - S_2(N)
+$$
 
 We must evaluate $\Delta(100)$.
 
@@ -51,16 +60,22 @@ Both partial sums are well-known classical series whose formulas derive from tel
 
 ### A. Closed-Form Algebra
 Subtracting $S_2(N)$ from $(S_1(N))^2$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 \Delta(N) &= \frac{N^2(N+1)^2}{4} - \frac{N(N+1)(2N+1)}{6} \\
 &= \frac{N(N+1)}{12} \left[ 3N(N+1) - 2(2N+1) \right] \\
 &= \frac{N(N+1)}{12} \left[ 3N^2 + 3N - 4N - 2 \right] \\
 &= \frac{N(N+1)(3N^2 - N - 2)}{12} \\
 &= \frac{N(N+1)(N-1)(3N+2)}{12}
-\end{aligned}$$
+\end{aligned}
+$$
 
 Factoring reveals that $\Delta(N)$ is a degree-4 polynomial:
-$$\boxed{\Delta(N) = \frac{(N^2 - 1) N (3N + 2)}{12}}$$
+
+$$
+\boxed{\Delta(N) = \frac{(N^2 - 1) N (3N + 2)}{12}}
+$$
 
 ---
 
@@ -76,7 +91,10 @@ $$\boxed{\Delta(N) = \frac{(N^2 - 1) N (3N + 2)}{12}}$$
 1. $S_1(100) = \frac{100 \times 101}{2} = 5050 \implies (S_1(100))^2 = 25\,502\,500$.
 2. $S_2(100) = \frac{100 \times 101 \times 201}{6} = 338\,350$.
 3. Difference:
-   $$\Delta(100) = 25\,502\,500 - 338\,350 = \mathbf{25\,164\,150}$$
+
+$$
+\Delta(100) = 25\,502\,500 - 338\,350 = \mathbf{25\,164\,150}
+$$
 
 ---
 

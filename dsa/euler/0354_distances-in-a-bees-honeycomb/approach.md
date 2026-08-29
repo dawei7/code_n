@@ -7,11 +7,18 @@ Choosing the queen bee's cell center as the origin $(0, 0)$, the basis vectors b
 Any cell center can be represented as an Eisenstein integer $z = a + b\omega \in \mathbb{Z}[\omega]$, where $\omega = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}$.
 
 The squared Euclidean distance from the origin $(0, 0)$ to cell $(a, b)$ is given by:
-$$L^2 = 3(a^2 + ab + b^2)$$
+
+$$
+L^2 = 3(a^2 + ab + b^2)
+$$
+
 Let $N = \frac{L^2}{3} = a^2 + ab + b^2 \in \mathbb{Z}^+$. The function $B(L)$ counts the number of cells at distance $L$, which equals the number of integer pairs $(a, b) \in \mathbb{Z}^2$ satisfying $a^2 + ab + b^2 = N$.
 
 We seek to find the number of positive real distances $L \le 5 \times 10^{11}$ such that:
-$$B(L) = 450$$
+
+$$
+B(L) = 450
+$$
 
 ---
 
@@ -35,7 +42,10 @@ The number of representations $r_6(N)$ of an integer $N$ as $a^2 + ab + b^2$ is 
 Let $N = 3^k \prod_{p_i \equiv 1 \pmod 3} p_i^{a_i} \prod_{q_j \equiv 2 \pmod 3} q_j^{b_j}$.
 - If any exponent $b_j$ is odd, $r_6(N) = 0$.
 - If all $b_j$ are even, the number of representations is:
-  $$B(L) = r_6(N) = 6 \prod_{p_i \equiv 1 \pmod 3} (a_i + 1)$$
+
+$$
+B(L) = r_6(N) = 6 \prod_{p_i \equiv 1 \pmod 3} (a_i + 1)
+$$
 
 ### Target Decomposition: $B(L) = 450$
 We require $6 \prod (a_i + 1) = 450 \implies \prod_{p_i \equiv 1 \pmod 3} (a_i + 1) = 75$.
@@ -51,7 +61,11 @@ The integer $75 = 3 \times 5^2$ has four distinct multiplicative partitions into
 
 ### Canonical Representation of Valid $N$
 Any valid integer $N \le N_{\max} = \left\lfloor \frac{(5 \times 10^{11})^2}{3} \right\rfloor \approx 8.333 \times 10^{22}$ must factor as:
-$$N = N_0 \cdot 3^k \cdot M^2$$
+
+$$
+N = N_0 \cdot 3^k \cdot M^2
+$$
+
 where:
 - $N_0$ is a core product of primes $p \equiv 1 \pmod 3$ with exponents matching one of the 4 partitions of 75.
 - $k \ge 0$ is an arbitrary non-negative integer (power of 3).
@@ -59,11 +73,22 @@ where:
 
 ### Prefix Sieve for Fast $M$ Counting
 For any fixed $N_0$ and $k$, the constraint $N \le N_{\max}$ imposes:
-$$M \le \left\lfloor \sqrt{\frac{N_{\max}}{N_0 \cdot 3^k}} \right\rfloor$$
+
+$$
+M \le \left\lfloor \sqrt{\frac{N_{\max}}{N_0 \cdot 3^k}} \right\rfloor
+$$
+
 The minimum possible value of $N_0$ occurs in Case 4:
-$$N_{0,\min} = 7^4 \times 13^4 \times 19^2 = 24\,754\,593\,841$$
+
+$$
+N_{0,\min} = 7^4 \times 13^4 \times 19^2 = 24\,754\,593\,841
+$$
+
 Hence, the maximum required value for $M$ is bounded by:
-$$M_{\max} = \left\lfloor \sqrt{\frac{N_{\max}}{N_{0,\min}}} \right\rfloor \le 1.835 \times 10^6$$
+
+$$
+M_{\max} = \left\lfloor \sqrt{\frac{N_{\max}}{N_{0,\min}}} \right\rfloor \le 1.835 \times 10^6
+$$
 
 We precompute $F(X)$, the number of integers $m \le X$ with all prime factors $\equiv 2 \pmod 3$, using a fast linear sieve up to $M_{\max} \approx 1.84 \times 10^6$.
 For each core $N_0$ and power $3^k$, counting valid $M$ reduces to an $O(1)$ prefix sum lookup: $F\left(\left\lfloor \sqrt{N_{\max} / (N_0 \cdot 3^k)} \right\rfloor\right)$.

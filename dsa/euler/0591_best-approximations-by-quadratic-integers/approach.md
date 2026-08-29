@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $d$ be a non-square positive integer. We denote by $BQA_d(x, n)$ the quadratic integer $a + b\sqrt{d}$ with $|a|, |b| \le n$ that minimizes the approximation error:
-$$|a + b\sqrt{d} - x|$$
+
+$$
+|a + b\sqrt{d} - x|
+$$
+
 Let $I_d(a + b\sqrt{d}) = a$.
 
 We are given:
@@ -13,7 +17,12 @@ We are given:
 - $I_2(BQA_2(\pi, 10^{13})) = -6188084046055$
 
 We seek to evaluate:
-$$\sum_{\substack{d=2 \\ d \text{ non-square}}}^{99} |I_d(BQA_d(\pi, 10^{13}))|$$
+
+$$
+\begin{aligned}
+\sum_{\substack{d=2 \\ d \text{ non-square}}}^{99} |I_d(BQA_d(\pi, 10^{13}))|
+\end{aligned}
+$$
 
 ---
 

@@ -15,7 +15,10 @@ We are given:
 - $G(20) = 205$
 
 We seek to evaluate:
-$$G(500)$$
+
+$$
+G(500)
+$$
 
 ---
 
@@ -31,16 +34,28 @@ Simulating rotation, teeth contact points, and continuous non-linear meshing kin
 ### Phase Alignment & Monotonic Center-Offset Sweep
 1. **Meshing Invariant**:
    For fixed $(s, p, q)$ with $c = s + p + q$, teeth meshing compatibility reduces to an integer phase condition:
-   $$\Delta \phi \in \mathbb{Z}$$
+
+$$
+\Delta \phi \in \mathbb{Z}
+$$
+
 2. **Triangle of Centers**:
    Let the centers of $C, S$, and a $p$-planet form a triangle with scaled side lengths:
    - $a = s + q$ ($|CP| \cdot 2\pi$)
    - $b = s + p$ ($|SP| \cdot 2\pi$)
    - $c_{\text{len}} = (p + q) - 2\pi$ ($|CS| \cdot 2\pi$ at the maximum offset where gap is $1\text{ cm}$)
 3. **Law of Cosines**:
-   $$\cos \alpha = \frac{a^2 + b^2 - c_{\text{len}}^2}{2 a b}, \quad \cos \beta = \frac{a^2 + c_{\text{len}}^2 - b^2}{2 a c_{\text{len}}}$$
+
+$$
+\cos \alpha = \frac{a^2 + b^2 - c_{\text{len}}^2}{2 a b}, \quad \cos \beta = \frac{a^2 + c_{\text{len}}^2 - b^2}{2 a c_{\text{len}}}
+$$
+
    The total phase sweep interval length is:
-   $$t = \frac{\alpha (s + p) + \beta (p + q + 2s)}{\pi}$$
+
+$$
+t = \frac{\alpha (s + p) + \beta (p + q + 2s)}{\pi}
+$$
+
    The number of valid integers in the interval is $\lfloor t \rfloor$.
 
 ---
@@ -49,7 +64,11 @@ Simulating rotation, teeth contact points, and continuous non-linear meshing kin
 
 ### Direct Analytic Counting per Triple ($O(n^3)$)
 1. **Closed-Form Formula**:
-   $$g(s+p+q, s, p, q) = \left\lfloor \frac{\alpha (s + p) + \beta (p + q + 2s)}{\pi} \right\rfloor$$
+
+$$
+g(s+p+q, s, p, q) = \left\lfloor \frac{\alpha (s + p) + \beta (p + q + 2s)}{\pi} \right\rfloor
+$$
+
 2. **Triple Iteration**:
    Iterate $s \in [5, n-10]$, $p \in [5, (n - s - 1)/2]$, $q \in [p + 1, n - s - p]$.
    For each $(s, p, q)$, compute $\alpha, \beta$ in $O(1)$ and accumulate $g$.

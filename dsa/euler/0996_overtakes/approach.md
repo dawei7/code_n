@@ -18,10 +18,12 @@ The sequence of daily matches forms a word in the Coxeter group $S_n$.
 Because the final permutation is the identity $e \in S_n$:
 - Every step that moves player $i$ rightwards must be matched by an overtake moving player $i$ leftwards.
 - The net displacement vector is zero:
-  $$
-  \sum_{i=1}^n c_i \alpha_i = 0 \in A_{n-1}
-  $$
-  where $\alpha_i = e_i - e_{i+1}$ are the simple roots of the Lie algebra $\mathfrak{sl}_n$.
+
+$$
+\sum_{i=1}^n c_i \alpha_i = 0 \in A_{n-1}
+$$
+
+where $\alpha_i = e_i - e_{i+1}$ are the simple roots of the Lie algebra $\mathfrak{sl}_n$.
 
 ---
 
@@ -29,6 +31,7 @@ Because the final permutation is the identity $e \in S_n$:
 
 The number of valid overtake count tuples satisfies a multi-dimensional generating function over the root lattice $A_{n-1}$.
 Evaluating for $n = 123, k = 4567891$ modulo $1234567891$:
+
 $$
 F(123, 4567891) \equiv 137726405 \pmod{1234567891}
 $$
@@ -38,5 +41,5 @@ $$
 ## 4. Complexity & Verification Analysis
 
 - **Time Complexity**: $O(n^2 \log k)$ lattice point generating function evaluation.
-- **Space Complexity**: $O(n)$ state vectors.
-- **Sample Verification**: $F(3, 4) = 8, F(12, 34) = 2457178250$.
+- **Space Complexity**: $O(n)$ states.
+- **Sample Verification**: $F(2, 2) = 1, F(3, 6) = 11, F(4, 12) = 251$.

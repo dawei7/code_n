@@ -34,8 +34,15 @@ A naive approach generates the image array:
 For any square block $[x_0, x_0 + 2^k - 1] \times [y_0, y_0 + 2^k - 1]$:
 We can determine if the block is entirely black, entirely white, or mixed **in $\mathcal{O}(1)$ time** by testing only its 4 corners:
 - Compute the squared distance from $(C, C)$ for all 4 corners:
-  $$d_{\min}^2 = \min_{x \in \{x_0, x_1\}, y \in \{y_0, y_1\}} (x - C)^2 + (y - C)^2$$
-  $$d_{\max}^2 = \max_{x \in \{x_0, x_1\}, y \in \{y_0, y_1\}} (x - C)^2 + (y - C)^2$$
+
+$$
+d_{\min}^2 = \min_{x \in \{x_0, x_1\}, y \in \{y_0, y_1\}} (x - C)^2 + (y - C)^2
+$$
+
+$$
+d_{\max}^2 = \max_{x \in \{x_0, x_1\}, y \in \{y_0, y_1\}} (x - C)^2 + (y - C)^2
+$$
+
 - If $d_{\max}^2 \le R^2$: The block is **entirely black** $\implies$ encodes as `"00"` (2 bits).
 - If $d_{\min}^2 > R^2$: The block is **entirely white** $\implies$ encodes as `"01"` (2 bits).
 - Otherwise: The block is mixed $\implies$ 1 bit + sum of lengths of the 4 sub-quadrants!
@@ -51,7 +58,11 @@ We can determine if the block is entirely black, entirely white, or mixed **in $
 2. By 4-fold rotational / reflection symmetry around $(C, C)$:
    - The top-left, top-right, bottom-left, and bottom-right main quadrants are **symmetrically isomorphic**!
    - We only need to evaluate ONE main quadrant and multiply its encoding length by 4:
-     $$\mathbf{\text{Total Length} = 1 + 4 \times \text{quadtree\_len}(\text{Quadrant 1})}$$
+
+$$
+\mathbf{\text{Total Length} = 1 + 4 \times \text{quadtree\_len}(\text{Quadrant 1})}
+$$
+
 3. The recursive DFS visits only blocks intersecting the circle boundary.
 4. Total execution completes in under $0.15$ seconds in pure Python!
 

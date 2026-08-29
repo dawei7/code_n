@@ -18,7 +18,10 @@ We are given:
 - $c(8) = 656108$
 
 We seek to evaluate:
-$$c(20) \pmod{1001001011}$$
+
+$$
+c(20) \pmod{1001001011}
+$$
 
 ---
 
@@ -35,7 +38,11 @@ The group size is $|G| = 2^{2n - 1} (n!)^2 \approx 1.7 \times 10^{49}$, making b
 ### Burnside's Lemma on Product Permutation Groups
 1. **Group Action**:
    By Burnside's Lemma:
-   $$c(n) = \frac{1}{|G|} \sum_{g \in G} 2^{\operatorname{fixed}(g)}$$
+
+$$
+c(n) = \frac{1}{|G|} \sum_{g \in G} 2^{\operatorname{fixed}(g)}
+$$
+
 2. **Conjugacy Classes in $S_n$**:
    Every element $g \in G$ is determined by a pair of permutations $(\pi_{\text{row}}, \pi_{\text{col}}) \in S_n \times S_n$ and row/column flip vectors $(\vec{u}, \vec{v}) \in \mathbb{F}_2^n \times \mathbb{F}_2^n$.
 3. **Fixed Matrix Invariants via 2-Adic Valuations**:
@@ -54,7 +61,11 @@ The group size is $|G| = 2^{2n - 1} (n!)^2 \approx 1.7 \times 10^{49}$, making b
    For each partition $P = (\ell_1^{m_1}, \dots)$, the conjugacy class size is $\frac{n!}{\prod \ell_i^{m_i} m_i!}$.
 3. **Exponent Formula**:
    For partition pair $(P_r, P_c)$:
-   $$e = \sum_{r, c} m_r m_c \gcd(\ell_r, \ell_c) - k_r - k_c + d$$
+
+$$
+e = \sum_{r, c} m_r m_c \gcd(\ell_r, \ell_c) - k_r - k_c + d
+$$
+
    where $d$ is determined by the 2-adic valuation comparison between $t_r = \min v_2(\ell_r)$ and $t_c = \min v_2(\ell_c)$.
 4. **Fast Double Loop**:
    Loop over all $627 \times 627 = 3.9 \times 10^5$ partition pairs in $O(p(n)^2)$.

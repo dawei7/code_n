@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the inverted Pythagorean Diophantine equation:
-$$\frac{1}{x^2} + \frac{1}{y^2} = \frac{13}{z^2} \iff z^2 (x^2 + y^2) = 13 x^2 y^2$$
+
+$$
+\frac{1}{x^2} + \frac{1}{y^2} = \frac{13}{z^2} \iff z^2 (x^2 + y^2) = 13 x^2 y^2
+$$
 
 A primitive integer solution satisfies $\gcd(x, y, z) = 1$ with $1 \le x \le y \le N$ and $1 \le z \le N$.
 $S(N)$ is the sum of $x + y + z$ over all primitive solutions.
@@ -14,7 +17,11 @@ We are given:
 - $S(10^5) = 2340084$
 
 We seek to evaluate:
-$$S(10^{16}) \bmod 10^9$$
+
+$$
+S(10^{16}) \bmod 10^9
+$$
+
 (the last 9 digits of $S(10^{16})$).
 
 ---
@@ -31,10 +38,18 @@ For $N = 10^{16}$, iterating triples $(x, y, z)$ requires $O(N^3) = 10^{48}$ ope
 ### Gaussian Integer Parameterization in $\mathbb{Z}[i]$
 1. **Rational Inversion Transformation**:
    Let $p = y/d, q = x/d, r = z/d$ where $d = \gcd(xy, z)$. The equation transforms to:
-   $$p^2 + q^2 = 13 r^2$$
+
+$$
+p^2 + q^2 = 13 r^2
+$$
+
 2. **Factoring in the Gaussian Integers $\mathbb{Z}[i]$**:
    Because $13 = (3 + 2i)(3 - 2i)$ factors in $\mathbb{Z}[i]$, all primitive solutions arise from:
-   $$(p + i q) = (3 + 2i) (m + i n)^2$$
+
+$$
+(p + i q) = (3 + 2i) (m + i n)^2
+$$
+
    where $m, n \in \mathbb{Z}^+$ are coprime with opposite parity ($\gcd(m, n) = 1, m \not\equiv n \pmod 2$).
 3. **Explicit Coordinates**:
    - $u = m^2 - n^2, \quad v = 2mn$
@@ -43,7 +58,11 @@ For $N = 10^{16}$, iterating triples $(x, y, z)$ requires $O(N^3) = 10^{48}$ ope
    - $x = q \cdot r, \quad y = p \cdot r, \quad z = p \cdot q$
 4. **Boundary Condition**:
    Since $y = p \cdot r \ge \sqrt{13/2} \cdot r^2$, the constraint $y \le N$ implies:
-   $$r \le r_{\max} = \left\lfloor \sqrt[4]{\frac{2N^2}{13}} \right\rfloor$$
+
+$$
+r \le r_{\max} = \left\lfloor \sqrt[4]{\frac{2N^2}{13}} \right\rfloor
+$$
+
    For $N = 10^{16}$, $r_{\max} \approx 6.26 \times 10^7$ and $m_{\max} \approx \sqrt{r_{\max}} \approx 7914$!
 
 ---

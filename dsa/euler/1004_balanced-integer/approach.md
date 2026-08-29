@@ -8,9 +8,16 @@ $$
 $$
 where:
 - $\text{LDS}(N)$ is the length of the longest strictly decreasing subsequence of digits:
-  $$d_{i_1} > d_{i_2} > \dots > d_{i_r} \quad (i_1 < i_2 < \dots < i_r)$$
+
+$$
+d_{i_1} > d_{i_2} > \dots > d_{i_r} \quad (i_1 < i_2 < \dots < i_r)
+$$
+
 - $\text{LNDS}(N)$ is the length of the longest non-strictly decreasing subsequence (or non-strictly increasing subsequence $\text{LNDS}$):
-  $$d_{j_1} \le d_{j_2} \le \dots \le d_{j_s} \quad (j_1 < j_2 < \dots < j_s)$$
+
+$$
+d_{j_1} \le d_{j_2} \le \dots \le d_{j_s} \quad (j_1 < j_2 < \dots < j_s)
+$$
 
 For example, $77429$ has $\text{LDS}(77429) = 3$ (e.g. $742$) and $\text{LNDS}(77429) = 3$ (e.g. $779$), so $77429$ is balanced.
 

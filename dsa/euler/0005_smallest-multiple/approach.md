@@ -5,10 +5,16 @@
 Let $\mathcal{S}_N = \{ 1, 2, 3, \dots, N \}$ denote the set of consecutive natural numbers up to $N \in \mathbb{N}$.
 
 The objective is to evaluate the Least Common Multiple (LCM) across all elements in $\mathcal{S}_N$:
-$$L(N) = \operatorname{lcm}(\mathcal{S}_N) = \operatorname{lcm}(1, 2, 3, \dots, N)$$
+
+$$
+L(N) = \operatorname{lcm}(\mathcal{S}_N) = \operatorname{lcm}(1, 2, 3, \dots, N)
+$$
 
 Formally, $L(N)$ is the unique minimal positive integer divisible by every $k \in \mathcal{S}_N$:
-$$L(N) = \min \{ m \in \mathbb{N}^+ \mid \forall k \in [1, N], \, k \mid m \}$$
+
+$$
+L(N) = \min \{ m \in \mathbb{N}^+ \mid \forall k \in [1, N], \, k \mid m \}
+$$
 
 We must compute $L(20)$.
 
@@ -38,7 +44,10 @@ def naive_smallest_multiple(n):
 By the Fundamental Theorem of Arithmetic, every integer has a unique prime factorization. The LCM of a set of integers is the product of each prime raised to its **maximum exponent** present in any number in the set.
 
 For $k \le N$, the highest power of prime $p$ that does not exceed $N$ is:
-$$a_p = \max \{ e \in \mathbb{N} \mid p^e \le N \} = \lfloor \log_p N \rfloor$$
+
+$$
+a_p = \max \{ e \in \mathbb{N} \mid p^e \le N \} = \lfloor \log_p N \rfloor
+$$
 
 ### Prime Exponent Decomposition for $N = 20$
 
@@ -59,13 +68,25 @@ $$a_p = \max \{ e \in \mathbb{N} \mid p^e \le N \} = \lfloor \log_p N \rfloor$$
 
 ### A. Prime Power Product Formula
 The global LCM is given exactly by:
-$$L(N) = \prod_{\substack{p \le N \\ p \in \mathbb{P}}} p^{\lfloor \log_p N \rfloor}$$
+
+$$
+\begin{aligned}
+L(N) = \prod_{\substack{p \le N \\ p \in \mathbb{P}}} p^{\lfloor \log_p N \rfloor}
+\end{aligned}
+$$
 
 ### B. Associative Iteration via Euclidean GCD
 Alternatively, using the associativity of the binary LCM operator:
-$$\operatorname{lcm}(a_1, a_2, \dots, a_k) = \operatorname{lcm}(\operatorname{lcm}(a_1, \dots, a_{k-1}), a_k)$$
+
+$$
+\operatorname{lcm}(a_1, a_2, \dots, a_k) = \operatorname{lcm}(\operatorname{lcm}(a_1, \dots, a_{k-1}), a_k)
+$$
+
 where binary LCM is computed via the Euclidean Greatest Common Divisor (GCD):
-$$\operatorname{lcm}(a, b) = \frac{a \cdot b}{\gcd(a, b)}$$
+
+$$
+\operatorname{lcm}(a, b) = \frac{a \cdot b}{\gcd(a, b)}
+$$
 
 Using the Euclidean Algorithm, each step executes in $\mathcal{O}(\log(\min(a, b)))$ arithmetic operations.
 
@@ -80,7 +101,10 @@ Using the Euclidean Algorithm, each step executes in $\mathcal{O}(\log(\min(a, b
 
 ### Example 2: Exact Evaluation for $N = 20$
 Evaluating the product of maximal prime powers:
-$$L(20) = 16 \times 9 \times 5 \times 7 \times 11 \times 13 \times 17 \times 19 = \mathbf{232\,792\,560}$$
+
+$$
+L(20) = 16 \times 9 \times 5 \times 7 \times 11 \times 13 \times 17 \times 19 = \mathbf{232\,792\,560}
+$$
 
 ---
 

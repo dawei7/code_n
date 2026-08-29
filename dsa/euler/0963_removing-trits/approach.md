@@ -32,7 +32,10 @@ Each number $x$ has an exact surreal number value $v(x)$:
 - '1' removals represent Right options.
 - '2' removals represent reversible star options.
 A game setting is fair if and only if:
-$$v(a) + v(b) = v(c) + v(d)$$
+
+$$
+v(a) + v(b) = v(c) + v(d)
+$$
 
 ---
 

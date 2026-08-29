@@ -34,7 +34,11 @@ The trajectory of Langton's ant exhibits three distinct behavioral phases:
 ### Linear Projection Formula
 Let $B(t)$ denote the number of black squares at step $t$.
 For any $t \ge 10\,000$ and any integer $k \ge 0$:
-$$B(t + 104 \cdot k) = B(t) + 12 \cdot k$$
+
+$$
+B(t + 104 \cdot k) = B(t) + 12 \cdot k
+$$
+
 1. Simulate the ant explicitly for $15\,000$ steps and record $B(t)$ in a list `black_counts`.
 2. Choose a reference base step $t_{\text{start}} = 10\,000$ inside the highway phase.
 3. For $T = 10^{18}$:
@@ -42,7 +46,11 @@ $$B(t + 104 \cdot k) = B(t) + 12 \cdot k$$
    - The reference step is $t_{\text{ref}} = t_{\text{start}} + rem$.
    - The number of full periods is $k = (T - t_{\text{ref}}) / 104$.
    - The final black count is:
-     $$\mathbf{B(10^{18}) = B(t_{\text{ref}}) + 12 \cdot \left( \frac{10^{18} - t_{\text{ref}}}{104} \right) = 115\,384\,615\,384\,614\,952}$$
+
+$$
+\mathbf{B(10^{18}) = B(t_{\text{ref}}) + 12 \cdot \left( \frac{10^{18} - t_{\text{ref}}}{104} \right) = 115\,384\,615\,384\,614\,952}
+$$
+
 4. The simulation and formula evaluate in under $0.005$ seconds in pure Python!
 
 ---

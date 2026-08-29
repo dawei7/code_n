@@ -10,7 +10,10 @@ We are given:
 - For $m = 4$, exactly $42$ quadrilaterals strictly contain a square number of interior points.
 
 We seek to evaluate the count for:
-$$m = 100$$
+
+$$
+m = 100
+$$
 
 ---
 
@@ -26,14 +29,25 @@ Iterating over all $100^4 = 10^8$ quadrilaterals and testing each of the $\appro
 ### Pick's Theorem on Axis Quadrilaterals
 1. **Total Area**:
    The quadrilateral decomposes into 4 right triangles along the axes:
-   $$\text{Area} = \frac{ab + bc + cd + da}{2} = \frac{(a + c)(b + d)}{2}$$
+
+$$
+\text{Area} = \frac{ab + bc + cd + da}{2} = \frac{(a + c)(b + d)}{2}
+$$
+
 2. **Boundary Points**:
    On the segment joining $(a, 0)$ and $(0, b)$, the number of integer points (including endpoints) is $\gcd(a, b) + 1$.
    Summing over all 4 edges and accounting for the 4 shared vertices:
-   $$B = \gcd(a, b) + \gcd(b, c) + \gcd(c, d) + \gcd(d, a)$$
+
+$$
+B = \gcd(a, b) + \gcd(b, c) + \gcd(c, d) + \gcd(d, a)
+$$
+
 3. **Interior Point Formula**:
    By Pick's Theorem ($\text{Area} = I + \frac{B}{2} - 1$):
-   $$I = \frac{(a + c)(b + d) - B}{2} + 1$$
+
+$$
+I = \frac{(a + c)(b + d) - B}{2} + 1
+$$
 
 ---
 
@@ -42,7 +56,11 @@ Iterating over all $100^4 = 10^8$ quadrilaterals and testing each of the $\appro
 ### Bilateral Symmetry & Precomputed $\gcd$ Boundary Reduction
 1. **Separation of Variables**:
    For any fixed pair $(a, c)$, the boundary sum splits additively:
-   $$B = (\gcd(a, b) + \gcd(b, c)) + (\gcd(c, d) + \gcd(d, a)) = g_{(a, c)}(b) + g_{(a, c)}(d)$$
+
+$$
+B = (\gcd(a, b) + \gcd(b, c)) + (\gcd(c, d) + \gcd(d, a)) = g_{(a, c)}(b) + g_{(a, c)}(d)
+$$
+
    where $g_{(a, c)}(x) = \gcd(a, x) + \gcd(c, x)$.
 2. **Symmetry Reduction**:
    By symmetry under $a \leftrightarrow c$ and $b \leftrightarrow d$, we restrict iteration to $1 \le a \le c \le m$ and $1 \le b \le d \le m$, multiplying valid pairs by their multiplicity weights ($1$ or $2$).

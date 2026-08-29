@@ -7,7 +7,10 @@ Let $T$ be a triangular array of non-negative integers containing $R = 15$ rows,
 A valid top-to-bottom path is a sequence of cells $((0, c_0), (1, c_1), \dots, (R-1, c_{R-1}))$ where $c_0 = 0$ and $c_{k+1} \in \{c_k, c_k + 1\}$ for all $k \in [0, R-2]$.
 
 The objective is to compute the maximum total path sum:
-$$S_{\text{max}} = \max_{(c_0, \dots, c_{R-1})} \sum_{r=0}^{R-1} T[r][c_r]$$
+
+$$
+S_{\text{max}} = \max_{(c_0, \dots, c_{R-1})} \sum_{r=0}^{R-1} T[r][c_r]
+$$
 
 ---
 
@@ -34,7 +37,11 @@ def naive_path_sum(triangle, r=0, c=0):
 ## 3. Core Intuition & Mathematical Structure
 
 By Bellman's Principle of Optimality, the maximum path sum from cell $(r, c)$ to the base is:
-$$V(r, c) = T[r][c] + \max(V(r+1, c), V(r+1, c+1))$$
+
+$$
+V(r, c) = T[r][c] + \max(V(r+1, c), V(r+1, c+1))
+$$
+
 with base condition $V(R-1, c) = T[R-1][c]$.
 
 ### Bottom-Up Dynamic Programming Transition
@@ -62,12 +69,15 @@ By reducing the triangle from row $R-2$ up to $0$:
 ## 5. Concrete Step-by-Step Example Walkthrough
 
 ### Example 1: Evaluation on 4-Row Sample Triangle
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 & & & 3 & & & \\
 & & 7 & & 4 & & \\
 & 2 & & 4 & & 6 & \\
 8 & & 5 & & 9 & & 3
-\end{matrix}$$
+\end{matrix}
+$$
 
 1. **Reduce Row 2** (above base):
    - Cell $(2, 0)$: $2 + \max(8, 5) = 2 + 8 = 10$
@@ -84,7 +94,10 @@ $$\begin{matrix}
 
 ### Example 2: Target Evaluation on 15-Row Triangle
 - Reducing 15 rows bottom-up in-place:
-  $$S_{\text{max}} = T[0][0] = \mathbf{1074}$$
+
+$$
+S_{\text{max}} = T[0][0] = \mathbf{1074}
+$$
 
 ---
 

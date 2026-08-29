@@ -15,7 +15,10 @@ We are given:
 - $S(200) = 7177$
 
 We seek to evaluate:
-$$S(3800)$$
+
+$$
+S(3800)
+$$
 
 ---
 

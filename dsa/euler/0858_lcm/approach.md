@@ -23,10 +23,18 @@ Find $G(800) \bmod (10^9 + 7)$.
 
 ### Divisor Inversion & Inclusion-Exclusion
 Using the identity $n = \sum_{d \mid n} \phi(d)$:
-$$\operatorname{lcm}(S) = \sum_{d \mid \operatorname{lcm}(S)} \phi(d)$$
+
+$$
+\operatorname{lcm}(S) = \sum_{d \mid \operatorname{lcm}(S)} \phi(d)
+$$
+
 The condition $d \mid \operatorname{lcm}(S)$ requires that for each prime power $p^j \parallel d$, $S$ contains at least one multiple of $p^j$.
 By Dirichlet/Möbius inclusion-exclusion over prime power constraints $T \subseteq \{p^j \le N\}$:
-$$G(N) = P_N \sum_T \left( \prod_{p^j \in T} \frac{-\phi(p^j)}{p^{K_p}} \right) 2^{N - |\bigcup_{q \in T} \text{Multiples}(q)|}$$
+
+$$
+G(N) = P_N \sum_T \left( \prod_{p^j \in T} \frac{-\phi(p^j)}{p^{K_p}} \right) 2^{N - |\bigcup_{q \in T} \text{Multiples}(q)|}
+$$
+
 where $P_N = \operatorname{lcm}(1, \dots, N) = \prod_{p \le N} p^{K_p}$.
 
 ---
@@ -43,7 +51,11 @@ We split primes at the threshold $\sqrt{N} \approx 28.28$:
    For each large prime $p$, all multiples are of the form $k \cdot p$ where $k \le \lfloor N/p \rfloor \le 27$.
    An element $k \cdot p$ is covered by the small prime mask if and only if $k$ is covered.
    Thus, for a given small prime mask, the choices for all 130 large primes **factorize completely independently**:
-   $$\text{Factor}_{\text{large}} = \prod_{p > 28} \left( 1 - \frac{p - 1}{p} 2^{-\Delta(p)} \right)$$
+
+$$
+\text{Factor}_{\text{large}} = \prod_{p > 28} \left( 1 - \frac{p - 1}{p} 2^{-\Delta(p)} \right)
+$$
+
    where $\Delta(p)$ is the number of uncovered indices in $\{1, \dots, \lfloor N/p \rfloor\}$.
 
 ---

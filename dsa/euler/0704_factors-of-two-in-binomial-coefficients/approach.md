@@ -4,9 +4,14 @@
 
 Let $g(n, m) = v_2\left(\binom{n}{m}\right)$ denote the 2-adic valuation (highest power of 2 dividing $\binom{n}{m}$).
 Define:
-$$F(n) = \max_{0 \le m \le n} g(n, m)$$
 
-$$S(N) = \sum_{n=1}^N F(n)$$
+$$
+F(n) = \max_{0 \le m \le n} g(n, m)
+$$
+
+$$
+S(N) = \sum_{n=1}^N F(n)
+$$
 
 We are given:
 - $F(10) = 3$
@@ -15,7 +20,10 @@ We are given:
 - $S(10^7) = 203222840$
 
 We seek to evaluate:
-$$S(10^{16})$$
+
+$$
+S(10^{16})
+$$
 
 ---
 
@@ -34,7 +42,11 @@ Evaluating $F(n)$ individually for $N = 10^{16}$ requires $\ge 10^{16}$ operatio
 2. **Maximizing Carries**:
    To maximize carries, we choose $m = 2^j - 1$ or $m = 2^j$.
    This yields the exact formula for $F(n)$:
-   $$F(n) = \begin{cases} 0 & \text{if } n = 2^k - 1 \\ \lfloor \log_2 n \rfloor - v_2(n + 1) & \text{otherwise} \end{cases}$$
+
+$$
+F(n) = \begin{cases} 0 & \text{if } n = 2^k - 1 \\ \lfloor \log_2 n \rfloor - v_2(n + 1) & \text{otherwise} \end{cases}
+$$
+
    where $v_2(n + 1)$ is the number of trailing 1s in the binary representation of $n$.
 
 ---
@@ -43,16 +55,37 @@ Evaluating $F(n)$ individually for $N = 10^{16}$ requires $\ge 10^{16}$ operatio
 
 ### $O(\log N)$ Closed-Form Summation via Legendre's Formula
 1. **Sum Decomposition**:
-   $$\sum_{n=1}^N F(n) = \sum_{n=1}^N \lfloor \log_2 n \rfloor - \sum_{n=1}^N v_2(n + 1) + \sum_{\substack{k \ge 1 \\ 2^k - 1 \le N}} 1$$
+
+$$
+\begin{aligned}
+\sum_{n=1}^N F(n) = \sum_{n=1}^N \lfloor \log_2 n \rfloor - \sum_{n=1}^N v_2(n + 1) + \sum_{\substack{k \ge 1 \\ 2^k - 1 \le N}} 1
+\end{aligned}
+$$
+
 2. **Component Evaluations**:
    - **Logarithmic Block Sum**:
-     $$\sum_{n=1}^N \lfloor \log_2 n \rfloor = \sum_{k=0}^{D-1} k \cdot 2^k + D \cdot (N - 2^D + 1)$$
+
+$$
+\sum_{n=1}^N \lfloor \log_2 n \rfloor = \sum_{k=0}^{D-1} k \cdot 2^k + D \cdot (N - 2^D + 1)
+$$
+
    - **Trailing Zeros Sum (Legendre's Formula)**:
-     $$\sum_{n=1}^N v_2(n + 1) = \sum_{m=2}^{N+1} v_2(m) = v_2((N + 1)!) = \sum_{k=1}^\infty \left\lfloor \frac{N + 1}{2^k} \right\rfloor = N + 1 - \text{popcount}(N + 1)$$
+
+$$
+\sum_{n=1}^N v_2(n + 1) = \sum_{m=2}^{N+1} v_2(m) = v_2((N + 1)!) = \sum_{k=1}^\infty \left\lfloor \frac{N + 1}{2^k} \right\rfloor = N + 1 - \text{popcount}(N + 1)
+$$
+
    - **Power-of-Two Minus One Count**:
-     $$\lfloor \log_2(N + 1) \rfloor = \text{bit\_length}(N + 1) - 1$$
+
+$$
+\lfloor \log_2(N + 1) \rfloor = \text{bit\_length}(N + 1) - 1
+$$
+
 3. **Total Sum**:
-   $$S(N) = \sum_{n=1}^N \lfloor \log_2 n \rfloor - v_2((N + 1)!) + \lfloor \log_2(N + 1) \rfloor$$
+
+$$
+S(N) = \sum_{n=1}^N \lfloor \log_2 n \rfloor - v_2((N + 1)!) + \lfloor \log_2(N + 1) \rfloor
+$$
 
 This evaluates $S(10^{16})$ in **$\approx 0.00$ seconds** in pure Python!
 

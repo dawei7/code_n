@@ -19,7 +19,10 @@ For example, $(5, 27, 32)$ is an abc-hit because:
 It turns out that abc-hits are quite rare. There are thirty-one ($31$) abc-hits for $c < 1000$, with $\sum c = 12\,523$.
 
 The objective is to find **$\sum c$ for $c < 120\,000$**:
-$$S_{\text{abc}} = \sum \{ c < 120\,000 \mid \exists (a, b) \text{ s.t. } (a, b, c) \text{ is an abc-hit} \}$$
+
+$$
+S_{\text{abc}} = \sum \{ c < 120\,000 \mid \exists (a, b) \text{ s.t. } (a, b, c) \text{ is an abc-hit} \}
+$$
 
 ---
 
@@ -91,7 +94,10 @@ def naive_abc_hits(limit):
 
 ### Example 2: Target Evaluation for $c < 120\,000$
 - Summing $c$ for all qualifying abc-hits:
-  $$S_{\text{abc}} = \mathbf{18\,407\,904}$$
+
+$$
+S_{\text{abc}} = \mathbf{18\,407\,904}
+$$
 
 ---
 

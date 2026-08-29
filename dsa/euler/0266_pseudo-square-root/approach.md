@@ -3,9 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The **pseudo square root** ($\text{PSR}$) of an integer $n$ is the largest divisor of $n$ that does not exceed $\sqrt{n}$:
-$$\text{PSR}(n) = \max \{ d \mid n : d \le \sqrt{n} \}$$
+
+$$
+\text{PSR}(n) = \max \{ d \mid n : d \le \sqrt{n} \}
+$$
+
 Let $N$ be the product of all prime numbers strictly less than $190$ ($42$ primes in total):
-$$N = 2 \times 3 \times 5 \times \cdots \times 181$$
+
+$$
+N = 2 \times 3 \times 5 \times \cdots \times 181
+$$
+
 Find $\text{PSR}(N) \bmod 10^{16}$.
 
 ---
@@ -25,7 +33,11 @@ A naive approach enumerates all subsets of the $42$ primes:
 Because $N$ is square-free, every divisor $d \mid N$ is the product of a subset of the 42 prime factors:
 - $d \le \sqrt{N} \iff \ln(d) \le \frac{1}{2} \ln(N)$.
 - We seek a subset $S \subseteq \{p_1, \dots, p_{42}\}$ maximizing:
-  $$\sum_{p \in S} \ln(p) \le \frac{1}{2} \sum_{i=1}^{42} \ln(p_i)$$
+
+$$
+\sum_{p \in S} \ln(p) \le \frac{1}{2} \sum_{i=1}^{42} \ln(p_i)
+$$
+
 - Using **Meet-in-the-Middle**, we split the 42 primes into two halves of size 21:
   - Left half: $2^{21} = 2\,097\,152$ subsets.
   - Right half: $2^{21} = 2\,097\,152$ subsets.
@@ -45,7 +57,11 @@ Because $N$ is square-free, every divisor $d \mid N$ is the product of a subset 
    - For each element in the right list with log sum $L_R$:
      Find the element in the left list with log sum $L_L \le \frac{1}{2} \ln(N) - L_R$ maximizing $L_L + L_R$.
    - Maintain the maximum combined log sum and corresponding modular product:
-     $$d \equiv (\text{left\_prod} \times \text{right\_prod}) \pmod{10^{16}}$$
+
+$$
+d \equiv (\text{left\_prod} \times \text{right\_prod}) \pmod{10^{16}}
+$$
+
 4. The two-pointer sweep processes both lists in $\mathcal{O}(2^{N/2} \log(2^{N/2}))$ time, executing in under $3.5$ seconds in pure Python!
 
 ---

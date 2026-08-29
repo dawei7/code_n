@@ -5,11 +5,18 @@
 Start with an array $A = (0, 1, 2, \dots, N - 1)$ of size $N$.
 Perform $K$ successive subarray reversals.
 At step $j \in \{1, \dots, K\}$:
-$$s_j = F_{2j-1} \bmod N, \quad t_j = F_{2j} \bmod N$$
+
+$$
+s_j = F_{2j-1} \bmod N, \quad t_j = F_{2j} \bmod N
+$$
+
 Reverse the subarray between $\min(s_j, t_j)$ and $\max(s_j, t_j)$ (inclusive).
 
 Define the position-weighted sum:
-$$R(N, K) = \sum_{i=0}^{N-1} i \times A[i]$$
+
+$$
+R(N, K) = \sum_{i=0}^{N-1} i \times A[i]
+$$
 
 We are given:
 - $R(5, 4) = 27$
@@ -17,7 +24,10 @@ We are given:
 - $R(10^4, 10^4) = 249275481640$
 
 We seek to evaluate:
-$$R(10^{18}, 10^6) \bmod 10^9$$
+
+$$
+R(10^{18}, 10^6) \bmod 10^9
+$$
 
 ---
 
@@ -43,7 +53,10 @@ An array of size $10^{18}$ cannot fit in any physical memory, and updating $10^{
    - $\text{sum\_val} = \sum_{k=0}^{L-1} (s + d k) = s L + d \frac{L(L-1)}{2}$
    - $\text{sum\_pos} = \sum_{k=0}^{L-1} k(s + d k) = s \frac{L(L-1)}{2} + d \frac{(L-1)L(2L-1)}{6}$.
    When reversing a node's subtree:
-   $$\text{sum\_pos}' = (\text{tot\_len} - 1) \cdot \text{sum\_val} - \text{sum\_pos} \pmod{10^9}$$
+
+$$
+\text{sum\_pos}' = (\text{tot\_len} - 1) \cdot \text{sum\_val} - \text{sum\_pos} \pmod{10^9}
+$$
 
 ---
 

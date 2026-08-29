@@ -5,7 +5,10 @@
 Let $f_k(n) = \sum_{j=1}^n j^k$ be the sum of the $k$-th powers of the first $n$ positive integers.
 Let $S_k(n) = \sum_{i=1}^n f_k(i)$.
 We seek to evaluate:
-$$\sum_{p \in \mathcal{P} \cap [2 \cdot 10^9, \, 2 \cdot 10^9 + 2000]} (S_{10000}(10^{12}) \bmod p)$$
+
+$$
+\sum_{p \in \mathcal{P} \cap [2 \cdot 10^9, \, 2 \cdot 10^9 + 2000]} (S_{10000}(10^{12}) \bmod p)
+$$
 
 We are given:
 - $f_2(10) = 385$
@@ -24,8 +27,15 @@ Evaluating $\sum_{i=1}^{10^{12}} f_k(i)$ directly involves $10^{12}$ power terms
 
 ### Algebraic Sum-of-Sums Reduction
 1. **Reversing Order of Summation**:
-   $$S_k(n) = \sum_{i=1}^n \sum_{j=1}^i j^k = \sum_{j=1}^n (n - j + 1) j^k = (n + 1) \sum_{j=1}^n j^k - \sum_{j=1}^n j^{k+1}$$
-   $$S_k(n) = (n + 1) f_k(n) - f_{k+1}(n)$$
+
+$$
+S_k(n) = \sum_{i=1}^n \sum_{j=1}^i j^k = \sum_{j=1}^n (n - j + 1) j^k = (n + 1) \sum_{j=1}^n j^k - \sum_{j=1}^n j^{k+1}
+$$
+
+$$
+S_k(n) = (n + 1) f_k(n) - f_{k+1}(n)
+$$
+
 2. **Polynomial Nature of Power Sums**:
    By Faulhaber's formula, $f_k(x)$ is a polynomial in $x$ of degree $k + 1$.
    Similarly, $f_{k+1}(x)$ is a polynomial of degree $k + 2$.
@@ -38,7 +48,11 @@ Evaluating $\sum_{i=1}^{10^{12}} f_k(i)$ directly involves $10^{12}$ power terms
 1. **Sample Evaluation**:
    For degree $d = k + 1$, we evaluate $y_j = f_k(j) \pmod p$ for $j = 0, 1, \dots, d$ in $O(d)$ time using modular prefix power sums.
 2. **Lagrange Interpolation Formula**:
-   $$f_k(n) = \sum_{j=0}^d y_j \prod_{m \ne j} \frac{n - m}{j - m} \pmod p$$
+
+$$
+f_k(n) = \sum_{j=0}^d y_j \prod_{m \ne j} \frac{n - m}{j - m} \pmod p
+$$
+
    Because the sample nodes $j = 0, 1, \dots, d$ are consecutive integers, the denominator simplifies to $(-1)^{d-j} j! (d-j)!$.
    Precomputing prefix and suffix products $\text{pref}[j] = \prod_{m < j} (n - m) \pmod p$ and $\text{suff}[j] = \prod_{m > j} (n - m) \pmod p$ allows $f_k(n) \bmod p$ to be evaluated in exact $O(k)$ operations!
 3. **Loop across Target Primes**:

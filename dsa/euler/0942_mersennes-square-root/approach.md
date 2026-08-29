@@ -23,11 +23,22 @@ Find $R(74207281) \bmod (10^9 + 7)$.
 
 ### Mersenne Prime Square Root Formula ($p \equiv 3 \pmod 4$)
 For any prime $p \equiv 3 \pmod 4$, the square root of quadratic residue $q$ is given by Euler's criterion:
-$$x \equiv \pm q^{(p + 1) / 4} \pmod p$$
+
+$$
+x \equiv \pm q^{(p + 1) / 4} \pmod p
+$$
+
 For a Mersenne prime $p = 2^q - 1$:
-$$\frac{p + 1}{4} = \frac{2^q}{4} = 2^{q - 2}$$
+
+$$
+\frac{p + 1}{4} = \frac{2^q}{4} = 2^{q - 2}
+$$
+
 Thus:
-$$x \equiv \pm q^{2^{q - 2}} \pmod{2^q - 1}$$
+
+$$
+x \equiv \pm q^{2^{q - 2}} \pmod{2^q - 1}
+$$
 
 ---
 

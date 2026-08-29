@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $(F_n)_{n \ge 1}$ denote the Fibonacci sequence defined by:
-$$F_1 = 1, \quad F_2 = 1, \quad F_n = F_{n-1} + F_{n-2} \quad \text{for } n \ge 3$$
+
+$$
+F_1 = 1, \quad F_2 = 1, \quad F_n = F_{n-1} + F_{n-2} \quad \text{for } n \ge 3
+$$
 
 The number of decimal digits in $F_n$ is given by:
-$$D(F_n) = \lfloor \log_{10} F_n \rfloor + 1$$
+
+$$
+D(F_n) = \lfloor \log_{10} F_n \rfloor + 1
+$$
 
 The objective is to find the index of the first Fibonacci term to contain $K = 1000$ decimal digits:
-$$n_{\text{min}} = \min \{ n \in \mathbb{N} \mid D(F_n) \ge 1000 \} = \min \{ n \in \mathbb{N} \mid F_n \ge 10^{999} \}$$
+
+$$
+n_{\text{min}} = \min \{ n \in \mathbb{N} \mid D(F_n) \ge 1000 \} = \min \{ n \in \mathbb{N} \mid F_n \ge 10^{999} \}
+$$
 
 ---
 
@@ -37,7 +46,11 @@ def naive_fibonacci_digits(k):
 ## 3. Core Intuition & Mathematical Structure
 
 By Binet's Formula:
-$$F_n = \frac{\phi^n - \psi^n}{\sqrt{5}} \approx \frac{\phi^n}{\sqrt{5}}$$
+
+$$
+F_n = \frac{\phi^n - \psi^n}{\sqrt{5}} \approx \frac{\phi^n}{\sqrt{5}}
+$$
+
 where $\phi = \frac{1 + \sqrt{5}}{2} \approx 1.61803398875$ is the Golden Ratio and $|\psi| = \frac{\sqrt{5}-1}{2} < 1$.
 
 ### Fibonacci Digit Scaling Table
@@ -57,16 +70,30 @@ where $\phi = \frac{1 + \sqrt{5}}{2} \approx 1.61803398875$ is the Golden Ratio 
 
 ### Analytical Derivation of $n_{\text{min}}$
 Setting $F_n \ge 10^{K - 1}$:
-$$\frac{\phi^n}{\sqrt{5}} \ge 10^{K - 1}$$
+
+$$
+\frac{\phi^n}{\sqrt{5}} \ge 10^{K - 1}
+$$
+
 Taking $\log_{10}$ on both sides:
-$$n \log_{10} \phi - \log_{10} \sqrt{5} \ge K - 1$$
 
-$$n \log_{10} \phi \ge K - 1 + \frac{1}{2} \log_{10} 5$$
+$$
+n \log_{10} \phi - \log_{10} \sqrt{5} \ge K - 1
+$$
 
-$$n \ge \frac{K - 1 + \frac{1}{2} \log_{10} 5}{\log_{10} \phi}$$
+$$
+n \log_{10} \phi \ge K - 1 + \frac{1}{2} \log_{10} 5
+$$
+
+$$
+n \ge \frac{K - 1 + \frac{1}{2} \log_{10} 5}{\log_{10} \phi}
+$$
 
 Applying the ceiling function $\lceil \cdot \rceil$:
-$$\boxed{n_{\text{min}} = \left\lceil \frac{K - 1 + \frac{1}{2} \log_{10} 5}{\log_{10} \phi} \right\rceil}$$
+
+$$
+\boxed{n_{\text{min}} = \left\lceil \frac{K - 1 + \frac{1}{2} \log_{10} 5}{\log_{10} \phi} \right\rceil}
+$$
 
 ---
 
@@ -86,7 +113,10 @@ $$\boxed{n_{\text{min}} = \left\lceil \frac{K - 1 + \frac{1}{2} \log_{10} 5}{\lo
 - Denominator: $0.20898764025$.
 - Quotient: $999.349485002 / 0.20898764025 = 4781.859$.
 - Ceiling:
-  $$n_{\text{min}} = \lceil 4781.859 \rceil = \mathbf{4782}$$
+
+$$
+n_{\text{min}} = \lceil 4781.859 \rceil = \mathbf{4782}
+$$
 
 ---
 

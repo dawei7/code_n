@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $g(a, n, b, m)$ denote the smallest non-negative integer solution $x$ to the modular system:
-$$x \equiv a \pmod n, \quad x \equiv b \pmod m$$
+
+$$
+x \equiv a \pmod n, \quad x \equiv b \pmod m
+$$
+
 if such a solution exists, and $0$ otherwise.
 Let $f(n, m) = g(\varphi(n), n, \varphi(m), m)$ where $\varphi$ is Euler's totient function.
 
@@ -12,7 +16,10 @@ We are given:
 - $g(3, 4, 4, 6) = 0$
 
 We seek to evaluate:
-$$\sum_{1\,000\,000 \le n < m < 1\,005\,000} f(n, m)$$
+
+$$
+\sum_{1\,000\,000 \le n < m < 1\,005\,000} f(n, m)
+$$
 
 ---
 
@@ -31,7 +38,10 @@ Checking all possible values $x < \operatorname{lcm}(n, m) \approx 10^{12}$ for 
 2. **Extended Euclidean Solution**:
    Using the extended Euclidean algorithm, find integers $u, v$ such that $n u + m v = g = \gcd(n, m)$.
    Then the unique solution modulo $\operatorname{lcm}(n, m) = \frac{n m}{g}$ is:
-   $$x \equiv a + n \cdot \left[ \frac{b - a}{g} \cdot u \bmod \frac{m}{g} \right] \pmod{\operatorname{lcm}(n, m)}$$
+
+$$
+x \equiv a + n \cdot \left[ \frac{b - a}{g} \cdot u \bmod \frac{m}{g} \right] \pmod{\operatorname{lcm}(n, m)}
+$$
 
 ---
 

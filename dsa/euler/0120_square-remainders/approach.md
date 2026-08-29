@@ -3,15 +3,25 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $r$ be the remainder when $(a-1)^n + (a+1)^n$ is divided by $a^2$:
-$$r(a, n) = \left( (a - 1)^n + (a + 1)^n \right) \bmod a^2$$
+
+$$
+r(a, n) = \left( (a - 1)^n + (a + 1)^n \right) \bmod a^2
+$$
 
 For example, if $a = 7$ and $n = 3$, then:
-$$r(7, 3) = (6^3 + 8^3) \bmod 49 = (216 + 512) \bmod 49 = 728 \bmod 49 = 42$$
+
+$$
+r(7, 3) = (6^3 + 8^3) \bmod 49 = (216 + 512) \bmod 49 = 728 \bmod 49 = 42
+$$
 
 As $n$ varies, $r$ can vary, but for $a = 7$ it turns out that $r_{\text{max}} = 42$.
 
 The objective is to find **$\sum r_{\text{max}}$ for $3 \le a \le 1000$**:
-$$S_{\text{rem}} = \sum_{a=3}^{1000} r_{\text{max}}(a)$$
+
+$$
+S_{\text{rem}} = \sum_{a=3}^{1000} r_{\text{max}}(a)
+$$
+
 where $r_{\text{max}}(a) = \max_{n \ge 1} r(a, n)$.
 
 ---
@@ -28,10 +38,21 @@ def naive_square_remainders(a):
 
 ### Binomial Theorem Expansion Modulo $a^2$
 1. Expanding $(a-1)^n$ and $(a+1)^n$ modulo $a^2$ using the Binomial Theorem:
-   $$(a - 1)^n \equiv (-1)^n + n(-1)^{n-1} a \pmod{a^2}$$
-   $$(a + 1)^n \equiv 1 + na \pmod{a^2}$$
+
+$$
+(a - 1)^n \equiv (-1)^n + n(-1)^{n-1} a \pmod{a^2}
+$$
+
+$$
+(a + 1)^n \equiv 1 + na \pmod{a^2}
+$$
+
 2. Adding both congruences:
-   $$(a - 1)^n + (a + 1)^n \equiv \begin{cases} 2 \pmod{a^2} & \text{if } n \text{ is even} \\ 2na \pmod{a^2} & \text{if } n \text{ is odd} \end{cases}$$
+
+$$
+(a - 1)^n + (a + 1)^n \equiv \begin{cases} 2 \pmod{a^2} & \text{if } n \text{ is even} \\ 2na \pmod{a^2} & \text{if } n \text{ is odd} \end{cases}
+$$
+
 3. For odd $n$, the remainder is $(2na) \bmod a^2 = a \cdot ((2n) \bmod a)$.
 4. To maximize $(2n) \bmod a$ when $n$ is odd:
    - If $a$ is **even**: $(2n) \bmod a$ can achieve maximum value $a - 2 \implies r_{\text{max}}(a) = a(a - 2)$.
@@ -61,10 +82,16 @@ def naive_square_remainders(a):
 
 ### Closed-Form Parity Theorem
 For all $a \ge 3$:
-$$r_{\text{max}}(a) = \begin{cases} a(a - 2) & \text{if } a \equiv 0 \pmod 2 \\ a(a - 1) & \text{if } a \equiv 1 \pmod 2 \end{cases}$$
+
+$$
+r_{\text{max}}(a) = \begin{cases} a(a - 2) & \text{if } a \equiv 0 \pmod 2 \\ a(a - 1) & \text{if } a \equiv 1 \pmod 2 \end{cases}
+$$
 
 Summing over all $3 \le a \le 1000$:
-$$S_{\text{rem}} = \sum_{a=3}^{1000} r_{\text{max}}(a) = \mathbf{333\,082\,500}$$
+
+$$
+S_{\text{rem}} = \sum_{a=3}^{1000} r_{\text{max}}(a) = \mathbf{333\,082\,500}
+$$
 
 ---
 
@@ -76,7 +103,10 @@ $$S_{\text{rem}} = \sum_{a=3}^{1000} r_{\text{max}}(a) = \mathbf{333\,082\,500}$
 
 ### Example 2: Target Evaluation for $3 \le a \le 1000$
 - Summing closed-form values across all $998$ values of $a$:
-  $$S_{\text{rem}} = \mathbf{333\,082\,500}$$
+
+$$
+S_{\text{rem}} = \mathbf{333\,082\,500}
+$$
 
 ---
 

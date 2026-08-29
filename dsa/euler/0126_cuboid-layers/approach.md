@@ -14,7 +14,10 @@ We shall define $C(n)$ to represent the number of cuboids that contain $n$ cubes
 - $C(118) = 8$
 
 The objective is to find the **least value of $n$ for which $C(n) = 1000$**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; C(n) = 1000 \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; C(n) = 1000 \right\}
+$$
 
 ---
 
@@ -31,7 +34,11 @@ def naive_cuboid_layers():
 ### Inverted Frequency Table Accumulation
 1. **Closed-Form Layer Formula:**
    For a cuboid of dimensions $x \times y \times z$ ($x \ge y \ge z \ge 1$), the number of cubes required for layer $n \ge 1$ is:
-   $$C(x, y, z, n) = 2(xy + yz + zx) + 4(x + y + z + n - 2)(n - 1)$$
+
+$$
+C(x, y, z, n) = 2(xy + yz + zx) + 4(x + y + z + n - 2)(n - 1)
+$$
+
 2. **Frequency Table Accumulation:**
    - Allocate an array `counts = [0] * (limit + 1)` for $\text{limit} = 20\,000$.
    - Iterate all valid quadruples $(z, y, x, n)$ with $z \ge 1, y \ge z, x \ge y, n \ge 1$.
@@ -64,7 +71,10 @@ def naive_cuboid_layers():
    - Face expansions: $+4(x+y+z)(n-1)$ along the 12 edges.
    - Corner expansions: $+8 \binom{n-1}{2} = 4(n-2)(n-1)$ along the 8 corners.
 3. Combining terms:
-   $$C(x, y, z, n) = 2(xy + yz + zx) + 4(x + y + z + n - 2)(n - 1)$$
+
+$$
+C(x, y, z, n) = 2(xy + yz + zx) + 4(x + y + z + n - 2)(n - 1)
+$$
 
 ---
 
@@ -79,7 +89,10 @@ def naive_cuboid_layers():
 ### Example 2: Target Evaluation for $C(n) = 1000$
 - At $n = 18\,522$: exactly $1000$ distinct quadruples $(x, y, z, \text{layer})$ require $18\,522$ cubes.
 - Least value:
-  $$n_{\text{min}} = \mathbf{18\,522}$$
+
+$$
+n_{\text{min}} = \mathbf{18\,522}
+$$
 
 ---
 

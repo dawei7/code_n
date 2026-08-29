@@ -13,7 +13,9 @@ Let $P(N)$ denote the number of integers $2 \le n \le N$ for which $t(n)$ is a p
 - For $N = 10\,000$: $P(10000) = \mathbf{2202}$.
 - For $N = 50\,000\,000$: Find $P(50000000)$.
 
-$$P(50000000) = \left| \left\{ n \in \mathbb{N} \;\middle|\; 2 \le n \le 50\,000\,000 \land (2n^2 - 1) \in \mathbb{P} \right\} \right|$$
+$$
+P(50000000) = \left| \left\{ n \in \mathbb{N} \;\middle|\; 2 \le n \le 50\,000\,000 \land (2n^2 - 1) \in \mathbb{P} \right\} \right|
+$$
 
 ---
 
@@ -30,16 +32,28 @@ def naive_primality_2n2_1():
 ### Quadratic Reciprocity & Polynomial Sieve of Eratosthenes
 1. **Prime Divisor Characterization:**
    A prime $p$ divides $t(n) = 2n^2 - 1$ iff:
-   $$2n^2 \equiv 1 \pmod p \iff (2n)^2 \equiv 2 \pmod p$$
+
+$$
+2n^2 \equiv 1 \pmod p \iff (2n)^2 \equiv 2 \pmod p
+$$
+
    By Quadratic Reciprocity (Euler's second supplementary law), $2$ is a quadratic residue modulo $p \iff p \equiv 1 \text{ or } 7 \pmod 8$.
 2. **Fast Modular Square Root of $2$:**
    - For $p \equiv 7 \pmod 8$ (where $p \equiv 3 \pmod 4$):
-     $$\sqrt{2} \equiv 2^{(p+1)/4} \pmod p \quad \text{(single modular exponentiation)}$$
+
+$$
+\sqrt{2} \equiv 2^{(p+1)/4} \pmod p \quad \text{(single modular exponentiation)}
+$$
+
    - For $p \equiv 1 \pmod 8$:
      Solve $\sqrt{2} \pmod p$ via the Tonelli-Shanks algorithm.
 3. **Roots and Sieve Traversal:**
    The solutions to $2n^2 \equiv 1 \pmod p$ are:
-   $$r_1 = \left( \sqrt{2} \cdot \frac{p+1}{2} \right) \bmod p, \quad r_2 = p - r_1$$
+
+$$
+r_1 = \left( \sqrt{2} \cdot \frac{p+1}{2} \right) \bmod p, \quad r_2 = p - r_1
+$$
+
    For each root $r \in \{r_1, r_2\}$, if $2r^2 - 1 = p$, then $t(r)$ is prime itself, so composite sieving begins at $r + p$; otherwise at $r$.
 4. Sieve across all primes $p \le \sqrt{2N^2 - 1} \approx 70.7 \times 10^6$ in $\approx 14.5$ seconds using $\approx 120$ MB of RAM.
 
@@ -92,7 +106,10 @@ def solve(limit: int = 50000000) -> int:
     return sum(1 for n in range(2, limit + 1) if is_prime_t[n])
 ```
 Evaluating for $N = 50000000$:
-$$P(50000000) = \mathbf{5\,437\,849}$$
+
+$$
+P(50000000) = \mathbf{5\,437\,849}
+$$
 
 ---
 
@@ -101,13 +118,20 @@ $$P(50000000) = \mathbf{5\,437\,849}$$
 ### Example 1: Sample Verification for $N = 10\,000$
 - Sieve primes up to $\sqrt{2(10000)^2 - 1} \approx 14143$.
 - Sieve composite $t(n)$:
-  $$P(10000) = \mathbf{2202}$$
+
+$$
+P(10000) = \mathbf{2202}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $N = 50\,000\,000$
 - Sieve primes up to $70\,710\,678$.
 - Sieve composite $t(n)$ across 50 million integers:
-  $$P(50000000) = \mathbf{5\,437\,849}$$
+
+$$
+P(50000000) = \mathbf{5\,437\,849}
+$$
 
 ---
 

@@ -6,12 +6,18 @@ Let $p \in \mathbb{P}_{<N}$ denote a prime number strictly less than $N = 1\,000
 Let $\mathbf{s} = d_{k-1} d_{k-2} \dots d_0$ be the base-10 digit string of $p$ of length $k = \lfloor \log_{10} p \rfloor + 1$.
 
 Define the cyclic rotation set of $p$:
-$$\operatorname{Rot}(p) = \left\{ \sum_{j=0}^{k-1} d_{(i+j) \bmod k} 10^j \;\middle|\; i \in \{0, 1, \dots, k-1\} \right\}$$
+
+$$
+\operatorname{Rot}(p) = \left\{ \sum_{j=0}^{k-1} d_{(i+j) \bmod k} 10^j \;\middle|\; i \in \{0, 1, \dots, k-1\} \right\}
+$$
 
 A prime $p$ is defined as a **circular prime** if every cyclic rotation $r \in \operatorname{Rot}(p)$ is also a prime ($r \in \mathbb{P}$).
 
 The objective is to compute the total number of circular primes strictly below $1\,000\,000$:
-$$N_{\text{circular}} = \left| \{ p \in \mathbb{P}_{<10^6} \mid \operatorname{Rot}(p) \subseteq \mathbb{P} \} \right|$$
+
+$$
+N_{\text{circular}} = \left| \{ p \in \mathbb{P}_{<10^6} \mid \operatorname{Rot}(p) \subseteq \mathbb{P} \} \right|
+$$
 
 ---
 
@@ -74,7 +80,10 @@ def naive_circular_primes():
 ### Example 2: Target Evaluation Under $1\,000\,000$
 - Below 100: 13 circular primes.
 - Full scan below $1\,000\,000$:
-  $$N_{\text{circular}} = \mathbf{55}$$
+
+$$
+N_{\text{circular}} = \mathbf{55}
+$$
 
 ---
 

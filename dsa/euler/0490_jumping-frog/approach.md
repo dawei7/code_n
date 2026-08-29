@@ -4,7 +4,10 @@
 
 Let $f(n)$ be the number of Hamiltonian paths from vertex $1$ to vertex $n$ in the graph on $\{1, \dots, n\}$ with edges connecting vertices at distance $\le 3$.
 Define:
-$$S(L) = \sum_{n=1}^L f(n)^3$$
+
+$$
+S(L) = \sum_{n=1}^L f(n)^3
+$$
 
 We are given:
 - $f(6) = 14, f(10) = 254, f(40) = 1439682432976$
@@ -14,7 +17,10 @@ We are given:
 - $S(10^6) \equiv 363486179 \pmod{10^9}$
 
 We seek to evaluate:
-$$S(10^{14}) \bmod 10^9$$
+
+$$
+S(10^{14}) \bmod 10^9
+$$
 
 ---
 
@@ -30,7 +36,11 @@ Tensor-powering an $8 \times 8$ matrix to track $f(n)^3$ yields an $\binom{8+3-1
 ### Linear Recurrence of Order 8
 1. **Frontier Transfer Recurrence**:
    Because the bandwidth is 3, the number of Hamiltonian paths $f(n)$ satisfies an exact linear recurrence of order 8 for $n \ge 9$:
-   $$f(n) = 2f(n-1) - f(n-2) + 2f(n-3) + f(n-4) + f(n-5) - f(n-7) - f(n-8)$$
+
+$$
+f(n) = 2f(n-1) - f(n-2) + 2f(n-3) + f(n-4) + f(n-5) - f(n-7) - f(n-8)
+$$
+
 2. **Companion State Vector**:
    $X_n = [f(n), f(n-1), \dots, f(n-7)]^T \implies X_{n+1} = A X_n$.
 
@@ -44,7 +54,11 @@ Tensor-powering an $8 \times 8$ matrix to track $f(n)^3$ yields an $\binom{8+3-1
    Applying $(A \otimes A \otimes A) T$ takes only $3 \times 8^4 = 12\,288$ operations via 3 successive 1D mode multiplications!
 2. **Geometric Prefix Doubling**:
    Using binary doubling on $(P_m, T_m) = (A^m, \sum_{i=0}^{m-1} (A^i u)^{\otimes 3})$:
-   $$P_{2m} = P_m^2, \quad T_{2m} = T_m + (P_m \otimes P_m \otimes P_m) T_m$$
+
+$$
+P_{2m} = P_m^2, \quad T_{2m} = T_m + (P_m \otimes P_m \otimes P_m) T_m
+$$
+
    allows evaluating $S(10^{14})$ in $\log_2(10^{14}) \approx 47$ doubling steps.
 
 This evaluates $S(10^{14})$ in **0.07 seconds**!

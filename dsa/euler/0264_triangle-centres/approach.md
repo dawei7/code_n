@@ -26,12 +26,26 @@ A naive approach enumerates all triples of lattice points $(A, B, C)$ lying on c
 In the complex plane with $O = 0$:
 1. The orthocentre is $H = A + B + C = 5$.
 2. All three vertices lie on the circle $|z| = R$:
-   $$A = R e^{i \alpha}, \quad B = R e^{i \beta}, \quad C = R e^{i \gamma}$$
+
+$$
+A = R e^{i \alpha}, \quad B = R e^{i \beta}, \quad C = R e^{i \gamma}
+$$
+
 3. Since $A + B + C = 5$:
-   $$C = 5 - (A + B)$$
+
+$$
+C = 5 - (A + B)
+$$
+
    Taking the squared modulus:
-   $$|C|^2 = R^2 = |5 - (A + B)|^2 = 25 - 10 \text{Re}(A + B) + |A + B|^2$$
-   $$R^2 = 25 - 10(x_1 + x_2) + (x_1 + x_2)^2 + (y_1 + y_2)^2$$
+
+$$
+|C|^2 = R^2 = |5 - (A + B)|^2 = 25 - 10 \text{Re}(A + B) + |A + B|^2
+$$
+
+$$
+R^2 = 25 - 10(x_1 + x_2) + (x_1 + x_2)^2 + (y_1 + y_2)^2
+$$
 
 ---
 

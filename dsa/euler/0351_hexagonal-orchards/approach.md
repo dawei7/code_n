@@ -33,7 +33,10 @@ A regular hexagon of side $n$ is partitioned into $6$ symmetric equilateral tria
 - The number of visible points on the $k$-th segment is $\phi(k)$ (Euler's totient function).
 - The number of hidden points at distance $k$ in that sector is $k - \phi(k)$.
 - Summing over all distances $k \in [1, n]$ and multiplying by $6$:
-  $$H(n) = 6 \cdot \sum_{k=1}^n (k - \phi(k)) = 6 \cdot \left( \frac{n(n + 1)}{2} - \sum_{k=1}^n \phi(k) \right)$$
+
+$$
+H(n) = 6 \cdot \sum_{k=1}^n (k - \phi(k)) = 6 \cdot \left( \frac{n(n + 1)}{2} - \sum_{k=1}^n \phi(k) \right)
+$$
 
 ---
 
@@ -42,9 +45,17 @@ A regular hexagon of side $n$ is partitioned into $6$ symmetric equilateral tria
 ### Sub-Linear Summatory Totient via Dirichlet Inversion
 Let $\Phi(m) = \sum_{k=1}^m \phi(k)$.
 By Dirichlet convolution identity $\sum_{d \mid k} \phi(d) = k$:
-$$\sum_{k=1}^m k = \sum_{k=1}^m \sum_{d \mid k} \phi(d) = \sum_{d=1}^m \Phi\left(\left\lfloor \frac{m}{d} \right\rfloor\right) = \Phi(m) + \sum_{d=2}^m \Phi\left(\left\lfloor \frac{m}{d} \right\rfloor\right)$$
+
+$$
+\sum_{k=1}^m k = \sum_{k=1}^m \sum_{d \mid k} \phi(d) = \sum_{d=1}^m \Phi\left(\left\lfloor \frac{m}{d} \right\rfloor\right) = \Phi(m) + \sum_{d=2}^m \Phi\left(\left\lfloor \frac{m}{d} \right\rfloor\right)
+$$
+
 Rearranging yields the recursive formula:
-$$\mathbf{\Phi(m) = \frac{m(m + 1)}{2} - \sum_{d=2}^m \Phi\left(\left\lfloor \frac{m}{d} \right\rfloor\right)}$$
+
+$$
+\mathbf{\Phi(m) = \frac{m(m + 1)}{2} - \sum_{d=2}^m \Phi\left(\left\lfloor \frac{m}{d} \right\rfloor\right)}
+$$
+
 1. Precompute $\Phi(k)$ up to $L = 5 \times 10^6$ in $\mathcal{O}(L)$ time using a linear sieve.
 2. For $m > L$, evaluate $\Phi(m)$ using hyperbola quotient grouping with memoization.
 3. The number of recursive states is $\mathcal{O}(\sqrt{N}) \approx 10^4$ states.

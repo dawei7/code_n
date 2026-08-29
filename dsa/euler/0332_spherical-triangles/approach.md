@@ -4,7 +4,11 @@
 
 A spherical triangle is a figure formed on the surface of a sphere by three great-circle arcs connecting three non-collinear points.
 Let $C(r)$ be the sphere of radius $r$ centered at the origin:
-$$x^2 + y^2 + z^2 = r^2$$
+
+$$
+x^2 + y^2 + z^2 = r^2
+$$
+
 Let $Z(r)$ be the set of integer lattice points lying on the surface of $C(r)$.
 Let $A(r)$ be the area of the smallest non-degenerate spherical triangle whose vertices belong to $Z(r)$.
 We are given sample values:
@@ -18,9 +22,17 @@ Find $\sum_{r=1}^{50} A(r)$ rounded to $6$ decimal places behind the decimal poi
 
 ### Spherical Trigonometry via Arc Lengths
 A naive approach computes great-circle arc lengths:
-$$a = r \arccos\left(\frac{B \cdot C}{r^2}\right), \quad b = r \arccos\left(\frac{C \cdot A}{r^2}\right), \quad c = r \arccos\left(\frac{A \cdot B}{r^2}\right)$$
+
+$$
+a = r \arccos\left(\frac{B \cdot C}{r^2}\right), \quad b = r \arccos\left(\frac{C \cdot A}{r^2}\right), \quad c = r \arccos\left(\frac{A \cdot B}{r^2}\right)
+$$
+
 followed by spherical angles via the spherical Law of Cosines:
-$$\cos A = \frac{\cos(a/r) - \cos(b/r)\cos(c/r)}{\sin(b/r)\sin(c/r)}$$
+
+$$
+\cos A = \frac{\cos(a/r) - \cos(b/r)\cos(c/r)}{\sin(b/r)\sin(c/r)}
+$$
+
 and Girard's excess formula $\text{Area} = r^2 (A + B + C - \pi)$.
 
 ### Critical Bottlenecks:
@@ -35,10 +47,17 @@ and Girard's excess formula $\text{Area} = r^2 (A + B + C - \pi)$.
 
 ### The Oosterom-Strackee Solid Angle Formula
 By the Oosterom and Strackee theorem (1983), the solid angle $\Omega$ subtended by three vectors $A, B, C$ on a sphere of radius $r = \|A\| = \|B\| = \|C\|$ is given in exact algebraic form by:
-$$\tan\left(\frac{\Omega}{2}\right) = \frac{|\det(A, B, C)|}{r^3 + r(A \cdot B + B \cdot C + C \cdot A)}$$
+
+$$
+\tan\left(\frac{\Omega}{2}\right) = \frac{|\det(A, B, C)|}{r^3 + r(A \cdot B + B \cdot C + C \cdot A)}
+$$
+
 where $\det(A, B, C) = A \cdot (B \times C)$ is the scalar triple product.
 The spherical surface area is then:
-$$\text{Area}(A, B, C) = r^2 \Omega = 2 r^2 \arctan\left( \frac{|\det(A, B, C)|}{r^3 + r(A \cdot B + B \cdot C + C \cdot A)} \right)$$
+
+$$
+\text{Area}(A, B, C) = r^2 \Omega = 2 r^2 \arctan\left( \frac{|\det(A, B, C)|}{r^3 + r(A \cdot B + B \cdot C + C \cdot A)} \right)
+$$
 
 ---
 
@@ -47,11 +66,19 @@ $$\text{Area}(A, B, C) = r^2 \Omega = 2 r^2 \arctan\left( \frac{|\det(A, B, C)|}
 ### Non-Degeneracy and Fast Rejection
 1. **Collinearity Filter:**
    Vertices $A, B, C$ form a non-degenerate spherical triangle if and only if:
-   $$\det(A, B, C) \ne 0 \quad \text{and} \quad A \times B \ne \mathbf{0}$$
+
+$$
+\det(A, B, C) \ne 0 \quad \text{and} \quad A \times B \ne \mathbf{0}
+$$
+
 2. **Cross-Product Reuse:**
    For a fixed pair $(A, B)$, we precompute the cross product $A \times B = (u_x, u_y, u_z)$ and the dot product $A \cdot B$.
    Then for any third point $C$:
-   $$\det(A, B, C) = C_x u_x + C_y u_y + C_z u_z$$
+
+$$
+\det(A, B, C) = C_x u_x + C_y u_y + C_z u_z
+$$
+
    evaluates in just $3$ integer multiplications and $2$ additions!
 
 ---

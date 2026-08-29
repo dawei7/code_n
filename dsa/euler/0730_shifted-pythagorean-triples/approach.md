@@ -3,12 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A triple $(p, q, r)$ of positive integers is a **$k$-shifted Pythagorean triple** if:
-$$p^2 + q^2 + k = r^2 \quad (1 \le p \le q \le r)$$
+
+$$
+p^2 + q^2 + k = r^2 \quad (1 \le p \le q \le r)
+$$
+
 The triple is **primitive** if $\gcd(p, q, r) = 1$.
 
 Let $P_k(n)$ be the number of primitive $k$-shifted triples with perimeter $p + q + r \le n$.
 Define:
-$$S(m, n) = \sum_{k=0}^m P_k(n)$$
+
+$$
+S(m, n) = \sum_{k=0}^m P_k(n)
+$$
 
 We are given:
 - $P_0(10^4) = 703$
@@ -16,7 +23,10 @@ We are given:
 - $S(10, 10^4) = 10956$
 
 We seek to evaluate:
-$$S(100, 10^8)$$
+
+$$
+S(100, 10^8)
+$$
 
 ---
 
@@ -32,7 +42,11 @@ Searching pairs $(p, q)$ or factoring $r^2 - q^2 = p^2 + k$ up to $p + q + r \le
 ### Berggren-Lorentz Tree Transformations
 1. **Invariance under the Lorentz Group $O(2, 1, \mathbb{Z})$**:
    The quadratic form $p^2 + q^2 - r^2 = -k$ is invariant under the unimodular linear transformations:
-   $$U = \begin{pmatrix} -2 & 1 & 2 \\ -1 & 2 & 2 \\ -2 & 2 & 3 \end{pmatrix}, \quad V = \begin{pmatrix} 1 & -2 & 2 \\ 2 & -1 & 2 \\ 2 & -2 & 3 \end{pmatrix}, \quad W = \begin{pmatrix} 2 & 1 & 2 \\ 1 & 2 & 2 \\ 2 & 2 & 3 \end{pmatrix}$$
+
+$$
+U = \begin{pmatrix} -2 & 1 & 2 \\ -1 & 2 & 2 \\ -2 & 2 & 3 \end{pmatrix}, \quad V = \begin{pmatrix} 1 & -2 & 2 \\ 2 & -1 & 2 \\ 2 & -2 & 3 \end{pmatrix}, \quad W = \begin{pmatrix} 2 & 1 & 2 \\ 1 & 2 & 2 \\ 2 & 2 & 3 \end{pmatrix}
+$$
+
 2. **Primitive Forest Generation**:
    Because $\det(U) = \det(V) = \det(W) = \pm 1$, these maps preserve primitivity ($\gcd(p, q, r) = 1$).
    Every primitive triple descends to a unique minimal root $(p_0, q_0, r_0)$ with $r_0 \le \frac{5k + 1}{2} + 10$.

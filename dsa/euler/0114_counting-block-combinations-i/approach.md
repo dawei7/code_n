@@ -11,7 +11,10 @@ A row measuring seven units in length has red blocks with a minimum length of th
 Let a row of length $n = 50$ be filled with grey unit squares and red blocks with minimum length $m = 3$, with at least one grey square between adjacent red blocks.
 
 The objective is to find **how many ways the row of length $50$ can be filled**:
-$$N_{\text{ways}} = a_{50}$$
+
+$$
+N_{\text{ways}} = a_{50}
+$$
 
 ---
 
@@ -34,7 +37,11 @@ def naive_block_combinations():
      - If $i - \ell - 1 \ge 0$, cell $i - \ell$ must be grey, leaving $a_{i - \ell - 1}$ configurations for the preceding prefix.
      - If $i - \ell - 1 < 0$ (the block starts at the very beginning of the row), it contributes $1$ configuration.
 3. **Combined Recurrence:**
-   $$a_i = a_{i-1} + \sum_{\ell=m}^i \begin{cases} a_{i - \ell - 1} & \text{if } i - \ell - 1 \ge 0 \\ 1 & \text{otherwise} \end{cases}$$
+
+$$
+a_i = a_{i-1} + \sum_{\ell=m}^i \begin{cases} a_{i - \ell - 1} & \text{if } i - \ell - 1 \ge 0 \\ 1 & \text{otherwise} \end{cases}
+$$
+
 4. For $n = 50$, the DP table fills in $\mathcal{O}(n^2)$ operations in $\approx 0.0001$ seconds.
 
 ---
@@ -81,7 +88,10 @@ def naive_block_combinations():
 
 ### Example 2: Target Evaluation for $n = 50$
 - Advancing DP to $i = 50$:
-  $$a_{50} = \mathbf{16\,475\,640\,049}$$
+
+$$
+a_{50} = \mathbf{16\,475\,640\,049}
+$$
 
 ---
 

@@ -16,7 +16,10 @@ We are given:
 - $w(1000, 1000, 5) \equiv 107662178 \pmod{1\,000\,000\,007}$.
 
 We seek to evaluate:
-$$w(10^8, 10^8, 30) \bmod 1\,000\,000\,007$$
+
+$$
+w(10^8, 10^8, 30) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -37,7 +40,11 @@ The total number of tile combinations for $n = 10^8, s = 10^8$ is beyond $(4 \ti
    - $s - 1$ other suits containing only Triples (counted by generating polynomial $A(x) = \sum A_k x^k$).
 2. **Convolution Across Suits**:
    The number of hands is:
-   $$w(n, s, t) \equiv s \cdot [x^t] \left( B(x) \cdot A(x)^{s-1} \right) \pmod{1\,000\,000\,007}$$
+
+$$
+w(n, s, t) \equiv s \cdot [x^t] \left( B(x) \cdot A(x)^{s-1} \right) \pmod{1\,000\,000\,007}
+$$
+
 3. **NFA to Minimal DFA for Single-Suit Decompositions**:
    A single-suit tile sequence $c_1, c_2, \dots, c_n \in \{0, 1, 2, 3, 4\}^n$ forms valid triples/pair iff accepted by an NFA tracking $(a, b, p)$ where $a, b \le 4$ are pending chows and $p \in \{0, 1\}$ is pair status.
    Subset-construction determinization yields a small, exact DFA!

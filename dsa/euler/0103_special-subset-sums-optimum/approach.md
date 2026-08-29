@@ -17,7 +17,10 @@ Examples of optimum sets for $n = 1 \dots 6$:
 - $n = 6: \{11, 18, 19, 20, 22, 25\}$
 
 The objective is to find the **optimum special sum set for $n = 7$** and return its elements concatenated as a string:
-$$\mathbf{s}^* = \operatorname{concat}(A_7^*)$$
+
+$$
+\mathbf{s}^* = \operatorname{concat}(A_7^*)
+$$
 
 ---
 
@@ -33,7 +36,11 @@ def naive_special_subset_sum():
 
 ### Near-Optimum Inductive Rule & Local Neighborhood Search
 1. Given an optimum set $A = \{a_1, a_2, \dots, a_n\}$ with middle element $b = a_{(n+1)//2}$, an excellent candidate set of size $n + 1$ is:
-   $$B = \{b\} \cup \{b + a_1, b + a_2, \dots, b + a_n\}$$
+
+$$
+B = \{b\} \cup \{b + a_1, b + a_2, \dots, b + a_n\}
+$$
+
 2. For $n = 6$: $A_6 = \{11, 18, \mathbf{19}, 20, 22, 25\}$ with $b = 19$.
    Inductive base: $\{19, 30, 37, 38, 39, 41, 44\}$.
    Adjusted base anchor: $\{20, 31, 38, 39, 40, 42, 45\}$ (sum $= 255$).
@@ -62,7 +69,11 @@ def naive_special_subset_sum():
 ### Fast Property 2 Check for Sorted Tuples
 For a sorted tuple $a_1 < a_2 < \dots < a_n$:
 - It is necessary and sufficient to verify that the sum of the smallest $k+1$ elements strictly exceeds the sum of the largest $k$ elements:
-  $$\sum_{i=1}^{k+1} a_i > \sum_{i=n-k+1}^n a_i \quad \forall k \in [1, \lfloor n/2 \rfloor]$$
+
+$$
+\sum_{i=1}^{k+1} a_i > \sum_{i=n-k+1}^n a_i \quad \forall k \in [1, \lfloor n/2 \rfloor]
+$$
+
 - For $n = 7$:
   1. $a_1 + a_2 > a_7$
   2. $a_1 + a_2 + a_3 > a_6 + a_7$
@@ -89,7 +100,10 @@ For a sorted tuple $a_1 < a_2 < \dots < a_n$:
 - Verifying Property 1: All 127 subset sums are strictly distinct!
 - Sum: $20 + 31 + 38 + 39 + 40 + 42 + 45 = \mathbf{255}$.
 - Optimal concatenated string:
-  $$\mathbf{s}^* = \mathbf{"20313839404245"}$$
+
+$$
+\mathbf{s}^* = \mathbf{"20313839404245"}
+$$
 
 ---
 

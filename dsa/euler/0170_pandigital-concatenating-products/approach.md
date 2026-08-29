@@ -3,11 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Take the number $6$ and multiply it by each of $127$ and $358$:
-$$6 \times 127 = 762, \quad 6 \times 358 = 2148$$
+
+$$
+6 \times 127 = 762, \quad 6 \times 358 = 2148
+$$
+
 We can concatenate these products to get the $1$-$9$ pandigital number $7622148$ (or with $1$-$9$ inputs).
 
 We can do the same for $0$ to $9$ pandigital numbers. If we take $3$ and multiply it by $127$ and $685$:
-$$3 \times 127 = 381, \quad 3 \times 685 = 2055$$
+
+$$
+3 \times 127 = 381, \quad 3 \times 685 = 2055
+$$
+
 The concatenated products $3812055$ and inputs $3 \mathbin{\Vert} 127 \mathbin{\Vert} 685 = 3127685$ contain digits without repeats.
 
 A **$0$ to $9$ pandigital concatenated product** requires that:
@@ -15,7 +23,10 @@ A **$0$ to $9$ pandigital concatenated product** requires that:
 2. The concatenated products $(k \cdot a_1) \mathbin{\Vert} (k \cdot a_2) \mathbin{\Vert} \dots \mathbin{\Vert} (k \cdot a_m)$ form a $10$-digit $0$-$9$ pandigital number.
 
 The objective is to find the **largest $0$ to $9$ pandigital 10-digit concatenated product**:
-$$P_{\text{max}} = \max \{ \text{concatenated product} \in \operatorname{Perm}(0..9) \}$$
+
+$$
+P_{\text{max}} = \max \{ \text{concatenated product} \in \operatorname{Perm}(0..9) \}
+$$
 
 ---
 
@@ -70,7 +81,10 @@ def naive_pandigital_products():
          - If $\text{str}(k) + \text{str}(a_1) + \text{str}(a_2)$ is a $0$-$9$ pandigital string:
            - Return $\operatorname{int}(P)$.
 2. The maximal value found is:
-   $$P_{\text{max}} = \mathbf{9\,857\,164\,023}$$
+
+$$
+P_{\text{max}} = \mathbf{9\,857\,164\,023}
+$$
 
 ---
 
@@ -84,7 +98,11 @@ def naive_pandigital_products():
 
 ### Example 2: Target Maximum 10-Digit Pandigital Product
 - First valid descending permutation found:
-  $$P_{\text{max}} = \mathbf{9\,857\,164\,023}$$
+
+$$
+P_{\text{max}} = \mathbf{9\,857\,164\,023}
+$$
+
   with $k = 27$ and quotients producing pandigital inputs.
 
 ---

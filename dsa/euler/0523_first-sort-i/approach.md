@@ -12,7 +12,10 @@ We are given:
 - $E(10) = 115.725$
 
 We seek to evaluate:
-$$E(30) \text{ rounded to 2 decimal places}$$
+
+$$
+E(30) \text{ rounded to 2 decimal places}
+$$
 
 ---
 
@@ -40,10 +43,17 @@ For $n = 30$, there are $30! \approx 2.65 \times 10^{32}$ permutations, making e
 
 ### Linearity of Expectation over Prefix Additions
 1. **Expected Incremental Moves at Step $k$**:
-   $$\mathbb{E}[\Delta_k] = \left( 1 - \frac{1}{k} \right) \cdot \frac{2^{k-1} - 1}{k - 1} = \frac{2^{k-1} - 1}{k}$$
+
+$$
+\mathbb{E}[\Delta_k] = \left( 1 - \frac{1}{k} \right) \cdot \frac{2^{k-1} - 1}{k - 1} = \frac{2^{k-1} - 1}{k}
+$$
+
 2. **Total Expected Moves**:
    By linearity of expectation:
-   $$E(n) = \sum_{k=2}^n \frac{2^{k-1} - 1}{k}$$
+
+$$
+E(n) = \sum_{k=2}^n \frac{2^{k-1} - 1}{k}
+$$
 
 This evaluates $E(30)$ in **$0.0001$ seconds**!
 

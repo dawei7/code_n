@@ -4,14 +4,20 @@
 
 Let $f(n)$ be the number of positive divisors $d$ of $2n^2$ such that $1 \le d \le n$.
 Define:
-$$F(N) = \sum_{n=1}^N f(n)$$
+
+$$
+F(N) = \sum_{n=1}^N f(n)
+$$
 
 We are given:
 - $F(15) = 63$
 - $F(1000) = 15066$
 
 We seek to evaluate:
-$$F(10^{12})$$
+
+$$
+F(10^{12})
+$$
 
 ---
 
@@ -29,10 +35,17 @@ Factoring $2n^2$ for all $n \le 10^{12}$ requires iterating over $10^{12}$ value
    Any divisor $d \le n$ of $2n^2$ corresponds to factoring $d = u \cdot v^2$ where $u$ is squarefree.
 2. **Mobius Inversion Formula**:
    The number of odd squarefree integers $\le x$ is given by:
-   $$C_{\text{odd}}(x) = \sum_{k \text{ odd}, k^2 \le x} \mu(k) \left( \lfloor x/k^2 \rfloor - \lfloor x/(2k^2) \rfloor \right)$$
+
+$$
+C_{\text{odd}}(x) = \sum_{k \text{ odd}, k^2 \le x} \mu(k) \left( \lfloor x/k^2 \rfloor - \lfloor x/(2k^2) \rfloor \right)
+$$
+
 3. **Hyperbolic Domain Splitting**:
    Summing across all $n \le N$ transforms $F(N)$ into:
-   $$F(N) = N + \sum_{q < t, qt \le N} C_{\text{odd}}\left(\left\lfloor \frac{N}{qt}\right\rfloor\right) + \sum_{q \text{ even}, q < t, qt \le 2N} C_{\text{odd}}\left(\left\lfloor \frac{2N}{qt}\right\rfloor\right)$$
+
+$$
+F(N) = N + \sum_{q < t, qt \le N} C_{\text{odd}}\left(\left\lfloor \frac{N}{qt}\right\rfloor\right) + \sum_{q \text{ even}, q < t, qt \le 2N} C_{\text{odd}}\left(\left\lfloor \frac{2N}{qt}\right\rfloor\right)
+$$
 
 ---
 

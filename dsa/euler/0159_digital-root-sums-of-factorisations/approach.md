@@ -15,10 +15,16 @@ For instance, $24$ can be factored in $7$ distinct ways:
 - $2 \times 2 \times 2 \times 3 \implies 2 + 2 + 2 + 3 = 9$
 
 The **Maximal Digital Root Sum (MDRS)** of $24$ is:
-$$\operatorname{mdrs}(24) = 11$$
+
+$$
+\operatorname{mdrs}(24) = 11
+$$
 
 The objective is to find the **sum of $\operatorname{mdrs}(n)$ for all $1 < n < 1\,000\,000$**:
-$$S_{\text{mdrs}} = \sum_{n=2}^{999\,999} \operatorname{mdrs}(n)$$
+
+$$
+S_{\text{mdrs}} = \sum_{n=2}^{999\,999} \operatorname{mdrs}(n)
+$$
 
 ---
 
@@ -35,15 +41,27 @@ def naive_mdrs():
 ### Dynamic Programming Sieve on Composite Integers
 1. **Digital Root Base Formula:**
    The digital root of any integer $n \ge 1$ is simply:
-   $$\operatorname{dr}(n) = 1 + (n - 1) \bmod 9$$
+
+$$
+\operatorname{dr}(n) = 1 + (n - 1) \bmod 9
+$$
+
 2. **Optimal Substructure Property:**
    Any factorization of $n$ into $\ge 2$ factors can be written as $n = i \cdot j$ for some $2 \le i, j < n$.
    By induction, the maximum digital root sum satisfies:
-   $$\operatorname{mdrs}(n) = \max\left( \operatorname{dr}(n), \; \max_{i \cdot j = n} (\operatorname{mdrs}(i) + \operatorname{mdrs}(j)) \right)$$
+
+$$
+\operatorname{mdrs}(n) = \max\left( \operatorname{dr}(n), \; \max_{i \cdot j = n} (\operatorname{mdrs}(i) + \operatorname{mdrs}(j)) \right)
+$$
+
 3. **Harmonic Sieve Forward Relaxation:**
    - Initialize an array `mdrs[n] = 1 + (n - 1) % 9` for all $2 \le n < 1\,000\,000$.
    - Forward relax across all factor pairs $(i, j)$:
-     $$\operatorname{mdrs}[i \cdot j] \leftarrow \max(\operatorname{mdrs}[i \cdot j], \operatorname{mdrs}[i] + \operatorname{mdrs}[j])$$
+
+$$
+\operatorname{mdrs}[i \cdot j] \leftarrow \max(\operatorname{mdrs}[i \cdot j], \operatorname{mdrs}[i] + \operatorname{mdrs}[j])
+$$
+
 4. The total number of operations is the harmonic sum $N \sum_{i=2}^N \frac{1}{i} = \mathcal{O}(N \log N)$, completing in $\approx 0.20$ seconds.
 
 ---
@@ -92,7 +110,10 @@ def naive_mdrs():
 
 ### Example 2: Target Evaluation for $1 < n < 1\,000\,000$
 - Summing over all $n \in [2, 999\,999]$:
-  $$S_{\text{mdrs}} = \mathbf{12\,491\,176}$$
+
+$$
+S_{\text{mdrs}} = \mathbf{12\,491\,176}
+$$
 
 ---
 

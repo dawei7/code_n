@@ -3,12 +3,21 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n \in \mathbb{N}$ with decimal representation $n = \sum_{i=0}^{k-1} d_i 10^i$ ($d_i \in \{0, 1, \dots, 9\}$), define the digit factorial sum operator $S_! : \mathbb{N} \to \mathbb{N}$:
-$$S_!(n) = \sum_{i=0}^{k-1} (d_i)!$$
+
+$$
+S_!(n) = \sum_{i=0}^{k-1} (d_i)!
+$$
 
 An integer satisfying $S_!(n) = n$ is known as a **factorion**.
 
 The objective is to find the sum of all factorions with at least two digits ($n \ge 10$):
-$$\text{TotalSum} = \sum_{\substack{n \ge 10 \\ S_!(n) = n}} n$$
+
+$$
+\begin{aligned}
+\text{TotalSum} = \sum_{\substack{n \ge 10 \\ S_!(n) = n}} n
+\end{aligned}
+$$
+
 *(Note: $1! = 1$ and $2! = 2$ are excluded as they are not sums).*
 
 ---
@@ -69,17 +78,28 @@ There are only two non-trivial factorions in the entire base-10 number system:
 ### Example 1: Trace for $n = 145$
 - Digits: $1, 4, 5$.
 - Factorial sum:
-  $$1! + 4! + 5! = 1 + 24 + 120 = \mathbf{145}$$
+
+$$
+1! + 4! + 5! = 1 + 24 + 120 = \mathbf{145}
+$$
+
 - Equality $S_!(145) = 145$ holds! $\checkmark$
 
 ### Example 2: Trace for $n = 40\,585$
 - Digits: $4, 0, 5, 8, 5$.
 - Factorial sum:
-  $$4! + 0! + 5! + 8! + 5! = 24 + 1 + 120 + 40\,320 + 120 = \mathbf{40\,585}$$
+
+$$
+4! + 0! + 5! + 8! + 5! = 24 + 1 + 120 + 40\,320 + 120 = \mathbf{40\,585}
+$$
+
 - Equality $S_!(40585) = 40585$ holds! $\checkmark$
 
 ### Example 3: Total Sum
-$$\text{TotalSum} = 145 + 40\,585 = \mathbf{40\,730}$$
+
+$$
+\text{TotalSum} = 145 + 40\,585 = \mathbf{40\,730}
+$$
 
 ---
 

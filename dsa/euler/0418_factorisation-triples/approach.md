@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$, an integer triple $(a, b, c)$ is a factorisation triple if:
-$$1 \le a \le b \le c \quad \text{and} \quad a \cdot b \cdot c = n$$
+
+$$
+1 \le a \le b \le c \quad \text{and} \quad a \cdot b \cdot c = n
+$$
+
 Define $f(n) = a + b + c$ for the unique triple that minimizes the ratio $c / a$.
 
 We are given:
@@ -12,7 +16,10 @@ We are given:
 - $f(20!) = 4\,034\,872$
 
 We seek to evaluate:
-$$f(43!)$$
+
+$$
+f(43!)
+$$
 
 ---
 
@@ -20,7 +27,11 @@ $$f(43!)$$
 
 ### Total Divisor Generation
 The prime factorization of $43!$ has $14$ distinct prime factors with total divisor count:
-$$d(43!) = \prod_{p \le 43} (e_p + 1) \approx 5.2 \times 10^9$$
+
+$$
+d(43!) = \prod_{p \le 43} (e_p + 1) \approx 5.2 \times 10^9
+$$
+
 Generating all $5.2$ billion divisors in memory is intractable.
 
 ---
@@ -30,7 +41,11 @@ Generating all $5.2$ billion divisors in memory is intractable.
 ### Tight Clustering Around the Cube Root
 To minimize $c / a$, the three factors $a, b, c$ must be as close to $n^{1/3}$ as possible.
 For $n = 43!$:
-$$n^{1/3} \approx 3.92 \times 10^{17}$$
+
+$$
+n^{1/3} \approx 3.92 \times 10^{17}
+$$
+
 The search window $[n^{1/3}/(1+\delta), n^{1/3}(1+\delta)]$ for very small $\delta \approx 10^{-6}$ contains only a small number of divisors.
 
 ---
@@ -44,11 +59,18 @@ The search window $[n^{1/3}/(1+\delta), n^{1/3}(1+\delta)]$ for very small $\del
    - Part 2: Remaining primes $\{17, 19, 23, 29, 31, 37, 41, 43\}$.
 2. **Range Query via Binary Search**:
    For any interval $[L, H]$, and for each $d_2 \in D_2$, the required factor $d_1 \in D_1$ satisfies:
-   $$\lceil L / d_2 \rceil \le d_1 \le \lfloor H / d_2 \rfloor$$
+
+$$
+\lceil L / d_2 \rceil \le d_1 \le \lfloor H / d_2 \rfloor
+$$
+
    This is extracted in $O(|D_2| \log |D_1|)$ using `bisect_left` and `bisect_right`.
 3. **Exact Rational Comparison**:
    The candidate pairs $(a, c)$ are tested with $b = n / (ac)$, and ratios are compared exactly using integer cross-multiplication:
-   $$c \cdot a_{\text{best}} < c_{\text{best}} \cdot a$$
+
+$$
+c \cdot a_{\text{best}} < c_{\text{best}} \cdot a
+$$
 
 This evaluates $43!$ in **0.24 seconds**!
 

@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A prime number $p$ is called a **Panaitopol prime** if there exist positive integers $x > y > 0$ such that:
-$$p = \frac{x^4 - y^4}{x^3 + y^3}$$
+
+$$
+p = \frac{x^4 - y^4}{x^3 + y^3}
+$$
+
 Find the number of Panaitopol primes $p < 5 \times 10^{15}$.
 
 ---
@@ -21,15 +25,30 @@ A naive approach tests all pairs of integers $x > y > 0$:
 
 ### Algebraic Factorization & Quadratic Form
 Factorizing the numerator and denominator:
-$$\frac{x^4 - y^4}{x^3 + y^3} = \frac{(x - y)(x + y)(x^2 + y^2)}{(x + y)(x^2 - xy + y^2)} = \frac{(x - y)(x^2 + y^2)}{x^2 - xy + y^2}$$
+
+$$
+\frac{x^4 - y^4}{x^3 + y^3} = \frac{(x - y)(x + y)(x^2 + y^2)}{(x + y)(x^2 - xy + y^2)} = \frac{(x - y)(x^2 + y^2)}{x^2 - xy + y^2}
+$$
+
 Since $x^2 - xy + y^2 = (x - y)^2 + xy > x - y$ for $y > 0$:
 For the quotient to be a prime number $p$, the factor $x - y$ must satisfy:
-$$x - y = 1 \iff x = y + 1 = k + 1, \quad y = k$$
+
+$$
+x - y = 1 \iff x = y + 1 = k + 1, \quad y = k
+$$
+
 Substituting $x = k + 1, y = k$:
-$$p = \frac{1 \cdot ((k+1)^2 + k^2)}{(k+1)^2 - (k+1)k + k^2} = \frac{2k^2 + 2k + 1}{k^2 + k + 1} = \mathbf{2k^2 + 2k + 1 = k^2 + (k + 1)^2}$$
+
+$$
+p = \frac{1 \cdot ((k+1)^2 + k^2)}{(k+1)^2 - (k+1)k + k^2} = \frac{2k^2 + 2k + 1}{k^2 + k + 1} = \mathbf{2k^2 + 2k + 1 = k^2 + (k + 1)^2}
+$$
+
 LOOK AT THIS THEOREM:
 Every Panaitopol prime is of the form:
-$$\mathbf{p = 2k^2 + 2k + 1 = k^2 + (k + 1)^2 \quad (k \ge 1)}$$
+
+$$
+\mathbf{p = 2k^2 + 2k + 1 = k^2 + (k + 1)^2 \quad (k \ge 1)}
+$$
 
 ---
 
@@ -37,7 +56,11 @@ $$\mathbf{p = 2k^2 + 2k + 1 = k^2 + (k + 1)^2 \quad (k \ge 1)}$$
 
 ### Fast Miller-Rabin Primality Loop
 1. The upper bound $p < 5 \times 10^{15}$ gives:
-   $$2k^2 + 2k + 1 < 5 \times 10^{15} \implies k < \sqrt{2.5 \times 10^{15}} = 5 \times 10^7$$
+
+$$
+2k^2 + 2k + 1 < 5 \times 10^{15} \implies k < \sqrt{2.5 \times 10^{15}} = 5 \times 10^7
+$$
+
 2. For each $k \in [1, 5 \times 10^7 - 1]$:
    - Form $p = 2k(k + 1) + 1$.
    - Filter $p$ using trial division by small primes ($3, 5, 7, 11, 13, 17, 19, 23$).

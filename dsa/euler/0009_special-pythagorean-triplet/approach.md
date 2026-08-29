@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A triplet of natural numbers $(a, b, c) \in \mathbb{N}^3$ is defined as a **Pythagorean triplet** if:
-$$a^2 + b^2 = c^2 \quad \text{with} \quad a < b < c$$
+
+$$
+a^2 + b^2 = c^2 \quad \text{with} \quad a < b < c
+$$
 
 Given a fixed perimeter constraint $s \in \mathbb{N}$ ($s = 1000$):
-$$a + b + c = s$$
+
+$$
+a + b + c = s
+$$
 
 The objective is to compute the product $a \cdot b \cdot c$ for the unique triplet satisfying both conditions.
 
@@ -34,11 +40,22 @@ def naive_triplet(s):
 ## 3. Core Intuition & Mathematical Structure
 
 Substituting $c = s - a - b$ into the Pythagorean theorem $a^2 + b^2 = c^2$:
-$$a^2 + b^2 = (s - a - b)^2 = s^2 + a^2 + b^2 - 2sa - 2sb + 2ab$$
+
+$$
+a^2 + b^2 = (s - a - b)^2 = s^2 + a^2 + b^2 - 2sa - 2sb + 2ab
+$$
+
 Canceling $a^2 + b^2$:
-$$0 = s^2 - 2sa - 2sb + 2ab \implies 2b(s - a) = s^2 - 2sa$$
+
+$$
+0 = s^2 - 2sa - 2sb + 2ab \implies 2b(s - a) = s^2 - 2sa
+$$
+
 Dividing by $2(s - a)$:
-$$b = \frac{s^2/2 - sa}{s - a}$$
+
+$$
+b = \frac{s^2/2 - sa}{s - a}
+$$
 
 ### Triplet Formulation & Boundary Constraints
 
@@ -55,12 +72,20 @@ $$b = \frac{s^2/2 - sa}{s - a}$$
 
 ### A. Bound on First Side $a$
 Since $a < b < c$ and $a + b + c = s$:
-$$3a < a + b + c = s \implies a < \left\lfloor \frac{s}{3} \right\rfloor$$
+
+$$
+3a < a + b + c = s \implies a < \left\lfloor \frac{s}{3} \right\rfloor
+$$
+
 For $s = 1000$, $a \in [1, 332]$.
 
 ### B. Integer Solution Condition
 $b$ is an integer if and only if the denominator $(s - a)$ divides the numerator $(s^2/2 - sa)$:
-$$\left( \frac{s^2}{2} - sa \right) \equiv 0 \pmod{s - a}$$
+
+$$
+\left( \frac{s^2}{2} - sa \right) \equiv 0 \pmod{s - a}
+$$
+
 When this divisibility condition holds, we compute $b = (s^2/2 - sa) // (s - a)$, evaluate $c = s - a - b$, and check $a < b < c$.
 
 ---
@@ -85,7 +110,10 @@ When this divisibility condition holds, we compute $b = (s^2/2 - sa) // (s - a)$
     - $c = 1000 - 200 - 375 = \mathbf{425}$.
     - Verification: $200^2 + 375^2 = 40\,000 + 140\,625 = 180\,625 = 425^2$.
 - Product:
-  $$P = 200 \times 375 \times 425 = \mathbf{31\,875\,000}$$
+
+$$
+P = 200 \times 375 \times 425 = \mathbf{31\,875\,000}
+$$
 
 ---
 

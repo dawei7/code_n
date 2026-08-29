@@ -39,9 +39,17 @@ The squared side lengths are:
 - $d^2 = DA^2 = (-u - v)^2 + v^2 = u^2 + 2uv + 2v^2 = b^2$
 
 The total squared side sum simplifies to:
-$$a^2 + b^2 + c^2 + d^2 = 2(a^2 + b^2) = 4(u^2 + 2v^2) = 4u^2 + 8v^2 \le N$$
+
+$$
+a^2 + b^2 + c^2 + d^2 = 2(a^2 + b^2) = 4(u^2 + 2v^2) = 4u^2 + 8v^2 \le N
+$$
+
 Dividing by $4$:
-$$u^2 + 2v^2 = k \le \frac{N}{4} = 2.5 \times 10^9$$
+
+$$
+u^2 + 2v^2 = k \le \frac{N}{4} = 2.5 \times 10^9
+$$
+
 where $a^2 = u^2 - 2uv + 2v^2$ and $b^2 = u^2 + 2uv + 2v^2$ are both integers.
 
 ---

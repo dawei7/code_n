@@ -14,7 +14,10 @@ We are given:
 - $S(50) \equiv 832\,833\,871 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$S(50\,000\,000) = \sum_{n=1}^{50\,000\,000} C(n) \pmod{10^9+7}$$
+
+$$
+S(50\,000\,000) = \sum_{n=1}^{50\,000\,000} C(n) \pmod{10^9+7}
+$$
 
 ---
 
@@ -22,7 +25,11 @@ $$S(50\,000\,000) = \sum_{n=1}^{50\,000\,000} C(n) \pmod{10^9+7}$$
 
 ### Individual Binomial Summations
 The exact formula for $C(n)$ is:
-$$C(n) = 6 \sum_{k=0}^{\pi(n)} \binom{n-1}{k} 5^{n-1-k}$$
+
+$$
+C(n) = 6 \sum_{k=0}^{\pi(n)} \binom{n-1}{k} 5^{n-1-k}
+$$
+
 Summing each term individually for $n = 1..5 \times 10^7$ requires evaluating $\sum \pi(n) \approx 7.5 \times 10^{13}$ terms, which is far too slow.
 
 ---
@@ -32,7 +39,11 @@ Summing each term individually for $n = 1..5 \times 10^7$ requires evaluating $\
 ### Pascal Recurrence on Truncated Binomial Sums
 Let $f(n, k) = 6 \cdot \binom{n-1}{k} 5^{n-1-k}$.
 Notice that moving from $n$ to $n+1$ shifts the terms via Pascal's identity $\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}$:
-$$C(n+1) = \begin{cases} 6 C(n) - f(n, \pi(n)) & \text{if } n+1 \text{ is composite} \\ 6 C(n) + 5 f(n, \pi(n)+1) & \text{if } n+1 \text{ is prime} \end{cases}$$
+
+$$
+C(n+1) = \begin{cases} 6 C(n) - f(n, \pi(n)) & \text{if } n+1 \text{ is composite} \\ 6 C(n) + 5 f(n, \pi(n)+1) & \text{if } n+1 \text{ is prime} \end{cases}
+$$
+
 The boundary value $f(n, \pi(n))$ updates algebraically in $O(1)$ arithmetic operations!
 
 ---

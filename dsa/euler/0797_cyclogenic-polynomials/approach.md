@@ -5,9 +5,16 @@
 A monic polynomial $p(x)$ is $n$-cyclogenic if $n$ is the minimal positive integer such that $p(x) \mid (x^n - 1)$.
 $P_n(x)$ is the sum of all $n$-cyclogenic polynomials.
 We define:
-$$Q_N(x) = \sum_{n=1}^N P_n(x)$$
+
+$$
+Q_N(x) = \sum_{n=1}^N P_n(x)
+$$
+
 We seek to evaluate:
-$$Q_{10^7}(2) \bmod 1\,000\,000\,007$$
+
+$$
+Q_{10^7}(2) \bmod 1\,000\,000\,007
+$$
 
 We are given:
 - $Q_{10}(2) = 5598$
@@ -29,12 +36,23 @@ Factoring $x^n - 1$ and testing subset LCMs across all $10^7$ degrees requires f
    A polynomial $p(x)$ is $n$-cyclogenic if and only if $\operatorname{lcm}(S) = n$.
 2. **Divisor Summation Identity**:
    Summing over all divisors $d \mid n$:
-   $$\sum_{d \mid n} P_d(x) = \sum_{S \subseteq \{d \mid n\}} \prod_{d \in S} \Phi_d(x) = \prod_{d \mid n} (1 + \Phi_d(x)) =: T(n, x)$$
+
+$$
+\sum_{d \mid n} P_d(x) = \sum_{S \subseteq \{d \mid n\}} \prod_{d \in S} \Phi_d(x) = \prod_{d \mid n} (1 + \Phi_d(x)) =: T(n, x)
+$$
+
 3. **Dirichlet Convolution & Mobius Inversion**:
    By Mobius inversion on the divisor lattice:
-   $$P_n(x) = (\mu * T)(n, x) = \sum_{d \mid n} \mu(n / d) T(d, x)$$
+
+$$
+P_n(x) = (\mu * T)(n, x) = \sum_{d \mid n} \mu(n / d) T(d, x)
+$$
+
    Thus:
-   $$Q_N(2) = \sum_{n=1}^N P_n(2) = \sum_{k=1}^N \mu(k) \sum_{m=1}^{\lfloor N/k \rfloor} T(m, 2)$$
+
+$$
+Q_N(2) = \sum_{n=1}^N P_n(2) = \sum_{k=1}^N \mu(k) \sum_{m=1}^{\lfloor N/k \rfloor} T(m, 2)
+$$
 
 ---
 
@@ -43,7 +61,11 @@ Factoring $x^n - 1$ and testing subset LCMs across all $10^7$ degrees requires f
 ### Sub-2-Second Cyclotomic Dirichlet Sieve
 1. **Evaluating $\Phi_d(2) \pmod{10^9+7}$**:
    Using the radical prime product formula:
-   $$\Phi_d(2) = \prod_{s \mid \operatorname{rad}(d)} (2^{d/s} - 1)^{\mu(s)}$$
+
+$$
+\Phi_d(2) = \prod_{s \mid \operatorname{rad}(d)} (2^{d/s} - 1)^{\mu(s)}
+$$
+
    with batch-inverted powers $2^k - 1 \pmod{10^9+7}$.
 2. **Multiplicative Sieve on $T(m, 2)$**:
    Each factor $(1 + \Phi_d(2))$ is distributed to all multiples $m = d, 2d, 3d, \dots$ in $O(N \log N)$ total operations.

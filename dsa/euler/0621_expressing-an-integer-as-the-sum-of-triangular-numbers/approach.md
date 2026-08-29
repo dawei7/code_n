@@ -4,7 +4,10 @@
 
 Let $T_k = \frac{k(k+1)}{2}$ for $k \ge 0$.
 Let $G(n)$ be the number of ordered triples of triangular numbers $(T_a, T_b, T_c)$ such that:
-$$T_a + T_b + T_c = n$$
+
+$$
+T_a + T_b + T_c = n
+$$
 
 We are given:
 - $G(9) = 7$
@@ -12,7 +15,10 @@ We are given:
 - $G(10^6) = 2106$
 
 We seek to evaluate:
-$$G(17526 \times 10^9)$$
+
+$$
+G(17526 \times 10^9)
+$$
 
 ---
 
@@ -28,14 +34,32 @@ Iterating over $a, b$ takes $O(n) \approx 10^{13}$ operations, which is complete
 
 ### The Three-Square Identity & Gauss's Class Number Theorem
 1. **Bijection to Sum of Three Squares**:
-   $$8 T_k + 1 = (2k + 1)^2$$
-   $$8n + 3 = (2a + 1)^2 + (2b + 1)^2 + (2c + 1)^2 = x^2 + y^2 + z^2$$
+
+$$
+8 T_k + 1 = (2k + 1)^2
+$$
+
+$$
+8n + 3 = (2a + 1)^2 + (2b + 1)^2 + (2c + 1)^2 = x^2 + y^2 + z^2
+$$
+
    Because every sum of three squares representing an integer $\equiv 3 \pmod 8$ must consist of three odd squares, the number of ordered positive representations equals:
-   $$G(n) = \frac{r_3(8n + 3)}{8}$$
+
+$$
+G(n) = \frac{r_3(8n + 3)}{8}
+$$
+
 2. **Gauss-Hurwitz Class Number Formula**:
    For $N = 8n + 3 = n_0 f^2$ ($n_0$ squarefree, fundamental discriminant $D = -n_0$):
-   $$r_3(N) = 24 \cdot h(D) \cdot S(f)$$
-   $$G(n) = \frac{3 \cdot h(D) \cdot S(f)}{w(D)/2}$$
+
+$$
+r_3(N) = 24 \cdot h(D) \cdot S(f)
+$$
+
+$$
+G(n) = \frac{3 \cdot h(D) \cdot S(f)}{w(D)/2}
+$$
+
    where $S(f) = \sum_{d \mid f} \mu(d) \left(\frac{D}{d}\right) \sigma_1(f/d)$.
 
 ---

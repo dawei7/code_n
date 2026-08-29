@@ -4,7 +4,11 @@
 
 For a triangle with integer side lengths $a \le b \le c$, area $A$, and semi-perimeter $s = (a + b + c) / 2$:
 The inradius of the triangle is:
-$$r = \frac{A}{s} = \frac{2A}{a + b + c} = 2m$$
+
+$$
+r = \frac{A}{s} = \frac{2A}{a + b + c} = 2m
+$$
+
 where $m = A / (a + b + c)$ is a positive integer.
 We seek the sum of perimeters $a + b + c$ of all integer-sided triangles such that $\frac{\text{Area}}{\text{Perimeter}} = m \le 1000$.
 
@@ -23,17 +27,32 @@ A naive approach iterates over triples $(a, b, c)$ and checks Heron's formula:
 
 ### Tangent Subdivisions & Incircle Form
 Let the incircle touch the sides of the triangle, dividing the sides into segments $x, y, z > 0$ with:
-$$a = y + z, \quad b = z + x, \quad c = x + y, \quad s = x + y + z$$
+
+$$
+a = y + z, \quad b = z + x, \quad c = x + y, \quad s = x + y + z
+$$
+
 Then the area is $A = \sqrt{s x y z} = r s = 2m s$.
 Squaring gives:
-$$x y z = r^2 s = r^2 (x + y + z) = 4m^2 (x + y + z)$$
+
+$$
+x y z = r^2 s = r^2 (x + y + z) = 4m^2 (x + y + z)
+$$
+
 Letting $R = 2m$:
-$$\frac{1}{x} + \frac{1}{y} + \frac{1}{z} = \frac{1}{R^2}$$
+
+$$
+\frac{1}{x} + \frac{1}{y} + \frac{1}{z} = \frac{1}{R^2}
+$$
+
 Without loss of generality, assuming $x \le y \le z$:
 Since $\frac{1}{x} < \frac{1}{R^2} \implies x > R^2$.
 Also $\frac{3}{x} \ge \frac{1}{R^2} \implies x \le 3 R^2 + \dots$.
 Letting $u = x - R^2 > 0$:
-$$(y - R^2)(z - R^2) = R^4 + \frac{R^2 (R^2 + u)^2}{u} = \dots$$
+
+$$
+(y - R^2)(z - R^2) = R^4 + \frac{R^2 (R^2 + u)^2}{u} = \dots
+$$
 
 ---
 

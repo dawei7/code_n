@@ -4,9 +4,16 @@
 
 Let $\omega(n)$ denote the number of distinct prime divisors of $n$.
 Define the Dirichlet divisor sum:
-$$S(n) = \sum_{d \mid n} 2^{\omega(d)}$$
+
+$$
+S(n) = \sum_{d \mid n} 2^{\omega(d)}
+$$
+
 and the factorial accumulation:
-$$F(n) = \sum_{i=2}^n S(i!)$$
+
+$$
+F(n) = \sum_{i=2}^n S(i!)
+$$
 
 We are given:
 - $\omega(1) = 0, \omega(360) = 3$
@@ -14,7 +21,10 @@ We are given:
 - $F(10) = 4821$
 
 We seek to evaluate:
-$$F(10\,000\,000) \bmod 1\,000\,000\,087$$
+
+$$
+F(10\,000\,000) \bmod 1\,000\,000\,087
+$$
 
 ---
 
@@ -36,9 +46,16 @@ $10^7!$ has millions of digits and vast numbers of divisors. Evaluating $S(i!)$ 
    - $\omega(1) = 0 \implies 2^0 = 1$.
    - $\omega(p^k) = 1$ for all $1 \le k \le a \implies 2^1 = 2$.
    Summing over all divisors:
-   $$S(p^a) = 1 + \sum_{k=1}^a 2 = 2a + 1$$
+
+$$
+S(p^a) = 1 + \sum_{k=1}^a 2 = 2a + 1
+$$
+
 3. **General Factorization Formula**:
-   $$S(n) = \prod_{p^a \parallel n} (2a + 1)$$
+
+$$
+S(n) = \prod_{p^a \parallel n} (2a + 1)
+$$
 
 ---
 
@@ -48,7 +65,11 @@ $10^7!$ has millions of digits and vast numbers of divisors. Evaluating $S(i!)$ 
 1. **Online Factorial Transition**:
    To step from $i!$ to $(i+1)!$, we only need to factor $i+1 = \prod q_j^{e_j}$.
    For each prime factor $q_j$ with current exponent $a(q_j)$ in $i!$:
-   $$S((i+1)!) = S(i!) \times \prod_{q_j \mid (i+1)} \frac{2(a(q_j) + e_j) + 1}{2a(q_j) + 1} \pmod{1\,000\,000\,087}$$
+
+$$
+S((i+1)!) = S(i!) \times \prod_{q_j \mid (i+1)} \frac{2(a(q_j) + e_j) + 1}{2a(q_j) + 1} \pmod{1\,000\,000\,087}
+$$
+
 2. **Smallest Prime Factor (SPF) Linear Sieve**:
    Precompute $\operatorname{spf}(x)$ for all $x \le 10^7$ in $O(N)$ time.
    Factoring each $i$ takes $O(\Omega(i))$ steps.

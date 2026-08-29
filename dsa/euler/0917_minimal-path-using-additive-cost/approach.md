@@ -26,7 +26,11 @@ Find $A(10^7)$.
 
 ### Additive Separability & Extreme Coordinate Deviations
 The path sum decomposes as:
-$$\text{Cost} = \sum_{i=1}^N r_i a_i + \sum_{j=1}^N c_j b_j$$
+
+$$
+\text{Cost} = \sum_{i=1}^N r_i a_i + \sum_{j=1}^N c_j b_j
+$$
+
 where $r_i$ and $c_j$ are run lengths.
 Optimal routes concentrate runs on rows $i$ with ultra-low $a_i$ and columns $j$ with ultra-low $b_j$.
 

@@ -5,10 +5,18 @@
 Let $\mathbb{P} = (p_1, p_2, p_3, \dots) = (2, 3, 5, 7, 11, \dots)$ denote the sequence of all prime numbers.
 
 For a contiguous window of $L$ primes starting at offset $i$, define the consecutive prime sum:
-$$S(i, L) = \sum_{j=0}^{L-1} p_{i+j}$$
+
+$$
+S(i, L) = \sum_{j=0}^{L-1} p_{i+j}
+$$
 
 The objective is to find the prime number below one million ($N = 1\,000\,000$) that can be expressed as the sum of the longest sequence of consecutive primes:
-$$P_{\text{max}} = S(i^*, L_{\text{max}}) \quad \text{where } (i^*, L_{\text{max}}) = \operatorname*{arg\,max}_{\substack{i, L \\ S(i, L) < 10^6 \\ S(i, L) \in \mathbb{P}}} L$$
+
+$$
+\begin{aligned}
+P_{\text{max}} = S(i^*, L_{\text{max}}) \quad \text{where } (i^*, L_{\text{max}}) = \operatorname*{arg\,max}_{\substack{i, L \\ S(i, L) < 10^6 \\ S(i, L) \in \mathbb{P}}} L
+\end{aligned}
+$$
 
 ---
 
@@ -24,7 +32,11 @@ def naive_consecutive_prime_sum():
 
 ### Prefix Sums & Descending Window Length
 1. By constructing a prefix sum array $P_k = \sum_{j=1}^k p_j$, any contiguous range sum evaluates in exact $\mathcal{O}(1)$ time:
-   $$S(i, L) = P_{i+L} - P_i$$
+
+$$
+S(i, L) = P_{i+L} - P_i
+$$
+
 2. Summing the first 544 primes exceeds one million ($\sum_{j=1}^{544} p_j = 1\,001\,604 > 10^6$), so the maximum possible window length is $L_{\text{max}} = 543$.
 3. Searching $L$ in **descending order** guarantees that the first prime sum found is the global maximum!
 
@@ -70,7 +82,10 @@ def naive_consecutive_prime_sum():
   - $i = 2$: $5 + 7 + \dots + 3929 = 997\,649$ (composite).
   - $i = 3$: $7 + 11 + \dots + 3931 = \mathbf{997\,651} \in \mathbb{P}$!
 - Optimal Prime:
-  $$P_{\text{max}} = \mathbf{997\,651} \quad (\text{length } 543)$$
+
+$$
+P_{\text{max}} = \mathbf{997\,651} \quad (\text{length } 543)
+$$
 
 ---
 

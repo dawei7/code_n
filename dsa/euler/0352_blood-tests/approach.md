@@ -46,9 +46,17 @@ The group testing state space is completely captured by two expectations for a g
      The $k$ sheep are all healthy, and the remaining $n - k$ sheep are guaranteed to have $\ge 1$ positive $\implies F(n - k)$.
    - With probability $P(\text{subgroup pos} \mid A) = \frac{1 - q^k}{1 - q^n}$:
      The $k$ sheep have $\ge 1$ positive $\implies F(k)$, while the remaining $n - k$ revert to the unconditioned prior $\implies E(n - k)$.
-   $$\mathbf{F(n) = \min_{1 \le k < n} \left( 1 + \frac{q^k (1 - q^{n-k})}{1 - q^n} F(n - k) + \frac{1 - q^k}{1 - q^n} \Big( F(k) + E(n - k) \Big) \right)}$$
+
+$$
+\mathbf{F(n) = \min_{1 \le k < n} \left( 1 + \frac{q^k (1 - q^{n-k})}{1 - q^n} F(n - k) + \frac{1 - q^k}{1 - q^n} \Big( F(k) + E(n - k) \Big) \right)}
+$$
+
 2. **Recurrence for $E(n)$ (unconditioned):**
-   $$\mathbf{E(n) = \min\left( \min_{1 \le k \le n} \Big( 1 + E(n - k) + (1 - q^k) F(k) \Big), \ \min_{1 \le k < n} \Big( E(k) + E(n - k) \Big) \right)}$$
+
+$$
+\mathbf{E(n) = \min\left( \min_{1 \le k \le n} \Big( 1 + E(n - k) + (1 - q^k) F(k) \Big), \ \min_{1 \le k < n} \Big( E(k) + E(n - k) \Big) \right)}
+$$
+
 3. Because the optimal initial mixture size satisfies $k \le 120$ for all $p \ge 0.01$, we compute $F(n)$ up to $k_{\max} = 120$ and extend $E(n)$ linearly up to $s = 10\,000$ in $\mathcal{O}(s \cdot k_{\max})$ time per probability.
 4. Total execution across all 50 probabilities completes in under $5.6$ seconds in pure Python!
 

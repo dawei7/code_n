@@ -25,7 +25,11 @@ Find $D(10^{16})$.
 Let $C(X)$ be the number of positive integers $\le X$ whose digit sum is prime.
 $C(X)$ is monotonically non-decreasing in $X$.
 Hence, $D(n)$ is uniquely determined by finding the smallest integer $X$ such that:
-$$C(X) \ge n$$
+
+$$
+C(X) \ge n
+$$
+
 which is solved via binary search over $[1, 10^{19}]$.
 
 ---
@@ -35,7 +39,11 @@ which is solved via binary search over $[1, 10^{19}]$.
 ### Digit DP Table Formulation
 For digit strings of length $L \le 25$ and digit sums $s \le 9 \times 25 = 225$:
 Let $dp[i][s]$ be the number of suffix strings of length $i$ with digit sum $s$.
-$$dp[i][s] = \sum_{d=0}^9 dp[i-1][s - d]$$
+
+$$
+dp[i][s] = \sum_{d=0}^9 dp[i-1][s - d]
+$$
+
 with base case $dp[0][0] = 1$.
 
 ### Prefix Splitting for $C(X)$
@@ -44,7 +52,11 @@ For an integer $X$ with decimal digits $d_L d_{L-1} \dots d_1$:
 2. For each branching choice $d \in [0, d_i - 1]$:
    - The prefix sum is $P + d$.
    - The number of valid suffix completions is:
-     $$\sum_{p \in \mathbb{P}, p \ge P + d} dp[i - 1][p - (P + d)]$$
+
+$$
+\sum_{p \in \mathbb{P}, p \ge P + d} dp[i - 1][p - (P + d)]
+$$
+
 3. Finally, if the exact sum of all digits of $X$ is prime, increment the count by $1$.
 
 ---

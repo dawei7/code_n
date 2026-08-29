@@ -5,7 +5,10 @@
 A word over an alphabet $\Sigma$ of $\alpha$ letters is incomplete if it omits at least one letter of $\Sigma$.
 Let $I(\alpha, n)$ be the number of incomplete words of length $\le n$.
 Define:
-$$S(k, n) = \sum_{\alpha=1}^k I(\alpha, n)$$
+
+$$
+S(k, n) = \sum_{\alpha=1}^k I(\alpha, n)
+$$
 
 We are given:
 - $S(4, 4) = 406$
@@ -13,7 +16,10 @@ We are given:
 - $S(10, 100) \equiv 983602076 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$S(10^7, 10^{12}) \bmod 1\,000\,000\,007$$
+
+$$
+S(10^7, 10^{12}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,12 +34,24 @@ Evaluating each $I(\alpha, n)$ independently for all $\alpha \in [1, 10^7]$ requ
 
 ### Dual Summation Interchange & Hockey-Stick Binomial Generating Functions
 1. **Double Summation Formulation**:
-   $$S(k, n) = \sum_{\alpha=1}^k \sum_{m=0}^{\alpha - 1} (-1)^{\alpha - 1 - m} \binom{\alpha}{m} G(m, n) = \sum_{m=0}^{k-1} G(m, n) A(m, k)$$
+
+$$
+S(k, n) = \sum_{\alpha=1}^k \sum_{m=0}^{\alpha - 1} (-1)^{\alpha - 1 - m} \binom{\alpha}{m} G(m, n) = \sum_{m=0}^{k-1} G(m, n) A(m, k)
+$$
+
    where $G(m, n) = \sum_{L=0}^n m^L = \frac{m^{n+1} - 1}{m - 1}$, and:
-   $$A(m, k) = \sum_{\alpha=m+1}^k (-1)^{\alpha - 1 - m} \binom{\alpha}{m}$$
+
+$$
+A(m, k) = \sum_{\alpha=m+1}^k (-1)^{\alpha - 1 - m} \binom{\alpha}{m}
+$$
+
 2. **Generating Function Closed Form**:
    Using the negative binomial transformation:
-   $$A(m, k) = 1 - 2^{-(m+1)} \left(1 - (-1)^{k+1} T_m\right)$$
+
+$$
+A(m, k) = 1 - 2^{-(m+1)} \left(1 - (-1)^{k+1} T_m\right)
+$$
+
    where $T_m = \sum_{t=0}^m \binom{k+1}{t} (-2)^t$ is the truncated alternating binomial sum!
 
 ---
@@ -43,8 +61,15 @@ Evaluating each $I(\alpha, n)$ independently for all $\alpha \in [1, 10^7]$ requ
 ### Linear Multiplicative Sieve & Incremental Prefix Sums ($O(k)$)
 1. **$O(1)$ Incremental Step**:
    The truncated sum $T_m$ satisfies:
-   $$term_{m+1} = term_m \cdot \frac{k + 1 - m}{m + 1} \cdot (-2) \pmod{10^9 + 7}$$
-   $$T_{m+1} = T_m + term_{m+1} \pmod{10^9 + 7}$$
+
+$$
+term_{m+1} = term_m \cdot \frac{k + 1 - m}{m + 1} \cdot (-2) \pmod{10^9 + 7}
+$$
+
+$$
+T_{m+1} = T_m + term_{m+1} \pmod{10^9 + 7}
+$$
+
 2. **Linear Multiplicative Sieve for Exponents**:
    With Fermat's Little Theorem exponent reduction $e = (n + 1) \bmod (M - 1)$, compute $m^e \pmod M$ for all $m \le k - 1$ in $O(k)$ via linear sieve with one multiplication per composite.
 

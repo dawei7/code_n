@@ -3,14 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the Diophantine equation:
-$$\frac{1}{a} + \frac{1}{b} = \frac{p}{10^n}$$
+
+$$
+\frac{1}{a} + \frac{1}{b} = \frac{p}{10^n}
+$$
+
 where $a, b, p, n$ are positive integers and $a \le b$.
 
 For $n = 1$, this equation has $20$ solutions:
-$$\frac{1}{1} + \frac{1}{1} = \frac{20}{10}, \quad \frac{1}{1} + \frac{1}{2} = \frac{15}{10}, \quad \dots, \quad \frac{1}{10} + \frac{1}{10} = \frac{2}{10}$$
+
+$$
+\frac{1}{1} + \frac{1}{1} = \frac{20}{10}, \quad \frac{1}{1} + \frac{1}{2} = \frac{15}{10}, \quad \dots, \quad \frac{1}{10} + \frac{1}{10} = \frac{2}{10}
+$$
 
 The objective is to find the **total number of solutions for all $1 \le n \le 9$**:
-$$N_{\text{solutions}} = \sum_{n=1}^9 \left| \left\{ (a, b, p) \in \mathbb{N}^3 \;\middle|\; 1 \le a \le b \land \frac{1}{a} + \frac{1}{b} = \frac{p}{10^n} \right\} \right|$$
+
+$$
+N_{\text{solutions}} = \sum_{n=1}^9 \left| \left\{ (a, b, p) \in \mathbb{N}^3 \;\middle|\; 1 \le a \le b \land \frac{1}{a} + \frac{1}{b} = \frac{p}{10^n} \right\} \right|
+$$
 
 ---
 
@@ -27,13 +37,21 @@ def naive_base10_diophantine():
 ### Algebraic Divisor Parameterization
 1. **Coprime Factorization:**
    Let $g = \gcd(a, b)$, so $a = g A$ and $b = g B$ with $\gcd(A, B) = 1$ and $A \le B$.
-   $$\frac{1}{g A} + \frac{1}{g B} = \frac{p}{10^n} \iff p \cdot g \cdot A B = 10^n (A + B)$$
+
+$$
+\frac{1}{g A} + \frac{1}{g B} = \frac{p}{10^n} \iff p \cdot g \cdot A B = 10^n (A + B)
+$$
+
 2. **Coprime Divisor Property:**
    Since $\gcd(A, A+B) = 1$ and $\gcd(B, A+B) = 1$, $A$ and $B$ must divide $10^n = 2^n \cdot 5^n$.
    Thus $A$ and $B$ are **coprime divisors** of $10^n$ of the form $2^a 5^b$.
 3. **Divisor Multiplicity:**
    For each coprime pair $(A, B)$ with $A \le B$:
-   $$K = \frac{10^n (A + B)}{A B}$$
+
+$$
+K = \frac{10^n (A + B)}{A B}
+$$
+
    Then $p \cdot g = K$.
    For each divisor $g \mid K$, there is a unique integer $p = K / g > 0$, giving exactly **$d(K)$ distinct solution triples $(a, b, p)$**!
 4. Evaluating $d(K)$ across all coprime pairs $(A, B)$ of $10^n$ for $n \in [1, 9]$ executes in $\approx 0.05$ seconds.
@@ -88,7 +106,10 @@ def naive_base10_diophantine():
 
 ### Example 2: Target Evaluation for $n \in [1, 9]$
 - Summing over all $n = 1 \dots 9$:
-  $$N_{\text{solutions}} = \mathbf{53\,490}$$
+
+$$
+N_{\text{solutions}} = \mathbf{53\,490}
+$$
 
 ---
 

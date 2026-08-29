@@ -7,7 +7,10 @@ An $n$-digit integer $x \in \mathbb{N}$ is defined as **$1$ to $n$ pandigital** 
 Let $\mathcal{P}_n$ denote the set of all $n$-digit pandigital numbers.
 
 The objective is to find the largest pandigital prime across all digit lengths $n \in \{1, 2, \dots, 9\}$:
-$$p_{\text{max}} = \max \left\{ x \in \bigcup_{n=1}^9 \mathcal{P}_n \;\middle|\; x \in \mathbb{P} \right\}$$
+
+$$
+p_{\text{max}} = \max \left\{ x \in \bigcup_{n=1}^9 \mathcal{P}_n \;\middle|\; x \in \mathbb{P} \right\}
+$$
 
 ---
 
@@ -23,7 +26,10 @@ def naive_pandigital_prime():
 
 ### Divisibility by 3 Digital Root Elimination
 Recall that an integer is divisible by 3 if and only if the sum of its decimal digits is divisible by 3:
-$$x \equiv \sum_{i=1}^n d_i \pmod 3$$
+
+$$
+x \equiv \sum_{i=1}^n d_i \pmod 3
+$$
 
 ---
 
@@ -71,7 +77,10 @@ Therefore, the largest pandigital prime MUST be a **7-digit pandigital number**!
     - No prime divisor up to $2766$ divides $7652413$.
     - $7652413 \in \mathbb{P}$.
 - Global Maximum:
-  $$p_{\text{max}} = \mathbf{7\,652\,413}$$
+
+$$
+p_{\text{max}} = \mathbf{7\,652\,413}
+$$
 
 ---
 

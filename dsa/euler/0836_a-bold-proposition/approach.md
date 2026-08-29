@@ -47,9 +47,16 @@ In the official statement, specific terms were bolded in sequence:
 
 ### Acrostic Extraction
 Extracting the initial letter of each word in the ordered sequence:
-$$\text{chars} = ['a', 'p', 'r', 'i', 'l', 'f', 'o', 'o', 'l', 's', 'j', 'o', 'k', 'e']$$
+
+$$
+\text{chars} = ['a', 'p', 'r', 'i', 'l', 'f', 'o', 'o', 'l', 's', 'j', 'o', 'k', 'e']
+$$
+
 Concatenating:
-$$\text{Result} = \text{"aprilfoolsjoke"}$$
+
+$$
+\text{Result} = \text{"aprilfoolsjoke"}
+$$
 
 ---
 

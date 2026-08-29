@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For two distinct primes $p < q$, define $M(p, q, N)$ as the largest positive integer $m \le N$ whose prime factors are **strictly and only** $\{p, q\}$:
-$$m = p^a q^b \le N \quad (a \ge 1, b \ge 1)$$
+
+$$
+m = p^a q^b \le N \quad (a \ge 1, b \ge 1)
+$$
+
 If no such integer exists ($p q > N$), $M(p, q, N) = 0$.
 Let $S(N)$ be the sum of all **distinct** values among $\{M(p, q, N) \mid p < q\}$.
 We are given sample values:

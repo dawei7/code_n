@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 By replacing each of the letters in the word `CARE` with $1, 2, 9, 6$ respectively, we get a 4-digit square number:
-$$1296 = 36^2$$
+
+$$
+1296 = 36^2
+$$
 
 What is remarkable is that, by using the same letter-to-digit assignment, the anagram `RACE` turns into another 4-digit square:
-$$9216 = 96^2$$
+
+$$
+9216 = 96^2
+$$
 
 We shall call `CARE` and `RACE` an **anagramic square pair**.
 Rules:
@@ -15,7 +21,10 @@ Rules:
 3. Every occurrence of a letter maps to the same digit.
 
 Using `words.txt`, containing nearly two-thousand common English words, the objective is to find the **largest square number formed by any member of such a pair**:
-$$S_{\text{max}} = \max \{ \mathbf{m}(w_1), \mathbf{m}(w_2) \}$$
+
+$$
+S_{\text{max}} = \max \{ \mathbf{m}(w_1), \mathbf{m}(w_2) \}
+$$
 
 ---
 
@@ -62,7 +71,11 @@ def naive_anagramic_squares():
      - Check bijection: `char_to_digit` and `digit_to_char` must both be $1$-to-$1$.
      - Translate $w_2 \to s_2$.
      - If $s_2[0] \neq '0'$ and $\operatorname{isqrt}(s_2)^2 == s_2$:
-       $$\text{max\_square} = \max(\text{max\_square}, \operatorname{int}(s_1), \operatorname{int}(s_2))$$
+
+$$
+\text{max\_square} = \max(\text{max\_square}, \operatorname{int}(s_1), \operatorname{int}(s_2))
+$$
+
 5. Return $\text{max\_square}$.
 
 ---
@@ -80,7 +93,10 @@ def naive_anagramic_squares():
   - `BOARD` $\mapsto 17649 = 133^2$.
   - `BROAD` $\mapsto 18769 = 137^2$.
 - Largest square integer across all anagram pairs:
-  $$S_{\text{max}} = \mathbf{18\,769}$$
+
+$$
+S_{\text{max}} = \mathbf{18\,769}
+$$
 
 ---
 

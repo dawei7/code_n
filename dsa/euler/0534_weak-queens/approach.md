@@ -12,7 +12,10 @@ We are given:
 - $S(5) = 3347$
 
 We seek to evaluate:
-$$S(14)$$
+
+$$
+S(14)
+$$
 
 ---
 
@@ -45,7 +48,11 @@ For $n = 14$, there are $14^{14} \approx 1.11 \times 10^{16}$ unconstrained plac
 2. **Intermediate $L \in [1, n - 2]$**:
    Maintain a state-frequency map `states[packed_state]`.
    For each row $r$, construct the forbidden bitmask from the active $L$ queens:
-   $$\text{forbid} = \bigcup_{i=1}^L \left( \{c_{r-i}\} \cup \{c_{r-i} \pm i\} \right)$$
+
+$$
+\text{forbid} = \bigcup_{i=1}^L \left( \{c_{r-i}\} \cup \{c_{r-i} \pm i\} \right)
+$$
+
    Transition to new states `(state << 4 | c_new) & keep_mask`.
 
 This evaluates $S(14)$ in **$\approx 90$ seconds** in pure Python!

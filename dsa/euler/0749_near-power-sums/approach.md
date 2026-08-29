@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $n$ is a *near power sum* if there exists an integer $k \ge 1$ such that:
-$$\sum_{i=1}^d \text{digit}_i^k = n + 1 \quad \text{or} \quad \sum_{i=1}^d \text{digit}_i^k = n - 1$$
+
+$$
+\sum_{i=1}^d \text{digit}_i^k = n + 1 \quad \text{or} \quad \sum_{i=1}^d \text{digit}_i^k = n - 1
+$$
 
 $S(d)$ is the sum of all near power sum numbers with at most $d$ digits.
 
@@ -12,7 +15,10 @@ We are given:
 - $S(6) = 2562701$
 
 We seek to evaluate:
-$$S(16)$$
+
+$$
+S(16)
+$$
 
 ---
 
@@ -30,7 +36,11 @@ Checking each integer $n \le 10^{16}$ across possible exponents $k$ requires $10
    The power sum $\sum_{i=1}^d d_i^k = \sum_{j=0}^9 c_j j^k$ depends *only* on the multiset of digits (the count vector $(c_0, \dots, c_9)$ where $\sum c_j = L \le 16$), not their permutation order!
 2. **Reduced Search Space**:
    The number of digit multisets with $\sum c_j = L \le 16$ is:
-   $$\sum_{L=1}^{16} \binom{L + 9}{9} = \binom{26}{10} - 1 = 5\,311\,734$$
+
+$$
+\sum_{L=1}^{16} \binom{L + 9}{9} = \binom{26}{10} - 1 = 5\,311\,734
+$$
+
 3. **Monotonic Exponent Scanning**:
    For each multiset $(c_0, \dots, c_9)$, as $k$ increases, $P(k) = \sum c_j j^k$ grows strictly monotonically:
    - For each $k$ where $10^{L-1} - 1 \le P(k) \le 10^L + 1$, test $n = P(k) - 1$ and $n = P(k) + 1$.

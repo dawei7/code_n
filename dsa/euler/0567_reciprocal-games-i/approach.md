@@ -4,9 +4,17 @@
 
 In a row of $n$ independent lights turned on with probability $1/2$, Jerry plays two games over $n$ turns with uniform reciprocal payoffs $\frac{1}{k}$ for chosen target $k \in \{1, \dots, n\}$:
 - **Game A**: Tom activates the lights once; Jerry wins if exactly $k$ lights turn on.
-  $$J_A(n) = \frac{1}{2^n} \sum_{k=1}^n \frac{1}{k} \binom{n}{k}$$
+
+$$
+J_A(n) = \frac{1}{2^n} \sum_{k=1}^n \frac{1}{k} \binom{n}{k}
+$$
+
 - **Game B**: Conditioning on $k$ lights on, Jerry activates until $k$ lights turn on; Jerry wins if his pattern matches Tom's.
-  $$J_B(n) = \sum_{k=1}^n \frac{1}{k \binom{n}{k}}$$
+
+$$
+J_B(n) = \sum_{k=1}^n \frac{1}{k \binom{n}{k}}
+$$
+
 Let $S(m) = \sum_{n=1}^m (J_A(n) + J_B(n))$.
 
 We are given:
@@ -15,7 +23,10 @@ We are given:
 - $S(6) \approx 7.58932292$
 
 We seek to evaluate:
-$$S(123456789) \text{ rounded to 8 decimal places}$$
+
+$$
+S(123456789) \text{ rounded to 8 decimal places}
+$$
 
 ---
 
@@ -31,12 +42,23 @@ Summing across $m = 1.23 \times 10^8$ turns with $O(n)$ binomial evaluations per
 ### Harmonic Telescoping & Combinatorial Sum Reductions
 1. **Reciprocal Binomial Telescoping**:
    By the classical combinatorial identity for reciprocal binomial sums:
-   $$\sum_{n=1}^m J_B(n) = 2 H_m - J_B(m)$$
+
+$$
+\sum_{n=1}^m J_B(n) = 2 H_m - J_B(m)
+$$
+
 2. **Game A Telescoping Identity**:
    Interchanging summation order over $k$ and applying $\sum_{n=k}^m \frac{\binom{n}{k}}{2^n}$:
-   $$\sum_{n=1}^m J_A(n) = 2 H_m - 2 \sum_{i=1}^m \frac{2^{-i}}{i} - J_A(m)$$
+
+$$
+\sum_{n=1}^m J_A(n) = 2 H_m - 2 \sum_{i=1}^m \frac{2^{-i}}{i} - J_A(m)
+$$
+
 3. **Master Telescoped Form for $S(m)$**:
-   $$S(m) = 4 H_m - 2 \sum_{i=1}^m \frac{2^{-i}}{i} - (J_A(m) + J_B(m))$$
+
+$$
+S(m) = 4 H_m - 2 \sum_{i=1}^m \frac{2^{-i}}{i} - (J_A(m) + J_B(m))
+$$
 
 ---
 

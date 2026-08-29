@@ -3,19 +3,25 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In the $5 \times 5$ matrix below, the minimal path sum from any cell in the left column to any cell in the right column, by moving only **up**, **down**, and **right**, has a sum of $994$:
-$$\begin{pmatrix}
+
+$$
+\begin{pmatrix}
 131 & 673 & \mathbf{234} & \mathbf{103} & \mathbf{18} \\
 \mathbf{201} & \mathbf{96} & \mathbf{342} & 965 & 150 \\
 630 & 803 & 746 & 422 & 111 \\
 537 & 699 & 497 & 121 & 956 \\
 805 & 732 & 524 & 37 & 331
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 Let $\mathbf{T}$ denote the $80 \times 80$ integer matrix given in `matrix.txt`.
 A valid 3-way path starts at any cell in the first column $(r_{\text{start}}, 0)$ and ends at any cell in the last column $(r_{\text{end}}, C-1)$, using only rightward $(r, c+1)$, upward $(r-1, c)$, and downward $(r+1, c)$ moves.
 
 The objective is to find the **minimal path sum**:
-$$S_{\text{min}} = \min_{0 \le r_{\text{start}}, r_{\text{end}} < R, \, \mathbf{P}} \sum_{(r, c) \in \mathbf{P}} T_{r, c}$$
+
+$$
+S_{\text{min}} = \min_{0 \le r_{\text{start}}, r_{\text{end}} < R, \, \mathbf{P}} \sum_{(r, c) \in \mathbf{P}} T_{r, c}
+$$
 
 ---
 
@@ -58,9 +64,17 @@ def naive_dijkstra_path_sum():
 2. For $c = 1 \dots C-1$:
    - $\text{next\_cost} = [\text{cost}[r] + T[r][c] \text{ for } r \in [0, R-1]]$.
    - For $r = 1 \dots R-1$:
-     $$\text{next\_cost}[r] \leftarrow \min(\text{next\_cost}[r], \, \text{next\_cost}[r-1] + T[r][c])$$
+
+$$
+\text{next\_cost}[r] \leftarrow \min(\text{next\_cost}[r], \, \text{next\_cost}[r-1] + T[r][c])
+$$
+
    - For $r = R-2 \dots 0$:
-     $$\text{next\_cost}[r] \leftarrow \min(\text{next\_cost}[r], \, \text{next\_cost}[r+1] + T[r][c])$$
+
+$$
+\text{next\_cost}[r] \leftarrow \min(\text{next\_cost}[r], \, \text{next\_cost}[r+1] + T[r][c])
+$$
+
    - $\text{cost} \leftarrow \text{next\_cost}$.
 3. Return $\min(\text{cost})$.
 
@@ -72,12 +86,19 @@ def naive_dijkstra_path_sum():
 - Optimal Path: $(1, 0) \to (1, 1) \to (1, 2) \to (0, 2) \to (0, 3) \to (0, 4)$.
 - Cell sequence: $201 \to 96 \to 342 \to 234 \to 103 \to 18$.
 - Total Path Sum:
-  $$S = 201 + 96 + 342 + 234 + 103 + 18 = \mathbf{994}$$
+
+$$
+S = 201 + 96 + 342 + 234 + 103 + 18 = \mathbf{994}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target $80 \times 80$ Matrix
 - Column-by-column DP on `matrix.txt`:
-  $$S_{\text{min}} = \mathbf{260\,324}$$
+
+$$
+S_{\text{min}} = \mathbf{260\,324}
+$$
 
 ---
 

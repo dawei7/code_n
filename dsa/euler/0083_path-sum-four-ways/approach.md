@@ -3,19 +3,25 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In the $5 \times 5$ matrix below, the minimal path sum from the top left to the bottom right by moving in all four directions (**up**, **down**, **left**, **right**) has a sum of $2297$:
-$$\begin{pmatrix}
+
+$$
+\begin{pmatrix}
 \mathbf{131} & 673 & \mathbf{234} & \mathbf{103} & \mathbf{18} \\
 \mathbf{201} & \mathbf{96} & \mathbf{342} & 965 & \mathbf{150} \\
 630 & 803 & 746 & \mathbf{422} & \mathbf{111} \\
 537 & 699 & 497 & \mathbf{121} & 956 \\
 805 & 732 & 524 & \mathbf{37} & \mathbf{331}
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 Let $\mathbf{T}$ denote the $80 \times 80$ integer matrix given in `matrix.txt`.
 A valid 4-way path starts at top-left $(0, 0)$ and reaches bottom-right $(R-1, C-1)$ using orthogonal steps $(\Delta r, \Delta c) \in \{(-1, 0), (1, 0), (0, -1), (0, 1)\}$.
 
 The objective is to find the **minimal path sum**:
-$$S_{\text{min}} = \min_{\mathbf{P}: (0,0) \rightsquigarrow (R-1, C-1)} \left( T_{0, 0} + \sum_{(u, v) \in \mathbf{P}} T_{v_r, v_c} \right)$$
+
+$$
+S_{\text{min}} = \min_{\mathbf{P}: (0,0) \rightsquigarrow (R-1, C-1)} \left( T_{0, 0} + \sum_{(u, v) \in \mathbf{P}} T_{v_r, v_c} \right)
+$$
 
 ---
 
@@ -68,12 +74,19 @@ Standard topological dynamic programming fails because bidirectional transitions
 - Path: $(0,0) \to (1,0) \to (1,1) \to (0,1) \dots \to (4,4)$.
 - Cell sequence: $131 \to 201 \to 96 \to 342 \to 234 \to 103 \to 18 \to 150 \to 111 \to 422 \to 121 \to 37 \to 331$.
 - Path sum:
-  $$S = 131 + 201 + 96 + 342 + 234 + 103 + 18 + 150 + 111 + 422 + 121 + 37 + 331 = \mathbf{2297}$$
+
+$$
+S = 131 + 201 + 96 + 342 + 234 + 103 + 18 + 150 + 111 + 422 + 121 + 37 + 331 = \mathbf{2297}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target $80 \times 80$ Matrix
 - Running Dijkstra's algorithm on `matrix.txt`:
-  $$S_{\text{min}} = \mathbf{425\,185}$$
+
+$$
+S_{\text{min}} = \mathbf{425\,185}
+$$
 
 ---
 

@@ -12,7 +12,10 @@ We are given:
 - $Q(8) = 2714886$
 
 We seek to evaluate:
-$$Q(10^{12})$$
+
+$$
+Q(10^{12})
+$$
 
 ---
 
@@ -29,13 +32,27 @@ Evaluating $E(m, i)$ sequentially for each $i \le 10^{12}$ would take millions o
 1. **Combinatorial Divisor Pair Formula**:
    For $N = (p_m\#)^n$, each prime factor has multiplicity $n$.
    The number of pairs $(a, b)$ with $a \mid b$ is $\binom{n+2}{2}^m$, so:
-   $$S((p_m\#)^n) = \frac{(n+1)^m}{2^m} \left( (n+2)^m - 2^m \right)$$
+
+$$
+S((p_m\#)^n) = \frac{(n+1)^m}{2^m} \left( (n+2)^m - 2^m \right)
+$$
+
 2. **2-Adic Splitting**:
    - **For odd $n$**: $(n+2)^m$ is odd and $2^m$ is even, so $(n+2)^m - 2^m$ is odd.
-     $$E(m, n) = m(v_2(n+1) - 1)$$
+
+$$
+E(m, n) = m(v_2(n+1) - 1)
+$$
+
    - **For even $n = 2k$**: by the Lifting the Exponent Lemma (LTE) with odd $m = 904961$:
-     $$v_2((2k+2)^m - 2^m) = m + v_2((k+1)^m - 1) = m + v_2(k)$$
-     $$E(m, 2k) = v_2(k) = v_2(n/2)$$
+
+$$
+v_2((2k+2)^m - 2^m) = m + v_2((k+1)^m - 1) = m + v_2(k)
+$$
+
+$$
+E(m, 2k) = v_2(k) = v_2(n/2)
+$$
 
 ---
 
@@ -44,11 +61,18 @@ Evaluating $E(m, i)$ sequentially for each $i \le 10^{12}$ would take millions o
 ### Legendre's $O(1)$ Summation Identity
 1. **Sum of 2-Adic Valuations**:
    By Legendre's formula, the sum of $v_2(k)$ over $k \in [1, K]$ is:
-   $$\sum_{k=1}^K v_2(k) = v_2(K!) = K - s_2(K)$$
+
+$$
+\sum_{k=1}^K v_2(k) = v_2(K!) = K - s_2(K)
+$$
+
    where $s_2(K)$ is the binary popcount (number of 1s in the binary representation of $K$).
 2. **Closed-Form Formula for $Q(N)$**:
    Let $K_1 = \lfloor (N+1)/2 \rfloor$ and $K_2 = \lfloor N/2 \rfloor$.
-   $$Q(N) = m (K_1 - s_2(K_1)) + (K_2 - s_2(K_2))$$
+
+$$
+Q(N) = m (K_1 - s_2(K_1)) + (K_2 - s_2(K_2))
+$$
 
 This evaluates $Q(10^{12})$ in **$O(1)$ time (< 1 microsecond)**!
 

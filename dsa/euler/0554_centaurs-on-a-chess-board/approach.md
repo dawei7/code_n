@@ -13,7 +13,10 @@ We are given:
 - $C(10) = 1477721$
 
 We seek to evaluate:
-$$\left( \sum_{i=2}^{90} C(F_i) \right) \bmod (10^8+7)$$
+
+$$
+\left( \sum_{i=2}^{90} C(F_i) \right) \bmod (10^8+7)
+$$
 
 ---
 
@@ -30,7 +33,11 @@ For $F_{90} \approx 2.88 \times 10^{18}$, placing $F_{90}^2 \approx 10^{37}$ cen
 1. **Centaur Independence & Diagonal Tilings**:
    By analyzing the $2 \times 2$ block partition of the $2n \times 2n$ board, each valid maximal configuration maps to a pair of non-intersecting lattice paths with boundary adjustments.
    The exact count evaluates to:
-   $$C(n) = 8 \binom{2n}{n} - 3n^2 - 2n - 7$$
+
+$$
+C(n) = 8 \binom{2n}{n} - 3n^2 - 2n - 7
+$$
+
 2. **Modular Arithmetic with Huge Arguments**:
    The arguments $F_i$ reach up to $2.88 \times 10^{18}$. Since $p = 10^8 + 7$ is prime, we evaluate $\binom{2F_i}{F_i} \bmod p$ via **Lucas' Theorem**!
 
@@ -41,7 +48,11 @@ For $F_{90} \approx 2.88 \times 10^{18}$, placing $F_{90}^2 \approx 10^{37}$ cen
 ### Lucas' Theorem with Sparse Factorial Sieve ($O(p)$)
 1. **Lucas Base-$p$ Reduction**:
    Let $2F_i = \sum d_j p^j$ and $F_i = \sum k_j p^j$ in base $p = 10^8 + 7$.
-   $$\binom{2F_i}{F_i} \equiv \prod_j \binom{d_j}{k_j} \pmod p$$
+
+$$
+\binom{2F_i}{F_i} \equiv \prod_j \binom{d_j}{k_j} \pmod p
+$$
+
 2. **Sparse Factorial Collection**:
    Collect the small set of needed base-$p$ factorials $\{0, 1, d_j, k_j, d_j - k_j\}$ across all $i \in [2, 90]$.
    A single linear sweep up to $\max(\text{targets}) < 10^8+7$ records only the required factorials.

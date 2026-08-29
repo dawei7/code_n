@@ -3,9 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$, define:
-$$g(n) = \sum_{i=1}^n (-1)^i \gcd(n, i^2)$$
+
+$$
+g(n) = \sum_{i=1}^n (-1)^i \gcd(n, i^2)
+$$
+
 We seek to evaluate the summatory function:
-$$G(N) = \sum_{n=1}^N g(n)$$
+
+$$
+G(N) = \sum_{n=1}^N g(n)
+$$
+
 for $N = 12\,345\,678$.
 
 We are given:
@@ -28,14 +36,25 @@ Evaluating $g(n)$ directly for all $n \le 1.23 \times 10^7$ requires $\approx \f
 1. **Parity Analysis**:
    - For odd $n$: $g(n) = -n$. The total contribution of all odd $n \le N$ is simply $-\left(\frac{N+1}{2}\right)^2$.
    - For even $n = 2^a m$ with $m$ odd ($a \ge 1$):
-     $$g(2^a m) = A(m) \cdot c_2[a]$$
+
+$$
+g(2^a m) = A(m) \cdot c_2[a]
+$$
+
      where $A(m)$ is a strictly multiplicative arithmetic function, and $c_2[a] = A(2^a) - 2^a$.
 2. **Prime-Power Closed Form for $A(p^e)$**:
    For any prime $p$ and exponent $e \ge 1$:
    - If $e = 2k + 1$ (odd):
-     $$A(p^e) = p^{2k} (2 p^{k+1} - 1) = p^{e-1} (2 p^{\lfloor e/2 \rfloor + 1} - 1)$$
+
+$$
+A(p^e) = p^{2k} (2 p^{k+1} - 1) = p^{e-1} (2 p^{\lfloor e/2 \rfloor + 1} - 1)
+$$
+
    - If $e = 2k$ (even):
-     $$A(p^e) = p^{2k-1} ((p+1) p^k - 1) = p^{e-1} ((p+1) p^{e/2} - 1)$$
+
+$$
+A(p^e) = p^{2k-1} ((p+1) p^k - 1) = p^{e-1} ((p+1) p^{e/2} - 1)
+$$
 
 ---
 

@@ -28,7 +28,11 @@ Find $L(7^{17})$.
 ### Binary Trailing-Ones and Bit-Length Invariant
 By backwards induction on the quotient lattice:
 A state $(a, b)$ is a P-position if and only if:
-$$b \equiv 2^{\text{len}(a)} - 1 \pmod{2^{\text{len}(a)}} \quad \text{or} \quad a \equiv 2^{\text{len}(b)} - 1 \pmod{2^{\text{len}(b)}}$$
+
+$$
+b \equiv 2^{\text{len}(a)} - 1 \pmod{2^{\text{len}(a)}} \quad \text{or} \quad a \equiv 2^{\text{len}(b)} - 1 \pmod{2^{\text{len}(b)}}
+$$
+
 That is, the larger pile has at least as many trailing $1$-bits as the entire bit length of the smaller pile!
 
 ---

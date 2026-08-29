@@ -13,7 +13,12 @@ We are given:
 - $P(1234, 4321) = 2780$
 
 We seek to evaluate:
-$$\sum_{\substack{p < q < 1000 \\ p, q \text{ prime}}} P(2^{p^5} - 1, 2^{q^5} - 1) \bmod 1\,000\,000\,007$$
+
+$$
+\begin{aligned}
+\sum_{\substack{p < q < 1000 \\ p, q \text{ prime}}} P(2^{p^5} - 1, 2^{q^5} - 1) \bmod 1\,000\,000\,007
+\end{aligned}
+$$
 
 ---
 
@@ -29,13 +34,25 @@ For $a = 2^{p^5} - 1$ and $b = 2^{q^5} - 1$, numbers have millions of bits ($2^{
 ### Continued Fractions & Euclidean Geometry of the Pouring Graph
 1. **Continued Fraction Theorem for 3-Bucket Pouring**:
    The minimal number of operations $P(a, b)$ to reach the $\gcd(a, b) = 1$ state in the $(a, b, a+b)$ bucket system equals:
-   $$P(a, b) = 2(p_{k-1} + q_{k-1}) - 2$$
+
+$$
+P(a, b) = 2(p_{k-1} + q_{k-1}) - 2
+$$
+
    where $p_{k-1} / q_{k-1}$ is the penultimate convergent of the continued fraction expansion of $b/a = [a_0; a_1, \dots, a_k]$.
 2. **Mersenne Number Euclidean Step Reduction**:
    Let $a = 2^{e_1} - 1$ and $b = 2^{e_2} - 1$ with $e_2 = m \cdot e_1 + r$.
-   $$\frac{2^{e_2} - 1}{2^{e_1} - 1} = Q + \frac{2^r - 1}{2^{e_1} - 1}$$
+
+$$
+\frac{2^{e_2} - 1}{2^{e_1} - 1} = Q + \frac{2^r - 1}{2^{e_1} - 1}
+$$
+
    where the quotient is:
-   $$Q = 2^r \sum_{j=0}^{m-1} (2^{e_1})^j = 2^r \frac{(2^{e_1})^m - 1}{2^{e_1} - 1} \pmod{10^9+7}$$
+
+$$
+Q = 2^r \sum_{j=0}^{m-1} (2^{e_1})^j = 2^r \frac{(2^{e_1})^m - 1}{2^{e_1} - 1} \pmod{10^9+7}
+$$
+
    and the remainder is simply the Mersenne number $2^r - 1$!
 3. **Euclid on Exponents**:
    The continued fraction algorithm on $(2^{e_2} - 1, 2^{e_1} - 1)$ executes the EXACT same sequence of division steps as the Euclidean algorithm on the integer exponents $(e_2, e_1) = (q^5, p^5)$!

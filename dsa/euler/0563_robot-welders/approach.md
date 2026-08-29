@@ -11,7 +11,10 @@ We are given:
 - $M(3) = 889200$ ($900 \times 988, 912 \times 975, 936 \times 950$)
 
 We seek to evaluate:
-$$\sum_{n=2}^{100} M(n)$$
+
+$$
+\sum_{n=2}^{100} M(n)
+$$
 
 ---
 
@@ -29,7 +32,11 @@ Scanning all integers up to $10^{16}$ and factoring each into prime powers requi
    Generate only 23-smooth integers in ascending order using a min-heap / priority queue with prime factors $\{2, 3, 5, 7, 11, 13, 17, 19, 23\}$.
 2. **Divisor Counting in the Aspect Ratio Window**:
    For each generated 23-smooth area $N$, valid shorter sides $A$ must satisfy:
-   $$\sqrt{\frac{N}{1.1}} \le A \le \sqrt{N} \quad \text{and } A \mid N$$
+
+$$
+\sqrt{\frac{N}{1.1}} \le A \le \sqrt{N} \quad \text{and } A \mid N
+$$
+
 3. **Sorted Side Array & Bisection**:
    Maintain a sorted list of 23-smooth numbers $A \le \sqrt{\text{max\_area}}$. For each current area $N$, binary search locates the starting index $\lfloor \sqrt{N} \rfloor$ and scans downwards until $B > 1.1 A$.
 

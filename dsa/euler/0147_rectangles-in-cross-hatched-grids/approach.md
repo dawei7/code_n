@@ -12,7 +12,10 @@ In a $3 \times 2$ grid:
 - Total rectangles in a $3 \times 2$ grid: $T(3, 2) = 18 + 19 = 37$.
 
 The objective is to find the **total number of rectangles (both axis-aligned and diagonal) that could be situated within all grids up to $47 \times 43$ (and $43 \times 47$)**:
-$$S_{\text{total}} = \sum_{w=1}^{47} \sum_{h=1}^{43} T(w, h)$$
+
+$$
+S_{\text{total}} = \sum_{w=1}^{47} \sum_{h=1}^{43} T(w, h)
+$$
 
 ---
 
@@ -29,13 +32,25 @@ def naive_cross_hatched_grids():
 ### Closed-Form Polynomial Derivations
 1. **Axis-Aligned Rectangles:**
    Choosing 2 vertical boundaries from $w+1$ lines and 2 horizontal boundaries from $h+1$ lines:
-   $$A(w, h) = \binom{w+1}{2} \binom{h+1}{2} = \frac{w(w+1) h(h+1)}{4}$$
+
+$$
+A(w, h) = \binom{w+1}{2} \binom{h+1}{2} = \frac{w(w+1) h(h+1)}{4}
+$$
+
 2. **Diagonal Rectangles Polynomial:**
    For a grid of width $w$ and height $h$ (assuming $w \ge h$ by symmetry):
-   $$D(w, h) = \frac{h \left( (2w - h)(4h^2 - 1) - 3 \right)}{6}$$
+
+$$
+D(w, h) = \frac{h \left( (2w - h)(4h^2 - 1) - 3 \right)}{6}
+$$
+
 3. For $w < h$, symmetry gives $D(w, h) = D(h, w)$.
 4. Total rectangles in any grid:
-   $$T(w, h) = A(w, h) + D(w, h)$$
+
+$$
+T(w, h) = A(w, h) + D(w, h)
+$$
+
 5. Evaluating the double summation over $w \in [1, 47]$ and $h \in [1, 43]$ runs in $\approx 0.001$ seconds.
 
 ---
@@ -78,7 +93,10 @@ def naive_cross_hatched_grids():
 
 ### Example 2: Target Evaluation for all Grids $\le 47 \times 43$
 - Summing over all $2021$ grids:
-  $$S_{\text{total}} = \mathbf{84\,782\,245}$$
+
+$$
+S_{\text{total}} = \mathbf{84\,782\,245}
+$$
 
 ---
 

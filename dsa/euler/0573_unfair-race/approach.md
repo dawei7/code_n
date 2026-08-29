@@ -14,7 +14,10 @@ We are given:
 - $E_{10} \approx 3.66021568$
 
 We seek to evaluate:
-$$E_{1000000} \text{ rounded to 4 decimal places}$$
+
+$$
+E_{1000000} \text{ rounded to 4 decimal places}
+$$
 
 ---
 
@@ -31,14 +34,25 @@ The $n$-dimensional simplex integral for $n = 10^6$ runners involves an intracta
 1. **Exponential Spacing Representation**:
    Order statistics of uniform variables map to independent standard exponential variables $E_1, \dots, E_n$ with partial sums $S_k = \sum_{i=1}^k E_i$.
    The finish time ranking corresponds to minimizing the running average:
-   $$B_k = \frac{S_k}{k}$$
+
+$$
+B_k = \frac{S_k}{k}
+$$
+
 2. **Exact Solution via Poisson Process (Small $n$)**:
    The condition that runner $k$ wins decomposes via Poisson ballot theorems:
-   $$P_{n, k} = \frac{1}{k} \mathbb{E}\left[ R_{n-k}\left(\frac{S_k}{k}\right) \right]$$
+
+$$
+P_{n, k} = \frac{1}{k} \mathbb{E}\left[ R_{n-k}\left(\frac{S_k}{k}\right) \right]
+$$
+
    where $R_m(y) = e^{-m y} \sum_{j=0}^{m-1} a_j y^j$ is evaluated via a polynomial DP and Gamma moments.
 3. **Universal Asymptotic Expansion (Large $n$)**:
    In the continuous limit, the minimum running average of standard Brownian motion / Poisson processes yields:
-   $$E_n = \sqrt{\frac{\pi n}{2}} - \frac{1}{3} + \frac{1}{4\sqrt{2\pi n}} + O\left(\frac{1}{n}\right)$$
+
+$$
+E_n = \sqrt{\frac{\pi n}{2}} - \frac{1}{3} + \frac{1}{4\sqrt{2\pi n}} + O\left(\frac{1}{n}\right)
+$$
 
 ---
 
@@ -48,7 +62,10 @@ The $n$-dimensional simplex integral for $n = 10^6$ runners involves an intracta
 1. **Convergence Rate**:
    For $n = 10^6$, the error term $O(1/n) \approx 10^{-6}$, which is four orders of magnitude smaller than the requested 4 decimal places ($10^{-4}$).
 2. **Instant Closed-Form Evaluation**:
-   $$E_{1000000} = \sqrt{\frac{10^6 \pi}{2}} - \frac{1}{3} + \frac{1}{4\sqrt{2 \times 10^6 \pi}} \approx 1252.9809$$
+
+$$
+E_{1000000} = \sqrt{\frac{10^6 \pi}{2}} - \frac{1}{3} + \frac{1}{4\sqrt{2 \times 10^6 \pi}} \approx 1252.9809
+$$
 
 ---
 

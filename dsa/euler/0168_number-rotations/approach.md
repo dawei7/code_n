@@ -7,10 +7,16 @@ It can be verified that $714285 = 5 \times 142857$.
 This demonstrates an unusual property where the right-rotation of a number is an integer multiple of the original number.
 
 We seek all integers $N$ ($10 < N < 10^{100}$) such that the right-rotation of $N$ is a multiple of $N$:
-$$N' = k \cdot N \quad \text{for integer } k \in \{1, 2, \dots, 9\}$$
+
+$$
+N' = k \cdot N \quad \text{for integer } k \in \{1, 2, \dots, 9\}
+$$
 
 The objective is to find the **last 5 digits of the sum of all such integers $N$**:
-$$S_{\text{rotations}} \equiv \sum N \pmod{10^5}$$
+
+$$
+S_{\text{rotations}} \equiv \sum N \pmod{10^5}
+$$
 
 ---
 
@@ -28,13 +34,28 @@ def naive_number_rotations():
 1. **Decomposing $N$:**
    Let $N$ be an $L$-digit integer ($2 \le L \le 100$) ending in last digit $d \in \{1, 2, \dots, 9\}$.
    We can express $N$ as:
-   $$N = 10 A + d \quad \text{where } 10^{L-2} \le A < 10^{L-1}$$
+
+$$
+N = 10 A + d \quad \text{where } 10^{L-2} \le A < 10^{L-1}
+$$
+
 2. **Right-Rotation Formula:**
    Moving the last digit $d$ to the front gives:
-   $$N' = d \cdot 10^{L-1} + A$$
+
+$$
+N' = d \cdot 10^{L-1} + A
+$$
+
 3. **Solving for Prefix $A$:**
-   $$d \cdot 10^{L-1} + A = k (10 A + d)$$
-   $$d(10^{L-1} - k) = A(10 k - 1) \implies A = \frac{d(10^{L-1} - k)}{10 k - 1}$$
+
+$$
+d \cdot 10^{L-1} + A = k (10 A + d)
+$$
+
+$$
+d(10^{L-1} - k) = A(10 k - 1) \implies A = \frac{d(10^{L-1} - k)}{10 k - 1}
+$$
+
 4. **Validity Criteria:**
    - $A$ must be an integer: $(10 k - 1) \mid d (10^{L-1} - k)$.
    - $A$ must have exactly $L-1$ digits: $10^{L-2} \le A < 10^{L-1}$.
@@ -78,7 +99,10 @@ for L in range(2, 101):
                     total_sum = (total_sum + N) % 100000
 ```
 Summing all valid rotation multiples yields last 5 digits:
-$$\mathbf{"59986"}$$
+
+$$
+\mathbf{"59986"}
+$$
 
 ---
 
@@ -95,7 +119,10 @@ $$\mathbf{"59986"}$$
 
 ### Example 2: Target Evaluation for $L \le 100$
 - Summing all valid numbers modulo $10^5$:
-  $$\text{Last 5 Digits} = \mathbf{"59986"}$$
+
+$$
+\text{Last 5 Digits} = \mathbf{"59986"}
+$$
 
 ---
 

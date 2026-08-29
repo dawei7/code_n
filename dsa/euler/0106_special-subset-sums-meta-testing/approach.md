@@ -19,7 +19,10 @@ If we already know that Property 2 is satisfied:
 For $n = 7$, only $70$ out of $966$ pairs need testing.
 
 The objective is to find how many of the $261\,625$ subset pairs need to be tested for **$n = 12$**:
-$$N_{\text{tests}}(12) = \sum_{k=2}^6 \binom{12}{2k} \cdot \left( \frac{1}{2} \binom{2k}{k} - C_k \right)$$
+
+$$
+N_{\text{tests}}(12) = \sum_{k=2}^6 \binom{12}{2k} \cdot \left( \frac{1}{2} \binom{2k}{k} - C_k \right)
+$$
 
 ---
 
@@ -37,9 +40,17 @@ def naive_meta_testing():
 1. Only disjoint subset pairs $(B, C)$ of equal cardinality $|B| = |C| = k \ge 2$ can possibly have equal sums without violating Property 2.
 2. For any chosen $2k$ elements, the total number of unordered pairs of size $k$ is $\frac{1}{2} \binom{2k}{k}$.
 3. When elements of $B$ and $C$ are sorted, $B$ strictly dominates $C$ element-wise ($b_i < c_i$ for all $i$) if and only if the sequence of set memberships forms a valid **Dyck path**, counted by the **Catalan number**:
-   $$C_k = \frac{1}{k+1} \binom{2k}{k}$$
+
+$$
+C_k = \frac{1}{k+1} \binom{2k}{k}
+$$
+
 4. The number of non-dominant pairs needing testing among $2k$ elements is:
-   $$\text{Pairs}(k) = \frac{1}{2} \binom{2k}{k} - C_k = \binom{2k}{k} \frac{k - 1}{2(k + 1)}$$
+
+$$
+\text{Pairs}(k) = \frac{1}{2} \binom{2k}{k} - C_k = \binom{2k}{k} \frac{k - 1}{2(k + 1)}
+$$
+
 5. Multiplying by $\binom{n}{2k}$ and summing for $k = 2 \dots \lfloor n/2 \rfloor$ computes the exact result in $\mathcal{O}(n)$ time ($\approx 0.0000$ seconds).
 
 ---
@@ -63,10 +74,16 @@ def naive_meta_testing():
 
 ### Closed-Form Combinatorial Pipeline
 For $n = 12$:
-$$N_{\text{tests}}(12) = \sum_{k=2}^6 \binom{12}{2k} \left[ \frac{1}{2} \binom{2k}{k} - \frac{1}{k+1} \binom{2k}{k} \right] = \sum_{k=2}^6 \binom{12}{2k} \binom{2k}{k} \frac{k - 1}{2(k + 1)}$$
+
+$$
+N_{\text{tests}}(12) = \sum_{k=2}^6 \binom{12}{2k} \left[ \frac{1}{2} \binom{2k}{k} - \frac{1}{k+1} \binom{2k}{k} \right] = \sum_{k=2}^6 \binom{12}{2k} \binom{2k}{k} \frac{k - 1}{2(k + 1)}
+$$
 
 Summing each component:
-$$N_{\text{tests}}(12) = 495 + 4620 + 10395 + 5544 + 330 = \mathbf{21\,384}$$
+
+$$
+N_{\text{tests}}(12) = 495 + 4620 + 10395 + 5544 + 330 = \mathbf{21\,384}
+$$
 
 ---
 
@@ -82,7 +99,10 @@ $$N_{\text{tests}}(12) = 495 + 4620 + 10395 + 5544 + 330 = \mathbf{21\,384}$$
 
 ### Example 3: Target Evaluation for $n = 12$
 - Summing for $k = 2 \dots 6$:
-  $$N_{\text{tests}}(12) = \mathbf{21\,384}$$
+
+$$
+N_{\text{tests}}(12) = \mathbf{21\,384}
+$$
 
 ---
 

@@ -22,7 +22,11 @@ $$
 ## 2. Character Theory of $Q_8$ & Exact Counting Formula
 
 The group $Q_8$ has $5$ conjugacy classes:
-$$\{1\}, \quad \{-1\}, \quad \{\pm i\}, \quad \{\pm j\}, \quad \{\pm k\}$$
+
+$$
+\{1\}, \quad \{-1\}, \quad \{\pm i\}, \quad \{\pm j\}, \quad \{\pm k\}
+$$
+
 and $5$ irreducible representations:
 - 4 one-dimensional representations $\chi_0, \chi_1, \chi_2, \chi_3$ (the Klein 4-group quotient $Q_8 / \{\pm 1\} \cong V_4$),
 - 1 two-dimensional representation $\rho$ with character $\chi_4$.

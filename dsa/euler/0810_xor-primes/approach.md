@@ -26,7 +26,11 @@ Testing irreducibility for each polynomial up to degree 27 by checking divisibil
 ### Polynomial Sieve with Gray-Code Traversal
 1. **Degree Estimation via Gauss Formula**:
    The number of monic irreducible polynomials of degree $d$ in $\mathbb{F}_2[x]$ is:
-   $$N(d) = \frac{1}{d} \sum_{k \mid d} \mu(k) 2^{d/k}$$
+
+$$
+N(d) = \frac{1}{d} \sum_{k \mid d} \mu(k) 2^{d/k}
+$$
+
    Summing $N(d)$ shows that the $5\,000\,000$th XOR-prime has degree 26 (binary bit length 27).
 2. **Odd Polynomial Representation**:
    All irreducible polynomials $> 2$ (except $x$, encoded as 2) must have non-zero constant term (i.e. are odd numbers $2k + 1$).
@@ -41,7 +45,11 @@ Testing irreducibility for each polynomial up to degree 27 by checking divisibil
 
 ### High-Throughput Bit-Parallel Sieve
 1. **Single-Operation Product Updates**:
-   $$\text{product}_{n+1} = \text{product}_n \oplus (P \ll (\text{ctz}(n) + 1))$$
+
+$$
+\text{product}_{n+1} = \text{product}_n \oplus (P \ll (\text{ctz}(n) + 1))
+$$
+
    eliminates full multiplication loops, reducing composite marking to a single CPU instruction and cache write.
 2. **Execution Performance**:
    - Compiled C kernel (`xor_primes.dll`): **$\approx 0.55$ seconds**!

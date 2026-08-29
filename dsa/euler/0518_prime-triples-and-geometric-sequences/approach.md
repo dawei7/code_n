@@ -11,7 +11,10 @@ We are given:
 - $S(100) = 1035$
 
 We seek to evaluate:
-$$S(10^8)$$
+
+$$
+S(10^8)
+$$
 
 ---
 
@@ -27,14 +30,22 @@ There are $\pi(10^8) \approx 5.76 \times 10^6$ primes below $10^8$. Checking all
 ### Rational Common Ratio Parameterization
 1. **Geometric Progression Representation**:
    Since $a + 1, b + 1, c + 1$ are integers in geometric progression with common ratio $r > 1$, $r$ must be rational:
-   $$r = \frac{v}{u}, \quad \text{where } \gcd(u, v) = 1 \text{ and } 1 \le u < v$$
+
+$$
+r = \frac{v}{u}, \quad \text{where } \gcd(u, v) = 1 \text{ and } 1 \le u < v
+$$
+
 2. **Primitive Scaling Multiplier**:
    Every geometric progression of integers of length 3 can be expressed as:
-   $$\begin{aligned}
+
+$$
+\begin{aligned}
    a + 1 &= k u^2 \\
    b + 1 &= k u v \\
    c + 1 &= k v^2
-   \end{aligned}$$
+\end{aligned}
+$$
+
    for some positive integer $k \ge 1$.
 
 ---

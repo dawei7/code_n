@@ -4,16 +4,28 @@
 
 Let $\mathcal{N} = \{ S_1, S_2, \dots, S_N \}$ denote a set of $N = 5163$ first names written in uppercase Latin letters.
 Let $\pi$ be the permutation that sorts $\mathcal{N}$ in strict lexicographical (alphabetical) order:
-$$S_{\pi(1)} <_{\text{lex}} S_{\pi(2)} <_{\text{lex}} \dots <_{\text{lex}} S_{\pi(N)}$$
+
+$$
+S_{\pi(1)} <_{\text{lex}} S_{\pi(2)} <_{\text{lex}} \dots <_{\text{lex}} S_{\pi(N)}
+$$
 
 For any name string $S$, define its alphabetical value $V(S)$ as the sum of the alphabetical positions of its letters:
-$$V(S) = \sum_{i=1}^{|S|} (\operatorname{ord}(S[i]) - 64) \quad \text{where } \text{A} = 1, \dots, \text{Z} = 26$$
+
+$$
+V(S) = \sum_{i=1}^{|S|} (\operatorname{ord}(S[i]) - 64) \quad \text{where } \text{A} = 1, \dots, \text{Z} = 26
+$$
 
 The **name score** of the $k$-th sorted name $S_{\pi(k)}$ is the product of its 1-based rank $k$ and its alphabetical value:
-$$\operatorname{Score}(k) = k \cdot V(S_{\pi(k)})$$
+
+$$
+\operatorname{Score}(k) = k \cdot V(S_{\pi(k)})
+$$
 
 The objective is to compute the total sum of all name scores in the dataset:
-$$\text{TotalScore} = \sum_{k=1}^N k \cdot V(S_{\pi(k)})$$
+
+$$
+\text{TotalScore} = \sum_{k=1}^N k \cdot V(S_{\pi(k)})
+$$
 
 ---
 
@@ -49,7 +61,11 @@ A naive approach calculates letter values without sorting or using an incorrect 
 1. Parse the comma-separated text into individual strings, stripping enclosing quotation marks.
 2. Sort the array of $5163$ names in alphabetical order using standard lexicographical comparison.
 3. For each name $S_k$ at 1-based index $k \in [1, 5163]$:
-   $$\text{Score}(k) = k \sum_{c \in S_k} (\operatorname{ord}(c) - 64)$$
+
+$$
+\text{Score}(k) = k \sum_{c \in S_k} (\operatorname{ord}(c) - 64)
+$$
+
 4. Accumulate all scores into the exact total integer $\text{TotalScore}$.
 
 ---
@@ -66,11 +82,17 @@ A naive approach calculates letter values without sorting or using an incorrect 
   - $\text{N} = 14$
   - Value: $V(\text{"COLIN"}) = 3 + 15 + 12 + 9 + 14 = 53$.
 - Name score:
-  $$\operatorname{Score}(938) = 938 \times 53 = \mathbf{49\,714} \quad \checkmark$$
+
+$$
+\operatorname{Score}(938) = 938 \times 53 = \mathbf{49\,714} \quad \checkmark
+$$
 
 ### Example 2: Total Dataset Evaluation ($N = 5163$)
 Accumulating across all $5163$ sorted names:
-$$\text{TotalScore} = \mathbf{871\,198\,282}$$
+
+$$
+\text{TotalScore} = \mathbf{871\,198\,282}
+$$
 
 ---
 

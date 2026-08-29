@@ -9,7 +9,11 @@ For example, $16$ can be written as `XVI` (3 chars), `XIIIIII` (7 chars), or `VV
 Let $\{s_1, s_2, \dots, s_{1000}\}$ be the 1000 valid Roman numeral strings given in `roman.txt`.
 
 The objective is to find the **number of characters saved** by writing each of the 1000 Roman numerals in its minimal canonical form:
-$$\Delta_{\text{chars}} = \sum_{i=1}^{1000} \left( |s_i| - |s_i^*| \right)$$
+
+$$
+\Delta_{\text{chars}} = \sum_{i=1}^{1000} \left( |s_i| - |s_i^*| \right)
+$$
+
 where $s_i^*$ is the minimal canonical form of $s_i$.
 
 ---
@@ -55,11 +59,23 @@ def naive_roman_numerals():
 
 ### Regex Length Difference Pipeline
 1. Compile the regular expression:
-   $$\mathcal{P} = \text{r"VIIII|IIII|LXXXX|XXXX|DCCCC|CCCC"}$$
+
+$$
+\mathcal{P} = \text{r"VIIII|IIII|LXXXX|XXXX|DCCCC|CCCC"}
+$$
+
 2. Compute total original characters:
-   $$L_{\text{orig}} = \sum_{i=1}^{1000} \operatorname{len}(s_i)$$
+
+$$
+L_{\text{orig}} = \sum_{i=1}^{1000} \operatorname{len}(s_i)
+$$
+
 3. Compute total simplified characters:
-   $$L_{\text{min}} = \sum_{i=1}^{1000} \operatorname{len}(\mathcal{P}.\operatorname{sub}(\text{"XX"}, s_i))$$
+
+$$
+L_{\text{min}} = \sum_{i=1}^{1000} \operatorname{len}(\mathcal{P}.\operatorname{sub}(\text{"XX"}, s_i))
+$$
+
 4. Return $L_{\text{orig}} - L_{\text{min}}$.
 
 ---
@@ -75,7 +91,10 @@ def naive_roman_numerals():
 
 ### Example 2: Target Evaluation across 1000 Numerals
 - Processing all lines in `roman.txt`:
-  $$\Delta_{\text{chars}} = \mathbf{743}$$
+
+$$
+\Delta_{\text{chars}} = \mathbf{743}
+$$
 
 ---
 

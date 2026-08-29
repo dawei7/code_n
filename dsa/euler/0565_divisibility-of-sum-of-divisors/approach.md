@@ -11,7 +11,10 @@ We are given:
 - $S(10^9, 2017) = 249652238344557$
 
 We seek to evaluate:
-$$S(10^{11}, 2017)$$
+
+$$
+S(10^{11}, 2017)
+$$
 
 ---
 
@@ -35,7 +38,10 @@ Evaluating $\sigma(i) \bmod 2017$ across all $10^{11}$ integers would take days 
    This occurs when the order of $p$ modulo $2017$ divides $e + 1$. Since $p^e \le 10^{11}$, $p \le \sqrt{10^{11}} \approx 316227$.
 4. **Inclusion-Exclusion on Independent Triggers**:
    Any multiple of a trigger $q$ has form $m \cdot q$ where $p \nmid m$. The sum of such multiples is evaluated in $O(1)$ via triangular numbers:
-   $$\text{Sum}(q) = q \left( T(\lfloor N/q \rfloor) - p T(\lfloor N / qp \rfloor) \right)$$
+
+$$
+\text{Sum}(q) = q \left( T(\lfloor N/q \rfloor) - p T(\lfloor N / qp \rfloor) \right)
+$$
 
 ---
 

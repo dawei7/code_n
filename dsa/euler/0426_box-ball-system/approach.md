@@ -5,14 +5,20 @@
 A Box-Ball System (BBS) consists of an infinite 1D lattice of boxes with balls moving one turn at a time: each ball jumps to the nearest empty box to its right.
 The system is integrable and eventually decomposes into a stationary state of non-interacting solitons (consecutive blocks of balls).
 Given the initial configuration $(t_0, t_1, \dots, t_{10\,000\,000})$ where:
-$$s_0 = 290797, \quad s_{k+1} = s_k^2 \bmod 50515093, \quad t_k = (s_k \bmod 64) + 1$$
+
+$$
+s_0 = 290797, \quad s_{k+1} = s_k^2 \bmod 50515093, \quad t_k = (s_k \bmod 64) + 1
+$$
 
 We are given:
 - $(2, 2, 2, 1, 2) \to [1, 2, 3] \implies 1^2 + 2^2 + 3^2 = 14$
 - $(t_0, \dots, t_{10}) \to [1, 3, 10, 24, 51, 75] \implies 8272$
 
 We seek the sum of squares of the final state elements for $10^7$ runs:
-$$\sum_{x \in \text{final\_state}} x^2$$
+
+$$
+\sum_{x \in \text{final\_state}} x^2
+$$
 
 ---
 

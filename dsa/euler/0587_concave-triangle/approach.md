@@ -4,7 +4,11 @@
 
 In an $n$-circle horizontal configuration of unit radius $R = 1$, a rectangle of dimension $2n \times 2$ encloses the circles.
 The bottom-left corner region bounded by $x=0, y=0$, and the circular arc $(x-1)^2 + (y-1)^2 = 1$ is the L-section of area:
-$$\text{Area}_L = 1 - \frac{\pi}{4}$$
+
+$$
+\text{Area}_L = 1 - \frac{\pi}{4}
+$$
+
 A diagonal line $y = \frac{x}{n}$ intersects the bottom circle arc at $x_0$.
 The orange concave triangle is bounded by the $x$-axis, the line $y = x/n$, and the circle arc.
 
@@ -14,7 +18,10 @@ We are given:
 - For $n = 15$: Ratio $< 0.10$ (10%)
 
 We seek to evaluate:
-$$\text{The least } n \text{ such that Ratio}(n) < 0.001 \ (0.1\%)$$
+
+$$
+\text{The least } n \text{ such that Ratio}(n) < 0.001 \ (0.1\%)
+$$
 
 ---
 
@@ -30,14 +37,29 @@ Numerical pixel sampling or Monte Carlo ray-tracing fails to achieve the machine
 ### Exact Circle-Line Intersection & Calculus
 1. **Intersection Coordinate**:
    Setting $(x - 1)^2 + (x/n - 1)^2 = 1$ gives the smaller root:
-   $$x_0 = \frac{n(n + 1) - n \sqrt{2n}}{n^2 + 1}$$
+
+$$
+x_0 = \frac{n(n + 1) - n \sqrt{2n}}{n^2 + 1}
+$$
+
 2. **Triangular Area**:
-   $$\text{Area}_{\text{tri}} = \int_0^{x_0} \frac{x}{n} \, dx = \frac{x_0^2}{2n}$$
+
+$$
+\text{Area}_{\text{tri}} = \int_0^{x_0} \frac{x}{n} \, dx = \frac{x_0^2}{2n}
+$$
+
 3. **Circular Arc Area**:
    With $t = 1 - x_0$:
-   $$\text{Area}_{\text{circ}} = \int_{x_0}^1 \left(1 - \sqrt{1 - (x-1)^2}\right) dx = t - \frac{1}{2}\left( t \sqrt{1 - t^2} + \arcsin(t) \right)$$
+
+$$
+\text{Area}_{\text{circ}} = \int_{x_0}^1 \left(1 - \sqrt{1 - (x-1)^2}\right) dx = t - \frac{1}{2}\left( t \sqrt{1 - t^2} + \arcsin(t) \right)
+$$
+
 4. **Exact Ratio**:
-   $$\text{Ratio}(n) = \frac{\text{Area}_{\text{tri}} + \text{Area}_{\text{circ}}}{1 - \pi/4}$$
+
+$$
+\text{Ratio}(n) = \frac{\text{Area}_{\text{tri}} + \text{Area}_{\text{circ}}}{1 - \pi/4}
+$$
 
 ---
 

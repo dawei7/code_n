@@ -5,12 +5,19 @@
 Three points $P_1, P_2, P_3$ are chosen uniformly and independently at random within the unit square $[0, 1]^2$.
 Form the three axis-aligned rectangles with diagonal segments $\overline{P_1P_2}, \overline{P_1P_3}, \overline{P_2P_3}$.
 Their areas are:
-$$A_{12} = |X_1 - X_2| \cdot |Y_1 - Y_2|, \quad A_{13} = |X_1 - X_3| \cdot |Y_1 - Y_3|, \quad A_{23} = |X_2 - X_3| \cdot |Y_2 - Y_3|$$
+
+$$
+A_{12} = |X_1 - X_2| \cdot |Y_1 - Y_2|, \quad A_{13} = |X_1 - X_3| \cdot |Y_1 - Y_3|, \quad A_{23} = |X_2 - X_3| \cdot |Y_2 - Y_3|
+$$
 
 Let $M$ denote the second largest (median) of the three rectangle areas $\{A_{12}, A_{13}, A_{23}\}$.
 
 We seek to evaluate the expected value:
-$$E[M]$$
+
+$$
+E[M]
+$$
+
 rounded to 10 decimal places.
 
 ---
@@ -34,7 +41,11 @@ A 6-dimensional uniform integral requires $> 10^{20}$ samples to reach 10 decima
    Each $\Delta Y_{ij}$ is $r$ times one of $\{u, 1-u, 1\}$ depending on the relative $y$-permutation of the three points.
 3. **Linearity & Span Expectation**:
    By scale invariance of the median:
-   $$E[M] = E[s] \cdot E[r] \cdot E[\text{median}(t f_{12}, (1-t) f_{23}, f_{13})]$$
+
+$$
+E[M] = E[s] \cdot E[r] \cdot E[\text{median}(t f_{12}, (1-t) f_{23}, f_{13})]
+$$
+
    For 3 uniform points on $[0, 1]$, the expected span is $E[s] = E[r] = \frac{1}{2}$, so $E[s] E[r] = \frac{1}{4}$.
 4. **Exact $t$-Integration**:
    For fixed $u$ and $y$-permutation, the three area functions $t f_{12}, (1-t) f_{23}, f_{13}$ are linear in $t$.

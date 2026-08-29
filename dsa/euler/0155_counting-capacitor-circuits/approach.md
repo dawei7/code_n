@@ -14,7 +14,10 @@ Using up to $n$ identical capacitors, we can obtain various total capacitances:
 Let $D(n)$ denote the number of distinct total capacitance values we can obtain using **up to $n$ equal-capacitance capacitors**.
 
 The objective is to find **$D(18)$, the total number of distinct capacitance values achievable using up to $18$ capacitors**:
-$$D(18) = \left| \bigcup_{k=1}^{18} S_k \right|$$
+
+$$
+D(18) = \left| \bigcup_{k=1}^{18} S_k \right|
+$$
 
 ---
 
@@ -34,7 +37,11 @@ def naive_counting_circuits():
    Therefore, we only need to store canonical fractions $(p, q)$ where $p \ge q$, cutting the working set size by half!
 2. **Integer Fraction Dynamic Programming:**
    For $k = 2 \dots 18$, the set of new values $S_k$ is formed by taking all partitions $i + j = k$ ($1 \le i \le \lfloor k/2 \rfloor$) and combining each $(a_1/b_1) \in S_i$ with $(a_2/b_2) \in S_j$ in parallel:
-   $$\frac{n_1}{d_1} + \frac{n_2}{d_2} = \frac{n_1 d_2 + n_2 d_1}{d_1 d_2}$$
+
+$$
+\frac{n_1}{d_1} + \frac{n_2}{d_2} = \frac{n_1 d_2 + n_2 d_1}{d_1 d_2}
+$$
+
 3. After generating all $S_1 \dots S_{18}$, taking the union of all fractions and their reciprocals evaluates $D(18)$ in $\approx 4.5$ seconds.
 
 ---
@@ -62,7 +69,11 @@ def naive_counting_circuits():
    - For $i = 1 \dots \lfloor k/2 \rfloor$ and $j = k - i$:
      - For each $(a_1, b_1) \in S[i]$ and $(a_2, b_2) \in S[j]$:
        - Evaluate parallel sums for all 4 reciprocal orientations:
-         $$\frac{n_1}{d_1} + \frac{n_2}{d_2} = \frac{n_1 d_2 + n_2 d_1}{d_1 d_2}$$
+
+$$
+\frac{n_1}{d_1} + \frac{n_2}{d_2} = \frac{n_1 d_2 + n_2 d_1}{d_1 d_2}
+$$
+
        - Reduce numerator and denominator by $\gcd$.
        - Store normalized $(p, q)$ with $p \ge q$ in $S[k]$.
 3. Union all $S[1] \dots S[18]$, adding both $(p, q)$ and $(q, p)$.
@@ -81,12 +92,19 @@ def naive_counting_circuits():
   - Series reciprocal of $(1/1) + (2/1)$ is $(1/3) \implies (3, 1)$.
   - Parallel with $(2/1)$ and series: yields $(4/3)$.
 - Union $S_1 \cup S_2 \cup S_3$ with reciprocals:
-  $$\{1, 2, 1/2, 3, 1/3, 3/2, 2/3, 4/3, 3/4\} \implies D(3) = \mathbf{7}$$
+
+$$
+\{1, 2, 1/2, 3, 1/3, 3/2, 2/3, 4/3, 3/4\} \implies D(3) = \mathbf{7}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $n = 18$
 - Running full DP union over all partitions up to $k = 18$:
-  $$D(18) = \mathbf{3\,857\,447}$$
+
+$$
+D(18) = \mathbf{3\,857\,447}
+$$
 
 ---
 

@@ -13,7 +13,10 @@ We are given:
 - $P_6(2) = \frac{368}{1323} \implies M_6(2) = 486864$
 
 We seek to evaluate:
-$$\text{The last 8 digits of } M_{10^8+7}(10^4+7)$$
+
+$$
+\text{The last 8 digits of } M_{10^8+7}(10^4+7)
+$$
 
 ---
 
@@ -32,10 +35,17 @@ For $n = 10^8 + 7$, constructing or solving a transition matrix with $10^8$ stat
    Player $i+1$ wins the entire tournament at round $t$ if and only if round $t-1$ is won by player $i+1$ and round $t$ is won by player $i+1$, corresponding to the pattern $(X_{t-1}, X_t) = (1, 0)$.
 2. **First Occurrence Distribution**:
    The probability that the first $(1, 0)$ occurs at round $m \ge 2$ is:
-   $$P(T = m) = \frac{m - 1}{2^m}$$
+
+$$
+P(T = m) = \frac{m - 1}{2^m}
+$$
+
 3. **Player $k$ Winning Rounds**:
    Player $k$ wins on round $m$ whenever $m \equiv k \pmod n$ and $m \ge 2$:
-   $$P_n(k) = \sum_{j=0}^\infty \frac{k + jn - 1}{2^{k + jn}} = \frac{1}{2^k} \sum_{j=0}^\infty \frac{k - 1 + jn}{(2^n)^j}$$
+
+$$
+P_n(k) = \sum_{j=0}^\infty \frac{k + jn - 1}{2^{k + jn}} = \frac{1}{2^k} \sum_{j=0}^\infty \frac{k - 1 + jn}{(2^n)^j}
+$$
 
 ---
 
@@ -44,13 +54,24 @@ For $n = 10^8 + 7$, constructing or solving a transition matrix with $10^8$ stat
 ### Closed-Form Rational Formula ($O(1)$)
 1. **Geometric Series Summation**:
    Let $A = 2^n - 1$.
-   $$\sum_{j=0}^\infty \frac{1}{(2^n)^j} = \frac{2^n}{2^n - 1} = \frac{2^n}{A}, \quad \sum_{j=0}^\infty \frac{j}{(2^n)^j} = \frac{2^n}{(2^n - 1)^2} = \frac{2^n}{A^2}$$
+
+$$
+\sum_{j=0}^\infty \frac{1}{(2^n)^j} = \frac{2^n}{2^n - 1} = \frac{2^n}{A}, \quad \sum_{j=0}^\infty \frac{j}{(2^n)^j} = \frac{2^n}{(2^n - 1)^2} = \frac{2^n}{A^2}
+$$
+
    Substituting and simplifying gives:
-   $$P_n(k) = \frac{2^{n-k} \left( (k-1)(2^n - 1) + n \right)}{(2^n - 1)^2}$$
+
+$$
+P_n(k) = \frac{2^{n-k} \left( (k-1)(2^n - 1) + n \right)}{(2^n - 1)^2}
+$$
+
 2. **Reduced Fraction for Prime $n$**:
    For $n = 10^8 + 7$ (a prime), $\gcd(n, 2^n - 1) = 1$, so the fraction is already in lowest terms!
    Therefore:
-   $$M_n(k) \equiv \left( 2^{n-k} \cdot \left[ (k-1)(2^n - 1) + n \right] \right) \cdot (2^n - 1)^2 \pmod{10^8}$$
+
+$$
+M_n(k) \equiv \left( 2^{n-k} \cdot \left[ (k-1)(2^n - 1) + n \right] \right) \cdot (2^n - 1)^2 \pmod{10^8}
+$$
 
 This evaluates the last 8 digits in **$< 0.01$ seconds** via modular exponentiation in pure Python!
 

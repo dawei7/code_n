@@ -6,11 +6,18 @@ Let $A = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$ denote the ordered set of $N = 10$ de
 There are $N! = 10! = 3\,628\,800$ distinct permutations of $A$.
 
 Let $\pi_0, \pi_1, \dots, \pi_{N!-1}$ denote the sequence of all permutations sorted in strict lexicographical order:
-$$\pi_0 <_{\text{lex}} \pi_1 <_{\text{lex}} \dots <_{\text{lex}} \pi_{N!-1}$$
+
+$$
+\pi_0 <_{\text{lex}} \pi_1 <_{\text{lex}} \dots <_{\text{lex}} \pi_{N!-1}
+$$
+
 where $\pi_0 = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)$.
 
 The objective is to compute the $1\,000\,000$-th lexicographical permutation (which corresponds to 0-indexed rank $k = 999\,999$):
-$$\mathbf{P} = \pi_{999999}$$
+
+$$
+\mathbf{P} = \pi_{999999}
+$$
 
 ---
 
@@ -34,7 +41,11 @@ def naive_nth_perm(target):
 
 ### The Factorial Number System (Factoradix)
 Any integer rank $k \in [0, N! - 1]$ has a unique representation in the factorial number system:
-$$k = \sum_{i=0}^{N-1} d_i \cdot i! = d_{N-1}(N-1)! + d_{N-2}(N-2)! + \dots + d_1(1!) + d_0(0!)$$
+
+$$
+k = \sum_{i=0}^{N-1} d_i \cdot i! = d_{N-1}(N-1)! + d_{N-2}(N-2)! + \dots + d_1(1!) + d_0(0!)
+$$
+
 where each factoradix digit satisfies $0 \le d_i \le i$.
 
 ### Step-by-Step Factoradix Decomposition for $k = 999\,999$
@@ -59,9 +70,17 @@ where each factoradix digit satisfies $0 \le d_i \le i$.
 ### Factoradix Permutation Extraction Algorithm
 1. Start with the ordered pool of available digits $A = [0, 1, 2, \dots, 9]$ and 0-indexed rank $k = \text{target} - 1$.
 2. For each index $i$ from $N-1$ down to $0$:
-   $$d_i = \lfloor k / i! \rfloor, \quad k \leftarrow k \bmod i!$$
+
+$$
+d_i = \lfloor k / i! \rfloor, \quad k \leftarrow k \bmod i!
+$$
+
 3. Remove and append the element at index $d_i$ from $A$:
-   $$\text{selected} = A.\operatorname{pop}(d_i)$$
+
+$$
+\text{selected} = A.\operatorname{pop}(d_i)
+$$
+
 4. Concatenating the selected digits yields the exact lexicographical permutation.
 
 ---
@@ -76,7 +95,10 @@ where each factoradix digit satisfies $0 \le d_i \le i$.
 
 ### Example 2: Target Evaluation for 1,000,000th Permutation
 As traced in the table above:
-$$\mathbf{P} = \mathbf{2783915460}$$
+
+$$
+\mathbf{P} = \mathbf{2783915460}
+$$
 
 ---
 

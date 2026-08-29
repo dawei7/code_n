@@ -5,7 +5,10 @@
 Starting in the top-left vertex $(0, 0)$ of an $n \times n$ square grid ($n = 20$), with movement restricted strictly to right ($\text{R}$) and down ($\text{D}$), we seek the total number of distinct routes $L(n)$ to reach the bottom-right vertex $(n, n)$.
 
 Formally:
-$$L(n) = \left| \{ \mathbf{w} \in \{\text{R}, \text{D}\}^{2n} \mid \operatorname{count}(\text{R}) = n \land \operatorname{count}(\text{D}) = n \} \right|$$
+
+$$
+L(n) = \left| \{ \mathbf{w} \in \{\text{R}, \text{D}\}^{2n} \mid \operatorname{count}(\text{R}) = n \land \operatorname{count}(\text{D}) = n \} \right|
+$$
 
 ---
 
@@ -35,7 +38,10 @@ def naive_paths(x, y, n):
 
 Every valid path in an $n \times n$ grid consists of exactly $n$ horizontal moves ($\text{R}$) and $n$ vertical moves ($\text{D}$).
 The total length of the sequence is fixed at:
-$$2n = n + n \text{ steps}$$
+
+$$
+2n = n + n \text{ steps}
+$$
 
 Choosing which $n$ positions in the $2n$-step sequence are down moves ($\text{D}$) uniquely determines the path.
 
@@ -55,11 +61,17 @@ Choosing which $n$ positions in the $2n$-step sequence are down moves ($\text{D}
 
 ### Central Binomial Theorem
 By bijection with binary strings of length $2n$ having Hamming weight $n$:
-$$L(n) = \binom{2n}{n} = \frac{(2n)!}{(n!)^2}$$
+
+$$
+L(n) = \binom{2n}{n} = \frac{(2n)!}{(n!)^2}
+$$
 
 ### Product Formulation
 To compute the binomial coefficient without evaluating large factorial products directly:
-$$L(n) = \prod_{k=1}^n \frac{n + k}{k}$$
+
+$$
+L(n) = \prod_{k=1}^n \frac{n + k}{k}
+$$
 
 Each intermediate division by $k$ is exact in integer arithmetic.
 
@@ -70,12 +82,19 @@ Each intermediate division by $k$ is exact in integer arithmetic.
 ### Example 1: Evaluation for $2 \times 2$ Grid ($n = 2$)
 - Total steps: $2 \times 2 = 4$.
 - Number of routes:
-  $$\binom{4}{2} = \frac{4 \times 3}{2 \times 1} = \mathbf{6}$$
+
+$$
+\binom{4}{2} = \frac{4 \times 3}{2 \times 1} = \mathbf{6}
+$$
+
 - The 6 valid sequences are: $\text{RRDD}, \text{RDRD}, \text{RDDR}, \text{DRRD}, \text{DRDR}, \text{DDRR}$. Matches sample! $\checkmark$
 
 ### Example 2: Exact Target Evaluation for $20 \times 20$ Grid ($n = 20$)
 - Evaluating $\binom{40}{20}$:
-  $$L(20) = \frac{40 \times 39 \times 38 \times \dots \times 21}{20 \times 19 \times 18 \times \dots \times 1} = \mathbf{137\,846\,528\,820}$$
+
+$$
+L(20) = \frac{40 \times 39 \times 38 \times \dots \times 21}{20 \times 19 \times 18 \times \dots \times 1} = \mathbf{137\,846\,528\,820}
+$$
 
 ---
 

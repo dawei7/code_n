@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer with $k$ decimal digits is called **balanced** if its first $\lceil k/2 \rceil$ digits and its last $\lceil k/2 \rceil$ digits have the same sum:
-$$\sum_{i=1}^{\lceil k/2 \rceil} d_i = \sum_{i=k - \lceil k/2 \rceil + 1}^k d_i$$
+
+$$
+\sum_{i=1}^{\lceil k/2 \rceil} d_i = \sum_{i=k - \lceil k/2 \rceil + 1}^k d_i
+$$
 
 For example:
 - All single digit numbers are balanced: $1, 2, \dots, 9$ (so $T(1) = \sum_{d=1}^9 d = 45$).
@@ -11,7 +14,9 @@ For example:
 - $T(5) = 48\,114$.
 - $T(47) \bmod 3^{15}$: Find the sum of all balanced numbers less than $10^{47}$, modulo $3^{15} = 14\,348\,907$.
 
-$$T_{47} = T(47) \bmod 3^{15}$$
+$$
+T_{47} = T(47) \bmod 3^{15}
+$$
 
 ---
 
@@ -33,7 +38,11 @@ def naive_balanced_numbers():
    For $L \in [1, 24]$ and digit sum $s \in [0, 9L]$:
    - $\text{count}[L][s][a]$: number of $L$-digit combinations with sum $s$ ($a = 0$ forbids leading zero, $a = 1$ allows).
    - $\text{val\_sum}[L][s][a]$: sum of the numerical values of these combinations modulo $3^{15}$.
-   $$\text{val\_sum}[L][s][a] = \sum_{d = \min\_d}^9 \left( d \cdot 10^{L-1} \cdot \text{count}[L-1][s-d][1] + \text{val\_sum}[L-1][s-d][1] \right)$$
+
+$$
+\text{val\_sum}[L][s][a] = \sum_{d = \min\_d}^9 \left( d \cdot 10^{L-1} \cdot \text{count}[L-1][s-d][1] + \text{val\_sum}[L-1][s-d][1] \right)
+$$
+
 3. **Block Composition:**
    - Even $k = 2m$: $\text{Total} = \sum_s \left( \text{val}_A \cdot 10^m \cdot \text{cnt}_B + \text{val}_B \cdot \text{cnt}_A \right) \bmod 3^{15}$.
    - Odd $k = 2m - 1$: $\text{Total} = \sum_s \left( 10 \cdot (\text{val}_A \cdot 10^m \cdot \text{cnt}_B + \text{val}_B \cdot \text{cnt}_A) + 45 \cdot 10^{m-1} \cdot \text{cnt}_A \cdot \text{cnt}_B \right) \bmod 3^{15}$.
@@ -89,7 +98,10 @@ def solve(n: int = 47, mod: int = 3**15) -> int:
     return total_ans
 ```
 Evaluating for $n = 47$:
-$$T(47) \bmod 3^{15} = \mathbf{6\,273\,134}$$
+
+$$
+T(47) \bmod 3^{15} = \mathbf{6\,273\,134}
+$$
 
 ---
 
@@ -103,7 +115,10 @@ $$T(47) \bmod 3^{15} = \mathbf{6\,273\,134}$$
 
 ### Example 2: Target Evaluation for $n = 47$ modulo $3^{15}$
 - Assemble lengths $k = 1 \dots 47$ modulo $14\,348\,907$:
-  $$T(47) \bmod 3^{15} = \mathbf{6\,273\,134}$$
+
+$$
+T(47) \bmod 3^{15} = \mathbf{6\,273\,134}
+$$
 
 ---
 

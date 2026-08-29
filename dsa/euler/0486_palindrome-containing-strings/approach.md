@@ -4,7 +4,10 @@
 
 Let $F_5(n)$ be the number of binary strings of length $\le n$ containing a palindromic substring of length $\ge 5$.
 Define $D(L)$ as the number of integers $n \in [5, L]$ such that:
-$$F_5(n) \equiv 0 \pmod{87\,654\,321}$$
+
+$$
+F_5(n) \equiv 0 \pmod{87\,654\,321}
+$$
 
 We are given:
 - $F_5(4) = 0, F_5(5) = 8, F_5(6) = 42, F_5(11) = 3844$
@@ -12,7 +15,10 @@ We are given:
 - $D(5 \times 10^9) = 51$
 
 We seek to evaluate:
-$$D(10^{18})$$
+
+$$
+D(10^{18})
+$$
 
 ---
 
@@ -31,10 +37,18 @@ Testing binary strings of length up to $10^{18}$ is physically impossible. Even 
 2. **Periodic Palindrome-Free Counts**:
    Let $A(n)$ be the number of binary strings of length $n$ containing no palindromic substring of length $5$ or $6$.
    A DFA on the 5-bit suffix proves that for $n \ge 7$, $A(n)$ is strictly periodic with period $6$:
-   $$[32, 32, 32, 34, 36, 34]$$
+
+$$
+[32, 32, 32, 34, 36, 34]
+$$
+
    with period sum $\sum_{i=0}^5 A_i = 200$.
 3. **Algebraic Form of $F_5(n)$**:
-   $$F_5(n) = (2^{n+1} - 1) - B(n)$$
+
+$$
+F_5(n) = (2^{n+1} - 1) - B(n)
+$$
+
    where $B(n) = 85 + 200q + \text{prefix}[r]$ for $n = 6q + r + 6$.
 
 ---
@@ -44,7 +58,11 @@ Testing binary strings of length up to $10^{18}$ is physically impossible. Even 
 ### Linear-Exponential Congruence & Chinese Remainder Resolution
 1. **Congruence Transformation**:
    $F_5(n) \equiv 0 \pmod M$ is equivalent to:
-   $$2^{r+7} \cdot 64^q \equiv 1 + 85 + \text{prefix}[r] + 200q \pmod M$$
+
+$$
+2^{r+7} \cdot 64^q \equiv 1 + 85 + \text{prefix}[r] + 200q \pmod M
+$$
+
    where $M = 87\,654\,321 = 9 \times 1997 \times 4877$.
 2. **Order of 64 Modulo $M$**:
    The multiplicative order of $64 \bmod M$ is $\text{ord}_M(64) = 1\,216\,562$.

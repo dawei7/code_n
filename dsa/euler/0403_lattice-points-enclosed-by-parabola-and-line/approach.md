@@ -11,7 +11,10 @@ We are given:
 - $S(5) = 344, S(100) = 26\,709\,528$.
 
 We seek to evaluate:
-$$S(10^{12}) \pmod{10^8}$$
+
+$$
+S(10^{12}) \pmod{10^8}
+$$
 
 ---
 
@@ -30,7 +33,11 @@ The area is $\frac{1}{6} (\sqrt{a^2 + 4b})^3$, which is rational if and only if 
 Then $x_1 = \frac{a-d}{2}$ and $x_2 = \frac{a+d}{2}$ are exact integers!
 
 Summing the vertical lattice counts:
-$$L(a, b) = \sum_{x=x_1}^{x_2} (ax + b - x^2 + 1) = \frac{d^3 + 5d + 6}{6} = g(d)$$
+
+$$
+L(a, b) = \sum_{x=x_1}^{x_2} (ax + b - x^2 + 1) = \frac{d^3 + 5d + 6}{6} = g(d)
+$$
+
 Remarkably, $L(a, b)$ depends **only on $d$**, completely invariant under horizontal translations $a$!
 
 ---
@@ -39,7 +46,11 @@ Remarkably, $L(a, b)$ depends **only on $d$**, completely invariant under horizo
 
 ### Hyperbolic Summation via Faulhaber Prefix Polynomials
 The bounds $|a| \le N, |b| \le N$ transform via $b = \frac{d^2 - a^2}{4}$ into the coordinate box constraints:
-$$(d - a)(d + a) \le 4N$$
+
+$$
+(d - a)(d + a) \le 4N
+$$
+
 Let $u = \frac{d - a}{2}, v = \frac{d + a}{2}$ (or $p = u, q = v$).
 The condition becomes $p \cdot q \le N$.
 

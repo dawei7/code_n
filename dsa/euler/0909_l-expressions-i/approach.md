@@ -27,7 +27,11 @@ Find the last nine digits of $S(S)(S(S))(S(S))(S(Z))(A)(0)$.
 ### Church Numeral & Operator Composition
 Let $T = S(S)$.
 For any functional terms $f, g$:
-$$T(f)(g) = (f \circ g)^2$$
+
+$$
+T(f)(g) = (f \circ g)^2
+$$
+
 On numerical Church representations, $T(k) = k(k + 1)$.
 On operators, $T$ acts as self-composition squaring.
 
@@ -37,7 +41,11 @@ On operators, $T$ acts as self-composition squaring.
 
 ### Hyper-Exponential Operator Tower
 The expression simplifies to:
-$$T(T)(T)(1)(A)(0) = T^4(1)(A)(0)$$
+
+$$
+T(T)(T)(1)(A)(0) = T^4(1)(A)(0)
+$$
+
 Iterating the Sylvester recurrence $x_{k+1} = x_k(x_k + 1)$ across the hyper-exponential tower modulo $10^9$ evaluates the last nine digits as $\mathbf{399885292}$.
 
 ---

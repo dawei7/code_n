@@ -29,13 +29,24 @@ For $k = 2020$ loops, $n \approx 7.5 \times 10^8$ coins. Simulating $7.5 \times 
 ### Harmonic Mass Center & Asymptotic Rotation Decomposition
 1. **Geometric Stability Invariant**:
    The total rotation decomposes analytically into:
-   $$S(n) = \alpha_n + \sum_{m=2}^{n-1} \beta(m)$$
+
+$$
+S(n) = \alpha_n + \sum_{m=2}^{n-1} \beta(m)
+$$
+
    where:
-   $$\alpha_n = \arccos\left(\frac{r_t}{2}\right), \quad \beta(m) = \arctan\left( \frac{\sqrt{1 - r_t^2/4}}{r_t (t + 1/2)} \right)$$
+
+$$
+\alpha_n = \arccos\left(\frac{r_t}{2}\right), \quad \beta(m) = \arctan\left( \frac{\sqrt{1 - r_t^2/4}}{r_t (t + 1/2)} \right)
+$$
+
    with $t = m - 1$ and $r_t = \sqrt{H_t / t}$, where $H_t$ is the $t$-th harmonic number.
 2. **Euler-Maclaurin Asymptotic Harmonic Expansion**:
    For $t > 500\,000$, $H_t$ is evaluated in $O(1)$ to 16 decimal places via:
-   $$H_t = \ln(t) + \gamma + \frac{1}{2t} - \frac{1}{12t^2} + \frac{1}{120t^4} - \frac{1}{252t^6} + \frac{1}{240t^8}$$
+
+$$
+H_t = \ln(t) + \gamma + \frac{1}{2t} - \frac{1}{12t^2} + \frac{1}{120t^4} - \frac{1}{252t^6} + \frac{1}{240t^8}
+$$
 
 ---
 
@@ -43,7 +54,11 @@ For $k = 2020$ loops, $n \approx 7.5 \times 10^8$ coins. Simulating $7.5 \times 
 
 ### Gauss-Legendre Quadrature in Logarithmic Coordinate Space
 1. **Integral Approximation**:
-   $$\sum_{m=M+1}^{n-1} \beta(m) \approx \int_{M+1}^{n-1} \beta(x) \, dx + \frac{\beta(M+1) + \beta(n-1)}{2}$$
+
+$$
+\sum_{m=M+1}^{n-1} \beta(m) \approx \int_{M+1}^{n-1} \beta(x) \, dx + \frac{\beta(M+1) + \beta(n-1)}{2}
+$$
+
 2. **Log-Space Quadrature Transformation**:
    Substituting $x = e^u, dx = e^u du$, the integrand $\beta(e^u) e^u$ is smooth and integrated using order-16 Gauss-Legendre quadrature across subdivisions of width $\Delta u = 0.5$.
 3. **Binary Search Convergence**:

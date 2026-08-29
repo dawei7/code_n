@@ -4,9 +4,16 @@
 
 There are $N = 20$ identical $S = 12$-sided dice with faces numbered $1$ to $12$.
 When all $20$ dice are rolled, the outcomes are sorted in non-increasing order:
-$$d_1 \ge d_2 \ge \dots \ge d_{10} \ge d_{11} \ge \dots \ge d_{20}$$
+
+$$
+d_1 \ge d_2 \ge \dots \ge d_{10} \ge d_{11} \ge \dots \ge d_{20}
+$$
+
 The top $K = 10$ dice sum to $T = 70$:
-$$\sum_{i=1}^{10} d_i = 70$$
+
+$$
+\sum_{i=1}^{10} d_i = 70
+$$
 
 Given sample:
 - For $5$ six-sided dice, there are $1111$ ways for the top $3$ dice to sum to $15$.
@@ -29,13 +36,21 @@ def naive_top_dice():
 ### Partitioning & Multinomial Coefficients
 1. **Top-$K$ Partition Generation:**
    Generate all non-increasing integer partitions $(x_1, x_2, \dots, x_{10})$ such that:
-   $$12 \ge x_1 \ge x_2 \ge \dots \ge x_{10} \ge 1, \quad \sum_{i=1}^{10} x_i = 70$$
+
+$$
+12 \ge x_1 \ge x_2 \ge \dots \ge x_{10} \ge 1, \quad \sum_{i=1}^{10} x_i = 70
+$$
+
 2. **Constrained Remaining Dice:**
    Let $m = x_{10}$ be the smallest face value among the top $10$ dice.
    The remaining $10$ dice $(d_{11}, \dots, d_{20})$ must take values in $\{1, 2, \dots, m\}$.
 3. **Multinomial Permutations of Complete Multiset:**
    For any combined frequency distribution $(F_1, F_2, \dots, F_{12})$ where $\sum F_v = 20$:
-   $$\text{Ways} = \frac{20!}{F_1! \, F_2! \dots F_{12}!}$$
+
+$$
+\text{Ways} = \frac{20!}{F_1! \, F_2! \dots F_{12}!}
+$$
+
    Summing across all valid frequency distributions yields the exact count in $< 0.05$ seconds.
 
 ---
@@ -51,7 +66,9 @@ def naive_top_dice():
 | **$(5, 5, 5)$** | $5$ | $(5, 5)$ | $F_5 = 5$ | $\frac{5!}{5!} = \mathbf{1}$ |
 | **$(5, 5, 5)$** | $5$ | $(5, 1)$ | $F_5 = 4, F_1 = 1$ | $\frac{5!}{4! \, 1!} = \mathbf{5}$ |
 
-$$\text{Sum of all configurations for sample} = \mathbf{1111} \quad (\checkmark)$$
+$$
+\text{Sum of all configurations for sample} = \mathbf{1111} \quad (\checkmark)
+$$
 
 ---
 
@@ -80,7 +97,10 @@ def solve(
 ```
 
 Evaluating for $N = 20, S = 12, K = 10, T = 70$:
-$$\text{Total Ways} = \mathbf{7\,448\,717\,393\,364\,181\,966}$$
+
+$$
+\text{Total Ways} = \mathbf{7\,448\,717\,393\,364\,181\,966}
+$$
 
 ---
 
@@ -89,13 +109,20 @@ $$\text{Total Ways} = \mathbf{7\,448\,717\,393\,364\,181\,966}$$
 ### Example 1: Sample Verification $(5, 6, 3, 15)$
 - Top 3 dice sum to 15 out of 5 six-sided dice.
 - Summing multinomial permutations of all valid multisets yields:
-  $$\text{Total Ways} = \mathbf{1111} \quad (\checkmark)$$
+
+$$
+\text{Total Ways} = \mathbf{1111} \quad (\checkmark)
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation $(20, 12, 10, 70)$
 - Partitioning top 10 dice summing to 70 with max face 12.
 - Aggregating multinomial ways across all non-increasing tails:
-  $$\text{Total Ways} = \mathbf{7\,448\,717\,393\,364\,181\,966}$$
+
+$$
+\text{Total Ways} = \mathbf{7\,448\,717\,393\,364\,181\,966}
+$$
 
 ---
 

@@ -12,7 +12,10 @@ We are given:
 - $S(100) = 3072$
 
 We seek to evaluate:
-$$S(10^9)$$
+
+$$
+S(10^9)
+$$
 
 ---
 
@@ -28,17 +31,24 @@ Iterating over all pairs $(r_A, r_B) \in [1, 10^9]^2$ and testing whether $\frac
 ### Descartes / Soddy Curvature Parameterization
 1. **Curvature Equation for Line-Tangent Circles**:
    Since a straight line has curvature zero ($\kappa = 0$), Descartes' circle theorem simplifies to:
-   $$\frac{1}{\sqrt{r_C}} = \frac{1}{\sqrt{r_A}} + \frac{1}{\sqrt{r_B}} \iff r_C = \frac{r_A r_B}{(\sqrt{r_A} + \sqrt{r_B})^2}$$
+
+$$
+\frac{1}{\sqrt{r_C}} = \frac{1}{\sqrt{r_A}} + \frac{1}{\sqrt{r_B}} \iff r_C = \frac{r_A r_B}{(\sqrt{r_A} + \sqrt{r_B})^2}
+$$
+
 2. **Rational Square Reduction**:
    For $r_C$ to be an integer, $\sqrt{r_A / r_B}$ must be rational.
    Let $\frac{\sqrt{r_A}}{\sqrt{r_B}} = \frac{u}{v}$ where $\gcd(u, v) = 1$ and $1 \le u \le v$.
 3. **Primitive Parameterization**:
    Every integer solution $(r_A, r_B, r_C)$ is parameterized by coprime integers $(u, v)$ and a scaling multiplier $k \ge 1$:
-   $$\begin{aligned}
+
+$$
+\begin{aligned}
    r_A &= k u^2 (u + v)^2 \\
    r_B &= k v^2 (u + v)^2 \\
    r_C &= k u^2 v^2
-   \end{aligned}$$
+\end{aligned}
+$$
 
 ---
 
@@ -46,12 +56,24 @@ Iterating over all pairs $(r_A, r_B) \in [1, 10^9]^2$ and testing whether $\frac
 
 ### Arithmetic Progressions over $(u, v)$ Pairs
 1. **Sum of Radii for Multiplier $k$**:
-   $$r_A + r_B + r_C = k \left( (u^2 + v^2)(u + v)^2 + u^2 v^2 \right)$$
+
+$$
+r_A + r_B + r_C = k \left( (u^2 + v^2)(u + v)^2 + u^2 v^2 \right)
+$$
+
 2. **Multiplier Bound $K$**:
    Since $r_B = k v^2 (u + v)^2 \le n$, the maximum multiplier is:
-   $$K(u, v) = \left\lfloor \frac{n}{v^2 (u + v)^2} \right\rfloor$$
+
+$$
+K(u, v) = \left\lfloor \frac{n}{v^2 (u + v)^2} \right\rfloor
+$$
+
 3. **Closed-Form Multiplier Summation**:
-   $$\sum_{k=1}^K (r_A + r_B + r_C) = \frac{K(K + 1)}{2} \cdot \left( (u^2 + v^2)(u + v)^2 + u^2 v^2 \right)$$
+
+$$
+\sum_{k=1}^K (r_A + r_B + r_C) = \frac{K(K + 1)}{2} \cdot \left( (u^2 + v^2)(u + v)^2 + u^2 v^2 \right)
+$$
+
 4. **Search Domain**:
    Since $v(u + v) \le \sqrt{n} \approx 31622$ with $u \ge 1$, we have $v \le 177$.
    There are only $\approx 15\,000$ pairs $(u, v)$ to evaluate!

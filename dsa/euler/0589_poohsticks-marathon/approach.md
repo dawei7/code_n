@@ -12,7 +12,10 @@ We are given:
 - $S(5) = \sum_{m=2}^5 \sum_{n=1}^{m-1} E(m, n) = 7722.82$
 
 We seek to evaluate:
-$$S(100) = \sum_{m=2}^{100} \sum_{n=1}^{m-1} E(m, n) \quad \text{rounded to 2 decimal places}$$
+
+$$
+S(100) = \sum_{m=2}^{100} \sum_{n=1}^{m-1} E(m, n) \quad \text{rounded to 2 decimal places}
+$$
 
 ---
 

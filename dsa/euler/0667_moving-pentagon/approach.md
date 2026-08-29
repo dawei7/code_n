@@ -27,7 +27,11 @@ Continuous collision checking with arbitrary non-convex rotations and translatio
    Let vertices be $A=(0,0), E=(1,0), C=(0.5, h)$ with diagonal $AC = CE = r$.
    Vertices $B$ and $D$ are uniquely determined by $AB = BC = 1$ and $ED = DC = 1$.
    The unit-side area is:
-   $$\text{BaseArea}(r) = 2 \cdot \text{Heron}(1, 1, r) + \text{Heron}(r, r, 1)$$
+
+$$
+\text{BaseArea}(r) = 2 \cdot \text{Heron}(1, 1, r) + \text{Heron}(r, r, 1)
+$$
+
 2. **Canonical Placement at Rotation Angle $\theta$**:
    At each angle $\theta \in [0, \pi/2]$, rotate the pentagon and shift it canonically so it simultaneously touches:
    - The bottom wall: $\min y = 0$

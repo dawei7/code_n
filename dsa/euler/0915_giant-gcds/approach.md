@@ -24,9 +24,16 @@ Find $T(10^8) \bmod 123456789$.
 
 ### Strong Divisibility Sequence
 The sequence $s(n)$ satisfies the strong divisibility property:
-$$\gcd(s(u), s(v)) = s(\gcd(u, v))$$
+
+$$
+\gcd(s(u), s(v)) = s(\gcd(u, v))
+$$
+
 Iterating this property over the nested composition yields:
-$$\gcd(s(s(a)), s(s(b))) = s(s(\gcd(a, b)))$$
+
+$$
+\gcd(s(s(a)), s(s(b))) = s(s(\gcd(a, b)))
+$$
 
 ---
 
@@ -35,7 +42,11 @@ $$\gcd(s(s(a)), s(s(b))) = s(s(\gcd(a, b)))$$
 ### Periodicity & Du Sieve on Hyperbolic Sums
 1. $s(s(g)) \bmod 123456789$ is purely periodic with period $420$ for all $g \ge 3$.
 2. The double sum reduces to hyperbolic block summation:
-$$T(N) = \sum_{g=1}^N s(s(g)) \cdot (2\Phi(\lfloor N/g \rfloor) - 1) \pmod{123456789}$$
+
+$$
+T(N) = \sum_{g=1}^N s(s(g)) \cdot (2\Phi(\lfloor N/g \rfloor) - 1) \pmod{123456789}
+$$
+
 where $\Phi(M) = \sum_{k=1}^M \phi(k)$ is computed in $\mathcal{O}(N^{2/3})$ time via Du Sieve.
 This evaluates $T(10^8) \pmod{123456789} = \mathbf{55601924}$ in **under 2.5s** in 100% pure Python.
 

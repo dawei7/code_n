@@ -29,7 +29,10 @@ A naive approach simulates sliding puzzle moves using BFS:
 Analyzing the optimal path for moving the red token across the grid:
 - Moving the red token 1 step requires shifting the empty space around it in a 5-step cycle.
 - The minimum number of moves $S(m, n)$ on an $m \times n$ board ($m \le n$) evaluates to:
-  $$\mathbf{S(m, n) = \begin{cases} 8m - 11 & \text{if } m = n \\ 2m + 6n - 13 & \text{if } m < n \end{cases}}$$
+
+$$
+\mathbf{S(m, n) = \begin{cases} 8m - 11 & \text{if } m = n \\ 2m + 6n - 13 & \text{if } m < n \end{cases}}
+$$
 
 ---
 
@@ -38,16 +41,32 @@ Analyzing the optimal path for moving the red token across the grid:
 ### Algebraic Equating to $p^2$
 We set $S(m, n) = p^2$:
 1. **Square Case ($m = n$):**
-   $$8m - 11 = p^2 \iff 8m = p^2 + 11$$
+
+$$
+8m - 11 = p^2 \iff 8m = p^2 + 11
+$$
+
    This has an integer solution $m \ge 2$ if and only if $p^2 \equiv 5 \pmod 8$, which requires:
-   $$p = 2 \quad (\text{giving } p^2 = 4 \implies \text{no integer } m), \quad \text{or } p \equiv 3, 5 \pmod 8$$
+
+$$
+p = 2 \quad (\text{giving } p^2 = 4 \implies \text{no integer } m), \quad \text{or } p \equiv 3, 5 \pmod 8
+$$
+
    For such primes, there is exactly $1$ solution ($m = n = (p^2 + 11)/8$).
 2. **Rectangular Case ($m < n$):**
-   $$2m + 6n - 13 = p^2 \iff 6n = p^2 + 13 - 2m$$
+
+$$
+2m + 6n - 13 = p^2 \iff 6n = p^2 + 13 - 2m
+$$
+
    For a fixed prime $p$:
    $2m \equiv p^2 + 13 \equiv p^2 + 1 \pmod 6 \iff m \equiv \frac{p^2 + 1}{2} \pmod 3$.
    Since $2 \le m < n$:
-   $$m < \frac{p^2 + 13 - 2m}{6} \iff 8m < p^2 + 13 \iff m \le \left\lfloor \frac{p^2 + 12}{8} \right\rfloor$$
+
+$$
+m < \frac{p^2 + 13 - 2m}{6} \iff 8m < p^2 + 13 \iff m \le \left\lfloor \frac{p^2 + 12}{8} \right\rfloor
+$$
+
    Thus, for each prime $p$, the number of valid values of $m$ is simply the count of integers $m \in [2, \lfloor (p^2 + 12)/8 \rfloor]$ with $m \equiv \frac{p^2 + 1}{2} \pmod 3$.
    By symmetry (since $(m, n)$ and $(n, m)$ represent distinct orientations when $m \ne n$, but the problem specifies $m \le n$), we sum these counts across all primes $p < 10^6$.
 

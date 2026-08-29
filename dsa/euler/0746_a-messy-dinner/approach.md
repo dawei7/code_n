@@ -5,7 +5,10 @@
 $n$ families of 4 members each (Father, Mother, Son, Daughter) are seated around a circular table of $4n$ seats with alternating male/female seats.
 $M(n)$ is the number of valid seating arrangements such that no family sits entirely together in a contiguous 4-seat block.
 Define:
-$$S(n) = \sum_{k=2}^n M(k)$$
+
+$$
+S(n) = \sum_{k=2}^n M(k)
+$$
 
 We are given:
 - $M(1) = 0, M(2) = 896, M(3) = 890880$
@@ -13,7 +16,10 @@ We are given:
 - $S(10) \equiv 399291975 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$S(2021) \bmod 1\,000\,000\,007$$
+
+$$
+S(2021) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -31,14 +37,21 @@ For $n = 2021$, $(2n)!^2 \approx (4042)!^2 \approx 10^{25000}$ possible alternat
    There are 2 global gender parity patterns (even=male, odd=female or vice-versa).
 2. **Placing $k$ Contiguous 4-Blocks on a Cycle of Length $4n$**:
    The number of ways to choose $k$ disjoint length-4 arcs on a circular graph of $4n$ vertices is:
-   $$D(4n, k) = \frac{4n}{k} \binom{4n - 3k - 1}{k - 1}$$
+
+$$
+D(4n, k) = \frac{4n}{k} \binom{4n - 3k - 1}{k - 1}
+$$
+
 3. **Internal Family Assignments**:
    For each contiguous 4-block, there are 2 choices for the 2 male slots (Father, Son) and 2 choices for the 2 female slots (Mother, Daughter) $\implies 2 \times 2 = 4$ ways per family, giving $4^k$ total ways.
 4. **Choosing Families & Permuting Remainder**:
    - Choosing which $k$ families: $P(n, k) = \frac{n!}{(n-k)!}$.
    - Seating the remaining $2(n-k)$ males and $2(n-k)$ females: $((2n-2k)!)^2$.
 5. **Inclusion-Exclusion Formula**:
-   $$M(n) = 2 \sum_{k=0}^n (-1)^k P(n, k) D(4n, k) 4^k \left( (2n - 2k)! \right)^2 \pmod{10^9+7}$$
+
+$$
+M(n) = 2 \sum_{k=0}^n (-1)^k P(n, k) D(4n, k) 4^k \left( (2n - 2k)! \right)^2 \pmod{10^9+7}
+$$
 
 ---
 

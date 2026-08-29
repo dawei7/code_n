@@ -3,18 +3,30 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The most naive way of computing $n^{15}$ requires fourteen ($14$) multiplications:
-$$n \times n \times \dots \times n = n^{15}$$
+
+$$
+n \times n \times \dots \times n = n^{15}
+$$
 
 Using binary exponentiation (repeated squaring), $n^{15}$ can be computed in six ($6$) multiplications:
-$$n \times n = n^2 \to n^2 \times n = n^3 \to n^3 \times n^3 = n^6 \to n^6 \times n = n^7 \to n^7 \times n^7 = n^{14} \to n^{14} \times n = n^{15}$$
+
+$$
+n \times n = n^2 \to n^2 \times n = n^3 \to n^3 \times n^3 = n^6 \to n^6 \times n = n^7 \to n^7 \times n^7 = n^{14} \to n^{14} \times n = n^{15}
+$$
 
 However, it is possible to compute $n^{15}$ in only five ($5$) multiplications using an **addition chain**:
-$$n \times n = n^2 \to n^2 \times n = n^3 \to n^3 \times n^2 = n^5 \to n^5 \times n^5 = n^{10} \to n^{10} \times n^5 = n^{15}$$
+
+$$
+n \times n = n^2 \to n^2 \times n = n^3 \to n^3 \times n^2 = n^5 \to n^5 \times n^5 = n^{10} \to n^{10} \times n^5 = n^{15}
+$$
 
 We define $m(k)$ to be the minimum number of multiplications to compute $n^k$ (which equals the minimal addition chain length for $k$).
 
 The objective is to find **$\sum_{k=1}^{200} m(k)$**:
-$$S_m = \sum_{k=1}^{200} m(k)$$
+
+$$
+S_m = \sum_{k=1}^{200} m(k)
+$$
 
 ---
 
@@ -58,7 +70,11 @@ A naive approach computes $m(k) \approx \lfloor \log_2 k \rfloor + \text{popcoun
 2. `dfs(chain, depth, max_depth)`:
    - $c = \text{chain}[-1]$.
    - If $c \le 200$ and $\text{depth} < \text{min\_mults}[c]$:
-     $$\text{min\_mults}[c] = \text{depth}$$
+
+$$
+\text{min\_mults}[c] = \text{depth}
+$$
+
    - If $\text{depth} == \text{max\_depth}$: return.
    - For $p \in \operatorname{reversed}(\text{chain})$:
      - $nxt = c + p$.
@@ -86,7 +102,10 @@ A naive approach computes $m(k) \approx \lfloor \log_2 k \rfloor + \text{popcoun
 
 ### Example 2: Target Evaluation for $\sum_{k=1}^{200} m(k)$
 - Summing optimal $m(k)$ across all $1 \le k \le 200$:
-  $$S_m = \mathbf{1582}$$
+
+$$
+S_m = \mathbf{1582}
+$$
 
 ---
 

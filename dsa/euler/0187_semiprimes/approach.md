@@ -4,10 +4,16 @@
 
 A composite is a number containing at least two prime factors. For example, $15 = 3 \times 5$; $9 = 3 \times 3$; $12 = 2 \times 2 \times 3$.
 There are ten composites below thirty containing precisely two, not necessarily distinct, prime factors (called **semiprimes**):
-$$4, 6, 9, 10, 14, 15, 21, 22, 25, 26$$
+
+$$
+4, 6, 9, 10, 14, 15, 21, 22, 25, 26
+$$
 
 The objective is to find the **number of composite integers $n < 10^8$ that have precisely two (not necessarily distinct) prime factors**:
-$$N_{\text{semiprime}} = \left| \left\{ (p_1, p_2) \in \mathbb{P}^2 \;\middle|\; p_1 \le p_2 \land p_1 \cdot p_2 < 10^8 \right\} \right|$$
+
+$$
+N_{\text{semiprime}} = \left| \left\{ (p_1, p_2) \in \mathbb{P}^2 \;\middle|\; p_1 \le p_2 \land p_1 \cdot p_2 < 10^8 \right\} \right|
+$$
 
 ---
 
@@ -30,7 +36,11 @@ def naive_semiprimes():
    Generate all primes up to $P_{\text{max}} = 50\,000\,000$ using a high-speed `bytearray` Sieve of Eratosthenes ($3\,001\,134$ primes).
 3. **Binary Search Counting:**
    For each prime $p_1$ (at index $i$), the number of valid primes $p_2 \ge p_1$ such that $p_1 \cdot p_2 < 10^8$ is:
-   $$\text{count}(p_1) = \operatorname{bisect\_right}\left(\text{primes}, \left\lfloor \frac{10^8 - 1}{p_1} \right\rfloor \right) - i$$
+
+$$
+\text{count}(p_1) = \operatorname{bisect\_right}\left(\text{primes}, \left\lfloor \frac{10^8 - 1}{p_1} \right\rfloor \right) - i
+$$
+
 4. Summing over all $1229$ primes $p_1 < 10\,000$ completes in $\approx 0.50$ seconds.
 
 ---
@@ -51,9 +61,18 @@ def naive_semiprimes():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Semiprime Counting Formula
-$$N_{\text{semiprime}} = \sum_{\substack{p_1 \in \mathbb{P} \\ p_1^2 < 10^8}} \left( \pi\left( \left\lfloor \frac{10^8 - 1}{p_1} \right\rfloor \right) - \pi(p_1) + 1 \right)$$
+
+$$
+\begin{aligned}
+N_{\text{semiprime}} = \sum_{\substack{p_1 \in \mathbb{P} \\ p_1^2 < 10^8}} \left( \pi\left( \left\lfloor \frac{10^8 - 1}{p_1} \right\rfloor \right) - \pi(p_1) + 1 \right)
+\end{aligned}
+$$
+
 Evaluating across all $1229$ primes $p_1 < 10\,000$:
-$$N_{\text{semiprime}} = \mathbf{17\,427\,258}$$
+
+$$
+N_{\text{semiprime}} = \mathbf{17\,427\,258}
+$$
 
 ---
 
@@ -68,7 +87,10 @@ $$N_{\text{semiprime}} = \mathbf{17\,427\,258}$$
 
 ### Example 2: Target Evaluation for $N = 10^8$
 - Summing binary search ranges over all primes $p_1 < 10^4$:
-  $$N_{\text{semiprime}} = \mathbf{17\,427\,258}$$
+
+$$
+N_{\text{semiprime}} = \mathbf{17\,427\,258}
+$$
 
 ---
 

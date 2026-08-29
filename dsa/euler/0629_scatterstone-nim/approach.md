@@ -14,7 +14,10 @@ We are given:
 - $g(10) = 291$
 
 We seek to evaluate:
-$$g(200) \pmod{10^9 + 7}$$
+
+$$
+g(200) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -38,7 +41,10 @@ Testing all game states across all $p(200) = 3,972,999,029,388$ partitions is co
    - For $k \ge 4$: $G_k(s) = s - 1$ for all $s \ge 1$ identically!
 3. **Partition Parity Simplification**:
    Because $G_k(s)$ is identical for all $k \ge 4$:
-   $$g(n) = f(n, 2) + f(n, 3) + (n - 3) f(n, 4) \pmod{10^9 + 7}$$
+
+$$
+g(n) = f(n, 2) + f(n, 3) + (n - 3) f(n, 4) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -47,11 +53,19 @@ Testing all game states across all $p(200) = 3,972,999,029,388$ partitions is co
 ### Dual Unbounded / 0-1 Coin XOR Dynamic Programming ($O(n^2 \cdot W)$)
 1. **Losing Partitions $L(n, k)$**:
    A partition is losing if $\bigoplus G_k(s_i) = 0$.
-   $$f(n, k) = p(n) - L(n, k)$$
+
+$$
+f(n, k) = p(n) - L(n, k)
+$$
+
 2. **Generating Function Decomposition**:
    A part size $i$ with nimber $g = G_k(i)$ has multiplicity $m = 2r + b$ ($b \in \{0, 1\}$).
    The generating factor is:
-   $$\frac{1 + x^i \cdot T_g}{1 - x^{2i}}$$
+
+$$
+\frac{1 + x^i \cdot T_g}{1 - x^{2i}}
+$$
+
    where $T_g$ applies the bitwise XOR transition by $g$.
 3. **Two-Stage Transition**:
    - Stage 1: Unbounded coin of size $2i$ (no XOR change).

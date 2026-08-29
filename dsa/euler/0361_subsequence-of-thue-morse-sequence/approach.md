@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The Thue-Morse sequence $\{T_n\}_{n \ge 0}$ is a binary sequence defined by:
-$$T_0 = 0, \quad T_{2n} = T_n, \quad T_{2n+1} = 1 - T_n$$
+
+$$
+T_0 = 0, \quad T_{2n} = T_n, \quad T_{2n+1} = 1 - T_n
+$$
 
 The sequence of integers $\{A_n\}_{n \ge 0}$ is defined as the sorted sequence of non-negative integers whose binary representations occur as contiguous subwords (factors) in $\{T_n\}$.
 For example:
@@ -12,7 +15,10 @@ For example:
 - $A_{100} = 3251$, $A_{1000} = 80852364498$.
 
 We are tasked with computing the last $9$ digits of:
-$$\sum_{k=1}^{18} A_{10^k} \pmod{10^9}$$
+
+$$
+\sum_{k=1}^{18} A_{10^k} \pmod{10^9}
+$$
 
 ---
 
@@ -29,13 +35,24 @@ Testing every integer $m = 0, 1, 2, \dots$ for whether $\text{bin}(m)$ is a fact
 
 ### The Morphism & Factor Count Recursion
 The Thue-Morse sequence is the fixed point of the morphism $\mu$:
-$$\mu(0) = 01, \quad \mu(1) = 10$$
+
+$$
+\mu(0) = 01, \quad \mu(1) = 10
+$$
+
 By Cassaigne and Brlek's theorems, the number of factors of length $L$ starting with $1$, denoted $C_1(L)$, satisfies the exact recurrence:
-$$C_1(1) = 1, \quad C_1(2) = 2, \quad C_1(3) = 3$$
 
-$$C_1(2m) = C_1(m) + C_1(m + 1)$$
+$$
+C_1(1) = 1, \quad C_1(2) = 2, \quad C_1(3) = 3
+$$
 
-$$C_1(2m + 1) = 2 C_1(m + 1)$$
+$$
+C_1(2m) = C_1(m) + C_1(m + 1)
+$$
+
+$$
+C_1(2m + 1) = 2 C_1(m + 1)
+$$
 
 The prefix sum $S(L) = \sum_{\ell=1}^L C_1(\ell)$ gives the exact index range for words of length $L$.
 By binary search on $S(L)$, we find the exact bit-length $L$ of $A_{10^k}$ and its rank within that length block in $O(\log L)$ steps.
@@ -52,9 +69,17 @@ Rather than expanding strings of length $10^{18}$, we construct a recursive **la
 
 ### Modular Polynomial Evaluation via $x_k = 2^{2^k} \pmod{10^9}$
 To evaluate the integer value of an AST node modulo $10^9$, we define the vector of evaluations:
-$$E(u)[k] = \text{val}(u) \pmod{10^9} \quad \text{under base } x_k = 2^{2^k} \pmod{10^9}$$
+
+$$
+E(u)[k] = \text{val}(u) \pmod{10^9} \quad \text{under base } x_k = 2^{2^k} \pmod{10^9}
+$$
+
 Under the morphism $\mu$:
-$$\text{val}(\mu(u)) \text{ in base } x_k = (x_k - 1) E(u)[k + 1] + \sum_{j=0}^{|u|-1} x_k^{2j}$$
+
+$$
+\text{val}(\mu(u)) \text{ in base } x_k = (x_k - 1) E(u)[k + 1] + \sum_{j=0}^{|u|-1} x_k^{2j}
+$$
+
 This reduces the evaluation of a string of length $L$ to $O(\log L)$ modular arithmetic operations!
 
 ---

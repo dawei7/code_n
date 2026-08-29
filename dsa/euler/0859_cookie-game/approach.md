@@ -31,17 +31,31 @@ Because each pile can only be acted upon by one specific player:
 - An odd pile $2m + 1$ offers move $\{2g(m)\}$ to Odd (Left) and $\emptyset$ to Even (Right).
 - An even pile $2m + 2$ offers $\emptyset$ to Left and $\{2g(m)\}$ to Right.
 By Conway's simplicity rule in Combinatorial Game Theory, every single pile has a canonical **integer number value** $g(n)$:
-$$g(0) = 0$$
 
-$$g(2m + 1) = \max(0, 2g(m) + 1)$$
+$$
+g(0) = 0
+$$
 
-$$g(2m + 2) = \min(0, 2g(m) - 1)$$
+$$
+g(2m + 1) = \max(0, 2g(m) + 1)
+$$
+
+$$
+g(2m + 2) = \min(0, 2g(m) - 1)
+$$
 
 ### Winning Condition for Second Player (Even)
 Because all pile values are integers (surreal numbers), the total game value is simply the arithmetic sum:
-$$G = \sum_{i=1}^k g(p_i)$$
+
+$$
+G = \sum_{i=1}^k g(p_i)
+$$
+
 Under normal play convention, second player (Even) wins if and only if:
-$$G \le 0$$
+
+$$
+G \le 0
+$$
 
 ---
 
@@ -53,9 +67,16 @@ We construct a 2D unbounded knapsack DP:
 - `table[w][v]` = number of partitions of total weight $w$ summing to CGT value $v$.
 - Item sizes $x \in \{1, \dots, N\}$ with weights $x$ and values $g(x) \in [-N, N]$.
 - Transition:
-  $$\text{table}[w][v] = \text{table}[w][v] + \text{table}[w - x][v - g(x)]$$
+
+$$
+\text{table}[w][v] = \text{table}[w][v] + \text{table}[w - x][v - g(x)]
+$$
+
 - Total winning partitions:
-  $$C(N) = \sum_{v \le 0} \text{table}[N][v]$$
+
+$$
+C(N) = \sum_{v \le 0} \text{table}[N][v]
+$$
 
 Total state space: $N \times (2N + 1) = 300 \times 601 \approx \mathbf{180,300} \text{ states}$.
 

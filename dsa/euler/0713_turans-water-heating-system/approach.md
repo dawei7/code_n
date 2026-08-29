@@ -14,7 +14,10 @@ We are given:
 - $L(10^3) = 3281346$
 
 We seek to evaluate:
-$$L(10^7)$$
+
+$$
+L(10^7)
+$$
 
 ---
 
@@ -35,7 +38,11 @@ Checking all possible $\binom{\binom{N}{2}}{K}$ test subsets against all $\binom
 3. **Partition into $k = m - 1$ Parts**:
    By the Pigeonhole Principle, if we partition the $N$ fuses into $k = m - 1$ disjoint parts, any set of $m$ working fuses must place $\ge 2$ working fuses into the same part!
    Testing all intra-part pairs guarantees success with the minimum possible number of tests:
-   $$T(N, m) = r \binom{q + 1}{2} + (k - r) \binom{q}{2}$$
+
+$$
+T(N, m) = r \binom{q + 1}{2} + (k - r) \binom{q}{2}
+$$
+
    where $k = m - 1, q = \lfloor N/k \rfloor, r = N \bmod k$.
 
 ---
@@ -44,7 +51,11 @@ Checking all possible $\binom{\binom{N}{2}}{K}$ test subsets against all $\binom
 
 ### Linear Summation $O(N)$
 1. **Exact Component Formula**:
-   $$T(N, k + 1) = r \frac{q(q + 1)}{2} + (k - r) \frac{q(q - 1)}{2}$$
+
+$$
+T(N, k + 1) = r \frac{q(q + 1)}{2} + (k - r) \frac{q(q - 1)}{2}
+$$
+
 2. **Summing Over $k = 1 \dots N - 1$**:
    For $N = 10^7$, iterating $k = 1 \dots 10^7 - 1$ takes $10^7$ arithmetic steps.
    In compiled C, this executes in **$\approx 0.02$ seconds**!

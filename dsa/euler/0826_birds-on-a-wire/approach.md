@@ -22,7 +22,10 @@ For 78,497 odd primes $< 10^6$, running $10^6$ Monte Carlo landing simulations p
 ### Order Statistics Spacing Integration & Sieve Evaluation
 1. **Order Statistics Spacing Distribution**:
    For $n$ uniform random points on $[0, 1]$, the expected length of wire covered by nearest-neighbor intervals satisfies the exact order statistic integral formula:
-   $$F(n) = \frac{1}{2} - \frac{1}{2(n+1)} + \mathcal{O}\left(\frac{1}{n^2}\right)$$
+
+$$
+F(n) = \frac{1}{2} - \frac{1}{2(n+1)} + \mathcal{O}\left(\frac{1}{n^2}\right)
+$$
 
 2. **Sub-second Linear Prime Sieve**:
    Using a linear sieve over $N = 10^6$ generates all 78,497 odd primes in $\mathcal{O}(N)$ time.

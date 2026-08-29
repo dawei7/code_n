@@ -14,7 +14,10 @@ We are given:
 - $c_4^\infty \approx 9.7046 \times 10^{-5}$
 
 We seek to evaluate:
-$$c_7^\infty \text{ in scientific notation to 5 significant digits}$$
+
+$$
+c_7^\infty \text{ in scientific notation to 5 significant digits}
+$$
 
 ---
 
@@ -30,10 +33,18 @@ Computing $C_7(N) / N$ for large $N$ requires $N \ge 10^{20}$, where sieving is 
 ### Generating Functions & Prime Zeta Series
 1. **Asymptotic Density Generating Function**:
    From squarefree inclusion-exclusion:
-   $$G(y) = \sum_{k=0}^\infty c_k^\infty y^k = \prod_p \left( 1 - \frac{1}{p^2} + \frac{y}{p^2} \right) = \frac{6}{\pi^2} \prod_p \left( 1 + \frac{y}{p^2 - 1} \right)$$
+
+$$
+G(y) = \sum_{k=0}^\infty c_k^\infty y^k = \prod_p \left( 1 - \frac{1}{p^2} + \frac{y}{p^2} \right) = \frac{6}{\pi^2} \prod_p \left( 1 + \frac{y}{p^2 - 1} \right)
+$$
+
 2. **Logarithmic Expansion**:
    Taking logarithms:
-   $$\ln G(y) = \ln\left(\frac{6}{\pi^2}\right) + \sum_p \ln\left(1 + \frac{y}{p^2 - 1}\right) = \ln\left(\frac{6}{\pi^2}\right) + \sum_{m=1}^\infty \frac{(-1)^{m-1} A_m}{m} y^m$$
+
+$$
+\ln G(y) = \ln\left(\frac{6}{\pi^2}\right) + \sum_p \ln\left(1 + \frac{y}{p^2 - 1}\right) = \ln\left(\frac{6}{\pi^2}\right) + \sum_{m=1}^\infty \frac{(-1)^{m-1} A_m}{m} y^m
+$$
+
    where $A_m = \sum_p \frac{1}{(p^2 - 1)^m}$.
 
 ---
@@ -46,7 +57,10 @@ Computing $C_7(N) / N$ for large $N$ requires $N \ge 10^{20}$, where sieving is 
    Summing $A_m$ for $m \in \{1, \dots, 7\}$ over primes $p \le 10^6$ achieves machine precision error $< 10^{-12}$.
 2. **Formal Power Series Exponentiation**:
    With $g_0 = \frac{6}{\pi^2}$, recover coefficients $g_n = c_n^\infty$ via the derivative recurrence:
-   $$g_n = \frac{1}{n} \sum_{m=1}^n (-1)^{m-1} A_m g_{n-m}$$
+
+$$
+g_n = \frac{1}{n} \sum_{m=1}^n (-1)^{m-1} A_m g_{n-m}
+$$
 
 This evaluates $c_7^\infty$ in **$< 0.01$ seconds** in pure Python!
 

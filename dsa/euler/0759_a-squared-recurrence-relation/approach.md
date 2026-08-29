@@ -3,16 +3,26 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define $f(n)$ for positive integers by:
-$$f(1) = 1, \quad f(2n) = 2f(n), \quad f(2n + 1) = 2n + 1 + 2f(n) + \frac{f(n)}{n}$$
+
+$$
+f(1) = 1, \quad f(2n) = 2f(n), \quad f(2n + 1) = 2n + 1 + 2f(n) + \frac{f(n)}{n}
+$$
+
 Define the sum of squares:
-$$S(N) = \sum_{i=1}^N f(i)^2$$
+
+$$
+S(N) = \sum_{i=1}^N f(i)^2
+$$
 
 We are given:
 - $S(10) = 1530$
 - $S(10^2) = 4798445$
 
 We seek to evaluate:
-$$S(10^{16}) \bmod 1\,000\,000\,007$$
+
+$$
+S(10^{16}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,18 +38,41 @@ Computing each $f(i)$ individually up to $N = 10^{16}$ requires $10^{16}$ operat
 ### Popcount Reduction & Binary Digit Moments
 1. **Analytic Reduction of $f(n)$**:
    Let $g(n) = f(n) / n$. Then:
-   $$g(1) = 1, \quad g(2n) = g(n), \quad g(2n + 1) = g(n) + 1$$
+
+$$
+g(1) = 1, \quad g(2n) = g(n), \quad g(2n + 1) = g(n) + 1
+$$
+
    This is the standard recurrence for the binary Hamming weight (popcount):
-   $$g(n) = \operatorname{popcount}(n) \implies f(n) = n \cdot \operatorname{popcount}(n)!$$
+
+$$
+g(n) = \operatorname{popcount}(n) \implies f(n) = n \cdot \operatorname{popcount}(n)!
+$$
+
 2. **Sum of Squares Formulation**:
-   $$S(N) = \sum_{i=1}^N i^2 \operatorname{popcount}(i)^2 \pmod{10^9+7}$$
+
+$$
+S(N) = \sum_{i=1}^N i^2 \operatorname{popcount}(i)^2 \pmod{10^9+7}
+$$
+
 3. **$3 \times 3$ Moment Tensor**:
    For any interval $I$, define the moment matrix:
-   $$\operatorname{mat}[t][d] = \sum_{y \in I} y^d \operatorname{popcount}(y)^t \quad (t, d \in \{0, 1, 2\})$$
+
+$$
+\operatorname{mat}[t][d] = \sum_{y \in I} y^d \operatorname{popcount}(y)^t \quad (t, d \in \{0, 1, 2\})
+$$
+
 4. **Shift Operator**:
    For $x = p + y$ with $p = 2^k$:
-   $$\operatorname{popcount}(p + y) = 1 + \operatorname{popcount}(y)$$
-   $$(p + y)^d = \sum_{j=0}^d \binom{d}{j} p^{d-j} y^j$$
+
+$$
+\operatorname{popcount}(p + y) = 1 + \operatorname{popcount}(y)
+$$
+
+$$
+(p + y)^d = \sum_{j=0}^d \binom{d}{j} p^{d-j} y^j
+$$
+
    This yields an exact linear transformation on the $3 \times 3$ moment matrices in $O(1)$ operations.
 
 ---

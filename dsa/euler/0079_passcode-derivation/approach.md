@@ -7,7 +7,10 @@ The file `keylog.txt` contains fifty successful login attempts, each consisting 
 
 Let $V = \{0, 1, 2, 3, 6, 7, 8, 9\}$ be the set of unique digits present in the logs.
 Each 3-character entry $c_1 c_2 c_3$ specifies two directed precedence constraints:
-$$c_1 \prec c_2 \quad \text{and} \quad c_2 \prec c_3$$
+
+$$
+c_1 \prec c_2 \quad \text{and} \quad c_2 \prec c_3
+$$
 
 Assuming that each digit appears at most once, the objective is to find the **shortest possible secret passcode** by computing the topological ordering of the directed graph $G = (V, E)$.
 
@@ -72,9 +75,16 @@ def naive_passcode_derivation():
 
 ### Example 2: Target Passcode Resolution
 - Topological Sort sequence:
-  $$7 \to 3 \to 1 \to 6 \to 2 \to 8 \to 9 \to 0$$
+
+$$
+7 \to 3 \to 1 \to 6 \to 2 \to 8 \to 9 \to 0
+$$
+
 - Shortest Secret Passcode:
-  $$\mathbf{73162890}$$
+
+$$
+\mathbf{73162890}
+$$
 
 ---
 

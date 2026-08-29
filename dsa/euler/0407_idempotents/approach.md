@@ -3,14 +3,21 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 An integer $a \in [0, n-1]$ is an **idempotent modulo $n$** if $a^2 \equiv a \pmod n$, which is equivalent to:
-$$a(a - 1) \equiv 0 \pmod n \iff n \mid a(a - 1)$$
+
+$$
+a(a - 1) \equiv 0 \pmod n \iff n \mid a(a - 1)
+$$
+
 Let $M(n)$ be the largest integer $a < n$ such that $a^2 \equiv a \pmod n$.
 
 We are given:
 - For $n = 6$: $a^2 \bmod 6 \in \{0, 1, 4, 3, 4, 1\}$, so $M(6) = 4$.
 
 We seek to evaluate:
-$$\sum_{n=1}^{10^7} M(n)$$
+
+$$
+\sum_{n=1}^{10^7} M(n)
+$$
 
 ---
 
@@ -29,7 +36,11 @@ By the Chinese Remainder Theorem, $n$ with $r$ distinct prime factors has exactl
 
 Furthermore, if $a$ is an idempotent modulo $n$, then $v = n + 1 - a$ is also an idempotent modulo $n$!
 Therefore:
-$$M(n) = n + 1 - \min \{v > 1 : v^2 \equiv v \pmod n\}$$
+
+$$
+M(n) = n + 1 - \min \{v > 1 : v^2 \equiv v \pmod n\}
+$$
+
 The largest idempotent corresponds directly to the smallest non-trivial idempotent!
 
 ---
@@ -40,7 +51,11 @@ The largest idempotent corresponds directly to the smallest non-trivial idempote
 Let $n = \prod_{i=1}^r q_i$ where $q_i = p_i^{e_i}$ are prime powers obtained in $O(\log n)$ via a linear Smallest Prime Factor (SPF) sieve.
 1. The orthogonal basis idempotents are $e_i = (n / q_i) \cdot \left[ (n / q_i)^{-1} \bmod q_i \right]$.
 2. All $2^r$ idempotents are formed by subset sums:
-   $$v = \sum_{i \in S} e_i \pmod n$$
+
+$$
+v = \sum_{i \in S} e_i \pmod n
+$$
+
 3. We find the minimum $v > 1$ across all $2^r$ combinations and set $M(n) = n + 1 - v$.
 
 Since $n \le 10^7$, $r \le 8$ (average $r \le 2.5$), the entire summation over $10^7$ integers executes in **17 seconds**!

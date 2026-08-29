@@ -11,7 +11,10 @@ We are given:
 - $S(100) = 1257$
 
 We seek to evaluate:
-$$S(10^{12}) \bmod 10^9$$
+
+$$
+S(10^{12}) \bmod 10^9
+$$
 
 ---
 
@@ -41,10 +44,21 @@ A linear sieve of Eratosthenes up to $10^{12}$ requires $> 1\text{ TB}$ of memor
    Maintain `count_small[x]`, `sum_small[x]` for $x \le \sqrt{n}$, and `count_large[d]`, `sum_large[d]` for $x = \lfloor n/d \rfloor$ ($d \le \sqrt{n}$).
 2. **Sieve Contribution**:
    At each prime $p \le \sqrt{n}$:
-   $$\Delta \text{Answer} \equiv p \cdot \left( \text{count}_{\text{large}}[p] - \text{count}_{\text{small}}[p - 1] \right) \pmod{10^9}$$
+
+$$
+\Delta \text{Answer} \equiv p \cdot \left( \text{count}_{\text{large}}[p] - \text{count}_{\text{small}}[p - 1] \right) \pmod{10^9}
+$$
+
 3. **Table Updates**:
-   $$\text{count}(x) \leftarrow \text{count}(x) - \left( \text{count}(\lfloor x/p \rfloor) - \text{count}(p - 1) \right)$$
-   $$\text{sum}(x) \leftarrow \text{sum}(x) - p \cdot \left( \text{sum}(\lfloor x/p \rfloor) - \text{sum}(p - 1) \right) \pmod{10^9}$$
+
+$$
+\text{count}(x) \leftarrow \text{count}(x) - \left( \text{count}(\lfloor x/p \rfloor) - \text{count}(p - 1) \right)
+$$
+
+$$
+\text{sum}(x) \leftarrow \text{sum}(x) - p \cdot \left( \text{sum}(\lfloor x/p \rfloor) - \text{sum}(p - 1) \right) \pmod{10^9}
+$$
+
 4. **Final Accumulation**:
    Add `sum_large[1]` (the sum of primes above $\sqrt{n}$).
 

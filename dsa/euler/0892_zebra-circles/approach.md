@@ -27,9 +27,16 @@ Find $\sum_{n=1}^{10^7} D(n) \bmod 1234567891$.
 The dual graph of pieces forms a **rooted plane tree** on $n + 1$ vertices.
 The 2-coloring corresponds to tree vertex parity (even vs odd depth).
 Let $T(x, y)$ be the bivariate generating function marking Black vertices with $x$ and White with $y$:
-$$T(x, y) = x + T(x, y) \cdot T(y, x)$$
+
+$$
+T(x, y) = x + T(x, y) \cdot T(y, x)
+$$
+
 Setting $F = T(x, y)$ and $G = T(y, x)$ yields:
-$$F^2 - (1 + x - y) F + x = 0$$
+
+$$
+F^2 - (1 + x - y) F + x = 0
+$$
 
 ---
 
@@ -39,10 +46,16 @@ $$F^2 - (1 + x - y) F + x = 0$$
 Extracting the coefficient of $z^{n+1}$ for total difference $|B - W|$ yields:
 
 #### 1. Even $n = 2m$:
-$$D(2m) = \frac{1}{2} \binom{2m}{m}^2$$
+
+$$
+D(2m) = \frac{1}{2} \binom{2m}{m}^2
+$$
 
 #### 2. Odd $n = 2m + 1$:
-$$D(2m + 1) = \frac{m}{2m + 1} \binom{2m}{m} \binom{2m + 2}{m + 1}$$
+
+$$
+D(2m + 1) = \frac{m}{2m + 1} \binom{2m}{m} \binom{2m + 2}{m + 1}
+$$
 
 ### Linear Recurrence Modulo $1234567891$
 Letting $C_m = \binom{2m}{m}$, we update $C_m = C_{m-1} \frac{4m-2}{m} \pmod{\text{MOD}}$ in $\mathcal{O}(1)$ time per step using linear modular inverse precomputation.

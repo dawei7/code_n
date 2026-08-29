@@ -5,10 +5,17 @@
 In the shortest 3-peg Towers of Hanoi solution with $n$ disks, there are $2^n$ positions indexed $0 \dots 2^n - 1$.
 Each position has $(a, b, c)$ disks on the three pegs respectively with $a + b + c = n$.
 Considered as a game of Nim with heap sizes $(a, b, c)$, a state is a P-position (first player loses) if and only if:
-$$a \oplus b \oplus c = 0$$
+
+$$
+a \oplus b \oplus c = 0
+$$
+
 Let $f(n)$ be the sum of indices of all losing positions in the sequence.
 We seek to evaluate:
-$$f(10^5) \bmod 1\,000\,000\,007$$
+
+$$
+f(10^5) \bmod 1\,000\,000\,007
+$$
 
 We are given:
 - $f(4) = 30$
@@ -29,11 +36,19 @@ For $n = 10^5$, the number of positions is $2^{100\,000}$, which has over 30,000
 1. **Reflection Invariant**:
    Inverting the Hanoi move sequence corresponds to swapping Peg 1 and Peg 3. Under index reflection $i \mapsto 2^n - 1 - i$, the heap counts $(a, b, c)$ become $(c, b, a)$, which leaves the XOR sum $a \oplus b \oplus c$ invariant!
    Therefore, losing indices occur in symmetric pairs summing to $2^n - 1$:
-   $$f(n) \equiv k(n) \cdot \frac{2^n - 1}{2} \pmod{10^9+7}$$
+
+$$
+f(n) \equiv k(n) \cdot \frac{2^n - 1}{2} \pmod{10^9+7}
+$$
+
    where $k(n)$ is the total number of losing configurations.
 2. **Rational Generating Function**:
    The frequency of configuration $(a, b, c)$ in the Hanoi sequence is given by the formal power series:
-   $$F(x, y, z) = \frac{(1+y)(1+x+z-y)}{1 - (x^2 + y^2 + z^2 + 2xyz)}$$
+
+$$
+F(x, y, z) = \frac{(1+y)(1+x+z-y)}{1 - (x^2 + y^2 + z^2 + 2xyz)}
+$$
+
 3. **Multinomial Coefficient Extraction**:
    Expanding $\frac{1}{1 - (x^2 + y^2 + z^2 + 2xyz)} = \sum_{m \ge 0} (x^2 + y^2 + z^2 + 2xyz)^m$ allows expressing $[x^a y^b z^c]$ as a rapid single sum with factorial lookups.
 

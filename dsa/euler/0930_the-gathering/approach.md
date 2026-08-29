@@ -37,7 +37,11 @@ Factoring out the dihedral group $D_n$ (rotational and reflective symmetries) co
 
 ### Linear Absorption System
 The expected times to absorption $E$ satisfy:
-$$(I - P) E = \mathbf{1}$$
+
+$$
+(I - P) E = \mathbf{1}
+$$
+
 with absorbing boundary $E[(m, 0, \dots, 0)] = 0$.
 Solving the linear systems across all pairs $(n, m) \in [2, 12]^2$ evaluates $G(12, 12) = \mathbf{1.345679959251e12}$ in **under 0.05s** in 100% pure Python.
 

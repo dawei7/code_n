@@ -4,7 +4,10 @@
 
 For a positive integer $n$, let $S(n)$ denote the sum of its decimal digits.
 We seek the number of non-negative integers $0 \le n < 10^{18}$ such that:
-$$S(n) = S(137n)$$
+
+$$
+S(n) = S(137n)
+$$
 
 ---
 
@@ -27,9 +30,16 @@ Process the decimal digits of $n$ from the least significant digit (LSD, $10^0$)
   - The new output digit for $137n$ at this position is $(137d + C) \bmod 10$.
   - The new carry passed to the next position is $\lfloor (137d + C) / 10 \rfloor$.
   - The net change in $(S(137n) - S(n))$ is:
-    $$\Delta = ((137d + C) \bmod 10) - d$$
+
+$$
+\Delta = ((137d + C) \bmod 10) - d
+$$
+
 - A DP state is fully specified by:
-  $$(\text{position } k \in [0, 18], \text{carry } C \in [0, 136], \text{diff } \Delta \in [-180, 180])$$
+
+$$
+(\text{position } k \in [0, 18], \text{carry } C \in [0, 136], \text{diff } \Delta \in [-180, 180])
+$$
 
 ---
 

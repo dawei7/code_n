@@ -16,7 +16,11 @@ Find $p(20\,000, 1\,000\,000)$ rounded to $10$ decimal places behind the decimal
 
 ### Direct Combinatorial Summation with Huge Factorials
 A naive approach computes the complementary probability $1 - p(k, n)$ using standard integer factorials:
-$$1 - p(k, n) = \sum_{m=0}^{\lfloor k/2 \rfloor} \frac{n!}{(n - k + m)! \, m! \, (k - 2m)! \, 2^m \, n^k}$$
+
+$$
+1 - p(k, n) = \sum_{m=0}^{\lfloor k/2 \rfloor} \frac{n!}{(n - k + m)! \, m! \, (k - 2m)! \, 2^m \, n^k}
+$$
+
 - For $n = 1\,000\,000$ and $k = 20\,000$, computing $1\,000\,000!$ with exact integers introduces enormous arithmetic latency and memory overhead.
 
 ---
@@ -30,7 +34,10 @@ A defect configuration contains no chip with $\ge 3$ defects if and only if ever
 - The remaining $n - (k - m)$ chips have $0$ defects.
 
 The probability of choosing such an arrangement is:
-$$P(m) = \binom{n}{m} \binom{n - m}{k - 2m} \frac{k!}{2^m \, n^k}$$
+
+$$
+P(m) = \binom{n}{m} \binom{n - m}{k - 2m} \frac{k!}{2^m \, n^k}
+$$
 
 ---
 
@@ -39,14 +46,28 @@ $$P(m) = \binom{n}{m} \binom{n - m}{k - 2m} \frac{k!}{2^m \, n^k}$$
 ### Fast Ratio Recurrence for Term Evolution
 Let $T(m) = P(m)$.
 Examining the ratio between consecutive terms $T(m)$ and $T(m - 1)$:
-$$\frac{T(m)}{T(m - 1)} = \frac{(k - 2m + 2)(k - 2m + 1)}{2 m (n - k + m)}$$
+
+$$
+\frac{T(m)}{T(m - 1)} = \frac{(k - 2m + 2)(k - 2m + 1)}{2 m (n - k + m)}
+$$
+
 1. Compute the base term for $m = 0$ (all $k$ defects on distinct chips):
-   $$T(0) = \prod_{i=0}^{k-1} \left( 1 - \frac{i}{n} \right)$$
+
+$$
+T(0) = \prod_{i=0}^{k-1} \left( 1 - \frac{i}{n} \right)
+$$
+
    using log-gamma / sum of logarithms $\exp(\sum_{i=0}^{k-1} \ln(1 - i/n))$.
 2. Compute subsequent terms $T(1), T(2), \dots, T(\lfloor k/2 \rfloor)$ iteratively using the $\mathcal{O}(1)$ ratio multiplier.
 3. Total valid probability:
-   $$1 - p(k, n) = \sum_{m=0}^{\lfloor k/2 \rfloor} T(m)$$
-   $$p(k, n) = 1 - \sum_{m=0}^{\lfloor k/2 \rfloor} T(m)$$
+
+$$
+1 - p(k, n) = \sum_{m=0}^{\lfloor k/2 \rfloor} T(m)
+$$
+
+$$
+p(k, n) = 1 - \sum_{m=0}^{\lfloor k/2 \rfloor} T(m)
+$$
 
 ---
 

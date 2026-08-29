@@ -3,12 +3,23 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Given is the arithmetic-geometric sequence:
-$$u(k) = (900 - 3k) r^{k-1}$$
+
+$$
+u(k) = (900 - 3k) r^{k-1}
+$$
+
 Let $s(n)$ be the sum of the first $n$ terms:
-$$s(n) = \sum_{k=1}^n u(k) = \sum_{k=1}^n (900 - 3k) r^{k-1}$$
+
+$$
+s(n) = \sum_{k=1}^n u(k) = \sum_{k=1}^n (900 - 3k) r^{k-1}
+$$
 
 Find the real ratio $r$ such that:
-$$s(5000) = -600\,000\,000\,000 = -6 \times 10^{11}$$
+
+$$
+s(5000) = -600\,000\,000\,000 = -6 \times 10^{11}
+$$
+
 Give your answer rounded to $12$ decimal places in the form `1.abcdefghijkl`.
 
 ---
@@ -78,7 +89,10 @@ def solve(target: float = -600000000000.0, n: int = 5000) -> str:
 ```
 
 Evaluating for $\text{target} = -6 \times 10^{11}, n = 5000$:
-$$r = \mathbf{1.002322108633}$$
+
+$$
+r = \mathbf{1.002322108633}
+$$
 
 ---
 
@@ -86,12 +100,19 @@ $$r = \mathbf{1.002322108633}$$
 
 ### Example 1: Boundary Value at $r = 1.0$
 - At $r = 1.0$:
-  $$s(5000) = \sum_{k=1}^{5000} (900 - 3k) = 900(5000) - 3 \cdot \frac{5000 \cdot 5001}{2} = 4\,500\,000 - 37\,507\,500 = -33\,007\,500$$
+
+$$
+s(5000) = \sum_{k=1}^{5000} (900 - 3k) = 900(5000) - 3 \cdot \frac{5000 \cdot 5001}{2} = 4\,500\,000 - 37\,507\,500 = -33\,007\,500
+$$
+
 - Since $-3.3 \times 10^7 > -6 \times 10^{11}$, $r = 1.0$ gives a value greater than the target, confirming $r > 1.0$.
 
 ### Example 2: Target Evaluation for $s(5000) = -6 \times 10^{11}$
 - After 100 bisection steps:
-  $$r = \mathbf{1.002322108633} \quad (\checkmark)$$
+
+$$
+r = \mathbf{1.002322108633} \quad (\checkmark)
+$$
 
 ---
 

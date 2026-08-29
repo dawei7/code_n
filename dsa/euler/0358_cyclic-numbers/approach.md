@@ -4,10 +4,17 @@
 
 A **cyclic number** of $L$ digits is an integer $N$ such that multiplying $N$ by any integer $1, 2, \dots, L$ produces a cyclic permutation (rotation) of the digits of $N$ (preserving leading zeros).
 Every base-10 cyclic number of length $L = p - 1$ corresponds to the repetend period of the fraction:
-$$\frac{1}{p}$$
+
+$$
+\frac{1}{p}
+$$
+
 where $p$ is a **full reptend prime** in base 10 (i.e. $10$ is a primitive root modulo $p$, meaning the multiplicative order $\operatorname{ord}_p(10) = p - 1$).
 The integer value of the cyclic number is given by:
-$$N = \frac{10^{p-1} - 1}{p}$$
+
+$$
+N = \frac{10^{p-1} - 1}{p}
+$$
 
 We are given that there is a unique cyclic number whose:
 - Eleven leftmost digits are $00000000137\dots$
@@ -34,11 +41,22 @@ We seek to find the sum of all digits of this cyclic number.
 ### Midy's Theorem for Full Reptend Primes
 Let $p$ be a prime with full period $p - 1$, which is an even integer $2k$.
 By **Midy's Theorem**, if we split the $2k$-digit period of $1/p$ into two halves $A$ and $B$ each of length $k = \frac{p-1}{2}$:
-$$A + B = 10^k - 1 = \underbrace{999\dots9}_{k \text{ nines}}$$
+
+$$
+A + B = 10^k - 1 = \underbrace{999\dots9}_{k \text{ nines}}
+$$
+
 This implies that for every index $i \in \{1, \dots, k\}$, the $i$-th digit $d_i$ and the $(i + k)$-th digit $d_{i+k}$ satisfy:
-$$d_i + d_{i+k} = 9$$
+
+$$
+d_i + d_{i+k} = 9
+$$
+
 Therefore, the sum of all $p - 1$ digits is exactly:
-$$\text{Sum of Digits} = 9 \times \frac{p - 1}{2} = \frac{9(p - 1)}{2}$$
+
+$$
+\text{Sum of Digits} = 9 \times \frac{p - 1}{2} = \frac{9(p - 1)}{2}
+$$
 
 ---
 
@@ -49,21 +67,38 @@ To identify the unique prime $p$:
 
 1. **Prefix Inversion (Range Bound)**:
    Since $\frac{1}{p} = 0.00000000137\dots$:
-   $$0.00000000137 \le \frac{1}{p} < 0.00000000138$$
-   $$\left\lfloor \frac{10^{11}}{138} \right\rfloor < p \le \left\lfloor \frac{10^{11}}{137} \right\rfloor \implies 724\,637\,681 \le p \le 729\,927\,007$$
+
+$$
+0.00000000137 \le \frac{1}{p} < 0.00000000138
+$$
+
+$$
+\left\lfloor \frac{10^{11}}{138} \right\rfloor < p \le \left\lfloor \frac{10^{11}}{137} \right\rfloor \implies 724\,637\,681 \le p \le 729\,927\,007
+$$
+
    The search range has a width of only $\approx 5.3 \times 10^6$.
 
 2. **Suffix Inversion (Modular Step Size)**:
    The cyclic number $N$ satisfies $N \cdot p = 10^{p-1} - 1 \equiv -1 \pmod{10^5}$.
    Given that the last 5 digits of $N$ are $56789$:
-   $$56789 \cdot p \equiv 99999 \pmod{100\,000}$$
+
+$$
+56789 \cdot p \equiv 99999 \pmod{100\,000}
+$$
+
    Multiplying by the modular inverse $(56789)^{-1} \pmod{100\,000}$:
-   $$p \equiv 99999 \times (56789)^{-1} \equiv 9891 \pmod{100\,000}$$
+
+$$
+p \equiv 99999 \times (56789)^{-1} \equiv 9891 \pmod{100\,000}
+$$
 
 3. **Hyper-Fast Stepping**:
    Stepping by $100\,000$ across $[724\,637\,681, 729\,927\,007]$ leaves only **53 candidate integers**!
    Testing primality and checking that $10$ is a primitive root modulo $p$ takes $< 0.001$ seconds and uniquely identifies:
-   $$p = 729\,809\,891$$
+
+$$
+p = 729\,809\,891
+$$
 
 ---
 
@@ -78,7 +113,10 @@ To identify the unique prime $p$:
    Direct digit sum: $1 + 4 + 2 + 8 + 5 + 7 = 27$ ($\checkmark$).
 
 ### Evaluation for Target $p = 729\,809\,891$
-$$\text{Sum of Digits} = \frac{9(729\,809\,891 - 1)}{2} = \frac{9 \times 729\,809\,890}{2} = 9 \times 364\,904\,945 = 3\,284\,144\,505$$
+
+$$
+\text{Sum of Digits} = \frac{9(729\,809\,891 - 1)}{2} = \frac{9 \times 729\,809\,890}{2} = 9 \times 364\,904\,945 = 3\,284\,144\,505
+$$
 
 ---
 

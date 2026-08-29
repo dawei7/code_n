@@ -24,9 +24,16 @@ Find $S(10^{14}) \bmod 1234567891$.
 ### Linearity of Expectation on Multiples
 For a fixed $x \le \lfloor n/2 \rfloor$, the number of strictly larger multiples is $k - 1 = \lfloor n/x \rfloor - 1$.
 The number of subsets containing $x$ and at least one larger multiple is:
-$$2^{n - 1} - 2^{n - \lfloor n/x \rfloor}$$
+
+$$
+2^{n - 1} - 2^{n - \lfloor n/x \rfloor}
+$$
+
 Thus, the total sum decomposes as:
-$$S(n) = 2^{n - 1} \sum_{x=1}^{\lfloor n/2 \rfloor} x - \sum_{x=1}^{\lfloor n/2 \rfloor} x \cdot 2^{n - \lfloor n/x \rfloor}$$
+
+$$
+S(n) = 2^{n - 1} \sum_{x=1}^{\lfloor n/2 \rfloor} x - \sum_{x=1}^{\lfloor n/2 \rfloor} x \cdot 2^{n - \lfloor n/x \rfloor}
+$$
 
 ---
 

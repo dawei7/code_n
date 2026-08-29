@@ -12,7 +12,10 @@ We are given:
 - $Q(123, 45) = 70\,542\,215\,894\,646$
 
 We seek to evaluate:
-$$Q(12345, 6789) \pmod{135\,707\,531}$$
+
+$$
+Q(12345, 6789) \pmod{135\,707\,531}
+$$
 
 ---
 
@@ -32,9 +35,16 @@ For any 4 distinct points in the plane:
 3. **Collinear 4-tuple (3 or 4 points on a line)**: forms $0$ simple quadrilaterals.
 
 Thus:
-$$Q(m, n) = (\text{Convex}) + 3 \times (\text{Concave}) = [(\text{Convex}) + (\text{Concave})] + 2 \times (\text{Concave})$$
+
+$$
+Q(m, n) = (\text{Convex}) + 3 \times (\text{Concave}) = [(\text{Convex}) + (\text{Concave})] + 2 \times (\text{Concave})
+$$
+
 where the interior point count of every non-degenerate triangle is given by Pick's Theorem:
-$$I(\Delta) = \operatorname{Area}(\Delta) - \frac{B(\Delta)}{2} + 1$$
+
+$$
+I(\Delta) = \operatorname{Area}(\Delta) - \frac{B(\Delta)}{2} + 1
+$$
 
 ---
 
@@ -42,7 +52,11 @@ $$I(\Delta) = \operatorname{Area}(\Delta) - \frac{B(\Delta)}{2} + 1$$
 
 ### Closed-Form 2D Lattice Moment Reduction
 The global sum reduces algebraically to moments of the 2D grid:
-$$Q(m, n) = \binom{P}{4} - \binom{P}{3} + \frac{S}{3} + (7 - 2P) L_3 + 7 L_4$$
+
+$$
+Q(m, n) = \binom{P}{4} - \binom{P}{3} + \frac{S}{3} + (7 - 2P) L_3 + 7 L_4
+$$
+
 where:
 - $S = \sum_{\Delta} 6 \operatorname{Area}(\Delta)$ is the 2nd-order coordinate area moment.
 - $L_3, L_4$ count collinear triples and 4-tuples via $\gcd(x, y)$ sums.

@@ -11,7 +11,10 @@ We are given:
 - $S(10) = 20, S(100) = 2402, S(1000) = 248838$
 
 We seek to evaluate:
-$$\sum_{k=3}^{44} S(F(k))$$
+
+$$
+\sum_{k=3}^{44} S(F(k))
+$$
 
 ---
 
@@ -41,9 +44,17 @@ Dynamic programming over integers up to $F(44) \approx 7 \times 10^8$ for all $k
 
 ### Closed-Form Harmonic Summation + Segmented Prime Counting
 1. **Closed-Form Formula for $S(N)$**:
-   $$S(N) = \pi(N) + (\lfloor N/2 \rfloor - 1) + (\pi(N - 2) - 1) + \sum_{i=6}^N (\lfloor i/2 \rfloor - 2)$$
+
+$$
+S(N) = \pi(N) + (\lfloor N/2 \rfloor - 1) + (\pi(N - 2) - 1) + \sum_{i=6}^N (\lfloor i/2 \rfloor - 2)
+$$
+
    The polynomial sum evaluates in $O(1)$ to:
-   $$\sum_{i=6}^N (\lfloor i/2 \rfloor - 2) = (m - 2)(N - m - 2), \quad m = \lfloor N/2 \rfloor$$
+
+$$
+\sum_{i=6}^N (\lfloor i/2 \rfloor - 2) = (m - 2)(N - m - 2), \quad m = \lfloor N/2 \rfloor
+$$
+
 2. **Segmented Sieve for Fibonacci Targets**:
    All evaluation points are $F(k)$ and $F(k) - 2$ for $k \in [3, 44]$ (max $F(44) = 701\,408\,733$).
    A single segmented sieve with chunk size $2 \times 10^6$ computes $\pi(N)$ for all query points in parallel.

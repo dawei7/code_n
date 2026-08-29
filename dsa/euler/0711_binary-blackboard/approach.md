@@ -15,7 +15,10 @@ We are given:
 - $S(1234) \equiv 690421393 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$S(12345678) \bmod 1\,000\,000\,007$$
+
+$$
+S(12345678) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -39,7 +42,10 @@ $2^N = 2^{12345678}$. The game state tree is infinitely larger than the number o
 3. **Linear State Recurrence**:
    Let $T_k = \sum_{b \in B_k} b \pmod{\text{MOD}}$.
    The recursive relationship satisfies:
-   $$T_{k+1} = 2 T_k + (2^k + 2) 4^k \pmod{\text{MOD}}$$
+
+$$
+T_{k+1} = 2 T_k + (2^k + 2) 4^k \pmod{\text{MOD}}
+$$
 
 ---
 
@@ -47,12 +53,27 @@ $2^N = 2^{12345678}$. The game state tree is infinitely larger than the number o
 
 ### Closed Parity Formulas for $S(N)$
 1. **Case $N = 2m$ (Even $N$)**:
-   $$S(2m) = A(m - 1) + 4^m + B(m) \pmod{\text{MOD}}$$
+
+$$
+S(2m) = A(m - 1) + 4^m + B(m) \pmod{\text{MOD}}
+$$
+
 2. **Case $N = 2m + 1$ (Odd $N$)**:
-   $$S(2m + 1) = A(m) + B(m) \pmod{\text{MOD}}$$
+
+$$
+S(2m + 1) = A(m) + B(m) \pmod{\text{MOD}}
+$$
+
    where:
-   $$A(t) = \sum_{k=0}^t 8^k + \sum_{k=0}^t T_k$$
-   $$B(m) = \sum_{k=1}^m (4^k - 1) = \frac{4^{m+1} - 4}{3} - m$$
+
+$$
+A(t) = \sum_{k=0}^t 8^k + \sum_{k=0}^t T_k
+$$
+
+$$
+B(m) = \sum_{k=1}^m (4^k - 1) = \frac{4^{m+1} - 4}{3} - m
+$$
+
 3. **Linear Prefix Evaluation**:
    $m = 12345678 / 2 = 6172839$.
    Iterating $k = 0 \dots m - 1$ to accumulate $\sum T_k$ takes only $O(m)$ steps, finishing in **$\approx 1.23$ seconds** in pure Python!

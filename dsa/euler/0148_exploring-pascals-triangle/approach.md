@@ -3,7 +3,9 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 We can easily verify that none of the entries in the first seven rows of Pascal's triangle are divisible by $7$:
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 1 \\
 1 & 1 \\
 1 & 2 & 1 \\
@@ -11,12 +13,16 @@ $$\begin{matrix}
 1 & 4 & 6 & 4 & 1 \\
 1 & 5 & 10 & 10 & 5 & 1 \\
 1 & 6 & 15 & 20 & 15 & 6 & 1
-\end{matrix}$$
+\end{matrix}
+$$
 
 However, if we check the first one-hundred ($100$) rows, we will find that only $2361$ of the $5050$ entries are not divisible by $7$.
 
 The objective is to find the **number of entries which are not divisible by $7$ in the first one billion ($10^9$) rows of Pascal's triangle**:
-$$N_{\text{not\_7}} = \left| \left\{ (n, k) \;\middle|\; 0 \le k \le n < 10^9 \land \binom{n}{k} \not\equiv 0 \pmod 7 \right\} \right|$$
+
+$$
+N_{\text{not\_7}} = \left| \left\{ (n, k) \;\middle|\; 0 \le k \le n < 10^9 \land \binom{n}{k} \not\equiv 0 \pmod 7 \right\} \right|
+$$
 
 ---
 
@@ -33,17 +39,29 @@ def naive_pascals_triangle():
 ### Lucas' Theorem & Fractal Base-7 Recurrence
 1. **Lucas' Theorem:**
    Let $n = (n_m \dots n_0)_7$ and $k = (k_m \dots k_0)_7$ be base-7 representations. Then:
-   $$\binom{n}{k} \equiv \prod_{i=0}^m \binom{n_i}{k_i} \pmod 7$$
+
+$$
+\binom{n}{k} \equiv \prod_{i=0}^m \binom{n_i}{k_i} \pmod 7
+$$
+
    A binomial coefficient $\binom{n}{k} \not\equiv 0 \pmod 7$ if and only if $k_i \le n_i$ for all base-7 digit positions $i$.
 2. **Entries Per Row:**
    The number of non-zero entries in row $n$ is simply:
-   $$f(n) = \prod_{i=0}^m (n_i + 1)$$
+
+$$
+f(n) = \prod_{i=0}^m (n_i + 1)
+$$
+
 3. **Fractal Base-7 Block Structure:**
    A full $7^1 \times 7^1$ triangle has $1 + 2 + \dots + 7 = 28$ non-divisible entries.
    In general, a full $7^k \times 7^k$ triangle contains exactly $28^k$ non-divisible entries!
 4. **Divide-and-Conquer Recurrence:**
    For $n = d \cdot 7^k + r$ (where $0 \le d < 7$ and $0 \le r < 7^k$):
-   $$F(n) = \frac{d(d + 1)}{2} \cdot 28^k + (d + 1) \cdot F(r)$$
+
+$$
+F(n) = \frac{d(d + 1)}{2} \cdot 28^k + (d + 1) \cdot F(r)
+$$
+
 5. This evaluates $F(10^9)$ in $\mathcal{O}(\log_7(10^9)) = 11$ recursive steps ($\approx 0.0000$ seconds).
 
 ---
@@ -66,13 +84,20 @@ def naive_pascals_triangle():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Base-7 Decomposition of $10^9$
-$$10^9 = (3, 3, 2, 4, 5, 1, 4, 6, 0, 1, 1)_7$$
+
+$$
+10^9 = (3, 3, 2, 4, 5, 1, 4, 6, 0, 1, 1)_7
+$$
+
 Recursive trace $F(n)$:
 - $d = \lfloor n / 7^k \rfloor, \quad r = n \bmod 7^k$.
 - Full blocks: $\frac{d(d+1)}{2} \cdot 28^k$.
 - Partial block: $(d + 1) \cdot F(r)$.
 - Final evaluated count:
-  $$N_{\text{not\_7}} = \mathbf{2\,129\,970\,655\,314\,432}$$
+
+$$
+N_{\text{not\_7}} = \mathbf{2\,129\,970\,655\,314\,432}
+$$
 
 ---
 
@@ -93,7 +118,10 @@ Recursive trace $F(n)$:
 
 ### Example 3: Target Evaluation for First $10^9$ Rows
 - Evaluating $F(10^9)$:
-  $$N_{\text{not\_7}} = \mathbf{2\,129\,970\,655\,314\,432}$$
+
+$$
+N_{\text{not\_7}} = \mathbf{2\,129\,970\,655\,314\,432}
+$$
 
 ---
 

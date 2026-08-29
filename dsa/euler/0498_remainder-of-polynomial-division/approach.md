@@ -10,7 +10,10 @@ We are given:
 - $C(100, 10, 4) = 227197811615775$
 
 We seek to evaluate:
-$$C(10^{13}, 10^{12}, 10^4) \pmod{999\,999\,937}$$
+
+$$
+C(10^{13}, 10^{12}, 10^4) \pmod{999\,999\,937}
+$$
 
 ---
 
@@ -26,10 +29,17 @@ Dividing polynomials of degree $n = 10^{13}$ by $(x - 1)^{10^{12}}$ requires $O(
 ### Variable Substitution & Truncated Binomial Series
 1. **Change of Variables**:
    Let $y = x - 1 \iff x = y + 1$.
-   $$x^n = (y + 1)^n = \sum_{j=0}^n \binom{n}{j} y^j$$
+
+$$
+x^n = (y + 1)^n = \sum_{j=0}^n \binom{n}{j} y^j
+$$
+
 2. **Modulo $y^m$ Remainder**:
    Because $G_m(x) = y^m$, the remainder $R_{n, m}(y)$ is simply the truncated polynomial:
-   $$R_{n, m}(y) = \sum_{j=0}^{m-1} \binom{n}{j} y^j = \sum_{j=0}^{m-1} \binom{n}{j} (x - 1)^j$$
+
+$$
+R_{n, m}(y) = \sum_{j=0}^{m-1} \binom{n}{j} y^j = \sum_{j=0}^{m-1} \binom{n}{j} (x - 1)^j
+$$
 
 ---
 
@@ -37,15 +47,31 @@ Dividing polynomials of degree $n = 10^{13}$ by $(x - 1)^{10^{12}}$ requires $O(
 
 ### Closed Combinatorial Telescoping Identity & Lucas' Theorem
 1. **Extracting Coefficient of $x^d$**:
-   $$[x^d] R_{n, m}(x) = \sum_{j=d}^{m-1} \binom{n}{j} \binom{j}{d} (-1)^{j - d}$$
+
+$$
+[x^d] R_{n, m}(x) = \sum_{j=d}^{m-1} \binom{n}{j} \binom{j}{d} (-1)^{j - d}
+$$
+
 2. **Binomial Absorption**:
    Using $\binom{n}{j} \binom{j}{d} = \binom{n}{d} \binom{n - d}{j - d}$ and setting $i = j - d$:
-   $$[x^d] R_{n, m}(x) = \binom{n}{d} \sum_{i=0}^{m - 1 - d} \binom{n - d}{i} (-1)^i$$
+
+$$
+[x^d] R_{n, m}(x) = \binom{n}{d} \sum_{i=0}^{m - 1 - d} \binom{n - d}{i} (-1)^i
+$$
+
 3. **Telescoping Alternating Sum Identity**:
    Using the standard identity $\sum_{i=0}^K \binom{N}{i} (-1)^i = (-1)^K \binom{N-1}{K}$:
-   $$[x^d] R_{n, m}(x) = (-1)^{m - 1 - d} \binom{n}{d} \binom{n - d - 1}{m - 1 - d}$$
+
+$$
+[x^d] R_{n, m}(x) = (-1)^{m - 1 - d} \binom{n}{d} \binom{n - d - 1}{m - 1 - d}
+$$
+
 4. **Exact Formula**:
-   $$C(n, m, d) = \binom{n}{d} \binom{n - d - 1}{m - 1 - d}$$
+
+$$
+C(n, m, d) = \binom{n}{d} \binom{n - d - 1}{m - 1 - d}
+$$
+
 5. **Lucas' Theorem Modulo Prime $P = 999999937$**:
    Since $P$ is prime, large binomial coefficients $\binom{N}{K} \bmod P$ are evaluated in $O(\log_P N)$ steps using Lucas' theorem.
 

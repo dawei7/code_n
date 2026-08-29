@@ -12,7 +12,10 @@ We are given:
 - $\sum_{N=1}^{500} f(N) = 13\,343$
 
 We seek to evaluate:
-$$\sum_{N=1}^{10^{12}} f(N) \pmod{10^8}$$
+
+$$
+\sum_{N=1}^{10^{12}} f(N) \pmod{10^8}
+$$
 
 ---
 
@@ -28,7 +31,11 @@ Simulating the greedy seating process for all $N \le 10^{12}$ requires $> 10^{12
 ### Independent Segment Occupancy
 1. **Edge Segment Capacity**:
    A free edge segment of length $n$ adjacent to one seated person can host:
-   $$A(n) = \max\left(\frac{p}{2}, \, (n + 1) - p\right)$$
+
+$$
+A(n) = \max\left(\frac{p}{2}, \, (n + 1) - p\right)
+$$
+
    where $p$ is the largest power of $2$ satisfying $p \le n + 1$.
 2. **First Person Independence**:
    If the first person sits at seat $p \in \{1, \dots, N\}$, the total seated count is $1 + A(p - 2) + A(N - p - 1)$.

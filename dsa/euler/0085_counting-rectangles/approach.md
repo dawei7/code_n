@@ -12,10 +12,16 @@ By counting carefully it can be seen that a rectangular grid measuring $3$ by $2
 - Total: $6 + 4 + 2 + 3 + 2 + 1 = 18$.
 
 For a grid of width $w$ and height $h$, any sub-rectangle is uniquely defined by choosing 2 vertical grid lines from $w + 1$ lines and 2 horizontal grid lines from $h + 1$ lines:
-$$R(w, h) = \binom{w + 1}{2} \binom{h + 1}{2} = \frac{w(w + 1)}{2} \cdot \frac{h(h + 1)}{2}$$
+
+$$
+R(w, h) = \binom{w + 1}{2} \binom{h + 1}{2} = \frac{w(w + 1)}{2} \cdot \frac{h(h + 1)}{2}
+$$
 
 The objective is to find the **area ($w \times h$) of the grid** containing the nearest number of sub-rectangles to two million ($2\,000\,000$):
-$$(w^*, h^*) = \operatorname*{arg\,min}_{w \ge h \ge 1} \left| R(w, h) - 2\,000\,000 \right|$$
+
+$$
+(w^*, h^*) = \operatorname*{arg\,min}_{w \ge h \ge 1} \left| R(w, h) - 2\,000\,000 \right|
+$$
 
 ---
 
@@ -58,10 +64,21 @@ def naive_counting_rectangles():
 1. Initialize $\text{best\_diff} = \infty, \text{best\_area} = 0$.
 2. For $w = 1 \dots 2000$:
    - For $h = 1 \dots w$:
-     $$\text{rects} = \frac{w(w+1)}{2} \cdot \frac{h(h+1)}{2}$$
-     $$\text{diff} = |\text{rects} - 2\,000\,000|$$
+
+$$
+\text{rects} = \frac{w(w+1)}{2} \cdot \frac{h(h+1)}{2}
+$$
+
+$$
+\text{diff} = |\text{rects} - 2\,000\,000|
+$$
+
      - If $\text{diff} < \text{best\_diff}$:
-       $$\text{best\_diff} = \text{diff}, \quad \text{best\_area} = w \cdot h$$
+
+$$
+\text{best\_diff} = \text{diff}, \quad \text{best\_area} = w \cdot h
+$$
+
      - If $\text{rects} > 2\,000\,000$: break inner loop.
 3. Return $\text{best\_area}$.
 
@@ -76,10 +93,20 @@ def naive_counting_rectangles():
 
 ### Example 2: Target Search near $2\,000\,000$
 - Grid $w = 77, h = 36$:
-  $$R(77, 36) = \frac{77 \times 78}{2} \cdot \frac{36 \times 37}{2} = 3003 \times 666 = \mathbf{1\,999\,998}$$
-  $$\text{Difference} = |1\,999\,998 - 2\,000\,000| = \mathbf{2}$$
+
+$$
+R(77, 36) = \frac{77 \times 78}{2} \cdot \frac{36 \times 37}{2} = 3003 \times 666 = \mathbf{1\,999\,998}
+$$
+
+$$
+\text{Difference} = |1\,999\,998 - 2\,000\,000| = \mathbf{2}
+$$
+
 - Grid Area:
-  $$\text{Area} = 77 \times 36 = \mathbf{2772}$$
+
+$$
+\text{Area} = 77 \times 36 = \mathbf{2772}
+$$
 
 ---
 

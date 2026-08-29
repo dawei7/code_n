@@ -4,9 +4,16 @@
 
 For an integer $n$, let $\nu_2(n)$ be the $2$-adic valuation of $n$.
 Define:
-$$S(n) = \sum_{k=1}^n (-2)^k \binom{2k}{k}, \quad u(n) = \nu_2(3 S(n) + 4)$$
+
+$$
+S(n) = \sum_{k=1}^n (-2)^k \binom{2k}{k}, \quad u(n) = \nu_2(3 S(n) + 4)
+$$
+
 We define:
-$$U(N) = \sum_{n=1}^N u(n^3)$$
+
+$$
+U(N) = \sum_{n=1}^N u(n^3)
+$$
 
 We are given:
 - $u(4) = 7$
@@ -14,7 +21,10 @@ We are given:
 - $U(5) = 241$
 
 We seek to evaluate:
-$$U(10^4)$$
+
+$$
+U(10^4)
+$$
 
 ---
 
@@ -30,14 +40,30 @@ Computing $S(n^3)$ for $n \le 10^4$ ($n^3 = 10^{12}$) involves summing $10^{12}$
 ### 2-Adic Convergence & Exponential Tail Reduction
 1. **Generating Function 2-Adic Zero**:
    The formal generating function for central binomial coefficients gives:
-   $$\sum_{k=0}^\infty \binom{2k}{k} x^k = \frac{1}{\sqrt{1 - 4x}}$$
+
+$$
+\sum_{k=0}^\infty \binom{2k}{k} x^k = \frac{1}{\sqrt{1 - 4x}}
+$$
+
    Evaluating at $x = -2$ in the 2-adic field $\mathbb{Q}_2$ gives:
-   $$1 + \sum_{k=1}^\infty (-2)^k \binom{2k}{k} = \frac{1}{\sqrt{1 + 8}} = \frac{1}{3} \implies 3 \sum_{k=1}^\infty (-2)^k \binom{2k}{k} + 4 = 0 \text{ in } \mathbb{Q}_2$$
+
+$$
+1 + \sum_{k=1}^\infty (-2)^k \binom{2k}{k} = \frac{1}{\sqrt{1 + 8}} = \frac{1}{3} \implies 3 \sum_{k=1}^\infty (-2)^k \binom{2k}{k} + 4 = 0 \text{ in } \mathbb{Q}_2
+$$
+
 2. **Infinite Tail Equality**:
    Consequently, for any integer $n \ge 1$:
-   $$3 S(n) + 4 = -3 \sum_{k > n} (-2)^k \binom{2k}{k}$$
+
+$$
+3 S(n) + 4 = -3 \sum_{k > n} (-2)^k \binom{2k}{k}
+$$
+
    Since $-3$ is a 2-adic unit ($\nu_2(-3) = 0$):
-   $$u(n) = \nu_2\left( \sum_{k > n} (-2)^k \binom{2k}{k} \right)$$
+
+$$
+u(n) = \nu_2\left( \sum_{k > n} (-2)^k \binom{2k}{k} \right)
+$$
+
 3. **Kummer's Valuation & Ultra-Fast Truncation**:
    By Kummer's theorem, $\nu_2\left((-2)^k \binom{2k}{k}\right) = k + \operatorname{popcount}(k) \ge k + 1$.
    The tail remainder $\sum_{k \ge n + m + 1} R(k)$ is strictly divisible by $2^{n + m + 1}$.
@@ -50,7 +76,11 @@ Computing $S(n^3)$ for $n \le 10^4$ ($n^3 = 10^{12}$) involves summing $10^{12}$
 ### Sub-second $O(N)$ Modular 2-Adic Arithmetic
 1. **Recurrence Ratio**:
    Successive terms satisfy the simple rational ratio:
-   $$\frac{R(k+1)}{R(k)} = -4 \frac{2k+1}{k+1}$$
+
+$$
+\frac{R(k+1)}{R(k)} = -4 \frac{2k+1}{k+1}
+$$
+
 2. **Odd Part Inversion mod $2^{256}$**:
    Tracking the odd part modulo $2^P$ using Newton's modular inverse avoids all multi-precision integer multiplications.
 3. **Execution Performance**:

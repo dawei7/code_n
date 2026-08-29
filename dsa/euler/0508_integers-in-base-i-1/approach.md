@@ -10,7 +10,10 @@ We are given:
 - $B(500) = 10795060$
 
 We seek to evaluate:
-$$B(10^{15}) \bmod 1\,000\,000\,007$$
+
+$$
+B(10^{15}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -26,7 +29,11 @@ The square $[-L, L] \times [-L, L]$ for $L = 10^{15}$ contains $(2 \times 10^{15
 ### Quotient-Remainder Preimage Dynamics
 1. **Base $i - 1$ Parity Rule**:
    The least significant digit $r \in \{0, 1\}$ in the base $i - 1$ expansion of $z = a + bi$ satisfies:
-   $$r = (a \oplus b) \bmod 2$$
+
+$$
+r = (a \oplus b) \bmod 2
+$$
+
 2. **Division Step**:
    $z = (i - 1) q + r \iff q = \frac{z - r}{i - 1} = \frac{(b - a + r) + (-(a + b - r)) i}{2}$.
 3. **Geometric Duality (Rectangle $\leftrightarrow$ Diamond)**:
@@ -43,7 +50,11 @@ The square $[-L, L] \times [-L, L]$ for $L = 10^{15}$ contains $(2 \times 10^{15
    Thus, the recursion depth is bounded by $\approx 2 \log_2(2L) \approx 100$.
 2. **Sum Recurrence**:
    For any domain $\mathcal{D}$:
-   $$\sum_{z \in \mathcal{D}} f(z) = \sum_{q \in \mathcal{D}_0} f(q) + \sum_{q \in \mathcal{D}_1} f(q) + |\mathcal{D}_1|$$
+
+$$
+\sum_{z \in \mathcal{D}} f(z) = \sum_{q \in \mathcal{D}_0} f(q) + \sum_{q \in \mathcal{D}_1} f(q) + |\mathcal{D}_1|
+$$
+
 3. **Memoization**:
    Caching rectangle and diamond boundary queries reduces the entire evaluation to $< 1000$ unique states.
 

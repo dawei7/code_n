@@ -11,7 +11,10 @@ We are given:
 - $S(10^{12}) = 623291998881978$
 
 We seek to evaluate:
-$$\text{The last 9 digits of } S(10^{36})$$
+
+$$
+\text{The last 9 digits of } S(10^{36})
+$$
 
 ---
 
@@ -30,7 +33,12 @@ $N = 10^{36} \implies M = N^{1/3} = 10^{12}$. Enumerating all prime pairs $(p, q
    Thus, $k = p^3 q^3 = (pq)^3$ for distinct primes $p < q$.
 2. **Reduced Domain**:
    $k \le N \iff p q \le \lfloor N^{1/3} \rfloor = M = 10^{12}$.
-   $$S(N) = \sum_{\substack{p < q \\ p q \le M}} (p q)^3 = \sum_{p < \sqrt{M}} p^3 \sum_{p < q \le M/p} q^3$$
+
+$$
+\begin{aligned}
+S(N) = \sum_{\substack{p < q \\ p q \le M}} (p q)^3 = \sum_{p < \sqrt{M}} p^3 \sum_{p < q \le M/p} q^3
+\end{aligned}
+$$
 
 ---
 
@@ -39,10 +47,18 @@ $N = 10^{36} \implies M = N^{1/3} = 10^{12}$. Enumerating all prime pairs $(p, q
 ### Lucy-Hedgehog Cubic Prime Summatory Sieve ($O(M^{3/4})$)
 1. **Sublinear Prime Power Sums**:
    Compute $P_3(x) = \sum_{p \le x} p^3 \pmod{10^9}$ simultaneously for all key values $x \in \{\lfloor M/i \rfloor\} \cup \{1 \dots \sqrt{M}\}$ using the Lucy sieve:
-   $$S[v] \leftarrow S[v] - p^3 \left( S[\lfloor v/p \rfloor] - S[p-1] \right)$$
+
+$$
+S[v] \leftarrow S[v] - p^3 \left( S[\lfloor v/p \rfloor] - S[p-1] \right)
+$$
+
    initialized with total cube sums $S_0(v) = \left( \frac{v(v+1)}{2} \right)^2 - 1$.
 2. **Inner Sum Query in $O(1)$**:
-   $$\sum_{p < q \le M/p} q^3 \equiv P_3(\lfloor M/p \rfloor) - P_3(p) \pmod{10^9}$$
+
+$$
+\sum_{p < q \le M/p} q^3 \equiv P_3(\lfloor M/p \rfloor) - P_3(p) \pmod{10^9}
+$$
+
    This evaluates the entire sum over all $p < \sqrt{M} = 10^6$ in $O(\sqrt{M} / \ln M)$ lookups!
 
 This evaluates the last 9 digits of $S(10^{36})$ in **$\approx 78$ seconds** in pure Python!

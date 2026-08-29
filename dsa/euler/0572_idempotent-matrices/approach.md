@@ -10,7 +10,10 @@ We are given:
 - $C(2) = 848$
 
 We seek to evaluate:
-$$C(200)$$
+
+$$
+C(200)
+$$
 
 ---
 

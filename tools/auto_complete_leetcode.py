@@ -20,10 +20,11 @@ LEETCODE_ROOT = REPO_ROOT / "dsa" / "leetcode"
 PROGRESS_PATH = REPO_ROOT / "progress.json"
 
 MODELS_POOL = [
-    "gemini-2.5-flash",
+    "gemini-3.5-flash-lite",
+    "gemini-2.5-flash-lite",
+    "gemini-2.0-flash-lite",
     "gemini-3.5-flash",
-    "gemini-3.1-flash-lite",
-    "gemini-2.5-flash-lite"
+    "gemini-2.5-flash"
 ]
 current_model_idx = 0
 

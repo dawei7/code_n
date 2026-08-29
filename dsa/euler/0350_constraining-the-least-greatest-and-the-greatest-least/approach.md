@@ -4,7 +4,11 @@
 
 Let a list of size $N$ be an ordered sequence of positive integers $(a_1, a_2, \dots, a_N) \in (\mathbb{Z}^+)^N$.
 We define $f(G, L, N)$ as the number of lists of size $N$ such that:
-$$\gcd(a_1, a_2, \dots, a_N) \ge G \quad \text{and} \quad \operatorname{lcm}(a_1, a_2, \dots, a_N) \le L$$
+
+$$
+\gcd(a_1, a_2, \dots, a_N) \ge G \quad \text{and} \quad \operatorname{lcm}(a_1, a_2, \dots, a_N) \le L
+$$
+
 We are given sample values:
 - $f(10, 100, 1) = 91$
 - $f(10, 100, 2) = 327$
@@ -30,11 +34,22 @@ A naive approach enumerates all sequences of size $N = 10^{18}$:
 Let $g = \gcd(a_1, \dots, a_N)$ and $l = \operatorname{lcm}(a_1, \dots, a_N)$.
 Since $g \mid a_i$ and $a_i \mid l$, we must have $g \mid l$.
 Write $a_i = g \cdot x_i$, where the reduced tuple $(x_1, \dots, x_N)$ satisfies:
-$$\gcd(x_1, \dots, x_N) = 1 \quad \text{and} \quad \operatorname{lcm}(x_1, \dots, x_N) = k = \frac{l}{g}$$
+
+$$
+\gcd(x_1, \dots, x_N) = 1 \quad \text{and} \quad \operatorname{lcm}(x_1, \dots, x_N) = k = \frac{l}{g}
+$$
+
 The bounds $g \ge G$ and $l = g \cdot k \le L$ imply that for a fixed ratio $k$:
-$$G \le g \le \left\lfloor \frac{L}{k} \right\rfloor$$
+
+$$
+G \le g \le \left\lfloor \frac{L}{k} \right\rfloor
+$$
+
 The number of valid choices for $g$ is:
-$$\text{ways}(g \mid k) = \max\left(0, \left\lfloor \frac{L}{k} \right\rfloor - G + 1\right)$$
+
+$$
+\text{ways}(g \mid k) = \max\left(0, \left\lfloor \frac{L}{k} \right\rfloor - G + 1\right)
+$$
 
 ---
 
@@ -45,15 +60,26 @@ Let $H(k, N)$ be the number of positive integer tuples $(x_1, \dots, x_N)$ with 
 By prime factorization $k = \prod_{i=1}^m p_i^{e_i}$:
 For each prime $p_i$, the exponents $(v_{i, 1}, \dots, v_{i, N}) \in [0, e_i]^N$ must satisfy $\min = 0$ and $\max = e_i$.
 By the Principle of Inclusion-Exclusion:
-$$C(e_i, N) = (e_i + 1)^N - 2 e_i^N + (e_i - 1)^N$$
+
+$$
+C(e_i, N) = (e_i + 1)^N - 2 e_i^N + (e_i - 1)^N
+$$
+
 Because choices across different prime factors are completely independent:
-$$H(k, N) = \prod_{i=1}^m C(e_i, N)$$
+
+$$
+H(k, N) = \prod_{i=1}^m C(e_i, N)
+$$
 
 $H(k, N)$ is a **strictly multiplicative arithmetic function**!
 1. The maximum ratio is $k_{\max} = \lfloor L / G \rfloor = 10^{12} / 10^6 = 10^6$.
 2. We compute $H(k, N) \bmod 101^4$ for all $k \le 10^6$ using a linear sieve in $\mathcal{O}(k_{\max})$ time.
 3. The total answer is:
-   $$f(G, L, N) \equiv \sum_{k=1}^{\lfloor L / G \rfloor} \left( \left\lfloor \frac{L}{k} \right\rfloor - G + 1 \right) \cdot H(k, N) \pmod{101^4}$$
+
+$$
+f(G, L, N) \equiv \sum_{k=1}^{\lfloor L / G \rfloor} \left( \left\lfloor \frac{L}{k} \right\rfloor - G + 1 \right) \cdot H(k, N) \pmod{101^4}
+$$
+
 4. The entire summation evaluates in under $0.39$ seconds in pure Python!
 
 ---

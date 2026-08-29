@@ -14,7 +14,11 @@ We are given:
 - $E(4, 4) = 5.76487732$ (rounded to 8 decimal places)
 
 We seek to evaluate:
-$$E(7, 7)$$
+
+$$
+E(7, 7)
+$$
+
 rounded to 8 decimal places.
 
 ---
@@ -52,7 +56,11 @@ For a $7 \times 7$ grid, there are $2^{49} \approx 5.63 \times 10^{14}$ possible
    Map each frontier `(labels, sizes)` to a dictionary `mxmap: {max_closed_size: count}`.
 2. **Termination**:
    After the final cell $N = W \cdot H$, all remaining active components close.
-   $$\text{Total Expected Max Area} = \frac{1}{2^{W \cdot H}} \sum_{(\text{labels}, \text{sizes})} \sum_{\text{mx}, \text{cnt}} \max(\text{mx}, \max(\text{sizes})) \cdot \text{cnt}$$
+
+$$
+\text{Total Expected Max Area} = \frac{1}{2^{W \cdot H}} \sum_{(\text{labels}, \text{sizes})} \sum_{\text{mx}, \text{cnt}} \max(\text{mx}, \max(\text{sizes})) \cdot \text{cnt}
+$$
+
 3. **High-Precision Decimal Rounding**:
    Perform exact 80-digit decimal division $\text{numer} / 2^{49}$ with `ROUND_HALF_UP` to 8 decimal places.
 

@@ -7,7 +7,11 @@ The speed vector in revolutions per 12 hours is $\mathbf{v} = (1, 12, 720)$.
 At time $t \in [0, 1)$, the hand positions are $(v_1 t, v_2 t, v_3 t) \bmod 1$.
 
 A moment $t_1 \in [0, 1)$ is *ambiguous* if there exists $t_2 \neq t_1$ and rotation $\theta \in [0, 1)$ such that the set of rotated hands at $t_1$ matches the set of hands at $t_2$:
-$$\{ (v_i t_1 + \theta) \bmod 1 \} = \{ v_{\sigma(i)} t_2 \bmod 1 \}$$
+
+$$
+\{ (v_i t_1 + \theta) \bmod 1 \} = \{ v_{\sigma(i)} t_2 \bmod 1 \}
+$$
+
 for some permutation $\sigma \in S_3$.
 
 Find the number of ambiguous moments within a 12-hour cycle.
@@ -25,7 +29,11 @@ Find the number of ambiguous moments within a 12-hour cycle.
 
 ### Linear Systems on the Torus $\mathbb{T}^2 = (\mathbb{R}/\mathbb{Z})^2$
 Eliminating the rotation angle $\theta$ yields a 2D linear congruence for each permutation $\sigma$:
-$$M_\sigma \begin{pmatrix} t_2 \\ t_1 \end{pmatrix} \equiv \begin{pmatrix} 0 \\ 0 \end{pmatrix} \pmod 1$$
+
+$$
+M_\sigma \begin{pmatrix} t_2 \\ t_1 \end{pmatrix} \equiv \begin{pmatrix} 0 \\ 0 \end{pmatrix} \pmod 1
+$$
+
 where $M_\sigma = \begin{pmatrix} v_{\sigma(2)} - v_{\sigma(1)} & -(v_2 - v_1) \\ v_{\sigma(3)} - v_{\sigma(1)} & -(v_3 - v_1) \end{pmatrix}$.
 
 The projection onto $t_1$ forms a cyclic subgroup of $\mathbb{R}/\mathbb{Z}$ of order $D_\sigma = |\det(M_\sigma)| / \gcd(M_{\sigma, 11}, M_{\sigma, 21})$.
@@ -36,10 +44,16 @@ The projection onto $t_1$ forms a cyclic subgroup of $\mathbb{R}/\mathbb{Z}$ of 
 
 ### Subgroup Inclusion-Exclusion & Coincidence Removal
 The 5 non-identity permutations generate 4 unique cyclic subgroups of orders:
-$$\mathcal{D} = \{516840, 15697, 509173, 501143\}$$
+
+$$
+\mathcal{D} = \{516840, 15697, 509173, 501143\}
+$$
 
 By the Principle of Inclusion-Exclusion on cyclic groups:
-$$|\bigcup \mathbb{Z}_{D_i}| = \sum_{r=1}^4 (-1)^{r-1} \sum_{|S|=r} \gcd(S) = 1542850$$
+
+$$
+|\bigcup \mathbb{Z}_{D_i}| = \sum_{r=1}^4 (-1)^{r-1} \sum_{|S|=r} \gcd(S) = 1542850
+$$
 
 #### Subtracting Non-Ambiguous Hand Coincidences
 When two hands coincide and $t_1 = t_2$, the reading is unambiguously identifiable:
@@ -50,7 +64,10 @@ When two hands coincide and $t_1 = t_2$, the reading is unambiguously identifiab
 - Non-ambiguous coincidence points: $(11 + 708 + 719) - 2 = 1436$.
 
 Total Ambiguous Moments:
-$$\text{Ans} = 1542850 - 1436 = \mathbf{1541414}$$
+
+$$
+\text{Ans} = 1542850 - 1436 = \mathbf{1541414}
+$$
 
 ---
 

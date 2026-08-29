@@ -27,7 +27,11 @@ A naive approach tests all integers $n = 10, 11, 12, \dots$ for the 4 primes and
 1. By Srinivasan's practical number criterion:
    Let $m = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$ with $p_1 < p_2 < \dots < p_k$.
    $m$ is practical if and only if $p_1 = 2$ and for all $i \ge 2$:
-   $$p_i \le 1 + \sigma\left( \prod_{j=1}^{i-1} p_j^{e_j} \right)$$
+
+$$
+p_i \le 1 + \sigma\left( \prod_{j=1}^{i-1} p_j^{e_j} \right)
+$$
+
 2. All 5 numbers $n - 8, n - 4, n, n + 4, n + 8$ must be practical, so they must all be **even** $\implies n$ is a multiple of $4$.
 3. Since $n \pm 9$ and $n \pm 3$ are primes $> 3$:
    $n \equiv 0 \pmod 3$, so $n$ must be a multiple of $12$.

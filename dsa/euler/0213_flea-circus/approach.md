@@ -10,7 +10,10 @@ Give your answer rounded to $6$ decimal places.
 
 Let $E[X]$ denote the expected number of empty cells after $50$ independent jumps.
 By Linearity of Expectation:
-$$E[X] = \sum_{r=0}^{29} \sum_{c=0}^{29} P(\text{cell }(r, c) \text{ is unoccupied})$$
+
+$$
+E[X] = \sum_{r=0}^{29} \sum_{c=0}^{29} P(\text{cell }(r, c) \text{ is unoccupied})
+$$
 
 ---
 
@@ -27,11 +30,19 @@ def naive_flea_simulation():
 ### Linearity of Expectation & Independent Markov Random Walks
 1. **Linearity of Expectation:**
    Let $I_{r, c} \in \{0, 1\}$ be the indicator variable that square $(r, c)$ is empty at step $50$.
-   $$E[\text{Total Empty Squares}] = \sum_{r=0}^{29} \sum_{c=0}^{29} E[I_{r, c}] = \sum_{r=0}^{29} \sum_{c=0}^{29} P(\text{cell }(r, c) \text{ is empty})$$
+
+$$
+E[\text{Total Empty Squares}] = \sum_{r=0}^{29} \sum_{c=0}^{29} E[I_{r, c}] = \sum_{r=0}^{29} \sum_{c=0}^{29} P(\text{cell }(r, c) \text{ is empty})
+$$
+
 2. **Independent Flea Movements:**
    Let $p_{(r_0, c_0)}(r, c)$ be the probability that a flea starting at $(r_0, c_0)$ is at $(r, c)$ after $50$ steps.
    Because all $900$ fleas choose their jumps independently:
-   $$P(\text{cell }(r, c) \text{ is empty}) = \prod_{r_0=0}^{29} \prod_{c_0=0}^{29} \left( 1 - p_{(r_0, c_0)}(r, c) \right)$$
+
+$$
+P(\text{cell }(r, c) \text{ is empty}) = \prod_{r_0=0}^{29} \prod_{c_0=0}^{29} \left( 1 - p_{(r_0, c_0)}(r, c) \right)
+$$
+
 3. **8-Fold Grid Symmetry ($D_4$):**
    Under the horizontal, vertical, and diagonal reflection symmetries of the square grid, there are only $\frac{15 \times 16}{2} = 120$ unique starting flea positions $(r_0, c_0)$ in the octant $0 \le r_0 \le c_0 \le 14$.
    Simulating 50 steps of Markov transitions for the 120 positions and transforming to the remaining 780 positions completes the entire calculation in $\approx 0.65$ seconds.
@@ -54,13 +65,22 @@ def naive_flea_simulation():
 
 ### Master Markov Chain Probability Product Formula
 For each starting position $(r_0, c_0)$, the probability distribution vector $\mathbf{p}^{(k)}$ evolves via:
-$$\mathbf{p}^{(k+1)}(r, c) = \sum_{(r', c') \in \operatorname{Neigh}(r, c)} \frac{\mathbf{p}^{(k)}(r', c')}{\operatorname{deg}(r', c')}$$
+
+$$
+\mathbf{p}^{(k+1)}(r, c) = \sum_{(r', c') \in \operatorname{Neigh}(r, c)} \frac{\mathbf{p}^{(k)}(r', c')}{\operatorname{deg}(r', c')}
+$$
 
 Total expected number of empty cells:
-$$E[X] = \sum_{r=0}^{29} \sum_{c=0}^{29} \prod_{r_0=0}^{29} \prod_{c_0=0}^{29} \left( 1 - \mathbf{p}^{(50)}_{(r_0, c_0)}(r, c) \right)$$
+
+$$
+E[X] = \sum_{r=0}^{29} \sum_{c=0}^{29} \prod_{r_0=0}^{29} \prod_{c_0=0}^{29} \left( 1 - \mathbf{p}^{(50)}_{(r_0, c_0)}(r, c) \right)
+$$
 
 Evaluating for $N = 30, \text{steps} = 50$:
-$$E[X] = \mathbf{"330.721154"}$$
+
+$$
+E[X] = \mathbf{"330.721154"}
+$$
 
 ---
 
@@ -71,10 +91,17 @@ $$E[X] = \mathbf{"330.721154"}$$
 - After 50 steps, each flea has a small landing probability $p \approx \frac{1}{900} \approx 0.0011$.
 - Complementary probability: $1 - p \approx 0.9989$.
 - Product across all 900 fleas:
-  $$(1 - 1/900)^{900} \approx \frac{1}{e} \approx 0.367879$$
+
+$$
+(1 - 1/900)^{900} \approx \frac{1}{e} \approx 0.367879
+$$
+
 - Summing over all 900 cells: $900 \times 0.367 \approx 330$.
 - Exact Markov distribution sum yields:
-  $$E[X] = \mathbf{"330.721154"}$$
+
+$$
+E[X] = \mathbf{"330.721154"}
+$$
 
 ---
 

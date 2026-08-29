@@ -13,7 +13,10 @@ We are given:
 - $T(1000) = 2268$
 
 We seek to evaluate:
-$$T(10^{17})$$
+
+$$
+T(10^{17})
+$$
 
 ---
 
@@ -30,8 +33,15 @@ Evaluating $S(k)$ individually for each of $10^{17}$ values is completely imposs
 1. **Rational Ratio Reduction**:
    Every integer GP of length $t + 1 \ge 3$ can be written as $b(p-1)^t, b(p-1)^{t-1}p, \dots, b p^t$ where $p \ge 2, t \ge 2, b = \lfloor k / p^t \rfloor$.
    The sum is:
-   $$\text{Sum} = b \left( p^{t+1} - (p-1)^{t+1} \right)$$
-   $$S(k) = \max_{p \ge 2, t \ge 2} \left\lfloor \frac{k}{p^t} \right\rfloor \left( p^{t+1} - (p-1)^{t+1} \right)$$
+
+$$
+\text{Sum} = b \left( p^{t+1} - (p-1)^{t+1} \right)
+$$
+
+$$
+S(k) = \max_{p \ge 2, t \ge 2} \left\lfloor \frac{k}{p^t} \right\rfloor \left( p^{t+1} - (p-1)^{t+1} \right)
+$$
+
 2. **Piecewise Constant Steps**:
    $S(k)$ is non-decreasing and remains constant over massive intervals $[k, \text{change} - 1]$.
    On any constant interval $[a, b]$, the alternating sum $\sum_{k=a}^b (-1)^k S(k) = S(a) \sum_{k=a}^b (-1)^k$ evaluates in $O(1)$ time to $S(a) \cdot [0, \pm 1]$.

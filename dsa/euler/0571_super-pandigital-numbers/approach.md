@@ -11,7 +11,10 @@ We are given:
 - The sum of the 10 smallest 10-super-pandigital numbers is $20319792309$.
 
 We seek to evaluate:
-$$\text{The sum of the 10 smallest 12-super-pandigital numbers}$$
+
+$$
+\text{The sum of the 10 smallest 12-super-pandigital numbers}
+$$
 
 ---
 

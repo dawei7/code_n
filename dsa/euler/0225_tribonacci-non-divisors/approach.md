@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The sequence $T_n$ is defined by:
-$$T_1 = 1, \quad T_2 = 1, \quad T_3 = 1, \quad T_n = T_{n-1} + T_{n-2} + T_{n-3} \quad (n \ge 4)$$
+
+$$
+T_1 = 1, \quad T_2 = 1, \quad T_3 = 1, \quad T_n = T_{n-1} + T_{n-2} + T_{n-3} \quad (n \ge 4)
+$$
 
 The sequence begins:
-$$1, 1, 1, 3, 5, 9, 17, 31, 57, 105, 193, 355, 653, 1201, \dots$$
+
+$$
+1, 1, 1, 3, 5, 9, 17, 31, 57, 105, 193, 355, 653, 1201, \dots
+$$
 
 It can be shown that $27$ is the first odd number that does not divide any term of the Tribonacci sequence.
 Find the **$124^{\text{th}}$ odd integer** that does not divide any term of the sequence.
@@ -75,7 +81,10 @@ def solve(target_index: int = 124) -> int:
     return non_divisors[target_index - 1]
 ```
 Evaluating for $\text{target\_index} = 124$:
-$$K_{124} = \mathbf{2009}$$
+
+$$
+K_{124} = \mathbf{2009}
+$$
 
 ---
 
@@ -83,16 +92,27 @@ $$K_{124} = \mathbf{2009}$$
 
 ### Example 1: Sample Verification for $k = 27$
 - Sequence modulo $27$:
-  $$1, 1, 1, 3, 5, 9, 17, 4, 3, 24, 4, 4, 5, 13, 22, 13, 20, 1, 7, 1, 9, 17, \dots$$
+
+$$
+1, 1, 1, 3, 5, 9, 17, 4, 3, 24, 4, 4, 5, 13, 22, 13, 20, 1, 7, 1, 9, 17, \dots
+$$
+
 - Complete cycle has length $432$ and contains no zero residue.
 - Returns to $(1, 1, 1) \pmod{27}$ cleanly.
 - $k = 27$ is confirmed as the 1st non-divisor! $\checkmark$
 
 ### Example 2: Target Evaluation for $K_{124}$
 - Accumulating odd non-divisors:
-  $$\{27, 41, 57, 81, 117, \dots, 2009\}$$
+
+$$
+\{27, 41, 57, 81, 117, \dots, 2009\}
+$$
+
 - The $124^{\text{th}}$ element is:
-  $$K_{124} = \mathbf{2009}$$
+
+$$
+K_{124} = \mathbf{2009}
+$$
 
 ---
 

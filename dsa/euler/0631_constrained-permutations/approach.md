@@ -11,7 +11,10 @@ We are given:
 - $f(10, 25) = 294400$
 
 We seek to evaluate:
-$$f(10^{18}, 40) \pmod{10^9 + 7}$$
+
+$$
+f(10^{18}, 40) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -33,7 +36,10 @@ Testing all permutations of lengths up to $10^{18}$ is impossible.
 3. **Stabilization at $L \ge m + 2$**:
    Because at most $m$ inversions are permitted, once length $L \ge m + 2$, any new elements must be appended in strictly increasing order without creating new inversions.
    Thus, for all $L \ge m + 2$, the number of valid permutations of length $L$ becomes constant:
-   $$\operatorname{count}(L) = \operatorname{count}(m + 2)$$
+
+$$
+\operatorname{count}(L) = \operatorname{count}(m + 2)
+$$
 
 ---
 
@@ -44,7 +50,10 @@ Testing all permutations of lengths up to $10^{18}$ is impossible.
    Run the layer transition only for lengths $1 \le L \le \min(n, m + 2) = 42$.
 2. **Constant Extrapolation**:
    When $n > m + 2$:
-   $$f(n, m) = f(m + 2, m) + (n - (m + 2)) \cdot \operatorname{count}(m + 2) \pmod{10^9 + 7}$$
+
+$$
+f(n, m) = f(m + 2, m) + (n - (m + 2)) \cdot \operatorname{count}(m + 2) \pmod{10^9 + 7}
+$$
 
 This evaluates $f(10^{18}, 40) \pmod{10^9 + 7}$ in **$\approx 0.20$ seconds** in pure Python!
 

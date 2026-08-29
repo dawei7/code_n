@@ -4,7 +4,11 @@
 
 Let $r$ be the unique real root of the cubic equation $x^3 = x^2 + 1$ ($r \approx 1.46557$, the supergolden ratio).
 Every positive integer $n$ has a unique representation as a finite sum of distinct powers:
-$$n = \sum_{k=-\infty}^\infty b_k r^k$$
+
+$$
+n = \sum_{k=-\infty}^\infty b_k r^k
+$$
+
 under the conditions that $b_k \in \{0, 1\}$ and $b_k + b_{k+1} + b_{k+2} \le 1$ for all $k$ (no two 1s within index distance $\le 2$).
 Let $w(n) = \sum b_k$ be the number of terms, and $S(m) = \sum_{j=1}^m w(j^2)$.
 
@@ -15,7 +19,10 @@ We are given:
 - $S(1000) = 19403$
 
 We seek to evaluate:
-$$S(5\,000\,000)$$
+
+$$
+S(5\,000\,000)
+$$
 
 ---
 

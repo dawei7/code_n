@@ -25,7 +25,11 @@ For a right triangle with legs $a, b$ and hypotenuse $c$:
 - Circumradius: $R_c = c / 2 < R \iff c \le 2R - 1$.
 - Inradius: $r = \frac{a + b - c}{2} = n(m - n)$.
 Let $u = m - n, v = n$. Then:
-$$c = u^2 + 2uv + 2v^2 \le 2R - 1, \quad r = uv$$
+
+$$
+c = u^2 + 2uv + 2v^2 \le 2R - 1, \quad r = uv
+$$
+
 with $u$ odd and $\gcd(u, v) = 1$.
 
 ---
@@ -34,7 +38,11 @@ with $u$ odd and $\gcd(u, v) = 1$.
 
 ### Continuous Extremum & Elliptical Window Search
 Maximizing $r = uv$ on $u^2 + 2uv + 2v^2 = C_{\max}$ via Lagrange multipliers gives:
-$$\frac{u}{v} = \sqrt{2} \implies v_{\text{opt}} \approx \sqrt{\frac{2R - 1}{4 + 2\sqrt{2}}}$$
+
+$$
+\frac{u}{v} = \sqrt{2} \implies v_{\text{opt}} \approx \sqrt{\frac{2R - 1}{4 + 2\sqrt{2}}}
+$$
+
 Scanning a local window $[v_{\text{opt}} - \Delta, v_{\text{opt}} + \Delta]$ with $\Delta = 5000$ and extracting coprime odd roots $u = \lfloor\sqrt{C_{\max} - v^2}\rfloor - v$ evaluates $F(10^{18}) = \mathbf{414213562371805310}$ in **under 0.01s** in 100% pure Python.
 
 ---

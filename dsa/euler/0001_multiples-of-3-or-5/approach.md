@@ -5,10 +5,17 @@
 Let $\mathbb{N}_{<N} = \{ k \in \mathbb{N} \mid 1 \le k < N \}$ denote the set of positive integers strictly less than $N \in \mathbb{N}$.
 
 For a divisor $m \in \mathbb{N}$, define the subset of multiples of $m$ in $\mathbb{N}_{<N}$:
-$$A_m = \{ k \in \mathbb{N}_{<N} \mid m \mid k \}$$
+
+$$
+A_m = \{ k \in \mathbb{N}_{<N} \mid m \mid k \}
+$$
 
 The objective is to compute the sum of all integers in the union of multiples of $3$ and $5$:
-$$S(N) = \sum_{k \in A_3 \cup A_5} k = \sum_{k=1}^{N-1} k \cdot \mathbb{I}(3 \mid k \lor 5 \mid k)$$
+
+$$
+S(N) = \sum_{k \in A_3 \cup A_5} k = \sum_{k=1}^{N-1} k \cdot \mathbb{I}(3 \mid k \lor 5 \mid k)
+$$
+
 where $\mathbb{I}(P) \in \{0, 1\}$ is the indicator function of proposition $P$.
 
 We must evaluate $S(1000)$.
@@ -33,7 +40,11 @@ def naive_S(n):
 ## 3. Core Intuition & Mathematical Structure
 
 Instead of testing each integer individually, we recognize that the multiples of any integer $m$ form a well-structured **Arithmetic Progression**:
-$$A_m = \{ m, 2m, 3m, \dots, p_m \cdot m \}$$
+
+$$
+A_m = \{ m, 2m, 3m, \dots, p_m \cdot m \}
+$$
+
 where $p_m = \lfloor (N - 1) / m \rfloor$ is the total count of multiples.
 
 ### Multiples Parameter Breakdown
@@ -50,14 +61,23 @@ where $p_m = \lfloor (N - 1) / m \rfloor$ is the total count of multiples.
 
 ### A. Closed-Form Arithmetic Progression Sum (Gauss' Formula)
 Factoring $m$ out of the sum over $A_m$:
-$$\sigma(m, N) = \sum_{j=1}^{p_m} (j \cdot m) = m \sum_{j=1}^{p_m} j = m \cdot \frac{p_m(p_m + 1)}{2}$$
+
+$$
+\sigma(m, N) = \sum_{j=1}^{p_m} (j \cdot m) = m \sum_{j=1}^{p_m} j = m \cdot \frac{p_m(p_m + 1)}{2}
+$$
 
 ### B. Principle of Inclusion-Exclusion (PIE)
 Summing elements in $A_3$ and $A_5$ counts multiples of both $\operatorname{lcm}(3, 5) = 15$ twice. By PIE:
-$$S(N) = \sum_{k \in A_3 \cup A_5} k = \sum_{k \in A_3} k + \sum_{k \in A_5} k - \sum_{k \in A_3 \cap A_5} k$$
+
+$$
+S(N) = \sum_{k \in A_3 \cup A_5} k = \sum_{k \in A_3} k + \sum_{k \in A_5} k - \sum_{k \in A_3 \cap A_5} k
+$$
 
 Since $\gcd(3, 5) = 1$, $A_3 \cap A_5 = A_{15}$. Thus:
-$$\boxed{S(N) = \sigma(3, N) + \sigma(5, N) - \sigma(15, N)}$$
+
+$$
+\boxed{S(N) = \sigma(3, N) + \sigma(5, N) - \sigma(15, N)}
+$$
 
 ---
 
@@ -75,7 +95,10 @@ Target: Multiples below $10$.
 2. $\sigma(5, 1000) = 99\,500$
 3. $\sigma(15, 1000) = 33\,165$
 4. Combined total:
-   $$S(1000) = 166\,833 + 99\,500 - 33\,165 = \mathbf{233\,168}$$
+
+$$
+S(1000) = 166\,833 + 99\,500 - 33\,165 = \mathbf{233\,168}
+$$
 
 ---
 

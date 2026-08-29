@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $S(n, k, b)$ denote the number of non-negative integer solutions $(x_1, \dots, x_k)$ satisfying:
-$$x_1 + x_2 + \cdots + x_k \le n, \quad \text{where } 0 \le x_m \le b^m \text{ for each } 1 \le m \le k$$
+
+$$
+x_1 + x_2 + \cdots + x_k \le n, \quad \text{where } 0 \le x_m \le b^m \text{ for each } 1 \le m \le k
+$$
 
 We are given:
 - $S(14, 3, 2) = 135$
@@ -11,7 +14,10 @@ We are given:
 - $S(1000, 10, 5) \equiv 624839075 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$\left( \sum_{k=10}^{15} S(10^k, k, k) \right) \bmod 1\,000\,000\,007$$
+
+$$
+\left( \sum_{k=10}^{15} S(10^k, k, k) \right) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -27,7 +33,11 @@ For $n = 10^{15}$, dynamic programming requires $10^{15}$ state transitions, whi
 ### Slack Variable & Inclusion-Exclusion
 1. **Slack Variable Equivalence**:
    Introducing the slack variable $x_0 = n - \sum_{m=1}^k x_m \ge 0$, the inequality becomes an exact sum:
-   $$x_0 + x_1 + \dots + x_k = n$$
+
+$$
+x_0 + x_1 + \dots + x_k = n
+$$
+
    with $x_0 \ge 0$ (unbounded) and $0 \le x_m \le b^m$ for $m \in \{1, \dots, k\}$.
 2. **Stars and Bars without Upper Bounds**:
    The number of non-negative integer solutions to $x_0 + \dots + x_k = N$ is $\binom{N + k}{k}$.
@@ -41,10 +51,18 @@ For $n = 10^{15}$, dynamic programming requires $10^{15}$ state transitions, whi
 
 ### $O(2^k \cdot k)$ Subset Enumeration
 1. **PIE Formula**:
-   $$S(n, k, b) = \sum_{J \subseteq \{1, \dots, k\}} (-1)^{|J|} \binom{n - \sum_{m \in J} (b^m + 1) + k}{k}$$
+
+$$
+S(n, k, b) = \sum_{J \subseteq \{1, \dots, k\}} (-1)^{|J|} \binom{n - \sum_{m \in J} (b^m + 1) + k}{k}
+$$
+
 2. **Modular Combinatorial Evaluation**:
    Since $k \le 15$, each binomial coefficient $\binom{N_J + k}{k}$ requires only $k \le 15$ modular multiplications:
-   $$\binom{N_J + k}{k} = \frac{(N_J + k)(N_J + k - 1)\cdots(N_J + 1)}{k!} \pmod{10^9+7}$$
+
+$$
+\binom{N_J + k}{k} = \frac{(N_J + k)(N_J + k - 1)\cdots(N_J + 1)}{k!} \pmod{10^9+7}
+$$
+
 3. **Total Subsets**:
    For $k \le 15$, $2^k \le 32\,768$ terms, which evaluates in milliseconds.
 

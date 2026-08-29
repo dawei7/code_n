@@ -13,7 +13,10 @@ We are given:
 - $L(10^3, 10^3) \equiv 954021836 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$L(10^7, 10^7) \bmod 1\,000\,000\,007$$
+
+$$
+L(10^7, 10^7) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -46,7 +49,10 @@ There are $(10^7 - 1)^{10^7}$ configurations, and direct $k$-fold polynomial mul
    Build frequency vector $\mathbf{a}$ of length $M = 2^{\lceil \log_2 (P + 1) \rceil}$, where $P = \pi(10^7) = 664579$ ($M = 1048576$).
 3. **Pointwise Power in Hadamard Domain**:
    Apply in-place $\text{FWHT}(\mathbf{a})$, compute pointwise powers $\hat{\mathbf{a}}[i]^k \pmod{10^9+7}$, and invert:
-   $$L(n, k) = \frac{1}{M} \sum_{i=0}^{M-1} \hat{\mathbf{a}}[i]^k \bmod (10^9+7)$$
+
+$$
+L(n, k) = \frac{1}{M} \sum_{i=0}^{M-1} \hat{\mathbf{a}}[i]^k \bmod (10^9+7)
+$$
 
 This evaluates $L(10^7, 10^7)$ in **$\approx 2.2$ seconds** in pure Python!
 

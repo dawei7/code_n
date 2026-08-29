@@ -33,9 +33,17 @@ Consider the final step when the full caterpillar of length $N$ is completed:
 
 ### Convolutional Recurrence
 By linearity of expectation and multiplicative independence of sub-intervals:
-$$E(N) = H(N) \cdot \frac{1}{N} \sum_{i=1}^N E(i - 1) E(N - i)$$
+
+$$
+E(N) = H(N) \cdot \frac{1}{N} \sum_{i=1}^N E(i - 1) E(N - i)
+$$
+
 Substituting $H(N) = N(2N - 1)$:
-$$E(N) = (2N - 1) \sum_{i=1}^N E(i - 1) E(N - i)$$
+
+$$
+E(N) = (2N - 1) \sum_{i=1}^N E(i - 1) E(N - i)
+$$
+
 with initial condition $E(0) = 1$.
 
 The factor $1/N$ cancels the $N$ in $H(N)$, proving why the expectation is always an exact integer.

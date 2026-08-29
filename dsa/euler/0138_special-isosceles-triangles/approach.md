@@ -8,7 +8,10 @@ By using the Pythagorean theorem it can be seen that the height of the triangle,
 With $b = 272$ and $L = 305$, we get $h = 273$, which is one more than the base length ($h = b + 1$), and this is the second smallest isosceles triangle with the property that $h = b \pm 1$.
 
 The objective is to find **$\sum L$ for the twelve ($12$) smallest isosceles triangles for which $h = b \pm 1$ and $b, L$ are positive integers**:
-$$S_L = \sum_{k=1}^{12} L_k$$
+
+$$
+S_L = \sum_{k=1}^{12} L_k
+$$
 
 ---
 
@@ -24,15 +27,31 @@ def naive_special_isosceles():
 
 ### Transformation to Pell Equation & 2nd-Order Recurrence
 1. The right-triangle Pythagorean equation with half-base $b/2$, height $h$, and hypotenuse $L$:
-   $$(b/2)^2 + h^2 = L^2 \iff b^2 + 4h^2 = 4L^2$$
+
+$$
+(b/2)^2 + h^2 = L^2 \iff b^2 + 4h^2 = 4L^2
+$$
+
 2. Substituting $h = b \pm 1$:
-   $$b^2 + 4(b \pm 1)^2 = 5b^2 \pm 8b + 4 = 4L^2$$
+
+$$
+b^2 + 4(b \pm 1)^2 = 5b^2 \pm 8b + 4 = 4L^2
+$$
+
 3. Completing the square by multiplying by 5:
-   $$(5b \pm 4)^2 + 4 = 20L^2 \iff (5b \pm 4)^2 - 20L^2 = -4$$
+
+$$
+(5b \pm 4)^2 + 4 = 20L^2 \iff (5b \pm 4)^2 - 20L^2 = -4
+$$
+
 4. **Pell Linear Recurrence:**
    The fundamental unit of $\mathbb{Z}[\sqrt{5}]$ is $\frac{1+\sqrt{5}}{2}$, with generator matrix having eigenvalue $(9 + 4\sqrt{5}) \implies 18$.
    The leg lengths $L_k$ satisfy the unified 2nd-order linear recurrence:
-   $$L_{k+1} = 18 L_k - L_{k-1}$$
+
+$$
+L_{k+1} = 18 L_k - L_{k-1}
+$$
+
    with base seeds $L_1 = 17$ and $L_2 = 305$.
 5. This evaluates all 12 leg lengths in $\mathcal{O}(K)$ steps ($\approx 0.0000$ seconds).
 
@@ -71,7 +90,10 @@ Using $L_{k+1} = 18 L_k - L_{k-1}$:
 - $L_{12} = 1054633170686313$
 
 Summing all 12 leg lengths:
-$$S_L = \sum_{k=1}^{12} L_k = \mathbf{1\,118\,049\,290\,473\,932}$$
+
+$$
+S_L = \sum_{k=1}^{12} L_k = \mathbf{1\,118\,049\,290\,473\,932}
+$$
 
 ---
 
@@ -87,7 +109,10 @@ $$S_L = \sum_{k=1}^{12} L_k = \mathbf{1\,118\,049\,290\,473\,932}$$
 
 ### Example 3: Target Evaluation for 12 Triangles
 - Summing the 12 generated terms:
-  $$S_L = \mathbf{1\,118\,049\,290\,473\,932}$$
+
+$$
+S_L = \mathbf{1\,118\,049\,290\,473\,932}
+$$
 
 ---
 

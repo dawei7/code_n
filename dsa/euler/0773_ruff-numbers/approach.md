@@ -11,7 +11,10 @@ We are given:
 - $F(3) = 76101452$
 
 We seek to evaluate:
-$$F(97) \bmod 1\,000\,000\,007$$
+
+$$
+F(97) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -30,13 +33,21 @@ For $k = 97$, iterating through all $2^{97} \approx 1.58 \times 10^{29}$ subsets
 2. **Invariance by Subset Size $s$**:
    Because every prime $p_i \equiv 7 \pmod{10}$, the product of any subset of size $s$ has residue $7^s \pmod{10}$.
    Inverting $7^s \pmod{10}$ produces a 4-periodic sequence $q(s \bmod 4) \in \{7, 1, 3, 9\}$:
-   $$\begin{array}{c|cccc}
+
+$$
+\begin{array}{c|cccc}
    s \bmod 4 & 0 & 1 & 2 & 3 \\ \hline
    q(s) & 7 & 1 & 3 & 9
-   \end{array}$$
+\end{array}
+$$
+
 3. **Exact Binomial Closed Form**:
    By Mobius inversion over all subsets grouped by size $s$:
-   $$F(k) \equiv M_k \left( \sum_{s=0}^k (-1)^s \binom{k}{s} q(s \bmod 4) + 5 \varphi(M_k) \right) \pmod{\text{MOD}}$$
+
+$$
+F(k) \equiv M_k \left( \sum_{s=0}^k (-1)^s \binom{k}{s} q(s \bmod 4) + 5 \varphi(M_k) \right) \pmod{\text{MOD}}
+$$
+
    where $M_k = \prod_{i=1}^k p_i$ and $\varphi(M_k) = \prod_{i=1}^k (p_i - 1)$.
 
 ---

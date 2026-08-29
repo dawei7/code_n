@@ -40,9 +40,16 @@ By Conway's theory of combinatorial games (Hackenbush strings):
 ### Linear Diophantine Invariant for Zero Game Value
 Let $x_1, x_2, x_3, x_4$ be the counts of $(GG), (SS), (GS), (SG)$ stacks respectively.
 Total game value is:
-$$G = 2(x_1 - x_2) + \frac{1}{2}(x_3 - x_4)$$
+
+$$
+G = 2(x_1 - x_2) + \frac{1}{2}(x_3 - x_4)
+$$
+
 The game is fair ($G = 0$) if and only if:
-$$x_4 - x_3 = 4(x_1 - x_2)$$
+
+$$
+x_4 - x_3 = 4(x_1 - x_2)
+$$
 
 Setting $d = x_1 - x_2$:
 - $x_1 = x_2 + d$
@@ -50,7 +57,10 @@ Setting $d = x_1 - x_2$:
 - $2x_2 + 2x_3 + 5d = n \implies x_2 + x_3 = \frac{n - 5d}{2}$
 
 For each valid non-negative tuple $(x_1, x_2, x_3, x_4)$, the number of distinct ordered arrangements is given by the multinomial coefficient:
-$$\frac{n!}{x_1! \, x_2! \, x_3! \, x_4!}$$
+
+$$
+\frac{n!}{x_1! \, x_2! \, x_3! \, x_4!}
+$$
 
 Summing over all valid integer offsets $d \in [-\lfloor n/5 \rfloor, \lfloor n/5 \rfloor]$ and $x_2$ yields $F(n)$ in $\mathcal{O}(n^2)$ operations.
 

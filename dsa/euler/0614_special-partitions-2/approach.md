@@ -11,7 +11,10 @@ We are given:
 - $P(1000) = 3699177285485660336 \equiv 591419523 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$\sum_{i=1}^{10^7} P(i) \pmod{10^9 + 7}$$
+
+$$
+\sum_{i=1}^{10^7} P(i) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -26,14 +29,21 @@ Standard 0/1 knapsack with $10^7$ items takes $O(N^2) \approx 10^{14}$ operation
 
 ### Generating Function & Modular Form $\eta$-Quotients
 1. **Generating Function**:
-   $$F(x) = \sum_{n=0}^\infty P(n) x^n = \prod_{k \ge 0} (1 + x^{2k+1}) \prod_{k \ge 1} (1 + x^{4k})$$
+
+$$
+F(x) = \sum_{n=0}^\infty P(n) x^n = \prod_{k \ge 0} (1 + x^{2k+1}) \prod_{k \ge 1} (1 + x^{4k})
+$$
+
 2. **Algebraic Product Factorization**:
    Using $1 + x^m = \frac{1 - x^{2m}}{1 - x^m}$:
    - $\prod_{k \ge 0} (1 + x^{2k+1}) = \prod_{k \ge 1} \frac{1 - x^{4k-2}}{1 - x^{2k-1}} = \frac{\phi(x^2)/\phi(x^4)}{\phi(x)/\phi(x^2)} = \frac{\phi(x^2)^2}{\phi(x) \phi(x^4)}$
    - $\prod_{k \ge 1} (1 + x^{4k}) = \frac{\phi(x^8)}{\phi(x^4)}$
    where $\phi(x) = \prod_{n \ge 1} (1 - x^n) = \sum_{k \in \mathbb{Z}} (-1)^k x^{k(3k-1)/2}$ is Euler's pentagonal series.
 3. **Closed $\eta$-Quotient Representation**:
-   $$F(x) = \frac{\phi(x^2)^2 \phi(x^8)}{\phi(x) \phi(x^4)^2}$$
+
+$$
+F(x) = \frac{\phi(x^2)^2 \phi(x^8)}{\phi(x) \phi(x^4)^2}
+$$
 
 ---
 

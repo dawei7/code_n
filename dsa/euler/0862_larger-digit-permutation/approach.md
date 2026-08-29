@@ -24,7 +24,10 @@ Find $S(12)$.
 ### Equivalence Classes over Digit Multisets
 Permuting the digits of $n$ preserves the multiset of digits $M = (c_0, c_1, \dots, c_9)$ where $\sum_{d=0}^9 c_d = k$.
 The total number of valid $k$-digit integers (avoiding a leading zero) formed from multiset $M$ is:
-$$C(M) = \frac{k!}{\prod_{d=0}^9 c_d!} - \frac{(k-1)!}{(c_0 - 1)! \prod_{d=1}^9 c_d!} = \frac{(k - c_0)(k-1)!}{\prod_{d=0}^9 c_d!}$$
+
+$$
+C(M) = \frac{k!}{\prod_{d=0}^9 c_d!} - \frac{(k-1)!}{(c_0 - 1)! \prod_{d=1}^9 c_d!} = \frac{(k - c_0)(k-1)!}{\prod_{d=0}^9 c_d!}
+$$
 
 ---
 
@@ -34,10 +37,18 @@ $$C(M) = \frac{k!}{\prod_{d=0}^9 c_d!} - \frac{(k-1)!}{(c_0 - 1)! \prod_{d=1}^9 
 When the $C(M)$ valid numbers formed by multiset $M$ are sorted in strictly increasing order $n_1 < n_2 < \dots < n_{C(M)}$:
 - The $i$-th number has exactly $T(n_i) = C(M) - i$ strictly larger permutations.
 Summing $T(n)$ over the entire multiset class $M$ yields the triangular number:
-$$\sum_{n \in M} T(n) = \sum_{i=1}^{C(M)} (C(M) - i) = \sum_{j=0}^{C(M) - 1} j = \binom{C(M)}{2} = \frac{C(M)(C(M) - 1)}{2}$$
+
+$$
+\sum_{n \in M} T(n) = \sum_{i=1}^{C(M)} (C(M) - i) = \sum_{j=0}^{C(M) - 1} j = \binom{C(M)}{2} = \frac{C(M)(C(M) - 1)}{2}
+$$
 
 Thus, the global sum $S(k)$ is simply:
-$$S(k) = \sum_{\substack{c_0 + c_1 + \dots + c_9 = k \\ c_0 < k}} \binom{C(c_0, \dots, c_9)}{2}$$
+
+$$
+\begin{aligned}
+S(k) = \sum_{\substack{c_0 + c_1 + \dots + c_9 = k \\ c_0 < k}} \binom{C(c_0, \dots, c_9)}{2}
+\end{aligned}
+$$
 
 The number of digit multisets for $k = 12$ is $\binom{12 + 10 - 1}{9} = \binom{21}{9} = \mathbf{293,930}$.
 

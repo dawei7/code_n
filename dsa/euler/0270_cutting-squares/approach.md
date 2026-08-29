@@ -45,7 +45,11 @@ A polygon triangulation is determined by recursively choosing an interior triang
    - For the base edge $(i, j)$:
      Pick an intermediate vertex $k \in (i, j)$ such that $\triangle i k j$ is a non-degenerate triangle strictly inside the polygon.
    - Then:
-     $$DP(i, j) = \sum_{k} DP(i, k) \times DP(k, j) \pmod{10^8}$$
+
+$$
+DP(i, j) = \sum_{k} DP(i, k) \times DP(k, j) \pmod{10^8}
+$$
+
 3. Because all side lengths are $N$, the state $DP(i, j)$ depends only on the perimeter offsets and side transitions.
 4. Using modular interval dynamic programming modulo $10^8$, $C(30) \bmod 10^8$ is computed in $\mathcal{O}((4N)^3)$ time in under $0.8$ seconds in pure Python!
 

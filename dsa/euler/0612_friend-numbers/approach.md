@@ -9,7 +9,10 @@ We are given:
 - $f(100) = 1539$
 
 We seek to evaluate:
-$$f(10^{18}) \pmod{1000267129}$$
+
+$$
+f(10^{18}) \pmod{1000267129}
+$$
 
 ---
 
@@ -24,13 +27,24 @@ The total number of integers is $10^{18} - 1$, leading to $\approx \frac{10^{36}
 
 ### Complement Counting & 10-Bit Digit Masks
 1. **Complement Rule**:
-   $$\text{Friend Pairs} = \binom{n-1}{2} - \text{Non-Friend Pairs}$$
+
+$$
+\text{Friend Pairs} = \binom{n-1}{2} - \text{Non-Friend Pairs}
+$$
+
    Two numbers $p, q$ are non-friends if and only if their digit masks are disjoint: $\operatorname{mask}(p) \cap \operatorname{mask}(q) = \emptyset$.
 2. **Exact Mask Frequency via Inclusion-Exclusion**:
    For any subset of digits $S \subseteq \{0, 1, \dots, 9\}$ of size $k$ with $n_0 = |S \setminus \{0\}|$ non-zero elements, the number of integers $< 10^{18}$ with all digits contained in $S$ is:
-   $$N(S) = \sum_{L=1}^{18} n_0 \cdot k^{L-1}$$
+
+$$
+N(S) = \sum_{L=1}^{18} n_0 \cdot k^{L-1}
+$$
+
    Then by Möbius inversion on the Boolean lattice $\{0, 1\}^{10}$:
-   $$C[m] = \sum_{S \subseteq m} (-1)^{|m| - |S|} N(S)$$
+
+$$
+C[m] = \sum_{S \subseteq m} (-1)^{|m| - |S|} N(S)
+$$
 
 ---
 
@@ -38,7 +52,11 @@ The total number of integers is $10^{18} - 1$, leading to $\approx \frac{10^{36}
 
 ### Disjoint Submask Summation ($O(3^{10})$)
 1. **Summing Over Disjoint Pairs**:
-   $$\text{Non-Friend Pairs} = \frac{1}{2} \sum_{m_1 = 1}^{1023} C[m_1] \sum_{m_2 \subseteq \sim m_1, m_2 > 0} C[m_2]$$
+
+$$
+\text{Non-Friend Pairs} = \frac{1}{2} \sum_{m_1 = 1}^{1023} C[m_1] \sum_{m_2 \subseteq \sim m_1, m_2 > 0} C[m_2]
+$$
+
    There are only $3^{10} = 59049$ pairs of disjoint masks $(m_1, m_2)$, evaluated in $< 1\text{ ms}$.
 2. **Composite Modulus Division by 2**:
    The modulus $M = 1000267129 = 31627^2$ is composite and odd. The modular inverse of 2 is simply $(M + 1) / 2$.

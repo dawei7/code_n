@@ -13,7 +13,10 @@ We are given:
 - $F(50000) = 1898$
 
 We seek to evaluate:
-$$F(10^{18})$$
+
+$$
+F(10^{18})
+$$
 
 ---
 

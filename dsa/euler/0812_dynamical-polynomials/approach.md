@@ -21,7 +21,11 @@ Directly enumerating integer polynomials of degree $n=10\,000$ or testing divisi
 ### Chebyshev Dynamics & Orbit Decomposition
 1. **Chebyshev Transformation**:
    The polynomial $T(x) = x^2 - 2$ is the degree-2 Chebyshev map conjugated by scaling:
-   $$2 \cos(2\theta) = (2\cos \theta)^2 - 2$$
+
+$$
+2 \cos(2\theta) = (2\cos \theta)^2 - 2
+$$
+
    Setting $x = 2 \cos(2\pi \theta)$, the dynamic map $x \mapsto x^2 - 2$ translates on the circle $\mathbb{R}/\mathbb{Z}$ to the angle-doubling map $\theta \mapsto 2\theta \pmod 1$.
 2. **Forward Invariant Sets**:
    The condition $f(x) \mid f(x^2-2)$ means the set of complex roots of $f(x)$ is closed under the map $x \mapsto x^2 - 2$ (a forward-invariant finite set).
@@ -41,13 +45,28 @@ Directly enumerating integer polynomials of degree $n=10\,000$ or testing divisi
    Each odd $m_0 > 1$ with $\phi(m_0) \le 2N$ generates a sequence of cumulative component degrees $W_t = \sum_{k=0}^t \deg(P_{2^k m_0})$.
    Let $c[w]$ be the total number of components of weight $w$.
    The multiset partition generating function is:
-   $$F(x) = \prod_{w \ge 1} (1 - x^w)^{-c[w]} = \exp\left( \sum_{w \ge 1} c[w] \sum_{k \ge 1} \frac{x^{kw}}{k} \right)$$
+
+$$
+F(x) = \prod_{w \ge 1} (1 - x^w)^{-c[w]} = \exp\left( \sum_{w \ge 1} c[w] \sum_{k \ge 1} \frac{x^{kw}}{k} \right)
+$$
+
 2. **Special Component Generating Function**:
    The ramified component $\{2, -2, 0\}$ satisfies:
-   $$V_1(x) = \prod_{r \ge 1} (1 - x^{2^r})^{-1}, \quad V_{-}(x) = \prod_{r \ge 1} (1 + x^{2^r})^{-1}$$
-   $$P(x) = \frac{1}{2}\left( (1+x)V_1(x) + (1-x)V_{-}(x) \right) \cdot \frac{1}{1-x} \cdot \frac{1}{1-x^2}$$
+
+$$
+V_1(x) = \prod_{r \ge 1} (1 - x^{2^r})^{-1}, \quad V_{-}(x) = \prod_{r \ge 1} (1 + x^{2^r})^{-1}
+$$
+
+$$
+P(x) = \frac{1}{2}\left( (1+x)V_1(x) + (1-x)V_{-}(x) \right) \cdot \frac{1}{1-x} \cdot \frac{1}{1-x^2}
+$$
+
 3. **Total Generating Series**:
-   $$S(x) = F(x) \cdot P(x) \pmod{x^{N+1}}$$
+
+$$
+S(x) = F(x) \cdot P(x) \pmod{x^{N+1}}
+$$
+
    computed in $O(N \log N)$ via $NTT$-based polynomial exponential (`poly_exp`) and multiplication (`polymul`).
 
 ---

@@ -4,7 +4,11 @@
 
 A species of bacteria $S_{k, m}$ occurs in $k$ different types $\alpha_0, \dots, \alpha_{k-1}$.
 The transitions are governed by the deterministic pseudo-random sequence:
-$$r_0 = 306, \quad r_{n+1} = r_n^2 \bmod 10\,007$$
+
+$$
+r_0 = 306, \quad r_{n+1} = r_n^2 \bmod 10\,007
+$$
+
 Every minute, an individual $A$ of type $\alpha_i$ selects $j \in [0, m-1]$ uniformly at random and undergoes a transformation determined by $q = r_{i m + j} \bmod 5$:
 - $q = 0$: $A$ dies (0 offspring)
 - $q = 1$: $A$ clones ($2$ of type $\alpha_i$)
@@ -20,7 +24,10 @@ We are given:
 - $P_{10, 5} \approx 0.53466253$
 
 We seek to evaluate:
-$$P_{500, 10} \quad \text{rounded to 8 decimal places}$$
+
+$$
+P_{500, 10} \quad \text{rounded to 8 decimal places}
+$$
 
 ---
 
@@ -37,7 +44,11 @@ Because the extinction boundary is sensitive and branching trees can grow expone
 1. **Extinction Probability Vector**:
    Let $x_i$ be the probability that the lineage descended from a single bacterium of type $\alpha_i$ eventually goes extinct.
    By the law of total probability and independence of offspring:
-   $$x_i = f_i(x_0, x_1, \dots, x_{k-1})$$
+
+$$
+x_i = f_i(x_0, x_1, \dots, x_{k-1})
+$$
+
    where $f_i(\mathbf{x}) = \frac{1}{m} \sum_{j=0}^{m-1} G_{i, j}(\mathbf{x})$.
 2. **Generating Functions for Transition Rules**:
    - $q = 0 \implies 1$

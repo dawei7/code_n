@@ -25,7 +25,11 @@ Find $T(10^{12}) \bmod 715827883$.
 ### Dirichlet Divisor Inversion
 Each directed edge $(b, bp)$ appears in $G(n)$ if and only if $bp \mid n$.
 Summing over all $n \le N$:
-$$T(N) = \sum_{m=1}^N f(m) \lfloor \frac{N}{m} \rfloor$$
+
+$$
+T(N) = \sum_{m=1}^N f(m) \lfloor \frac{N}{m} \rfloor
+$$
+
 where $f(m) = \sum_{p \mid m} (\phi(m) - \phi(m/p))$.
 
 ---

@@ -12,7 +12,10 @@ We are given:
 - $f(10^9) \equiv 126\,897\,180 \pmod{17^7}$
 
 We seek to evaluate:
-$$f(10^k) \pmod{17^7} \quad \text{for } k = 10^{18}$$
+
+$$
+f(10^k) \pmod{17^7} \quad \text{for } k = 10^{18}
+$$
 
 ---
 
@@ -35,14 +38,21 @@ Analyzing the recursive substitution yields a system of linear recurrences whose
 
 ### Exact Closed-Form Formula & Euler Totient Reduction
 Solving the characteristic equation gives the exact closed-form expression:
-$$f(n) = \frac{6 \cdot 4^n - 20 \cdot 2^n + 15 - (-1)^n}{15}$$
+
+$$
+f(n) = \frac{6 \cdot 4^n - 20 \cdot 2^n + 15 - (-1)^n}{15}
+$$
 
 To evaluate $f(10^k) \pmod{17^7}$ for $k = 10^{18}$:
 1. **Euler's Totient Theorem**:
    For modulus $M = 17^7 = 410\,338\,673$, Euler's totient is $\phi(17^7) = 17^6 \times 16 = 386\,196\,368$.
 2. **Double Exponent Reduction**:
    Since $\gcd(2, M) = 1$ and $\gcd(4, M) = 1$:
-   $$2^n \equiv 2^{n \bmod \phi(M)} \pmod M \quad \text{where } n \equiv 10^{10^{18}} \pmod{\phi(M)}$$
+
+$$
+2^n \equiv 2^{n \bmod \phi(M)} \pmod M \quad \text{where } n \equiv 10^{10^{18}} \pmod{\phi(M)}
+$$
+
    The reduced exponent is computed as $n_{\text{red}} = 10^{10^{18}} \bmod \phi(M)$ via standard modular exponentiation `pow(10, 10**18, phi)`.
 3. **Modular Division**:
    Multiply by the modular inverse $15^{-1} \pmod{17^7}$.

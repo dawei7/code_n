@@ -4,7 +4,11 @@
 
 Let $T(x) = \sum_{n=0}^\infty \frac{s(2^n x)}{2^n}$ be the Blancmange curve ($s(x)$ is distance to nearest integer).
 For $x = \frac{(2^t + 1)^r}{2^k + 1}$:
-$$F(k, t, r) = (2^{2k} - 1) T(x)$$
+
+$$
+F(k, t, r) = (2^{2k} - 1) T(x)
+$$
+
 Given:
 - $F(3, 1, 1) = 42$
 - $F(13, 3, 3) = 23093880$
@@ -26,7 +30,11 @@ Find $F(10^{18} + 31, 10^{14} + 31, 62) \bmod 1000062031$.
 ### $2k$-Periodicity & Exact Summation
 Because $2^{2k} \equiv 1 \pmod{2^k + 1}$, the fractional parts of $2^n x$ are strictly periodic with period $2k$.
 Multiplying by $2^{2k} - 1$ cancels the geometric tail, yielding the finite integer sum:
-$$F(k, t, r) = \frac{1}{2^k + 1} \sum_{n=0}^{2k-1} 2^{2k - n} \min\left(2^n A \bmod (2^k + 1), (2^k + 1) - 2^n A \bmod (2^k + 1)\right)$$
+
+$$
+F(k, t, r) = \frac{1}{2^k + 1} \sum_{n=0}^{2k-1} 2^{2k - n} \min\left(2^n A \bmod (2^k + 1), (2^k + 1) - 2^n A \bmod (2^k + 1)\right)
+$$
+
 where $A = (2^t + 1)^r$.
 
 ---

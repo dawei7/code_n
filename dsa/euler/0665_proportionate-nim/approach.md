@@ -18,7 +18,10 @@ We are given:
 - $f(1000) = 117002$
 
 We seek to evaluate:
-$$f(10^7)$$
+
+$$
+f(10^7)
+$$
 
 ---
 

@@ -4,7 +4,10 @@
 
 Let $\lambda(n) = (-1)^{\Omega(n)}$ be the Liouville function, where $\Omega(n)$ is the total number of prime factors of $n$ counted with multiplicity.
 Define:
-$$S(n, L, H) = \sum_{d \mid n, L \le d \le H} \lambda(d) \cdot d$$
+
+$$
+S(n, L, H) = \sum_{d \mid n, L \le d \le H} \lambda(d) \cdot d
+$$
 
 We are given:
 - $S(10!, 100, 1000) = 1457$
@@ -12,7 +15,10 @@ We are given:
 - $S(30!, 10^8, 10^{12}) = 9766732243224$
 
 We seek to evaluate:
-$$S(70!, 10^{20}, 10^{60}) \bmod 1\,000\,000\,007$$
+
+$$
+S(70!, 10^{20}, 10^{60}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -35,7 +41,10 @@ Direct enumeration of $1.25 \times 10^{12}$ divisors is computationally infeasib
    Partition the primes into two subsets $S_1$ and $S_2$ such that $\prod_{p \in S_1} (e_p + 1) \approx \prod_{p \in S_2} (e_p + 1) \approx \sqrt{1.25 \times 10^{12}} \approx 1.1 \times 10^6$.
 3. **Divisor Factorization**:
    Every divisor $d \mid 70!$ is uniquely represented as $d = a \cdot b$ where $a$ is composed of primes in $S_1$ and $b$ is composed of primes in $S_2$.
-   $$f(d) = f(a) f(b)$$
+
+$$
+f(d) = f(a) f(b)
+$$
 
 ---
 
@@ -47,7 +56,10 @@ Direct enumeration of $1.25 \times 10^{12}$ divisors is computationally infeasib
 2. **Iterate Side ($S_2$)**:
    For each divisor $a \in S_2$, the condition $L \le a b \le H$ becomes $\frac{L}{a} \le b \le \frac{H}{a}$.
    Query the prefix sum array via `bisect_right` in $O(\log M_1)$:
-   $$\sum_{L/a \le b \le H/a} f(b) = \text{pref}\left(\left\lfloor \frac{H}{a} \right\rfloor\right) - \text{pref}\left(\left\lfloor \frac{L - 1}{a} \right\rfloor\right)$$
+
+$$
+\sum_{L/a \le b \le H/a} f(b) = \text{pref}\left(\left\lfloor \frac{H}{a} \right\rfloor\right) - \text{pref}\left(\left\lfloor \frac{L - 1}{a} \right\rfloor\right)
+$$
 
 This evaluates $S(70!, 10^{20}, 10^{60}) \bmod 10^9 + 7$ in **$\approx 5.02$ seconds** in pure Python!
 

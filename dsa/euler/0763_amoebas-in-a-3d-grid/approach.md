@@ -12,7 +12,11 @@ We are given:
 - $D(100) \equiv 780166455 \pmod{10^9}$
 
 We seek to evaluate:
-$$D(10\,000) \bmod 10^9$$
+
+$$
+D(10\,000) \bmod 10^9
+$$
+
 (the last 9 digits of $D(10\,000)$).
 
 ---

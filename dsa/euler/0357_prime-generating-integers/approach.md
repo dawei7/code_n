@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $n$ is called a **prime-generating integer** if for every divisor $d \mid n$, the integer:
-$$d + \frac{n}{d}$$
+
+$$
+d + \frac{n}{d}
+$$
+
 is a prime number.
 
 For example, the divisors of $30$ are $\{1, 2, 3, 5, 6, 10, 15, 30\}$:
@@ -14,7 +18,12 @@ For example, the divisors of $30$ are $\{1, 2, 3, 5, 6, 10, 15, 30\}$:
 All paired sums are prime, so $n = 30$ is a valid prime-generating integer.
 
 We seek to evaluate the sum of all prime-generating integers $n \le 100\,000\,000$:
-$$\sum_{\substack{1 \le n \le 10^8 \\ \forall d \mid n, \, d + n/d \in \mathbb{P}}} n$$
+
+$$
+\begin{aligned}
+\sum_{\substack{1 \le n \le 10^8 \\ \forall d \mid n, \, d + n/d \in \mathbb{P}}} n
+\end{aligned}
+$$
 
 ---
 
@@ -42,7 +51,11 @@ A naive algorithm finds the divisors for every integer $n \le 10^8$ and tests pr
 
 3. **Square-Free Property**:
    Suppose $p^2 \mid n$ for some prime $p$. Choosing divisor $d = p$:
-   $$d + \frac{n}{d} = p + \frac{n}{p}$$
+
+$$
+d + \frac{n}{d} = p + \frac{n}{p}
+$$
+
    Since $p \mid (n/p)$ and $n/p \ge p \ge 2$, $p$ divides $p + n/p$, and $p + n/p > p$.
    Thus $p + n/p$ is composite!
    Therefore, $n$ must be strictly **square-free**.

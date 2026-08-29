@@ -5,10 +5,18 @@
 A Googol ($10^{100}$) is a massive number ($1$ followed by one hundred zeros), yet its digit sum is merely $1$.
 
 For an integer $n \in \mathbb{N}$ with decimal representation $n = \sum_{i=0}^{k-1} d_i 10^i$, define the digital sum function:
-$$S(n) = \sum_{i=0}^{k-1} d_i$$
+
+$$
+S(n) = \sum_{i=0}^{k-1} d_i
+$$
 
 The objective is to find the maximum digital sum of numbers of the form $a^b$ for all positive integers $a, b < 100$:
-$$S_{\text{max}} = \max_{\substack{1 \le a < 100 \\ 1 \le b < 100}} S(a^b)$$
+
+$$
+\begin{aligned}
+S_{\text{max}} = \max_{\substack{1 \le a < 100 \\ 1 \le b < 100}} S(a^b)
+\end{aligned}
+$$
 
 ---
 
@@ -23,7 +31,11 @@ def naive_powerful_digit_sum():
 
 ### Search Space Bounds
 1. For $a, b < 100$, $a^b$ contains at most:
-   $$\lfloor \log_{10} 99^{99} \rfloor + 1 = \lfloor 99 \times \log_{10} 99 \rfloor + 1 = \lfloor 99 \times 1.9956 \rfloor + 1 = 198 \text{ digits}$$
+
+$$
+\lfloor \log_{10} 99^{99} \rfloor + 1 = \lfloor 99 \times \log_{10} 99 \rfloor + 1 = \lfloor 99 \times 1.9956 \rfloor + 1 = 198 \text{ digits}
+$$
+
 2. The theoretical upper bound on digit sum is $198 \times 9 = 1782$.
 3. All $9801$ powers are evaluated in Python's arbitrary-precision integer arithmetic in $\approx 0.08$ seconds.
 
@@ -63,9 +75,16 @@ Digital sums are naturally maximized when both base $a$ and exponent $b$ are clo
 - Evaluating $a = 99, b = 95$:
   - $99^{95} = 3719702283084347712396349479424726279930777977464010374665427142475479268615967664687550186175949575979503463991206154336040854497424619717144700010998906913166543160495398285514652220199$
   - Sum of digits:
-    $$S(99^{95}) = \mathbf{972}$$
+
+$$
+S(99^{95}) = \mathbf{972}
+$$
+
 - Global Maximum:
-  $$S_{\text{max}} = \mathbf{972}$$
+
+$$
+S_{\text{max}} = \mathbf{972}
+$$
 
 ---
 

@@ -23,9 +23,17 @@ Given:
 
 ### Diophantine Leap Factorization
 Between consecutive triangle hits $a_{n_0} = T_m$:
-$$a_{n_0 + k} = T_m + T_k$$
+
+$$
+a_{n_0 + k} = T_m + T_k
+$$
+
 The next triangle number $T_{m'}$ satisfies $T_{m'} - T_m = T_k$, which factors algebraically as:
-$$(Y - Z)(Y + Z) = 8 T_m$$
+
+$$
+(Y - Z)(Y + Z) = 8 T_m
+$$
+
 where $Y = 2m' + 1$ and $Z = 2k + 1$.
 
 ---

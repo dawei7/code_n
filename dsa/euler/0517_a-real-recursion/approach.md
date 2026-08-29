@@ -3,14 +3,23 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For any real $a > 1$, the function $g_a(x)$ is defined by:
-$$g_a(x) = \begin{cases} 1 & \text{for } x < a \\ g_a(x - 1) + g_a(x - a) & \text{for } x \ge a \end{cases}$$
+
+$$
+g_a(x) = \begin{cases} 1 & \text{for } x < a \\ g_a(x - 1) + g_a(x - a) & \text{for } x \ge a \end{cases}
+$$
+
 Let $G(n) = g_{\sqrt{n}}(n)$.
 
 We are given:
 - $G(90) = 7564511$
 
 We seek to evaluate:
-$$\sum_{\substack{p \text{ prime} \\ 10\,000\,000 < p < 10\,010\,000}} G(p) \bmod 1\,000\,000\,007$$
+
+$$
+\begin{aligned}
+\sum_{\substack{p \text{ prime} \\ 10\,000\,000 < p < 10\,010\,000}} G(p) \bmod 1\,000\,000\,007
+\end{aligned}
+$$
 
 ---
 
@@ -38,15 +47,29 @@ For $n \approx 10^7$ and $a = \sqrt{n} \approx 3162.277$, the continuous DAG has
 ### Hockey-Stick Telescoping & Integer Arithmetic Floors
 1. **Exact Floor via Integer Square Root**:
    For any prime $p$, $\sqrt{p}$ is irrational, so:
-   $$\lfloor m \sqrt{p} \rfloor = \text{isqrt}(m^2 p)$$
-   $$\lfloor p - m \sqrt{p} \rfloor = p - \text{isqrt}(m^2 p) - 1$$
+
+$$
+\lfloor m \sqrt{p} \rfloor = \text{isqrt}(m^2 p)
+$$
+
+$$
+\lfloor p - m \sqrt{p} \rfloor = p - \text{isqrt}(m^2 p) - 1
+$$
+
 2. **Case 1 (Terminal 1-step)**:
    For each $m = 1 \dots \lfloor \sqrt{p} \rfloor$, taking $i = m - 1$ steps of size $a$:
-   $$\text{Ways} = \binom{c + i}{i}, \quad \text{where } c = \lfloor p - m \sqrt{p} \rfloor$$
+
+$$
+\text{Ways} = \binom{c + i}{i}, \quad \text{where } c = \lfloor p - m \sqrt{p} \rfloor
+$$
+
 3. **Case 2 (Terminal $a$-step)**:
    For each $c = 0 \dots \lfloor \sqrt{p} \rfloor - 1$, $k$ ranges in $[L, U]$ where $U = u[c+1]$ and $L = u[c+2] + 1$.
    By the hockey-stick identity:
-   $$\sum_{k=L}^U \binom{k + c}{c} = \binom{c + U + 1}{c + 1} - \binom{c + L}{c + 1}$$
+
+$$
+\sum_{k=L}^U \binom{k + c}{c} = \binom{c + U + 1}{c + 1} - \binom{c + L}{c + 1}
+$$
 
 Evaluating each prime $p$ requires only $O(\sqrt{p}) \approx 3162$ operations!
 

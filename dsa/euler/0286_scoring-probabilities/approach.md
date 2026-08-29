@@ -4,7 +4,11 @@
 
 A basketball player takes $50$ independent shots from distances $x = 1, 2, \dots, 50$.
 The probability of scoring from distance $x$ is:
-$$p(x, q) = 1 - \frac{x}{q}$$
+
+$$
+p(x, q) = 1 - \frac{x}{q}
+$$
+
 where $q > 50$ is a constant characteristic parameter.
 We are given that the probability of scoring **exactly 20 points** (each shot worth 1 point) is exactly $2\% = 0.02$.
 Find the parameter $q$, rounded to $10$ decimal places behind the decimal point.
@@ -26,7 +30,11 @@ The number of successful shots $S = \sum_{x=1}^{50} X_x$ is a sum of 50 independ
 - For a fixed parameter $q$:
   We can compute the exact distribution of $S$ in $\mathcal{O}(N^2)$ time using dynamic programming:
   Let $dp[k]$ be the probability of scoring exactly $k$ points after considering the first $x$ shots:
-  $$dp_{\text{new}}[k] = dp_{\text{old}}[k] \times \frac{x}{q} + dp_{\text{old}}[k - 1] \times \left( 1 - \frac{x}{q} \right)$$
+
+$$
+dp_{\text{new}}[k] = dp_{\text{old}}[k] \times \frac{x}{q} + dp_{\text{old}}[k - 1] \times \left( 1 - \frac{x}{q} \right)
+$$
+
 - The probability of scoring exactly 20 points $P(S = 20 \mid q) = dp[20]$ is a smooth, strictly monotonic function of $q$ for $q > 50$.
 
 ---

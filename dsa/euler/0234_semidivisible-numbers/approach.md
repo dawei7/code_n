@@ -30,17 +30,28 @@ def naive_semidivisible():
 ### Analytical Interval Decomposition & Inclusion-Exclusion
 1. **Prime Square Intervals:**
    For any consecutive prime pair $(p_1, p_2)$, all non-square integers $n \in (p_1^2, p_2^2)$ have:
-   $$\operatorname{lps}(n) = p_1, \quad \operatorname{ups}(n) = p_2$$
+
+$$
+\operatorname{lps}(n) = p_1, \quad \operatorname{ups}(n) = p_2
+$$
+
 2. **Inclusion-Exclusion within Interval $[L, R]$:**
    Let $[L, R] = [p_1^2 + 1, \min(p_2^2 - 1, \text{limit})]$.
    - Sum of multiples of $p_1$: $S(p_1, L, R)$
    - Sum of multiples of $p_2$: $S(p_2, L, R)$
    - Sum of multiples of $p_1 p_2$: $S(p_1 p_2, L, R)$
    The contribution of semidivisible numbers in $[L, R]$ is:
-   $$\Delta \text{Sum} = S(p_1, L, R) + S(p_2, L, R) - 2 S(p_1 p_2, L, R)$$
+
+$$
+\Delta \text{Sum} = S(p_1, L, R) + S(p_2, L, R) - 2 S(p_1 p_2, L, R)
+$$
+
 3. **$\mathcal{O}(1)$ Closed-Form Arithmetic Series:**
    The sum of multiples of $k$ in $[L, R]$ with start $a = \lceil L/k \rceil k$ and end $b = \lfloor R/k \rfloor k$ is:
-   $$S(k, L, R) = \frac{\text{cnt} \cdot (a + b)}{2}, \quad \text{where } \text{cnt} = \frac{b - a}{k} + 1$$
+
+$$
+S(k, L, R) = \frac{\text{cnt} \cdot (a + b)}{2}, \quad \text{where } \text{cnt} = \frac{b - a}{k} + 1
+$$
 
 ---
 
@@ -84,7 +95,10 @@ def solve(limit: int = 999966663333) -> int:
 ```
 
 Evaluating for $\text{limit} = 999\,966\,663\,333$:
-$$\text{Sum} = \mathbf{1\,259\,187\,438\,574\,927\,161}$$
+
+$$
+\text{Sum} = \mathbf{1\,259\,187\,438\,574\,927\,161}
+$$
 
 ---
 
@@ -102,11 +116,17 @@ $$\text{Sum} = \mathbf{1\,259\,187\,438\,574\,927\,161}$$
 
 ### Example 2: Sample Verification for $\text{limit} = 1000$
 - Sum across intervals up to $p_1 = 31, p_2 = 37$:
-  $$\text{Total Sum} = \mathbf{34\,825} \quad (\checkmark)$$
+
+$$
+\text{Total Sum} = \mathbf{34\,825} \quad (\checkmark)
+$$
 
 ### Example 3: Target Evaluation for $\text{limit} = 999\,966\,663\,333$
 - Sum across all consecutive prime pairs up to $\sqrt{N} \approx 10^6$:
-  $$\text{Total Sum} = \mathbf{1\,259\,187\,438\,574\,927\,161}$$
+
+$$
+\text{Total Sum} = \mathbf{1\,259\,187\,438\,574\,927\,161}
+$$
 
 ---
 

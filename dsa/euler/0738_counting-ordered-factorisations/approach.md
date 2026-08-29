@@ -3,17 +3,26 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $d(n, k)$ be the number of ways to write $n$ as an ordered product of $k$ positive integers:
-$$n = x_1 \times x_2 \times \dots \times x_k \quad (1 \le x_1 \le x_2 \le \dots \le x_k)$$
+
+$$
+n = x_1 \times x_2 \times \dots \times x_k \quad (1 \le x_1 \le x_2 \le \dots \le x_k)
+$$
 
 Define:
-$$D(N, K) = \sum_{n=1}^N \sum_{k=1}^K d(n, k)$$
+
+$$
+D(N, K) = \sum_{n=1}^N \sum_{k=1}^K d(n, k)
+$$
 
 We are given:
 - $D(10, 10) = 153$
 - $D(100, 100) = 35384$
 
 We seek to evaluate:
-$$D(10^{10}, 10^{10}) \bmod 1\,000\,000\,007$$
+
+$$
+D(10^{10}, 10^{10}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,14 +38,22 @@ Summing over all $n \le 10^{10}$ and $k \le 10^{10}$ requires $10^{20}$ evaluati
 ### Non-Unit Factor Kernel Decomposition
 1. **Separation of Ones**:
    Any ordered tuple $(x_1, \dots, x_k)$ consists of $k - m$ ones followed by $m$ non-unit factors:
-   $$\underbrace{1 \le 1 \le \dots \le 1}_{k - m \text{ ones}} \le y_1 \le y_2 \le \dots \le y_m \quad (y_j \ge 2)$$
+
+$$
+\underbrace{1 \le 1 \le \dots \le 1}_{k - m \text{ ones}} \le y_1 \le y_2 \le \dots \le y_m \quad (y_j \ge 2)
+$$
+
    with product $P = \prod_{j=1}^m y_j \le N$.
 2. **Length Bounded by $\log_2 N$**:
    Because $y_j \ge 2$, the non-unit kernel length satisfies $m \le \lfloor \log_2 N \rfloor \le 33$.
 3. **Multiplicity Weighting**:
    Each non-unit kernel $(y_1 \le \dots \le y_m)$ can be padded with $k - m$ ones for any $k \in [m, K]$, appearing exactly $K - m + 1$ times in the double sum!
 4. **Master Closed Form**:
-   $$D(N, K) \equiv K + \sum_{m=1}^{\lfloor \log_2 N \rfloor} (K - m + 1) C(N, m) \pmod{10^9+7}$$
+
+$$
+D(N, K) \equiv K + \sum_{m=1}^{\lfloor \log_2 N \rfloor} (K - m + 1) C(N, m) \pmod{10^9+7}
+$$
+
    where $C(N, m)$ is the number of ordered tuples $2 \le y_1 \le \dots \le y_m$ with $\prod y_j \le N$.
 
 ---

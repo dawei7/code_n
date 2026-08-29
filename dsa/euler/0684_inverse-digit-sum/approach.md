@@ -12,7 +12,10 @@ We are given $S(20) = 1074$.
 
 Let $f_i$ denote the Fibonacci sequence ($f_0 = 0, f_1 = 1, f_i = f_{i-1} + f_{i-2}$).
 We seek to evaluate:
-$$\sum_{i=2}^{90} S(f_i) \bmod 1\,000\,000\,007$$
+
+$$
+\sum_{i=2}^{90} S(f_i) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,15 +32,30 @@ The 90th Fibonacci number is $f_{90} \approx 2.88 \times 10^{18}$. Iterating thr
 1. **Explicit Formula for $s(n)$**:
    To minimize the value of an integer with digit sum $n$, we maximize the number of trailing $9$'s.
    Let $n = 9q + r$ where $0 \le r < 9$. Then:
-   $$s(n) = r \cdot 10^q + \underbrace{99\dots9}_{q \text{ times}} = r \cdot 10^q + (10^q - 1) = (r + 1) 10^q - 1$$
+
+$$
+s(n) = r \cdot 10^q + \underbrace{99\dots9}_{q \text{ times}} = r \cdot 10^q + (10^q - 1) = (r + 1) 10^q - 1
+$$
+
 2. **Summing Over Complete Blocks of 9**:
    For a full block of indices $n = 9q + 1, \dots, 9q + 9$:
-   $$\sum_{r=1}^9 s(9q + r) = \sum_{r=1}^9 ((r+1)10^q - 1) = (2 + 3 + \dots + 10) 10^q - 9 = 54 \cdot 10^q - 9$$
+
+$$
+\sum_{r=1}^9 s(9q + r) = \sum_{r=1}^9 ((r+1)10^q - 1) = (2 + 3 + \dots + 10) 10^q - 9 = 54 \cdot 10^q - 9
+$$
+
 3. **Geometric Progression Sum for $Q$ Full Blocks ($q = 0 \dots Q-1$)**:
-   $$\sum_{q=0}^{Q-1} (54 \cdot 10^q - 9) = 54 \cdot \frac{10^Q - 1}{9} - 9Q = 6(10^Q - 1) - 9Q$$
+
+$$
+\sum_{q=0}^{Q-1} (54 \cdot 10^q - 9) = 54 \cdot \frac{10^Q - 1}{9} - 9Q = 6(10^Q - 1) - 9Q
+$$
+
 4. **Partial Block Contribution ($r = 1 \dots R$)**:
    For $k = 9Q + R$:
-   $$\sum_{r=1}^R s(9Q + r) = \sum_{r=1}^R ((r+1)10^Q - 1) = \left( \frac{(R+1)(R+2)}{2} - 1 \right) 10^Q - R$$
+
+$$
+\sum_{r=1}^R s(9Q + r) = \sum_{r=1}^R ((r+1)10^Q - 1) = \left( \frac{(R+1)(R+2)}{2} - 1 \right) 10^Q - R
+$$
 
 ---
 
@@ -45,7 +63,11 @@ The 90th Fibonacci number is $f_{90} \approx 2.88 \times 10^{18}$. Iterating thr
 
 ### $O(\log k)$ Modular Evaluation
 1. **Unified Formula for $S(k)$**:
-   $$S(k) \equiv 6(10^Q - 1) - 9(Q \bmod M) + \left( \frac{(R+1)(R+2)}{2} - 1 \right) 10^Q - R \pmod{10^9+7}$$
+
+$$
+S(k) \equiv 6(10^Q - 1) - 9(Q \bmod M) + \left( \frac{(R+1)(R+2)}{2} - 1 \right) 10^Q - R \pmod{10^9+7}
+$$
+
    where $Q = \lfloor k/9 \rfloor$ and $R = k \bmod 9$.
 2. **Modular Exponentiation**:
    $10^Q \pmod{10^9+7}$ is evaluated via `pow(10, Q, MOD)` in $O(\log Q)$ time.

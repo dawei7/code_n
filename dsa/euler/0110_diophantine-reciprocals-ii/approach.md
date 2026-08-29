@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In the following equation $x, y,$ and $n$ are positive integers:
-$$\frac{1}{x} + \frac{1}{y} = \frac{1}{n}$$
+
+$$
+\frac{1}{x} + \frac{1}{y} = \frac{1}{n}
+$$
 
 We established in Problem 108 that for a given $n = \prod_{i=1}^k p_i^{a_i}$, the number of distinct positive integer solutions with $x \le y$ is:
-$$S(n) = \frac{d(n^2) + 1}{2} = \frac{\prod_{i=1}^k (2a_i + 1) + 1}{2}$$
+
+$$
+S(n) = \frac{d(n^2) + 1}{2} = \frac{\prod_{i=1}^k (2a_i + 1) + 1}{2}
+$$
 
 The objective is to find the **least value of $n$** for which the number of distinct solutions exceeds four million ($4\,000\,000$):
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; S(n) > 4\,000\,000 \right\} \iff \min \left\{ n \in \mathbb{N} \;\middle|\; d(n^2) > 7\,999\,999 \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; S(n) > 4\,000\,000 \right\} \iff \min \left\{ n \in \mathbb{N} \;\middle|\; d(n^2) > 7\,999\,999 \right\}
+$$
 
 ---
 
@@ -54,7 +63,11 @@ def naive_diophantine_reciprocals_ii():
 2. Initialize `best_n = infinity`.
 3. `dfs(prime_idx, max_exp, current_n, current_d_n2)`:
    - If `current_d_n2 > 7_999_999`:
-     $$\text{best\_n} = \min(\text{best\_n}, \text{current\_n})$$
+
+$$
+\text{best\_n} = \min(\text{best\_n}, \text{current\_n})
+$$
+
      return.
    - For $e \in [1, \text{max\_exp}]$:
      - `next_n = current_n * (P[prime_idx] ** e)`
@@ -73,13 +86,28 @@ def naive_diophantine_reciprocals_ii():
 
 ### Example 2: Target Evaluation for $S(n) > 4\,000\,000$
 - Optimal Prime Exponent Vector:
-  $$n = 2^3 \times 3^3 \times 5^2 \times 7^2 \times 11 \times 13 \times 17 \times 19 \times 23 \times 29 \times 31 \times 37 \times 41 \times 43$$
+
+$$
+n = 2^3 \times 3^3 \times 5^2 \times 7^2 \times 11 \times 13 \times 17 \times 19 \times 23 \times 29 \times 31 \times 37 \times 41 \times 43
+$$
+
 - Divisor Count:
-  $$d(n^2) = (2(3)+1)^2 (2(2)+1)^2 (2(1)+1)^{10} = 7^2 \times 5^2 \times 3^{10} = 72\,335\,025 > 7\,999\,999$$
+
+$$
+d(n^2) = (2(3)+1)^2 (2(2)+1)^2 (2(1)+1)^{10} = 7^2 \times 5^2 \times 3^{10} = 72\,335\,025 > 7\,999\,999
+$$
+
 - Solution Count:
-  $$S(n) = \frac{72335025 + 1}{2} = \mathbf{36\,167\,513} > 4\,000\,000$$
+
+$$
+S(n) = \frac{72335025 + 1}{2} = \mathbf{36\,167\,513} > 4\,000\,000
+$$
+
 - Minimal Integer Value:
-  $$n_{\text{min}} = \mathbf{93\,501\,300\,498\,606\,000}$$
+
+$$
+n_{\text{min}} = \mathbf{93\,501\,300\,498\,606\,000}
+$$
 
 ---
 

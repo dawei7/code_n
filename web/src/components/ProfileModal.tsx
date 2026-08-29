@@ -200,9 +200,14 @@ export function ProfileModal({ onClose }: ProfileModalProps) {
 
           {/* Gemini API Key */}
           <div className="space-y-1">
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
-              Gemini API Key (Google AI Studio)
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400">
+                Gemini API Key (Google AI Studio)
+              </label>
+              <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-1.5 py-0.5 rounded">
+                Gemini 3.5 Flash Lite
+              </span>
+            </div>
             <input
               type="password"
               value={apiKey}
@@ -210,6 +215,17 @@ export function ProfileModal({ onClose }: ProfileModalProps) {
               placeholder="Enter Gemini API key (starts with AIzaSy...)"
               className="w-full text-xs bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white outline-none focus:border-indigo-500 font-mono"
             />
+            <p className="text-[11px] text-slate-400 leading-relaxed mt-1">
+              Powers AI Tutor and real-time execution error debugging with <strong>Gemini 3.5 Flash Lite</strong>. Get your free key at{' '}
+              <a
+                href="https://aistudio.google.com/app/apikey"
+                target="_blank"
+                rel="noreferrer"
+                className="text-indigo-400 hover:underline"
+              >
+                aistudio.google.com
+              </a>.
+            </p>
           </div>
 
         </div>

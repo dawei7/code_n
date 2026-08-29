@@ -5,15 +5,24 @@
 A magic 5-gon ring is constructed from numbers $1$ to $10$ arranged on $10$ vertices: 5 outer (external) vertices $(o_0, o_1, o_2, o_3, o_4)$ and 5 inner vertices $(i_0, i_1, i_2, i_3, i_4)$.
 
 The 5 line triplets are defined by:
-$$L_0 = (o_0, i_0, i_1), \quad L_1 = (o_1, i_1, i_2), \quad L_2 = (o_2, i_2, i_3), \quad L_3 = (o_3, i_3, i_4), \quad L_4 = (o_4, i_4, i_0)$$
+
+$$
+L_0 = (o_0, i_0, i_1), \quad L_1 = (o_1, i_1, i_2), \quad L_2 = (o_2, i_2, i_3), \quad L_3 = (o_3, i_3, i_4), \quad L_4 = (o_4, i_4, i_0)
+$$
 
 The magic property requires that all 5 line sums are equal to a constant $S$:
-$$S = o_k + i_k + i_{(k+1) \bmod 5} \quad \forall k \in \{0, 1, 2, 3, 4\}$$
+
+$$
+S = o_k + i_k + i_{(k+1) \bmod 5} \quad \forall k \in \{0, 1, 2, 3, 4\}
+$$
 
 The canonical string representation concatenates each line triplet in order, starting from the line with the lowest external node ($o_0 = \min(o_0, \dots, o_4)$).
 
 The objective is to find the **maximum 16-digit concatenated string** for a magic 5-gon ring:
-$$\mathbf{s}_{\text{max}} = \max_{\text{valid rings}} \operatorname{str}(o_0) \mathbin{\Vert} \operatorname{str}(i_0) \mathbin{\Vert} \operatorname{str}(i_1) \dots \operatorname{str}(o_4) \mathbin{\Vert} \operatorname{str}(i_4) \mathbin{\Vert} \operatorname{str}(i_0)$$
+
+$$
+\mathbf{s}_{\text{max}} = \max_{\text{valid rings}} \operatorname{str}(o_0) \mathbin{\Vert} \operatorname{str}(i_0) \mathbin{\Vert} \operatorname{str}(i_1) \dots \operatorname{str}(o_4) \mathbin{\Vert} \operatorname{str}(i_4) \mathbin{\Vert} \operatorname{str}(i_0)
+$$
 
 ---
 
@@ -48,7 +57,9 @@ def naive_magic_5gon():
 | **$L_3$** | $(o_3, i_3, i_4)$ | $i_3, i_4$ shared | $o_3$ (appears once) |
 | **$L_4$** | $(o_4, i_4, i_0)$ | $i_4, i_0$ shared | $o_4$ (appears once) |
 
-$$\sum_{k=0}^4 S = \sum_{k=0}^4 o_k + 2 \sum_{k=0}^4 i_k = \sum_{v=1}^{10} v + \sum_{k=0}^4 i_k = 55 + \sum_{k=0}^4 i_k$$
+$$
+\sum_{k=0}^4 S = \sum_{k=0}^4 o_k + 2 \sum_{k=0}^4 i_k = \sum_{v=1}^{10} v + \sum_{k=0}^4 i_k = 55 + \sum_{k=0}^4 i_k
+$$
 
 ---
 
@@ -58,7 +69,11 @@ $$\sum_{k=0}^4 S = \sum_{k=0}^4 o_k + 2 \sum_{k=0}^4 i_k = \sum_{v=1}^{10} v + \
 1. Loop over permutations of $(1, 2, \dots, 10)$ as $(o_0 \dots o_4, i_0 \dots i_4)$.
 2. If $o_0 \neq \min(o_0, \dots, o_4)$, skip (canonical rotation).
 3. Compute the 5 line sums:
-   $$s_0 = o_0 + i_0 + i_1, \quad s_1 = o_1 + i_1 + i_2, \quad \dots, \quad s_4 = o_4 + i_4 + i_0$$
+
+$$
+s_0 = o_0 + i_0 + i_1, \quad s_1 = o_1 + i_1 + i_2, \quad \dots, \quad s_4 = o_4 + i_4 + i_0
+$$
+
 4. If $s_0 == s_1 == s_2 == s_3 == s_4$:
    - Build concatenated string: `f"{o0}{i0}{i1}{o1}{i1}{i2}{o2}{i2}{i3}{o3}{i3}{i4}{o4}{i4}{i0}"`.
    - If length is 16, update `max_string = max(max_string, int(s_concat))`.
@@ -83,7 +98,10 @@ $$\sum_{k=0}^4 S = \sum_{k=0}^4 o_k + 2 \sum_{k=0}^4 i_k = \sum_{v=1}^{10} v + \
   - $L_3 = (8, 4, 2) \implies 8 + 4 + 2 = \mathbf{14}$
   - $L_4 = (7, 2, 5) \implies 7 + 2 + 5 = \mathbf{14}$
 - Concatenated 16-Digit String:
-  $$\mathbf{s}_{\text{max}} = \mathbf{6531031914842725}$$
+
+$$
+\mathbf{s}_{\text{max}} = \mathbf{6531031914842725}
+$$
 
 ---
 

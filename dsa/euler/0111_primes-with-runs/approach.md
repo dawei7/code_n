@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Considering $4$-digit primes containing repeated digits it is clear that they cannot all be the same: $1111$ is divisible by $11$, $2222$ is divisible by $22$, and so on. However, there are nine $4$-digit primes containing three ones:
-$$1117, 1151, 1171, 1181, 1511, 1811, 2111, 4111, 8111$$
+
+$$
+1117, 1151, 1171, 1181, 1511, 1811, 2111, 4111, 8111
+$$
 
 For a 4-digit prime value with digit $d = 1$:
 - $M(4, 1) = 3$ (maximum repetition of digit $1$).
@@ -11,7 +14,10 @@ For a 4-digit prime value with digit $d = 1$:
 - $S(4, 1) = 22\,275$ (sum of these primes).
 
 The objective is to find the **sum of all $S(10, d)$** for a $10$-digit prime across all digits $d = 0 \dots 9$:
-$$S_{\text{total}} = \sum_{d=0}^9 S(10, d)$$
+
+$$
+S_{\text{total}} = \sum_{d=0}^9 S(10, d)
+$$
 
 ---
 
@@ -76,7 +82,10 @@ For each digit $d \in \{0 \dots 9\}$:
 
 ### Example 2: Target Evaluation for $N = 10$ Digits
 - Summing $S(10, d)$ for all digits $d = 0 \dots 9$:
-  $$S_{\text{total}} = \mathbf{61\,240\,756\,771}$$
+
+$$
+S_{\text{total}} = \mathbf{61\,240\,756\,771}
+$$
 
 ---
 

@@ -10,7 +10,10 @@ We are given:
 - $f(10, 5) = 40085$
 
 We seek to evaluate:
-$$f(10^7, 10^{12}) \bmod 987654321$$
+
+$$
+f(10^7, 10^{12}) \bmod 987654321
+$$
 
 ---
 
@@ -27,7 +30,11 @@ $k = 10^{12}$ and $n = 10^7$. The state space contains $(10^7 - 1)^{10^{12}}$ co
 1. **$\Omega(n)$ Invariance**:
    For any pile of size $s$, proper divisors $a, b > 1$ have $\Omega(a), \Omega(b) \in [1, \Omega(s) - 1]$.
    The Grundy value $G(s)$ depends **strictly and solely on $\Omega(s)$**!
-   $$h(t) = \operatorname{mex} \{ h(i) \oplus h(j) : 1 \le i, j < t \}, \quad \text{where } h(1) = 0$$
+
+$$
+h(t) = \operatorname{mex} \{ h(i) \oplus h(j) : 1 \le i, j < t \}, \quad \text{where } h(1) = 0
+$$
+
    For $n \le 10^7$, $\Omega(s) \le \lfloor \log_2 10^7 \rfloor = 23$.
 2. **Game XOR-Sum**:
    A configuration $(s_1, \dots, s_k)$ is losing $\iff \bigoplus_{i=1}^k G(s_i) = 0$.
@@ -43,7 +50,11 @@ $k = 10^{12}$ and $n = 10^7$. The state space contains $(10^7 - 1)^{10^{12}}$ co
    Map each count to the corresponding Grundy value $h(t) \le 63$, forming frequency vector $\mathbf{v}$ of length $M = 64$.
 3. **Pointwise Multiplication in Hadamard Domain**:
    Apply Fast Walsh-Hadamard Transform:
-   $$\hat{\mathbf{v}} = \text{FWHT}(\mathbf{v})$$
+
+$$
+\hat{\mathbf{v}} = \text{FWHT}(\mathbf{v})
+$$
+
    Compute $\hat{\mathbf{w}}[i] = \hat{\mathbf{v}}[i]^k \pmod{\text{MOD}}$, and invert $\text{IFWHT}(\hat{\mathbf{w}})[0] = \frac{1}{M} \sum_{i=0}^{M-1} \hat{\mathbf{w}}[i]$.
    The winning positions count is $(n - 1)^k - \text{losing} \pmod{\text{MOD}}$.
 

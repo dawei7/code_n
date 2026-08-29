@@ -4,7 +4,11 @@
 
 The Kempner function $s(n)$ (also known as the Smarandache function) is the smallest positive integer $m$ such that $n \mid m!$.
 For $n = p_1^{e_1} \dots p_r^{e_r}$, the function satisfies:
-$$s(n) = \max_{1 \le i \le r} s(p_i^{e_i})$$
+
+$$
+s(n) = \max_{1 \le i \le r} s(p_i^{e_i})
+$$
+
 Let $S(n) = \sum_{i=2}^n s(i)$.
 
 We are given:
@@ -12,7 +16,10 @@ We are given:
 - $S(100) = 2012$
 
 We seek to evaluate:
-$$S(10^8)$$
+
+$$
+S(10^8)
+$$
 
 ---
 
@@ -28,10 +35,18 @@ Factoring each of the $10^8$ integers takes $O(n \sqrt{n} / \log n)$ operations,
 ### Prime-Power Factorization & Legendre Sieve
 1. **Legendre Prime-Power Inversion**:
    For prime power $p^e$, $s(p^e)$ is the smallest multiple $m = k p$ such that $v_p(m!) \ge e$, where:
-   $$v_p(m!) = \sum_{j=1}^\infty \left\lfloor \frac{m}{p^j} \right\rfloor$$
+
+$$
+v_p(m!) = \sum_{j=1}^\infty \left\lfloor \frac{m}{p^j} \right\rfloor
+$$
+
 2. **Global Array Push Sieve**:
    Instead of factoring each $n$, we push $s(p^e)$ to all multiples of $p^e$ that are coprime to $p$:
-   $$\text{For } k \text{ with } p \nmid k, \quad s(k p^e) \ge s(p^e)$$
+
+$$
+\text{For } k \text{ with } p \nmid k, \quad s(k p^e) \ge s(p^e)
+$$
+
    This visits each integer $n \in [2, N]$ exactly once for each of its distinct prime factors!
 
 ---

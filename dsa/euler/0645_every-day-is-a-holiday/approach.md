@@ -14,7 +14,10 @@ We are given:
 - $E(365) \approx 1174.3501$
 
 We seek to evaluate:
-$$E(10000) \quad \text{rounded to 4 decimal places}$$
+
+$$
+E(10000) \quad \text{rounded to 4 decimal places}
+$$
 
 ---
 
@@ -35,9 +38,16 @@ The state space of subsets of $D = 10000$ days modulo rotation contains $> 2^{99
    Under the bridging rule, all days are holidays if and only if there are **no two adjacent unpicked days** on the cyclic graph $C_D$.
 3. **Transfer Matrix Representation**:
    The probability $q_D(p)$ that a cyclic binary sequence has no adjacent 1s with $P(1) = p$ is the trace of the transfer matrix:
-   $$A = \begin{pmatrix} 1 - p & p \\ 1 - p & 0 \end{pmatrix}$$
+
+$$
+A = \begin{pmatrix} 1 - p & p \\ 1 - p & 0 \end{pmatrix}
+$$
+
    The eigenvalues are $\lambda_{1, 2} = \frac{(1 - p) \pm \sqrt{(1 - p)(1 + 3p)}}{2}$.
-   $$q_D(p) = \operatorname{tr}(A^D) = \lambda_1^D + \lambda_2^D$$
+
+$$
+q_D(p) = \operatorname{tr}(A^D) = \lambda_1^D + \lambda_2^D
+$$
 
 ---
 
@@ -46,10 +56,18 @@ The state space of subsets of $D = 10000$ days modulo rotation contains $> 2^{99
 ### Continuous-Time Gauss-Legendre Quadrature
 1. **Expected Stopping Time**:
    The CDF of the Poissonized stopping time $T$ is $P(T \le t) = q_D(e^{-t})$.
-   $$E[T] = \int_0^\infty (1 - P(T \le t)) dt = \int_0^\infty (1 - q_D(e^{-t})) dt$$
+
+$$
+E[T] = \int_0^\infty (1 - P(T \le t)) dt = \int_0^\infty (1 - q_D(e^{-t})) dt
+$$
+
 2. **Discrete Coupon Collector Relation**:
    By Poisson thinning and Wald's identity:
-   $$E[\text{Emperors}] = D \cdot E[T] = D \int_0^\infty (1 - q_D(e^{-t})) dt$$
+
+$$
+E[\text{Emperors}] = D \cdot E[T] = D \int_0^\infty (1 - q_D(e^{-t})) dt
+$$
+
 3. **Numerical Integration**:
    The integrand decays exponentially as $D e^{-2t}$. Truncating the integral at $t = 25$ and evaluating via 64-point Gauss-Legendre quadrature across 10 subintervals yields $> 12$ digits of precision in milliseconds.
 

@@ -5,7 +5,11 @@
 A horizontal frictionless tube has length $L$ mm, open at the east end and sealed at the west end ($x = 0$).
 $N$ marbles of diameter $20$ mm (radius $10$ mm) move at speed $v = 1$ mm/s.
 Initial gaps between marble surfaces are $g_j = (r_j \bmod 1000) + 1$, where:
-$$r_1 = 6\,563\,116, \quad r_{j+1} = r_j^2 \bmod 32\,745\,673$$
+
+$$
+r_1 = 6\,563\,116, \quad r_{j+1} = r_j^2 \bmod 32\,745\,673
+$$
+
 Marble $j$ initially moves eastward if $r_j \le 10\,000\,000$ and westward if $r_j > 10\,000\,000$.
 Collisions between marbles and with the sealed west wall are perfectly elastic. Marbles exit upon reaching the east end.
 Let $d(L, N, j)$ be the distance traveled by the $j$-th marble (from the west) before its centre reaches the eastern end.
@@ -16,7 +20,10 @@ We are given:
 - $d(100\,000, 101, 51) = 114\,101$
 
 We seek to evaluate:
-$$d(1\,000\,000\,000, 1\,000\,001, 500\,001)$$
+
+$$
+d(1\,000\,000\,000, 1\,000\,001, 500\,001)
+$$
 
 ---
 
@@ -48,11 +55,18 @@ Simulating $10^6$ marbles over a tube of length $10^9$ mm involves billions of p
 ### Closed Form via $k$-th Order Statistic ($O(N \log N)$)
 1. **Exit Time Invariant**:
    For each particle $i$, define its exit offset:
-   $$a_i = \begin{cases} -y_i & \text{if moving East} \\ +y_i & \text{if moving West} \end{cases}$$
+
+$$
+a_i = \begin{cases} -y_i & \text{if moving East} \\ +y_i & \text{if moving West} \end{cases}
+$$
+
 2. **Order Statistic Selection**:
    The $j$-th marble from the west corresponds to the $m$-th smallest value $a_{(m)}$ where $m = N - j + 1$.
    The distance traveled before the centre reaches $L$ is:
-   $$d(L, N, j) = (L - 20 j + 10) + a_{(N - j + 1)}$$
+
+$$
+d(L, N, j) = (L - 20 j + 10) + a_{(N - j + 1)}
+$$
 
 This evaluates $d(10^9, 1000001, 500001)$ in **$\approx 0.12$ seconds** in pure Python!
 

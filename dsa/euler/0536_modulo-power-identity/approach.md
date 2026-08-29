@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $S(n)$ denote the sum of all positive integers $m \le n$ satisfying the identity:
-$$a^{m+4} \equiv a \pmod m \quad \text{for all integers } a$$
+
+$$
+a^{m+4} \equiv a \pmod m \quad \text{for all integers } a
+$$
 
 We are given:
 - The solutions for $m \le 100$ are $1, 2, 3, 5, 21 \implies S(100) = 32$.
 - $S(10^6) = 22868117$.
 
 We seek to evaluate:
-$$S(10^{12})$$
+
+$$
+S(10^{12})
+$$
 
 ---
 
@@ -29,9 +35,16 @@ Checking all integers up to $10^{12}$ would require factoring $10^{12}$ numbers,
    Thus, $m$ must be squarefree.
 2. **Korselt Condition on Prime Divisors**:
    For each prime divisor $p \mid m$, $a^{m+4} \equiv a \pmod p$ for all $a$ requires:
-   $$a^{m+3} \equiv 1 \pmod p \iff (p - 1) \mid (m + 3)$$
+
+$$
+a^{m+3} \equiv 1 \pmod p \iff (p - 1) \mid (m + 3)
+$$
+
    Equivalently:
-   $$\operatorname{lcm}_{p \mid m}(p - 1) \mid (m + 3)$$
+
+$$
+\operatorname{lcm}_{p \mid m}(p - 1) \mid (m + 3)
+$$
 
 ---
 
@@ -45,7 +58,11 @@ Checking all integers up to $10^{12}$ would require factoring $10^{12}$ numbers,
    - If $3 \nmid m$, then $3 \nmid (m + 3)$, so no prime factor $p$ can have $3 \mid (p - 1)$ (i.e. all $p \equiv 2 \pmod 3$).
 3. **Linear Congruence Progression**:
    For partial product $x$ with accumulated exponent $\lambda = \operatorname{lcm}(p_i - 1)$, the next prime $q$ must satisfy:
-   $$x \cdot q \equiv -3 \pmod \lambda$$
+
+$$
+x \cdot q \equiv -3 \pmod \lambda
+$$
+
    which defines an arithmetic progression $q \equiv r_0 \pmod{\lambda / \gcd(x, \lambda)}$.
 4. **Dedicated Leaf Counting**:
    When remaining primes exceed $\sqrt{N/x}$, at most one prime can be added. These leaf nodes are scanned directly along the progression.

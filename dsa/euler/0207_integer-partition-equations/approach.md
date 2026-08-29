@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For some positive integers $k$, there is a positive integer partition of the form:
-$$4^t = 2^t + k$$
+
+$$
+4^t = 2^t + k
+$$
+
 where $4^t, 2^t$, and $k$ are all positive integers and $t$ is a real number.
 
 The case where $t$ is also an **integer** is called a **perfect partition**.
@@ -17,7 +21,10 @@ For example:
 - The smallest $m$ for which $P(m) < \frac{1}{2}$ is $m = 30$.
 
 The objective is to find the **smallest $m$ for which $P(m) < \frac{1}{12345}$**:
-$$m_{\min} = \min \left\{ m \in \mathbb{N} \;\middle|\; P(m) < \frac{1}{12345} \right\}$$
+
+$$
+m_{\min} = \min \left\{ m \in \mathbb{N} \;\middle|\; P(m) < \frac{1}{12345} \right\}
+$$
 
 ---
 
@@ -34,17 +41,33 @@ def naive_partition_equations():
 ### Quadratic Root Substitution & Logarithmic Threshold
 1. **Quadratic Equation in $x = 2^t$:**
    Let $x = 2^t > 0$. The equation becomes:
-   $$x^2 - x - k = 0 \implies x = \frac{1 + \sqrt{1 + 4k}}{2}$$
+
+$$
+x^2 - x - k = 0 \implies x = \frac{1 + \sqrt{1 + 4k}}{2}
+$$
+
    For $x$ to be an integer, $1 + 4k = (2h + 1)^2$ for integer $h \ge 1$:
-   $$k = h(h + 1), \quad x = h + 1$$
+
+$$
+k = h(h + 1), \quad x = h + 1
+$$
+
    Thus, the $h^{\text{th}}$ valid partition occurs at $k = h(h + 1)$.
    Total valid partitions up to $k = h(h + 1)$ is exactly $T(m) = h$.
 2. **Perfect Partition Condition:**
    $t = \log_2(x) = \log_2(h + 1)$ is an integer iff $h + 1 = 2^p$ (a power of 2).
    The number of perfect partitions among the first $h$ partitions is:
-   $$t(m) = p = \lfloor \log_2(h + 1) \rfloor$$
+
+$$
+t(m) = p = \lfloor \log_2(h + 1) \rfloor
+$$
+
 3. **Threshold Inequality:**
-   $$P(m) = \frac{p}{h} < \frac{1}{12345} \iff h > 12345 p \implies h = 12345 p + 1$$
+
+$$
+P(m) = \frac{p}{h} < \frac{1}{12345} \iff h > 12345 p \implies h = 12345 p + 1
+$$
+
    Testing small candidate integer values $p = 1, 2, \dots$ finds the exact $p$ where $\lfloor \log_2(h + 1) \rfloor = p$ in $\mathcal{O}(\log_2 D)$ steps ($\approx 0.0001$ seconds).
 
 ---
@@ -76,7 +99,10 @@ def solve(target_denom: int = 12345) -> int:
     return 0
 ```
 Evaluating for $\text{target\_denom} = 12345$:
-$$m_{\min} = \mathbf{44\,043\,947\,822}$$
+
+$$
+m_{\min} = \mathbf{44\,043\,947\,822}
+$$
 
 ---
 

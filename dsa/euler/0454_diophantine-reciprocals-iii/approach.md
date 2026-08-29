@@ -3,16 +3,26 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 We consider the Diophantine equation:
-$$\frac{1}{x} + \frac{1}{y} = \frac{1}{n} \quad (x, y, n \in \mathbb{Z}_{\ge 1})$$
+
+$$
+\frac{1}{x} + \frac{1}{y} = \frac{1}{n} \quad (x, y, n \in \mathbb{Z}_{\ge 1})
+$$
+
 Define $F(L)$ as the number of integer solutions satisfying:
-$$x < y \le L$$
+
+$$
+x < y \le L
+$$
 
 We are given:
 - $F(15) = 4$
 - $F(1000) = 1069$
 
 We seek to evaluate:
-$$F(10^{12})$$
+
+$$
+F(10^{12})
+$$
 
 ---
 
@@ -33,9 +43,18 @@ Writing $a = g r^2$ and $b = g s^2$ with $\gcd(r, s) = 1$ and $1 \le r < s$:
 - $y = g s (r + s)$
 
 The condition $y \le L$ translates to:
-$$g s (r + s) \le L \implies 1 \le g \le \left\lfloor \frac{L}{s(r + s)} \right\rfloor$$
+
+$$
+g s (r + s) \le L \implies 1 \le g \le \left\lfloor \frac{L}{s(r + s)} \right\rfloor
+$$
+
 Summing over all coprime pairs $(r, s)$:
-$$F(L) = \sum_{s=2}^{\lfloor \sqrt{L} \rfloor} \sum_{\substack{1 \le r < s \\ \gcd(r, s) = 1}} \left\lfloor \frac{L}{s(r + s)} \right\rfloor$$
+
+$$
+\begin{aligned}
+F(L) = \sum_{s=2}^{\lfloor \sqrt{L} \rfloor} \sum_{\substack{1 \le r < s \\ \gcd(r, s) = 1}} \left\lfloor \frac{L}{s(r + s)} \right\rfloor
+\end{aligned}
+$$
 
 ---
 
@@ -46,7 +65,11 @@ $$F(L) = \sum_{s=2}^{\lfloor \sqrt{L} \rfloor} \sum_{\substack{1 \le r < s \\ \g
    Since $s^2 < s(r+s) \le L$, the primary parameter $s$ is strictly bounded by $B = \lfloor \sqrt{L} \rfloor = 10^6$.
 2. **Möbius Coprimality Expansion**:
    Letting $k = s/d$ and $r + s = i$:
-   $$F(L) = \sum_{s=2}^B \sum_{d \mid s} \mu(d) \sum_{i = k+1}^{2k-1} \left\lfloor \frac{\lfloor L / (s \cdot d) \rfloor}{i} \right\rfloor$$
+
+$$
+F(L) = \sum_{s=2}^B \sum_{d \mid s} \mu(d) \sum_{i = k+1}^{2k-1} \left\lfloor \frac{\lfloor L / (s \cdot d) \rfloor}{i} \right\rfloor
+$$
+
 3. **Hyperbola Quotient Grouping**:
    Each inner segment $\sum_{i = k+1}^{2k-1} \lfloor X / i \rfloor$ is evaluated in $O(\sqrt{X})$ time using quotient range blocks.
 

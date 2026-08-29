@@ -11,7 +11,10 @@ We are given:
 - $S(7) = 85499991450$
 
 We seek to evaluate:
-$$S(2020) \bmod 10^{16}$$
+
+$$
+S(2020) \bmod 10^{16}
+$$
 
 ---
 
@@ -31,7 +34,10 @@ Testing all $10^{2020}$ numbers up to 2020 digits is completely impossible.
 2. **Positional Uniformity & Repunit Factor**:
    For any multiset of digits with counts $(d_0, d_1, \dots, d_9)$ summing to $n$, each position $\{0, 1, \dots, n-1\}$ is occupied by digit $i$ with equal probability $\frac{d_i}{n}$.
    The sum of values across all positions is:
-   $$\text{Sum} = \left( \sum_{j=0}^{n-1} 10^j \right) \cdot \sum_{i=1}^9 i \cdot d_i \cdot \frac{\binom{n}{d_0, d_1, \dots, d_9}}{n} = \underbrace{11\dots1}_{n} \cdot 2d \cdot \frac{(n-1)!}{d_0! d_1! \dots d_9!}$$
+
+$$
+\text{Sum} = \left( \sum_{j=0}^{n-1} 10^j \right) \cdot \sum_{i=1}^9 i \cdot d_i \cdot \frac{\binom{n}{d_0, d_1, \dots, d_9}}{n} = \underbrace{11\dots1}_{n} \cdot 2d \cdot \frac{(n-1)!}{d_0! d_1! \dots d_9!}
+$$
 
 ---
 
@@ -42,7 +48,11 @@ Testing all $10^{2020}$ numbers up to 2020 digits is completely impossible.
    The number of partitions of integers $\le 9$ is $\sum_{k=1}^9 p(k) = 1 + 2 + 3 + 5 + 7 + 11 + 15 + 22 + 30 = 96$ partitions!
 2. **Multinomial Reduction**:
    For each partition of $k \in \{1, \dots, 9\}$, compute the single term:
-   $$V = \frac{10^n - 1}{9} \cdot 2k \cdot \frac{n!}{d_0! d_1! \dots d_9! \cdot n}$$
+
+$$
+V = \frac{10^n - 1}{9} \cdot 2k \cdot \frac{n!}{d_0! d_1! \dots d_9! \cdot n}
+$$
+
 3. **Execution Performance**:
    Summing all 96 partition terms executes in **$\approx 0.02$ seconds** in pure Python!
 

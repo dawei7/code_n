@@ -42,7 +42,11 @@ In the Simon sorting procedure:
 Working backwards from the sorted identity permutation:
 1. **Base Case ($i = n - 2$):**
    The last two carriages must be swapped:
-   $$[0, 1, 2, \dots, n - 3, n - 1, n - 2]$$
+
+$$
+[0, 1, 2, \dots, n - 3, n - 1, n - 2]
+$$
+
 2. **Backward Induction Step ($i = n - 3$ down to $0$):**
    To invert the two forward steps:
    - First reverse suffix $[i \dots n - 1]$.
@@ -50,7 +54,11 @@ Working backwards from the sorted identity permutation:
 3. **Branching Factor:**
    At step $i$, there are $(n - 2 - i)$ choices for pivot $j$.
    Total number of maximix arrangements generated is:
-   $$\prod_{i=0}^{n-3} (n - 2 - i) = (n - 2)!$$
+
+$$
+\prod_{i=0}^{n-3} (n - 2 - i) = (n - 2)!
+$$
+
    For $n = 11$, exactly $(11 - 2)! = 9! = 362\,880$ permutations are generated directly without exploring non-maximix permutations.
 
 ---

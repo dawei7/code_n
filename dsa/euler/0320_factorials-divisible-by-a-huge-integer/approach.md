@@ -24,11 +24,19 @@ A naive approach factors $(i!)^{1234567890}$ for each $i \le 1\,000\,000$ indepe
 
 ### Legendre's Formula & Maximal Prime Dominance
 By Legendre's formula, the $p$-adic valuation of $n!$ is:
-$$v_p(n!) = \sum_{k=1}^{\infty} \left\lfloor \frac{n}{p^k} \right\rfloor = \frac{n - S_p(n)}{p - 1}$$
+
+$$
+v_p(n!) = \sum_{k=1}^{\infty} \left\lfloor \frac{n}{p^k} \right\rfloor = \frac{n - S_p(n)}{p - 1}
+$$
+
 For $(i!)^M$ where $M = 1234567890$:
 The requirement is $v_p(n!) \ge M \cdot v_p(i!)$ for all primes $p \le i$.
 - The minimal $n$ is determined by the maximum over all prime factors:
-  $$N(i) = \max_{p \le i} f(p, M \cdot v_p(i!))$$
+
+$$
+N(i) = \max_{p \le i} f(p, M \cdot v_p(i!))
+$$
+
   where $f(p, K)$ is the smallest integer $n$ such that $v_p(n!) \ge K$.
 - Notice that as $i$ increments to $i + 1$, $v_p((i+1)!) = v_p(i!) + v_p(i+1)$.
 - Only the prime factors dividing $i + 1$ have their exponent updated!

@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $T_n$ denote the $n$-th triangular number defined by:
-$$T_n = \sum_{k=1}^n k = \frac{n(n+1)}{2} \quad \text{for } n \in \mathbb{N}$$
+
+$$
+T_n = \sum_{k=1}^n k = \frac{n(n+1)}{2} \quad \text{for } n \in \mathbb{N}
+$$
 
 Let $d : \mathbb{N} \to \mathbb{N}$ denote the divisor function counting the number of positive divisors of $m$:
-$$d(m) = \sum_{k \mid m} 1 = |\mathcal{D}(m)|$$
+
+$$
+d(m) = \sum_{k \mid m} 1 = |\mathcal{D}(m)|
+$$
 
 The objective is to find the first triangular number to have strictly more than $500$ divisors:
-$$T_{\text{target}} = T_{n_{\text{min}}}, \quad \text{where } n_{\text{min}} = \min \{ n \in \mathbb{N} \mid d(T_n) > 500 \}$$
+
+$$
+T_{\text{target}} = T_{n_{\text{min}}}, \quad \text{where } n_{\text{min}} = \min \{ n \in \mathbb{N} \mid d(T_n) > 500 \}
+$$
 
 ---
 
@@ -51,7 +60,10 @@ Since the divisor function $d(m)$ is **strictly multiplicative** over coprime ar
 
 ### Prime Exponent Product Theorem
 For an integer with prime factorization $m = \prod_{i=1}^k p_i^{e_i}$, the total divisor count is:
-$$d(m) = \prod_{i=1}^k (e_i + 1)$$
+
+$$
+d(m) = \prod_{i=1}^k (e_i + 1)
+$$
 
 Factoring $n/2$ and $n+1$ requires trial division only up to $\sqrt{n+1} \le 112$, which is orders of magnitude faster than factoring $T_n$ up to $\sqrt{T_n} \approx 8750$.
 
@@ -72,7 +84,10 @@ Factoring $n/2$ and $n+1$ requires trial division only up to $\sqrt{n+1} \le 112
   - $b = 12\,376 / 2 = 6188 = 2^2 \times 7^1 \times 13^1 \times 17^1 \implies d(6188) = (2+1)(1+1)(1+1)(1+1) = 3 \times 2 \times 2 \times 2 = 24$.
   - Total Divisors: $d(T_{12375}) = 24 \times 24 = \mathbf{576} > 500$.
 - Triangular Number:
-  $$T_{12375} = \frac{12375 \times 12376}{2} = \mathbf{76\,576\,500}$$
+
+$$
+T_{12375} = \frac{12375 \times 12376}{2} = \mathbf{76\,576\,500}
+$$
 
 ---
 

@@ -11,7 +11,10 @@ We are given:
 - $B(3, 9) \equiv 87273560 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$B(10^5, 10^{16}) \bmod 1\,000\,000\,007$$
+
+$$
+B(10^5, 10^{16}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,13 +31,25 @@ A $16$-row column has $2^{16} = 65\,536$ states. Transfer matrix exponentiation 
 1. **Row Difference Invariant**:
    For every $2 \times k$ window, $\sum_{x=0}^1 \sum_{y=0}^{k-1} M_{i+x, j+y} = k$.
    Subtracting adjacent horizontal windows implies row periodicity:
-   $$M_{i, j+k} + M_{i+1, j+k} = M_{i, j} + M_{i+1, j}$$
+
+$$
+M_{i, j+k} + M_{i+1, j+k} = M_{i, j} + M_{i+1, j}
+$$
+
 2. **Franel-like Coefficients**:
    Summing over all rows decouples into 16 independent 1D Bernoulli random walk constraints, leading to Franel-like sums of 16-th powers of binomial coefficients:
-   $$f[r] = \sum_{x=0}^r \binom{r}{x}^{16} = r!^{16} [y^r] \left( \sum_{m \ge 0} \frac{y^m}{m!^{16}} \right)^2$$
+
+$$
+f[r] = \sum_{x=0}^r \binom{r}{x}^{16} = r!^{16} [y^r] \left( \sum_{m \ge 0} \frac{y^m}{m!^{16}} \right)^2
+$$
+
 3. **Binomial Transformation**:
    The full count is given by the binomial transform:
-   $$S[L] = \sum_{r=0}^L \binom{L}{r} (-2)^{L-r} f[r]$$
+
+$$
+S[L] = \sum_{r=0}^L \binom{L}{r} (-2)^{L-r} f[r]
+$$
+
    and the final combination $B(k, n) = \sum_{a=0}^k \binom{k}{a} A^a S[k-a]$ where $A = 2^{16(q-1)} \pmod{\text{MOD}}$ with $q = \lfloor n/k \rfloor$.
 
 ---

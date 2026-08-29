@@ -3,15 +3,27 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The Gauss Factorial of a positive integer $n$ is defined as:
-$$g(n) = \prod_{\substack{1 \le k \le n \\ \gcd(k, n) = 1}} k$$
+
+$$
+\begin{aligned}
+g(n) = \prod_{\substack{1 \le k \le n \\ \gcd(k, n) = 1}} k
+\end{aligned}
+$$
+
 Define the product of all Gauss factorials up to $n$:
-$$G(n) = \prod_{i=1}^n g(i)$$
+
+$$
+G(n) = \prod_{i=1}^n g(i)
+$$
 
 We are given:
 - $G(10) = 23044331520000 \equiv 331358692 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$G(10^8) \bmod 1\,000\,000\,007$$
+
+$$
+G(10^8) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -26,12 +38,24 @@ Computing each $g(i)$ sequentially takes $O(n^2)$ time $\approx 10^{16}$ operati
 
 ### Mobius Inversion & Hyperbola Quotient Block Aggregation
 1. **Exponent Transformation**:
-   $$G(n) = \prod_{k=1}^n k^{E(k)} \quad \text{where} \quad E(k) = \sum_{i=k}^n [\gcd(k, i) = 1]$$
+
+$$
+G(n) = \prod_{k=1}^n k^{E(k)} \quad \text{where} \quad E(k) = \sum_{i=k}^n [\gcd(k, i) = 1]
+$$
+
 2. **Mobius Expansion**:
-   $$E(k) = \sum_{d \mid k} \mu(d) \left\lfloor \frac{n}{d} \right\rfloor - \phi(k) + [k = 1]$$
+
+$$
+E(k) = \sum_{d \mid k} \mu(d) \left\lfloor \frac{n}{d} \right\rfloor - \phi(k) + [k = 1]
+$$
+
 3. **Superfactorial & Quotient Block Duality**:
    Rearranging the product over divisors $d$ and grouping by quotient blocks $q = \lfloor n / d \rfloor$:
-   $$G(n) = \prod_{q} \left( \prod_{d: \lfloor n/d \rfloor = q} d^{\mu(d)} \right)^{\binom{q}{2}} \cdot \left( \operatorname{sf}(q - 1) \right)^{\sum_{d: \lfloor n/d \rfloor = q} \mu(d)} \pmod{10^9+7}$$
+
+$$
+G(n) = \prod_{q} \left( \prod_{d: \lfloor n/d \rfloor = q} d^{\mu(d)} \right)^{\binom{q}{2}} \cdot \left( \operatorname{sf}(q - 1) \right)^{\sum_{d: \lfloor n/d \rfloor = q} \mu(d)} \pmod{10^9+7}
+$$
+
    where $\operatorname{sf}(m) = \prod_{i=1}^m i!$ is the superfactorial!
 
 ---

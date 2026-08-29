@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A permutation $P$ of $\{1, 2, \dots, N\}$ (where $N = 2^k$) is called **unpredictable** (3-AP-free) if no three indices $i < j < k$ satisfy:
-$$P(i) + P(k) = 2 P(j)$$
+
+$$
+P(i) + P(k) = 2 P(j)
+$$
 
 Let $S(N)$ be the 1-based index (in standard lexicographical order) of the first unpredictable permutation of $\{1, \dots, N\}$.
 
@@ -13,7 +16,10 @@ We are given:
 - $S(32) \equiv 641839205 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$S(2^{25}) \bmod 1\,000\,000\,007$$
+
+$$
+S(2^{25}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,7 +35,11 @@ For $N = 2^{25} = 33\,554\,432$, the number of permutations is $(2^{25})! \appro
 ### Recursive Doubling & Inversion Lehmer Code Generation
 1. **Doubling Construction of 3-AP-Free Permutations**:
    Davis-Entringer-Graham (1977) proved that 3-AP-free permutations on powers of two can be constructed by interleaving odd and even elements:
-   $$P_{2m} = (2 P_m - 1, 2 P_m)$$
+
+$$
+P_{2m} = (2 P_m - 1, 2 P_m)
+$$
+
    To achieve the lexicographically first valid permutation, an adjusted boundary swap is performed at the interface.
 2. **Lehmer Inversion Code Sequence**:
    Rather than building and sorting dynamic Fenwick trees on $2^{25}$ elements, the Lehmer inversion codes $c_i$ (number of remaining elements smaller than $P(i)$) can be computed recursively in $O(N)$ time via linear vector doubling:
@@ -43,7 +53,11 @@ For $N = 2^{25} = 33\,554\,432$, the number of permutations is $(2^{25})! \appro
 
 ### Linear Factorial Horner Evaluation
 1. **Lehmer Rank Conversion**:
-   $$\text{Rank}(P) = 1 + \sum_{i=1}^{N} c_i \cdot (N - i)! \pmod{\text{MOD}}$$
+
+$$
+\text{Rank}(P) = 1 + \sum_{i=1}^{N} c_i \cdot (N - i)! \pmod{\text{MOD}}
+$$
+
 2. **Horner's Rule Accumulation**:
    Accumulating the factorial weights from right to left requires exactly $N$ modular multiplications.
 3. **Execution Performance**:

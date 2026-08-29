@@ -4,7 +4,10 @@
 
 Let $f(n)$ be the largest prime factor of $n$.
 Define:
-$$F(n) = \sum_{i=2}^n f(i)$$
+
+$$
+F(n) = \sum_{i=2}^n f(i)
+$$
 
 We are given:
 - $F(10) = 32$
@@ -12,7 +15,10 @@ We are given:
 - $F(10000) = 10118280$
 
 We seek to evaluate:
-$$F(201820182018) \bmod 10^9$$
+
+$$
+F(201820182018) \bmod 10^9
+$$
 
 ---
 
@@ -41,7 +47,11 @@ Evaluating largest prime factors directly for all integers up to $N = 2.018 \tim
 
 ### Sublinear Min_25 Algorithm with Hash Memoization ($O(N^{3/4})$)
 1. **Lucy-Hedgehog Prime Sum DP**:
-   $$S_1^{(p)}(v) = S_1^{(p-1)}(v) - p \left( S_1^{(p-1)}\left(\left\lfloor \frac{v}{p} \right\rfloor\right) - S_1^{(p-1)}(p - 1) \right)$$
+
+$$
+S_1^{(p)}(v) = S_1^{(p-1)}(v) - p \left( S_1^{(p-1)}\left(\left\lfloor \frac{v}{p} \right\rfloor\right) - S_1^{(p-1)}(p - 1) \right)
+$$
+
 2. **Memoized Tree Traversal**:
    Traverse only states $(B, i)$ reachable through powerful prefixes. For $B \le \sqrt{N}$, the base case terminates instantly via precomputed prime sums.
 

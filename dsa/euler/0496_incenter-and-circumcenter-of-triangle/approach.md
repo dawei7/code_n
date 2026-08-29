@@ -9,7 +9,10 @@ We are given:
 - $F(15) = 45$
 
 We seek to evaluate:
-$$F(10^9)$$
+
+$$
+F(10^9)
+$$
 
 ---
 
@@ -28,7 +31,11 @@ Searching over all integer triples $(a, b, c)$ up to $L = 10^9$ involves $> 10^{
    The condition $AC = DI$ translates directly to $b = DB = DC$.
 2. **Ptolemy Circumcircle Reduction**:
    Applying Ptolemy's Theorem and the Angle Bisector Theorem gives an exact coprime integer parameterization:
-   $$BC = a = k \cdot p \cdot q$$
+
+$$
+BC = a = k \cdot p \cdot q
+$$
+
    where $\gcd(p, q) = 1$, $p < q < 2p$, and $k \ge 1$.
 
 ---
@@ -39,9 +46,19 @@ Searching over all integer triples $(a, b, c)$ up to $L = 10^9$ involves $> 10^{
 1. **Hyperbola Summation Formulation**:
    For each pair of coprime parameters $(p, q)$ with $p < q < 2p$, the multiplicity of valid scalings $k$ with $k p q \le L$ is $v = \lfloor \frac{L}{pq} \rfloor$.
    The sum of $BC = k p q$ is:
-   $$p q \sum_{k=1}^v k = p q \frac{v(v+1)}{2}$$
+
+$$
+p q \sum_{k=1}^v k = p q \frac{v(v+1)}{2}
+$$
+
 2. **Möbius Inversion for Coprime Prefix Sums**:
-   $$\sum_{\substack{q \le x \\ \gcd(p, q) = 1}} q = \sum_{d \mid p} \mu(d) \cdot d \cdot \frac{\lfloor x/d \rfloor (\lfloor x/d \rfloor + 1)}{2}$$
+
+$$
+\begin{aligned}
+\sum_{\substack{q \le x \\ \gcd(p, q) = 1}} q = \sum_{d \mid p} \mu(d) \cdot d \cdot \frac{\lfloor x/d \rfloor (\lfloor x/d \rfloor + 1)}{2}
+\end{aligned}
+$$
+
 3. **Quotient Block Stepping**:
    For each $p \le \sqrt{L}$, the quotient $v = \lfloor \frac{L/p}{q} \rfloor$ remains constant over large contiguous blocks of $q \in [q, q_{\text{end}}]$, enabling $O(\sqrt{L/p})$ steps per prime $p$.
 

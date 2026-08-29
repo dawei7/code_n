@@ -10,7 +10,10 @@ We are given:
 - $C(10^6) = 922052$
 
 We seek to evaluate:
-$$C(10^{13})$$
+
+$$
+C(10^{13})
+$$
 
 ---
 
@@ -28,11 +31,18 @@ Factoring all $10^{13}$ integers and checking prime power exponents requires ter
    Every decreasing prime power integer decomposes into a "powerful core" where exponents are $\ge 2$, followed by a squarefree tail where all exponents are $1$.
 2. **Squarefree Counting via Möbius Inversion**:
    The number of squarefree integers $Q(x) \le x$ is:
-   $$Q(x) = \sum_{i=1}^{\lfloor \sqrt{x} \rfloor} \mu(i) \left\lfloor \frac{x}{i^2} \right\rfloor$$
+
+$$
+Q(x) = \sum_{i=1}^{\lfloor \sqrt{x} \rfloor} \mu(i) \left\lfloor \frac{x}{i^2} \right\rfloor
+$$
+
    grouped in $O(x^{1/3})$ time via hyperbola division on $\lfloor x / i^2 \rfloor$.
 3. **Smallest-Prime-Factor DP**:
    To enforce that all prime factors in the squarefree tail are $\ge p_a$:
-   $$f(x, a) = Q(x) - \sum_{i=0}^{a-1} f(x / p_i, i + 1)$$
+
+$$
+f(x, a) = Q(x) - \sum_{i=0}^{a-1} f(x / p_i, i + 1)
+$$
 
 ---
 

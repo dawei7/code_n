@@ -9,14 +9,20 @@ In a game of Fibonacci Nim with $N$ pebbles:
 
 Let $H(N)$ be the minimal number of pebbles Siegbert must take on turn 1 to guarantee victory under optimal play.
 Define:
-$$G(n) = \sum_{k=1}^n H(k)$$
+
+$$
+G(n) = \sum_{k=1}^n H(k)
+$$
 
 We are given:
 - $H(1)=1, H(4)=1, H(8)=8, H(17)=1, H(18)=5$
 - $G(13) = 43$
 
 We seek to evaluate:
-$$G(23416728348467685)$$
+
+$$
+G(23416728348467685)
+$$
 
 ---
 
@@ -32,14 +38,21 @@ Evaluating $H(k)$ individually for $k = 1 \dots 2.34 \times 10^{16}$ requires tr
 ### Game Theory of Fibonacci Nim & Zeckendorf Decomposition
 1. **Zeckendorf Theorem & Winning Strategy**:
    By the classic theorem of Fibonacci Nim (Whini-Nim), the unique minimal winning opening move on a heap of size $N$ is:
-   $$H(N) = \text{smallest Fibonacci number in the Zeckendorf decomposition of } N$$
+
+$$
+H(N) = \text{smallest Fibonacci number in the Zeckendorf decomposition of } N
+$$
+
    In particular, $H(F_k) = F_k$ for any Fibonacci number $F_k$.
 2. **Identification of the Target Value**:
    The input $N = 23416728348467685$ is exactly the 80th Fibonacci number $F_{80}$!
 3. **Self-Similar Prefix Structure**:
    For any integer $j \in [F_{k-1} + 1, F_k - 1]$, $j = F_{k-1} + m$ where $m \in [1, F_{k-2} - 1]$.
    Since the Zeckendorf decomposition of $j$ is $F_{k-1} + \text{Zeck}(m)$, the smallest Fibonacci component of $j$ is identically that of $m$:
-   $$H(F_{k-1} + m) = H(m)$$
+
+$$
+H(F_{k-1} + m) = H(m)
+$$
 
 ---
 
@@ -52,7 +65,11 @@ Evaluating $H(k)$ individually for $k = 1 \dots 2.34 \times 10^{16}$ requires tr
    - $j \in [F_{k-1} + 1, F_k - 1]$: sum is $\sum_{m=1}^{F_{k-2}-1} H(m) = S_{k-2} - H(F_{k-2}) = S_{k-2} - F_{k-2}$.
    - $j = F_k$: value is $H(F_k) = F_k$.
    Summing these yields:
-   $$S_k = S_{k-1} + (S_{k-2} - F_{k-2}) + F_k = S_{k-1} + S_{k-2} + (F_k - F_{k-2}) = S_{k-1} + S_{k-2} + F_{k-1}$$
+
+$$
+S_k = S_{k-1} + (S_{k-2} - F_{k-2}) + F_k = S_{k-1} + S_{k-2} + (F_k - F_{k-2}) = S_{k-1} + S_{k-2} + F_{k-1}
+$$
+
 2. **Base Cases**:
    - $S_2 = G(F_2) = G(1) = 1$
    - $S_3 = G(F_3) = G(2) = 1 + 2 = 3$

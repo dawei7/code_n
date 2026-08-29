@@ -11,7 +11,10 @@ We are given:
 - $f(30) \equiv 179092994 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$f(10^8) \bmod 1\,000\,000\,007$$
+
+$$
+f(10^8) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,11 +32,19 @@ Generating and subset-sum balancing all partitions of integers up to $N$ grows e
    Consider a partition consisting of identical parts of size $m \le k$: $N = m + m + \dots + m$.
    The number of parts is $N/m$.
    To split into two subsets of equal sum, the number of parts $N/m$ must be an even integer:
-   $$\frac{N}{m} \equiv 0 \pmod 2 \implies 2m \mid N$$
+
+$$
+\frac{N}{m} \equiv 0 \pmod 2 \implies 2m \mid N
+$$
+
 2. **Minimal Common Multiple**:
    For this condition to hold for all single-element partitions of every integer $m \in \{1, 2, \dots, k\}$, $N$ must be a multiple of $2m$ for all $m \le k$.
    Hence:
-   $$N = 2 \operatorname{LCM}(1, 2, \dots, k) = 2 \prod_{p \le k} p^{\lfloor \log_p k \rfloor}$$
+
+$$
+N = 2 \operatorname{LCM}(1, 2, \dots, k) = 2 \prod_{p \le k} p^{\lfloor \log_p k \rfloor}
+$$
+
 3. **Sufficiency**:
    By an inductive greedy exchange argument, any $k$-bounded partition of $2 \operatorname{LCM}(1, \dots, k)$ can be balanced into two halves of sum $\operatorname{LCM}(1, \dots, k)$.
 

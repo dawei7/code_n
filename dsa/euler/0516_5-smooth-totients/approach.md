@@ -9,7 +9,10 @@ We are given:
 - $S(100) = 3728$
 
 We seek to evaluate:
-$$S(10^{12}) \bmod 2^{32}$$
+
+$$
+S(10^{12}) \bmod 2^{32}
+$$
 
 ---
 
@@ -24,13 +27,21 @@ Computing $\varphi(n)$ for all $10^{12}$ numbers and checking 5-smoothness is co
 
 ### Prime Factorization Conditions for Smooth Totients
 1. **Totient Product Formula**:
-   $$\varphi(n) = \prod_{p^e \parallel n} p^{e-1} (p - 1)$$
+
+$$
+\varphi(n) = \prod_{p^e \parallel n} p^{e-1} (p - 1)
+$$
+
 2. **Smoothness Constraints**:
    - If $e \ge 2$, $p \mid \varphi(n)$, so $p$ must be a prime $\le 5$ (i.e. $p \in \{2, 3, 5\}$).
    - If $e = 1$ and $p > 5$, $p - 1$ must be 5-smooth (i.e. $p = 1 + 2^a 3^b 5^c$ must be prime).
 3. **Multiplicative Structure of $n$**:
    Every valid integer $n \le L$ factors uniquely as:
-   $$n = H \cdot Q$$
+
+$$
+n = H \cdot Q
+$$
+
    where:
    - $H = 2^a 3^b 5^c$ is a 5-smooth integer.
    - $Q = q_1 q_2 \dots q_m$ is a squarefree product of distinct special primes $q_i > 5$ such that $q_i - 1$ is 5-smooth.
@@ -48,7 +59,10 @@ Computing $\varphi(n)$ for all $10^{12}$ numbers and checking 5-smoothness is co
 3. **Prefix Sum Accumulation**:
    For each squarefree product $Q$, the maximum compatible smooth factor is $H_{\max} = \lfloor L / Q \rfloor$.
    Using binary search and prefix sums of 5-smooth numbers:
-   $$\text{Contribution}(Q) = Q \sum_{H \in \mathcal{H}, H \le \lfloor L / Q \rfloor} H$$
+
+$$
+\text{Contribution}(Q) = Q \sum_{H \in \mathcal{H}, H \le \lfloor L / Q \rfloor} H
+$$
 
 This evaluates $L = 10^{12}$ in **$1.53$ seconds**!
 

@@ -27,7 +27,11 @@ For $n = 12$, there are $\binom{81}{12} \approx 7.07 \times 10^{13}$ card collec
 
 2. **Moment Expansion via Line Configurations**:
    Expanding $S(C_n)^4$ using indicator variables $I_L(C_n)$ for line $L \subset C_n$:
-   $$F(n) = \sum_{C_n} \left( \sum_{L} I_L(C_n) \right)^4$$
+
+$$
+F(n) = \sum_{C_n} \left( \sum_{L} I_L(C_n) \right)^4
+$$
+
    The 4th power expands into configuration tuples of 1, 2, 3, and 4 lines.
 
 3. **Sub-second Geometric Configuration Counting**:

@@ -11,7 +11,10 @@ We are given:
 - $f(24) \equiv 509089824 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$f(600) \pmod{1\,000\,000\,007}$$
+
+$$
+f(600) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -37,7 +40,11 @@ Tracking the counts of quartets with $4, 3, 2, 1$ remaining musicians leads to $
 ### Dual Summation & 3-Variable Polynomial Reduction
 1. **Algebraic Coefficient Extraction**:
    By expanding the generating function dual, the total count simplifies to:
-   $$f(12n) = \frac{24^m m!}{6^E} \sum_{i=0}^E \sum_{j=0}^{E-i} \text{base}(i, j) \sum_d \frac{1}{a! b! c! d! 24^a 2^{b+d}}$$
+
+$$
+f(12n) = \frac{24^m m!}{6^E} \sum_{i=0}^E \sum_{j=0}^{E-i} \text{base}(i, j) \sum_d \frac{1}{a! b! c! d! 24^a 2^{b+d}}
+$$
+
    where $m = 3n, E = 4n$, $k = E - i - j$, $a = i - n + d$, $b = j - 2d$, and $c = k$.
 2. **Nested Bounded Loops**:
    For $n = 50$, $E = 200$. The outer loops run over $(i, j)$ with $i + j \le 200$, and the inner loop over $d$ has $\le 100$ iterations.

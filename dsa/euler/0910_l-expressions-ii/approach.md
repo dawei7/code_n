@@ -33,7 +33,11 @@ Higher-order combinators $D_a$ correspond to tetration and higher Ackermann bran
 Under modular exponentiation $a^b \pmod M$:
 By Euler's Totient Theorem, $a^b \equiv a^{b \bmod \phi(M) + \phi(M)} \pmod M$.
 Iterating Euler's totient function generates a chain:
-$$10^9 \to \phi(10^9) = 4 \times 10^8 \to \phi(4 \times 10^8) \to \dots \to 1$$
+
+$$
+10^9 \to \phi(10^9) = 4 \times 10^8 \to \phi(4 \times 10^8) \to \dots \to 1
+$$
+
 which reaches $1$ in fewer than $40$ iterations.
 Since the hyper-exponential tower height exceeds $40$, the value is completely fixed and stabilized, evaluating the last nine digits as $\mathbf{547480666}$ in **under 0.001s** in 100% pure Python.
 

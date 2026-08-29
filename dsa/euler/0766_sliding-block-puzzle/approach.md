@@ -6,7 +6,10 @@ In a sliding block puzzle, polyomino pieces are placed on a $6 \times 5$ grid.
 Pieces slide orthogonally by positive integer units (up, down, left, right) without rotation or overlapping other pieces.
 Pieces of identical shape and color are indistinguishable.
 We seek to determine the total number of distinct reachable board configurations from the initial state:
-$$|\mathcal{C}_{\text{reachable}}|$$
+
+$$
+|\mathcal{C}_{\text{reachable}}|
+$$
 
 We are given:
 - A $4 \times 3$ sample puzzle with 1 L-triomino and 7 red unit squares has $208$ reachable configurations.

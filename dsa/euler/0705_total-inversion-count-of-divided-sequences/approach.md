@@ -7,14 +7,20 @@ A **divided sequence** is obtained by replacing each digit $d$ in $G(N)$ with on
 Let $k_d = |D(d)|$ be the number of divisors of $d$.
 
 Define:
-$$F(N) = \sum_{S \in \text{DividedSequences}(G(N))} \text{Inversions}(S)$$
+
+$$
+F(N) = \sum_{S \in \text{DividedSequences}(G(N))} \text{Inversions}(S)
+$$
 
 We are given:
 - $F(20) = 3312$
 - $F(50) = 338079744$
 
 We seek to evaluate:
-$$F(10^8) \bmod 1\,000\,000\,007$$
+
+$$
+F(10^8) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -30,11 +36,19 @@ $N = 10^8$ generates $\approx 4.5 \times 10^7$ digits. The number of divided seq
 ### Linearity of Expectation & Matrix Pair-Weighting
 1. **Linearity of Inversions**:
    The total inversion count across all $\prod_{m=1}^L k_{d_m}$ combinations is:
-   $$F(N) = \sum_{1 \le i < j \le L} \sum_{x \in D(S[i])} \sum_{y \in D(S[j])} [x > y] \prod_{m \ne i, j} k_{S[m]}$$
+
+$$
+F(N) = \sum_{1 \le i < j \le L} \sum_{x \in D(S[i])} \sum_{y \in D(S[j])} [x > y] \prod_{m \ne i, j} k_{S[m]}
+$$
+
 2. **Pair Inversion Kernel**:
    Define the $9 \times 9$ matrix $I(u, v) = \sum_{x \in D(u)} \sum_{y \in D(v)} [x > y]$.
    Factor out the total product $K = \prod_{m=1}^L k_{S[m]}$:
-   $$F(N) = K \sum_{1 \le i < j \le L} \frac{I(S[i], S[j])}{k_{S[i]} k_{S[j]}}$$
+
+$$
+F(N) = K \sum_{1 \le i < j \le L} \frac{I(S[i], S[j])}{k_{S[i]} k_{S[j]}}
+$$
+
 3. **Prefix Accumulation**:
    Let $w(v) = k_v^{-1} \bmod \text{MOD}$.
    As we stream the digits of all primes $p < N$, maintain the cumulative weight array $W[u] = \sum_{i < j, S[i] = u} w(u)$ for $u \in \{1 \dots 9\}$.

@@ -3,17 +3,27 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The number $512$ is interesting because it is equal to the sum of its digits raised to some power:
-$$5 + 1 + 2 = 8 \quad \text{and} \quad 8^3 = 512$$
+
+$$
+5 + 1 + 2 = 8 \quad \text{and} \quad 8^3 = 512
+$$
 
 Another example of a number with this property is $614\,656$:
-$$6 + 1 + 4 + 6 + 5 + 6 = 28 \quad \text{and} \quad 28^4 = 614\,656$$
+
+$$
+6 + 1 + 4 + 6 + 5 + 6 = 28 \quad \text{and} \quad 28^4 = 614\,656
+$$
 
 We define $a_n$ to be the $n$-th term of this sequence and insist that a number must be at least two digits in length ($a_n \ge 10$) to have a sum:
 - $a_1 = 512$
 - $a_2 = 614\,656$
 
 The objective is to find **$a_{30}$**, the $30$-th number in this sequence:
-$$a_{30} = \operatorname{sorted}(\{ x \ge 10 \mid \exists e \ge 2 : x = S(x)^e \})[29]$$
+
+$$
+a_{30} = \operatorname{sorted}(\{ x \ge 10 \mid \exists e \ge 2 : x = S(x)^e \})[29]
+$$
+
 where $S(x)$ is the sum of decimal digits of $x$.
 
 ---
@@ -32,7 +42,11 @@ def naive_digit_power_sum():
 1. Instead of scanning $x$, we iterate over candidate digit sums $b \in [2, 100]$ and integer exponents $e \in [2, 50]$.
 2. For each pair $(b, e)$, compute candidate value $v = b^e$.
 3. Check whether the sum of digits of $v$ equals the base $b$:
-   $$S(v) \stackrel{?}{=} b$$
+
+$$
+S(v) \stackrel{?}{=} b
+$$
+
 4. Collecting valid numbers in a deduplicated set, sorting them in ascending order, and taking index 29 (the 30th term) executes in $\approx 0.001$ seconds.
 
 ---
@@ -81,10 +95,20 @@ def naive_digit_power_sum():
 
 ### Example 3: Target Evaluation for $a_{30}$
 - At base $b = 63, e = 8$:
-  $$v = 63^8 = 248\,155\,780\,267\,521$$
-  $$S(v) = 2+4+8+1+5+5+7+8+0+2+6+7+5+2+1 = 63 == b \checkmark$$
+
+$$
+v = 63^8 = 248\,155\,780\,267\,521
+$$
+
+$$
+S(v) = 2+4+8+1+5+5+7+8+0+2+6+7+5+2+1 = 63 == b \checkmark
+$$
+
 - The 30th sorted term:
-  $$a_{30} = \mathbf{248\,155\,780\,267\,521}$$
+
+$$
+a_{30} = \mathbf{248\,155\,780\,267\,521}
+$$
 
 ---
 

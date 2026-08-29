@@ -19,3 +19,8 @@ ignore = ["E741", "F841"]
 [tool.pytest.ini_options]
 testpaths = ["tests", "server/tests"]
 norecursedirs = [".venv", "build", "dist", "electron/release", "server/dist"]
+filterwarnings = [
+    "ignore:.*Using `httpx` with `starlette.testclient` is deprecated.*:Warning",
+    "ignore::DeprecationWarning:starlette.*:",
+    "ignore::DeprecationWarning:fastapi.*:",
+]

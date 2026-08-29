@@ -7,7 +7,10 @@ $n$ students are partitioned by:
 2. A desk pairing list $E_D$ (an involution $D \in S_n$ with fixed points for single desks).
 
 A permutation $\sigma \in S_n$ satisfies the conditions if and only if $\sigma$ commutes with both involutions:
-$$\sigma B = B \sigma \quad \text{and} \quad \sigma D = D \sigma$$
+
+$$
+\sigma B = B \sigma \quad \text{and} \quad \sigma D = D \sigma
+$$
 
 Equivalently, $\sigma$ is an automorphism of the $2$-edge-colored graph $G = (V, E_B, E_D)$ where every vertex has maximum degree $\le 1$ in each color.
 
@@ -41,7 +44,10 @@ The search space is $S_{500}$ of size $500! \approx 10^{1134}$, rendering brute-
 2. **Component Multiplicity & Isomorphism Permutations**:
    If there are $m_T$ pairwise isomorphic components of type $T$, any permutation of the $m_T$ components is a valid automorphism.
 3. **Total Commuting Permutations Formula**:
-   $$|\operatorname{Aut}(G)| = \prod_{T \in \text{Component Types}} \left( m_T! \cdot |\operatorname{Aut}(T)|^{m_T} \right) \pmod{999\,999\,937}$$
+
+$$
+|\operatorname{Aut}(G)| = \prod_{T \in \text{Component Types}} \left( m_T! \cdot |\operatorname{Aut}(T)|^{m_T} \right) \pmod{999\,999\,937}
+$$
 
 ---
 

@@ -3,13 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The smallest positive integer $n$ for which the numbers:
-$$n^2 + 1, \quad n^2 + 3, \quad n^2 + 7, \quad n^2 + 9, \quad n^2 + 13, \quad n^2 + 27$$
+
+$$
+n^2 + 1, \quad n^2 + 3, \quad n^2 + 7, \quad n^2 + 9, \quad n^2 + 13, \quad n^2 + 27
+$$
+
 are **consecutive primes** is $n = 10$:
-$$101, \quad 103, \quad 107, \quad 109, \quad 113, \quad 127$$
+
+$$
+101, \quad 103, \quad 107, \quad 109, \quad 113, \quad 127
+$$
+
 The sum of such integers $n$ below one-million ($1\,000\,000$) is $1242490$.
 
 The objective is to find the **sum of all such integers $n$ below one hundred and fifty million ($150\,000\,000$)**:
-$$S_{\text{pattern}} = \sum \left\{ n < 150\,000\,000 \;\middle|\; \begin{aligned} &(n^2+1, n^2+3, n^2+7, n^2+9, n^2+13, n^2+27) \in \mathbb{P}^6 \\ &\land \forall k \in \{5, 11, 15, 17, 19, 21, 23, 25\}, \, n^2+k \notin \mathbb{P} \end{aligned} \right\}$$
+
+$$
+S_{\text{pattern}} = \sum \left\{ n < 150\,000\,000 \;\middle|\; \begin{aligned} &(n^2+1, n^2+3, n^2+7, n^2+9, n^2+13, n^2+27) \in \mathbb{P}^6 \\ &\land \forall k \in \{5, 11, 15, 17, 19, 21, 23, 25\}, \, n^2+k \notin \mathbb{P} \end{aligned} \right\}
+$$
 
 ---
 
@@ -26,15 +37,27 @@ def naive_prime_pattern():
 ### Algebraic Modular Residue Pruning
 1. **Base Modulo Filters:**
    - For $n^2 + 1, n^2 + 3, n^2 + 7, n^2 + 9, n^2 + 13, n^2 + 27$ to not be divisible by 2 or 5, $n$ must end in 0:
-     $$n \equiv 0 \pmod{10}$$
+
+$$
+n \equiv 0 \pmod{10}
+$$
+
    - Modulo 3: If $n^2 \equiv 0 \pmod 3$, then $3 \mid (n^2+3)$. If $n^2 \equiv 2 \pmod 3$, $3 \mid (n^2+1)$. Thus:
-     $$n^2 \equiv 1 \pmod 3$$
+
+$$
+n^2 \equiv 1 \pmod 3
+$$
+
    - Modulo 7: Testing residues shows only $n^2 \equiv 2 \pmod 7$ avoids creating a multiple of 7 among the six terms.
 2. **Small Prime Residue Filters (Primes $11, 13, 17, 19, 23, 29$):**
    Precomputing forbidden quadratic residues $n^2 \equiv -k \pmod p$ filters out $> 98.5\%$ of candidates in $\mathcal{O}(1)$ time before calling Miller-Rabin!
 3. **Consecutive Isolation Check:**
    When the 6 numbers are prime, we must also verify that intermediate odd numbers:
-   $$n^2 + 5, \quad n^2 + 11, \quad n^2 + 15, \quad n^2 + 17, \quad n^2 + 19, \quad n^2 + 21, \quad n^2 + 23, \quad n^2 + 25$$
+
+$$
+n^2 + 5, \quad n^2 + 11, \quad n^2 + 15, \quad n^2 + 17, \quad n^2 + 19, \quad n^2 + 21, \quad n^2 + 23, \quad n^2 + 25
+$$
+
    are all **composite**.
 4. This evaluates all qualifying $n$ in $\approx 2.5$ seconds.
 
@@ -93,7 +116,10 @@ def naive_prime_pattern():
 
 ### Example 2: Target Evaluation for $n < 150\,000\,000$
 - Summing all matching values:
-  $$S_{\text{pattern}} = \mathbf{124\,249\,070}$$
+
+$$
+S_{\text{pattern}} = \mathbf{124\,249\,070}
+$$
 
 ---
 

@@ -4,7 +4,11 @@
 
 Let $a, b, c$ be the integer side lengths of a non-degenerate triangle.
 The radius $R$ of its circumscribed circle (circumradius) is given by:
-$$R = \frac{a b c}{4 \Delta} = \frac{a b c}{4 \sqrt{s(s-a)(s-b)(s-c)}}$$
+
+$$
+R = \frac{a b c}{4 \Delta} = \frac{a b c}{4 \sqrt{s(s-a)(s-b)(s-c)}}
+$$
+
 where $s = \frac{a+b+c}{2}$ is the semi-perimeter.
 
 Let $S(n)$ denote the sum of circumradii $R$ (counting multiplicity of distinct integer-sided triangles $(a, b, c)$) for all triangles whose circumradius $R$ is an integer satisfying $R \le n$.
@@ -13,7 +17,10 @@ We are given:
 - $S(1200) = 1653605$
 
 We seek to evaluate:
-$$S(10^7)$$
+
+$$
+S(10^7)
+$$
 
 ---
 
@@ -30,7 +37,11 @@ For $n = 10^7$, $n^3 = 10^{21}$, which is impossible to compute directly.
 ### Gaussian Integers & Rational Chords
 In a circle of integer radius $R$, the side lengths $a, b, c$ are chords subtending angles $2\alpha, 2\beta, 2\gamma$ with $\alpha + \beta + \gamma = \pi$.
 By the Law of Sines:
-$$a = 2 R \sin \alpha, \quad b = 2 R \sin \beta, \quad c = 2 R \sin \gamma$$
+
+$$
+a = 2 R \sin \alpha, \quad b = 2 R \sin \beta, \quad c = 2 R \sin \gamma
+$$
+
 For $a, b, c$ to be integers, $\sin \alpha, \sin \beta, \sin \gamma \in \mathbb{Q}$, corresponding to Gaussian prime factors $p \equiv 1 \pmod 4$ dividing $R$ in $\mathbb{Z}[i]$.
 
 ---
@@ -41,17 +52,32 @@ For $a, b, c$ to be integers, $\sin \alpha, \sin \beta, \sin \gamma \in \mathbb{
 For any integer $R$, write its prime factorization as $R = \prod p_i^{e_i} \cdot q$, where $p_i \equiv 1 \pmod 4$ are the primes $\equiv 1 \pmod 4$ dividing $R$, and $q$ contains all other prime powers (primes $2$ and $p \equiv 3 \pmod 4$).
 
 The number of non-degenerate integer-sided triangles with circumradius $R$ is:
-$$N(R) = \frac{1}{6} \left( 2 A(R) - 3 B(R) + 3 C(R) - 2 \right)$$
+
+$$
+N(R) = \frac{1}{6} \left( 2 A(R) - 3 B(R) + 3 C(R) - 2 \right)
+$$
+
 where $A, B, C$ are **purely multiplicative functions**:
-$$A(p^e) = \begin{cases} 3e^2 + 3e + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}$$
 
-$$B(p^e) = \begin{cases} 2e + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}$$
+$$
+A(p^e) = \begin{cases} 3e^2 + 3e + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}
+$$
 
-$$C(p^e) = \begin{cases} 2 \lfloor e / 2 \rfloor + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}$$
+$$
+B(p^e) = \begin{cases} 2e + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}
+$$
+
+$$
+C(p^e) = \begin{cases} 2 \lfloor e / 2 \rfloor + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}
+$$
 
 ### Linear Sieve Convolution
 The total sum is:
-$$S(n) = \sum_{R=1}^n R \cdot N(R) = \frac{1}{6} \left( 2 \sum_{R=1}^n R A(R) - 3 \sum_{R=1}^n R B(R) + 3 \sum_{R=1}^n R C(R) - 2 \sum_{R=1}^n R \right)$$
+
+$$
+S(n) = \sum_{R=1}^n R \cdot N(R) = \frac{1}{6} \left( 2 \sum_{R=1}^n R A(R) - 3 \sum_{R=1}^n R B(R) + 3 \sum_{R=1}^n R C(R) - 2 \sum_{R=1}^n R \right)
+$$
+
 Because $f_A(R) = R A(R)$, $f_B(R) = R B(R)$, and $f_C(R) = R C(R)$ are all multiplicative, their prefix sums are evaluated simultaneously in $O(n)$ time using an Euler linear sieve!
 
 ---

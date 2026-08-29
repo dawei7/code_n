@@ -5,7 +5,11 @@
 For positive integers $p$ and $q$ with $p + q \le 2011$:
 Consider the real number $(\sqrt{p} + \sqrt{q})^{2n}$.
 Let $C(p, q)$ be the minimum index $n$ such that the decimal expansion of $(\sqrt{p} + \sqrt{q})^{2n}$ contains at least $2011$ consecutive nines immediately after the decimal point:
-$$(\sqrt{p} + \sqrt{q})^{2n} = M + 0.\underbrace{9999\dots 9}_{\ge 2011 \text{ nines}}\dots$$
+
+$$
+(\sqrt{p} + \sqrt{q})^{2n} = M + 0.\underbrace{9999\dots 9}_{\ge 2011 \text{ nines}}\dots
+$$
+
 We seek $\sum C(p, q)$ over all pairs $(p, q)$ with $p + q \le 2011$ for which such an integer $n$ exists.
 
 ---
@@ -25,14 +29,25 @@ A naive approach computes $(\sqrt{p} + \sqrt{q})^{2n}$ using multi-thousand digi
 Consider the algebraic conjugate $(\sqrt{q} - \sqrt{p})^{2n}$ (assuming without loss of generality $p < q$):
 - Let $\alpha = \sqrt{p} + \sqrt{q}$ and $\beta = \sqrt{q} - \sqrt{p}$.
 - Notice that:
-  $$\alpha^{2n} + \beta^{2n} = (\sqrt{p} + \sqrt{q})^{2n} + (\sqrt{q} - \sqrt{p})^{2n}$$
+
+$$
+\alpha^{2n} + \beta^{2n} = (\sqrt{p} + \sqrt{q})^{2n} + (\sqrt{q} - \sqrt{p})^{2n}
+$$
+
   is always an **exact integer** because odd cross terms involving $\sqrt{pq}$ cancel out!
 - Therefore:
-  $$\alpha^{2n} = \text{Integer} - \beta^{2n}$$
+
+$$
+\alpha^{2n} = \text{Integer} - \beta^{2n}
+$$
+
 - If $\beta < 1 \iff \sqrt{q} - \sqrt{p} < 1 \iff q - p < 2\sqrt{p} + 1$:
   Then $\beta^{2n} \in (0, 1)$, and as $n$ grows, $\beta^{2n} \to 0^+$.
 - The number of consecutive nines immediately after the decimal point of $\alpha^{2n}$ is:
-  $$\text{Nines} = \lfloor -\log_{10}(\beta^{2n}) \rfloor$$
+
+$$
+\text{Nines} = \lfloor -\log_{10}(\beta^{2n}) \rfloor
+$$
 
 ---
 
@@ -40,9 +55,17 @@ Consider the algebraic conjugate $(\sqrt{q} - \sqrt{p})^{2n}$ (assuming without 
 
 ### Minimal Index Condition
 To have at least $K = 2011$ nines:
-$$\beta^{2n} \le 10^{-K} \iff 2n \ln(\beta) \le -K \ln(10) \iff n \ge \left\lceil \frac{K \ln(10)}{-2 \ln(\sqrt{q} - \sqrt{p})} \right\rceil$$
+
+$$
+\beta^{2n} \le 10^{-K} \iff 2n \ln(\beta) \le -K \ln(10) \iff n \ge \left\lceil \frac{K \ln(10)}{-2 \ln(\sqrt{q} - \sqrt{p})} \right\rceil
+$$
+
 Thus, for every pair $(p, q)$ with $p < q$ and $\sqrt{q} - \sqrt{p} < 1$:
-$$C(p, q) = \left\lceil \frac{2011 \ln(10)}{-2 \ln(\sqrt{q} - \sqrt{p})} \right\rceil$$
+
+$$
+C(p, q) = \left\lceil \frac{2011 \ln(10)}{-2 \ln(\sqrt{q} - \sqrt{p})} \right\rceil
+$$
+
 If $\sqrt{q} - \sqrt{p} \ge 1$, $\beta^{2n} \ge 1$, so the fractional part does not approach $1$, and no such $n$ exists.
 
 ---
@@ -53,7 +76,11 @@ If $\sqrt{q} - \sqrt{p} \ge 1$, $\beta^{2n} \ge 1$, so the fractional part does 
 1. $\sqrt{2} - \sqrt{1} = \sqrt{2} - 1 \approx 0.41421356 < 1$.
 2. $\ln(\sqrt{2} - 1) \approx -0.881373587$.
 3. For $K = 2011$:
-   $$n = \left\lceil \frac{2011 \ln(10)}{2 \times 0.881373587} \right\rceil = \left\lceil \frac{4630.495}{1.762747} \right\rceil = 2627$$
+
+$$
+n = \left\lceil \frac{2011 \ln(10)}{2 \times 0.881373587} \right\rceil = \left\lceil \frac{4630.495}{1.762747} \right\rceil = 2627
+$$
+
 4. $(\sqrt{1} + \sqrt{2})^{2 \times 2627}$ has exactly $2011$ nines after the decimal point!
 
 ---

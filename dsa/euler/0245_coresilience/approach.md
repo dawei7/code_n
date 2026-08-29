@@ -3,13 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n > 1$, the **coresilience** $C(n)$ is defined as:
-$$C(n) = \frac{n - \varphi(n)}{n - 1}$$
+
+$$
+C(n) = \frac{n - \varphi(n)}{n - 1}
+$$
+
 where $\varphi(n)$ is Euler's totient function.
 
 A fraction is a **unit fraction** if its numerator is $1$, meaning $C(n) = \frac{1}{k}$ for an integer $k \ge 2$.
 For any prime $p$, $\varphi(p) = p - 1 \implies C(p) = \frac{p - (p - 1)}{p - 1} = \frac{1}{p - 1}$ is trivially a unit fraction.
 For composite $n$, $C(n) = \frac{1}{k}$ requires:
-$$(n - \varphi(n)) \mid (n - 1) \iff k(n - \varphi(n)) = n - 1$$
+
+$$
+(n - \varphi(n)) \mid (n - 1) \iff k(n - \varphi(n)) = n - 1
+$$
 
 We seek to find the sum of all **composite integers** $1 < n \le 2 \times 10^{11}$ for which $C(n)$ is a unit fraction.
 
@@ -47,12 +54,24 @@ A naive search iterates through every composite $n \le 2 \times 10^{11}$, comput
 
 ### Case 1: Two-Prime Composites ($n = p_1 p_2$)
 For $n = p_1 p_2$:
-$$n - \varphi(n) = p_1 p_2 - (p_1 - 1)(p_2 - 1) = p_1 + p_2 - 1$$
+
+$$
+n - \varphi(n) = p_1 p_2 - (p_1 - 1)(p_2 - 1) = p_1 + p_2 - 1
+$$
+
 We require $(p_1 + p_2 - 1) \mid (p_1 p_2 - 1)$.
 Using the identity $p_1 p_2 - 1 = (p_1 - 1)(p_1 + p_2 - 1) - (p_1^2 - p_1 + 1) + (p_1 + p_2 - 1)$,
-$$(p_1 + p_2 - 1) \mid (p_1 p_2 - 1) \iff (p_1 + p_2 - 1) \mid (p_1^2 - p_1 + 1)$$
+
+$$
+(p_1 + p_2 - 1) \mid (p_1 p_2 - 1) \iff (p_1 + p_2 - 1) \mid (p_1^2 - p_1 + 1)
+$$
+
 Let $V = p_1^2 - p_1 + 1$. For each divisor $d \mid V$, we obtain:
-$$p_2 = d - p_1 + 1$$
+
+$$
+p_2 = d - p_1 + 1
+$$
+
 If $p_2 > p_1$, $p_1 p_2 \le \text{limit}$, and $p_2$ is prime, then $n = p_1 p_2$ is a solution.
 Because $V = p_1^2 - p_1 + 1$ has only prime factors $q = 3$ or $q \equiv 1 \pmod 3$, factoring $V$ is exceptionally fast.
 
@@ -60,7 +79,11 @@ Because $V = p_1^2 - p_1 + 1$ has only prime factors $q = 3$ or $q \equiv 1 \pmo
 Let $P = p_1 \dots p_{m-1}$ and $\Phi = \varphi(P) = (p_1 - 1) \dots (p_{m-1} - 1)$.
 Let $p = p_m$ be the final prime.
 The condition $k(n - \varphi(n)) = n - 1$ becomes:
-$$k((P - \Phi)p + \Phi) = P p - 1 \implies p = \frac{k\Phi + 1}{P - k(P - \Phi)}$$
+
+$$
+k((P - \Phi)p + \Phi) = P p - 1 \implies p = \frac{k\Phi + 1}{P - k(P - \Phi)}
+$$
+
 1. **Upper and Lower Bounds on Even $k$**:
    For $p > 0$: $k < \frac{P}{P - \Phi}$.
    For $p > p_{m-1}$: $k > \frac{p_{m-1} P - 1}{p_{m-1}(P - \Phi) + \Phi}$.

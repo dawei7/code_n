@@ -11,7 +11,10 @@ We are given:
 - $s(10, 1000) = 483$
 
 We seek to evaluate:
-$$\sum_{n=1}^{10^{11}} s(n, 10^8)$$
+
+$$
+\sum_{n=1}^{10^{11}} s(n, 10^8)
+$$
 
 ---
 
@@ -26,7 +29,10 @@ Factoring $n^{15} + 1$ for each of the $10^{11}$ values of $n$ requires performi
 
 ### Swapping Summation & Polynomial Roots mod $p$
 By swapping the order of summation:
-$$\sum_{n=1}^{L} s(n, M) = \sum_{p \le M} p \cdot \#\{n \in [1, L] : n^{15} \equiv -1 \pmod p\}$$
+
+$$
+\sum_{n=1}^{L} s(n, M) = \sum_{p \le M} p \cdot \#\{n \in [1, L] : n^{15} \equiv -1 \pmod p\}
+$$
 
 For any odd prime $p$, the congruence $n^{15} \equiv -1 \pmod p$ has solutions if and only if $n \equiv -u \pmod p$ for each $15$-th root of unity $u^{15} \equiv 1 \pmod p$.
 The number of such roots is $d = \gcd(15, p - 1) \in \{1, 3, 5, 15\}$, determined solely by $p \bmod 30$!

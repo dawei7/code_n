@@ -15,7 +15,10 @@ We are given:
 - $A(1000) = 3\,529\,008$
 
 We seek to evaluate:
-$$A(1\,000\,000\,000)$$
+
+$$
+A(1\,000\,000\,000)
+$$
 
 ---
 
@@ -30,9 +33,16 @@ Testing all sets of 3 vertices within $[-10^9, 10^9]^2$ requires $\approx (2 \ti
 
 ### Marden's Theorem & Complex Coordinate Invariance
 By Marden's Theorem, the foci of the Steiner inellipse of a triangle with complex vertices $z_1, z_2, z_3$ (having centroid $z_1 + z_2 + z_3 = 0$) are the roots of:
-$$P'(z) = 3z^2 - (z_1 z_2 + z_2 z_3 + z_3 z_1) = 0$$
+
+$$
+P'(z) = 3z^2 - (z_1 z_2 + z_2 z_3 + z_3 z_1) = 0
+$$
+
 Since foci are $(\pm \sqrt{13}, 0)$, the focus squared is $13$, which forces:
-$$z_1 z_2 + z_2 z_3 + z_3 z_1 = 39 \iff z_1^2 + z_1 z_2 + z_2^2 = -39$$
+
+$$
+z_1 z_2 + z_2 z_3 + z_3 z_1 = 39 \iff z_1^2 + z_1 z_2 + z_2^2 = -39
+$$
 
 ---
 
@@ -40,13 +50,24 @@ $$z_1 z_2 + z_2 z_3 + z_3 z_1 = 39 \iff z_1^2 + z_1 z_2 + z_2^2 = -39$$
 
 ### Transformation to Pell Equations
 Decomposing into real and imaginary parts and using the change of variables $z_1 = \frac{p+q}{2}, z_2 = \frac{q-p}{2}, z_3 = -q$:
-$$3p^2 + q^2 = 156$$
+
+$$
+3p^2 + q^2 = 156
+$$
+
 Parametrizing via primitive directions $(m, n)$ with $D = n^2 + 3m^2 \mid 468$ maps this system directly into generalized Pell equations:
-$$s^2 - 3t^2 = K \quad \text{where } K = \frac{468}{D}$$
+
+$$
+s^2 - 3t^2 = K \quad \text{where } K = \frac{468}{D}
+$$
 
 Each valid $K \in \{468, 117, 36, 9\}$ has a finite set of fundamental seeds $(s_0, t_0)$.
 Multiplying by the fundamental unit $(2 + \sqrt{3})$:
-$$(s', t') = (2s + 3t, s + 2t)$$
+
+$$
+(s', t') = (2s + 3t, s + 2t)
+$$
+
 generates all integer solutions in $O(\log N)$ steps per orbit!
 
 ---

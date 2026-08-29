@@ -16,7 +16,10 @@ We are given:
 - $S(100) = 3604$
 
 We seek to evaluate:
-$$S(3^{37}) \pmod{10^9}$$
+
+$$
+S(3^{37}) \pmod{10^9}
+$$
 
 ---
 
@@ -31,11 +34,20 @@ $3^{37} \approx 4.5 \times 10^{17}$. Iterating step by step through $4.5 \times 
 
 ### Binary Digit State Vector Representation
 Let $g(k) = f(2k + 1)$. We define the 2D state vector:
-$$v(k) = \begin{pmatrix} f(k) \\ g(k) \end{pmatrix}$$
-Appending a binary digit to $k$ transforms $v(k)$ linearly:
-$$v(2k) = M_0 v(k) = \begin{pmatrix} 1 & 0 \\ -1 & 2 \end{pmatrix} v(k)$$
 
-$$v(2k+1) = M_1 v(k) = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix} v(k)$$
+$$
+v(k) = \begin{pmatrix} f(k) \\ g(k) \end{pmatrix}
+$$
+
+Appending a binary digit to $k$ transforms $v(k)$ linearly:
+
+$$
+v(2k) = M_0 v(k) = \begin{pmatrix} 1 & 0 \\ -1 & 2 \end{pmatrix} v(k)
+$$
+
+$$
+v(2k+1) = M_1 v(k) = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix} v(k)
+$$
 
 ---
 
@@ -45,7 +57,11 @@ $$v(2k+1) = M_1 v(k) = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix} v(k)$$
 1. **Aligned Block Sum**:
    Consider an aligned interval of length $2^d$: $[k \cdot 2^d, (k+1) \cdot 2^d - 1]$.
    Summing $f(x)$ over all $d$-bit binary suffixes appended to $k$:
-   $$\sum_{x=0}^{2^d-1} f(k \cdot 2^d + x) = \begin{pmatrix} 1 & 0 \end{pmatrix} (M_0 + M_1)^d v(k)$$
+
+$$
+\sum_{x=0}^{2^d-1} f(k \cdot 2^d + x) = \begin{pmatrix} 1 & 0 \end{pmatrix} (M_0 + M_1)^d v(k)
+$$
+
    where $A = M_0 + M_1 = \begin{pmatrix} 1 & 1 \\ -3 & 5 \end{pmatrix}$.
 2. **Dyadic Interval Decomposition**:
    Any interval $[1, N]$ decomposes into at most $2 \lfloor \log_2 N \rfloor$ aligned power-of-two blocks.

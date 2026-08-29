@@ -8,7 +8,10 @@ Starting with a multiset $L = \{n\}$, Alice can:
 An integer $n > 1$ is creative if Alice can produce any integer $m > 1$ starting from $\{n\}$.
 
 We seek to evaluate:
-$$\sum_{n \le 10^{12}, n \text{ is creative}} n$$
+
+$$
+\sum_{n \le 10^{12}, n \text{ is creative}} n
+$$
 
 ---
 
@@ -42,12 +45,19 @@ Testing whether every individual integer $n \le 10^{12}$ can reach all possible 
 
 ### Inclusion-Exclusion of Perfect Powers ($O(N^{1/2})$)
 1. **Classification Theorem**:
-   $$\mathcal{C} = \{ a^b \le 10^{12} : a, b \ge 2 \} \setminus \{ p^q \le 10^{12} : p, q \in \mathbb{P} \} \setminus \{ 16 \}$$
+
+$$
+\mathcal{C} = \{ a^b \le 10^{12} : a, b \ge 2 \} \setminus \{ p^q \le 10^{12} : p, q \in \mathbb{P} \} \setminus \{ 16 \}
+$$
+
 2. **Set Summation**:
    - Collect all distinct perfect powers $a^b \le 10^{12}$ ($b \in [2, 40]$).
    - Collect all distinct prime-power pairs $p^q \le 10^{12}$ ($q \in \{2, 3, 5, \dots, 37\}$).
    - Compute:
-     $$\text{Total} = \sum_{x \in \mathcal{P}} x - \sum_{y \in \mathcal{P}_{\text{prime}}} y - 16$$
+
+$$
+\text{Total} = \sum_{x \in \mathcal{P}} x - \sum_{y \in \mathcal{P}_{\text{prime}}} y - 16
+$$
 
 This evaluates the exact sum in **$\approx 0.24$ seconds** in pure Python!
 

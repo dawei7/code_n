@@ -13,7 +13,10 @@ We are given:
 - $W(10^2) = 31\,395$
 
 We seek to evaluate:
-$$W(10^6)$$
+
+$$
+W(10^6)
+$$
 
 ---
 
@@ -32,7 +35,11 @@ By the classical **Tartan Theorem** for impartial 2D coin-turning games:
    - Horizontal game (square-length moves $w = k^2$)
    - Vertical game (triangular-length moves $h = T_t$)
 2. The Grundy value of flipping a rectangle of size $w \times h$ ending at $(x, y)$ is:
-   $$\mathcal{G}(x, y, w, h) = \mathcal{G}_X(x, w) \otimes \mathcal{G}_Y(y, h)$$
+
+$$
+\mathcal{G}(x, y, w, h) = \mathcal{G}_X(x, w) \otimes \mathcal{G}_Y(y, h)
+$$
+
    where $\mathcal{G}_X(x, w) = C_X(x) \oplus C_X(x - w)$ is the 1D strip nimber.
 3. The total initial board nimber is $\mathcal{G}_{\text{board}} = C_X(N) \otimes C_Y(N)$.
 

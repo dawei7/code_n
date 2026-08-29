@@ -19,7 +19,11 @@ Find the number of winning values of $n$ for $n \le 1\,000\,000$.
 
 ### Direct Mex / Sprague-Grundy Table Calculation
 A naive approach computes the Sprague-Grundy value $g(n)$ for all $n \le 1\,000\,000$:
-$$g(n) = \text{mex}\{ g(i) \oplus g(n - 2 - i) : 0 \le i \le n - 2 \}$$
+
+$$
+g(n) = \text{mex}\{ g(i) \oplus g(n - 2 - i) : 0 \le i \le n - 2 \}
+$$
+
 - For each $n$, computing the mex of $n - 1$ XOR pairs requires $\mathcal{O}(n)$ time.
 - Total time to compute up to $N = 1\,000\,000$ is $\mathcal{O}(N^2) \approx 5 \times 10^{11}$ operations, taking hours in Python.
 
@@ -31,7 +35,10 @@ $$g(n) = \text{mex}\{ g(i) \oplus g(n - 2 - i) : 0 \le i \le n - 2 \}$$
 The paper strip game is the well-known impartial game **Dawson's Chess / Octal Game .07**:
 - By the Guy-Smith theorem on octal games, Dawson's Chess has an ultimate **exact period of $p = 34$** starting from pre-period $n_0 = 53$.
 - That is, for all $n \ge 53$:
-  $$g(n) = g(n - 34)$$
+
+$$
+g(n) = g(n - 34)
+$$
 
 ---
 
@@ -43,9 +50,17 @@ Because $g(n) = 0$ corresponds to a losing position for the first player (and $g
 2. In each 34-element period, count the number of zero values (losing positions).
    Within each period of length 34, exactly **5 values** satisfy $g(n) = 0$.
 3. Total losing positions up to $N = 1\,000\,000$:
-   $$\text{Losing Count} = \text{Base Losers} + \lfloor (N - n_0) / 34 \rfloor \times 5 + \text{Remainder Losers}$$
+
+$$
+\text{Losing Count} = \text{Base Losers} + \lfloor (N - n_0) / 34 \rfloor \times 5 + \text{Remainder Losers}
+$$
+
 4. Total winning positions:
-   $$\mathbf{\text{Winning Count} = N - \text{Total Losing Count}}$$
+
+$$
+\mathbf{\text{Winning Count} = N - \text{Total Losing Count}}
+$$
+
 Evaluating this takes $\mathcal{O}(1)$ time!
 
 ---

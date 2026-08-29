@@ -22,10 +22,17 @@ Find $\sum_{2 \le n \le m \le 100} S(n^4, m^4)$.
 
 ### Linear Congruence Permutation
 For an $N \times M$ matrix, the transposition permutation maps linear index $x = i \cdot M + j$ to:
-$$\pi(x) \equiv N \cdot x \pmod{N M - 1}$$
+
+$$
+\pi(x) \equiv N \cdot x \pmod{N M - 1}
+$$
+
 with fixed boundaries at $x = 0$ and $x = N M - 1$.
 The minimal swap count is:
-$$S(N, M) = N M - \text{cycles}(\pi)$$
+
+$$
+S(N, M) = N M - \text{cycles}(\pi)
+$$
 
 ---
 
@@ -33,7 +40,11 @@ $$S(N, M) = N M - \text{cycles}(\pi)$$
 
 ### Divisor Sum on Multiplicative Orders
 The number of disjoint cycles in the map $x \mapsto N x \pmod{N M - 1}$ is:
-$$\text{cycles}(N, M) = 1 + \sum_{d \mid (N M - 1)} \frac{\phi(d)}{\text{ord}_d(N)}$$
+
+$$
+\text{cycles}(N, M) = 1 + \sum_{d \mid (N M - 1)} \frac{\phi(d)}{\text{ord}_d(N)}
+$$
+
 Factoring $n^4 m^4 - 1 = (n m - 1)(n m + 1)(n^2 m^2 + 1)$ and evaluating multiplicative orders computes $\sum S(n^4, m^4) = \mathbf{2101925115560555020}$ in **2.02 seconds**.
 
 ---

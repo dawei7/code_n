@@ -7,7 +7,10 @@ In the polynomial ring $\mathbb{F}_2[t]$, binary integers represent polynomials.
 - $x \otimes y$ represents polynomial multiplication $A(t) \cdot B(t)$.
 
 Consider the equation:
-$$(a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = c \otimes c$$
+
+$$
+(a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = c \otimes c
+$$
 
 $F(N)$ is the number of integer solutions with $0 \le a \le b \le N$.
 Given:
@@ -29,7 +32,11 @@ Find $F(10^7)$.
 ### Characteristic-2 Algebraic Reduction
 In $\mathbb{F}_2[t]$, $(A + B)^2 = A^2 + B^2$.
 The equation rewrites as:
-$$(A(t) + B(t) + C(t))^2 = t A(t) B(t)$$
+
+$$
+(A(t) + B(t) + C(t))^2 = t A(t) B(t)
+$$
+
 For $C(t)$ to exist, $t A(t) B(t)$ must be a perfect square in $\mathbb{F}_2[t]$.
 A polynomial in $\mathbb{F}_2[t]$ is a square if and only if all its odd-degree coefficients vanish.
 

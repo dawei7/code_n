@@ -25,9 +25,16 @@ Find $P(20000)$ rounded to 10 decimal places.
 ### Condorcet Winner Safe Region & Asymptotic Integral
 Let candidate 1 have normalized ranks $(u, v, w) \in [0, 1]^3$.
 A randomly placed candidate $j$ does not defeat candidate 1 with probability:
-$$S(u, v, w) = 1 - uv - uw - vw + 2uvw$$
+
+$$
+S(u, v, w) = 1 - uv - uw - vw + 2uvw
+$$
+
 Integrating over all $(u, v, w)$ and analytically integrating $w$:
-$$P(n) = \int_0^1 \int_0^1 \frac{(1 - uv)^n - ((1 - u)(1 - v))^n}{u + v - 2uv} \, du \, dv$$
+
+$$
+P(n) = \int_0^1 \int_0^1 \frac{(1 - uv)^n - ((1 - u)(1 - v))^n}{u + v - 2uv} \, du \, dv
+$$
 
 ---
 
@@ -35,7 +42,11 @@ $$P(n) = \int_0^1 \int_0^1 \frac{(1 - uv)^n - ((1 - u)(1 - v))^n}{u + v - 2uv} \
 
 ### Leading Asymptotic Coefficient $C_0$
 Under rescaling $u = x/\sqrt{n}, v = y/\sqrt{n}$:
-$$C_0 = \int_0^{\pi/2} \frac{\sqrt{\pi / (2\sin(2t))}}{\cos(t) + \sin(t)} \, dt \approx 2.78136782$$
+
+$$
+C_0 = \int_0^{\pi/2} \frac{\sqrt{\pi / (2\sin(2t))}}{\cos(t) + \sin(t)} \, dt \approx 2.78136782
+$$
+
 Combining the leading term $C_0 / \sqrt{n}$ with the boundary correction yields $P(20000) = \mathbf{0.0195868911}$.
 
 ---

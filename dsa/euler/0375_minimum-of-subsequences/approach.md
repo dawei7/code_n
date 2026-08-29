@@ -3,18 +3,27 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the pseudo-random sequence defined by:
-$$S_0 = 290797, \quad S_{n+1} = S_n^2 \bmod 50515093$$
+
+$$
+S_0 = 290797, \quad S_{n+1} = S_n^2 \bmod 50515093
+$$
 
 Let $A(i, j) = \min(S_i, S_{i+1}, \dots, S_j)$ for $1 \le i \le j \le N$.
 We define:
-$$M(N) = \sum_{1 \le i \le j \le N} A(i, j)$$
+
+$$
+M(N) = \sum_{1 \le i \le j \le N} A(i, j)
+$$
 
 We are given:
 - $M(10) = 432\,256\,955$
 - $M(10\,000) = 3\,264\,567\,774\,119$
 
 We seek to evaluate:
-$$M(2\,000\,000\,000)$$
+
+$$
+M(2\,000\,000\,000)
+$$
 
 ---
 
@@ -30,7 +39,11 @@ Even an $O(N)$ monotonic stack on $N = 2 \times 10^9$ elements requires gigabyte
 
 ### Periodicity of the PRNG
 The sequence $S_n$ is purely periodic with period:
-$$L = 6\,308\,948$$
+
+$$
+L = 6\,308\,948
+$$
+
 The global minimum in the full period is $S_{p} = 3$ occurring at index $p = 2\,633\,997$.
 Because $3$ is strictly smaller than every other element in the cycle, any subarray containing at least one occurrence of $3$ has minimum equal to $3$.
 
@@ -42,19 +55,37 @@ Because $3$ is strictly smaller than every other element in the cycle, any subar
 For an array $X$, let $f_X(j) = \sum_{i=1}^j \min(X[i \dots j])$ be computed via a monotonic stack of value-count pairs $(v, c)$.
 
 Rotate the cycle to end at the global minimum $3$:
-$$B = S[p+1 \dots L] \cup S[1 \dots p] \quad (\text{so } B[L] = 3)$$
+
+$$
+B = S[p+1 \dots L] \cup S[1 \dots p] \quad (\text{so } B[L] = 3)
+$$
 
 For an array of $K$ concatenated blocks of $B$ followed by a suffix $B[1 \dots r]$:
 1. **At the start of block $k \in [0, K-1]$**:
    The monotonic stack contains only the bottom element $(3, p + k L)$.
    For each $j \in [1, L]$ within block $k$:
-   $$\text{curr\_sum}(j) = 3(p + k L) + f_B(j)$$
+
+$$
+\text{curr\_sum}(j) = 3(p + k L) + f_B(j)
+$$
+
    Total sum for block $k$:
-   $$T_{\text{block}}(k) = 3 L (p + k L) + \sum_{j=1}^L f_B(j)$$
+
+$$
+T_{\text{block}}(k) = 3 L (p + k L) + \sum_{j=1}^L f_B(j)
+$$
+
    Summing across all $K$ blocks:
-   $$\sum_{k=0}^{K-1} T_{\text{block}}(k) = 3 L \left[ K p + L \frac{K(K-1)}{2} \right] + K \sum_{j=1}^L f_B(j)$$
+
+$$
+\sum_{k=0}^{K-1} T_{\text{block}}(k) = 3 L \left[ K p + L \frac{K(K-1)}{2} \right] + K \sum_{j=1}^L f_B(j)
+$$
+
 2. **For the remaining suffix $B[1 \dots r]$**:
-   $$T_{\text{suffix}} = 3 r (p + K L) + \sum_{j=1}^r f_B(j)$$
+
+$$
+T_{\text{suffix}} = 3 r (p + K L) + \sum_{j=1}^r f_B(j)
+$$
 
 The entire problem reduces to a **single pass** of the monotonic stack over the period of length $L = 6\,308\,948$!
 

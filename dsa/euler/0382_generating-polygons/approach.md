@@ -3,10 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $s$ be the sequence defined by:
-$$s_1 = 1, \quad s_2 = 2, \quad s_3 = 3, \quad s_n = s_{n-1} + s_{n-3} \quad (n > 3)$$
+
+$$
+s_1 = 1, \quad s_2 = 2, \quad s_3 = 3, \quad s_n = s_{n-1} + s_{n-3} \quad (n > 3)
+$$
+
 Let $U_n = \{s_1, s_2, \dots, s_n\}$.
 A set of side lengths generates a polygon if and only if:
-$$\max(S) < \sum_{x \in S \setminus \{\max(S)\}} x$$
+
+$$
+\max(S) < \sum_{x \in S \setminus \{\max(S)\}} x
+$$
+
 Let $f(n)$ be the number of subsets of $U_n$ that generate at least one polygon.
 
 We are given:
@@ -15,7 +23,10 @@ We are given:
 - $f(25) = 18\,635\,853$
 
 We seek the last $9$ digits of:
-$$f(10^{18})$$
+
+$$
+f(10^{18})
+$$
 
 ---
 
@@ -31,12 +42,23 @@ Direct search is impossibly large.
 
 ### Complementary Counting of Degenerate Subsets
 A non-empty subset $T \subseteq U_n$ with maximum element $s_k$ fails to generate a polygon if:
-$$\sum_{x \in T \setminus \{s_k\}} x \le s_k$$
+
+$$
+\sum_{x \in T \setminus \{s_k\}} x \le s_k
+$$
+
 Let $b_{k-1}$ be the number of subsets of $\{s_1, \dots, s_{k-1}\}$ whose sum is $\le s_k$.
 Then the total number of non-polygon non-empty subsets in $U_n$ is:
-$$S_{n-1} = \sum_{k=1}^n b_{k-1} = \sum_{i=0}^{n-1} b_i$$
+
+$$
+S_{n-1} = \sum_{k=1}^n b_{k-1} = \sum_{i=0}^{n-1} b_i
+$$
+
 And the total number of polygon-generating subsets is:
-$$f(n) = 2^n - 1 - S_{n-1}$$
+
+$$
+f(n) = 2^n - 1 - S_{n-1}
+$$
 
 ---
 
@@ -44,10 +66,16 @@ $$f(n) = 2^n - 1 - S_{n-1}$$
 
 ### Linear Recurrence of Bounded Sum Subsets
 Analyzing the recurrence of the sequence $s_n = s_{n-1} + s_{n-3}$ reveals that the sequence $b_i$ satisfies the linear recurrence with inhomogeneous power-of-two driving terms:
-$$b_{i+1} = 2 b_{i-2} + b_{i-3} - b_{i-5} + 5 \cdot 2^{i-3} + 1$$
+
+$$
+b_{i+1} = 2 b_{i-2} + b_{i-3} - b_{i-5} + 5 \cdot 2^{i-3} + 1
+$$
 
 We formulate a 12-dimensional state vector at step $i$:
-$$\mathbf{v}_i = \begin{pmatrix} b_i & b_{i-1} & \dots & b_{i-5} & 2^i & 2^{i-1} & \dots & 2^{i-3} & S_i & 1 \end{pmatrix}^T \in \mathbb{Z}_{10^9}^{12}$$
+
+$$
+\mathbf{v}_i = \begin{pmatrix} b_i & b_{i-1} & \dots & b_{i-5} & 2^i & 2^{i-1} & \dots & 2^{i-3} & S_i & 1 \end{pmatrix}^T \in \mathbb{Z}_{10^9}^{12}
+$$
 
 Evaluating $S_{N-1} \pmod{10^9}$ for $N = 10^{18}$ is reduced to binary matrix exponentiation $\mathbf{M}^{N-6}$ on a $12 \times 12$ matrix in $O(\log N) \approx 60$ matrix multiplications!
 

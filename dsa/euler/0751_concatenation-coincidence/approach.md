@@ -3,11 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive real $\theta$, define sequence $b_n$:
-$$b_1 = \theta, \quad b_n = \lfloor b_{n-1} \rfloor (b_{n-1} - \lfloor b_{n-1} \rfloor + 1) \quad (n \ge 2), \quad a_n = \lfloor b_n \rfloor$$
+
+$$
+b_1 = \theta, \quad b_n = \lfloor b_{n-1} \rfloor (b_{n-1} - \lfloor b_{n-1} \rfloor + 1) \quad (n \ge 2), \quad a_n = \lfloor b_n \rfloor
+$$
+
 Let $\tau(\theta) = a_1.a_2 a_3 a_4 \dots$ be the decimal concatenation of $a_n$.
 
 We seek the unique fixed point $\theta$ with $a_1 = 2$ such that:
-$$\tau(\theta) = \theta$$
+
+$$
+\tau(\theta) = \theta
+$$
+
 rounded to 24 places after the decimal point.
 
 ---
@@ -28,7 +36,11 @@ A brute-force decimal search across $10^{24}$ potential values of $\theta$ is co
 2. **Fixed Point Contraction Mapping**:
    The operator $T: \theta \mapsto \tau(\theta)$ acts as a strict contraction mapping on the metric space of decimal prefixes.
    By the Banach fixed-point theorem, the iteration:
-   $$\theta_{k+1} = \tau(\theta_k)$$
+
+$$
+\theta_{k+1} = \tau(\theta_k)
+$$
+
    starting from $\theta_0 = 2.0$ converges quadratically/exponentially to the unique fixed point $\theta^*$.
 
 ---

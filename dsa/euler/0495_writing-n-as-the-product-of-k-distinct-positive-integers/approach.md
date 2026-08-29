@@ -9,7 +9,10 @@ We are given:
 - $W(100!, 10) \equiv 287549200 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$W(10000!, 30) \pmod{1\,000\,000\,007}$$
+
+$$
+W(10000!, 30) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -25,10 +28,17 @@ The prime exponents of $10000!$ range up to $\approx 10000$. The number of unres
 ### Permutation Representation & Cycle Index Expansion
 1. **Symmetric Group Action**:
    Distinctness of $k$ variables $\{x_1, \dots, x_k\}$ is enforced via Mobius inversion / inclusion-exclusion over the partition lattice of $S_k$, which corresponds to the cycle index of $S_k$:
-   $$W(n, k) = \frac{1}{k!} \sum_{\sigma \in S_k} (-1)^{k - \text{cyc}(\sigma)} \prod_p \left[ x^{v_p(n)} \right] \prod_{C \in \text{cycles}(\sigma)} \frac{1}{1 - x^{|C|}}$$
+
+$$
+W(n, k) = \frac{1}{k!} \sum_{\sigma \in S_k} (-1)^{k - \text{cyc}(\sigma)} \prod_p \left[ x^{v_p(n)} \right] \prod_{C \in \text{cycles}(\sigma)} \frac{1}{1 - x^{|C|}}
+$$
+
 2. **Conjugacy Class Grouping**:
    Summing over permutations sharing the same cycle structure partition $\lambda = (1^{c_1} 2^{c_2} \dots k^{c_k}) \vdash k$:
-   $$W(n, k) = \sum_{\lambda \vdash k} \frac{(-1)^{k - \sum c_i}}{\prod_i i^{c_i} c_i!} \prod_p \left[ x^{v_p(n)} \right] \prod_{i=1}^k \left( \frac{1}{1 - x^i} \right)^{c_i}$$
+
+$$
+W(n, k) = \sum_{\lambda \vdash k} \frac{(-1)^{k - \sum c_i}}{\prod_i i^{c_i} c_i!} \prod_p \left[ x^{v_p(n)} \right] \prod_{i=1}^k \left( \frac{1}{1 - x^i} \right)^{c_i}
+$$
 
 ---
 
@@ -38,7 +48,11 @@ The prime exponents of $10000!$ range up to $\approx 10000$. The number of unres
 1. **Prime Exponent Frequencies**:
    For $n = 10000!$, many primes share the exact same $p$-adic valuation $e = v_p(n!)$.
    Grouping primes by their valuation frequency $\text{freq}[e] = |\{p : v_p(n!) = e\}|$ reduces the product over $1229$ primes to just $\approx 80$ distinct exponent powers:
-   $$F(\lambda) = \prod_{e} \left( [x^e] P_\lambda(x) \right)^{\text{freq}[e]}$$
+
+$$
+F(\lambda) = \prod_{e} \left( [x^e] P_\lambda(x) \right)^{\text{freq}[e]}
+$$
+
 2. **Generating Function Base Precomputation**:
    For each partition $\lambda \vdash 30$, the generating function $P_\lambda(x) = (1-x)^{-c_1} (1-x^2)^{-c_2} \dots$ is built by starting from precomputed $c_1, c_2$ base arrays and applying lightweight knapsack transitions for parts $\ge 3$.
 3. **Partition Enumeration**:

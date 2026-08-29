@@ -13,7 +13,10 @@ We are given:
 - $F(50) \equiv 842418857 \pmod{10^9}$
 
 We seek to evaluate:
-$$F(1000) \pmod{10^9}$$
+
+$$
+F(1000) \pmod{10^9}
+$$
 
 ---
 
@@ -29,17 +32,32 @@ A Markov chain on states up to $10^{18}$ requires $10^{18}$ states, and symbolic
 ### Markov Renewal Point Processes & Inter-Square Skips
 1. **Linear Renewal Recurrence**:
    Let $v_k(\rho)$ be the probability of skipping a target point located at distance $k$ ahead in a $(+1, +2)$ random walk.
-   $$v_0 = 0, \quad v_1 = 1 - \rho, \quad v_k = \rho v_{k-1} + (1 - \rho) v_{k-2}$$
+
+$$
+v_0 = 0, \quad v_1 = 1 - \rho, \quad v_k = \rho v_{k-1} + (1 - \rho) v_{k-2}
+$$
+
 2. **Deterministic Post-Skip Distance**:
    When square $(j-1)^2$ is skipped, the process is deterministically at position $(j-1)^2 + 1$.
    The distance to the next square $j^2$ is exactly:
-   $$j^2 - ((j-1)^2 + 1) = 2(j - 1)$$
+
+$$
+j^2 - ((j-1)^2 + 1) = 2(j - 1)
+$$
+
    Hence the conditional probability of skipping square $j^2$ is $b_{j-1}(\rho) = v_{2(j-1)}(\rho)$.
 3. **Cumulative Skip Polynomials**:
    Let $S_m(\rho)$ be the probability of skipping at least $m$ squares:
-   $$S_1(\rho) = 1 - \rho, \quad S_{m+1}(\rho) = S_m(\rho) \cdot b_m(\rho) = S_m(\rho) \cdot v_{2m}(\rho)$$
+
+$$
+S_1(\rho) = 1 - \rho, \quad S_{m+1}(\rho) = S_m(\rho) \cdot b_m(\rho) = S_m(\rho) \cdot v_{2m}(\rho)
+$$
+
    The expected number of skipped squares is the generating sum:
-   $$f(\rho) = \sum_{m=1}^\infty S_m(\rho)$$
+
+$$
+f(\rho) = \sum_{m=1}^\infty S_m(\rho)
+$$
 
 ---
 
@@ -50,7 +68,11 @@ A Markov chain on states up to $10^{18}$ requires $10^{18}$ states, and symbolic
    Maintain $v_k(\rho)$ via degree shift additions modulo $10^9$.
 2. **Kronecker Substitution / Base Packing**:
    Multiplying two polynomials of degree $N = 1000$ with coefficients modulo $10^9$ can be computed by packing coefficients into base $2^{70}$ digits:
-   $$A = \sum_{i} c_i 2^{70 i}$$
+
+$$
+A = \sum_{i} c_i 2^{70 i}
+$$
+
    A single Python large integer multiplication $A \times B$ computes all convolution products in $< 0.1\text{ ms}$!
 3. **Truncated Shift**:
    Since $v_{2m}(\rho)$ has lowest nonzero degree $m$, $S_m(\rho)$ has valuation $m-1$. Only terms up to degree $N = 1000$ are retained.

@@ -30,9 +30,16 @@ Find $S(10^6) \bmod 999999893$.
 The transition matrix $F = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$ partitions $(\mathbb{Z}/m\mathbb{Z})^2$ into disjoint cyclic orbits.
 For any orbit $k$ of size $L_k$, all $L_k$ states in the orbit share period $p(a, b, m) = L_k$.
 The sum of squared periods over the entire orbit is:
-$$\sum_{(a, b) \in \text{orbit } k} L_k^2 = L_k \cdot L_k^2 = L_k^3$$
+
+$$
+\sum_{(a, b) \in \text{orbit } k} L_k^2 = L_k \cdot L_k^2 = L_k^3
+$$
+
 Thus:
-$$s(m) = \sum_{\text{orbits } k} L_k^3$$
+
+$$
+s(m) = \sum_{\text{orbits } k} L_k^3
+$$
 
 ---
 

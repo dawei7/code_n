@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The square root of 2 can be expanded as an infinite continued fraction:
-$$\sqrt{2} = 1 + \cfrac{1}{2 + \cfrac{1}{2 + \cfrac{1}{2 + \dots}}}$$
+
+$$
+\sqrt{2} = 1 + \cfrac{1}{2 + \cfrac{1}{2 + \cfrac{1}{2 + \dots}}}
+$$
 
 Let $\frac{n_k}{d_k}$ denote the $k$-th convergent fraction approximation of $\sqrt{2}$.
 
@@ -15,7 +18,10 @@ The first few expansions are:
 - $k=8: \frac{1393}{985}$ (where $n_8$ has 4 digits and $d_8$ has 3 digits)
 
 The objective is to find how many of the first $1000$ expansions have a numerator with strictly more decimal digits than the denominator:
-$$N = \sum_{k=1}^{1000} \mathbb{I}\left( \text{length}(\operatorname{str}(n_k)) > \text{length}(\operatorname{str}(d_k)) \right)$$
+
+$$
+N = \sum_{k=1}^{1000} \mathbb{I}\left( \text{length}(\operatorname{str}(n_k)) > \text{length}(\operatorname{str}(d_k)) \right)
+$$
 
 ---
 
@@ -31,10 +37,17 @@ def naive_sqrt2_convergents():
 
 ### The Linear Matrix Recurrence
 Using the continued fraction relation $\sqrt{2} + 1 = 2 + \frac{1}{\sqrt{2} + 1}$:
-$$\frac{n_{k+1}}{d_{k+1}} = 1 + \frac{1}{1 + \frac{n_k}{d_k}} = 1 + \frac{d_k}{n_k + d_k} = \frac{n_k + 2d_k}{n_k + d_k}$$
+
+$$
+\frac{n_{k+1}}{d_{k+1}} = 1 + \frac{1}{1 + \frac{n_k}{d_k}} = 1 + \frac{d_k}{n_k + d_k} = \frac{n_k + 2d_k}{n_k + d_k}
+$$
 
 The numerators and denominators evolve via the exact linear recurrence:
-$$\begin{pmatrix} n_{k+1} \\ d_{k+1} \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} n_k \\ d_k \end{pmatrix}$$
+
+$$
+\begin{pmatrix} n_{k+1} \\ d_{k+1} \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} n_k \\ d_k \end{pmatrix}
+$$
+
 with initial state $n_1 = 3, d_1 = 2$.
 
 ---
@@ -75,7 +88,10 @@ with initial state $n_1 = 3, d_1 = 2$.
 
 ### Example 2: Target Evaluation for $1 \le k \le 1000$
 - Iterating the recurrence for 1000 expansions:
-  $$N = \mathbf{153}$$
+
+$$
+N = \mathbf{153}
+$$
 
 ---
 

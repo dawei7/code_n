@@ -21,11 +21,18 @@ A naive approach sieves numbers up to $10^{16}$:
 
 ### Generalized Inclusion-Exclusion (Bonferroni Inequalities)
 Let $S_k$ be the sum of $\lfloor \frac{N - 1}{\prod_{p \in T} p} \rfloor$ over all subsets $T \subseteq \mathcal{P}$ of size $|T| = k$:
-$$S_k = \sum_{T \subseteq \mathcal{P}, |T| = k} \left\lfloor \frac{N - 1}{\prod_{p \in T} p} \right\rfloor$$
+
+$$
+S_k = \sum_{T \subseteq \mathcal{P}, |T| = k} \left\lfloor \frac{N - 1}{\prod_{p \in T} p} \right\rfloor
+$$
+
 If a number $x$ has exactly $m$ distinct prime factors from $\mathcal{P}$:
 It is counted $\binom{m}{k}$ times in $S_k$.
 We seek a linear combination $C = \sum_{k=4}^{25} c_k S_k$ such that the weight assigned to every $m \ge 4$ is exactly $1$, and the weight for every $m < 4$ is $0$:
-$$\sum_{k=4}^m c_k \binom{m}{k} = 1 \quad \text{for all } m \ge 4$$
+
+$$
+\sum_{k=4}^m c_k \binom{m}{k} = 1 \quad \text{for all } m \ge 4
+$$
 
 ---
 
@@ -33,7 +40,11 @@ $$\sum_{k=4}^m c_k \binom{m}{k} = 1 \quad \text{for all } m \ge 4$$
 
 ### Closed Formula for Coefficients $c_k$
 By the principle of binomial inversion:
-$$c_k = (-1)^{k - 4} \binom{k - 1}{3}$$
+
+$$
+c_k = (-1)^{k - 4} \binom{k - 1}{3}
+$$
+
 Specifically:
 - $c_4 = \binom{3}{3} = 1$
 - $c_5 = -\binom{4}{3} = -4$

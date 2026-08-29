@@ -20,7 +20,11 @@ Find $S(20\,000\,000) \bmod 10^8$.
 
 ### Direct Graph Search
 A naive dynamic programming or recursive DFS approach creates a directed acyclic graph where a directed edge exists from $x$ to $y$ if:
-$$\phi(x) < \phi(y) < x < y$$
+
+$$
+\phi(x) < \phi(y) < x < y
+$$
+
 Then $dp[y] = \sum_{(x, y) \in E} dp[x]$.
 
 ### Critical Bottlenecks:
@@ -38,7 +42,11 @@ Then $dp[y] = \sum_{(x, y) \in E} dp[x]$.
    For all integers $x > 1$, $\phi(x) \le x - 1 < x$.
 2. **Boundary Monotonicity & Dominance:**
    Suppose $x \le \phi(y)$. Then:
-   $$\phi(x) < x \le \phi(y) \implies \phi(x) < \phi(y)$$
+
+$$
+\phi(x) < x \le \phi(y) \implies \phi(x) < \phi(y)
+$$
+
    Consequently, **every integer $x \le \phi(y)$ automatically satisfies $\phi(x) < \phi(y)$**.
 
 ### 2D to 1D Range Query Collapse
@@ -48,9 +56,19 @@ When evaluating $dp[y]$ in increasing order of $y = 7, 8, \dots, N$:
   1. $\phi(x) < \phi(y)$
   2. $x > \phi(y)$
 - Decomposing the condition:
-  $$\sum_{\substack{x < y \\ \phi(x) < \phi(y) \\ x > \phi(y)}} dp[x] = \left( \sum_{\substack{x < y \\ \phi(x) < \phi(y)}} dp[x] \right) - \left( \sum_{\substack{x < y \\ \phi(x) < \phi(y) \\ x \le \phi(y)}} dp[x] \right)$$
+
+$$
+\begin{aligned}
+\sum_{\substack{x < y \\ \phi(x) < \phi(y) \\ x > \phi(y)}} dp[x] = \left( \sum_{\substack{x < y \\ \phi(x) < \phi(y)}} dp[x] \right) - \left( \sum_{\substack{x < y \\ \phi(x) < \phi(y) \\ x \le \phi(y)}} dp[x] \right)
+\end{aligned}
+$$
+
 - Because $x \le \phi(y)$ unconditionally guarantees $\phi(x) < \phi(y)$, the second sum simplifies exactly to:
-  $$\sum_{x=6}^{\phi(y)} dp[x] = \text{pref\_dp}[\phi(y)]$$
+
+$$
+\sum_{x=6}^{\phi(y)} dp[x] = \text{pref\_dp}[\phi(y)]
+$$
+
 - The first sum is a standard 1D prefix query $\sum_{\phi(x) \le \phi(y) - 1} dp[x]$ maintained dynamically in a **1D Fenwick tree (Binary Indexed Tree)** indexed by totient values.
 
 ---
@@ -59,14 +77,24 @@ When evaluating $dp[y]$ in increasing order of $y = 7, 8, \dots, N$:
 
 ### The 1D Fenwick Reduction Formula
 For each $y \in [7, N]$:
-$$dp[y] \equiv \Big( \text{FenwickQuery}(\phi(y) - 1) - \text{pref\_dp}[\phi(y)] \Big) \pmod{10^8}$$
 
-$$\text{pref\_dp}[y] = (\text{pref\_dp}[y - 1] + dp[y]) \pmod{10^8}$$
+$$
+dp[y] \equiv \Big( \text{FenwickQuery}(\phi(y) - 1) - \text{pref\_dp}[\phi(y)] \Big) \pmod{10^8}
+$$
 
-$$\text{FenwickAdd}(\phi(y), dp[y])$$
+$$
+\text{pref\_dp}[y] = (\text{pref\_dp}[y - 1] + dp[y]) \pmod{10^8}
+$$
+
+$$
+\text{FenwickAdd}(\phi(y), dp[y])
+$$
 
 The cumulative sum of all valid sequences is given by:
-$$S(N) = \text{pref\_dp}[N] \pmod{10^8}$$
+
+$$
+S(N) = \text{pref\_dp}[N] \pmod{10^8}
+$$
 
 ---
 

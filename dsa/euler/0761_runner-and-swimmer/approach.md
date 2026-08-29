@@ -11,7 +11,11 @@ We are given:
 - $V_{\text{Square}} = V_4 \approx 5.78859314$
 
 We seek to evaluate:
-$$V_{\text{Hexagon}} = V_6$$
+
+$$
+V_{\text{Hexagon}} = V_6
+$$
+
 rounded to 8 decimal places.
 
 ---
@@ -31,11 +35,21 @@ Discretizing the 2D continuous differential pursuit-evasion game across space an
    The swimmer maintains an antipodal phase until reaching an optimal escape radius $r = 1 / v$, and then dashes in a straight line toward an optimal exit point on edge $k$.
 2. **Critical Condition**:
    At the critical speed $v$, the time for the runner to reach the exit point along the perimeter equals the time for the swimmer to reach the boundary:
-   $$\sin(k\theta) - (k + n)\tan(\theta)\cos(k\theta) \ge 0$$
+
+$$
+\sin(k\theta) - (k + n)\tan(\theta)\cos(k\theta) \ge 0
+$$
+
 3. **Optimal Escape Direction**:
    Let $k^*$ be the transition branch index. The optimal angle $\alpha$ satisfies:
-   $$\cos(2\alpha - k^*\theta) = \frac{2\sin(k^*\theta)}{(k^* + n)\tan(\theta)} - \cos(k^*\theta)$$
-   $$V_n = \frac{1}{\cos(\alpha)}$$
+
+$$
+\cos(2\alpha - k^*\theta) = \frac{2\sin(k^*\theta)}{(k^* + n)\tan(\theta)} - \cos(k^*\theta)
+$$
+
+$$
+V_n = \frac{1}{\cos(\alpha)}
+$$
 
 ---
 
@@ -46,9 +60,19 @@ Discretizing the 2D continuous differential pursuit-evasion game across space an
    $\theta = \pi / 6 = 30^\circ, \tan(\theta) = 1/\sqrt{3}$.
    Searching $k \in [0, 6]$ identifies the critical active branch $k^* = 1$.
 2. **Angle Evaluation**:
-   $$\text{argument} = \frac{2\sin(\pi/6)}{7 \tan(\pi/6)} - \cos(\pi/6) = \frac{1}{7/\sqrt{3}} - \frac{\sqrt{3}}{2} = \frac{\sqrt{3}}{7} - \frac{\sqrt{3}}{2} = -\frac{5\sqrt{3}}{14} \approx -0.61858957$$
-   $$\alpha = \frac{\pi/6 + \arccos(-0.61858957)}{2} \approx 1.3719089\text{ rad} \approx 78.605^\circ$$
-   $$V_6 = \frac{1}{\cos(\alpha)} \approx 5.05505046$$
+
+$$
+\text{argument} = \frac{2\sin(\pi/6)}{7 \tan(\pi/6)} - \cos(\pi/6) = \frac{1}{7/\sqrt{3}} - \frac{\sqrt{3}}{2} = \frac{\sqrt{3}}{7} - \frac{\sqrt{3}}{2} = -\frac{5\sqrt{3}}{14} \approx -0.61858957
+$$
+
+$$
+\alpha = \frac{\pi/6 + \arccos(-0.61858957)}{2} \approx 1.3719089\text{ rad} \approx 78.605^\circ
+$$
+
+$$
+V_6 = \frac{1}{\cos(\alpha)} \approx 5.05505046
+$$
+
 3. **Execution Performance**:
    Evaluates in **$< 0.0001$ seconds** in pure Python!
 

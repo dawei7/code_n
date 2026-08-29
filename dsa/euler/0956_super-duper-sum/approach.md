@@ -4,8 +4,8 @@
 
 $\Omega(n)$ is the number of prime factors of $n$ with multiplicity.
 $D(n, m) = \sum_{d \mid n, m \mid \Omega(d)} d$.
-$n$ = \prod_{k=1}^n k!$ (superfactorial).
-$n\star = \prod_{j=1}^n j$ = \prod_{k=1}^n k^{\binom{n - k + 2}{2}}$ (superduperfactorial).
+$\text{sf}(n) = \prod_{k=1}^n k!$ (superfactorial).
+$\text{sdf}(n) = \prod_{j=1}^n \text{sf}(j) = \prod_{k=1}^n k^{\binom{n - k + 2}{2}}$ (superduperfactorial).
 Given:
 - $D(24, 3) = 1 + 8 + 12 = 21$.
 - $D(6\star, 6) = 6368195719791280$.

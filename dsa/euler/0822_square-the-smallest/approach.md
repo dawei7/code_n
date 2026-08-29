@@ -26,12 +26,19 @@ For $m = 10^{16}$, executing $10^{16}$ squarings on a heap requires $> 10^{16}$ 
 
 2. **Equidistribution Quotient & Remainder**:
    Once in equilibrium, rounds $m - m_0$ are distributed uniformly across all $n-1$ positions:
-   $$q = \lfloor (m - m_0) / (n - 1) \rfloor, \quad r = (m - m_0) \bmod (n - 1)$$
+
+$$
+q = \lfloor (m - m_0) / (n - 1) \rfloor, \quad r = (m - m_0) \bmod (n - 1)
+$$
+
    The smallest $r$ elements receive $q + 1$ squarings, while the remaining receive $q$ squarings.
 
 3. **Double Modular Exponentiation**:
    For an element $x$ with initial value $x_0$ receiving $k$ squarings, its value modulo $1234567891$ is computed in $\mathcal{O}(\log k)$ time via Fermat's Little Theorem:
-   $$x_k \equiv x_0^{2^k \bmod 1234567890} \pmod{1234567891}$$
+
+$$
+x_k \equiv x_0^{2^k \bmod 1234567890} \pmod{1234567891}
+$$
 
 4. **Sub-second Evaluation**:
    Evaluating $S(10^4, 10^{16}) \pmod{1234567891}$ takes $\mathcal{O}(n \log n)$ time ($\approx 0.05$ seconds).

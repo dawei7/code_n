@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an exponent $E \in \mathbb{N}$ ($E = 1000$), consider the exact power-of-two integer:
-$$V = 2^E$$
+
+$$
+V = 2^E
+$$
 
 Define the decimal digit sum function $S_{\text{dig}} : \mathbb{N} \to \mathbb{N}$:
-$$S_{\text{dig}}(V) = \sum_{i=0}^{L-1} d_i \quad \text{where } V = \sum_{i=0}^{L-1} d_i 10^i \quad (d_i \in \{0, 1, \dots, 9\})$$
+
+$$
+S_{\text{dig}}(V) = \sum_{i=0}^{L-1} d_i \quad \text{where } V = \sum_{i=0}^{L-1} d_i 10^i \quad (d_i \in \{0, 1, \dots, 9\})
+$$
+
 where $L = \lfloor \log_{10} V \rfloor + 1$ is the total number of decimal digits in $V$.
 
 The objective is to compute $S_{\text{dig}}(2^{1000})$.
@@ -33,7 +40,10 @@ def naive_power_digit_sum(exp):
 ## 3. Core Intuition & Mathematical Structure
 
 By the properties of base-10 logarithms, the exact decimal length of $2^E$ is:
-$$L(E) = \lfloor E \cdot \log_{10} 2 \rfloor + 1$$
+
+$$
+L(E) = \lfloor E \cdot \log_{10} 2 \rfloor + 1
+$$
 
 ### Power of Two Growth & Digit Sum Table
 
@@ -52,7 +62,11 @@ $$L(E) = \lfloor E \cdot \log_{10} 2 \rfloor + 1$$
 
 ### Fast Binary Exponentiation
 Using exponentiation by squaring, $2^{1000}$ is computed via repeated squaring:
-$$2^{1000} = ((2^5)^5 \dots ) = (2^{125})^8$$
+
+$$
+2^{1000} = ((2^5)^5 \dots ) = (2^{125})^8
+$$
+
 requiring only $\approx 10$ BigInt multiplication and squaring steps.
 
 The resulting 302-digit integer is converted to base-10 ASCII and summed across its digit sequence.
@@ -68,9 +82,16 @@ The resulting 302-digit integer is converted to base-10 ASCII and summed across 
 
 ### Example 2: Target Evaluation for $E = 1000$
 - Fast binary exponentiation evaluates $2^{1000}$ in $0.00001$ seconds:
-  $$2^{1000} = 107150860718626732094842504906000181056\dots3450 \quad (302 \text{ digits})$$
+
+$$
+2^{1000} = 107150860718626732094842504906000181056\dots3450 \quad (302 \text{ digits})
+$$
+
 - Accumulating all 302 decimal digits:
-  $$S_{\text{dig}}(2^{1000}) = \mathbf{1366}$$
+
+$$
+S_{\text{dig}}(2^{1000}) = \mathbf{1366}
+$$
 
 ---
 

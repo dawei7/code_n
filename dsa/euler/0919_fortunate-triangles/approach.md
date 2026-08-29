@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A triangle with integer sides $a \le b \le c$ is fortunate if at least one vertex $V \in \{A, B, C\}$ satisfies:
-$$\text{dist}(V, H) = \frac{1}{2} \text{dist}(V, O)$$
+
+$$
+\text{dist}(V, H) = \frac{1}{2} \text{dist}(V, O)
+$$
+
 where $H$ is the orthocenter and $O$ is the circumcenter.
 $S(P)$ is the sum of $a + b + c$ over all fortunate triangles with perimeter $\le P$.
 Given:
@@ -25,10 +29,17 @@ Find $S(10^7)$.
 
 ### Orthocenter Distance Formula & Cosine Invariant
 In any triangle with circumradius $R$:
-$$\text{dist}(C, H) = 2R |\cos C|$$
+
+$$
+\text{dist}(C, H) = 2R |\cos C|
+$$
+
 Thus, $\text{dist}(V, H) = \frac{1}{2} R \iff |\cos V| = \frac{1}{4}$.
 By the Law of Cosines, this corresponds to:
-$$2c^2 = 2a^2 + 2b^2 \mp ab$$
+
+$$
+2c^2 = 2a^2 + 2b^2 \mp ab
+$$
 
 ---
 

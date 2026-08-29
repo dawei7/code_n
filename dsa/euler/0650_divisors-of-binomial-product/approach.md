@@ -5,7 +5,10 @@
 Let $B(n) = \prod_{k=0}^n \binom{n}{k}$ be the product of all binomial coefficients in the $n$-th row of Pascal's triangle.
 Let $D(n) = \sigma_1(B(n)) = \sum_{d \mid B(n)} d$ be the sum of divisors of $B(n)$.
 Define:
-$$S(n) = \sum_{k=1}^n D(k)$$
+
+$$
+S(n) = \sum_{k=1}^n D(k)
+$$
 
 We are given:
 - $S(5) = 5736$
@@ -13,7 +16,10 @@ We are given:
 - $S(100) \equiv 332792866 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$S(20\,000) \pmod{1\,000\,000\,007}$$
+
+$$
+S(20\,000) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -28,15 +34,30 @@ $B(20000)$ has over $40$ million decimal digits. Computing and factoring $B(n)$ 
 
 ### Incremental Prime Exponent Form
 1. **Factorial Form of $B(n)$**:
-   $$B(n) = \frac{(n!)^{n+1}}{\prod_{k=0}^n (k!)^2}$$
+
+$$
+B(n) = \frac{(n!)^{n+1}}{\prod_{k=0}^n (k!)^2}
+$$
+
 2. **Prime Valuation Recurrence**:
    For any prime $p \le n$:
-   $$e_p(n) = v_p(B(n)) = (n + 1) v_p(n!) - 2 \sum_{k=1}^n v_p(k!)$$
+
+$$
+e_p(n) = v_p(B(n)) = (n + 1) v_p(n!) - 2 \sum_{k=1}^n v_p(k!)
+$$
+
    Let $E_p(n) = v_p(n!) = E_p(n-1) + v_p(n)$ and $F_p(n) = \sum_{k=1}^n v_p(k!) = F_p(n-1) + E_p(n)$.
    Then:
-   $$e_p(n) = (n + 1) E_p(n) - 2 F_p(n)$$
+
+$$
+e_p(n) = (n + 1) E_p(n) - 2 F_p(n)
+$$
+
 3. **Multiplicative Divisor Sum**:
-   $$D(n) = \prod_{p \le n, e_p(n) > 0} \frac{p^{e_p(n) + 1} - 1}{p - 1} \pmod{10^9 + 7}$$
+
+$$
+D(n) = \prod_{p \le n, e_p(n) > 0} \frac{p^{e_p(n) + 1} - 1}{p - 1} \pmod{10^9 + 7}
+$$
 
 ---
 

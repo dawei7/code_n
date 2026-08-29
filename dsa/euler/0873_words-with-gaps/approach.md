@@ -25,7 +25,11 @@ Find $W(10^6, 10^7, 10^8) \bmod 1000000007$.
 The $r$ occurrences of C partition the word into $L = r + 1$ distinct slots (bins) $\{0, 1, \dots, r\}$.
 - Each bin may contain only A's, only B's, or be empty (E).
 - The separation condition that every A and B are separated by $\ge 2$ C's is equivalent to:
-  $$\forall i \in S_A, j \in S_B: |i - j| \ge 2$$
+
+$$
+\forall i \in S_A, j \in S_B: |i - j| \ge 2
+$$
+
   meaning no A-bin can be directly adjacent to a B-bin (forbidden adjacent substrings `AB` and `BA` in the ternary sequence of bins).
 
 ---
@@ -39,10 +43,16 @@ Let $u$ be the number of non-empty A-bins and $v$ the number of non-empty B-bins
 - Ordering $i$ A-blocks and $j$ B-blocks: $\binom{i+j}{i}$.
 - All $i + j - 1$ internal boundaries must contain at least 1 Empty bin.
 - Distributing the remaining $(r + 1) - u - v - (i + j - 1)$ Empty bins into $(i + j + 1)$ slots:
-  $$\binom{r + 2 - u - v}{i + j}$$
+
+$$
+\binom{r + 2 - u - v}{i + j}
+$$
 
 Summing over all $i, j, u, v$:
-$$W(p, q, r) = \sum_{u=1}^p \sum_{v=1}^q \binom{p-1}{u-1} \binom{q-1}{v-1} \sum_{i=1}^u \sum_{j=1}^v \binom{u-1}{i-1} \binom{v-1}{j-1} \binom{i+j}{i} \binom{r+2-u-v}{i+j}$$
+
+$$
+W(p, q, r) = \sum_{u=1}^p \sum_{v=1}^q \binom{p-1}{u-1} \binom{q-1}{v-1} \sum_{i=1}^u \sum_{j=1}^v \binom{u-1}{i-1} \binom{v-1}{j-1} \binom{i+j}{i} \binom{r+2-u-v}{i+j}
+$$
 
 Using formal power series reduction, the sum simplifies to coefficient extraction $[t^K] (1+t)^{r + 2 - (p + q)} (2 + t)^{p + q - K}$, evaluating in $\mathcal{O}(1)$ time.
 

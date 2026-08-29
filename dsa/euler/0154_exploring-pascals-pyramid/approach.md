@@ -4,12 +4,18 @@
 
 A triangular number of numbers is arranged in the shape of an equilateral triangle, forming the $n$-th layer of **Pascal's Pyramid** (also called the trinomial triangle).
 The expansion of $(x + y + z)^N$ consists of terms:
-$$\frac{N!}{i! \, j! \, k!} x^i y^j z^k \quad \text{where } i, j, k \ge 0 \text{ and } i + j + k = N$$
+
+$$
+\frac{N!}{i! \, j! \, k!} x^i y^j z^k \quad \text{where } i, j, k \ge 0 \text{ and } i + j + k = N
+$$
 
 For $N = 200\,000$, we wish to count how many coefficients $\frac{N!}{i! \, j! \, k!}$ are multiples of $10^{12} = 2^{12} \times 5^{12}$.
 
 The objective is to find the **number of trinomial coefficients in $(x+y+z)^{200000}$ that are divisible by $10^{12}$**:
-$$N_{\text{trinomial}} = \left| \left\{ (i, j, k) \in \mathbb{N}_0^3 \;\middle|\; i + j + k = 200\,000 \land v_2\left(\frac{N!}{i! j! k!}\right) \ge 12 \land v_5\left(\frac{N!}{i! j! k!}\right) \ge 12 \right\} \right|$$
+
+$$
+N_{\text{trinomial}} = \left| \left\{ (i, j, k) \in \mathbb{N}_0^3 \;\middle|\; i + j + k = 200\,000 \land v_2\left(\frac{N!}{i! j! k!}\right) \ge 12 \land v_5\left(\frac{N!}{i! j! k!}\right) \ge 12 \right\} \right|
+$$
 
 ---
 
@@ -26,13 +32,25 @@ def naive_pascals_pyramid():
 ### Kummer's Theorem & Base-5 / Base-2 Carry Bounds
 1. **Kummer's Theorem for Multinomial Coefficients:**
    For any prime $p$, the $p$-adic valuation $v_p\left(\frac{N!}{i! j! k!}\right)$ equals the **number of carries** when adding $i, j, k$ in base $p$:
-   $$v_p\left(\frac{N!}{i! j! k!}\right) = \frac{S_p(i) + S_p(j) + S_p(k) - S_p(N)}{p - 1}$$
+
+$$
+v_p\left(\frac{N!}{i! j! k!}\right) = \frac{S_p(i) + S_p(j) + S_p(k) - S_p(N)}{p - 1}
+$$
+
    where $S_p(m)$ is the sum of digits of $m$ in base $p$.
 2. **Divisibility Conditions:**
    - **Base 5:** $N = 200\,000 = (2, 2, 4, 0, 0, 0, 0, 0)_5 \implies S_5(N) = 8$.
-     $$v_5 \ge 12 \iff S_5(i) + S_5(j) + S_5(k) \ge 8 + 4 \times 12 = 56$$
+
+$$
+v_5 \ge 12 \iff S_5(i) + S_5(j) + S_5(k) \ge 8 + 4 \times 12 = 56
+$$
+
    - **Base 2:** $N = 200\,000 = (110000110101000000)_2 \implies S_2(N) = 6$.
-     $$v_2 \ge 12 \iff S_2(i) + S_2(j) + S_2(k) \ge 6 + 12 = 18$$
+
+$$
+v_2 \ge 12 \iff S_2(i) + S_2(j) + S_2(k) \ge 6 + 12 = 18
+$$
+
 3. **Canonical Symmetry Ordering $0 \le i \le j \le k$:**
    Restricting search to $i \le \lfloor N/3 \rfloor$ and $j \in [i, \lfloor(N-i)/2\rfloor]$ evaluates only $\frac{1}{6}$ of the triangle.
    - Multiplicity weights: $1$ if $i=j=k$, $3$ if two indices equal, $6$ if all three distinct.
@@ -85,7 +103,10 @@ def naive_pascals_pyramid():
 
 ### Example 2: Target Evaluation for $N = 200\,000$
 - Summing all valid symmetric permutations:
-  $$N_{\text{trinomial}} = \mathbf{479\,742\,450}$$
+
+$$
+N_{\text{trinomial}} = \mathbf{479\,742\,450}
+$$
 
 ---
 

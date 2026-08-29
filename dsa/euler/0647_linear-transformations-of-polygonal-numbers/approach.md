@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an odd integer $k \ge 3$, the $n$-th $k$-gonal number is:
-$$P_k(n) = \frac{1}{2} n ((k - 2) n + 4 - k)$$
+
+$$
+P_k(n) = \frac{1}{2} n ((k - 2) n + 4 - k)
+$$
+
 Let $c = k - 2$, which is an odd integer $c \in \{1, 3, 5, \dots\}$.
 We seek all positive integer pairs $(A, B)$ with $\max(A, B) \le N$ such that for every $n \ge 1$, there exists an integer $m \ge 1$ with $A P_k(n) + B = P_k(m)$.
 Let $F_k(N)$ be the sum of $(A + B)$ over all such pairs.
@@ -13,7 +17,10 @@ We are given:
 - $\sum_{k \text{ odd}} F_k(10^3) = 14993$
 
 We seek to evaluate:
-$$\sum_{k \text{ odd}} F_k(10^{12})$$
+
+$$
+\sum_{k \text{ odd}} F_k(10^{12})
+$$
 
 ---
 
@@ -28,19 +35,38 @@ Searching over all positive integer pairs $(A, B)$ up to $N = 10^{12}$ requires 
 
 ### Algebraic Completion of Squares & Exact Parameterization
 1. **Completion of Squares**:
-   $$8 c P_k(n) + (c - 2)^2 = (2 c n + 2 - c)^2 = u^2$$
+
+$$
+8 c P_k(n) + (c - 2)^2 = (2 c n + 2 - c)^2 = u^2
+$$
+
    The transformation $A P_k(n) + B = P_k(m)$ translates to:
-   $$A u^2 - A (c - 2)^2 + 8 c B = v^2 - (c - 2)^2$$
+
+$$
+A u^2 - A (c - 2)^2 + 8 c B = v^2 - (c - 2)^2
+$$
+
 2. **Linearity in $u$**:
    Since this holds for infinitely many $u \equiv 2 - c \pmod{2c}$, $v$ must be linear in $u$: $v = C u$.
    - $C^2 = A$, so $A$ is a perfect square $C^2$.
    - Constant term: $8 c B = (C^2 - 1)(c - 2)^2 \implies B = \frac{(C^2 - 1)(c - 2)^2}{8 c}$.
 3. **Parity and Divisibility**:
    $C \equiv 1 \pmod{2c}$, and since $c$ is odd and $C$ must be odd:
-   $$C = 2 m c + 1 \quad (m \ge 1)$$
+
+$$
+C = 2 m c + 1 \quad (m \ge 1)
+$$
+
    Substituting $C = 2 m c + 1$:
-   $$A = (2 m c + 1)^2$$
-   $$B = \frac{m(m c + 1)(c - 2)^2}{2}$$
+
+$$
+A = (2 m c + 1)^2
+$$
+
+$$
+B = \frac{m(m c + 1)(c - 2)^2}{2}
+$$
+
    Since $m(m c + 1)$ is always even for any integer $m$ (because $c$ is odd), $B$ is always an integer for all $m \ge 1$!
 
 ---

@@ -16,7 +16,10 @@ We are given:
 - $F(123) = 1173$
 
 We seek to evaluate:
-$$F(1\,234\,567)$$
+
+$$
+F(1\,234\,567)
+$$
 
 ---
 
@@ -35,13 +38,24 @@ The board is infinite and the number of moves required to push a token $10^7$ sq
    A target at distance $K$ has weight $1$.
 2. **Initial Total Weight**:
    Summing across all $y \in \mathbb{Z}$ gives the transverse geometric factor:
-   $$\sum_{y=-\infty}^\infty \sigma^{|y|} = \frac{1 + \sigma}{1 - \sigma} = \phi^3$$
+
+$$
+\sum_{y=-\infty}^\infty \sigma^{|y|} = \frac{1 + \sigma}{1 - \sigma} = \phi^3
+$$
+
    Summing over all columns $d \ge 1$ with $d^n$ tokens:
-   $$\text{Total Weight} = \sigma^K \cdot \phi^3 \sum_{d=1}^\infty d^n \sigma^d = \phi^{-K + 3} A_n$$
+
+$$
+\text{Total Weight} = \sigma^K \cdot \phi^3 \sum_{d=1}^\infty d^n \sigma^d = \phi^{-K + 3} A_n
+$$
+
    where $A_n = \sum_{d=1}^\infty d^n \sigma^d$.
 3. **Reachable Bound**:
    A token can reach distance $K$ if and only if $\text{Total Weight} \ge 1$:
-   $$K \le 3 + \lceil \log_\phi(A_n) \rceil$$
+
+$$
+K \le 3 + \lceil \log_\phi(A_n) \rceil
+$$
 
 ---
 
@@ -49,14 +63,29 @@ The board is infinite and the number of moves required to push a token $10^7$ sq
 
 ### Exponential Generating Function Singularity Analysis ($O(1)$)
 1. **Exponential Generating Function of $A_n$**:
-   $$\sum_{n=0}^\infty A_n \frac{x^n}{n!} = \sum_{d=1}^\infty \sigma^d e^{d x} = \frac{\sigma e^x}{1 - \sigma e^x}$$
+
+$$
+\sum_{n=0}^\infty A_n \frac{x^n}{n!} = \sum_{d=1}^\infty \sigma^d e^{d x} = \frac{\sigma e^x}{1 - \sigma e^x}
+$$
+
 2. **Dominant Simple Pole**:
    The denominator vanishes when $\sigma e^x = 1 \implies x = -\ln \sigma = \ln \phi$.
    By Flajolet-Sedgewick singularity analysis, the dominant pole residue yields:
-   $$A_n = \frac{n!}{(\ln \phi)^{n+1}} \left(1 + O(e^{-c n})\right)$$
+
+$$
+A_n = \frac{n!}{(\ln \phi)^{n+1}} \left(1 + O(e^{-c n})\right)
+$$
+
 3. **Analytic Asymptotic Logarithm**:
-   $$\ln(A_n) = \ln \Gamma(n + 1) - (n + 1) \ln(\ln \phi)$$
-   $$\log_\phi(A_n) = \frac{\ln(A_n)}{\ln \phi}$$
+
+$$
+\ln(A_n) = \ln \Gamma(n + 1) - (n + 1) \ln(\ln \phi)
+$$
+
+$$
+\log_\phi(A_n) = \frac{\ln(A_n)}{\ln \phi}
+$$
+
    For $n = 1\,234\,567$, the exponentially decaying correction term is $< 10^{-1000}$, making this asymptotic formula exact to hundreds of decimal places!
 
 This evaluates $F(1\,234\,567)$ in **$\approx 0.00$ seconds**!

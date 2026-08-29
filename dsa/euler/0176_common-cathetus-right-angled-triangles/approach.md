@@ -7,10 +7,16 @@ It can be shown that no other integer right-angled triangle has one of the short
 Thus, $N(12) = 4$.
 
 Let $N(a)$ be the number of distinct right-angled integer triangles with one leg equal to $a$:
-$$N(a) = \left| \left\{ (b, c) \in \mathbb{N}^2 \;\middle|\; a^2 + b^2 = c^2 \right\} \right|$$
+
+$$
+N(a) = \left| \left\{ (b, c) \in \mathbb{N}^2 \;\middle|\; a^2 + b^2 = c^2 \right\} \right|
+$$
 
 The objective is to find the **smallest integer $a$ that can be the length of a cathetus of exactly $47\,547$ right-angled triangles**:
-$$a_{\text{min}} = \min \{ a \in \mathbb{N} : N(a) = 47\,547 \}$$
+
+$$
+a_{\text{min}} = \min \{ a \in \mathbb{N} : N(a) = 47\,547 \}
+$$
 
 ---
 
@@ -29,12 +35,24 @@ def naive_cathetus():
    For a right-angled triangle $a^2 + b^2 = c^2 \implies a^2 = (c - b)(c + b) = uv$ with $u \equiv v \pmod 2$.
    - For an odd integer $a = p_1^{e_1} p_2^{e_2} \dots$: $N(a) = \frac{d(a^2) - 1}{2} = \frac{(2e_1 + 1)(2e_2 + 1)\dots - 1}{2}$.
    - For an even integer $a = 2^{e_0} p_1^{e_1} p_2^{e_2} \dots$: both $u, v$ must be even, so $(u/2)(v/2) = a^2 / 4 = 2^{2e_0 - 2} \prod p_i^{2e_i}$, giving:
-     $$N(a) = \frac{(2e_0 - 1)(2e_1 + 1)(2e_2 + 1)\dots - 1}{2}$$
+
+$$
+N(a) = \frac{(2e_0 - 1)(2e_1 + 1)(2e_2 + 1)\dots - 1}{2}
+$$
+
 2. **The Target Product Equation:**
    In all cases:
-   $$2 N(a) + 1 = (2e_0 - 1)(2e_1 + 1)(2e_2 + 1)\dots = 2(47\,547) + 1 = \mathbf{95\,095}$$
+
+$$
+2 N(a) + 1 = (2e_0 - 1)(2e_1 + 1)(2e_2 + 1)\dots = 2(47\,547) + 1 = \mathbf{95\,095}
+$$
+
 3. **Prime Factorization of Target:**
-   $$95\,095 = 19 \times 13 \times 11 \times 7 \times 5$$
+
+$$
+95\,095 = 19 \times 13 \times 11 \times 7 \times 5
+$$
+
 4. **Greedy Prime Multiplicity Minimization:**
    To minimize $a = 2^{e_0} 3^{e_1} 5^{e_2} 7^{e_3} 11^{e_4}$, assign the largest exponents to the smallest prime bases:
    - For prime $2$: $2e_0 - 1 = f_0 \implies e_0 = (f_0 + 1) / 2$.
@@ -61,7 +79,11 @@ def naive_cathetus():
 
 ### Minimal Integer Value Calculation
 Multiplying all prime power factors:
-$$a_{\text{min}} = 2^7 \times 3^9 \times 5^5 \times 7^3 \times 11^2$$
+
+$$
+a_{\text{min}} = 2^7 \times 3^9 \times 5^5 \times 7^3 \times 11^2
+$$
+
 - $2^7 = 128$
 - $3^9 = 19\,683 \implies 128 \times 19683 = 2\,519\,424$
 - $5^5 = 3125 \implies 2\,519\,424 \times 3125 = 7\,873\,200\,000$
@@ -82,7 +104,10 @@ $$a_{\text{min}} = 2^7 \times 3^9 \times 5^5 \times 7^3 \times 11^2$$
 ### Example 2: Target Evaluation for $N(a) = 47\,547$
 - Product $2(47547) + 1 = 95\,095$.
 - Minimal $a$:
-  $$a_{\text{min}} = \mathbf{96\,818\,198\,400\,000}$$
+
+$$
+a_{\text{min}} = \mathbf{96\,818\,198\,400\,000}
+$$
 
 ---
 

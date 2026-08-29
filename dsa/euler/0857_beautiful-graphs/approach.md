@@ -37,7 +37,10 @@ Thus, every beautiful graph is uniquely partitioned into a sequence of ordered b
 Condition 2 forbids monochromatic triangles of green or brown edges within each block $C_i$.
 By Ramsey's Theorem $R(3, 3) = 6$, any complete graph on $\ge 6$ vertices with 2 colours MUST contain a monochromatic triangle.
 Therefore, block sizes are strictly bounded:
-$$1 \le |C_i| \le 5$$
+
+$$
+1 \le |C_i| \le 5
+$$
 
 ---
 
@@ -52,10 +55,17 @@ The number $c_m$ of triangle-free 2-colourings of $K_m$ for $m \in \{1, 2, 3, 4,
 - $c_5 = 12 \implies w_5 = 12/5! = 1/10$
 
 The Exponential Generating Function for ordered sequences of blocks is:
-$$\sum_{n=0}^\infty \frac{G(n)}{n!} x^n = \frac{1}{1 - \left( x + x^2 + x^3 + \frac{3}{4} x^4 + \frac{1}{10} x^5 \right)}$$
+
+$$
+\sum_{n=0}^\infty \frac{G(n)}{n!} x^n = \frac{1}{1 - \left( x + x^2 + x^3 + \frac{3}{4} x^4 + \frac{1}{10} x^5 \right)}
+$$
 
 Let $g_n = G(n)/n!$. Then $g_n$ satisfies the 5-term linear recurrence:
-$$g_n = g_{n-1} + g_{n-2} + g_{n-3} + \frac{3}{4} g_{n-4} + \frac{1}{10} g_{n-5} \pmod{10^9 + 7}$$
+
+$$
+g_n = g_{n-1} + g_{n-2} + g_{n-3} + \frac{3}{4} g_{n-4} + \frac{1}{10} g_{n-5} \pmod{10^9 + 7}
+$$
+
 and $G(n) = n! \cdot g_n \pmod{10^9 + 7}$.
 
 ---

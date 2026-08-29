@@ -9,7 +9,10 @@ We are given:
 - $A(40) = 31254, B(40) = 20259, C(40) = 11625$
 
 We seek to evaluate:
-$$(A(10^{12}) \bmod 2^{30}, B(10^{12}) \bmod 2^{30}, C(10^{12}) \bmod 2^{30})$$
+
+$$
+(A(10^{12}) \bmod 2^{30}, B(10^{12}) \bmod 2^{30}, C(10^{12}) \bmod 2^{30})
+$$
 
 ---
 
@@ -39,11 +42,18 @@ Each atomic element decays deterministically into a concatenation of other atomi
 2. **Transition Matrix Formulation**:
    Let $M$ be the $92 \times 92$ integer transition matrix where $M_{i, j}$ is the multiplicity of element $j$ in the decay of element $i$.
    The state vector at step $n$ is:
-   $$\vec{v}_n = \vec{v}_{40} \cdot M^{n - 40} \pmod{2^{30}}$$
+
+$$
+\vec{v}_n = \vec{v}_{40} \cdot M^{n - 40} \pmod{2^{30}}
+$$
+
 3. **Digit Extraction**:
    Each element $e_i$ contains fixed counts of ones, twos, and threes $(c_1(e_i), c_2(e_i), c_3(e_i))$.
    The total counts are obtained via the linear dot product:
-   $$A(n) = \sum_i v_n[i] \cdot c_1(e_i) \pmod{2^{30}}$$
+
+$$
+A(n) = \sum_i v_n[i] \cdot c_1(e_i) \pmod{2^{30}}
+$$
 
 Binary matrix exponentiation evaluates $n = 10^{12}$ in **1.57 seconds**!
 

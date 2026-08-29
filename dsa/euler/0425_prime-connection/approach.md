@@ -14,7 +14,10 @@ We are given:
 - $F(10^4) = 78\,728$
 
 We seek to evaluate:
-$$F(10^7)$$
+
+$$
+F(10^7)
+$$
 
 ---
 
@@ -29,7 +32,10 @@ Running individual depth-first searches from $2$ to each of the $\pi(10^7) \appr
 
 ### Minimax Path Formulation & Dijkstra's Algorithm
 The condition that "no prime along the chain exceeds $P$" means that:
-$$\text{bottleneck}(2 \to P) = \min_{\text{paths } \mathcal{P}} \max_{v \in \mathcal{P}} v \le P$$
+
+$$
+\text{bottleneck}(2 \to P) = \min_{\text{paths } \mathcal{P}} \max_{v \in \mathcal{P}} v \le P
+$$
 
 This is the standard **Minimax Path Problem** on an undirected graph where edge weights are node values.
 A single Dijkstra search starting from source node $2$ computes the optimal bottleneck $\text{best}[P]$ for all primes simultaneously!

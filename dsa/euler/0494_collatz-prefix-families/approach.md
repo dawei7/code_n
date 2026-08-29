@@ -4,7 +4,11 @@
 
 Let $S_m$ be the set of all Collatz sequence prefixes of length $m$ before reaching a power of $2$.
 Two sequences $\{a_1, \dots, a_m\}$ and $\{b_1, \dots, b_m\}$ belong to the same prefix family iff:
-$$a_i < a_j \iff b_i < b_j \quad \forall 1 \le i, j \le m$$
+
+$$
+a_i < a_j \iff b_i < b_j \quad \forall 1 \le i, j \le m
+$$
+
 Let $f(m)$ be the number of distinct prefix families in $S_m$.
 
 We are given:
@@ -13,7 +17,10 @@ We are given:
 - $f(20) = 6771$
 
 We seek to evaluate:
-$$f(90)$$
+
+$$
+f(90)
+$$
 
 ---
 
@@ -44,12 +51,19 @@ Testing Collatz sequences starting from all integers $n$ is impossible because t
    Two linear functions $f_i(x)$ and $f_j(x)$ intersect at at most one real point $x^*$.
    Thus, every type word $w$ corresponds to either 1 or at most 2 distinct permutations, depending on whether $x^*$ lies within the realizable positive domain of $w$.
 3. **Total Family Formula**:
-   $$f(m) = F_m + \text{excess}(m)$$
+
+$$
+f(m) = F_m + \text{excess}(m)
+$$
+
    For $m \le 14$, $\text{excess}(m) = 0$.
    For $m = 20$, $\text{excess}(20) = 6771 - F_{20} = 6771 - 6765 = 6$.
    For $m = 90$, $\text{excess}(90) = 76\,016\,546$.
    Thus:
-   $$f(90) = F_{90} + 76016546 = 2880067194370816120 + 76016546 = 2880067194446832666$$
+
+$$
+f(90) = F_{90} + 76016546 = 2880067194370816120 + 76016546 = 2880067194446832666
+$$
 
 This evaluates $m = 90$ in **$0.0001$ seconds**!
 

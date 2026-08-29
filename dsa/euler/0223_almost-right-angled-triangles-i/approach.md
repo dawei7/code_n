@@ -4,11 +4,16 @@
 
 Let $(a, b, c)$ be the integral side lengths of a triangle with $a \le b \le c$.
 The triangle is called **barely acute** if the sides satisfy the Diophantine equation:
-$$a^2 + b^2 = c^2 + 1$$
+
+$$
+a^2 + b^2 = c^2 + 1
+$$
 
 How many barely acute triangles are there with perimeter $\le 25\,000\,000$?
 
-$$N(25000000) = \left| \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; 1 \le a \le b \le c \land a^2 + b^2 = c^2 + 1 \land a + b + c \le 25\,000\,000 \right\} \right|$$
+$$
+N(25000000) = \left| \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; 1 \le a \le b \le c \land a^2 + b^2 = c^2 + 1 \land a + b + c \le 25\,000\,000 \right\} \right|
+$$
 
 ---
 
@@ -24,15 +29,31 @@ def naive_almost_right():
 
 ### Difference of Squares Factorization & Prime Factor Sieve
 1. **Case $a = 1$ Base Solutions:**
-   $$1^2 + b^2 = c^2 + 1 \implies b = c$$
+
+$$
+1^2 + b^2 = c^2 + 1 \implies b = c
+$$
+
    Every triangle $(1, b, b)$ is valid. The perimeter condition is $1 + 2b \le P \implies b \le \frac{P-1}{2}$.
    Total count for $a = 1$:
-   $$N_1 = \left\lfloor \frac{P - 1}{2} \right\rfloor = 12\,499\,999$$
+
+$$
+N_1 = \left\lfloor \frac{P - 1}{2} \right\rfloor = 12\,499\,999
+$$
+
 2. **Difference of Squares for $a \ge 2$:**
-   $$a^2 - 1 = c^2 - b^2 = (c - b)(c + b)$$
+
+$$
+a^2 - 1 = c^2 - b^2 = (c - b)(c + b)
+$$
+
    Let $(a - 1)(a + 1) = d_1 \cdot d_2$ with $d_1 \le d_2$.
    Then:
-   $$c = \frac{d_1 + d_2}{2}, \quad b = \frac{d_2 - d_1}{2}$$
+
+$$
+c = \frac{d_1 + d_2}{2}, \quad b = \frac{d_2 - d_1}{2}
+$$
+
 3. **Geometric and Boundary Constraints:**
    - Integral sides: $d_1 \equiv d_2 \pmod 2$.
    - Side ordering $b \ge a$: $\frac{d_2 - d_1}{2} \ge a \iff d_2 - d_1 \ge 2a$.
@@ -81,7 +102,10 @@ def solve(limit: int = 25000000) -> int:
     return ans
 ```
 Evaluating for $\text{limit} = 25000000$:
-$$N(25000000) = \mathbf{61614848}$$
+
+$$
+N(25000000) = \mathbf{61614848}
+$$
 
 ---
 
@@ -95,7 +119,10 @@ $$N(25000000) = \mathbf{61614848}$$
 
 ### Example 2: Target Evaluation for $P = 25\,000\,000$
 - Sum over all $a \le 8\,333\,333$:
-  $$N(25000000) = \mathbf{61614848}$$
+
+$$
+N(25000000) = \mathbf{61614848}
+$$
 
 ---
 

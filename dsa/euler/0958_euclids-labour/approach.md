@@ -24,7 +24,11 @@ Find $f(10^{12} + 39)$.
 
 ### Continued Fraction Quotient Sums
 The number of subtraction steps $d(n, m)$ is equal to the sum of partial quotients in the continued fraction expansion:
-$$n / m = [a_0; a_1, a_2, \dots, a_k] \implies d(n, m) = \sum_{i=0}^k a_i - 1$$
+
+$$
+n / m = [a_0; a_1, a_2, \dots, a_k] \implies d(n, m) = \sum_{i=0}^k a_i - 1
+$$
+
 Minimizing $d(n, m)$ corresponds to finding the fraction $m / n$ with denominator $n$ in the Stern-Brocot tree that minimizes $\sum a_i$.
 
 ---

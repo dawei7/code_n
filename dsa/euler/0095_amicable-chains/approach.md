@@ -4,16 +4,30 @@
 
 The proper divisors of a number are all the divisors excluding the number itself.
 Let $s(n)$ be the sum of the proper divisors of $n$:
-$$s(n) = \sigma_1(n) - n = \sum_{\substack{d \mid n \\ d < n}} d$$
+
+$$
+\begin{aligned}
+s(n) = \sigma_1(n) - n = \sum_{\substack{d \mid n \\ d < n}} d
+\end{aligned}
+$$
 
 An **amicable chain** of length $k$ is a closed cycle of numbers where the sum of proper divisors of each number produces the next number in the chain:
-$$s(x_1) = x_2, \quad s(x_2) = x_3, \quad \dots, \quad s(x_k) = x_1$$
+
+$$
+s(x_1) = x_2, \quad s(x_2) = x_3, \quad \dots, \quad s(x_k) = x_1
+$$
 
 For example, starting with $12\,496$ produces a 5-element chain:
-$$12496 \to 14288 \to 15472 \to 14536 \to 14264 \to 12496$$
+
+$$
+12496 \to 14288 \to 15472 \to 14536 \to 14264 \to 12496
+$$
 
 The objective is to find the **smallest member of the longest amicable chain** with no element exceeding one million ($1\,000\,000$):
-$$x_{\text{min}} = \min \{ x \in \mathcal{C}_{\text{max}} \mid \forall y \in \mathcal{C}_{\text{max}}, \, y \le 1\,000\,000 \}$$
+
+$$
+x_{\text{min}} = \min \{ x \in \mathcal{C}_{\text{max}} \mid \forall y \in \mathcal{C}_{\text{max}}, \, y \le 1\,000\,000 \}
+$$
 
 ---
 
@@ -29,7 +43,11 @@ def naive_proper_divisors(n):
 
 ### Harmonic Divisor Sieve & Functional Graph Traversal
 1. Precomputing $s(n)$ for all $n \le 1\,000\,000$ using a harmonic sieve requires only:
-   $$\sum_{i=1}^{N/2} \frac{N}{i} \approx N \ln(N/2) \approx 1.2 \times 10^7 \text{ additions}$$
+
+$$
+\sum_{i=1}^{N/2} \frac{N}{i} \approx N \ln(N/2) \approx 1.2 \times 10^7 \text{ additions}
+$$
+
 2. The relation $n \to s(n)$ is a functional directed graph where every node has out-degree 1.
 3. Using a `visited` array, every node is traversed at most once in $\mathcal{O}(N)$ time, completing cycle detection in $\approx 0.35$ seconds.
 
@@ -55,14 +73,22 @@ def naive_proper_divisors(n):
    - Initialize `sum_div = [0] * (N + 1)`.
    - For $i = 1 \dots N // 2$:
      - For $j = 2i, 3i, 4i \dots \le N$:
-       $$\text{sum\_div}[j] += i$$
+
+$$
+\text{sum\_div}[j] += i
+$$
+
 2. Functional graph traversal:
    - Allocate boolean array `visited = [False] * (N + 1)`.
    - For each unvisited $i \in [1, N]$:
      - Trace $P = [x_1, x_2, \dots]$ while $x_m \le N, x_m > 0$, and $x_m$ is not visited.
      - If $x_m \in P$: extract cycle $C = P[P.\text{index}(x_m):]$.
      - If $|C| > \text{max\_len}$:
-       $$\text{max\_len} = |C|, \quad \text{best\_min\_elem} = \min(C)$$
+
+$$
+\text{max\_len} = |C|, \quad \text{best\_min\_elem} = \min(C)
+$$
+
 3. Return `best_min_elem`.
 
 ---
@@ -76,9 +102,16 @@ def naive_proper_divisors(n):
 
 ### Example 2: Target Longest Chain ($\le 1\,000\,000$)
 - Tracing all cycles below $10^6$ identifies a chain of length $k = \mathbf{28}$:
-  $$14316 \to 19116 \to 31704 \to 47616 \to 83328 \to \dots \to 14316$$
+
+$$
+14316 \to 19116 \to 31704 \to 47616 \to 83328 \to \dots \to 14316
+$$
+
 - Smallest member of this 28-element chain:
-  $$x_{\text{min}} = \mathbf{14\,316}$$
+
+$$
+x_{\text{min}} = \mathbf{14\,316}
+$$
 
 ---
 

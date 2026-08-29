@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The radical of $n$, $\text{rad}(n)$, is the product of distinct prime factors of $n$. For example:
-$$504 = 2^3 \times 3^2 \times 7 \implies \text{rad}(504) = 2 \times 3 \times 7 = 42$$
+
+$$
+504 = 2^3 \times 3^2 \times 7 \implies \text{rad}(504) = 2 \times 3 \times 7 = 42
+$$
 
 If we calculate $\text{rad}(n)$ for $1 \le n \le 10$, then sort them on $\text{rad}(n)$, and sorting on $n$ where the radicals are equal, we get:
 - For $n \le 10$: $E(4) = 8$ (since $\text{rad}(8) = 2$, 4th sorted term), $E(6) = 9$ (since $\text{rad}(9) = 3$).
@@ -11,7 +14,10 @@ If we calculate $\text{rad}(n)$ for $1 \le n \le 10$, then sort them on $\text{r
 Let $E(k)$ be the $k$-th element in the sorted $n$ column for $1 \le n \le 100\,000$.
 
 The objective is to find **$E(10\,000)$**:
-$$E(10000) = \operatorname{sorted}([(\text{rad}(n), n) \text{ for } n \in [1, 100000]])[9999][1]$$
+
+$$
+E(10000) = \operatorname{sorted}([(\text{rad}(n), n) \text{ for } n \in [1, 100000]])[9999][1]
+$$
 
 ---
 
@@ -77,7 +83,10 @@ def naive_radicals(n):
 
 ### Example 2: Target Evaluation for $N = 100\,000, k = 10\,000$
 - At sorted index $10\,000$ (0-indexed position 9999):
-  $$\text{Tuple: } (194, 21417) \implies E(10\,000) = \mathbf{21\,417}$$
+
+$$
+\text{Tuple: } (194, 21417) \implies E(10\,000) = \mathbf{21\,417}
+$$
 
 ---
 

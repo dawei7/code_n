@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In a right-angled triangle with integer sides $(a, b, c)$ where $a^2 + b^2 = c^2 \le L$, the angle $\theta$ between the medians to the perpendicular sides satisfies:
-$$\cos(\theta) = \frac{2(1 + t^2)}{\sqrt{(1 + 4t^2)(4 + t^2)}}, \quad \text{where } t = \frac{\min(a, b)}{\max(a, b)} \in (0, 1]$$
+
+$$
+\cos(\theta) = \frac{2(1 + t^2)}{\sqrt{(1 + 4t^2)(4 + t^2)}}, \quad \text{where } t = \frac{\min(a, b)}{\max(a, b)} \in (0, 1]
+$$
 
 $f(\alpha, L)$ is the perimeter $a + b + c$ of the triangle minimizing $|\theta - \alpha|$ with $c \le L$ (tie-breaking by maximum area).
 $F(N, L) = \sum_{n=1}^N f(n^{1/3}, L)$.
@@ -28,7 +31,11 @@ Find $F(45000, 10^{10})$.
 
 ### Analytic Inversion & Target Aspect Ratio
 Given $\alpha \in (0, \arccos(0.8)]$, we invert the cosine formula via the quadratic equation in $u = t^2$:
-$$4 \sin^2(\alpha) u^2 + (8 - 17\cos^2(\alpha)) u + 4 \sin^2(\alpha) = 0$$
+
+$$
+4 \sin^2(\alpha) u^2 + (8 - 17\cos^2(\alpha)) u + 4 \sin^2(\alpha) = 0
+$$
+
 yielding the unique target ratio $t^* = \sqrt{u} \in (0, 1]$.
 
 ---
@@ -37,7 +44,11 @@ yielding the unique target ratio $t^* = \sqrt{u} \in (0, 1]$.
 
 ### Dual Continued Fraction Expansion on Primitive Generators
 For primitive Pythagorean triples $(m^2 - n^2, 2mn, m^2 + n^2)$, the ratio $a/b$ relates to $x = m/n$ by:
-$$x^* = t^* + \sqrt{(t^*)^2 + 1} \quad \text{or} \quad x^* = \frac{1 + \sqrt{1 + (t^*)^2}}{t^*}$$
+
+$$
+x^* = t^* + \sqrt{(t^*)^2 + 1} \quad \text{or} \quad x^* = \frac{1 + \sqrt{1 + (t^*)^2}}{t^*}
+$$
+
 Generating the continued fraction convergents and semiconvergents of $x^*$ yields the optimal coprime $(m, n)$ with $m^2 + n^2 \le L$ in $\mathcal{O}(\log L)$ operations per angle.
 
 The entire sum $F(45000, 10^{10}) = \mathbf{880652522278760}$ is evaluated dynamically in 100% pure Python.

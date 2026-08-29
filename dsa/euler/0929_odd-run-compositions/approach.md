@@ -23,11 +23,22 @@ Find $F(10^5) \bmod 1111124111$.
 
 ### Smirnov Word Theorem & Cluster Method
 A single run of value $v$ with odd length $2k + 1$ has generating function:
-$$R_v(x) = \sum_{k=0}^\infty x^{(2k+1)v} = \frac{x^v}{1 - x^{2v}}$$
+
+$$
+R_v(x) = \sum_{k=0}^\infty x^{(2k+1)v} = \frac{x^v}{1 - x^{2v}}
+$$
+
 By the Smirnov word theorem for non-adjacent identical terms, the composition generating function is:
-$$1 + \sum_{n=1}^\infty F(n) x^n = \frac{1}{1 - H(x)}$$
+
+$$
+1 + \sum_{n=1}^\infty F(n) x^n = \frac{1}{1 - H(x)}
+$$
+
 where:
-$$H(x) = \sum_{v=1}^\infty \frac{R_v(x)}{1 + R_v(x)} = \sum_{v=1}^\infty \frac{x^v}{1 + x^v - x^{2v}}$$
+
+$$
+H(x) = \sum_{v=1}^\infty \frac{R_v(x)}{1 + R_v(x)} = \sum_{v=1}^\infty \frac{x^v}{1 + x^v - x^{2v}}
+$$
 
 ---
 
@@ -35,7 +46,11 @@ $$H(x) = \sum_{v=1}^\infty \frac{R_v(x)}{1 + R_v(x)} = \sum_{v=1}^\infty \frac{x
 
 ### Dirichlet Convolution of Alternating Fibonacci Numbers
 Expanding $\frac{x}{1 + x - x^2} = \sum_{m=1}^\infty (-1)^{m-1} F_m x^m$ yields:
-$$H_k = \sum_{v \mid k} (-1)^{k/v - 1} F_{k/v}$$
+
+$$
+H_k = \sum_{v \mid k} (-1)^{k/v - 1} F_{k/v}
+$$
+
 1. Precompute $H_k$ for $1 \le k \le N$ in $\mathcal{O}(N \log N)$ time via harmonic divisor sieve.
 2. Evaluate $F(n) = \sum_{k=1}^n F(n - k) H_k \pmod{1111124111}$ via linear recurrence convolution.
 This evaluates $F(10^5) \pmod{1111124111} = \mathbf{57322484}$ in **2.6 seconds**.

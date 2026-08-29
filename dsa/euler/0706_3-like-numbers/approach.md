@@ -4,7 +4,10 @@
 
 For a positive integer $n$, let $f(n)$ denote the number of non-empty substrings of $n$ whose base-10 integer value is divisible by $3$.
 An integer $n$ is called **3-like** if:
-$$f(n) \equiv 0 \pmod 3$$
+
+$$
+f(n) \equiv 0 \pmod 3
+$$
 
 Let $F(d)$ be the number of $d$-digit positive integers that are 3-like (no leading zeros).
 
@@ -13,7 +16,10 @@ We are given:
 - $F(6) = 290898$
 
 We seek to evaluate:
-$$F(10^5) \bmod 1\,000\,000\,007$$
+
+$$
+F(10^5) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,16 +35,32 @@ For $d = 10^5$, the number of $d$-digit integers is $9 \times 10^{99999}$, which
 ### Prefix Sums Modulo 3 & Combinatorial Binomial Parity
 1. **Divisibility Modulo 3**:
    A substring $S[i \dots j]$ is divisible by 3 iff its digit sum is $0 \pmod 3$, which is equivalent to matching prefix sums:
-   $$s_j \equiv s_{i-1} \pmod 3$$
+
+$$
+s_j \equiv s_{i-1} \pmod 3
+$$
+
    where $s_0 = 0$ and $s_k = \sum_{m=1}^k d_m \bmod 3$.
 2. **Substrings Count Formula**:
    Let $c_0, c_1, c_2$ be the count of prefix sums among $s_0, s_1, \dots, s_d$ that equal $0, 1, 2 \pmod 3$.
-   $$f(n) = \binom{c_0}{2} + \binom{c_1}{2} + \binom{c_2}{2}$$
+
+$$
+f(n) = \binom{c_0}{2} + \binom{c_1}{2} + \binom{c_2}{2}
+$$
+
 3. **Binomial Coefficients Modulo 3**:
    Note that $\binom{c}{2} = \frac{c(c-1)}{2} \equiv 2 c(c-1) \pmod 3$:
-   $$\binom{c}{2} \bmod 3 = \begin{cases} 0 & \text{if } c \equiv 0, 1 \pmod 3 \\ 1 & \text{if } c \equiv 2 \pmod 3 \end{cases}$$
+
+$$
+\binom{c}{2} \bmod 3 = \begin{cases} 0 & \text{if } c \equiv 0, 1 \pmod 3 \\ 1 & \text{if } c \equiv 2 \pmod 3 \end{cases}
+$$
+
    Therefore:
-   $$f(n) \equiv 0 \pmod 3 \iff \sum_{i=0}^2 [c_i \equiv 2 \pmod 3] \equiv 0 \pmod 3$$
+
+$$
+f(n) \equiv 0 \pmod 3 \iff \sum_{i=0}^2 [c_i \equiv 2 \pmod 3] \equiv 0 \pmod 3
+$$
+
    This occurs if and only if the number of $c_i \equiv 2 \pmod 3$ is either $0$ or $3$.
 
 ---
@@ -53,7 +75,11 @@ For $d = 10^5$, the number of $d$-digit integers is $9 \times 10^{99999}$, which
    - For step 1 (first digit $1 \dots 9$): 3 digits $\equiv 0$, 3 digits $\equiv 1$, 3 digits $\equiv 2$.
    - For subsequent steps (digits $0 \dots 9$): 4 digits $\equiv 0$, 3 digits $\equiv 1$, 3 digits $\equiv 2$.
    When adding digit $d \equiv m \pmod 3$:
-   $$r' = (r + m) \bmod 3, \quad c_{r'}' = (c_{r'} + 1) \bmod 3$$
+
+$$
+r' = (r + m) \bmod 3, \quad c_{r'}' = (c_{r'} + 1) \bmod 3
+$$
+
 3. **Linear Complexity**:
    $10^5$ steps $\times 27$ states $\times 3$ transitions takes **$\approx 0.53$ seconds** in pure Python!
 

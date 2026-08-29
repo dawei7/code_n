@@ -27,7 +27,11 @@ A naive approach iterates over all pairs $(w, h)$ with $1 \le h \le w \le 10^{12
 
 ### The Stepped Dissection Divisor Identity
 Analyzing the geometry of two-piece stepped grid cuts yields the exact identity for $G(N)$:
-$$G(N) = \sum_{i=2}^N \left( \left\lfloor \frac{N}{i} \right\rfloor \left\lfloor \frac{N}{i - 1} \right\rfloor - D\left( \left\lfloor \frac{N}{i} \right\rfloor \right) \right)$$
+
+$$
+G(N) = \sum_{i=2}^N \left( \left\lfloor \frac{N}{i} \right\rfloor \left\lfloor \frac{N}{i - 1} \right\rfloor - D\left( \left\lfloor \frac{N}{i} \right\rfloor \right) \right)
+$$
+
 where $D(x) = \sum_{k=1}^x \lfloor x / k \rfloor$ is the Dirichlet divisor summatory function.
 
 ---
@@ -37,20 +41,43 @@ where $D(x) = \sum_{k=1}^x \lfloor x / k \rfloor$ is the Dirichlet divisor summa
 ### Piltz 3-Divisor Reduction & 3D Hyperbola Decomposition
 We decompose the summation into two distinct parts:
 1. **First Sum $S_1(N)$:**
-   $$S_1(N) = \sum_{i=2}^N \left\lfloor \frac{N}{i} \right\rfloor \left\lfloor \frac{N}{i - 1} \right\rfloor$$
+
+$$
+S_1(N) = \sum_{i=2}^N \left\lfloor \frac{N}{i} \right\rfloor \left\lfloor \frac{N}{i - 1} \right\rfloor
+$$
+
    Using quotient grouping over intervals $i \in [L_q, R_q]$ where $\lfloor N / i \rfloor = q$:
-   $$\sum_{i=L_q}^{R_q} \left\lfloor \frac{N}{i} \right\rfloor \left\lfloor \frac{N}{i - 1} \right\rfloor = q \cdot \left\lfloor \frac{N}{L_q - 1} \right\rfloor + (R_q - L_q) q^2$$
+
+$$
+\sum_{i=L_q}^{R_q} \left\lfloor \frac{N}{i} \right\rfloor \left\lfloor \frac{N}{i - 1} \right\rfloor = q \cdot \left\lfloor \frac{N}{L_q - 1} \right\rfloor + (R_q - L_q) q^2
+$$
+
    This evaluates $S_1(N)$ in exactly $\mathcal{O}(\sqrt{N})$ operations.
 2. **Second Sum $S_2(N)$:**
-   $$S_2(N) = \sum_{i=2}^N D\left( \left\lfloor \frac{N}{i} \right\rfloor \right) = \sum_{m=2}^N (d(m) - 1) \left\lfloor \frac{N}{m} \right\rfloor$$
+
+$$
+S_2(N) = \sum_{i=2}^N D\left( \left\lfloor \frac{N}{i} \right\rfloor \right) = \sum_{m=2}^N (d(m) - 1) \left\lfloor \frac{N}{m} \right\rfloor
+$$
+
    Since $\sum_{m=1}^N d(m) \lfloor N / m \rfloor = D_3(N)$ (the summatory function of the Piltz 3-divisor function $d_3(n) = \sum_{abc=n} 1$):
-   $$S_2(N) = (D_3(N) - N) - (D(N) - N) = D_3(N) - D(N)$$
+
+$$
+S_2(N) = (D_3(N) - N) - (D(N) - N) = D_3(N) - D(N)
+$$
+
 3. **Master Formula:**
-   $$\mathbf{G(N) = S_1(N) - D_3(N) + D(N)}$$
+
+$$
+\mathbf{G(N) = S_1(N) - D_3(N) + D(N)}
+$$
 
 ### 3D Dirichlet Hyperbola Evaluation of $D_3(N)$:
 Setting $K = \lfloor N^{1/3} \rfloor$:
-$$D_3(N) = 3 \sum_{a=1}^K D\left(\left\lfloor \frac{N}{a} \right\rfloor\right) - 3 \sum_{a=1}^K \sum_{b=1}^K \left\lfloor \frac{N}{ab} \right\rfloor + K^3$$
+
+$$
+D_3(N) = 3 \sum_{a=1}^K D\left(\left\lfloor \frac{N}{a} \right\rfloor\right) - 3 \sum_{a=1}^K \sum_{b=1}^K \left\lfloor \frac{N}{ab} \right\rfloor + K^3
+$$
+
 This evaluates $D_3(N)$ in $\mathcal{O}(N^{2/3})$ time.
 
 ---

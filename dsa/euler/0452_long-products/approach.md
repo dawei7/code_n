@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define $F(m, n)$ as the number of $n$-tuples of positive integers $(x_1, \dots, x_n) \in \mathbb{Z}_{\ge 1}^n$ such that:
-$$x_1 x_2 \cdots x_n \le m$$
+
+$$
+x_1 x_2 \cdots x_n \le m
+$$
 
 We are given:
 - $F(10, 10) = 571$
 - $F(10^6, 10^6) \equiv 252\,903\,833 \pmod{1\,234\,567\,891}$
 
 We seek to evaluate:
-$$F(10^9, 10^9) \pmod{1\,234\,567\,891}$$
+
+$$
+F(10^9, 10^9) \pmod{1\,234\,567\,891}
+$$
 
 ---
 
@@ -25,9 +31,17 @@ Representing tuples across $N = 10^9$ directly would require $O(N \log N)$ state
 
 ### Multiplicative Stars-and-Bars Weighting
 For any positive integer $m = \prod p_i^{e_i}$, the number of ways to express $m$ as a product of $n$ factors is:
-$$g(m, n) = \prod_{p^e \parallel m} \binom{n + e - 1}{e}$$
+
+$$
+g(m, n) = \prod_{p^e \parallel m} \binom{n + e - 1}{e}
+$$
+
 Thus, $g(m, n)$ is a **multiplicative arithmetic function** whose value at prime powers depends *only* on the exponent $e$:
-$$w(e) = \binom{n + e - 1}{e} \pmod{1\,234\,567\,891}$$
+
+$$
+w(e) = \binom{n + e - 1}{e} \pmod{1\,234\,567\,891}
+$$
+
 Since $2^e \le N = 10^9$, the maximum exponent is at most $\lfloor \log_2(10^9) \rfloor = 29$.
 
 ---

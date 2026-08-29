@@ -12,7 +12,10 @@ We are given:
 - $I(3, 4) = 79$
 
 We seek to evaluate:
-$$I(10^7, 10^{12}) \bmod 1\,000\,000\,007$$
+
+$$
+I(10^7, 10^{12}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,12 +32,23 @@ Computing $I(\alpha, n) = \sum_{L=0}^n W(L)$ via individual Stirling numbers of 
 1. **Surjection Inclusion-Exclusion**:
    For a fixed length $L$, the number of complete words using all $\alpha$ letters is $\sum_{j=0}^\alpha (-1)^{\alpha - j} \binom{\alpha}{j} j^L$.
    The number of incomplete words of length $L$ is:
-   $$W(L) = \alpha^L - \sum_{j=0}^\alpha (-1)^{\alpha - j} \binom{\alpha}{j} j^L = \sum_{j=0}^{\alpha - 1} (-1)^{\alpha - 1 - j} \binom{\alpha}{j} j^L$$
+
+$$
+W(L) = \alpha^L - \sum_{j=0}^\alpha (-1)^{\alpha - j} \binom{\alpha}{j} j^L = \sum_{j=0}^{\alpha - 1} (-1)^{\alpha - 1 - j} \binom{\alpha}{j} j^L
+$$
+
 2. **Summing Over All Lengths $0 \le L \le n$**:
    Interchanging the order of summation gives:
-   $$I(\alpha, n) = \sum_{j=0}^{\alpha - 1} (-1)^{\alpha - 1 - j} \binom{\alpha}{j} \sum_{L=0}^n j^L$$
+
+$$
+I(\alpha, n) = \sum_{j=0}^{\alpha - 1} (-1)^{\alpha - 1 - j} \binom{\alpha}{j} \sum_{L=0}^n j^L
+$$
+
 3. **Closed-Form Geometric Series**:
-   $$\sum_{L=0}^n j^L = \begin{cases} 1 & \text{if } j = 0 \\ n + 1 & \text{if } j = 1 \\ \frac{j^{n+1} - 1}{j - 1} & \text{if } j \ge 2 \end{cases}$$
+
+$$
+\sum_{L=0}^n j^L = \begin{cases} 1 & \text{if } j = 0 \\ n + 1 & \text{if } j = 1 \\ \frac{j^{n+1} - 1}{j - 1} & \text{if } j \ge 2 \end{cases}
+$$
 
 ---
 

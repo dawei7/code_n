@@ -3,13 +3,23 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The **blancmange curve** (also known as the **Takagi curve**) is the fractal function defined for $0 \le x \le 1$ by:
-$$B(x) = \sum_{n=0}^\infty \frac{s(2^n x)}{2^n}$$
+
+$$
+B(x) = \sum_{n=0}^\infty \frac{s(2^n x)}{2^n}
+$$
+
 where $s(x)$ is the distance from $x$ to the nearest integer:
-$$s(x) = \min(x - \lfloor x \rfloor, \; 1 - (x - \lfloor x \rfloor))$$
+
+$$
+s(x) = \min(x - \lfloor x \rfloor, \; 1 - (x - \lfloor x \rfloor))
+$$
 
 Let $C$ be the circle with center $\left(\frac{1}{4}, \frac{1}{2}\right)$ and radius $\frac{1}{4}$.
 The circle equation is:
-$$\left(x - \frac{1}{4}\right)^2 + \left(y - \frac{1}{2}\right)^2 = \frac{1}{16}$$
+
+$$
+\left(x - \frac{1}{4}\right)^2 + \left(y - \frac{1}{2}\right)^2 = \frac{1}{16}
+$$
 
 Find the **area under the blancmange curve enclosed by $C$**, which is the region bounded above by $B(x)$ and below by the lower semi-circle of $C$.
 Format your answer rounded to eight decimal places in the form `0.abcdefgh`.
@@ -30,16 +40,32 @@ def naive_riemann_sum():
 1. **Intersection Root Finding:**
    The circle passes through $(1/2, 1/2)$, where $B(1/2) = 1/2$ and $y_{\text{bot}}(1/2) = 1/2$.
    The lower boundary of the circle is:
-   $$y_{\text{bot}}(x) = \frac{1}{2} - \sqrt{\frac{1}{16} - \left(x - \frac{1}{4}\right)^2} = \frac{1}{2} - \sqrt{\frac{x}{2} - x^2}$$
+
+$$
+y_{\text{bot}}(x) = \frac{1}{2} - \sqrt{\frac{1}{16} - \left(x - \frac{1}{4}\right)^2} = \frac{1}{2} - \sqrt{\frac{x}{2} - x^2}
+$$
+
    Using binary bisection on $B(x) - y_{\text{bot}}(x) = 0$ in $[0.05, 0.10]$, we find the lower intersection point $x_1 \approx 0.07890782$ to full double precision.
 2. **Analytical Antiderivative of the Blancmange Curve:**
    Let $S(t) = \int_0^t s(u) \, du$ be the antiderivative of the triangle wave $s(u)$.
    For $t = k + \text{rem}$ ($k = \lfloor t \rfloor$):
-   $$S(t) = \frac{k}{4} + \begin{cases} \frac{\text{rem}^2}{2}, & \text{if } \text{rem} \le \frac{1}{2} \\ \text{rem} - \frac{\text{rem}^2}{2} - \frac{1}{4}, & \text{if } \text{rem} > \frac{1}{2} \end{cases}$$
+
+$$
+S(t) = \frac{k}{4} + \begin{cases} \frac{\text{rem}^2}{2}, & \text{if } \text{rem} \le \frac{1}{2} \\ \text{rem} - \frac{\text{rem}^2}{2} - \frac{1}{4}, & \text{if } \text{rem} > \frac{1}{2} \end{cases}
+$$
+
    Integrating $B(x)$ term-by-term yields the exact series:
-   $$I_B(x) = \int_0^x B(t) \, dt = \sum_{n=0}^\infty \frac{S(2^n x)}{4^n}$$
+
+$$
+I_B(x) = \int_0^x B(t) \, dt = \sum_{n=0}^\infty \frac{S(2^n x)}{4^n}
+$$
+
 3. **Exact Integration of the Circle Arc:**
-   $$\int_{x_1}^{1/2} y_{\text{bot}}(x) \, dx = \frac{1}{2}\left(\frac{1}{2} - x_1\right) - \frac{1}{16} \int_{4(x_1 - 1/4)}^1 \sqrt{1 - u^2} \, du$$
+
+$$
+\int_{x_1}^{1/2} y_{\text{bot}}(x) \, dx = \frac{1}{2}\left(\frac{1}{2} - x_1\right) - \frac{1}{16} \int_{4(x_1 - 1/4)}^1 \sqrt{1 - u^2} \, du
+$$
+
    where $\int \sqrt{1 - u^2} \, du = \frac{1}{2}\left(u\sqrt{1 - u^2} + \arcsin(u)\right)$.
 4. The enclosed area is $\left(I_B(1/2) - I_B(x_1)\right) - \int_{x_1}^{1/2} y_{\text{bot}}(x) \, dx = \mathbf{0.11316017}$.
 
@@ -63,11 +89,18 @@ def naive_riemann_sum():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Analytical Area Formula
-$$\text{Area} = \left[ I_B(0.5) - I_B(x_1) \right] - \left[ \frac{1}{2}(0.5 - x_1) - \frac{1}{16}\left(F_{\sqrt{}}(1.0) - F_{\sqrt{}}(4(x_1 - 0.25))\right) \right]$$
+
+$$
+\text{Area} = \left[ I_B(0.5) - I_B(x_1) \right] - \left[ \frac{1}{2}(0.5 - x_1) - \frac{1}{16}\left(F_{\sqrt{}}(1.0) - F_{\sqrt{}}(4(x_1 - 0.25))\right) \right]
+$$
+
 where $F_{\sqrt{}}(u) = \frac{1}{2}\left(u\sqrt{1 - u^2} + \arcsin(u)\right)$.
 
 Evaluating yields:
-$$\text{Area} \approx 0.1131601701 \implies \mathbf{"0.11316017"}$$
+
+$$
+\text{Area} \approx 0.1131601701 \implies \mathbf{"0.11316017"}
+$$
 
 ---
 
@@ -75,11 +108,23 @@ $$\text{Area} \approx 0.1131601701 \implies \mathbf{"0.11316017"}$$
 
 ### Example 1: Intermediate Sub-Integrals
 - Upper curve integral:
-  $$I_B(0.5) - I_B(x_1) \approx 0.25000000 - 0.00331070 = 0.24668930$$
+
+$$
+I_B(0.5) - I_B(x_1) \approx 0.25000000 - 0.00331070 = 0.24668930
+$$
+
 - Lower curve integral:
-  $$\int_{x_1}^{0.5} y_{\text{bot}}(x) \, dx \approx 0.13352913$$
+
+$$
+\int_{x_1}^{0.5} y_{\text{bot}}(x) \, dx \approx 0.13352913
+$$
+
 - Area difference:
-  $$\text{Area} = 0.24668930 - 0.13352913 = 0.11316017$$
+
+$$
+\text{Area} = 0.24668930 - 0.13352913 = 0.11316017
+$$
+
 - Formatted answer: `"0.11316017"` $\checkmark$
 
 ---

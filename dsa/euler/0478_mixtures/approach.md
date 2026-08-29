@@ -12,7 +12,10 @@ We are given:
 - $E(500) \equiv 13801403 \pmod{11^8}$
 
 We seek to evaluate:
-$$E(10\,000\,000) \pmod{11^8}$$
+
+$$
+E(10\,000\,000) \pmod{11^8}
+$$
 
 ---
 
@@ -32,7 +35,11 @@ For $n = 10^7$, $|M(n)| \approx \frac{6}{\pi^2} n^3 \approx 6 \times 10^{20}$ po
    A subset contains $(1, 1, 1)$ in its positive cone iff the origin $(0, 0)$ is in the convex hull of its projected directions.
 3. **Opposite Ray Parity Symmetry**:
    Because the cube $[0, n]^3$ is centrally symmetric under $(a, b, c) \leftrightarrow (n-a, n-b, n-c)$, every ray $v$ and its opposite $-v$ have identical point multiplicity:
-   $$m_v = m_{-v}$$
+
+$$
+m_v = m_{-v}
+$$
+
    Consequently, every open semicircle $[v, v+\pi)$ contains exactly $\text{arc}_v = \frac{N_0}{2}$ points!
 
 ---
@@ -42,12 +49,22 @@ For $n = 10^7$, $|M(n)| \approx \frac{6}{\pi^2} n^3 \approx 6 \times 10^{20}$ po
 ### Closed Semicircle Sum & Hexagonal Span Invariance
 1. **Analytical Subsets Formula**:
    Summing over all rays, the total number of valid subsets is:
-   $$E(n) = 2^{N_0 + 1} - 1 - 2^{N_0 / 2} \sum_v \left( 1 - 2^{-m_v} \right) \pmod{11^8}$$
+
+$$
+E(n) = 2^{N_0 + 1} - 1 - 2^{N_0 / 2} \sum_v \left( 1 - 2^{-m_v} \right) \pmod{11^8}
+$$
+
 2. **Hexagonal Span Invariance**:
    The multiplicity $m_v$ of a ray depends ONLY on its span $s = \max(|x|, |y|, |x-y|)$.
    There are exactly $6 \phi(s)$ primitive rays with span $s$.
 3. **Dirichlet Closed-Form Multiplicity**:
-   $$m(s) = n - s + 1 + \sum_{\substack{d=1 \\ \mu(d) \neq 0}}^{\lfloor n/s \rfloor} \mu(d) \cdot \left[ J \lfloor \frac{n}{d} \rfloor - s \frac{J(J+1)}{2} \right]$$
+
+$$
+\begin{aligned}
+m(s) = n - s + 1 + \sum_{\substack{d=1 \\ \mu(d) \neq 0}}^{\lfloor n/s \rfloor} \mu(d) \cdot \left[ J \lfloor \frac{n}{d} \rfloor - s \frac{J(J+1)}{2} \right]
+\end{aligned}
+$$
+
    where $J = \lfloor \frac{n}{d s} \rfloor$.
    Accumulating across $d \ge 1$ via flat Dirichlet arrays evaluates all $m(s)$ for $s \le 10^7$ in $O(n \ln n)$ operations!
 

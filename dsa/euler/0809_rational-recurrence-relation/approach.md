@@ -3,9 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For any positive rational $x$, $f(x)$ is defined recursively:
-$$f(x) = \begin{cases} x & x \in \mathbb{Z} \\ f\left(\frac{1}{1-x}\right) & x < 1 \\ f\left(\frac{1}{\lceil x \rceil - x} - 1 + f(x-1)\right) & \text{otherwise} \end{cases}$$
+
+$$
+f(x) = \begin{cases} x & x \in \mathbb{Z} \\ f\left(\frac{1}{1-x}\right) & x < 1 \\ f\left(\frac{1}{\lceil x \rceil - x} - 1 + f(x-1)\right) & \text{otherwise} \end{cases}
+$$
+
 We seek to evaluate:
-$$f\left(\frac{22}{7}\right) \bmod 10^{15}$$
+
+$$
+f\left(\frac{22}{7}\right) \bmod 10^{15}
+$$
 
 We are given:
 - $f(3/2) = 3$
@@ -26,14 +33,26 @@ The recurrence branch $f(x) = f(\dots + f(x-1))$ produces colossal hyper-exponen
 ### Equivalence to Ackermann Hyperoperations
 1. **Recurrence Unfolding for $t + 1/n$**:
    For $x = t + 1/n$ where $t \in \mathbb{Z}_{\ge 0}$ and $n \ge 2$:
-   $$f(t + 1/n) = A(2t, n-1)$$
+
+$$
+f(t + 1/n) = A(2t, n-1)
+$$
+
    where $A(m, n)$ is the classical Ackermann-Péter function.
 2. **Identification for $x = 22/7$**:
    $22/7 = 3 + 1/7 \implies t = 3, n = 7$.
-   $$f(22/7) = A(6, 6) = 2 \uparrow\uparrow\uparrow\uparrow 6 - 3$$
+
+$$
+f(22/7) = A(6, 6) = 2 \uparrow\uparrow\uparrow\uparrow 6 - 3
+$$
+
 3. **Power Tower Modular Periodicity**:
    To compute $f(22/7) \bmod 10^{15}$, we use Chinese Remainder Theorem:
-   $$\mathbb{Z} / 10^{15}\mathbb{Z} \cong \mathbb{Z} / 2^{15}\mathbb{Z} \times \mathbb{Z} / 5^{15}\mathbb{Z}$$
+
+$$
+\mathbb{Z} / 10^{15}\mathbb{Z} \cong \mathbb{Z} / 2^{15}\mathbb{Z} \times \mathbb{Z} / 5^{15}\mathbb{Z}
+$$
+
    - Since $2 \uparrow\uparrow\uparrow\uparrow 6$ has a power of 2 exponent $\gg 15$, $2 \uparrow\uparrow\uparrow\uparrow 6 \equiv 0 \pmod{2^{15}} \implies f(22/7) \equiv -3 \pmod{2^{15}}$.
    - Modulo $5^{15}$, the power tower $2 \uparrow\uparrow k \pmod{5^{15}}$ stabilizes rapidly due to Euler's totient theorem and finite totient chains.
 

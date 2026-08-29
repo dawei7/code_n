@@ -12,7 +12,10 @@ From the problem description:
 - For $m = 10$: $n = 57$ is the least value for which $F(10, n)$ first exceeds one million.
 
 The objective is to find the **least value of $n$ for which $F(50, n)$ first exceeds one million**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; F(50, n) > 1\,000\,000 \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; F(50, n) > 1\,000\,000 \right\}
+$$
 
 ---
 
@@ -28,7 +31,11 @@ def naive_counting_block_combinations_ii():
 
 ### Incremental Dynamic Programming Recurrence
 1. The generalized fill-count function $F(m, n)$ satisfies the recurrence:
-   $$F(m, i) = F(m, i-1) + \sum_{\ell=m}^i \begin{cases} F(m, i - \ell - 1) & \text{if } i - \ell - 1 \ge 0 \\ 1 & \text{otherwise} \end{cases}$$
+
+$$
+F(m, i) = F(m, i-1) + \sum_{\ell=m}^i \begin{cases} F(m, i - \ell - 1) & \text{if } i - \ell - 1 \ge 0 \\ 1 & \text{otherwise} \end{cases}
+$$
+
    with base case $F(m, 0) = 1$.
 2. Incrementing $n$ from $m = 50$ upwards until $F(50, n) > 1\,000\,000$ requires evaluating up to $n \approx 168$, terminating in $\approx 0.005$ seconds.
 
@@ -79,7 +86,10 @@ def naive_counting_block_combinations_ii():
 - $F(50, 167) = 964\,026 \le 10^6$.
 - $F(50, 168) = \mathbf{1\,034\,973} > 10^6$.
 - Least value of $n$:
-  $$n_{\text{min}} = \mathbf{168}$$
+
+$$
+n_{\text{min}} = \mathbf{168}
+$$
 
 ---
 

@@ -33,7 +33,10 @@ If that counterfactual game would have terminated at some turn $< t$, player $p$
 Instead of recursive branching:
 1. Trace the sequence of sum players down to the symmetric base case $u = v$.
 2. Roll back the stack in reverse order, applying the turn advance transition:
-$$t \gets t + 1 + (m_p - (t + 1) \bmod 3) \bmod 3$$
+
+$$
+t \gets t + 1 + (m_p - (t + 1) \bmod 3) \bmod 3
+$$
 
 The total sum $\sum_{a=1}^7 \sum_{b=1}^{19} F(a^b, b^a, a^b + b^a) = \mathbf{70228218}$ is evaluated in **under 5 seconds** in 100% pure Python.
 

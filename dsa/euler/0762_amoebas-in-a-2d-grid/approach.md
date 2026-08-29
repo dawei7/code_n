@@ -12,7 +12,11 @@ We are given:
 - $C(100) \equiv 125923036 \pmod{10^9}$
 
 We seek to evaluate:
-$$C(100\,000) \bmod 10^9$$
+
+$$
+C(100\,000) \bmod 10^9
+$$
+
 (the last 9 digits of $C(100\,000)$).
 
 ---
@@ -30,11 +34,19 @@ The number of valid amoeba configurations grows exponentially ($> 2^N$), making 
 1. **Division Shot-Vector**:
    Let $s_x = (s_{x,0}, s_{x,1}, s_{x,2}, s_{x,3})$ record the number of times each cell in column $x$ divides.
    The total number of amoebas entering column $x+1$ is given by the linear operator:
-   $$t_{x+1, y} = s_{x, y} + s_{x, (y-1) \bmod 4}$$
+
+$$
+t_{x+1, y} = s_{x, y} + s_{x, (y-1) \bmod 4}
+$$
+
 2. **Occupancy Mask & Conservation**:
    In column $x+1$, some cells retain amoebas that never divide (represented by a binary mask $p \in \{0, 1\}^4$).
    The division count for column $x+1$ is then:
-   $$s_{x+1} = t_{x+1} - p$$
+
+$$
+s_{x+1} = t_{x+1} - p
+$$
+
 3. **Finite Bounded Automaton**:
    It can be proven that any reachable configuration satisfies $\sum_{y=0}^3 s_{x,y} \le 3$.
    The number of such 4-tuples $(s_0, s_1, s_2, s_3)$ with sum $\le 3$ is only $\binom{3 + 4}{4} = 35$ states!

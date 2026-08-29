@@ -8,7 +8,10 @@ We are given:
 - There are $9$ palindromes less than $10^5$ divisible by $109$.
 
 We seek to evaluate the total number of palindromes less than $10^{32}$ that are divisible by:
-$$M = 10\,000\,019$$
+
+$$
+M = 10\,000\,019
+$$
 
 ---
 
@@ -25,7 +28,11 @@ There are $10^{16} + 10^{15} \approx 1.1 \times 10^{16}$ palindromes of length u
 1. **Symmetric Residue Multipliers**:
    A palindrome of length $L$ is formed by outer digits $d \in [0, 9]$ placed at positions $1$ and $L$.
    Their contribution to the value modulo $M$ is:
-   $$d \cdot (10^{L-1} + 1) \pmod M$$
+
+$$
+d \cdot (10^{L-1} + 1) \pmod M
+$$
+
 2. **Dynamic Programming on Modulo $M$ Residues**:
    Let $dp[r]$ be the number of palindromic substrings of length $L$ with value $\equiv r \pmod M$.
    Extending from length $L$ to $L + 2$ by appending outer digit $d$ shifts the inner part by $10$ and adds $d \cdot c \pmod M$ where $c = (10^{L+1} + 1) \pmod M$.
@@ -44,7 +51,10 @@ There are $10^{16} + 10^{15} \approx 1.1 \times 10^{16}$ palindromes of length u
 2. **Exclusion of Leading Zeros**:
    At each length $L \le 32$, valid positive palindromes cannot have leading digit 0.
    The count with outer digit 0 is precisely the count of length $L - 2$ palindromes with residue 0 ($prev\_zero = dp_{\text{old}}[0]$).
-   $$\text{Valid}(L) = dp_{\text{new}}[0] - prev\_zero$$
+
+$$
+\text{Valid}(L) = dp_{\text{new}}[0] - prev\_zero
+$$
 
 This evaluates the total count for all palindromes $< 10^{32}$ in **$\approx 3.84$ seconds**!
 

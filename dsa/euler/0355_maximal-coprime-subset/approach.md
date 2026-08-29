@@ -3,11 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $\text{Co}(n)$ denote the maximum possible sum of a subset $S \subseteq \{1, 2, \dots, n\}$ whose elements are pairwise mutually coprime:
-$$\gcd(a, b) = 1 \quad \forall a, b \in S, \, a \ne b$$
+
+$$
+\gcd(a, b) = 1 \quad \forall a, b \in S, \, a \ne b
+$$
 
 For example, $\text{Co}(10) = 30$ attained by $\{1, 5, 7, 8, 9\}$, $\text{Co}(30) = 193$, and $\text{Co}(100) = 1356$.
 We are required to compute:
-$$\text{Co}(200000)$$
+
+$$
+\text{Co}(200000)
+$$
 
 ---
 
@@ -51,10 +57,16 @@ Consider a baseline solution $S_0$ consisting of:
 - All small primes $q \le \sqrt{n}$ as pure maximal powers $q^{e_q}$ (where $e_q = \lfloor \log_q n \rfloor$)
 
 The baseline sum is:
-$$S_0 = 1 + \sum_{p > \sqrt{n}} p + \sum_{q \le \sqrt{n}} q^{e_q}$$
+
+$$
+S_0 = 1 + \sum_{p > \sqrt{n}} p + \sum_{q \le \sqrt{n}} q^{e_q}
+$$
 
 If we pair a small prime $q$ with a large prime $p$ to form $x = p \cdot q^a \le n$, the net gain over the baseline is:
-$$\text{Gain}(q, p) = \max_{a \ge 1, \, p \cdot q^a \le n} \left( p \cdot q^a - p - q^{e_q} \right)$$
+
+$$
+\text{Gain}(q, p) = \max_{a \ge 1, \, p \cdot q^a \le n} \left( p \cdot q^a - p - q^{e_q} \right)
+$$
 
 Because each small prime $q$ can be paired with at most one large prime $p$, and each large prime $p$ can be paired with at most one small prime $q$, this is **precisely a Maximum Weight Bipartite Matching problem** between the 86 small primes and the 9506 large primes!
 

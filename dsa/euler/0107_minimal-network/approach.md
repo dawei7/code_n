@@ -12,7 +12,11 @@ Consider the 7-vertex example network from the problem description:
 The file `network.txt` contains a $40 \times 40$ matrix representing a network with $40$ vertices.
 
 The objective is to find the **maximum weight saving** that can be achieved by finding the Minimum Spanning Tree (MST):
-$$\Delta W = W(G) - W(T^*)$$
+
+$$
+\Delta W = W(G) - W(T^*)
+$$
+
 where $W(G)$ is the initial sum of all edge weights and $W(T^*)$ is the total weight of the Minimum Spanning Tree.
 
 ---
@@ -49,14 +53,29 @@ def naive_mst(graph):
 
 ### Kruskal's MST Pipeline
 1. Parse upper triangle ($j > i$) of the adjacency matrix to extract all unique undirected edges $(w, u, v)$ and compute total initial weight:
-   $$W(G) = \sum_{e \in E} w(e) = 261\,834$$
+
+$$
+W(G) = \sum_{e \in E} w(e) = 261\,834
+$$
+
 2. Sort edges in non-decreasing order of weight:
-   $$w(e_1) \le w(e_2) \le \dots \le w(e_{|E|})$$
+
+$$
+w(e_1) \le w(e_2) \le \dots \le w(e_{|E|})
+$$
+
 3. Initialize DSU parent pointers $\text{parent}[i] = i$ for all $i \in [0, 39]$.
 4. Iterate through sorted edges $(w, u, v)$:
    - If $\text{union}(u, v)$ succeeds (no cycle formed):
-     $$W(T^*) \leftarrow W(T^*) + w$$
-     $$\text{edges\_added} \leftarrow \text{edges\_added} + 1$$
+
+$$
+W(T^*) \leftarrow W(T^*) + w
+$$
+
+$$
+\text{edges\_added} \leftarrow \text{edges\_added} + 1
+$$
+
      - If $\text{edges\_added} == 39$: break.
 5. Return $\Delta W = W(G) - W(T^*) = 261\,834 - 2154 = \mathbf{259\,680}$.
 
@@ -74,7 +93,10 @@ def naive_mst(graph):
 - Total initial network weight: $W(G) = 261\,834$.
 - Minimum Spanning Tree weight (39 edges): $W(T^*) = 2154$.
 - Maximum weight saving:
-  $$\Delta W = 261\,834 - 2154 = \mathbf{259\,680}$$
+
+$$
+\Delta W = 261\,834 - 2154 = \mathbf{259\,680}
+$$
 
 ---
 

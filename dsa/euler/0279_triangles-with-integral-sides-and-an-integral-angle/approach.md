@@ -4,7 +4,11 @@
 
 We seek the number of integer-sided triangles $(a, b, c)$ with perimeter $a + b + c \le 100\,000\,000$ ($10^8$) that possess at least one angle $\theta$ measured as an integer number of degrees ($0^\circ < \theta < 180^\circ, \theta \in \mathbb{Z}$).
 By Niven's theorem, the only rational values of $\cos \theta$ for rational degree angles $\theta \in (0^\circ, 180^\circ)$ are:
-$$\theta \in \{60^\circ, 90^\circ, 120^\circ\}$$
+
+$$
+\theta \in \{60^\circ, 90^\circ, 120^\circ\}
+$$
+
 where $\cos(60^\circ) = 1/2$, $\cos(90^\circ) = 0$, and $\cos(120^\circ) = -1/2$.
 
 ---
@@ -24,13 +28,24 @@ A naive search tests all triples $(a, b, c)$ with $a + b + c \le 10^8$:
 By the Law of Cosines $c^2 = a^2 + b^2 - 2ab \cos \theta$:
 1. **$90^\circ$ Triangles ($\cos \theta = 0$):**
    $a^2 + b^2 = c^2$. Standard primitive Pythagorean triples:
-   $$a = u^2 - v^2, \quad b = 2uv, \quad c = u^2 + v^2, \quad \text{Perimeter} = 2u(u + v)$$
+
+$$
+a = u^2 - v^2, \quad b = 2uv, \quad c = u^2 + v^2, \quad \text{Perimeter} = 2u(u + v)
+$$
+
 2. **$60^\circ$ Triangles ($\cos \theta = 1/2$):**
    $a^2 - ab + b^2 = c^2$. Eisenstein triples with:
-   $$a = u^2 - v^2, \quad b = 2uv - v^2, \quad c = u^2 - uv + v^2$$
+
+$$
+a = u^2 - v^2, \quad b = 2uv - v^2, \quad c = u^2 - uv + v^2
+$$
+
 3. **$120^\circ$ Triangles ($\cos \theta = -1/2$):**
    $a^2 + ab + b^2 = c^2$. Parameterized by:
-   $$a = 2uv + v^2, \quad b = u^2 - v^2, \quad c = u^2 + uv + v^2$$
+
+$$
+a = 2uv + v^2, \quad b = u^2 - v^2, \quad c = u^2 + uv + v^2
+$$
 
 ---
 

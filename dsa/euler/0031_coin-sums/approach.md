@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In the United Kingdom, currency is minted in eight standard denominations (in pence):
-$$\mathcal{C} = \{1, 2, 5, 10, 20, 50, 100, 200\}$$
+
+$$
+\mathcal{C} = \{1, 2, 5, 10, 20, 50, 100, 200\}
+$$
 
 For a target value $T \in \mathbb{N}$ ($T = 200$ pence, representing £2), define the set of non-negative integer coin combinations:
-$$\mathcal{P}_{\mathcal{C}}(T) = \left\{ (x_1, x_2, \dots, x_8) \in \mathbb{N}_0^8 \;\middle|\; \sum_{i=1}^8 c_i x_i = T \right\}$$
+
+$$
+\mathcal{P}_{\mathcal{C}}(T) = \left\{ (x_1, x_2, \dots, x_8) \in \mathbb{N}_0^8 \;\middle|\; \sum_{i=1}^8 c_i x_i = T \right\}
+$$
 
 The objective is to find the total number of distinct coin combinations:
-$$N_{\text{ways}}(T) = |\mathcal{P}_{\mathcal{C}}(T)|$$
+
+$$
+N_{\text{ways}}(T) = |\mathcal{P}_{\mathcal{C}}(T)|
+$$
 
 ---
 
@@ -37,7 +46,10 @@ def naive_coin_change(amount, coin_idx=0):
 
 ### Generating Functions
 The number of ways to form sum $T$ using coins from $\mathcal{C}$ corresponds to the coefficient of $x^T$ in the formal power series product:
-$$G(x) = \prod_{c \in \mathcal{C}} \frac{1}{1 - x^c} = \left(\sum_{k=0}^{\infty} x^k\right) \left(\sum_{k=0}^{\infty} x^{2k}\right) \cdots \left(\sum_{k=0}^{\infty} x^{200k}\right)$$
+
+$$
+G(x) = \prod_{c \in \mathcal{C}} \frac{1}{1 - x^c} = \left(\sum_{k=0}^{\infty} x^k\right) \left(\sum_{k=0}^{\infty} x^{2k}\right) \cdots \left(\sum_{k=0}^{\infty} x^{200k}\right)
+$$
 
 ### Dynamic Programming Transition Matrix
 
@@ -56,7 +68,11 @@ $$G(x) = \prod_{c \in \mathcal{C}} \frac{1}{1 - x^c} = \left(\sum_{k=0}^{\infty}
 Let $\text{DP}[s]$ be the number of ways to make sum $s \in [0, T]$:
 1. Initialize $\text{DP}[0] = 1$ and $\text{DP}[s] = 0$ for $s \ge 1$.
 2. For each coin $c \in \{1, 2, 5, 10, 20, 50, 100, 200\}$:
-   $$\text{DP}[s] \leftarrow \text{DP}[s] + \text{DP}[s - c] \quad \text{for } s \in [c, T]$$
+
+$$
+\text{DP}[s] \leftarrow \text{DP}[s] + \text{DP}[s - c] \quad \text{for } s \in [c, T]
+$$
+
 3. By iterating $c$ in the outer loop and $s$ ascending from $c$ to $T$, every valid combination is counted exactly once with no order-dependent permutations.
 
 ---
@@ -73,7 +89,10 @@ Let $\text{DP}[s]$ be the number of ways to make sum $s \in [0, T]$:
 
 ### Example 2: Target Evaluation for $T = 200\text{p}$ (£2)
 - Iterating across all 8 denominations up to $T = 200$:
-  $$N_{\text{ways}}(200) = \text{DP}[200] = \mathbf{73\,682}$$
+
+$$
+N_{\text{ways}}(200) = \text{DP}[200] = \mathbf{73\,682}
+$$
 
 ---
 

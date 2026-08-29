@@ -3,11 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 How many $18$-digit numbers $n$ (without any leading zeros) can be formed such that no digit occurs more than three ($3$) times?
-$$\forall d \in \{0, 1, 2, \dots, 9\}, \quad 0 \le c_d \le 3 \quad \text{and} \quad \sum_{d=0}^9 c_d = 18$$
+
+$$
+\forall d \in \{0, 1, 2, \dots, 9\}, \quad 0 \le c_d \le 3 \quad \text{and} \quad \sum_{d=0}^9 c_d = 18
+$$
+
 where $c_d$ is the frequency count of digit $d$ in the number $n$.
 
 The objective is to find the **total number of valid $18$-digit numbers**:
-$$N_{\text{digits}} = \sum_{\substack{c_0 + c_1 + \dots + c_9 = 18 \\ 0 \le c_d \le 3}} \frac{(18 - c_0) \cdot 17!}{\prod_{d=0}^9 c_d!}$$
+
+$$
+\begin{aligned}
+N_{\text{digits}} = \sum_{\substack{c_0 + c_1 + \dots + c_9 = 18 \\ 0 \le c_d \le 3}} \frac{(18 - c_0) \cdot 17!}{\prod_{d=0}^9 c_d!}
+\end{aligned}
+$$
 
 ---
 
@@ -27,7 +36,11 @@ def naive_few_repeated_digits():
    - Total unconstrained multiset permutations of the 18 digits is $\frac{18!}{\prod c_d!}$.
    - The fraction of permutations that begin with a non-zero digit ($1 \dots 9$) is $\frac{18 - c_0}{18}$.
    - Thus, the exact number of valid numbers for this frequency tuple is:
-     $$P(c_0, \dots, c_9) = \frac{18 - c_0}{18} \cdot \frac{18!}{\prod_{d=0}^9 c_d!} = \frac{(18 - c_0) \cdot 17!}{\prod_{d=0}^9 c_d!}$$
+
+$$
+P(c_0, \dots, c_9) = \frac{18 - c_0}{18} \cdot \frac{18!}{\prod_{d=0}^9 c_d!} = \frac{(18 - c_0) \cdot 17!}{\prod_{d=0}^9 c_d!}
+$$
+
 2. **Frequency Partition DFS:**
    The number of non-negative integer solutions to $\sum_{d=0}^9 c_d = 18$ with $0 \le c_d \le 3$ is **fewer than $25\,000$ tuples**, which can be traversed in $< 0.001$ seconds!
 
@@ -71,7 +84,10 @@ def solve(length: int = 18, max_repeat: int = 3) -> int:
     return total_count
 ```
 Evaluating for $L = 18$:
-$$N_{\text{digits}} = \mathbf{227\,485\,267\,000\,992\,000}$$
+
+$$
+N_{\text{digits}} = \mathbf{227\,485\,267\,000\,992\,000}
+$$
 
 ---
 
@@ -81,11 +97,17 @@ $$N_{\text{digits}} = \mathbf{227\,485\,267\,000\,992\,000}$$
 - Suppose digit counts are: $c_0 = 1, c_1 = 3, c_2 = 3, c_3 = 3, c_4 = 3, c_5 = 3, c_6 = 2, c_7 = 0, c_8 = 0, c_9 = 0$.
 - Total elements: $1 + 3 + 3 + 3 + 3 + 3 + 2 = 18$.
 - Non-zero leading permutations:
-  $$P = (18 - 1) \times \frac{17!}{1! \times (3!)^5 \times 2!} = 17 \times \frac{355\,687\,428\,096\,000}{15\,552} = 388\,804\,589\,040\,000$$
+
+$$
+P = (18 - 1) \times \frac{17!}{1! \times (3!)^5 \times 2!} = 17 \times \frac{355\,687\,428\,096\,000}{15\,552} = 388\,804\,589\,040\,000
+$$
 
 ### Example 2: Target Evaluation for Entire Space
 - Summing over all $24\,310$ valid frequency partitions:
-  $$N_{\text{digits}} = \mathbf{227\,485\,267\,000\,992\,000}$$
+
+$$
+N_{\text{digits}} = \mathbf{227\,485\,267\,000\,992\,000}
+$$
 
 ---
 

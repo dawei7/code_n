@@ -22,7 +22,10 @@ Generating the tree to depth $d$ produces $2^d$ squares. At depth $40$, $2^{40} 
 
 ### Bounding Disk Invariant & Self-Similarity
 Because the fractal is composed of contractive similarity transformations with scale factors $r_1 = 4/5$ and $r_2 = 3/5$, the infinite subtree rooted at any square with side length $s$ and center $C$ is strictly contained in a Euclidean disk:
-$$\mathcal{D}(C, s \cdot R_{\text{tree}})$$
+
+$$
+\mathcal{D}(C, s \cdot R_{\text{tree}})
+$$
 
 ---
 
@@ -31,7 +34,10 @@ $$\mathcal{D}(C, s \cdot R_{\text{tree}})$$
 ### Subtree Radius Bound & Branch-and-Bound Pruning
 Let $d_{\text{left}} = \sqrt{13/10}$ and $d_{\text{right}} = \sqrt{29}/5$ be the distances from the parent square center to the centers of its left and right children.
 The maximum containment radius $R$ satisfies:
-$$R \ge d_{\text{left}} + \frac{4}{5} R \implies R = 5 \cdot d_{\text{left}} = 5 \sqrt{\frac{13}{10}}$$
+
+$$
+R \ge d_{\text{left}} + \frac{4}{5} R \implies R = 5 \cdot d_{\text{left}} = 5 \sqrt{\frac{13}{10}}
+$$
 
 1. **Priority Exploration**: Use a max-heap keyed by side length $s$, exploring larger squares first to rapidly expand the global bounding box $[x_{\min}, x_{\max}] \times [y_{\min}, y_{\max}]$.
 2. **Disk Pruning**: If a square's bounding disk $[c_x \pm s R, c_y \pm s R]$ is already completely interior to the current global bounding box, the entire infinite subtree rooted at that square is safely pruned!

@@ -3,22 +3,38 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $ABC$ be a triangle with all interior angles less than $120^{\circ}$. Let $T$ be the **Torricelli point** (also known as the Fermat point) inside the triangle, which is the unique point minimizing the sum of distances to the three vertices:
-$$p = |TA|, \quad q = |TB|, \quad r = |TC|$$
+
+$$
+p = |TA|, \quad q = |TB|, \quad r = |TC|
+$$
 
 When all angles of $\triangle ABC$ are $< 120^{\circ}$, the three angles meeting at $T$ are all equal to $120^{\circ}$:
-$$\angle ATB = \angle BTC = \angle CTA = 120^{\circ}$$
+
+$$
+\angle ATB = \angle BTC = \angle CTA = 120^{\circ}
+$$
 
 By applying the Law of Cosines to $\triangle ATB, \triangle BTC,$ and $\triangle CTA$ with $\cos(120^{\circ}) = -\frac{1}{2}$:
-$$c^2 = p^2 + q^2 - 2pq \cos(120^{\circ}) = p^2 + pq + q^2$$
 
-$$a^2 = q^2 + qr + r^2$$
+$$
+c^2 = p^2 + q^2 - 2pq \cos(120^{\circ}) = p^2 + pq + q^2
+$$
 
-$$b^2 = r^2 + rp + p^2$$
+$$
+a^2 = q^2 + qr + r^2
+$$
+
+$$
+b^2 = r^2 + rp + p^2
+$$
 
 A triangle is a **Torricelli triangle** if $p, q, r$ and $a, b, c$ are all positive integers. For example, with $p = 195, q = 264,$ and $r = 325$, we get integer side lengths $a = 511, b = 455, c = 399$, giving $p + q + r = 784$.
 
 The objective is to find the **sum of all distinct values of $p + q + r \le 120\,000$ for Torricelli triangles**:
-$$S_{\text{distinct}} = \sum \left\{ s \le 120\,000 \;\middle|\; \exists (p, q, r) \in \mathbb{N}^3 \text{ s.t. } p+q+r=s \land (p^2+pq+q^2, q^2+qr+r^2, r^2+rp+p^2) \in \mathbb{S}^3 \right\}$$
+
+$$
+S_{\text{distinct}} = \sum \left\{ s \le 120\,000 \;\middle|\; \exists (p, q, r) \in \mathbb{N}^3 \text{ s.t. } p+q+r=s \land (p^2+pq+q^2, q^2+qr+r^2, r^2+rp+p^2) \in \mathbb{S}^3 \right\}
+$$
 
 ---
 
@@ -35,12 +51,20 @@ def naive_torricelli_triangles():
 ### Eisenstein Integer Parameterization & 3-Clique Graph Search
 1. **120-Degree Eisenstein Triple Parameterization:**
    Integer pairs $(u, v)$ with $u^2 + uv + v^2 = w^2$ are parameterized by coprime $m > n > 0$:
-   $$u_0 = 2mn + n^2, \quad v_0 = m^2 - n^2, \quad \text{where } (m - n) \not\equiv 0 \pmod 3 \text{ and } \gcd(m, n) = 1$$
+
+$$
+u_0 = 2mn + n^2, \quad v_0 = m^2 - n^2, \quad \text{where } (m - n) \not\equiv 0 \pmod 3 \text{ and } \gcd(m, n) = 1
+$$
+
 2. All scaled multiples $k(u_0, v_0)$ ($k \in \mathbb{N}$) also form valid 120-degree pairs.
 3. **Graph 3-Clique Representation:**
    - Construct an adjacency graph $G$ where an edge exists between $u$ and $v$ iff $u^2 + uv + v^2$ is a square.
    - Finding valid $(p, q, r)$ reduces to finding **triangles (3-cliques)** in $G$:
-     $$(p, q) \in E \land (q, r) \in E \land (p, r) \in E$$
+
+$$
+(p, q) \in E \land (q, r) \in E \land (p, r) \in E
+$$
+
 4. Using fast hash-set intersections `pairs[p] & pairs[q]` finds all 3-cliques in $\approx 0.20$ seconds.
 
 ---
@@ -83,7 +107,10 @@ def naive_torricelli_triangles():
 
 ### Example 2: Target Evaluation for $p + q + r \le 120\,000$
 - Summing all distinct 3-clique distance sums:
-  $$S_{\text{distinct}} = \mathbf{30\,758\,371}$$
+
+$$
+S_{\text{distinct}} = \mathbf{30\,758\,371}
+$$
 
 ---
 

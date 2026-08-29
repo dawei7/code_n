@@ -5,7 +5,11 @@
 Let $d(n)$ be the number of divisors of $n$.
 Define $M(n, k) = \max_{n \le j \le n + k - 1} d(j)$.
 We seek to evaluate:
-$$S(u, k) = \sum_{n=1}^{u - k + 1} M(n, k)$$
+
+$$
+S(u, k) = \sum_{n=1}^{u - k + 1} M(n, k)
+$$
+
 for $u = 100\,000\,000$ and $k = 100\,000$.
 
 We are given:

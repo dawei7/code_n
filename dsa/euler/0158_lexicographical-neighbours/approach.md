@@ -10,12 +10,18 @@ In `'hat'`, exactly one character comes lexicographically after its left neighbo
 In `'won'`, no character comes lexicographically after its left neighbour (`o < w` and `n < o`).
 
 In all, there are $10\,400$ strings of length $3$ for which **exactly one character comes lexicographically after its left neighbour**:
-$$p(3) = 10\,400$$
+
+$$
+p(3) = 10\,400
+$$
 
 Let $p(n)$ be the number of strings of length $n$ with distinct letters having exactly one such increase.
 
 The objective is to find the **maximum value of $p(n)$ for $1 \le n \le 26$**:
-$$p_{\text{max}} = \max_{1 \le n \le 26} p(n)$$
+
+$$
+p_{\text{max}} = \max_{1 \le n \le 26} p(n)
+$$
 
 ---
 
@@ -35,12 +41,24 @@ def naive_lexicographical_neighbours():
 2. **Arranging with Exactly One Increase:**
    Let the $n$ chosen letters be sorted $c_1 < c_2 < \dots < c_n$.
    A permutation has exactly one increase $s_i < s_{i+1}$ if and only if it consists of two strictly decreasing sequences:
-   $$s_1 > s_2 > \dots > s_k \quad \text{and} \quad s_{k+1} > s_{k+2} > \dots > s_n \quad \text{with } s_k < s_{k+1}$$
+
+$$
+s_1 > s_2 > \dots > s_k \quad \text{and} \quad s_{k+1} > s_{k+2} > \dots > s_n \quad \text{with } s_k < s_{k+1}
+$$
+
    - Any non-trivial subset $L \subset \{c_1, \dots, c_n\}$ placed in the left decreasing sequence uniquely determines the entire string.
    - Total non-empty subsets of size $k \in [1, n-1]$:
-     $$\sum_{k=1}^{n-1} \binom{n}{k} - (n - 1) = (2^n - 2) - (n - 1) = 2^n - n - 1$$
+
+$$
+\sum_{k=1}^{n-1} \binom{n}{k} - (n - 1) = (2^n - 2) - (n - 1) = 2^n - n - 1
+$$
+
 3. **Master Formula:**
-   $$p(n) = \binom{26}{n} (2^n - n - 1)$$
+
+$$
+p(n) = \binom{26}{n} (2^n - n - 1)
+$$
+
 4. Evaluating $p(n)$ for $n \in [1, 26]$ takes 26 integer operations in $\approx 0.0000$ seconds.
 
 ---
@@ -67,7 +85,10 @@ def naive_lexicographical_neighbours():
 ### Master Evaluation Pipeline
 1. Compute $p(n) = \binom{26}{n} (2^n - n - 1)$ for each $n \in [1, 26]$.
 2. Maximum occurs at $n = 18$:
-   $$p(18) = \binom{26}{18} \left(2^{18} - 18 - 1\right) = 1\,562\,275 \times 262\,125 = \mathbf{409\,511\,334\,375}$$
+
+$$
+p(18) = \binom{26}{18} \left(2^{18} - 18 - 1\right) = 1\,562\,275 \times 262\,125 = \mathbf{409\,511\,334\,375}
+$$
 
 ---
 
@@ -82,7 +103,10 @@ def naive_lexicographical_neighbours():
 
 ### Example 2: Target Maximum across $1 \le n \le 26$
 - Finding maximum:
-  $$p_{\text{max}} = p(18) = \mathbf{409\,511\,334\,375}$$
+
+$$
+p_{\text{max}} = p(18) = \mathbf{409\,511\,334\,375}
+$$
 
 ---
 

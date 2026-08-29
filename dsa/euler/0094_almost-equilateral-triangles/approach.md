@@ -3,12 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 It is easily proved that no equilateral triangle exists with integral length sides and integral area. However, the almost equilateral triangle $5-5-6$ has an area of $12$ square units:
-$$\text{Altitude } h = \sqrt{5^2 - 3^2} = 4 \implies \text{Area} = \frac{1}{2} \times 6 \times 4 = 12$$
+
+$$
+\text{Altitude } h = \sqrt{5^2 - 3^2} = 4 \implies \text{Area} = \frac{1}{2} \times 6 \times 4 = 12
+$$
 
 An **almost equilateral triangle** has integral sides $(a, a, b)$ where $b = a \pm 1$ and an integral area.
 
 The objective is to find the **sum of the perimeters** of all almost equilateral triangles with integral side lengths and area and whose perimeters do not exceed one billion ($1\,000\,000\,000$):
-$$S_{\text{perim}} = \sum_{\substack{(a, b) \in \mathbb{N}^2 \\ 2a + b \le 10^9 \\ b = a \pm 1 \\ \text{Area}(a, a, b) \in \mathbb{N}}} (2a + b)$$
+
+$$
+\begin{aligned}
+S_{\text{perim}} = \sum_{\substack{(a, b) \in \mathbb{N}^2 \\ 2a + b \le 10^9 \\ b = a \pm 1 \\ \text{Area}(a, a, b) \in \mathbb{N}}} (2a + b)
+\end{aligned}
+$$
 
 ---
 
@@ -28,9 +36,17 @@ def naive_almost_equilateral(limit):
    - **Case 2 ($b = a - 1$):** $4h^2 = 3a^2 + 2a - 1 \implies (3a + 1)^2 - 3(2h)^2 = 4$.
 2. By the theory of Pell equations, the side lengths $a_k$ in both cases satisfy 2nd-order linear recurrences:
    - **Case 1 ($b = a + 1, P = 3a + 1$):**
-     $$a_{k+1} = 14 a_k - a_{k-1} - 4 \quad \text{with } a_0 = 1, a_1 = 5$$
+
+$$
+a_{k+1} = 14 a_k - a_{k-1} - 4 \quad \text{with } a_0 = 1, a_1 = 5
+$$
+
    - **Case 2 ($b = a - 1, P = 3a - 1$):**
-     $$a_{k+1} = 14 a_k - a_{k-1} + 4 \quad \text{with } a_0 = 1, a_1 = 17$$
+
+$$
+a_{k+1} = 14 a_k - a_{k-1} + 4 \quad \text{with } a_0 = 1, a_1 = 17
+$$
+
 3. The side lengths grow exponentially ($a_k \sim 14^k$), evaluating all valid triangles in under 15 steps in $\approx 0.0000$ seconds.
 
 ---
@@ -77,7 +93,10 @@ def naive_almost_equilateral(limit):
 
 ### Example 2: Target Evaluation for $P \le 1\,000\,000\,000$
 - Summing all valid perimeters across both branches:
-  $$S_{\text{perim}} = \mathbf{518\,408\,346}$$
+
+$$
+S_{\text{perim}} = \mathbf{518\,408\,346}
+$$
 
 ---
 

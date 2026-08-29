@@ -44,14 +44,28 @@ Let $E(k, b)$ denote the expected number of additional draws to win from state $
 Total possible draws per turn is $1000$.
 
 #### Case 1: $b = 1$ (500 already seen)
-$$E(k, 1) = 1 + \frac{1 + k}{1000} E(k, 1) + \frac{998 - 2k}{1000} E(k + 1, 1)$$
+
+$$
+E(k, 1) = 1 + \frac{1 + k}{1000} E(k, 1) + \frac{998 - 2k}{1000} E(k + 1, 1)
+$$
+
 Solving for $E(k, 1)$:
-$$E(k, 1) = \frac{1000 + (998 - 2k) E(k + 1, 1)}{999 - k}$$
+
+$$
+E(k, 1) = \frac{1000 + (998 - 2k) E(k + 1, 1)}{999 - k}
+$$
 
 #### Case 2: $b = 0$ (500 not yet seen)
-$$E(k, 0) = 1 + \frac{1 + k}{1000} E(k, 0) + \frac{998 - 2k}{1000} E(k + 1, 0) + \frac{1}{1000} E(k, 1)$$
+
+$$
+E(k, 0) = 1 + \frac{1 + k}{1000} E(k, 0) + \frac{998 - 2k}{1000} E(k + 1, 0) + \frac{1}{1000} E(k, 1)
+$$
+
 Solving for $E(k, 0)$:
-$$E(k, 0) = \frac{1000 + (998 - 2k) E(k + 1, 0) + E(k, 1)}{999 - k}$$
+
+$$
+E(k, 0) = \frac{1000 + (998 - 2k) E(k + 1, 0) + E(k, 1)}{999 - k}
+$$
 
 With base boundary conditions $E(500, b) = 0$, both recurrences are evaluated strictly backwards from $k = 499$ down to $k = 0$ in $O(N)$ arithmetic operations!
 

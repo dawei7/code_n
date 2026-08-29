@@ -24,10 +24,18 @@ A naive search tests $a_1 = 10^{15} + 1, 10^{15} + 2, \dots$:
 
 ### Linear Modular Inversion & Backward Affine Reconstruction
 Each operation in the modified Collatz sequence is an invertible affine map:
-$$a_n = \begin{cases} 3 a_{n+1} & \text{for } D \\ \frac{3 a_{n+1} - 2}{4} & \text{for } U \\ \frac{3 a_{n+1} + 1}{2} & \text{for } d \end{cases}$$
+
+$$
+a_n = \begin{cases} 3 a_{n+1} & \text{for } D \\ \frac{3 a_{n+1} - 2}{4} & \text{for } U \\ \frac{3 a_{n+1} + 1}{2} & \text{for } d \end{cases}
+$$
+
 Working backwards (or composing forwards):
 - After $L$ operations, the starting value $a_1$ must satisfy a linear congruence:
-  $$a_1 \equiv R \pmod{3^L}$$
+
+$$
+a_1 \equiv R \pmod{3^L}
+$$
+
   where $R$ is unique in $[0, 3^L - 1]$.
 
 ---
@@ -42,7 +50,11 @@ Working backwards (or composing forwards):
    - Update $R \leftarrow R + k \cdot M$ and $M \leftarrow 3 \cdot M$.
 3. After all 30 steps, $M = 3^{30} = 205\,891\,132\,094\,649$.
 4. The smallest $a_1 > 10^{15}$ is:
-   $$a_1 = R + \left\lceil \frac{10^{15} + 1 - R}{3^{30}} \right\rceil \cdot 3^{30}$$
+
+$$
+a_1 = R + \left\lceil \frac{10^{15} + 1 - R}{3^{30}} \right\rceil \cdot 3^{30}
+$$
+
 5. Total execution evaluates in under $0.001$ seconds in pure Python!
 
 ---

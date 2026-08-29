@@ -8,7 +8,10 @@ Independent uniform random numbers $U_1, U_2, \dots \sim \text{Uniform}(0, 1)$ a
 - Player 2 wins if and only if $Y > X$.
 
 We seek to evaluate:
-$$P(Y > X) \text{ rounded to 10 decimal places}$$
+
+$$
+P(Y > X) \text{ rounded to 10 decimal places}
+$$
 
 ---
 
@@ -39,7 +42,10 @@ For $t \in [0, 1)$, $u(t) = \sum_{k=0}^\infty \frac{t^k}{k!} = e^t$.
 
 ### Closed-Form Exact Integration
 Integrating the joint density $f(x, y)$ over the region $y > x$:
-$$P(Y > X) = \int_0^1 dx \int_x^1 dy \, f(x, y) = \frac{1 + 14e - 5e^2}{4}$$
+
+$$
+P(Y > X) = \int_0^1 dx \int_x^1 dy \, f(x, y) = \frac{1 + 14e - 5e^2}{4}
+$$
 
 Evaluating this closed form with 60-digit `Decimal` precision gives **0.5276662759** in **0.0001 seconds**!
 
@@ -52,7 +58,10 @@ Evaluating this closed form with 60-digit `Decimal` precision gives **0.52766627
 - Julie draws $(0.10, 0.27, 0.91) \implies S = 2.34 > 2, Y = 0.91$.
 - Since $Y = 0.91 > X = 0.44$, Julie wins ($\checkmark$).
 - Exact theoretical win probability:
-  $$P(Y > X) = \frac{1 + 14e - 5e^2}{4} \approx 0.5276662759 \ (\checkmark)$$
+
+$$
+P(Y > X) = \frac{1 + 14e - 5e^2}{4} \approx 0.5276662759 \ (\checkmark)
+$$
 
 ---
 

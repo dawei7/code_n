@@ -3,9 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n \ge 3$, let $I(n)$ be the largest positive integer $m < n - 1$ such that:
-$$m^2 \equiv 1 \pmod n$$
+
+$$
+m^2 \equiv 1 \pmod n
+$$
+
 We seek to evaluate:
-$$\sum_{n=3}^{2 \times 10^7} I(n)$$
+
+$$
+\sum_{n=3}^{2 \times 10^7} I(n)
+$$
 
 We are given:
 - $I(7) = 1$

@@ -3,11 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Find the smallest $x + y + z$ with integers $x > y > z > 0$ such that all six expressions:
-$$x + y, \quad x - y, \quad x + z, \quad x - z, \quad y + z, \quad y - z$$
+
+$$
+x + y, \quad x - y, \quad x + z, \quad x - z, \quad y + z, \quad y - z
+$$
+
 are simultaneously perfect squares.
 
 Formally, we seek:
-$$S_{\text{min}} = \min \left\{ x + y + z \;\middle|\; x > y > z > 0 \land \forall \pm, (x \pm y, x \pm z, y \pm z) \in \mathbb{S}^6 \right\}$$
+
+$$
+S_{\text{min}} = \min \left\{ x + y + z \;\middle|\; x > y > z > 0 \land \forall \pm, (x \pm y, x \pm z, y \pm z) \in \mathbb{S}^6 \right\}
+$$
+
 where $\mathbb{S} = \{k^2 \mid k \in \mathbb{N}\}$.
 
 ---
@@ -24,15 +32,31 @@ def naive_perfect_square_collection():
 
 ### Parameterization via Square Differences
 1. Let:
-   $$x + y = A^2, \quad x - y = B^2$$
+
+$$
+x + y = A^2, \quad x - y = B^2
+$$
+
    Adding and subtracting gives:
-   $$x = \frac{A^2 + B^2}{2}, \quad y = \frac{A^2 - B^2}{2}$$
+
+$$
+x = \frac{A^2 + B^2}{2}, \quad y = \frac{A^2 - B^2}{2}
+$$
+
    Since $x, y \in \mathbb{N}$, $A$ and $B$ must have the **same parity** ($A \equiv B \pmod 2$).
 2. Let $x + z = C^2 \implies z = C^2 - x$.
    For $x > y > z > 0$, we require:
-   $$0 < z < y \iff \sqrt{x} < C < A$$
+
+$$
+0 < z < y \iff \sqrt{x} < C < A
+$$
+
 3. We then only need to test if the remaining three expressions are perfect squares:
-   $$D^2 = x - z, \quad E^2 = y + z, \quad F^2 = y - z$$
+
+$$
+D^2 = x - z, \quad E^2 = y + z, \quad F^2 = y - z
+$$
+
 4. Searching over $A, B, C$ finds the minimal triple $(x, y, z)$ in $\approx 0.02$ seconds.
 
 ---
@@ -83,7 +107,10 @@ def naive_perfect_square_collection():
   - $y+z = 574281 = 757^2 \checkmark$.
   - $y-z = 274599 = 524^2 \checkmark$.
 - Minimal Sum:
-  $$S_{\text{min}} = x + y + z = 434\,657 + 424\,440 + 149\,841 = \mathbf{1\,008\,938}$$
+
+$$
+S_{\text{min}} = x + y + z = 434\,657 + 424\,440 + 149\,841 = \mathbf{1\,008\,938}
+$$
 
 ---
 

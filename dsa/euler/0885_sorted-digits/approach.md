@@ -24,10 +24,16 @@ Find $S(18) \bmod 1123455689$.
 ### Multiset Partition & Repunit Decomposition
 Padding integers with leading zeros to length $n$, each integer corresponds to a composition of $n$ into digit counts $(c_0, c_1, \dots, c_9)$ with $\sum_{i=0}^9 c_i = n$.
 The number of integers sharing digit counts $\mathbf{c}$ is the multinomial coefficient:
-$$M(\mathbf{c}) = \frac{n!}{c_0! c_1! \dots c_9!}$$
+
+$$
+M(\mathbf{c}) = \frac{n!}{c_0! c_1! \dots c_9!}
+$$
 
 The sorted integer formed by digits $1^{c_1} 2^{c_2} \dots 9^{c_9}$ can be expressed as a linear sum of repunits $R_k = \frac{10^k - 1}{9} = \underbrace{11\dots1}_{k}$:
-$$f(d) = \sum_{d=1}^9 R_{s_d}, \quad \text{where } s_d = \sum_{i=d}^9 c_i$$
+
+$$
+f(d) = \sum_{d=1}^9 R_{s_d}, \quad \text{where } s_d = \sum_{i=d}^9 c_i
+$$
 
 ---
 
@@ -35,10 +41,17 @@ $$f(d) = \sum_{d=1}^9 R_{s_d}, \quad \text{where } s_d = \sum_{i=d}^9 c_i$$
 
 ### Stars-and-Bars Enumeration
 The number of compositions of $n = 18$ into 10 non-negative integers is:
-$$\binom{n + 10 - 1}{10 - 1} = \binom{27}{9} = 4,686,825$$
+
+$$
+\binom{n + 10 - 1}{10 - 1} = \binom{27}{9} = 4,686,825
+$$
 
 Instead of $10^{18}$ numbers, we only iterate over $4.68 \times 10^6$ partitions:
-$$S(n) = \sum_{\sum c_i = n} \frac{n!}{c_0! \dots c_9!} \sum_{d=1}^9 R_{\sum_{i=d}^9 c_i} \pmod{1123455689}$$
+
+$$
+S(n) = \sum_{\sum c_i = n} \frac{n!}{c_0! \dots c_9!} \sum_{d=1}^9 R_{\sum_{i=d}^9 c_i} \pmod{1123455689}
+$$
+
 This evaluates in **0.08 seconds** in C.
 
 ---

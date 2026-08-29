@@ -7,9 +7,14 @@ For an interval $[a, b]$, let:
 - $N(a, b)$ be the number of $n \in [a, b]$ with $\mu(n) = -1$.
 
 Let $C(n)$ be the number of integer pairs $(a, b)$ such that $1 \le a \le b \le n$ and:
-$$99 \cdot N(a, b) \le 100 \cdot P(a, b)$$
 
-$$99 \cdot P(a, b) \le 100 \cdot N(a, b)$$
+$$
+99 \cdot N(a, b) \le 100 \cdot P(a, b)
+$$
+
+$$
+99 \cdot P(a, b) \le 100 \cdot N(a, b)
+$$
 
 We are given:
 - $C(10) = 13$
@@ -17,7 +22,10 @@ We are given:
 - $C(10\,000) = 20\,155\,319$
 
 We seek to evaluate:
-$$C(20\,000\,000)$$
+
+$$
+C(20\,000\,000)
+$$
 
 ---
 
@@ -34,13 +42,21 @@ Testing all $\approx \frac{n^2}{2} = 2 \times 10^{14}$ intervals $[a, b]$ direct
 Let $P_i = P(1, i)$ and $N_i = N(1, i)$ for $0 \le i \le n$.
 Then $P(a, b) = P_b - P_{a-1}$ and $N(a, b) = N_b - N_{a-1}$.
 The two interval inequalities transform into:
-$$100(P_b - P_{a-1}) \ge 99(N_b - N_{a-1}) \iff 100 P_b - 99 N_b \ge 100 P_{a-1} - 99 N_{a-1}$$
 
-$$100(N_b - N_{a-1}) \ge 99(P_b - P_{a-1}) \iff 100 N_b - 99 P_b \ge 100 N_{a-1} - 99 P_{a-1}$$
+$$
+100(P_b - P_{a-1}) \ge 99(N_b - N_{a-1}) \iff 100 P_b - 99 N_b \ge 100 P_{a-1} - 99 N_{a-1}
+$$
+
+$$
+100(N_b - N_{a-1}) \ge 99(P_b - P_{a-1}) \iff 100 N_b - 99 P_b \ge 100 N_{a-1} - 99 P_{a-1}
+$$
 
 Defining 2D points $(u_i, v_i) = (100 P_i - 99 N_i, \, 100 N_i - 99 P_i)$ for $0 \le i \le n$:
 A pair $(a, b)$ is valid if and only if:
-$$u_{a-1} \le u_b \quad \text{and} \quad v_{a-1} \le v_b$$
+
+$$
+u_{a-1} \le u_b \quad \text{and} \quad v_{a-1} \le v_b
+$$
 
 ---
 

@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $q(n)$ be the number of solutions $(a_1, a_2, a_3, a_4, b_1, b_2, b_3, b_4) \in \{0, \dots, n-1\}^8$ to:
-$$a_1^2 + a_2^2 + a_3^2 + a_4^2 \equiv b_1^2 + b_2^2 + b_3^2 + b_4^2 \pmod n$$
+
+$$
+a_1^2 + a_2^2 + a_3^2 + a_4^2 \equiv b_1^2 + b_2^2 + b_3^2 + b_4^2 \pmod n
+$$
+
 Let $Q(n) = \sum_{i=1}^n q(i)$.
 Given:
 - $q(4) = 18432$
@@ -27,10 +31,16 @@ Find $Q(12345678) \bmod 1001961001$.
 Let $S_n(r)$ be the number of solutions to $x_1^2 + x_2^2 + x_3^2 + x_4^2 \equiv r \pmod n$.
 Then $q(n) = \sum_{r=0}^{n-1} S_n(r)^2$.
 By the Chinese Remainder Theorem, $q(n)$ is **strictly multiplicative**:
-$$q(n \cdot m) = q(n) \cdot q(m) \quad \text{for } \gcd(n, m) = 1$$
+
+$$
+q(n \cdot m) = q(n) \cdot q(m) \quad \text{for } \gcd(n, m) = 1
+$$
 
 By discrete Fourier transform and Parseval's identity on the quadratic Gauss sum $G_n(k) = \sum_{x=0}^{n-1} e^{2\pi i k x^2 / n}$:
-$$q(n) = \frac{1}{n} \sum_{k=0}^{n-1} |G_n(k)|^8$$
+
+$$
+q(n) = \frac{1}{n} \sum_{k=0}^{n-1} |G_n(k)|^8
+$$
 
 ---
 
@@ -40,15 +50,24 @@ $$q(n) = \frac{1}{n} \sum_{k=0}^{n-1} |G_n(k)|^8$$
 
 #### Odd Primes $p > 2$:
 For $n = p^e$:
-$$q(p^e) = p^{7e} + (p - 1) p^{7e - 4} + (p - 1) \sum_{a=0}^{e-2} p^{4e + 3a - 1}$$
+
+$$
+q(p^e) = p^{7e} + (p - 1) p^{7e - 4} + (p - 1) \sum_{a=0}^{e-2} p^{4e + 3a - 1}
+$$
+
 - For $e = 1$: $q(p) = p^7 + p^4 - p^3$.
 - For $e = 2$: $q(p^2) = p^{14} + (p - 1) p^{10} + (p - 1) p^7$.
 
 #### Power of 2:
 For $p = 2$:
-$$q(2^1) = 128 = 2^7$$
 
-$$q(2^e) = 2^7 \cdot q(2^{e-1}) + 2^{4e + 3} \quad \text{for all } e \ge 2$$
+$$
+q(2^1) = 128 = 2^7
+$$
+
+$$
+q(2^e) = 2^7 \cdot q(2^{e-1}) + 2^{4e + 3} \quad \text{for all } e \ge 2
+$$
 
 ### Linear Sieve for $Q(N)$
 Using Euler's linear sieve, $q(n)$ is computed for all $n \le 12,345,678$ in $\mathcal{O}(N)$ total arithmetic operations.

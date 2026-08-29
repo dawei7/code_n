@@ -5,7 +5,10 @@
 In laser physics, a "white cell" is a mirror system that acts as a delay line for the laser beam. The beam enters the cell, bounces around on the mirrors, and eventually works its way back out.
 
 The specific white cell we will be considering is an ellipse with the equation:
-$$4x^2 + y^2 = 100$$
+
+$$
+4x^2 + y^2 = 100
+$$
 
 The section corresponding to $-0.01 \le x \le +0.01$ at the top ($y > 0$) is missing, allowing the light to enter and exit through the hole.
 
@@ -13,7 +16,10 @@ The light beam in this problem starts at the point $(0.0, 10.1)$ just outside th
 Each time the laser beam hits the surface of the ellipse, it follows the usual law of reflection: the angle of incidence equals the angle of reflection. Both the incident and reflected beams lie in the same plane as the normal to the tangent.
 
 The objective is to find **how many times the beam hits the internal surface of the white cell before exiting**:
-$$B = \text{number of internal reflections until } |x| \le 0.01 \text{ and } y > 0$$
+
+$$
+B = \text{number of internal reflections until } |x| \le 0.01 \text{ and } y > 0
+$$
 
 ---
 
@@ -30,17 +36,33 @@ def naive_laser_reflections():
 ### Exact Vector Reflection & Algebraic Intersection
 1. **Normal Vector to Ellipse:**
    For $f(x, y) = 4x^2 + y^2 - 100 = 0$, the outward normal vector at impact point $(x_1, y_1)$ is:
-   $$\nabla f = (8x_1, 2y_1) \parallel \mathbf{N} = \frac{(4x_1, y_1)}{\sqrt{16x_1^2 + y_1^2}}$$
+
+$$
+\nabla f = (8x_1, 2y_1) \parallel \mathbf{N} = \frac{(4x_1, y_1)}{\sqrt{16x_1^2 + y_1^2}}
+$$
+
 2. **Law of Reflection in Vector Form:**
    Let $\mathbf{V}$ be the unit incident vector from $(x_0, y_0)$ to $(x_1, y_1)$.
    The reflected unit direction vector $\mathbf{R} = (r_x, r_y)$ is:
-   $$\mathbf{R} = \mathbf{V} - 2(\mathbf{V} \cdot \mathbf{N})\mathbf{N}$$
+
+$$
+\mathbf{R} = \mathbf{V} - 2(\mathbf{V} \cdot \mathbf{N})\mathbf{N}
+$$
+
 3. **Exact Quadratic Intersection Parameter $t$:**
    The ray from $(x_1, y_1)$ in direction $\mathbf{R}$ is $(x_1 + t r_x, y_1 + t r_y)$.
    Substituting into $4x^2 + y^2 = 100$ and using $4x_1^2 + y_1^2 = 100$:
-   $$t \left( (4r_x^2 + r_y^2)t + 2(4x_1 r_x + y_1 r_y) \right) = 0$$
+
+$$
+t \left( (4r_x^2 + r_y^2)t + 2(4x_1 r_x + y_1 r_y) \right) = 0
+$$
+
    The non-zero root giving the next reflection point is:
-   $$t = -\frac{2(4x_1 r_x + y_1 r_y)}{4r_x^2 + r_y^2}$$
+
+$$
+t = -\frac{2(4x_1 r_x + y_1 r_y)}{4r_x^2 + r_y^2}
+$$
+
 4. Updating $(x_2, y_2) = (x_1 + t r_x, y_1 + t r_y)$ simulates each bounce in $\mathcal{O}(1)$ time without any trigonometric drift.
 
 ---
@@ -86,7 +108,10 @@ def naive_laser_reflections():
 
 ### Example 2: Target Evaluation
 - Iterating the reflection simulation until exiting at top hole:
-  $$B = \mathbf{354}$$
+
+$$
+B = \mathbf{354}
+$$
 
 ---
 

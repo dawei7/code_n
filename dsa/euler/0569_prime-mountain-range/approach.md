@@ -11,7 +11,10 @@ We are given:
 - $\sum_{k=1}^{100} P(k) = 227$
 
 We seek to evaluate:
-$$\sum_{k=1}^{2500000} P(k)$$
+
+$$
+\sum_{k=1}^{2500000} P(k)
+$$
 
 ---
 

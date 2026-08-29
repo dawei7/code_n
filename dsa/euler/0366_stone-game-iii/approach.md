@@ -9,10 +9,16 @@ Anton and Bernhard play **Fibonacci Nim** with a single pile of $n$ stones:
 
 Let $M(n)$ be the maximum number of stones the first player can take on the initial turn to guarantee a win ($M(n) = 0$ if $n$ is a losing/P-position).
 We are given:
-$$\sum_{n \le 100} M(n) = 728$$
+
+$$
+\sum_{n \le 100} M(n) = 728
+$$
 
 We seek to evaluate:
-$$S(10^{18}) = \sum_{n \le 10^{18}} M(n) \pmod{10^8}$$
+
+$$
+S(10^{18}) = \sum_{n \le 10^{18}} M(n) \pmod{10^8}
+$$
 
 ---
 
@@ -41,16 +47,26 @@ By Zeckendorf's Theorem:
 
 ### Closed-Form Piecewise Reduction Law
 For any $n = F_k + r \in (F_k, F_{k+1})$:
-$$M(F_k + r) = \begin{cases} r & \text{if } 1 \le r \le \lfloor \frac{F_k - 1}{2} \rfloor \\ M(r) & \text{if } \lfloor \frac{F_k - 1}{2} \rfloor < r < F_{k-1} \\ 0 & \text{if } r = 0 \text{ or } r = F_{k-1} \end{cases}$$
+
+$$
+M(F_k + r) = \begin{cases} r & \text{if } 1 \le r \le \lfloor \frac{F_k - 1}{2} \rfloor \\ M(r) & \text{if } \lfloor \frac{F_k - 1}{2} \rfloor < r < F_{k-1} \\ 0 & \text{if } r = 0 \text{ or } r = F_{k-1} \end{cases}
+$$
 
 ### Prefix Sum Recurrence $S(N) = \sum_{n=1}^N M(n)$
 Let $c_k = \lfloor \frac{F_k - 1}{2} \rfloor$. For $N = F_k + r$:
 1. **Partial Interval ($r > 0$)**:
    Let $m = \min(r, c_k)$. The arithmetic sum is $\sum_{j=1}^m j = \frac{m(m+1)}{2}$.
    If $r > c_k$, add $\sum_{j=c_k + 1}^r M(j) = S(r) - S(c_k)$:
-   $$S(F_k + r) = S(F_k) + \frac{m(m+1)}{2} + \left[ S(r) - S(c_k) \right] \cdot \mathbf{1}_{r > c_k}$$
+
+$$
+S(F_k + r) = S(F_k) + \frac{m(m+1)}{2} + \left[ S(r) - S(c_k) \right] \cdot \mathbf{1}_{r > c_k}
+$$
+
 2. **Full Fibonacci Boundary ($r = 0$)**:
-   $$S(F_k) = S(F_{k-1}) + \frac{c_{k-1}(c_{k-1} + 1)}{2} + S(F_{k-2}) - S(c_{k-1})$$
+
+$$
+S(F_k) = S(F_{k-1}) + \frac{c_{k-1}(c_{k-1} + 1)}{2} + S(F_{k-2}) - S(c_{k-1})
+$$
 
 Because each step reduces the index $n$ to a remainder $r < F_{k-1}$, the recursion depth is bounded by $\log_\phi(N) \approx 90$!
 

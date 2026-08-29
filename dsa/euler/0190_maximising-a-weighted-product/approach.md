@@ -3,13 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $S_m = (x_1, x_2, \dots, x_m)$ be the $m$-tuple of positive real numbers with $x_1 + x_2 + \dots + x_m = m$ for which:
-$$P_m = \prod_{i=1}^m x_i^i = x_1^1 \cdot x_2^2 \cdot x_3^3 \dots x_m^m$$
+
+$$
+P_m = \prod_{i=1}^m x_i^i = x_1^1 \cdot x_2^2 \cdot x_3^3 \dots x_m^m
+$$
+
 is maximised.
 
 For example, it can be verified that $[P_{10}] = 4119$ (where $[x]$ denotes the integer part / floor of $x$).
 
 The objective is to find **$\sum_{m=2}^{15} [P_m]$**:
-$$S_{\text{product}} = \sum_{m=2}^{15} \lfloor P_m \rfloor$$
+
+$$
+S_{\text{product}} = \sum_{m=2}^{15} \lfloor P_m \rfloor
+$$
 
 ---
 
@@ -25,17 +32,41 @@ def naive_weighted_product():
 
 ### Exact Lagrange Multiplier Optimization
 1. **The Optimization Problem:**
-   $$\text{Maximize } \ln P_m = \sum_{i=1}^m i \ln x_i \quad \text{subject to } \sum_{i=1}^m x_i = m$$
+
+$$
+\text{Maximize } \ln P_m = \sum_{i=1}^m i \ln x_i \quad \text{subject to } \sum_{i=1}^m x_i = m
+$$
+
 2. **Lagrangian Formulation:**
-   $$\mathcal{L}(x_1, \dots, x_m, \lambda) = \sum_{i=1}^m i \ln x_i - \lambda \left( \sum_{i=1}^m x_i - m \right)$$
+
+$$
+\mathcal{L}(x_1, \dots, x_m, \lambda) = \sum_{i=1}^m i \ln x_i - \lambda \left( \sum_{i=1}^m x_i - m \right)
+$$
+
    Taking partial derivatives:
-   $$\frac{\partial \mathcal{L}}{\partial x_i} = \frac{i}{x_i} - \lambda = 0 \implies \mathbf{x_i = \frac{i}{\lambda}}$$
+
+$$
+\frac{\partial \mathcal{L}}{\partial x_i} = \frac{i}{x_i} - \lambda = 0 \implies \mathbf{x_i = \frac{i}{\lambda}}
+$$
+
 3. **Solving for $\lambda$:**
-   $$\sum_{i=1}^m x_i = \frac{1}{\lambda} \sum_{i=1}^m i = \frac{m(m + 1)}{2\lambda} = m \implies \mathbf{\lambda = \frac{m + 1}{2}}$$
+
+$$
+\sum_{i=1}^m x_i = \frac{1}{\lambda} \sum_{i=1}^m i = \frac{m(m + 1)}{2\lambda} = m \implies \mathbf{\lambda = \frac{m + 1}{2}}
+$$
+
 4. **Closed-Form Optimal Coordinates:**
-   $$x_i^* = \frac{2i}{m + 1} \quad \text{for } 1 \le i \le m$$
+
+$$
+x_i^* = \frac{2i}{m + 1} \quad \text{for } 1 \le i \le m
+$$
+
 5. **Exact Maximum Product:**
-   $$P_m = \prod_{i=1}^m \left( \frac{2i}{m + 1} \right)^i$$
+
+$$
+P_m = \prod_{i=1}^m \left( \frac{2i}{m + 1} \right)^i
+$$
+
    Evaluating $m = 2 \dots 15$ runs in $\approx 0.0001$ seconds.
 
 ---
@@ -74,7 +105,10 @@ def solve(min_m: int = 2, max_m: int = 15) -> int:
     return sum(math.floor(P(m)) for m in range(min_m, max_m + 1))
 ```
 Evaluating $\sum_{m=2}^{15} \lfloor P_m \rfloor$:
-$$S_{\text{product}} = \mathbf{371\,048\,281}$$
+
+$$
+S_{\text{product}} = \mathbf{371\,048\,281}
+$$
 
 ---
 
@@ -83,13 +117,20 @@ $$S_{\text{product}} = \mathbf{371\,048\,281}$$
 ### Example 1: Sample Verification for $m = 10$
 - Optimal coordinates $x_i = \frac{2i}{11}$ for $i = 1 \dots 10$.
 - Product:
-  $$P_{10} = \prod_{i=1}^{10} \left(\frac{2i}{11}\right)^i = \frac{2^{55} \cdot \prod_{i=1}^{10} i^i}{11^{55}} \approx 4119.578627\dots$$
+
+$$
+P_{10} = \prod_{i=1}^{10} \left(\frac{2i}{11}\right)^i = \frac{2^{55} \cdot \prod_{i=1}^{10} i^i}{11^{55}} \approx 4119.578627\dots
+$$
+
 - Floor value: $\lfloor P_{10} \rfloor = \mathbf{4119}$.
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Sum for $2 \le m \le 15$
 - Summing over all dimensions:
-  $$S_{\text{product}} = \mathbf{371\,048\,281}$$
+
+$$
+S_{\text{product}} = \mathbf{371\,048\,281}
+$$
 
 ---
 

@@ -13,7 +13,10 @@ We are given:
 - $F(10) \approx 2.5579365079$
 
 We seek to evaluate:
-$$F(10^6) \text{ rounded to } 10 \text{ decimal places}$$
+
+$$
+F(10^6) \text{ rounded to } 10 \text{ decimal places}
+$$
 
 ---
 
@@ -30,7 +33,11 @@ Conditioning on specific subsets of drawn cards leads to $\binom{n}{k}$ subsets,
 1. **Exchangeability**:
    Any subset of $k$ drawn cards from $\{1, \dots, n\}$ is uniformly distributed.
    If the current card is the $j$-th smallest among the $k$ drawn cards ($j = k - r$), its conditional expected true value is:
-   $$\mathbb{E}[X_{(j)}] = j \cdot \frac{n + 1}{k + 1}$$
+
+$$
+\mathbb{E}[X_{(j)}] = j \cdot \frac{n + 1}{k + 1}
+$$
+
 2. **Optimal Stopping Threshold**:
    At step $k$, Alice compares the expected payoff of stopping $j \cdot \frac{n+1}{k+1}$ against the future expected continuation score $E_k$.
    She stops whenever $j \cdot \frac{n+1}{k+1} \le E_k$, which defines a simple integer cutoff $j^* = \min\left( k, \left\lfloor \frac{E_k}{\text{scale}} \right\rfloor \right)$.
@@ -42,11 +49,19 @@ Conditioning on specific subsets of drawn cards leads to $\binom{n}{k}$ subsets,
 ### Backward Induction DP in $O(n)$ Steps
 1. **Recurrence Relation**:
    At the final card (step $n$), Alice must accept the average value:
-   $$E_{n-1} = \frac{n + 1}{2}$$
+
+$$
+E_{n-1} = \frac{n + 1}{2}
+$$
+
 2. **Backward Stepping**:
    For $k = n - 1$ down to $1$:
    Let $\text{scale} = \frac{n + 1}{k + 1}$ and $j^* = \min\left( k, \lfloor E_k / \text{scale} \rfloor \right)$.
-   $$E_{k-1} = \frac{1}{k} \left( \text{scale} \cdot \frac{j^*(j^* + 1)}{2} + (k - j^*) E_k \right)$$
+
+$$
+E_{k-1} = \frac{1}{k} \left( \text{scale} \cdot \frac{j^*(j^* + 1)}{2} + (k - j^*) E_k \right)
+$$
+
 3. **Linear Scan**:
    Each backward step is evaluated in $O(1)$ arithmetic operations, processing $n = 10^6$ in $0.17$ seconds!
 

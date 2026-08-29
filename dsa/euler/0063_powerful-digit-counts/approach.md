@@ -7,7 +7,10 @@ The 5-digit number $16\,807 = 7^5$ is also a fifth power. Similarly, the 9-digit
 Let $L(x) = \lfloor \log_{10} x \rfloor + 1$ denote the number of decimal digits of positive integer $x$.
 
 The objective is to find how many $n$-digit positive integers exist which are also an $n$-th power:
-$$N_{\text{powers}} = \left| \left\{ (a, n) \in \mathbb{N}^2 \;\middle|\; L(a^n) = n \right\} \right|$$
+
+$$
+N_{\text{powers}} = \left| \left\{ (a, n) \in \mathbb{N}^2 \;\middle|\; L(a^n) = n \right\} \right|
+$$
 
 ---
 
@@ -24,9 +27,16 @@ def naive_powerful_digit_counts():
 ### Analytical Bounds on Base and Exponent
 1. **Base Constraint $a \le 9$:** If $a \ge 10$, then $a^n \ge 10^n$, which contains at least $n + 1$ digits for all $n \ge 1$. Therefore, the base MUST satisfy $1 \le a \le 9$.
 2. **Exponent Constraint $n \le \lfloor \frac{1}{1 - \log_{10} a} \rfloor$:**
-   $$10^{n-1} \le a^n < 10^n \implies n - 1 \le n \log_{10} a \implies n(1 - \log_{10} a) \le 1 \implies n \le \frac{1}{1 - \log_{10} a}$$
+
+$$
+10^{n-1} \le a^n < 10^n \implies n - 1 \le n \log_{10} a \implies n(1 - \log_{10} a) \le 1 \implies n \le \frac{1}{1 - \log_{10} a}
+$$
+
    For $a = 9$:
-   $$n \le \frac{1}{1 - \log_{10} 9} \approx \frac{1}{1 - 0.95424} = \frac{1}{0.04576} \approx 21.85 \implies n \le 21$$
+
+$$
+n \le \frac{1}{1 - \log_{10} 9} \approx \frac{1}{1 - 0.95424} = \frac{1}{0.04576} \approx 21.85 \implies n \le 21
+$$
 
 ---
 
@@ -52,9 +62,14 @@ def naive_powerful_digit_counts():
 
 ### Closed-Form Analytical Sum
 Summing the maximum exponents across all 9 possible bases:
-$$N_{\text{powers}} = \sum_{a=1}^9 \left\lfloor \frac{1}{1 - \log_{10} a} \right\rfloor$$
 
-$$N_{\text{powers}} = 1 + 1 + 1 + 2 + 3 + 4 + 6 + 10 + 21 = \mathbf{49}$$
+$$
+N_{\text{powers}} = \sum_{a=1}^9 \left\lfloor \frac{1}{1 - \log_{10} a} \right\rfloor
+$$
+
+$$
+N_{\text{powers}} = 1 + 1 + 1 + 2 + 3 + 4 + 6 + 10 + 21 = \mathbf{49}
+$$
 
 Evaluating this directly via integer length loops takes $< 0.0001$ seconds.
 
@@ -78,7 +93,10 @@ Evaluating this directly via integer length loops takes $< 0.0001$ seconds.
 - Base 8: $8^1 \dots 8^{10} \implies 10$
 - Base 9: $9^1 \dots 9^{21} \implies 21$
 - Total count:
-  $$N_{\text{powers}} = 1 + 1 + 1 + 2 + 3 + 4 + 6 + 10 + 21 = \mathbf{49}$$
+
+$$
+N_{\text{powers}} = 1 + 1 + 1 + 2 + 3 + 4 + 6 + 10 + 21 = \mathbf{49}
+$$
 
 ---
 

@@ -10,7 +10,10 @@ We are given:
 - Sum of all $n$ with $s(n) = 8$ is $412$.
 
 We seek to evaluate:
-$$\sum_{n: s(n) = 60} n$$
+
+$$
+\sum_{n: s(n) = 60} n
+$$
 
 ---
 
@@ -26,7 +29,11 @@ Testing individual deck sizes $n$ by tracking permutations requires checking up 
 ### Multiplicative Order in Modular Arithmetic
 1. **Permutation Orbit Condition**:
    A deck of size $n$ returns to original order after $k$ shuffles if and only if:
-   $$2^k \equiv 1 \pmod{n-1}$$
+
+$$
+2^k \equiv 1 \pmod{n-1}
+$$
+
 2. **Exact Multiplicative Order**:
    $s(n) = k \iff \operatorname{ord}_{n-1}(2) = k$.
    Let $m = n - 1$.

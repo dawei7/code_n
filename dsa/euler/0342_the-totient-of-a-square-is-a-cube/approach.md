@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For $n = \prod_{i=1}^m p_i^{e_i}$, the totient of its square is given by Euler's totient formula:
-$$\phi(n^2) = \prod_{i=1}^m (p_i - 1) p_i^{2e_i - 1}$$
+
+$$
+\phi(n^2) = \prod_{i=1}^m (p_i - 1) p_i^{2e_i - 1}
+$$
+
 We seek the sum of all integers $n$ with $1 < n < 10^{10}$ such that $\phi(n^2)$ is an **exact integer cube** (i.e. $\nu_q(\phi(n^2)) \equiv 0 \pmod 3$ for all primes $q$).
 
 ---
@@ -23,10 +27,18 @@ Let $P$ be the largest prime factor of $n$:
 1. The factor $P - 1$ and all other factors $(p_i - 1)$ have only prime factors strictly less than $P$.
 2. Therefore, no prime factor $q \ge P$ can arise from any $(p_i - 1)$.
 3. Consequently, the $P$-adic valuation of $\phi(n^2)$ comes solely from $P^{2e_P - 1}$:
-   $$\nu_P(\phi(n^2)) = 2e_P - 1 \equiv 0 \pmod 3$$
+
+$$
+\nu_P(\phi(n^2)) = 2e_P - 1 \equiv 0 \pmod 3
+$$
+
 4. Since $2e_P - 1 \equiv 0 \pmod 3 \implies 2e_P \equiv 1 \equiv 4 \pmod 3 \implies e_P \equiv 2 \pmod 3$.
 5. In particular, $e_P \ge 2$, which implies:
-   $$n \ge P^2 \implies P \le \sqrt{n} < \sqrt{10^{10}} = 100\,000$$
+
+$$
+n \ge P^2 \implies P \le \sqrt{n} < \sqrt{10^{10}} = 100\,000
+$$
+
 **Every prime factor of $n$ must be strictly $\le 100\,000$!** (Only 9592 primes).
 
 ---
@@ -38,7 +50,11 @@ Let $P$ be the largest prime factor of $n$:
 2. Search prime factors from the largest prime downwards:
    - Maintain a running dictionary of prime valuations modulo 3.
    - For prime $p_i$, if its current required exponent in $\phi(n^2)$ is $v \pmod 3$, then its exponent $e_i$ in $n$ is **uniquely determined modulo 3** by:
-     $$2e_i - 1 + v \equiv 0 \pmod 3 \implies 2e_i \equiv 1 - v \pmod 3$$
+
+$$
+2e_i - 1 + v \equiv 0 \pmod 3 \implies 2e_i \equiv 1 - v \pmod 3
+$$
+
    - If any prime $q > p_i$ currently has exponent $\not\equiv 0 \pmod 3$, the branch is immediately pruned!
 3. Using in-place array/dictionary mutation with backtracking searches the entire state space of $n < 10^{10}$ in under $39$ seconds in pure Python!
 

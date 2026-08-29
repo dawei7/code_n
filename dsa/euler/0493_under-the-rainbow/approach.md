@@ -5,7 +5,10 @@
 An urn contains $70$ balls, consisting of $10$ balls for each of the $7$ rainbow colors.
 $20$ balls are drawn uniformly at random without replacement.
 We seek to evaluate:
-$$\mathbb{E}[\text{distinct colors in 20 drawn balls}] \text{ rounded to } 9 \text{ decimal places}$$
+
+$$
+\mathbb{E}[\text{distinct colors in 20 drawn balls}] \text{ rounded to } 9 \text{ decimal places}
+$$
 
 ---
 
@@ -21,9 +24,16 @@ The number of compositions of $20$ balls across $7$ colors is $\binom{20+7-1}{7-
 ### Linearity of Expectation
 1. **Indicator Random Variables**:
    Let $I_c$ be the indicator variable that color $c \in \{1, \dots, 7\}$ appears at least once among the 20 drawn balls.
-   $$I_c = \begin{cases} 1 & \text{if color } c \text{ is selected} \\ 0 & \text{otherwise} \end{cases}$$
+
+$$
+I_c = \begin{cases} 1 & \text{if color } c \text{ is selected} \\ 0 & \text{otherwise} \end{cases}
+$$
+
 2. **Total Colors**:
-   $$X = \sum_{c=1}^7 I_c \implies \mathbb{E}[X] = \sum_{c=1}^7 \mathbb{E}[I_c] = 7 \cdot \mathbb{P}(\text{color } c \text{ is present})$$
+
+$$
+X = \sum_{c=1}^7 I_c \implies \mathbb{E}[X] = \sum_{c=1}^7 \mathbb{E}[I_c] = 7 \cdot \mathbb{P}(\text{color } c \text{ is present})
+$$
 
 ---
 
@@ -32,11 +42,22 @@ The number of compositions of $20$ balls across $7$ colors is $\binom{20+7-1}{7-
 ### Complementary Hypergeometric Probability
 1. **Absence Probability**:
    Color $c$ is absent from the sample if and only if all $20$ balls are chosen from the remaining $70 - 10 = 60$ balls:
-   $$\mathbb{P}(\text{color } c \text{ is absent}) = \frac{\binom{60}{20}}{\binom{70}{20}}$$
+
+$$
+\mathbb{P}(\text{color } c \text{ is absent}) = \frac{\binom{60}{20}}{\binom{70}{20}}
+$$
+
 2. **Exact Expected Value**:
-   $$\mathbb{E}[X] = 7 \cdot \left( 1 - \frac{\binom{60}{20}}{\binom{70}{20}} \right)$$
+
+$$
+\mathbb{E}[X] = 7 \cdot \left( 1 - \frac{\binom{60}{20}}{\binom{70}{20}} \right)
+$$
+
    Evaluating this algebraic fraction yields:
-   $$\mathbb{E}[X] \approx 6.818741802$$
+
+$$
+\mathbb{E}[X] \approx 6.818741802
+$$
 
 This evaluates in **$0.0001$ seconds**!
 

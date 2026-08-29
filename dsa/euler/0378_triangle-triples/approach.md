@@ -5,7 +5,10 @@
 Let $T(n) = \frac{n(n+1)}{2}$ denote the $n$-th triangular number.
 Let $dT(n) = d(T(n))$ be the number of positive divisors of $T(n)$.
 We seek the number of index triples $(i, j, k)$ such that:
-$$1 \le i < j < k \le N \quad \text{and} \quad dT(i) > dT(j) > dT(k)$$
+
+$$
+1 \le i < j < k \le N \quad \text{and} \quad dT(i) > dT(j) > dT(k)
+$$
 
 We are given:
 - $Tr(20) = 14$
@@ -13,7 +16,10 @@ We are given:
 - $Tr(1000) = 11174776$
 
 We seek the last $18$ digits of:
-$$Tr(60\,000\,000)$$
+
+$$
+Tr(60\,000\,000)
+$$
 
 ---
 
@@ -29,7 +35,11 @@ Even an $O(N^2)$ algorithm checking pairs is far too slow for $N = 6 \times 10^7
 
 ### Divisor Function Multiplicativity on Coprime Factors
 Since $\gcd(n, n+1) = 1$:
-$$dT(n) = \begin{cases} d(n/2) \cdot d(n+1) & \text{if } n \text{ is even} \\ d(n) \cdot d((n+1)/2) & \text{if } n \text{ is odd} \end{cases}$$
+
+$$
+dT(n) = \begin{cases} d(n/2) \cdot d(n+1) & \text{if } n \text{ is even} \\ d(n) \cdot d((n+1)/2) & \text{if } n \text{ is odd} \end{cases}
+$$
+
 The values $dT(n)$ for $n \le 6 \times 10^7$ never exceed $\approx 1500$, providing a very small bounded value domain $[1, \text{max\_val}]$.
 
 ### Inversion of Length 3 via Middle-Element Counting
@@ -37,7 +47,10 @@ For any middle element at index $j$:
 - Let $L(j) = |\{i < j : dT(i) > dT(j)\}|$ be the count of strictly greater elements to the left.
 - Let $R(j) = |\{k > j : dT(k) < dT(j)\}|$ be the count of strictly smaller elements to the right.
 The total number of decreasing triples is:
-$$Tr(N) = \sum_{j=1}^N L(j) \cdot R(j)$$
+
+$$
+Tr(N) = \sum_{j=1}^N L(j) \cdot R(j)
+$$
 
 ---
 

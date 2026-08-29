@@ -27,10 +27,17 @@ A naive approach computes the Sprague-Grundy value for all triplets $(a, b, c)$ 
 ### The Sprague-Grundy Theorem for Impartial Games
 By the Sprague-Grundy theorem:
 - An impartial game on independent heaps decomposes into the bitwise XOR sum of the individual heap Grundy values:
-  $$g(a, b, c) = g(a) \oplus g(b) \oplus g(c)$$
+
+$$
+g(a, b, c) = g(a) \oplus g(b) \oplus g(c)
+$$
+
 - A position is a losing position if and only if $g(a) \oplus g(b) \oplus g(c) = 0$.
 - For a single heap of size $x$, its Grundy value is given by:
-  $$g(x) = \text{mex}\{ g(x - k^2) : 1 \le k \le \lfloor \sqrt{x} \rfloor \}$$
+
+$$
+g(x) = \text{mex}\{ g(x - k^2) : 1 \le k \le \lfloor \sqrt{x} \rfloor \}
+$$
 
 ---
 

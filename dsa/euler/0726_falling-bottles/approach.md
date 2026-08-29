@@ -18,7 +18,10 @@ We are given:
 - $f(3) = 1008$
 
 We seek to evaluate:
-$$S(10^4) \bmod 1\,000\,000\,033$$
+
+$$
+S(10^4) \bmod 1\,000\,000\,033
+$$
 
 ---
 
@@ -34,7 +37,11 @@ For $n = 10^4$, $N_n \approx 5 \times 10^7$ bottles. Simulating the branching pa
 ### Bijection to Young Tableaux and Mersenne-Odd Factorization
 1. **Combinatorial Product Form**:
    By analyzing the poset structure and hook-length / determinantal formula for triangular grid collapses:
-   $$f(n) = N_n! \prod_{i=1}^n \prod_{j=1}^i \frac{2^j - 1}{2j - 1}$$
+
+$$
+f(n) = N_n! \prod_{i=1}^n \prod_{j=1}^i \frac{2^j - 1}{2j - 1}
+$$
+
 2. **Incremental Factorization**:
    The transition from layer $k-1$ to layer $k$ multiplies by:
    - The consecutive integers from $N_{k-1} + 1$ to $N_k$
@@ -49,7 +56,11 @@ For $n = 10^4$, $N_n \approx 5 \times 10^7$ bottles. Simulating the branching pa
 1. **Incremental Multiplicative Updates**:
    Let $\text{mers\_prefix}_k = \text{mers\_prefix}_{k-1} \cdot (2^k - 1) \bmod \text{MOD}$.
    Let $\text{odd\_inv\_prefix}_k = \text{odd\_inv\_prefix}_{k-1} \cdot (2k - 1)^{-1} \bmod \text{MOD}$.
-   $$f(k) = f(k - 1) \cdot \left( \prod_{x=N_{k-1}+1}^{N_k} x \right) \cdot \text{mers\_prefix}_k \cdot \text{odd\_inv\_prefix}_k \pmod{\text{MOD}}$$
+
+$$
+f(k) = f(k - 1) \cdot \left( \prod_{x=N_{k-1}+1}^{N_k} x \right) \cdot \text{mers\_prefix}_k \cdot \text{odd\_inv\_prefix}_k \pmod{\text{MOD}}
+$$
+
 2. **Execution Performance**:
    For $n = 10^4$, evaluating all terms takes **$\approx 0.45$ seconds** in compiled C!
 

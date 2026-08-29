@@ -26,7 +26,11 @@ $S(10^{18})$ contains $n = 1111$ elements. Counting topological sorts of a gener
 
 ### Poset Isomorphism to Young Diagrams
 The divisibility poset on $S(N)$:
-$$2^{a_1} 3^{b_1} \mid 2^{a_2} 3^{b_2} \iff a_1 \le a_2 \text{ and } b_1 \le b_2$$
+
+$$
+2^{a_1} 3^{b_1} \mid 2^{a_2} 3^{b_2} \iff a_1 \le a_2 \text{ and } b_1 \le b_2
+$$
+
 is isomorphic to the grid poset of cells $(a, b) \in \mathbb{N}_0^2$ satisfying $2^a 3^b \le N$.
 Because the condition $2^a 3^b \le N$ is monotonic downward and leftward, the set of cells forms a **Young diagram** (Ferrers shape) $\lambda$!
 A valid permutation is precisely a **standard Young tableau** of shape $\lambda$.
@@ -37,11 +41,19 @@ A valid permutation is precisely a **standard Young tableau** of shape $\lambda$
 
 ### Frame-Robinson-Thrall Hook Length Formula
 By the classical **Hook Length Formula**:
-$$F(N) = f^\lambda = \frac{n!}{\prod_{(a, b) \in \lambda} h(a, b)}$$
+
+$$
+F(N) = f^\lambda = \frac{n!}{\prod_{(a, b) \in \lambda} h(a, b)}
+$$
+
 where:
 - $n = |\lambda| = |S(N)|$ is the total number of 3-smooth numbers $\le N$.
 - The hook length of cell $(a, b)$ is:
-  $$h(a, b) = (\lambda_a - b) + (\lambda'_b - a) - 1$$
+
+$$
+h(a, b) = (\lambda_a - b) + (\lambda'_b - a) - 1
+$$
+
   with $\lambda_a$ being the length of row $a$ and $\lambda'_b$ the length of column $b$.
 
 For $N = 10^{18}$, $n = 1111$ cells, computing $n! / \prod h(a, b)$ is exact and takes **0.0001 seconds**!

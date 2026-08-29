@@ -3,11 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For any non-square integer $N \in \mathbb{N}$, the continued fraction expansion of $\sqrt{N}$ is periodic:
-$$\sqrt{N} = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\dots}}} = [a_0; (a_1, a_2, \dots, a_r)^{\infty}]$$
+
+$$
+\sqrt{N} = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\dots}}} = [a_0; (a_1, a_2, \dots, a_r)^{\infty}]
+$$
+
 where $a_0 = \lfloor \sqrt{N} \rfloor$ and $(a_1, \dots, a_r)$ is the repeating period block of length $r(N)$.
 
 The objective is to find how many continued fraction expansions for $N \le 10\,000$ have an **odd period length** $r(N)$:
-$$N_{\text{odd}} = \sum_{\substack{1 \le N \le 10000 \\ \lfloor \sqrt{N} \rfloor^2 \neq N}} \mathbb{I}\left( r(N) \equiv 1 \pmod 2 \right)$$
+
+$$
+\begin{aligned}
+N_{\text{odd}} = \sum_{\substack{1 \le N \le 10000 \\ \lfloor \sqrt{N} \rfloor^2 \neq N}} \mathbb{I}\left( r(N) \equiv 1 \pmod 2 \right)
+\end{aligned}
+$$
 
 ---
 
@@ -25,9 +34,19 @@ def naive_period(n):
 By maintaining the exact irrational form $\frac{\sqrt{N} + m_k}{d_k}$:
 1. **Initial State:** $m_0 = 0, \, d_0 = 1, \, a_0 = \lfloor \sqrt{N} \rfloor$.
 2. **Transition Equations:**
-   $$m_{k+1} = d_k a_k - m_k$$
-   $$d_{k+1} = \frac{N - m_{k+1}^2}{d_k}$$
-   $$a_{k+1} = \left\lfloor \frac{a_0 + m_{k+1}}{d_{k+1}} \right\rfloor$$
+
+$$
+m_{k+1} = d_k a_k - m_k
+$$
+
+$$
+d_{k+1} = \frac{N - m_{k+1}^2}{d_k}
+$$
+
+$$
+a_{k+1} = \left\lfloor \frac{a_0 + m_{k+1}}{d_{k+1}} \right\rfloor
+$$
+
 3. **Period Closure Theorem:** The period repeats as soon as $a_k = 2 a_0$.
 
 ---
@@ -82,7 +101,10 @@ By maintaining the exact irrational form $\frac{\sqrt{N} + m_k}{d_k}$:
 
 ### Example 2: Target Evaluation for $N \le 10\,000$
 - Testing all non-squares up to $10\,000$:
-  $$N_{\text{odd}} = \mathbf{1322}$$
+
+$$
+N_{\text{odd}} = \mathbf{1322}
+$$
 
 ---
 

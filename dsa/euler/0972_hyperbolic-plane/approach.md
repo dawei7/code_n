@@ -27,9 +27,16 @@ Find $T(12)$.
 
 ### Conformal Geometry and Dual Hyperbolic Lines
 In the Poincaré disc, all geodesics (both straight lines through origin and orthogonal circles) satisfy the single unified linear equation:
-$$A(x^2 + y^2 + 1) + B x + C y = 0$$
+
+$$
+A(x^2 + y^2 + 1) + B x + C y = 0
+$$
+
 Mapping each point $(x, y)$ to the 3D embedding $\mathbf{v} = (x^2 + y^2 + 1, x, y)$, three points are collinear in hyperbolic space if and only if:
-$$\det[\mathbf{v}_P, \mathbf{v}_Q, \mathbf{v}_R] = 0$$
+
+$$
+\det[\mathbf{v}_P, \mathbf{v}_Q, \mathbf{v}_R] = 0
+$$
 
 ---
 

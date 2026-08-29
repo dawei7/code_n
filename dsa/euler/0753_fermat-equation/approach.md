@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a prime $p$, let $F(p)$ be the number of positive integer solutions $(a, b, c)$ with $1 \le a, b, c < p$ to the cubic Fermat congruence:
-$$a^3 + b^3 \equiv c^3 \pmod p$$
+
+$$
+a^3 + b^3 \equiv c^3 \pmod p
+$$
 
 We are given:
 - $F(5) = 12$
 - $F(7) = 0$
 
 We seek to evaluate:
-$$\sum_{p < 6\,000\,000} F(p)$$
+
+$$
+\sum_{p < 6\,000\,000} F(p)
+$$
 
 ---
 
@@ -32,12 +38,19 @@ Checking all triples $(a, b, c) \in (\mathbb{F}_p^\times)^3$ requires $O(p^2)$ o
    - Hence $F(p) = (p - 1)(p - 2)$!
 2. **Case $p \equiv 1 \pmod 3$ (Fermat's Cubic Curve & CM Elliptic Curve)**:
    The projective curve $X^3 + Y^3 = Z^3$ over $\mathbb{F}_p$ has CM (complex multiplication) and order:
-   $$\#E(\mathbb{F}_p) = p + 1 - a_p$$
+
+$$
+\#E(\mathbb{F}_p) = p + 1 - a_p
+$$
+
    where $4p = u^2 + 27v^2$ with $u \equiv 2 \pmod 3$ fixing the sign of $a_p = \pm u$.
 3. **Non-zero Projective & Affine Count**:
    The curve has 9 points on the coordinate axes ($XYZ = 0$).
    The number of non-zero affine solutions is:
-   $$F(p) = (p - 1)(\#E(\mathbb{F}_p) - 9) = (p - 1)(p - a_p - 8)$$
+
+$$
+F(p) = (p - 1)(\#E(\mathbb{F}_p) - 9) = (p - 1)(p - a_p - 8)
+$$
 
 ---
 

@@ -10,7 +10,11 @@ Each card is represented by a pair $(\text{rank}, \text{suit})$ where:
 The dataset `poker.txt` contains 1000 pairs of hands dealt to Player 1 and Player 2.
 
 The objective is to determine the total number of hands won by Player 1:
-$$W_1 = \sum_{i=1}^{1000} \mathbb{I}\left( E(H_1^{(i)}) >_{\text{lex}} E(H_2^{(i)}) \right)$$
+
+$$
+W_1 = \sum_{i=1}^{1000} \mathbb{I}\left( E(H_1^{(i)}) >_{\text{lex}} E(H_2^{(i)}) \right)
+$$
+
 where $E(H)$ is a total order evaluator mapping a 5-card hand $H$ to a lexicographically comparable tuple.
 
 ---
@@ -25,7 +29,11 @@ A naive algorithm creates nested `if-else` branches for each hand category and m
 
 ### The Lexicographical Evaluation Tuple Standard
 1. Map every poker hand to a tuple:
-   $$E(H) = (\text{category\_rank}, \text{primary\_tie\_breaker}, \text{secondary\_tie\_breaker}, \dots)$$
+
+$$
+E(H) = (\text{category\_rank}, \text{primary\_tie\_breaker}, \text{secondary\_tie\_breaker}, \dots)
+$$
+
 2. Python's built-in tuple comparison (`tuple_1 > tuple_2`) automatically implements exact lexicographical ordering, resolving hand ties and kickers cleanly in $\mathcal{O}(1)$ time.
 
 ---
@@ -74,7 +82,10 @@ A naive algorithm creates nested `if-else` branches for each hand category and m
 
 ### Example 2: Target Evaluation for 1000 Deals
 - Evaluating all 1000 deals in `poker.txt`:
-  $$W_1 = \mathbf{376}$$
+
+$$
+W_1 = \mathbf{376}
+$$
 
 ---
 

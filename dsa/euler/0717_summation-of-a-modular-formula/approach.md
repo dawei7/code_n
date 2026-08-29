@@ -3,11 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an odd prime $p$, define:
-$$f(p) = \left\lfloor \frac{2^{2^p}}{p} \right\rfloor \bmod 2^p$$
 
-$$g(p) = f(p) \bmod p$$
+$$
+f(p) = \left\lfloor \frac{2^{2^p}}{p} \right\rfloor \bmod 2^p
+$$
 
-$$G(N) = \sum_{3 \le p < N, p \text{ prime}} g(p)$$
+$$
+g(p) = f(p) \bmod p
+$$
+
+$$
+G(N) = \sum_{3 \le p < N, p \text{ prime}} g(p)
+$$
 
 We are given:
 - $g(3) = 2$
@@ -16,7 +23,10 @@ We are given:
 - $G(10^4) = 2819236$
 
 We seek to evaluate:
-$$G(10^7)$$
+
+$$
+G(10^7)
+$$
 
 ---
 
@@ -38,7 +48,11 @@ For $p = 10^7$, $2^p = 2^{10^7}$, and $2^{2^p} = 2^{2^{10^7}}$ has more than $10
    Let $X = \frac{k 2^p - r}{p}$ where $k = (r \cdot 2^{-1} \bmod p) = \begin{cases} (r + p)/2 & \text{if } r \text{ is odd} \\ r/2 & \text{if } r \text{ is even} \end{cases}$.
 3. **Fermat Quotient Expression**:
    Expanding $X \bmod p$:
-   $$g(p) = \left( [r \text{ is odd}] + k \cdot \frac{2^p - 2}{p} \right) \bmod p$$
+
+$$
+g(p) = \left( [r \text{ is odd}] + k \cdot \frac{2^p - 2}{p} \right) \bmod p
+$$
+
    where $q_p(2) = \frac{2^{p-1} - 1}{p} \bmod p$ is the **Fermat quotient** evaluated via `pow(2, p - 1, p^2)`!
 
 ---

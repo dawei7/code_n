@@ -6,7 +6,10 @@ A segment is uniquely defined by its two endpoints.
 Let two line segments be $L_1$ with endpoints $(x_1, y_1)$ and $(x_2, y_2)$, and $L_2$ with endpoints $(x_3, y_3)$ and $(x_4, y_4)$.
 
 An intersection point between two segments is called a **"true intersection point"** if it is strictly in the interior of both segments (it is not an endpoint of either segment):
-$$P = P_1 + u(P_2 - P_1) = P_3 + v(P_4 - P_3) \quad \text{with } 0 < u < 1 \text{ and } 0 < v < 1$$
+
+$$
+P = P_1 + u(P_2 - P_1) = P_3 + v(P_4 - P_3) \quad \text{with } 0 < u < 1 \text{ and } 0 < v < 1
+$$
 
 A set of $5000$ line segments is generated using the **Blum Blum Shub (BBS)** pseudo-random number generator:
 - $s_0 = 290797$
@@ -15,7 +18,10 @@ A set of $5000$ line segments is generated using the **Blum Blum Shub (BBS)** ps
 Each segment is formed by four consecutive pseudo-random numbers $(t_1, t_2, t_3, t_4)$.
 
 The objective is to find the **number of distinct true intersection points found among the $5000$ line segments**:
-$$N_{\text{distinct}} = \left| \bigcup_{1 \le i < j \le 5000} \left( \operatorname{interior}(L_i) \cap \operatorname{interior}(L_j) \right) \right|$$
+
+$$
+N_{\text{distinct}} = \left| \bigcup_{1 \le i < j \le 5000} \left( \operatorname{interior}(L_i) \cap \operatorname{interior}(L_j) \right) \right|
+$$
 
 ---
 
@@ -32,16 +38,31 @@ def naive_intersections():
 ### Exact Determinants & Canonical Rational Coordinates
 1. **2D Vector Cross Product Determinant:**
    Let $\mathbf{d}_1 = (x_2 - x_1, y_2 - y_1)$ and $\mathbf{d}_2 = (x_4 - x_3, y_4 - y_3)$.
-   $$\text{det} = \mathbf{d}_1 \times \mathbf{d}_2 = \Delta x_1 \Delta y_2 - \Delta y_1 \Delta x_2$$
+
+$$
+\text{det} = \mathbf{d}_1 \times \mathbf{d}_2 = \Delta x_1 \Delta y_2 - \Delta y_1 \Delta x_2
+$$
+
    - If $\text{det} = 0$: the segments are parallel or collinear $\implies$ no unique single intersection point.
 2. **Strict Interior Test:**
-   $$\text{num}_u = (x_3 - x_1) \Delta y_2 - (y_3 - y_1) \Delta x_2$$
-   $$\text{num}_v = (x_3 - x_1) \Delta y_1 - (y_3 - y_1) \Delta x_1$$
+
+$$
+\text{num}_u = (x_3 - x_1) \Delta y_2 - (y_3 - y_1) \Delta x_2
+$$
+
+$$
+\text{num}_v = (x_3 - x_1) \Delta y_1 - (y_3 - y_1) \Delta x_1
+$$
+
    Strict interior conditions ($0 < u < 1$ and $0 < v < 1$):
    - For $\text{det} > 0$: $0 < \text{num}_u < \text{det}$ and $0 < \text{num}_v < \text{det}$.
    - For $\text{det} < 0$: $\text{det} < \text{num}_u < 0$ and $\text{det} < \text{num}_v < 0$.
 3. **Exact Canonical Rational Coordinates:**
-   $$x = \frac{x_1 \cdot \text{det} + \text{num}_u \Delta x_1}{\text{det}} = \frac{n_x}{d_x}, \quad y = \frac{y_1 \cdot \text{det} + \text{num}_u \Delta y_1}{\text{det}} = \frac{n_y}{d_y}$$
+
+$$
+x = \frac{x_1 \cdot \text{det} + \text{num}_u \Delta x_1}{\text{det}} = \frac{n_x}{d_x}, \quad y = \frac{y_1 \cdot \text{det} + \text{num}_u \Delta y_1}{\text{det}} = \frac{n_y}{d_y}
+$$
+
    Reduced by $\gcd(n_x, d_x)$ and $\gcd(n_y, d_y)$ with $d_x > 0, d_y > 0$.
 4. Storing canonical tuples `(nx, dx, ny, dy)` in a hash set achieves 100% exact rational deduplication across all $\approx 1.25 \times 10^7$ segment pairs in $\approx 3.5$ seconds.
 
@@ -93,7 +114,10 @@ def naive_intersections():
 
 ### Example 2: Target Evaluation for 5000 BBS Segments
 - Evaluating all $12\,497\,500$ pairs:
-  $$N_{\text{distinct}} = \mathbf{2\,868\,868}$$
+
+$$
+N_{\text{distinct}} = \mathbf{2\,868\,868}
+$$
 
 ---
 

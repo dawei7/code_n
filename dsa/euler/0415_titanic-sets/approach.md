@@ -11,7 +11,10 @@ We are given:
 - $T(10^5) \equiv 63\,259\,062 \pmod{10^8}$
 
 We seek to evaluate:
-$$T(10^{11}) \pmod{10^8}$$
+
+$$
+T(10^{11}) \pmod{10^8}
+$$
 
 ---
 
@@ -41,10 +44,17 @@ The complement consists strictly of:
 ### Sub-Linear Totient Summations & Hyperbolic Sieve
 The number of non-titanic collinear subsets on a line with $k$ points is $2^k - 1 - k - \binom{k}{2}$.
 Summing over all grid lines with primitive direction vectors $(dx, dy)$ ($\gcd(dx, dy) = 1$):
-$$T(N) = 2^{(N+1)^2} - 1 - (N+1)^2 - \sum_{L} \left( 2^{|L|} - 1 - |L| - \binom{|L|}{2} \right) \pmod{10^8}$$
+
+$$
+T(N) = 2^{(N+1)^2} - 1 - (N+1)^2 - \sum_{L} \left( 2^{|L|} - 1 - |L| - \binom{|L|}{2} \right) \pmod{10^8}
+$$
 
 1. Grouping lines by their length $k = \min(\lfloor N/dx \rfloor, \lfloor N/dy \rfloor)$ reduces the sum to sub-linear prefix moments of Euler's totient function:
-   $$\Phi_0(m) = \sum_{x \le m} \phi(x), \quad \Phi_1(m) = \sum_{x \le m} x \phi(x), \quad \Phi_2(m) = \sum_{x \le m} x^2 \phi(x)$$
+
+$$
+\Phi_0(m) = \sum_{x \le m} \phi(x), \quad \Phi_1(m) = \sum_{x \le m} x \phi(x), \quad \Phi_2(m) = \sum_{x \le m} x^2 \phi(x)
+$$
+
 2. Evaluated in $O(N^{2/3})$ using the Dirichlet hyperbola method with a linear precomputation table of size $5 \times 10^6$.
 
 This evaluates $N = 10^{11}$ in **173 seconds**!

@@ -11,7 +11,10 @@ We are given:
 - $p(4, 400) = 0.5107843137$
 
 We seek to evaluate:
-$$p(13, 1800) \quad \text{rounded to 10 decimal places}$$
+
+$$
+p(13, 1800) \quad \text{rounded to 10 decimal places}
+$$
 
 ---
 
@@ -29,7 +32,11 @@ Because speeds are continuous random variables, the continuous collision dynamic
    For target position $t$ (in gap units $40\text{ m}$), boat $i$'s relative speed to reach $t$ is $W_i = \frac{V_i}{t - i} \sim \operatorname{Exp}(t - i)$.
 2. **First Collision Winner**:
    By the minimum property of independent exponential variables, the probability that boat $m$ is the minimal relative speed is:
-   $$P(m = \arg\min W_j) = \frac{t - m}{\sum_{j=l}^r (t - j)}$$
+
+$$
+P(m = \arg\min W_j) = \frac{t - m}{\sum_{j=l}^r (t - j)}
+$$
+
 3. **Recursive Race Splitting**:
    Conditioning on the slowest boat $m$:
    - Boats $l \dots m-1$ target boat $m$.
@@ -43,7 +50,11 @@ Because speeds are continuous random variables, the continuous collision dynamic
 ### Expected Permutation Sign Recurrence ($O(n^3)$)
 1. **Parity Representation**:
    Instead of computing individual probabilities for all $n!$ permutations, we track only the expected sign $\mathbb{E}[\operatorname{sgn}(\pi)]$ (+1 for even, -1 for odd):
-   $$p(n, L) = \frac{1 + \mathbb{E}[\operatorname{sgn}(\pi)]}{2}$$
+
+$$
+p(n, L) = \frac{1 + \mathbb{E}[\operatorname{sgn}(\pi)]}{2}
+$$
+
 2. **Exact Rational Memoization**:
    The recursive interval DP $\text{expected\_sign}(l, r, t)$ over $1 \le l \le r \le 13$ has very few states and computes the exact rational expectation in $< 1\text{ ms}$.
 

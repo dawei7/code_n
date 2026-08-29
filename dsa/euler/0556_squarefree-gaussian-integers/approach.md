@@ -13,7 +13,10 @@ We are given:
 - $f(10^8) = 52126906$
 
 We seek to evaluate:
-$$f(10^{14})$$
+
+$$
+f(10^{14})
+$$
 
 ---
 
@@ -29,10 +32,18 @@ There are $\approx \frac{\pi}{4} \cdot 10^{14} \approx 7.85 \times 10^{13}$ Gaus
 ### Möbius Inversion over $\mathbb{Z}[i]$ & Norm Aggregation
 1. **Gaussian Möbius Inversion**:
    In the ring $\mathbb{Z}[i]$, squarefreeness satisfies:
-   $$[z \text{ is squarefree}] = \sum_{d^2 \mid z} \mu_{\mathbb{Z}[i]}(d)$$
+
+$$
+[z \text{ is squarefree}] = \sum_{d^2 \mid z} \mu_{\mathbb{Z}[i]}(d)
+$$
+
 2. **Aggregated Norm Multiplier**:
    Summing over all proper Gaussian integers:
-   $$f(n) = \frac{1}{4} \sum_{m \le \sqrt{n}} F(m) A\left( \left\lfloor \frac{n}{m^2} \right\rfloor \right)$$
+
+$$
+f(n) = \frac{1}{4} \sum_{m \le \sqrt{n}} F(m) A\left( \left\lfloor \frac{n}{m^2} \right\rfloor \right)
+$$
+
    where $F(m) = \sum_{N(d) = m} \mu_{\mathbb{Z}[i]}(d)$ and $A(t)$ is the count of non-zero integer lattice points with $a^2 + b^2 \le t$.
 3. **Multiplicative Character of $F(m)$**:
    - $p = 2$: $F(2) = -1, F(2^e) = 0$ for $e \ge 2$.

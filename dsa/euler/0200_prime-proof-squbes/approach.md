@@ -12,7 +12,10 @@ For example, $200$ is not prime-proof because changing the first digit to $1$ gi
 If an integer $S$ has the property that **all $9 \times L$ single-digit replacements are composite**, $S$ is called prime-proof.
 
 The objective is to find the **$200^{\text{th}}$ prime-proof sqube that contains the contiguous substring `"200"`**:
-$$S_{200} = 200^{\text{th}} \text{ prime-proof sqube containing "200"}$$
+
+$$
+S_{200} = 200^{\text{th}} \text{ prime-proof sqube containing "200"}
+$$
 
 ---
 
@@ -29,7 +32,11 @@ def naive_squbes():
 ### Direct Sqube Generation & Miller-Rabin Filter
 1. **Direct Pair Generation:**
    Instead of searching through billions of integers, directly generate candidate squbes:
-   $$S = p^2 q^3 \quad (p \neq q, \; p, q \in \mathbb{P})$$
+
+$$
+S = p^2 q^3 \quad (p \neq q, \; p, q \in \mathbb{P})
+$$
+
    Filtering on $S \le 3 \times 10^{11}$ and `"200" in str(S)` reduces the candidate pool to fewer than $10\,000$ numbers.
 2. **Deterministic Miller-Rabin Primality Testing:**
    For each candidate $S$, test all $9 \times \operatorname{len}(S)$ single-digit variations against Miller-Rabin bases $\{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37\}$.
@@ -84,7 +91,10 @@ def solve(target: int = 200) -> int:
     return 0
 ```
 Evaluating for target $= 200$:
-$$S_{200} = \mathbf{229\,161\,792\,008}$$
+
+$$
+S_{200} = \mathbf{229\,161\,792\,008}
+$$
 
 ---
 
@@ -98,7 +108,10 @@ $$S_{200} = \mathbf{229\,161\,792\,008}$$
 ### Example 2: Target Evaluation for $200^{\text{th}}$ Prime-Proof Sqube
 - Generating candidate squbes $\le 3 \times 10^{11}$ containing `"200"`.
 - Sorting and verifying prime-proof condition:
-  $$S_{200} = \mathbf{229\,161\,792\,008}$$
+
+$$
+S_{200} = \mathbf{229\,161\,792\,008}
+$$
 
 ---
 

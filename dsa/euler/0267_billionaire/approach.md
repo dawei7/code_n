@@ -6,7 +6,11 @@ Starting with $£1$ of initial capital, an investor repeatedly wagers a fixed pr
 - **Heads:** Returns $2 \times$ the wagered amount (capital multiplied by $1 + 2f$).
 - **Tails:** Loses the wagered amount (capital multiplied by $1 - f$).
 If $H$ heads and $T = N - H$ tails occur in $N$ tosses, the final capital is:
-$$W(H, f) = (1 + 2f)^H (1 - f)^{N - H}$$
+
+$$
+W(H, f) = (1 + 2f)^H (1 - f)^{N - H}
+$$
+
 We seek the optimal fraction $f^*$ that maximizes the probability of having at least $£1\,000\,000\,000$ ($10^9$) after $1000$ tosses, and that maximum probability rounded to $12$ decimal places.
 
 ---
@@ -24,11 +28,21 @@ A naive approach samples fractions $f$ randomly or numerically integrates probab
 
 ### Monotonicity & Discrete Minimal Heads Threshold
 For a fixed fraction $f \in (0, 1)$, the final wealth $W(H, f)$ is strictly increasing in $H$:
-$$W(H, f) \ge 10^9 \iff H \ln(1 + 2f) + (N - H) \ln(1 - f) \ge 9 \ln(10)$$
 
-$$H \ge \frac{9 \ln(10) - N \ln(1 - f)}{\ln(1 + 2f) - \ln(1 - f)}$$
+$$
+W(H, f) \ge 10^9 \iff H \ln(1 + 2f) + (N - H) \ln(1 - f) \ge 9 \ln(10)
+$$
+
+$$
+H \ge \frac{9 \ln(10) - N \ln(1 - f)}{\ln(1 + 2f) - \ln(1 - f)}
+$$
+
 To maximize the probability:
-$$P(W \ge 10^9) = \sum_{k = H_{\min}(f)}^{N} \binom{N}{k} 2^{-N}$$
+
+$$
+P(W \ge 10^9) = \sum_{k = H_{\min}(f)}^{N} \binom{N}{k} 2^{-N}
+$$
+
 Since the binomial tail probability $\sum_{k = H_{\min}}^N \binom{N}{k} 2^{-N}$ decreases strictly with $H_{\min}$, we simply want to **minimize the integer threshold $H_{\min}$**!
 
 ---
@@ -37,11 +51,19 @@ Since the binomial tail probability $\sum_{k = H_{\min}}^N \binom{N}{k} 2^{-N}$ 
 
 ### Kelly Criterion Optimization & Exact Binomial Tail
 1. The continuous function $g(f) = \frac{9 \ln(10) - N \ln(1 - f)}{\ln(1 + 2f) - \ln(1 - f)}$ is minimized at the Kelly-optimal proportion:
-   $$f^* \approx 0.14689$$
+
+$$
+f^* \approx 0.14689
+$$
+
    At this minimum, $g(f^*) \approx 431.11 \implies H_{\min} = 432$.
 2. Thus, the maximum probability is achieved if and only if the investor obtains at least $H = 432$ heads in $1000$ coin tosses!
 3. The exact probability is computed via arbitrary-precision binomial summation:
-   $$P = \frac{1}{2^{1000}} \sum_{H = 432}^{1000} \binom{1000}{H}$$
+
+$$
+P = \frac{1}{2^{1000}} \sum_{H = 432}^{1000} \binom{1000}{H}
+$$
+
 4. Evaluating in exact Python integers and formatting to 12 decimal places takes under $0.002$ seconds!
 
 ---

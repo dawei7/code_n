@@ -13,7 +13,10 @@ A checkout is a sequence of up to 3 darts where the **last dart must land on a d
 The order of the first two darts does NOT matter (e.g. $S1 + S2 + D1$ is identical to $S2 + S1 + D1$).
 
 The objective is to find how many **distinct ways there are of checking out with a score of less than 100**:
-$$N_{\text{checkout}} = \left| \left\{ (\{d_1, d_2\}, d_3) \in \mathcal{D}_{\text{all}}^2 \times \mathcal{D}_{\text{double}} \;\middle|\; v(d_1) + v(d_2) + v(d_3) < 100 \right\} \right|$$
+
+$$
+N_{\text{checkout}} = \left| \left\{ (\{d_1, d_2\}, d_3) \in \mathcal{D}_{\text{all}}^2 \times \mathcal{D}_{\text{double}} \;\middle|\; v(d_1) + v(d_2) + v(d_3) < 100 \right\} \right|
+$$
 
 ---
 
@@ -29,13 +32,29 @@ def naive_darts():
 
 ### Unordered First Two Darts Symmetry Breaking
 1. There are $63$ possible single dart outcomes in $\mathcal{D}_{\text{all}}$:
-   $$\text{Miss } (0) + 20 \text{ Singles} + 20 \text{ Doubles} + 20 \text{ Trebles} + S25 + D25 = 63 \text{ outcomes}$$
+
+$$
+\text{Miss } (0) + 20 \text{ Singles} + 20 \text{ Doubles} + 20 \text{ Trebles} + S25 + D25 = 63 \text{ outcomes}
+$$
+
 2. There are $21$ double checkout outcomes in $\mathcal{D}_{\text{double}}$:
-   $$20 \text{ Doubles } (D1 \dots D20) + D25 = 21 \text{ outcomes}$$
+
+$$
+20 \text{ Doubles } (D1 \dots D20) + D25 = 21 \text{ outcomes}
+$$
+
 3. The number of unordered pairs $\{d_1, d_2\}$ with $i \le j$ is:
-   $$\frac{63 \times 64}{2} = 2016 \text{ pairs}$$
+
+$$
+\frac{63 \times 64}{2} = 2016 \text{ pairs}
+$$
+
 4. Total 3-dart checkout combinations to evaluate:
-   $$2016 \times 21 = 42\,336 \text{ combinations}$$
+
+$$
+2016 \times 21 = 42\,336 \text{ combinations}
+$$
+
 5. Evaluating 42,336 combinations takes $\approx 0.01$ seconds.
 
 ---
@@ -59,9 +78,17 @@ def naive_darts():
 
 ### Checkout Combination Pipeline
 1. Construct array of 63 dart values:
-   $$\mathcal{D}_{\text{all}} = [0, S_1 \dots S_{20}, D_1 \dots D_{20}, T_1 \dots T_{20}, S_{25}, D_{25}]$$
+
+$$
+\mathcal{D}_{\text{all}} = [0, S_1 \dots S_{20}, D_1 \dots D_{20}, T_1 \dots T_{20}, S_{25}, D_{25}]
+$$
+
 2. Construct array of 21 double values:
-   $$\mathcal{D}_{\text{double}} = [D_1 \dots D_{20}, D_{25}]$$
+
+$$
+\mathcal{D}_{\text{double}} = [D_1 \dots D_{20}, D_{25}]
+$$
+
 3. Initialize `checkout_count = 0`.
 4. Loop $i = 0 \dots 62$:
    - Loop $j = i \dots 62$:
@@ -82,7 +109,10 @@ def naive_darts():
 
 ### Example 2: Target Evaluation for Score $< 100$
 - Testing all $42\,336$ unordered checkout combinations:
-  $$N_{\text{checkout}} = \mathbf{38\,182}$$
+
+$$
+N_{\text{checkout}} = \mathbf{38\,182}
+$$
 
 ---
 

@@ -16,7 +16,11 @@ We are given:
 - $E(100) \approx 1427.193470$
 
 We seek to evaluate:
-$$E(10^8)$$
+
+$$
+E(10^8)
+$$
+
 rounded to the nearest integer.
 
 ---
@@ -35,7 +39,11 @@ The stopping time is the Coupon Collector time $T = \sum_{k=1}^n \text{Geom}(k/n
    Let $T_i$ be the time when drone $i$ is first activated. Drone $i$ undergoes an independent Poisson / Bernoulli acceleration process for $T - T_i$ seconds.
 2. **Coupled Expectation of Squared Harmonic Sums**:
    Evaluating the double summation of covariances across order statistics yields the exact closed-form expression:
-   $$E(n) = \frac{n}{2} \left( H_n^2 + H_n^{(2)} \right)$$
+
+$$
+E(n) = \frac{n}{2} \left( H_n^2 + H_n^{(2)} \right)
+$$
+
    where $H_n = \sum_{k=1}^n \frac{1}{k}$ and $H_n^{(2)} = \sum_{k=1}^n \frac{1}{k^2}$.
 
 ---
@@ -44,8 +52,15 @@ The stopping time is the Coupon Collector time $T = \sum_{k=1}^n \text{Geom}(k/n
 
 ### Euler-Maclaurin Asymptotic Harmonic Summation
 1. **Harmonic Asymptotic Series**:
-   $$H_n = \ln n + \gamma + \frac{1}{2n} - \frac{1}{12n^2} + \frac{1}{120n^4} + O(n^{-6})$$
-   $$H_n^{(2)} = \frac{\pi^2}{6} - \frac{1}{n} + \frac{1}{2n^2} - \frac{1}{6n^3} + O(n^{-5})$$
+
+$$
+H_n = \ln n + \gamma + \frac{1}{2n} - \frac{1}{12n^2} + \frac{1}{120n^4} + O(n^{-6})
+$$
+
+$$
+H_n^{(2)} = \frac{\pi^2}{6} - \frac{1}{n} + \frac{1}{2n^2} - \frac{1}{6n^3} + O(n^{-5})
+$$
+
 2. **Precision Bound**:
    For $n = 10^8$, $n^{-2} = 10^{-16}$, ensuring $> 30$ decimal digits of absolute precision with only 4 terms!
 3. **Execution Performance**:

@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The sequence $g(n)$ is defined recursively by:
-$$g(4) = 13, \quad g(n) = g(n-1) + \gcd(n, g(n-1)) \quad (n > 4)$$
+
+$$
+g(4) = 13, \quad g(n) = g(n-1) + \gcd(n, g(n-1)) \quad (n > 4)
+$$
 
 We are given:
 - $g(1\,000) = 2524$
@@ -38,7 +41,11 @@ Starting from a structural index $k$ with $g(k) = 3k$:
 Starting from $k_0 = 9$ (where $g(9) = 27 = 3 \times 9$):
 1. Compute the smallest prime factor $p = \text{spf}(2k - 1)$ using 64-bit deterministic Miller-Rabin test and wheel factorization.
 2. The next structural index is:
-   $$k_{\text{next}} = k + \frac{p - 1}{2}$$
+
+$$
+k_{\text{next}} = k + \frac{p - 1}{2}
+$$
+
 3. At $k_{\text{next}}$, $g(k_{\text{next}}) = 3 k_{\text{next}}$.
 4. If $k_{\text{next}} > n$, then $g(n) = n + 2k$.
 

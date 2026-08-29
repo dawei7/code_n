@@ -10,7 +10,10 @@ We are given:
 - $F(30, 2) = 308$
 
 We seek to evaluate:
-$$F(30, 10001) \pmod{10^9 + 7}$$
+
+$$
+F(30, 10001) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -27,10 +30,18 @@ For $n = 10001$ and $m = 30$, generating $30^{10001} \approx 10^{14772}$ product
 1. **Prime Exponent Representation**:
    Every element $x \in S$ has prime factorization supported on primes $p \le 30$.
    For large primes $p \in \{11, 13, 17, 19, 23, 29\}$, their exponent constraints factorize into an exact linear rising factorial:
-   $$\prod_{j=1}^7 (n + j)$$
+
+$$
+\prod_{j=1}^7 (n + j)
+$$
+
 2. **Reduced Polynomial Structure**:
    The quotient:
-   $$C(n) = \frac{F(30, n)}{(n+1)(n+2)\cdots(n+7)}$$
+
+$$
+C(n) = \frac{F(30, n)}{(n+1)(n+2)\cdots(n+7)}
+$$
+
    is an exact polynomial of degree $3$ in $n$.
 
 ---
@@ -43,10 +54,20 @@ For $n = 10001$ and $m = 30$, generating $30^{10001} \approx 10^{14772}$ product
 2. **Quotient Evaluations**:
    Compute $C(k) = F(30, k) / \prod_{j=1}^7 (k+j) \pmod{10^9 + 7}$ for $k = 0, 1, 2, 3$.
 3. **Newton Forward Differences**:
-   $$\Delta^1 C_0 = C_1 - C_0, \quad \Delta^2 C_0 = C_2 - 2C_1 + C_0, \quad \Delta^3 C_0 = C_3 - 3C_2 + 3C_1 - C_0$$
-   $$C(n) = C_0 + \Delta^1 C_0 \binom{n}{1} + \Delta^2 C_0 \binom{n}{2} + \Delta^3 C_0 \binom{n}{3}$$
+
+$$
+\Delta^1 C_0 = C_1 - C_0, \quad \Delta^2 C_0 = C_2 - 2C_1 + C_0, \quad \Delta^3 C_0 = C_3 - 3C_2 + 3C_1 - C_0
+$$
+
+$$
+C(n) = C_0 + \Delta^1 C_0 \binom{n}{1} + \Delta^2 C_0 \binom{n}{2} + \Delta^3 C_0 \binom{n}{3}
+$$
+
 4. **Final Value**:
-   $$F(30, 10001) \equiv \left( \prod_{j=1}^7 (10001 + j) \right) C(10001) \pmod{10^9 + 7}$$
+
+$$
+F(30, 10001) \equiv \left( \prod_{j=1}^7 (10001 + j) \right) C(10001) \pmod{10^9 + 7}
+$$
 
 This evaluates $F(30, 10001) \pmod{10^9 + 7}$ in **$< 0.01$ seconds** in pure Python!
 

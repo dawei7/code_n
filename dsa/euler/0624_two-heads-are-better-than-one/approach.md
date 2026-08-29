@@ -11,7 +11,10 @@ We are given:
 - $P(3) = \frac{9}{31} \implies Q(P(3), 109) = 46$
 
 We seek to evaluate:
-$$Q(P(10^{18}), 1\,000\,000\,009)$$
+
+$$
+Q(P(10^{18}), 1\,000\,000\,009)
+$$
 
 ---
 
@@ -27,13 +30,24 @@ Summing infinitely many transition matrices for $M \equiv 0 \pmod{10^{18}}$ requ
 ### Generating Function & Binet-Lucas Diagonalization
 1. **Probability Mass Function**:
    The waiting time distribution for two consecutive heads is:
-   $$\mathbb{P}(M = k) = \frac{F_{k-1}}{2^k}$$
+
+$$
+\mathbb{P}(M = k) = \frac{F_{k-1}}{2^k}
+$$
+
    where $F_k$ is the Fibonacci sequence ($F_1 = 1, F_2 = 1, F_3 = 2, \dots$).
 2. **Sub-sampling Geometric Series**:
-   $$P(n) = \sum_{j=1}^\infty \mathbb{P}(M = j n) = \sum_{j=1}^\infty \frac{F_{j n - 1}}{2^{j n}}$$
+
+$$
+P(n) = \sum_{j=1}^\infty \mathbb{P}(M = j n) = \sum_{j=1}^\infty \frac{F_{j n - 1}}{2^{j n}}
+$$
+
 3. **Binet Expansion**:
    Substituting $F_m = \frac{\phi^m - \psi^m}{\sqrt{5}}$:
-   $$P(n) = \frac{1}{\sqrt{5}} \left[ \frac{\phi^{-1} \phi^n}{2^n - \phi^n} - \frac{\psi^{-1} \psi^n}{2^n - \psi^n} \right]$$
+
+$$
+P(n) = \frac{1}{\sqrt{5}} \left[ \frac{\phi^{-1} \phi^n}{2^n - \phi^n} - \frac{\psi^{-1} \psi^n}{2^n - \psi^n} \right]
+$$
 
 ---
 
@@ -41,12 +55,24 @@ Summing infinitely many transition matrices for $M \equiv 0 \pmod{10^{18}}$ requ
 
 ### Exact Rational Closed Form ($O(\log n)$)
 1. **Common Denominator**:
-   $$(2^n - \phi^n)(2^n - \psi^n) = 4^n - 2^n (\phi^n + \psi^n) + (\phi \psi)^n = 4^n - 2^n L_n + (-1)^n$$
+
+$$
+(2^n - \phi^n)(2^n - \psi^n) = 4^n - 2^n (\phi^n + \psi^n) + (\phi \psi)^n = 4^n - 2^n L_n + (-1)^n
+$$
+
    where $L_n = \phi^n + \psi^n$ is the $n$-th Lucas number.
 2. **Exact Numerator**:
-   $$\frac{1}{\sqrt{5}} \left[ 2^n (\phi^{n-1} - \psi^{n-1}) - (\phi \psi)^n (\phi^{-1} - \psi^{-1}) \right] = 2^n F_{n-1} - (-1)^n$$
+
+$$
+\frac{1}{\sqrt{5}} \left[ 2^n (\phi^{n-1} - \psi^{n-1}) - (\phi \psi)^n (\phi^{-1} - \psi^{-1}) \right] = 2^n F_{n-1} - (-1)^n
+$$
+
 3. **Master Closed-Form Formula**:
-   $$P(n) = \frac{2^n F_{n-1} - (-1)^n}{4^n - 2^n L_n + (-1)^n}$$
+
+$$
+P(n) = \frac{2^n F_{n-1} - (-1)^n}{4^n - 2^n L_n + (-1)^n}
+$$
+
 4. **Logarithmic Matrix Evaluation**:
    Evaluate $F_{n-1}$, $L_n$, and $2^n$ modulo $p$ via $2 \times 2$ matrix binary exponentiation in $O(\log n)$.
 

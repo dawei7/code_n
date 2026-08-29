@@ -4,11 +4,18 @@
 
 Consider the set of all reduced proper fractions $\frac{n}{d}$ where $n < d \le N$ and $\gcd(n, d) = 1$.
 Listing the fractions for $d \le 8$ in ascending order:
-$$\frac{1}{8}, \frac{1}{7}, \frac{1}{6}, \frac{1}{5}, \frac{1}{4}, \frac{2}{7}, \mathbf{\frac{1}{3}}, \mathbf{\frac{3}{8}}, \mathbf{\frac{2}{5}}, \mathbf{\frac{3}{7}}, \mathbf{\frac{1}{2}}, \frac{4}{7}, \frac{3}{5}, \frac{5}{8}, \frac{2}{3}, \frac{5}{7}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}, \frac{6}{7}, \frac{7}{8}$$
+
+$$
+\frac{1}{8}, \frac{1}{7}, \frac{1}{6}, \frac{1}{5}, \frac{1}{4}, \frac{2}{7}, \mathbf{\frac{1}{3}}, \mathbf{\frac{3}{8}}, \mathbf{\frac{2}{5}}, \mathbf{\frac{3}{7}}, \mathbf{\frac{1}{2}}, \frac{4}{7}, \frac{3}{5}, \frac{5}{8}, \frac{2}{3}, \frac{5}{7}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}, \frac{6}{7}, \frac{7}{8}
+$$
+
 There are 3 fractions strictly between $\frac{1}{3}$ and $\frac{1}{2}$: $\left\{ \frac{3}{8}, \frac{2}{5}, \frac{3}{7} \right\}$.
 
 The objective is to find how many fractions lie strictly between $\frac{1}{3}$ and $\frac{1}{2}$ for $d \le 12\,000$:
-$$N_{\text{range}} = \left| \left\{ \frac{n}{d} \in \mathbb{Q} \;\middle|\; 1 \le d \le 12\,000, \, \gcd(n, d) = 1, \, \frac{1}{3} < \frac{n}{d} < \frac{1}{2} \right\} \right|$$
+
+$$
+N_{\text{range}} = \left| \left\{ \frac{n}{d} \in \mathbb{Q} \;\middle|\; 1 \le d \le 12\,000, \, \gcd(n, d) = 1, \, \frac{1}{3} < \frac{n}{d} < \frac{1}{2} \right\} \right|
+$$
 
 ---
 
@@ -24,7 +31,11 @@ def naive_fractions_in_range(limit):
 
 ### Tight Numerator Bounding
 For any fixed denominator $d$:
-$$\frac{1}{3} < \frac{n}{d} < \frac{1}{2} \iff \frac{d}{3} < n < \frac{d}{2}$$
+
+$$
+\frac{1}{3} < \frac{n}{d} < \frac{1}{2} \iff \frac{d}{3} < n < \frac{d}{2}
+$$
+
 1. The lower bound on $n$ is $n_{\text{min}} = \lfloor d / 3 \rfloor + 1$.
 2. The upper bound on $n$ is $n_{\text{max}} = \lfloor (d - 1) / 2 \rfloor$.
 3. The number of candidate numerators per denominator is only $\approx \frac{d}{6}$ instead of $d$, reducing the search domain by $83.3\%$.
@@ -70,7 +81,10 @@ $$\frac{1}{3} < \frac{n}{d} < \frac{1}{2} \iff \frac{d}{3} < n < \frac{d}{2}$$
 
 ### Example 2: Target Evaluation for $d \le 12\,000$
 - Summing valid fractions for all $d \le 12\,000$:
-  $$N_{\text{range}} = \mathbf{7\,295\,372}$$
+
+$$
+N_{\text{range}} = \mathbf{7\,295\,372}
+$$
 
 ---
 

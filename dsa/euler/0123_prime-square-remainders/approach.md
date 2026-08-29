@@ -3,15 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $p_n$ be the $n$-th prime: $2, 3, 5, 7, 11, \dots$, and let $r$ be the remainder when $(p_n - 1)^n + (p_n + 1)^n$ is divided by $p_n^2$:
-$$r(n) = \left( (p_n - 1)^n + (p_n + 1)^n \right) \bmod p_n^2$$
+
+$$
+r(n) = \left( (p_n - 1)^n + (p_n + 1)^n \right) \bmod p_n^2
+$$
 
 For example, when $n = 3$, $p_3 = 5$, and:
-$$r(3) = (4^3 + 6^3) \bmod 25 = 280 \bmod 25 = 5$$
+
+$$
+r(3) = (4^3 + 6^3) \bmod 25 = 280 \bmod 25 = 5
+$$
 
 The least value of $n$ for which the remainder first exceeds $10^9$ is $7037$.
 
 The objective is to find the **least value of $n$ for which the remainder first exceeds $10^{10}$**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; r(n) > 10^{10} \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; r(n) > 10^{10} \right\}
+$$
 
 ---
 
@@ -27,10 +36,21 @@ def naive_prime_square_remainders():
 
 ### Binomial Theorem Modulo $p_n^2$
 1. Expanding $(p_n - 1)^n$ and $(p_n + 1)^n$ modulo $p_n^2$:
-   $$(p_n - 1)^n \equiv (-1)^n + n(-1)^{n-1} p_n \pmod{p_n^2}$$
-   $$(p_n + 1)^n \equiv 1 + n p_n \pmod{p_n^2}$$
+
+$$
+(p_n - 1)^n \equiv (-1)^n + n(-1)^{n-1} p_n \pmod{p_n^2}
+$$
+
+$$
+(p_n + 1)^n \equiv 1 + n p_n \pmod{p_n^2}
+$$
+
 2. Adding both congruences:
-   $$r(n) \equiv \begin{cases} 2 \pmod{p_n^2} & \text{if } n \text{ is even} \\ 2 n p_n \pmod{p_n^2} & \text{if } n \text{ is odd} \end{cases}$$
+
+$$
+r(n) \equiv \begin{cases} 2 \pmod{p_n^2} & \text{if } n \text{ is even} \\ 2 n p_n \pmod{p_n^2} & \text{if } n \text{ is odd} \end{cases}
+$$
+
 3. For even $n$, $r(n) = 2$, which can never exceed $10^{10}$.
 4. For odd $n$, since $2 n p_n < p_n^2$ for $n \approx 20\,000$ ($p_n \approx 237\,000$), $r(n) = 2 n p_n$ holds directly.
 5. This simplifies the search to iterating odd indices $n = 1, 3, 5, \dots$ and checking $2 n p_n > 10^{10}$ in $\approx 0.05$ seconds.
@@ -77,7 +97,10 @@ def naive_prime_square_remainders():
 - At $n = 21\,035$: $p_{21035} = 237\,733$.
 - $r(21035) = 2 \times 21\,035 \times 237\,733 = \mathbf{10\,000\,820\,630} > 10^{10}$.
 - Least index:
-  $$n_{\text{min}} = \mathbf{21\,035}$$
+
+$$
+n_{\text{min}} = \mathbf{21\,035}
+$$
 
 ---
 

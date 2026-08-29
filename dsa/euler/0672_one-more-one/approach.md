@@ -15,7 +15,10 @@ We are given:
 - $H(10) = 690409338$
 
 We seek to evaluate:
-$$H(10^9) \bmod 1\,117\,117\,717$$
+
+$$
+H(10^9) \bmod 1\,117\,117\,717
+$$
 
 ---
 
@@ -31,7 +34,11 @@ Evaluating $g(n)$ individually up to $N = \frac{7^{10^9}-1}{11} \approx 10^{8.4 
 ### Base-7 Block Recurrences & Affine State Vectors
 1. **Base-7 Representation**:
    Notice that $N = \frac{7^K - 1}{11}$ in base $7$ consists of the repeating fractional period of $1/11$ in base $7$:
-   $$\frac{1}{11} = 0.\overline{0431623504}_7 \quad (\text{length } 10)$$
+
+$$
+\frac{1}{11} = 0.\overline{0431623504}_7 \quad (\text{length } 10)
+$$
+
 2. **Appending a Base-7 Digit $r$**:
    When transitioning from prefix $m$ to $n = 7m + r$:
    - $S(n) = 7 S(m) + 21 m + r g(m+1) + c_1(r)$
@@ -41,7 +48,10 @@ Evaluating $g(n)$ individually up to $N = \frac{7^{10^9}-1}{11} \approx 10^{8.4 
    where $c_1(r) = -6 + 7r - \frac{r(r+1)}{2}$ and $c_2(r) = 6 - r$ (or $0$ if $r = 6$).
 3. **Affine $4 \times 4$ Linear System**:
    For any digit $r \in [0, 6]$, the update is represented by the matrix:
-   $$M(r) = \begin{pmatrix} 7 & r & 21 & c_1(r) \\ 0 & 1 & 0 & c_2(r) \\ 0 & 0 & 7 & r \\ 0 & 0 & 0 & 1 \end{pmatrix}$$
+
+$$
+M(r) = \begin{pmatrix} 7 & r & 21 & c_1(r) \\ 0 & 1 & 0 & c_2(r) \\ 0 & 0 & 7 & r \\ 0 & 0 & 0 & 1 \end{pmatrix}
+$$
 
 ---
 
@@ -50,7 +60,11 @@ Evaluating $g(n)$ individually up to $N = \frac{7^{10^9}-1}{11} \approx 10^{8.4 
 ### Period Compaction & Fast Exponentiation ($O(\log K)$)
 1. **Period 10 Matrix**:
    Multiply the $10$ digit matrices corresponding to the repeating period of $1/11$ in base $7$ into a single $4 \times 4$ matrix $M_{10}$:
-   $$M_{10} = M(d_{10}) M(d_9) \cdots M(d_1)$$
+
+$$
+M_{10} = M(d_{10}) M(d_9) \cdots M(d_1)
+$$
+
 2. **Binary Exponentiation**:
    With $K = 10^9 = 10 \times 10^8$, compute $(M_{10})^{10^8} \pmod{1\,117\,117\,717}$ using $O(\log(K/10))$ matrix multiplications.
 3. **Initial State**:

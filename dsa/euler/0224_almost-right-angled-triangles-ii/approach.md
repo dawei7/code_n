@@ -4,11 +4,16 @@
 
 Let $(a, b, c)$ be the integral side lengths of a triangle with $a \le b \le c$.
 The triangle is called **barely obtuse** if the sides satisfy the Diophantine equation:
-$$a^2 + b^2 = c^2 - 1$$
+
+$$
+a^2 + b^2 = c^2 - 1
+$$
 
 How many barely obtuse triangles are there with perimeter $\le 75\,000\,000$?
 
-$$N(75000000) = \left| \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; 1 \le a \le b \le c \land a^2 + b^2 = c^2 - 1 \land a + b + c \le 75\,000\,000 \right\} \right|$$
+$$
+N(75000000) = \left| \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; 1 \le a \le b \le c \land a^2 + b^2 = c^2 - 1 \land a + b + c \le 75\,000\,000 \right\} \right|
+$$
 
 ---
 
@@ -26,19 +31,31 @@ def naive_almost_obtuse():
 1. **Lorentz Invariant Form:**
    The equation $a^2 + b^2 - c^2 = -1$ is invariant under the orthogonal group $\mathrm{O}(2, 1; \mathbb{Z})$.
    Every positive integer solution $(a, b, c)$ lies in a single infinite ternary tree rooted at the minimal solution:
-   $$(a_0, b_0, c_0) = (2, 2, 3) \quad \left(2^2 + 2^2 = 8 = 3^2 - 1\right)$$
+
+$$
+(a_0, b_0, c_0) = (2, 2, 3) \quad \left(2^2 + 2^2 = 8 = 3^2 - 1\right)
+$$
+
 2. **Ternary Branching Transformations:**
    From any valid triple $(a, b, c)$, three branch matrices generate all children:
-   $$\begin{aligned}
+
+$$
+\begin{aligned}
    T_1(a, b, c) &= (2a + b + 2c, \; a + 2b + 2c, \; 2a + 2b + 3c) \\
    T_2(a, b, c) &= (2a - b + 2c, \; a - 2b + 2c, \; 2a - 2b + 3c) \quad (\text{if } a > 0, b > 0) \\
    T_3(a, b, c) &= (-2a + b + 2c, \; -a + 2b + 2c, \; -2a + 2b + 3c) \quad (\text{if } a > 0, b > 0)
-   \end{aligned}$$
+\end{aligned}
+$$
+
 3. **Symmetry & Pell Solutions:**
    - Every asymmetric solution $(a \neq b)$ is generated in the tree along with its mirror pair $(b, a, c)$.
    - Symmetric solutions with $a = b$ satisfy $2a^2 = c^2 - 1 \iff c^2 - 2a^2 = 1$ (Pell's equation) and occur without mirrors.
    - The exact count with $a \le b$ is:
-     $$N = \frac{\text{Tree Count} - \text{Pell Count}}{2} + \text{Pell Count}$$
+
+$$
+N = \frac{\text{Tree Count} - \text{Pell Count}}{2} + \text{Pell Count}
+$$
+
 4. This ternary DFS explores $8\,274\,650$ tree nodes in $\approx 8.0$ seconds using $< 1$ KB of memory.
 
 ---
@@ -92,7 +109,10 @@ def solve(limit: int = 75000000) -> int:
     return (tree_count - pell_count) // 2 + pell_count
 ```
 Evaluating for $\text{limit} = 75000000$:
-$$N(75000000) = \mathbf{4\,137\,330}$$
+
+$$
+N(75000000) = \mathbf{4\,137\,330}
+$$
 
 ---
 
@@ -102,7 +122,10 @@ $$N(75000000) = \mathbf{4\,137\,330}$$
 - Total nodes traversed in ternary tree: $8\,274\,650$.
 - Total Pell solutions with $a = b$: $10$.
 - Deduplicated canonical triangle count ($a \le b$):
-  $$N = \frac{8\,274\,650 - 10}{2} + 10 = 4\,137\,320 + 10 = \mathbf{4\,137\,330}$$
+
+$$
+N = \frac{8\,274\,650 - 10}{2} + 10 = 4\,137\,320 + 10 = \mathbf{4\,137\,330}
+$$
 
 ---
 

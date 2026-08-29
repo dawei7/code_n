@@ -33,7 +33,11 @@ def naive_250250():
    - Initialize $\text{dp}[0] = 1$.
    - For $r = 0$: all elements are multiples of $250$, so they scale $\text{dp}[s]$ by $2^{\text{count}[0]} \pmod{10^{16}}$.
    - For each $r > 0$, we process each item sequentially:
-     $$\text{dp}_{\text{new}}[(s + r) \bmod 250] = (\text{dp}[(s + r) \bmod 250] + \text{dp}[s]) \bmod 10^{16}$$
+
+$$
+\text{dp}_{\text{new}}[(s + r) \bmod 250] = (\text{dp}[(s + r) \bmod 250] + \text{dp}[s]) \bmod 10^{16}
+$$
+
 4. **Non-Empty Subsets:**
    Subtracting $1$ for the empty subset gives $(\text{dp}[0] - 1) \bmod 10^{16}$.
 
@@ -91,7 +95,10 @@ def solve(limit: int = 250250, mod: int = 10**16) -> int:
 ```
 
 Evaluating for $N = 250250$:
-$$\text{Rightmost 16 digits} = \mathbf{1425480602091519}$$
+
+$$
+\text{Rightmost 16 digits} = \mathbf{1425480602091519}
+$$
 
 ---
 
@@ -107,7 +114,10 @@ $$\text{Rightmost 16 digits} = \mathbf{1425480602091519}$$
 ### Example 2: Target Evaluation for $N = 250250$
 - Frequency DP updates across all $250250$ terms in $250$ residue classes.
 - Subtracting the empty subset:
-  $$\text{Non-empty Subsets} \equiv \mathbf{1425480602091519} \pmod{10^{16}}$$
+
+$$
+\text{Non-empty Subsets} \equiv \mathbf{1425480602091519} \pmod{10^{16}}
+$$
 
 ---
 

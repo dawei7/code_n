@@ -21,7 +21,10 @@ For $n = 10^7$, performing $10^7$ long divisions of $1/k$ up to $10^7$ decimal p
 ### Modular Exponentiation & Power Residues
 1. **Fractional Digit Reduction**:
    The $n$-th decimal digit of $\frac{1}{k}$ is given by:
-   $$d_n\left(\frac{1}{k}\right) = \left\lfloor \frac{10 \cdot (10^{n-1} \bmod k)}{k} \right\rfloor$$
+
+$$
+d_n\left(\frac{1}{k}\right) = \left\lfloor \frac{10 \cdot (10^{n-1} \bmod k)}{k} \right\rfloor
+$$
 
 2. **Logarithmic Modular Powering**:
    For each $k \in [1, n]$, the remainder $10^{n-1} \bmod k$ is computed in $\mathcal{O}(\log n)$ time using binary modular exponentiation `pow(10, n-1, k)`.

@@ -3,7 +3,9 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Having three black objects $B$ and one white object $W$, they can be grouped in $7$ ways:
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 1. & \{(B, B, B), (W)\} \\
 2. & \{(B, B, W), (B)\} \\
 3. & \{(B, W), (B, B)\} \\
@@ -11,12 +13,18 @@ $$\begin{matrix}
 5. & \{(B, B), (B), (W)\} \\
 6. & \{(B, B, B, W)\} \\
 7. & \{(B), (B), (B), (W)\}
-\end{matrix}$$
+\end{matrix}
+$$
 
 Let $P(B, W)$ be the number of ways to group $B$ indistinguishable black objects and $W$ indistinguishable white objects into non-empty groups.
 
 The objective is to find the **number of ways to group $60$ black objects and $40$ white objects**:
-$$P(60, 40) = [x^{60} y^{40}] \prod_{\substack{i=0 \\ (i, j) \neq (0, 0)}}^{60} \prod_{j=0}^{40} \frac{1}{1 - x^i y^j}$$
+
+$$
+\begin{aligned}
+P(60, 40) = [x^{60} y^{40}] \prod_{\substack{i=0 \\ (i, j) \neq (0, 0)}}^{60} \prod_{j=0}^{40} \frac{1}{1 - x^i y^j}
+\end{aligned}
+$$
 
 ---
 
@@ -34,12 +42,22 @@ def naive_color_partitions():
 1. **Multivariate Integer Partition Generating Function:**
    Each group of $i$ black objects and $j$ white objects acts as an item of weight vector $(i, j)$.
    Since any number of identical groups $(i, j)$ may be chosen, the generating function is the 2D Euler product:
-   $$F(x, y) = \prod_{\substack{0 \le i \le 60, \; 0 \le j \le 40 \\ (i, j) \neq (0, 0)}} \frac{1}{1 - x^i y^j}$$
+
+$$
+\begin{aligned}
+F(x, y) = \prod_{\substack{0 \le i \le 60, \; 0 \le j \le 40 \\ (i, j) \neq (0, 0)}} \frac{1}{1 - x^i y^j}
+\end{aligned}
+$$
+
 2. **Unbounded 2D Knapsack DP State:**
    - Let `dp[b][w]` be the number of ways to form $b$ black and $w$ white objects using already-processed group types.
    - Base case: `dp[0][0] = 1`.
    - For each group type $(i, j)$ in lexicographical order:
-     $$\text{dp}[b][w] \leftarrow \text{dp}[b][w] + \text{dp}[b - i][w - j] \quad \forall b \in [i, 60], w \in [j, 40]$$
+
+$$
+\text{dp}[b][w] \leftarrow \text{dp}[b][w] + \text{dp}[b - i][w - j] \quad \forall b \in [i, 60], w \in [j, 40]
+$$
+
 3. Iterating all $(61 \times 41)$ group types updates the $61 \times 41$ DP grid in $\approx 0.02$ seconds.
 
 ---
@@ -78,7 +96,10 @@ def solve(max_b: int = 60, max_w: int = 40) -> int:
     return dp[max_b][max_w]
 ```
 Evaluating for $B = 60, W = 40$:
-$$P(60, 40) = \mathbf{837\,358\,486\,793\,222\,874\,176}$$
+
+$$
+P(60, 40) = \mathbf{837\,358\,486\,793\,222\,874\,176}
+$$
 
 ---
 
@@ -98,7 +119,10 @@ $$P(60, 40) = \mathbf{837\,358\,486\,793\,222\,874\,176}$$
 
 ### Example 2: Target Evaluation for $B = 60, W = 40$
 - Evaluating full 2D DP array:
-  $$P(60, 40) = \mathbf{837\,358\,486\,793\,222\,874\,176}$$
+
+$$
+P(60, 40) = \mathbf{837\,358\,486\,793\,222\,874\,176}
+$$
 
 ---
 

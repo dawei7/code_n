@@ -12,7 +12,10 @@ We are given:
 - $P(100) = 31038676032 \equiv 38675815 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$P(10^8) \pmod{10^9 + 7}$$
+
+$$
+P(10^8) \pmod{10^9 + 7}
+$$
 
 ---
 

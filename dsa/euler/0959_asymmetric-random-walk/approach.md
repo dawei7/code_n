@@ -24,7 +24,11 @@ Find $f(89, 97)$ rounded to 9 decimal places.
 
 ### Spitzer's Random Walk Range Theorem
 By the classical Spitzer theorem on random walk range:
-$$f(a, b) = 1 - \mathbb{P}(\text{walk ever returns to origin})$$
+
+$$
+f(a, b) = 1 - \mathbb{P}(\text{walk ever returns to origin})
+$$
+
 When $a = b$, the walk is symmetric and recurrent, so return probability $= 1 \implies f(1, 1) = 0$.
 When $a \neq b$, the walk is transient, and the return probability is given by the positive roots of the characteristic equation $s^{a+b} - 2s^a + 1 = 0$.
 

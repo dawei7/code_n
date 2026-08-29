@@ -31,9 +31,16 @@ Random simulation suffers from slow $1/\sqrt{N}$ convergence and cannot yield 6 
    $|S| = 2^{12} = 4096$ states.
 2. **Bellman Optimality Equation**:
    Let $V(S)$ be the expected turns to win from state $S$.
-   $$V(\text{target}) = 0$$
+
+$$
+V(\text{target}) = 0
+$$
+
    For $S \ne \text{target}$:
-   $$V(S) = 1 + \frac{1}{36} \sum_{x=1}^6 \sum_{y=1}^6 \min \left\{ V(S \oplus 2^{x-1}), V(S \oplus 2^{y-1}), V(S \oplus 2^{x+y-1}) \right\}$$
+
+$$
+V(S) = 1 + \frac{1}{36} \sum_{x=1}^6 \sum_{y=1}^6 \min \left\{ V(S \oplus 2^{x-1}), V(S \oplus 2^{y-1}), V(S \oplus 2^{x+y-1}) \right\}
+$$
 
 ---
 

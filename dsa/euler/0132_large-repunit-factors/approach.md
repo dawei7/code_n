@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A number consisting entirely of ones is called a **repunit**. We shall define $R(k)$ to be a repunit of length $k$:
-$$R(k) = \frac{10^k - 1}{9}$$
+
+$$
+R(k) = \frac{10^k - 1}{9}
+$$
 
 For example, $R(10) = 11\,111\,111\,111 = 11 \times 41 \times 271 \times 9091$, and the sum of these prime factors is $9414$.
 
 The repunit $R(10^9)$ contains one billion digits ($1\,000\,000\,000$ ones).
 
 The objective is to find the **sum of the first forty ($40$) prime factors of $R(10^9)$**:
-$$S_{\text{factors}} = \sum_{i=1}^{40} p_i$$
+
+$$
+S_{\text{factors}} = \sum_{i=1}^{40} p_i
+$$
 
 ---
 
@@ -26,7 +32,11 @@ def naive_large_repunit():
 
 ### Fast Modular Binary Exponentiation
 1. **Mathematical Invariant:** For a prime $p \notin \{2, 5\}$:
-   $$p \mid R(k) \iff \frac{10^k - 1}{9} \equiv 0 \pmod p \iff 10^k \equiv 1 \pmod{\operatorname{mod}(p)}$$
+
+$$
+p \mid R(k) \iff \frac{10^k - 1}{9} \equiv 0 \pmod p \iff 10^k \equiv 1 \pmod{\operatorname{mod}(p)}
+$$
+
    where $\operatorname{mod}(p) = 27$ if $p = 3$, and $\operatorname{mod}(p) = p$ if $p \neq 3$.
 2. **Fast Exponentiation:**
    Evaluating $10^{10^9} \bmod p$ requires only $\lfloor \log_2(10^9) \rfloor \approx 30$ modular multiplications using `pow(10, 10**9, p)`.
@@ -76,9 +86,16 @@ def naive_large_repunit():
 
 ### Example 2: Target Evaluation for First 40 Factors of $R(10^9)$
 - Collecting 40 prime factors:
-  $$3, 11, 17, 41, 73, 101, 137, 251, 271, 353, 449, 641, 751, 1409, \dots, 162527$$
+
+$$
+3, 11, 17, 41, 73, 101, 137, 251, 271, 353, 449, 641, 751, 1409, \dots, 162527
+$$
+
 - Total Sum:
-  $$S_{\text{factors}} = \mathbf{259\,323}$$
+
+$$
+S_{\text{factors}} = \mathbf{259\,323}
+$$
 
 ---
 

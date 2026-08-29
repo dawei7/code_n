@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $\binom{n}{r}$ denote the binomial coefficient (the number of combinations of $n$ items chosen $r$ at a time):
-$$\binom{n}{r} = \frac{n!}{r!(n - r)!} \quad \text{for } 0 \le r \le n$$
+
+$$
+\binom{n}{r} = \frac{n!}{r!(n - r)!} \quad \text{for } 0 \le r \le n
+$$
 
 The objective is to find how many values of $\binom{n}{r}$ for $1 \le n \le 100$ are strictly greater than one million ($1\,000\,000$):
-$$N_{\text{exceed}} = \sum_{n=1}^{100} \sum_{r=1}^n \mathbb{I}\left( \binom{n}{r} > 1\,000\,000 \right)$$
+
+$$
+N_{\text{exceed}} = \sum_{n=1}^{100} \sum_{r=1}^n \mathbb{I}\left( \binom{n}{r} > 1\,000\,000 \right)
+$$
 
 ---
 
@@ -22,12 +28,23 @@ def naive_combinatoric_selections():
 
 ### Unimodal Symmetry Theorem
 1. For any fixed $n$, the sequence of binomial coefficients $\left\{ \binom{n}{r} \right\}_{r=0}^n$ is symmetric:
-   $$\binom{n}{r} = \binom{n}{n - r}$$
+
+$$
+\binom{n}{r} = \binom{n}{n - r}
+$$
+
 2. The sequence is strictly unimodal, increasing monotonically for $r \le \lfloor n/2 \rfloor$ and decreasing for $r > \lfloor n/2 \rfloor$.
 3. **Theorem:** If $r_{\text{min}}$ is the smallest integer $r \le \lfloor n/2 \rfloor$ such that $\binom{n}{r_{\text{min}}} > 1\,000\,000$, then:
-   $$\binom{n}{r} > 1\,000\,000 \quad \forall r \in [r_{\text{min}}, n - r_{\text{min}}]$$
+
+$$
+\binom{n}{r} > 1\,000\,000 \quad \forall r \in [r_{\text{min}}, n - r_{\text{min}}]
+$$
+
    The exact count of exceeding values in row $n$ is:
-   $$\text{Count}(n) = n - 2 r_{\text{min}} + 1$$
+
+$$
+\text{Count}(n) = n - 2 r_{\text{min}} + 1
+$$
 
 ---
 
@@ -72,7 +89,10 @@ For each $n \in [1, 100]$:
 
 ### Example 2: Target Evaluation for $1 \le n \le 100$
 - Summing counts for $n = 23 \dots 100$:
-  $$N_{\text{exceed}} = \mathbf{4075}$$
+
+$$
+N_{\text{exceed}} = \mathbf{4075}
+$$
 
 ---
 

@@ -15,7 +15,10 @@ For a game with $N = 4$ turns:
 - The maximum prize fund allocated is $\lfloor \frac{1}{P_{\text{win}}} \rfloor = \lfloor \frac{120}{11} \rfloor = 10$.
 
 The objective is to find the **maximum prize fund that should be allocated to a single game in which fifteen ($15$) turns are played**:
-$$M_{\text{prize}} = \left\lfloor \frac{1}{P_{\text{win}}(15)} \right\rfloor$$
+
+$$
+M_{\text{prize}} = \left\lfloor \frac{1}{P_{\text{win}}(15)} \right\rfloor
+$$
 
 ---
 
@@ -32,9 +35,17 @@ def naive_disc_game():
 ### Exact Rational Dynamic Programming Distribution
 1. Let $dp[b]$ be the exact probability (`fractions.Fraction`) of having drawn $b$ blue discs.
 2. At turn $k$, with probabilities $P(B_k) = \frac{1}{k+1}$ and $P(R_k) = \frac{k}{k+1}$:
-   $$dp_{\text{next}}[b] = dp[b] \times \frac{k}{k+1} + \mathbb{I}(b > 0) \left( dp[b-1] \times \frac{1}{k+1} \right)$$
+
+$$
+dp_{\text{next}}[b] = dp[b] \times \frac{k}{k+1} + \mathbb{I}(b > 0) \left( dp[b-1] \times \frac{1}{k+1} \right)
+$$
+
 3. After $N = 15$ turns, the winning probability is:
-   $$P_{\text{win}} = \sum_{b=8}^{15} dp[b]$$
+
+$$
+P_{\text{win}} = \sum_{b=8}^{15} dp[b]
+$$
+
 4. The maximum prize fund is $\lfloor 1 / P_{\text{win}} \rfloor$, evaluating in $\approx 0.001$ seconds.
 
 ---
@@ -64,7 +75,11 @@ def naive_disc_game():
      - `next_dp[b] = dp[b] * prob_red + (dp[b-1] * prob_blue if b > 0 else 0)`
    - `dp = next_dp`
 3. Sum winning states:
-   $$P_{\text{win}} = \sum_{b=8}^{15} dp[b] = \frac{2263}{1307674368000}$$
+
+$$
+P_{\text{win}} = \sum_{b=8}^{15} dp[b] = \frac{2263}{1307674368000}
+$$
+
 4. Return $\lfloor 1 / P_{\text{win}} \rfloor = \mathbf{2269}$.
 
 ---
@@ -84,8 +99,14 @@ def naive_disc_game():
 
 ### Example 2: Target Evaluation for $N = 15$
 - Summing winning states $b = 8 \dots 15$:
-  $$P_{\text{win}} = \frac{2263}{1307674368000}$$
-  $$M_{\text{prize}} = \left\lfloor \frac{1307674368000}{2263} \right\rfloor = \mathbf{2269}$$
+
+$$
+P_{\text{win}} = \frac{2263}{1307674368000}
+$$
+
+$$
+M_{\text{prize}} = \left\lfloor \frac{1307674368000}{2263} \right\rfloor = \mathbf{2269}
+$$
 
 ---
 

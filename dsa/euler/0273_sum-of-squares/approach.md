@@ -3,10 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $N$, consider representations of the form:
-$$a^2 + b^2 = N, \quad 0 \le a \le b, \quad a, b \in \mathbb{Z}$$
+
+$$
+a^2 + b^2 = N, \quad 0 \le a \le b, \quad a, b \in \mathbb{Z}
+$$
+
 Let $S(N)$ be the sum of all distinct values of $a$ across all valid representations of $N$.
 Let $N$ be the square-free product of any subset of the 16 prime numbers of the form $4k + 1$ strictly less than $150$:
-$$\mathcal{P} = \{5, 13, 17, 29, 37, 41, 53, 61, 73, 89, 97, 101, 109, 113, 137, 149\}$$
+
+$$
+\mathcal{P} = \{5, 13, 17, 29, 37, 41, 53, 61, 73, 89, 97, 101, 109, 113, 137, 149\}
+$$
+
 Find $\sum S(N)$ over all $2^{16} = 65536$ square-free products $N$.
 
 ---
@@ -26,7 +34,11 @@ A naive approach computes $\sqrt{N - a^2}$ for all $a \le \sqrt{N/2}$ for each o
 In the ring of Gaussian integers $\mathbb{Z}[i]$:
 - Each prime $p_k \equiv 1 \pmod 4$ factors uniquely as $p_k = (u_k + i v_k)(u_k - i v_k) = z_k \bar{z}_k$.
 - For a square-free product $N = \prod_{k \in I} p_k$, every representation $N = a^2 + b^2 = |w|^2$ corresponds to choosing one factor from each conjugate pair:
-  $$w = \prod_{k \in I} (u_k \pm i v_k)$$
+
+$$
+w = \prod_{k \in I} (u_k \pm i v_k)
+$$
+
 - For a subset of $m$ primes, there are $2^{m-1}$ distinct pairs $(a, b) = (|\text{Re}(w)|, |\text{Im}(w)|)$ with $a \le b$.
 
 ---

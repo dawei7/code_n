@@ -27,12 +27,19 @@ Find $S(5, 8)$ in scientific notation with 10 significant digits in the mantissa
 
 ### Orthogonal Decoupling into 1D Games
 Because the area of piece $(i, j)$ in round $r$ is $x_{i_r}^{(r)} \cdot y_{j_r}^{(r)}$:
-$$\text{Final Area} = \left( \prod_{r=1}^{ab} x_{i_r}^{(r)} \right) \cdot \left( \prod_{r=1}^{ab} y_{j_r}^{(r)} \right)$$
+
+$$
+\text{Final Area} = \left( \prod_{r=1}^{ab} x_{i_r}^{(r)} \right) \cdot \left( \prod_{r=1}^{ab} y_{j_r}^{(r)} \right)
+$$
+
 Across all $ab$ rounds, every cell $(i, j)$ is chosen exactly once:
 - Each row $i \in \{1, \dots, a\}$ is chosen exactly $b$ times.
 - Each column $j \in \{1, \dots, b\}$ is chosen exactly $a$ times.
 Thus, the horizontal and vertical games decouple completely:
-$$S(a, b) = S_{\text{1D}}(a, b) \times S_{\text{1D}}(b, a)$$
+
+$$
+S(a, b) = S_{\text{1D}}(a, b) \times S_{\text{1D}}(b, a)
+$$
 
 ---
 
@@ -43,7 +50,11 @@ In the 1D game $S_{\text{1D}}(a, b)$ with $a$ choices each with capacity $b$:
 - State is the non-decreasing tuple of remaining counts $(c_1 \le c_2 \le \dots \le c_a)$.
 - Alex chooses $x_i \ge 0$ with $\sum_{i: c_i > 0} x_i = 1$ to maximize $\min_{i: c_i > 0} x_i V(c - e_i)$.
 - Equalizing payoffs yields $x_i \propto \frac{1}{V(c - e_i)}$, giving the harmonic mean recurrence:
-  $$V(c_1, \dots, c_a) = \frac{1}{\sum_{i: c_i > 0} \frac{1}{V(c - e_i)}}$$
+
+$$
+V(c_1, \dots, c_a) = \frac{1}{\sum_{i: c_i > 0} \frac{1}{V(c - e_i)}}
+$$
+
 - Total number of sorted states is simply the multiset coefficient $\binom{a + b}{a} = \binom{13}{5} = \mathbf{1287}$.
 
 ---

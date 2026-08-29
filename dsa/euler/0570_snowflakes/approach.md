@@ -13,7 +13,10 @@ We are given:
 - $\sum_{n=3}^{500} G(n) = 5124$
 
 We seek to evaluate:
-$$\sum_{n=3}^{10^7} G(n)$$
+
+$$
+\sum_{n=3}^{10^7} G(n)
+$$
 
 ---
 
@@ -28,17 +31,35 @@ For $n = 10^7$, $A(n)$ and $B(n)$ are integers with over $6 \times 10^6$ decimal
 
 ### Algebraic GCD Reduction & Resultant Elimination
 1. **Closed Forms for $A(n)$ and $B(n)$**:
-   $$A(n) = 3 \cdot 4^{n-1} - 2 \cdot 3^{n-1}$$
-   $$B(n) = (18n - 138) 4^{n-2} + (4n + 26) 3^{n-1}$$
+
+$$
+A(n) = 3 \cdot 4^{n-1} - 2 \cdot 3^{n-1}
+$$
+
+$$
+B(n) = (18n - 138) 4^{n-2} + (4n + 26) 3^{n-1}
+$$
+
 2. **Polynomial Resultant Simplification**:
    Eliminating powers of $4^{n-2}$ and $3^{n-2}$ via polynomial division yields the exact algebraic reduction:
-   $$G(n) = \gcd(A(n), B(n)) = 6 \cdot \gcd(2 \cdot 4^{n-2} - 3^{n-2}, 7n + 3)$$
+
+$$
+G(n) = \gcd(A(n), B(n)) = 6 \cdot \gcd(2 \cdot 4^{n-2} - 3^{n-2}, 7n + 3)
+$$
+
 3. **Modular Inversion Optimization**:
    Let $m = 7n + 3$.
    When $n \not\equiv 0 \pmod 3$, $\gcd(3, m) = 1$, so $3^{n-2}$ is invertible modulo $m$:
-   $$2 \cdot 4^{n-2} - 3^{n-2} \equiv 3^{n-2} (2 b^{n-2} - 1) \pmod m$$
+
+$$
+2 \cdot 4^{n-2} - 3^{n-2} \equiv 3^{n-2} (2 b^{n-2} - 1) \pmod m
+$$
+
    where $b = (4 \cdot 3^{-1}) \bmod m$. Thus:
-   $$\gcd(2 \cdot 4^{n-2} - 3^{n-2}, m) = \gcd(2 b^{n-2} - 1, m)$$
+
+$$
+\gcd(2 \cdot 4^{n-2} - 3^{n-2}, m) = \gcd(2 b^{n-2} - 1, m)
+$$
 
 ---
 

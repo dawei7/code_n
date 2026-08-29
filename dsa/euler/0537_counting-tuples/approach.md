@@ -4,7 +4,10 @@
 
 Let $\pi(x)$ be the prime counting function (the number of primes $\le x$).
 Let $T(n, k)$ denote the number of $k$-tuples of positive integers $(x_1, \dots, x_k)$ such that:
-$$\sum_{i=1}^k \pi(x_i) = n$$
+
+$$
+\sum_{i=1}^k \pi(x_i) = n
+$$
 
 We are given:
 - $T(3, 3) = 19$
@@ -12,7 +15,10 @@ We are given:
 - $T(10^3, 10^3) \equiv 578270566 \pmod{1004535809}$
 
 We seek to evaluate:
-$$T(20\,000, 20\,000) \bmod 1\,004\,535\,809$$
+
+$$
+T(20\,000, 20\,000) \bmod 1\,004\,535\,809
+$$
 
 ---
 
@@ -33,7 +39,10 @@ A standard dynamic programming array of size $k \times n$ requires $O(k n^2) \ap
 2. **Generating Function Formulation**:
    Let $P(z) = \sum_{j=0}^n c_j z^j = 1 + \sum_{j=1}^n (p_{j+1} - p_j) z^j$.
    Then the number of valid $k$-tuples is the coefficient:
-   $$T(n, k) = [z^n] P(z)^k \pmod{1004535809}$$
+
+$$
+T(n, k) = [z^n] P(z)^k \pmod{1004535809}
+$$
 
 ---
 

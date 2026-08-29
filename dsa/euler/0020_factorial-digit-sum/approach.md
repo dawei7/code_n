@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n \in \mathbb{N}$ ($n = 100$), the factorial $n!$ is defined as the product of all positive integers up to $n$:
-$$n! = \prod_{k=1}^n k = 1 \times 2 \times 3 \times \dots \times n$$
+
+$$
+n! = \prod_{k=1}^n k = 1 \times 2 \times 3 \times \dots \times n
+$$
 
 Define the decimal digit sum operator $S_{\text{dig}} : \mathbb{N} \to \mathbb{N}$:
-$$S_{\text{dig}}(M) = \sum_{i=0}^{L-1} d_i \quad \text{where } M = \sum_{i=0}^{L-1} d_i 10^i \quad (d_i \in \{0, 1, \dots, 9\})$$
+
+$$
+S_{\text{dig}}(M) = \sum_{i=0}^{L-1} d_i \quad \text{where } M = \sum_{i=0}^{L-1} d_i 10^i \quad (d_i \in \{0, 1, \dots, 9\})
+$$
+
 where $L = \lfloor \log_{10} M \rfloor + 1$ is the number of decimal digits in $M$.
 
 The objective is to compute $S_{\text{dig}}(100!)$.
@@ -33,7 +40,10 @@ def naive_factorial_digit_sum(n):
 ## 3. Core Intuition & Mathematical Structure
 
 By Stirling's approximation, the decimal length of $n!$ is:
-$$L(n) = \lfloor \log_{10}(n!) \rfloor + 1 = \left\lfloor \sum_{k=1}^n \log_{10} k \right\rfloor + 1$$
+
+$$
+L(n) = \lfloor \log_{10}(n!) \rfloor + 1 = \left\lfloor \sum_{k=1}^n \log_{10} k \right\rfloor + 1
+$$
 
 For $n = 100$, $\log_{10}(100!) \approx 157.97 \implies L = 158$ digits.
 
@@ -56,7 +66,10 @@ For $n = 100$, $\log_{10}(100!) \approx 157.97 \implies L = 158$ digits.
 ### Factorial Product via Binary Splitting
 Evaluating $100!$ via binary splitting tree multiplication performs $\mathcal{O}(n \log^2 n)$ bit operations.
 The exact 158-digit decimal string is:
-$$100! = 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864\underbrace{000000000000000000000000}_{\text{24 trailing zeros}}$$
+
+$$
+100! = 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864\underbrace{000000000000000000000000}_{\text{24 trailing zeros}}
+$$
 
 Legendre's formula gives exactly $\lfloor 100/5 \rfloor + \lfloor 100/25 \rfloor = 20 + 4 = 24$ trailing zeros.
 
@@ -72,7 +85,10 @@ Legendre's formula gives exactly $\lfloor 100/5 \rfloor + \lfloor 100/25 \rfloor
 ### Example 2: Exact Evaluation for $n = 100$
 - Evaluating $100!$ gives the exact 158-digit integer above.
 - Accumulating all 158 decimal digits:
-  $$S_{\text{dig}}(100!) = \mathbf{648}$$
+
+$$
+S_{\text{dig}}(100!) = \mathbf{648}
+$$
 
 ---
 

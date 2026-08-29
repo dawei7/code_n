@@ -5,11 +5,20 @@
 Let $\mathbf{s}_{10}(n)$ denote the base-10 decimal string representation of $n$, and $\mathbf{s}_2(n)$ denote the base-2 binary string representation of $n$ (without leading zeros).
 
 An integer $n \in \mathbb{N}$ is defined as a **double-base palindrome** if both representations are palindromic:
-$$\mathbf{s}_{10}(n) = \mathbf{s}_{10}^R(n) \quad \land \quad \mathbf{s}_2(n) = \mathbf{s}_2^R(n)$$
+
+$$
+\mathbf{s}_{10}(n) = \mathbf{s}_{10}^R(n) \quad \land \quad \mathbf{s}_2(n) = \mathbf{s}_2^R(n)
+$$
+
 where $\mathbf{w}^R$ denotes the reverse of string $\mathbf{w}$.
 
 The objective is to compute the sum of all double-base palindromes strictly less than $1\,000\,000$:
-$$S = \sum_{\substack{1 \le n < 10^6 \\ \mathbf{s}_{10}(n) = \mathbf{s}_{10}^R(n) \\ \mathbf{s}_2(n) = \mathbf{s}_2^R(n)}} n$$
+
+$$
+\begin{aligned}
+S = \sum_{\substack{1 \le n < 10^6 \\ \mathbf{s}_{10}(n) = \mathbf{s}_{10}^R(n) \\ \mathbf{s}_2(n) = \mathbf{s}_2^R(n)}} n
+\end{aligned}
+$$
 
 ---
 
@@ -26,7 +35,11 @@ def naive_double_base():
 ### Odd-Parity Binary Bit Theorem
 1. Binary representations cannot have leading zeros, so the most significant bit (MSB) is always $1$.
 2. For $\mathbf{s}_2(n)$ to be a palindrome, its least significant bit (LSB) must equal its MSB:
-   $$\text{LSB} = \text{MSB} = 1$$
+
+$$
+\text{LSB} = \text{MSB} = 1
+$$
+
 3. Because $\text{LSB} = 1$, $n \equiv 1 \pmod 2$.
 4. **Theorem:** Every double-base palindrome MUST be an **odd number**.
    All even numbers can be discarded immediately, halving the search space from $1\,000\,000$ to $500\,000$ odd candidates.
@@ -70,7 +83,10 @@ def naive_double_base():
 
 ### Example 2: Target Evaluation Under $1\,000\,000$
 - Summing all double-base palindromes in $[1, 999\,999]$:
-  $$S = \mathbf{872\,187}$$
+
+$$
+S = \mathbf{872\,187}
+$$
 
 ---
 

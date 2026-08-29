@@ -17,7 +17,10 @@ We are given:
 - $F(6000) = 2333333333323$
 
 We seek to evaluate:
-$$F(111\,111\,111\,111\,222\,333) \bmod 123\,123\,123$$
+
+$$
+F(111\,111\,111\,111\,222\,333) \bmod 123\,123\,123
+$$
 
 ---
 
@@ -38,7 +41,11 @@ $N = 111\,111\,111\,111\,222\,333 \approx 1.11 \times 10^{17}$. Testing numbers 
 2. **Permutations with Given Multiplicities**:
    For a fixed length $L$, valid frequency partitions $(a, b, c)$ satisfy $a + b + c = L$ where each non-zero frequency is a 123-number.
    The number of distinct words with frequencies $(a, b, c)$ is the multinomial coefficient:
-   $$\binom{L}{a, b, c} = \frac{L!}{a! b! c!}$$
+
+$$
+\binom{L}{a, b, c} = \frac{L!}{a! b! c!}
+$$
+
 3. **Short String Length**:
    Because the number of 123-numbers grows exponentially with length ($\approx 3^L$), the target rank $N \approx 1.11 \times 10^{17}$ is reached at length $L = 38$.
 
@@ -53,7 +60,13 @@ $N = 111\,111\,111\,111\,222\,333 \approx 1.11 \times 10^{17}$. Testing numbers 
 2. **Greedy Prefix Counting**:
    For each position from left to right, test candidates $d \in \{1, 2, 3\}$:
    Count the number of valid completions extending the prefix $(u_1, u_2, u_3)$:
-   $$\text{completions} = \sum_{\substack{(a,b,c) \\ u_1 \le a, u_2 \le b, u_3 \le c}} \frac{(L - \sum u_i)!}{(a - u_1)! (b - u_2)! (c - u_3)!}$$
+
+$$
+\begin{aligned}
+\text{completions} = \sum_{\substack{(a,b,c) \\ u_1 \le a, u_2 \le b, u_3 \le c}} \frac{(L - \sum u_i)!}{(a - u_1)! (b - u_2)! (c - u_3)!}
+\end{aligned}
+$$
+
    If $k > \text{completions}$, decrement $k \leftarrow k - \text{completions}$; otherwise, fix digit $d$ and proceed to the next position.
 
 This evaluates $F(N) \bmod 123\,123\,123$ in **$\approx 0.00$ seconds** in pure Python!

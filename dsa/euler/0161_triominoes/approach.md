@@ -8,19 +8,25 @@ There are two basic shapes:
 - An L-triomino consisting of a $2 \times 2$ square with one corner square removed (4 orientations).
 
 In all, there are $6$ distinct triomino orientations:
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 \text{1. Straight Horizontal:} & \{(0, 0), (0, 1), (0, 2)\} \\
 \text{2. Straight Vertical:} & \{(0, 0), (1, 0), (2, 0)\} \\
 \text{3. L-shape (Top-Left):} & \{(0, 0), (1, 0), (0, 1)\} \\
 \text{4. L-shape (Bottom-Left):} & \{(0, 0), (1, 0), (1, 1)\} \\
 \text{5. L-shape (Top-Right):} & \{(0, 0), (0, 1), (1, 1)\} \\
 \text{6. L-shape (Bottom-Right):} & \{(0, 0), (1, 0), (1, -1)\}
-\end{matrix}$$
+\end{matrix}
+$$
 
 For a $2 \times 3$ grid, there are exactly $2$ ways to tile it using triominoes (two straight $1 \times 3$ horizontal triominoes or two L-triominoes).
 
 The objective is to find the **number of ways to tile a $9 \times 12$ grid with triominoes**:
-$$T(9, 12) = \text{number of valid non-overlapping tilings}$$
+
+$$
+T(9, 12) = \text{number of valid non-overlapping tilings}
+$$
 
 ---
 
@@ -89,7 +95,10 @@ def dp(mask: int, cell: int) -> int:
 ```
 
 ### Target Evaluation
-$$T(9, 12) = \mathbf{20\,574\,308\,184\,277\,971}$$
+
+$$
+T(9, 12) = \mathbf{20\,574\,308\,184\,277\,971}
+$$
 
 ---
 
@@ -105,7 +114,10 @@ $$T(9, 12) = \mathbf{20\,574\,308\,184\,277\,971}$$
 
 ### Example 2: Target Evaluation for $9 \times 12$ Grid
 - Running broken-profile bitmask DP on $9 \times 12$ (108 cells, 36 triominoes):
-  $$T(9, 12) = \mathbf{20\,574\,308\,184\,277\,971}$$
+
+$$
+T(9, 12) = \mathbf{20\,574\,308\,184\,277\,971}
+$$
 
 ---
 

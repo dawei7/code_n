@@ -4,13 +4,22 @@
 
 There are some prime values, $p$, for which there exists a positive integer, $n$, such that the expression $n^3 + n^2 p$ is a perfect cube.
 For example, when $p = 19$:
-$$8^3 + 8^2 \times 19 = 512 + 1216 = 1728 = 12^3$$
+
+$$
+8^3 + 8^2 \times 19 = 512 + 1216 = 1728 = 12^3
+$$
 
 What is perhaps even more remarkable is that the value of $n$ is unique for each prime with this property, and there are only four such primes below one-hundred:
-$$p \in \{7, 19, 37, 61\}$$
+
+$$
+p \in \{7, 19, 37, 61\}
+$$
 
 The objective is to find **how many primes below one million ($1\,000\,000$) have this remarkable property**:
-$$N_{\text{primes}} = \left| \left\{ p < 10^6 \;\middle|\; p \in \mathbb{P} \land \exists n, m \in \mathbb{N} : n^2(n + p) = m^3 \right\} \right|$$
+
+$$
+N_{\text{primes}} = \left| \left\{ p < 10^6 \;\middle|\; p \in \mathbb{P} \land \exists n, m \in \mathbb{N} : n^2(n + p) = m^3 \right\} \right|
+$$
 
 ---
 
@@ -26,12 +35,20 @@ def naive_prime_cube():
 
 ### Algebraic Reduction to Cuban Primes
 1. Factoring $n^3 + n^2 p = m^3$:
-   $$n^2(n + p) = m^3$$
+
+$$
+n^2(n + p) = m^3
+$$
+
 2. Since $p$ is prime and $\gcd(n, n+p) \mid p$:
    - If $p \nmid n$, then $\gcd(n^2, n+p) = 1$. Both factors must be perfect cubes!
    - Thus, $n = k^3$ and $n + p = (k + 1)^3$ for some $k \in \mathbb{N}$.
 3. Subtracting the two equations:
-   $$p = (k + 1)^3 - k^3 = 3k^2 + 3k + 1$$
+
+$$
+p = (k + 1)^3 - k^3 = 3k^2 + 3k + 1
+$$
+
 4. Primes of this form are known as **Cuban Primes**.
 5. Since $p = 3k^2 + 3k + 1 < 1\,000\,000$, we have $k \le \lfloor \sqrt{10^6 / 3} \rfloor \approx 577$.
 6. This reduces the search to only $577$ primality tests, evaluating in $\approx 0.0001$ seconds.
@@ -76,7 +93,10 @@ def naive_prime_cube():
 
 ### Example 2: Target Evaluation for $p < 1\,000\,000$
 - Testing $k = 1 \dots 577$:
-  $$N_{\text{primes}} = \mathbf{173}$$
+
+$$
+N_{\text{primes}} = \mathbf{173}
+$$
 
 ---
 

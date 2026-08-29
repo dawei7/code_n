@@ -11,7 +11,10 @@ We are given:
 - $M(L_{100}) = 4948, S(L_{100}) = 24477690$
 
 We seek to evaluate:
-$$S(L_{2500})$$
+
+$$
+S(L_{2500})
+$$
 
 ---
 
@@ -32,7 +35,10 @@ With $M \approx 3 \times 10^6$ lines, testing all $\approx \frac{M^2}{2} \approx
 3. **Exact Crossing Formula**:
    A line in class $i$ is crossed by every line not in class $i$, which is exactly $M - c_i$ lines.
    Summing across all lines in class $i$ and over all $K$ classes:
-   $$S(L) = \sum_{i=1}^K c_i (M - c_i) = M^2 - \sum_{i=1}^K c_i^2$$
+
+$$
+S(L) = \sum_{i=1}^K c_i (M - c_i) = M^2 - \sum_{i=1}^K c_i^2
+$$
 
 ---
 
@@ -48,7 +54,10 @@ With $M \approx 3 \times 10^6$ lines, testing all $\approx \frac{M^2}{2} \approx
 3. **Sort & Deduplicate**:
    Sort line tuples $(\Delta x, \Delta y, c)$ in $O(N^2 \log N)$ to count distinct lines and extract class sizes $c_i$.
 4. **Evaluate Total Crossings**:
-   $$S(L) = \sum_{i=1}^K c_i (M - c_i)$$
+
+$$
+S(L) = \sum_{i=1}^K c_i (M - c_i)
+$$
 
 This evaluates $S(L_{2500})$ in **$\approx 0.49$ seconds**!
 

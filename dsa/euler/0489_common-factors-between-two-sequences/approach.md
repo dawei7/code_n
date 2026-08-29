@@ -4,7 +4,10 @@
 
 Let $G(a, b)$ be the smallest non-negative integer $n$ for which $\gcd(n^3 + b, (n + a)^3 + b)$ is maximized.
 Define:
-$$H(m, n) = \sum_{a=1}^m \sum_{b=1}^n G(a, b)$$
+
+$$
+H(m, n) = \sum_{a=1}^m \sum_{b=1}^n G(a, b)
+$$
 
 We are given:
 - $G(1, 1) = 5$
@@ -12,7 +15,10 @@ We are given:
 - $H(10, 10) = 32936544$
 
 We seek to evaluate:
-$$H(18, 1900)$$
+
+$$
+H(18, 1900)
+$$
 
 ---
 
@@ -28,10 +34,18 @@ For large values of $a$ and $b$, the maximizing $n$ can exceed $10^{12}$. Linear
 ### Polynomial Resultant & Root Difference Invariant
 1. **Common Divisor Implication**:
    If $g \mid (n^3 + b)$ and $g \mid ((n + a)^3 + b)$, then $g$ must divide:
-   $$((n + a)^3 + b) - (n^3 + b) = a (3n^2 + 3an + a^2)$$
+
+$$
+((n + a)^3 + b) - (n^3 + b) = a (3n^2 + 3an + a^2)
+$$
+
 2. **Resultant Bound**:
    The polynomial resultant of $P(x) = x^3 + b$ and $Q(x) = (x + a)^3 + b$ is:
-   $$\text{Res}(P, Q) = a^3 (a^6 + 27 b^2)$$
+
+$$
+\text{Res}(P, Q) = a^3 (a^6 + 27 b^2)
+$$
+
    Every common divisor $g$ of $n^3 + b$ and $(n + a)^3 + b$ must divide $\text{Res}(P, Q)$!
 
 ---

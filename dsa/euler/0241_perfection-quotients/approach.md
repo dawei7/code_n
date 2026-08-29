@@ -4,10 +4,16 @@
 
 For a positive integer $n$, let $\sigma(n)$ denote the sum of all positive divisors of $n$.
 The **perfection quotient** of $n$ is defined as:
-$$p(n) = \frac{\sigma(n)}{n}$$
+
+$$
+p(n) = \frac{\sigma(n)}{n}
+$$
 
 We seek the sum of all positive integers $n \le 10^{18}$ for which $p(n)$ has the half-integer form:
-$$p(n) = k + \frac{1}{2} = \frac{2k + 1}{2}, \quad k \in \mathbb{Z}^+$$
+
+$$
+p(n) = k + \frac{1}{2} = \frac{2k + 1}{2}, \quad k \in \mathbb{Z}^+
+$$
 
 ---
 
@@ -24,7 +30,11 @@ def naive_perfection_quotients(limit):
 ### Multiplicative Tree Search via Prime Factor Chaining
 1. **Even Multiplicity Requirement:**
    Since $\frac{\sigma(n)}{n} = \frac{2k+1}{2}$ has reduced denominator $2$, $n$ must be an even integer: $n = 2^a \cdot m$ where $m$ is odd.
-   $$\sigma(n) = (2^{a+1} - 1) \cdot \sigma(m)$$
+
+$$
+\sigma(n) = (2^{a+1} - 1) \cdot \sigma(m)
+$$
+
 2. **Prime Factor Cancellation Chains:**
    Any prime factor $q \mid (2^{a+1} - 1)$ in $\sigma(2^a)$ that does not divide $2k+1$ must be cancelled by the denominator of $\frac{\sigma(m)}{m}$.
    This forces $q \mid m$, which introduces $\sigma(q^b) = 1 + q + \dots + q^b$ into the numerator, generating new prime factors in a strictly bounded tree.
@@ -74,7 +84,10 @@ def solve(limit: int = 10**18) -> int:
 ```
 
 Evaluating for $\text{limit} = 10^{18}$:
-$$\text{Total Sum} = \mathbf{482\,316\,491\,800\,641\,154}$$
+
+$$
+\text{Total Sum} = \mathbf{482\,316\,491\,800\,641\,154}
+$$
 
 ---
 
@@ -87,7 +100,10 @@ $$\text{Total Sum} = \mathbf{482\,316\,491\,800\,641\,154}$$
 
 ### Example 2: Target Evaluation for $n \le 10^{18}$
 - Summing all $19$ solutions:
-  $$\sum n = \mathbf{482\,316\,491\,800\,641\,154}$$
+
+$$
+\sum n = \mathbf{482\,316\,491\,800\,641\,154}
+$$
 
 ---
 

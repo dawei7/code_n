@@ -4,7 +4,11 @@
 
 Let $\sqrt{x + \sqrt{y} + \sqrt{z}}$ be a nested radical with positive integers $x \le n$ and non-square integers $y, z$.
 We seek the number of distinct terms $F(n)$ that can be simplified into a finite sum and/or difference of integer square roots:
-$$\sqrt{x + \sqrt{y} + \sqrt{z}} = \sum_{i=1}^k s_i \sqrt{a_i}, \quad s_i \in \{\pm 1\}$$
+
+$$
+\sqrt{x + \sqrt{y} + \sqrt{z}} = \sum_{i=1}^k s_i \sqrt{a_i}, \quad s_i \in \{\pm 1\}
+$$
+
 Nested roots with equal numerical value are counted exactly once.
 
 We are given:
@@ -16,7 +20,10 @@ We are given:
 - $F(5000) = 11134074$
 
 We seek to evaluate:
-$$F(5000000)$$
+
+$$
+F(5000000)
+$$
 
 ---
 
@@ -37,9 +44,17 @@ Testing all triples $(x, y, z)$ with $x \le 5 \times 10^6$ and $y, z \le x^2$ re
    where $\gcd(a, b) = 1, a > b \ge 1$, and $a, b$ are not both squares.
 2. **Primitive Pair Counting**:
    Let $\phi[s]$ be the count of coprime pairs $(a, b)$ with $a + b = s, a > b$, where $a, b$ are not both squares:
-   $$\phi[s] = \frac{\varphi(s)}{2} - \mathbf{1}_{\{s = u^2 + v^2, \gcd(u, v) = 1\}}$$
+
+$$
+\phi[s] = \frac{\varphi(s)}{2} - \mathbf{1}_{\{s = u^2 + v^2, \gcd(u, v) = 1\}}
+$$
+
 3. **Master Identity**:
-   $$F(n) = A(n) + \frac{C_1(n) - C_3(n)}{2}$$
+
+$$
+F(n) = A(n) + \frac{C_1(n) - C_3(n)}{2}
+$$
+
    where $A(n) = \sum_{s \le n} \lfloor n/s \rfloor \phi[s]$, $C_1(n) = \sum_{i, j \le n} \lfloor \frac{n}{ij} \rfloor \phi[i] \phi[j]$, and $C_3(n)$ subtracts degenerate kernel collisions.
 
 ---

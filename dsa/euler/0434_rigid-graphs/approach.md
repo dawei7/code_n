@@ -12,7 +12,10 @@ We are given:
 - $S(5) = 25\,021\,721$
 
 We seek to evaluate:
-$$S(100) \pmod{1\,000\,000\,033}$$
+
+$$
+S(100) \pmod{1\,000\,000\,033}
+$$
 
 ---
 
@@ -31,7 +34,11 @@ By the foundational theorem of **Bolker and Crapo (1977)** on framework rigidity
 An $m \times n$ braced grid graph is infinitesimally rigid in the plane if and only if the **bipartite graph $G$** with vertex parts $R = \{r_1, \dots, r_m\}$ (rows) and $C = \{c_1, \dots, c_n\}$ (columns) is **connected**, where an edge $(r_i, c_j)$ exists if cell $(i, j)$ contains a diagonal brace!
 
 Therefore:
-$$R(m, n) = C(m, n)$$
+
+$$
+R(m, n) = C(m, n)
+$$
+
 where $C(m, n)$ is the number of connected bipartite graphs on bipartite parts of sizes $m$ and $n$!
 
 ---
@@ -41,9 +48,19 @@ where $C(m, n)$ is the number of connected bipartite graphs on bipartite parts o
 ### Component Inclusion-Exclusion Recurrence
 The total number of bipartite graphs on $m$ rows and $n$ columns is $2^{m n}$.
 To count connected graphs $C(m, n)$, we condition on the connected component containing the distinguished row vertex $r_1$:
-$$2^{m n} = \sum_{i=1}^m \sum_{j=0}^n \binom{m-1}{i-1} \binom{n}{j} C(i, j) 2^{(m-i)(n-j)}$$
+
+$$
+2^{m n} = \sum_{i=1}^m \sum_{j=0}^n \binom{m-1}{i-1} \binom{n}{j} C(i, j) 2^{(m-i)(n-j)}
+$$
+
 Isolating $C(m, n)$ (which corresponds to $i = m, j = n$):
-$$C(m, n) = 2^{m n} - \sum_{\substack{i=1 \\ (i,j) \neq (m,n)}}^m \sum_{j=0}^n \binom{m-1}{i-1} \binom{n}{j} C(i, j) 2^{(m-i)(n-j)}$$
+
+$$
+\begin{aligned}
+C(m, n) = 2^{m n} - \sum_{\substack{i=1 \\ (i,j) \neq (m,n)}}^m \sum_{j=0}^n \binom{m-1}{i-1} \binom{n}{j} C(i, j) 2^{(m-i)(n-j)}
+\end{aligned}
+$$
+
 with base cases $C(1, 0) = 1$ and $C(0, 1) = 1$.
 
 For $N = 100$, this 2D dynamic programming recurrence runs in $O(N^4) \approx 10^8$ operations, executing in **4.98 seconds**!

@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A program written in the esoteric programming language Fractran consists of an ordered list of 14 fractions:
-$$\left( \frac{17}{91}, \frac{78}{85}, \frac{19}{51}, \frac{23}{38}, \frac{29}{33}, \frac{77}{29}, \frac{95}{23}, \frac{77}{19}, \frac{1}{17}, \frac{11}{13}, \frac{13}{11}, \frac{15}{2}, \frac{1}{7}, \frac{55}{1} \right)$$
+
+$$
+\left( \frac{17}{91}, \frac{78}{85}, \frac{19}{51}, \frac{23}{38}, \frac{29}{33}, \frac{77}{29}, \frac{95}{23}, \frac{77}{19}, \frac{1}{17}, \frac{11}{13}, \frac{13}{11}, \frac{15}{2}, \frac{1}{7}, \frac{55}{1} \right)
+$$
+
 Starting with the integer $N = 2$, at each step the automaton multiplies $N$ by the first fraction in the list that produces an integer.
 Whenever the state $N$ is a power of 2 ($N = 2^p$), the exponent $p$ is prime.
 We are given sample values:
@@ -43,11 +47,19 @@ For each candidate integer $n \ge 2$:
 1. If $n$ is prime:
    The automaton attempts division by all $d = 2, 3, \dots, n - 1$.
    The total steps spent on prime $n$ is:
-   $$\text{Steps}(n) = \sum_{d=2}^{n-1} (6d + 2) + \dots = 3n^2 + 5n + 2 \text{ steps}$$
+
+$$
+\text{Steps}(n) = \sum_{d=2}^{n-1} (6d + 2) + \dots = 3n^2 + 5n + 2 \text{ steps}
+$$
+
 2. If $n$ is composite with smallest prime factor $p$:
    The automaton attempts division by $d = 2, 3, \dots, p$.
    The steps spent before reaching remainder $0$ at divisor $p$ is:
-   $$\text{Steps}(n) = 2 + (p - 1)(6n + 2) + \dots$$
+
+$$
+\text{Steps}(n) = 2 + (p - 1)(6n + 2) + \dots
+$$
+
 Summing these analytical step counts over all integers $n$ until $10\,001$ primes have been generated reduces the $10^{14}$ steps down to a standard $\mathcal{O}(p_{10001} \log \log p_{10001})$ prime sieve!
 
 ---

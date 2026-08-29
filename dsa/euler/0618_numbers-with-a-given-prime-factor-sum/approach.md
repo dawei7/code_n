@@ -4,14 +4,21 @@
 
 Let $s(n) = \sum e_i p_i$ be the sum of prime factors of $n = \prod p_i^{e_i}$ with multiplicity.
 Define:
-$$S(k) = \sum_{n: s(n) = k} n$$
+
+$$
+S(k) = \sum_{n: s(n) = k} n
+$$
+
 Let $F_k$ be the Fibonacci sequence ($F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, \dots$).
 
 We are given:
 - $S(1) = 0, S(2) = 2, S(3) = 3, S(5) = 11, S(8) = 49$
 
 We seek to evaluate:
-$$\sum_{k=2}^{24} S(F_k) \pmod{10^9}$$
+
+$$
+\sum_{k=2}^{24} S(F_k) \pmod{10^9}
+$$
 
 ---
 
@@ -27,10 +34,17 @@ Searching all integer partitions of $F_{24} = 46368$ into primes and multiplying
 ### Formal Power Series Generating Function
 1. **Generating Function of Weighted Multiplicities**:
    Since every integer $n$ decomposes uniquely into prime powers, the sum of values $n$ with prime sum $k$ corresponds to the product:
-   $$G(x) = \sum_{k=0}^\infty S(k) x^k = \prod_{p \in \mathbb{P}} \left( 1 + p x^p + p^2 x^{2p} + p^3 x^{3p} + \dots \right) = \prod_{p \in \mathbb{P}} \frac{1}{1 - p x^p}$$
+
+$$
+G(x) = \sum_{k=0}^\infty S(k) x^k = \prod_{p \in \mathbb{P}} \left( 1 + p x^p + p^2 x^{2p} + p^3 x^{3p} + \dots \right) = \prod_{p \in \mathbb{P}} \frac{1}{1 - p x^p}
+$$
+
 2. **Unbounded Knapsack Recurrence**:
    Introducing prime factor $p$ transitions the generating function via:
-   $$G_{i}(x) = G_{i-1}(x) \cdot \frac{1}{1 - p_i x^{p_i}} \iff [x^j] G_i(x) = [x^j] G_{i-1}(x) + p_i [x^{j - p_i}] G_i(x)$$
+
+$$
+G_{i}(x) = G_{i-1}(x) \cdot \frac{1}{1 - p_i x^{p_i}} \iff [x^j] G_i(x) = [x^j] G_{i-1}(x) + p_i [x^{j - p_i}] G_i(x)
+$$
 
 ---
 
@@ -42,7 +56,11 @@ Searching all integer partitions of $F_{24} = 46368$ into primes and multiplying
 2. **In-Place Forward Transition**:
    Initialize `dp[0] = 1`, `dp[1..46368] = 0`.
    For each prime $p \le 46368$:
-   $$\text{dp}[j] \leftarrow (\text{dp}[j] + p \cdot \text{dp}[j - p]) \pmod{10^9} \quad \text{for } j = p \dots 46368$$
+
+$$
+\text{dp}[j] \leftarrow (\text{dp}[j] + p \cdot \text{dp}[j - p]) \pmod{10^9} \quad \text{for } j = p \dots 46368
+$$
+
 3. **Summation**:
    Sum $\text{dp}[F_k]$ for $k = 2, \dots, 24$ modulo $10^9$.
 

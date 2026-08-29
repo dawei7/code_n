@@ -31,7 +31,10 @@ Let $f_1(z)$ and $f_2(z)$ generate words reducing stack sizes 1 and 2 to empty r
 - $f_2(z) = \frac{z}{1 - 9 z f_1(z)}$
 
 Setting $u(z) = z f_1(z)$ yields the cubic algebraic equation:
-$$u(1 - 9u)^2 = t, \quad \text{where } t = z^3$$
+
+$$
+u(1 - 9u)^2 = t, \quad \text{where } t = z^3
+$$
 
 ---
 
@@ -39,16 +42,29 @@ $$u(1 - 9u)^2 = t, \quad \text{where } t = z^3$$
 
 ### Lagrange Inversion Formula
 The full generating function for all triplicate strings (including leading zeros) is:
-$$S(t) = \frac{1}{1 - 10 u(t)} = \sum_{m=0}^\infty 10^m u(t)^m$$
+
+$$
+S(t) = \frac{1}{1 - 10 u(t)} = \sum_{m=0}^\infty 10^m u(t)^m
+$$
 
 By the Lagrange Inversion Formula on $u(t)^m$:
-$$[t^k] u(t)^m = \frac{m}{k} [w^{k-m}] (1 - 9w)^{-2k} = \frac{m}{k} \binom{3k - m - 1}{k - m} 9^{k - m}$$
+
+$$
+[t^k] u(t)^m = \frac{m}{k} [w^{k-m}] (1 - 9w)^{-2k} = \frac{m}{k} \binom{3k - m - 1}{k - m} 9^{k - m}
+$$
 
 Summing over all powers $m \in [1, k]$ gives the closed form for $s_k = [t^k] S(t)$:
-$$s_k = \frac{1}{k} \sum_{m=1}^k m \cdot 10^m \cdot 9^{k - m} \binom{3k - m - 1}{k - m}$$
+
+$$
+s_k = \frac{1}{k} \sum_{m=1}^k m \cdot 10^m \cdot 9^{k - m} \binom{3k - m - 1}{k - m}
+$$
 
 By 10-fold digit symmetry, the number of triplicate numbers of length $3k$ without leading zero is:
-$$T_{\text{len}}(3k) = \frac{9}{10} s_k$$
+
+$$
+T_{\text{len}}(3k) = \frac{9}{10} s_k
+$$
+
 and $T(N) = \sum_{k=1}^{\lfloor N/3 \rfloor} \frac{9}{10} s_k \pmod{998244353}$.
 
 ---

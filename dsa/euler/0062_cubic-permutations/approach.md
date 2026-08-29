@@ -7,7 +7,10 @@ The cube $41\,063\,625 = 345^3$ can be permuted to produce two other cubes: $56\
 Let $\operatorname{sig}(c) = \operatorname{sort\_digits}(c)$ denote the sorted tuple of decimal digits of cube $c = n^3$.
 
 The objective is to find the smallest cube for which exactly **five permutations** of its digits are also perfect cubes:
-$$c_{\text{min}} = \min \left\{ c = n^3 \;\middle|\; \left| \{ m \in \mathbb{N} \mid \operatorname{sig}(m^3) = \operatorname{sig}(c) \} \right| = 5 \right\}$$
+
+$$
+c_{\text{min}} = \min \left\{ c = n^3 \;\middle|\; \left| \{ m \in \mathbb{N} \mid \operatorname{sig}(m^3) = \operatorname{sig}(c) \} \right| = 5 \right\}
+$$
 
 ---
 
@@ -70,7 +73,10 @@ def naive_cubic_permutations():
   - $8384^3 = 589\,323\,567\,104$
 - All 5 numbers contain the exact 12-digit multiset $\{0, 1, 2, 2, 3, 3, 4, 5, 6, 7, 8, 9\}$.
 - Smallest Cube:
-  $$c_{\text{min}} = \mathbf{127\,035\,954\,683}$$
+
+$$
+c_{\text{min}} = \mathbf{127\,035\,954\,683}
+$$
 
 ---
 

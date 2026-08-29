@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $k$ is called a **square-pivot** if there exist integers $m > 0$ and $n \ge k$ such that:
-$$(k - m)^2 + (k - m + 1)^2 + \cdots + k^2 = (n + 1)^2 + (n + 2)^2 + \cdots + (n + m)^2$$
+
+$$
+(k - m)^2 + (k - m + 1)^2 + \cdots + k^2 = (n + 1)^2 + (n + 2)^2 + \cdots + (n + m)^2
+$$
+
 We seek the sum of all unique square-pivots $k \le 10^{10}$.
 
 ---
@@ -21,11 +25,22 @@ A naive search iterates over all triplets $(k, m, n)$ with $k \le 10^{10}$:
 
 ### Sum of Consecutive Squares & Pell's Equations
 Expanding both sums:
-$$(m + 1) k^2 - m(m + 1) k + \frac{m(m + 1)(2m + 1)}{6} = m n^2 + m(m + 1) n + \frac{m(m + 1)(2m + 1)}{6}$$
+
+$$
+(m + 1) k^2 - m(m + 1) k + \frac{m(m + 1)(2m + 1)}{6} = m n^2 + m(m + 1) n + \frac{m(m + 1)(2m + 1)}{6}
+$$
+
 Dividing by $(m + 1)$ and multiplying by suitable scaling transforms this into:
-$$(2n + m + 1)^2 - \frac{m + 1}{m} (2k - m)^2 = \dots$$
+
+$$
+(2n + m + 1)^2 - \frac{m + 1}{m} (2k - m)^2 = \dots
+$$
+
 Letting $m = a \cdot b^2$ (separating square-free and square factors), each valid choice of $m$ maps to a generalized **Pell-type equation**:
-$$X^2 - D Y^2 = C$$
+
+$$
+X^2 - D Y^2 = C
+$$
 
 ---
 

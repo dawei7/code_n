@@ -6,13 +6,22 @@ It is well known that if the square root of a natural number is not an integer, 
 The decimal expansion of such square roots is infinite without any repeating pattern at all.
 
 The square root of two is:
-$$\sqrt{2} = 1.41421356237309504880\dots$$
+
+$$
+\sqrt{2} = 1.41421356237309504880\dots
+$$
+
 The digital sum of the first one hundred ($100$) decimal digits of $\sqrt{2}$ is $475$.
 
 For the first one hundred natural numbers ($1 \le n \le 100$), there are 10 perfect squares ($1, 4, 9, 16, 25, 36, 49, 64, 81, 100$) and 90 irrational square roots.
 
 The objective is to find the total of the digital sums of the first one hundred decimal digits for all **irrational square roots** up to $100$:
-$$S_{\text{total}} = \sum_{\substack{1 \le n \le 100 \\ \lfloor \sqrt{n} \rfloor^2 \neq n}} \left( \sum_{i=1}^{100} d_i(\sqrt{n}) \right)$$
+
+$$
+\begin{aligned}
+S_{\text{total}} = \sum_{\substack{1 \le n \le 100 \\ \lfloor \sqrt{n} \rfloor^2 \neq n}} \left( \sum_{i=1}^{100} d_i(\sqrt{n}) \right)
+\end{aligned}
+$$
 
 ---
 
@@ -28,7 +37,11 @@ def naive_sqrt_expansion(n):
 
 ### Exact BigInt Integer Scaling
 1. To extract the first $D = 100$ decimal digits of $\sqrt{n}$ without floating-point precision loss:
-   $$\lfloor \sqrt{n} \cdot 10^{D-1} \rfloor = \lfloor \sqrt{n \cdot 10^{2(D-1)}} \rfloor = \operatorname{isqrt}\left( n \times 10^{2 \times 99} \right)$$
+
+$$
+\lfloor \sqrt{n} \cdot 10^{D-1} \rfloor = \lfloor \sqrt{n \cdot 10^{2(D-1)}} \rfloor = \operatorname{isqrt}\left( n \times 10^{2 \times 99} \right)
+$$
+
 2. The scaled integer square root $\operatorname{isqrt}(n \times 10^{198})$ is an exact 100-digit BigInt integer whose digits correspond 1-to-1 with the leading 100 digits of $\sqrt{n}$.
 3. Using `math.isqrt`, all 90 irrational roots evaluate in $\approx 0.002$ seconds.
 
@@ -70,12 +83,19 @@ def naive_sqrt_expansion(n):
 - $R_2 = \operatorname{isqrt}(2 \times 10^{198})$.
 - $R_2 = 1414213562373095048801688724209698078569671875376948073176679737990732478462107038850387534327641572$.
 - Summing these 100 digits:
-  $$S(2) = 1 + 4 + 1 + 4 + 2 + \dots + 7 + 2 = \mathbf{475}$$
+
+$$
+S(2) = 1 + 4 + 1 + 4 + 2 + \dots + 7 + 2 = \mathbf{475}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation across 90 Irrational Roots ($n \le 100$)
 - Summing digital expansions for all 90 non-squares:
-  $$S_{\text{total}} = \mathbf{40\,886}$$
+
+$$
+S_{\text{total}} = \mathbf{40\,886}
+$$
 
 ---
 

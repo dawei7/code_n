@@ -12,7 +12,10 @@ We are given:
 - $M(10, 0.01) \approx 266.9010$
 
 We seek to evaluate:
-$$M(100, 0.00002) \text{ rounded to 4 decimal places}$$
+
+$$
+M(100, 0.00002) \text{ rounded to 4 decimal places}
+$$
 
 ---
 

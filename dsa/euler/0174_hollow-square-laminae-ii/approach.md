@@ -10,10 +10,16 @@ For example:
 
 We define a tile count $t$ to be of type $L(n)$ if $L(t) = n$.
 Let $N(n)$ be the number of tile counts $t \le 1\,000\,000$ that are of type $L(n)$:
-$$N(n) = \left| \{ t \le 1\,000\,000 \;\middle|\; L(t) = n \} \right|$$
+
+$$
+N(n) = \left| \{ t \le 1\,000\,000 \;\middle|\; L(t) = n \} \right|
+$$
 
 The objective is to find the **sum of $N(n)$ for $1 \le n \le 10$**:
-$$S_{\text{lamina}} = \sum_{n=1}^{10} N(n)$$
+
+$$
+S_{\text{lamina}} = \sum_{n=1}^{10} N(n)
+$$
 
 ---
 
@@ -32,7 +38,11 @@ def naive_laminae_types():
    Since $t = a^2 - b^2 = 4xy \le 1\,000\,000$ where $x = (a - b)/2$ and $y = (a + b)/2$ ($1 \le x < y$):
    Let $m = t / 4 \le 250\,000$.
    The number of square laminae $L(t)$ formed by $t = 4m$ tiles equals the **number of factor pairs $(x, y)$ of $m$ with $x < y$**:
-   $$c(m) = \begin{cases} \lfloor d(m) / 2 \rfloor & \text{if } m \text{ is not a perfect square} \\ \lfloor (d(m) - 1) / 2 \rfloor & \text{if } m \text{ is a perfect square} \end{cases}$$
+
+$$
+c(m) = \begin{cases} \lfloor d(m) / 2 \rfloor & \text{if } m \text{ is not a perfect square} \\ \lfloor (d(m) - 1) / 2 \rfloor & \text{if } m \text{ is a perfect square} \end{cases}
+$$
+
 2. **Harmonic Sieve:**
    Precompute $d(m)$ for all $1 \le m \le 250\,000$ in $\mathcal{O}(M \log M)$ steps using a fast forward divisor sieve.
 3. Then count how many $m$ satisfy $1 \le c(m) \le 10$ and sum the frequencies in $\approx 0.08$ seconds.
@@ -79,7 +89,10 @@ def naive_laminae_types():
 
 ### Example 2: Target Evaluation for $M = 250\,000$
 - Summing all $N(n)$ for $n \in [1, 10]$:
-  $$S_{\text{lamina}} = \mathbf{209\,566}$$
+
+$$
+S_{\text{lamina}} = \mathbf{209\,566}
+$$
 
 ---
 

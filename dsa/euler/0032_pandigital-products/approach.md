@@ -3,13 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 An arithmetic identity $a \times b = p$ ($a, b, p \in \mathbb{N}$) is defined as **$1$ through $9$ pandigital** if the concatenated string:
-$$\mathbf{s} = \operatorname{str}(a) \mathbin{\Vert} \operatorname{str}(b) \mathbin{\Vert} \operatorname{str}(p)$$
+
+$$
+\mathbf{s} = \operatorname{str}(a) \mathbin{\Vert} \operatorname{str}(b) \mathbin{\Vert} \operatorname{str}(p)
+$$
+
 contains each of the decimal digits $1, 2, \dots, 9$ exactly once.
 
 Let $\mathcal{P}_{\text{pan}}$ denote the set of all unique products $p$ that satisfy at least one such identity.
 
 The objective is to compute the sum of all distinct pandigital products:
-$$S = \sum_{p \in \mathcal{P}_{\text{pan}}} p$$
+
+$$
+S = \sum_{p \in \mathcal{P}_{\text{pan}}} p
+$$
 
 ---
 
@@ -33,10 +40,16 @@ def naive_pandigital_products():
 
 Let $L(x) = \lfloor \log_{10} x \rfloor + 1$ denote the number of decimal digits in $x$.
 For $a \times b = p$, the total digit length must satisfy:
-$$L(a) + L(b) + L(p) = 9$$
+
+$$
+L(a) + L(b) + L(p) = 9
+$$
 
 Since $10^{L(a)-1} \le a < 10^{L(a)}$ and $10^{L(b)-1} \le b < 10^{L(b)}$:
-$$10^{L(a)+L(b)-2} \le a \cdot b < 10^{L(a)+L(b)} \implies L(p) \in \{L(a)+L(b)-1, \, L(a)+L(b)\}$$
+
+$$
+10^{L(a)+L(b)-2} \le a \cdot b < 10^{L(a)+L(b)} \implies L(p) \in \{L(a)+L(b)-1, \, L(a)+L(b)\}
+$$
 
 ### Digit Length Partition Cases
 
@@ -54,9 +67,17 @@ $$10^{L(a)+L(b)-2} \le a \cdot b < 10^{L(a)+L(b)} \implies L(p) \in \{L(a)+L(b)-
 
 ### Bounded Factor Search Ranges
 1. **Case 1 ($1 \times 4 \to 4$)**:
-   $$a \in [1, 9], \quad b \in \left[1234, \left\lfloor \frac{9876}{a} \right\rfloor \right]$$
+
+$$
+a \in [1, 9], \quad b \in \left[1234, \left\lfloor \frac{9876}{a} \right\rfloor \right]
+$$
+
 2. **Case 2 ($2 \times 3 \to 4$)**:
-   $$a \in [12, 98], \quad b \in \left[123, \left\lfloor \frac{9876}{a} \right\rfloor \right]$$
+
+$$
+a \in [12, 98], \quad b \in \left[123, \left\lfloor \frac{9876}{a} \right\rfloor \right]
+$$
+
 3. **Set Deduplication**:
    Store each valid product in a hash set $\mathcal{H}$ to avoid double counting identical products produced by multiple factorizations (e.g. $18 \times 297 = 5346$ and $27 \times 198 = 5346$).
 
@@ -73,9 +94,16 @@ $$10^{L(a)+L(b)-2} \le a \cdot b < 10^{L(a)+L(b)} \implies L(p) \in \{L(a)+L(b)-
 
 ### Example 2: Complete Target Evaluation
 The set of unique 1-9 pandigital products is:
-$$\mathcal{P}_{\text{pan}} = \{4396, 5346, 5796, 6952, 7254, 7632, 7852\} \cup \{4396, 5346, \dots\}$$
+
+$$
+\mathcal{P}_{\text{pan}} = \{4396, 5346, 5796, 6952, 7254, 7632, 7852\} \cup \{4396, 5346, \dots\}
+$$
+
 Summing all elements in $\mathcal{P}_{\text{pan}}$:
-$$S = \mathbf{45\,228}$$
+
+$$
+S = \mathbf{45\,228}
+$$
 
 ---
 

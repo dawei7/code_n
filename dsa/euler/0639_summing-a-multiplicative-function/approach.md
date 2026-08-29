@@ -12,7 +12,10 @@ We are given:
 - $\sum_{k=1}^3 S_k(10^8) \equiv 338787512 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$\sum_{k=1}^{50} S_k(10^{12}) \bmod 1\,000\,000\,007$$
+
+$$
+\sum_{k=1}^{50} S_k(10^{12}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,9 +32,17 @@ Iterating $n \le 10^{12}$ requires $10^{12}$ radical evaluations, which exceeds 
 1. **Dirichlet Convolution**:
    Decompose $f_k = \operatorname{Id}^k * h_k$, where $\operatorname{Id}^k(n) = n^k$.
 2. **Local Generating Function**:
-   $$\sum_{e=0}^\infty f_k(p^e) x^e = 1 + \frac{p^k x}{1 - x}, \quad \sum_{e=0}^\infty \operatorname{Id}^k(p^e) x^e = \frac{1}{1 - p^k x}$$
+
+$$
+\sum_{e=0}^\infty f_k(p^e) x^e = 1 + \frac{p^k x}{1 - x}, \quad \sum_{e=0}^\infty \operatorname{Id}^k(p^e) x^e = \frac{1}{1 - p^k x}
+$$
+
    Dividing the two yields the local series for $h_k$:
-   $$\sum_{e=0}^\infty h_k(p^e) x^e = 1 - \frac{p^k (p^k - 1) x^2}{1 - x}$$
+
+$$
+\sum_{e=0}^\infty h_k(p^e) x^e = 1 - \frac{p^k (p^k - 1) x^2}{1 - x}
+$$
+
 3. **Powerful Support**:
    - $h_k(1) = 1$.
    - $h_k(p) = 0$.
@@ -44,11 +55,19 @@ Iterating $n \le 10^{12}$ requires $10^{12}$ radical evaluations, which exceeds 
 
 ### Sublinear Summation via Powerful Tree DFS ($O(\sqrt{N} + K \cdot P(N))$)
 1. **Block Summation**:
-   $$S_k(N) = \sum_{d \le N, d \text{ powerful}} h_k(d) \sum_{m=1}^{\lfloor N/d \rfloor} m^k$$
+
+$$
+S_k(N) = \sum_{d \le N, d \text{ powerful}} h_k(d) \sum_{m=1}^{\lfloor N/d \rfloor} m^k
+$$
+
 2. **Precomputed Power Sums & Falling Factorials**:
    - For $t \le 10^6$: lookup $O(1)$ from the precomputed table $\Sigma_k(t) = \sum_{m=1}^t m^k$.
    - For $t > 10^6$: evaluate Faulhaber's formula via Stirling numbers of the second kind:
-     $$\sum_{m=1}^t m^k = \sum_{j=1}^k \frac{S_2(k, j)}{j + 1} (t + 1)_{j+1} \pmod{10^9 + 7}$$
+
+$$
+\sum_{m=1}^t m^k = \sum_{j=1}^k \frac{S_2(k, j)}{j + 1} (t + 1)_{j+1} \pmod{10^9 + 7}
+$$
+
 3. **Sparse DFS**:
    Branch over primes and exponents $e \ge 2$ to visit all $2.17 \times 10^6$ powerful numbers $d \le 10^{12}$.
 

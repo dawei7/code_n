@@ -5,11 +5,18 @@
 Let $S = (d_0, d_1, d_2, \dots, d_{N-1}) \in \{0, 1, \dots, 9\}^N$ denote a sequence of $N = 1000$ decimal digits.
 
 For a contiguous window width $K \in \mathbb{N}$ ($K = 13$), define the subsequence product operator $\Pi_K(i)$:
-$$\Pi_K(i) = \prod_{j=0}^{K-1} d_{i+j} = d_i \cdot d_{i+1} \cdots d_{i+K-1}$$
+
+$$
+\Pi_K(i) = \prod_{j=0}^{K-1} d_{i+j} = d_i \cdot d_{i+1} \cdots d_{i+K-1}
+$$
+
 for offsets $0 \le i \le N - K$.
 
 The objective is to compute the maximum product across all valid contiguous sliding windows:
-$$P_{\text{max}} = \max_{0 \le i \le N - K} \Pi_K(i)$$
+
+$$
+P_{\text{max}} = \max_{0 \le i \le N - K} \Pi_K(i)
+$$
 
 ---
 
@@ -55,10 +62,18 @@ Because the window size $K = 13$ is fixed, we can classify sliding windows into:
 
 ### Sliding Window Multiplication & Optimization
 1. Total windows for $N = 1000$ and $K = 13$ is:
-   $$N_{\text{windows}} = N - K + 1 = 1000 - 13 + 1 = 988$$
+
+$$
+N_{\text{windows}} = N - K + 1 = 1000 - 13 + 1 = 988
+$$
+
 2. Filtering windows with `'0'` eliminates over $70\%$ of candidate windows.
 3. For remaining candidate windows, evaluate:
-   $$\Pi_{13}(i) = d_i \cdot d_{i+1} \cdots d_{i+12}$$
+
+$$
+\Pi_{13}(i) = d_i \cdot d_{i+1} \cdots d_{i+12}
+$$
+
 4. Global maximum is obtained in $\le 988$ constant-time iterations.
 
 ---
@@ -71,9 +86,16 @@ Because the window size $K = 13$ is fixed, we can classify sliding windows into:
 
 ### Example 2: Target Evaluation for $K = 13$
 - The maximal contiguous 13-digit sequence in the 1000-digit number is:
-  $$\mathbf{9781797784617} \quad (\text{or equivalent block } 9 \times 7 \times 8 \times 1 \dots)$$
+
+$$
+\mathbf{9781797784617} \quad (\text{or equivalent block } 9 \times 7 \times 8 \times 1 \dots)
+$$
+
   yielding the product:
-  $$9 \times 7 \times 8 \times 1 \times 7 \times 9 \times 7 \times 7 \times 8 \times 4 \times 6 \times 1 \times 7 = \mathbf{23\,514\,624\,000}$$
+
+$$
+9 \times 7 \times 8 \times 1 \times 7 \times 9 \times 7 \times 7 \times 8 \times 4 \times 6 \times 1 \times 7 = \mathbf{23\,514\,624\,000}
+$$
 
 ---
 

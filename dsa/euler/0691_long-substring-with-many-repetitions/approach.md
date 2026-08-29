@@ -17,7 +17,10 @@ We are given:
 - Sum of non-zero $L(k, S_{1000})$ for $k \ge 1$ is $2460$.
 
 We seek to evaluate:
-$$\sum_{k \ge 1} L(k, S_{5\,000\,000})$$
+
+$$
+\sum_{k \ge 1} L(k, S_{5\,000\,000})
+$$
 
 ---
 
@@ -36,12 +39,19 @@ String length is $N = 5 \times 10^6$. Hashing all substrings or searching suffix
 2. **Occurrence Count via Link Tree**:
    Each state $u$ corresponds to an equivalence class of substrings sharing the exact same set of end-positions.
    The occurrence count $\text{occ}(u) = |\text{endpos}(u)|$ is computed by propagating $1$'s from prefix states up the suffix link DAG (link tree):
-   $$\text{occ}(u) = \text{is\_prefix}(u) + \sum_{v: \text{link}(v) = u} \text{occ}(v)$$
+
+$$
+\text{occ}(u) = \text{is\_prefix}(u) + \sum_{v: \text{link}(v) = u} \text{occ}(v)
+$$
+
 3. **Suffix Maximum Over Occurrence Frequencies**:
    For each state $u$, it certifies that a substring of length $\text{maxlen}(u)$ occurs at least $\text{occ}(u)$ times.
    Let $\text{best}[c] = \max \{ \text{maxlen}(u) \mid \text{occ}(u) = c \}$.
    Then the longest substring appearing at least $k$ times is the suffix maximum:
-   $$L(k, S_N) = \max_{c \ge k} \text{best}[c]$$
+
+$$
+L(k, S_N) = \max_{c \ge k} \text{best}[c]
+$$
 
 ---
 

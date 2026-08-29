@@ -22,7 +22,11 @@ Find $F(10^{16}) \bmod (10^9 + 7)$.
 
 ### Tribonacci Automaton & Digit DP
 The number of valid binary strings of length $k$ avoiding `111` follows the Tribonacci recurrence:
-$$T(k) = T(k - 1) + T(k - 2) + T(k - 3)$$
+
+$$
+T(k) = T(k - 1) + T(k - 2) + T(k - 3)
+$$
+
 Using the Tribonacci base representation, the exact binary form of $s_{10^{16}}$ can be identified in $\mathcal{O}(\log N)$ steps.
 
 ---
@@ -40,7 +44,12 @@ Tracing state transitions $(c, \text{is\_odd})$ with moment variables $(1, n, n^
 - Valid numbers without `111`: $1, 2, 3, 4, 5, 6, 8, 9, 10, 11$.
 - Odd valid numbers: $s_1 = 1, s_3 = 3, s_5 = 5, s_8 = 9, s_{10} = 11$.
 - Sum of $n^2$ for odd indices:
-$$1^2 + 3^2 + 5^2 + 8^2 + 10^2 = 1 + 9 + 25 + 64 + 100 = \mathbf{199}$$ (Matches official example! $\checkmark$)
+
+$$
+1^2 + 3^2 + 5^2 + 8^2 + 10^2 = 1 + 9 + 25 + 64 + 100 = \mathbf{199}
+$$
+
+(Matches official example! $\checkmark$)
 
 ---
 

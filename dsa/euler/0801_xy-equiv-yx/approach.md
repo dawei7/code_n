@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a given positive integer $n$, let $f(n)$ be the number of integral pairs $0 < x, y \le n^2 - n$ satisfying:
-$$x^y \equiv y^x \pmod n$$
+
+$$
+x^y \equiv y^x \pmod n
+$$
+
 Let $S(M, N) = \sum_{p \in [M, N], p \in \mathbb{P}} f(p)$.
 We seek to evaluate:
-$$S(10^{16}, 10^{16} + 10^6) \bmod 993353399$$
+
+$$
+S(10^{16}, 10^{16} + 10^6) \bmod 993353399
+$$
 
 We are given:
 - $f(5) = 104$
@@ -31,12 +38,20 @@ For each prime $p \approx 10^{16}$, iterating over all $x, y \le p(p-1) \approx 
    Thus, $x^y \equiv y^x \pmod p \iff a^v \equiv b^u \pmod p$.
 2. **Primitive Root Logarithms**:
    For non-zero residues $a, b \in [1, p-1]$, representing $a \equiv g^\alpha, b \equiv g^\beta \pmod p$ transforms the condition into the linear modular congruence:
-   $$\alpha v \equiv \beta u \pmod{p-1}$$
+
+$$
+\alpha v \equiv \beta u \pmod{p-1}
+$$
+
    over $(\alpha, \beta, u, v) \in [0, p-2]^4$.
 3. **Multiplicative Arithmetic Function**:
    Counting solutions to $\alpha v \equiv \beta u \pmod N$ for $N = p-1$ is a strictly multiplicative function in $N$.
    For a prime power $q^e$:
-   $$h(q^e) = \sum_{k=0}^e \phi(q^k) \cdot (e - k + 1) q^{2e - k} - \dots$$
+
+$$
+h(q^e) = \sum_{k=0}^e \phi(q^k) \cdot (e - k + 1) q^{2e - k} - \dots
+$$
+
    Factoring $p-1 = \prod q_i^{e_i}$ evaluates $f(p)$ in $O(\sum e_i)$ operations!
 
 ---

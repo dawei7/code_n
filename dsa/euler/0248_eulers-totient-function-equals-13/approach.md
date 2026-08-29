@@ -4,7 +4,10 @@
 
 For an integer $n$, Euler's totient function $\phi(n)$ counts the integers $1 \le k \le n$ coprime to $n$.
 We seek integers $n$ such that:
-$$\phi(n) = 13! = 6\,227\,020\,800$$
+
+$$
+\phi(n) = 13! = 6\,227\,020\,800
+$$
 
 The smallest number $n$ with $\phi(n) = 13!$ is $6\,227\,180\,929$.
 Find the **$150\,000$th** such number in ascending order.
@@ -24,12 +27,24 @@ def naive_inverse_phi():
 ### Inverse Totient Backtracking via Prime Divisor Candidates
 1. **Prime Factor Constraints on $n$:**
    For $n = 2^a \prod_{i} p_i^{e_i}$ (where $p_i > 2$ are distinct odd primes):
-   $$\phi(n) = \phi(2^a) \cdot \prod_{i} (p_i - 1) p_i^{e_i - 1} = 13!$$
+
+$$
+\phi(n) = \phi(2^a) \cdot \prod_{i} (p_i - 1) p_i^{e_i - 1} = 13!
+$$
+
    Therefore, for every odd prime $p \mid n$:
-   $$(p - 1) \mid 13!$$
+
+$$
+(p - 1) \mid 13!
+$$
+
 2. **Divisor Generation:**
    The prime factorization of $13!$ is:
-   $$13! = 2^{10} \cdot 3^5 \cdot 5^2 \cdot 7^1 \cdot 11^1 \cdot 13^1$$
+
+$$
+13! = 2^{10} \cdot 3^5 \cdot 5^2 \cdot 7^1 \cdot 11^1 \cdot 13^1
+$$
+
    The total number of divisors of $13!$ is $(10+1)(5+1)(2+1)(1+1)(1+1)(1+1) = 1584$ divisors.
 3. **Candidate Primes $p = d + 1$:**
    For each divisor $d \mid 13!$, we test if $d + 1$ is prime. This yields all possible prime factors that can divide $n$.
@@ -67,7 +82,10 @@ def solve(target_idx: int = 150000) -> int:
 ```
 
 Evaluating for index $150\,000$:
-$$\text{Total Solutions} = 182\,752 \implies n_{150000} = \mathbf{23\,507\,044\,290}$$
+
+$$
+\text{Total Solutions} = 182\,752 \implies n_{150000} = \mathbf{23\,507\,044\,290}
+$$
 
 ---
 
@@ -82,7 +100,10 @@ $$\text{Total Solutions} = 182\,752 \implies n_{150000} = \mathbf{23\,507\,044\,
 ### Example 2: Target Evaluation for $150\,000$th Solution
 - Backtracking generates all $182\,752$ valid values of $n$.
 - Sorting the list and indexing at index $149\,999$:
-  $$n_{150000} = \mathbf{23\,507\,044\,290} \quad (\checkmark)$$
+
+$$
+n_{150000} = \mathbf{23\,507\,044\,290} \quad (\checkmark)
+$$
 
 ---
 

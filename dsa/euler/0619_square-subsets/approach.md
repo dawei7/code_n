@@ -9,7 +9,10 @@ We are given:
 - $C(1000, 1234) \equiv 975523611 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$C(1000000, 1234567) \pmod{10^9 + 7}$$
+
+$$
+C(1000000, 1234567) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -28,10 +31,18 @@ For an interval of $N = 234568$ integers, testing all $2^{234568}$ subsets is co
    Map $x$ to its exponent parity vector $\vec{v}(x) \in \mathbb{F}_2^P$ where $v_i(x) \equiv e_i \pmod 2$.
 2. **Square Product Nullspace**:
    A subset of integers $\{x_1, \dots, x_k\}$ produces a square product if and only if:
-   $$\sum_{j=1}^k \vec{v}(x_j) \equiv \vec{0} \pmod 2$$
+
+$$
+\sum_{j=1}^k \vec{v}(x_j) \equiv \vec{0} \pmod 2
+$$
+
    This is precisely the nullspace of the incidence matrix $M \in \mathbb{F}_2^{P \times N}$!
 3. **Rank-Nullity Theorem**:
-   $$\operatorname{nullity}(M) = N - \operatorname{rank}(M)$$
+
+$$
+\operatorname{nullity}(M) = N - \operatorname{rank}(M)
+$$
+
    The number of non-empty subsets is $2^{\operatorname{nullity}(M)} - 1 \pmod{10^9 + 7}$.
 
 ---

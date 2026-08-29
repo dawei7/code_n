@@ -4,16 +4,24 @@
 
 For an integer $n > 0$ and prime $p$, let $\nu_p(n)$ denote the $p$-adic valuation of $n$.
 Define:
-$$D(n, m) = \sum_{p \text{ prime}} |\nu_p(n) - \nu_p(m)|$$
 
-$$S(N) = \sum_{1 \le n, m \le N} D(n, m)$$
+$$
+D(n, m) = \sum_{p \text{ prime}} |\nu_p(n) - \nu_p(m)|
+$$
+
+$$
+S(N) = \sum_{1 \le n, m \le N} D(n, m)
+$$
 
 We are given:
 - $S(10) = 210$
 - $S(100) = 37018$
 
 We seek to evaluate:
-$$S(10^{12}) \bmod 1\,000\,000\,007$$
+
+$$
+S(10^{12}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,16 +36,32 @@ Evaluating $S(N)$ for $N = 10^{12}$ requires summing over $N^2 = 10^{24}$ pairs 
 
 ### Prime Valuation Distribution & Hyperbolic Partition
 1. **Summation Interchange by Prime**:
-   $$S(N) = \sum_{p \le N} \sum_{1 \le n, m \le N} |\nu_p(n) - \nu_p(m)|$$
+
+$$
+S(N) = \sum_{p \le N} \sum_{1 \le n, m \le N} |\nu_p(n) - \nu_p(m)|
+$$
+
 2. **Valuation Frequencies**:
    For a fixed prime $p$, let $c_k$ be the count of integers $n \le N$ with $\nu_p(n) = k$:
-   $$c_k = \left\lfloor \frac{N}{p^k} \right\rfloor - \left\lfloor \frac{N}{p^{k+1}} \right\rfloor \quad (k \ge 0)$$
+
+$$
+c_k = \left\lfloor \frac{N}{p^k} \right\rfloor - \left\lfloor \frac{N}{p^{k+1}} \right\rfloor \quad (k \ge 0)
+$$
+
    Then the contribution of prime $p$ is:
-   $$\text{contrib}(p) = 2 \sum_{0 \le j < k} (k - j) c_j c_k$$
+
+$$
+\text{contrib}(p) = 2 \sum_{0 \le j < k} (k - j) c_j c_k
+$$
+
 3. **Large Primes $p > \sqrt{N}$**:
    For $p > \sqrt{N}$, $p^2 > N \implies c_k = 0$ for all $k \ge 2$.
    Only $c_0 = N - \lfloor N/p \rfloor$ and $c_1 = \lfloor N/p \rfloor$ exist!
-   $$\text{contrib}(p) = 2 \left( N - \left\lfloor \frac{N}{p} \right\rfloor \right) \left\lfloor \frac{N}{p} \right\rfloor$$
+
+$$
+\text{contrib}(p) = 2 \left( N - \left\lfloor \frac{N}{p} \right\rfloor \right) \left\lfloor \frac{N}{p} \right\rfloor
+$$
+
    This depends only on $v = \lfloor N/p \rfloor \in \{1, 2, \dots, \lfloor \sqrt{N} \rfloor\}$!
 
 ---
@@ -48,7 +72,11 @@ Evaluating $S(N)$ for $N = 10^{12}$ requires summing over $N^2 = 10^{24}$ pairs 
 1. **Block Summation**:
    For each quotient $v = 1 \dots \lfloor \sqrt{N} \rfloor$:
    The number of primes with $\lfloor N/p \rfloor = v$ is:
-   $$\Delta \pi = \pi\left( \left\lfloor \frac{N}{v} \right\rfloor \right) - \pi\left( \left\lfloor \frac{N}{v + 1} \right\rfloor \right)$$
+
+$$
+\Delta \pi = \pi\left( \left\lfloor \frac{N}{v} \right\rfloor \right) - \pi\left( \left\lfloor \frac{N}{v + 1} \right\rfloor \right)
+$$
+
    Each such prime contributes $2 (N - v) v \pmod{\text{MOD}}$.
 2. **Lucy's Algorithm (Min_25 Sieve State Initialization)**:
    Compute $\pi(x)$ for all $x \in \{ \lfloor N/i \rfloor \} \cup \{1 \dots \sqrt{N}\}$ in $O(N^{3/4})$ time.

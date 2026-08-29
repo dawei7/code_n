@@ -11,7 +11,11 @@ The three tangency points $P_{ab}, P_{ac}, P_{bc}$ form a triangle.
 Let $\mathbb{E}(d)$ be the expected value of $d$ over all coprime integer triples $1 \le r_a < r_b < r_c \le 100$ with $\gcd(r_a, r_b, r_c) = 1$.
 
 We seek to evaluate:
-$$\mathbb{E}(d)$$
+
+$$
+\mathbb{E}(d)
+$$
+
 rounded to 8 decimal places.
 
 ---
@@ -28,11 +32,19 @@ Solving non-linear circle equations with general numerical root-finders introduc
 ### Descartes' Circle Theorem & Analytic Geometry Placement
 1. **Descartes' Theorem for the Incircle Radius**:
    Let curvatures be $k_a = 1/r_a, k_b = 1/r_b, k_c = 1/r_c$. The inner Soddy circle has curvature:
-   $$k_4 = k_a + k_b + k_c + 2 \sqrt{k_a k_b + k_b k_c + k_c k_a} \implies r_4 = \frac{1}{k_4}$$
+
+$$
+k_4 = k_a + k_b + k_c + 2 \sqrt{k_a k_b + k_b k_c + k_c k_a} \implies r_4 = \frac{1}{k_4}
+$$
+
 2. **Canonical Coordinate System**:
    Place circle $A$ at $(0, 0)$ and circle $B$ at $(r_a + r_b, 0)$.
    The coordinates of circle $C$ are uniquely determined by trilateration:
-   $$x_C = \frac{(r_a + r_c)^2 - (r_b + r_c)^2 + (r_a + r_b)^2}{2(r_a + r_b)}, \quad y_C = \sqrt{(r_a + r_c)^2 - x_C^2}$$
+
+$$
+x_C = \frac{(r_a + r_c)^2 - (r_b + r_c)^2 + (r_a + r_b)^2}{2(r_a + r_b)}, \quad y_C = \sqrt{(r_a + r_c)^2 - x_C^2}
+$$
+
 3. **Analytic Tangency Points and Circumcentre $D$**:
    - $P_{ab} = (r_a, 0)$
    - $P_{ac} = \frac{r_a}{r_a + r_c} C$

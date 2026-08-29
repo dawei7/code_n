@@ -23,10 +23,16 @@ Evaluating and factoring each $F_n$ up to $n \approx 1.3 \times 10^8$ is complet
 ### Wall's Conjecture & Rank of Apparition
 For any prime $p$, let $z(p)$ be the **rank of apparition** (the smallest index $k \ge 1$ such that $p \mid F_k$).
 Under Wall's conjecture (verified for all relevant primes):
-$$p^2 \mid F_n \iff p \cdot z(p) \mid n$$
+
+$$
+p^2 \mid F_n \iff p \cdot z(p) \mid n
+$$
 
 Therefore, $F_n$ is squarefree if and only if $n$ is **not a multiple** of any modulus in the set:
-$$\mathcal{M} = \{p \cdot z(p) : p \text{ is prime}\}$$
+
+$$
+\mathcal{M} = \{p \cdot z(p) : p \text{ is prime}\}
+$$
 
 ---
 
@@ -39,7 +45,11 @@ $$\mathcal{M} = \{p \cdot z(p) : p \text{ is prime}\}$$
    We collect all $m = p \cdot z(p) \le N_{\max} \approx 2 \times 10^8$. Any modulus that is a multiple of a smaller modulus is redundant and removed.
 3. **Inclusion-Exclusion Table**:
    Using DFS over the filtered moduli, we precalculate the non-zero inclusion-exclusion coefficients:
-   $$\text{count}(N) = \sum_{L} c_L \left\lfloor \frac{N}{L} \right\rfloor$$
+
+$$
+\text{count}(N) = \sum_{L} c_L \left\lfloor \frac{N}{L} \right\rfloor
+$$
+
 4. **Binary Search**:
    Because $\text{count}(N)$ is monotonic, binary search finds the exact index $n$ such that $\text{count}(n) = 100\,000\,000$.
 5. **Answer Formatting**:

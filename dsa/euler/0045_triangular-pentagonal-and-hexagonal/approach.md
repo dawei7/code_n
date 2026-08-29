@@ -8,10 +8,16 @@ Triangle, pentagonal, and hexagonal numbers are defined by:
 - **Hexagonal:** $H_n = n(2n - 1)$
 
 It is verified that:
-$$T_{285} = P_{165} = H_{143} = 40\,755$$
+
+$$
+T_{285} = P_{165} = H_{143} = 40\,755
+$$
 
 The objective is to find the next integer $X > 40\,755$ that is simultaneously triangular, pentagonal, and hexagonal:
-$$X = \min \{ H_m \mid m > 143, \, H_m \in \{P_n\}, \, H_m \in \{T_k\} \}$$
+
+$$
+X = \min \{ H_m \mid m > 143, \, H_m \in \{P_n\}, \, H_m \in \{T_k\} \}
+$$
 
 ---
 
@@ -27,7 +33,11 @@ def naive_tri_pent_hex():
 
 ### The Hexagonal-Triangular Subsumption Theorem
 Notice the algebraic identity:
-$$H_m = m(2m - 1) = \frac{(2m - 1)(2m)}{2} = T_{2m - 1}$$
+
+$$
+H_m = m(2m - 1) = \frac{(2m - 1)(2m)}{2} = T_{2m - 1}
+$$
+
 **Theorem:** Every hexagonal number $H_m$ is identically the $(2m-1)$-th triangular number $T_{2m-1}$ ($\{H_m\} \subset \{T_n\}$).
 
 Therefore, triangularity is unconditionally guaranteed for all hexagonal numbers! We only need to iterate hexagonal numbers $H_m$ for $m \ge 144$ and check if $H_m$ is pentagonal.
@@ -53,7 +63,11 @@ Therefore, triangularity is unconditionally guaranteed for all hexagonal numbers
 2. In each iteration:
    - Compute $H_m = m(2m - 1)$.
    - Test pentagonality:
-     $$\Delta = 1 + 24 H_m, \quad r = \lfloor \sqrt{\Delta} \rfloor$$
+
+$$
+\Delta = 1 + 24 H_m, \quad r = \lfloor \sqrt{\Delta} \rfloor
+$$
+
      If $r \cdot r == \Delta$ and $r \equiv 5 \pmod 6$, then $H_m$ is also pentagonal!
    - Return $H_m$.
 3. The next match occurs at $m = 27\,693$, evaluated in only $27\,550$ iterations ($\approx 0.007$ seconds).
@@ -76,7 +90,10 @@ Therefore, triangularity is unconditionally guaranteed for all hexagonal numbers
   - $n = (1 + 191861) / 6 = 191862 / 6 = 31\,977 \implies P_{31977} = 1\,533\,776\,805 \checkmark$.
 - Triangular index: $k = 2(27693) - 1 = 55\,385 \implies T_{55385} = 1\,533\,776\,805 \checkmark$.
 - Solution:
-  $$X = \mathbf{1\,533\,776\,805}$$
+
+$$
+X = \mathbf{1\,533\,776\,805}
+$$
 
 ---
 

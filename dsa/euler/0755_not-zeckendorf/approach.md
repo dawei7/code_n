@@ -5,14 +5,20 @@
 Let $\{F_k\}_{k \ge 1} = \{1, 2, 3, 5, 8, 13, \dots\}$ be the standard Fibonacci sequence.
 $f(n)$ is the number of ways to express $n \ge 0$ as the sum of distinct Fibonacci numbers ($f(0) = 1$).
 Define the cumulative sum:
-$$S(N) = \sum_{k=0}^N f(k)$$
+
+$$
+S(N) = \sum_{k=0}^N f(k)
+$$
 
 We are given:
 - $S(100) = 415$
 - $S(10^4) = 312807$
 
 We seek to evaluate:
-$$S(10^{13})$$
+
+$$
+S(10^{13})
+$$
 
 ---
 
@@ -31,7 +37,11 @@ For $N = 10^{13}$, evaluating $f(k)$ for each $k \le 10^{13}$ individually requi
 2. **Recursive Transition**:
    Let $C(i, x)$ count the number of subsets of $\{F_1, \dots, F_i\}$ with sum $\le x$.
    A subset either omits $F_i$ or includes $F_i$:
-   $$C(i, x) = C(i - 1, x) + C(i - 1, x - F_i)$$
+
+$$
+C(i, x) = C(i - 1, x) + C(i - 1, x - F_i)
+$$
+
 3. **Prefix Sum Pruning**:
    Let $T_i = \sum_{j=1}^i F_j = F_{i+2} - 2$.
    - If $x < 0$: $C(i, x) = 0$.

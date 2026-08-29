@@ -11,7 +11,10 @@ We are given:
 - $E(7) \approx 42.28176050$
 
 We seek to evaluate:
-$$E(14) \text{ rounded to } 8 \text{ decimal places}$$
+
+$$
+E(14) \text{ rounded to } 8 \text{ decimal places}
+$$
 
 ---
 
@@ -39,11 +42,19 @@ Simulating the stochastic multi-agent Markov game directly involves cycles (fail
 ### Analytical $O(m)$ Cyclic Markov Resolution
 1. **Linear Recurrence within a Subset**:
    For the $m$ chefs in current mask, the win vectors $W_t$ and expected turns $E_t$ satisfy:
-   $$W_t = a_t W_{t+1} + b_t, \quad E_t = 1 + a_t E_{t+1} + c_t$$
+
+$$
+W_t = a_t W_{t+1} + b_t, \quad E_t = 1 + a_t E_{t+1} + c_t
+$$
+
    where $a_t = 1 - S(\text{chef}_t)$, $b_t = S(\text{chef}_t) W_{\text{small}}$, and index $t+1$ wraps modulo $m$.
 2. **One-Pass Substitution**:
    Expressing each $W_t = A_t W_0 + B_t$ in reverse from $t = m-1$ down to $0$:
-   $$W_0 = \frac{B_0}{1 - A_0}, \quad E_0 = \frac{B_0^{(e)}}{1 - A_0^{(e)}}$$
+
+$$
+W_0 = \frac{B_0}{1 - A_0}, \quad E_0 = \frac{B_0^{(e)}}{1 - A_0^{(e)}}
+$$
+
    This solves the cyclic system for the entire subset in $O(m \cdot n)$ without Gaussian elimination!
 3. **Popcount Progression**:
    Sweeping subsets by increasing size $2 \dots 14$ solves the complete game for $n = 14$ in **0.71 seconds**!

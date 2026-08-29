@@ -4,10 +4,16 @@
 
 Let $a = 1504170715041707$ and $m = 4503599627370517$.
 Consider the sequence:
-$$s_n = (a \cdot n) \bmod m \quad \text{for } n = 1, 2, 3, \dots$$
+
+$$
+s_n = (a \cdot n) \bmod m \quad \text{for } n = 1, 2, 3, \dots
+$$
 
 An element $s_n$ is defined to be an **Eulercoin** if it is strictly smaller than all previously encountered elements:
-$$s_n < \min_{1 \le i < n} s_i$$
+
+$$
+s_n < \min_{1 \le i < n} s_i
+$$
 
 We are given:
 - $s_1 = 1504170715041707$ (1st Eulercoin)
@@ -15,7 +21,10 @@ We are given:
 - The sum of the first 2 Eulercoins is $1513083232796311$.
 
 We seek to evaluate:
-$$\text{Sum of all Eulercoins}$$
+
+$$
+\text{Sum of all Eulercoins}
+$$
 
 ---
 
@@ -36,9 +45,16 @@ The period is $m \approx 4.5 \times 10^{15}$. Stepping $n$ linearly through the 
 3. **Reverse Value-Stepping Phase**:
    For small coin values ($v \le T$), there are at most $T = 2 \times 10^7$ candidate integers.
    For each possible coin value $v \in [1, T]$, its unique occurrence index is:
-   $$n(v) = (v \cdot a^{-1}) \bmod m$$
+
+$$
+n(v) = (v \cdot a^{-1}) \bmod m
+$$
+
    Iterating $v$ from $1$ up to $T$, a value $v$ is an Eulercoin if and only if its occurrence index $n(v)$ is strictly smaller than the indices of all previously tested values $v' < v$:
-   $$n(v) < \min_{v' < v} n(v')$$
+
+$$
+n(v) < \min_{v' < v} n(v')
+$$
 
 ---
 

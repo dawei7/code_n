@@ -5,7 +5,11 @@
 Let $f(N)$ be the smallest positive integer that is not coprime to any positive integer $n \le N$ with $n \equiv 3 \pmod{10}$.
 Equivalently, $f(N) = \prod_{p \in S} p$ for a subset of primes $S$ such that every $n \le N$ ending in 3 is divisible by at least one prime $p \in S$.
 We wish to minimize:
-$$\ln f(N) = \sum_{p \in S} \ln p$$
+
+$$
+\ln f(N) = \sum_{p \in S} \ln p
+$$
+
 Given:
 - $\ln f(40) = \ln 897 \approx 6.799056$
 - $\ln f(2800) \approx 715.019337$
@@ -48,7 +52,10 @@ By the Kőnig-Egerváry and Max-Flow Min-Cut theorems, the minimum weight vertex
 5. The maximum flow $F$ from $S$ to $T$ equals the minimum weight vertex cover.
 
 Total natural log:
-$$\ln f(N) = \sum_{p \in \text{Forced}} \ln p + \text{MaxFlow}$$
+
+$$
+\ln f(N) = \sum_{p \in \text{Forced}} \ln p + \text{MaxFlow}
+$$
 
 ---
 

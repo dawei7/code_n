@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A natural number $N$ is a product-sum number of set size $k$ if it can be partitioned into a set of $k$ natural numbers $\{a_1, a_2, \dots, a_k\}$ such that:
-$$N = a_1 \times a_2 \times \dots \times a_k = a_1 + a_2 + \dots + a_k$$
+
+$$
+N = a_1 \times a_2 \times \dots \times a_k = a_1 + a_2 + \dots + a_k
+$$
 
 For a given set size $k$, let $N_k$ denote the **minimal product-sum number**.
 Examples of minimal $N_k$ for $2 \le k \le 6$:
@@ -15,7 +18,10 @@ Examples of minimal $N_k$ for $2 \le k \le 6$:
 - The set of unique minimal product-sum numbers for $2 \le k \le 6$ is $\{4, 6, 8, 12\}$, with sum $4 + 6 + 8 + 12 = 30$.
 
 The objective is to find the **sum of all unique minimal product-sum numbers** for $2 \le k \le 12\,000$:
-$$S = \sum_{N \in \{N_k \mid 2 \le k \le 12000\}} N$$
+
+$$
+S = \sum_{N \in \{N_k \mid 2 \le k \le 12000\}} N
+$$
 
 ---
 
@@ -31,11 +37,19 @@ def naive_product_sum(max_k):
 
 ### The $N_k \le 2k$ Bound & Reversed Factorization Search
 1. For any set size $k$, the set $\{1, 1, \dots, 1, 2, k\}$ (having $k-2$ ones) gives:
-   $$\text{Product} = 1^{k-2} \cdot 2 \cdot k = 2k, \quad \text{Sum} = (k - 2) \cdot 1 + 2 + k = 2k$$
+
+$$
+\text{Product} = 1^{k-2} \cdot 2 \cdot k = 2k, \quad \text{Sum} = (k - 2) \cdot 1 + 2 + k = 2k
+$$
+
    Therefore, $N_k \le 2k$ always, providing a global upper bound $N \le 2 \times 12\,000 = 24\,000$.
 2. **Reversing the Search:** Instead of checking each $k$, we recursively generate all multi-factor factorizations $P = a_1 a_2 \dots a_m$ (with $a_i \ge 2$ and $P \le 24\,000$).
 3. The set size $k$ for this factorization is given directly by:
-   $$k = P - \sum_{i=1}^m a_i + m$$
+
+$$
+k = P - \sum_{i=1}^m a_i + m
+$$
+
 4. We update `min_k[k] = min(min_k[k], P)`, completing the entire search in $\approx 0.02$ seconds.
 
 ---
@@ -87,7 +101,10 @@ def naive_product_sum(max_k):
 
 ### Example 3: Target Evaluation for $2 \le k \le 12\,000$
 - Summing unique minimal numbers:
-  $$S = \mathbf{7\,587\,457}$$
+
+$$
+S = \mathbf{7\,587\,457}
+$$
 
 ---
 

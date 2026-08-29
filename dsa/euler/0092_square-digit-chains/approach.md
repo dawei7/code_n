@@ -11,7 +11,10 @@ Examples:
 It is a proven property of square digit chains that EVERY number will eventually arrive at either $1$ or $89$.
 
 The objective is to find how many starting numbers below ten million ($10\,000\,000$) will arrive at **$89$**:
-$$N_{89} = \sum_{n=1}^{9999999} \mathbb{I}\left( \text{chain}(n) \to 89 \right)$$
+
+$$
+N_{89} = \sum_{n=1}^{9999999} \mathbb{I}\left( \text{chain}(n) \to 89 \right)
+$$
 
 ---
 
@@ -29,9 +32,17 @@ def naive_square_digit_chains(limit):
 1. For any 7-digit number $n < 10^7$, the sum of square digits is at most $7 \times 9^2 = 567$.
 2. The square digit sum is completely invariant under permutation of digits (e.g. $123, 132, 213, 231, 312, 321$ all produce $1^2 + 2^2 + 3^2 = 14$).
 3. The number of non-decreasing 7-digit combinations with replacement from $\{0, 1, \dots, 9\}$ is:
-   $$\binom{10 + 7 - 1}{7} = \binom{16}{7} = \frac{16!}{7! 9!} = 11\,440 \text{ multisets}$$
+
+$$
+\binom{10 + 7 - 1}{7} = \binom{16}{7} = \frac{16!}{7! 9!} = 11\,440 \text{ multisets}
+$$
+
 4. For each multiset with digit counts $(f_0, f_1, \dots, f_9)$, the number of distinct 7-digit integer permutations is given by the **multinomial coefficient**:
-   $$P = \frac{7!}{\prod_{d=0}^9 f_d!}$$
+
+$$
+P = \frac{7!}{\prod_{d=0}^9 f_d!}
+$$
+
 5. Evaluating 11,440 multisets computes the exact result for all $10^7$ numbers in $\approx 0.02$ seconds.
 
 ---
@@ -78,7 +89,10 @@ def naive_square_digit_chains(limit):
 
 ### Example 2: Target Evaluation for $N < 10\,000\,000$
 - Summing multinomial permutations across all 11,440 combinations:
-  $$N_{89} = \mathbf{8\,581\,146}$$
+
+$$
+N_{89} = \mathbf{8\,581\,146}
+$$
 
 ---
 

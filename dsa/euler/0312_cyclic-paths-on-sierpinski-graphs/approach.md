@@ -29,10 +29,17 @@ A naive approach enumerates Hamiltonian cycles on $S_n$:
 ### Recursive Cycle Counting on Sierpinski Graphs
 By the self-similar structure of $S_n$:
 Each Hamiltonian cycle on $S_n$ is formed by decomposing into Hamiltonian paths across its 3 child subgraphs of order $n - 1$:
-$$C(n) = 2 \cdot 3^{n - 3} \cdot C(n - 1)^3 \quad \text{for } n \ge 3$$
+
+$$
+C(n) = 2 \cdot 3^{n - 3} \cdot C(n - 1)^3 \quad \text{for } n \ge 3
+$$
+
 with base cases $C(1) = 1, C(2) = 1$.
 Solving this recurrence in closed form yields:
-$$\mathbf{C(n) = 8 \cdot 12^{\frac{3^{n-2} - 3}{2}}}$$
+
+$$
+\mathbf{C(n) = 8 \cdot 12^{\frac{3^{n-2} - 3}{2}}}
+$$
 
 ---
 
@@ -42,7 +49,11 @@ $$\mathbf{C(n) = 8 \cdot 12^{\frac{3^{n-2} - 3}{2}}}$$
 To evaluate $C(C(C(10000))) \bmod 13^8$:
 1. Modulus at level 3: $m_0 = 13^8 = 815\,730\,721$.
 2. By Euler's totient theorem, the exponents of base 3 and base 12 modulo $m_0$ reduce through the chain of totient pairs:
-   $$(m_3, p_2) \to (m_2, p_1) \to (m_1, m_0)$$
+
+$$
+(m_3, p_2) \to (m_2, p_1) \to (m_1, m_0)
+$$
+
 3. Evaluating tier by tier using fast modular exponentiation `pow(base, exp, mod)` computes the exact answer in under $0.001$ seconds!
 
 ---

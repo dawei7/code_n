@@ -6,14 +6,20 @@ In a single game of **Ramvok**, a player chooses horizon $t \ge 0$ upfront, payi
 In **Super Ramvok**, after each Ramvok game, a random face is toggled (blank $\leftrightarrow$ visible). The game ends when all faces become blank.
 Let $S(d, c)$ be the expected total profit starting with all $d$ faces visible.
 Define:
-$$F(n) = \sum_{d=4}^n \sum_{c=0}^n S(d, c)$$
+
+$$
+F(n) = \sum_{d=4}^n \sum_{c=0}^n S(d, c)
+$$
 
 We are given:
 - $R(\{1, 2, 3, 4\}, 0.2) = 2.65$
 - $S(6, 1) = 208.3$
 
 We seek to evaluate:
-$$F(20) \text{ rounded to the nearest integer}$$
+
+$$
+F(20) \text{ rounded to the nearest integer}
+$$
 
 ---
 
@@ -32,7 +38,11 @@ For $d = 20$, there are $2^{20} \approx 10^6$ die states. Combining the Markov c
 2. **Ehrenfest Urn Symmetry**:
    Starting with all $d$ faces visible, every subset of size $k$ is visited with identical probability.
    Therefore, the total expected profit is:
-   $$S(d, c) = \sum_{k=1}^d V_k(d) \cdot \overline{R}(d, k, c)$$
+
+$$
+S(d, c) = \sum_{k=1}^d V_k(d) \cdot \overline{R}(d, k, c)
+$$
+
    where $V_k(d)$ is the expected number of visits to subsets of size $k$, and $\overline{R}(d, k, c)$ is the average Ramvok profit over all $\binom{d}{k}$ subsets of size $k$.
 
 ---
@@ -42,11 +52,19 @@ For $d = 20$, there are $2^{20} \approx 10^6$ die states. Combining the Markov c
 ### Fundamental Matrix Inversion & Subset Dynamic Programming
 1. **$d \times d$ Ehrenfest Fundamental Matrix**:
    The number of visible faces $k \in \{1, \dots, d\}$ follows an Ehrenfest chain with transition matrix $Q$:
-   $$Q_{k, k-1} = \frac{k}{d}, \quad Q_{k, k+1} = \frac{d-k}{d}$$
+
+$$
+Q_{k, k-1} = \frac{k}{d}, \quad Q_{k, k+1} = \frac{d-k}{d}
+$$
+
    The expected visit counts vector is given by the top row of the fundamental matrix $N = (I - Q)^{-1}$ via Gauss-Jordan elimination in $O(d^3)$.
 2. **Subset Optimal Stopping DP**:
    For each bitmask of active faces $A$:
-   $$\mathbb{E}[\text{prize}_t] = \mathbb{E}[\max(X, \mathbb{E}[\text{prize}_{t-1}])]$$
+
+$$
+\mathbb{E}[\text{prize}_t] = \mathbb{E}[\max(X, \mathbb{E}[\text{prize}_{t-1}])]
+$$
+
    Evaluated with cumulative sum pointers in $O(\text{maxv})$ time.
 3. **Double Summation over $(d, c)$**:
    Summing across all $d \in [4, 20]$ and $c \in [0, d]$ yields $F(20)$.

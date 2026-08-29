@@ -49,7 +49,11 @@ Group the values of $a$ by their base-4 length $L \ge 1$:
 
 For the first $k \le 4^{L-1}$ elements of block $L$:
 1. **Leading Digit Contribution:**
-   $$\text{Leading} = k \times 6 \times 4^{L-1}$$
+
+$$
+\text{Leading} = k \times 6 \times 4^{L-1}
+$$
+
 2. **Lower Digits Contribution:**
    For each lower digit position $p \in [0, L - 2]$, we count how many integers $x \in [0, k - 1]$ have a non-zero digit at position $p$:
    - Period of digit $p$ is $4^{p+1}$.
@@ -57,7 +61,10 @@ For the first $k \le 4^{L-1}$ elements of block $L$:
    - Each full period contains $3 \times 4^p$ non-zero digits at position $p$.
    - In the remainder $r = k \bmod 4^{p+1}$, the non-zero digits occur for $r > 4^p$, contributing $\max(0, r - 4^p)$.
    - The total contribution from position $p$ is:
-     $$\text{NonZeroCount}(p) \times 6 \times 4^p$$
+
+$$
+\text{NonZeroCount}(p) \times 6 \times 4^p
+$$
 
 Summing over all blocks $L$ until $n$ elements are consumed gives $M(n) \bmod 1\,000\,000\,007$.
 

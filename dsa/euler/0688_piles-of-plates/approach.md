@@ -14,7 +14,10 @@ We are given:
 - $S(100) = 12656$
 
 We seek to evaluate:
-$$S(10^{16}) \bmod 1\,000\,000\,007$$
+
+$$
+S(10^{16}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -32,10 +35,18 @@ Summing over $N = 10^{16}$ integers and $k \le \sqrt{2N} \approx 1.414 \times 10
    To maximize $x_1$, the piles should be as close as possible: $x_i = x_1 + (i - 1) + y_i$ with $0 \le y_1 \le \dots \le y_k$.
    Summing gives $k x_1 + \frac{k(k-1)}{2} + \sum y_i = n$.
    Thus:
-   $$f(n, k) = \begin{cases} 0 & \text{if } n < \frac{k(k+1)}{2} \\ \left\lfloor \frac{n - k(k+1)/2}{k} \right\rfloor + 1 & \text{if } n \ge \frac{k(k+1)}{2} \end{cases}$$
+
+$$
+f(n, k) = \begin{cases} 0 & \text{if } n < \frac{k(k+1)}{2} \\ \left\lfloor \frac{n - k(k+1)/2}{k} \right\rfloor + 1 & \text{if } n \ge \frac{k(k+1)}{2} \end{cases}
+$$
+
 2. **Swapping Order of Summation**:
    Let $T(k) = \frac{k(k+1)}{2}$. Then:
-   $$S(N) = \sum_{k=1}^{k_{\max}} \sum_{m=0}^{N - T(k)} \left( \left\lfloor \frac{m}{k} \right\rfloor + 1 \right)$$
+
+$$
+S(N) = \sum_{k=1}^{k_{\max}} \sum_{m=0}^{N - T(k)} \left( \left\lfloor \frac{m}{k} \right\rfloor + 1 \right)
+$$
+
    where $k_{\max} = \lfloor (\sqrt{8N+1}-1)/2 \rfloor \approx 1.414 \times 10^8$.
 
 ---
@@ -46,11 +57,23 @@ Summing over $N = 10^{16}$ integers and $k \le \sqrt{2N} \approx 1.414 \times 10
 1. **Summing $\sum_{m=0}^L (\lfloor m/k \rfloor + 1)$ in $O(1)$**:
    Let $L = N - T(k) = q k + r$, where $0 \le r < k$ and $q = \lfloor L/k \rfloor$.
    - For $m = 0 \dots q k - 1$, each quotient $j \in [0, q-1]$ appears $k$ times:
-     $$\text{Term}_1 = k \sum_{j=0}^{q-1} (j + 1) = k \frac{q(q+1)}{2}$$
+
+$$
+\text{Term}_1 = k \sum_{j=0}^{q-1} (j + 1) = k \frac{q(q+1)}{2}
+$$
+
    - For the remaining $r + 1$ values with quotient $q$:
-     $$\text{Term}_2 = (r + 1)(q + 1)$$
+
+$$
+\text{Term}_2 = (r + 1)(q + 1)
+$$
+
    - Thus, for a fixed $k$, the entire sum over $m$ evaluates in $O(1)$ arithmetic steps:
-     $$g(k, L) = k \frac{q(q+1)}{2} + (r + 1)(q + 1)$$
+
+$$
+g(k, L) = k \frac{q(q+1)}{2} + (r + 1)(q + 1)
+$$
+
 2. **C Loop Acceleration**:
    Summing $g(k, N - T(k)) \pmod{10^9+7}$ for $k = 1 \dots 1.414 \times 10^8$ executes in **$\approx 0.97$ seconds** in compiled C!
 

@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $(p_k)_{k \ge 1}$ denote the strictly increasing sequence of prime numbers:
-$$p_1 = 2, \quad p_2 = 3, \quad p_3 = 5, \quad p_4 = 7, \quad p_5 = 11, \quad p_6 = 13, \dots$$
+
+$$
+p_1 = 2, \quad p_2 = 3, \quad p_3 = 5, \quad p_4 = 7, \quad p_5 = 11, \quad p_6 = 13, \dots
+$$
 
 The objective is to compute the $N$-th prime number for $N = 10\,001$:
-$$p_N = p_{10001}$$
+
+$$
+p_N = p_{10001}
+$$
 
 ---
 
@@ -38,7 +44,10 @@ def naive_nth_prime(n):
 
 By the Prime Number Theorem (PNT), $p_n \sim n \ln n$.
 For $n \ge 6$, Dusart's inequality provides a rigorous analytical upper bound on the $n$-th prime:
-$$p_n < n (\ln n + \ln \ln n)$$
+
+$$
+p_n < n (\ln n + \ln \ln n)
+$$
 
 ### Prime Bound Estimation Table
 
@@ -60,9 +69,16 @@ Setting a safe sieve limit $L = 120\,000$ strictly guarantees $p_{10001} < L$.
 Allocating a boolean array $\mathbf{b}$ of size $L = 120\,000$:
 1. Initialize $\mathbf{b}[0] = \mathbf{b}[1] = \text{False}$, and $\mathbf{b}[x] = \text{True}$ for $x \ge 2$.
 2. For each prime $i \le \sqrt{L}$, cross off composite multiples starting at $i^2$:
-   $$\mathbf{b}[j] \leftarrow \text{False} \quad \text{for } j \in \{i^2, i^2 + i, i^2 + 2i, \dots\}$$
+
+$$
+\mathbf{b}[j] \leftarrow \text{False} \quad \text{for } j \in \{i^2, i^2 + i, i^2 + 2i, \dots\}
+$$
+
 3. By Mertens' Second Theorem, the total operations count is:
-   $$\sum_{p \le \sqrt{L}} \frac{L}{p} = \mathcal{O}(L \log \log L)$$
+
+$$
+\sum_{p \le \sqrt{L}} \frac{L}{p} = \mathcal{O}(L \log \log L)
+$$
 
 ---
 
@@ -83,7 +99,10 @@ Allocating a boolean array $\mathbf{b}$ of size $L = 120\,000$:
 - Sieve executed up to $L = 120\,000$.
 - Prime counter increments on each prime.
 - Counter reaches $10\,001$ at prime value:
-  $$p_{10001} = \mathbf{104\,743}$$
+
+$$
+p_{10001} = \mathbf{104\,743}
+$$
 
 ---
 

@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $R(M, N)$ be the number of lattice points $(x, y) \in \mathbb{Z}^2$ satisfying:
-$$M < x \le N, \quad M < y \le N, \quad \left\lfloor \frac{y^2}{x^2} \right\rfloor \equiv 1 \pmod 2$$
+
+$$
+M < x \le N, \quad M < y \le N, \quad \left\lfloor \frac{y^2}{x^2} \right\rfloor \equiv 1 \pmod 2
+$$
 
 We are given:
 - $R(0, 100) = 3019$
 - $R(100, 10000) = 29750422$
 
 We seek to evaluate:
-$$R(2 \times 10^6, 10^9)$$
+
+$$
+R(2 \times 10^6, 10^9)
+$$
 
 ---
 
@@ -18,7 +24,11 @@ $$R(2 \times 10^6, 10^9)$$
 
 ### Direct Lattice Grid Search
 The grid $(M, N] \times (M, N]$ contains:
-$$(N - M)^2 \approx (10^9 - 2 \times 10^6)^2 \approx 10^{18} \text{ points}$$
+
+$$
+(N - M)^2 \approx (10^9 - 2 \times 10^6)^2 \approx 10^{18} \text{ points}
+$$
+
 Evaluating $10^{18}$ points individually would require decades of compute time.
 
 ---
@@ -27,10 +37,17 @@ Evaluating $10^{18}$ points individually would require decades of compute time.
 
 ### Ray-Sectors Parameterized by Odd $k$
 $\lfloor y^2 / x^2 \rfloor = k$ (with $k$ odd) defines a parabolic wedge / pencil of rays in the first quadrant:
-$$k \le \frac{y^2}{x^2} < k + 1 \iff x \sqrt{k} \le y < x \sqrt{k + 1}$$
+
+$$
+k \le \frac{y^2}{x^2} < k + 1 \iff x \sqrt{k} \le y < x \sqrt{k + 1}
+$$
 
 Since $y \le N$ and $x > M$, the maximum ratio is:
-$$\frac{y}{x} < \frac{N}{M + 1} \implies k_{\max} \approx \left(\frac{N}{M+1}\right)^2 \approx 500^2 = 250\,000$$
+
+$$
+\frac{y}{x} < \frac{N}{M + 1} \implies k_{\max} \approx \left(\frac{N}{M+1}\right)^2 \approx 500^2 = 250\,000
+$$
+
 There are only $\approx 125\,000$ odd integers $k$ to consider!
 
 ---
@@ -41,9 +58,14 @@ There are only $\approx 125\,000$ odd integers $k$ to consider!
 For a fixed odd integer $k$:
 Let $\alpha = \sqrt{k}$ and $\beta = \sqrt{k + 1}$.
 The bounds on $y$ for a given $x$ are:
-$$y_{\max}(x) = \min(N, \lfloor \beta x \rfloor - I_{\beta \in \mathbb{Z}})$$
 
-$$y_{\min}(x) = \max(M + 1, \lfloor \alpha x \rfloor + I_{\alpha \notin \mathbb{Z}})$$
+$$
+y_{\max}(x) = \min(N, \lfloor \beta x \rfloor - I_{\beta \in \mathbb{Z}})
+$$
+
+$$
+y_{\min}(x) = \max(M + 1, \lfloor \alpha x \rfloor + I_{\alpha \notin \mathbb{Z}})
+$$
 
 The range of $x$ where $y_{\min}(x) \le y_{\max}(x)$ is partitioned by critical transition points:
 - $p_1 = \lfloor (M + 1 - c_\alpha) / \alpha \rfloor$
@@ -51,7 +73,10 @@ The range of $x$ where $y_{\min}(x) \le y_{\max}(x)$ is partitioned by critical 
 
 On each sub-interval $[x_1, x_2]$:
 The sum $\sum_{x=x_1}^{x_2} \lfloor \alpha x \rfloor$ is evaluated in $O(\log N)$ via Euclidean reduction on continued fractions:
-$$\sum_{x=1}^N \lfloor \alpha x \rfloor = \lfloor \alpha \rfloor \frac{N(N+1)}{2} + N M - \sum_{m=1}^M \lfloor m / \{\alpha\} \rfloor \quad (M = \lfloor \{\alpha\} N \rfloor)$$
+
+$$
+\sum_{x=1}^N \lfloor \alpha x \rfloor = \lfloor \alpha \rfloor \frac{N(N+1)}{2} + N M - \sum_{m=1}^M \lfloor m / \{\alpha\} \rfloor \quad (M = \lfloor \{\alpha\} N \rfloor)
+$$
 
 Iterating over all $125\,000$ odd $k$ evaluates the entire sum in $O(k_{\max} \log N) \approx 10\text{ seconds}$!
 

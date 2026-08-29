@@ -31,7 +31,10 @@ Simulating millions of random cuts yields stochastic estimates with statistical 
 Let $U_1, U_2 \sim \text{Uniform}(0, s)$.
 The second order statistic $X_{(2)} = \max(U_1, U_2)$ has cumulative distribution $P(X_{(2)} \le t) = (t/s)^2$.
 The remaining piece $s' = s - X_{(2)}$ has probability density:
-$$f(u) = \frac{2(s - u)}{s^2} \quad (0 \le u \le s)$$
+
+$$
+f(u) = \frac{2(s - u)}{s^2} \quad (0 \le u \le s)
+$$
 
 ---
 
@@ -39,15 +42,26 @@ $$f(u) = \frac{2(s - u)}{s^2} \quad (0 \le u \le s)$$
 
 ### Transformation into a Second-Order Linear ODE
 Let $e(s)$ be the expected number of steps starting from remaining pie $s \ge F$:
-$$e(s) = 1 + \int_F^s e(u) \frac{2(s - u)}{s^2} \, du$$
+
+$$
+e(s) = 1 + \int_F^s e(u) \frac{2(s - u)}{s^2} \, du
+$$
+
 Multiplying by $s^2$:
-$$s^2 e(s) = s^2 + 2 \int_F^s (s - u) e(u) \, du$$
+
+$$
+s^2 e(s) = s^2 + 2 \int_F^s (s - u) e(u) \, du
+$$
+
 Differentiating twice with respect to $s$:
 1. $s^2 e'(s) + 2s e(s) = 2s + 2 \int_F^s e(u) \, du$
 2. $s^2 e''(s) + 4s e'(s) = 2 \implies e''(s) + \frac{4}{s} e'(s) = \frac{2}{s^2}$
 
 Solving this linear ODE using integrating factor $\mu(s) = s^4$:
-$$e'(s) = \frac{2}{3s} + \frac{C_1}{s^4} \implies e(s) = \frac{2}{3} \ln s - \frac{C_1}{3s^3} + C_2$$
+
+$$
+e'(s) = \frac{2}{3s} + \frac{C_1}{s^4} \implies e(s) = \frac{2}{3} \ln s - \frac{C_1}{3s^3} + C_2
+$$
 
 Applying boundary conditions at $s = F$:
 - $e(F) = 1$
@@ -55,10 +69,16 @@ Applying boundary conditions at $s = F$:
 - $e(F) = 1 \implies C_2 = \frac{7}{9} - \frac{2}{3} \ln F$
 
 Thus, for any $s \ge F$:
-$$e(s) = \frac{2}{3} \ln\left(\frac{s}{F}\right) + \frac{7}{9} + \frac{2}{9} \left(\frac{F}{s}\right)^3$$
+
+$$
+e(s) = \frac{2}{3} \ln\left(\frac{s}{F}\right) + \frac{7}{9} + \frac{2}{9} \left(\frac{F}{s}\right)^3
+$$
 
 Setting $s = 1$ and $F = 1/x$:
-$$E(x) = \frac{2}{3} \ln(x) + \frac{7}{9} + \frac{2}{9 x^3}$$
+
+$$
+E(x) = \frac{2}{3} \ln(x) + \frac{7}{9} + \frac{2}{9 x^3}
+$$
 
 The exact expectation is expressed in a single closed-form formula!
 

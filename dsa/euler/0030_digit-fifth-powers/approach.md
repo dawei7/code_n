@@ -5,10 +5,19 @@
 For an exponent $p \in \mathbb{N}$ ($p = 5$), let the decimal representation of $n \in \mathbb{N}$ be $n = \sum_{i=0}^{k-1} d_i 10^i$ with digits $d_i \in \{0, 1, \dots, 9\}$.
 
 Define the digit power sum function $S_p : \mathbb{N} \to \mathbb{N}$:
-$$S_p(n) = \sum_{i=0}^{k-1} d_i^p$$
+
+$$
+S_p(n) = \sum_{i=0}^{k-1} d_i^p
+$$
 
 The objective is to find the sum of all integers $n \ge 10$ that can be written as the sum of the fifth powers of their digits:
-$$\text{TotalSum} = \sum_{\substack{n \ge 10 \\ S_5(n) = n}} n$$
+
+$$
+\begin{aligned}
+\text{TotalSum} = \sum_{\substack{n \ge 10 \\ S_5(n) = n}} n
+\end{aligned}
+$$
+
 *(Note: $1 = 1^5$ is explicitly excluded as it is not a sum).*
 
 ---
@@ -83,7 +92,10 @@ There are exactly 6 matching numbers in $[10, 354\,294]$:
 6. $194\,979 = 1^5 + 9^5 + 4^5 + 9^5 + 7^5 + 9^5 = 194\,979$
 
 Total Sum:
-$$\text{TotalSum} = 4150 + 4151 + 54748 + 92727 + 93084 + 194979 = \mathbf{443\,839}$$
+
+$$
+\text{TotalSum} = 4150 + 4151 + 54748 + 92727 + 93084 + 194979 = \mathbf{443\,839}
+$$
 
 ---
 

@@ -24,12 +24,18 @@ Find the smallest $n$ such that $g(n) \ge 10^4$.
 
 ### Generating Function for Divisor Levels
 The number of divisors with total prime exponent sum $s = \sum a_i$ is the coefficient $[x^s]$ of the generating polynomial:
-$$P(x) = \prod_{i=1}^k (1 + x + x^2 + \dots + x^{e_i}) = \prod_{i=1}^k \frac{1 - x^{e_i + 1}}{1 - x}$$
+
+$$
+P(x) = \prod_{i=1}^k (1 + x + x^2 + \dots + x^{e_i}) = \prod_{i=1}^k \frac{1 - x^{e_i + 1}}{1 - x}
+$$
 
 Because $P(x)$ is a product of log-concave, symmetric polynomials with non-negative coefficients:
 - $P(x)$ is strictly **unimodal and symmetric**.
 - The maximum coefficient occurs at the central degree:
-  $$g(n) = \max_s [x^s] P(x) = [x^{\lfloor \sum e_i / 2 \rfloor}] P(x)$$
+
+$$
+g(n) = \max_s [x^s] P(x) = [x^{\lfloor \sum e_i / 2 \rfloor}] P(x)
+$$
 
 ---
 
@@ -38,7 +44,11 @@ Because $P(x)$ is a product of log-concave, symmetric polynomials with non-negat
 ### Prime Reassignment & Exponent Branch-and-Bound
 $g(n)$ depends solely on the multiset of prime exponents $(e_1, e_2, \dots, e_k)$, regardless of the underlying prime bases.
 To minimize $n = \prod p_i^{e_i}$, the exponents must be sorted in descending order:
-$$e_1 \ge e_2 \ge \dots \ge e_k \ge 1$$
+
+$$
+e_1 \ge e_2 \ge \dots \ge e_k \ge 1
+$$
+
 and assigned to the smallest primes $p_1 = 2, p_2 = 3, p_3 = 5, \dots$.
 
 We perform a branch-and-bound depth-first search over non-increasing partitions $(e_1, \dots, e_k)$:

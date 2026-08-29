@@ -175,6 +175,13 @@ def ensure_solution_versions(
         path = user_solution_path(challenge_id, language_id, version, create=True)
         if not path.exists():
             path.write_text(starter, encoding="utf-8")
+        elif is_euler_id(challenge_id):
+            try:
+                content = path.read_text(encoding="utf-8")
+                if content.startswith("# Description") or "# Description\n# -----------" in content:
+                    path.write_text(starter, encoding="utf-8")
+            except Exception:
+                pass
         paths.append(path)
     return paths
 

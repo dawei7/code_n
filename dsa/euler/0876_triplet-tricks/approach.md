@@ -30,7 +30,11 @@ Find $\sum_{k=1}^{18} F(6^k, 10^k)$.
 
 ### The Quadratic Invariant & Apollonian Tree
 Under all 3 operations, the symmetric quadratic form:
-$$Q(a, b, c) = a^2 + b^2 + c^2 - 2(ab + bc + ca)$$
+
+$$
+Q(a, b, c) = a^2 + b^2 + c^2 - 2(ab + bc + ca)
+$$
+
 is **strictly invariant**.
 
 A state containing zero, say $(u, -v, 0)$, has invariant $Q(u, -v, 0) = (u + v)^2 = d^2$.
@@ -42,10 +46,17 @@ Therefore, a state $(a, b, c)$ can reach a zero iff $Q(a, b, c) = d^2$ is a perf
 
 ### Divisor Parameterization of Target $c$
 For a fixed pair $(a, b)$, solving the quadratic equation in $c$:
-$$c^2 - 2(a + b)c + (a - b)^2 = d^2$$
+
+$$
+c^2 - 2(a + b)c + (a - b)^2 = d^2
+$$
+
 yields discriminant $\Delta = 4ab + d^2 = w^2 \implies w^2 - d^2 = 4ab$.
 Factorizing $ab = u \cdot v$ ($u \le v$):
-$$c = (a + b) \pm (u + v)$$
+
+$$
+c = (a + b) \pm (u + v)
+$$
 
 For each divisor pair $(u, v)$ of $ab$, $(a, b, c)$ lies on a unique branch of the Apollonian reduction tree rooted at $(u, -v, 0)$.
 The depth $f(a, b, c)$ along the branch corresponds to the continued fraction reduction.

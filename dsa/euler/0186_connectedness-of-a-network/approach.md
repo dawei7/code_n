@@ -9,16 +9,26 @@ Here are the records from a busy telephone system with one million users ($0$ to
 
 The pseudo-random numbers $S_{2n-1}$ and $S_{2n}$ are generated using a **Lagged Fibonacci Generator**:
 - For $1 \le k \le 55$:
-  $$S_k = (100003 - 200003 k + 300007 k^3) \bmod 1\,000\,000$$
+
+$$
+S_k = (100003 - 200003 k + 300007 k^3) \bmod 1\,000\,000
+$$
+
 - For $k \ge 56$:
-  $$S_k = (S_{k-24} + S_{k-55}) \bmod 1\,000\,000$$
+
+$$
+S_k = (S_{k-24} + S_{k-55}) \bmod 1\,000\,000
+$$
 
 If $S_{2n-1} = S_{2n}$, the subscriber is called a "misdial"; the call fails and is **not counted as a successful call**.
 Two users are connected if there exists a chain of successful phone calls connecting them.
 
 One user is the Prime Minister ($\text{PM} = 524\,287$).
 The objective is to find the **number of successful calls required until $99\%$ of the users ($990\,000$ users) are connected to the Prime Minister**:
-$$C_{\text{success}} = \min \left\{ C \;\middle|\; |\text{Component}(\text{PM})| \ge 990\,000 \right\}$$
+
+$$
+C_{\text{success}} = \min \left\{ C \;\middle|\; |\text{Component}(\text{PM})| \ge 990\,000 \right\}
+$$
 
 ---
 
@@ -85,7 +95,10 @@ def naive_connected_network():
 ### Example 2: Target Evaluation for 99% Connectedness
 - As giant component emerges (Erdős–Rényi percolation phase transition), PM merges with the giant component.
 - The 990,000 threshold is crossed at call:
-  $$C_{\text{success}} = \mathbf{2\,325\,629}$$
+
+$$
+C_{\text{success}} = \mathbf{2\,325\,629}
+$$
 
 ---
 

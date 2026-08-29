@@ -16,7 +16,10 @@ We are given:
 - $f(10) = 17$
 
 We seek the last $18$ digits of:
-$$f(10\,000) \pmod{10^{18}}$$
+
+$$
+f(10\,000) \pmod{10^{18}}
+$$
 
 ---
 
@@ -32,12 +35,20 @@ The Fibonacci tree $T(10000)$ contains $F_{10002} - 1 \approx 10^{2090}$ nodes. 
 ### The Colon Principle & Removable Root Grundy Values
 Let $h(k)$ be the Grundy value of $T(k)$ in normal play (where the root is removable).
 By the Colon Principle for trees:
-$$h(k) = (h(k-1) \oplus h(k-2)) + 1$$
+
+$$
+h(k) = (h(k-1) \oplus h(k-2)) + 1
+$$
+
 with $h(0) = 0, h(1) = 1, h(2) = 2$.
 Remarkably, $h(k)$ is bounded by a small constant ($h(k) < 256$ for all $k$).
 
 In the actual game with a protected root, a move in the left child $T(k-1)$ is winning for Player 1 if and only if it changes the Grundy value of the left subtree to match the right child:
-$$h_{\text{new}}(T(k-1)) = h(k-2)$$
+
+$$
+h_{\text{new}}(T(k-1)) = h(k-2)
+$$
+
 Symmetrically, a move in the right child must yield Grundy value $h(k-1)$.
 
 ---
@@ -47,14 +58,21 @@ Symmetrically, a move in the right child must yield Grundy value $h(k-1)$.
 ### Grundy Transition Dynamic Programming
 Let $M(k, v)$ be the number of moves in $T(k)$ that transform its Grundy value to $v$.
 For $k \ge 2$ and $v > 0$:
-$$M(k, v) = M\left(k-1, (v-1) \oplus h(k-2)\right) + M\left(k-2, (v-1) \oplus h(k-1)\right) \pmod{10^{18}}$$
+
+$$
+M(k, v) = M\left(k-1, (v-1) \oplus h(k-2)\right) + M\left(k-2, (v-1) \oplus h(k-1)\right) \pmod{10^{18}}
+$$
+
 with base cases:
 - $M(0, v) = 0$
 - $M(k, 0) = 1$ (removing the root of the subtree)
 - $M(1, v > 0) = 0$
 
 The number of winning moves on $T(k)$ is directly:
-$$f(k) = M(k-1, h(k-2)) + M(k-2, h(k-1)) \pmod{10^{18}}$$
+
+$$
+f(k) = M(k-1, h(k-2)) + M(k-2, h(k-1)) \pmod{10^{18}}
+$$
 
 Because $v$ is bounded by $\text{limit} \le 128$, the DP state vector has length $\le 128$.
 The entire array for $k = 10\,000$ computes in **8.5 seconds**!

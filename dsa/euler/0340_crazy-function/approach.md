@@ -3,10 +3,14 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For fixed positive integers $a, b, c$, the function $F(n)$ is defined on integers by:
-$$F(n) = \begin{cases}
+
+$$
+F(n) = \begin{cases}
 n - c & \text{for } n > b \\
 F(a + F(a + F(a + F(a + n)))) & \text{for } n \le b
-\end{cases}$$
+\end{cases}
+$$
+
 Let $S(a, b, c) = \sum_{n=0}^b F(n)$.
 We are given sample values:
 - For $a = 50, b = 2000, c = 40$:
@@ -38,7 +42,10 @@ Let $n \in [b - a + 1, b]$:
 
 For general $n \le b$:
 Each block shift of size $a$ downwards ($n \to n - a$) adds an extra $(4a - 3c)$ offset to the outcome:
-$$\mathbf{F(n) = n + 4(a - c) + \left\lfloor \frac{b - n}{a} \right\rfloor (4a - 3c)}$$
+
+$$
+\mathbf{F(n) = n + 4(a - c) + \left\lfloor \frac{b - n}{a} \right\rfloor (4a - 3c)}
+$$
 
 ---
 
@@ -46,14 +53,25 @@ $$\mathbf{F(n) = n + 4(a - c) + \left\lfloor \frac{b - n}{a} \right\rfloor (4a -
 
 ### Exact Closed-Form Summation
 Summing $F(n)$ over $n = 0 \dots b$:
-$$S(a, b, c) = \sum_{n=0}^b n + \sum_{n=0}^b 4(a - c) + (4a - 3c) \sum_{n=0}^b \left\lfloor \frac{b - n}{a} \right\rfloor$$
+
+$$
+S(a, b, c) = \sum_{n=0}^b n + \sum_{n=0}^b 4(a - c) + (4a - 3c) \sum_{n=0}^b \left\lfloor \frac{b - n}{a} \right\rfloor
+$$
+
 Substituting $u = b - n \in [0, b]$:
 1. $\sum_{n=0}^b n = \frac{b(b + 1)}{2}$
 2. $\sum_{n=0}^b 4(a - c) = 4(a - c)(b + 1)$
 3. Let $q = \lfloor b / a \rfloor$ and $r = b \bmod a$:
-   $$\sum_{u=0}^b \left\lfloor \frac{u}{a} \right\rfloor = a \sum_{k=0}^{q-1} k + q(r + 1) = a \frac{q(q - 1)}{2} + q(r + 1)$$
+
+$$
+\sum_{u=0}^b \left\lfloor \frac{u}{a} \right\rfloor = a \sum_{k=0}^{q-1} k + q(r + 1) = a \frac{q(q - 1)}{2} + q(r + 1)
+$$
+
 4. Final closed expression:
-   $$\mathbf{S(a, b, c) = \frac{b(b + 1)}{2} + 4(a - c)(b + 1) + (4a - 3c) \left( a \frac{q(q - 1)}{2} + q(r + 1) \right)}$$
+
+$$
+\mathbf{S(a, b, c) = \frac{b(b + 1)}{2} + 4(a - c)(b + 1) + (4a - 3c) \left( a \frac{q(q - 1)}{2} + q(r + 1) \right)}
+$$
 
 Evaluating this expression modulo $10^9$ takes $\mathcal{O}(1)$ time.
 

@@ -3,13 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A triplet of positive integers $(a, b, c)$ is a **Cardano Triplet** if it satisfies the cubic radical equation:
-$$\sqrt[3]{a + b \sqrt{c}} + \sqrt[3]{a - b \sqrt{c}} = 1$$
+
+$$
+\sqrt[3]{a + b \sqrt{c}} + \sqrt[3]{a - b \sqrt{c}} = 1
+$$
 
 For example, $(2, 1, 5)$ is a Cardano triplet since $\sqrt[3]{2 + \sqrt{5}} + \sqrt[3]{2 - \sqrt{5}} = 1$.
 There exist $149$ Cardano triplets for which $a + b + c \le 1000$.
 
 Find the total number of Cardano triplets for which:
-$$a + b + c \le 110\,000\,000$$
+
+$$
+a + b + c \le 110\,000\,000
+$$
 
 ---
 
@@ -27,24 +33,48 @@ def naive_cardano():
 ### Exact Algebraic Reduction & Coprime Modular Parameterization
 1. **Cubing the Identity:**
    Let $u = \sqrt[3]{a + b\sqrt{c}}$ and $v = \sqrt[3]{a - b\sqrt{c}}$. Given $u + v = 1$:
-   $$(u + v)^3 = u^3 + v^3 + 3uv(u + v) = 2a + 3uv(1) = 1 \implies uv = \frac{1 - 2a}{3}$$
+
+$$
+(u + v)^3 = u^3 + v^3 + 3uv(u + v) = 2a + 3uv(1) = 1 \implies uv = \frac{1 - 2a}{3}
+$$
+
    Cubing both sides gives $u^3 v^3 = a^2 - b^2 c = \frac{(1 - 2a)^3}{27}$, which rearranges to:
-   $$27 b^2 c = (8a - 1)(a + 1)^2$$
+
+$$
+27 b^2 c = (8a - 1)(a + 1)^2
+$$
+
 2. **Linear Congruence $a \equiv 2 \pmod{3}$:**
    For $(8a - 1)(a + 1)^2$ to be divisible by $27$, we must have $a \equiv 2 \pmod{3}$.
    Setting $a = 3m - 1 = 3k + 2$ ($m = k + 1 \ge 1$):
-   $$b^2 c = (8m - 3) m^2$$
+
+$$
+b^2 c = (8m - 3) m^2
+$$
+
 3. **Coprime Fraction Parameterization:**
    Let $\gcd(b, m) = g$, so $m = xg$ and $b = yg$ with $\gcd(x, y) = 1$.
    Substituting into $b^2 c = (8m - 3) m^2$:
-   $$y^2 g^2 c = (8xg - 3) x^2 g^2 \implies y^2 c = (8xg - 3) x^2$$
+
+$$
+y^2 g^2 c = (8xg - 3) x^2 g^2 \implies y^2 c = (8xg - 3) x^2
+$$
+
    Since $\gcd(x, y) = 1$, $y^2$ must divide $(8xg - 3)$.
    This forces $y$ to be odd, and gives the linear congruence:
-   $$8x \cdot g \equiv 3 \pmod{y^2}$$
+
+$$
+8x \cdot g \equiv 3 \pmod{y^2}
+$$
+
    This congruence has a unique solution $g_0 \in [1, y^2]$, so all solutions are $g = g_0 + t y^2$ ($t \ge 0$).
 4. **Direct Inequality Upper Bound:**
    The sum constraint $a + b + c \le L$ becomes:
-   $$g \cdot \left((3x + y) y^2 + 8x^3\right) \le L y^2 + y^2 + 3x^2$$
+
+$$
+g \cdot \left((3x + y) y^2 + 8x^3\right) \le L y^2 + y^2 + 3x^2
+$$
+
    The number of valid $t \ge 0$ is computed in $\mathcal{O}(1)$ time for each coprime pair $(x, y)$.
 
 ---
@@ -91,7 +121,10 @@ def solve(limit: int = 110_000_000) -> int:
 ```
 
 Evaluating for $L = 110\,000\,000$:
-$$\text{Total Cardano Triplets} = \mathbf{18\,946\,051}$$
+
+$$
+\text{Total Cardano Triplets} = \mathbf{18\,946\,051}
+$$
 
 ---
 
@@ -108,7 +141,10 @@ $$\text{Total Cardano Triplets} = \mathbf{18\,946\,051}$$
 
 ### Example 2: Sample Verification for $L = 1000$
 - Summing valid $t$ over all odd $y \le \sqrt{1000}$ and $x \le (1000 y^2 / 8)^{1/3}$:
-  $$\text{Count}(1000) = \mathbf{149} \quad (\checkmark \text{ matches sample!})$$
+
+$$
+\text{Count}(1000) = \mathbf{149} \quad (\checkmark \text{ matches sample!})
+$$
 
 ---
 

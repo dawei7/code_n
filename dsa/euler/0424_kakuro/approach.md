@@ -16,7 +16,10 @@ We are given:
 - Sum for the first 10 puzzles: $64414157580$
 
 We seek:
-$$\sum_{k=1}^{200} \text{Answer}(\text{Puzzle}_k)$$
+
+$$
+\sum_{k=1}^{200} \text{Answer}(\text{Puzzle}_k)
+$$
 
 ---
 

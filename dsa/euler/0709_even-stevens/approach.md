@@ -13,7 +13,10 @@ We are given:
 - $f(8) = 1385$
 
 We seek to evaluate:
-$$f(24680) \bmod 1\,020\,202\,009$$
+
+$$
+f(24680) \bmod 1\,020\,202\,009
+$$
 
 ---
 
@@ -30,10 +33,18 @@ Generating all nested set partitions of $n = 24680$ bags involves $> 24680!$ con
 1. **Combinatorial Bijection**:
    Let the exponential generating function of $f(n)$ be $F(x) = \sum_{n=0}^\infty f(n) \frac{x^n}{n!}$.
    On step $n+1$, placing $2m$ bags inside the new bag corresponds to choosing an even subset of size $2m$:
-   $$f(n+1) = \sum_{m} \binom{n}{2m} f(2m) f(n - 2m) \iff F'(x) = \cosh(x) F(x) \text{ or } F(x) = \sec(x) + \tan(x)$$
+
+$$
+f(n+1) = \sum_{m} \binom{n}{2m} f(2m) f(n - 2m) \iff F'(x) = \cosh(x) F(x) \text{ or } F(x) = \sec(x) + \tan(x)
+$$
+
 2. **Euler Zig-Zag Numbers $A_n$ (OEIS A000111)**:
    $f(n)$ is identically the $n$-th Euler zig-zag number $A_n$, which counts alternating permutations:
-   $$\sum_{n=0}^\infty A_n \frac{x^n}{n!} = \sec(x) + \tan(x) = 1 + x + \frac{x^2}{2!} + \frac{2x^3}{3!} + \frac{5x^4}{4!} + \frac{16x^5}{5!} + \frac{61x^6}{6!} + \dots$$
+
+$$
+\sum_{n=0}^\infty A_n \frac{x^n}{n!} = \sec(x) + \tan(x) = 1 + x + \frac{x^2}{2!} + \frac{2x^3}{3!} + \frac{5x^4}{4!} + \frac{16x^5}{5!} + \frac{61x^6}{6!} + \dots
+$$
+
 3. **Values**:
    - $f(4) = 5$ ($\checkmark$).
    - $f(8) = 1385$ ($\checkmark$).

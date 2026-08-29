@@ -30,14 +30,25 @@ A naive approach models the game as a DAG and computes Sprague-Grundy values:
 
 ### The Silver Dollar Game Theorem & Nim Isomorphism
 Let the coins be placed at positions $0 \le x_1 < x_2 < \dots < x_k < n$, and define the gaps between adjacent coins:
-$$g_0 = x_1, \quad g_1 = x_2 - x_1 - 1, \quad \dots, \quad g_k = n - 1 - x_k$$
+
+$$
+g_0 = x_1, \quad g_1 = x_2 - x_1 - 1, \quad \dots, \quad g_k = n - 1 - x_k
+$$
+
 where $\sum_{i=0}^k g_i = S = n - (c + 1)$.
 For even $c = 2m$, the game on $k = 2m + 1$ coins is isomorphic to **Nim with $m + 1$ active heaps** $(g_0, g_2, \dots, g_{2m})$ and $m + 1$ free gaps $(g_1, g_3, \dots, g_{2m+1})$:
 1. If the silver dollar is at coin $0$ (leftmost coin): Player 1 pockets the dollar immediately and **wins** ($0$ losing configurations).
 2. If the silver dollar is at coin $1$: The position is losing (a P-position) if and only if the XOR sum of all $m + 1$ active heaps is zero:
-   $$h_0 \oplus h_1 \oplus \dots \oplus h_m = 0$$
+
+$$
+h_0 \oplus h_1 \oplus \dots \oplus h_m = 0
+$$
+
 3. If the silver dollar is at any coin $s \in \{2, \dots, c\}$: The position is losing if and only if one of the $m$ non-leftmost heaps $h_j$ is shifted by $+1$ in the zero XOR sum:
-   $$h_0 \oplus \dots \oplus (h_j + 1) \oplus \dots \oplus h_m = 0$$
+
+$$
+h_0 \oplus \dots \oplus (h_j + 1) \oplus \dots \oplus h_m = 0
+$$
 
 ---
 
@@ -46,13 +57,27 @@ For even $c = 2m$, the game on $k = 2m + 1$ coins is isomorphic to **Nim with $m
 ### Sparse Binary Polynomial Convolutions
 Let $\text{counts}_K[H]$ be the number of $K$-tuples $(h_0, \dots, h_{K-1})$ summing to $H$ with $h_0 \oplus \dots \oplus h_{K-1} = 0$.
 The generating function for $\text{counts}_K[H]$ factorizes by binary bits $b = 0, 1, \dots$:
-$$P_K(x) = \prod_{b=0}^{\lfloor \log_2 S \rfloor} \left( \sum_{j \text{ even}, 0 \le j \le K} \binom{K}{j} x^{j \cdot 2^b} \right)$$
+
+$$
+P_K(x) = \prod_{b=0}^{\lfloor \log_2 S \rfloor} \left( \sum_{j \text{ even}, 0 \le j \le K} \binom{K}{j} x^{j \cdot 2^b} \right)
+$$
+
 1. Compute $\text{counts}_{51}[H]$ and $\text{counts}_{50}[H]$ for $H \le S$ using 20 steps of sparse polynomial multiplication modulo $M$.
 2. The number of ways to assign the remaining $m + 1$ free gaps summing to $S - H$ is given by stars and bars: $\binom{S - H + m}{m}$.
 3. The total losing configurations are:
-   $$L_1 = \sum_{H=0}^S \text{counts}_{m+1}[H] \cdot \binom{S - H + m}{m} \pmod M$$
-   $$L_{\text{other}} = \sum_{H'=1}^{S+1} (\text{counts}_{m+1}[H'] - \text{counts}_m[H']) \cdot \binom{S - (H' - 1) + m}{m} \pmod M$$
-   $$\text{Total } L = L_1 + (c - 1) L_{\text{other}} \pmod M$$
+
+$$
+L_1 = \sum_{H=0}^S \text{counts}_{m+1}[H] \cdot \binom{S - H + m}{m} \pmod M
+$$
+
+$$
+L_{\text{other}} = \sum_{H'=1}^{S+1} (\text{counts}_{m+1}[H'] - \text{counts}_m[H']) \cdot \binom{S - (H' - 1) + m}{m} \pmod M
+$$
+
+$$
+\text{Total } L = L_1 + (c - 1) L_{\text{other}} \pmod M
+$$
+
 4. Since $S + m = 999\,949 < 1\,000\,003$, no term in the binomial denominator is divisible by the prime factors of $M$.
 5. The entire algorithm evaluates in under $21$ seconds in pure Python!
 

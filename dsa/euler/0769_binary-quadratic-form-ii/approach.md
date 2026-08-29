@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the binary quadratic form:
-$$f(x, y) = x^2 + 5xy + 3y^2$$
+
+$$
+f(x, y) = x^2 + 5xy + 3y^2
+$$
+
 A positive integer $q$ has a primitive representation if $q = f(x, y)$ with $\gcd(x, y) = 1$ and $x, y > 0$.
 $C(N)$ is the total number of primitive representations of perfect squares $z^2 = f(x, y)$ for $0 < z \le N$.
 
@@ -12,7 +16,10 @@ We are given:
 - $C(10^6) = 142463$
 
 We seek to evaluate:
-$$C(10^{14})$$
+
+$$
+C(10^{14})
+$$
 
 ---
 
@@ -28,7 +35,11 @@ Testing pairs $(x, y)$ up to $\sqrt{N} \approx 10^7$ requires $10^{14}$ quadrati
 ### Parameterization of Square Values of Quadratic Forms
 1. **Rational Parameterization**:
    The projective conic $x^2 + 5xy + 3y^2 = z^2$ can be parameterized by setting $x/y = t$:
-   $$t^2 + 5t + 3 = (z/y)^2$$
+
+$$
+t^2 + 5t + 3 = (z/y)^2
+$$
+
    Through standard Pell / conic rational substitutions $(p, q)$, every primitive solution $(x, y, z)$ corresponds to a coprime integer pair $(p, q)$ where $\gcd(p, q) = 1$.
 2. **Branch Division & Discriminant Conditions**:
    - **Branch 1 ($p > 0$)**: $q > \sqrt{3}p$, with upper bound $q \le \frac{\sqrt{13p^2 + 4N} - 5p}{2}$.
@@ -43,7 +54,11 @@ Testing pairs $(x, y)$ up to $\sqrt{N} \approx 10^7$ requires $10^{14}$ quadrati
 ### Mobius Interval Coprime Counting with Arithmetic Progression Constraints
 1. **Inclusion-Exclusion over Prime Factors**:
    For each parameter $p \le \sqrt{N/3} \approx 5.77 \times 10^6$, the number of coprime $q \in [q_{\min}, q_{\max}]$ is computed using the squarefree divisors of $p$:
-   $$\sum_{d \mid p} \mu(d) \left( \left\lfloor \frac{q_{\max}}{d} \right\rfloor - \left\lfloor \frac{q_{\min}-1}{d} \right\rfloor \right)$$
+
+$$
+\sum_{d \mid p} \mu(d) \left( \left\lfloor \frac{q_{\max}}{d} \right\rfloor - \left\lfloor \frac{q_{\min}-1}{d} \right\rfloor \right)
+$$
+
 2. **Fast Modulo 13 Subtraction**:
    Non-primitive solutions satisfying $q \equiv 4p \pmod{13}$ are subtracted via simultaneous modular arithmetic progression counting in $O(2^{\omega(p)})$ operations.
 3. **Execution Performance**:

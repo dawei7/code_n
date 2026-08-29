@@ -3,18 +3,29 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define the sequence:
-$$a_i = 153^i \bmod 10\,000\,019 \quad (i \ge 1)$$
+
+$$
+a_i = 153^i \bmod 10\,000\,019 \quad (i \ge 1)
+$$
 
 Consider all 4-element strictly ascending subsequences $a_{i_1} < a_{i_2} < a_{i_3} < a_{i_4}$ ($1 \le i_1 < i_2 < i_3 < i_4 \le n$).
 $S(n)$ is the sum of all elements across all such 4-element ascending subsequences:
-$$S(n) = \sum_{\substack{1 \le i_1 < i_2 < i_3 < i_4 \le n \\ a_{i_1} < a_{i_2} < a_{i_3} < a_{i_4}}} (a_{i_1} + a_{i_2} + a_{i_3} + a_{i_4})$$
+
+$$
+\begin{aligned}
+S(n) = \sum_{\substack{1 \le i_1 < i_2 < i_3 < i_4 \le n \\ a_{i_1} < a_{i_2} < a_{i_3} < a_{i_4}}} (a_{i_1} + a_{i_2} + a_{i_3} + a_{i_4})
+\end{aligned}
+$$
 
 We are given:
 - $S(6) = 94513710$
 - $S(100) = 4465488724217$
 
 We seek to evaluate:
-$$S(10^6) \bmod 1\,000\,000\,007$$
+
+$$
+S(10^6) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -33,8 +44,15 @@ For $n = 10^6$, $\binom{10^6}{4} \approx 4.16 \times 10^{22}$ candidate 4-tuples
    - $\text{cnt}[L](x)$: count of ascending subsequences of length $L$ ending with value $x$.
    - $\text{sum}[L](x)$: total sum of elements across all length-$L$ ascending subsequences ending with value $x$.
 2. **Transition Equations**:
-   $$\text{cnt}[L](x) = \sum_{y < x} \text{cnt}[L - 1](y)$$
-   $$\text{sum}[L](x) = \sum_{y < x} \left( \text{sum}[L - 1](y) + x \cdot \text{cnt}[L - 1](y) \right) = \left( \sum_{y < x} \text{sum}[L - 1](y) \right) + x \cdot \text{cnt}[L](x)$$
+
+$$
+\text{cnt}[L](x) = \sum_{y < x} \text{cnt}[L - 1](y)
+$$
+
+$$
+\text{sum}[L](x) = \sum_{y < x} \left( \text{sum}[L - 1](y) + x \cdot \text{cnt}[L - 1](y) \right) = \left( \sum_{y < x} \text{sum}[L - 1](y) \right) + x \cdot \text{cnt}[L](x)
+$$
+
 3. **Prefix Range Queries with Fenwick Trees**:
    Because elements are bounded by $M = 10\,000\,019$, each prefix query $\sum_{y < x}$ and point update at $x$ executes in $O(\log M)$ operations.
 

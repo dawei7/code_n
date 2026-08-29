@@ -14,7 +14,10 @@ We are given:
 - For a single deck (54 cards), the expected cards to see all 13 ranks is $\approx 29.05361725$.
 
 We seek to evaluate:
-$$\mathbb{E}[T] \text{ rounded to 8 decimal places}$$
+
+$$
+\mathbb{E}[T] \text{ rounded to 8 decimal places}
+$$
 
 ---
 
@@ -30,15 +33,26 @@ Tracking the subset of seen suits ($2^4 = 16$), ranks ($2^{13} = 8192$), and dec
 ### Tail Sum Formula & Symmetrical Inclusion-Exclusion
 1. **Tail Expectation Formula**:
    For any discrete stopping time $T \in [1, N]$:
-   $$\mathbb{E}[T] = \sum_{k=0}^{N-1} \mathbb{P}(T > k)$$
+
+$$
+\mathbb{E}[T] = \sum_{k=0}^{N-1} \mathbb{P}(T > k)
+$$
+
 2. **Missing Property Subsets**:
    The event $T > k$ means that after drawing $k$ cards, at least one suit, rank, or deck design has not yet appeared.
    By symmetry, the probability of missing any specific subset of $a$ suits, $b$ ranks, and $c$ deck designs depends solely on the number of remaining allowed cards in the pool:
-   $$M(a, b, c) = (4 - a)(13 - b)(10 - c) + 2(10 - c)$$
+
+$$
+M(a, b, c) = (4 - a)(13 - b)(10 - c) + 2(10 - c)
+$$
+
    where $(4-a)(13-b)(10-c)$ are standard cards and $2(10-c)$ are jokers from the remaining decks.
 3. **Hypergeometric Probability Ratio**:
    The probability that all $k$ drawn cards fall within the $M$ allowed cards is:
-   $$\mathbb{P}(\text{drawn } \subseteq \text{allowed}) = \frac{\binom{M}{k}}{\binom{N}{k}}$$
+
+$$
+\mathbb{P}(\text{drawn } \subseteq \text{allowed}) = \frac{\binom{M}{k}}{\binom{N}{k}}
+$$
 
 ---
 
@@ -47,7 +61,11 @@ Tracking the subset of seen suits ($2^4 = 16$), ranks ($2^{13} = 8192$), and dec
 ### Sub-second $O(N)$ Inclusion-Exclusion Convolution
 1. **Linear Recurrence for Hypergeometric Tail**:
    For a fixed $M$, the sum $S(M, N) = \sum_{k=0}^{N-1} \frac{\binom{M}{k}}{\binom{N}{k}}$ is computed in $O(M)$ via the exact step ratio:
-   $$r_k = r_{k-1} \frac{M - k + 1}{N - k + 1}$$
+
+$$
+r_k = r_{k-1} \frac{M - k + 1}{N - k + 1}
+$$
+
 2. **3D Inclusion-Exclusion Aggregation**:
    Summing over all $(a, b, c) \in [0, 4] \times [0, 13] \times [0, 10] \setminus \{(0, 0, 0)\}$ involves only $5 \times 14 \times 11 - 1 = 769$ terms!
 3. **Execution Performance**:

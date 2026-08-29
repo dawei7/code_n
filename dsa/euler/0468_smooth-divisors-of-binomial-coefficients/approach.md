@@ -5,7 +5,10 @@
 An integer is $B$-smooth if all its prime factors are $\le B$.
 Let $S_B(x)$ be the largest $B$-smooth divisor of $x$.
 Define:
-$$F(n) = \sum_{B=1}^n \sum_{r=0}^n S_B\left(\binom{n}{r}\right)$$
+
+$$
+F(n) = \sum_{B=1}^n \sum_{r=0}^n S_B\left(\binom{n}{r}\right)
+$$
 
 We are given:
 - $F(11) = 3132$
@@ -13,7 +16,10 @@ We are given:
 - $F(111111) \equiv 22156169 \pmod{10^9+993}$
 
 We seek to evaluate:
-$$F(11\,111\,111) \pmod{1\,000\,000\,993}$$
+
+$$
+F(11\,111\,111) \pmod{1\,000\,000\,993}
+$$
 
 ---
 
@@ -44,8 +50,15 @@ Factoring each of the $n+1 \approx 1.11 \times 10^7$ binomial coefficients $\bin
    - $\text{prod} = \prod_{i \in \text{range}} A_i \pmod M$
    - $\text{segsum} = \sum_{i \in \text{range}} w_i \left( \prod_{j \le i} A_j \right) \pmod M$
    Merge rule for children $L$ and $R$:
-   $$\text{prod} = \text{prod}_L \cdot \text{prod}_R \pmod M$$
-   $$\text{segsum} = \text{segsum}_L + \text{prod}_L \cdot \text{segsum}_R \pmod M$$
+
+$$
+\text{prod} = \text{prod}_L \cdot \text{prod}_R \pmod M
+$$
+
+$$
+\text{segsum} = \text{segsum}_L + \text{prod}_L \cdot \text{segsum}_R \pmod M
+$$
+
 2. **Online Point Multiplications**:
    Factoring $(n-r)$ into primes multiplies the corresponding leaves by $p$, and factoring $(r+1)$ divides leaves by $p$ (using modular inverse $p^{-1} \pmod M$).
    The root value $\text{segsum}[1] + 1$ immediately gives $\sum_{B=1}^n S_B(\binom{n}{r})$ in $O(1)$!

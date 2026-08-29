@@ -12,7 +12,10 @@ We are given:
 - $Q(100) \equiv 123864868 \pmod{1\,000\,000\,123}$
 
 We seek to evaluate:
-$$\left( \sum_{u=1}^{39} Q(2^u) \right) \bmod 1\,000\,000\,123$$
+
+$$
+\left( \sum_{u=1}^{39} Q(2^u) \right) \bmod 1\,000\,000\,123
+$$
 
 ---
 
@@ -28,13 +31,25 @@ For lengths up to $2^{39} \approx 5.5 \times 10^{11}$, dynamic programming is im
 ### Exponential Generating Functions (EGF)
 1. **Even Digits EGF**:
    An even digit appears $0, 2, 4, \dots$ times:
-   $$E_{\text{even}}(x) = \sum_{k \text{ even}} \frac{x^k}{k!} = \cosh(x) = \frac{e^x + e^{-x}}{2}$$
+
+$$
+E_{\text{even}}(x) = \sum_{k \text{ even}} \frac{x^k}{k!} = \cosh(x) = \frac{e^x + e^{-x}}{2}
+$$
+
 2. **Odd Digits EGF**:
    An odd digit appears $0, 1, 3, 5, \dots$ times:
-   $$E_{\text{odd}}(x) = 1 + \sum_{k \text{ odd}} \frac{x^k}{k!} = 1 + \sinh(x) = 1 + \frac{e^x - e^{-x}}{2}$$
+
+$$
+E_{\text{odd}}(x) = 1 + \sum_{k \text{ odd}} \frac{x^k}{k!} = 1 + \sinh(x) = 1 + \frac{e^x - e^{-x}}{2}
+$$
+
 3. **Full Alphabet EGF**:
    For 5 even digits and 5 odd digits, the EGF for all valid unrestricted digit strings is:
-   $$F(x) = \cosh(x)^5 (1 + \sinh(x))^5 = \sum_{t=-10}^{10} c_t e^{tx}$$
+
+$$
+F(x) = \cosh(x)^5 (1 + \sinh(x))^5 = \sum_{t=-10}^{10} c_t e^{tx}
+$$
+
    The number of valid unrestricted strings of length $k$ is $k! [x^k] F(x) = \sum_t c_t t^k$.
 
 ---
@@ -44,13 +59,20 @@ For lengths up to $2^{39} \approx 5.5 \times 10^{11}$, dynamic programming is im
 ### Leading Zero Subtraction & Geometric Series Collapse
 1. **Subtracting Strings with Leading Zero**:
    If the first digit is $0$, the remaining $k-1$ digits must contain an **odd** number of zeros, 4 even digits with even counts, and 5 odd digits with 0/odd counts:
-   $$G(x) = \sinh(x) \cosh(x)^4 (1 + \sinh(x))^5 = \sum_{t=-10}^{10} d_t e^{tx}$$
+
+$$
+G(x) = \sinh(x) \cosh(x)^4 (1 + \sinh(x))^5 = \sum_{t=-10}^{10} d_t e^{tx}
+$$
+
    The count of leading-zero strings of length $k$ is $(k-1)! [x^{k-1}] G(x) = \sum_t d_t t^{k-1}$.
 2. **Summing Over All Lengths $k \le n$**:
    - $\sum_{k=1}^n t^k = \frac{t^{n+1} - t}{t - 1}$
    - $\sum_{k=1}^n t^{k-1} = \sum_{m=0}^{n-1} t^m = \frac{t^n - 1}{t - 1}$
 3. **$O(1)$ Closed-Form Evaluation**:
-   $$Q(n) = \sum_{t=-10}^{10} c_t \frac{t^{n+1} - t}{t - 1} - \sum_{t=-10}^{10} d_t \frac{t^n - 1}{t - 1}$$
+
+$$
+Q(n) = \sum_{t=-10}^{10} c_t \frac{t^{n+1} - t}{t - 1} - \sum_{t=-10}^{10} d_t \frac{t^n - 1}{t - 1}
+$$
 
 Evaluating $Q(n)$ takes $O(1)$ arithmetic operations!
 

@@ -14,7 +14,10 @@ Let outer side length be $a$ and inner hole side length be $b$ ($a > b \ge 1$ wi
 The number of tiles used is $T = a^2 - b^2 \le 1\,000\,000$.
 
 The objective is to find the **number of different square laminae that can be formed using up to one million ($10^6$) tiles**:
-$$L(10^6) = \left| \left\{ (a, b) \in \mathbb{N}^2 \;\middle|\; a > b \ge 1 \land a \equiv b \pmod 2 \land a^2 - b^2 \le 10^6 \right\} \right|$$
+
+$$
+L(10^6) = \left| \left\{ (a, b) \in \mathbb{N}^2 \;\middle|\; a > b \ge 1 \land a \equiv b \pmod 2 \land a^2 - b^2 \le 10^6 \right\} \right|
+$$
 
 ---
 
@@ -32,14 +35,26 @@ def naive_square_laminae():
 1. **Change of Variables:**
    Let $x = \frac{a - b}{2} \in \mathbb{N}$ and $y = \frac{a + b}{2} \in \mathbb{N}$.
    Then:
-   $$a = y + x, \quad b = y - x$$
+
+$$
+a = y + x, \quad b = y - x
+$$
+
    Since $a > b \ge 1$, we must have $y > x \ge 1$.
 2. **Tile Bound Reduction:**
-   $$a^2 - b^2 = (y + x)^2 - (y - x)^2 = 4xy \le 1\,000\,000 \iff xy \le M = \left\lfloor \frac{1\,000\,000}{4} \right\rfloor = 250\,000$$
+
+$$
+a^2 - b^2 = (y + x)^2 - (y - x)^2 = 4xy \le 1\,000\,000 \iff xy \le M = \left\lfloor \frac{1\,000\,000}{4} \right\rfloor = 250\,000
+$$
+
 3. **Dirichlet Hyperbola Summation:**
    For each fixed integer $x \in [1, \lfloor \sqrt{M} \rfloor]$, $y$ can be any integer such that $x < y \le \lfloor M / x \rfloor$.
    The number of valid $y$ values is:
-   $$\operatorname{count}(x) = \left\lfloor \frac{M}{x} \right\rfloor - x$$
+
+$$
+\operatorname{count}(x) = \left\lfloor \frac{M}{x} \right\rfloor - x
+$$
+
 4. Summing over $x = 1 \dots 500$ evaluates the exact count in $500$ operations in $\approx 0.0001$ seconds.
 
 ---
@@ -62,9 +77,16 @@ def naive_square_laminae():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Hyperbola Formula
-$$L(N_{\text{max}}) = \sum_{x=1}^{\lfloor\sqrt{M}\rfloor} \left( \left\lfloor \frac{M}{x} \right\rfloor - x \right) \quad \text{where } M = \left\lfloor \frac{N_{\text{max}}}{4} \right\rfloor$$
+
+$$
+L(N_{\text{max}}) = \sum_{x=1}^{\lfloor\sqrt{M}\rfloor} \left( \left\lfloor \frac{M}{x} \right\rfloor - x \right) \quad \text{where } M = \left\lfloor \frac{N_{\text{max}}}{4} \right\rfloor
+$$
+
 For $N_{\text{max}} = 1\,000\,000 \implies M = 250\,000 \implies \lfloor\sqrt{M}\rfloor = 500$:
-$$L(10^6) = \sum_{x=1}^{500} \left( \left\lfloor \frac{250\,000}{x} \right\rfloor - x \right) = \mathbf{1\,574\,722}$$
+
+$$
+L(10^6) = \sum_{x=1}^{500} \left( \left\lfloor \frac{250\,000}{x} \right\rfloor - x \right) = \mathbf{1\,574\,722}
+$$
 
 ---
 
@@ -90,7 +112,10 @@ $$L(10^6) = \sum_{x=1}^{500} \left( \left\lfloor \frac{250\,000}{x} \right\rfloo
 
 ### Example 3: Target Evaluation for $N_{\text{max}} = 1\,000\,000$
 - Evaluating across $x = 1 \dots 500$:
-  $$L(10^6) = \mathbf{1\,574\,722}$$
+
+$$
+L(10^6) = \mathbf{1\,574\,722}
+$$
 
 ---
 

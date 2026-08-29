@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Pell's equation is a quadratic Diophantine equation of the form:
-$$x^2 - D y^2 = 1 \quad \text{where } D \in \mathbb{N} \text{ is a non-square integer}$$
+
+$$
+x^2 - D y^2 = 1 \quad \text{where } D \in \mathbb{N} \text{ is a non-square integer}
+$$
 
 For each non-square integer $D \le 1000$, there exist infinitely many positive integer solutions $(x, y) \in \mathbb{N}^2$.
 Let $x_1(D)$ denote the **minimal positive integer solution in $x$** (the fundamental solution).
@@ -17,7 +20,12 @@ Examples of minimal solutions in $x$ for early non-square $D$:
 - For $D \le 7$, the largest $x$ is obtained when $D = 5$ ($x_1 = 9$).
 
 The objective is to find the value of $D \le 1000$ in minimal solutions of $x$ for which the largest value of $x$ is obtained:
-$$D_{\text{max}} = \operatorname*{arg\,max}_{\substack{2 \le D \le 1000 \\ \lfloor \sqrt{D} \rfloor^2 \neq D}} x_1(D)$$
+
+$$
+\begin{aligned}
+D_{\text{max}} = \operatorname*{arg\,max}_{\substack{2 \le D \le 1000 \\ \lfloor \sqrt{D} \rfloor^2 \neq D}} x_1(D)
+\end{aligned}
+$$
 
 ---
 
@@ -64,8 +72,15 @@ def naive_pell(d):
 For each non-square integer $D \in [2, 1000]$:
 1. $a_0 = \lfloor \sqrt{D} \rfloor$.
 2. Initialize recurrence states:
-   $$m_0 = 0, \quad \text{den}_0 = 1, \quad a = a_0$$
-   $$(p_{\text{prev}}, p) = (1, a_0), \quad (q_{\text{prev}}, q) = (0, 1)$$
+
+$$
+m_0 = 0, \quad \text{den}_0 = 1, \quad a = a_0
+$$
+
+$$
+(p_{\text{prev}}, p) = (1, a_0), \quad (q_{\text{prev}}, q) = (0, 1)
+$$
+
 3. Step recurrence until $p^2 - D q^2 == 1$:
    - $m \leftarrow \text{den} \cdot a - m$
    - $\text{den} \leftarrow (D - m^2) // \text{den}$
@@ -87,9 +102,16 @@ For each non-square integer $D \in [2, 1000]$:
 ### Example 2: Target Maximum for $D \le 1000$
 - Evaluating all non-squares up to $1000$:
   - $D = 661$ achieves:
-    $$x_1(661) = 164216587644016255869254361243612436031 \approx \mathbf{1.64 \times 10^{33}}$$
+
+$$
+x_1(661) = 164216587644016255869254361243612436031 \approx \mathbf{1.64 \times 10^{33}}
+$$
+
 - Optimal Base:
-  $$D_{\text{max}} = \mathbf{661}$$
+
+$$
+D_{\text{max}} = \mathbf{661}
+$$
 
 ---
 

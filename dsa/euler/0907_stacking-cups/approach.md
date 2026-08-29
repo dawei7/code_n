@@ -32,7 +32,11 @@ A profile dynamic programming state across the boundary has bounded width $\le 2
 
 ### Transfer Matrix Binary Exponentiation $\mathcal{O}(\log n)$
 Using binary matrix exponentiation on the boundary transition matrix:
-$$M^n \pmod{10^9 + 7}$$
+
+$$
+M^n \pmod{10^9 + 7}
+$$
+
 computes $S(10^7) \pmod{10^9 + 7} = \mathbf{196808901}$ in $\mathcal{O}(\log n)$ operations in under $0.001\text{ s}$ in 100% pure Python.
 
 ---

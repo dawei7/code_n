@@ -5,7 +5,11 @@
 A circular silo has radius $R = 6\text{ m}$. Granular material with angle of repose $\alpha = 40^\circ$ is delivered at horizontal distance $x \in [0, R)$ from the center.
 A cone forms inside the cylinder with its apex at distance $x$ from the vertical axis.
 The empty space $V(x)$ inside the cylinder above the conical pile up to the horizontal plane of the apex is given by:
-$$V(x) = \tan \alpha \int_0^{2\pi} \frac{r(\theta)^3}{3} \, d\theta$$
+
+$$
+V(x) = \tan \alpha \int_0^{2\pi} \frac{r(\theta)^3}{3} \, d\theta
+$$
+
 where $r(\theta) = \sqrt{R^2 - x^2 \sin^2 \theta} - x \cos \theta$ is the distance from the apex $(x, 0)$ to the cylinder boundary at polar angle $\theta$.
 
 We are given:
@@ -28,10 +32,16 @@ Approximating the 3D volume by fine spatial discretizations leads to slow conver
 Using polar coordinates $(r, \theta)$ centered at the pile apex:
 The depth of the cone surface below the apex plane at distance $r$ is $h(r) = r \tan \alpha$.
 Integrating over the polar domain $r \in [0, r(\theta)]$ and $\theta \in [0, 2\pi]$:
-$$V(x) = \int_0^{2\pi} d\theta \int_0^{r(\theta)} (r \tan \alpha) r \, dr = \frac{\tan \alpha}{3} \int_0^{2\pi} r(\theta)^3 \, d\theta$$
+
+$$
+V(x) = \int_0^{2\pi} d\theta \int_0^{r(\theta)} (r \tan \alpha) r \, dr = \frac{\tan \alpha}{3} \int_0^{2\pi} r(\theta)^3 \, d\theta
+$$
 
 By symmetry about $\theta \in [0, \pi]$:
-$$V(x) = \frac{2 \tan \alpha}{3} \int_0^\pi \left(\sqrt{R^2 - x^2 \sin^2 \theta} - x \cos \theta\right)^3 \, d\theta$$
+
+$$
+V(x) = \frac{2 \tan \alpha}{3} \int_0^\pi \left(\sqrt{R^2 - x^2 \sin^2 \theta} - x \cos \theta\right)^3 \, d\theta
+$$
 
 ---
 

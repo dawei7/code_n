@@ -3,14 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Find the number of integers $1 < n < 10^7$ for which $n$ and $n + 1$ have the same number of positive divisors:
-$$d(n) = d(n + 1)$$
+
+$$
+d(n) = d(n + 1)
+$$
+
 where $d(n)$ is the divisor function counting all positive divisors of $n$:
-$$d(n) = \sum_{k \mid n} 1$$
+
+$$
+d(n) = \sum_{k \mid n} 1
+$$
 
 For example, $14$ has the positive divisors $1, 2, 7, 14$ ($d(14) = 4$) and $15$ has $1, 3, 5, 15$ ($d(15) = 4$), so $n = 14$ is one such integer.
 
 The objective is to find the **total number of integers $1 < n < 10^7$ such that $d(n) = d(n+1)$**:
-$$N_{\text{consecutive}} = \left| \left\{ n \in \mathbb{N} \;\middle|\; 2 \le n < 10^7 \land d(n) = d(n+1) \right\} \right|$$
+
+$$
+N_{\text{consecutive}} = \left| \left\{ n \in \mathbb{N} \;\middle|\; 2 \le n < 10^7 \land d(n) = d(n+1) \right\} \right|
+$$
 
 ---
 
@@ -27,7 +37,11 @@ def naive_consecutive_divisors():
 ### Linear Sieve (Euler's Sieve) for Multiplicative Functions
 1. **Multiplicative Property:**
    For prime factorization $n = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$, the divisor count function is multiplicative:
-   $$d(n) = \prod_{i=1}^k (e_i + 1)$$
+
+$$
+d(n) = \prod_{i=1}^k (e_i + 1)
+$$
+
 2. **Strictly Linear $\mathcal{O}(N)$ Sieve:**
    - Maintain $e[n]$, the exponent of the smallest prime factor $p$ of $n$.
    - For every prime $p$: $d[p] = 2, \; e[p] = 1$.
@@ -86,7 +100,10 @@ def solve(limit: int = 10000000) -> int:
     return sum(1 for n in range(2, limit) if d[n] == d[n + 1])
 ```
 Evaluating for $\text{limit} = 10^7$:
-$$N_{\text{consecutive}} = \mathbf{986\,262}$$
+
+$$
+N_{\text{consecutive}} = \mathbf{986\,262}
+$$
 
 ---
 
@@ -100,7 +117,10 @@ $$N_{\text{consecutive}} = \mathbf{986\,262}$$
 
 ### Example 2: Target Evaluation for $1 < n < 10^7$
 - Scanning all pairs up to $10^7$:
-  $$N_{\text{consecutive}} = \mathbf{986\,262}$$
+
+$$
+N_{\text{consecutive}} = \mathbf{986\,262}
+$$
 
 ---
 

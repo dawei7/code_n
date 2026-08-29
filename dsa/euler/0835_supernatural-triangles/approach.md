@@ -24,19 +24,37 @@ Find $S(10^{10^{10}}) \bmod 1234567891$.
 There are two distinct geometric configurations for supernatural triangles:
 
 ### Family 1: Consecutive Legs ($b = a + 1$)
-$$a^2 + (a+1)^2 = c^2 \iff (2a+1)^2 - 2c^2 = -1$$
+
+$$
+a^2 + (a+1)^2 = c^2 \iff (2a+1)^2 - 2c^2 = -1
+$$
+
 Setting $X = 2a+1$ and $Y = c$, this is the negative Pell equation $X^2 - 2Y^2 = -1$.
 The perimeter $P = 2a+1 + c = X + Y$.
 The sequence of perimeters $P_n$ satisfies the linear recurrence:
-$$P_1 = 2 \text{ (degenerate)}, \quad P_2 = 12, \quad P_{n+1} = 6P_n - P_{n-1}$$
+
+$$
+P_1 = 2 \text{ (degenerate)}, \quad P_2 = 12, \quad P_{n+1} = 6P_n - P_{n-1}
+$$
+
 The sum of perimeters satisfies:
-$$\sum_{n=2}^k P_n = \frac{P_{k+1} - P_k - 10}{4}$$
+
+$$
+\sum_{n=2}^k P_n = \frac{P_{k+1} - P_k - 10}{4}
+$$
 
 ### Family 2: Consecutive Hypotenuse and Leg ($c = b + 1$)
-$$a^2 + b^2 = (b+1)^2 \iff 2b+1 = a^2$$
+
+$$
+a^2 + b^2 = (b+1)^2 \iff 2b+1 = a^2
+$$
+
 Thus $a$ is an odd integer $a = 2m+1 \ge 3$, yielding $b = 2m(m+1)$ and $c = 2m(m+1)+1$.
 The perimeter is:
-$$P(m) = a + b + c = (2m+1)(2m+2) = 4m^2 + 6m + 2$$
+
+$$
+P(m) = a + b + c = (2m+1)(2m+2) = 4m^2 + 6m + 2
+$$
 
 ### Overlap:
 The only triangle satisfying both $b = a+1$ and $c = b+1$ is $(3, 4, 5)$ with perimeter $12$.
@@ -47,17 +65,32 @@ The only triangle satisfying both $b = a+1$ and $c = b+1$ is $(3, 4, 5)$ with pe
 
 ### Family 1 Bound & Matrix Exponentiation
 Using the asymptotic growth $P_n \approx \frac{(3 + 2\sqrt{2})^n}{2\sqrt{2}}$, the maximal index $n_{\max}$ where $P_{n_{\max}} \le 10^{10^{10}}$ is:
-$$n_{\max} = \left\lfloor \frac{10^{10} \ln 10 + \ln(2\sqrt{2})}{\ln(3 + 2\sqrt{2})} \right\rfloor = 13062480694$$
+
+$$
+n_{\max} = \left\lfloor \frac{10^{10} \ln 10 + \ln(2\sqrt{2})}{\ln(3 + 2\sqrt{2})} \right\rfloor = 13062480694
+$$
+
 The values $P_{n_{\max}}$ and $P_{n_{\max}+1}$ are computed in $\mathcal{O}(\log n_{\max})$ time using $2 \times 2$ modular matrix exponentiation.
 
 ### Family 2 Closed-Form Sum via Fermat's Little Theorem
 Since $N = 10^{10^{10}} = (10^{5 \times 10^9})^2$, the maximum odd integer $a$ satisfying $a(a+1) \le N$ is $a_{\max} = 10^{5 \times 10^9} - 1$.
 The corresponding upper index is:
-$$m_{\max} = \frac{10^{5 \times 10^9} - 2}{2}$$
+
+$$
+m_{\max} = \frac{10^{5 \times 10^9} - 2}{2}
+$$
+
 Since $M = 1234567891$ is prime, by Fermat's Little Theorem:
-$$10^{5 \times 10^9} \equiv 10^{(5 \times 10^9) \bmod (M - 1)} \pmod M$$
+
+$$
+10^{5 \times 10^9} \equiv 10^{(5 \times 10^9) \bmod (M - 1)} \pmod M
+$$
+
 The sum over $m \le m_{\max}$ is evaluated in $\mathcal{O}(1)$ via:
-$$\sum_{m=1}^{m_{\max}} (4m^2 + 6m + 2) = \frac{2 m_{\max}(m_{\max}+1)(2m_{\max}+1)}{3} + 3 m_{\max}(m_{\max}+1) + 2 m_{\max} \pmod M$$
+
+$$
+\sum_{m=1}^{m_{\max}} (4m^2 + 6m + 2) = \frac{2 m_{\max}(m_{\max}+1)(2m_{\max}+1)}{3} + 3 m_{\max}(m_{\max}+1) + 2 m_{\max} \pmod M
+$$
 
 Combining both families and subtracting the duplicate $(3, 4, 5)$ perimeter $12$ gives the exact total in $< 0.001$ seconds.
 

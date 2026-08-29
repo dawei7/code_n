@@ -11,7 +11,11 @@ We seek to evaluate the total count of double pandigital numbers that are divisi
 
 ### Full Permutation Generation
 The total number of 20-digit multiset permutations with no leading zero is:
-$$\frac{9}{10} \frac{20!}{(2!)^{10}} \approx 2.15 \times 10^{14}$$
+
+$$
+\frac{9}{10} \frac{20!}{(2!)^{10}} \approx 2.15 \times 10^{14}
+$$
+
 Checking divisibility on hundreds of trillions of numbers is completely intractable.
 
 ---
@@ -22,8 +26,14 @@ Checking divisibility on hundreds of trillions of numbers is completely intracta
 1. **Alternating Sum Rule**:
    A number is divisible by 11 iff the sum of its odd-position digits $S_1$ minus the sum of its even-position digits $S_2$ satisfies $S_1 - S_2 \equiv 0 \pmod{11}$.
 2. **Total Digit Sum Invariant**:
-   $$S_1 + S_2 = 2 \sum_{d=0}^9 d = 90$$
-   $$S_1 - S_2 = 2S_1 - 90 \equiv 2S_1 - 2 \equiv 0 \pmod{11} \iff S_1 \equiv 1 \pmod{11}$$
+
+$$
+S_1 + S_2 = 2 \sum_{d=0}^9 d = 90
+$$
+
+$$
+S_1 - S_2 = 2S_1 - 90 \equiv 2S_1 - 2 \equiv 0 \pmod{11} \iff S_1 \equiv 1 \pmod{11}
+$$
 
 ---
 
@@ -35,9 +45,17 @@ Checking divisibility on hundreds of trillions of numbers is completely intracta
    The remaining digits $b_d = 2 - a_d$ are placed in the 10 even positions.
 2. **Permutation Counting with Non-Zero Leading Digit**:
    - The first digit (an odd position) cannot be 0. Thus the number of valid permutations for the odd positions is:
-     $$\text{Perm}(A) = \frac{10 - a_0}{10} \frac{10!}{\prod_{d=0}^9 a_d!} = (10 - a_0) \frac{9!}{\prod_{d=0}^9 a_d!}$$
+
+$$
+\text{Perm}(A) = \frac{10 - a_0}{10} \frac{10!}{\prod_{d=0}^9 a_d!} = (10 - a_0) \frac{9!}{\prod_{d=0}^9 a_d!}
+$$
+
    - The even positions have no leading digit restriction:
-     $$\text{Perm}(B) = \frac{10!}{\prod_{d=0}^9 (2 - a_d)!}$$
+
+$$
+\text{Perm}(B) = \frac{10!}{\prod_{d=0}^9 (2 - a_d)!}
+$$
+
 3. **Space of Selections**:
    There are only $\binom{10 + 2 - 1}{2} \dots = 8\,953$ valid partitions $A$.
    Sweeping all $3^{10} = 59\,049$ vectors takes $0.01$ seconds!

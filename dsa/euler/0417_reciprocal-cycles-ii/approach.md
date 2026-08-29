@@ -4,14 +4,21 @@
 
 For an integer $n \ge 1$, write $n = 2^a 5^b m$ where $\gcd(m, 10) = 1$.
 The length of the recurring cycle in the decimal expansion of $1/n$ is:
-$$L(n) = \begin{cases} 0 & \text{if } m = 1 \\ \text{ord}_{10}(m) & \text{if } m > 1 \end{cases}$$
+
+$$
+L(n) = \begin{cases} 0 & \text{if } m = 1 \\ \text{ord}_{10}(m) & \text{if } m > 1 \end{cases}
+$$
+
 where $\text{ord}_{10}(m)$ is the multiplicative order of $10$ modulo $m$.
 
 We are given:
 - $\sum_{n=3}^{10^6} L(n) = 55\,535\,191\,115$.
 
 We seek to evaluate:
-$$\sum_{n=3}^{10^8} L(n)$$
+
+$$
+\sum_{n=3}^{10^8} L(n)
+$$
 
 ---
 
@@ -29,9 +36,16 @@ For any integer $m$ coprime to $10$, every number of the form $n = m \cdot 2^a 5
 The number of such 10-smooth multipliers $2^a 5^b \le \lfloor N/m \rfloor$ is precomputed in a small list of length $< 300$.
 
 Furthermore, by the Chinese Remainder Theorem:
-$$L(m) = \text{lcm}(L(p_1^{e_1}), \dots, L(p_r^{e_r}))$$
+
+$$
+L(m) = \text{lcm}(L(p_1^{e_1}), \dots, L(p_r^{e_r}))
+$$
+
 where for prime powers $p^e$:
-$$L(p^e) = L(p) \cdot p^{\max(0, e - 1)}$$
+
+$$
+L(p^e) = L(p) \cdot p^{\max(0, e - 1)}
+$$
 
 ---
 

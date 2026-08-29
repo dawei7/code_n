@@ -33,7 +33,10 @@ An $a \times b$ room is **tatami-free** if and only if:
 1. $a$ is even and $(a - 1) \cdot (b + 1) < s - a$; or
 2. There is no positive integer $k$ such that $(a - 1) \mid (s - 2k)$ and $2k \le b - a + 2$.
 In simple closed terms: An $a \times b$ room is tatami-free if and only if $a$ and $b$ satisfy the boundary deficiency inequality:
-$$\mathbf{(a - 1) \cdot k < b - 1 \quad \text{for all valid configurations}}$$
+
+$$
+\mathbf{(a - 1) \cdot k < b - 1 \quad \text{for all valid configurations}}
+$$
 
 ---
 

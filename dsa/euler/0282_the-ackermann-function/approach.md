@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The Ackermann function $A(m, n)$ is defined for non-negative integers $m, n$ by:
-$$A(m, n) = \begin{cases} n + 1 & \text{if } m = 0 \\ A(m - 1, 1) & \text{if } m > 0 \text{ and } n = 0 \\ A(m - 1, A(m, n - 1)) & \text{if } m > 0 \text{ and } n > 0 \end{cases}$$
+
+$$
+A(m, n) = \begin{cases} n + 1 & \text{if } m = 0 \\ A(m - 1, 1) & \text{if } m > 0 \text{ and } n = 0 \\ A(m - 1, A(m, n - 1)) & \text{if } m > 0 \text{ and } n > 0 \end{cases}
+$$
+
 We seek $\sum_{n=0}^6 A(n, n) \bmod 14^8 = 1475789056$.
 
 ---
@@ -45,7 +49,11 @@ Let $M = 14^8 = 2^8 \times 7^8 = 1475789056$.
 3. For $A(5, 5)$ and $A(6, 6)$:
    A power tower of $2$s of height $\ge \log_2(M) \approx 31$ **completely stabilizes** modulo $M$!
    That is, for any height $H \ge 31$:
-   $$2 \uparrow\uparrow H \equiv 2 \uparrow\uparrow 31 \pmod M$$
+
+$$
+2 \uparrow\uparrow H \equiv 2 \uparrow\uparrow 31 \pmod M
+$$
+
    Since both $A(5, 5) + 3$ and $A(6, 6) + 3$ are power towers of height $\gg 31$, their residue modulo $14^8$ is **IDENTICAL** to the stabilized infinite power tower $2 \uparrow\uparrow \infty \bmod 14^8$!
 4. Evaluating the stabilized power tower modulo $14^8$ computes the sum in under $0.001$ seconds in pure Python!
 

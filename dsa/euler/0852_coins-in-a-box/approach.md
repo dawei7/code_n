@@ -31,7 +31,11 @@ Regardless of the number of flips in the current round, the true coin type is ev
 - If the drawn coin was unfair, future expected reward is $V(u - 1, f)$.
 - If the drawn coin was fair, future expected reward is $V(u, f - 1)$.
 The future value expectation is simply:
-$$\mathbb{E}[\text{Future}] = \frac{u}{u + f} V(u - 1, f) + \frac{f}{u + f} V(u, f - 1)$$
+
+$$
+\mathbb{E}[\text{Future}] = \frac{u}{u + f} V(u - 1, f) + \frac{f}{u + f} V(u, f - 1)
+$$
+
 Thus, the within-round optimal stopping problem depends strictly on the pair $(u, f)$ and is entirely independent of future rounds.
 
 ---
@@ -43,14 +47,27 @@ Let $h$ heads and $t$ tails be observed on the current coin:
 - $A(h, t) = u \cdot (3/4)^h (1/4)^t$
 - $B(h, t) = f \cdot (1/2)^{h+t}$
 - **Immediate Stopping Payoff**:
-  $$\text{StopVal}(h, t) = \max(20 A(h, t) - 50 B(h, t), 20 B(h, t) - 50 A(h, t))$$
+
+$$
+\text{StopVal}(h, t) = \max(20 A(h, t) - 50 B(h, t), 20 B(h, t) - 50 A(h, t))
+$$
+
 - **Continuation Payoff (Bellman Equation)**:
-  $$\text{ContVal}(h, t) = -(A(h, t) + B(h, t)) + J(h + 1, t) + J(h, t + 1)$$
-  $$J(h, t) = \max(\text{StopVal}(h, t), \text{ContVal}(h, t))$$
+
+$$
+\text{ContVal}(h, t) = -(A(h, t) + B(h, t)) + J(h + 1, t) + J(h, t + 1)
+$$
+
+$$
+J(h, t) = \max(\text{StopVal}(h, t), \text{ContVal}(h, t))
+$$
 
 Because $P(\text{undecided}) \to 0$ exponentially as $(3/8)^m$, backwards induction from $H_{\max} = 200$ achieves absolute convergence to 15 decimal digits.
 Single-round net expected value:
-$$W(u, f) = \frac{J(0, 0)}{u + f}$$
+
+$$
+W(u, f) = \frac{J(0, 0)}{u + f}
+$$
 
 ---
 

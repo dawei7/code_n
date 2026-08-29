@@ -5,10 +5,18 @@
 Let $S = \sum_{k=1}^n f(k)$.
 Choose a random increasing $m$-tuple $0 = X_0 < X_1 < \dots < X_m \le n$ uniformly among all $\binom{n}{m}$ choices.
 Define the modified Riemann sum:
-$$S^* = \sum_{i=1}^m f(X_i)(X_i - X_{i-1})$$
+
+$$
+S^* = \sum_{i=1}^m f(X_i)(X_i - X_{i-1})
+$$
+
 and the error $\Delta = S - S^*$.
 We seek to compute the expected error:
-$$\mathbb{E}(\Delta \mid \varphi(k), 12345678, 12345)$$
+
+$$
+\mathbb{E}(\Delta \mid \varphi(k), 12345678, 12345)
+$$
+
 rounded to 6 decimal places.
 
 ---
@@ -28,10 +36,18 @@ Empirical Monte Carlo sampling requires $\approx 10^{12}$ trials to achieve 6 de
    In $S^*$, $f(k)$ receives weight $k - X_{i-1}$ if $k = X_i$, and $0$ otherwise.
 2. **Cumulative Weight Identity**:
    By summing the indicator variables for whether each element is skipped, the expected error simplifies to:
-   $$\mathbb{E}(\Delta) = \sum_{k=1}^{n-m} f(k) \frac{\binom{n-k}{m}}{\binom{n}{m}}$$
+
+$$
+\mathbb{E}(\Delta) = \sum_{k=1}^{n-m} f(k) \frac{\binom{n-k}{m}}{\binom{n}{m}}
+$$
+
 3. **First-Order Ratio Recurrence**:
    Let $w_k = \frac{\binom{n-k}{m}}{\binom{n}{m}}$. Then:
-   $$w_1 = \frac{n - m}{n}, \quad \frac{w_{k+1}}{w_k} = \frac{n - k - m}{n - k}$$
+
+$$
+w_1 = \frac{n - m}{n}, \quad \frac{w_{k+1}}{w_k} = \frac{n - k - m}{n - k}
+$$
+
 4. **Exponential Tail Decay**:
    Because $\frac{w_{k+1}}{w_k} \approx 1 - \frac{m}{n} \approx 1 - 10^{-3}$, $w_k \approx e^{-mk/n}$ decays exponentially fast.
    Truncating the sum when $n(n - m - K) w_{K+1} < 10^{-10}$ requires only $K \approx 50\,000$ terms instead of $n \approx 1.2 \times 10^7$!

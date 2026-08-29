@@ -3,16 +3,26 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Some positive integers $n$ have the property that the sum:
-$$n + \operatorname{reverse}(n)$$
+
+$$
+n + \operatorname{reverse}(n)
+$$
+
 consists entirely of **odd decimal digits**. For instance:
-$$36 + 63 = 99 \quad \text{and} \quad 409 + 904 = 1313$$
+
+$$
+36 + 63 = 99 \quad \text{and} \quad 409 + 904 = 1313
+$$
 
 We will call such numbers **reversible**; so $36, 63, 409,$ and $904$ are reversible. Leading zeroes are not allowed in either $n$ or $\operatorname{reverse}(n)$ (so $n$ cannot be a multiple of 10).
 
 There are $120$ reversible numbers below one-thousand ($1000$).
 
 The objective is to find **how many reversible numbers there are below one-billion ($10^9$)**:
-$$N_{\text{rev}} = \left| \left\{ n < 10^9 \;\middle|\; n \not\equiv 0 \pmod{10} \land \forall d \in \operatorname{digits}(n + \operatorname{reverse}(n)), \, d \equiv 1 \pmod 2 \right\} \right|$$
+
+$$
+N_{\text{rev}} = \left| \left\{ n < 10^9 \;\middle|\; n \not\equiv 0 \pmod{10} \land \forall d \in \operatorname{digits}(n + \operatorname{reverse}(n)), \, d \equiv 1 \pmod 2 \right\} \right|
+$$
 
 ---
 
@@ -31,15 +41,27 @@ Let $L$ be the digit length of $n$ ($1 \le L \le 8$ for $n < 10^9$).
 1. **Case $L \equiv 1 \pmod 4$ ($L \in \{1, 5\}$):**
    - The middle digit has no partner and its sum is $2 d_{\text{mid}}$.
    - Any carry into the middle digit forces an adjacent parity mismatch, making valid sums **impossible**:
-     $$N(L) = 0$$
+
+$$
+N(L) = 0
+$$
+
 2. **Case $L$ is Even ($L \in \{2, 4, 6, 8\}$):**
    - No carries can propagate across digit pairs without ruining parity.
    - The outermost pair $(d_1, d_L)$ must satisfy $d_1 + d_L \in \{1, 3, 5, 7, 9\}$ with $d_1, d_L \ge 1 \implies 20$ valid pairs.
    - Each internal pair $(d_i, d_{L-i+1})$ allows $d_i, d_{L-i+1} \in [0, 9] \implies 30$ valid pairs.
-     $$N(L) = 20 \times 30^{L/2 - 1}$$
+
+$$
+N(L) = 20 \times 30^{L/2 - 1}
+$$
+
 3. **Case $L \equiv 3 \pmod 4$ ($L \in \{3, 7\}$):**
    - A carry is required into the middle digit:
-     $$N(L) = 100 \times 500^{(L-3)/4}$$
+
+$$
+N(L) = 100 \times 500^{(L-3)/4}
+$$
+
 4. Summing across $L = 1 \dots 8$ evaluates the answer in $\approx 0.0000$ seconds.
 
 ---
@@ -65,7 +87,10 @@ Let $L$ be the digit length of $n$ ($1 \le L \le 8$ for $n < 10^9$).
 
 ### Length-by-Length Closed-Form Evaluation
 Summing all digit lengths below $10^9$ ($L = 1 \dots 8$):
-$$N_{\text{rev}} = 0 + 20 + 100 + 600 + 0 + 18\,000 + 50\,000 + 540\,000 = \mathbf{608\,720}$$
+
+$$
+N_{\text{rev}} = 0 + 20 + 100 + 600 + 0 + 18\,000 + 50\,000 + 540\,000 = \mathbf{608\,720}
+$$
 
 ---
 
@@ -79,7 +104,10 @@ $$N_{\text{rev}} = 0 + 20 + 100 + 600 + 0 + 18\,000 + 50\,000 + 540\,000 = \math
 
 ### Example 2: Target Evaluation for $n < 10^9$ ($L \le 8$)
 - Summing all 8 lengths:
-  $$N_{\text{rev}} = \mathbf{608\,720}$$
+
+$$
+N_{\text{rev}} = \mathbf{608\,720}
+$$
 
 ---
 

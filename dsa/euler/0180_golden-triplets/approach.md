@@ -3,19 +3,36 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For any integer $n$, consider the three-variable function:
-$$f_n(x, y, z) = x^{n+1} + y^{n+1} - z^{n+1}$$
+
+$$
+f_n(x, y, z) = x^{n+1} + y^{n+1} - z^{n+1}
+$$
+
 and the associated function:
-$$s(x, y, z) = x + y + z$$
+
+$$
+s(x, y, z) = x + y + z
+$$
 
 We define a **golden triplet of order $k$** to be a triplet of rational numbers $(x, y, z)$ in $(0, 1)$ such that:
-$$x = \frac{a}{b}, \quad y = \frac{c}{d}, \quad z = \frac{e}{f}$$
+
+$$
+x = \frac{a}{b}, \quad y = \frac{c}{d}, \quad z = \frac{e}{f}
+$$
+
 where $1 \le a < b \le k, \; 1 \le c < d \le k, \; 1 \le e < f \le k$ and $\gcd(a, b) = \gcd(c, d) = \gcd(e, f) = 1$, and there exists at least one $n \in \{-2, -1, 1, 2\}$ such that:
-$$f_n(x, y, z) = 0$$
+
+$$
+f_n(x, y, z) = 0
+$$
 
 Let $t = \frac{u}{v}$ (in lowest terms) be the sum of all **distinct** values of $s(x, y, z)$ for all golden triplets of order $k = 35$.
 
 The objective is to find **$u + v$**:
-$$u + v = \text{numerator} + \text{denominator} \quad \text{for } t = \frac{u}{v}$$
+
+$$
+u + v = \text{numerator} + \text{denominator} \quad \text{for } t = \frac{u}{v}
+$$
 
 ---
 
@@ -66,9 +83,16 @@ def naive_golden_triplets():
    - Check $z_1, z_2, z_3, z_4 \in \mathbb{Q}_{35}$.
    - Add $x + y + z_i$ to `distinct_sums`.
 4. Sum all distinct values:
-   $$t = \frac{u}{v} = \sum_{s \in \text{distinct\_sums}} s = \frac{15\,771\,525\,501\,377}{2\,207\,908\,800}$$
+
+$$
+t = \frac{u}{v} = \sum_{s \in \text{distinct\_sums}} s = \frac{15\,771\,525\,501\,377}{2\,207\,908\,800}
+$$
+
 5. Numerator plus denominator:
-   $$u + v = 15\,771\,525\,501\,377 + 2\,207\,908\,800 = \mathbf{15\,773\,733\,410\,177}$$
+
+$$
+u + v = 15\,771\,525\,501\,377 + 2\,207\,908\,800 = \mathbf{15\,773\,733\,410\,177}
+$$
 
 ---
 
@@ -84,7 +108,10 @@ def naive_golden_triplets():
 ### Example 2: Target Sum for Order $k = 35$
 - Reduced fraction: $t = \frac{15771525501377}{2207908800}$.
 - Sum:
-  $$u + v = \mathbf{15\,773\,733\,410\,177}$$
+
+$$
+u + v = \mathbf{15\,773\,733\,410\,177}
+$$
 
 ---
 

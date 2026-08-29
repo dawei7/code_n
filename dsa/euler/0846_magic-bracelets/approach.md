@@ -30,7 +30,11 @@ Find $F(10^6)$.
 Because odd prime factors of $x^2 + 1$ must satisfy $p \equiv 1 \pmod 4$:
 - Every vertex $u \in V$ can be uniquely written as a sum of two coprime squares $u = a^2 + b^2$.
 - The condition $u \cdot v = x^2 + 1$ in Gaussian integers $\mathbb{Z}[i]$ is equivalent to:
-  $$|a_1 b_2 - a_2 b_1| = 1$$
+
+$$
+|a_1 b_2 - a_2 b_1| = 1
+$$
+
 - This connects fractions $\frac{b_1}{a_1}$ and $\frac{b_2}{a_2}$ that are adjacent in the **Farey graph** (upper half-plane triangulation $\mathbb{H}^2 / SL_2(\mathbb{Z})$).
 - The resulting graph $G$ is **outerplanar** (a tree-structured block-cactus of chordal triangles).
 
@@ -49,12 +53,26 @@ We bundle all alternative paths between $u$ and $v$ on each edge $e = (u, v)$ in
 
 When ear-clipping $w$:
 - **Series Combination**: The detour path through $w$ has:
-  $$N_{\text{new}} = N_{uw} \cdot N_{wv}$$
-  $$S_{\text{new}} = S_{uw} \cdot N_{wv} + S_{wv} \cdot N_{uw} + w \cdot N_{\text{new}}$$
+
+$$
+N_{\text{new}} = N_{uw} \cdot N_{wv}
+$$
+
+$$
+S_{\text{new}} = S_{uw} \cdot N_{wv} + S_{wv} \cdot N_{uw} + w \cdot N_{\text{new}}
+$$
+
 - **Cycle Accumulation**: If $(u, v)$ already has bundle $(N_0, S_0)$, closing $(u, v)$ with the detour forms bracelets with potency:
-  $$\Delta F = (u + v)(N_0 \cdot N_{\text{new}}) + S_0 \cdot N_{\text{new}} + S_{\text{new}} \cdot N_0$$
+
+$$
+\Delta F = (u + v)(N_0 \cdot N_{\text{new}}) + S_0 \cdot N_{\text{new}} + S_{\text{new}} \cdot N_0
+$$
+
 - **Parallel Edge Merging**: The updated bundle on $(u, v)$ is:
-  $$(N_0 + N_{\text{new}}, S_0 + S_{\text{new}})$$
+
+$$
+(N_0 + N_{\text{new}}, S_0 + S_{\text{new}})
+$$
 
 Alternating low-degree pruning ($\deg < 2$) and ear-clipping ($\deg = 2$) reduces the entire $60,000$-vertex graph to $0$ vertices in linear time $\mathcal{O}(|E|)$.
 

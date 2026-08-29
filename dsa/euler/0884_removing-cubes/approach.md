@@ -26,7 +26,10 @@ Find $S(10^{17})$.
 For $n \in [k^3, (k+1)^3 - 1]$, the largest cube $\le n$ is $k^3$.
 Therefore, $D(n) = 1 + D(n - k^3)$.
 Summing $D(n)$ over the full interval $[k^3, (k+1)^3 - 1]$ of length $3k^2 + 3k + 1$:
-$$\sum_{n=k^3}^{(k+1)^3 - 1} D(n) = (3k^2 + 3k + 1) + S(3k^2 + 3k + 1)$$
+
+$$
+\sum_{n=k^3}^{(k+1)^3 - 1} D(n) = (3k^2 + 3k + 1) + S(3k^2 + 3k + 1)
+$$
 
 ---
 
@@ -34,13 +37,23 @@ $$\sum_{n=k^3}^{(k+1)^3 - 1} D(n) = (3k^2 + 3k + 1) + S(3k^2 + 3k + 1)$$
 
 ### $\mathcal{O}(N^{1/3})$ Prefix-Sum Dynamic Programming
 For general $N$, letting $M = \lfloor N^{1/3} \rfloor$:
-$$S(N) = \sum_{k=1}^{M-1} \left( (3k^2 + 3k + 1) + S(3k^2 + 3k + 1) \right) + (N - M^3) + S(N - M^3)$$
+
+$$
+S(N) = \sum_{k=1}^{M-1} \left( (3k^2 + 3k + 1) + S(3k^2 + 3k + 1) \right) + (N - M^3) + S(N - M^3)
+$$
 
 Notice that computing $S(3k^2 + 3k + 1)$ only references $S(3j^2 + 3j + 1)$ for:
-$$j \le \lfloor (3k^2)^{1/3} \rfloor \approx 1.44 k^{2/3} < k \quad \text{for all } k \ge 4$$
+
+$$
+j \le \lfloor (3k^2)^{1/3} \rfloor \approx 1.44 k^{2/3} < k \quad \text{for all } k \ge 4
+$$
 
 Thus, by computing prefix sums sequentially for $k = 1 \dots M$:
-$$\text{Prefix}[k] = \text{Prefix}[k-1] + (3k^2 + 3k + 1) + S(3k^2 + 3k + 1)$$
+
+$$
+\text{Prefix}[k] = \text{Prefix}[k-1] + (3k^2 + 3k + 1) + S(3k^2 + 3k + 1)
+$$
+
 Each $S(3k^2 + 3k + 1)$ evaluates in $\mathcal{O}(1)$ via $\text{Prefix}[\lfloor (3k^2 + 3k + 1)^{1/3} \rfloor - 1]$.
 
 Total time to compute $S(10^{17})$ is $\mathcal{O}(N^{1/3}) \approx 464,158$ operations, executing in **0.14 seconds**.

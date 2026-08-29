@@ -27,9 +27,14 @@ Find $F(100) \bmod (10^9 + 7)$.
 
 ### Landau's Theorem for Multigraph Tournaments
 By the generalized Landau-Moon Criterion, a non-decreasing integer sequence $(s_1 \le s_2 \le \dots \le s_n)$ is realizable by a $k$-fold round-robin tournament (here $k=2$, with $4$ points per pair) if and only if:
-$$\sum_{i=1}^m s_i \ge 2m(m - 1) \quad \text{for all } 1 \le m < n$$
 
-$$\sum_{i=1}^n s_i = 2n(n - 1)$$
+$$
+\sum_{i=1}^m s_i \ge 2m(m - 1) \quad \text{for all } 1 \le m < n
+$$
+
+$$
+\sum_{i=1}^n s_i = 2n(n - 1)
+$$
 
 ---
 

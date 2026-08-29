@@ -3,12 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Given the positive integers, $x, y,$ and $z$, are consecutive terms of an arithmetic progression, the least value of the positive integer, $n$, for which the equation $x^2 - y^2 - z^2 = n$ has exactly two solutions is $n = 27$:
-$$34^2 - 27^2 - 20^2 = 27 \quad \text{and} \quad 12^2 - 9^2 - 6^2 = 27$$
+
+$$
+34^2 - 27^2 - 20^2 = 27 \quad \text{and} \quad 12^2 - 9^2 - 6^2 = 27
+$$
 
 It turns out that $n = 1152$ is the least value of $n$ which has exactly ten ($10$) distinct solutions.
 
 The objective is to find **how many values of $n$ less than one million ($1\,000\,000$) have exactly ten ($10$) distinct solutions**:
-$$N_{10} = \left| \left\{ n < 1\,000\,000 \;\middle|\; N_{\text{sol}}(n) = 10 \right\} \right|$$
+
+$$
+N_{10} = \left| \left\{ n < 1\,000\,000 \;\middle|\; N_{\text{sol}}(n) = 10 \right\} \right|
+$$
+
 where $N_{\text{sol}}(n)$ is the count of distinct positive integer AP solutions $(x, y, z)$.
 
 ---
@@ -25,17 +32,41 @@ def naive_same_differences():
 
 ### Algebraic Transformation to $a \cdot u = n$
 1. Let $x, y, z$ be in arithmetic progression with common difference $d > 0$:
-   $$x = z + 2d, \quad y = z + d, \quad z = z$$
+
+$$
+x = z + 2d, \quad y = z + d, \quad z = z
+$$
+
 2. Expanding the equation:
-   $$x^2 - y^2 - z^2 = (z+2d)^2 - (z+d)^2 - z^2 = (3d - z)(d + z) = n$$
+
+$$
+x^2 - y^2 - z^2 = (z+2d)^2 - (z+d)^2 - z^2 = (3d - z)(d + z) = n
+$$
+
 3. Let $a = 3d - z$ and $u = d + z$. Then:
-   $$n = a \cdot u$$
+
+$$
+n = a \cdot u
+$$
+
 4. Adding the two equations:
-   $$a + u = 4d \implies d = \frac{a + u}{4}$$
+
+$$
+a + u = 4d \implies d = \frac{a + u}{4}
+$$
+
    Thus $d$ is an integer if and only if:
-   $$a + u \equiv 0 \pmod 4$$
+
+$$
+a + u \equiv 0 \pmod 4
+$$
+
 5. For $z = a - d > 0$ to be positive:
-   $$a - \frac{a + u}{4} > 0 \iff 3a > u$$
+
+$$
+a - \frac{a + u}{4} > 0 \iff 3a > u
+$$
+
 6. Using a harmonic loop over $a \in [1, N)$ and $u \in [1, \min((N-1)//a, 3a-1)]$ populates all solution counts across $10^6$ in $\approx 0.20$ seconds.
 
 ---
@@ -82,7 +113,10 @@ def naive_same_differences():
 
 ### Example 2: Target Evaluation for $n < 1\,000\,000$
 - Summing all $n$ with exactly 10 solutions:
-  $$N_{10} = \mathbf{4989}$$
+
+$$
+N_{10} = \mathbf{4989}
+$$
 
 ---
 

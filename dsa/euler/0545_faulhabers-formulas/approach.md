@@ -13,7 +13,10 @@ We are given:
 - $F(10) = 96404$
 
 We seek to evaluate:
-$$F(10^5)$$
+
+$$
+F(10^5)
+$$
 
 ---
 
@@ -29,11 +32,21 @@ Computing $B_k$ or checking all primes $p \le k + 1$ for each $k$ up to $10^9$ t
 ### The Von Staudt–Clausen Theorem
 1. **Denominator of Bernoulli Numbers**:
    For any even integer $k \ge 2$:
-   $$D(k) = \operatorname{denom}(B_k) = \prod_{\substack{p \text{ prime} \\ p - 1 \mid k}} p$$
+
+$$
+\begin{aligned}
+D(k) = \operatorname{denom}(B_k) = \prod_{\substack{p \text{ prime} \\ p - 1 \mid k}} p
+\end{aligned}
+$$
+
 2. **Target Prime Divisors**:
    $20010 = 2 \times 3 \times 5 \times 23 \times 29$.
    To have $p \mid D(k)$ for all $p \in \{2, 3, 5, 23, 29\}$:
-   $$k \text{ must be a multiple of } L = \operatorname{lcm}(1, 2, 4, 22, 28) = 308$$
+
+$$
+k \text{ must be a multiple of } L = \operatorname{lcm}(1, 2, 4, 22, 28) = 308
+$$
+
 3. **Exclusion of Extraneous Primes**:
    $k = 308 n$. For every other prime $p \notin \{2, 3, 5, 23, 29\}$, we must have $p - 1 \nmid 308 n$.
 

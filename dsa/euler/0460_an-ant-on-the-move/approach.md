@@ -35,7 +35,10 @@ Finding the shortest path on a $10000 \times 5000$ lattice graph involves $5 \ti
    By symmetry, the optimal lattice path climbs from $(0, 1)$ to a peak cruising height $h \approx d/2$, cruises horizontally at height $h$, and descends symmetrically to $(d, 1)$.
 3. **Excess Formulation**:
    Relative to cruising at constant speed $h$, the excess time cost of climbing from $(x_0, y_0)$ to $(x_1, y_1)$ is:
-   $$\Delta E = \frac{\sqrt{\Delta x^2 + \Delta y^2}}{v} - \frac{\Delta x}{h}$$
+
+$$
+\Delta E = \frac{\sqrt{\Delta x^2 + \Delta y^2}}{v} - \frac{\Delta x}{h}
+$$
 
 ---
 
@@ -44,14 +47,25 @@ Finding the shortest path on a $10000 \times 5000$ lattice graph involves $5 \ti
 ### 1D Convex Excess Dynamic Programming
 1. **Optimal Continuous $\Delta x^*$**:
    Differentiating the excess with respect to $\Delta x$ yields the optimal horizontal displacement:
-   $$\Delta x^* = \frac{\Delta y \cdot v}{\sqrt{h^2 - v^2}}$$
+
+$$
+\Delta x^* = \frac{\Delta y \cdot v}{\sqrt{h^2 - v^2}}
+$$
+
    Because the excess is strictly convex in $\Delta x$, testing $\lfloor \Delta x^* \rfloor$ and $\lceil \Delta x^* \rceil$ gives the optimal integer step.
 2. **Dynamic Programming over Heights**:
    Let $\text{dp}[y]$ be the minimal excess cost to climb from $y = 1$ to $y$.
-   $$\text{dp}[y] = \min_{y_0 < y} (\text{dp}[y_0] + \text{Cost}(y_0, y, h))$$
+
+$$
+\text{dp}[y] = \min_{y_0 < y} (\text{dp}[y_0] + \text{Cost}(y_0, y, h))
+$$
+
    The search window $y - y_0$ shrinks as $O(h/y)$, keeping total DP transitions under $O(h \log h)$.
 3. **Total Minimum Travel Time**:
-   $$F(d) = 2 \cdot \text{dp}[h] + \frac{d}{h}$$
+
+$$
+F(d) = 2 \cdot \text{dp}[h] + \frac{d}{h}
+$$
 
 This evaluates $d = 10000$ in **0.43 seconds**!
 

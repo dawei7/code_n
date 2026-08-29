@@ -9,7 +9,10 @@ We are given:
 - $T(7) = 7^7 - 7! = 818\,503$
 
 We seek to evaluate:
-$$T(10^{12}) \pmod{10^9}$$
+
+$$
+T(10^{12}) \pmod{10^9}
+$$
 
 ---
 
@@ -43,7 +46,10 @@ Let $M$ be the $7 \times 7$ transition matrix over states $\{0, 1, 2, 3, 4, 5, 6
   - $M_{6, 7} = 0$ (forbidden)
 
 The total number of valid strings of length $N = 10^{12}$ is:
-$$T(N) = \sum_{j=1}^6 (M^N)_{0, j} \pmod{10^9}$$
+
+$$
+T(N) = \sum_{j=1}^6 (M^N)_{0, j} \pmod{10^9}
+$$
 
 Using binary matrix exponentiation $\log_2(10^{12}) \approx 40$ steps, this evaluates in **0.0001 seconds**!
 

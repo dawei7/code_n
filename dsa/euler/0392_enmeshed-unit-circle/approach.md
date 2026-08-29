@@ -25,7 +25,10 @@ Direct numerical optimization of $N = 400$ variables in a non-linear objective w
 ### Quadrant Symmetry & Staircase Approximation
 By 4-fold Cartesian symmetry and diagonal symmetry $y = x$, the optimal grid in the first quadrant $[0, 1]^2$ has identical horizontal and vertical partitions $0 = x_0 < x_1 < \dots < x_m = 1$ where $m = N/2 + 1$.
 The minimal red cell coverage in the quadrant forms a staircase upper Darboux sum:
-$$S(x_1, \dots, x_{m-1}) = \sum_{i=0}^{m-1} (x_{i+1} - x_i) g(x_i) \quad \text{where } g(x) = \sqrt{1 - x^2}$$
+
+$$
+S(x_1, \dots, x_{m-1}) = \sum_{i=0}^{m-1} (x_{i+1} - x_i) g(x_i) \quad \text{where } g(x) = \sqrt{1 - x^2}
+$$
 
 ---
 
@@ -33,11 +36,22 @@ $$S(x_1, \dots, x_{m-1}) = \sum_{i=0}^{m-1} (x_{i+1} - x_i) g(x_i) \quad \text{w
 
 ### Euler-Lagrange First-Order Optimality Conditions
 Taking the partial derivative with respect to each interior point $x_k$:
-$$\frac{\partial S}{\partial x_k} = g(x_{k-1}) - g(x_k) + (x_{k+1} - x_k) g'(x_k) = 0$$
+
+$$
+\frac{\partial S}{\partial x_k} = g(x_{k-1}) - g(x_k) + (x_{k+1} - x_k) g'(x_k) = 0
+$$
+
 Since $g'(x) = -\frac{x}{\sqrt{1 - x^2}} = -\frac{x}{g(x)}$:
-$$g(x_{k-1}) - g(x_k) - (x_{k+1} - x_k) \frac{x_k}{g(x_k)} = 0$$
+
+$$
+g(x_{k-1}) - g(x_k) - (x_{k+1} - x_k) \frac{x_k}{g(x_k)} = 0
+$$
+
 Solving for $x_{k+1}$:
-$$x_{k+1} = x_k + \frac{\left( g(x_{k-1}) - g(x_k) \right) g(x_k)}{x_k}$$
+
+$$
+x_{k+1} = x_k + \frac{\left( g(x_{k-1}) - g(x_k) \right) g(x_k)}{x_k}
+$$
 
 This defines an exact **1D Shooting Method**:
 Given a choice of the first coordinate $x_1$, the remaining coordinates $x_2, \dots, x_m$ are uniquely determined by this forward recurrence!

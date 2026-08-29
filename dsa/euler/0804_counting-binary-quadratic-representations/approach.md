@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $g(n)$ denote the number of integer pairs $(x, y) \in \mathbb{Z}^2$ such that:
-$$x^2 + xy + 41y^2 = n$$
+
+$$
+x^2 + xy + 41y^2 = n
+$$
+
 We define $T(N) = \sum_{n=1}^N g(n)$, which represents the total number of non-zero integer lattice points $(x, y) \neq (0, 0)$ contained inside the ellipse $x^2 + xy + 41y^2 \le N$.
 We seek to evaluate:
-$$T(10^{16})$$
+
+$$
+T(10^{16})
+$$
 
 We are given:
 - $T(10^3) = 474$
@@ -26,15 +33,26 @@ Enumerating all integer pairs $(x, y)$ within the bounding box of the ellipse in
 ### Completing the Square & Parity Invariance
 1. **Algebraic Form Transformation**:
    Multiplying the inequality $x^2 + xy + 41y^2 \le N$ by 4 and completing the square in $x$:
-   $$4(x^2 + xy + 41y^2) = (2x + y)^2 + 163y^2 \le 4N$$
+
+$$
+4(x^2 + xy + 41y^2) = (2x + y)^2 + 163y^2 \le 4N
+$$
+
 2. **Variable Substitution**:
    Setting $u = 2x + y$, every integer pair $(x, y)$ bijectively corresponds to an integer pair $(u, y)$ satisfying the linear parity congruence:
-   $$u \equiv y \pmod 2$$
+
+$$
+u \equiv y \pmod 2
+$$
+
    since $x = \frac{u - y}{2}$ is an integer if and only if $u$ and $y$ share the same parity.
 3. **1D Bound Integration**:
    For each fixed $y$, $u^2 \le 4N - 163y^2$.
    Letting $M(y) = \lfloor \sqrt{4N - 163y^2} \rfloor$, the number of valid integers $u \in [-M(y), M(y)]$ with $u \equiv y \pmod 2$ is:
-   $$\text{count}(y) = \begin{cases} M(y) + 1 & \text{if } M(y) \equiv y \pmod 2 \\ M(y) & \text{if } M(y) \not\equiv y \pmod 2 \end{cases}$$
+
+$$
+\text{count}(y) = \begin{cases} M(y) + 1 & \text{if } M(y) \equiv y \pmod 2 \\ M(y) & \text{if } M(y) \not\equiv y \pmod 2 \end{cases}
+$$
 
 ---
 

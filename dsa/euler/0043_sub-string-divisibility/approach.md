@@ -7,7 +7,12 @@ Let $x = d_1 d_2 \dots d_{10}$ be a 0 to 9 pandigital integer formed from the pe
 Define the 3-digit sub-strings $S_i = 100 d_{i+1} + 10 d_{i+2} + d_{i+3}$ for $i \in \{1, 2, 3, 4, 5, 6, 7\}$.
 
 We seek to evaluate the sum of all 0 to 9 pandigital numbers where each sub-string $S_i$ is divisible by the $i$-th prime number $p_i \in \{2, 3, 5, 7, 11, 13, 17\}$:
-$$S = \sum_{\substack{x \in \mathcal{P}_{0..9} \\ S_i \equiv 0 \pmod{p_i} \, \forall i \in \{1 \dots 7\}}} x$$
+
+$$
+\begin{aligned}
+S = \sum_{\substack{x \in \mathcal{P}_{0..9} \\ S_i \equiv 0 \pmod{p_i} \, \forall i \in \{1 \dots 7\}}} x
+\end{aligned}
+$$
 
 ---
 
@@ -75,7 +80,10 @@ def naive_substring_div():
 6. $4160357289$
 
 Sum:
-$$S = 1406357289 + 1430952867 + 1460357289 + 4106357289 + 4130952867 + 4160357289 = \mathbf{16\,695\,334\,890}$$
+
+$$
+S = 1406357289 + 1430952867 + 1460357289 + 4106357289 + 4130952867 + 4160357289 = \mathbf{16\,695\,334\,890}
+$$
 
 ---
 

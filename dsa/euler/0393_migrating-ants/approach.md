@@ -12,7 +12,10 @@ We are given:
 - $f(4) = 88$
 
 We seek to evaluate:
-$$f(10)$$
+
+$$
+f(10)
+$$
 
 ---
 
@@ -36,7 +39,11 @@ By representing the vertical boundary crossings between consecutive rows as comp
 
 ### Dual Bitmask State Formulation
 At the boundary between row $r$ and row $r+1$, a state is packed as:
-$$\text{state} = \text{in}_1 \mid (\text{in}_2 \ll n)$$
+
+$$
+\text{state} = \text{in}_1 \mid (\text{in}_2 \ll n)
+$$
+
 where $\text{in}_1, \text{in}_2 \in [0, 2^n - 1]$ record the active vertical downward/upward connections for the two matching components.
 
 For each row:

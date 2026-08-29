@@ -17,7 +17,10 @@ We are given:
 - $Q(15) = 941$
 
 We seek to evaluate:
-$$Q(1000)$$
+
+$$
+Q(1000)
+$$
 
 ---
 
@@ -35,11 +38,19 @@ With $N = 1000$ trolls, choosing a subset of escapees and their permutation invo
    Let $W$ be the total height of all trolls that have already escaped before troll $i$.
    The height of the remaining pile when troll $i$ escapes is $\text{Total\_H} - W$.
    Troll $i$ can escape iff:
-   $$(\text{Total\_H} - W) + l_i \ge D_N \iff W \le \text{Total\_H} - \lceil D_N \rceil + l_i$$
+
+$$
+(\text{Total\_H} - W) + l_i \ge D_N \iff W \le \text{Total\_H} - \lceil D_N \rceil + l_i
+$$
+
 2. **Completion Time Constraint (Job Scheduling)**:
    Let $\text{base} = \text{Total\_H} - \lceil D_N \rceil$.
    Adding $h_i$ to both sides gives the equivalent job completion constraint:
-   $$W + h_i \le \text{base} + l_i + h_i$$
+
+$$
+W + h_i \le \text{base} + l_i + h_i
+$$
+
    This is equivalent to a single-machine job scheduling problem where each troll $i$ is a job with:
    - Processing time $p_i = h_i$
    - Profit $q_i$
@@ -56,7 +67,11 @@ With $N = 1000$ trolls, choosing a subset of escapees and their permutation invo
    $\text{dp}[t]$ is the maximum IQ achievable with total removed height exactly $t$.
 2. **State Transition**:
    For each job $(d_i, h_i, q_i)$ in sorted order:
-   $$\text{dp}[t] = \max(\text{dp}[t], \text{dp}[t - h_i] + q_i) \quad \text{for } t = d_i, d_i - 1, \dots, h_i$$
+
+$$
+\text{dp}[t] = \max(\text{dp}[t], \text{dp}[t - h_i] + q_i) \quad \text{for } t = d_i, d_i - 1, \dots, h_i
+$$
+
 3. **Execution Performance**:
    For $N = 1000$, $\max d_i \approx 3 \times 10^4$. The 1D DP table completes in **$\approx 1.45$ seconds** in pure Python!
 

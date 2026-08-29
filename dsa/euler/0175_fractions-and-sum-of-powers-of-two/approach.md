@@ -5,14 +5,20 @@
 Define $f(0) = 1$ and $f(n)$ to be the number of ways to write $n$ as a sum of powers of $2$ where no power occurs more than twice (hyperbinary representations).
 
 For every fraction $p/q$ ($p > 0, q > 0$), there exists at least one integer $n$ such that:
-$$\frac{f(n)}{f(n-1)} = \frac{p}{q}$$
+
+$$
+\frac{f(n)}{f(n-1)} = \frac{p}{q}
+$$
 
 For instance, the smallest $n$ for which $f(n)/f(n-1) = 13/17$ is $n = 241$.
 The binary expansion of $241$ is $11110001_2$. Reading from MSB to LSB, there are $4$ ones, $3$ zeroes, and $1$ one.
 We call the string `"4,3,1"` the **Shortened Binary Expansion (SBE)** of $241$.
 
 The objective is to find the **Shortened Binary Expansion of the smallest $n$ for which $\frac{f(n)}{f(n-1)} = \frac{123456789}{987654321}$**:
-$$\text{SBE}(n) = \text{comma-separated run-lengths without whitespace}$$
+
+$$
+\text{SBE}(n) = \text{comma-separated run-lengths without whitespace}
+$$
 
 ---
 
@@ -29,9 +35,17 @@ def naive_sbe_search():
 ### The Stern-Brocot Tree & Continued Fraction Isomorphism
 1. **The Continued Fraction Theorem for Stern's Sequence:**
    Let the binary expansion of $n$ have Shortened Binary Expansion $(a_1, a_2, \dots, a_k)$ with $k$ odd:
-   $$n = (\underbrace{1\dots 1}_{a_1} \underbrace{0\dots 0}_{a_2} \dots \underbrace{1\dots 1}_{a_k})_2$$
+
+$$
+n = (\underbrace{1\dots 1}_{a_1} \underbrace{0\dots 0}_{a_2} \dots \underbrace{1\dots 1}_{a_k})_2
+$$
+
    Then the reciprocal ratio $\frac{f(n-1)}{f(n)}$ has the exact continued fraction expansion:
-   $$\frac{f(n-1)}{f(n)} = [a_k; a_{k-1}, \dots, a_2, a_1] = a_k + \cfrac{1}{a_{k-1} + \cfrac{1}{\ddots + \cfrac{1}{a_1}}}$$
+
+$$
+\frac{f(n-1)}{f(n)} = [a_k; a_{k-1}, \dots, a_2, a_1] = a_k + \cfrac{1}{a_{k-1} + \cfrac{1}{\ddots + \cfrac{1}{a_1}}}
+$$
+
 2. **Canonical Odd-Length Continued Fraction:**
    Given $f(n)/f(n-1) = p/q \implies f(n-1)/f(n) = q/p$:
    - Compute the continued fraction $[c_0; c_1, \dots, c_m]$ of $q/p$ via Euclidean division.
@@ -61,15 +75,34 @@ def naive_sbe_search():
 
 ### SBE Derivation for $123456789 / 987654321$
 1. Simplify fraction:
-   $$g = \gcd(123456789, 987654321) = 9 \implies \frac{p}{q} = \frac{13717421}{109739369}$$
+
+$$
+g = \gcd(123456789, 987654321) = 9 \implies \frac{p}{q} = \frac{13717421}{109739369}
+$$
+
 2. Invert ratio:
-   $$\frac{q}{p} = \frac{109739369}{13717421}$$
+
+$$
+\frac{q}{p} = \frac{109739369}{13717421}
+$$
+
 3. Euclidean continued fraction:
-   $$109739369 = 8 \times 13717421 + 1 \implies [8; 13717421]$$
+
+$$
+109739369 = 8 \times 13717421 + 1 \implies [8; 13717421]
+$$
+
 4. Expand to canonical odd length:
-   $$[8; 13717421] = [8; 13717420, 1] = [a_3; a_2, a_1]$$
+
+$$
+[8; 13717421] = [8; 13717420, 1] = [a_3; a_2, a_1]
+$$
+
 5. Reverse to obtain MSB $\to$ LSB run-lengths:
-   $$(a_1, a_2, a_3) = \mathbf{(1, 13717420, 8)}$$
+
+$$
+(a_1, a_2, a_3) = \mathbf{(1, 13717420, 8)}
+$$
 
 ---
 
@@ -88,7 +121,10 @@ def naive_sbe_search():
 ### Example 2: Target Evaluation for $123456789 / 987654321$
 - Canonical odd continued fraction: $[8; 13717420, 1]$.
 - Reversing gives:
-  $$\text{SBE} = \mathbf{"1,13717420,8"}$$
+
+$$
+\text{SBE} = \mathbf{"1,13717420,8"}
+$$
 
 ---
 

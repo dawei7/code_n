@@ -10,10 +10,16 @@ For example, the square number $64$ could be formed:
 
 In determining which squares can be formed, the rules allow a $6$ to be turned upside-down to form a $9$ and vice versa.
 The 9 two-digit squares below 100 are:
-$$\mathcal{S}_{\text{sq}} = \{ 01, 04, 09, 16, 25, 36, 49, 64, 81 \}$$
+
+$$
+\mathcal{S}_{\text{sq}} = \{ 01, 04, 09, 16, 25, 36, 49, 64, 81 \}
+$$
 
 The objective is to find how many **distinct arrangements of the two cubes** allow all of the square numbers to be displayed:
-$$N_{\text{arrangements}} = \left| \left\{ \{C_1, C_2\} \subset \binom{\{0..9\}}{6} \;\middle|\; \forall (d_1, d_2) \in \mathcal{S}_{\text{sq}}, \, (d_1 \in \hat{C}_1 \land d_2 \in \hat{C}_2) \lor (d_2 \in \hat{C}_1 \land d_1 \in \hat{C}_2) \right\} \right|$$
+
+$$
+N_{\text{arrangements}} = \left| \left\{ \{C_1, C_2\} \subset \binom{\{0..9\}}{6} \;\middle|\; \forall (d_1, d_2) \in \mathcal{S}_{\text{sq}}, \, (d_1 \in \hat{C}_1 \land d_2 \in \hat{C}_2) \lor (d_2 \in \hat{C}_1 \land d_1 \in \hat{C}_2) \right\} \right|
+$$
 
 ---
 
@@ -29,9 +35,17 @@ def naive_cube_digit_pairs():
 
 ### The Combinatorial Selection $\binom{10}{6}$
 1. The 6 digits on a cube form an unordered combination of size 6 from 10 digits:
-   $$\binom{10}{6} = \frac{10!}{6! 4!} = 210 \text{ combinations}$$
+
+$$
+\binom{10}{6} = \frac{10!}{6! 4!} = 210 \text{ combinations}
+$$
+
 2. The number of unordered pairs of cubes $\{C_1, C_2\}$ (with $i \le j$) is:
-   $$\frac{210 \times 211}{2} = 22\,155 \text{ pairs}$$
+
+$$
+\frac{210 \times 211}{2} = 22\,155 \text{ pairs}
+$$
+
 3. For each cube $C$, if $6 \in C$ or $9 \in C$, we include both $6$ and $9$ in its expanded usable set $\hat{C}$.
 4. Testing all 22,155 pairs against the 9 required squares evaluates the exact count in $\approx 0.02$ seconds.
 
@@ -89,7 +103,10 @@ def naive_cube_digit_pairs():
 
 ### Example 2: Target Exhaustive Search across all 22,155 Pairs
 - Summing valid distinct cube arrangements:
-  $$N_{\text{arrangements}} = \mathbf{1217}$$
+
+$$
+N_{\text{arrangements}} = \mathbf{1217}
+$$
 
 ---
 

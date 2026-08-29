@@ -12,7 +12,11 @@ The sum of all palindromic numbers less than $1000$ that can be written as the s
 (Note: $1$ is not included as the problem requires the sum of at least two consecutive squares).
 
 The objective is to find the **sum of all numbers less than $10^8$ that are both palindromic and can be written as the sum of consecutive squares**:
-$$S_{\text{pal}} = \sum_{N \in \mathcal{P}} N$$
+
+$$
+S_{\text{pal}} = \sum_{N \in \mathcal{P}} N
+$$
+
 where $\mathcal{P} = \{ N < 10^8 \mid \text{palindromic}(N) \land \exists 1 \le i < j : N = \sum_{k=i}^j k^2 \}$.
 
 ---
@@ -82,7 +86,10 @@ def naive_palindromic_sums():
 
 ### Example 2: Target Evaluation for $N < 10^8$
 - Summing all unique deduplicated palindromes below $10^8$:
-  $$S_{\text{pal}} = \mathbf{2\,906\,969\,179}$$
+
+$$
+S_{\text{pal}} = \mathbf{2\,906\,969\,179}
+$$
 
 ---
 

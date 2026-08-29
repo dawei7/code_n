@@ -26,7 +26,11 @@ Find $C(10^{13})$.
 
 ### Modular Difference Algebra
 Swapping digits $d_i$ and $d_j$ modifies the number modulo 7 by:
-$$\Delta(i, j) = (d_i - d_j)(10^j - 10^i) \pmod 7$$
+
+$$
+\Delta(i, j) = (d_i - d_j)(10^j - 10^i) \pmod 7
+$$
+
 The power sequence $10^i \bmod 7$ is 6-periodic: $(1, 3, 2, 6, 4, 5)$.
 The heptaphobic constraint reduces to forbidding specific residue configurations between positions with matching or complementary power weights.
 

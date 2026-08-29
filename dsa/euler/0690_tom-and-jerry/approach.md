@@ -17,7 +17,10 @@ We are given:
 - $T(20) = 1416269$
 
 We seek to evaluate:
-$$T(2019) \bmod 1\,000\,000\,007$$
+
+$$
+T(2019) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -36,10 +39,17 @@ For $n = 2019$, the number of non-isomorphic graphs is on the order of $2^{\bino
 2. **Lobster Tree Generating Function (Howroyd / OEIS A130131)**:
    Let $P(x) = \prod_{k=1}^\infty \frac{1}{1-x^k}$ be the integer partition generating function.
    The ordinary generating function for unlabeled lobster trees $L(x) = \sum_{k=1}^\infty L_k x^k$ is given explicitly by:
-   $$A(x) = \frac{x^2}{2} \left[ \frac{(P(x) - \frac{1}{1-x})^2}{1 - x P(x)} + \frac{(P(x^2) - \frac{1}{1-x^2})(1 + x P(x))}{1 - x^2 P(x^2)} \right] + x P(x) - \frac{x^3}{(1-x)^2(1+x)}$$
+
+$$
+A(x) = \frac{x^2}{2} \left[ \frac{(P(x) - \frac{1}{1-x})^2}{1 - x P(x)} + \frac{(P(x^2) - \frac{1}{1-x^2})(1 + x P(x))}{1 - x^2 P(x^2)} \right] + x P(x) - \frac{x^3}{(1-x)^2(1+x)}
+$$
+
 3. **Euler Multiset Transform for Forests**:
    Since a Tom graph is an arbitrary unlabeled forest of lobster trees, the generating function for Tom graphs is the Euler transform (multiset exponential) of $L(x)$:
-   $$T(x) = \prod_{k=1}^\infty \frac{1}{(1 - x^k)^{L_k}}$$
+
+$$
+T(x) = \prod_{k=1}^\infty \frac{1}{(1 - x^k)^{L_k}}
+$$
 
 ---
 

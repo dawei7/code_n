@@ -9,7 +9,10 @@ We are given:
 - $S(10^4) = 884680$
 
 We seek to evaluate:
-$$S(10^7)$$
+
+$$
+S(10^7)
+$$
 
 ---
 
@@ -30,7 +33,10 @@ Testing integer widths, heights, and flap parameters $(w, h, t)$ with $w + 2h + 
    - **Flap Diagonal**: $a^2 + u^2 = e^2$ where $u = h + t$
    - **Rectangle Diagonal**: $(2a)^2 + h^2 = d^2$
 2. **Perimeter Constraint**:
-   $$P = 2(a + h + s) = 2(a + u - t + s) \le p \iff a + h + s \le N = \frac{p}{2}$$
+
+$$
+P = 2(a + h + s) = 2(a + u - t + s) \le p \iff a + h + s \le N = \frac{p}{2}
+$$
 
 ---
 

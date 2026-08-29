@@ -29,7 +29,11 @@ Simulating the 3D geodesic pursuit equations across thousands of time steps suff
    By $n$-fold symmetry, all bots share the same colatitude $\theta(t)$ at all times, with longitude offsets $\Delta\phi = \frac{2\pi}{n}$.
 2. **Geodesic Distance & Velocity**:
    The geodesic angular distance $\alpha$ between adjacent bots satisfies:
-   $$\cos\alpha = 1 - 2 \sin^2\theta \sin^2\left(\frac{\pi}{n}\right)$$
+
+$$
+\cos\alpha = 1 - 2 \sin^2\theta \sin^2\left(\frac{\pi}{n}\right)
+$$
+
    The radial velocity along the sphere towards the pole is given by the projection of the geodesic unit tangent vector.
 
 ---
@@ -39,10 +43,18 @@ Simulating the 3D geodesic pursuit equations across thousands of time steps suff
 ### Hyperbolic Substitution & Closed 1D Integral
 1. **Arc Length Differential**:
    Integrating $ds = dt$ from $t = 0$ to meeting yields:
-   $$L(n) = \frac{1}{\sin(\pi/n)} \int_0^r \frac{\sqrt{1 - \sin^2(\pi/n) t^2}}{1 - t^2} \, dt$$
+
+$$
+L(n) = \frac{1}{\sin(\pi/n)} \int_0^r \frac{\sqrt{1 - \sin^2(\pi/n) t^2}}{1 - t^2} \, dt
+$$
+
 2. **Hyperbolic Substitution $t = \tanh(y)$**:
    With $dt = (1 - t^2) dy$ and $Y_{\max} = \operatorname{atanh}(r) = \frac{1}{2} \ln \frac{1+r}{1-r}$:
-   $$L(n) = \frac{1}{\sin(\pi/n)} \int_0^{Y_{\max}} \sqrt{1 - \sin^2(\pi/n) \tanh^2(y)} \, dy$$
+
+$$
+L(n) = \frac{1}{\sin(\pi/n)} \int_0^{Y_{\max}} \sqrt{1 - \sin^2(\pi/n) \tanh^2(y)} \, dy
+$$
+
 3. **Adaptive Simpson Integration & Monotone Binary Search**:
    The integrand is completely smooth on $[0, Y_{\max}]$. Adaptive Simpson quadrature evaluates $L(n)$ in $< 1\text{ ms}$, and binary search finds the critical integer $n^* = 827$ where $L(827) > 1000$.
 

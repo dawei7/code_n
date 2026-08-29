@@ -16,7 +16,10 @@ We are given:
 - $T(10^9) = 498676527978348241$
 
 We seek to evaluate:
-$$\text{Last 9 digits of } T(10^{18}) = T(10^{18}) \bmod 10^9$$
+
+$$
+\text{Last 9 digits of } T(10^{18}) = T(10^{18}) \bmod 10^9
+$$
 
 ---
 
@@ -38,11 +41,18 @@ Generating $10^{18}$ terms of $S$ sequentially requires $10^{18}$ memory and ope
    By definition, the $m$ circled terms are simply the consecutive integers $1, 2, \dots, m$.
 3. **Values of Non-Circled Terms**:
    By the self-embedding fractal property, the non-circled terms are identically the first $\phi(n)$ terms of $S$:
-   $$(S_1, S_2, \dots, S_{\phi(n)})$$
+
+$$
+(S_1, S_2, \dots, S_{\phi(n)})
+$$
+
 4. **Position Function $P(r)$**:
    The $r$-th non-circled element is preceded by $G(r) = \sum_{i=1}^r \lfloor \sqrt{S_i} \rfloor$ circled elements.
    Thus, the $r$-th non-circled element appears at absolute position $P(r) = r + G(r)$.
-   $$\phi(n) = \max \{ r : r + G(r) \le n \}$$
+
+$$
+\phi(n) = \max \{ r : r + G(r) \le n \}
+$$
 
 ---
 
@@ -50,10 +60,18 @@ Generating $10^{18}$ terms of $S$ sequentially requires $10^{18}$ memory and ope
 
 ### Dual Recursive DP with Binary Inversion ($O(\log^2 n)$)
 1. **Recurrence for $G(n)$**:
-   $$G(n) = G(\phi(n)) + \sum_{k=1}^{n - \phi(n)} \lfloor \sqrt{k} \rfloor$$
+
+$$
+G(n) = G(\phi(n)) + \sum_{k=1}^{n - \phi(n)} \lfloor \sqrt{k} \rfloor
+$$
+
    where $\sum_{k=1}^m \lfloor \sqrt{k} \rfloor$ evaluates in $O(1)$ time by grouping into squares $s \in [1, \lfloor \sqrt{m} \rfloor]$.
 2. **Recurrence for $T(n)$**:
-   $$T(n) = T(\phi(n)) + \sum_{k=1}^{n - \phi(n)} k = T(\phi(n)) + \frac{m(m + 1)}{2}$$
+
+$$
+T(n) = T(\phi(n)) + \sum_{k=1}^{n - \phi(n)} k = T(\phi(n)) + \frac{m(m + 1)}{2}
+$$
+
 3. **Logarithmic Convergence**:
    Since $\phi(n) \ll n$, the recursion depth is only $\approx 50$ steps, each requiring a binary search of depth $\approx 60$.
 

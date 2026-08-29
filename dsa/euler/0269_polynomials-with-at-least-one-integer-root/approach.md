@@ -4,7 +4,11 @@
 
 For a positive integer $n$ with decimal representation $a_k a_{k-1} \dots a_1 a_0$ ($a_k \ne 0, 0 \le a_i \le 9$):
 Define the polynomial:
-$$P_n(x) = \sum_{i=0}^k a_i x^i = a_k x^k + a_{k-1} x^{k-1} + \dots + a_1 x + a_0$$
+
+$$
+P_n(x) = \sum_{i=0}^k a_i x^i = a_k x^k + a_{k-1} x^{k-1} + \dots + a_1 x + a_0
+$$
+
 We seek the number of positive integers $n < 10^{16}$ such that $P_n(x)$ has at least one integer root.
 
 ---
@@ -26,9 +30,17 @@ Since all coefficients $a_i \in \{0, 1, \dots, 9\}$ and $a_k \ge 1$:
 3. If $x < 0$: Let $x = -r$ for $r \in \{1, 2, 3, \dots, 9\}$.
    By the Rational Root Theorem, since $a_0 \in [0, 9]$, any integer root $-r$ must satisfy $r \mid a_0$.
    Hence, the only possible negative integer roots are:
-   $$-r \in \{-1, -2, -3, -4, -5, -6, -7, -8, -9\}$$
+
+$$
+-r \in \{-1, -2, -3, -4, -5, -6, -7, -8, -9\}
+$$
+
 4. Horner's evaluation for $P_n(-r) = 0$:
-   $$v_{i+1} = a_{i+1} - r \cdot v_i$$
+
+$$
+v_{i+1} = a_{i+1} - r \cdot v_i
+$$
+
    For the final value to equal 0, $v_k = 0$.
 
 ---

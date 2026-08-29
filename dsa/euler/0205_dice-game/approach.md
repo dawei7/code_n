@@ -12,7 +12,10 @@ Let $S_P$ be the sum of Peter's $9$ dice, and $S_C$ be the sum of Colin's $6$ di
 - $S_C \in [6, 36]$ with total outcomes $6^6 = 46\,656$.
 
 The objective is to find the **probability that Pyramidal Peter beats Cubic Colin (i.e. $S_P > S_C$)**, rounded to $7$ decimal places:
-$$P(S_P > S_C) = \frac{1}{4^9 \cdot 6^6} \sum_{s=9}^{36} N(S_P = s) \sum_{t < s} N(S_C = t)$$
+
+$$
+P(S_P > S_C) = \frac{1}{4^9 \cdot 6^6} \sum_{s=9}^{36} N(S_P = s) \sum_{t < s} N(S_C = t)
+$$
 
 ---
 
@@ -29,17 +32,33 @@ def naive_dice_simulation():
 ### Exact Polynomial Convolution via Dynamic Programming
 1. **Generating Functions:**
    - Peter's score distribution:
-     $$P(x) = (x + x^2 + x^3 + x^4)^9 = \sum_{s=9}^{36} N_P(s) x^s$$
+
+$$
+P(x) = (x + x^2 + x^3 + x^4)^9 = \sum_{s=9}^{36} N_P(s) x^s
+$$
+
    - Colin's score distribution:
-     $$C(x) = (x + x^2 + x^3 + x^4 + x^5 + x^6)^6 = \sum_{t=6}^{36} N_C(t) x^t$$
+
+$$
+C(x) = (x + x^2 + x^3 + x^4 + x^5 + x^6)^6 = \sum_{t=6}^{36} N_C(t) x^t
+$$
+
 2. **Dynamic Programming Convolution:**
    Iteratively convolving the single-die distribution ($9$ times for Peter, $6$ times for Colin) computes exact outcome counts $N_P(s)$ and $N_C(t)$ in fewer than $1000$ operations.
 3. **Cumulative Probability Evaluation:**
    Peter wins iff $S_P > S_C$.
    Total winning combinations:
-   $$W = \sum_{s=9}^{36} N_P(s) \cdot \left( \sum_{t=6}^{s-1} N_C(t) \right)$$
+
+$$
+W = \sum_{s=9}^{36} N_P(s) \cdot \left( \sum_{t=6}^{s-1} N_C(t) \right)
+$$
+
    Exact probability:
-   $$P(\text{Peter wins}) = \frac{W}{4^9 \cdot 6^6} \approx 0.5731441$$
+
+$$
+P(\text{Peter wins}) = \frac{W}{4^9 \cdot 6^6} \approx 0.5731441
+$$
+
    Execution completes in $\approx 0.0002$ seconds.
 
 ---
@@ -85,7 +104,10 @@ def solve() -> str:
     return f"{prob:.7f}"
 ```
 Evaluating yields:
-$$P(\text{Peter wins}) = \mathbf{"0.5731441"}$$
+
+$$
+P(\text{Peter wins}) = \mathbf{"0.5731441"}
+$$
 
 ---
 
@@ -95,9 +117,16 @@ $$P(\text{Peter wins}) = \mathbf{"0.5731441"}$$
 - Total outcome space: $4^9 \times 6^6 = 262\,144 \times 46\,656 = 12\,230\,590\,464$.
 - Number of outcomes where Peter wins ($S_P > S_C$): $7\,010\,084\,576$.
 - Exact fraction:
-  $$\frac{7\,010\,084\,576}{12\,230\,590\,464} \approx 0.5731440767\dots$$
+
+$$
+\frac{7\,010\,084\,576}{12\,230\,590\,464} \approx 0.5731440767\dots
+$$
+
 - Formatted to 7 decimal places:
-  $$\mathbf{"0.5731441"}$$
+
+$$
+\mathbf{"0.5731441"}
+$$
 
 ---
 

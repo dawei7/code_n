@@ -10,7 +10,10 @@ We are given:
 - $F(1, 5) = 10, F(2, 10) = 52, F(10, 100) = 3384$.
 
 We seek to evaluate:
-$$F(10^8, 10^9) + F(10^9, 10^8)$$
+
+$$
+F(10^8, 10^9) + F(10^9, 10^8)
+$$
 
 ---
 
@@ -25,10 +28,17 @@ Checking all quadruplets $(r, a, b, c)$ with $r \le 10^9, a \le 10^9$ requires e
 
 ### Tangency Distance & Diophantine Factorization
 The distance from the origin $(0, 0)$ to the line $y - b = \frac{b - c}{2a} (x - a)$ is:
-$$\frac{|a(b + c)|}{\sqrt{(b - c)^2 + 4a^2}} = r \iff a^2 (b + c)^2 = r^2 ((b - c)^2 + 4a^2)$$
+
+$$
+\frac{|a(b + c)|}{\sqrt{(b - c)^2 + 4a^2}} = r \iff a^2 (b + c)^2 = r^2 ((b - c)^2 + 4a^2)
+$$
 
 Setting $u = b + c$ and $v = b - c$ ($u \equiv v \pmod 2$):
-$$(a u - r v)(a u + r v) = 4 a^2 r^2$$
+
+$$
+(a u - r v)(a u + r v) = 4 a^2 r^2
+$$
+
 This factors into primitive divisor multiplicative forms over prime factors of $s = \gcd(r, a)$.
 
 ---
@@ -37,7 +47,11 @@ This factors into primitive divisor multiplicative forms over prime factors of $
 
 ### Blocked Divisor Character Summation & Hyperbolic Sieve
 The count $F(R, X)$ reduces to:
-$$F(R, X) = 2RX + \sum_{s=1}^{\min(R, X)} \left( \text{per}_a(s) \sum_{\text{even } s} 2^{\omega(\text{odd}(s))} + \text{per}_b(s) \sum_{\text{odd } s} 2^{\omega(s)-1} \right)$$
+
+$$
+F(R, X) = 2RX + \sum_{s=1}^{\min(R, X)} \left( \text{per}_a(s) \sum_{\text{even } s} 2^{\omega(\text{odd}(s))} + \text{per}_b(s) \sum_{\text{odd } s} 2^{\omega(s)-1} \right)
+$$
+
 where $\omega(n)$ is the number of distinct prime factors of $n$.
 
 1. **Linear Odd-Prime Sieve**: Precomputes $\omega(n)$ for odd numbers up to $10^8$ using a bytearray of size $50\text{ MB}$.

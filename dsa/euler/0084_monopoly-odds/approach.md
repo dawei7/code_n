@@ -88,7 +88,10 @@ def naive_markov_monopoly():
   - 2nd: E3 ($24$)
   - 3rd: GO ($00$)
 - Six-Digit Modal String:
-  $$\mathbf{102400}$$
+
+$$
+\mathbf{102400}
+$$
 
 ---
 

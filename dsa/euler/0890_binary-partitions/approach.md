@@ -4,7 +4,11 @@
 
 Let $p(n)$ be the number of binary partitions of $n$ (ways to write $n$ as a sum of powers of 2, ignoring order).
 Generating function:
-$$\sum_{n=0}^\infty p(n) x^n = \prod_{k=0}^\infty \frac{1}{1 - x^{2^k}}$$
+
+$$
+\sum_{n=0}^\infty p(n) x^n = \prod_{k=0}^\infty \frac{1}{1 - x^{2^k}}
+$$
+
 Given:
 - $p(7) = 6$
 - $p(7^7) \equiv 144548435 \pmod{10^9 + 7}$
@@ -34,10 +38,17 @@ Every binary partition satisfies:
 
 ### Bitwise Polynomial State Transfer
 Let the binary representation of $N = 7^{777}$ be:
-$$N = \sum_{i=0}^L b_i 2^i \quad (L \approx 2181)$$
+
+$$
+N = \sum_{i=0}^L b_i 2^i \quad (L \approx 2181)
+$$
 
 Processing bits $b_L, b_{L-1}, \dots, b_0$ advances the polynomial coefficient state vector:
-$$P_{k+1}(x) = \sum_{j \ge 0} P_k(2j + b_k) \dots$$
+
+$$
+P_{k+1}(x) = \sum_{j \ge 0} P_k(2j + b_k) \dots
+$$
+
 Evaluating the polynomial transfer across all 2181 bits modulo $10^9 + 7$ runs in $\mathcal{O}(L \cdot \text{deg}^2)$ operations, completing in **0.05 seconds**.
 
 ---

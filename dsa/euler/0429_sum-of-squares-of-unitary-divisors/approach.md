@@ -9,7 +9,10 @@ We are given:
 - For $4! = 24$, unitary divisors are $\{1, 3, 8, 24\} \implies 1^2 + 3^2 + 8^2 + 24^2 = 650$.
 
 We seek to evaluate:
-$$S(100\,000\,000!) \pmod{1\,000\,000\,009}$$
+
+$$
+S(100\,000\,000!) \pmod{1\,000\,000\,009}
+$$
 
 ---
 
@@ -25,9 +28,16 @@ The integer $10^8!$ has over $10^{10^7}$ digits. Generating its divisors or comp
 ### Multiplicative Factorization Property
 A unitary divisor $d$ of $n = \prod p_i^{e_i}$ must contain either $p_i^0$ or $p_i^{e_i}$ for each distinct prime $p_i$.
 Therefore, $S(n)$ is **completely multiplicative over prime powers**:
-$$S(p^e) = 1 + (p^e)^2 = 1 + p^{2e}$$
+
+$$
+S(p^e) = 1 + (p^e)^2 = 1 + p^{2e}
+$$
+
 For any integer $n = \prod p_i^{e_i}$:
-$$S(n) = \prod_{p_i \mid n} (1 + p_i^{2 e_i})$$
+
+$$
+S(n) = \prod_{p_i \mid n} (1 + p_i^{2 e_i})
+$$
 
 ---
 
@@ -35,9 +45,17 @@ $$S(n) = \prod_{p_i \mid n} (1 + p_i^{2 e_i})$$
 
 ### Legendre Prime Factor Exponents
 For $n = N!$, the exponent of each prime $p \le N$ is computed in $O(\log_p N)$ via **Legendre's Formula**:
-$$e_p = \sum_{k=1}^{\lfloor \log_p N \rfloor} \left\lfloor \frac{N}{p^k} \right\rfloor$$
+
+$$
+e_p = \sum_{k=1}^{\lfloor \log_p N \rfloor} \left\lfloor \frac{N}{p^k} \right\rfloor
+$$
+
 We compute:
-$$S(N!) = \prod_{p \le N} (1 + p^{2 e_p}) \pmod{10^9+9}$$
+
+$$
+S(N!) = \prod_{p \le N} (1 + p^{2 e_p}) \pmod{10^9+9}
+$$
+
 Using a linear prime sieve of size $10^8 / 2$, all primes $p \le 10^8$ are generated, and their contributions are accumulated.
 
 This evaluates $10^8!$ in **1.87 seconds**!

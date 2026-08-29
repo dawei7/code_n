@@ -5,10 +5,16 @@
 Consider the problem of building a wall out of $2 \times 1$ and $3 \times 1$ bricks (horizontal $\times$ vertical dimensions) such that, for extra strength, the gaps between horizontally-adjacent bricks never line up in consecutive layers, i.e. never form a "running crack".
 
 For example, the number of ways to build a crack-free wall of width $9$ and height $3$ is:
-$$W(9, 3) = \mathbf{8}$$
+
+$$
+W(9, 3) = \mathbf{8}
+$$
 
 Calculate **$W(32, 10)$**, the number of crack-free walls of width $32$ and height $10$ using $2 \times 1$ and $3 \times 1$ bricks:
-$$W(32, 10) = \text{number of valid crack-free walls of dimension } 32 \times 10$$
+
+$$
+W(32, 10) = \text{number of valid crack-free walls of dimension } 32 \times 10
+$$
 
 ---
 
@@ -29,7 +35,13 @@ def naive_crack_free_walls():
    Depth-first search generates all $M = 3\,329$ valid single-row configurations for width $32$.
 2. **Bitwise Crack Disjointness:**
    Two rows with bitmasks $m_1$ and $m_2$ can be placed adjacent vertically iff they share no common internal crack positions:
-   $$(m_1 \mathbin{\&} m_2) == 0$$
+
+$$
+\begin{aligned}
+(m_1 \mathbin{\&} m_2) == 0
+\end{aligned}
+$$
+
    We construct a compatibility adjacency list `compat[i]` where edge $(i, j)$ exists iff $(m_i \mathbin{\&} m_j) == 0$.
 3. **Layer-by-Layer Vector DP:**
    Let $V_h[i]$ be the number of valid walls of height $h$ ending with row layout $i$:
@@ -91,7 +103,10 @@ def solve(width: int = 32, height: int = 10) -> int:
     return sum(counts)
 ```
 Evaluating for $W = 32, H = 10$:
-$$W(32, 10) = \mathbf{806\,844\,323\,190\,414}$$
+
+$$
+W(32, 10) = \mathbf{806\,844\,323\,190\,414}
+$$
 
 ---
 
@@ -100,13 +115,20 @@ $$W(32, 10) = \mathbf{806\,844\,323\,190\,414}$$
 ### Example 1: Sample Verification for $W = 9, H = 3$
 - Generating single rows for width 9: $M = 7$ rows.
 - Transfer matrix DP over 3 layers:
-  $$W(9, 3) = \mathbf{8}$$
+
+$$
+W(9, 3) = \mathbf{8}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $W = 32, H = 10$
 - $M = 3\,329$ row patterns.
 - DP over 10 layers:
-  $$W(32, 10) = \mathbf{806\,844\,323\,190\,414}$$
+
+$$
+W(32, 10) = \mathbf{806\,844\,323\,190\,414}
+$$
 
 ---
 

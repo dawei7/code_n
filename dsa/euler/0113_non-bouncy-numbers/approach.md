@@ -12,7 +12,10 @@ As $n$ increases, the proportion of bouncy numbers below $n$ increases:
 - Below $10^{10}$, there are $277\,032$ non-bouncy numbers.
 
 The objective is to find **how many numbers below a googol ($10^{100}$) are not bouncy**:
-$$N_{\text{non-bouncy}}(100) = \left| \mathcal{N}_{\text{inc}}(100) \cup \mathcal{N}_{\text{dec}}(100) \right|$$
+
+$$
+N_{\text{non-bouncy}}(100) = \left| \mathcal{N}_{\text{inc}}(100) \cup \mathcal{N}_{\text{dec}}(100) \right|
+$$
 
 ---
 
@@ -29,17 +32,33 @@ def naive_non_bouncy():
 ### Closed-Form Stars-and-Bars Combinatorics
 1. **Increasing Numbers Below $10^d$:**
    - Choosing $d$ digits with replacement from $9$ non-zero digits plus $0$ (representing leading zeros):
-   $$|\mathcal{N}_{\text{inc}}(d)| = \binom{d + 9}{9} - 1$$
+
+$$
+|\mathcal{N}_{\text{inc}}(d)| = \binom{d + 9}{9} - 1
+$$
+
    *(The $-1$ subtracts the number consisting of all zeros).*
 2. **Decreasing Numbers Below $10^d$:**
    - Choosing $d$ digits with replacement from $10$ digits ($0 \dots 9$) with trailing zero terminations:
-   $$|\mathcal{N}_{\text{dec}}(d)| = \binom{d + 10}{10} - (d + 1)$$
+
+$$
+|\mathcal{N}_{\text{dec}}(d)| = \binom{d + 10}{10} - (d + 1)
+$$
+
    *(The $-(d+1)$ subtracts all-zero configurations for lengths $0 \dots d$).*
 3. **Inclusion-Exclusion Intersection:**
    - Numbers that are both increasing and decreasing are single-digit repetitions ($11, 222, 7777 \dots$), with exactly $9$ numbers per length $1 \dots d$:
-   $$|\mathcal{N}_{\text{inc}} \cap \mathcal{N}_{\text{dec}}| = 9d$$
+
+$$
+|\mathcal{N}_{\text{inc}} \cap \mathcal{N}_{\text{dec}}| = 9d
+$$
+
 4. **Unified Formula:**
-   $$N_{\text{non-bouncy}}(10^d) = \binom{d + 9}{9} + \binom{d + 10}{10} - 10d - 2$$
+
+$$
+N_{\text{non-bouncy}}(10^d) = \binom{d + 9}{9} + \binom{d + 10}{10} - 10d - 2
+$$
+
    For $d = 100$, this evaluates in $\mathcal{O}(1)$ time ($\approx 0.0001$ seconds).
 
 ---
@@ -62,13 +81,28 @@ def naive_non_bouncy():
 
 ### Inclusion-Exclusion Formula for $d = 100$
 1. Increasing numbers:
-   $$I = \binom{109}{9} - 1 = 4\,263\,421\,511\,270 - 1 = 4\,263\,421\,511\,269$$
+
+$$
+I = \binom{109}{9} - 1 = 4\,263\,421\,511\,270 - 1 = 4\,263\,421\,511\,269
+$$
+
 2. Decreasing numbers:
-   $$D = \binom{110}{10} - 101 = 4\,691\,249\,611\,844 - 101 = 4\,691\,249\,611\,743$$
+
+$$
+D = \binom{110}{10} - 101 = 4\,691\,249\,611\,844 - 101 = 4\,691\,249\,611\,743
+$$
+
 3. Overlap of flat constant-digit numbers:
-   $$O = 9 \times 100 = 900$$
+
+$$
+O = 9 \times 100 = 900
+$$
+
 4. Total non-bouncy numbers:
-   $$N = I + D - O = 4\,263\,421\,511\,269 + 4\,691\,249\,611\,743 - 900 = \mathbf{8\,953\,760\,162\,712}$$
+
+$$
+N = I + D - O = 4\,263\,421\,511\,269 + 4\,691\,249\,611\,743 - 900 = \mathbf{8\,953\,760\,162\,712}
+$$
 
 ---
 
@@ -88,7 +122,10 @@ def naive_non_bouncy():
 
 ### Example 3: Target Evaluation for $10^{100}$ ($d = 100$)
 - Applying the unified formula:
-  $$N_{\text{non-bouncy}}(10^{100}) = \mathbf{8\,953\,760\,162\,712}$$
+
+$$
+N_{\text{non-bouncy}}(10^{100}) = \mathbf{8\,953\,760\,162\,712}
+$$
 
 ---
 

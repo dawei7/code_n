@@ -28,15 +28,23 @@ Find $\sum_{i=0}^{20} \sum_{j=0}^{20} p(7^i, 5^j)$ rounded to 8 decimal places.
 
 ### Minimax Bellman Equation
 For any state $(m, n)$:
-$$p(m, n) = 1 - \frac{1}{m} \min \left[ (m - 1) p(n, m - 1), \min_{2 \le k \le \lfloor m/2 \rfloor} \big( k \cdot p(n, k) + (m - k) \cdot p(n, m - k) \big) \right]$$
+
+$$
+p(m, n) = 1 - \frac{1}{m} \min \left[ (m - 1) p(n, m - 1), \min_{2 \le k \le \lfloor m/2 \rfloor} \big( k \cdot p(n, k) + (m - k) \cdot p(n, m - k) \big) \right]
+$$
 
 ### The Capacity Function $C(n)$
 Let $W(m, n) = m \cdot n \cdot p(m, n)$.
 In the asymptotic regime where $m \gg n$, Player 1's search space is much larger than Player 2's.
 The integer function $C(n) = \lim_{m \to \infty} W(m, n)$ satisfies an exact divide-and-conquer recurrence:
-$$C(1) = 1, \quad C(2) = 3, \quad C(3) = 6$$
 
-$$C(n) = 2 \cdot \left( C(\lfloor n/2 \rfloor) + C(\lceil n/2 \rceil) \right) \quad \text{for } n \ge 4$$
+$$
+C(1) = 1, \quad C(2) = 3, \quad C(3) = 6
+$$
+
+$$
+C(n) = 2 \cdot \left( C(\lfloor n/2 \rfloor) + C(\lceil n/2 \rceil) \right) \quad \text{for } n \ge 4
+$$
 
 ---
 
@@ -45,12 +53,24 @@ $$C(n) = 2 \cdot \left( C(\lfloor n/2 \rfloor) + C(\lceil n/2 \rceil) \right) \q
 ### Exact Regime Decomposition
 For any $(m, n)$:
 1. **Regime 1 ($m \ge 2n$)**:
-   $$p(m, n) = \frac{C(n)}{m \cdot n}$$
+
+$$
+p(m, n) = \frac{C(n)}{m \cdot n}
+$$
+
 2. **Regime 2 ($n \ge 2m$)**:
-   $$p(m, n) = 1 - \frac{C(m)}{2 m \cdot n}$$
+
+$$
+p(m, n) = 1 - \frac{C(m)}{2 m \cdot n}
+$$
+
 3. **Regime 3 (Intermediate Band $\frac{1}{2} n < m < 2n$)**:
    The optimal query size is exact binary bisection $k = \lfloor m/2 \rfloor$:
-   $$p(m, n) = 1 - \frac{\lfloor m/2 \rfloor \cdot p(n, \lfloor m/2 \rfloor) + \lceil m/2 \rceil \cdot p(n, \lceil m/2 \rceil)}{m}$$
+
+$$
+p(m, n) = 1 - \frac{\lfloor m/2 \rfloor \cdot p(n, \lfloor m/2 \rfloor) + \lceil m/2 \rceil \cdot p(n, \lceil m/2 \rceil)}{m}
+$$
+
    Each halving step reduces the search space logarithmically, terminating into Regimes 1 and 2 in at most $\mathcal{O}(\log m)$ steps.
 
 ---

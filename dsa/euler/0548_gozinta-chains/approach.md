@@ -12,7 +12,12 @@ We are given:
 - $g(120) = 132$
 
 We seek to evaluate:
-$$\sum_{\substack{n \le 10^{16} \\ g(n) = n}} n$$
+
+$$
+\begin{aligned}
+\sum_{\substack{n \le 10^{16} \\ g(n) = n}} n
+\end{aligned}
+$$
 
 ---
 
@@ -30,8 +35,15 @@ Evaluating $g(n)$ for each $n \le 10^{16}$ requires $10^{16}$ factorizations, wh
    The value of $g(n)$ depends **solely on the multiset of prime exponents** in $n = p_1^{e_1} \dots p_r^{e_r}$ (the prime signature $\mathbf{e} = (e_1 \ge e_2 \ge \dots \ge e_r)$), completely independent of the actual prime bases.
 2. **Inclusion-Exclusion Counting of Ordered Factorizations**:
    For signature $\mathbf{e}$, the number of $m$-step chains is given by:
-   $$A_m = \sum_{t=1}^m (-1)^{m-t} \binom{m}{t} \prod_{i=1}^r \binom{e_i + t - 1}{t - 1}$$
-   $$g(\mathbf{e}) = \sum_{m=1}^{\sum e_i} A_m$$
+
+$$
+A_m = \sum_{t=1}^m (-1)^{m-t} \binom{m}{t} \prod_{i=1}^r \binom{e_i + t - 1}{t - 1}
+$$
+
+$$
+g(\mathbf{e}) = \sum_{m=1}^{\sum e_i} A_m
+$$
+
 3. **Inverse Partition Search**:
    Instead of testing numbers $n$, we enumerate valid prime signatures $\mathbf{e}$, compute $V = g(\mathbf{e})$, and verify whether the prime signature of $V$ matches $\mathbf{e}$!
 

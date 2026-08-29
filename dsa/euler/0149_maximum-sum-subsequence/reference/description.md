@@ -2,12 +2,12 @@
 
 Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers in any direction (horizontal, vertical, diagonal or anti-diagonal) is $16$ ($= 8 + 7 + 1$).
 
-$```text
+```text
 -2   5   3   2
  9  -6   5   1
  3   2   7   3
 -1   8  -4   8
-```$
+```
 
 Now, let us repeat the search, but on a much larger scale:
 

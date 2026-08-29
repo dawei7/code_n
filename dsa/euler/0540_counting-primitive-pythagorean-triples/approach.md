@@ -11,7 +11,10 @@ We are given:
 - $P(10^6) = 159139$
 
 We seek to evaluate:
-$$P(3141592653589793)$$
+
+$$
+P(3141592653589793)
+$$
 
 ---
 
@@ -27,14 +30,29 @@ For $N \approx 3.14 \times 10^{15}$, $\sqrt{N} \approx 5.6 \times 10^7$. Iterati
 ### Euclid's Parameterization & Odd Sieve
 1. **Euclidean Generator Form**:
    Every primitive triple corresponds to a unique pair $(u, v)$ with:
-   $$c = u^2 + v^2 \le n, \quad u > v \ge 1, \quad \gcd(u, v) = 1, \quad u \not\equiv v \pmod 2$$
+
+$$
+c = u^2 + v^2 \le n, \quad u > v \ge 1, \quad \gcd(u, v) = 1, \quad u \not\equiv v \pmod 2
+$$
+
 2. **Unconstrained Opposite-Parity Lattice Count**:
    Let $R(x)$ be the number of pairs $(u, v)$ with $u^2 + v^2 \le x$, $u > v > 0$, and $u \not\equiv v \pmod 2$.
    $R(x)$ can be computed in $O(\sqrt{x})$ by summing row intervals.
 3. **Möbius Inversion over Odd Divisors**:
-   $$\gcd(u, v) = 1 \iff \sum_{\substack{d \mid \gcd(u, v) \\ d \text{ odd}}} \mu(d) = 1$$
+
+$$
+\begin{aligned}
+\gcd(u, v) = 1 \iff \sum_{\substack{d \mid \gcd(u, v) \\ d \text{ odd}}} \mu(d) = 1
+\end{aligned}
+$$
+
    Thus:
-   $$P(n) = \sum_{\substack{d \ge 1 \\ d \text{ odd}}} \mu(d) R\left( \left\lfloor \frac{n}{d^2} \right\rfloor \right)$$
+
+$$
+\begin{aligned}
+P(n) = \sum_{\substack{d \ge 1 \\ d \text{ odd}}} \mu(d) R\left( \left\lfloor \frac{n}{d^2} \right\rfloor \right)
+\end{aligned}
+$$
 
 ---
 

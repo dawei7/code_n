@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A candy centre is shaped like an ellipsoid of revolution defined by:
-$$b^2 x^2 + b^2 y^2 + a^2 z^2 = a^2 b^2 \iff \frac{x^2 + y^2}{a^2} + \frac{z^2}{b^2} = 1$$
+
+$$
+b^2 x^2 + b^2 y^2 + a^2 z^2 = a^2 b^2 \iff \frac{x^2 + y^2}{a^2} + \frac{z^2}{b^2} = 1
+$$
+
 We seek to determine the volume of a uniform layer of chocolate of thickness $t = 1\text{ mm}$ enclosing the ellipsoid.
 
 We are given:
@@ -26,14 +30,21 @@ Evaluating the Minkowski outer offset of an ellipsoid via 3D numerical voxelizat
 ### Steiner's Tube Formula for Convex Bodies
 By the classical **Steiner Polynomial Formula** (Weyl's Tube Formula) for convex 3D bodies:
 The volume of the outer parallel body $K_t = \{x \in \mathbb{R}^3 : \text{dist}(x, K) \le t\}$ at distance $t$ is:
-$$V(K_t) = V(K) + S(K) \cdot t + M(K) \cdot t^2 + \frac{4\pi}{3} t^3$$
+
+$$
+V(K_t) = V(K) + S(K) \cdot t + M(K) \cdot t^2 + \frac{4\pi}{3} t^3
+$$
+
 where:
 - $V(K) = \frac{4}{3}\pi a^2 b$ is the volume of the original ellipsoid.
 - $S(K)$ is the surface area of the ellipsoid.
 - $M(K) = \int_{\partial K} H \, dA$ is the integrated total mean curvature of the surface.
 
 Therefore, the chocolate coating volume is:
-$$V_{\text{chocolate}} = S(K) \cdot t + M(K) \cdot t^2 + \frac{4\pi}{3} t^3$$
+
+$$
+V_{\text{chocolate}} = S(K) \cdot t + M(K) \cdot t^2 + \frac{4\pi}{3} t^3
+$$
 
 ---
 
@@ -42,12 +53,23 @@ $$V_{\text{chocolate}} = S(K) \cdot t + M(K) \cdot t^2 + \frac{4\pi}{3} t^3$$
 ### Closed-Form Differential Geometry of Oblate Spheroids ($a > b$)
 For an oblate spheroid with equatorial semi-axis $a$ and polar semi-axis $b$, let eccentricity $e = \sqrt{1 - b^2/a^2}$:
 1. **Surface Area**:
-   $$S = 2\pi a^2 \left( 1 + \frac{b^2}{a^2} \frac{\operatorname{artanh}(e)}{e} \right)$$
+
+$$
+S = 2\pi a^2 \left( 1 + \frac{b^2}{a^2} \frac{\operatorname{artanh}(e)}{e} \right)
+$$
+
 2. **Integrated Mean Curvature**:
-   $$M = 2\pi b + \frac{2\pi a}{e} \arctan\left(\frac{a e}{b}\right)$$
+
+$$
+M = 2\pi b + \frac{2\pi a}{e} \arctan\left(\frac{a e}{b}\right)
+$$
+
 3. **Evaluating $V_{\text{chocolate}}$ with $t = 1$**:
    Substituting $a = 3, b = 1, t = 1$:
-   $$V_{\text{chocolate}} = S \cdot 1 + M \cdot 1^2 + \frac{4\pi}{3} \approx 103.37870096\text{ mm}^3$$
+
+$$
+V_{\text{chocolate}} = S \cdot 1 + M \cdot 1^2 + \frac{4\pi}{3} \approx 103.37870096\text{ mm}^3
+$$
 
 Total runtime is **0.0001 seconds**!
 

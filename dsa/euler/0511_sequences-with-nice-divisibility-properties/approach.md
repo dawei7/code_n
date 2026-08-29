@@ -12,7 +12,10 @@ We are given:
 - $Seq(1111, 24) \equiv 840643584 \pmod{10^9}$
 
 We seek to evaluate:
-$$Seq(1234567898765, 4321) \bmod 10^9$$
+
+$$
+Seq(1234567898765, 4321) \bmod 10^9
+$$
 
 ---
 
@@ -28,10 +31,18 @@ The number of sequences of length $n = 1234567898765$ formed by $16$ divisors is
 ### Generating Functions in the Cyclic Group Ring $\mathbb{Z}[x] / (x^k - 1)$
 1. **Single-Element Generating Polynomial**:
    Let $\mathcal{D}(n)$ be the set of all divisors of $n$. The residue distribution of a single chosen element modulo $k$ is given by:
-   $$P(x) = \sum_{d \in \mathcal{D}(n)} x^{d \bmod k} \in \mathbb{Z}[x] / (x^k - 1)$$
+
+$$
+P(x) = \sum_{d \in \mathcal{D}(n)} x^{d \bmod k} \in \mathbb{Z}[x] / (x^k - 1)
+$$
+
 2. **Sum of $n$ Independent Elements**:
    The distribution of the sum of $n$ independently chosen divisors modulo $k$ is given by the circular convolution:
-   $$P(x)^n \bmod (x^k - 1)$$
+
+$$
+P(x)^n \bmod (x^k - 1)
+$$
+
 3. **Target Coefficient**:
    The condition $n + \sum_{i=1}^n a_i \equiv 0 \pmod k \iff \sum_{i=1}^n a_i \equiv -n \pmod k$.
    Thus, $Seq(n, k)$ is exactly the coefficient of $x^{(-n) \bmod k}$ in $P(x)^n \bmod (x^k - 1)$.
@@ -47,7 +58,11 @@ The number of sequences of length $n = 1234567898765$ formed by $16$ divisors is
    To multiply two degree-$k$ polynomials modulo $x^k - 1$ and modulo $10^9$:
    - Zero-pad arrays to size $N = 2^{\lceil \log_2(2k) \rceil} = 8192$.
    - Perform forward Number Theoretic Transforms across three NTT-friendly primes:
-     $$P_1 = 998244353, \quad P_2 = 1004535809, \quad P_3 = 469762049$$
+
+$$
+P_1 = 998244353, \quad P_2 = 1004535809, \quad P_3 = 469762049
+$$
+
    - Pointwise multiply and invert NTTs.
    - Reconstruct the integer convolution via Chinese Remainder Theorem modulo $10^9$.
    - Fold the linear convolution of length $2k-1$ back into length $k$ via $C[i \bmod k] \leftarrow C[i \bmod k] + C[i]$.

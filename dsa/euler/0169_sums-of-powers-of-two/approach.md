@@ -3,19 +3,28 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define $f(0) = 1$ and for each integer $n > 0$, let $f(n)$ be the number of different ways that $n$ can be expressed as a sum of integer powers of $2$ using each power **at most twice**:
-$$n = \sum_{k=0}^\infty c_k 2^k \quad \text{where } c_k \in \{0, 1, 2\}$$
+
+$$
+n = \sum_{k=0}^\infty c_k 2^k \quad \text{where } c_k \in \{0, 1, 2\}
+$$
 
 For example, $f(10) = 5$ since there are five different ways to express $10$:
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 1. & 10 = 8 + 2 \\
 2. & 10 = 8 + 1 + 1 \\
 3. & 10 = 4 + 4 + 2 \\
 4. & 10 = 4 + 4 + 1 + 1 \\
 5. & 10 = 4 + 2 + 2 + 1 + 1
-\end{matrix}$$
+\end{matrix}
+$$
 
 The objective is to find **$f(10^{25})$, the number of valid representations of $10^{25}$**:
-$$f(10^{25}) = \text{number of hyperbinary representations}$$
+
+$$
+f(10^{25}) = \text{number of hyperbinary representations}
+$$
 
 ---
 
@@ -76,7 +85,10 @@ def solve(n: int = 10**25) -> int:
     return a + b
 ```
 Evaluating for $n = 10^{25}$:
-$$f(10^{25}) = \mathbf{178\,653\,872\,807}$$
+
+$$
+f(10^{25}) = \mathbf{178\,653\,872\,807}
+$$
 
 ---
 
@@ -95,7 +107,10 @@ $$f(10^{25}) = \mathbf{178\,653\,872\,807}$$
 
 ### Example 2: Target Evaluation for $n = 10^{25}$
 - Scanning all 84 binary digits of $10^{25}$:
-  $$f(10^{25}) = \mathbf{178\,653\,872\,807}$$
+
+$$
+f(10^{25}) = \mathbf{178\,653\,872\,807}
+$$
 
 ---
 

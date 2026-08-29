@@ -5,17 +5,27 @@
 Let $n$ dice be numbered $1, \dots, n$, all initially showing 1.
 For each $k \in \{2, \dots, n\}$, every $k$-th die is incremented modulo 6 ($1 \to 2 \to \dots \to 6 \to 1$).
 Die $m$ is turned for every divisor $d \mid m$ ($d \ge 2$), so its final face value is:
-$$1 + (d(m) - 1) \equiv d(m) \pmod 6$$
+
+$$
+1 + (d(m) - 1) \equiv d(m) \pmod 6
+$$
+
 where $d(m)$ is the number of positive divisors of $m$.
 Die $m$ shows 1 if and only if:
-$$d(m) \equiv 1 \pmod 6$$
+
+$$
+d(m) \equiv 1 \pmod 6
+$$
 
 We are given:
 - $f(100) = 2$
 - $f(10^8) = 69$
 
 We seek to evaluate:
-$$f(10^{36})$$
+
+$$
+f(10^{36})
+$$
 
 ---
 
@@ -40,7 +50,11 @@ Counting divisors for all $10^{36}$ integers is completely impossible.
    Since $2 \times 2 \equiv 1 \pmod 3$, there must be an **even** number of primes with $e_i \equiv 4 \pmod 6$.
 3. **Canonical Decomposition**:
    Every such integer $m$ is uniquely represented as:
-   $$m = a^6 b^4 \le n$$
+
+$$
+m = a^6 b^4 \le n
+$$
+
    where $b \ge 1$ is squarefree with $\mu(b) = 1$, and $a \ge 1$ is an arbitrary positive integer!
 
 ---
@@ -49,7 +63,11 @@ Counting divisors for all $10^{36}$ integers is completely impossible.
 
 ### Segmented Linear Sieve over Squarefree Kernels ($O(N^{1/4})$)
 1. **Analytic Count**:
-   $$f(n) = \sum_{b \le n^{1/4}, \mu(b) = 1} \left\lfloor \left( \frac{n}{b^4} \right)^{1/6} \right\rfloor$$
+
+$$
+f(n) = \sum_{b \le n^{1/4}, \mu(b) = 1} \left\lfloor \left( \frac{n}{b^4} \right)^{1/6} \right\rfloor
+$$
+
 2. **Domain Evaluation for $N = 10^{36}$**:
    $b \le 10^9$, and $\lfloor (10^{36} / b^4)^{1/6} \rfloor = \lfloor 10^6 / b^{2/3} \rfloor$.
 3. **Segmented Sieve**:

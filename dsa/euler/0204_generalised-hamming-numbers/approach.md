@@ -10,7 +10,10 @@ We will call a positive number a **generalised Hamming number of type $N$** (or 
 Hence the Hamming numbers are the generalised Hamming numbers of type $5$.
 
 The objective is to find the **number of generalised Hamming numbers of type $100$ not exceeding $10^9$**:
-$$H(100, 10^9) = \left| \left\{ x \in \mathbb{N} \;\middle|\; x \le 10^9 \land \forall p \in \mathbb{P}, (p \mid x \implies p \le 100) \right\} \right|$$
+
+$$
+H(100, 10^9) = \left| \left\{ x \in \mathbb{N} \;\middle|\; x \le 10^9 \land \forall p \in \mathbb{P}, (p \mid x \implies p \le 100) \right\} \right|
+$$
 
 ---
 
@@ -27,14 +30,22 @@ def naive_hamming_numbers():
 ### Descending Recursive Depth-First Search with $\mathcal{O}(1)$ Base Case
 1. **Direct Exponent Vector Generation:**
    Every 100-smooth number $x \le 10^9$ can be uniquely factored as:
-   $$x = 2^{e_1} \cdot 3^{e_2} \cdot 5^{e_3} \dots 97^{e_{25}} \le 10^9$$
+
+$$
+x = 2^{e_1} \cdot 3^{e_2} \cdot 5^{e_3} \dots 97^{e_{25}} \le 10^9
+$$
+
    where $\{2, 3, \dots, 97\}$ are the $25$ primes $\le 100$.
 2. **Descending Prime Search Ordering:**
    By processing primes in **descending order** ($97, 89, 83, \dots, 3, 2$):
    - Powers of large primes grow rapidly ($97^5 > 10^9$), pruning deeper subtrees at the very top of the search tree.
 3. **$\mathcal{O}(1)$ Base Case Evaluation for Prime 2:**
    When the recursion reaches prime 2 with partial product $v$:
-   $$v \cdot 2^k \le 10^9 \iff 2^k \le \lfloor 10^9 / v \rfloor \iff k \in \{0, 1, \dots, \lfloor \log_2(10^9 / v) \rfloor\}$$
+
+$$
+v \cdot 2^k \le 10^9 \iff 2^k \le \lfloor 10^9 / v \rfloor \iff k \in \{0, 1, \dots, \lfloor \log_2(10^9 / v) \rfloor\}
+$$
+
    The number of valid powers is simply `(limit // v).bit_length()`.
    This eliminates millions of recursive leaf calls, completing the entire search in $\approx 0.15$ seconds.
 
@@ -100,7 +111,10 @@ def solve(type_n: int = 100, limit: int = 10**9) -> int:
     return dfs(0, 1)
 ```
 Evaluating for $\text{type} = 100, \text{limit} = 10^9$:
-$$H(100, 10^9) = \mathbf{2\,944\,730}$$
+
+$$
+H(100, 10^9) = \mathbf{2\,944\,730}
+$$
 
 ---
 
@@ -114,7 +128,10 @@ $$H(100, 10^9) = \mathbf{2\,944\,730}$$
 
 ### Example 2: Target Evaluation for Type 100 up to $10^9$
 - Total 100-smooth numbers:
-  $$H(100, 10^9) = \mathbf{2\,944\,730}$$
+
+$$
+H(100, 10^9) = \mathbf{2\,944\,730}
+$$
 
 ---
 

@@ -3,15 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A size 1 triangle is an equilateral triangle with its three medians (altitudes) drawn. It contains $16$ triangles of either different shape or size or orientation or position:
-$$T(1) = 16$$
+
+$$
+T(1) = 16
+$$
 
 A size 2 triangle is drawn by taking $4$ size 1 triangles and placing them together to form a larger equilateral triangle with medians. It contains $104$ triangles:
-$$T(2) = 104$$
+
+$$
+T(2) = 104
+$$
 
 Let $T(n)$ denote the number of triangles in a cross-hatched equilateral triangle of size $n$.
 
 The objective is to find **$T(36)$, the total number of triangles contained within a size 36 cross-hatched equilateral triangle**:
-$$T(36) = \text{total triangle count}$$
+
+$$
+T(36) = \text{total triangle count}
+$$
 
 ---
 
@@ -34,7 +43,11 @@ def naive_cross_hatched_triangles():
    Any valid triangle is formed by choosing 3 lines from 3 **distinct** families whose pairwise intersections all lie inside the bounding triangle $Y \ge 0$, $X \ge Y$, $X + Y \le 2n$ and are non-degenerate.
 3. Scaling all coordinates by $12$ (the LCM of all pairwise $2 \times 2$ determinants) guarantees **100% exact integer arithmetic** with zero floating-point error!
 4. The total count also satisfies the degree-3 polynomial (OEIS A163233):
-   $$T(n) = \frac{1678 n^3 + 3117 n^2 + 88 n + C(n \bmod 6)}{240}$$
+
+$$
+T(n) = \frac{1678 n^3 + 3117 n^2 + 88 n + C(n \bmod 6)}{240}
+$$
+
    where $C(0) = 1248$.
 5. Evaluating the geometric line-family triples for $n = 36$ runs dynamically in $\approx 0.15$ seconds.
 
@@ -59,13 +72,20 @@ def naive_cross_hatched_triangles():
 
 ### Closed-Form Polynomial Evaluation for $n = 36$
 For $n = 36 \equiv 0 \pmod 6$, the periodic correction is $C(0) = 1248$:
-$$T(36) = \frac{1678(36^3) + 3117(36^2) + 88(36) + 1248}{240}$$
+
+$$
+T(36) = \frac{1678(36^3) + 3117(36^2) + 88(36) + 1248}{240}
+$$
+
 - $1678 \times 46656 = 78\,288\,768$
 - $3117 \times 1296 = 4\,039\,632$
 - $88 \times 36 = 3168$
 - $C(0) = 1248$
 - Numerator sum $= 78\,288\,768 + 4\,039\,632 + 3168 + 1248 = 82\,332\,816$
-- $$T(36) = \frac{82\,332\,816}{240} = \mathbf{343\,047}$$
+-
+$$
+T(36) = \frac{82\,332\,816}{240} = \mathbf{343\,047}
+$$
 
 ---
 
@@ -83,7 +103,10 @@ $$T(36) = \frac{1678(36^3) + 3117(36^2) + 88(36) + 1248}{240}$$
 
 ### Example 3: Target Evaluation for $n = 36$
 - Evaluating $T(36)$:
-  $$T(36) = \mathbf{343\,047}$$
+
+$$
+T(36) = \mathbf{343\,047}
+$$
 
 ---
 

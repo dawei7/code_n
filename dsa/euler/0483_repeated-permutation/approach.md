@@ -4,7 +4,10 @@
 
 For a permutation $P \in S_n$, let $f(P) = \text{order}(P) = \text{lcm}(c_1, \dots, c_k)$ where $c_i$ are its disjoint cycle lengths.
 Define:
-$$g(n) = \frac{1}{n!} \sum_{P \in S_n} f(P)^2$$
+
+$$
+g(n) = \frac{1}{n!} \sum_{P \in S_n} f(P)^2
+$$
 
 We are given:
 - $g(3) \approx 5.166666667\mathrm{e}0$
@@ -12,7 +15,10 @@ We are given:
 - $g(20) \approx 5.106136147\mathrm{e}3$
 
 We seek to evaluate:
-$$g(350) \text{ in scientific notation rounded to } 10 \text{ significant digits}$$
+
+$$
+g(350) \text{ in scientific notation rounded to } 10 \text{ significant digits}
+$$
 
 ---
 
@@ -29,7 +35,11 @@ The number of integer partitions of $n = 350$ is $p(350) = 45\,835\,792\,572\,40
 1. **Conjugacy Class Size**:
    A permutation with $a_i$ cycles of length $i$ ($\sum i a_i = n$) has conjugacy size $\frac{n!}{\prod_i a_i! i^{a_i}}$.
    Thus:
-   $$g(n) = \sum_{\sum i a_i = n} \frac{\text{lcm}(\{i : a_i > 0\})^2}{\prod_i a_i! i^{a_i}}$$
+
+$$
+g(n) = \sum_{\sum i a_i = n} \frac{\text{lcm}(\{i : a_i > 0\})^2}{\prod_i a_i! i^{a_i}}
+$$
+
 2. **Prime-Factor Decoupling**:
    If we process cycle lengths in descending order grouped by their largest prime factor $p = \text{LPF}(c)$, then once all cycles with $\text{LPF} = p$ have been processed, the prime $p$ will NEVER appear in any future cycle length!
 

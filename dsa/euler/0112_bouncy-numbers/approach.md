@@ -13,7 +13,10 @@ As $n$ increases, the proportion of bouncy numbers below $n$ increases:
 - The least number for which the proportion of bouncy numbers first reaches $90\%$ is $21\,780$ ($B(21780) = 19\,602$).
 
 The objective is to find the **least number for which the proportion of bouncy numbers is exactly $99\%$**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; \frac{B(n)}{n} = \frac{99}{100} \right\} \iff 100 \times B(n_{\text{min}}) = 99 \times n_{\text{min}}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; \frac{B(n)}{n} = \frac{99}{100} \right\} \iff 100 \times B(n_{\text{min}}) = 99 \times n_{\text{min}}
+$$
 
 ---
 
@@ -80,7 +83,10 @@ def naive_bouncy_numbers():
   - $100 \times 1\,571\,130 = 157\,113\,000$.
   - $99 \times 1\,587\,000 = 157\,113\,000 \checkmark$.
 - Least integer reaching $99\%$:
-  $$n_{\text{min}} = \mathbf{1\,587\,000}$$
+
+$$
+n_{\text{min}} = \mathbf{1\,587\,000}
+$$
 
 ---
 

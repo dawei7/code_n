@@ -15,7 +15,11 @@ We are given:
 - $C(2000000, \sqrt{5}, \sqrt{7}) \approx 49.63755955$
 
 We seek to evaluate:
-$$\sum_{k=1}^{30} C\left(10^{12}, \sqrt{k}, \sqrt{F_k}\right)$$
+
+$$
+\sum_{k=1}^{30} C\left(10^{12}, \sqrt{k}, \sqrt{F_k}\right)
+$$
+
 rounded to $8$ decimal places.
 
 ---
@@ -32,7 +36,11 @@ Classic minimax search over intervals $dp[i][j] = \min_k (\max(dp[i][k-1]+b, dp[
 ### Game Theory Dual Capacity Formulation
 Instead of minimizing cost for a fixed range size $n$, consider the **dual problem**:
 What is the maximum range size $f(t)$ that can be searched within a total cost budget $t$?
-$$f(t) = 1 + f(t - a) + f(t - b) \quad (t \ge 0)$$
+
+$$
+f(t) = 1 + f(t - a) + f(t - b) \quad (t \ge 0)
+$$
+
 with base cases $f(t) = 0$ for $t < 0$.
 
 ---
@@ -41,10 +49,16 @@ with base cases $f(t) = 0$ for $t < 0$.
 
 ### Hockey-Stick Binomial Summation
 Unrolling the dual recurrence, the capacity $f(t)$ counts paths in a grid corresponding to combinations of $u$ steps of cost $a$ and $v$ steps of cost $b$:
-$$f(t) = \sum_{u \ge 0} \sum_{v=0}^{\lfloor (t - u a)/b \rfloor} \binom{u+v}{u}$$
+
+$$
+f(t) = \sum_{u \ge 0} \sum_{v=0}^{\lfloor (t - u a)/b \rfloor} \binom{u+v}{u}
+$$
 
 Applying the **Hockey-Stick Identity** $\sum_{v=0}^V \binom{u+v}{u} = \binom{u + V + 1}{u + 1}$:
-$$f(t) = \sum_{u=0}^{\lfloor t / a \rfloor} \binom{u + \left\lfloor \frac{t - u a}{b} \right\rfloor + 1}{u + 1}$$
+
+$$
+f(t) = \sum_{u=0}^{\lfloor t / a \rfloor} \binom{u + \left\lfloor \frac{t - u a}{b} \right\rfloor + 1}{u + 1}
+$$
 
 1. For any candidate budget $t$, $f(t)$ is evaluated directly via a single 1D loop of length $\lfloor t / a \rfloor \le 80$ terms in $O(t/a)$ operations!
 2. Monotonicity of $f(t)$ allows finding the exact minimax cost $C(n, a, b)$ using $80$ steps of continuous bisection on $t$.

@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $n$ is $B$-trivisible if:
-$$\sum_{p \mid n, p \le B} p \equiv 0 \pmod 3$$
+
+$$
+\sum_{p \mid n, p \le B} p \equiv 0 \pmod 3
+$$
+
 where the sum runs over all distinct prime factors $p \le B$.
 $F(N, B)$ is the number of $B$-trivisible integers $\le N$.
 Given:

@@ -5,9 +5,18 @@
 For a positive integer $n$, $s(n)$ is obtained by cyclically shifting the leftmost decimal digit of $n$ to the rightmost position.
 For a rational $r > 0$, $N(r)$ is the smallest positive integer $n$ such that $s(n) = r \cdot n$ (or $0$ if no such integer exists).
 We define:
-$$T(M) = \sum_{\substack{1 \le u, v \le M \\ \gcd(u, v) = 1}} N\left(\frac{u^3}{v^3}\right)$$
+
+$$
+\begin{aligned}
+T(M) = \sum_{\substack{1 \le u, v \le M \\ \gcd(u, v) = 1}} N\left(\frac{u^3}{v^3}\right)
+\end{aligned}
+$$
+
 We seek to evaluate:
-$$T(200) \bmod 1\,000\,000\,007$$
+
+$$
+T(200) \bmod 1\,000\,000\,007
+$$
 
 We are given:
 - $N(3) = 142857$
@@ -31,10 +40,18 @@ For each rational $r$, searching through numbers $n$ up to millions of digits by
    Let $n = d \cdot 10^{k-1} + m$ with $0 \le m < 10^{k-1}$ and leading digit $d \in \{1, \dots, 9\}$.
    Then $s(n) = 10m + d$.
    Setting $s(n) = \frac{a}{b} n$ with $\gcd(a, b) = 1$ leads to:
-   $$b(10m + d) = a(d \cdot 10^{k-1} + m) \iff (10b - a)m = d(a \cdot 10^{k-1} - b)$$
+
+$$
+b(10m + d) = a(d \cdot 10^{k-1} + m) \iff (10b - a)m = d(a \cdot 10^{k-1} - b)
+$$
+
 2. **Exact Solution via Repunits**:
    Multiplying by 10 and setting $D = 10b - a$:
-   $$10m D = d(a \cdot 10^k - 10b) = d(a(10^k - 1) - D) \iff n = \frac{d \cdot b(10^k - 1)}{D}$$
+
+$$
+10m D = d(a \cdot 10^k - 10b) = d(a(10^k - 1) - D) \iff n = \frac{d \cdot b(10^k - 1)}{D}
+$$
+
 3. **Divisibility Condition**:
    $n$ is an integer if and only if $D \mid d \cdot b(10^k - 1)$.
    Letting $D' = \frac{D}{\gcd(D, d \cdot b)}$, we require $10^k \equiv 1 \pmod{D'}$.

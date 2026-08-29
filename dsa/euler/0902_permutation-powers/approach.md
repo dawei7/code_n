@@ -25,7 +25,11 @@ Find $P(100) \bmod (10^9 + 7)$.
 
 ### Linearity of Inversion Expectation
 By linearity of summation:
-$$P(m) = m! + \sum_{i=1}^n (n - i)! \sum_{j > i} \sum_{k=1}^{m!} \mathbb{I}(\pi^k(i) > \pi^k(j))$$
+
+$$
+P(m) = m! + \sum_{i=1}^n (n - i)! \sum_{j > i} \sum_{k=1}^{m!} \mathbb{I}(\pi^k(i) > \pi^k(j))
+$$
+
 The joint state $(\pi^k(i), \pi^k(j))$ is strictly periodic with period $T = \text{lcm}(L_i, L_j)$, which divides $m!$.
 
 ---
@@ -34,7 +38,11 @@ The joint state $(\pi^k(i), \pi^k(j))$ is strictly periodic with period $T = \te
 
 ### Modular Difference Precomputation $\mathcal{O}(L_a L_b)$
 As $k$ ranges from $0$ to $T - 1$, the indices $(p_a + k \bmod L_a, p_b + k \bmod L_b)$ visit precisely the set of pairs $(x, y) \in C_a \times C_b$ satisfying:
-$$x - y \equiv p_a - p_b \pmod{\gcd(L_a, L_b)}$$
+
+$$
+x - y \equiv p_a - p_b \pmod{\gcd(L_a, L_b)}
+$$
+
 For each pair of cycles $(C_a, C_b)$, we precompute the inversion histogram $K[d]$ for all $d \in [0, \gcd(L_a, L_b) - 1]$.
 Evaluating all pairs runs in $\mathcal{O}(n^2)$ total operations, completing in **3.01 seconds** in 100% pure Python.
 

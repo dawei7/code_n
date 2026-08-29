@@ -10,7 +10,10 @@ We are given:
 - $H(100) = 31248$
 
 We seek to evaluate:
-$$H(55106)$$
+
+$$
+H(55106)
+$$
 
 ---
 
@@ -26,12 +29,19 @@ Testing all integer 6-tuples $(a, b, c, d, e, f)$ satisfying perimeter $\sum \le
 ### Equiangular Boundary Vector System & $D_6$ Burnside Symmetries
 1. **Side Length Balance**:
    In an equiangular hexagon with internal angles $120^\circ$, opposite edges satisfy:
-   $$a + b = d + e, \quad b + c = e + f, \quad c + d = f + a$$
+
+$$
+a + b = d + e, \quad b + c = e + f, \quad c + d = f + a
+$$
+
 2. **Convexity & Positivity**:
    The side lengths must all be positive integers ($a, b, c, d, e, f \ge 1$), yielding a minimal perimeter of $6$ for the regular unit hexagon ($H(6)=1$).
 3. **Generating Function Closed Form**:
    Applying the cycle index of $D_6$ over the convex integer-sided parameter space and summing cumulatively over perimeter $\le n$ collapses into the coin-change partition generating function:
-   $$\sum_{m=0}^\infty H(m + 6) x^m = \frac{1}{(1-x)(1-x^2)(1-x^3)(1-x^4)(1-x^6)}$$
+
+$$
+\sum_{m=0}^\infty H(m + 6) x^m = \frac{1}{(1-x)(1-x^2)(1-x^3)(1-x^4)(1-x^6)}
+$$
 
 ---
 

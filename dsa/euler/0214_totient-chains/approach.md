@@ -9,12 +9,19 @@ A **totient chain** of length $k$ is an integer sequence $n_1, n_2, \dots, n_k$ 
 - $n_k = 1$
 
 For example, starting with $5$:
-$$5 \to 4 \to 2 \to 1$$
+
+$$
+5 \to 4 \to 2 \to 1
+$$
+
 This is a totient chain of length $4$.
 Also, $5$ is a prime and the sum of all primes less than $100$ which generate a totient chain of length $4$ is $12$ ($5 + 7 = 12$).
 
 Find the **sum of all primes less than $40\,000\,000$ which generate a totient chain of length $25$**:
-$$S(40000000, 25) = \sum \left\{ p \in \mathbb{P} \;\middle|\; p < 40\,000\,000 \land L(p) = 25 \right\}$$
+
+$$
+S(40000000, 25) = \sum \left\{ p \in \mathbb{P} \;\middle|\; p < 40\,000\,000 \land L(p) = 25 \right\}
+$$
 
 ---
 
@@ -31,10 +38,18 @@ def naive_totient_chains():
 ### Euler Totient Sieve with Forward Dynamic Programming
 1. **Euler Product Formula Sieve:**
    Compute $\phi(n)$ for all $n \in [1, 40\,000\,000)$ in $\mathcal{O}(M \log \log M)$ time using a 32-bit integer array:
-   $$\phi(n) = n \prod_{p \mid n} \left( 1 - \frac{1}{p} \right)$$
+
+$$
+\phi(n) = n \prod_{p \mid n} \left( 1 - \frac{1}{p} \right)
+$$
+
 2. **Chain Length Dynamic Programming:**
    Because $\phi(n) < n$ for all $n \ge 2$, the chain length $L(n)$ satisfies the DP recurrence:
-   $$L(1) = 1, \quad L(n) = 1 + L(\phi(n)) \quad (n \ge 2)$$
+
+$$
+L(1) = 1, \quad L(n) = 1 + L(\phi(n)) \quad (n \ge 2)
+$$
+
 3. **Simultaneous Single-Pass Evaluation:**
    In a single linear pass over $n = 2 \dots 39\,999\,999$:
    - Compute $L[n] = 1 + L[\phi[n]]$ using a 1-byte `bytearray`.
@@ -86,7 +101,10 @@ def solve(limit: int = 40000000, target_len: int = 25) -> int:
     return ans
 ```
 Evaluating for $M = 40000000, k = 25$:
-$$S(40000000, 25) = \mathbf{1\,677\,366\,278\,943}$$
+
+$$
+S(40000000, 25) = \mathbf{1\,677\,366\,278\,943}
+$$
 
 ---
 
@@ -99,7 +117,10 @@ $$S(40000000, 25) = \mathbf{1\,677\,366\,278\,943}$$
 
 ### Example 2: Target Evaluation for $M = 40\,000\,000, k = 25$
 - Sieve and DP chain length accumulation:
-  $$S(40000000, 25) = \mathbf{1\,677\,366\,278\,943}$$
+
+$$
+S(40000000, 25) = \mathbf{1\,677\,366\,278\,943}
+$$
 
 ---
 

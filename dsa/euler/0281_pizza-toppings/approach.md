@@ -23,7 +23,11 @@ A naive approach generates all permutations of the multiset of $m \times n$ topp
 ### Burnside's Lemma (Cauchy-Frobenius Lemma)
 Under the cyclic group $C_{mn}$ of order $mn$:
 By Burnside's Lemma, the number of distinct rotational equivalence classes is:
-$$f(m, n) = \frac{1}{mn} \sum_{d \mid n} \phi(d) \cdot \frac{(mn / d)!}{\left( (n / d)! \right)^m}$$
+
+$$
+f(m, n) = \frac{1}{mn} \sum_{d \mid n} \phi(d) \cdot \frac{(mn / d)!}{\left( (n / d)! \right)^m}
+$$
+
 where $d$ ranges over all common divisors of the rotational period that divide $n$!
 - For each divisor $d \mid n$:
   The permutation is invariant under rotation by $mn/d$ if and only if the coloring is formed by repeating a block of length $mn/d$ $d$ times, where each topping appears $n/d$ times in the base block.

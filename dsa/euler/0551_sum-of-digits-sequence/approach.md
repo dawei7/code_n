@@ -3,17 +3,27 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $a_0, a_1, \dots$ be the sequence defined by $a_0 = 1$ and for $n \ge 1$:
-$$a_n = \sum_{k=0}^{n-1} S(a_k)$$
+
+$$
+a_n = \sum_{k=0}^{n-1} S(a_k)
+$$
+
 where $S(x)$ is the sum of decimal digits of $x$.
 Equivalently, for $n \ge 1$:
-$$a_{n+1} = a_n + S(a_n)$$
+
+$$
+a_{n+1} = a_n + S(a_n)
+$$
 
 We are given:
 - The initial terms: $1, 1, 2, 4, 8, 16, 23, 28, 38, 49, \dots$
 - $a_{10^6} = 31054319$
 
 We seek to evaluate:
-$$a_{10^{15}}$$
+
+$$
+a_{10^{15}}
+$$
 
 ---
 

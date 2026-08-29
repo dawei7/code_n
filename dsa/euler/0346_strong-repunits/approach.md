@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $n$ is called a **strong repunit** if it is a repunit (a number written as a sequence of $1$s) in at least two different bases $b > 1$:
-$$n = \sum_{i=0}^{k-1} b^i = \frac{b^k - 1}{b - 1} \quad (k \ge 1, b \ge 2)$$
+
+$$
+n = \sum_{i=0}^{k-1} b^i = \frac{b^k - 1}{b - 1} \quad (k \ge 1, b \ge 2)
+$$
+
 We are given sample values:
 - Below $50$: $\{1, 7, 13, 15, 21, 31, 40, 43\}$ ($8$ numbers).
 - Sum of all strong repunits below $1000$ equals $15\,864$.
@@ -25,7 +29,11 @@ A naive approach tests every integer $n \in [1, 10^{12} - 1]$ by converting it t
 ### The Universal Length-2 Repunit Theorem
 For any integer $n \ge 3$:
 In base $b = n - 1$, the representation of $n$ is always:
-$$n = 1 \cdot (n - 1) + 1 = 11_{n-1}$$
+
+$$
+n = 1 \cdot (n - 1) + 1 = 11_{n-1}
+$$
+
 which is a 2-digit repunit in base $n - 1$.
 Furthermore, $n = 1$ is trivially $1_b$ for all $b \ge 2$.
 Therefore:
@@ -33,7 +41,10 @@ Therefore:
 Consequently, $n$ is a strong repunit if and only if:
 1. $n = 1$; OR
 2. $n$ can be expressed as a repunit of **length $k \ge 3$** in some base $b \ge 2$:
-   $$n = 1 + b + b^2 + \dots + b^{k-1} \quad (k \ge 3, b \ge 2)$$
+
+$$
+n = 1 + b + b^2 + \dots + b^{k-1} \quad (k \ge 3, b \ge 2)
+$$
 
 ---
 
@@ -41,7 +52,11 @@ Consequently, $n$ is a strong repunit if and only if:
 
 ### Generator Loops & Hash Set Deduping
 1. For $k = 3$:
-   $$1 + b + b^2 < 10^{12} \implies b < \sqrt{10^{12}} = 10^6$$
+
+$$
+1 + b + b^2 < 10^{12} \implies b < \sqrt{10^{12}} = 10^6
+$$
+
    Iterate base $b \in [2, 10^6 - 1]$.
 2. For each base $b$:
    - Compute the length-3 repunit $1 + b + b^2$.

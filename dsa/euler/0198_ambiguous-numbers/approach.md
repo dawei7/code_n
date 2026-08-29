@@ -8,10 +8,16 @@ Usually the best approximation for a given denominator bound is unique, but some
 We call a real number $x$ **ambiguous** if there is some denominator bound for which $x$ has two distinct best approximations with denominator $\le 10^8$.
 
 This occurs iff $x$ is the **midpoint of two consecutive Farey fractions** $\frac{p_0}{q_0} < \frac{p_1}{q_1}$ with $p_1 q_0 - p_0 q_1 = 1$ and $2 q_0 q_1 \le 10^8$:
-$$x = \frac{p_0 q_1 + p_1 q_0}{2 q_0 q_1} \in \left(0, \frac{1}{100}\right)$$
+
+$$
+x = \frac{p_0 q_1 + p_1 q_0}{2 q_0 q_1} \in \left(0, \frac{1}{100}\right)
+$$
 
 The objective is to find the **number of ambiguous numbers $x \in \left(0, \frac{1}{100}\right)$ with denominator $2 q_0 q_1 \le 10^8$**:
-$$A(10^8) = \text{number of valid Farey midpoints in } (0, 1/100)$$
+
+$$
+A(10^8) = \text{number of valid Farey midpoints in } (0, 1/100)
+$$
 
 ---
 
@@ -82,7 +88,10 @@ def solve(limit: int = 10**8) -> int:
     return total
 ```
 Evaluating for $N = 10^8$:
-$$A(10^8) = \mathbf{52\,374\,425}$$
+
+$$
+A(10^8) = \mathbf{52\,374\,425}
+$$
 
 ---
 
@@ -95,7 +104,10 @@ $$A(10^8) = \mathbf{52\,374\,425}$$
 
 ### Example 2: Target Evaluation for $N = 10^8$
 - Accelerated traversal of Stern-Brocot subtree rooted at $(1, 100)$:
-  $$A(10^8) = 49 + 52\,374\,376 = \mathbf{52\,374\,425}$$
+
+$$
+A(10^8) = 49 + 52\,374\,376 = \mathbf{52\,374\,425}
+$$
 
 ---
 

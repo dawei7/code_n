@@ -26,10 +26,17 @@ Computing the determinant of a $50\,000 \times 50\,000$ Laplacian matrix via Gau
 
 ### Graph Spectrum of Cartesian Products
 By **Kirchhoff's Matrix Tree Theorem**, the number of spanning trees of a connected graph $G$ with Laplacian eigenvalues $0 = \lambda_0 < \lambda_1 \le \dots \le \lambda_{V-1}$ is:
-$$C(G) = \frac{1}{|V|} \prod_{i=1}^{V-1} \lambda_i$$
+
+$$
+C(G) = \frac{1}{|V|} \prod_{i=1}^{V-1} \lambda_i
+$$
 
 For the Cartesian product $G = P_m \square P_n$, the Laplacian eigenvalues are the pairwise sums of the 1D path graph Laplacian eigenvalues:
-$$\mu_{j, k} = \lambda_j(P_m) + \lambda_k(P_n) = 4 \sin^2\left(\frac{j \pi}{2 m}\right) + 4 \sin^2\left(\frac{k \pi}{2 n}\right)$$
+
+$$
+\mu_{j, k} = \lambda_j(P_m) + \lambda_k(P_n) = 4 \sin^2\left(\frac{j \pi}{2 m}\right) + 4 \sin^2\left(\frac{k \pi}{2 n}\right)
+$$
+
 for $(j, k) \in \{0, \dots, m-1\} \times \{0, \dots, n-1\}$.
 
 ---
@@ -38,10 +45,18 @@ for $(j, k) \in \{0, \dots, m-1\} \times \{0, \dots, n-1\}$.
 
 ### Closed-Form Logarithmic Product Formula
 The number of spanning trees is:
-$$C(m, n) = \frac{4^{m n - 1}}{m n} \prod_{\substack{j=0 \dots m-1, \; k=0 \dots n-1 \\ (j, k) \ne (0, 0)}} \left[ \sin^2\left(\frac{j \pi}{2 m}\right) + \sin^2\left(\frac{k \pi}{2 n}\right) \right]$$
+
+$$
+\begin{aligned}
+C(m, n) = \frac{4^{m n - 1}}{m n} \prod_{\substack{j=0 \dots m-1, \; k=0 \dots n-1 \\ (j, k) \ne (0, 0)}} \left[ \sin^2\left(\frac{j \pi}{2 m}\right) + \sin^2\left(\frac{k \pi}{2 n}\right) \right]
+\end{aligned}
+$$
 
 Taking the logarithm base 10:
-$$\log_{10} C(m, n) = (m n - 1) \log_{10}(4) - \log_{10}(m n) + \sum_{(j, k) \ne (0, 0)} \log_{10}\left( \sin^2\left(\frac{j \pi}{2 m}\right) + \sin^2\left(\frac{k \pi}{2 n}\right) \right)$$
+
+$$
+\log_{10} C(m, n) = (m n - 1) \log_{10}(4) - \log_{10}(m n) + \sum_{(j, k) \ne (0, 0)} \log_{10}\left( \sin^2\left(\frac{j \pi}{2 m}\right) + \sin^2\left(\frac{k \pi}{2 n}\right) \right)
+$$
 
 For $m = 100, n = 500$:
 The double sum has only $50\,000$ terms and evaluates in $O(m n) \approx 0.01$ seconds!

@@ -7,7 +7,10 @@ Let $\mathbf{T}$ denote a 100-row triangular grid of positive integers, where ce
 A valid path starts at the top apex $(0, 0)$ and moves to adjacent numbers in the row below, choosing at each step between $(r+1, c)$ and $(r+1, c+1)$.
 
 The objective is to find the maximum total path sum from top to bottom of `triangle.txt`:
-$$S_{\text{max}} = \max_{\mathbf{P}} \sum_{i=0}^{R-1} T_{i, c_i} \quad \text{where } c_0 = 0 \text{ and } c_{i+1} \in \{c_i, c_i + 1\}$$
+
+$$
+S_{\text{max}} = \max_{\mathbf{P}} \sum_{i=0}^{R-1} T_{i, c_i} \quad \text{where } c_0 = 0 \text{ and } c_{i+1} \in \{c_i, c_i + 1\}
+$$
 
 ---
 
@@ -31,7 +34,10 @@ def naive_max_path_sum():
 
 ### Bottom-Up Dynamic Programming Formulation
 Let $DP[r][c]$ be the maximum path sum from cell $(r, c)$ down to the base row $R-1$:
-$$DP[r][c] = \begin{cases} T_{r, c} & \text{if } r = R - 1 \\ T_{r, c} + \max(DP[r+1][c], \, DP[r+1][c+1]) & \text{if } 0 \le r < R - 1 \end{cases}$$
+
+$$
+DP[r][c] = \begin{cases} T_{r, c} & \text{if } r = R - 1 \\ T_{r, c} + \max(DP[r+1][c], \, DP[r+1][c+1]) & \text{if } 0 \le r < R - 1 \end{cases}
+$$
 
 ### Triangle In-Place Collapse Progression
 
@@ -50,7 +56,11 @@ $$DP[r][c] = \begin{cases} T_{r, c} & \text{if } r = R - 1 \\ T_{r, c} + \max(DP
 1. Parse the 100 rows of integers into a 2D list `grid`.
 2. For $r = 98, 97, \dots, 0$:
    - For $c = 0 \dots r$:
-     $$\text{grid}[r][c] \leftarrow \text{grid}[r][c] + \max(\text{grid}[r+1][c], \, \text{grid}[r+1][c+1])$$
+
+$$
+\text{grid}[r][c] \leftarrow \text{grid}[r][c] + \max(\text{grid}[r+1][c], \, \text{grid}[r+1][c+1])
+$$
+
 3. The value remaining at $\text{grid}[0][0]$ is the global maximum path sum.
 
 ---
@@ -58,12 +68,15 @@ $$DP[r][c] = \begin{cases} T_{r, c} & \text{if } r = R - 1 \\ T_{r, c} + \max(DP
 ## 5. Concrete Step-by-Step Example Walkthrough
 
 ### Example 1: Trace for 4-Row Sample Triangle
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 &&& \mathbf{3} &&& \\
 && 7 && 4 && \\
 & 2 && 4 && 6 & \\
 8 && 5 && 9 && 3
-\end{matrix}$$
+\end{matrix}
+$$
 
 - **Row 2 (Collapsing Row 3):**
   - $c=0: 2 + \max(8, 5) = 2 + 8 = \mathbf{10}$
@@ -78,7 +91,10 @@ $$\begin{matrix}
 
 ### Example 2: Target 100-Row Triangle
 - Collapsing `triangle.txt` from row 98 down to row 0:
-  $$S_{\text{max}} = \mathbf{7273}$$
+
+$$
+S_{\text{max}} = \mathbf{7273}
+$$
 
 ---
 

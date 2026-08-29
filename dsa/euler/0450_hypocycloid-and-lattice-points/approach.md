@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A hypocycloid with large radius $R$ and small radius $r$ is parameterized by:
-$$x(t) = (R - r)\cos(t) + r\cos\left(\frac{R - r}{r} t\right)$$
 
-$$y(t) = (R - r)\sin(t) - r\sin\left(\frac{R - r}{r} t\right)$$
+$$
+x(t) = (R - r)\cos(t) + r\cos\left(\frac{R - r}{r} t\right)
+$$
+
+$$
+y(t) = (R - r)\sin(t) - r\sin\left(\frac{R - r}{r} t\right)
+$$
+
 Let $C(R, r)$ be the set of distinct points $(x, y) \in \mathbb{Z}^2$ occurring at parameter values $t$ with $\sin(t), \cos(t) \in \mathbb{Q}$.
 Let $S(R, r) = \sum_{(x, y) \in C(R, r)} (|x| + |y|)$.
 Define:
-$$T(N) = \sum_{R=3}^N \sum_{r=1}^{\lfloor (R-1)/2 \rfloor} S(R, r)$$
+
+$$
+T(N) = \sum_{R=3}^N \sum_{r=1}^{\lfloor (R-1)/2 \rfloor} S(R, r)
+$$
 
 We are given:
 - $T(3) = 10$
@@ -33,7 +42,11 @@ For $N = 10^6$, there are $\approx \frac{N^2}{4} \approx 2.5 \times 10^{11}$ pai
 ### Parameter Substitution & Complex Representation
 Let $A = R - r$ and $B = r$, so $R = A + B$ with $A > B \ge 1$.
 In complex notation:
-$$z(t) = A e^{i t} + B e^{-i \frac{A}{B} t}$$
+
+$$
+z(t) = A e^{i t} + B e^{-i \frac{A}{B} t}
+$$
+
 Let $d = \gcd(A, B)$ and $A = d A', B = d B'$ with $\gcd(A', B') = 1$.
 Then $z(t) = d [ A' e^{i t} + B' e^{-i \frac{A'}{B'} t} ]$.
 For $\cos(t), \sin(t) \in \mathbb{Q}$, $e^{it}$ must be a rational point on the unit circle:
@@ -51,9 +64,17 @@ $e^{it} = \frac{a + ib}{c}$ for some primitive Pythagorean triple $(a, b, c)$ wi
 ### Dual-Channel Decomposition (Möbius Inversion + Gaussian Exponentiation)
 1. **Axis Component $T_{\text{axis}}(N)$**:
    Using Region sums $G_A, G_B, H_B, K_B$ over the triangular domain $a > b, a+b \le m$:
-   $$f(m) = 4 S_A(m) + 2 S_B(m) + 2 P_2(m) - 4 P_4(m)$$
+
+$$
+f(m) = 4 S_A(m) + 2 S_B(m) + 2 P_2(m) - 4 P_4(m)
+$$
+
    where each term is evaluated via weighted Möbius floor-division blocking:
-   $$\sum_{d=1}^m \mu(d) \cdot d \cdot \text{BaseFunc}\left(\left\lfloor \frac{m}{d} \right\rfloor\right)$$
+
+$$
+\sum_{d=1}^m \mu(d) \cdot d \cdot \text{BaseFunc}\left(\left\lfloor \frac{m}{d} \right\rfloor\right)
+$$
+
 2. **Non-Axis Component $T_{\text{non-axis}}(N)$**:
    For each small $A' \in [2, 12]$ and coprime $B' < A'$:
    - Generate all primitive Pythagorean triples $(a, b, c)$ with $c^{A'} \le N$.

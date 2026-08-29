@@ -5,13 +5,19 @@
 Let $\Omega(n)$ denote the total number of prime factors of $n$ with multiplicity.
 Consider all positive integers $n$ with $\Omega(n) \ge K = 10^6$.
 When sorted in strictly ascending order:
-$$32, 48, 64, 72, 80, 96, \dots$$
+
+$$
+32, 48, 64, 72, 80, 96, \dots
+$$
 
 We are given:
 - The 5th number with $\Omega(n) \ge 5$ is $80$.
 
 We seek to evaluate:
-$$\text{The } 10^6\text{-th number with } \Omega(n) \ge 10^6 \pmod{123454321}$$
+
+$$
+\text{The } 10^6\text{-th number with } \Omega(n) \ge 10^6 \pmod{123454321}
+$$
 
 ---
 
@@ -27,13 +33,25 @@ Numbers with $10^6$ prime factors exceed $2^{10^6} \approx 10^{301030}$, which c
 ### Logarithmic Odd-Part Transformation
 1. **Factor 2 Normalization**:
    Every integer with $\Omega(n) \ge K$ can be written uniquely as:
-   $$n = 2^{K - \Omega(u) + j} \cdot u$$
+
+$$
+n = 2^{K - \Omega(u) + j} \cdot u
+$$
+
    where $u$ is an odd squarefree/prime-power product and $j \ge 0$.
 2. **Log-Ratio Cost Metric**:
    Dividing $n$ by $2^K$:
-   $$\frac{n}{2^K} = 2^j \prod_{p > 2} \left(\frac{p}{2}\right)^{e_p}$$
+
+$$
+\frac{n}{2^K} = 2^j \prod_{p > 2} \left(\frac{p}{2}\right)^{e_p}
+$$
+
    Taking binary logarithms:
-   $$\log_2(n) - K = j + \sum_{p > 2} e_p \log_2\left(\frac{p}{2}\right) = j + \operatorname{cost}(u)$$
+
+$$
+\log_2(n) - K = j + \sum_{p > 2} e_p \log_2\left(\frac{p}{2}\right) = j + \operatorname{cost}(u)
+$$
+
    where $\operatorname{cost}(p) = \log_2(p/2) \ge \log_2(1.5) > 0$.
 
 ---
@@ -51,7 +69,10 @@ Numbers with $10^6$ prime factors exceed $2^{10^6} \approx 10^{301030}$, which c
    Sort the resulting $1.55 \times 10^6$ items by float cost in $O(M \log M)$.
 4. **Target Modulo Recovery**:
    Extract the $10^6$-th item $(j^*, u^*, \Omega^*)$ and evaluate:
-   $$n^* \equiv 2^{K - \Omega^* + j^*} \cdot u^* \pmod{123454321}$$
+
+$$
+n^* \equiv 2^{K - \Omega^* + j^*} \cdot u^* \pmod{123454321}
+$$
 
 This evaluates the exact answer in **$\approx 0.78$ seconds** in pure Python!
 

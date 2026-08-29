@@ -13,7 +13,10 @@ We are given:
 - $\sum_{n=4}^{150} f(U_n) = 234761$
 
 We seek to evaluate:
-$$\sum_{n=4}^{3\,000\,000} f(U_n)$$
+
+$$
+\sum_{n=4}^{3\,000\,000} f(U_n)
+$$
 
 ---
 
@@ -29,7 +32,11 @@ At each step $n$, testing $\binom{n}{4}$ quadruples takes $O(n^4)$, yielding $> 
 ### Brahmagupta's Formula & Consecutive Quadruples
 1. **Cyclic Quadrilateral Maximum**:
    For any 4 side lengths $a \le b \le c \le d$, the maximum area is achieved when the quadrilateral is cyclic:
-   $$\text{Area}^2 = (s - a)(s - b)(s - c)(s - d), \quad s = \frac{a + b + c + d}{2}$$
+
+$$
+\text{Area}^2 = (s - a)(s - b)(s - c)(s - d), \quad s = \frac{a + b + c + d}{2}
+$$
+
    subject to the strict polygon inequality $d < a + b + c$.
 2. **Monotonicity & Local Quadruples**:
    To maximize $(s - a)(s - b)(s - c)(s - d)$, we must choose elements that are as large and as close to each other as possible.

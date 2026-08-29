@@ -6,7 +6,10 @@ A positive integer $d$ is **cube-full** if for every prime $p \mid d$, we also h
 
 Let $s(n)$ be the number of cube-full divisors of $n$.
 Define:
-$$S(N) = \sum_{n=1}^N s(n)$$
+
+$$
+S(N) = \sum_{n=1}^N s(n)
+$$
 
 We are given:
 - $S(16) = 19$
@@ -14,7 +17,10 @@ We are given:
 - $S(10\,000) = 13344$
 
 We seek to evaluate:
-$$S(10^{18})$$
+
+$$
+S(10^{18})
+$$
 
 ---
 
@@ -30,7 +36,13 @@ Factoring every integer up to $10^{18}$ requires $> 10^{18}$ operations, which i
 ### Divisor Counting Inversion & Bounded Prime Power Search
 1. **Summation Swap (Hyperbola Method)**:
    By swapping the order of summation over divisors:
-   $$S(N) = \sum_{n=1}^N \sum_{\substack{d \mid n \\ d \text{ is cube-full}}} 1 = \sum_{\substack{d \le N \\ d \text{ is cube-full}}} \left\lfloor \frac{N}{d} \right\rfloor$$
+
+$$
+\begin{aligned}
+S(N) = \sum_{n=1}^N \sum_{\substack{d \mid n \\ d \text{ is cube-full}}} 1 = \sum_{\substack{d \le N \\ d \text{ is cube-full}}} \left\lfloor \frac{N}{d} \right\rfloor
+\end{aligned}
+$$
+
 2. **Sparsity of Cube-Full Numbers**:
    A cube-full integer has prime factorization $d = \prod p_i^{e_i}$ where each $e_i \ge 3$.
    Every prime factor satisfies $p_i \le N^{1/3} = (10^{18})^{1/3} = 10^6$.

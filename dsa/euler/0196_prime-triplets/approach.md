@@ -17,7 +17,10 @@ Let $S(n)$ denote the sum of all primes in row $n$ that belong to a prime triple
 - For $n = 9$: $S(9) = 37$.
 
 The objective is to find **$S(5678027) + S(7208785)$**:
-$$S_{\text{total}} = S(5678027) + S(7208785)$$
+
+$$
+S_{\text{total}} = S(5678027) + S(7208785)
+$$
 
 ---
 
@@ -66,9 +69,16 @@ def naive_prime_triplets():
 ### Master Triplet Degree Condition
 Let $\operatorname{deg}(r, c)$ denote the number of 8-adjacent prime neighbors of $(r, c)$.
 A prime $p$ at $(n, c)$ on row $n$ belongs to a prime triplet iff:
-$$\operatorname{deg}(n, c) \ge 2 \quad \lor \quad \exists (r', c') \in \operatorname{Neigh}(n, c) \text{ such that } p(r', c') \text{ is prime} \land \operatorname{deg}(r', c') \ge 2$$
+
+$$
+\operatorname{deg}(n, c) \ge 2 \quad \lor \quad \exists (r', c') \in \operatorname{Neigh}(n, c) \text{ such that } p(r', c') \text{ is prime} \land \operatorname{deg}(r', c') \ge 2
+$$
+
 Evaluating for $n_1 = 5678027$ and $n_2 = 7208785$:
-$$S(5678027) + S(7208785) = \mathbf{322\,303\,240\,771\,079\,935}$$
+
+$$
+S(5678027) + S(7208785) = \mathbf{322\,303\,240\,771\,079\,935}
+$$
 
 ---
 
@@ -92,7 +102,10 @@ $$S(5678027) + S(7208785) = \mathbf{322\,303\,240\,771\,079\,935}$$
 
 ### Example 3: Target Sum for $n_1 = 5678027, n_2 = 7208785$
 - S(5678027) + S(7208785):
-  $$S_{\text{total}} = \mathbf{322\,303\,240\,771\,079\,935}$$
+
+$$
+S_{\text{total}} = \mathbf{322\,303\,240\,771\,079\,935}
+$$
 
 ---
 

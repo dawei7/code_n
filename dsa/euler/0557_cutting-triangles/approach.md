@@ -14,7 +14,10 @@ We are given:
 - $S(20) = 259$
 
 We seek to evaluate:
-$$S(10000)$$
+
+$$
+S(10000)
+$$
 
 ---
 
@@ -30,12 +33,23 @@ Testing all combinations $(a, b, c, d)$ with $a+b+c+d \le 10000$ requires over $
 ### Cevian Ratio Geometry & Area Decomposition
 1. **Geometric Relation**:
    By Menelaus' and Ceva's area theorems on intersecting cevians:
-   $$T = a + b + c + d = \frac{a(a + b)(a + c)}{a^2 - b c}$$
-   $$d = \frac{b c (2a + b + c)}{a^2 - b c}$$
+
+$$
+T = a + b + c + d = \frac{a(a + b)(a + c)}{a^2 - b c}
+$$
+
+$$
+d = \frac{b c (2a + b + c)}{a^2 - b c}
+$$
+
 2. **$(s, a, d)$ Reparameterization**:
    Let $s = T + a = 2a + b + c + d$.
    Then the area relation linearizes to:
-   $$b c = \frac{a^2 d}{s}, \quad b + c = s - 2a - d$$
+
+$$
+b c = \frac{a^2 d}{s}, \quad b + c = s - 2a - d
+$$
+
 3. **Quadratic Realization**:
    $b, c$ are the roots of the quadratic $X^2 - (b+c) X + bc = 0$.
    Therefore, $(b+c)^2 - 4bc$ must be a perfect square $\Delta^2$ with $b = \frac{(b+c) - \Delta}{2} \ge 1$.

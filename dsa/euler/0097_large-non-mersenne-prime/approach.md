@@ -5,10 +5,16 @@
 The first known prime found to exceed one million digits was discovered in 1999, and is a Mersenne prime of the form $2^{6972593} - 1$; it contains exactly $2\,098\,960$ digits. Subsequently other Mersenne primes, of the form $2^p - 1$, have been found which contain more digits.
 
 However, in 2004 there was found a massive non-Mersenne prime which contains $2\,357\,207$ digits:
-$$N = 28433 \times 2^{7830457} + 1$$
+
+$$
+N = 28433 \times 2^{7830457} + 1
+$$
 
 The objective is to find the **last ten digits** of this prime number:
-$$R_{\text{last10}} = \left( 28433 \times 2^{7830457} + 1 \right) \bmod 10^{10}$$
+
+$$
+R_{\text{last10}} = \left( 28433 \times 2^{7830457} + 1 \right) \bmod 10^{10}
+$$
 
 ---
 
@@ -25,7 +31,11 @@ def naive_large_prime():
 ### Binary Exponentiation Modulo $10^{10}$
 1. The last 10 decimal digits of any integer expression depend ONLY on intermediate values computed modulo $10^{10}$.
 2. By binary exponentiation (exponentiation by squaring):
-   $$\lfloor \log_2(7830457) \rfloor + 1 = 23 \text{ modular multiplications}$$
+
+$$
+\lfloor \log_2(7830457) \rfloor + 1 = 23 \text{ modular multiplications}
+$$
+
 3. All intermediate values remain strictly below $10^{10} \times 10^{10} = 10^{20}$, fitting in 64-bit integer registers and evaluating in $\approx 0.0001$ seconds.
 
 ---
@@ -34,7 +44,9 @@ def naive_large_prime():
 
 ### Binary Representation of Exponent $E = 7\,830\,457$
 
-$$7830457_{10} = 11101110111101110111001_2$$
+$$
+7830457_{10} = 11101110111101110111001_2
+$$
 
 | Step $k$ | Exponent Bit | Base $2^{2^k} \bmod 10^{10}$ | Accumulated Power $\bmod 10^{10}$ |
 | :---: | :---: | :--- | :--- |
@@ -51,11 +63,22 @@ $$7830457_{10} = 11101110111101110111001_2$$
 
 ### Modular Reduction Steps
 1. Power term evaluation:
-   $$P = 2^{7830457} \bmod 10^{10} = 8\,739\,992\,576$$
+
+$$
+P = 2^{7830457} \bmod 10^{10} = 8\,739\,992\,576
+$$
+
 2. Linear combination:
-   $$28433 \times P + 1 = 28433 \times 8\,739\,992\,576 + 1 = 248\,504\,208\,913\,409$$
+
+$$
+28433 \times P + 1 = 28433 \times 8\,739\,992\,576 + 1 = 248\,504\,208\,913\,409
+$$
+
 3. Taking the last 10 digits:
-   $$R_{\text{last10}} = 248\,504\,208\,913\,409 \bmod 10^{10} = \mathbf{8\,739\,992\,577}$$
+
+$$
+R_{\text{last10}} = 248\,504\,208\,913\,409 \bmod 10^{10} = \mathbf{8\,739\,992\,577}
+$$
 
 ---
 
@@ -69,7 +92,10 @@ $$7830457_{10} = 11101110111101110111001_2$$
 - $2^{7830457} \equiv 8\,739\,992\,576 \pmod{10^{10}}$.
 - $(28433 \times 8\,739\,992\,576 + 1) \bmod 10^{10} = \mathbf{8\,739\,992\,577}$.
 - Last ten digits:
-  $$R_{\text{last10}} = \mathbf{8739992577}$$
+
+$$
+R_{\text{last10}} = \mathbf{8739992577}
+$$
 
 ---
 

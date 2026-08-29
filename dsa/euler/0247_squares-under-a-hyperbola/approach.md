@@ -30,11 +30,19 @@ def naive_squares():
 ### Exact Cutoff Binary Tree Pruning
 1. **Algebraic Side Formula:**
    A square with bottom-left corner $(x_0, y_0)$ and side $s$ touches $(x_0 + s)(y_0 + s) = 1$:
-   $$s^2 + (x_0 + y_0)s + (x_0 y_0 - 1) = 0 \implies s = \frac{-(x_0 + y_0) + \sqrt{(x_0 - y_0)^2 + 4}}{2}$$
+
+$$
+s^2 + (x_0 + y_0)s + (x_0 y_0 - 1) = 0 \implies s = \frac{-(x_0 + y_0) + \sqrt{(x_0 - y_0)^2 + 4}}{2}
+$$
+
 2. **Deterministic Threshold $s_{\min}$:**
    Any square with index $(3, 3)$ is reached by a path of $3$ right moves and $3$ top moves ($\binom{6}{3} = 20$ paths total).
    Evaluating all $20$ paths gives the minimum side length of any $(3, 3)$ square:
-   $$s_{\min} \approx 0.0008013766$$
+
+$$
+s_{\min} \approx 0.0008013766
+$$
+
 3. **Exact Global Node Count:**
    Since squares are placed in strictly decreasing order of side length, the final $(3, 3)$ square is placed at index equal to the total number of squares in the infinite binary tree having $s \ge s_{\min}$.
    Traversing the pruned tree via an explicit stack counts all valid nodes in $\approx 0.5$ seconds.
@@ -83,7 +91,10 @@ def solve(target_left: int = 3, target_below: int = 3) -> int:
 ```
 
 Evaluating for $(\text{left}, \text{below}) = (3, 3)$:
-$$\text{Largest } n = \mathbf{782\,252}$$
+
+$$
+\text{Largest } n = \mathbf{782\,252}
+$$
 
 ---
 
@@ -95,13 +106,19 @@ $$\text{Largest } n = \mathbf{782\,252}$$
   2. Top then Right: $(1.0, 0) \to (1.0, 0.6180) \to (1.4142, 0.6180)$.
 - Minimum side length for $(1, 1)$: $s_{\min} \approx 0.1408$.
 - Counting all nodes with $s \ge s_{\min}$:
-  $$\text{Total count} = \mathbf{50} \quad (\checkmark \text{ matches sample!})$$
+
+$$
+\text{Total count} = \mathbf{50} \quad (\checkmark \text{ matches sample!})
+$$
 
 ### Example 2: Target Evaluation for Index $(3, 3)$
 - Target $(3, 3)$ has $\binom{6}{3} = 20$ paths.
 - Minimum side length: $s_{\min} \approx 0.0008013766$.
 - Counting all nodes in binary tree with $s \ge s_{\min}$:
-  $$\text{Largest } n = \mathbf{782\,252}$$
+
+$$
+\text{Largest } n = \mathbf{782\,252}
+$$
 
 ---
 

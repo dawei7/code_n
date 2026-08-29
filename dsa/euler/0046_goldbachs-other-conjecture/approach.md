@@ -3,12 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Christian Goldbach proposed the conjecture that every odd composite number $N$ can be expressed in the form:
-$$N = p + 2k^2 \quad \text{where } p \in \mathbb{P} \text{ and } k \in \mathbb{N}$$
+
+$$
+N = p + 2k^2 \quad \text{where } p \in \mathbb{P} \text{ and } k \in \mathbb{N}
+$$
 
 The conjecture is known to be false.
 
 The objective is to find the smallest odd composite number $N$ that cannot be written as the sum of a prime and twice a square:
-$$N_{\text{min}} = \min \{ N \in 2\mathbb{N}+1 \setminus \mathbb{P} \mid \forall k \in \mathbb{N} \text{ with } 2k^2 < N, \, N - 2k^2 \notin \mathbb{P} \}$$
+
+$$
+N_{\text{min}} = \min \{ N \in 2\mathbb{N}+1 \setminus \mathbb{P} \mid \forall k \in \mathbb{N} \text{ with } 2k^2 < N, \, N - 2k^2 \notin \mathbb{P} \}
+$$
 
 ---
 
@@ -72,7 +78,10 @@ def naive_goldbach_other():
   - $k=53: 5777 - 2(2809) = 5777 - 5618 = 159 = 3 \times 53$
 - None of the 53 values is prime.
 - Smallest Counterexample:
-  $$N_{\text{min}} = \mathbf{5777}$$
+
+$$
+N_{\text{min}} = \mathbf{5777}
+$$
 
 ---
 

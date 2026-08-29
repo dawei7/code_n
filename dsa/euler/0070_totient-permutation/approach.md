@@ -8,7 +8,12 @@ For example, $n = 87\,109 \implies \phi(87109) = 79\,180$. Notice that $87\,109$
 Let $\operatorname{sig}(x) = \operatorname{sort\_digits}(x)$ denote the sorted tuple of decimal digits of $x$.
 
 The objective is to find the value of $n < 10^7$ for which $\phi(n)$ is a permutation of $n$ and the ratio $\frac{n}{\phi(n)}$ is **minimized**:
-$$n_{\text{opt}} = \operatorname*{arg\,min}_{\substack{1 < n < 10^7 \\ \operatorname{sig}(\phi(n)) = \operatorname{sig}(n)}} \frac{n}{\phi(n)}$$
+
+$$
+\begin{aligned}
+n_{\text{opt}} = \operatorname*{arg\,min}_{\substack{1 < n < 10^7 \\ \operatorname{sig}(\phi(n)) = \operatorname{sig}(n)}} \frac{n}{\phi(n)}
+\end{aligned}
+$$
 
 ---
 
@@ -24,7 +29,11 @@ def naive_totient_permutation():
 
 ### The 2-Prime Factorization Property
 Recall:
-$$\frac{n}{\phi(n)} = \prod_{p \mid n} \frac{p}{p - 1}$$
+
+$$
+\frac{n}{\phi(n)} = \prod_{p \mid n} \frac{p}{p - 1}
+$$
+
 1. To **minimize** $\frac{n}{\phi(n)}$ (making it as close to 1 as possible):
    - A single prime $n = p$ gives $\phi(p) = p - 1$. However, $p$ (which is odd) and $p-1$ (which is even) differ in trailing parity, and $p$ can never be a digit permutation of $p-1$.
    - A number with 3 or more prime factors produces larger ratios.
@@ -76,9 +85,16 @@ $$\frac{n}{\phi(n)} = \prod_{p \mid n} \frac{p}{p - 1}$$
 - Digits of $n$: `['1', '2', '3', '3', '8', '8', '9']`.
 - Digits of $\phi(n)$: `['1', '2', '3', '3', '8', '8', '9']`.
 - Ratio:
-  $$\frac{n}{\phi(n)} = \frac{8319823}{8313928} \approx \mathbf{1.00070903}$$
+
+$$
+\frac{n}{\phi(n)} = \frac{8319823}{8313928} \approx \mathbf{1.00070903}
+$$
+
 - Optimal Integer:
-  $$n_{\text{opt}} = \mathbf{8\,319\,823}$$
+
+$$
+n_{\text{opt}} = \mathbf{8\,319\,823}
+$$
 
 ---
 

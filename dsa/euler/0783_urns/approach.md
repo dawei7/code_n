@@ -9,7 +9,11 @@ Over $n$ consecutive turns $t = 1, \dots, n$:
 
 Let $B_t$ be the number of black balls removed on turn $t$.
 We seek to evaluate:
-$$E(n, k) = \mathbb{E}\left[ \sum_{t=1}^n B_t^2 \right]$$
+
+$$
+E(n, k) = \mathbb{E}\left[ \sum_{t=1}^n B_t^2 \right]
+$$
+
 for $n = 10^6, k = 10$, rounded to the nearest integer.
 
 We are given:
@@ -31,15 +35,32 @@ At turn $t$, the urn can contain up to $kt$ black balls. Tracking the exact prob
    At turn $t$, let $X_t$ be the black ball count before adding $k$ black balls, and $Y_t = X_t + k$ be the black ball count after addition.
    Given $Y_t$ and population size $M_t = k(n - t + 2)$, drawing $m = 2k$ balls gives a hypergeometric random variable $B_t \sim \operatorname{Hypergeometric}(M_t, Y_t, m)$.
    The conditional first and second moments are exact polynomials in $Y_t$:
-   $$\mathbb{E}[B_t \mid Y_t] = \frac{m}{M_t} Y_t$$
-   $$\mathbb{E}[B_t^2 \mid Y_t] = c_1 Y_t + c_2 Y_t^2$$
+
+$$
+\mathbb{E}[B_t \mid Y_t] = \frac{m}{M_t} Y_t
+$$
+
+$$
+\mathbb{E}[B_t^2 \mid Y_t] = c_1 Y_t + c_2 Y_t^2
+$$
+
    where $c_1 = \frac{m(M_t - m)}{M_t(M_t - 1)}$ and $c_2 = \frac{m(m - 1)}{M_t(M_t - 1)}$.
 2. **Deterministic Second-Moment Evolution**:
    By iterated expectations, we only need to track two scalar values:
-   $$\mu_t = \mathbb{E}[X_t], \quad s_t = \mathbb{E}[X_t^2]$$
+
+$$
+\mu_t = \mathbb{E}[X_t], \quad s_t = \mathbb{E}[X_t^2]
+$$
+
    After removing $B_t$, the remaining black count $X_{t+1} = Y_t - B_t$ has:
-   $$\mu_{t+1} = \frac{M_t - m}{M_t} \mathbb{E}[Y_t]$$
-   $$s_{t+1} = \left(1 - \frac{2m}{M_t} + c_2\right) \mathbb{E}[Y_t^2] + c_1 \mathbb{E}[Y_t]$$
+
+$$
+\mu_{t+1} = \frac{M_t - m}{M_t} \mathbb{E}[Y_t]
+$$
+
+$$
+s_{t+1} = \left(1 - \frac{2m}{M_t} + c_2\right) \mathbb{E}[Y_t^2] + c_1 \mathbb{E}[Y_t]
+$$
 
 ---
 

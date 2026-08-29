@@ -10,7 +10,10 @@ For example, the set $\{5, 7, 23, 67109\}$ is particularly remarkable because:
 We shall call any such set of primes a **1-9 pandigital prime set**.
 
 The objective is to find the **total number of distinct 1-9 pandigital prime sets**:
-$$N_{\text{sets}} = \left| \left\{ S \subset \mathbb{P} \;\middle|\; \bigcup_{p \in S} \text{digits}(p) = \{1, 2, 3, 4, 5, 6, 7, 8, 9\} \right\} \right|$$
+
+$$
+N_{\text{sets}} = \left| \left\{ S \subset \mathbb{P} \;\middle|\; \bigcup_{p \in S} \text{digits}(p) = \{1, 2, 3, 4, 5, 6, 7, 8, 9\} \right\} \right|
+$$
 
 ---
 
@@ -28,7 +31,11 @@ def naive_pandigital_prime_sets():
 1. There are only $9! = 362\,880$ permutations of the digits $\{1, 2, \dots, 9\}$.
 2. For each permutation, we recursively partition it into integer chunks $(p_1, p_2, \dots, p_k)$.
 3. **Canonical Ordering Invariant:** Since sets are unordered ($\{2, 3, 5\} = \{5, 2, 3\}$), we strictly enforce:
-   $$p_1 < p_2 < \dots < p_k$$
+
+$$
+p_1 < p_2 < \dots < p_k
+$$
+
    during the partition search.
 4. This ensures that every unique pandigital set of primes is counted **EXACTLY ONCE**, executing in $\approx 0.55$ seconds.
 
@@ -76,7 +83,10 @@ def naive_pandigital_prime_sets():
 
 ### Example 2: Target Evaluation across All 9! Permutations
 - Summing all valid unique sets:
-  $$N_{\text{sets}} = \mathbf{44\,686}$$
+
+$$
+N_{\text{sets}} = \mathbf{44\,686}
+$$
 
 ---
 

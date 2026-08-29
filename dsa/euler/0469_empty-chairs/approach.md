@@ -4,7 +4,11 @@
 
 $N$ chairs are placed in a circle around a round table. Knights arrive sequentially, choosing an unoccupied chair uniformly at random such that no two occupied chairs are adjacent.
 When no more valid chairs remain, let $C$ be the fraction of empty chairs:
-$$C = \frac{N - K}{N} = 1 - \frac{K}{N}$$
+
+$$
+C = \frac{N - K}{N} = 1 - \frac{K}{N}
+$$
+
 where $K$ is the number of seated knights.
 Let $E(N) = \mathbb{E}[C]$.
 
@@ -31,9 +35,16 @@ Simulating $10^{18}$ chairs is physically impossible. Monte Carlo sampling canno
 2. **Line Recurrence**:
    Let $L(n)$ be the expected number of knights seated in a line of $n$ available chairs with blocked boundaries.
    When a knight chooses chair $k \in \{1, \dots, n\}$, it splits the line into two independent subproblems of lengths $k - 2$ and $n - k - 1$:
-   $$L(n) = 1 + \frac{2}{n} \sum_{j=0}^{n-2} L(j)$$
+
+$$
+L(n) = 1 + \frac{2}{n} \sum_{j=0}^{n-2} L(j)
+$$
+
 3. **Circle Expected Value**:
-   $$K(N) = 1 + L(N - 3) \implies E(N) = 1 - \frac{1 + L(N - 3)}{N}$$
+
+$$
+K(N) = 1 + L(N - 3) \implies E(N) = 1 - \frac{1 + L(N - 3)}{N}
+$$
 
 ---
 
@@ -42,10 +53,18 @@ Simulating $10^{18}$ chairs is physically impossible. Monte Carlo sampling canno
 ### Exponential Convergence & Analytical Asymptotics
 1. **Generating Function Analysis**:
    From $(n+1) L(n+1) = n L(n) + 2 L(n-1) + 1$, the ordinary generating function satisfies:
-   $$F'(x) - \frac{1+2x}{1-x} F(x) = \frac{x}{(1-x)^2}$$
+
+$$
+F'(x) - \frac{1+2x}{1-x} F(x) = \frac{x}{(1-x)^2}
+$$
+
    yielding the asymptotic density $\lim_{n \to \infty} \frac{L(n)}{n} = \frac{1 - e^{-2}}{2}$.
 2. **Asymptotic Limit of $E(N)$**:
-   $$\lim_{N \to \infty} E(N) = 1 - \frac{1 - e^{-2}}{2} = \frac{1 + e^{-2}}{2} = \frac{e^2 + 1}{2e^2} \approx 0.5676676416183063\dots$$
+
+$$
+\lim_{N \to \infty} E(N) = 1 - \frac{1 - e^{-2}}{2} = \frac{1 + e^{-2}}{2} = \frac{e^2 + 1}{2e^2} \approx 0.5676676416183063\dots
+$$
+
 3. **High-Precision Decimal Dynamic Programming**:
    The discrete sequence $E(N)$ converges to the continuous limit exponentially fast with error $< 10^{-40}$ for $N \ge 100$.
    Evaluating the recurrence with 50-digit `decimal.Decimal` yields the exact 14-decimal rounded answer in $O(1)$ time.

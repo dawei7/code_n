@@ -29,7 +29,10 @@ Find $B(10^7)$.
 ### Potential Function & Invariant Transport Cost
 Because each move transfers one bean from bowl $i$ to $i+1$, the index weight $i$ of that bean increases by exactly $1$.
 Thus, the total number of moves to reach the final state $F = (F_0, \dots, F_{N-1})$ is invariant under the order of moves:
-$$B(N) = \sum_{i=0}^{N-1} i \cdot F_i - \sum_{i=0}^{N-1} i \cdot S_i$$
+
+$$
+B(N) = \sum_{i=0}^{N-1} i \cdot F_i - \sum_{i=0}^{N-1} i \cdot S_i
+$$
 
 ### Leveling via Monotonic Stack (Slope Trick / Convex Hull)
 When a segment of bowls $[L, R]$ of length $k = R - L + 1$ with sum $w = \sum_{i=L}^R S_i$ levels out, its elements become as equal as possible in non-descending order:
@@ -48,9 +51,16 @@ Processing elements from left to right using a **Monotonic Stack** of blocks $(k
 For each block $(k, w)$ starting at index $L$:
 Let $q = \lfloor w / k \rfloor$ and $r = w \bmod k$, with $c_1 = k - r$.
 1. Range $[L, L + c_1 - 1]$ has value $q$:
-   $$\sum_{i=L}^{L + c_1 - 1} i = \frac{(L + L + c_1 - 1) c_1}{2}$$
+
+$$
+\sum_{i=L}^{L + c_1 - 1} i = \frac{(L + L + c_1 - 1) c_1}{2}
+$$
+
 2. Range $[L + c_1, L + k - 1]$ has value $q + 1$:
-   $$\sum_{i=L + c_1}^{L + k - 1} i = \frac{(L + c_1 + L + k - 1) r}{2}$$
+
+$$
+\sum_{i=L + c_1}^{L + k - 1} i = \frac{(L + c_1 + L + k - 1) r}{2}
+$$
 
 Summing over all blocks in the stack yields $\sum i \cdot F_i$ in $\mathcal{O}(|\text{Stack}|) \approx \mathcal{O}(1)$ operations!
 

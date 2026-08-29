@@ -5,7 +5,10 @@
 If we are presented with the first $k$ terms of a sequence it is impossible to say with certainty the value of the next term, as there are infinitely many polynomial functions that can model the sequence.
 
 Consider the cubic sequence:
-$$u_n = n^3 = 1, 8, 27, 64, 125, 216, \dots$$
+
+$$
+u_n = n^3 = 1, 8, 27, 64, 125, 216, \dots
+$$
 
 - $\text{OP}(1, n) = 1$: sequence generated is $1, \mathbf{1}, 1, 1 \dots \implies \text{FIT}_1 = 1$.
 - $\text{OP}(2, n) = 7n - 6$: sequence generated is $1, 8, \mathbf{15}, 22 \dots \implies \text{FIT}_2 = 15$.
@@ -14,10 +17,16 @@ $$u_n = n^3 = 1, 8, 27, 64, 125, 216, \dots$$
 - The sum of FITs for the cubic sequence is $1 + 15 + 58 = 74$.
 
 Now consider the 10th-degree generating polynomial:
-$$u_n = 1 - n + n^2 - n^3 + n^4 - n^5 + n^6 - n^7 + n^8 - n^9 + n^{10} = \sum_{i=0}^{10} (-1)^i n^i$$
+
+$$
+u_n = 1 - n + n^2 - n^3 + n^4 - n^5 + n^6 - n^7 + n^8 - n^9 + n^{10} = \sum_{i=0}^{10} (-1)^i n^i
+$$
 
 The objective is to find the **sum of FITs** (First Incorrect Terms) for all Optimum Polynomials $\text{OP}(k, n)$ for $k = 1 \dots 10$:
-$$S_{\text{FIT}} = \sum_{k=1}^{10} \text{OP}(k, k+1)$$
+
+$$
+S_{\text{FIT}} = \sum_{k=1}^{10} \text{OP}(k, k+1)
+$$
 
 ---
 
@@ -33,7 +42,13 @@ def naive_optimum_polynomial():
 
 ### Exact Rational Lagrange Interpolation
 1. **Lagrange Interpolating Polynomial Formula:**
-   $$\text{OP}(k, x) = \sum_{j=1}^k u_j \ell_j(x) \quad \text{where } \ell_j(x) = \prod_{\substack{m=1 \\ m \neq j}}^k \frac{x - m}{j - m}$$
+
+$$
+\begin{aligned}
+\text{OP}(k, x) = \sum_{j=1}^k u_j \ell_j(x) \quad \text{where } \ell_j(x) = \prod_{\substack{m=1 \\ m \neq j}}^k \frac{x - m}{j - m}
+\end{aligned}
+$$
+
 2. To compute $\text{FIT}_k$, we evaluate $\text{OP}(k, k+1)$ using exact rational arithmetic (`fractions.Fraction`), avoiding all matrix inversion and floating-point errors.
 3. Evaluating $k = 1 \dots 10$ takes under $\approx 0.001$ seconds.
 
@@ -58,10 +73,18 @@ def naive_optimum_polynomial():
 
 ### Lagrange Formula at $x = k + 1$
 For each degree $k \in [1, 10]$:
-$$\text{FIT}_k = \sum_{j=1}^k u_j \prod_{\substack{m=1 \\ m \neq j}}^k \frac{k + 1 - m}{j - m}$$
+
+$$
+\begin{aligned}
+\text{FIT}_k = \sum_{j=1}^k u_j \prod_{\substack{m=1 \\ m \neq j}}^k \frac{k + 1 - m}{j - m}
+\end{aligned}
+$$
 
 Summing over all degrees $k = 1 \dots 10$:
-$$S_{\text{FIT}} = \sum_{k=1}^{10} \text{FIT}_k = \mathbf{37\,076\,114\,526}$$
+
+$$
+S_{\text{FIT}} = \sum_{k=1}^{10} \text{FIT}_k = \mathbf{37\,076\,114\,526}
+$$
 
 ---
 
@@ -75,7 +98,10 @@ $$S_{\text{FIT}} = \sum_{k=1}^{10} \text{FIT}_k = \mathbf{37\,076\,114\,526}$$
 
 ### Example 2: Target Evaluation for 10th-Degree Polynomial
 - Summing $\text{FIT}_k = \text{OP}(k, k+1)$ for $k = 1 \dots 10$:
-  $$S_{\text{FIT}} = \mathbf{37\,076\,114\,526}$$
+
+$$
+S_{\text{FIT}} = \mathbf{37\,076\,114\,526}
+$$
 
 ---
 

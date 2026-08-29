@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $p > 1$ coprime to $10$, a **divisibility multiplier** $m < p$ is a positive integer preserving divisibility by $p$ for the linear reduction function:
-$$f(n) = \lfloor n / 10 \rfloor + m (n \bmod 10)$$
+
+$$
+f(n) = \lfloor n / 10 \rfloor + m (n \bmod 10)
+$$
+
 That is, $p \mid f(n) \iff p \mid n$.
 Find the sum of the divisibility multipliers $m$ for all prime numbers $p < 10^7$ coprime to $10$.
 
@@ -23,9 +27,17 @@ A naive approach computes $m = 10^{-1} \bmod p$ for each prime $p < 10^7$ using 
 ### Modular Inverse of 10
 Let $n = 10a + b$ with $0 \le b \le 9$.
 We require $p \mid (a + m b) \iff p \mid (10a + b)$:
-$$10(a + m b) = 10a + 10mb = (10a + b) + (10m - 1)b$$
+
+$$
+10(a + m b) = 10a + 10mb = (10a + b) + (10m - 1)b
+$$
+
 For this to be a multiple of $p$ whenever $10a + b$ is a multiple of $p$, we must have:
-$$10m \equiv 1 \pmod p \iff \mathbf{m \equiv 10^{-1} \pmod p}$$
+
+$$
+10m \equiv 1 \pmod p \iff \mathbf{m \equiv 10^{-1} \pmod p}
+$$
+
 Since $p$ is coprime to 10 ($p \ne 2, 5$), $10$ is always invertible modulo $p$.
 Because $0 < m < p$, $m = (10^{-1} \bmod p)$ is unique.
 
@@ -36,7 +48,11 @@ Because $0 < m < p$, $m = (10^{-1} \bmod p)$ is unique.
 ### Fast Modular Inverse Sieve
 1. Sieve all primes $p < 10^7$ using the standard linear Sieve of Eratosthenes.
 2. For each prime $p \notin \{2, 5\}$:
-   $$m = \text{inv}(10, p) = \frac{k p + 1}{10}$$
+
+$$
+m = \text{inv}(10, p) = \frac{k p + 1}{10}
+$$
+
    where $k$ is the unique integer in $\{1, 3, 7, 9\}$ such that $k p + 1 \equiv 0 \pmod{10}$.
    Specifically:
    - If $p \equiv 1 \pmod{10} \implies k = 9 \implies m = (9p + 1) / 10$.

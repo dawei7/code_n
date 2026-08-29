@@ -34,7 +34,10 @@ Because removing the leading 1 removes all following zeros, each binary number $
 - Subsequent bits form binary dyadic fractions $v(x) = (m - 1) + \frac{1}{2} \pm \frac{1}{4} \pm \dots$.
 
 The game value of the multiset is the linear sum:
-$$V(n) = \sum_{k=1}^n k \cdot v(k)$$
+
+$$
+V(n) = \sum_{k=1}^n k \cdot v(k)
+$$
 
 ---
 

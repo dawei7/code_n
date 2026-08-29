@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 An even positive integer $N$ is called **admissible** if its distinct prime factors form a non-empty prefix of the consecutive primes:
-$$N = 2^{e_1} 3^{e_2} 5^{e_3} \cdots p_k^{e_k} \quad (e_i \ge 1, k \ge 1)$$
+
+$$
+N = 2^{e_1} 3^{e_2} 5^{e_3} \cdots p_k^{e_k} \quad (e_i \ge 1, k \ge 1)
+$$
+
 For any admissible number $N$, the **pseudo-Fortunate number** $M(N)$ is the smallest integer $m > 1$ such that $N + m$ is prime.
 We seek the sum of all **distinct** pseudo-Fortunate numbers $M(N)$ for all admissible numbers $N < 10^9$.
 

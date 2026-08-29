@@ -15,7 +15,10 @@ We are given:
 - $D(10000) = 99959605$
 
 We seek to evaluate:
-$$D(10^{18}) \bmod 10^9$$
+
+$$
+D(10^{18}) \bmod 10^9
+$$
 
 ---
 
@@ -35,7 +38,11 @@ The grid of pairs $(m, n)$ for $N = 10^{18}$ contains $(10^{18} - 1)^2 \approx 1
    When $m = u^e$ and $n = u^f$, $\log_m n = f/e$.
    All pairs sharing the same base yield a single value for each reduced rational $p/q$ with $1 \le p, q \le L = \lfloor \log_2 N \rfloor$.
    The number of distinct rational values is:
-   $$R = 2 \Phi(L) - 1$$
+
+$$
+R = 2 \Phi(L) - 1
+$$
+
 3. **Irrational Value Equivalence ($u \ne v$)**:
    By the four exponentials conjecture (and algebraic independence of logarithms of multiplicatively independent integers), two pairs $(u_1^{e_1}, v_1^{f_1})$ and $(u_2^{e_2}, v_2^{f_2})$ are equivalent if and only if $u_1 = u_2, v_1 = v_2$ and $e_1/f_1 = e_2/f_2$.
    Each equivalence class corresponds to an ordered pair of distinct primitive roots $(u, v)$ and a coprime exponent pair $(e, f)$ with $\gcd(e, f) = 1$ such that $u^e \le N, v^f \le N$.
@@ -47,15 +54,31 @@ The grid of pairs $(m, n)$ for $N = 10^{18}$ contains $(10^{18} - 1)^2 \approx 1
 ### Sublinear Primitive Counting via Möbius Inversion ($O(\log^2 N)$)
 1. **Möbius Inversion for Primitive Bases**:
    Let $P(x)$ be the number of primitive integers $u \in [2, x]$.
-   $$P(x) = \sum_{d=1}^{\lfloor \log_2 x \rfloor} \mu(d) (\lfloor x^{1/d} \rfloor - 1)$$
+
+$$
+P(x) = \sum_{d=1}^{\lfloor \log_2 x \rfloor} \mu(d) (\lfloor x^{1/d} \rfloor - 1)
+$$
+
 2. **Total Coprime Exponent Product**:
    Let $P[e] = P(\lfloor N^{1/e} \rfloor)$ be the number of primitive roots whose $e$-th power is $\le N$.
-   $$T = \sum_{e, f \ge 1, \gcd(e, f) = 1} P[e] P[f]$$
+
+$$
+T = \sum_{e, f \ge 1, \gcd(e, f) = 1} P[e] P[f]
+$$
+
 3. **Diagonal Correction ($u = v$)**:
    Subtract instances where $u = v$:
-   $$S = \sum_{k=1}^L (P[k] - P[k+1]) (2 \Phi(k) - 1)$$
+
+$$
+S = \sum_{k=1}^L (P[k] - P[k+1]) (2 \Phi(k) - 1)
+$$
+
 4. **Total Distinct Values**:
-   $$D(N) = R + (T - S)$$
+
+$$
+D(N) = R + (T - S)
+$$
+
    Since $L = \lfloor \log_2 10^{18} \rfloor = 59$, the entire calculation requires only 59 terms!
 
 This evaluates $D(10^{18}) \bmod 10^9$ in **$\approx 0.00$ seconds**!

@@ -11,7 +11,10 @@ We are given:
 - $M(10^6, 8, 2) = 19173952$
 
 We seek to evaluate:
-$$\sum_{k=3}^6 \sum_{l=1}^{k-2} M(10^{16}, 2^k, 2^l) \bmod 10^{16}$$
+
+$$
+\sum_{k=3}^6 \sum_{l=1}^{k-2} M(10^{16}, 2^k, 2^l) \bmod 10^{16}
+$$
 
 ---
 
@@ -28,10 +31,18 @@ Checking digit sums individually for $10^{16}$ numbers requires $10^{17}$ operat
 1. **Bit Grouping in Base $2^m$**:
    Let the binary representation of $i$ be $i = \sum_{p \ge 0} b_p 2^p$ with $b_p \in \{0, 1\}$.
    Because base $2^m$ groups bits into chunks of length $m$:
-   $$d(i, 2^m) = \sum_{p \ge 0} b_p 2^{p \bmod m}$$
+
+$$
+d(i, 2^m) = \sum_{p \ge 0} b_p 2^{p \bmod m}
+$$
+
 2. **Matching Digit Sum Criterion**:
    The condition $d(i, 2^k) = d(i, 2^l)$ reduces to a linear Diophantine constraint on the binary digits:
-   $$\sum_{p \ge 0} b_p \left( 2^{p \bmod k} - 2^{p \bmod l} \right) = 0$$
+
+$$
+\sum_{p \ge 0} b_p \left( 2^{p \bmod k} - 2^{p \bmod l} \right) = 0
+$$
+
 3. **Binary Digital DP State**:
    Processing bits from most significant (MSB) to least significant (LSB), a state $(p, \text{diff}, \text{tight})$ tracks:
    - `diff`: running value of $\sum b_p (2^{p \bmod k} - 2^{p \bmod l})$

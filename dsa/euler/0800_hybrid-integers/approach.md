@@ -5,7 +5,10 @@
 An integer of the form $p^q q^p$ for distinct primes $p < q$ is called a hybrid-integer.
 $C(n)$ denotes the number of hybrid-integers less than or equal to $n$.
 We seek to evaluate:
-$$C(800800^{800800})$$
+
+$$
+C(800800^{800800})
+$$
 
 We are given:
 - $C(800) = 2$ (namely $2^3 3^2 = 72$ and $2^5 5^2 = 800$)
@@ -25,10 +28,18 @@ Evaluating $p^q q^p$ and comparing against $800800^{800800}$ involves numbers wi
 ### Logarithmic Monotonicity & Upper-Bound Sieve Range
 1. **Log-Scale Inequality**:
    Taking natural logarithms on both sides:
-   $$p^q q^p \le a^b \iff q \ln p + p \ln q \le b \ln a =: L$$
+
+$$
+p^q q^p \le a^b \iff q \ln p + p \ln q \le b \ln a =: L
+$$
+
 2. **Maximum Prime Bound**:
    Since $p \ge 2$, the maximum possible prime $q$ satisfies:
-   $$q \ln 2 + 2 \ln q \le L \implies q \le \frac{L}{\ln 2}$$
+
+$$
+q \ln 2 + 2 \ln q \le L \implies q \le \frac{L}{\ln 2}
+$$
+
    For $a = 800800, b = 800800$, $L \approx 10\,885\,536$, giving $q_{\max} \approx 15\,704\,500$.
 3. **Two-Pointer Monotone Search**:
    Since $f(p, q) = q \ln p + p \ln q$ is strictly increasing in both $p$ and $q$, sorting the list of sieved primes allows finding the maximum valid $q > p$ for each $p$ in $O(1)$ amortized steps using two pointers.

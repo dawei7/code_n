@@ -4,7 +4,11 @@
 
 Let $M(n, k, m) = \binom{n}{k} \pmod m$.
 We are tasked with evaluating:
-$$S = \sum_{1000 < p < q < r < 5000, \; p, q, r \in \mathbb{P}} M(10^{18}, 10^9, p \cdot q \cdot r)$$
+
+$$
+S = \sum_{1000 < p < q < r < 5000, \; p, q, r \in \mathbb{P}} M(10^{18}, 10^9, p \cdot q \cdot r)
+$$
+
 where $p, q, r$ are distinct prime numbers in the open interval $(1000, 5000)$.
 
 ---
@@ -22,13 +26,21 @@ Computing this integer explicitly or attempting large-integer division would req
 
 ### Lucas' Theorem for Prime Moduli
 For a single prime $p$, $\binom{n}{k} \pmod p$ is computed in $O(\log_p n)$ operations via **Lucas' Theorem**:
-$$\binom{n}{k} \equiv \prod_{i=0}^d \binom{n_i}{k_i} \pmod p$$
+
+$$
+\binom{n}{k} \equiv \prod_{i=0}^d \binom{n_i}{k_i} \pmod p
+$$
+
 where $n = \sum_{i=0}^d n_i p^i$ and $k = \sum_{i=0}^d k_i p^i$ are the base-$p$ representations of $n$ and $k$.
 Because $p > 1000$, $10^{18}$ has at most $6$ base-$p$ digits ($d \le 5$).
 
 ### The Chinese Remainder Theorem (CRT) for Square-Free Moduli
 For three pairwise coprime primes $p, q, r$:
-$$X \equiv c_p \pmod p, \quad X \equiv c_q \pmod q, \quad X \equiv c_r \pmod r$$
+
+$$
+X \equiv c_p \pmod p, \quad X \equiv c_q \pmod q, \quad X \equiv c_r \pmod r
+$$
+
 has a unique solution $X \in [0, p q r - 1]$.
 
 ---
@@ -43,12 +55,25 @@ Rather than invoking full modular inverse routines for all $20.8$ million triple
    Build the $501 \times 501$ table $I[i][j] = p_i^{-1} \pmod{p_j}$.
 3. **Incremental 2-Modulus Base**:
    For each pair $(p_i, p_j)$ with $i < j$:
-   $$X_{ij} = c_i + p_i \left[ (c_j - c_i) I[i][j] \bmod p_j \right], \quad M_{ij} = p_i p_j$$
+
+$$
+X_{ij} = c_i + p_i \left[ (c_j - c_i) I[i][j] \bmod p_j \right], \quad M_{ij} = p_i p_j
+$$
+
 4. **Third Modulus Lifting**:
    For each $k > j$:
-   $$I_{ij, k} = (p_i p_j)^{-1} \bmod p_k \equiv (I[i][k] \cdot I[j][k]) \bmod p_k$$
-   $$\Delta = \left[ (c_k - X_{ij}) \cdot I_{ij, k} \right] \bmod p_k$$
-   $$X_{ijk} = X_{ij} + M_{ij} \cdot \Delta$$
+
+$$
+I_{ij, k} = (p_i p_j)^{-1} \bmod p_k \equiv (I[i][k] \cdot I[j][k]) \bmod p_k
+$$
+
+$$
+\Delta = \left[ (c_k - X_{ij}) \cdot I_{ij, k} \right] \bmod p_k
+$$
+
+$$
+X_{ijk} = X_{ij} + M_{ij} \cdot \Delta
+$$
 
 This reduces each triplet evaluation to just 4 elementary modular integer operations!
 

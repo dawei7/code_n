@@ -34,7 +34,11 @@ $t(n)$ corresponds to the bitwise deficit of $n$ relative to its next power-of-2
 ### Divide-and-Conquer Recurrence on Powers of Two
 Let $S(N) = \sum_{n=1}^{2^N} t(n)$.
 The sequence $t(n)$ satisfies self-similar doubling relations:
-$$S(N) = A \cdot S(N-1) + B \cdot 2^{N-1} + C \dots$$
+
+$$
+S(N) = A \cdot S(N-1) + B \cdot 2^{N-1} + C \dots
+$$
+
 Evaluating this 2D linear state transition modulo $900497239$ for $N = 10^4$ steps yields $S(10^4) \equiv \mathbf{646900900} \pmod{900497239}$.
 
 ---

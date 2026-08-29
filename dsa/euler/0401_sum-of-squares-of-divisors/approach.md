@@ -10,7 +10,10 @@ We are given:
 - The first $6$ values of $\Sigma_2$ are $1, 6, 16, 37, 63, 113$.
 
 We seek to evaluate:
-$$\Sigma_2(10^{15}) \pmod{10^9}$$
+
+$$
+\Sigma_2(10^{15}) \pmod{10^9}
+$$
 
 ---
 
@@ -25,7 +28,10 @@ Calculating $\sigma_2(n)$ for each $n \le 10^{15}$ requires $> 10^{15}$ operatio
 
 ### Divisor Multiplicity Transformation
 By swapping the order of summation, each integer $d \ge 1$ appears as a divisor of exactly $\lfloor N / d \rfloor$ integers in the range $[1, N]$:
-$$\Sigma_2(N) = \sum_{n=1}^N \sum_{d \mid n} d^2 = \sum_{d=1}^N d^2 \left\lfloor \frac{N}{d} \right\rfloor$$
+
+$$
+\Sigma_2(N) = \sum_{n=1}^N \sum_{d \mid n} d^2 = \sum_{d=1}^N d^2 \left\lfloor \frac{N}{d} \right\rfloor
+$$
 
 ---
 
@@ -34,7 +40,10 @@ $$\Sigma_2(N) = \sum_{n=1}^N \sum_{d \mid n} d^2 = \sum_{d=1}^N d^2 \left\lfloor
 ### Hyperbola Block Partitioning (Dirichlet Sieve)
 The quotient $q = \lfloor N / d \rfloor$ takes at most $2\sqrt{N} = 2 \times 10^{7.5} \approx 6.32 \times 10^7$ distinct integer values.
 For all $d$ in the contiguous interval $[l, r]$ where $\lfloor N / d \rfloor = q$:
-$$\sum_{d=l}^r d^2 \left\lfloor \frac{N}{d} \right\rfloor = q \sum_{d=l}^r d^2 = q \left( \frac{r(r+1)(2r+1)}{6} - \frac{(l-1)l(2l-1)}{6} \right) \pmod{10^9}$$
+
+$$
+\sum_{d=l}^r d^2 \left\lfloor \frac{N}{d} \right\rfloor = q \sum_{d=l}^r d^2 = q \left( \frac{r(r+1)(2r+1)}{6} - \frac{(l-1)l(2l-1)}{6} \right) \pmod{10^9}
+$$
 
 Starting at $l = 1$, we compute $q = \lfloor N / l \rfloor$ and the maximal right endpoint $r = \lfloor N / q \rfloor$.
 This reduces $10^{15}$ terms to $6.3 \times 10^7$ block operations in $O(\sqrt{N})$ time, running in **26 seconds**!

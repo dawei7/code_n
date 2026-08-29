@@ -32,7 +32,10 @@ By the Game of Euclid theorem (Cole & Henderson):
 - For $x \le y < 2x$, the only move is $y \to y - x$.
 - Consequently, the losing positions $(x, y)$ are precisely characterized by the golden ratio $\phi = \frac{1 + \sqrt{5}}{2}$:
   For each $x$, the losing values of $y$ form the contiguous integer interval:
-  $$x + 1 \le y \le \min(N, \lfloor \phi x \rfloor)$$
+
+$$
+x + 1 \le y \le \min(N, \lfloor \phi x \rfloor)
+$$
 
 ---
 
@@ -41,15 +44,27 @@ By the Game of Euclid theorem (Cole & Henderson):
 ### Summation Splitting at $M = \lfloor N / \phi \rfloor$
 1. For $x \le M = \lfloor N / \phi \rfloor$:
    $\lfloor \phi x \rfloor \le N$. The losing values are $y \in [x + 1, \lfloor \phi x \rfloor]$.
-   $$\sum_{y=x+1}^{\lfloor \phi x \rfloor} (x + y) = \frac{(\lfloor \phi x \rfloor - x)(\lfloor \phi x \rfloor + 3x + 1)}{2}$$
+
+$$
+\sum_{y=x+1}^{\lfloor \phi x \rfloor} (x + y) = \frac{(\lfloor \phi x \rfloor - x)(\lfloor \phi x \rfloor + 3x + 1)}{2}
+$$
+
 2. For $x \in [M + 1, N - 1]$:
    $\lfloor \phi x \rfloor > N$, so the upper bound is capped at $N$: $y \in [x + 1, N]$.
-   $$\sum_{y=x+1}^N (x + y) = \frac{(N - x)(N + 3x + 1)}{2}$$
+
+$$
+\sum_{y=x+1}^N (x + y) = \frac{(N - x)(N + 3x + 1)}{2}
+$$
+
    This part evaluates in $\mathcal{O}(1)$ via standard polynomial summation formulas.
 
 ### $O(\log N)$ Generalized Beatty Floor Sum Recurrence:
 Evaluating the terms involving $\lfloor \phi x \rfloor$ and $\lfloor \phi x \rfloor^2$ for $x \le M$ reduces to evaluating the generalized Beatty floor sums:
-$$\sum_{x=1}^M \lfloor \alpha x \rfloor, \quad \sum_{x=1}^M x \lfloor \alpha x \rfloor, \quad \sum_{x=1}^M \lfloor \alpha x \rfloor^2$$
+
+$$
+\sum_{x=1}^M \lfloor \alpha x \rfloor, \quad \sum_{x=1}^M x \lfloor \alpha x \rfloor, \quad \sum_{x=1}^M \lfloor \alpha x \rfloor^2
+$$
+
 Using the Euclidean-like Beatty reciprocity reduction ($\phi = 1 + 1/\phi$), each step reduces $M \to \lfloor \phi M \rfloor - M$, converging to $0$ in $\mathcal{O}(\log N)$ iterations with exact linear combinations!
 
 ---

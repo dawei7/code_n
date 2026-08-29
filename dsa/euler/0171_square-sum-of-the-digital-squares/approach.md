@@ -3,16 +3,28 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$, let $f(n)$ be the sum of the squares of the digits (in base 10) of $n$, e.g.
-$$f(3) = 3^2 = 9$$
 
-$$f(25) = 2^2 + 5^2 = 4 + 25 = 29$$
+$$
+f(3) = 3^2 = 9
+$$
 
-$$f(442) = 4^2 + 4^2 + 2^2 = 16 + 16 + 4 = 36 = 6^2$$
+$$
+f(25) = 2^2 + 5^2 = 4 + 25 = 29
+$$
+
+$$
+f(442) = 4^2 + 4^2 + 2^2 = 16 + 16 + 4 = 36 = 6^2
+$$
 
 We say that $n$ is a **square-sum integer** if $f(n)$ is a perfect square.
 
 The objective is to find the **last nine ($9$) digits of the sum of all $0 < n < 10^{20}$ such that $f(n)$ is a perfect square**:
-$$S_{\text{sq}} \equiv \sum_{\substack{0 < n < 10^{20} \\ \exists k \in \mathbb{N}, f(n) = k^2}} n \pmod{10^9}$$
+
+$$
+\begin{aligned}
+S_{\text{sq}} \equiv \sum_{\substack{0 < n < 10^{20} \\ \exists k \in \mathbb{N}, f(n) = k^2}} n \pmod{10^9}
+\end{aligned}
+$$
 
 ---
 
@@ -30,7 +42,11 @@ def naive_square_digit_sum():
 1. **Bounded State Space:**
    For a $20$-digit number (with leading zeros allowed to represent all numbers $< 10^{20}$):
    The maximum possible sum of squared digits is:
-   $$S_{\text{max}} = 20 \times 9^2 = 20 \times 81 = 1620$$
+
+$$
+S_{\text{max}} = 20 \times 9^2 = 20 \times 81 = 1620
+$$
+
    The state at digit index $\text{idx} \in [0, 19]$ is uniquely determined by $(\text{idx}, \text{sq\_sum})$ with $\text{sq\_sum} \le 1620$.
    Total DP states: $20 \times 1620 \approx 32\,400$ states!
 2. **Dual DP Output (Count and Sum):**
@@ -39,7 +55,11 @@ def naive_square_digit_sum():
    - `val`: total sum of suffix numerical values modulo $10^9$.
 3. **Linear Contribution Formula:**
    At position $\text{idx}$, placing digit $d \in [0, 9]$ adds numerical value $d \times 10^{19 - \text{idx}}$ for each of the `cnt` valid suffixes:
-   $$\text{total\_val} = \sum_{d=0}^9 \left( \text{val}_{\text{next}} + \text{cnt}_{\text{next}} \cdot d \cdot 10^{19 - \text{idx}} \right) \pmod{10^9}$$
+
+$$
+\text{total\_val} = \sum_{d=0}^9 \left( \text{val}_{\text{next}} + \text{cnt}_{\text{next}} \cdot d \cdot 10^{19 - \text{idx}} \right) \pmod{10^9}
+$$
+
 4. Evaluating all $32\,400$ states runs in $\approx 0.05$ seconds.
 
 ---
@@ -77,7 +97,10 @@ def dp(idx: int, sq_sum: int) -> tuple[int, int]:
     return (total_cnt, total_val)
 ```
 Evaluating `dp(0, 0)` for $20$ digits gives the last 9 digits:
-$$\mathbf{"142989277"}$$
+
+$$
+\mathbf{"142989277"}
+$$
 
 ---
 
@@ -90,7 +113,10 @@ $$\mathbf{"142989277"}$$
 
 ### Example 2: Target Evaluation for $0 < n < 10^{20}$
 - Running 20-digit DP modulo $10^9$:
-  $$\text{Last 9 Digits} = \mathbf{"142989277"}$$
+
+$$
+\text{Last 9 Digits} = \mathbf{"142989277"}
+$$
 
 ---
 

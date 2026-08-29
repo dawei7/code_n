@@ -29,14 +29,25 @@ A naive approach simulates the step-by-step reduction of the fraction sequence $
 
 ### The Invariant Sum & Largest Prime Factor Theorem
 In each step before simplification:
-$$(x_{i-1} + 1) + (y_{i-1} - 1) = x_{i-1} + y_{i-1} = \text{constant} = k + 1$$
+
+$$
+(x_{i-1} + 1) + (y_{i-1} - 1) = x_{i-1} + y_{i-1} = \text{constant} = k + 1
+$$
+
 When the fraction is reduced by $\gcd(x_{i-1} + 1, y_{i-1} - 1) = g$, the sum of the numerator and denominator becomes $(k + 1) / g$.
 This reduction divides out every prime factor of $k + 1$ step-by-step until only the largest prime factor remains!
 When the denominator finally reaches $y = 1$:
-$$x + y = x + 1 = \text{LPF}(k + 1)$$
+
+$$
+x + y = x + 1 = \text{LPF}(k + 1)
+$$
+
 where $\text{LPF}(m)$ denotes the **largest prime factor** of $m$.
 Therefore:
-$$\mathbf{f(k) = \text{LPF}(k + 1) - 1}$$
+
+$$
+\mathbf{f(k) = \text{LPF}(k + 1) - 1}
+$$
 
 ---
 
@@ -44,9 +55,17 @@ $$\mathbf{f(k) = \text{LPF}(k + 1) - 1}$$
 
 ### Factoring $k^3 + 1$ & Polynomial Sieve
 For the cubic argument $k^3$:
-$$k^3 + 1 = (k + 1)(k^2 - k + 1)$$
+
+$$
+k^3 + 1 = (k + 1)(k^2 - k + 1)
+$$
+
 Therefore:
-$$\mathbf{f(k^3) = \max\Big( \text{LPF}(k + 1), \ \text{LPF}(k^2 - k + 1) \Big) - 1}$$
+
+$$
+\mathbf{f(k^3) = \max\Big( \text{LPF}(k + 1), \ \text{LPF}(k^2 - k + 1) \Big) - 1}
+$$
+
 1. $\text{LPF}(k + 1)$ for all $k \le 2 \times 10^6$ is precomputed in $\mathcal{O}(N \log \log N)$ time via a standard linear sieve.
 2. For $P(k) = k^2 - k + 1$:
    Initialize an array $V[k] = k^2 - k + 1$.

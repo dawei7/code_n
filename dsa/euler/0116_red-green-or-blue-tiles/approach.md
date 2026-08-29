@@ -16,7 +16,11 @@ For a row of length $n = 5$:
 - Total $= 7 + 3 + 2 = 12$ ways.
 
 The objective is to find **how many different ways a row measuring fifty ($50$) units in length can be tiled**:
-$$W_{\text{total}} = W(50, 2) + W(50, 3) + W(50, 4)$$
+
+$$
+W_{\text{total}} = W(50, 2) + W(50, 3) + W(50, 4)
+$$
+
 where $W(n, k)$ is the number of non-empty tilings of length $n$ using colored tiles of fixed length $k$.
 
 ---
@@ -36,9 +40,17 @@ def naive_tile_arrangements(n, k):
    - **Cell $i$ is grey (length 1):** $a_{i-1}$ ways.
    - **Cell $i$ is covered by a colored tile of length $k$:** $a_{i-k}$ ways (for $i \ge k$).
 2. **Linear Recurrence:**
-   $$a_i = a_{i-1} + \begin{cases} a_{i-k} & \text{if } i \ge k \\ 0 & \text{otherwise} \end{cases} \quad \text{with } a_0 = 1$$
+
+$$
+a_i = a_{i-1} + \begin{cases} a_{i-k} & \text{if } i \ge k \\ 0 & \text{otherwise} \end{cases} \quad \text{with } a_0 = 1
+$$
+
 3. The number of valid non-empty tilings is:
-   $$W(n, k) = a_n - 1$$
+
+$$
+W(n, k) = a_n - 1
+$$
+
 4. Computing $W(50, 2), W(50, 3), W(50, 4)$ takes $\mathcal{O}(n)$ time ($\approx 0.0000$ seconds).
 
 ---
@@ -66,7 +78,10 @@ def naive_tile_arrangements(n, k):
      - If $i \ge k$: `dp[i] += dp[i-k]`
    - $W(50, k) = dp[50] - 1$.
 2. Total ways:
-   $$W_{\text{total}} = W(50, 2) + W(50, 3) + W(50, 4) = \mathbf{33\,369\,799\,976}$$
+
+$$
+W_{\text{total}} = W(50, 2) + W(50, 3) + W(50, 4) = \mathbf{33\,369\,799\,976}
+$$
 
 ---
 
@@ -83,7 +98,10 @@ def naive_tile_arrangements(n, k):
 - Green ($k=3$): $12\,210\,609\,727$.
 - Blue ($k=4$): $808\,077\,341$.
 - Total:
-  $$W_{\text{total}} = \mathbf{33\,369\,799\,976}$$
+
+$$
+W_{\text{total}} = \mathbf{33\,369\,799\,976}
+$$
 
 ---
 

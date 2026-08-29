@@ -14,7 +14,10 @@ We are given:
 - $C(100, 10) \equiv 728209718 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$C(10^4, 10) \bmod 1\,000\,000\,007$$
+
+$$
+C(10^4, 10) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -32,13 +35,24 @@ The total number of hypergraphs on $n$ vertices is $2^{2^n - 1} - 1$. For $n = 1
    On $m$ vertices, the total number of hypergraphs is $A_0(m) = 2^{2^m - 1} - 1$.
 2. **Hypergraphs Covering All Vertices**:
    Using inclusion-exclusion (binomial convolution with $e^{-x}$ in EGF space):
-   $$H(x) = \sum_{m=0}^\infty \frac{G(m)}{m!} x^m = \left( \sum_{m=0}^\infty \frac{A_0(m)}{m!} x^m \right) \cdot e^{-x}$$
+
+$$
+H(x) = \sum_{m=0}^\infty \frac{G(m)}{m!} x^m = \left( \sum_{m=0}^\infty \frac{A_0(m)}{m!} x^m \right) \cdot e^{-x}
+$$
+
 3. **Connected Hypergraphs via Logarithm**:
    By the exponential formula, the EGF of connected hypergraphs is:
-   $$A(x) = \ln(H(x))$$
+
+$$
+A(x) = \ln(H(x))
+$$
+
 4. **$k$-Component Enumeration**:
    The number of configurations on $P(n)$ with $k$ connected components spanning a subset of size $m \le n$ is:
-   $$C(n, k) = n! [x^n] \frac{e^x A(x)^k}{k!}$$
+
+$$
+C(n, k) = n! [x^n] \frac{e^x A(x)^k}{k!}
+$$
 
 ---
 

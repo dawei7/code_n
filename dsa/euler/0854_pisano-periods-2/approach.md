@@ -37,9 +37,18 @@ Using algebraic identities:
 
 ### Closed-Form Product Representation
 The product $P(N)$ factors into single-pass linear Fibonacci and Lucas progressions:
-$$P(N) = 2 \times \prod_{\substack{k=3 \\ k \text{ odd}}}^{\lfloor N/2 \rfloor} L_k \times \prod_{\substack{k=4 \\ k \text{ even}}}^{\lfloor N/2 \rfloor} F_k \pmod{1\,234\,567\,891}$$
+
+$$
+\begin{aligned}
+P(N) = 2 \times \prod_{\substack{k=3 \\ k \text{ odd}}}^{\lfloor N/2 \rfloor} L_k \times \prod_{\substack{k=4 \\ k \text{ even}}}^{\lfloor N/2 \rfloor} F_k \pmod{1\,234\,567\,891}
+\end{aligned}
+$$
+
 where $F_k$ and $L_k$ are generated simultaneously modulo $1\,234\,567\,891$ via their standard second-order linear recurrences:
-$$F_{k+1} = F_k + F_{k-1}, \quad L_{k+1} = L_k + L_{k-1}$$
+
+$$
+F_{k+1} = F_k + F_{k-1}, \quad L_{k+1} = L_k + L_{k-1}
+$$
 
 ---
 

@@ -5,13 +5,20 @@
 Let $\mathbb{P}$ denote the set of all prime numbers.
 
 Two primes $p_i, p_j \in \mathbb{P}$ form a **valid prime pair** if both ordered decimal concatenations are prime:
-$$p_i \mathbin{\Vert} p_j \in \mathbb{P} \quad \land \quad p_j \mathbin{\Vert} p_i \in \mathbb{P}$$
+
+$$
+p_i \mathbin{\Vert} p_j \in \mathbb{P} \quad \land \quad p_j \mathbin{\Vert} p_i \in \mathbb{P}
+$$
+
 where $\mathbin{\Vert}$ denotes string concatenation of decimal digits.
 
 We construct an undirected graph $G = (V, E)$ where vertices are prime numbers $V \subset \mathbb{P}$ and an edge $(p_i, p_j) \in E$ exists if and only if $(p_i, p_j)$ is a valid prime pair.
 
 The objective is to find the 5-clique $K_5 = \{p_1, p_2, p_3, p_4, p_5\} \subset V$ with the minimal sum of elements:
-$$S_{\text{min}} = \min \left\{ \sum_{i=1}^5 p_i \;\middle|\; \{p_1, p_2, p_3, p_4, p_5\} \text{ is a 5-clique in } G \right\}$$
+
+$$
+S_{\text{min}} = \min \left\{ \sum_{i=1}^5 p_i \;\middle|\; \{p_1, p_2, p_3, p_4, p_5\} \text{ is a 5-clique in } G \right\}
+$$
 
 ---
 
@@ -28,7 +35,11 @@ def naive_prime_pair_sets():
 ### Adjacency Set Intersection & Deterministic Miller-Rabin
 1. **Deterministic Miller-Rabin:** Concatenated numbers $p_i \mathbin{\Vert} p_j$ reach up to $10^8$. Miller-Rabin with base set $\{2, 7, 61\}$ provides $100\%$ deterministic primality verification in $\mathcal{O}(\log^3 n)$ time for all $n < 4.7 \times 10^9$.
 2. **Adjacency Set Intersections:** By maintaining forward neighbor sets $\operatorname{adj}[p] = \{q > p \mid (p, q) \in E\}$, the 5-clique search is computed via recursive set intersections:
-   $$S_{12} = \operatorname{adj}[p_1] \cap \operatorname{adj}[p_2], \quad S_{123} = S_{12} \cap \operatorname{adj}[p_3], \quad S_{1234} = S_{123} \cap \operatorname{adj}[p_4]$$
+
+$$
+S_{12} = \operatorname{adj}[p_1] \cap \operatorname{adj}[p_2], \quad S_{123} = S_{12} \cap \operatorname{adj}[p_3], \quad S_{1234} = S_{123} \cap \operatorname{adj}[p_4]
+$$
+
    This completes the search in $\approx 0.05$ seconds.
 
 ---
@@ -85,7 +96,10 @@ def naive_prime_pair_sets():
   - $(5701, 8389) \implies 57018389 \in \mathbb{P}, \, 83895701 \in \mathbb{P}$
   - $(6733, 8389) \implies 67338389 \in \mathbb{P}, \, 83896733 \in \mathbb{P}$
 - Sum of Elements:
-  $$S_{\text{min}} = 13 + 5197 + 5701 + 6733 + 8389 = \mathbf{26\,033}$$
+
+$$
+S_{\text{min}} = 13 + 5197 + 5701 + 6733 + 8389 = \mathbf{26\,033}
+$$
 
 ---
 

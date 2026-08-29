@@ -6,13 +6,13 @@ from pathlib import Path
 
 from engine.languages import SUPPORTED_LANGUAGES, normalize_language
 from challenges.spec import AlgorithmSpec
-from server.app.challenge_packages import is_leetcode_id, leetcode_solution_path
+from server.app.challenge_packages import is_euler_id, is_leetcode_id, leetcode_solution_path
 
 
 def organized_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:
-    """Return the canonical package solution path for a LeetCode challenge."""
+    """Return the canonical package solution path for a challenge."""
     language_id = normalize_language(language)
-    return leetcode_solution_path(challenge_id, language_id) if is_leetcode_id(challenge_id) else None
+    return leetcode_solution_path(challenge_id, language_id) if (is_leetcode_id(challenge_id) or is_euler_id(challenge_id)) else None
 
 
 def optimal_source_candidates(challenge_id: str, language: str | None = "python") -> list[Path]:

@@ -18,7 +18,11 @@ We seek $D(10^{10})$, represented as its first $9$ digits concatenated with its 
 ### Linear Möbius Sum
 Each line corresponds uniquely to a primitive lattice point $(a, b, c)$ with $\gcd(a, b, c) = 1$.
 Using Möbius inversion:
-$$D(N) = \sum_{k=1}^N \mu(k) \left[ \left( \left\lfloor \frac{N}{k} \right\rfloor + 1 \right)^3 - 1 \right]$$
+
+$$
+D(N) = \sum_{k=1}^N \mu(k) \left[ \left( \left\lfloor \frac{N}{k} \right\rfloor + 1 \right)^3 - 1 \right]
+$$
+
 For $N = 10^{10}$, evaluating $10^{10}$ terms linearly requires hours of computation.
 
 ---
@@ -29,7 +33,11 @@ For $N = 10^{10}$, evaluating $10^{10}$ terms linearly requires hours of computa
 The term $m = \lfloor N / k \rfloor$ takes only $O(\sqrt{N}) = 2 \times 10^5$ distinct values.
 For all $k$ in the interval $[l, r]$ where $\lfloor N / k \rfloor = m$:
 The term $\left( (m + 1)^3 - 1 \right)$ is constant, so its contribution is:
-$$\left( (m + 1)^3 - 1 \right) \sum_{k=l}^r \mu(k) = \left( (m + 1)^3 - 1 \right) \left[ M(r) - M(l - 1) \right]$$
+
+$$
+\left( (m + 1)^3 - 1 \right) \sum_{k=l}^r \mu(k) = \left( (m + 1)^3 - 1 \right) \left[ M(r) - M(l - 1) \right]
+$$
+
 where $M(x) = \sum_{k=1}^x \mu(k)$ is Mertens function.
 
 ---
@@ -38,9 +46,16 @@ where $M(x) = \sum_{k=1}^x \mu(k)$ is Mertens function.
 
 ### Sub-Linear Mertens Function Evaluation (Du Sieve)
 Using the Dirichlet convolution $\sum_{d \mid n} \mu(d) = [n = 1]$:
-$$\sum_{k=1}^x \sum_{d \mid k} \mu(d) = 1 \implies \sum_{d=1}^x M\left(\left\lfloor \frac{x}{d} \right\rfloor\right) = 1$$
+
+$$
+\sum_{k=1}^x \sum_{d \mid k} \mu(d) = 1 \implies \sum_{d=1}^x M\left(\left\lfloor \frac{x}{d} \right\rfloor\right) = 1
+$$
+
 Solving for $M(x)$:
-$$M(x) = 1 - \sum_{d=2}^x M\left(\left\lfloor \frac{x}{d} \right\rfloor\right)$$
+
+$$
+M(x) = 1 - \sum_{d=2}^x M\left(\left\lfloor \frac{x}{d} \right\rfloor\right)
+$$
 
 1. Precompute $M(x)$ for small $x \le K \approx N^{2/3} \approx 4.64 \times 10^6$ using a linear prime sieve.
 2. Evaluate $M(x)$ for large $x$ recursively with memoization and floor quotient grouping in $O(N^{2/3})$ total operations.

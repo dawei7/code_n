@@ -32,7 +32,10 @@ Let:
 
 Then $\binom{i}{n}$ is NOT divisible by $10$ if and only if $i \in A \cap B$.
 By the Principle of Inclusion-Exclusion:
-$$T(m, n) = (m - n) - |A \cap B|$$
+
+$$
+T(m, n) = (m - n) - |A \cap B|
+$$
 
 ---
 

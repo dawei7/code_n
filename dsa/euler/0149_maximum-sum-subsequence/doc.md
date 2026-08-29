@@ -1,13 +1,13 @@
-## Description
+# Maximum-sum Subsequence
 
 Looking at the table below, it is easy to verify that the maximum possible sum of adjacent numbers in any direction (horizontal, vertical, diagonal or anti-diagonal) is $16$ ($= 8 + 7 + 1$).
 
-$```text
+```text
 -2   5   3   2
  9  -6   5   1
  3   2   7   3
 -1   8  -4   8
-```$
+```
 
 Now, let us repeat the search, but on a much larger scale:
 
@@ -22,19 +22,3 @@ Thus, $s_{10} = -393027$ and $s_{100} = 86613$.
 The terms of $s$ are then arranged in a $2000 \times 2000$ table, using the first $2000$ numbers to fill the first row (sequentially), the next $2000$ numbers to fill the second row, and so on.
 
 Finally, find the greatest sum of (any number of) adjacent entries in any direction (horizontal, vertical, diagonal or anti-diagonal).
-
-
-## Function Contract
-
-- `solve() -> int`
-
-
-## Examples
-
-- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
-
-
-## Constraints
-
-- Execution time MUST be strictly under 1 minute.
-

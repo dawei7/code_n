@@ -32,7 +32,11 @@ A naive Markov Decision Process (MDP) models states $(B, W)$ with $0 \le B, W \l
 
 ### Martingale Scale Function on Birth-Death Chains
 For a fixed total number of sheep $m = B + W$, the number of black sheep $b$ evolves as a 1D birth-death process on $\{0, 1, \dots, m\}$ with transition probabilities:
-$$p_b = \frac{b}{m} \quad (\text{up}), \quad q_b = \frac{m - b}{m} \quad (\text{down})$$
+
+$$
+p_b = \frac{b}{m} \quad (\text{up}), \quad q_b = \frac{m - b}{m} \quad (\text{down})
+$$
+
 Using potential theory and scale functions:
 - The scale increment is $\Delta x_m(b) \propto \frac{1}{\binom{m - 1}{b}}$.
 - The optimal value function $S_m(b)$ at the decision stage is the least concave majorant with respect to the scale function.
@@ -45,20 +49,38 @@ Using potential theory and scale functions:
 
 ### The $O(n)$ Boundary Recurrence
 Let $B[b]$ denote the value at the threshold state once it becomes stoppable:
-$$B[b] = B[b - 1] + (2b - 1 - B[b - 1]) \cdot r_b$$
+
+$$
+B[b] = B[b - 1] + (2b - 1 - B[b - 1]) \cdot r_b
+$$
+
 where $r_b = \frac{2p_b}{1 + p_b}$ and $p_b = \frac{1}{4^{b-1}} \binom{2b - 2}{b - 1}$ is the central binomial coefficient probability, updated via:
-$$p_{b+1} = p_b \cdot \frac{2b - 1}{2b}$$
+
+$$
+p_{b+1} = p_b \cdot \frac{2b - 1}{2b}
+$$
 
 ### Evaluation from Initial State $(n, n)$
 From $(n, n)$ before the first bleat:
 1. With probability $\frac{1}{2}$, white bleats $\implies (n - 1, n + 1)$, which is reduced to the threshold state with value $B[n - 1]$.
 2. With probability $\frac{1}{2}$, black bleats $\implies (n + 1, n - 1)$ on total sheep $2n$.
    By linear interpolation under the scale function:
-   $$V(2n, n + 1) = B[n] + (2n - B[n]) \cdot R_n$$
+
+$$
+V(2n, n + 1) = B[n] + (2n - B[n]) \cdot R_n
+$$
+
    where:
-   $$R_n = \frac{1}{\sum_{k=0}^{n-1} \prod_{j=1}^k \frac{n - j}{n + j}}$$
+
+$$
+R_n = \frac{1}{\sum_{k=0}^{n-1} \prod_{j=1}^k \frac{n - j}{n + j}}
+$$
+
 3. Total expected value:
-   $$\mathbf{E(n) = \frac{1}{2} B[n - 1] + \frac{1}{2} V(2n, n + 1)}$$
+
+$$
+\mathbf{E(n) = \frac{1}{2} B[n - 1] + \frac{1}{2} V(2n, n + 1)}
+$$
 
 ---
 

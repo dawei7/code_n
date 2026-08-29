@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$, define $S(n)$ as the sum of all integers $x$ such that:
-$$1 < x < n \quad \text{and} \quad x^3 \equiv 1 \pmod n$$
+
+$$
+1 < x < n \quad \text{and} \quad x^3 \equiv 1 \pmod n
+$$
+
 We are given $N = 13082761331670030 = 2 \times 3 \times 5 \times 7 \times 11 \times 13 \times 17 \times 19 \times 23 \times 29 \times 31 \times 37 \times 41 \times 43$.
 Find $S(N)$.
 
@@ -23,7 +27,11 @@ A naive approach tests all $x \in [2, N - 1]$ to check if $x^3 \equiv 1 \pmod N$
 ### Chinese Remainder Theorem & Prime Power Roots
 By the Chinese Remainder Theorem (CRT), since $N = \prod_{i=1}^{14} p_i$ is a product of 14 distinct primes:
 - The congruence $x^3 \equiv 1 \pmod N$ is equivalent to the simultaneous system:
-  $$x^3 \equiv 1 \pmod{p_i} \quad \text{for all } i = 1, \dots, 14$$
+
+$$
+x^3 \equiv 1 \pmod{p_i} \quad \text{for all } i = 1, \dots, 14
+$$
+
 - For each prime $p_i$:
   - If $p_i \not\equiv 1 \pmod 3$ and $p_i \ne 3$: $\gcd(3, p_i - 1) = 1$, so there is only **1 root** ($r \equiv 1$).
   - If $p_i \equiv 1 \pmod 3$: $\gcd(3, p_i - 1) = 3$, so there are **3 distinct roots** $\{1, r_1, r_2\} \pmod{p_i}$.
@@ -35,7 +43,11 @@ By the Chinese Remainder Theorem (CRT), since $N = \prod_{i=1}^{14} p_i$ is a pr
 
 ### Cartesian Product over Local Cube Roots
 1. The primes $p_i \mid N$ with $p_i \equiv 1 \pmod 3$ are:
-   $$\{7, 13, 19, 31, 37, 43\} \quad (\text{exactly } 6 \text{ primes})$$
+
+$$
+\{7, 13, 19, 31, 37, 43\} \quad (\text{exactly } 6 \text{ primes})
+$$
+
 2. Total global solutions: $3^6 = 729$ solutions!
 3. For each of the 729 combinations of local roots:
    Reconstruct the unique global integer $x \in [0, N - 1]$ via the Chinese Remainder Theorem.

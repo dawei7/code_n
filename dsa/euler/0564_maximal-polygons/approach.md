@@ -12,7 +12,10 @@ We are given:
 - $S(3) = 0.433013, S(4) = 1.732051, S(5) = 4.604767, S(10) = 66.955511$
 
 We seek to evaluate:
-$$S(50) \text{ rounded to 6 decimal places}$$
+
+$$
+S(50) \text{ rounded to 6 decimal places}
+$$
 
 ---
 
@@ -33,9 +36,16 @@ For $n = 50$, there are $\binom{96}{49} \approx 6.4 \times 10^{27}$ compositions
    Each integer partition of $k = n - 3$ represents an entire orbit of compositions with multinomial weight $\frac{n!}{\prod m_j!}$.
 3. **Circumcircle Diameter Equations**:
    - **All-Minor Case (center inside)**:
-     $$\sum_{i=1}^n \arcsin\left(\frac{s_i}{r}\right) = \pi \implies \text{Area} = \frac{1}{4} \sum_{i=1}^n s_i \sqrt{r^2 - s_i^2}$$
+
+$$
+\sum_{i=1}^n \arcsin\left(\frac{s_i}{r}\right) = \pi \implies \text{Area} = \frac{1}{4} \sum_{i=1}^n s_i \sqrt{r^2 - s_i^2}
+$$
+
    - **One-Major Case (center outside)**:
-     $$\sum_{i=1}^n \arcsin\left(\frac{s_i}{r}\right) = 2 \arcsin\left(\frac{s_{\max}}{r}\right)$$
+
+$$
+\sum_{i=1}^n \arcsin\left(\frac{s_i}{r}\right) = 2 \arcsin\left(\frac{s_{\max}}{r}\right)
+$$
 
 ---
 

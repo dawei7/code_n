@@ -23,7 +23,10 @@ Given:
 ### Complex Poles of Laplace Renewal Transform
 The Laplace transform of $H(x)$ is $\mathcal{L}[H](s) = \frac{1}{s(1 - \frac{1 - e^{-s}}{s})}$.
 The dominant non-zero complex conjugate poles $s_1, \bar{s}_1$ of $s = 1 - e^{-s}$ govern the asymptotic deviation:
-$$\Delta(n) = 2 \text{Re}\left( \frac{e^{-s_1 n}}{s_1 (s_1 - 1)} \right)$$
+
+$$
+\Delta(n) = 2 \text{Re}\left( \frac{e^{-s_1 n}}{s_1 (s_1 - 1)} \right)
+$$
 
 ---
 

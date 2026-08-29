@@ -4,15 +4,23 @@
 
 Let $ABC$ be an integer-sided triangle with incenter $I$, perimeter $p$, and integer segment lengths $IA, IB, IC$.
 Define:
-$$L = p + |IA| + |IB| + |IC|$$
 
-$$S(P) = \sum_{p \le P} L$$
+$$
+L = p + |IA| + |IB| + |IC|
+$$
+
+$$
+S(P) = \sum_{p \le P} L
+$$
 
 We are given:
 - $S(10^3) = 3619$
 
 We seek to evaluate:
-$$S(10^7)$$
+
+$$
+S(10^7)
+$$
 
 ---
 
@@ -29,12 +37,19 @@ Testing all integer triplets $(a, b, c)$ up to perimeter $P = 10^7$ requires exp
 1. **Tangency Lengths**:
    Let $x = s - a, y = s - b, z = s - c$ with $s = \frac{a+b+c}{2} = x + y + z$.
    The distance from incenter $I$ to vertex $A$ is:
-   $$IA = \sqrt{x^2 + r^2}$$
+
+$$
+IA = \sqrt{x^2 + r^2}
+$$
+
    where $r$ is the inradius.
    For $IA, IB, IC$ to be integers, $(r, x, IA)$, $(r, y, IB)$, and $(r, z, IC)$ must all be integer right triangles (Pythagorean triples sharing the common leg $r$)!
 2. **Inradius Volume Constraint**:
    Using the half-angle cotangent identity $\cot(A/2)\cot(B/2) + \cot(B/2)\cot(C/2) + \cot(C/2)\cot(A/2) = 1$:
-   $$r^2 = \frac{xyz}{x + y + z} \implies z = \frac{r^2 (x + y)}{xy - r^2}$$
+
+$$
+r^2 = \frac{xyz}{x + y + z} \implies z = \frac{r^2 (x + y)}{xy - r^2}
+$$
 
 ---
 
@@ -43,7 +58,11 @@ Testing all integer triplets $(a, b, c)$ up to perimeter $P = 10^7$ requires exp
 ### Inradius Grouping & CSR Flat Pythagorean Array Search
 1. **Inradius Upper Bound**:
    For any triangle with semiperimeter $s$, the inradius is maximized when the triangle is equilateral:
-   $$r \le \frac{s\sqrt{3}}{9} \implies r_{\max} \approx \frac{P \sqrt{3}}{18} \approx 9.6 \times 10^5$$
+
+$$
+r \le \frac{s\sqrt{3}}{9} \implies r_{\max} \approx \frac{P \sqrt{3}}{18} \approx 9.6 \times 10^5
+$$
+
 2. **Compressed Sparse Row (CSR) Generation**:
    We pre-generate all $(r, x, \sqrt{r^2+x^2})$ pairs using primitive Pythagorean generator formulas and store them in flat arrays grouped by $r$.
 3. **Harmonic Pair Matching**:

@@ -41,7 +41,11 @@ A 3-stack position is:
 ### Bivariate Generating Function Convolution
 Let $F(x, y) = \sum_{S} x^{v(S)} y^{\Delta(S)}$ over all non-empty stacks of height $\le m$.
 The count of valid triples is:
-$$G(m) = [x^0 y^0] F(x, y)^3 \pmod{989898989}$$
+
+$$
+G(m) = [x^0 y^0] F(x, y)^3 \pmod{989898989}
+$$
+
 Using the dyadic structure and coefficient convolution evaluates $G(9898) \equiv 670785433 \pmod{989898989}$.
 
 ---

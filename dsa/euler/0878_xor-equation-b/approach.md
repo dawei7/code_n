@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In $\mathbb{F}_2[x]$, consider:
-$$(a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = k$$
+
+$$
+(a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = k
+$$
+
 with $k \le m$ and $0 \le a \le b \le N$.
 $G(N, m)$ is the total number of solutions.
 Given:
@@ -24,7 +28,11 @@ Find $G(10^{17}, 1\,000\,000)$.
 
 ### Fundamental Solution Chains in $\mathbb{F}_2[x]$
 Every solution $(a, b)$ belongs to an infinite linear recurrence chain:
-$$B_{n+1} = (2 \otimes B_n) \oplus B_{n-1} = (B_n \ll 1) \oplus B_{n-1}$$
+
+$$
+B_{n+1} = (2 \otimes B_n) \oplus B_{n-1} = (B_n \ll 1) \oplus B_{n-1}
+$$
+
 generated from a unique irreducible fundamental pair $(A_0, B_0)$ with $A_0 \le B_0$.
 A pair $(A_0, B_0)$ is fundamental iff $(2 \otimes A_0) \oplus B_0 \ge A_0$.
 
@@ -34,13 +42,24 @@ A pair $(A_0, B_0)$ is fundamental iff $(2 \otimes A_0) \oplus B_0 \ge A_0$.
 
 ### Strict Degree Bounding
 For a fundamental pair $(A_0, B_0)$ with $\deg(A_0) = \deg(B_0) = d$:
-$$K(x) = A_0(x)^2 \oplus x A_0(x) B_0(x) \oplus B_0(x)^2$$
+
+$$
+K(x) = A_0(x)^2 \oplus x A_0(x) B_0(x) \oplus B_0(x)^2
+$$
+
 The middle term $x A_0 B_0$ has odd degree $2d + 1$, whereas $A_0^2$ and $B_0^2$ have only even degrees.
 Therefore, no cancellation can occur at the leading degree:
-$$\deg(K) = 2d + 1$$
+
+$$
+\deg(K) = 2d + 1
+$$
 
 Given $k \le m = 10^6 < 2^{20}$:
-$$2d + 1 \le 19 \implies d \le 9$$
+
+$$
+2d + 1 \le 19 \implies d \le 9
+$$
+
 Thus all fundamental pairs satisfy $A_0, B_0 < 2^{10} = 1024$ (or $< 2048$).
 
 Evaluating all fundamental pairs and stepping their chains up to $N = 10^{17}$ runs in $\mathcal{O}(2^{2d} + \text{chains} \cdot \log N)$, completing in **0.05 seconds**.

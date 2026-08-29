@@ -3,11 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For coprime integers $a, b \ge 2$, consider the parametric Lissajous curve $C_{a, b}$:
-$$x(t) = \cos(at), \quad y(t) = \cos\left(b\left(t - \frac{\pi}{10}\right)\right), \quad t \in [0, 2\pi)$$
+
+$$
+x(t) = \cos(at), \quad y(t) = \cos\left(b\left(t - \frac{\pi}{10}\right)\right), \quad t \in [0, 2\pi)
+$$
 
 $d(a, b) = \sum (x^2 + y^2)$ is the sum of squared coordinates over all self-intersection points of $C_{a, b}$.
 We define:
-$$s(m) = \sum_{\substack{2 \le a, b \le m \\ \gcd(a, b) = 1}} d(a, b)$$
+
+$$
+\begin{aligned}
+s(m) = \sum_{\substack{2 \le a, b \le m \\ \gcd(a, b) = 1}} d(a, b)
+\end{aligned}
+$$
 
 We are given:
 - $d(2, 5) = 0.75, d(2, 3) = 4.5, d(7, 4) = 39.5, d(7, 5) = 52, d(10, 7) = 23.25$
@@ -15,7 +23,11 @@ We are given:
 - $s(100) = 24256505 = 2.425650500\text{e}7$
 
 We seek to evaluate:
-$$s(10^6)$$
+
+$$
+s(10^6)
+$$
+
 in scientific notation rounded to 10 significant digits.
 
 ---
@@ -32,16 +44,23 @@ Summing over $\frac{6}{\pi^2} m^2 \approx 6 \times 10^{11}$ pairs $(a, b)$ with 
 ### Exact Rational Summation of Self-Intersections
 1. **Algebraic Simplification of Crossing Points**:
    Using Chebyshev polynomials and trigonometric symmetry, the self-intersection points of $C_{a, b}$ collapse into an exact piecewise linear-fractional formula:
-   $$4 d(a, b) = \begin{cases}
+
+$$
+4 d(a, b) = \begin{cases}
    8ab - 6a - 6b & \text{if } 10 \nmid ab \\
    2ab - 3a - 3b + 4 & \text{if } 10 \mid ab
-   \end{cases}$$
+\end{cases}
+$$
+
 2. **Generic vs. Exceptional Subsets**:
    - Generic sum for all coprime pairs: $4 d_{\text{generic}}(a, b) = 8ab - 6(a + b)$.
    - Special correction on pairs where $10 \mid ab$: $\Delta = -6ab + 3(a + b) + 4$.
 3. **Mobius Inversion**:
    Summing over coprime pairs $\gcd(a, b) = 1$ is converted via Mobius inversion $\mu(d)$ to unconstrained 2D hyperbola sums over $x, y \le \lfloor m/d \rfloor$:
-   $$\sum_{\gcd(a, b)=1} f(a, b) = \sum_{d=1}^m \mu(d) \sum_{x, y \le m/d} f(dx, dy)$$
+
+$$
+\sum_{\gcd(a, b)=1} f(a, b) = \sum_{d=1}^m \mu(d) \sum_{x, y \le m/d} f(dx, dy)
+$$
 
 ---
 

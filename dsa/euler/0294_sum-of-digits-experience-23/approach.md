@@ -28,12 +28,26 @@ A naive digit DP iterates position by position for $n$ steps:
 
 ### 2D Generating Functions & Fast Polynomial Matrix Doubling
 Represent the state at length $L$ as a 2D polynomial distribution:
-$$P_L(x, y) = \sum_{r=0}^{22} \sum_{s=0}^{23} c_{r, s} x^r y^s$$
+
+$$
+P_L(x, y) = \sum_{r=0}^{22} \sum_{s=0}^{23} c_{r, s} x^r y^s
+$$
+
 where $r = k \bmod 23$ is the modular residue, and $s = d(k)$ is the digit sum.
 - Concatenating two blocks of lengths $A$ and $B$ (with $A + B = L$):
-  $$k = k_A \cdot 10^B + k_B$$
-  $$k \bmod 23 = (r_A \cdot 10^B + r_B) \bmod 23$$
-  $$d(k) = s_A + s_B$$
+
+$$
+k = k_A \cdot 10^B + k_B
+$$
+
+$$
+k \bmod 23 = (r_A \cdot 10^B + r_B) \bmod 23
+$$
+
+$$
+d(k) = s_A + s_B
+$$
+
 - This is a **2D convolution** modulo 23 for residues and standard addition for digit sums!
 
 ---
@@ -47,7 +61,11 @@ where $r = k \bmod 23$ is the modular residue, and $s = d(k)$ is the digit sum.
    `dp_1[d % 23, d] += 1`.
 3. Binary state doubling:
    Given $P_A$ (length $A$) and $P_B$ (length $B$):
-   $$P_{A+B}[ (r_A \cdot 10^B + r_B) \bmod 23, \ s_A + s_B ] = \sum P_A[r_A, s_A] \times P_B[r_B, s_B] \pmod{10^9}$$
+
+$$
+P_{A+B}[ (r_A \cdot 10^B + r_B) \bmod 23, \ s_A + s_B ] = \sum P_A[r_A, s_A] \times P_B[r_B, s_B] \pmod{10^9}
+$$
+
 4. Compute $P_n$ for $n = 11^{12}$ using binary exponentiation in $\approx \log_2(11^{12}) \approx 42$ matrix multiplication steps.
 5. Extract $S(n) = P_n[r=0, s=23] \bmod 10^9$.
 6. Total execution completes in under $0.4$ seconds in pure Python!

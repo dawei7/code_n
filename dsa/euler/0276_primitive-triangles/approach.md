@@ -4,7 +4,11 @@
 
 Consider triangles with integer side lengths $a, b, c$ satisfying $1 \le a \le b \le c$ and the triangle inequality $a + b > c$.
 A triangle $(a, b, c)$ is called **primitive** if:
-$$\gcd(a, b, c) = 1$$
+
+$$
+\gcd(a, b, c) = 1
+$$
+
 Let $P(p)$ be the number of primitive triangles with integer perimeter $a + b + c = p$.
 Let $T(p)$ be the total number of integer triangles with perimeter $a + b + c = p$ (primitive or not).
 We seek $\sum_{p=1}^{10\,000\,000} P(p)$.
@@ -24,11 +28,22 @@ A naive approach enumerates all integer triples $(a, b, c)$ with $a + b + c \le 
 
 ### Alcuin's Triangle Formula & Mobius Inversion
 By Alcuin's formula (or round-to-nearest integer formula), the total number of integer triangles of perimeter $p$ is:
-$$T(p) = \begin{cases} \text{round}\left( \frac{p^2}{48} \right) & \text{if } p \text{ is even} \\ \text{round}\left( \frac{(p + 3)^2}{48} \right) & \text{if } p \text{ is odd} \end{cases}$$
+
+$$
+T(p) = \begin{cases} \text{round}\left( \frac{p^2}{48} \right) & \text{if } p \text{ is even} \\ \text{round}\left( \frac{(p + 3)^2}{48} \right) & \text{if } p \text{ is odd} \end{cases}
+$$
+
 The prefix sum of total triangles with perimeter $\le N$ is:
-$$S_T(N) = \sum_{p=1}^N T(p)$$
+
+$$
+S_T(N) = \sum_{p=1}^N T(p)
+$$
+
 By Mobius inversion over perimeter scalings $k \cdot (a, b, c)$:
-$$S_P(N) = \sum_{k=1}^N \mu(k) \cdot S_T\left( \left\lfloor \frac{N}{k} \right\rfloor \right)$$
+
+$$
+S_P(N) = \sum_{k=1}^N \mu(k) \cdot S_T\left( \left\lfloor \frac{N}{k} \right\rfloor \right)
+$$
 
 ---
 
@@ -36,12 +51,20 @@ $$S_P(N) = \sum_{k=1}^N \mu(k) \cdot S_T\left( \left\lfloor \frac{N}{k} \right\r
 
 ### Sub-Linear Summation via Polynomial Closed-Form Prefix Sums
 1. $T(p)$ is a quadratic polynomial with a period-12 periodic constant term:
-   $$S_T(n) = \sum_{p=1}^n T(p)$$
+
+$$
+S_T(n) = \sum_{p=1}^n T(p)
+$$
+
    can be computed in $\mathcal{O}(1)$ closed form using polynomial summation formulas for the cubic $\sum p^2 / 48$ plus precomputed table for the 12-periodic residue!
 2. Using the Dirichlet hyperbola method / quotient grouping:
    - Sieve $\mu(k)$ up to $\sqrt{N} \approx 3162$.
    - Group identical values of $q = \lfloor N / k \rfloor$:
-     $$\sum_{k=1}^N \mu(k) S_T(\lfloor N / k \rfloor) = \sum_{q} S_T(q) \sum_{k : \lfloor N / k \rfloor = q} \mu(k)$$
+
+$$
+\sum_{k=1}^N \mu(k) S_T(\lfloor N / k \rfloor) = \sum_{q} S_T(q) \sum_{k : \lfloor N / k \rfloor = q} \mu(k)
+$$
+
 3. The sum $\sum_{p=1}^{10^7} P(p)$ evaluates in under $0.8$ seconds in pure Python!
 
 ---

@@ -11,7 +11,10 @@ We are given:
 - $F(8) = 319$
 
 We seek to evaluate:
-$$F(50\,000) \bmod 1\,000\,000\,007$$
+
+$$
+F(50\,000) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,12 +31,24 @@ Listing all pairings of red and blue edges on $n = 50\,000$ vertices involves $(
 1. **Unconnected Generating Function (Vacuum Bubbles & Matter Paths)**:
    Let $M = n/2$. The exponential generating functions of all (not necessarily connected) diagrams decompose into:
    - Closed vacuum fermion loops (cycle collections):
-     $$A_m = (2m-1)!! \cdot [x^{2m}] \frac{e^{-x}}{1 - x}$$
+
+$$
+A_m = (2m-1)!! \cdot [x^{2m}] \frac{e^{-x}}{1 - x}
+$$
+
    - Directed open electron paths from source to sink:
-     $$B_m = (2m-1)!! \cdot [x^{2m}] \frac{e^{-x}}{(1 - x)^2}$$
+
+$$
+B_m = (2m-1)!! \cdot [x^{2m}] \frac{e^{-x}}{(1 - x)^2}
+$$
+
 2. **Exponential / Connected Inversion**:
    By the exponential formula for labeled graphs, factoring out the disconnected vacuum bubbles corresponds to the formal power series division:
-   $$G(h) = \frac{B(h)}{A(h)} = B(h) \cdot A(h)^{-1}$$
+
+$$
+G(h) = \frac{B(h)}{A(h)} = B(h) \cdot A(h)^{-1}
+$$
+
    where the $M$-th coefficient $[h^M] G(h)$ equals $F(2M) \pmod{10^9+7}$.
 
 ---
@@ -43,7 +58,11 @@ Listing all pairings of red and blue edges on $n = 50\,000$ vertices involves $(
 ### Sub-6-Second FPS Inversion via 3-Prime NTT Convolution
 1. **Newton's Inversion on Formal Power Series**:
    Computing $A(h)^{-1} \pmod{h^{M+1}}$ of degree $M = 25\,000$ is accomplished via Newton iteration:
-   $$X_{k+1} = X_k (2 - A \cdot X_k) \pmod{h^{2^k}}$$
+
+$$
+X_{k+1} = X_k (2 - A \cdot X_k) \pmod{h^{2^k}}
+$$
+
 2. **3-Prime NTT CRT Pipeline**:
    Polynomial multiplications modulo $10^9+7$ use three NTT primes ($998244353, 1004535809, 469762049$) with exact CRT reconstruction.
 3. **Execution Performance**:

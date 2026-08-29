@@ -38,12 +38,26 @@ def naive_monte_carlo_chase():
    - Left ($-1$): $p_{\text{left}} = 1/6$.
    - Right ($+1$): $p_{\text{right}} = 1/6$.
    The net displacement $\Delta \in \{-2, -1, 0, +1, +2\}$ has probabilities:
-   $$P(\Delta = 0) = \left(\frac{4}{6}\right)^2 + 2\left(\frac{1}{6}\right)^2 = \frac{18}{36} = \frac{1}{2}$$
-   $$P(\Delta = \pm 1) = 2 \times \frac{4}{6} \times \frac{1}{6} = \frac{8}{36} = \frac{2}{9}$$
-   $$P(\Delta = \pm 2) = \left(\frac{1}{6}\right)^2 = \frac{1}{36}$$
+
+$$
+P(\Delta = 0) = \left(\frac{4}{6}\right)^2 + 2\left(\frac{1}{6}\right)^2 = \frac{18}{36} = \frac{1}{2}
+$$
+
+$$
+P(\Delta = \pm 1) = 2 \times \frac{4}{6} \times \frac{1}{6} = \frac{8}{36} = \frac{2}{9}
+$$
+
+$$
+P(\Delta = \pm 2) = \left(\frac{1}{6}\right)^2 = \frac{1}{36}
+$$
+
 3. **Linear System:**
    For each $d \in [1, 50]$, the expected steps to absorption satisfies:
-   $$E(d) = 1 + \frac{18}{36} E(d) + \frac{8}{36}\left(E(\text{dist}(d-1)) + E(\text{dist}(d+1))\right) + \frac{1}{36}\left(E(\text{dist}(d-2)) + E(\text{dist}(d+2))\right)$$
+
+$$
+E(d) = 1 + \frac{18}{36} E(d) + \frac{8}{36}\left(E(\text{dist}(d-1)) + E(\text{dist}(d+1))\right) + \frac{1}{36}\left(E(\text{dist}(d-2)) + E(\text{dist}(d+2))\right)
+$$
+
    where $\text{dist}(x) = \min(|x|, 100 - |x|)$.
 4. Solving the $51 \times 51$ system via Gaussian elimination takes $\approx 0.003$ seconds.
 
@@ -66,11 +80,18 @@ def naive_monte_carlo_chase():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Absorbing Markov System
-$$18 E(d) - 8 E(\text{dist}(d-1)) - 8 E(\text{dist}(d+1)) - E(\text{dist}(d-2)) - E(\text{dist}(d+2)) = 36$$
+
+$$
+18 E(d) - 8 E(\text{dist}(d-1)) - 8 E(\text{dist}(d+1)) - E(\text{dist}(d-2)) - E(\text{dist}(d+2)) = 36
+$$
+
 with boundary condition $E(0) = 0$.
 
 Solving for $d = 50$:
-$$E(50) \approx 3780.61862178 \dots \implies \mathbf{"3780.618622"}$$
+
+$$
+E(50) \approx 3780.61862178 \dots \implies \mathbf{"3780.618622"}
+$$
 
 ---
 

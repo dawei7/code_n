@@ -12,7 +12,10 @@ We are given:
 - $E(3, 20, 4, 9, 17) = 2358$
 
 We seek to evaluate:
-$$\sum_{n=1}^{10000} E(n, 10^n, 3^n, 6^n, 9^n) \bmod 10^9$$
+
+$$
+\sum_{n=1}^{10000} E(n, 10^n, 3^n, 6^n, 9^n) \bmod 10^9
+$$
 
 ---
 

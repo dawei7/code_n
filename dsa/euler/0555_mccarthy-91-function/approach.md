@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The generalized McCarthy 91 function $M_{m, k, s}(n)$ is defined recursively by:
-$$M_{m, k, s}(n) = \begin{cases} n - s & \text{if } n > m \\ M_{m, k, s}(M_{m, k, s}(n + k)) & \text{if } 0 \le n \le m \end{cases}$$
+
+$$
+M_{m, k, s}(n) = \begin{cases} n - s & \text{if } n > m \\ M_{m, k, s}(M_{m, k, s}(n + k)) & \text{if } 0 \le n \le m \end{cases}
+$$
+
 Let $F_{m, k, s} = \{ n \in \mathbb{N} : M_{m, k, s}(n) = n \}$ be the set of fixed points.
 Let $SF(m, k, s) = \sum_{n \in F_{m, k, s}} n$ and:
-$$S(p, m) = \sum_{1 \le s < k \le p} SF(m, k, s)$$
+
+$$
+S(p, m) = \sum_{1 \le s < k \le p} SF(m, k, s)
+$$
 
 We are given:
 - $F_{100, 11, 10} = \{91\}$
@@ -14,7 +21,10 @@ We are given:
 - $S(1000, 1000) = 208724467$
 
 We seek to evaluate:
-$$S(10^6, 10^6)$$
+
+$$
+S(10^6, 10^6)
+$$
 
 ---
 
@@ -32,9 +42,16 @@ There are $O(p^2) \approx 5 \times 10^{11}$ pairs $(k, s)$. Testing recursive fi
    Let $d = k - s > 0$. The recursion terminates and possesses fixed points if and only if $d \mid s$ (equivalently $d \mid k$).
 2. **Fixed Point Interval**:
    When $d \mid s$, the set of fixed points is precisely the contiguous interval of $d$ integers:
-   $$F_{m, k, s} = \{ m - s + 1, m - s + 2, \dots, m - s + d \}$$
+
+$$
+F_{m, k, s} = \{ m - s + 1, m - s + 2, \dots, m - s + d \}
+$$
+
 3. **Exact Linear Sum**:
-   $$SF(m, k, s) = \sum_{j=1}^d (m - s + j) = d(m - s) + \frac{d(d + 1)}{2}$$
+
+$$
+SF(m, k, s) = \sum_{j=1}^d (m - s + j) = d(m - s) + \frac{d(d + 1)}{2}
+$$
 
 ---
 
@@ -46,8 +63,15 @@ There are $O(p^2) \approx 5 \times 10^{11}$ pairs $(k, s)$. Testing recursive fi
    The constraint $1 \le s < k \le p$ becomes $1 \le q \le Q = \lfloor p/d \rfloor - 1$.
 2. **Algebraic Summation over $q$**:
    For fixed $d \in [1, \lfloor p/2 \rfloor]$:
-   $$\sum_{q=1}^Q SF(m, (q+1)d, q d) = \sum_{q=1}^Q \left[ d m + \frac{d(d+1)}{2} - d^2 q \right]$$
-   $$= Q \left( d m + \frac{d(d+1)}{2} \right) - d^2 \frac{Q(Q+1)}{2}$$
+
+$$
+\sum_{q=1}^Q SF(m, (q+1)d, q d) = \sum_{q=1}^Q \left[ d m + \frac{d(d+1)}{2} - d^2 q \right]
+$$
+
+$$
+= Q \left( d m + \frac{d(d+1)}{2} \right) - d^2 \frac{Q(Q+1)}{2}
+$$
+
    Summing this $O(1)$ expression over $d \in [1, \lfloor p/2 \rfloor]$ evaluates the entire answer in $O(p)$ time.
 
 This evaluates $S(10^6, 10^6)$ in **$\approx 0.10$ seconds** in pure Python!

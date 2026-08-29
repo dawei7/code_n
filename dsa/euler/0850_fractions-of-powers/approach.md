@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For positive integers $k$ and $n$, define the fractional power sum:
-$$f_k(n) = \sum_{i=1}^n \left\{ \frac{i^k}{n} \right\}$$
+
+$$
+f_k(n) = \sum_{i=1}^n \left\{ \frac{i^k}{n} \right\}
+$$
+
 Given:
 - $f_5(10) = 4.5$, $f_7(1234) = 616.5$
 - $S(N) = \sum_{\substack{k=1 \\ k \text{ odd}}}^N \sum_{n=1}^N f_k(n)$
@@ -25,10 +29,17 @@ Find $\lfloor S(N) \rfloor \bmod 977676779$ for $N = 33557799775533$.
 
 ### Pairing Symmetry of Odd Powers
 Because $k$ is odd, for all $i \in \{1, \dots, n-1\}$ such that $i^k \not\equiv 0 \pmod n$:
-$$\left\{ \frac{i^k}{n} \right\} + \left\{ \frac{(n - i)^k}{n} \right\} = 1$$
+
+$$
+\left\{ \frac{i^k}{n} \right\} + \left\{ \frac{(n - i)^k}{n} \right\} = 1
+$$
+
 Let $Z_k(n) = \#\{i \in \{1, \dots, n\} \mid n \mid i^k\} = \frac{n}{\text{rad}_k(n)}$ where $\text{rad}_k(n) = \prod_{p^e \parallel n} p^{\lceil e / k \rceil}$.
 Therefore:
-$$f_k(n) = \frac{n - Z_k(n)}{2} = \frac{n}{2} \left( 1 - \frac{1}{\text{rad}_k(n)} \right)$$
+
+$$
+f_k(n) = \frac{n - Z_k(n)}{2} = \frac{n}{2} \left( 1 - \frac{1}{\text{rad}_k(n)} \right)
+$$
 
 ---
 
@@ -37,18 +48,38 @@ $$f_k(n) = \frac{n - Z_k(n)}{2} = \frac{n}{2} \left( 1 - \frac{1}{\text{rad}_k(n
 ### Asymptotic Stabilization at $k \ge 45$
 Since $N \approx 3.35 \times 10^{13} < 2^{45}$, every prime exponent satisfies $e \le 44$.
 Hence, for all $k \ge 45$:
-$$\text{rad}_k(n) = \text{rad}(n) = \prod_{p \mid n} p \quad (\text{the square-free radical})$$
+
+$$
+\text{rad}_k(n) = \text{rad}(n) = \prod_{p \mid n} p \quad (\text{the square-free radical})
+$$
+
 Thus $G_k(N) = \sum_{n=1}^N \frac{n}{\text{rad}_k(n)}$ stabilizes to $G_\infty(N) = \sum_{n=1}^N \frac{n}{\text{rad}(n)}$ for all $k \ge 45$.
 
 ### Powerful Number Dirichlet Convolution
 The multiplicative function $g(n) = \frac{n}{\text{rad}(n)}$ satisfies $g = \mathbf{1} * h$ where:
-$$h(p^e) = p^{e-2}(p - 1) \quad (e \ge 2), \quad h(p) = 0$$
+
+$$
+h(p^e) = p^{e-2}(p - 1) \quad (e \ge 2), \quad h(p) = 0
+$$
+
 Because $h(n)$ is supported strictly on **square-full (powerful) numbers**:
-$$G_\infty(N) = \sum_{\substack{d \le N \\ d \text{ square-full}}} h(d) \left\lfloor \frac{N}{d} \right\rfloor$$
+
+$$
+\begin{aligned}
+G_\infty(N) = \sum_{\substack{d \le N \\ d \text{ square-full}}} h(d) \left\lfloor \frac{N}{d} \right\rfloor
+\end{aligned}
+$$
+
 There are only $\frac{\zeta(3/2)}{\zeta(3)} \sqrt{N} \approx 1.25 \times 10^7$ powerful numbers up to $N$.
 
 ### Total Sum Evaluation
-$$S(N) = \frac{M N(N + 1)}{4} - \frac{1}{2} \left( N + (M - 1) G_\infty(N) - \sum_{\substack{k=3 \\ k \text{ odd}}}^{43} (G_\infty(N) - G_k(N)) \right)$$
+
+$$
+\begin{aligned}
+S(N) = \frac{M N(N + 1)}{4} - \frac{1}{2} \left( N + (M - 1) G_\infty(N) - \sum_{\substack{k=3 \\ k \text{ odd}}}^{43} (G_\infty(N) - G_k(N)) \right)
+\end{aligned}
+$$
+
 where $M = \frac{N + 1}{2}$. The corrections $G_\infty(N) - G_k(N)$ are computed via DFS over powerful numbers with prime powers $e > k$.
 
 ---

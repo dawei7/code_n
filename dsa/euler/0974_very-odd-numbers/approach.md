@@ -27,7 +27,11 @@ Find $\Theta(10^{16})$.
 
 ### Multi-Constraint Digit DP
 The constraints on valid suffixes of length $L$ are captured by the 4-tuple state:
-$$(\text{length remaining}, \text{value} \bmod 7, \text{digit sum} \bmod 3, \text{parity bitmask of } \{1, 3, 5, 7, 9\})$$
+
+$$
+(\text{length remaining}, \text{value} \bmod 7, \text{digit sum} \bmod 3, \text{parity bitmask of } \{1, 3, 5, 7, 9\})
+$$
+
 Since there are only $7 \times 3 \times 2^5 = 672$ states per length, the number of valid completions from any prefix is computed in $\mathcal{O}(1)$ via DP lookup.
 
 ---

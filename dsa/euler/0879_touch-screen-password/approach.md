@@ -36,14 +36,27 @@ There are exactly $2^{16} \times 16 = 1,048,576$ states.
 For every pair of spots $u = (r_1, c_1)$ and $v = (r_2, c_2)$:
 - Let $\Delta r = r_2 - r_1, \Delta c = c_2 - c_1$, and $g = \gcd(|\Delta r|, |\Delta c|)$.
 - The intermediate collinear grid points are:
-  $$(r_1 + s \cdot \frac{\Delta r}{g}, c_1 + s \cdot \frac{\Delta c}{g}) \quad \text{for } s = 1, \dots, g - 1$$
+
+$$
+(r_1 + s \cdot \frac{\Delta r}{g}, c_1 + s \cdot \frac{\Delta c}{g}) \quad \text{for } s = 1, \dots, g - 1
+$$
+
 - We precompute the bitmask $\text{Between}(u, v)$ of these points.
 
 A transition from $(S, u)$ to $v \notin S$ is legal iff:
-$$(\text{Between}(u, v) \ \& \ S) == \text{Between}(u, v)$$
+
+$$
+\begin{aligned}
+(\text{Between}(u, v) \ \& \ S) == \text{Between}(u, v)
+\end{aligned}
+$$
 
 Sweeping bitmasks $S$ from $1$ to $2^{16} - 1$ advances the state:
-$$\text{DP}(S \cup \{v\}, v) += \text{DP}(S, u)$$
+
+$$
+\text{DP}(S \cup \{v\}, v) += \text{DP}(S, u)
+$$
+
 accumulating the total count of passwords of length $\ge 2$.
 
 ---

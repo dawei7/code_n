@@ -3,14 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The **hyperexponentiation** or **tetration** of a number $a$ by a positive integer $b$, denoted by $a \uparrow\uparrow b$ or ${}^b a$, is defined recursively by:
-$$a \uparrow\uparrow 1 = a$$
 
-$$a \uparrow\uparrow k = a^{(a \uparrow\uparrow (k - 1))}$$
+$$
+a \uparrow\uparrow 1 = a
+$$
+
+$$
+a \uparrow\uparrow k = a^{(a \uparrow\uparrow (k - 1))}
+$$
 
 Thus we have e.g. $3 \uparrow\uparrow 2 = 3^3 = 27$, $3 \uparrow\uparrow 3 = 3^{27} = 7\,625\,597\,484\,987$, and $3 \uparrow\uparrow 4 \approx 3^{7.6 \times 10^{12}}$.
 
 The objective is to find the **last eight (8) digits of $1777 \uparrow\uparrow 1855$**:
-$$T_{\text{last8}} = (1777 \uparrow\uparrow 1855) \bmod 10^8$$
+
+$$
+T_{\text{last8}} = (1777 \uparrow\uparrow 1855) \bmod 10^8
+$$
 
 ---
 
@@ -27,12 +35,24 @@ def naive_tetration():
 ### Euler's Totient Theorem & Iterated Modulus Tower
 1. **Euler's Totient Power Reduction:**
    By Euler's Totient Theorem, for $\gcd(a, m) = 1$:
-   $$a^X \equiv a^{X \bmod \phi(m)} \pmod m$$
+
+$$
+a^X \equiv a^{X \bmod \phi(m)} \pmod m
+$$
+
    Since $\gcd(1777, 10^8) = 1$, the tetration reduces recursively:
-   $$(a \uparrow\uparrow b) \bmod m \equiv a^{(a \uparrow\uparrow (b - 1)) \bmod \phi(m)} \pmod m$$
+
+$$
+(a \uparrow\uparrow b) \bmod m \equiv a^{(a \uparrow\uparrow (b - 1)) \bmod \phi(m)} \pmod m
+$$
+
 2. **Rapid Modulus Collapse:**
    Successively applying Euler's totient function $\phi(m)$ shrinks the modulus rapidly:
-   $$10^8 \to 4 \times 10^7 \to 1.6 \times 10^7 \to \dots \to 1$$
+
+$$
+10^8 \to 4 \times 10^7 \to 1.6 \times 10^7 \to \dots \to 1
+$$
+
    The chain reaches $\phi^{(k)}(10^8) = 1$ in fewer than $15$ steps ($\mathcal{O}(\log^* m)$).
 3. Evaluating the power tower from the top (modulo 1) down to the bottom (modulo $10^8$) using `pow(a, exp, m)` runs in $\approx 0.0001$ seconds.
 
@@ -73,7 +93,10 @@ def solve(a: int = 1777, b: int = 1855, m: int = 10**8) -> int:
     return curr_val
 ```
 Evaluating for $a = 1777, b = 1855, m = 10^8$:
-$$T_{\text{last8}} = \mathbf{95\,962\,097}$$
+
+$$
+T_{\text{last8}} = \mathbf{95\,962\,097}
+$$
 
 ---
 
@@ -90,7 +113,10 @@ $$T_{\text{last8}} = \mathbf{95\,962\,097}$$
 
 ### Example 2: Target Evaluation for $1777 \uparrow\uparrow 1855 \bmod 10^8$
 - Top-to-bottom evaluation down the 13-level chain:
-  $$T_{\text{last8}} = \mathbf{95\,962\,097}$$
+
+$$
+T_{\text{last8}} = \mathbf{95\,962\,097}
+$$
 
 ---
 

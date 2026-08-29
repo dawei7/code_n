@@ -27,12 +27,22 @@ Computing $S_{20}(10^{14})$ requires 20 nested prefix sums over $10^{14}$ terms,
 
 ### Harmonic Expectation & Binomial Convolution
 Under backward induction for optimal sequential decision-making:
-$$E(p) = H_p = \sum_{i=1}^p \frac{1}{i}$$
+
+$$
+E(p) = H_p = \sum_{i=1}^p \frac{1}{i}
+$$
+
 The $k$-fold iterated prefix sum $S_k(N)$ corresponds to the binomial convolution:
-$$S_k(N) = \sum_{p=1}^N \binom{N - p + k - 1}{k - 1} H_p$$
+
+$$
+S_k(N) = \sum_{p=1}^N \binom{N - p + k - 1}{k - 1} H_p
+$$
 
 Using the foundational harmonic-binomial summation identity:
-$$S_k(N) = \binom{N + k}{k} \left( H_{N+k} - H_k \right)$$
+
+$$
+S_k(N) = \binom{N + k}{k} \left( H_{N+k} - H_k \right)
+$$
 
 ---
 
@@ -44,7 +54,11 @@ For $N = 10^{14}$ and $k = 20$:
    $\binom{N+k}{k} = \frac{\prod_{i=1}^k (N+i)}{k!}$ is evaluated in arbitrary-precision `Decimal` (100 digits).
 2. **Harmonic Difference**:
    Splitting the harmonic difference at $m = 10^5$:
-   $$H_{N+k} - H_k = \sum_{i=k+1}^m \frac{1}{i} + \ln\left(\frac{N+k}{m}\right) + \frac{1}{2(N+k)} - \frac{1}{2m} - \frac{1}{12(N+k)^2} + \frac{1}{12m^2} + \dots$$
+
+$$
+H_{N+k} - H_k = \sum_{i=k+1}^m \frac{1}{i} + \ln\left(\frac{N+k}{m}\right) + \frac{1}{2(N+k)} - \frac{1}{2m} - \frac{1}{12(N+k)^2} + \frac{1}{12m^2} + \dots
+$$
+
    This eliminates the Euler-Mascheroni constant $\gamma$ entirely and converges to $> 50$ digits of accuracy.
 
 Total runtime is **0.0001 seconds**!

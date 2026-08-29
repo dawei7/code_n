@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In base $B = 14$ (with digits $0, 1, \dots, 9, \text{a}, \text{b}, \text{c}, \text{d}$), an $n$-digit integer $x$ (with non-zero leading digit) is called a **steady square** (automorphic number) if its square ends with the same $n$ base-$14$ digits:
-$$x^2 \equiv x \pmod{14^n}$$
+
+$$
+x^2 \equiv x \pmod{14^n}
+$$
+
 We seek the sum of the base-10 digit sums (in base 14) of all steady squares of length $1 \le n \le 10\,000$, expressed in base 14.
 
 ---
@@ -21,7 +25,11 @@ A naive approach tests all base-14 numbers of length $n$:
 
 ### Hensel's Lemma & $p$-adic Idempotents
 The congruence $x^2 \equiv x \pmod{14^n}$ factorizes as:
-$$x(x - 1) \equiv 0 \pmod{14^n} \iff x(x - 1) \equiv 0 \pmod{2^n \cdot 7^n}$$
+
+$$
+x(x - 1) \equiv 0 \pmod{14^n} \iff x(x - 1) \equiv 0 \pmod{2^n \cdot 7^n}
+$$
+
 Since $\gcd(x, x - 1) = 1$:
 The prime power factors $2^n$ and $7^n$ cannot both divide both terms!
 There are exactly $4$ solutions modulo $14^n$:
@@ -39,7 +47,11 @@ Furthermore, the sum of the two non-trivial idempotents is always $x_1 + x_2 \eq
 ### Hensel Newton-Raphson Modular Lifting
 To find the root of $f(x) = x^2 - x \equiv 0 \pmod{7^k}$ and $x \equiv 0 \pmod{2^k}$:
 We use Hensel's lifting / Newton's method:
-$$x_{k+1} = x_k^2 (3 - 2 x_k) \pmod{14^{2k}}$$
+
+$$
+x_{k+1} = x_k^2 (3 - 2 x_k) \pmod{14^{2k}}
+$$
+
 - Each Newton step **doubles the number of known base-14 digits** in $\mathcal{O}(M(n))$ time!
 - In just $14$ doubling steps, we lift the root from $n = 1$ to $n = 10\,000$.
 - Extract the prefixes of length $1 \dots 10\,000$, compute their base-14 digit sums, and sum them.

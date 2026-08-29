@@ -4,7 +4,10 @@
 
 Let $R(a, b, c)$ be the maximum area covered by three non-overlapping circles inside a triangle with side lengths $a, b, c$.
 Let $S(n)$ be the average value of $R(a, b, c)$ over all integer triplets $(a, b, c)$ satisfying:
-$$1 \le a \le b \le c < a + b \le n$$
+
+$$
+1 \le a \le b \le c < a + b \le n
+$$
 
 We are given:
 - $S(2) = R(1, 1, 1) \approx 0.31998$
@@ -28,7 +31,11 @@ Testing non-convex continuous optimization across 3 circles for hundreds of mill
    For any triangle, the largest circle in the optimal 3-circle packing is always the incircle of radius $r = \frac{\Delta}{s}$.
 2. **Greedy Corner Placements**:
    The second largest circle is always placed in the sharpest corner (angle $A$ opposite side $a$), tangent to the two adjacent triangle edges and the incircle, with radius:
-   $$r_A = r \frac{1 - \sin(A/2)}{1 + \sin(A/2)}$$
+
+$$
+r_A = r \frac{1 - \sin(A/2)}{1 + \sin(A/2)}
+$$
+
 3. **Bifurcation of the Third Circle**:
    The third circle is placed in either:
    - Corner $B$ with radius $r_B = r \frac{1 - \sin(B/2)}{1 + \sin(B/2)}$
@@ -42,9 +49,17 @@ Testing non-convex continuous optimization across 3 circles for hundreds of mill
 ### Reparameterization by Excess Variable $x = a + b - c$
 1. **Algebraic Simplification**:
    Substituting $c = a + b - x$ for $x \in [1, a]$ transforms the inradius squared into:
-   $$r^2 = \frac{x(2a - x)(2b - x)}{4(2(a + b) - x)}$$
+
+$$
+r^2 = \frac{x(2a - x)(2b - x)}{4(2(a + b) - x)}
+$$
+
    and the half-angle sines into:
-   $$\sin^2(A/2) = \frac{x(2a - x)}{4bc}, \quad \sin^2(B/2) = \frac{x(2b - x)}{4ac}$$
+
+$$
+\sin^2(A/2) = \frac{x(2a - x)}{4bc}, \quad \sin^2(B/2) = \frac{x(2b - x)}{4ac}
+$$
+
 2. **Fast Vectorized Inner Loop**:
    This removes all perimeter divisions and square roots of general Heron polynomials, executing each triangle configuration in just two square root calls and simple arithmetic operations.
 

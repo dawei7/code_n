@@ -8,7 +8,10 @@ Let $P = a + b + c$ be the perimeter. We are given:
 - For $P \le 10^6$, there are $861\,805$ geometric triangles.
 
 We are tasked with computing the total number of geometric triangles with:
-$$P \le 2.5 \times 10^{13}$$
+
+$$
+P \le 2.5 \times 10^{13}
+$$
 
 ---
 
@@ -16,7 +19,11 @@ $$P \le 2.5 \times 10^{13}$$
 
 ### Enumeration of Coprime Pairs $(x, y)$
 Expressing sides in lowest terms with common ratio $y / x$ ($\gcd(x, y) = 1, x \le y$):
-$$a = k x^2, \quad b = k x y, \quad c = k y^2 \quad (k \ge 1)$$
+
+$$
+a = k x^2, \quad b = k x y, \quad c = k y^2 \quad (k \ge 1)
+$$
+
 The triangle inequality $a + b > c$ simplifies to $x^2 + x y > y^2 \iff 1 \le \frac{y}{x} < \phi = \frac{1+\sqrt{5}}{2}$.
 The perimeter is $P = k(x^2 + x y + y^2) \le L$.
 - **Bottleneck**: The number of coprime pairs $(x, y)$ with $x^2 + x y + y^2 \le 2.5 \times 10^{13}$ is $\approx 1.188 \times 10^{12}$. Individual pair enumeration or tree traversal takes hours.
@@ -27,11 +34,26 @@ The perimeter is $P = k(x^2 + x y + y^2) \le L$.
 
 ### Dual Möbius Squarefree Transformation
 Using Möbius inversion to handle the coprimality condition $\gcd(x, y) = 1$:
-$$N(L) = \sum_{\substack{x \le y < \phi x \\ \gcd(x, y) = 1}} \left\lfloor \frac{L}{x^2 + x y + y^2} \right\rfloor = \sum_{d \ge 1} \mu(d) \sum_{x \le y < \phi x} \left\lfloor \frac{L}{d^2 (x^2 + x y + y^2)} \right\rfloor$$
+
+$$
+\begin{aligned}
+N(L) = \sum_{\substack{x \le y < \phi x \\ \gcd(x, y) = 1}} \left\lfloor \frac{L}{x^2 + x y + y^2} \right\rfloor = \sum_{d \ge 1} \mu(d) \sum_{x \le y < \phi x} \left\lfloor \frac{L}{d^2 (x^2 + x y + y^2)} \right\rfloor
+\end{aligned}
+$$
+
 Interchanging the summation order across squarefree multiples $m = d^2 k$:
-$$N(L) = \sum_{\substack{m \le L/3 \\ \mu^2(m) = 1}} H\left(\left\lfloor \frac{L}{m} \right\rfloor\right)$$
+
+$$
+\begin{aligned}
+N(L) = \sum_{\substack{m \le L/3 \\ \mu^2(m) = 1}} H\left(\left\lfloor \frac{L}{m} \right\rfloor\right)
+\end{aligned}
+$$
+
 where $H(T)$ is the number of unconstrained integer pairs $(x, y)$ satisfying:
-$$x \ge 1, \quad x \le y < \phi x, \quad x^2 + x y + y^2 \le T$$
+
+$$
+x \ge 1, \quad x \le y < \phi x, \quad x^2 + x y + y^2 \le T
+$$
 
 ---
 
@@ -41,7 +63,11 @@ $$x \ge 1, \quad x \le y < \phi x, \quad x^2 + x y + y^2 \le T$$
 The ellipse sector boundary $x^2 + x y + y^2 \le T$ intersects the line $y = \phi x$ at $x_0 = \sqrt{\frac{T}{\sqrt{5} + 3}}$:
 1. **For $x \le x_0$**: $y_{\max}(x) = \lfloor \phi x \rfloor$.
    The sum $\sum_{x=1}^{x_0} \lfloor \phi x \rfloor$ is evaluated in $O(\log x_0)$ via the **Beatty sequence / Euclidean reduction**:
-   $$\sum_{x=1}^{x_0} \lfloor \alpha x \rfloor = \lfloor \alpha \rfloor \frac{x_0(x_0+1)}{2} + x_0 M - \sum_{m=1}^M \lfloor m / \{\alpha\} \rfloor \quad (M = \lfloor \{\alpha\} x_0 \rfloor)$$
+
+$$
+\sum_{x=1}^{x_0} \lfloor \alpha x \rfloor = \lfloor \alpha \rfloor \frac{x_0(x_0+1)}{2} + x_0 M - \sum_{m=1}^M \lfloor m / \{\alpha\} \rfloor \quad (M = \lfloor \{\alpha\} x_0 \rfloor)
+$$
+
 2. **For $x > x_0$**: $y_{\max}(x) = \lfloor \frac{-x + \sqrt{4T - 3x^2}}{2} \rfloor$.
    Evaluated in $O(\sqrt{T})$ using monotonic two-pointer descent with zero square root operations inside the loop.
 
@@ -58,7 +84,10 @@ For large $L = 2.5 \times 10^{13}$:
 - Squarefree numbers $m \le 333\,333$:
 - $H(10^6) = 78\,494$
 - Summing $H(\lfloor 10^6 / m \rfloor)$ for all squarefree $m$ evaluates to:
-  $$N(10^6) = 861\,805 \quad (\checkmark)$$
+
+$$
+N(10^6) = 861\,805 \quad (\checkmark)
+$$
 
 ---
 

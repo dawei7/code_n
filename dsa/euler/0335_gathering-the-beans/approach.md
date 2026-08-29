@@ -36,9 +36,16 @@ Evaluating $M(2^k + 1)$ for small values of $k$:
 | **$4$** | $17$ | $209$ | $2^5 - 3^4 + 4^4 = 32 - 81 + 256 = 209$ |
 
 Applying the Berlekamp-Massey algorithm on this sequence yields the exact characteristic polynomial:
-$$(t - 2)(t - 3)(t - 4) = 0$$
+
+$$
+(t - 2)(t - 3)(t - 4) = 0
+$$
+
 which proves the universal closed-form formula:
-$$\mathbf{M(2^k + 1) = 2^{k+1} - 3^k + 4^k}$$
+
+$$
+\mathbf{M(2^k + 1) = 2^{k+1} - 3^k + 4^k}
+$$
 
 ---
 
@@ -46,14 +53,21 @@ $$\mathbf{M(2^k + 1) = 2^{k+1} - 3^k + 4^k}$$
 
 ### Closed-Form Geometric Series Summation
 We compute the sum $S(N) = \sum_{k=0}^N M(2^k + 1) \bmod 7^9$ for $N = 10^{18}$:
-$$S(N) = 2 \sum_{k=0}^N 2^k - \sum_{k=0}^N 3^k + \sum_{k=0}^N 4^k$$
+
+$$
+S(N) = 2 \sum_{k=0}^N 2^k - \sum_{k=0}^N 3^k + \sum_{k=0}^N 4^k
+$$
+
 Using the standard finite geometric series sum formula $\sum_{k=0}^N r^k = \frac{r^{N+1} - 1}{r - 1}$:
 1. $T_1 = 2 \cdot (2^{N+1} - 1)$
 2. $T_2 = \frac{3^{N+1} - 1}{2} \equiv (3^{N+1} - 1) \cdot 2^{-1} \pmod{7^9}$
 3. $T_3 = \frac{4^{N+1} - 1}{3} \equiv (4^{N+1} - 1) \cdot 3^{-1} \pmod{7^9}$
 
 Since $\gcd(2, 7) = \gcd(3, 7) = 1$, the modular inverses $2^{-1}$ and $3^{-1}$ exist and are unique modulo $7^9 = 40\,353\,607$.
-$$\mathbf{S(N) \equiv \Big( T_1 - T_2 + T_3 \Big) \pmod{7^9}}$$
+
+$$
+\mathbf{S(N) \equiv \Big( T_1 - T_2 + T_3 \Big) \pmod{7^9}}
+$$
 
 ---
 

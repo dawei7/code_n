@@ -26,9 +26,17 @@ Find $\sum_{k=2}^{10} Q_k(10^{12})$.
 
 ### Multiplicative Characterization of Bi-Unitary Divisors
 For a prime power $p^e$:
-$$\tau_B(p^e) = \begin{cases} e + 1 & \text{if } e \text{ is odd} \\ e & \text{if } e \text{ is even} \end{cases}$$
+
+$$
+\tau_B(p^e) = \begin{cases} e + 1 & \text{if } e \text{ is odd} \\ e & \text{if } e \text{ is even} \end{cases}
+$$
+
 Because bi-unitary divisors pair symmetrically as $(d, n/d)$:
-$$P(n) = n^{\tau_B(n)/2}$$
+
+$$
+P(n) = n^{\tau_B(n)/2}
+$$
+
 Thus $P(n) = n^k \iff \tau_B(n) = 2k$.
 We seek the number of $n \le 10^{12}$ with $\tau_B(n) \in \{4, 6, 8, \dots, 20\}$.
 

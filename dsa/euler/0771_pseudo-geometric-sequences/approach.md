@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A pseudo-geometric sequence is a finite sequence $0 < a_0 < a_1 < \dots < a_n \le N$ with $n \ge 4$ (at least 5 terms) such that:
-$$|a_i^2 - a_{i-1} a_{i+1}| \le 2 \quad \text{for all } 1 \le i \le n-1$$
+
+$$
+|a_i^2 - a_{i-1} a_{i+1}| \le 2 \quad \text{for all } 1 \le i \le n-1
+$$
 
 $G(N)$ is the total number of different pseudo-geometric sequences whose terms do not exceed $N$.
 
@@ -14,7 +17,10 @@ We are given:
 - $G(1000) = 496805$
 
 We seek to evaluate:
-$$G(10^{18}) \bmod 1\,000\,000\,007$$
+
+$$
+G(10^{18}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -50,7 +56,11 @@ By analyzing the second-order nonlinear recurrence $a_{i+1} = \frac{a_i^2 + k_i}
    Euler totient $\varphi(p)$ is precomputed up to $N^{1/4} = 1000$.
 2. **Recurrence Substring Counts**:
    For each recurrence, if the maximal valid prefix up to $N$ has length $L$, the number of sub-sequences of length $\ge 5$ is exactly:
-   $$\frac{(L - 4)(L - 3)}{2}$$
+
+$$
+\frac{(L - 4)(L - 3)}{2}
+$$
+
 3. **Execution Performance**:
    For $N = 10^{18}$, the complete classification evaluates in **$\approx 0.13$ seconds** in pure Python!
 

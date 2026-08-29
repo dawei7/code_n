@@ -6,7 +6,10 @@ Let $w(n)$ denote the British English representation of an integer $n \in \{1, 2
 Let $\ell(n) = |w(n)|$ be the character length of $w(n)$.
 
 The objective is to compute the total letter count across all integers from $1$ to $1000$:
-$$L(1000) = \sum_{n=1}^{1000} \ell(n) = \sum_{n=1}^{1000} |w(n)|$$
+
+$$
+L(1000) = \sum_{n=1}^{1000} \ell(n) = \sum_{n=1}^{1000} |w(n)|
+$$
 
 ---
 
@@ -44,13 +47,16 @@ The spelling of any number $n \in [1, 1000]$ decomposes deterministically into p
 
 ### Recursive Decomposition
 Define the recursive word builder:
-$$w(n) = \begin{cases} 
+
+$$
+w(n) = \begin{cases}
 \text{ones}[n] & \text{if } n < 20 \\
 \text{tens}[n // 10] \mathbin{\Vert} \text{ones}[n \% 10] & \text{if } 20 \le n < 100 \\
 \text{ones}[n // 100] \mathbin{\Vert} \text{"hundred"} & \text{if } 100 \le n < 1000 \land n \% 100 = 0 \\
 \text{ones}[n // 100] \mathbin{\Vert} \text{"hundredand"} \mathbin{\Vert} w(n \% 100) & \text{if } 100 \le n < 1000 \land n \% 100 \neq 0 \\
 \text{"onethousand"} & \text{if } n = 1000
-\end{cases}$$
+\end{cases}
+$$
 
 Evaluating $\sum_{n=1}^{1000} |w(n)|$ runs in $\mathcal{O}(N)$ time.
 
@@ -70,7 +76,10 @@ Evaluating $\sum_{n=1}^{1000} |w(n)|$ runs in $\mathcal{O}(N)$ time.
 - $342$: `three` (5) + `hundred` (7) + `and` (3) + `forty` (5) + `two` (3) $= \mathbf{23}$ letters.
 - $115$: `one` (3) + `hundred` (7) + `and` (3) + `fifteen` (7) $= \mathbf{20}$ letters.
 - Total accumulated count across all 1000 numbers:
-  $$L(1000) = \mathbf{21\,124}$$
+
+$$
+L(1000) = \mathbf{21\,124}
+$$
 
 ---
 

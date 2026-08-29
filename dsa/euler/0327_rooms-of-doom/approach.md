@@ -48,7 +48,11 @@ Let $X_r$ be the minimum number of keycards that must be present in Room $r - 1$
 
 ### Exact Backward Recurrence
 The minimal cards needed in Room $r - 1$ to transport $X$ cards into Room $r$ is:
-$$\mathbf{X_{r-1} = X + 1 + 2 \left\lfloor \frac{X - 2}{C - 2} \right\rfloor}$$
+
+$$
+\mathbf{X_{r-1} = X + 1 + 2 \left\lfloor \frac{X - 2}{C - 2} \right\rfloor}
+$$
+
 Starting from $X = 1$ (inside Room $R$) and applying this recurrence $R$ times backwards yields the exact value of $M(C, R)$.
 
 ---

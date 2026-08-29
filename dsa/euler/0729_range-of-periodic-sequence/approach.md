@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the non-linear real recurrence:
-$$a_{n+1} = a_n - \frac{1}{a_n} \quad (n \ge 0)$$
+
+$$
+a_{n+1} = a_n - \frac{1}{a_n} \quad (n \ge 0)
+$$
 
 For periodic orbits $(a_0, a_1, \dots, a_{n-1})$ with minimal period $n \le P$, the range is $\max(a_i) - \min(a_i)$.
 $S(P)$ is the sum of ranges of all real periodic sequences with minimal period $n \le P$.
@@ -14,7 +17,11 @@ We are given:
 - $S(5) \approx 124.1056$
 
 We seek to evaluate:
-$$S(25)$$
+
+$$
+S(25)
+$$
+
 rounded to 4 decimal places.
 
 ---
@@ -31,7 +38,11 @@ Iterating forward $f^n(x) = x$ yields a high-degree rational equation with $2^n$
 ### Backward Contraction Mapping & Binary Lyndon Words
 1. **Contractive Inverse Branches**:
    Inverting $y = x - 1/x$ gives quadratic equation $x^2 - y x - 1 = 0$:
-   $$g_0(y) = \frac{y + \sqrt{y^2 + 4}}{2}, \quad g_1(y) = \frac{y - \sqrt{y^2 + 4}}{2}$$
+
+$$
+g_0(y) = \frac{y + \sqrt{y^2 + 4}}{2}, \quad g_1(y) = \frac{y - \sqrt{y^2 + 4}}{2}
+$$
+
    Both branches are strictly contractive ($|g'(y)| < 1$).
 2. **Bijection with Aperiodic Necklaces (Lyndon Words)**:
    Every periodic orbit of period $n$ is uniquely indexed by a binary Lyndon word $w \in \{0, 1\}^n$ generated via the Fredricksen-Kessler-Maiorana (FKM) algorithm.

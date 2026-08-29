@@ -13,7 +13,10 @@ We are given:
 - $E(10) \approx 55.03013$
 
 We seek to evaluate:
-$$E(100) \text{ rounded to 5 decimal places}$$
+
+$$
+E(100) \text{ rounded to 5 decimal places}
+$$
 
 ---
 
@@ -28,7 +31,11 @@ The grid for $N = 100$ has $101^2 = 10\,201$ pins. There are $2^{10\,201}$ confi
 
 ### Linearity of Expectation via Green's Theorem
 1. **Shoelace / Cross-Product Area Formula**:
-   $$\text{Area}(S) = \frac{1}{2} \sum_{i} (x_i y_{i+1} - x_{i+1} y_i)$$
+
+$$
+\text{Area}(S) = \frac{1}{2} \sum_{i} (x_i y_{i+1} - x_{i+1} y_i)
+$$
+
    where the sum runs over all oriented counter-clockwise boundary edges $(v_i, v_{i+1})$ of the convex hull.
 2. **Supporting Lines**:
    An oriented edge between two pins $P_1, P_2$ on line $\ell: bx - ay = t$ belongs to the convex hull boundary if and only if:
@@ -45,7 +52,11 @@ The grid for $N = 100$ has $101^2 = 10\,201$ pins. There are $2^{10\,201}$ confi
    By 8-fold symmetry of the square, we enumerate primitive vectors $u = (a, b)$ with $a \ge b \ge 0$ and $\gcd(a, b) = 1$. Multipliers are 4 for axes/diagonals and 8 for general directions.
 2. **Consecutive Pin Expectation on Line**:
    For a line segment with $L$ lattice points:
-   $$\mathbb{E}[\text{cross contribution}] = p^2 \sum_{d=1}^{L-1} d(L - d) q^{d-1}$$
+
+$$
+\mathbb{E}[\text{cross contribution}] = p^2 \sum_{d=1}^{L-1} d(L - d) q^{d-1}
+$$
+
    where $q = 1 - p$.
 3. **Outer/Inner Point Counts**:
    Sorting lines by intercept $t$ allows a single sweeping prefix sum of point counts $L(t)$ across the grid, evaluating all line contributions in $O(N^2)$ per direction.

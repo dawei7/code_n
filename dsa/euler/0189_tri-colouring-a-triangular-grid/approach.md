@@ -6,12 +6,22 @@ Consider the following configuration of $64$ small triangles forming an equilate
 We wish to colour each small triangle with one of three colours: red, green, or blue ($0, 1, 2$), such that **no two adjacent small triangles (sharing an edge) have the same colour**.
 
 For a size $1$ triangle grid ($1$ small triangle), there are $3$ colourings:
-$$C(1) = 3$$
+
+$$
+C(1) = 3
+$$
+
 For a size $2$ triangle grid ($4$ small triangles), there are $66$ valid colourings:
-$$C(2) = 66$$
+
+$$
+C(2) = 66
+$$
 
 The objective is to find the **number of valid 3-colourings for a size $8$ triangle grid ($64$ small triangles)**:
-$$C(8) = \text{total number of valid colourings}$$
+
+$$
+C(8) = \text{total number of valid colourings}
+$$
 
 ---
 
@@ -38,7 +48,11 @@ def naive_tri_colouring():
    - Upward triangle $V_{\text{next}}[i]$ (below-left of it).
    - Upward triangle $V_{\text{next}}[i+1]$ (below-right of it).
    The number of available colors for downward triangle $w_i$ is simply:
-   $$\text{choices}(w_i) = 3 - |\{ U_{\text{prev}}[i], V_{\text{next}}[i], V_{\text{next}}[i+1] \}|$$
+
+$$
+\text{choices}(w_i) = 3 - |\{ U_{\text{prev}}[i], V_{\text{next}}[i], V_{\text{next}}[i+1] \}|
+$$
+
 3. **State Dimension:**
    At row $r$, there are only $3^r$ possible colour profiles. At $r = 8$, $3^8 = 6561$ states.
    Evaluating row transitions from $r=1$ to $8$ runs in $\approx 0.20$ seconds.
@@ -88,7 +102,10 @@ def solve(n: int = 8) -> int:
     return sum(dp.values())
 ```
 Evaluating for $n = 8$:
-$$C(8) = \mathbf{10\,834\,893\,628\,237\,824}$$
+
+$$
+C(8) = \mathbf{10\,834\,893\,628\,237\,824}
+$$
 
 ---
 
@@ -96,7 +113,11 @@ $$C(8) = \mathbf{10\,834\,893\,628\,237\,824}$$
 
 ### Example 1: Sample Verification for $n = 1$
 - 1 upward triangle $\implies 3$ color choices:
-  $$C(1) = \mathbf{3}$$
+
+$$
+C(1) = \mathbf{3}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Sample Verification for $n = 2$
@@ -112,7 +133,10 @@ $$C(8) = \mathbf{10\,834\,893\,628\,237\,824}$$
 
 ### Example 3: Target Evaluation for $n = 8$
 - Running full DP over 8 row levels:
-  $$C(8) = \mathbf{10\,834\,893\,628\,237\,824}$$
+
+$$
+C(8) = \mathbf{10\,834\,893\,628\,237\,824}
+$$
 
 ---
 

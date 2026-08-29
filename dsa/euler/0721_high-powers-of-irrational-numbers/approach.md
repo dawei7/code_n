@@ -3,9 +3,14 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define the function:
-$$f(a, n) = \lfloor (\lceil \sqrt{a} \rceil + \sqrt{a})^n \rfloor$$
 
-$$G(N) = \sum_{a=1}^N f(a, a^2)$$
+$$
+f(a, n) = \lfloor (\lceil \sqrt{a} \rceil + \sqrt{a})^n \rfloor
+$$
+
+$$
+G(N) = \sum_{a=1}^N f(a, a^2)
+$$
 
 We are given:
 - $f(5, 2) = 27$
@@ -13,7 +18,10 @@ We are given:
 - $G(1000) \equiv 163861845 \pmod{999\,999\,937}$
 
 We seek to evaluate:
-$$G(5\,000\,000) \bmod 999\,999\,937$$
+
+$$
+G(5\,000\,000) \bmod 999\,999\,937
+$$
 
 ---
 
@@ -35,10 +43,18 @@ For $a = 5 \times 10^6$, $n = a^2 = 2.5 \times 10^{13}$. Evaluating $(c + \sqrt{
 2. **Floor Reduction via Integer Trace**:
    For non-squares, $0 < \beta^n < 1$ for all $n \ge 1$.
    Define the integer trace $u_n = \alpha^n + \beta^n$.
-   $$\alpha^n = u_n - \beta^n \implies \lfloor \alpha^n \rfloor = u_n - 1$$
+
+$$
+\alpha^n = u_n - \beta^n \implies \lfloor \alpha^n \rfloor = u_n - 1
+$$
+
 3. **Second-Order Linear Recurrence**:
    $(x - \alpha)(x - \beta) = x^2 - 2c x + (c^2 - a) = 0$.
-   $$u_n = 2c u_{n-1} - (c^2 - a) u_{n-2}$$
+
+$$
+u_n = 2c u_{n-1} - (c^2 - a) u_{n-2}
+$$
+
    with initial terms $u_0 = 2, u_1 = 2c$.
 
 ---
@@ -47,8 +63,15 @@ For $a = 5 \times 10^6$, $n = a^2 = 2.5 \times 10^{13}$. Evaluating $(c + \sqrt{
 
 ### $2 \times 2$ Matrix Exponentiation Modulo $999\,999\,937$
 1. **Companion Matrix**:
-   $$M = \begin{pmatrix} 2c & -(c^2 - a) \\ 1 & 0 \end{pmatrix}$$
-   $$\begin{pmatrix} u_n \\ u_{n-1} \end{pmatrix} = M^{n-1} \begin{pmatrix} 2c \\ 2 \end{pmatrix}$$
+
+$$
+M = \begin{pmatrix} 2c & -(c^2 - a) \\ 1 & 0 \end{pmatrix}
+$$
+
+$$
+\begin{pmatrix} u_n \\ u_{n-1} \end{pmatrix} = M^{n-1} \begin{pmatrix} 2c \\ 2 \end{pmatrix}
+$$
+
 2. **Fast Binary Exponentiation**:
    Computing $M^{a^2 - 1} \bmod \text{MOD}$ takes $\approx 45$ multiplications in $O(\log a)$.
 3. **Execution Performance**:

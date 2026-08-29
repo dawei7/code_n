@@ -5,7 +5,10 @@
 A triangular pizza is cut into $n$ equal-area triangular pieces from a single interior point $P$.
 $\psi(n)$ is the number of valid geometric cutting configurations.
 Define:
-$$\Psi(m) = \sum_{n=3}^m \psi(n)$$
+
+$$
+\Psi(m) = \sum_{n=3}^m \psi(n)
+$$
 
 We are given:
 - $\psi(3) = 7, \psi(6) = 34, \psi(10) = 90$
@@ -13,7 +16,10 @@ We are given:
 - $\Psi(1000) = 172166601$
 
 We seek to evaluate:
-$$\Psi(10^8) \bmod 1\,000\,000\,007$$
+
+$$
+\Psi(10^8) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,16 +35,27 @@ Checking all rational barycentric partitions $(a/n, b/n, c/n)$ for $n \le 10^8$ 
 ### Skeleton Classification & Quadratic Diophantine Boundaries
 1. **Easy Skeleton (At Least 2 Corners Connected)**:
    Configurations where at least two vertices of the pizza are directly connected to $P$ have exact polynomial closed form:
-   $$\Psi_{\text{easy}}(m) = \frac{m^3 + 15m^2 - 52m + 36}{6}$$
+
+$$
+\Psi_{\text{easy}}(m) = \frac{m^3 + 15m^2 - 52m + 36}{6}
+$$
+
 2. **Hard Skeleton (Exactly One Uncut Vertex)**:
    For one fixed uncut vertex parameterized by integers $(x, y) \ge 1$:
    Let $D = x y (x + 1) (y + 1)$. The minimum $n$ for a valid configuration is:
-   $$n_{\min}(x, y) = 2xy + x + y + 1 + \lceil 2\sqrt{D} \rceil$$
+
+$$
+n_{\min}(x, y) = 2xy + x + y + 1 + \lceil 2\sqrt{D} \rceil
+$$
+
    For each $n \ge n_{\min}(x, y)$:
    - Exactly 1 configuration if $4D$ is a perfect square at $n = n_{\min}$.
    - Exactly 2 configurations for all other valid $(n, x, y)$.
 3. **Prefix Sum Contribution**:
-   $$\text{Contribution}(x, y) = 2(m - n_{\min}(x, y) + 1) - \mathbf{1}_{\{4D \text{ is square}\}}$$
+
+$$
+\text{Contribution}(x, y) = 2(m - n_{\min}(x, y) + 1) - \mathbf{1}_{\{4D \text{ is square}\}}
+$$
 
 ---
 

@@ -7,7 +7,11 @@ The rounded square root of a positive integer $n$ is defined by the following it
   - If $d$ is odd: $x_0 = 2 \times 10^{(d-1)/2}$
   - If $d$ is even: $x_0 = 7 \times 10^{(d-2)/2}$
 - Iteration:
-  $$x_{k+1} = \left\lfloor \frac{x_k + \lceil n / x_k \rceil}{2} \right\rfloor$$
+
+$$
+x_{k+1} = \left\lfloor \frac{x_k + \lceil n / x_k \rceil}{2} \right\rfloor
+$$
+
 - The algorithm halts at the smallest $k$ such that $x_{k+1} = x_k$. The number of iterations is defined as this value of $k$.
 
 We seek the average number of iterations over all 14-digit integers ($10^{13} \le n < 10^{14}$), rounded to $10$ decimal places.
@@ -27,7 +31,11 @@ A naive approach iterates over all 14-digit numbers:
 
 ### Interval Branching & Equivalence Classes
 Notice that the next iterate $x_{k+1}$ depends on $n$ only through $\lceil n / x_k \rceil$:
-$$\lceil n / x \rceil = q \iff (q - 1) x + 1 \le n \le q x$$
+
+$$
+\lceil n / x \rceil = q \iff (q - 1) x + 1 \le n \le q x
+$$
+
 - For a fixed iterate $x_k$, as $n$ varies over an interval $[A, B]$, the value of $\lceil n / x_k \rceil$ takes only a few consecutive integer values $q$.
 - Thus, the interval $[A, B]$ splits into a small number of sub-intervals $[A_q, B_q]$, on each of which $x_{k+1} = \lfloor (x_k + q) / 2 \rfloor$ is **completely constant**!
 
@@ -41,7 +49,11 @@ We define a recursive function `count_iterations(low, high, x, depth)`:
    All numbers in $[low, high]$ halt at the current depth!
    Contribution to total iterations: $(high - low + 1) \times depth$.
 2. Otherwise, partition $[low, high]$ according to the distinct values of $q = \lceil n / x \rceil$:
-   $$q_{\min} = \lceil low / x \rceil, \quad q_{\max} = \lceil high / x \rceil$$
+
+$$
+q_{\min} = \lceil low / x \rceil, \quad q_{\max} = \lceil high / x \rceil
+$$
+
    For each $q \in [q_{\min}, q_{\max}]$:
    Sub-interval: $[\max(low, (q - 1) x + 1), \min(high, q x)]$.
    Next iterate: $x_{\text{next}} = \lfloor (x + q) / 2 \rfloor$.

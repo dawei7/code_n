@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A primitive root $g \pmod p$ is a **Fibonacci primitive root** if:
-$$g^n + g^{n+1} \equiv g^{n+2} \pmod p \iff g^2 - g - 1 \equiv 0 \pmod p$$
+
+$$
+g^n + g^{n+1} \equiv g^{n+2} \pmod p \iff g^2 - g - 1 \equiv 0 \pmod p
+$$
+
 and $g$ has multiplicative order $p - 1$ modulo $p$.
 
 We are given:
@@ -26,11 +30,18 @@ Testing all residue candidates $g \in [2, p-1]$ across $\pi(10^8) \approx 5.76 \
 ### Quadratic Residue Discriminant & Tonelli-Shanks
 $g^2 - g - 1 \equiv 0 \pmod p$ is solvable if and only if $\Delta = 5$ is a quadratic residue modulo $p$ (or $p = 5$).
 By the Law of Quadratic Reciprocity:
-$$\left(\frac{5}{p}\right) = \left(\frac{p}{5}\right) = 1 \iff p \equiv 1, 4 \pmod 5$$
+
+$$
+\left(\frac{5}{p}\right) = \left(\frac{p}{5}\right) = 1 \iff p \equiv 1, 4 \pmod 5
+$$
+
 For any valid $p$:
 - Compute $s \equiv \sqrt{5} \pmod p$ via the **Tonelli-Shanks algorithm** (or $5^{(p+1)/4} \bmod p$ if $p \equiv 3 \bmod 4$).
 - The only two candidate roots are:
-  $$g_1 \equiv \frac{1 + s}{2} \pmod p, \quad g_2 \equiv \frac{1 - s}{2} \pmod p$$
+
+$$
+g_1 \equiv \frac{1 + s}{2} \pmod p, \quad g_2 \equiv \frac{1 - s}{2} \pmod p
+$$
 
 ---
 
@@ -38,7 +49,10 @@ For any valid $p$:
 
 ### Factorization of $p - 1$ & Order Verification
 A candidate $g$ is a primitive root if and only if for all prime factors $q \mid (p - 1)$:
-$$g^{(p-1)/q} \not\equiv 1 \pmod p$$
+
+$$
+g^{(p-1)/q} \not\equiv 1 \pmod p
+$$
 
 1. **Segmented Odd Prime Sieve**:
    A segmented sieve streams odd primes $p < 10^8$ using only $1\text{ MB}$ of memory.

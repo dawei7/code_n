@@ -10,7 +10,10 @@ We are given:
 - $C(10^7) = 2327192$
 
 We seek to evaluate:
-$$C(10^{16})$$
+
+$$
+C(10^{16})
+$$
 
 ---
 
@@ -29,7 +32,13 @@ A flat array of size $10^{16}$ is impossible, and sieving through all Hilbert nu
    - It is squarefree in the ordinary integer sense with $n \equiv 1 \pmod 4$, OR
    - It has exactly one prime power $p^2 \mid n$ with $p \equiv 3 \pmod 4$, and $n / p^2$ is squarefree with $n / p^2 \equiv 1 \pmod 4$.
 2. **Master Counting Identity**:
-   $$C(N) = \text{SQ1}(N) + \sum_{\substack{p \equiv 3 \pmod 4 \\ p^2 \le N}} \text{SQ1}\left(\left\lfloor \frac{N}{p^2} \right\rfloor\right)$$
+
+$$
+\begin{aligned}
+C(N) = \text{SQ1}(N) + \sum_{\substack{p \equiv 3 \pmod 4 \\ p^2 \le N}} \text{SQ1}\left(\left\lfloor \frac{N}{p^2} \right\rfloor\right)
+\end{aligned}
+$$
+
    where $\text{SQ1}(x)$ is the count of ordinary squarefree integers $\le x$ with $n \equiv 1 \pmod 4$.
 
 ---
@@ -38,7 +47,11 @@ A flat array of size $10^{16}$ is impossible, and sieving through all Hilbert nu
 
 ### Sub-linear Du Jiao Sieve & Segmented Prime Summation
 1. **Dirichlet Character Decomposition**:
-   $$\text{SQ1}(x) = \frac{1}{2} (O(x) + T(x))$$
+
+$$
+\text{SQ1}(x) = \frac{1}{2} (O(x) + T(x))
+$$
+
    where $O(x) = \sum_{d \le \sqrt{x}, d \text{ odd}} \mu(d) \lfloor \frac{x/d^2 + 1}{2} \rfloor$ and $T(x) = \sum_{d \text{ odd}} \mu(d) \chi(x/d^2)$.
 2. **Du Jiao / Mertens Sieve for Large Queries**:
    Evaluating $\text{SQ1}(x)$ in $O(x^{1/3})$ time by splitting the sum at $D = \lfloor x^{1/3} \rfloor$ and using the Du Jiao sieve for block-summing $\mu(d)$.

@@ -26,7 +26,11 @@ Find $\sum_{n=3}^{60} T(n) \bmod (10^9 + 7)$.
 
 ### Linearity of Expectation & Concurrency Multiplicities
 By linearity of expectation, the sum $T(n) = \sum_S I(S)$ is rewritten over all potential interior intersection points $P$:
-$$T(n) = \sum_{P \in \mathcal{P}_n} \mathbb{P}(P \in S)$$
+
+$$
+T(n) = \sum_{P \in \mathcal{P}_n} \mathbb{P}(P \in S)
+$$
+
 where $\mathbb{P}(P \in S)$ is the number of star polygons containing at least 2 of the $k(P)$ chords passing through $P$.
 
 ---
@@ -37,21 +41,38 @@ where $\mathbb{P}(P \in S)$ is the number of star polygons containing at least 2
 Any set of $j$ concurrent chords meeting at an interior point $P$ consists of $j$ pairwise vertex-disjoint edges (a matching of size $j$).
 Contracting the $j$ edges in $K_n$ results in $n - j$ vertices.
 The number of undirected Hamiltonian cycles containing all $j$ fixed edges is:
-$$H(n, j) = (n - j - 1)! \cdot 2^{j - 1}$$
+
+$$
+H(n, j) = (n - j - 1)! \cdot 2^{j - 1}
+$$
 
 ### Inclusion-Exclusion for "At Least Two" Chords
 The indicator polynomial for $\ge 2$ events under elementary symmetric sums is:
-$$\mathbb{I}(m \ge 2) = \sum_{j=2}^k (-1)^{j - 2} (j - 1) \binom{k}{j}$$
+
+$$
+\mathbb{I}(m \ge 2) = \sum_{j=2}^k (-1)^{j - 2} (j - 1) \binom{k}{j}
+$$
+
 Thus, the number of star polygons containing at least 2 of the $k$ chords is:
-$$N(n, k) = \sum_{j=2}^k (-1)^{j - 2} (j - 1) \binom{k}{j} H(n, j) \pmod{10^9 + 7}$$
+
+$$
+N(n, k) = \sum_{j=2}^k (-1)^{j - 2} (j - 1) \binom{k}{j} H(n, j) \pmod{10^9 + 7}
+$$
 
 ### Geometry & DSU Point Clustering
 All $\binom{n}{2}$ chords are generated with exact complex endpoints $\omega_k = e^{2\pi i k / n}$.
 Intersecting chord pairs $(C_1, C_2)$ are evaluated at:
-$$z = \frac{\omega_a \omega_b (\omega_c + \omega_d) - \omega_c \omega_d (\omega_a + \omega_b)}{\omega_a \omega_b - \omega_c \omega_d}$$
+
+$$
+z = \frac{\omega_a \omega_b (\omega_c + \omega_d) - \omega_c \omega_d (\omega_a + \omega_b)}{\omega_a \omega_b - \omega_c \omega_d}
+$$
+
 A 1D sorted scan with Disjoint Set Union (DSU) clusters identical intersection points with tolerance $\epsilon = 10^{-7}$.
 For a cluster containing $C$ intersecting chord pairs, its concurrency is:
-$$k = \frac{1 + \sqrt{1 + 8C}}{2}$$
+
+$$
+k = \frac{1 + \sqrt{1 + 8C}}{2}
+$$
 
 ---
 
@@ -60,7 +81,11 @@ $$k = \frac{1 + \sqrt{1 + 8C}}{2}$$
 ### Walkthrough for $n = 5$:
 1. $n = 5$ has $\binom{5}{4} = 5$ intersection points, each having $k = 2$ chords.
 2. For $k = 2$:
-   $$N(5, 2) = (-1)^0 (1) \binom{2}{2} H(5, 2) = 1 \cdot 1 \cdot (5 - 2 - 1)! 2^1 = 2! \cdot 2 = 4$$
+
+$$
+N(5, 2) = (-1)^0 (1) \binom{2}{2} H(5, 2) = 1 \cdot 1 \cdot (5 - 2 - 1)! 2^1 = 2! \cdot 2 = 4
+$$
+
 3. Total $T(5) = 5 \times 4 = \mathbf{20}$. (Matches problem statement! $\checkmark$)
 
 ### Walkthrough for $n = 8$:

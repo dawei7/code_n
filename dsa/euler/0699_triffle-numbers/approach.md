@@ -6,14 +6,22 @@ Let $\sigma(n)$ denote the sum of divisors of $n$.
 When the fraction $\frac{\sigma(n)}{n}$ is expressed in lowest terms as $\frac{a}{b}$ ($\gcd(a, b) = 1$), $n$ is called a **triffle number** if $b = 3^k$ for some integer $k > 0$.
 
 Define:
-$$T(N) = \sum_{\substack{n \le N \\ \text{denom}(\sigma(n)/n) = 3^k, k > 0}} n$$
+
+$$
+\begin{aligned}
+T(N) = \sum_{\substack{n \le N \\ \text{denom}(\sigma(n)/n) = 3^k, k > 0}} n
+\end{aligned}
+$$
 
 We are given:
 - $T(100) = 270$
 - $T(10^6) = 26089287$
 
 We seek to evaluate:
-$$T(10^{14})$$
+
+$$
+T(10^{14})
+$$
 
 ---
 
@@ -48,7 +56,11 @@ Iterating over $10^{14}$ integers and evaluating $\sigma(n)$ takes years of comp
 2. **Branching on Numerator Prime Factors**:
    Factor the current numerator $\text{num}$ using Miller-Rabin and Pollard's Rho.
    For each prime factor $p \mid \text{num}$ ($p > 5$) and each power $p^e \le \text{num}$ such that $n \cdot p^e \le N$:
-   $$\text{new\_num} = \frac{\text{num}}{p^e} \sigma(p^e), \quad \text{new\_den} = \text{den}$$
+
+$$
+\text{new\_num} = \frac{\text{num}}{p^e} \sigma(p^e), \quad \text{new\_den} = \text{den}
+$$
+
    Reduce $\frac{\text{new\_num}}{\text{new\_den}}$ and recurse.
 3. **Drastic State Reduction**:
    The number of reachable states across $[1, 10^{14}]$ is only a few thousand!

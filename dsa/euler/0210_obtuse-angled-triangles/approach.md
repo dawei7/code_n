@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the set $S(r)$ of points $(x, y)$ with integer coordinates satisfying:
-$$|x| + |y| \le r$$
+
+$$
+|x| + |y| \le r
+$$
+
 The points $O(0, 0)$ and $C(r/4, r/4)$ are fixed ($r$ is a multiple of $8$).
 We say that a point $B(x, y) \in S(r)$ is **valid** if $B \neq O, B \neq C$, and triangle $OBC$ has an **obtuse angle** (an angle strictly greater than $90^\circ$).
 
@@ -12,7 +16,10 @@ Let $N(r)$ be the number of valid points $B(x, y) \in S(r)$:
 - For $r = 8$: $N(8) = 100$.
 
 The objective is to find **$N(10^9)$**:
-$$N(10^9) = \text{number of non-degenerate obtuse triangles } OBC \text{ with } B \in S(10^9)$$
+
+$$
+N(10^9) = \text{number of non-degenerate obtuse triangles } OBC \text{ with } B \in S(10^9)
+$$
 
 ---
 
@@ -30,15 +37,31 @@ def naive_obtuse_triangles():
 1. **Three Mutually Disjoint Obtuse Regions:**
    Let $r = 8k$ and $C = (2k, 2k)$. An angle in $\triangle OBC$ is obtuse iff point $B(x, y)$ falls into one of three disjoint regions:
    - **Region 1 (Obtuse at $O$, $\vec{BO} \cdot \vec{CO} < 0$):**
-     $$x + y < 0 \implies c_1 = 64k^2 + 4k$$
+
+$$
+x + y < 0 \implies c_1 = 64k^2 + 4k
+$$
+
    - **Region 2 (Obtuse at $C$, $\vec{BC} \cdot \vec{OC} < 0$):**
-     $$x + y > 4k \implies c_2 = 32k^2 + 2k$$
+
+$$
+x + y > 4k \implies c_2 = 32k^2 + 2k
+$$
+
    - **Region 3 (Obtuse at $B$, $\vec{OB} \cdot \vec{CB} < 0$):**
-     $$(x - k)^2 + (y - k)^2 < 2k^2 \quad \text{(Interior of Thales' circle)}$$
+
+$$
+(x - k)^2 + (y - k)^2 < 2k^2 \quad \text{(Interior of Thales' circle)}
+$$
+
 2. **Gauss Circle Lattice Point Counting (Region 3):**
    Shift the coordinate origin to $(k, k)$. We count $(u, v) \in \mathbb{Z}^2$ such that $u^2 + v^2 \le 2k^2 - 1$.
    By 8-fold circular symmetry and swapped summation bounds:
-   $$c_3 = 1 + 4\lfloor \sqrt{2k^2 - 1} \rfloor + 4(k - 1) + 8 \left( \frac{k(k-1)}{2} + \sum_{u = k+1}^{\lfloor \sqrt{2k^2 - 1} \rfloor} \lfloor \sqrt{2k^2 - 1 - u^2} \rfloor \right)$$
+
+$$
+c_3 = 1 + 4\lfloor \sqrt{2k^2 - 1} \rfloor + 4(k - 1) + 8 \left( \frac{k(k-1)}{2} + \sum_{u = k+1}^{\lfloor \sqrt{2k^2 - 1} \rfloor} \lfloor \sqrt{2k^2 - 1 - u^2} \rfloor \right)
+$$
+
 3. **Collinear Points Deduction ($y = x$):**
    Points lying on the line $y = x$ are collinear with $O$ and $C$, forming degenerate straight segments rather than valid non-degenerate triangles:
    - Region 1 ($x < 0$): $4k$ points.
@@ -65,15 +88,26 @@ def naive_obtuse_triangles():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Obtuse Lattice Formula
-$$c_1 + c_2 = 96k^2 + 6k$$
 
-$$c_3 = 1 + 4\lfloor \sqrt{R^2} \rfloor + 4(k - 1) + 8\left(\frac{k(k-1)}{2} + \sum_{u=k+1}^{\lfloor \sqrt{R^2} \rfloor} \lfloor \sqrt{R^2 - u^2} \rfloor\right)$$
+$$
+c_1 + c_2 = 96k^2 + 6k
+$$
 
-$$N(r) = c_1 + c_2 + c_3 - (8k - 1)$$
+$$
+c_3 = 1 + 4\lfloor \sqrt{R^2} \rfloor + 4(k - 1) + 8\left(\frac{k(k-1)}{2} + \sum_{u=k+1}^{\lfloor \sqrt{R^2} \rfloor} \lfloor \sqrt{R^2 - u^2} \rfloor\right)
+$$
+
+$$
+N(r) = c_1 + c_2 + c_3 - (8k - 1)
+$$
+
 where $k = r / 8 = 125\,000\,000$ and $R^2 = 2k^2 - 1$.
 
 Evaluating for $r = 10^9$:
-$$N(10^9) = \mathbf{1\,598\,174\,770\,174\,689\,458}$$
+
+$$
+N(10^9) = \mathbf{1\,598\,174\,770\,174\,689\,458}
+$$
 
 ---
 
@@ -95,7 +129,10 @@ $$N(10^9) = \mathbf{1\,598\,174\,770\,174\,689\,458}$$
 - $c_3 = 98\,174\,770\,424\,689\,457$.
 - Collinear: $8(125\,000\,000) - 1 = 999\,999\,999$.
 - Total:
-  $$N(10^9) = \mathbf{1\,598\,174\,770\,174\,689\,458}$$
+
+$$
+N(10^9) = \mathbf{1\,598\,174\,770\,174\,689\,458}
+$$
 
 ---
 

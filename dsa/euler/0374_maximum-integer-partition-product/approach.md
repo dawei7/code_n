@@ -11,7 +11,10 @@ We are given:
 - $\sum_{n=1}^{100} f(n) \cdot m(n) = 1\,683\,550\,844\,462$.
 
 We seek to evaluate:
-$$\sum_{n=1}^{10^{14}} f(n) \cdot m(n) \pmod{982451653}$$
+
+$$
+\sum_{n=1}^{10^{14}} f(n) \cdot m(n) \pmod{982451653}
+$$
 
 ---
 
@@ -29,7 +32,11 @@ For $n = 10^{14}$, $n \sqrt{n} = 10^{21}$ operations, requiring an astronomical 
 To maximize the product of distinct summands without repeating:
 1. Summands must start at $2$ (since $1 \cdot x = x < 1 + x$).
 2. The base sum of $k$ distinct integers $\ge 2$ is:
-   $$T_k = 2 + 3 + \dots + (k+1) = \frac{(k+1)(k+2)}{2} - 1$$
+
+$$
+T_k = 2 + 3 + \dots + (k+1) = \frac{(k+1)(k+2)}{2} - 1
+$$
+
 3. For $n \in [T_k, T_{k+1})$, let remainder $r = n - T_k \in [0, k+1]$:
    - **$r = 0$ ($n = T_k$)**: Parts are $(2, 3, \dots, k+1)$.
      $f(n) = (k+1)!$, $m(n) = k \implies f(n) m(n) = k (k+1)!$.
@@ -44,9 +51,16 @@ To maximize the product of distinct summands without repeating:
 
 ### Closed-Form Interval Summation
 Summing $f(n) m(n)$ over the entire interval $n \in [T_k, T_{k+1})$ of length $k+2$:
-$$\text{Sum}(k) = k(k+1)! + k(k+2)! \sum_{j=2}^{k+1} \frac{1}{j} + k \frac{(k+1)!(k+3)}{2}$$
+
+$$
+\text{Sum}(k) = k(k+1)! + k(k+2)! \sum_{j=2}^{k+1} \frac{1}{j} + k \frac{(k+1)!(k+3)}{2}
+$$
+
 Factoring out $k (k+1)!$:
-$$\text{Sum}(k) = k (k+1)! \left[ 1 + \frac{k+3}{2} + (k+2) \sum_{j=2}^{k+1} \frac{1}{j} \right] \pmod{MOD}$$
+
+$$
+\text{Sum}(k) = k (k+1)! \left[ 1 + \frac{k+3}{2} + (k+2) \sum_{j=2}^{k+1} \frac{1}{j} \right] \pmod{MOD}
+$$
 
 ### Linear Inversion Table & Incremental Updates
 Let $H_k = \sum_{j=2}^{k+1} \frac{1}{j} \pmod{MOD}$.

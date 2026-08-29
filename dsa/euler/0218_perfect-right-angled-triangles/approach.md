@@ -6,11 +6,16 @@ Consider right-angled triangles with integer sides $(a, b, c)$ where $a^2 + b^2 
 - A right-angled triangle is **primitive** if $\gcd(a, b, c) = 1$.
 - A primitive right-angled triangle is **perfect** if its hypotenuse $c$ is a perfect square ($c = h^2$).
 - A right-angled triangle is **super-perfect** if its area is a multiple of the perfect numbers $6$ and $28$:
-  $$\operatorname{lcm}(6, 28) = 84 \implies 84 \mid \operatorname{Area}$$
+
+$$
+\operatorname{lcm}(6, 28) = 84 \implies 84 \mid \operatorname{Area}
+$$
 
 How many **perfect right-angled triangles with $c \le 10^{16}$ are NOT super-perfect**?
 
-$$N(10^{16}) = \left| \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; \gcd(a, b) = 1 \land a^2 + b^2 = c^2 \land c \le 10^{16} \land \exists h, c = h^2 \land 84 \nmid \frac{ab}{2} \right\} \right|$$
+$$
+N(10^{16}) = \left| \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; \gcd(a, b) = 1 \land a^2 + b^2 = c^2 \land c \le 10^{16} \land \exists h, c = h^2 \land 84 \nmid \frac{ab}{2} \right\} \right|
+$$
 
 ---
 
@@ -27,11 +32,23 @@ def naive_perfect_triangles():
 ### Algebraic Number Theory & Universal 84-Divisibility Theorem
 1. **Two-Stage Primitive Pythagorean Generator:**
    - Any primitive triple $(u, v, h)$ with $u^2 + v^2 = h^2$ is parameterized by coprime integers $m > n > 0$ of opposite parity:
-     $$u = m^2 - n^2, \quad v = 2mn, \quad h = m^2 + n^2$$
+
+$$
+u = m^2 - n^2, \quad v = 2mn, \quad h = m^2 + n^2
+$$
+
    - The perfect triangle with hypotenuse $c = h^2 = u^2 + v^2$ has legs:
-     $$a = 2uv|u^2 - v^2|, \quad b = |(u^2 - v^2)^2 - 4u^2 v^2| = |u^4 - 6u^2 v^2 + v^4|$$
+
+$$
+a = 2uv|u^2 - v^2|, \quad b = |(u^2 - v^2)^2 - 4u^2 v^2| = |u^4 - 6u^2 v^2 + v^4|
+$$
+
 2. **Area Factorization:**
-   $$\operatorname{Area} = \frac{1}{2} a b = u v |u^2 - v^2| \left| u^4 - 6u^2 v^2 + v^4 \right|$$
+
+$$
+\operatorname{Area} = \frac{1}{2} a b = u v |u^2 - v^2| \left| u^4 - 6u^2 v^2 + v^4 \right|
+$$
+
 3. **Modular Residue Proof Modulo $84 = 2^2 \times 3 \times 7$:**
    - **Modulo $4$:** Since $v = 2mn$ and one of $m, n$ is even, $v$ is a multiple of $4$, so $4 \mid \operatorname{Area}$.
    - **Modulo $3$:** If $3 \mid m$ or $3 \mid n$, $3 \mid v$. If neither, $m^2 \equiv n^2 \equiv 1 \pmod 3 \implies 3 \mid (m^2 - n^2) = u$. Thus $3 \mid \operatorname{Area}$.
@@ -83,7 +100,10 @@ def solve(limit: int = 10**16) -> int:
     return non_super_perfect_count
 ```
 Evaluating for $\text{limit} = 10^{16}$:
-$$N(10^{16}) = \mathbf{0}$$
+
+$$
+N(10^{16}) = \mathbf{0}
+$$
 
 ---
 
@@ -93,13 +113,27 @@ $$N(10^{16}) = \mathbf{0}$$
 - $u = 2^2 - 1^2 = 3, \quad v = 2(2)(1) = 4, \quad h = 3^2 + 4^2 = 25$.
 - Hypotenuse: $c = 25^2 = 625 = 5^4$.
 - Catheti:
-  $$a = 2(3)(4)|3^2 - 4^2| = 24 \times 7 = 168$$
-  $$b = |(9 - 16)^2 - 4(9)(16)| = |49 - 576| = 527$$
+
+$$
+a = 2(3)(4)|3^2 - 4^2| = 24 \times 7 = 168
+$$
+
+$$
+b = |(9 - 16)^2 - 4(9)(16)| = |49 - 576| = 527
+$$
+
 - Check Pythagorean condition: $168^2 + 527^2 = 28224 + 277729 = 305953 = 625^2$ ($\checkmark$).
 - Area:
-  $$\operatorname{Area} = \frac{168 \times 527}{2} = 84 \times 527 = \mathbf{44\,268}$$
+
+$$
+\operatorname{Area} = \frac{168 \times 527}{2} = 84 \times 527 = \mathbf{44\,268}
+$$
+
 - Divisibility by $84$:
-  $$44\,268 = 84 \times 527 \implies \text{Remainder } 0 \quad (\checkmark)$$
+
+$$
+44\,268 = 84 \times 527 \implies \text{Remainder } 0 \quad (\checkmark)
+$$
 
 ---
 

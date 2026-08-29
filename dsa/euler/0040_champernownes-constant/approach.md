@@ -3,13 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Champernowne's constant $C_{10} \in \mathbb{R}$ is the irrational decimal fraction constructed by concatenating all positive natural numbers in ascending order:
-$$C_{10} = 0.123456789101112131415161718192021\dots = 0.\mathbf{s}$$
+
+$$
+C_{10} = 0.123456789101112131415161718192021\dots = 0.\mathbf{s}
+$$
+
 where $\mathbf{s} = d_1 d_2 d_3 \dots$ is the infinite sequence of concatenated decimal digits.
 
 Let $d_k$ denote the $k$-th fractional decimal digit (1-indexed).
 
 The objective is to compute the product of the digits at the powers of ten index positions:
-$$P = \prod_{m=0}^6 d_{10^m} = d_1 \times d_{10} \times d_{100} \times d_{1000} \times d_{10000} \times d_{100000} \times d_{1000000}$$
+
+$$
+P = \prod_{m=0}^6 d_{10^m} = d_1 \times d_{10} \times d_{100} \times d_{1000} \times d_{10000} \times d_{100000} \times d_{1000000}
+$$
 
 ---
 
@@ -50,9 +57,17 @@ def naive_champernowne():
 To find the $k$-th digit $d_k$:
 1. Subtract the total digits of preceding blocks from $k$ until $k$ falls within block $L$.
 2. The exact integer containing position $k$ is:
-   $$\text{num} = 10^{L-1} + \left\lfloor \frac{k - 1}{L} \right\rfloor$$
+
+$$
+\text{num} = 10^{L-1} + \left\lfloor \frac{k - 1}{L} \right\rfloor
+$$
+
 3. The exact digit within $\text{num}$ is:
-   $$\text{digit\_index} = (k - 1) \bmod L$$
+
+$$
+\text{digit\_index} = (k - 1) \bmod L
+$$
+
 4. Extract the digit at $\text{digit\_index}$ from $\text{str}(\text{num})$.
 
 ---
@@ -72,9 +87,14 @@ To find the $k$-th digit $d_k$:
 | **$1\,000\,000$** | $38889 + 450000 = 488889$ | $511111$ | $6$ | $100000 + \lfloor 511110/6 \rfloor = \mathbf{185185}$ | $0$ | **$1$** |
 
 ### Product Evaluation
-$$P = d_1 \times d_{10} \times d_{100} \times d_{1000} \times d_{10000} \times d_{100000} \times d_{1000000}$$
 
-$$P = 1 \times 1 \times 5 \times 3 \times 7 \times 2 \times 1 = \mathbf{210}$$
+$$
+P = d_1 \times d_{10} \times d_{100} \times d_{1000} \times d_{10000} \times d_{100000} \times d_{1000000}
+$$
+
+$$
+P = 1 \times 1 \times 5 \times 3 \times 7 \times 2 \times 1 = \mathbf{210}
+$$
 
 ---
 

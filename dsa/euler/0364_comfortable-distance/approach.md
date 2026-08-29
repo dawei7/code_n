@@ -55,10 +55,16 @@ The rules partition the seating process into three strictly sequential global ph
 
 ### Closed-Form Combinatorial Product
 For a fixed boundary configuration $(L, R)$ and gap counts $(a, b)$ satisfying $2a + 3b = N - 1 - L - R$:
-$$\text{Ways}(L, R, a, b) = \binom{a + b}{b} \cdot k! \cdot 2^b (b + L + R)! \cdot (a + b)!$$
+
+$$
+\text{Ways}(L, R, a, b) = \binom{a + b}{b} \cdot k! \cdot 2^b (b + L + R)! \cdot (a + b)!
+$$
 
 Summing over all 4 boundary pairs $(L, R) \in \{0, 1\}^2$ and all valid integer values $b \in [0, \lfloor (N - 1 - L - R) / 3 \rfloor]$ with $N - 1 - L - R - 3b \equiv 0 \pmod 2$:
-$$T(N) = \sum_{L \in \{0, 1\}} \sum_{R \in \{0, 1\}} \sum_{b} \binom{a + b}{b} (a + b + 1)! \cdot 2^b (b + L + R)! \cdot (a + b)! \pmod{100\,000\,007}$$
+
+$$
+T(N) = \sum_{L \in \{0, 1\}} \sum_{R \in \{0, 1\}} \sum_{b} \binom{a + b}{b} (a + b + 1)! \cdot 2^b (b + L + R)! \cdot (a + b)! \pmod{100\,000\,007}
+$$
 
 ---
 

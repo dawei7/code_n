@@ -5,14 +5,20 @@
 The Carmichael function $\lambda(n)$ denotes the exponent of the group $(\mathbb{Z}/n\mathbb{Z})^\times$.
 Define $L(n)$ as the smallest positive integer such that $\lambda(k) \ge n$ for all $k \ge L(n)$.
 Equivalently:
-$$L(n) = 1 + \max \{ k : \lambda(k) < n \}$$
+
+$$
+L(n) = 1 + \max \{ k : \lambda(k) < n \}
+$$
 
 We are given:
 - $L(6) = 241$
 - $L(100) = 20\,174\,525\,281$
 
 We seek to evaluate:
-$$\text{Last 9 digits of } L(20\,000\,000) = L(20\,000\,000) \bmod 10^9$$
+
+$$
+\text{Last 9 digits of } L(20\,000\,000) = L(20\,000\,000) \bmod 10^9
+$$
 
 ---
 
@@ -27,13 +33,26 @@ Evaluating $\lambda(k)$ for each $k$ up to $k \sim 10^{600}$ is impossible becau
 
 ### Maximal Pre-Image of the Carmichael Function
 1. **Carmichael Group Exponent**:
-   $$\lambda\left(2^a \prod p_i^{e_i}\right) = \operatorname{lcm}\left(\lambda(2^a), \dots, \lambda(p_i^{e_i})\right)$$
+
+$$
+\lambda\left(2^a \prod p_i^{e_i}\right) = \operatorname{lcm}\left(\lambda(2^a), \dots, \lambda(p_i^{e_i})\right)
+$$
+
 2. **Optimal Factor Multiplicities**:
    For any fixed divisor $m < n$, the maximal integer $M(m)$ whose Carmichael value divides $m$ is:
-   $$M(m) = 2^{e_2(m)} \prod_{\substack{p > 2 \text{ prime} \\ p - 1 \mid m}} p^{v_p(m) + 1}$$
+
+$$
+\begin{aligned}
+M(m) = 2^{e_2(m)} \prod_{\substack{p > 2 \text{ prime} \\ p - 1 \mid m}} p^{v_p(m) + 1}
+\end{aligned}
+$$
+
    where $e_2(m) = v_2(m) + 2$ for even $m$.
 3. **Global Maximum**:
-   $$L(n) = 1 + \max_{1 \le m < n} M(m)$$
+
+$$
+L(n) = 1 + \max_{1 \le m < n} M(m)
+$$
 
 ---
 

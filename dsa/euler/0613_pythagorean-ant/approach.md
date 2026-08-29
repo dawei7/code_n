@@ -6,7 +6,10 @@ A right triangle has legs $a = 30, b = 40$ and hypotenuse $c = 50$.
 An ant lands uniformly at random at position $(x, y)$ inside the triangle ($x \ge 0, y \ge 0, \frac{x}{a} + \frac{y}{b} \le 1$) and crawls in a uniform random angle $\theta \in [0, 2\pi)$.
 
 We seek to evaluate:
-$$\text{Probability the ant exits along the hypotenuse, rounded to 10 decimal places}$$
+
+$$
+\text{Probability the ant exits along the hypotenuse, rounded to 10 decimal places}
+$$
 
 ---
 
@@ -23,9 +26,17 @@ Simulating millions of random starting positions and rays achieves at most $4$ d
 1. **Geometric Angle of Exit**:
    From a fixed point $(x, y)$, the hypotenuse endpoints are $A = (a, 0)$ and $B = (0, b)$.
    The angle subtended by the hypotenuse at $(x, y)$ is:
-   $$\theta(x, y) = \frac{\pi}{2} + \arctan\left(\frac{x}{b - y}\right) + \arctan\left(\frac{y}{a - x}\right)$$
+
+$$
+\theta(x, y) = \frac{\pi}{2} + \arctan\left(\frac{x}{b - y}\right) + \arctan\left(\frac{y}{a - x}\right)
+$$
+
 2. **Double Integral over Triangle**:
-   $$P = \frac{1}{2\pi \cdot \text{Area}} \iint_{\Delta} \theta(x, y) \, dx \, dy$$
+
+$$
+P = \frac{1}{2\pi \cdot \text{Area}} \iint_{\Delta} \theta(x, y) \, dx \, dy
+$$
+
    where $\text{Area} = \frac{1}{2} a b$.
 
 ---
@@ -35,12 +46,23 @@ Simulating millions of random starting positions and rays achieves at most $4$ d
 ### Exact Analytic Integration via Integration by Parts ($O(1)$)
 1. **Coordinate Substitution**:
    For $\iint \arctan\left(\frac{y}{a - x}\right) \, dy \, dx$, let $u = a - x$ and $t = y/u$:
-   $$\int_0^a u \, du \int_0^{b/a} \arctan(t) \, dt = \frac{a^2}{2} \left[ \frac{b}{a} \arctan\left(\frac{b}{a}\right) - \frac{1}{2} \ln\left(1 + \frac{b^2}{a^2}\right) \right]$$
+
+$$
+\int_0^a u \, du \int_0^{b/a} \arctan(t) \, dt = \frac{a^2}{2} \left[ \frac{b}{a} \arctan\left(\frac{b}{a}\right) - \frac{1}{2} \ln\left(1 + \frac{b^2}{a^2}\right) \right]
+$$
+
 2. **Summing Angle Complementarity**:
    Using $\arctan(b/a) + \arctan(a/b) = \pi/2$ and $a^2 + b^2 = c^2$:
-   $$\iint \theta(x, y) \, dx \, dy = \frac{\pi}{2} a b - \frac{a^2}{2} \ln(c/a) - \frac{b^2}{2} \ln(c/b)$$
+
+$$
+\iint \theta(x, y) \, dx \, dy = \frac{\pi}{2} a b - \frac{a^2}{2} \ln(c/a) - \frac{b^2}{2} \ln(c/b)
+$$
+
 3. **Exact Closed-Form Probability**:
-   $$P = \frac{1}{2} - \frac{a^2 \ln(c/a) + b^2 \ln(c/b)}{2 \pi a b}$$
+
+$$
+P = \frac{1}{2} - \frac{a^2 \ln(c/a) + b^2 \ln(c/b)}{2 \pi a b}
+$$
 
 This evaluates the exact probability in **$< 0.01$ seconds** in pure Python!
 

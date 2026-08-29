@@ -7,7 +7,10 @@ A tiling (toriangulation) dissects the torus into equilateral triangles of unit 
 Two tilings are equivalent if one can be deformed into the other without gaps or overlaps.
 $F(n)$ is the total number of non-equivalent tilings of all possible flat tori using exactly $n$ equilateral triangles.
 We define:
-$$G(N) = \sum_{n=1}^N F(n)$$
+
+$$
+G(N) = \sum_{n=1}^N F(n)
+$$
 
 We are given:
 - $G(6) = 14$
@@ -15,7 +18,10 @@ We are given:
 - $G(10^5) \equiv 645124048 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$G(10^9) \bmod 1\,000\,000\,007$$
+
+$$
+G(10^9) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -31,13 +37,23 @@ Listing all triangular lattice immersions into 2D flat tori up to $N = 10^9$ tri
 ### Decomposition into Strip and Hexagonal Tilings
 1. **Strip Tilings (Symmetric Hyperbola Sum)**:
    Tilings formed by parallel helical strips decompose over pairs $(u, v)$ with $uv \le \lfloor N / (2\sqrt{3}) \rfloor = L$:
-   $$\text{strip}(N) = 2 D(N/2) + 4 \sum_{uv \le L} \left( \left\lfloor \frac{N}{2 \gcd(u, v)} \right\rfloor - \left\lfloor \sqrt{3} \frac{uv}{\gcd(u, v)} \right\rfloor \right)$$
+
+$$
+\text{strip}(N) = 2 D(N/2) + 4 \sum_{uv \le L} \left( \left\lfloor \frac{N}{2 \gcd(u, v)} \right\rfloor - \left\lfloor \sqrt{3} \frac{uv}{\gcd(u, v)} \right\rfloor \right)
+$$
+
    where $D(n) = \sum_{k=1}^n \lfloor n/k \rfloor$ is the Dirichlet divisor summatory function.
 2. **Beatty-Type Irrational Sums**:
    The floor sum $\sum_k \lfloor k \sqrt{3} \rfloor$ is evaluated in $O(\log n)$ using complementary Beatty sequence Euclidean reciprocation.
 3. **Hexagonal Correction (Eisenstein Norm Form)**:
    Tilings possessing full hexagonal 6-fold rotational symmetry are parameterized by the Eisenstein quadratic form $Q(u, v) = u^2 + uv + v^2$:
-   $$H(X) = D(X) + 2 \sum_{\substack{u > v \ge 1 \\ Q(u, v) \le X, \text{ primitive}}} D(X // Q(u, v))$$
+
+$$
+\begin{aligned}
+H(X) = D(X) + 2 \sum_{\substack{u > v \ge 1 \\ Q(u, v) \le X, \text{ primitive}}} D(X // Q(u, v))
+\end{aligned}
+$$
+
    where primitive means $\gcd(u, v) = 1$ and $(2u + v) \not\equiv 0 \pmod 3$.
 
 ---

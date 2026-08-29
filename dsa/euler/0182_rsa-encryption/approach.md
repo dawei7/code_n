@@ -7,14 +7,22 @@ An encryption key $e$ is chosen such that $1 < e < \phi$ and $\gcd(e, \phi) = 1$
 
 A plaintext message $m \in \{0, 1, \dots, n-1\}$ is encrypted to ciphertext $c \equiv m^e \pmod n$.
 There exist messages that are **unconcealed** (meaning the ciphertext is identical to the plaintext):
-$$m^e \equiv m \pmod n$$
+
+$$
+m^e \equiv m \pmod n
+$$
 
 There are always some unconcealed messages (such as $m = 0, 1, n-1$).
 An exponent $e$ is called **optimal** if it minimizes the number of unconcealed messages.
 
 Given $p = 1009$ and $q = 3643$:
 The objective is to find the **sum of all valid encryption keys $e$ that minimize the number of unconcealed messages**:
-$$S_e = \sum_{\substack{1 < e < \phi \\ \gcd(e, \phi) = 1 \\ U(e) = U_{\text{min}}}} e$$
+
+$$
+\begin{aligned}
+S_e = \sum_{\substack{1 < e < \phi \\ \gcd(e, \phi) = 1 \\ U(e) = U_{\text{min}}}} e
+\end{aligned}
+$$
 
 ---
 
@@ -38,12 +46,20 @@ def naive_rsa_encryption():
    - Thus, there are $1 + \gcd(e - 1, p - 1)$ solutions modulo $p$, and $1 + \gcd(e - 1, q - 1)$ solutions modulo $q$.
 3. **Exact Closed-Form Formula for $U(e)$:**
    By the Chinese Remainder Theorem:
-   $$U(e) = (1 + \gcd(e - 1, p - 1)) \cdot (1 + \gcd(e - 1, q - 1))$$
+
+$$
+U(e) = (1 + \gcd(e - 1, p - 1)) \cdot (1 + \gcd(e - 1, q - 1))
+$$
+
 4. **Theoretical Minimum:**
    Since $p, q$ are odd primes, $p-1$ and $q-1$ are even. Since $\gcd(e, \phi) = 1$, $e$ must be odd $\implies e-1$ is even.
    Thus $\gcd(e-1, p-1) \ge 2$ and $\gcd(e-1, q-1) \ge 2$.
    The minimal possible unconcealed message count is:
-   $$U_{\text{min}} = (1 + 2)(1 + 2) = \mathbf{9}$$
+
+$$
+U_{\text{min}} = (1 + 2)(1 + 2) = \mathbf{9}
+$$
+
 5. Testing $\gcd(e-1, p-1) == 2$ and $\gcd(e-1, q-1) == 2$ for all coprime odd $e$ takes $\approx 0.20$ seconds.
 
 ---
@@ -83,7 +99,10 @@ def solve(p: int = 1009, q: int = 3643) -> int:
     return sum_e
 ```
 Evaluating for $p = 1009, q = 3643$:
-$$S_e = \mathbf{39\,978\,619\,584}$$
+
+$$
+S_e = \mathbf{39\,978\,619\,584}
+$$
 
 ---
 
@@ -100,7 +119,10 @@ $$S_e = \mathbf{39\,978\,619\,584}$$
 
 ### Example 2: Target Evaluation across All Valid Exponents
 - Summing all $e$ with $U(e) = 9$:
-  $$S_e = \mathbf{39\,978\,619\,584}$$
+
+$$
+S_e = \mathbf{39\,978\,619\,584}
+$$
 
 ---
 

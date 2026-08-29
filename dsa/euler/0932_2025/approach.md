@@ -22,11 +22,22 @@ Find $T(16)$.
 
 ### Diophantine Factorization & CRT Inversion
 Let $x = a + b$. Then:
-$$x^2 = a \cdot 10^k + b = a \cdot 10^k + (x - a) = a(10^k - 1) + x$$
+
+$$
+x^2 = a \cdot 10^k + b = a \cdot 10^k + (x - a) = a(10^k - 1) + x
+$$
+
 Rearranging yields:
-$$x(x - 1) = a(10^k - 1)$$
+
+$$
+x(x - 1) = a(10^k - 1)
+$$
+
 Because $\gcd(x, x - 1) = 1$, every coprime factorization $10^k - 1 = d_1 d_2$ gives a unique solution $x_0 \in [0, 10^k - 1)$ via the Chinese Remainder Theorem:
-$$x \equiv 0 \pmod{d_1}, \quad x \equiv 1 \pmod{d_2}$$
+
+$$
+x \equiv 0 \pmod{d_1}, \quad x \equiv 1 \pmod{d_2}
+$$
 
 ---
 

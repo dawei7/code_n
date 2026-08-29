@@ -13,7 +13,11 @@ We are given:
 - $q(5) = 0.2476095994$
 
 We seek to evaluate:
-$$q(100)$$
+
+$$
+q(100)
+$$
+
 rounded to 10 decimal places.
 
 ---

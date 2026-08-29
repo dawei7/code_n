@@ -20,7 +20,10 @@ We are given:
 - $f(10, 20) \approx 5.99374121$
 
 We seek to evaluate:
-$$f(200, 500) \quad \text{rounded to 8 decimal places}$$
+
+$$
+f(200, 500) \quad \text{rounded to 8 decimal places}
+$$
 
 ---
 
@@ -37,7 +40,11 @@ Continuous line placement cannot be solved by discrete grid approximations witho
 1. **Continuous Grundy Values**:
    The Grundy value $G(x)$ of a segment of length $x$ is piecewise constant on intervals defined by the algebraic ring $\mathbb{Z}_{\ge 0} + \mathbb{Z}_{\ge 0}\sqrt{2}$.
 2. **Move Transitions**:
-   $$G(x) = \operatorname{mex} \left(\{ G(u) \oplus G(x - 1 - u) \mid 0 \le u \le x - 1 \} \cup \{ G(u) \oplus G(x - \sqrt{2} - u) \mid 0 \le u \le x - \sqrt{2} \}\right)$$
+
+$$
+G(x) = \operatorname{mex} \left(\{ G(u) \oplus G(x - 1 - u) \mid 0 \le u \le x - 1 \} \cup \{ G(u) \oplus G(x - \sqrt{2} - u) \mid 0 \le u \le x - \sqrt{2} \}\right)
+$$
+
 3. **P-Position Kernel**:
    After a move splitting the segment into $(u, S - u)$, Sam wins if and only if $G(u) = G(S - u)$.
    The winning length is $W(S) = \int_0^S \mathbf{1}_{G(u) = G(S - u)} du$, which is a piecewise linear function.

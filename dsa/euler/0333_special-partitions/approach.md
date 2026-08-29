@@ -27,14 +27,26 @@ A naive approach generates all integer partitions of $n$ using elements from the
 
 ### Divisibility in 2D Poset & Antichain Formulation
 For two terms $u = 2^{i_1} 3^{j_1}$ and $v = 2^{i_2} 3^{j_2}$:
-$$u \mid v \iff i_1 \le i_2 \text{ and } j_1 \le j_2$$
+
+$$
+u \mid v \iff i_1 \le i_2 \text{ and } j_1 \le j_2
+$$
+
 Therefore, a set of terms contains no pairwise divisibility if and only if it forms an **antichain** in the product poset $(\mathbb{N} \times \mathbb{N}, \le)$.
 
 ### Strict Coordinate Sorting Rule:
 If the terms of a valid special partition are sorted in strictly increasing order of power of 2:
-$$i_1 < i_2 < i_3 < \dots < i_k$$
+
+$$
+i_1 < i_2 < i_3 < \dots < i_k
+$$
+
 then the corresponding powers of 3 must be **strictly decreasing**:
-$$j_1 > j_2 > j_3 > \dots > j_k$$
+
+$$
+j_1 > j_2 > j_3 > \dots > j_k
+$$
+
 This completely eliminates all duplicate permutations and ensures every valid special partition is generated exactly once.
 
 ---

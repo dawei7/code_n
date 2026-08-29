@@ -13,7 +13,10 @@ We are given:
 - $P(343) \equiv 937293740 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$P(7^{13}) \pmod{10^9+7}$$
+
+$$
+P(7^{13}) \pmod{10^9+7}
+$$
 
 ---
 
@@ -32,10 +35,22 @@ For $n = 7^{13} \approx 9.68 \times 10^{10}$, there are $(2n+1)^2 \approx 3.7 \t
    Along each ray of direction $(x, y)$ with $\max(|x|, |y|) = m$, there are $q(m) = \lfloor n/m \rfloor$ available grid points.
 2. **Exact Closed-Form Identity**:
    Using combinatorial inclusion-exclusion on polygon vertex selection along primitive rays:
-   $$B = \prod_{m=1}^n (1 + q(m))^{4\phi(m)} \pmod M$$
-   $$S_1 = \sum_{m=1}^n 4\phi(m) q(m) \pmod M$$
-   $$S_2 = \sum_{m=1}^n 4\phi(m) q(m)^2 \pmod M$$
-   $$P(n) = B^2 - 2 B S_1 + S_2 - 1 \pmod{10^9+7}$$
+
+$$
+B = \prod_{m=1}^n (1 + q(m))^{4\phi(m)} \pmod M
+$$
+
+$$
+S_1 = \sum_{m=1}^n 4\phi(m) q(m) \pmod M
+$$
+
+$$
+S_2 = \sum_{m=1}^n 4\phi(m) q(m)^2 \pmod M
+$$
+
+$$
+P(n) = B^2 - 2 B S_1 + S_2 - 1 \pmod{10^9+7}
+$$
 
 ---
 
@@ -45,7 +60,11 @@ For $n = 7^{13} \approx 9.68 \times 10^{10}$, there are $(2n+1)^2 \approx 3.7 \t
 1. **Floor Grouping**:
    The quotient $q(m) = \lfloor n/m \rfloor$ takes at most $2\sqrt{n}$ distinct values.
    For each block $m \in [l, r]$ where $q(m) = q$ is constant, the required sum of totients is:
-   $$\sum_{m=l}^r \phi(m) = \Phi(r) - \Phi(l-1)$$
+
+$$
+\sum_{m=l}^r \phi(m) = \Phi(r) - \Phi(l-1)
+$$
+
 2. **Du Sieve (Du Jiao Sieve)**:
    Precomputing $\Phi(x) = \sum_{k=1}^x \phi(k)$ up to $L = n^{2/3}$ using a linear sieve and memoizing Dirichlet inversion for larger queries computes $\Phi(x)$ for all required hyperbola nodes in $O(n^{2/3})$ time.
 

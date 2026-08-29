@@ -3,17 +3,27 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define the bitwise combination:
-$$g(m, n) = (m \oplus n) + (m \vee n) + (m \wedge n)$$
+
+$$
+g(m, n) = (m \oplus n) + (m \vee n) + (m \wedge n)
+$$
+
 where $\oplus, \vee, \wedge$ are bitwise XOR, OR, AND respectively.
 Define the cumulative sum:
-$$G(N) = \sum_{n=0}^N \sum_{k=0}^n g(k, n - k)$$
+
+$$
+G(N) = \sum_{n=0}^N \sum_{k=0}^n g(k, n - k)
+$$
 
 We are given:
 - $G(10) = 754$
 - $G(10^2) = 583766$
 
 We seek to evaluate:
-$$G(10^{18}) \bmod 1\,000\,000\,007$$
+
+$$
+G(10^{18}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,16 +39,33 @@ Evaluating $G(N)$ by summing over all $n \le 10^{18}$ and $k \le n$ requires $\a
 ### Bitwise Operator Identity & Coordinate Change
 1. **Operator Algebraic Simplification**:
    For any integers $m, n \ge 0$:
-   $$(m \oplus n) + (m \wedge n) = (m \vee n) \implies g(m, n) = 2(m \vee n)!$$
+
+$$
+(m \oplus n) + (m \wedge n) = (m \vee n) \implies g(m, n) = 2(m \vee n)!
+$$
+
 2. **Domain Transformation**:
    Letting $a = k$ and $b = n - k$, as $n \in [0, N]$ and $k \in [0, n]$, $(a, b)$ ranges over all pairs of non-negative integers such that $a + b \le N$:
-   $$G(N) = 2 \sum_{\substack{a \ge 0, b \ge 0 \\ a + b \le N}} (a \vee b)$$
+
+$$
+\begin{aligned}
+G(N) = 2 \sum_{\substack{a \ge 0, b \ge 0 \\ a + b \le N}} (a \vee b)
+\end{aligned}
+$$
+
 3. **Bit-by-Bit Decomposition**:
-   $$(a \vee b) = \sum_{i=0}^{59} 2^i \cdot \mathbf{1}_{\{a_i = 1 \text{ or } b_i = 1\}}$$
+
+$$
+(a \vee b) = \sum_{i=0}^{59} 2^i \cdot \mathbf{1}_{\{a_i = 1 \text{ or } b_i = 1\}}
+$$
+
    Notice that the $i$-th bit is $1$ in $a \vee b$ unless $a_i = 0$ AND $b_i = 0$.
    Total pairs $(a, b)$ with $a + b \le N$ is $\binom{N+2}{2}$.
    Hence:
-   $$\sum_{a+b \le N} (a \vee b) = \sum_{i=0}^{59} 2^i \left( \binom{N+2}{2} - \#\{a+b \le N : a_i = 0 \text{ and } b_i = 0\} \right)$$
+
+$$
+\sum_{a+b \le N} (a \vee b) = \sum_{i=0}^{59} 2^i \left( \binom{N+2}{2} - \#\{a+b \le N : a_i = 0 \text{ and } b_i = 0\} \right)
+$$
 
 ---
 
@@ -47,7 +74,11 @@ Evaluating $G(N)$ by summing over all $n \le 10^{18}$ and $k \le n$ requires $\a
 ### Sub-second Binary Carry Digit DP
 1. **MSB-to-LSB Addition Automaton**:
    Counting pairs $(a, b)$ with $a + b \le N$ with bit $i$ constrained to $a_i = b_i = 0$ uses a 4-state automaton:
-   $$\operatorname{dp}[\text{carry\_next}][\text{less}]$$
+
+$$
+\operatorname{dp}[\text{carry\_next}][\text{less}]
+$$
+
    where carry flows from low bits to high bits, processed in reverse from MSB to LSB.
 2. **Execution Performance**:
    Running the 60-step DP for each of the $\approx 60$ bit positions requires only $60 \times 60 \approx 3600$ states, completing in **$\approx 0.01$ seconds** in pure Python!

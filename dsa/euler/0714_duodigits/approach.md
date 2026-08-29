@@ -5,7 +5,10 @@
 A natural number is a **duodigit** if its decimal representation uses at most two distinct digits.
 For any positive integer $n$, let $d(n)$ be the smallest positive multiple of $n$ that is a duodigit.
 Define:
-$$D(k) = \sum_{n=1}^k d(n)$$
+
+$$
+D(k) = \sum_{n=1}^k d(n)
+$$
 
 We are given:
 - $D(110) = 11047$
@@ -13,7 +16,11 @@ We are given:
 - $D(500) = 29570988 \implies 2.957098800000\text{e}7$
 
 We seek to evaluate:
-$$D(50000)$$
+
+$$
+D(50000)
+$$
+
 in standard scientific notation rounded to 13 significant digits (12 decimal places).
 
 ---

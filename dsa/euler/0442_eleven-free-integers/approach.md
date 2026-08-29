@@ -25,7 +25,11 @@ Testing integers sequentially up to $\approx 10^{18}$ with string substring chec
 
 ### Aho-Corasick Multi-Pattern String Automaton
 The forbidden substring patterns are the powers of 11:
-$$\mathcal{P} = \{11^1, 11^2, \dots, 11^{19}\}$$
+
+$$
+\mathcal{P} = \{11^1, 11^2, \dots, 11^{19}\}
+$$
+
 We build an **Aho-Corasick automaton** over $\mathcal{P}$.
 - States correspond to prefixes of patterns in $\mathcal{P}$.
 - A state is marked **forbidden** if it matches any full pattern in $\mathcal{P}$ (including via suffix failure transitions).
@@ -39,7 +43,11 @@ We build an **Aho-Corasick automaton** over $\mathcal{P}$.
 1. **Automaton Digit DP**:
    Let $\text{count}(N)$ be the number of positive eleven-free integers $\le N$.
    Using memoized digit DP over the DFA states:
-   $$\text{DP}(\text{index}, \text{state}, \text{is\_less}, \text{is\_started})$$
+
+$$
+\text{DP}(\text{index}, \text{state}, \text{is\_less}, \text{is\_started})
+$$
+
    counts eleven-free numbers in $O(\text{digits} \times |\text{states}| \times 10) \approx 20 \times 197 \times 10 \approx 4 \times 10^4$ operations.
 2. **Binary Search for the $k$-th Element**:
    Since $\text{count}(N)$ is monotonically increasing in $N$, binary searching over the range $[1, 10^{22}]$ locates $E(10^{18})$ in $\approx 70$ DP evaluations.

@@ -13,7 +13,10 @@ We are given:
 - $F(100) \equiv 84326147 \pmod{135707531}$
 
 We seek to evaluate:
-$$F(12344321) \bmod 135707531$$
+
+$$
+F(12344321) \bmod 135707531
+$$
 
 ---
 
@@ -31,7 +34,11 @@ For $n = 12344321$, there are $(n-1)^n \approx 10^{8.7 \times 10^7}$ functional 
    An arrangement is safe if and only if the digraph is a single $n$-cycle.
 2. **Rewiring Cost Theorem**:
    For any loopless functional digraph $G$:
-   $$\text{rewirings}(G) = z(G) + p(G) - [G \text{ is a single } n\text{-cycle}]$$
+
+$$
+\text{rewirings}(G) = z(G) + p(G) - [G \text{ is a single } n\text{-cycle}]
+$$
+
    where:
    - $z(G)$ is the number of vertices with **in-degree 0** (leaves of in-trees).
    - $p(G)$ is the number of **pure cycle components** (isolated directed cycles with no in-trees).
@@ -43,11 +50,19 @@ For $n = 12344321$, there are $(n-1)^n \approx 10^{8.7 \times 10^7}$ functional 
 ### Linearity of Expectation over Loopless Endofunctions
 1. **Total In-degree 0 Count ($Z$)**:
    For each vertex $v$, the probability that no other vertex points to $v$ is $\left(\frac{n-2}{n-1}\right)^{n-1}$.
-   $$\text{Total } Z = (n-1)^n \cdot n \cdot \left(\frac{n-2}{n-1}\right)^{n-1} = n(n-1)(n-2)^{n-1}$$
+
+$$
+\text{Total } Z = (n-1)^n \cdot n \cdot \left(\frac{n-2}{n-1}\right)^{n-1} = n(n-1)(n-2)^{n-1}
+$$
+
 2. **Total Pure Cycle Component Count ($P$)**:
    For a cycle of length $k \ge 2$, the remaining $m = n - k$ vertices must point within themselves without loops ($(m-1)^m$ choices).
    Counting over all $k$-subsets and directed cycles:
-   $$\text{Extra } P = n! \sum_{m=2}^{n-2} \frac{(m-1)^m}{(n-m) m!}$$
+
+$$
+\text{Extra } P = n! \sum_{m=2}^{n-2} \frac{(m-1)^m}{(n-m) m!}
+$$
+
 3. **Linear Prefix Evaluation**:
    Precomputing modular inverses in $O(n)$ allows single-pass accumulation of the sum.
 

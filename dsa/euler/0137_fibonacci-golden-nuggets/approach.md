@@ -3,18 +3,28 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $A_F(x)$ be the infinite power series:
-$$A_F(x) = x F_1 + x^2 F_2 + x^3 F_3 + \dots$$
+
+$$
+A_F(x) = x F_1 + x^2 F_2 + x^3 F_3 + \dots
+$$
+
 where $F_k$ is the $k$-th Fibonacci term ($F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, \dots$).
 
 Using the Fibonacci recurrence $F_k = F_{k-1} + F_{k-2}$, the generating function evaluates to:
-$$A_F(x) = \frac{x}{1 - x - x^2}$$
+
+$$
+A_F(x) = \frac{x}{1 - x - x^2}
+$$
 
 For values of $x$ for which $A_F(x)$ is a positive integer $n$, we call $n$ a **Golden Nugget** if $x$ is rational:
 - For $x = \frac{1}{2}$, $A_F(1/2) = \frac{1/2}{1 - 1/2 - 1/4} = \frac{1/2}{1/4} = 2$ (the 1st Golden Nugget $n_1 = 2$).
 - The first five golden nuggets are $2, 15, 104, 714,$ and $4895$.
 
 The objective is to find the **$15$-th Golden Nugget $n_{15}$**:
-$$n_{15} = F_{30} \times F_{31}$$
+
+$$
+n_{15} = F_{30} \times F_{31}
+$$
 
 ---
 
@@ -30,14 +40,30 @@ def naive_golden_nuggets():
 
 ### Algebraic Transformation to Fibonacci Product Identity
 1. Setting $A_F(x) = n$:
-   $$\frac{x}{1 - x - x^2} = n \iff n x^2 + (n + 1)x - n = 0$$
+
+$$
+\frac{x}{1 - x - x^2} = n \iff n x^2 + (n + 1)x - n = 0
+$$
+
 2. Rational solutions for $x$ exist if and only if the discriminant is a perfect square:
-   $$\Delta(n) = (n + 1)^2 - 4(n)(-n) = 5n^2 + 2n + 1 = m^2$$
+
+$$
+\Delta(n) = (n + 1)^2 - 4(n)(-n) = 5n^2 + 2n + 1 = m^2
+$$
+
 3. Multiplying both sides by 5:
-   $$(5n + 1)^2 - 5m^2 = -4$$
+
+$$
+(5n + 1)^2 - 5m^2 = -4
+$$
+
 4. This is a classic **Negative Pell Equation**, whose integer solutions correspond to Fibonacci products!
 5. **Exact Closed-Form Identity:**
-   $$n_k = F_{2k} \times F_{2k+1}$$
+
+$$
+n_k = F_{2k} \times F_{2k+1}
+$$
+
 6. Computing $n_{15} = F_{30} \times F_{31}$ takes $\mathcal{O}(k)$ time ($\approx 0.0000$ seconds).
 
 ---
@@ -62,10 +88,20 @@ def naive_golden_nuggets():
 
 ### Closed-Form Evaluation for $k = 15$
 1. Generate Fibonacci terms up to $F_{31}$:
-   $$F_{30} = 832\,040$$
-   $$F_{31} = 1\,346\,269$$
+
+$$
+F_{30} = 832\,040
+$$
+
+$$
+F_{31} = 1\,346\,269
+$$
+
 2. Multiply adjacent terms:
-   $$n_{15} = F_{30} \times F_{31} = 832\,040 \times 1\,346\,269 = \mathbf{1\,120\,149\,658\,760}$$
+
+$$
+n_{15} = F_{30} \times F_{31} = 832\,040 \times 1\,346\,269 = \mathbf{1\,120\,149\,658\,760}
+$$
 
 ---
 
@@ -79,7 +115,10 @@ def naive_golden_nuggets():
 
 ### Example 3: Target Evaluation for $k = 15$
 - At $k = 15$:
-  $$n_{15} = 832\,040 \times 1\,346\,269 = \mathbf{1\,120\,149\,658\,760}$$
+
+$$
+n_{15} = 832\,040 \times 1\,346\,269 = \mathbf{1\,120\,149\,658\,760}
+$$
 
 ---
 

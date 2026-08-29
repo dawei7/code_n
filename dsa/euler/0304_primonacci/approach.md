@@ -8,7 +8,10 @@ The sequence $a(n)$ is defined by:
 - $a(n) = \text{next\_prime}(a(n - 1))$ for $n > 1$
 The Fibonacci sequence $f(n)$ is defined by $f(0) = 0, f(1) = 1, f(n) = f(n - 1) + f(n - 2)$.
 The sequence $b(n)$ is defined by:
-$$b(n) = f(a(n))$$
+
+$$
+b(n) = f(a(n))
+$$
 
 Find $\sum_{n=1}^{100000} b(n) \bmod 1234567891011$.
 
@@ -40,7 +43,11 @@ Let $M = 1234567891011$.
 1. Compute the base Fibonacci pair $(f(a(1)), f(a(1) + 1)) \bmod M$ once using logarithmic matrix exponentiation / doubling formulas in $\mathcal{O}(\log a(1))$ time.
 2. For each subsequent prime $a(n)$, let $d = a(n) - a(n - 1)$.
    Because the prime gap $d$ is small (average $d \approx 32$, maximum $d < 600$), we advance the Fibonacci state $(f_k, f_{k+1})$ by $d$ steps using $d$ simple scalar additions modulo $M$:
-   $$(f_k, f_{k+1}) \to (f_{k+1}, (f_k + f_{k+1}) \bmod M)$$
+
+$$
+(f_k, f_{k+1}) \to (f_{k+1}, (f_k + f_{k+1}) \bmod M)
+$$
+
 3. This eliminates $99\,999$ full matrix exponentiations, evaluating the sum in linear time!
 
 ---

@@ -10,7 +10,10 @@ We are given:
 - For $n = 30$, $S(30) = \{1, 2, 3, 5, 6, 10, 15, 30\}$. An optimal antichain is $\{2, 3, 5\}$ or $\{6, 10, 15\}$, with $N(30) = 3$.
 
 We seek to evaluate:
-$$\sum_{n=1}^{10^8} N(n)$$
+
+$$
+\sum_{n=1}^{10^8} N(n)
+$$
 
 ---
 
@@ -25,9 +28,16 @@ Factoring each of the $10^8$ numbers individually and finding the maximum antich
 
 ### Sperner's Theorem for Products of Chains
 If $n = \prod_{i=1}^k p_i^{a_i}$, the divisor lattice $(S(n), \mid)$ is isomorphic to the Cartesian product of chains:
-$$P = \prod_{i=1}^k \{0, 1, \dots, a_i\}$$
+
+$$
+P = \prod_{i=1}^k \{0, 1, \dots, a_i\}
+$$
+
 By Sperner's Theorem for graded distributive lattices, the maximum antichain size equals the maximum size of a single rank level:
-$$N(n) = \max_{k} [x^k] \prod_{i=1}^r (1 + x + x^2 + \dots + x^{a_i})$$
+
+$$
+N(n) = \max_{k} [x^k] \prod_{i=1}^r (1 + x + x^2 + \dots + x^{a_i})
+$$
 
 Crucially, $N(n)$ depends **only on the multiset of prime exponents** $(a_1, \dots, a_r)$, completely independent of the underlying prime numbers!
 

@@ -4,7 +4,10 @@
 
 Let $f_k(n) = \sum_{i=0}^n f_k(\lfloor i/k \rfloor)$ with initial condition $f_k(0) = 1$.
 Equivalently:
-$$f_k(n) = f_k(n-1) + f_k(\lfloor n/k \rfloor)$$
+
+$$
+f_k(n) = f_k(n-1) + f_k(\lfloor n/k \rfloor)
+$$
 
 We are given:
 - $f_5(10) = 18$
@@ -12,7 +15,10 @@ We are given:
 - $f_2(10^3) = 264830889564$
 
 We seek to evaluate:
-$$\left( \sum_{k=2}^{10} f_k(10^{14}) \right) \bmod 1\,000\,000\,007$$
+
+$$
+\left( \sum_{k=2}^{10} f_k(10^{14}) \right) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,10 +34,17 @@ For $n = 10^{14}$, the recurrence $f_k(n) = f_k(n-1) + f_k(\lfloor n/k \rfloor)$
 ### Higher-Order Prefix Sum Hierarchy
 1. **$j$-Fold Prefix Sums**:
    Define $A_0(n) = f_k(n)$, and for $j \ge 1$:
-   $$A_j(n) = \sum_{i=0}^n A_{j-1}(i)$$
+
+$$
+A_j(n) = \sum_{i=0}^n A_{j-1}(i)
+$$
+
 2. **Linear Digit Transfer Theorem**:
    For any base-$k$ digit $r \in [0, k-1]$, the prefix sum $A_j(k n + r)$ can be expressed as an exact linear combination of $\{A_0(n), A_1(n), \dots, A_{j+1}(n)\}$:
-   $$A_j(k n + r) = \sum_{p=0}^{j+1} c_{j, r, p} A_p(n)$$
+
+$$
+A_j(k n + r) = \sum_{p=0}^{j+1} c_{j, r, p} A_p(n)
+$$
 
 ---
 
@@ -42,7 +55,11 @@ For $n = 10^{14}$, the recurrence $f_k(n) = f_k(n-1) + f_k(\lfloor n/k \rfloor)$
    Let $n_0 = N, n_1 = \lfloor n_0/k \rfloor, \dots, n_d < k$ where $d = \lfloor \log_k N \rfloor \le 50$.
 2. **Base Step Evaluation ($n_d < k$)**:
    For $x < k$, $f_k(x) = x + 1$, so the $j$-fold prefix sum is:
-   $$A_j(n_d) = \binom{n_d + j + 1}{j + 1}$$
+
+$$
+A_j(n_d) = \binom{n_d + j + 1}{j + 1}
+$$
+
 3. **Upward Digit Lifting**:
    Starting with vector $\mathbf{v}_d = [A_0(n_d), \dots, A_d(n_d)]$, iteratively lift to $\mathbf{v}_{i-1}$ using the digit $r = n_{i-1} \bmod k$ and precomputed transition matrix $C_{j, r, p}$.
    The final answer is the first component $A_0(N) = f_k(N) \bmod 10^9+7$.

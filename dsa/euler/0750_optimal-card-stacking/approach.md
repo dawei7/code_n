@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 $N$ cards labelled $1, 2, \dots, N$ are arranged in an array where the card at position $n \in \{1 \dots N\}$ has label:
-$$\text{card}(n) = 3^n \bmod (N + 1)$$
+
+$$
+\text{card}(n) = 3^n \bmod (N + 1)
+$$
+
 Stacks of cards may be dragged horizontally onto adjacent stacks if and only if the merged stack is in consecutive order.
 $G(N)$ is the minimal total drag distance to assemble all cards into a single stack $[1, 2, \dots, N]$.
 
@@ -12,7 +16,10 @@ We are given:
 - $G(16) = 47$
 
 We seek to evaluate:
-$$G(976)$$
+
+$$
+G(976)
+$$
 
 ---
 
@@ -34,7 +41,11 @@ For $N = 976$, $C_{975} \approx 10^{584}$, making brute-force tree search imposs
    The horizontal distance moved is $|\text{pos}[k] - \text{pos}[r]|$, and the resulting merged stack $[l, r]$ resides at the position of card $r$.
 3. **Recurrence Relation**:
    Let $dp[l][r]$ be the minimum drag distance to assemble the interval of cards $[l, r]$ into a single stack anchored at $\text{pos}[r]$:
-   $$dp[l][r] = \min_{l \le k < r} \left( dp[l][k] + dp[k+1][r] + |\text{pos}[k] - \text{pos}[r]| \right)$$
+
+$$
+dp[l][r] = \min_{l \le k < r} \left( dp[l][k] + dp[k+1][r] + |\text{pos}[k] - \text{pos}[r]| \right)
+$$
+
    with base case $dp[i][i] = 0$.
 4. **Answer**:
    The minimum total distance to merge all cards is $dp[1][N]$.

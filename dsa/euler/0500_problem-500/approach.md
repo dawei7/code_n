@@ -25,7 +25,11 @@ Testing multi-prime factorizations directly across $500\,500$ prime factors requ
    Every factor $(a_i + 1)$ must be a power of 2, so $a_i = 2^{k_i} - 1 = 1 + 2 + 4 + \dots + 2^{k_i - 1}$.
 2. **Independent Prime Power Costs**:
    The prime power $p_i^{a_i}$ can be factored as:
-   $$p_i^{a_i} = p_i^1 \times p_i^2 \times p_i^4 \times \dots \times p_i^{2^{k_i - 1}}$$
+
+$$
+p_i^{a_i} = p_i^1 \times p_i^2 \times p_i^4 \times \dots \times p_i^{2^{k_i - 1}}
+$$
+
    Each factor of the form $p^{2^j}$ multiplies $d(n)$ by $2$ while multiplying $n$ by $p^{2^j}$.
 3. **Greedy Min-Heap Choice**:
    To minimize the final product $n$, we simply choose the $N = 500\,500$ smallest values of $p^{2^j}$ across all primes $p$ and $j \ge 0$!

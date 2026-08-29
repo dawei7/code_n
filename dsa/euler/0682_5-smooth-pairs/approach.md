@@ -8,14 +8,20 @@ Define:
 - Sum of prime factors (with multiplicity): $s(p) = 2a + 3b + 5c$.
 
 Let $f(n)$ be the number of pairs $(p, q)$ of Hamming numbers such that:
-$$\Omega(p) = \Omega(q) \quad \text{and} \quad s(p) + s(q) = n$$
+
+$$
+\Omega(p) = \Omega(q) \quad \text{and} \quad s(p) + s(q) = n
+$$
 
 We are given:
 - $f(10) = 4$ (pairs: $(4, 9), (5, 5), (6, 6), (9, 4)$)
 - $f(100) = 3629$
 
 We seek to evaluate:
-$$f(10^7) \bmod 1\,000\,000\,007$$
+
+$$
+f(10^7) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -32,13 +38,25 @@ Iterating over all $(a_1, b_1, c_1)$ and $(a_2, b_2, c_2)$ up to $s(p) \le 10^7$
 1. **Generating Function for a Single 5-Smooth Number**:
    Let $x$ track factor sum $s(p)$ and $y$ track factor count $\Omega(p)$.
    Since prime $2$ has sum $2$ and count $1$ ($y x^2$), prime $3$ has sum $3$ ($y x^3$), and prime $5$ has sum $5$ ($y x^5$):
-   $$G(x, y) = \frac{1}{(1 - y x^2)(1 - y x^3)(1 - y x^5)} = \sum_{k \ge 0} A_k(x) y^k$$
+
+$$
+G(x, y) = \frac{1}{(1 - y x^2)(1 - y x^3)(1 - y x^5)} = \sum_{k \ge 0} A_k(x) y^k
+$$
+
 2. **Equating Multiplicity $\Omega(p) = \Omega(q) = k$**:
    The generating function for pairs with $\Omega(p) = \Omega(q) = k$ and sum $s(p) + s(q) = n$ is:
-   $$S(x) = \sum_{n \ge 0} f(n) x^n = \sum_{k \ge 0} A_k(x)^2$$
+
+$$
+S(x) = \sum_{n \ge 0} f(n) x^n = \sum_{k \ge 0} A_k(x)^2
+$$
+
 3. **Residue / Constant-Term Extraction**:
    Using partial fractions in $y$ around poles $y = x^{-2}, x^{-3}, x^{-5}$, the infinite series $\sum A_k(x)^2$ collapses into a sum of $3$ simple rational functions:
-   $$S(x) = \frac{1}{D_1(x)} - \frac{x}{D_2(x)} + \frac{x^5}{D_3(x)}$$
+
+$$
+S(x) = \frac{1}{D_1(x)} - \frac{x}{D_2(x)} + \frac{x^5}{D_3(x)}
+$$
+
    where $D_1, D_2, D_3$ are small cyclotomic products.
 
 ---
@@ -50,7 +68,11 @@ Iterating over all $(a_1, b_1, c_1)$ and $(a_2, b_2, c_2)$ up to $s(p) \le 10^7$
    Combine the three partial fractions into a single rational function $P(x)/Q(x)$ with $\deg Q \le 70$.
 2. **Bostan-Mori Algorithm**:
    To extract $[x^n] \frac{P(x)}{Q(x)}$:
-   $$Q_{\text{even}}(x^2) = \frac{Q(x) Q(-x) + Q(x) Q(-x)}{2}$$
+
+$$
+Q_{\text{even}}(x^2) = \frac{Q(x) Q(-x) + Q(x) Q(-x)}{2}
+$$
+
    Multiply numerator and denominator by $Q(-x)$ and divide $n$ by $2$ at each step.
 3. **Sublinear Complexity**:
    With $\deg Q \approx 70$, $\log_2(10^7) \approx 24$ steps compute the exact coefficient in $< 0.03\text{ seconds}$!

@@ -26,10 +26,20 @@ While possible, tracking full distributions is unnecessary because only the firs
 ### The Law of Total Variance (Eve's Law)
 For a random sum of a random number of i.i.d. variables $S_N = \sum_{j=1}^N X_j$:
 1. **Mean (Law of Total Expectation)**:
-   $$\mathbb{E}[S_N] = \mathbb{E}[N] \cdot \mathbb{E}[X]$$
+
+$$
+\mathbb{E}[S_N] = \mathbb{E}[N] \cdot \mathbb{E}[X]
+$$
+
 2. **Variance (Eve's Law)**:
-   $$\operatorname{Var}(S_N) = \mathbb{E}[\operatorname{Var}(S_N \mid N)] + \operatorname{Var}(\mathbb{E}[S_N \mid N])$$
-   $$\operatorname{Var}(S_N) = \mathbb{E}[N] \cdot \operatorname{Var}(X) + \operatorname{Var}(N) \cdot (\mathbb{E}[X])^2$$
+
+$$
+\operatorname{Var}(S_N) = \mathbb{E}[\operatorname{Var}(S_N \mid N)] + \operatorname{Var}(\mathbb{E}[S_N \mid N])
+$$
+
+$$
+\operatorname{Var}(S_N) = \mathbb{E}[N] \cdot \operatorname{Var}(X) + \operatorname{Var}(N) \cdot (\mathbb{E}[X])^2
+$$
 
 ---
 
@@ -37,14 +47,24 @@ For a random sum of a random number of i.i.d. variables $S_N = \sum_{j=1}^N X_j$
 
 ### Uniform Discrete Die Moments
 For a fair $k$-sided die with faces $\{1, 2, \dots, k\}$:
-$$\mu_k = \frac{k + 1}{2}$$
 
-$$\sigma_k^2 = \frac{k^2 - 1}{12}$$
+$$
+\mu_k = \frac{k + 1}{2}
+$$
+
+$$
+\sigma_k^2 = \frac{k^2 - 1}{12}
+$$
 
 Starting from $N_0 = 1$ with $(E_0, V_0) = (1, 0)$, we iteratively apply the recurrence for each die size $k \in (4, 6, 8, 12, 20)$:
-$$E_{j+1} = E_j \cdot \mu_k$$
 
-$$V_{j+1} = E_j \cdot \sigma_k^2 + V_j \cdot \mu_k^2$$
+$$
+E_{j+1} = E_j \cdot \mu_k
+$$
+
+$$
+V_{j+1} = E_j \cdot \sigma_k^2 + V_j \cdot \mu_k^2
+$$
 
 Using exact rational fractions (`fractions.Fraction`), the entire computation evaluates in exact closed form in $O(1)$ operations!
 

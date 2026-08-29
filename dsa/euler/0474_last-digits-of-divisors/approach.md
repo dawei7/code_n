@@ -9,7 +9,10 @@ We are given:
 - $F(50!, 123) = 17\,888$
 
 We seek to evaluate:
-$$F(10^6!, 65432) \pmod{10^{16} + 61}$$
+
+$$
+F(10^6!, 65432) \pmod{10^{16} + 61}
+$$
 
 ---
 
@@ -31,7 +34,11 @@ The total number of divisors of $10^6!$ is $\prod_{p \le 10^6} (e_p + 1) \approx
    - The 5-exponent in $x$ must be exactly $a_5 = 0$.
 2. **Reduced Unit Modulus**:
    Dividing out the fixed factors $2^3 \cdot 5^0 = 8$, the remaining coprime factor $y = \frac{x}{8}$ must satisfy:
-   $$y \equiv \frac{65432}{8} = 8179 \pmod{12500}$$
+
+$$
+y \equiv \frac{65432}{8} = 8179 \pmod{12500}
+$$
+
    where $\gcd(y, 12500) = 1$.
    The unit group modulo $12500$ has size $\phi(12500) = 5000$.
 

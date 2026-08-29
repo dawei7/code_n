@@ -4,7 +4,11 @@
 
 Let $p_i$ be the $i$-th prime ($p_1 = 2, p_2 = 3, p_3 = 5, \dots$).
 Let $A_n$ be the unique smallest positive integer satisfying:
-$$A_n \equiv i \pmod{p_i} \quad \text{for all } 1 \le i \le n$$
+
+$$
+A_n \equiv i \pmod{p_i} \quad \text{for all } 1 \le i \le n
+$$
+
 Let $S(N)$ be the sum of all primes $q \le N$ such that $q \mid A_n$ for at least one $n \ge 1$.
 
 We are given:
@@ -12,7 +16,10 @@ We are given:
 - $S(50) = 69 = 5 + 23 + 41$
 
 We seek to evaluate:
-$$S(300000)$$
+
+$$
+S(300000)
+$$
 
 ---
 
@@ -31,7 +38,11 @@ Reconstructing $A_n$ explicitly requires numbers with over $25\,000$ digits ($> 
    Therefore, $p_k$ can **only** divide $A_n$ when $n < k$!
 2. **Mixed-Radix Expansion (Newton / Garner CRT)**:
    The sequence $A_n$ is formed by progressive mixed-radix addition:
-   $$A_n = A_{n-1} + c_{n-1} \prod_{j=1}^{n-1} p_j$$
+
+$$
+A_n = A_{n-1} + c_{n-1} \prod_{j=1}^{n-1} p_j
+$$
+
    where $c_{n-1} \equiv (n - A_{n-1}) \cdot \left( \prod_{j=1}^{n-1} p_j \right)^{-1} \pmod{p_n}$.
 
 ---
@@ -46,8 +57,15 @@ Reconstructing $A_n$ explicitly requires numbers with over $25\,000$ digits ($> 
 2. **In-Place Forward Propagation**:
    At step $n$, determine coefficient $c = c_{n-1}$.
    For all $k > n$, update:
-   $$\text{val}[k] \leftarrow (\text{val}[k] + c \cdot \text{prod}[k]) \bmod p_k$$
-   $$\text{prod}[k] \leftarrow (\text{prod}[k] \cdot p_n) \bmod p_k$$
+
+$$
+\text{val}[k] \leftarrow (\text{val}[k] + c \cdot \text{prod}[k]) \bmod p_k
+$$
+
+$$
+\text{prod}[k] \leftarrow (\text{prod}[k] \cdot p_n) \bmod p_k
+$$
+
    If $\text{val}[k] == 0$, mark $p_k$ as a dividing prime!
 
 This evaluates $S(300000)$ across all 25,997 primes in **$\approx 42$ seconds** in pure Python!

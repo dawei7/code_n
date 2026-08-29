@@ -11,7 +11,10 @@ We are given:
 - $C(10!) = 3$
 
 We seek to evaluate:
-$$C(100!)$$
+
+$$
+C(100!)
+$$
 
 ---
 
@@ -26,7 +29,11 @@ $100!$ has $\prod_{p \le 100} (e_p + 1) \approx 1.7 \times 10^{20}$ divisors. It
 
 ### Prime Valuation Differences on the Divisor Count Ratio
 1. **Ratio Invariance**:
-   $$d(a) = d(b) \iff \frac{d(a)}{d(b)} = \prod_{p \le 100} \frac{x_p + 1}{e_p - x_p + 1} = 1$$
+
+$$
+d(a) = d(b) \iff \frac{d(a)}{d(b)} = \prod_{p \le 100} \frac{x_p + 1}{e_p - x_p + 1} = 1
+$$
+
    This is equivalent to $v_q(d(a)/d(b)) = 0$ for all primes $q \le 47$.
 2. **Hierarchy of Primes in $100!$**:
    - $p = 2$ ($e_2 = 97$) and $p = 3$ ($e_3 = 48$) are the only factors that can introduce prime factors $q \ge 29$ into the ratio.

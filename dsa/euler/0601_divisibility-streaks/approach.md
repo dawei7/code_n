@@ -10,7 +10,10 @@ We are given:
 - $P(6, 10^6) = 14286$
 
 We seek to evaluate:
-$$\sum_{i=1}^{31} P(i, 4^i)$$
+
+$$
+\sum_{i=1}^{31} P(i, 4^i)
+$$
 
 ---
 
@@ -33,7 +36,10 @@ For $i = 31$, $4^{31} = 2^{62} \approx 4.61 \times 10^{18}$. Testing individual 
    Let $L_s = \operatorname{lcm}(1, 2, \dots, s)$.
    The number of integers $n \in [2, N-1]$ satisfying $n - 1 \equiv 0 \pmod{L_s}$ is $\lfloor \frac{N-2}{L_s} \rfloor$.
    Therefore:
-   $$P(s, N) = \left\lfloor \frac{N-2}{L_s} \right\rfloor - \left\lfloor \frac{N-2}{L_{s+1}} \right\rfloor$$
+
+$$
+P(s, N) = \left\lfloor \frac{N-2}{L_s} \right\rfloor - \left\lfloor \frac{N-2}{L_{s+1}} \right\rfloor
+$$
 
 ---
 

@@ -12,7 +12,11 @@ We are given:
 - $f(10^4, 0.3) = 0.2857499982$
 
 We seek to evaluate:
-$$f(10^{11}, 0.4999)$$
+
+$$
+f(10^{11}, 0.4999)
+$$
+
 rounded to 10 decimal places.
 
 ---
@@ -30,15 +34,29 @@ For $n = 10^{11}$, summing $k = n \dots 2n - 1$ requires evaluating $10^{11}$ hi
 1. **Red Card Survival Probability**:
    If the game reaches $n$ points on question draw $k$ ($n \le k \le 2n - 1$), the probability that the RED card has not yet been selected is $\frac{2n + 1 - k}{2n + 1} = 1 - \frac{k}{2n + 1}$.
 2. **First Sum Splitting**:
-   $$f(n, p) = \sum_{k=n}^{2n-1} P_k - \frac{n}{2n+1} \sum_{k=n}^{2n-1} \binom{k}{n} \left( p^n (1-p)^{k-n} + (1-p)^n p^{k-n} \right)$$
+
+$$
+f(n, p) = \sum_{k=n}^{2n-1} P_k - \frac{n}{2n+1} \sum_{k=n}^{2n-1} \binom{k}{n} \left( p^n (1-p)^{k-n} + (1-p)^n p^{k-n} \right)
+$$
+
 3. **Total Probability Invariant**:
    The first sum $\sum_{k=n}^{2n-1} P_k = 1$ identically (the game reaches $n$ points eventually).
 4. **Exact Binomial Tail Identity**:
-   $$\sum_{k=n}^{2n-1} \binom{k}{n} p^n (1-p)^{k-n} = \frac{1}{p} P(X \ge n + 1)$$
-   $$\sum_{k=n}^{2n-1} \binom{k}{n} (1-p)^n p^{k-n} = \frac{1}{1-p} P(X \le n - 1)$$
+
+$$
+\sum_{k=n}^{2n-1} \binom{k}{n} p^n (1-p)^{k-n} = \frac{1}{p} P(X \ge n + 1)
+$$
+
+$$
+\sum_{k=n}^{2n-1} \binom{k}{n} (1-p)^n p^{k-n} = \frac{1}{1-p} P(X \le n - 1)
+$$
+
    where $X \sim \text{Binomial}(2n, p)$!
 5. **Closed Form**:
-   $$f(n, p) = 1 - \frac{n}{2n+1} \left[ \frac{1}{p} P(X \ge n + 1) + \frac{1}{1-p} P(X \le n - 1) \right]$$
+
+$$
+f(n, p) = 1 - \frac{n}{2n+1} \left[ \frac{1}{p} P(X \ge n + 1) + \frac{1}{1-p} P(X \le n - 1) \right]
+$$
 
 ---
 
@@ -47,12 +65,20 @@ For $n = 10^{11}$, summing $k = n \dots 2n - 1$ requires evaluating $10^{11}$ hi
 ### High-Precision Asymptotic CDF Evaluation
 1. **Standardized Deviate**:
    For $n = 10^{11}, p = 0.4999$:
-   $$\mu = 2np, \quad \sigma = \sqrt{2np(1-p)}, \quad z = \frac{n - \mu}{\sigma} \approx 89.44$$
+
+$$
+\mu = 2np, \quad \sigma = \sqrt{2np(1-p)}, \quad z = \frac{n - \mu}{\sigma} \approx 89.44
+$$
+
 2. **Tail Probabilities**:
    - $P(X \ge n + 1) = \Phi(-89.44) \approx 0$
    - $P(X \le n - 1) = \Phi(89.44) \approx 1$
 3. **Closed Form Evaluation**:
-   $$f(n, p) = 1 - \frac{10^{11}}{2 \cdot 10^{11} + 1} \frac{1}{0.5001} \approx 0.0001999600$$
+
+$$
+f(n, p) = 1 - \frac{10^{11}}{2 \cdot 10^{11} + 1} \frac{1}{0.5001} \approx 0.0001999600
+$$
+
 4. **Execution Performance**:
    Evaluates in **$\approx 0.00$ seconds** in pure Python!
 

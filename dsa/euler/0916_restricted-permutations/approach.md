@@ -39,7 +39,11 @@ The only allowed partitions of $2n$ into at most 2 rows with $\lambda_1 \le n + 
 2. $\lambda = (n + 1, n - 1) \implies f^{(n+1, n-1)} = \frac{3}{n+2} \binom{2n}{n-1}$.
 
 By the RSK sum of squares identity:
-$$P(n) = \left( \frac{1}{n+1} \binom{2n}{n} \right)^2 + \left( \frac{3}{n+2} \binom{2n}{n-1} \right)^2 \pmod{10^9 + 7}$$
+
+$$
+P(n) = \left( \frac{1}{n+1} \binom{2n}{n} \right)^2 + \left( \frac{3}{n+2} \binom{2n}{n-1} \right)^2 \pmod{10^9 + 7}
+$$
+
 Computing the factorials in $\mathcal{O}(n)$ time evaluates $P(10^8) \pmod{10^9 + 7} = \mathbf{877789135}$ in **0.56 seconds**.
 
 ---

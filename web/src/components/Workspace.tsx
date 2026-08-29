@@ -82,6 +82,9 @@ export function Workspace() {
 
   const topics: WorkspaceTopic[] = [
     { id: 'reference', label: '≡', title: 'Reference', className: 'font-serif text-lg' },
+    ...(detail.has_guided_example
+      ? [{ id: 'guided_example' as Topic, label: <ProfessorLectureIcon />, title: 'Guided Example' }]
+      : []),
     {
       id: 'editorial',
       label: <EditorialIcon locked={!editorialUnlocked} />,
@@ -91,9 +94,6 @@ export function Workspace() {
       disabled: !editorialUnlocked,
     },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
-    ...(detail.has_guided_example
-      ? [{ id: 'guided_example' as Topic, label: <ProfessorLectureIcon />, title: 'Guided Example' }]
-      : []),
     { id: 'complexity', label: 'O', title: 'Complexity Analysis', className: 'font-serif italic text-lg' },
     { id: 'ai', label: 'AI', title: 'AI Tutor', className: 'font-mono text-xs tracking-tight' },
     ...(hasCareerPath
@@ -134,10 +134,6 @@ export function Workspace() {
       <div className={activeTopic === 'coden' ? 'flex-1 flex flex-col min-h-0 p-3' : 'flex-1 overflow-y-auto p-4'}>
         <div
           data-font-scope={workspaceFontScope}
-          // Monaco performs its own coordinate-sensitive layout. CSS zoom on
-          // an ancestor makes its scrolling and line hit targets drift away
-          // from the rendered source, so editor-backed workspaces apply this
-          // scale through Monaco's fontSize option instead.
           style={hasCoordinateSensitiveEditor ? undefined : { zoom: workspaceFontScale }}
           className={isCodenWorkspace ? 'flex-1 flex flex-col min-h-0' : 'w-full'}
         >
@@ -147,39 +143,39 @@ export function Workspace() {
             </div>
           ) : (
             <div className="w-full pb-24">
-            {activeTopic === 'reference' && (
-              <div className="bg-coden-surface rounded-lg p-6 shadow-lg">
-                <ReferenceTab />
-              </div>
-            )}
+              {activeTopic === 'reference' && (
+                <div className="bg-coden-surface rounded-xl border border-coden-border shadow-md overflow-hidden">
+                  <ReferenceTab />
+                </div>
+              )}
 
-            {activeTopic === 'editorial' && editorialUnlocked && (
-              <div className="overflow-hidden rounded-lg bg-coden-surface shadow-lg">
-                <EditorialTab />
-              </div>
-            )}
+              {activeTopic === 'guided_example' && (
+                <div className="bg-coden-surface rounded-xl border border-coden-border shadow-md overflow-hidden">
+                  <GuidedExampleTab />
+                </div>
+              )}
 
-            {activeTopic === 'guided_example' && (
-              <div className="overflow-hidden rounded-lg bg-coden-surface shadow-lg">
-                <GuidedExampleTab />
-              </div>
-            )}
+              {activeTopic === 'editorial' && editorialUnlocked && (
+                <div className="bg-coden-surface rounded-xl border border-coden-border shadow-md overflow-hidden">
+                  <EditorialTab />
+                </div>
+              )}
 
-            {activeTopic === 'complexity' && (
-              <div className="bg-coden-surface rounded-xl p-6 shadow-lg">
-                <ComplexityAnalysis />
-              </div>
-            )}
+              {activeTopic === 'complexity' && (
+                <div className="bg-coden-surface rounded-xl p-6 shadow-lg">
+                  <ComplexityAnalysis />
+                </div>
+              )}
 
-            {activeTopic === 'ai' && (
-              <AITutorTab />
-            )}
+              {activeTopic === 'ai' && (
+                <AITutorTab />
+              )}
 
-            {activeTopic === 'career_path' && (
-              <div className="bg-coden-surface rounded-lg p-6 shadow-lg">
-                <CareerPathTab onSelectCodenTab={() => setActiveTopic('coden')} />
-              </div>
-            )}
+              {activeTopic === 'career_path' && (
+                <div className="bg-coden-surface rounded-lg p-6 shadow-lg">
+                  <CareerPathTab onSelectCodenTab={() => setActiveTopic('coden')} />
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $Q(k)$ be the number of odd coefficients in the polynomial expansion of:
-$$P(x)^k = (x^4 + x^3 + x^2 + x + 1)^k \pmod 2$$
+
+$$
+P(x)^k = (x^4 + x^3 + x^2 + x + 1)^k \pmod 2
+$$
 
 We are given:
 - $Q(3) = 7$
@@ -11,7 +14,10 @@ We are given:
 - $Q(100) = 35$
 
 We seek to evaluate:
-$$\sum_{m=1}^{18} Q(10^m)$$
+
+$$
+\sum_{m=1}^{18} Q(10^m)
+$$
 
 ---
 
@@ -27,14 +33,25 @@ For $k = 10^{18}$, the degree of $P(x)^k$ is $4 \times 10^{18}$. Storing or mult
 ### Frobenius Endomorphism in $\mathbb{F}_2[x]$ & Carry Automata
 1. **Frobenius Action**:
    In characteristic 2, $(A + B)^2 = A^2 + B^2$. Thus:
-   $$P(x)^{2^i} \equiv P(x^{2^i}) \pmod 2$$
+
+$$
+P(x)^{2^i} \equiv P(x^{2^i}) \pmod 2
+$$
+
 2. **Binary Base Digits**:
    If $k = \sum b_i 2^i$, then:
-   $$P(x)^k \equiv \prod_{i: b_i = 1} (1 + x^{2^i} + x^{2 \cdot 2^i} + x^{3 \cdot 2^i} + x^{4 \cdot 2^i}) \pmod 2$$
+
+$$
+P(x)^k \equiv \prod_{i: b_i = 1} (1 + x^{2^i} + x^{2 \cdot 2^i} + x^{3 \cdot 2^i} + x^{4 \cdot 2^i}) \pmod 2
+$$
+
 3. **Carry Graph Modulo 2**:
    An exponent $N = \sum d_i 2^i$ is formed by choosing $d_i \in \{0, 1, 2, 3, 4\}$ whenever $b_i = 1$, and $d_i = 0$ when $b_i = 0$.
    At each bit position $i$, a carry $c \in \{0, 1, 2, 3\}$ satisfies:
-   $$\text{sum} = c + d_i, \quad \text{output bit} = \text{sum} \pmod 2, \quad \text{next carry} = \lfloor \text{sum}/2 \rfloor$$
+
+$$
+\text{sum} = c + d_i, \quad \text{output bit} = \text{sum} \pmod 2, \quad \text{next carry} = \lfloor \text{sum}/2 \rfloor
+$$
 
 ---
 

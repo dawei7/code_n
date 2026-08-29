@@ -6,13 +6,22 @@ Starting with $1$ and spiraling clockwise, a square spiral of odd side length $s
 
 Let $\mathcal{D}(s)$ denote the multiset of numbers on the diagonals of the $s \times s$ spiral.
 The total number of diagonal elements is:
-$$|\mathcal{D}(s)| = 2s - 1$$
+
+$$
+|\mathcal{D}(s)| = 2s - 1
+$$
 
 Define the diagonal prime ratio:
-$$R(s) = \frac{|\mathcal{D}(s) \cap \mathbb{P}|}{|\mathcal{D}(s)|} = \frac{|\mathcal{D}(s) \cap \mathbb{P}|}{2s - 1}$$
+
+$$
+R(s) = \frac{|\mathcal{D}(s) \cap \mathbb{P}|}{|\mathcal{D}(s)|} = \frac{|\mathcal{D}(s) \cap \mathbb{P}|}{2s - 1}
+$$
 
 The objective is to find the minimum odd side length $s \ge 3$ for which the prime ratio first falls strictly below $10\%$ ($0.10$):
-$$s_{\text{min}} = \min \{ s \in 2\mathbb{N} + 1 \mid s \ge 3, \, R(s) < 0.10 \}$$
+
+$$
+s_{\text{min}} = \min \{ s \in 2\mathbb{N} + 1 \mid s \ge 3, \, R(s) < 0.10 \}
+$$
 
 ---
 
@@ -77,9 +86,16 @@ For each spiral layer of odd side length $s$:
   - Total diagonal numbers: $2(26241) - 1 = \mathbf{52\,481}$.
   - Total diagonal primes: $\mathbf{5\,248}$.
   - Prime ratio:
-    $$R(26241) = \frac{5248}{52481} \approx 0.09999809 \dots = \mathbf{9.9998\%} < 10\%$$
+
+$$
+R(26241) = \frac{5248}{52481} \approx 0.09999809 \dots = \mathbf{9.9998\%} < 10\%
+$$
+
 - Minimum Side Length:
-  $$s_{\text{min}} = \mathbf{26\,241}$$
+
+$$
+s_{\text{min}} = \mathbf{26\,241}
+$$
 
 ---
 

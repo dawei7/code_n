@@ -4,13 +4,19 @@
 
 Let $R(m)$ be the number of retractions modulo $m$, where $f(x) \equiv ax + b \pmod m$ satisfies $f(f(x)) \equiv f(x) \pmod m$.
 Define:
-$$F(N) = \sum_{n=1}^N R(n^4 + 4)$$
+
+$$
+F(N) = \sum_{n=1}^N R(n^4 + 4)
+$$
 
 We are given:
 - $F(1024) = 77\,532\,377\,300\,600 \equiv 376\,757\,876 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$F(10^7) \pmod{1\,000\,000\,007}$$
+
+$$
+F(10^7) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -25,7 +31,11 @@ For $n = 10^7$, $n^4 + 4 \approx 10^{28}$. Factoring $10^7$ 28-digit numbers ind
 
 ### Sophie Germain's Identity & Disjoint Factors
 By Sophie Germain's polynomial factorization identity:
-$$n^4 + 4 = (n^2 - 2n + 2)(n^2 + 2n + 2) = ((n-1)^2 + 1)((n+1)^2 + 1)$$
+
+$$
+n^4 + 4 = (n^2 - 2n + 2)(n^2 + 2n + 2) = ((n-1)^2 + 1)((n+1)^2 + 1)
+$$
+
 Let $C_k = k^2 + 1$.
 Then $n^4 + 4 = C_{n-1} C_{n+1}$.
 

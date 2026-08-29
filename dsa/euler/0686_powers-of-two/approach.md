@@ -10,7 +10,10 @@ We are given:
 - $p(123, 45) = 12710$
 
 We seek to evaluate:
-$$p(123, 678910)$$
+
+$$
+p(123, 678910)
+$$
 
 ---
 
@@ -25,11 +28,19 @@ Computing $2^{2 \times 10^8}$ produces an integer with over 60 million decimal d
 
 ### Fractional Logarithm Circle Rotation
 1. **Logarithmic Decomposition**:
-   $$2^j = 10^{j \log_{10} 2} = 10^{\lfloor j \log_{10} 2 \rfloor} \cdot 10^{\{ j \log_{10} 2 \}}$$
+
+$$
+2^j = 10^{j \log_{10} 2} = 10^{\lfloor j \log_{10} 2 \rfloor} \cdot 10^{\{ j \log_{10} 2 \}}
+$$
+
    The leading digits of $2^j$ are determined exclusively by the fractional part $\{ j \log_{10} 2 \}$.
 2. **Interval Criterion**:
    For prefix $L = 123$, $2^j$ begins with $123$ if and only if:
-   $$1.23 \le 10^{\{ j \log_{10} 2 \}} < 1.24 \iff \log_{10}(1.23) \le \{ j \log_{10} 2 \} < \log_{10}(1.24)$$
+
+$$
+1.23 \le 10^{\{ j \log_{10} 2 \}} < 1.24 \iff \log_{10}(1.23) \le \{ j \log_{10} 2 \} < \log_{10}(1.24)
+$$
+
 3. **Ergodic Irrational Rotation on $\mathbb{T} = \mathbb{R} / \mathbb{Z}$**:
    Let $\alpha = \log_{10} 2 \approx 0.30102999566$.
    The sequence $\{ j \alpha \}$ is an irrational rotation on the unit circle.

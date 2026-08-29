@@ -3,13 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$, let $\sigma_2(n)$ denote the sum of the squares of its divisors:
-$$\sigma_2(n) = \sum_{d \mid n} d^2$$
+
+$$
+\sigma_2(n) = \sum_{d \mid n} d^2
+$$
 
 For example:
-$$\sigma_2(10) = 1^2 + 2^2 + 5^2 + 10^2 = 1 + 4 + 25 + 100 = 130$$
+
+$$
+\sigma_2(10) = 1^2 + 2^2 + 5^2 + 10^2 = 1 + 4 + 25 + 100 = 130
+$$
 
 Find the sum of all $n < 64\,000\,000$ such that $\sigma_2(n)$ is a perfect square:
-$$S(64000000) = \sum \left\{ n \in \mathbb{N} \;\middle|\; 1 \le n < 64\,000\,000 \land \exists r \in \mathbb{N}, \sigma_2(n) = r^2 \right\}$$
+
+$$
+S(64000000) = \sum \left\{ n \in \mathbb{N} \;\middle|\; 1 \le n < 64\,000\,000 \land \exists r \in \mathbb{N}, \sigma_2(n) = r^2 \right\}
+$$
 
 ---
 
@@ -26,7 +35,11 @@ def naive_divisor_square_sum():
 ### Segmented Prime Sieve with Multiplicative $\sigma_2$ Expansion
 1. **Multiplicative Function $\sigma_2$:**
    If $n = p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}$, then:
-   $$\sigma_2(n) = \prod_{i=1}^k \left( 1 + p_i^2 + p_i^4 + \dots + p_i^{2e_i} \right)$$
+
+$$
+\sigma_2(n) = \prod_{i=1}^k \left( 1 + p_i^2 + p_i^4 + \dots + p_i^{2e_i} \right)
+$$
+
 2. **Segmented Memory-Safe Processing:**
    Any integer $n < 64\,000\,000$ has at most one prime factor greater than $\sqrt{64\,000\,000} = 8000$.
    There are only $1007$ base primes $p \le 8000$.
@@ -95,7 +108,10 @@ def solve(limit: int = 64000000, block_size: int = 2000000) -> int:
     return ans
 ```
 Evaluating for $\text{limit} = 64000000$:
-$$S(64000000) = \mathbf{1\,922\,364\,685}$$
+
+$$
+S(64000000) = \mathbf{1\,922\,364\,685}
+$$
 
 ---
 
@@ -109,7 +125,10 @@ $$S(64000000) = \mathbf{1\,922\,364\,685}$$
 
 ### Example 2: Target Evaluation for $n < 64\,000\,000$
 - Full segmented summation over all blocks:
-  $$S(64000000) = \mathbf{1\,922\,364\,685}$$
+
+$$
+S(64000000) = \mathbf{1\,922\,364\,685}
+$$
 
 ---
 

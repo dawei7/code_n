@@ -1,23 +1,8 @@
 /**
  * ReferenceTab — renders the per-algorithm markdown documentation
- * for the currently-selected challenge.
- *
- * Fetches the doc from the server's `/api/docs/by-id/{id}` endpoint
- * (with `/api/docs/overview` for the general overview, shown when
- * no challenge is selected). The fetched markdown is rendered with
- * `react-markdown` + `remark-gfm` (so tables, task lists, and
- * autolinks work).
- *
- * States:
- *  - no challenge selected  →  render the overview doc
- *  - loading                →  skeleton placeholder
- *  - no doc yet             →  friendly empty state with a
- *                              "Contribute on GitHub" link that
- *                              opens a pre-filled issue
- *  - error                  →  inline error with retry button
- *  - loaded                 →  rendered markdown
- *
- * The tab is lazy-loaded by the registry.
+ * for the currently-selected challenge with high visual polish,
+ * rich KaTeX mathematics typesetting, and a unified single
+ * Canonical Optimal Approach & Solution view.
  */
 import { Children, isValidElement, useEffect, useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
@@ -39,8 +24,6 @@ import {
 import { useAppStore } from '../../../store/useAppStore';
 import { canRevealSolution } from '../../../lib/cheaterMode';
 import type {
-  SolutionImplementationDetail,
-  SolutionVariantDetail,
   SupportedLanguage,
 } from '../../../types/api';
 
@@ -71,15 +54,10 @@ export function ReferenceTab() {
   const cheaterMode = useAppStore((s) => s.cheaterMode);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const [state, setState] = useState<LoadState>({ kind: 'idle' });
-  const [selectedVariantId, setSelectedVariantId] = useState('');
 
   const challengeId = detail?.id ?? null;
   const challengeName = detail?.name ?? null;
   const category = detail?.category ?? null;
-
-  useEffect(() => {
-    setSelectedVariantId(detail?.default_solution_variant ?? '');
-  }, [challengeId, detail?.default_solution_variant]);
 
   const load = useCallback(async (which: 'overview' | 'by-id', id?: string) => {
     setState({ kind: 'loading' });
@@ -97,9 +75,6 @@ export function ReferenceTab() {
           setState({ kind: 'idle' });
           return;
         }
-        // Problem documents are authored while the app is running. Fetch them
-        // whenever a challenge is opened so edits do not remain hidden behind
-        // a process-wide cache keyed only by challenge ID.
         try {
           const text = await apiText(`/docs/by-id/${encodeURIComponent(id)}`);
           setState({ kind: 'loaded', markdown: text });
@@ -124,15 +99,11 @@ export function ReferenceTab() {
 
   useEffect(() => {
     if (!challengeId) {
-      // No challenge: render the overview.
       void load('overview');
       return;
     }
-    // Challenge changed: drop the previous state and re-fetch.
     setState({ kind: 'loading' });
     void load('by-id', challengeId).then(() => {
-      // If the load completed with a 404, the state is already 'missing'.
-      // Enrich it with the current challenge's name + category.
       if (challengeName && category) {
         setState((prev) =>
           prev.kind === 'missing'
@@ -145,21 +116,24 @@ export function ReferenceTab() {
 
   if (state.kind === 'idle' || state.kind === 'loading') {
     return (
-      <div className="flex items-center justify-center text-xs text-coden-muted">
-        Loading reference...
+      <div className="flex min-h-64 items-center justify-center p-8 text-sm text-coden-muted">
+        <div className="flex flex-col items-center gap-2">
+          <div className="h-6 w-6 animate-spin rounded-full border-2 border-coden-accent border-t-transparent" />
+          <span>Loading reference documentation...</span>
+        </div>
       </div>
     );
   }
 
   if (state.kind === 'error') {
     return (
-      <div className="flex flex-col items-center justify-center gap-2 text-xs">
-        <div className="text-red-400">Failed to load doc:</div>
-        <pre className="text-coden-muted whitespace-pre-wrap">{state.message}</pre>
+      <div className="flex flex-col items-center justify-center gap-3 p-8 text-xs">
+        <div className="text-red-400 font-semibold text-sm">Failed to load documentation</div>
+        <pre className="text-coden-muted whitespace-pre-wrap max-w-lg rounded border border-coden-border bg-coden-bg p-3">{state.message}</pre>
         <button
           type="button"
           onClick={() => challengeId ? void load('by-id', challengeId) : void load('overview')}
-          className="mt-2 px-3 py-1 text-sm rounded border border-coden-border hover:bg-coden-surface"
+          className="mt-2 px-4 py-1.5 text-xs font-semibold rounded-lg border border-coden-border bg-coden-surface hover:bg-coden-surface-elevated transition-colors text-coden-text"
         >
           Retry
         </button>
@@ -171,21 +145,21 @@ export function ReferenceTab() {
     const issueTitle = encodeURIComponent(`Docs: add reference for ${state.challengeId}`);
     const issueBody = encodeURIComponent(
       `The reference doc for **${state.challengeId}** (\`${state.challengeName}\`, category: ${state.category}) doesn't exist yet.\n\n` +
-      `Please complete the canonical package document at \`dsa/leetcode/<frontend_id:04d>_<slug>/doc.md\`.`,
+      `Please complete the canonical package document at \`dsa/leetcode/<frontend_id:04d>_<slug>/reference/\`.`,
     );
     return (
-      <div className="flex flex-col items-center justify-center gap-3 text-xs text-coden-muted">
+      <div className="flex flex-col items-center justify-center gap-3 p-8 text-xs text-coden-muted">
         <div className="text-base font-semibold text-coden-text">
-          No reference doc yet for <code className="text-coden-accent">{state.challengeId}</code>
+          No reference documentation for <code className="text-coden-accent">{state.challengeId}</code>
         </div>
-        <div className="text-sm max-w-md text-center">
+        <div className="text-sm max-w-md text-center text-coden-muted">
           {state.challengeName} &middot; {state.category}
         </div>
         <a
           href={`https://github.com/dawei7/code_n/issues/new?title=${issueTitle}&body=${issueBody}`}
           target="_blank"
           rel="noreferrer"
-          className="mt-2 px-3 py-1.5 text-sm rounded border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-accentContrast"
+          className="mt-3 px-4 py-2 text-xs font-semibold rounded-lg border border-coden-accent text-coden-accent hover:bg-coden-accent hover:text-coden-accentContrast transition-colors"
         >
           Suggest this doc on GitHub →
         </a>
@@ -193,67 +167,56 @@ export function ReferenceTab() {
     );
   }
 
-  // Loaded: render the markdown.
+  // Loaded: render the markdown and canonical solution section.
   const markdown = state.markdown;
-  const { mainMarkdown, approachMarkdown } = splitApproachSection(markdown);
-  const solutionVariants = challengeId ? detail?.solution_variants ?? [] : [];
-  const selectedVariant = solutionVariants.find(({ id }) => id === selectedVariantId)
-    ?? solutionVariants.find(({ id }) => id === detail?.default_solution_variant)
-    ?? solutionVariants[0];
-  const solutionSource = challengeId ? detail?.optimal_source?.trim() ?? '' : '';
-  const solutionSources: Partial<Record<SupportedLanguage, string>> = {
-    ...(detail?.optimal_sources ?? {}),
-  };
-  if (solutionSource && detail?.primary_language && !solutionSources[detail.primary_language]?.trim()) {
-    solutionSources[detail.primary_language] = solutionSource;
-  }
-  const leetcodeSolutionSource = challengeId ? detail?.leetcode_optimal_source?.trim() ?? '' : '';
-  const leetcodeSolutionSources: Partial<Record<SupportedLanguage, string>> = {
-    ...(detail?.leetcode_optimal_sources ?? {}),
-  };
-  if (
-    leetcodeSolutionSource
-    && detail?.primary_language
-    && !leetcodeSolutionSources[detail.primary_language]?.trim()
-  ) {
-    leetcodeSolutionSources[detail.primary_language] = leetcodeSolutionSource;
-  }
-  const hasSolution = REFERENCE_LANGUAGES.some(({ id }) => (
-    Boolean(solutionSources[id]?.trim()) && Boolean(leetcodeSolutionSources[id]?.trim())
-  ));
   const solutionUnlocked = challengeId
     ? canRevealSolution(completed.includes(challengeId), cheaterMode)
     : false;
+
   return (
-    <div>
-      <article className="prose prose-sm max-w-none p-4 text-coden-text
-                          prose-headings:text-coden-text
-                          prose-p:text-coden-text
-                          prose-li:text-coden-text
-                          prose-strong:text-coden-text
+    <div className="coden-reading-container">
+      {/* Challenge Header Bar */}
+      {detail && <ChallengeHeaderBar detail={detail} challengeId={challengeId ?? ''} />}
+
+      {/* Main Documentation Body */}
+      <article className="prose prose-sm max-w-none text-coden-text
+                          prose-headings:text-coden-text prose-headings:tracking-tight
+                          prose-h2:text-lg prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-coden-border prose-h2:pb-2
+                          prose-h3:text-base prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2
+                          prose-p:leading-7 prose-p:my-3.5 prose-p:text-coden-text
+                          prose-li:my-1 prose-li:text-coden-text
+                          prose-strong:text-coden-text prose-strong:font-semibold
                           prose-em:text-coden-text
-                          prose-hr:border-coden-border
-                          prose-blockquote:text-coden-text
-                          prose-blockquote:border-coden-accent
-                          prose-a:text-coden-accent
-                          prose-code:text-coden-accent
-                          prose-code:before:content-none
-                          prose-code:after:content-none
-                          prose-table:my-2
-                          prose-th:text-left">
+                          prose-hr:border-coden-border prose-hr:my-6
+                          prose-blockquote:text-coden-text prose-blockquote:border-coden-accent prose-blockquote:bg-coden-surface-elevated/40 prose-blockquote:rounded-r-lg prose-blockquote:py-1 prose-blockquote:px-4
+                          prose-a:text-coden-accent prose-a:font-medium hover:prose-a:underline
+                          prose-code:text-coden-accent prose-code:font-mono
+                          prose-code:before:content-none prose-code:after:content-none
+                          prose-table:my-4 prose-th:text-left">
         <ReactMarkdown
           remarkPlugins={[remarkGfm, remarkMath]}
           rehypePlugins={[rehypeRaw, rehypeKatex]}
           components={{
             h1: ({ node, ...props }) => (
-              <h1 {...props} className="text-xl font-semibold mt-0 mb-4 text-coden-text" />
+              <h1 {...props} className="text-xl font-bold mt-0 mb-4 text-coden-text" />
             ),
             h2: ({ node, ...props }) => (
-              <h2 {...props} className="text-lg font-semibold mt-6 mb-3 text-coden-text" />
+              <h2 {...props} className="text-lg font-bold mt-8 mb-3 pb-2 border-b border-coden-border text-coden-text" />
             ),
-            h3: ({ node, ...props }) => (
-              <h3 {...props} className="text-base font-semibold mt-4 mb-2 text-coden-text" />
-            ),
+            h3: ({ node, ...props }) => {
+              const text = textFromReactNode(props.children);
+              const isExample = /^Example\s+\d+/i.test(text.trim());
+              return (
+                <h3
+                  {...props}
+                  className={
+                    isExample
+                      ? 'text-sm font-bold uppercase tracking-wider text-coden-accent mt-6 mb-2 flex items-center gap-2'
+                      : 'text-base font-semibold mt-5 mb-2 text-coden-text'
+                  }
+                />
+              );
+            },
             details: ({ node, ...props }) => <CollapsibleDetails node={node} {...props} />,
             summary: ({ node, ...props }) => (
               <summary
@@ -273,8 +236,8 @@ export function ReferenceTab() {
                     href={descriptionUrl.toString()}
                     target="_blank"
                     rel="noreferrer"
-                    title="Open the official LeetCode description using your LeetCode Focus Mode setting"
-                    aria-label="Open the official LeetCode description using your LeetCode Focus Mode setting"
+                    title="Open the official LeetCode problem"
+                    aria-label="Open the official LeetCode problem"
                     className="inline-flex items-center justify-center text-coden-accent hover:text-coden-text"
                   >
                     <LeetCodeIcon />
@@ -282,7 +245,6 @@ export function ReferenceTab() {
                 );
               }
               if (props.href?.endsWith('.md')) {
-                // Extract the challenge ID (e.g. "dp_02_climbing-stairs.md" -> "dp_02")
                 const match = props.href.match(/^([a-z]+_\d+)/);
                 if (match) {
                   return (
@@ -301,13 +263,15 @@ export function ReferenceTab() {
               return <a {...props} target="_blank" rel="noreferrer" />;
             },
             table: ({ node, ...props }) => (
-              <table {...props} className="border-collapse border border-coden-border text-xs text-coden-text" />
+              <div className="my-4 overflow-x-auto rounded-lg border border-coden-border bg-coden-surface shadow-sm">
+                <table {...props} className="my-0 w-full min-w-full table-auto border-collapse text-xs text-coden-text" />
+              </div>
             ),
             th: ({ node, ...props }) => (
-              <th {...props} className="border border-coden-border px-2 py-1 bg-coden-bg text-coden-text font-semibold" />
+              <th {...props} className="border-b border-coden-border px-3 py-2.5 bg-coden-surface-elevated font-semibold text-coden-text text-left" />
             ),
             td: ({ node, ...props }) => (
-              <td {...props} className="border border-coden-border px-2 py-1 text-coden-text" />
+              <td {...props} className="border-b border-coden-border/60 px-3 py-2 text-coden-text align-top" />
             ),
             img: ({ node, ...props }) => {
               const rawSrc = String(props.src || '');
@@ -318,7 +282,7 @@ export function ReferenceTab() {
                 <img
                   {...props}
                   src={src}
-                  className="my-4 max-h-[520px] max-w-full rounded-md border border-coden-border bg-coden-bg object-contain"
+                  className="mx-auto my-5 max-h-[520px] max-w-full rounded-lg border border-coden-border bg-coden-bg object-contain shadow-sm"
                 />
               );
             },
@@ -328,33 +292,25 @@ export function ReferenceTab() {
               return (
                 <pre
                   {...props}
-                  className="bg-white border border-slate-300 rounded p-3 text-xs text-slate-950 shadow-sm overflow-x-auto my-3 dark:bg-coden-bg dark:border-coden-border dark:text-coden-text"
+                  className="my-4 overflow-x-auto rounded-lg border border-coden-border bg-coden-surface-elevated p-3.5 font-mono text-xs text-coden-text shadow-sm"
                 >
                   {children}
                 </pre>
               );
             },
             code: ({ className, children, ...props }) => {
-              // Heuristic for inline vs block: the code inside a <pre>
-              // always contains newlines; inline code never does. The
-              // AST `node` prop is no longer reliable in react-markdown v9,
-              // so we use the children-string check instead.
               const isBlock = String(children).includes('\n');
               if (isBlock) {
-                // Inside a <pre>. Just pass through with the language
-                // className (e.g. "language-python"); the <pre> handles
-                // background + padding.
                 return (
                   <code {...props} className={className}>
                     {children}
                   </code>
                 );
               }
-              // Inline code (e.g. `foo` in a sentence). Style as a chip.
               return (
                 <code
                   {...props}
-                  className="bg-sky-50 border border-sky-200 rounded px-1 py-0.5 text-sky-800 text-xs dark:bg-coden-bg dark:border-coden-border dark:text-coden-accent"
+                  className="rounded border border-coden-border/80 bg-coden-surface-elevated px-1.5 py-0.5 font-mono text-xs text-coden-accent"
                 >
                   {children}
                 </code>
@@ -362,33 +318,14 @@ export function ReferenceTab() {
             },
           }}
         >
-          {mainMarkdown}
+          {markdown}
         </ReactMarkdown>
-        {selectedVariant && (
-          <SolutionVariantPanel
-            challengeId={challengeId ?? ''}
-            variants={solutionVariants}
-            selectedVariant={selectedVariant}
-            onSelect={setSelectedVariantId}
-            unlocked={solutionUnlocked}
-            effectiveElo={detail?.solution_variant_effective_elo ?? null}
-            eloSource={detail?.solution_variant_elo_source ?? ''}
-            simplifiedEloCeiling={detail?.simplified_solution_elo_ceiling ?? null}
-          />
-        )}
-        {!selectedVariant && approachMarkdown && (
-          <ApproachDisclosure
-            key={challengeId ?? 'overview'}
-            markdown={approachMarkdown}
-          />
-        )}
-        {!selectedVariant && hasSolution && challengeId && (
-          <SolutionDisclosure
-            key={`solution:${challengeId}`}
+
+        {/* Canonical Reference Solution Section */}
+        {challengeId && (
+          <CanonicalSolutionSection
             challengeId={challengeId}
-            variantId="optimal"
-            sources={solutionSources}
-            leetcodeSources={leetcodeSolutionSources}
+            detail={detail}
             unlocked={solutionUnlocked}
           />
         )}
@@ -397,111 +334,208 @@ export function ReferenceTab() {
   );
 }
 
-function SolutionVariantPanel({
+function ChallengeHeaderBar({
+  detail,
   challengeId,
-  variants,
-  selectedVariant,
-  onSelect,
-  unlocked,
-  effectiveElo,
-  eloSource,
-  simplifiedEloCeiling,
 }: {
+  detail: any;
   challengeId: string;
-  variants: SolutionVariantDetail[];
-  selectedVariant: SolutionVariantDetail;
-  onSelect: (variantId: string) => void;
-  unlocked: boolean;
-  effectiveElo: number | null;
-  eloSource: string;
-  simplifiedEloCeiling: number | null;
 }) {
-  const eloLabel = eloSource === 'elo_rating' ? 'Real Elo' : 'Estimated Elo';
+  if (!detail) return null;
+
+  const difficulty = detail.difficulty_label || 'Medium';
+  const diffColor =
+    difficulty.toLowerCase() === 'easy'
+      ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
+      : difficulty.toLowerCase() === 'hard'
+      ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30'
+      : 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30';
+
+  const frontendId = detail.leetcode_frontend_id || detail.id?.replace(/^lc_/, '') || '';
+  const category = detail.category || detail.leetcode_category || '';
+
   return (
-    <section className="not-prose my-5">
-      {variants.length > 1 && (
-        <div
-          data-pdf-exclude="true"
-          role="tablist"
-          aria-label="Solution approach"
-          className="flex gap-1 border-b border-coden-border"
-        >
-          {variants.map((variant) => {
-            const selected = variant.id === selectedVariant.id;
-            return (
-              <button
-                key={variant.id}
-                id={`solution-variant-tab-${variant.id}`}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                aria-controls={`solution-variant-panel-${variant.id}`}
-                onClick={() => onSelect(variant.id)}
-                className={`-mb-px rounded-t border px-4 py-2 text-sm font-semibold transition-colors ${
-                  selected
-                    ? 'border-coden-border border-b-coden-surface bg-coden-surface text-coden-accent'
-                    : 'border-transparent text-coden-muted hover:border-coden-border hover:text-coden-text'
-                }`}
-              >
-                {variant.label}
-              </button>
-            );
-          })}
-        </div>
-      )}
-      <div
-        id={`solution-variant-panel-${selectedVariant.id}`}
-        role="tabpanel"
-        aria-labelledby={`solution-variant-tab-${selectedVariant.id}`}
-        className={`rounded-b border ${variants.length > 1 ? 'border-t-0' : 'rounded-t'} border-coden-border bg-coden-surface/40 p-3`}
-      >
-        {selectedVariant.summary && <p className="m-0 text-sm leading-6 text-coden-text">{selectedVariant.summary}</p>}
-        {(selectedVariant.time_complexity || selectedVariant.space_complexity) && (
-          <VariantRequiredComplexity variant={selectedVariant} />
+    <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-coden-border pb-4 pt-1">
+      <div className="flex flex-wrap items-center gap-2.5">
+        {frontendId && (
+          <span className="rounded-md bg-coden-surface-elevated px-2 py-0.5 font-mono text-xs font-bold text-coden-muted border border-coden-border">
+            #{frontendId}
+          </span>
         )}
-        {selectedVariant.kind === 'simplified'
-          && effectiveElo !== null
-          && simplifiedEloCeiling !== null && (
-            <p className="mt-2 text-xs text-coden-muted">
-              {eloLabel}: {Math.round(effectiveElo)} ≤ {Math.round(simplifiedEloCeiling)}
-            </p>
+        <h1 className="text-xl font-bold text-coden-text m-0 tracking-tight">
+          {detail.name || challengeId}
+        </h1>
+        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold border ${diffColor}`}>
+          {difficulty}
+        </span>
+        {category && (
+          <span className="rounded-full bg-coden-surface-elevated px-2.5 py-0.5 text-xs font-medium text-coden-muted border border-coden-border">
+            {category}
+          </span>
         )}
-        {selectedVariant.approach_markdown && (
-          <ApproachDisclosure
-            key={`approach:${challengeId}:${selectedVariant.id}`}
-            markdown={selectedVariant.approach_markdown}
-          />
+        {detail.elo_rating && (
+          <span className="rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 px-2.5 py-0.5 text-xs font-medium border border-indigo-500/30 font-mono">
+            Elo {Math.round(detail.elo_rating)}
+          </span>
         )}
-        <SolutionDisclosure
-          key={`solution:${challengeId}:${selectedVariant.id}`}
-          challengeId={challengeId}
-          variantId={selectedVariant.id}
-          sources={selectedVariant.sources}
-          leetcodeSources={selectedVariant.leetcode_sources}
-          implementations={selectedVariant.implementations}
-          unlocked={unlocked}
-        />
       </div>
-    </section>
+
+      {detail.leetcode_url && (
+        <a
+          href={detail.leetcode_url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-coden-border bg-coden-surface-elevated px-3 py-1.5 text-xs font-semibold text-coden-text hover:border-coden-accent hover:text-coden-accent transition-all shadow-sm"
+          title="Open official LeetCode problem"
+        >
+          <LeetCodeIcon />
+          <span>LeetCode</span>
+          <span className="text-coden-muted text-[10px]">↗</span>
+        </a>
+      )}
+    </div>
   );
 }
 
-function VariantRequiredComplexity({ variant }: { variant: SolutionVariantDetail }) {
-  const markdown = [
-    '### Required Complexity',
-    '',
-    `- **Time:** $${variant.time_complexity}$`,
-    `- **Space:** $${variant.space_complexity}$`,
-  ].join('\n');
+function CanonicalSolutionSection({
+  challengeId,
+  detail,
+  unlocked,
+}: {
+  challengeId: string;
+  detail: any;
+  unlocked: boolean;
+}) {
+  const [solutionOpen, setSolutionOpen] = useState(false);
+  const theme = useAppStore((state) => state.theme);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
+
+  const timeComplexity = detail?.time_complexity || detail?.solution_variant_complexity?.time || '';
+  const spaceComplexity = detail?.space_complexity || detail?.solution_variant_complexity?.space || '';
+
+  const solutionSource = detail?.optimal_source?.trim() || detail?.leetcode_optimal_source?.trim() || '';
+  const language = REFERENCE_LANGUAGES.find((l) => l.id === detail?.primary_language) ?? REFERENCE_LANGUAGES[0];
+
+  const copyCode = async () => {
+    try {
+      await copyCompleteCode(solutionSource);
+      setCopyStatus('copied');
+      setTimeout(() => setCopyStatus('idle'), 2000);
+    } catch {
+      setCopyStatus('failed');
+    }
+  };
+
+  const lineCount = solutionSource ? solutionSource.split(/\r?\n/).length : 0;
+  const editorHeight = Math.min(600, Math.max(200, lineCount * 19 + 32));
+
   return (
-    <div className="prose prose-sm mt-4 max-w-none text-coden-text prose-headings:text-coden-text prose-li:text-coden-text prose-strong:text-coden-text">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeRaw, rehypeKatex]}
-      >
-        {markdown}
-      </ReactMarkdown>
-    </div>
+    <section className="not-prose my-6 rounded-xl border border-coden-border bg-coden-surface shadow-md overflow-hidden transition-all">
+      {/* Header Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-coden-border bg-coden-surface-elevated/70 px-4 py-3">
+        <div className="flex items-center gap-2">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-coden-accent/15 text-xs font-bold text-coden-accent">
+            ★
+          </span>
+          <span className="font-semibold text-sm text-coden-text">
+            Canonical Reference Solution
+          </span>
+        </div>
+
+        {/* Complexity Badges */}
+        <div className="flex flex-wrap items-center gap-2">
+          {timeComplexity && (
+            <span className="coden-complexity-pill" title="Time Complexity">
+              <span className="text-coden-muted text-[11px] uppercase tracking-wider font-mono">Time</span>
+              <span className="text-coden-accent font-semibold">{timeComplexity}</span>
+            </span>
+          )}
+          {spaceComplexity && (
+            <span className="coden-complexity-pill" title="Space Complexity">
+              <span className="text-coden-muted text-[11px] uppercase tracking-wider font-mono">Space</span>
+              <span className="text-coden-accent font-semibold">{spaceComplexity}</span>
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Verified Solution Section */}
+      {solutionSource && (
+        <div>
+          <button
+            type="button"
+            disabled={!unlocked}
+            onClick={() => unlocked && setSolutionOpen((v) => !v)}
+            className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors ${
+              unlocked
+                ? 'text-coden-text hover:bg-coden-surface-elevated/40'
+                : 'text-coden-muted cursor-not-allowed opacity-75'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              {unlocked ? (
+                <span className="text-xs text-coden-accent">{solutionOpen ? '▼' : '▶'}</span>
+              ) : (
+                <LockIcon />
+              )}
+              <span>Verified {language.label} Solution</span>
+            </div>
+            <span className="text-xs font-normal text-coden-muted">
+              {unlocked
+                ? (solutionOpen ? 'Click to hide code' : 'Click to view code')
+                : 'Solve this challenge to unlock'}
+            </span>
+          </button>
+
+          {unlocked && solutionOpen && (
+            <div className="border-t border-coden-border bg-coden-bg p-4 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="rounded px-2 py-1 font-mono font-medium border border-coden-border bg-coden-surface text-coden-accent">
+                    {language.label}
+                  </span>
+                  <span className="text-coden-muted">{lineCount} lines</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => void copyCode()}
+                  className="inline-flex h-7 items-center gap-1.5 rounded border border-coden-border bg-coden-surface px-2.5 text-xs font-semibold text-coden-text transition-colors hover:border-coden-accent hover:text-coden-accent"
+                >
+                  <CopyIcon />
+                  {copyStatus === 'copied' ? 'Copied!' : copyStatus === 'failed' ? 'Failed' : 'Copy code'}
+                </button>
+              </div>
+
+              <div className="overflow-hidden rounded-lg border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
+                <Editor
+                  path={`reference://${challengeId}/optimal/verified.${language.extension}`}
+                  height="100%"
+                  language={language.monaco}
+                  theme={theme === 'dark' ? 'vs-dark' : 'light'}
+                  value={solutionSource}
+                  options={{
+                    readOnly: true,
+                    domReadOnly: true,
+                    contextmenu: false,
+                    minimap: { enabled: false },
+                    lineNumbers: 'on',
+                    fontSize: 12.5,
+                    fontFamily: "'Cascadia Code', 'Cascadia Mono', Consolas, 'SFMono-Regular', monospace",
+                    renderLineHighlight: 'none',
+                    scrollBeyondLastLine: false,
+                    overviewRulerLanes: 0,
+                    hideCursorInOverviewRuler: true,
+                    wordWrap: 'off',
+                    automaticLayout: true,
+                    padding: { top: 12, bottom: 12 },
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -510,305 +544,8 @@ function LeetCodeIcon() {
     <FontAwesomeIcon
       icon={faLeetcode}
       aria-hidden="true"
-      className="h-5 w-5 text-[#FFA116]"
+      className="h-4 w-4 text-[#FFA116]"
     />
-  );
-}
-
-function splitApproachSection(markdown: string): {
-  mainMarkdown: string;
-  approachMarkdown: string | null;
-} {
-  const opening = /<details>\s*<summary>\s*Approach\s*<\/summary>\s*/i.exec(markdown);
-  if (!opening || opening.index === undefined) {
-    return { mainMarkdown: markdown, approachMarkdown: null };
-  }
-  const bodyStart = opening.index + opening[0].length;
-  const bodyEnd = markdown.indexOf('</details>', bodyStart);
-  if (bodyEnd === -1) {
-    return { mainMarkdown: markdown, approachMarkdown: null };
-  }
-  return {
-    mainMarkdown: `${markdown.slice(0, opening.index)}${markdown.slice(bodyEnd + '</details>'.length)}`.trim(),
-    approachMarkdown: markdown.slice(bodyStart, bodyEnd).trim(),
-  };
-}
-
-function ApproachDisclosure({ markdown }: { markdown: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <section className="not-prose my-4 overflow-hidden rounded border border-coden-border bg-coden-bg/40">
-      <button
-        data-pdf-exclude="true"
-        type="button"
-        aria-expanded={open}
-        onClick={() => setOpen((current) => !current)}
-        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-coden-accent hover:bg-coden-border/40 transition-colors"
-      >
-        <span aria-hidden="true" className="w-3 text-xs">{open ? '▼' : '▶'}</span>
-        <span>Approach</span>
-      </button>
-      <div className={`${open ? '' : 'hidden'} coden-pdf-disclosure-content overflow-x-auto border-t border-coden-border px-4 py-3 text-sm text-coden-text`}>
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeRaw, rehypeKatex]}
-            components={{
-              h2: ({ node, ...props }) => (
-                <h2
-                  {...props}
-                  className="mb-2 mt-6 first:mt-0 text-sm font-semibold text-coden-text"
-                />
-              ),
-              h4: ({ node, ...props }) => (
-                <h4
-                  {...props}
-                  className="mb-2 mt-6 first:mt-0 text-sm font-semibold text-coden-text"
-                />
-              ),
-              p: ({ node, ...props }) => (
-                <p {...props} className="my-2 leading-6 text-coden-text" />
-              ),
-              ol: ({ node, ...props }) => (
-                <ol {...props} className="my-3 list-decimal space-y-1 pl-6 text-coden-text" />
-              ),
-              ul: ({ node, ...props }) => (
-                <ul {...props} className="my-3 list-disc space-y-1.5 pl-6 text-coden-text" />
-              ),
-              li: ({ node, ...props }) => (
-                <li {...props} className="pl-1 leading-6 text-coden-text" />
-              ),
-              table: ({ node, ...props }) => (
-                <table
-                  {...props}
-                  className="my-4 w-full min-w-[640px] border-collapse text-left text-xs text-coden-text"
-                />
-              ),
-              th: ({ node, ...props }) => (
-                <th
-                  {...props}
-                  className="border border-coden-border bg-coden-bg px-3 py-2 font-semibold text-coden-text"
-                />
-              ),
-              td: ({ node, ...props }) => (
-                <td {...props} className="border border-coden-border px-3 py-2 text-coden-text" />
-              ),
-              pre: ({ children, ...props }) => {
-                const diagram = mermaidSourceFromPreChildren(children);
-                if (diagram) return <MermaidDiagram source={diagram} />;
-                return (
-                  <pre
-                    {...props}
-                    className="my-3 overflow-x-auto rounded border border-coden-border bg-coden-bg p-3 text-xs text-coden-text"
-                  >
-                    {children}
-                  </pre>
-                );
-              },
-              code: ({ className, children, ...props }) => {
-                const isBlock = String(children).includes('\n');
-                return isBlock ? (
-                  <code {...props} className={className}>{children}</code>
-                ) : (
-                  <code
-                    {...props}
-                    className="rounded border border-coden-border bg-coden-bg px-1 py-0.5 font-mono text-xs text-coden-accent"
-                  >
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          >
-            {markdown}
-          </ReactMarkdown>
-      </div>
-    </section>
-  );
-}
-
-function SolutionDisclosure({
-  challengeId,
-  variantId,
-  sources,
-  leetcodeSources,
-  implementations = [],
-  unlocked,
-}: {
-  challengeId: string;
-  variantId: string;
-  sources: Partial<Record<SupportedLanguage, string>>;
-  leetcodeSources: Partial<Record<SupportedLanguage, string>>;
-  implementations?: SolutionImplementationDetail[];
-  unlocked: boolean;
-}) {
-  const [open, setOpen] = useState(false);
-  const theme = useAppStore((state) => state.theme);
-  const resolvedImplementations: SolutionImplementationDetail[] = implementations.length > 0
-    ? implementations
-    : [{
-        id: 'solution-1',
-        label: 'Verified LeetCode submission',
-        sources,
-        leetcode_sources: leetcodeSources,
-      }];
-  const panels = resolvedImplementations.flatMap((implementation) => {
-    const language = REFERENCE_LANGUAGES.find(({ id }) => (
-      Boolean(implementation.sources[id]?.trim())
-      || Boolean(implementation.leetcode_sources[id]?.trim())
-    ));
-    if (!language) return [];
-    const codenSource = implementation.sources[language.id]?.trim() ?? '';
-    const leetcodeSource = implementation.leetcode_sources[language.id]?.trim() ?? '';
-    return [{
-      id: implementation.id,
-      label: implementation.label,
-      language,
-      source: leetcodeSource || codenSource,
-      sourceKind: leetcodeSource ? 'leetcode' as const : 'coden' as const,
-    }];
-  });
-  const disclosureLabel = panels.length > 1 ? 'Solutions' : 'Solution';
-
-  useEffect(() => {
-    if (!unlocked) setOpen(false);
-  }, [unlocked]);
-
-  return (
-    <section
-      data-pdf-exclude="true"
-      className={`not-prose my-4 overflow-hidden rounded border transition-colors ${
-        unlocked
-          ? 'border-coden-border bg-coden-bg/40'
-          : 'border-coden-border/60 bg-coden-border/20 opacity-60'
-      }`}
-    >
-      <button
-        data-pdf-exclude="true"
-        type="button"
-        aria-expanded={unlocked ? open : false}
-        aria-disabled={!unlocked}
-        disabled={!unlocked}
-        title={unlocked ? `Show the ${disclosureLabel.toLowerCase()}` : 'Solve this challenge successfully to unlock the solution'}
-        onClick={() => setOpen((current) => !current)}
-        className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
-          unlocked
-            ? 'text-coden-accent hover:bg-coden-border/40'
-            : 'cursor-not-allowed text-coden-muted'
-        }`}
-      >
-        {unlocked ? (
-          <span aria-hidden="true" className="w-3 text-xs">{open ? '▼' : '▶'}</span>
-        ) : (
-          <LockIcon />
-        )}
-        <span>{disclosureLabel}</span>
-        {!unlocked && <span className="ml-auto text-xs font-normal">Solve to unlock</span>}
-      </button>
-      {unlocked && open && panels.length > 0 && (
-        <div className="coden-screen-only space-y-5 border-t border-coden-border px-4 py-4 text-sm text-coden-text">
-          {panels.map((panel) => (
-            <VerifiedCodePanel
-              key={panel.id}
-              challengeId={challengeId}
-              variantId={variantId}
-              sourceId={panel.id}
-              sourceKind={panel.sourceKind}
-              label={panel.label}
-              language={panel.language}
-              source={panel.source}
-              theme={theme}
-            />
-          ))}
-        </div>
-      )}
-    </section>
-  );
-}
-
-function VerifiedCodePanel({
-  challengeId,
-  variantId,
-  sourceId,
-  sourceKind,
-  label,
-  language,
-  source,
-  theme,
-}: {
-  challengeId: string;
-  variantId: string;
-  sourceId: string;
-  sourceKind: 'coden' | 'leetcode';
-  label: string;
-  language: (typeof REFERENCE_LANGUAGES)[number];
-  source: string;
-  theme: 'light' | 'dark';
-}) {
-  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
-  const editorHeight = Math.min(640, Math.max(260, source.split(/\r?\n/).length * 19 + 32));
-
-  const copyCode = async () => {
-    try {
-      await copyCompleteCode(source);
-      setCopyStatus('copied');
-    } catch {
-      setCopyStatus('failed');
-    }
-  };
-
-  return (
-    <section aria-label={`${label} in ${language.label}`}>
-      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-        <div
-          className="rounded border border-coden-border bg-coden-bg px-2.5 py-1.5 text-xs font-semibold text-coden-text"
-        >
-          {label} &middot; {language.label}
-        </div>
-        <button
-          type="button"
-          onClick={() => void copyCode()}
-          className="inline-flex h-8 items-center gap-1.5 rounded border border-coden-border bg-coden-bg px-3 text-xs font-semibold text-coden-text transition-colors hover:border-coden-accent hover:text-coden-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-coden-accent"
-          aria-label={`Copy the complete ${label} code`}
-          title="Copy the complete code"
-        >
-          <CopyIcon />
-          {copyStatus === 'copied' ? 'Copied' : copyStatus === 'failed' ? 'Copy failed' : 'Copy code'}
-        </button>
-      </div>
-      <div className="overflow-hidden rounded border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
-        <Editor
-          path={`reference://${challengeId}/${variantId}/${sourceId}/${sourceKind}.${language.extension}`}
-          height="100%"
-          language={language.monaco}
-          theme={theme === 'dark' ? 'vs-dark' : 'light'}
-          value={source}
-          options={{
-            readOnly: true,
-            domReadOnly: true,
-            contextmenu: false,
-            minimap: { enabled: false },
-            folding: true,
-            glyphMargin: false,
-            lineNumbersMinChars: 3,
-            fontSize: 13,
-            fontFamily: "'Cascadia Code', 'Cascadia Mono', Consolas, 'SFMono-Regular', monospace",
-            renderLineHighlight: 'none',
-            scrollBeyondLastLine: false,
-            overviewRulerLanes: 0,
-            hideCursorInOverviewRuler: true,
-            wordWrap: 'off',
-            automaticLayout: true,
-            padding: { top: 14, bottom: 14 },
-            ariaLabel: `Read-only ${label} in ${language.label}`,
-          }}
-          loading={
-            <div className="flex h-full items-center justify-center text-xs text-coden-muted">
-              Loading code editor...
-            </div>
-          }
-        />
-      </div>
-    </section>
   );
 }
 
@@ -819,8 +556,7 @@ async function copyCompleteCode(source: string): Promise<void> {
       return;
     }
   } catch {
-    // Electron or browser clipboard permission can be unavailable; use the
-    // selection-based fallback below so the convenience action still works.
+    // Electron or browser fallback
   }
 
   const textarea = document.createElement('textarea');
@@ -863,7 +599,7 @@ function LockIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-3.5 w-3.5 shrink-0"
+      className="h-3.5 w-3.5 shrink-0 text-coden-muted"
     >
       <rect width="14" height="11" x="5" y="11" rx="2" />
       <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -934,14 +670,14 @@ function CollapsibleDetails({
       className={
         isOfficialEditorial
           ? 'my-6 text-coden-text'
-          : 'my-3 rounded border border-coden-border bg-coden-bg/40 text-coden-text'
+          : 'my-3 rounded-lg border border-coden-border bg-coden-surface-elevated/40 text-coden-text overflow-hidden'
       }
     >
       <summary
         className={
           isOfficialEditorial
             ? 'cursor-pointer select-none border-b border-coden-border pb-2 text-lg font-semibold text-coden-text hover:text-coden-accent transition-colors'
-            : 'cursor-pointer select-none px-3 py-2 text-sm font-semibold text-coden-accent hover:bg-coden-border/40 transition-colors'
+            : 'cursor-pointer select-none px-3.5 py-2.5 text-sm font-semibold text-coden-accent hover:bg-coden-border/40 transition-colors'
         }
       >
         {summary}
@@ -950,7 +686,7 @@ function CollapsibleDetails({
         className={
           isOfficialEditorial
             ? 'pt-4 text-sm text-coden-text'
-            : 'border-t border-coden-border px-3 py-2 text-sm text-coden-text'
+            : 'border-t border-coden-border px-4 py-3 text-sm text-coden-text'
         }
       >
         {body}

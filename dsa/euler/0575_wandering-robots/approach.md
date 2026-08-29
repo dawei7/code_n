@@ -11,7 +11,10 @@ We are given:
 - For $N = 5$, the stationary probability of being in a square-numbered room is $\approx 0.177976190476$.
 
 We seek to evaluate:
-$$\text{Stationary probability for } N = 1000 \text{ rounded to 12 decimal places}$$
+
+$$
+\text{Stationary probability for } N = 1000 \text{ rounded to 12 decimal places}
+$$
 
 ---
 
@@ -28,14 +31,25 @@ The state space contains $N^2 = 10^6$ rooms. Constructing a $10^6 \times 10^6$ t
 1. **Rule (i) Detailed Balance**:
    Assign vertex weights $w_1(u) = d(u) + 1$.
    The detailed balance equation holds identically:
-   $$w_1(u) P_1(u \to v) = (d(u) + 1) \frac{1}{d(u) + 1} = 1 = (d(v) + 1) \frac{1}{d(v) + 1} = w_1(v) P_1(v \to u)$$
+
+$$
+w_1(u) P_1(u \to v) = (d(u) + 1) \frac{1}{d(u) + 1} = 1 = (d(v) + 1) \frac{1}{d(v) + 1} = w_1(v) P_1(v \to u)
+$$
+
    Therefore, $\pi_1(u) = \frac{d(u) + 1}{W_1}$, where $W_1 = \sum_{u} (d(u) + 1) = 5N^2 - 4N$.
 2. **Rule (ii) Detailed Balance**:
    Assign vertex weights $w_2(u) = d(u)$.
-   $$w_2(u) P_2(u \to v) = d(u) \frac{1}{2 d(u)} = \frac{1}{2} = d(v) \frac{1}{2 d(v)} = w_2(v) P_2(v \to u)$$
+
+$$
+w_2(u) P_2(u \to v) = d(u) \frac{1}{2 d(u)} = \frac{1}{2} = d(v) \frac{1}{2 d(v)} = w_2(v) P_2(v \to u)
+$$
+
    Therefore, $\pi_2(u) = \frac{d(u)}{W_2}$, where $W_2 = \sum_u d(u) = 4N^2 - 4N$.
 3. **Combined Stationary Probability**:
-   $$\pi(u) = \frac{1}{2} \left( \frac{d(u) + 1}{5N^2 - 4N} + \frac{d(u)}{4N^2 - 4N} \right)$$
+
+$$
+\pi(u) = \frac{1}{2} \left( \frac{d(u) + 1}{5N^2 - 4N} + \frac{d(u)}{4N^2 - 4N} \right)
+$$
 
 ---
 

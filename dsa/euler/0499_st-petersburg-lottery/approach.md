@@ -12,7 +12,10 @@ We are given:
 - $p_6(10\,000) \approx 0.9952$
 
 We seek to evaluate:
-$$p_{15}(10^9) \text{ rounded to } 7 \text{ decimal places}$$
+
+$$
+p_{15}(10^9) \text{ rounded to } 7 \text{ decimal places}
+$$
 
 ---
 
@@ -31,7 +34,10 @@ The state space for fortunes up to $s = 10^9$ has size $10^9$, and transitions i
    $M_n$ is a martingale if and only if $\mathbb{E}[\exp(-t \Delta)] = 1$ where $\Delta = 2^k - m$ is the net payoff per game.
 2. **Characteristic Root**:
    This yields the characteristic equation for $t < 0$:
-   $$\exp(m t) = \sum_{k=0}^\infty \frac{\exp(2^k t)}{2^{k+1}}$$
+
+$$
+\exp(m t) = \sum_{k=0}^\infty \frac{\exp(2^k t)}{2^{k+1}}
+$$
 
 ---
 
@@ -45,7 +51,10 @@ The state space for fortunes up to $s = 10^9$ has size $10^9$, and transitions i
    Bisection rapidly converges to double-precision machine epsilon in $< 100$ iterations.
 3. **Exact Survival Probability**:
    For any fortune $s \ge m$, the probability of survival is given by:
-   $$p_m(s) = 1 - \exp(t^* (s - m + 1)) = -\text{expm1}(t^* (s - m + 1))$$
+
+$$
+p_m(s) = 1 - \exp(t^* (s - m + 1)) = -\text{expm1}(t^* (s - m + 1))
+$$
 
 This evaluates $p_{15}(10^9)$ in **$0.0001$ seconds**!
 

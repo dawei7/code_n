@@ -25,7 +25,10 @@ For $p = 10^9+7$, testing integers $m$ up to $p$ individually for $10^5$ digits 
 
 2. **Tonelli-Shanks / CIP Square Root for $p \equiv 3 \pmod 4$**:
    Since $p = 10^9+7 \equiv 3 \pmod 4$, quadratic roots are evaluated efficiently in $\mathcal{O}(\log p)$ time:
-   $$r = (-d)^{(p+1)/4} \bmod p \implies m = \min(r, p-r)$$
+
+$$
+r = (-d)^{(p+1)/4} \bmod p \implies m = \min(r, p-r)
+$$
 
 3. **Higher Digit Bound for Non-Residues**:
    If $-d$ is a non-residue, digit $p-d$ occurs at position $c_1$, yielding $m \approx \sqrt{(p-d)p}$.

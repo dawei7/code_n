@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Count the number of integer tuples $(a, b, c, e, f)$ satisfying:
-$$a^e + b^e = c^f$$
+
+$$
+a^e + b^e = c^f
+$$
+
 subject to:
 - $0 < a < b$
 - $e \ge 2, f \ge 3$
@@ -17,7 +21,10 @@ We are given:
 - $F(10^7) = 287$
 
 We seek to evaluate:
-$$F(10^{18})$$
+
+$$
+F(10^{18})
+$$
 
 ---
 
@@ -36,7 +43,11 @@ For $e = 2$, $b \le \sqrt{10^{18}} = 10^9$. Iterating over $10^{18}$ pairs $(a, 
    There are only $\approx 10^6$ distinct candidate target values $n \le 10^{18}$!
 2. **Case $e = 2$ (Gaussian Integers / Sum of Two Squares)**:
    Representations of $n = a^2 + b^2$ are determined by the prime factorization of $n = c^f$:
-   $$r_2(n) = 4 \prod_{p \equiv 1 \bmod 4} (f \cdot v_p(c) + 1)$$
+
+$$
+r_2(n) = 4 \prod_{p \equiv 1 \bmod 4} (f \cdot v_p(c) + 1)
+$$
+
    provided all $p \equiv 3 \pmod 4$ have even exponents $f \cdot v_p(c)$.
    The number of strictly ordered positive pairs $0 < a < b$ is $(r_2(n) - \text{axis} - \text{diag}) / 8$.
 3. **Case $e = 3$ (Algebraic Factorization & Divisor Sieve)**:

@@ -25,9 +25,16 @@ Find $R(10\,000\,000!) \bmod (10^9 + 7)$.
 Let $n = \prod p_i^{v_p(n)}$.
 A base $b$ has roundness $\ge k$ if and only if $b \mid \prod p_i^{\lfloor v_p(n) / k \rfloor}$.
 The number of valid bases $b > 1$ with roundness $\ge k$ is:
-$$\text{count}(k) = \left( \prod_{p \mid n} (\lfloor v_p(n) / k \rfloor + 1) \right) - 1$$
+
+$$
+\text{count}(k) = \left( \prod_{p \mid n} (\lfloor v_p(n) / k \rfloor + 1) \right) - 1
+$$
+
 Summing over all $k \ge 1$:
-$$R(n) = \sum_{k=1}^{\max v_p(n)} \left( \prod_{p \mid n} (\lfloor v_p(n) / k \rfloor + 1) - 1 \right)$$
+
+$$
+R(n) = \sum_{k=1}^{\max v_p(n)} \left( \prod_{p \mid n} (\lfloor v_p(n) / k \rfloor + 1) - 1 \right)
+$$
 
 ---
 

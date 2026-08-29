@@ -8,7 +8,10 @@ Let $P = r^k = \left(\frac{N}{k}\right)^k$ be the product of the parts.
 For a given $N$, let $M(N) = \max_{k \ge 1} \left(\frac{N}{k}\right)^k$ be the maximum product that can be obtained by splitting $N$ into $k$ equal parts.
 
 We define:
-$$D(N) = \begin{cases} -N & \text{if } M(N) \text{ is a terminating decimal} \\ +N & \text{if } M(N) \text{ is a non-terminating decimal} \end{cases}$$
+
+$$
+D(N) = \begin{cases} -N & \text{if } M(N) \text{ is a terminating decimal} \\ +N & \text{if } M(N) \text{ is a non-terminating decimal} \end{cases}
+$$
 
 For example, for $N = 11$:
 - $k = 4 \implies P(11, 4) = (11/4)^4 = 2.75^4 = 57.19140625$ (terminating) $\implies D(11) = -11$.
@@ -16,7 +19,10 @@ For $N = 8$:
 - $k = 3 \implies P(8, 3) = (8/3)^3 = 512/27 = 18.96296296\dots$ (non-terminating) $\implies D(8) = +8$.
 
 The objective is to find **$\sum_{N=5}^{10\,000} D(N)$**:
-$$S_{\text{parts}} = \sum_{N=5}^{10\,000} D(N)$$
+
+$$
+S_{\text{parts}} = \sum_{N=5}^{10\,000} D(N)
+$$
 
 ---
 
@@ -34,14 +40,22 @@ def naive_max_product():
 1. **Continuous Maximization of $P(N, k)$:**
    Consider $f(k) = \ln P(N, k) = k(\ln N - \ln k)$.
    Differentiating with respect to $k$:
-   $$f'(k) = (\ln N - \ln k) + k \cdot \left(-\frac{1}{k}\right) = \ln\left(\frac{N}{k}\right) - 1$$
+
+$$
+f'(k) = (\ln N - \ln k) + k \cdot \left(-\frac{1}{k}\right) = \ln\left(\frac{N}{k}\right) - 1
+$$
+
    Setting $f'(k) = 0 \implies \ln(N / k) = 1 \implies \mathbf{k = \frac{N}{e}}$ where $e \approx 2.718281828\dots$
 2. **Integer Candidates:**
    The optimal integer $k$ is either $k_1 = \lfloor N / e \rfloor$ or $k_2 = k_1 + 1 = \lceil N / e \rceil$.
    We simply compare $k_1 \ln(N / k_1)$ with $k_2 \ln(N / k_2)$.
 3. **Terminating Decimal Criterion:**
    $\left(\frac{N}{k}\right)^k$ is a terminating decimal in base 10 iff the denominator of the reduced fraction $\frac{N}{k}$ has no prime factors other than $2$ and $5$:
-   $$d = \frac{k}{\gcd(N, k)}$$
+
+$$
+d = \frac{k}{\gcd(N, k)}
+$$
+
    Dividing out all factors of 2 and 5:
    - If $d = 1 \implies$ terminating $\implies D(N) = -N$.
    - If $d > 1 \implies$ non-terminating $\implies D(N) = +N$.
@@ -87,7 +101,10 @@ def solve(max_n: int = 10000) -> int:
     return total
 ```
 Evaluating for $N \le 10\,000$:
-$$S_{\text{parts}} = \mathbf{48\,861\,552}$$
+
+$$
+S_{\text{parts}} = \mathbf{48\,861\,552}
+$$
 
 ---
 
@@ -104,7 +121,10 @@ $$S_{\text{parts}} = \mathbf{48\,861\,552}$$
 
 ### Example 2: Target Evaluation for $5 \le N \le 10\,000$
 - Summing over all $N \in [5, 10\,000]$:
-  $$S_{\text{parts}} = \mathbf{48\,861\,552}$$
+
+$$
+S_{\text{parts}} = \mathbf{48\,861\,552}
+$$
 
 ---
 

@@ -8,14 +8,20 @@ Let $f: B^n \to B^n$ be the state transition map defined by:
 - $c_n = b_1 \land (b_2 \oplus b_3)$.
 
 Let $S(n)$ denote the number of functions $T: B^n \to B$ such that for all $x \in B^n$:
-$$T(x) \land T(f(x)) = \text{false}$$
+
+$$
+T(x) \land T(f(x)) = \text{false}
+$$
 
 We are given:
 - $S(3) = 35$
 - $S(4) = 2118$
 
 We seek to evaluate:
-$$S(20) \bmod 1\,001\,001\,011$$
+
+$$
+S(20) \bmod 1\,001\,001\,011
+$$
 
 ---
 
@@ -37,7 +43,10 @@ $N = 2^{20} = 1\,048\,576$. The number of possible boolean assignments $T$ is $2
    Therefore, valid functions $T$ correspond bijectively to **independent sets** in the graph $G$!
 3. **Component Multiplicativity**:
    Since the components are vertex-disjoint:
-   $$S(n) = \prod_{C \in \text{Components}} \text{IndependentSets}(C)$$
+
+$$
+S(n) = \prod_{C \in \text{Components}} \text{IndependentSets}(C)
+$$
 
 ---
 

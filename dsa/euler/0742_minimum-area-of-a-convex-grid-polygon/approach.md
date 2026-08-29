@@ -16,7 +16,10 @@ We are given:
 - $A(100) = 17473$
 
 We seek to evaluate:
-$$A(1000)$$
+
+$$
+A(1000)
+$$
 
 ---
 
@@ -38,7 +41,10 @@ For $N = 1000$, choosing $k = (N-4)/4 = 249$ primitive direction vectors $(a_i, 
    By the isoperimetric inequality on lattice polygons, the optimal collection of direction vectors corresponds to all lattice points inside an axis-aligned ellipse $a^2 + t b^2 \le R^2$ for some aspect ratio parameter $t \in (0, 1]$.
 4. **Prefix Determinant Area Calculation**:
    The full polygon area is computed in $O(k)$ time using the shoelace prefix determinant formula:
-   $$\text{Area} = \sum_{j} (P_x^{(j)} dy_j - P_y^{(j)} dx_j)$$
+
+$$
+\text{Area} = \sum_{j} (P_x^{(j)} dy_j - P_y^{(j)} dx_j)
+$$
 
 ---
 

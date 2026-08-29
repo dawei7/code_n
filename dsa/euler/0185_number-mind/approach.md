@@ -4,14 +4,24 @@
 
 The game **Number Mind** is a variant of Mastermind where a 16-digit secret number is guessed.
 For each guess of 16 digits, a clue indicates **how many digits in the guess are correct and in the correct position**:
-$$c_k = \left| \left\{ i \in \{0, 1, \dots, 15\} \;\middle|\; G_{k, i} = S_i \right\} \right|$$
+
+$$
+c_k = \left| \left\{ i \in \{0, 1, \dots, 15\} \;\middle|\; G_{k, i} = S_i \right\} \right|
+$$
+
 where $G_k$ is the $k$-th 16-digit guess, $c_k$ is the number of correct digits, and $S$ is the unknown 16-digit secret sequence.
 
 We are given $22$ clues, one of which has $0$ correct digits:
-$$G_{15} = \text{"2321386104303845"} \implies c_{15} = 0$$
+
+$$
+G_{15} = \text{"2321386104303845"} \implies c_{15} = 0
+$$
 
 The objective is to find the **unique 16-digit secret sequence $S$**:
-$$S = (S_0 S_1 \dots S_{15})_{10}$$
+
+$$
+S = (S_0 S_1 \dots S_{15})_{10}
+$$
 
 ---
 
@@ -28,7 +38,11 @@ def naive_number_mind():
 ### Constraint Satisfaction Problem (CSP) Backtracking & Clue Pruning
 1. **Zero-Clue Pruning:**
    For $G_{15} = \text{"2321386104303845"}$ with $c_{15} = 0$:
-   $$S_i \neq G_{15, i} \quad \forall i \in \{0, \dots, 15\}$$
+
+$$
+S_i \neq G_{15, i} \quad \forall i \in \{0, \dots, 15\}
+$$
+
    This completely removes 16 digit candidates across the 16 positions.
 2. **Descending Clue Prioritization:**
    Sort the remaining clues in descending order of target match count $c_k \in \{3, 2, 1\}$.
@@ -66,7 +80,10 @@ def naive_number_mind():
    - If any `matches[j] > c_j`: prune branch.
 3. Fill remaining unassigned positions with digits satisfying all 22 clue match bounds.
 4. The unique solution sequence is:
-   $$S = \mathbf{"4640261571857635"}$$
+
+$$
+S = \mathbf{"4640261571857635"}
+$$
 
 ---
 
@@ -80,7 +97,10 @@ def naive_number_mind():
 
 ### Example 2: Target Evaluation
 - The unique secret string:
-  $$S = \mathbf{"4640261571857635"}$$
+
+$$
+S = \mathbf{"4640261571857635"}
+$$
 
 ---
 

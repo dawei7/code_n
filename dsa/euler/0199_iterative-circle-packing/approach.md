@@ -9,11 +9,18 @@ At each iteration step:
 - Each gap is then divided into three smaller gaps.
 
 Let $U(N)$ denote the fraction of the outer circle's area that is **not covered** after $N$ iteration steps:
-$$U(N) = 1 - \sum_{i} \left(\frac{r_i}{R}\right)^2 = 1 - \sum_{i} \frac{1}{k_i^2}$$
+
+$$
+U(N) = 1 - \sum_{i} \left(\frac{r_i}{R}\right)^2 = 1 - \sum_{i} \frac{1}{k_i^2}
+$$
+
 where $k_i = 1/r_i$ is the curvature of circle $i$.
 
 The objective is to find the **uncovered area fraction after $10$ iterations ($N = 10$)**, rounded to $8$ decimal places:
-$$U(10) = \text{uncovered area fraction to 8 decimal places}$$
+
+$$
+U(10) = \text{uncovered area fraction to 8 decimal places}
+$$
 
 ---
 
@@ -30,9 +37,17 @@ def naive_circle_packing():
 ### Descartes' Circle Theorem & Apollonian Gasket Tree
 1. **Descartes' Circle Theorem for Curvatures:**
    For four mutually tangent circles with curvatures $k_1, k_2, k_3, k_4$:
-   $$(k_1 + k_2 + k_3 + k_4)^2 = 2(k_1^2 + k_2^2 + k_3^2 + k_4^2)$$
+
+$$
+(k_1 + k_2 + k_3 + k_4)^2 = 2(k_1^2 + k_2^2 + k_3^2 + k_4^2)
+$$
+
    Solving for the inner inscribed curvature $k_4$ gives:
-   $$k_4 = k_1 + k_2 + k_3 + 2\sqrt{k_1 k_2 + k_2 k_3 + k_3 k_1}$$
+
+$$
+k_4 = k_1 + k_2 + k_3 + 2\sqrt{k_1 k_2 + k_2 k_3 + k_3 k_1}
+$$
+
 2. **Initial Curvatures:**
    - Outer bounding circle: $R = 1 \implies k_0 = -1.0$ (negative curvature for interior containment).
    - Three initial inner circles: $r = \frac{2\sqrt{3} - 3}{1} \implies k = 1 + \frac{2}{\sqrt{3}} \approx 2.154700538$.
@@ -40,7 +55,11 @@ def naive_circle_packing():
    - 1 central gap: $(k, k, k)$.
    - 3 outer perimeter gaps: $(k_0, k, k)$.
    At each step, each gap $(k_1, k_2, k_3)$ generates new curvature $k_4$, accumulates area $1/k_4^2$, and spawns $3$ child gaps:
-   $$(k_1, k_2, k_4), \quad (k_2, k_3, k_4), \quad (k_3, k_1, k_4)$$
+
+$$
+(k_1, k_2, k_4), \quad (k_2, k_3, k_4), \quad (k_3, k_1, k_4)
+$$
+
 4. Tree expansion over 10 levels runs in $\mathcal{O}(3^{10})$ steps ($\approx 0.015$ seconds).
 
 ---
@@ -84,7 +103,10 @@ def solve(iterations: int = 10) -> str:
     return f"{1.0 - sum_area:.8f}"
 ```
 Evaluating for $N = 10$:
-$$U(10) = \mathbf{"0.00396083"}$$
+
+$$
+U(10) = \mathbf{"0.00396083"}
+$$
 
 ---
 
@@ -103,7 +125,10 @@ $$U(10) = \mathbf{"0.00396083"}$$
 
 ### Example 3: Target Iteration 10 ($N = 10$)
 - Expanding 10 levels:
-  $$U(10) = \mathbf{"0.00396083"}$$
+
+$$
+U(10) = \mathbf{"0.00396083"}
+$$
 
 ---
 

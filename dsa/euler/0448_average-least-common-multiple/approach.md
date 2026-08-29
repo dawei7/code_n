@@ -4,7 +4,11 @@
 
 Let $\operatorname{lcm}(a, b)$ denote the least common multiple of $a$ and $b$.
 Define $A(n)$ as the average of $\operatorname{lcm}(n, i)$ for $1 \le i \le n$:
-$$A(n) = \frac{1}{n} \sum_{i=1}^n \operatorname{lcm}(n, i)$$
+
+$$
+A(n) = \frac{1}{n} \sum_{i=1}^n \operatorname{lcm}(n, i)
+$$
+
 Define $S(N) = \sum_{k=1}^N A(k)$.
 
 We are given:
@@ -13,7 +17,10 @@ We are given:
 - $S(100) = 122\,726$
 
 We seek to evaluate:
-$$S(99\,999\,999\,019) \pmod{999\,999\,017}$$
+
+$$
+S(99\,999\,999\,019) \pmod{999\,999\,017}
+$$
 
 ---
 
@@ -28,11 +35,22 @@ For $N \approx 10^{11}$, evaluating $\sum_{k=1}^N \sum_{i=1}^k \operatorname{lcm
 
 ### Algebraic Simplification of $A(n)$
 Using the identity $\operatorname{lcm}(n, i) = \frac{n \cdot i}{\gcd(n, i)}$:
-$$A(n) = \frac{1}{n} \sum_{i=1}^n \frac{n \cdot i}{\gcd(n, i)} = \sum_{i=1}^n \frac{i}{\gcd(n, i)}$$
+
+$$
+A(n) = \frac{1}{n} \sum_{i=1}^n \frac{n \cdot i}{\gcd(n, i)} = \sum_{i=1}^n \frac{i}{\gcd(n, i)}
+$$
+
 Grouping by $g = \gcd(n, i)$ and summing over coprimes:
-$$A(n) = \frac{1}{2} \left( 1 + \sum_{d \mid n} d \phi(d) \right)$$
+
+$$
+A(n) = \frac{1}{2} \left( 1 + \sum_{d \mid n} d \phi(d) \right)
+$$
+
 Summing $A(k)$ across all $1 \le k \le N$:
-$$S(N) = \frac{1}{2} \left( N + \sum_{d=1}^N d \phi(d) \left\lfloor \frac{N}{d} \right\rfloor \right)$$
+
+$$
+S(N) = \frac{1}{2} \left( N + \sum_{d=1}^N d \phi(d) \left\lfloor \frac{N}{d} \right\rfloor \right)
+$$
 
 ---
 
@@ -41,12 +59,24 @@ $$S(N) = \frac{1}{2} \left( N + \sum_{d=1}^N d \phi(d) \left\lfloor \frac{N}{d} 
 ### Dirichlet Convolution & Sublinear Du Sieve
 Let $g(n) = n \phi(n)$.
 Notice the Dirichlet convolution:
-$$(g * \text{id})(n) = \sum_{d \mid n} d \phi(d) \frac{n}{d} = n \sum_{d \mid n} \phi(d) = n^2 = \text{id}^2(n)$$
+
+$$
+(g * \text{id})(n) = \sum_{d \mid n} d \phi(d) \frac{n}{d} = n \sum_{d \mid n} \phi(d) = n^2 = \text{id}^2(n)
+$$
+
 Summing over $1 \le n \le x$:
-$$\sum_{n=1}^x n^2 = \frac{x(x+1)(2x+1)}{6} = \sum_{i=1}^x i \Phi_1\left(\left\lfloor \frac{x}{i} \right\rfloor\right)$$
+
+$$
+\sum_{n=1}^x n^2 = \frac{x(x+1)(2x+1)}{6} = \sum_{i=1}^x i \Phi_1\left(\left\lfloor \frac{x}{i} \right\rfloor\right)
+$$
+
 where $\Phi_1(x) = \sum_{d \le x} d \phi(d)$.
 Isolating $\Phi_1(x)$ yields the Du Sieve recurrence:
-$$\Phi_1(x) = \frac{x(x+1)(2x+1)}{6} - \sum_{i=2}^x i \Phi_1\left(\left\lfloor \frac{x}{i} \right\rfloor\right)$$
+
+$$
+\Phi_1(x) = \frac{x(x+1)(2x+1)}{6} - \sum_{i=2}^x i \Phi_1\left(\left\lfloor \frac{x}{i} \right\rfloor\right)
+$$
+
 Precomputing $\Phi_1$ up to $N^{2/3}$ allows computing any prefix sum in $O(1)$ amortized time.
 
 Total runtime for $N \approx 10^{11}$ is **42.56 seconds**!

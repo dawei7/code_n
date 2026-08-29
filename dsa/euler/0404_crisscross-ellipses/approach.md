@@ -12,7 +12,10 @@ We are given:
 - $C(10^3) = 7, C(10^4) = 106, C(10^6) = 11\,845$.
 
 We seek to evaluate:
-$$C(10^{17})$$
+
+$$
+C(10^{17})
+$$
 
 ---
 
@@ -35,7 +38,11 @@ By substituting rotated coordinates, the condition that $a, b, c \in \mathbb{Z}^
 
 ### Algebraic Parametrization of Primitive Triplets
 All primitive ellipsoidal triplets $(a_0, b_0, c_0)$ are parameterized by coprime integers $(m, n)$ with $m \not\equiv n \pmod 2$ and $m - 2n \not\equiv 0 \pmod 5$:
-$$a_0 = p \cdot r$$
+
+$$
+a_0 = p \cdot r
+$$
+
 where:
 - $p = |m^2 - n^2 - 4mn|$
 - $r = m^2 - n^2 + mn$

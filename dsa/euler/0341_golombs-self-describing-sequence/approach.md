@@ -7,11 +7,18 @@ Golomb's self-describing sequence $(G(n))$ is the unique non-decreasing sequence
 - $G(n + 1) = 1 + G(n + 1 - G(G(n)))$
 
 The initial terms are:
-$$1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, \dots$$
+
+$$
+1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, \dots
+$$
+
 We are given sample values:
 - $G(10^3) = 86$
 - $G(10^6) = 6137$
-- $\sum_{n=1}^{999} G(n^3) = 153\,506\,976$
+- $\sum_{n=1}^{999} G(n^3) = 153\,506\,976
+
+
+(Matches sample sum exactly! $\checkmark$)$
 
 Find $\sum_{n=1}^{10^6 - 1} G(n^3)$.
 
@@ -32,11 +39,19 @@ A naive approach computes $G(x)$ step-by-step up to the maximum index $x = (10^6
 Let $S(k) = \sum_{i=1}^k G(i)$ be the prefix sum of Golomb numbers:
 - $S(k)$ marks the ending index of all occurrences of value $k$ in the sequence.
 - Consequently, $G(x) = k$ if and only if:
-  $$S(k - 1) < x \le S(k)$$
+
+$$
+S(k - 1) < x \le S(k)
+$$
+
 - To evaluate $G(n^3)$ for $n < 10^6$, we need to find the unique $k$ such that $S(k) \ge n^3 > S(k - 1)$.
 
 Asymptotically:
-$$G(k) \sim \phi^{2 - \phi} k^{\phi - 1}, \quad S(k) \sim \frac{\phi^{2 - \phi}}{\phi} k^\phi$$
+
+$$
+G(k) \sim \phi^{2 - \phi} k^{\phi - 1}, \quad S(k) \sim \frac{\phi^{2 - \phi}}{\phi} k^\phi
+$$
+
 where $\phi = \frac{1 + \sqrt{5}}{2} \approx 1.618034$.
 For $S(k) \approx 10^{18}$, $k \approx (10^{18})^{1/\phi} \approx 10^{11.12} \approx 1.3 \times 10^{11}$.
 
@@ -48,15 +63,30 @@ For $S(k) \approx 10^{18}$, $k \approx (10^{18})^{1/\phi} \approx 10^{11.12} \ap
 Because $k \approx 1.3 \times 10^{11}$ is too large to iterate element by element, we group values of $k$ into blocks of equal value $G(k) = v$:
 1. The value $v$ appears exactly $G(v)$ times in the sequence $G(k)$.
 2. Therefore, as $v$ advances by $1$, $k$ advances by $G(v)$ steps, and $S(k)$ increases by exactly:
-   $$\Delta S = v \cdot G(v)$$
+
+$$
+\Delta S = v \cdot G(v)
+$$
+
 3. The maximum value of $v$ needed to reach $S(k) \ge 10^{18}$ is bounded by:
-   $$v_{\max} \approx (10^{18})^{\frac{1}{\phi + 1}} \approx (10^{18})^{0.381966} \approx 7.5 \times 10^6$$
+
+$$
+v_{\max} \approx (10^{18})^{\frac{1}{\phi + 1}} \approx (10^{18})^{0.381966} \approx 7.5 \times 10^6
+$$
+
 4. We generate the array $G[1 \dots V_{\max}]$ for $V_{\max} = 8 \times 10^6$ in $\mathcal{O}(V_{\max})$ time.
 5. In each block of value $v$ with start index $k_{\text{start}}$ and prefix sum $S_{\text{start}}$:
    For any query target $T = n^3 \le S_{\text{start}} + v \cdot G(v)$:
    The required step within the block is:
-   $$j = \left\lceil \frac{T - S_{\text{start}}}{v} \right\rceil$$
-   $$G(T) = k = k_{\text{start}} + j$$
+
+$$
+j = \left\lceil \frac{T - S_{\text{start}}}{v} \right\rceil
+$$
+
+$$
+G(T) = k = k_{\text{start}} + j
+$$
+
    Since queries $n^3$ are strictly monotonic, a two-pointer pass answers all $10^6$ queries in $\mathcal{O}(V_{\max} + Q)$ time!
 
 ---
@@ -67,7 +97,12 @@ Because $k \approx 1.3 \times 10^{11}$ is too large to iterate element by elemen
 1. Generate array $G$ up to $8 \times 10^6$.
 2. Step through blocks of $v$ answering queries $T = 1^3, 2^3, \dots, 999^3$.
 3. Sum of all $G(n^3)$ values:
-   $$\sum_{n=1}^{999} G(n^3) = \mathbf{153\,506\,976}$$ (Matches sample sum exactly! $\checkmark$)
+
+$$
+\sum_{n=1}^{999} G(n^3) = \mathbf{153\,506\,976}
+$$
+
+(Matches sample sum exactly! $\checkmark$)
 
 ---
 

@@ -14,11 +14,18 @@ A set of six 4-digit numbers $(x_1, x_2, \dots, x_6)$ is defined as **cyclical**
 1. Each $x_i \in [1000, 9999]$.
 2. The six numbers map bijectively to the six polygonal types $\{3, 4, 5, 6, 7, 8\}$.
 3. The 2-digit transitions wrap cyclically:
-   $$\operatorname{suffix}(x_i) = \operatorname{prefix}(x_{i+1}) \quad \text{for } 1 \le i \le 5, \quad \operatorname{suffix}(x_6) = \operatorname{prefix}(x_1)$$
+
+$$
+\operatorname{suffix}(x_i) = \operatorname{prefix}(x_{i+1}) \quad \text{for } 1 \le i \le 5, \quad \operatorname{suffix}(x_6) = \operatorname{prefix}(x_1)
+$$
+
    where $\operatorname{prefix}(x) = \lfloor x / 100 \rfloor$ and $\operatorname{suffix}(x) = x \bmod 100$.
 
 The objective is to find the unique sum of this 6-element cyclic set:
-$$S = \sum_{i=1}^6 x_i$$
+
+$$
+S = \sum_{i=1}^6 x_i
+$$
 
 ---
 
@@ -92,7 +99,10 @@ The unique 6-element cyclic chain is:
      - $P_{4, 84} = 7056$
      - $P_{7, 48} = 5628$
 - Chain linkages:
-  $$28\mathbf{82} \to \mathbf{82} \dots \implies 2882 + 2825 + 1035 + 3570 + 7056 + 5628 = \mathbf{28\,684}$$
+
+$$
+28\mathbf{82} \to \mathbf{82} \dots \implies 2882 + 2825 + 1035 + 3570 + 7056 + 5628 = \mathbf{28\,684}
+$$
 
 ---
 

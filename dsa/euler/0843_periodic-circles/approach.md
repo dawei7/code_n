@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A circle of $n \ge 3$ integers evolves under the simultaneous transition rule:
-$$x_i^{(t+1)} = |x_{i-1}^{(t)} - x_{i+1}^{(t)}|$$
+
+$$
+x_i^{(t+1)} = |x_{i-1}^{(t)} - x_{i+1}^{(t)}|
+$$
+
 For any initial values, the trajectory eventually enters a periodic limit cycle.
 Let $S(N)$ be the sum of all distinct possible fundamental period lengths for circles of sizes $3 \le n \le N$.
 Given:
@@ -27,10 +31,17 @@ Find $S(100)$.
 
 ### Reduction to $\mathbb{F}_2$-Linear Operator
 Under the absolute difference rule on binary states:
-$$|a - b| = a \oplus b = a + b \pmod 2$$
+
+$$
+|a - b| = a \oplus b = a + b \pmod 2
+$$
+
 Every integer trajectory asymptotically contracts to a binary periodic attractor (scaled by a constant factor $\gcd$).
 In the polynomial quotient ring $\mathcal{R}_n = \mathbb{F}_2[x] / (x^n - 1)$, the transition operator corresponds to multiplication by:
-$$g(x) = x + x^{n-1} \pmod{x^n - 1}$$
+
+$$
+g(x) = x + x^{n-1} \pmod{x^n - 1}
+$$
 
 ---
 
@@ -39,7 +50,11 @@ $$g(x) = x + x^{n-1} \pmod{x^n - 1}$$
 ### Canonical Factorization & Order Decomposition
 Let $n = 2^a \cdot m$ where $m$ is odd.
 The polynomial decomposes into cyclotomic factors:
-$$x^n - 1 = (x^m - 1)^{2^a} = \left( \prod_{M \mid m} \Phi_M(x) \right)^{2^a}$$
+
+$$
+x^n - 1 = (x^m - 1)^{2^a} = \left( \prod_{M \mid m} \Phi_M(x) \right)^{2^a}
+$$
+
 where $\Phi_M(x)$ is the $M$-th cyclotomic polynomial over $\mathbb{F}_2$.
 
 1. **Irreducible Splitting**: Each $\Phi_M(x)$ splits into irreducible factors $f(x)$ of degree $d = \text{ord}_M(2)$.

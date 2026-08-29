@@ -11,7 +11,10 @@ We are given:
 - $S(111) = 400\,668\,930\,299$
 
 We seek the last $18$ digits of:
-$$\sum_{k=2}^{300} S(6k + 3) \pmod{10^{18}}$$
+
+$$
+\sum_{k=2}^{300} S(6k + 3) \pmod{10^{18}}
+$$
 
 ---
 
@@ -27,7 +30,10 @@ For $k = 300$, the base is $b = 1803$, so $b^5 \approx 1.9 \times 10^{16}$. Simu
 ### Difference Pair State Reduction $(p, q)$
 Let sorted digits be $x_4 \ge x_3 \ge x_2 \ge x_1 \ge x_0$.
 The Kaprekar difference $(x_4 b^4 + \dots + x_0) - (x_0 b^4 + \dots + x_4)$ depends **only on two parameters**:
-$$p = x_4 - x_0, \quad q = x_3 - x_1 \quad (0 \le q \le p \le b-1)$$
+
+$$
+p = x_4 - x_0, \quad q = x_3 - x_1 \quad (0 \le q \le p \le b-1)
+$$
 
 The resulting digits before sorting are always $(p-1, q, b-1, b-1-q, b-p)$.
 Sorting these 5 values yields a deterministic next state $(p', q')$.

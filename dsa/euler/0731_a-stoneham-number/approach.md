@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The Stoneham constant $A$ is defined by:
-$$A = \sum_{i=1}^{\infty} \frac{1}{3^i 10^{3^i}}$$
+
+$$
+A = \sum_{i=1}^{\infty} \frac{1}{3^i 10^{3^i}}
+$$
 
 Let $A(n)$ denote the 10 decimal digits starting from the $n$-th digit after the decimal point.
 
@@ -12,7 +15,10 @@ We are given:
 - $A(10^8) = 2584642393$
 
 We seek to evaluate:
-$$A(10^{16})$$
+
+$$
+A(10^{16})
+$$
 
 ---
 
@@ -28,9 +34,17 @@ Computing $10^{16}$ decimal digits sequentially requires petabytes of memory and
 ### Bailey-Borwein-Plouffe (BBP) Spigot Formula
 1. **Fractional Part Scaling**:
    The $n$-th digit of $A$ corresponds to the fractional part:
-   $$\{10^{n-1} A\} = \sum_{i=1}^\infty \frac{10^{n - 1 - 3^i}}{3^i} \pmod 1$$
+
+$$
+\{10^{n-1} A\} = \sum_{i=1}^\infty \frac{10^{n - 1 - 3^i}}{3^i} \pmod 1
+$$
+
 2. **Modular Reduction for Small Terms ($3^i \le n - 1$)**:
-   $$\frac{10^{n - 1 - 3^i}}{3^i} \equiv \frac{10^{n - 1 - 3^i} \bmod 3^i}{3^i} \pmod 1$$
+
+$$
+\frac{10^{n - 1 - 3^i}}{3^i} \equiv \frac{10^{n - 1 - 3^i} \bmod 3^i}{3^i} \pmod 1
+$$
+
    Each remainder is computed in $O(\log n)$ using binary exponentiation modulo $3^i$.
 3. **Exponentially Vanishing Tail ($3^i > n - 1$)**:
    For $3^i > n - 1$, the term is $\frac{1}{3^i 10^{3^i - (n - 1)}}$.

@@ -3,9 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 In standard 3-heap normal-play Nim with heap sizes $(n_1, n_2, n_3)$, a position is a losing position for the player about to move ($X(n_1, n_2, n_3) = 0$) if and only if the bitwise XOR sum of the heap sizes is zero:
-$$X(n_1, n_2, n_3) = 0 \iff n_1 \oplus n_2 \oplus n_3 = 0$$
+
+$$
+X(n_1, n_2, n_3) = 0 \iff n_1 \oplus n_2 \oplus n_3 = 0
+$$
+
 We are asked to count how many positive integers $n \le 2^{30}$ satisfy:
-$$X(n, 2n, 3n) = 0 \iff n \oplus 2n \oplus 3n = 0$$
+
+$$
+X(n, 2n, 3n) = 0 \iff n \oplus 2n \oplus 3n = 0
+$$
 
 ---
 
@@ -23,11 +30,23 @@ A naive approach loops over all integers $n = 1, 2, \dots, 2^{30}$ and computes 
 ### Carry-Free Addition & Consecutive Ones Prohibition
 Notice that $3n = n + 2n$.
 For any two non-negative integers $A$ and $B$, their arithmetic sum is related to their bitwise XOR sum by:
-$$A + B = (A \oplus B) + 2(A \land B)$$
+
+$$
+A + B = (A \oplus B) + 2(A \land B)
+$$
+
 Therefore:
-$$A + B = A \oplus B \iff A \land B = 0$$
+
+$$
+A + B = A \oplus B \iff A \land B = 0
+$$
+
 Setting $A = n$ and $B = 2n$:
-$$n \oplus 2n = 3n \iff n \land (2n) = 0$$
+
+$$
+n \oplus 2n = 3n \iff n \land (2n) = 0
+$$
+
 Since multiplication by $2$ shifts the binary representation to the left by 1 bit ($(2n)_i = n_{i-1}$), $n \land (2n) = 0$ holds if and only if the binary expansion of $n$ **contains no two consecutive 1s** (Zeckendorf-like binary words).
 
 ---
@@ -39,7 +58,11 @@ Let $a_k$ be the number of $k$-bit binary words without adjacent 1s:
 - Words ending in `0`: obtained by appending `0` to any valid $(k-1)$-bit word ($a_{k-1}$ choices).
 - Words ending in `1`: must end in `01`, obtained by appending `01` to any valid $(k-2)$-bit word ($a_{k-2}$ choices).
 Thus:
-$$a_k = a_{k-1} + a_{k-2}, \quad a_1 = 2, \quad a_2 = 3 \implies a_k = F_{k+2}$$
+
+$$
+a_k = a_{k-1} + a_{k-2}, \quad a_1 = 2, \quad a_2 = 3 \implies a_k = F_{k+2}
+$$
+
 where $F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, \dots$ is the Fibonacci sequence.
 
 ### Boundary Enumeration on $[1, 2^{30}]$:

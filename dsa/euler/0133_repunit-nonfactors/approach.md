@@ -11,7 +11,10 @@ Let us consider repunits of the form $R(10^n)$:
 - However, $13, 19, 23,$ and $31$ will **NEVER** be a factor of any $R(10^n)$!
 
 The objective is to find the **sum of all the primes below one hundred thousand ($100\,000$) that will NEVER be a factor of $R(10^n)$**:
-$$S_{\text{non-factors}} = \sum \left\{ p < 100\,000 \;\middle|\; p \in \mathbb{P} \land (\forall n \ge 1, \, p \nmid R(10^n)) \right\}$$
+
+$$
+S_{\text{non-factors}} = \sum \left\{ p < 100\,000 \;\middle|\; p \in \mathbb{P} \land (\forall n \ge 1, \, p \nmid R(10^n)) \right\}
+$$
 
 ---
 
@@ -28,7 +31,11 @@ def naive_repunit_nonfactors():
 ### $\{2, 5\}$-Smooth Period Theorem & Modular Exponentiation
 1. **Mathematical Theorem:**
    A prime $p \notin \{2, 5\}$ divides $R(10^n) = \frac{10^{10^n}-1}{9}$ for some $n \ge 1$ if and only if the minimal repunit period $A(p)$ has prime factors consisting **exclusively of $2$ and $5$**:
-   $$A(p) = 2^a \cdot 5^b \quad \text{for } a, b \in \mathbb{N}_0$$
+
+$$
+A(p) = 2^a \cdot 5^b \quad \text{for } a, b \in \mathbb{N}_0
+$$
+
 2. If $A(p)$ contains any other prime factor $q \notin \{2, 5\}$ (such as $3, 7, 13$), then $A(p)$ can never divide $10^n$, meaning $p$ can **never** divide $R(10^n)$ for any $n \ge 1$.
 3. Since $A(p) \le p - 1 < 100\,000$, choosing an exponent $K = 10^{16}$ covers all possible powers of 2 and 5 up to $100\,000$.
 4. We evaluate $10^{10^{16}} \bmod \operatorname{mod}(p)$ using `pow(10, 10**16, mod)`:
@@ -86,7 +93,10 @@ def naive_repunit_nonfactors():
 
 ### Example 2: Target Evaluation for Primes $< 100\,000$
 - Summing all non-factor primes below $100\,000$:
-  $$S_{\text{non-factors}} = \mathbf{453\,647\,705}$$
+
+$$
+S_{\text{non-factors}} = \mathbf{453\,647\,705}
+$$
 
 ---
 

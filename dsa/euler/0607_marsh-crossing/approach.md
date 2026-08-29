@@ -7,7 +7,10 @@ The path is intersected by a 50-league-wide marsh running along the diagonal lin
 The marsh is partitioned into 5 parallel strips of perpendicular thickness 10 leagues each, with speeds $v \in \{9, 8, 7, 6, 5\}$ leagues/day, while normal terrain has speed $10$ leagues/day.
 
 We seek to evaluate:
-$$\text{Shortest travel time in days, rounded to 10 decimal places}$$
+
+$$
+\text{Shortest travel time in days, rounded to 10 decimal places}
+$$
 
 ---
 
@@ -23,12 +26,20 @@ Optimizing the 6 transition points along the boundaries via gradient descent in 
 ### Fermat's Principle of Least Time & Snell's Law of Refraction
 1. **Coordinate Transformation**:
    Rotate axes by $45^\circ$:
-   $$u = \frac{x - y}{\sqrt{2}} \quad (\text{perpendicular to boundaries}), \quad w = \frac{x + y}{\sqrt{2}} \quad (\text{parallel to boundaries})$$
+
+$$
+u = \frac{x - y}{\sqrt{2}} \quad (\text{perpendicular to boundaries}), \quad w = \frac{x + y}{\sqrt{2}} \quad (\text{parallel to boundaries})
+$$
+
    $A = (-25\sqrt{2}, -25\sqrt{2})$, $B = (25\sqrt{2}, 25\sqrt{2})$.
    Total displacements: $\Delta u_{\text{total}} = 50\sqrt{2}$, $\Delta w_{\text{total}} = 50\sqrt{2}$.
 2. **Snell's Law Invariant**:
    By Fermat's Principle, light/traveler minimizes time across parallel planar strata when:
-   $$\frac{\sin \theta_i}{v_i} = K = \text{const}$$
+
+$$
+\frac{\sin \theta_i}{v_i} = K = \text{const}
+$$
+
    where $\theta_i$ is the angle between the trajectory and the boundary normal ($u$-axis).
 
 ---
@@ -37,12 +48,19 @@ Optimizing the 6 transition points along the boundaries via gradient descent in 
 
 ### 1D Monotone Bisection on Invariant $K$ ($O(1)$)
 1. **Parallel Displacement Function**:
-   $$\Delta w(K) = \sum_{i=0}^6 \Delta u_i \tan \theta_i = \sum_{i=0}^6 \Delta u_i \frac{K v_i}{\sqrt{1 - K^2 v_i^2}}$$
+
+$$
+\Delta w(K) = \sum_{i=0}^6 \Delta u_i \tan \theta_i = \sum_{i=0}^6 \Delta u_i \frac{K v_i}{\sqrt{1 - K^2 v_i^2}}
+$$
+
    Because each term is strictly increasing in $K \in [0, 1/\max(v_i)) = [0, 0.1)$, $\Delta w(K)$ is strictly monotonic.
 2. **Binary Search**:
    Bisection on $K \in (0, 0.1)$ finds the exact root $K^*$ with $10^{-15}$ precision in 100 iterations.
 3. **Total Travel Time**:
-   $$T = \sum_{i=0}^6 \frac{\Delta u_i}{v_i \cos \theta_i} = \sum_{i=0}^6 \frac{\Delta u_i}{v_i \sqrt{1 - (K^* v_i)^2}}$$
+
+$$
+T = \sum_{i=0}^6 \frac{\Delta u_i}{v_i \cos \theta_i} = \sum_{i=0}^6 \frac{\Delta u_i}{v_i \sqrt{1 - (K^* v_i)^2}}
+$$
 
 This evaluates the shortest time in **$< 0.01$ seconds** in pure Python!
 

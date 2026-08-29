@@ -4,10 +4,16 @@
 
 Consider the set of all reduced proper fractions $\frac{n}{d}$ where $n < d \le N$ and $\gcd(n, d) = 1$.
 For $N = 8$, the set consists of 21 fractions:
-$$\left\{ \frac{1}{8}, \frac{1}{7}, \frac{1}{6}, \frac{1}{5}, \frac{1}{4}, \frac{2}{7}, \frac{1}{3}, \frac{3}{8}, \frac{2}{5}, \frac{3}{7}, \frac{1}{2}, \frac{4}{7}, \frac{3}{5}, \frac{5}{8}, \frac{2}{3}, \frac{5}{7}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}, \frac{6}{7}, \frac{7}{8} \right\}$$
+
+$$
+\left\{ \frac{1}{8}, \frac{1}{7}, \frac{1}{6}, \frac{1}{5}, \frac{1}{4}, \frac{2}{7}, \frac{1}{3}, \frac{3}{8}, \frac{2}{5}, \frac{3}{7}, \frac{1}{2}, \frac{4}{7}, \frac{3}{5}, \frac{5}{8}, \frac{2}{3}, \frac{5}{7}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}, \frac{6}{7}, \frac{7}{8} \right\}
+$$
 
 The objective is to find how many elements are contained in the set of reduced proper fractions for $d \le 1\,000\,000$:
-$$|\mathcal{F}_{1000000}| = \sum_{d=2}^{1000000} \sum_{n=1}^{d-1} \mathbb{I}(\gcd(n, d) = 1)$$
+
+$$
+|\mathcal{F}_{1000000}| = \sum_{d=2}^{1000000} \sum_{n=1}^{d-1} \mathbb{I}(\gcd(n, d) = 1)
+$$
 
 ---
 
@@ -24,7 +30,11 @@ def naive_counting_fractions(limit):
 ### The Euler Totient Equivalence
 1. For any denominator $d$, the number of coprimes $n < d$ with $\gcd(n, d) = 1$ is by definition **Euler's totient function $\phi(d)$**.
 2. The total count is therefore given by the sum of totients:
-   $$|\mathcal{F}_N| = \sum_{d=2}^N \phi(d)$$
+
+$$
+|\mathcal{F}_N| = \sum_{d=2}^N \phi(d)
+$$
+
 3. A linear totient sieve evaluates $\phi(d)$ for all $d \le 1\,000\,000$ in $\mathcal{O}(N \log \log N)$ time in $\approx 0.20$ seconds.
 
 ---
@@ -52,23 +62,39 @@ def naive_counting_fractions(limit):
 2. For each $i \in [2, N]$:
    - If $\mathbf{\phi}[i] == i$ ($i$ is prime):
      - For all multiples $j \in \{i, 2i, 3i, \dots \le N\}$:
-       $$\mathbf{\phi}[j] \leftarrow \mathbf{\phi}[j] // i \times (i - 1)$$
+
+$$
+\mathbf{\phi}[j] \leftarrow \mathbf{\phi}[j] // i \times (i - 1)
+$$
+
 3. Sum all entries from index $2$ to $N$:
-   $$S = \sum_{d=2}^{1000000} \mathbf{\phi}[d]$$
+
+$$
+S = \sum_{d=2}^{1000000} \mathbf{\phi}[d]
+$$
 
 ---
 
 ## 5. Concrete Step-by-Step Example Walkthrough
 
 ### Example 1: Trace for $N = 8$
-$$\sum_{d=2}^8 \phi(d) = \phi(2) + \phi(3) + \phi(4) + \phi(5) + \phi(6) + \phi(7) + \phi(8)$$
 
-$$S = 1 + 2 + 2 + 4 + 2 + 6 + 4 = \mathbf{21}$$
+$$
+\sum_{d=2}^8 \phi(d) = \phi(2) + \phi(3) + \phi(4) + \phi(5) + \phi(6) + \phi(7) + \phi(8)
+$$
+
+$$
+S = 1 + 2 + 2 + 4 + 2 + 6 + 4 = \mathbf{21}
+$$
+
 Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $N = 1\,000\,000$
 - Summing all totients from $d = 2$ to $1\,000\,000$:
-  $$|\mathcal{F}_{1000000}| = \mathbf{303\,963\,552\,391}$$
+
+$$
+|\mathcal{F}_{1000000}| = \mathbf{303\,963\,552\,391}
+$$
 
 ---
 

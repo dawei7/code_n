@@ -8,7 +8,11 @@ We are given:
 - $S(510\,510, 10^6) = 45\,480\,596\,821\,125\,120$.
 
 We seek to evaluate:
-$$S(510\,510, 10^{11}) \pmod{10^9}$$
+
+$$
+S(510\,510, 10^{11}) \pmod{10^9}
+$$
+
 giving the last 9 digits (zero-padded).
 
 ---
@@ -25,7 +29,13 @@ Summing $m = 10^{11}$ terms directly is computationally impossible within 60 sec
 ### Prime Factor Decomposition & Inclusion-Exclusion
 Since $n$ is square-free ($n = \prod_{j=1}^k p_j$), we can decompose $\phi(n \cdot i)$:
 Using inclusion-exclusion over non-empty square-free divisors $d \mid n$:
-$$S(n, m) = \phi(n) \Phi(m) + \sum_{\substack{d \mid n \\ d > 1}} (-1)^{\omega(d)-1} S(n, \lfloor m / d \rfloor)$$
+
+$$
+\begin{aligned}
+S(n, m) = \phi(n) \Phi(m) + \sum_{\substack{d \mid n \\ d > 1}} (-1)^{\omega(d)-1} S(n, \lfloor m / d \rfloor)
+\end{aligned}
+$$
+
 where $\Phi(m) = \sum_{i=1}^m \phi(i)$ is the standard summatory totient function!
 
 ---
@@ -35,7 +45,11 @@ where $\Phi(m) = \sum_{i=1}^m \phi(i)$ is the standard summatory totient functio
 ### Sublinear Du Sieve / Dirichlet Convolution
 1. **Summatory Totient $\Phi(x)$**:
    By Dirichlet hyperbola convolution identity:
-   $$\Phi(x) = \frac{x(x+1)}{2} - \sum_{k=2}^x \Phi(\lfloor x / k \rfloor)$$
+
+$$
+\Phi(x) = \frac{x(x+1)}{2} - \sum_{k=2}^x \Phi(\lfloor x / k \rfloor)
+$$
+
    Linear precomputation of $\phi(1..5\times 10^6)$ accelerates all queries $\Phi(x)$ for $x \le 10^{11}$ to sub-millisecond lookups.
 2. **Recursive Memoization**:
    The recursive reduction $S(n, m)$ branches only on divisor fractions $\lfloor m / d \rfloor$, producing $< 1\,000$ distinct state evaluations.

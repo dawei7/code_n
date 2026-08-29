@@ -21,7 +21,11 @@ Find $\sum_{n=1}^{200000} C(n)$.
 
 ### 2D Minimax Dynamic Programming
 A naive minimax DP computes optimal costs over all sub-intervals $[i, j]$:
-$$dp[i][j] = \min_{i \le k \le j} \left( k + \max(dp[i][k-1], dp[k+1][j]) \right)$$
+
+$$
+dp[i][j] = \min_{i \le k \le j} \left( k + \max(dp[i][k-1], dp[k+1][j]) \right)
+$$
+
 - The state space is $\mathcal{O}(N^2)$, requiring $\mathcal{O}(N^3)$ operations.
 - For $N = 200\,000$, $\mathcal{O}(N^2)$ memory requires $> 160\text{ GB}$ of RAM, and $\mathcal{O}(N^3)$ requires decades of computation.
 
@@ -33,7 +37,11 @@ $$dp[i][j] = \min_{i \le k \le j} \left( k + \max(dp[i][k-1], dp[k+1][j]) \right
 Because larger numbers cost strictly more to guess, the optimal minimax decision tree is heavily biased towards guessing larger numbers early:
 - The right subtree is always a **complete binary search tree of depth $d$**.
 - A right subtree of depth $d$ spanning $2^d - 1$ elements costs:
-  $$d \cdot n - 2^{d+1} + d + 2$$
+
+$$
+d \cdot n - 2^{d+1} + d + 2
+$$
+
 - The remaining left subtree has size $n - 2^d$, whose optimal cost is simply $C(n - 2^d)$.
 
 ---
@@ -42,7 +50,11 @@ Because larger numbers cost strictly more to guess, the optimal minimax decision
 
 ### The $O(N \log N)$ 1D Dynamic Programming Recurrence
 By right-subtree completeness, 2D interval DP collapses to a **1D prefix recurrence**:
-$$C(n) = \min_{d \ge 1} \max\Big( (n - 2^d + 1) + C(n - 2^d), \quad d \cdot n - 2^{d+1} + d + 2 \Big)$$
+
+$$
+C(n) = \min_{d \ge 1} \max\Big( (n - 2^d + 1) + C(n - 2^d), \quad d \cdot n - 2^{d+1} + d + 2 \Big)
+$$
+
 where the search over right-subtree depths $d$ is restricted to $1 \le d \le \lceil \log_2 n \rceil \le 18$.
 This evaluates $C(n)$ for all $n \le 200\,000$ in $\mathcal{O}(N \log N)$ time and $\mathcal{O}(N)$ memory!
 

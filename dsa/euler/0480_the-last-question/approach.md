@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider all distinct words of length $\le 15$ formed from the multiset of letters in the phrase:
-$$\text{"thereisasyetinsufficientdataforameaningfulanswer"}$$
+
+$$
+\text{"thereisasyetinsufficientdataforameaningfulanswer"}
+$$
+
 arranged in standard alphabetical order and numbered $1, 2, 3, \dots$.
 Let $P(w)$ be the position of word $w$, and $W(p)$ be the word at position $p$.
 
@@ -13,7 +17,10 @@ We are given:
 - $W(115246685191495243) = \text{euler}$
 
 We seek to evaluate:
-$$W(P(\text{legionary}) + P(\text{calorimeters}) - P(\text{annihilate}) + P(\text{orchestrated}) - P(\text{fluttering}))$$
+
+$$
+W(P(\text{legionary}) + P(\text{calorimeters}) - P(\text{annihilate}) + P(\text{orchestrated}) - P(\text{fluttering}))
+$$
 
 ---
 
@@ -29,10 +36,17 @@ The total number of valid words is $> 5.25 \times 10^{17}$. Generating and stori
 ### Exponential Generating Function for Multiset Words
 1. **Exponential Generating Function**:
    Given a multiset of letters with remaining capacities $(c_1, \dots, c_V)$, the number of words of length $k$ is given by the coefficient of $\frac{x^k}{k!}$ in the product:
-   $$E(x) = \prod_{i=1}^V \left( \sum_{j=0}^{c_i} \frac{x^j}{j!} \right) \pmod{x^{L+1}}$$
+
+$$
+E(x) = \prod_{i=1}^V \left( \sum_{j=0}^{c_i} \frac{x^j}{j!} \right) \pmod{x^{L+1}}
+$$
+
 2. **Integer DP Convolutions**:
    Using Pascal's identity, the DP state $DP[k]$ computes the exact count of length-$k$ words without floating-point divisions:
-   $$DP_{\text{new}}[k + j] += DP_{\text{old}}[k] \cdot \binom{k + j}{j}$$
+
+$$
+DP_{\text{new}}[k + j] += DP_{\text{old}}[k] \cdot \binom{k + j}{j}
+$$
 
 ---
 

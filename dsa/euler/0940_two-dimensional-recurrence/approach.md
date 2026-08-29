@@ -29,11 +29,18 @@ Find $S(50) \bmod 1123581313$.
 
 ### Diagonal Matrix Decomposition & Closed-Form Expression
 Along the $n$-direction:
-$$A(m, n+2) = A(m, n+1) + 3 A(m, n)$$
+
+$$
+A(m, n+2) = A(m, n+1) + 3 A(m, n)
+$$
+
 with characteristic equation $x^2 - x - 3 = 0$.
 The roots are $\lambda_{1, 2} = \frac{1 \pm \sqrt{13}}{2}$, with eigenvalue shifts $\mu_{1, 2} = \lambda_{1, 2} + 1 = \frac{3 \pm \sqrt{13}}{2}$.
 The exact closed-form solution is:
-$$A(m, n) = \frac{\mu_1^m \lambda_1^n - \mu_2^m \lambda_2^n}{\sqrt{13}}$$
+
+$$
+A(m, n) = \frac{\mu_1^m \lambda_1^n - \mu_2^m \lambda_2^n}{\sqrt{13}}
+$$
 
 ---
 
@@ -42,7 +49,11 @@ $$A(m, n) = \frac{\mu_1^m \lambda_1^n - \mu_2^m \lambda_2^n}{\sqrt{13}}$$
 ### Separation of Variables in Finite Field $\mathbb{F}_p$
 Modulo $p = 1123581313$, $13$ is a quadratic residue with $\sqrt{13} \equiv 984161357 \pmod p$.
 The 2D double sum factorizes into independent 1D sums:
-$$S(k) = \frac{\left(\sum_{i=2}^k \mu_1^{f_i}\right) \left(\sum_{j=2}^k \lambda_1^{f_j}\right) - \left(\sum_{i=2}^k \mu_2^{f_i}\right) \left(\sum_{j=2}^k \lambda_2^{f_j}\right)}{\sqrt{13}} \pmod p$$
+
+$$
+S(k) = \frac{\left(\sum_{i=2}^k \mu_1^{f_i}\right) \left(\sum_{j=2}^k \lambda_1^{f_j}\right) - \left(\sum_{i=2}^k \mu_2^{f_i}\right) \left(\sum_{j=2}^k \lambda_2^{f_j}\right)}{\sqrt{13}} \pmod p
+$$
+
 This reduces the entire double summation to $\mathcal{O}(k)$ operations, evaluating $S(50) \pmod{1123581313} = \mathbf{969134784}$ in **under 0.001s** in 100% pure Python.
 
 ---

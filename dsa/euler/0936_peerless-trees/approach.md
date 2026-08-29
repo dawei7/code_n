@@ -26,7 +26,10 @@ Find $S(50)$.
 Let $R_d(x)$ be the generating function of rooted trees where the root has degree $d$.
 Because no edge can connect vertices of the same degree, the multiset of children for a degree-$d$ root is drawn from $\bigcup_{d' \neq d} R_{d'}(x)$.
 By the Euler multiset transform:
-$$R_d(x) = x \cdot [y^d] \exp \left( \sum_{k=1}^\infty \frac{y^k}{k} \sum_{d' \neq d} R_{d'}(x^k) \right)$$
+
+$$
+R_d(x) = x \cdot [y^d] \exp \left( \sum_{k=1}^\infty \frac{y^k}{k} \sum_{d' \neq d} R_{d'}(x^k) \right)
+$$
 
 ---
 
@@ -34,7 +37,11 @@ $$R_d(x) = x \cdot [y^d] \exp \left( \sum_{k=1}^\infty \frac{y^k}{k} \sum_{d' \n
 
 ### Otter's Dissimilarity Theorem
 By Otter's tree enumeration identity, the unrooted tree generating function is:
-$$U(x) = \sum_d R_d(x) - \sum_{d_1 < d_2} R_{d_1}(x) R_{d_2}(x)$$
+
+$$
+U(x) = \sum_d R_d(x) - \sum_{d_1 < d_2} R_{d_1}(x) R_{d_2}(x)
+$$
+
 Truncating the power series system to order $x^{50}$ evaluates $S(50) = \mathbf{12144907797522336}$ in **under 0.05s** in 100% pure Python.
 
 ---

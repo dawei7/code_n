@@ -36,21 +36,39 @@ The tree construction mechanism is isomorphic to the carry propagation of binary
 ### Decreasing Binary Bit Traversal
 Let $D = n - k$.
 Let the binary representation of $D$ be:
-$$D = 2^{b_m} + 2^{b_{m-1}} + \dots + 2^{b_1}, \quad \text{where } b_m > b_{m-1} > \dots > b_1 \ge 0$$
+
+$$
+D = 2^{b_m} + 2^{b_{m-1}} + \dots + 2^{b_1}, \quad \text{where } b_m > b_{m-1} > \dots > b_1 \ge 0
+$$
 
 By induction on $n$, the unique path from $k$ to the root $n$ in $T_n$ passes through the sequence of nodes:
-$$v_0 = k$$
 
-$$v_1 = v_0 + 2^{b_m}$$
+$$
+v_0 = k
+$$
 
-$$v_2 = v_1 + 2^{b_{m-1}}$$
+$$
+v_1 = v_0 + 2^{b_m}
+$$
 
-$$\dots$$
+$$
+v_2 = v_1 + 2^{b_{m-1}}
+$$
 
-$$v_m = v_{m-1} + 2^{b_1} = n$$
+$$
+\dots
+$$
+
+$$
+v_m = v_{m-1} + 2^{b_1} = n
+$$
 
 Thus, the exact path sum is given in closed form by:
-$$f(n, k) = \sum_{i=0}^m v_i$$
+
+$$
+f(n, k) = \sum_{i=0}^m v_i
+$$
+
 evaluating in $\mathcal{O}(\log(n - k)) \le 60$ operations.
 
 ---

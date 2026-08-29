@@ -10,7 +10,10 @@ We are given:
 - $f(10^6) \equiv 321418433 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$f(10^{11}) \pmod{1\,000\,000\,007}$$
+
+$$
+f(10^{11}) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -28,10 +31,18 @@ Iterating over all pairs $(p, q)$ up to $n = 10^{11}$ requires $\binom{10^{11}}{
    Every pair with $\gcd(p, q) = 2^t$ can be written as $p = 2^t x, q = 2^t y$ with $\gcd(x, y) = 1$ and $1 \le x < y \le \lfloor n / 2^t \rfloor$.
 2. **Coprime Counting via $\Phi(m)$**:
    For each $m = \lfloor n / 2^t \rfloor$, the number of coprime pairs $1 \le x < y \le m$ is:
-   $$\sum_{y=2}^m \phi(y) = \Phi(m) - 1$$
+
+$$
+\sum_{y=2}^m \phi(y) = \Phi(m) - 1
+$$
+
    where $\Phi(m) = \sum_{i=1}^m \phi(i)$ is the summatory totient function.
 3. **Analytic Closed Form**:
-   $$f(n) = \sum_{t=1}^{\lfloor \log_2 n \rfloor} \left( \Phi\left(\left\lfloor \frac{n}{2^t} \right\rfloor\right) - 1 \right)$$
+
+$$
+f(n) = \sum_{t=1}^{\lfloor \log_2 n \rfloor} \left( \Phi\left(\left\lfloor \frac{n}{2^t} \right\rfloor\right) - 1 \right)
+$$
+
    For $n = 10^{11}$, there are only 36 terms in this outer sum!
 
 ---
@@ -41,7 +52,11 @@ Iterating over all pairs $(p, q)$ up to $n = 10^{11}$ requires $\binom{10^{11}}{
 ### Sublinear Du Sieve for $\Phi(x)$ ($O(N^{2/3})$)
 1. **Dirichlet Convolution Relation**:
    Since $\phi * \mathbf{1} = \text{Id}$, summing over hyperbola blocks gives:
-   $$\Phi(x) = \frac{x(x + 1)}{2} - \sum_{d=2}^x \Phi\left(\left\lfloor \frac{x}{d} \right\rfloor\right)$$
+
+$$
+\Phi(x) = \frac{x(x + 1)}{2} - \sum_{d=2}^x \Phi\left(\left\lfloor \frac{x}{d} \right\rfloor\right)
+$$
+
 2. **Square-Root Block Partitioning**:
    Precompute $\Phi(x)$ for all $x \le 10^7$ via linear sieve.
    For $x > 10^7$, evaluate recursively with quotient jump intervals $[l, \lfloor x / \lfloor x / l \rfloor \rfloor]$ and memoize results in a fast hash table.

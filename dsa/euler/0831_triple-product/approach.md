@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $g(m)$ be defined by the double sum:
-$$g(m) = \sum_{j=0}^m \sum_{i = 0}^j (-1)^{j-i} \binom{m}{j} \binom{j}{i} \binom{j+5+6i}{j+5}$$
+
+$$
+g(m) = \sum_{j=0}^m \sum_{i = 0}^j (-1)^{j-i} \binom{m}{j} \binom{j}{i} \binom{j+5+6i}{j+5}
+$$
+
 We are given that $g(10) = 127278262644918$, whose first five digits are $12727$.
 We are tasked with computing the first ten digits of $g(142857)$ when expressed in base $7$.
 
@@ -23,7 +27,10 @@ We are tasked with computing the first ten digits of $g(142857)$ when expressed 
 ### Summation Reordering & Binomial Identity
 Let $k = j - i$, so $j = i + k$. The range of summation becomes $0 \le i \le m$ and $0 \le k \le m - i$.
 Using the identity $\binom{m}{i+k} \binom{i+k}{i} = \binom{m}{i} \binom{m-i}{k}$ and noting that $j + 5 + 6i = 7i + 5 + k$, with $\binom{j+5+6i}{j+5} = \binom{7i + 5 + k}{6i}$:
-$$g(m) = \sum_{i=0}^m \binom{m}{i} \sum_{k=0}^{m-i} (-1)^k \binom{m-i}{k} \binom{7i + 5 + k}{6i}$$
+
+$$
+g(m) = \sum_{i=0}^m \binom{m}{i} \sum_{k=0}^{m-i} (-1)^k \binom{m-i}{k} \binom{7i + 5 + k}{6i}
+$$
 
 ---
 
@@ -31,19 +38,41 @@ $$g(m) = \sum_{i=0}^m \binom{m}{i} \sum_{k=0}^{m-i} (-1)^k \binom{m-i}{k} \binom
 
 ### Finite Differences Reduction
 Using the standard binomial difference identity:
-$$\sum_{k=0}^N (-1)^k \binom{N}{k} \binom{A + k}{B} = (-1)^N \binom{A}{B - N}$$
+
+$$
+\sum_{k=0}^N (-1)^k \binom{N}{k} \binom{A + k}{B} = (-1)^N \binom{A}{B - N}
+$$
+
 Setting $N = m - i$, $A = 7i + 5$, and $B = 6i$:
-$$\sum_{k=0}^{m-i} (-1)^k \binom{m-i}{k} \binom{7i + 5 + k}{6i} = (-1)^{m-i} \binom{7i + 5}{6i - (m - i)} = (-1)^{m-i} \binom{7i + 5}{7i - m}$$
+
+$$
+\sum_{k=0}^{m-i} (-1)^k \binom{m-i}{k} \binom{7i + 5 + k}{6i} = (-1)^{m-i} \binom{7i + 5}{6i - (m - i)} = (-1)^{m-i} \binom{7i + 5}{7i - m}
+$$
 
 ### Generating Function Collapse
 We observe that:
-$$\sum_i (-1)^{m-i} \binom{m}{i} \binom{7i + 5}{7i - m} = [x^{m+5}] (1+x)^5 \sum_i \binom{m}{i} (-1)^{m-i} (1+x)^{7i} = [x^{m+5}] (1+x)^5 ((1+x)^7 - 1)^m$$
+
+$$
+\sum_i (-1)^{m-i} \binom{m}{i} \binom{7i + 5}{7i - m} = [x^{m+5}] (1+x)^5 \sum_i \binom{m}{i} (-1)^{m-i} (1+x)^{7i} = [x^{m+5}] (1+x)^5 ((1+x)^7 - 1)^m
+$$
+
 Factoring out $x^m$ from $((1+x)^7 - 1)^m$:
-$$((1+x)^7 - 1)^m = \left( x \sum_{k=1}^7 \binom{7}{k} x^{k-1} \right)^m = x^m P(x)^m$$
+
+$$
+((1+x)^7 - 1)^m = \left( x \sum_{k=1}^7 \binom{7}{k} x^{k-1} \right)^m = x^m P(x)^m
+$$
+
 where:
-$$P(x) = \frac{(1+x)^7 - 1}{x} = 7 + 21x + 35x^2 + 35x^3 + 21x^4 + 7x^5 + x^6$$
+
+$$
+P(x) = \frac{(1+x)^7 - 1}{x} = 7 + 21x + 35x^2 + 35x^3 + 21x^4 + 7x^5 + x^6
+$$
+
 Thus:
-$$g(m) = [x^5] \left( (1+x)^5 P(x)^m \right)$$
+
+$$
+g(m) = [x^5] \left( (1+x)^5 P(x)^m \right)
+$$
 
 Because we only require the coefficient of $x^5$, all polynomial operations can be performed strictly modulo $x^6$ (polynomials of degree at most $5$)!
 

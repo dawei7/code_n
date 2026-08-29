@@ -44,11 +44,22 @@ For subset $A$ to be valid:
 #### Stage 1: Tree DP on Non-Cycle Vertices
 Peeling trees via Kahn's topological order, each tree vertex $u$ maintains 3 states:
 - $\text{DP}_0(u)$: $u \notin A$, and no child of $u$ in $A$.
-  $$\text{DP}_0(u) = \sum_{v \in C(u)} \max(\text{DP}_0(v), \text{DP}_2(v))$$
+
+$$
+\text{DP}_0(u) = \sum_{v \in C(u)} \max(\text{DP}_0(v), \text{DP}_2(v))
+$$
+
 - $\text{DP}_1(u)$: $u \in A$ (and no child in $A$).
-  $$\text{DP}_1(u) = 1 + \text{DP}_0(u)$$
+
+$$
+\text{DP}_1(u) = 1 + \text{DP}_0(u)
+$$
+
 - $\text{DP}_2(u)$: $u \notin A$, and exactly one child $v^* \in A$.
-  $$\text{DP}_2(u) = \text{DP}_0(u) + \max_{v^* \in C(u)} (\text{DP}_1(v^*) - \max(\text{DP}_0(v^*), \text{DP}_2(v^*)))$$
+
+$$
+\text{DP}_2(u) = \text{DP}_0(u) + \max_{v^* \in C(u)} (\text{DP}_1(v^*) - \max(\text{DP}_0(v^*), \text{DP}_2(v^*)))
+$$
 
 #### Stage 2: Cycle DP on Unicyclic Roots
 Along a cycle $c_0 \to c_1 \to \dots \to c_{m-1} \to c_0$:

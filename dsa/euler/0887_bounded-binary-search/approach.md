@@ -27,7 +27,10 @@ Let $C(q, d)$ be the maximum range size searchable within $q$ total questions an
 - $C(q, 0) = q + 1$ (linear search).
 - $C(q, d) = 2^q$ for $d \ge q$ (unconstrained binary search).
 - For $d < q$:
-  $$C(q, d) = C(q - 1, d - 1) + C(q - 1, d + C(q - 1, d - 1) - 1)$$
+
+$$
+C(q, d) = C(q - 1, d - 1) + C(q - 1, d + C(q - 1, d - 1) - 1)
+$$
 
 ---
 
@@ -35,7 +38,10 @@ Let $C(q, d)$ be the maximum range size searchable within $q$ total questions an
 
 ### Dual Summation Identity
 For a fixed slack $d$:
-$$\sum_{N=1}^{N_{\text{max}}} Q(N, d) = \sum_{q \ge 0} \max(0, N_{\text{max}} - C(q, d))$$
+
+$$
+\sum_{N=1}^{N_{\text{max}}} Q(N, d) = \sum_{q \ge 0} \max(0, N_{\text{max}} - C(q, d))
+$$
 
 Evaluating across $d \in \{0, \dots, 7\}$ for $N_{\text{max}} = 7^{10}$ yields the exact sum $39896187138661622$.
 

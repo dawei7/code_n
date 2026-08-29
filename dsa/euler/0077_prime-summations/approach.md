@@ -12,7 +12,10 @@ It is possible to write ten as the sum of primes in exactly five different ways:
 Let $p_{\mathbb{P}}(n)$ denote the number of ways to partition $n \in \mathbb{N}$ into prime summands.
 
 The objective is to find the **first value** that can be written as the sum of primes in **over five thousand ($5\,000$) different ways**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; p_{\mathbb{P}}(n) > 5000 \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; p_{\mathbb{P}}(n) > 5000 \right\}
+$$
 
 ---
 
@@ -28,9 +31,17 @@ def naive_prime_partitions(n, max_prime):
 
 ### Unbounded Knapsack Dynamic Programming
 1. The generating function for prime partitions is:
-   $$G(x) = \prod_{p \in \mathbb{P}} \frac{1}{1 - x^p} = \sum_{n=0}^{\infty} p_{\mathbb{P}}(n) x^n$$
+
+$$
+G(x) = \prod_{p \in \mathbb{P}} \frac{1}{1 - x^p} = \sum_{n=0}^{\infty} p_{\mathbb{P}}(n) x^n
+$$
+
 2. Using a 1D DP array of size $L = 100$:
-   $$DP[i] \leftarrow DP[i] + DP[i - p] \quad \text{for each prime } p \le 100, \, i \in [p, 100]$$
+
+$$
+DP[i] \leftarrow DP[i] + DP[i - p] \quad \text{for each prime } p \le 100, \, i \in [p, 100]
+$$
+
 3. This computes prime partition counts for all $n \le 100$ in $\mathcal{O}(L \cdot \pi(L))$ operations ($\approx 2500$ additions, $< 0.001$ seconds).
 
 ---
@@ -60,7 +71,11 @@ def naive_prime_partitions(n, max_prime):
 2. Initialize array $DP = [1, 0, 0, \dots, 0]$ of size $101$.
 3. For each prime $p \in \mathbb{P}_{\le 100}$:
    - For $i = p \dots 100$:
-     $$DP[i] \leftarrow DP[i] + DP[i - p]$$
+
+$$
+DP[i] \leftarrow DP[i] + DP[i - p]
+$$
+
 4. Scan $n = 2, 3, \dots, 100$ and find the first $n$ where $DP[n] > 5000$.
 
 ---
@@ -77,7 +92,10 @@ def naive_prime_partitions(n, max_prime):
   - $n = 70 \implies DP[70] = 4691 \le 5000$.
   - $n = 71 \implies DP[71] = \mathbf{5007} > 5000$.
 - Smallest integer exceeding threshold:
-  $$n_{\text{min}} = \mathbf{71}$$
+
+$$
+n_{\text{min}} = \mathbf{71}
+$$
 
 ---
 

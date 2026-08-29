@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $F(n)$ denote the number of ways to write $n$ as:
-$$n = a_1^1 \times a_2^2 \times a_3^2 \times a_4^3 \times a_5^3 \times a_6^3 \times a_7^4 \times a_8^4 \times a_9^4 \times a_{10}^4$$
+
+$$
+n = a_1^1 \times a_2^2 \times a_3^2 \times a_4^3 \times a_5^3 \times a_6^3 \times a_7^4 \times a_8^4 \times a_9^4 \times a_{10}^4
+$$
+
 such that the 10 positive integer base numbers $a_1, \dots, a_{10}$ are pairwise distinct, disregarding order within identical exponent groups (dividing by $1! 2! 3! 4! = 288$).
 
 We are given:
@@ -12,7 +16,10 @@ We are given:
 - $F(1000!) \equiv 6364496 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$F(1\,000\,000!) \pmod{1\,000\,000\,007}$$
+
+$$
+F(1\,000\,000!) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -28,12 +35,20 @@ Searching over 10-tuples of distinct base numbers for $n = 10^6!$ is completely 
 ### Prime Valuation Decoupling & Set-Partition Möbius Inversion
 1. **Multiplicative Decoupling across Primes**:
    For each prime $p$, the prime valuation condition is linear:
-   $$\sum_{i=1}^{10} w_i v_p(a_i) = v_p(n!)$$
+
+$$
+\sum_{i=1}^{10} w_i v_p(a_i) = v_p(n!)
+$$
+
    where $(w_1, \dots, w_{10}) = (1, 2, 2, 3, 3, 3, 4, 4, 4, 4)$.
 2. **Distinctness via Inclusion-Exclusion**:
    Base distinctness translates to the partition lattice $\Pi(10)$.
    By Möbius inversion, for each set partition $\pi$ with blocks $B$:
-   $$\mu(\pi) = \prod_{B \in \pi} (-1)^{|B| - 1} (|B| - 1)!$$
+
+$$
+\mu(\pi) = \prod_{B \in \pi} (-1)^{|B| - 1} (|B| - 1)!
+$$
+
    Merging equal base variables sums the weights within each block: $W_B = \sum_{i \in B} w_i$.
 3. **Generating Functions**:
    For each block weight multiset $\{W_B\}$, the number of solutions for prime exponent $e$ is $[x^e] \prod_{B} \frac{1}{1 - x^{W_B}}$.
@@ -49,7 +64,10 @@ Searching over 10-tuples of distinct base numbers for $n = 10^6!$ is completely 
 2. **Fast Frequency Aggregation**:
    For $n = 10^6!$, group primes by equal exponent $e_p = v_p(n!)$ via Legendre's formula.
 3. **Final Quotient**:
-   $$F(n!) \equiv \frac{1}{288} \sum_{\text{classes } K} \mu(K) \prod_{e} [x^e]^{C(e)} \pmod{10^9 + 7}$$
+
+$$
+F(n!) \equiv \frac{1}{288} \sum_{\text{classes } K} \mu(K) \prod_{e} [x^e]^{C(e)} \pmod{10^9 + 7}
+$$
 
 This evaluates $F(10^6!) \pmod{10^9 + 7}$ in **$\approx 7.32$ seconds** in pure Python!
 

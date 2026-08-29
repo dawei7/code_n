@@ -13,7 +13,10 @@ We are given:
 - $f(15) = 72863$
 
 We seek to evaluate:
-$$f(30)$$
+
+$$
+f(30)
+$$
 
 ---
 
@@ -47,7 +50,11 @@ For $n = 30$, the total number of words is $4^{30} = 2^{60} \approx 1.15 \times 
    Compute the next state $p'$ and the bitmask of newly completed keywords.
 2. **DP Step**:
    For length $t = 1 \dots n$:
-   $$\text{DP}_{t}[(u', \text{mask} \cup \text{matches})] = \sum_{(u, \text{mask})} \text{DP}_{t-1}[(u, \text{mask})] \quad (\text{if } \text{mask} \cap \text{matches} = \emptyset)$$
+
+$$
+\text{DP}_{t}[(u', \text{mask} \cup \text{matches})] = \sum_{(u, \text{mask})} \text{DP}_{t-1}[(u, \text{mask})] \quad (\text{if } \text{mask} \cap \text{matches} = \emptyset)
+$$
+
 3. **Terminal Extraction**:
    At step $n = 30$, sum $\text{DP}_{30}[(u, 15)]$ over all suffix states $u$.
 

@@ -5,14 +5,20 @@
 A proper fraction whose numerator is less than its denominator $d$ is called a **resilient fraction** if it cannot be cancelled down (i.e. $\gcd(n, d) = 1$).
 The number of resilient proper fractions for denominator $d$ is $\phi(d)$, Euler's totient function.
 The **resilience** of denominator $d$ is defined as:
-$$R(d) = \frac{\phi(d)}{d - 1}$$
+
+$$
+R(d) = \frac{\phi(d)}{d - 1}
+$$
 
 For example:
 - For $d = 12$, $\phi(12) = 4$ (fractions $1/12, 5/12, 7/12, 11/12$), so $R(12) = \frac{4}{11}$.
 - $d = 12$ is the smallest denominator with $R(d) < \frac{4}{10}$.
 
 Find the smallest denominator $d$ having a resilience:
-$$R(d) < \frac{15499}{94744}$$
+
+$$
+R(d) < \frac{15499}{94744}
+$$
 
 ---
 
@@ -29,7 +35,11 @@ def naive_resilience(target_ratio):
 ### Primorial Factorization & Multiplier Step Search
 1. **Asymptotic Totient Minimization:**
    Notice that:
-   $$\frac{\phi(d)}{d} = \prod_{p \mid d} \left(1 - \frac{1}{p}\right)$$
+
+$$
+\frac{\phi(d)}{d} = \prod_{p \mid d} \left(1 - \frac{1}{p}\right)
+$$
+
    To minimize this product, $d$ must contain the maximum number of distinct small prime factors.
    Therefore, $d$ must be a multiple of a **primorial** $P_k = \prod_{i=1}^k p_i$.
 2. **Primorial Bounds:**
@@ -40,7 +50,10 @@ def naive_resilience(target_ratio):
 3. **Small Integer Multipliers:**
    Testing $d = m \cdot P_9$ for $m \in \{1, 2, 3, 4\}$:
    When $m = 4$, $\phi(4 \cdot P_9) = 2 \phi(P_9) = 72\,990\,720$, and:
-   $$R(4 \cdot P_9) = \frac{72990720}{892371479} < \frac{15499}{94744} \quad (\checkmark)$$
+
+$$
+R(4 \cdot P_9) = \frac{72990720}{892371479} < \frac{15499}{94744} \quad (\checkmark)
+$$
 
 ---
 
@@ -78,7 +91,10 @@ def solve(num: int = 15499, den: int = 94744) -> int:
 ```
 
 Evaluating for $15499/94744$:
-$$d_{\min} = \mathbf{892\,371\,480}$$
+
+$$
+d_{\min} = \mathbf{892\,371\,480}
+$$
 
 ---
 
@@ -94,8 +110,14 @@ $$d_{\min} = \mathbf{892\,371\,480}$$
 - Primorial $P_9 = 223\,092\,870$.
 - $m = 1, 2, 3$ all fail the strict inequality.
 - For $m = 4$:
-  $$d = 4 \times 223\,092\,870 = \mathbf{892\,371\,480}$$
-  $$R(d) = \frac{72990720}{892371479} < \frac{15499}{94744} \quad (\checkmark)$$
+
+$$
+d = 4 \times 223\,092\,870 = \mathbf{892\,371\,480}
+$$
+
+$$
+R(d) = \frac{72990720}{892371479} < \frac{15499}{94744} \quad (\checkmark)
+$$
 
 ---
 

@@ -11,7 +11,10 @@ We are given:
 - $t(O_{3, 2}) = 456572$
 
 We seek to evaluate:
-$$t(O_{4, 2})$$
+
+$$
+t(O_{4, 2})
+$$
 
 ---
 
@@ -29,7 +32,11 @@ The area of $O_{4, 2}$ contains dozens of square/rhombus cells. Recursive tile-p
    Tilings of an equiangular octagon $(a, b, c, d, a, b, c, d)$ are in 1-to-1 bijection with rhombus-preserving non-intersecting grid paths on a 2D projection.
 2. **MacMahon & LGV Determinant Formulas**:
    The total number of tilings is expressed as a sum over pairs of monotone integer arrays $(X, Y)$ of dimension $b \times d$:
-   $$t(O_{a, b}) = \sum_{x \in X} \sum_{y \in Y} \prod_{u=1}^{d+1} \det(M^{(u)}(x, y)) \prod_{v=1}^{b+1} \det(P^{(v)}(x, y))$$
+
+$$
+t(O_{a, b}) = \sum_{x \in X} \sum_{y \in Y} \prod_{u=1}^{d+1} \det(M^{(u)}(x, y)) \prod_{v=1}^{b+1} \det(P^{(v)}(x, y))
+$$
+
    where $M$ and $P$ are $b \times b$ and $d \times d$ transition matrices with entries $\binom{A}{B}$.
 
 ---

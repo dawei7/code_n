@@ -34,10 +34,16 @@ For a state $S = (c_4, c_3, c_2, c_1, \text{last})$ with total cards $N = 4c_4 +
    For each $k \in \{1, 2, 3, 4\}$, the number of eligible ranks is $c_k - \mathbb{I}(\text{last} = k)$.
    Drawing a card from an eligible rank occurs with probability $\frac{k(c_k - \mathbb{I}(\text{last}=k))}{N}$, transitioning to $(c - e_k + e_{k-1}, k - 1)$.
 3. **Bellman Expectation**:
-   $$E(S) = 1 + \sum_{k=1}^4 \frac{k(c_k - \mathbb{I}(\text{last}=k))}{N} E(c - e_k + e_{k-1}, k - 1)$$
+
+$$
+E(S) = 1 + \sum_{k=1}^4 \frac{k(c_k - \mathbb{I}(\text{last}=k))}{N} E(c - e_k + e_{k-1}, k - 1)
+$$
 
 Total reachable state space:
-$$|\mathcal{S}| \le 4 \times \binom{13 + 4}{4} = 4 \times 2380 = \mathbf{9520} \text{ states}$$
+
+$$
+|\mathcal{S}| \le 4 \times \binom{13 + 4}{4} = 4 \times 2380 = \mathbf{9520} \text{ states}
+$$
 
 ---
 

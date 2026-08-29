@@ -3,10 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the self-power finite series:
-$$S_N = \sum_{i=1}^N i^i = 1^1 + 2^2 + 3^3 + \dots + N^N$$
+
+$$
+S_N = \sum_{i=1}^N i^i = 1^1 + 2^2 + 3^3 + \dots + N^N
+$$
 
 The objective is to find the last ten decimal digits of the series for $N = 1000$, which corresponds to evaluating:
-$$R = S_{1000} \pmod{10^{10}}$$
+
+$$
+R = S_{1000} \pmod{10^{10}}
+$$
 
 ---
 
@@ -29,7 +35,10 @@ def naive_self_powers(n):
 ## 3. Core Intuition & Mathematical Structure
 
 By ring homomorphism:
-$$\sum_{i=1}^N i^i \pmod{10^{10}} \equiv \left( \sum_{i=1}^N (i^i \bmod 10^{10}) \right) \pmod{10^{10}}$$
+
+$$
+\sum_{i=1}^N i^i \pmod{10^{10}} \equiv \left( \sum_{i=1}^N (i^i \bmod 10^{10}) \right) \pmod{10^{10}}
+$$
 
 Binary modular exponentiation (`pow(i, i, 10**10)`) evaluates each term $i^i \bmod 10^{10}$ in $\mathcal{O}(\log i)$ bit operations using repeated squaring.
 
@@ -63,14 +72,21 @@ Each term $t_i = i^i \bmod 10^{10}$ is computed via binary exponentiation:
 ## 5. Concrete Step-by-Step Example Walkthrough
 
 ### Example 1: Evaluation for $N = 10$
-$$S_{10} = 1^1 + 2^2 + 3^3 + 4^4 + 5^5 + 6^6 + 7^7 + 8^8 + 9^9 + 10^{10}$$
+
+$$
+S_{10} = 1^1 + 2^2 + 3^3 + 4^4 + 5^5 + 6^6 + 7^7 + 8^8 + 9^9 + 10^{10}
+$$
+
 - $1 + 4 + 27 + 256 + 3125 + 46656 + 823543 + 16777216 + 387420489 + 10000000000$
 - Full sum: $S_{10} = \mathbf{10\,405\,071\,317}$.
 - Last 10 digits: $0405071317$. Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $N = 1000$
 - Summing `pow(i, i, 10**10)` for $i = 1 \dots 1000$:
-  $$S_{1000} \pmod{10^{10}} = \mathbf{9\,110\,846\,700}$$
+
+$$
+S_{1000} \pmod{10^{10}} = \mathbf{9\,110\,846\,700}
+$$
 
 ---
 

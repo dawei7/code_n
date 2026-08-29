@@ -13,7 +13,11 @@ For batch 1, the supervisor takes the single $A1$ sheet, halves it into $A2, A3,
 For batch 16, there is only one $A5$ sheet left in the envelope.
 
 The objective is to find the **expected number of times during the week (excluding batch 1 and batch 16) that the supervisor finds only one single sheet of paper in the envelope**:
-$$\mathbb{E}[N_1] = \sum_{b=2}^{15} \mathbb{P}(\text{envelope has exactly 1 sheet at batch } b)$$
+
+$$
+\mathbb{E}[N_1] = \sum_{b=2}^{15} \mathbb{P}(\text{envelope has exactly 1 sheet at batch } b)
+$$
+
 giving the answer rounded to 6 decimal places.
 
 ---
@@ -31,7 +35,11 @@ def naive_paper_sheets():
 ### Exact Markov State Tree Traversal
 1. **State Vector Representation:**
    The contents of the envelope can be represented by a 4-tuple of sheet counts:
-   $$\mathbf{s} = (c_2, c_3, c_4, c_5)$$
+
+$$
+\mathbf{s} = (c_2, c_3, c_4, c_5)
+$$
+
    where $c_k$ is the number of sheets of size $A_k$.
 2. **Transition Dynamics:**
    - At batch 2, the initial state is $\mathbf{s}_2 = (1, 1, 1, 1)$ with probability $1.0$.
@@ -90,7 +98,10 @@ def naive_paper_sheets():
 
 ### Example 2: Target Evaluation for Entire Week
 - Summing all path probabilities arriving at $T = 1$ during batches $2 \dots 15$:
-  $$\mathbb{E}[N_1] = \mathbf{0.464399}$$
+
+$$
+\mathbb{E}[N_1] = \mathbf{0.464399}
+$$
 
 ---
 

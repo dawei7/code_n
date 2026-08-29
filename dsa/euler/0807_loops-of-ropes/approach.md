@@ -5,7 +5,11 @@
 Two loops of ropes (one red, one blue) with $n$ straight segments each are placed sequentially on a circle $C$ with each rope lying above all prior ropes.
 Let $P(n)$ be the probability that the two loops can be separated (unlinked).
 We seek to evaluate:
-$$P(80)$$
+
+$$
+P(80)
+$$
+
 rounded to 10 digits after the decimal point.
 
 We are given:
@@ -27,11 +31,19 @@ Monte Carlo sampling over random configurations on $S^1$ and computing topologic
 1. **Topological Invariant Reduction**:
    The sequential over-under crossings of the alternating red and blue chords correspond to the permutation descents of a random cyclic order.
    The probability of being unlinked simplifies precisely to:
-   $$P(n) = \frac{A(2n-1, n)}{(2n-1)!}$$
+
+$$
+P(n) = \frac{A(2n-1, n)}{(2n-1)!}
+$$
+
    where $A(m, k)$ is the Eulerian number counting permutations of length $m$ with $k-1$ descents (OEIS A025585).
 2. **Alternating Binomial Sum Formula**:
    The central Eulerian number $a(n) = A(2n-1, n)$ satisfies the explicit formula:
-   $$a(n) = \sum_{j=0}^{n-1} (-1)^j \binom{2n}{j} (n-j)^{2n-1}$$
+
+$$
+a(n) = \sum_{j=0}^{n-1} (-1)^j \binom{2n}{j} (n-j)^{2n-1}
+$$
+
 3. **Exact Fraction Arithmetic**:
    Using arbitrary-precision integer arithmetic, $a(n)$ and $(2n-1)!$ are computed exactly without any floating point degradation, and the quotient is rounded half-up to 10 decimal digits.
 

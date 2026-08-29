@@ -4,14 +4,20 @@
 
 Let $\sigma_0(n)$ be the divisor-counting function $\tau(n)$.
 Define:
-$$D(m, n) = \sum_{d \mid m} \sum_{k=1}^n \sigma_0(k \cdot d)$$
+
+$$
+D(m, n) = \sum_{d \mid m} \sum_{k=1}^n \sigma_0(k \cdot d)
+$$
 
 We are given:
 - $D(3!, 10^2) = 3398$
 - $D(4!, 10^6) = 268882292$
 
 We seek to evaluate:
-$$D(200!, 10^{12}) \pmod{10^9 + 7}$$
+
+$$
+D(200!, 10^{12}) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -28,11 +34,19 @@ $m = 200!$ has over $10^{60}$ divisors, and $n = 10^{12}$. Iterating over all pa
 1. **Multiplicative Function $f(k)$**:
    The inner sum $f(k) = \sum_{d \mid m} \sigma_0(k \cdot d)$ is a multiplicative function in $k$.
    For $p \mid m$ with $a = v_p(m)$:
-   $$f(p^e) = \sum_{x=0}^a (e + x + 1) = (a + 1)(e + 1) + \frac{a(a+1)}{2} = \frac{a+1}{2} (a + 2 + 2e)$$
+
+$$
+f(p^e) = \sum_{x=0}^a (e + x + 1) = (a + 1)(e + 1) + \frac{a(a+1)}{2} = \frac{a+1}{2} (a + 2 + 2e)
+$$
+
    For $p \nmid m$: $f(p^e) = e + 1 = \sigma_0(p^e)$.
 2. **Dirichlet Convolution with $\sigma_0$**:
    We can factor $f = g * \sigma_0$ where $g$ is a squarefree multiplicative function supported only on primes $p \le 200$:
-   $$g(p) = -\frac{a}{a + 2} \pmod{10^9 + 7}$$
+
+$$
+g(p) = -\frac{a}{a + 2} \pmod{10^9 + 7}
+$$
+
    scaled by global constant $K = \prod_{p \le 200} \frac{(a+1)(a+2)}{2}$.
 
 ---
@@ -41,7 +55,11 @@ $m = 200!$ has over $10^{60}$ divisors, and $n = 10^{12}$. Iterating over all pa
 
 ### Sublinear Summatory Convolution & Meet-in-the-Middle ($O(\sqrt{n} + |\mathcal{P}|)$)
 1. **Summation Identity**:
-   $$\sum_{k=1}^n f(k) = K \sum_{q \le n} g(q) T\left(\left\lfloor \frac{n}{q} \right\rfloor\right)$$
+
+$$
+\sum_{k=1}^n f(k) = K \sum_{q \le n} g(q) T\left(\left\lfloor \frac{n}{q} \right\rfloor\right)
+$$
+
    where $T(x) = \sum_{k \le x} \sigma_0(k) = 2 \sum_{i \le \sqrt{x}} \lfloor x/i \rfloor - \lfloor \sqrt{x} \rfloor^2$.
 2. **Threshold Partitioning & Meet-in-the-Middle**:
    - For $q \le y = 10^9$, enumerate squarefree products via depth-first search and accumulate directly.

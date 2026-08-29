@@ -9,10 +9,16 @@ The cost of a bit string is $1$ for each digit `'0'` and $4$ for each digit `'1'
 The cost of a prefix-free code is the sum of costs of all its codewords.
 
 For example, a minimum-cost prefix-free code of size $6$ is $\{000, 001, 01, 10, 110, 111\}$ with total cost:
-$$C(6) = (1+1+1) + (1+1+4) + (1+4) + (4+1) + (4+4+1) + (4+4+4) = 3 + 6 + 5 + 5 + 9 + 12 = \mathbf{35}$$
+
+$$
+C(6) = (1+1+1) + (1+1+4) + (1+4) + (4+1) + (4+4+1) + (4+4+4) = 3 + 6 + 5 + 5 + 9 + 12 = \mathbf{35}
+$$
 
 Find **$C(10^9)$**, the minimum total cost of a prefix-free code of size $10^9$:
-$$C(10^9) = \min \left\{ \sum_{w \in S} \operatorname{Cost}(w) \;\middle|\; S \subset \{0, 1\}^*, \; |S| = 10^9, \; S \text{ is prefix-free} \right\}$$
+
+$$
+C(10^9) = \min \left\{ \sum_{w \in S} \operatorname{Cost}(w) \;\middle|\; S \subset \{0, 1\}^*, \; |S| = 10^9, \; S \text{ is prefix-free} \right\}
+$$
 
 ---
 
@@ -33,7 +39,11 @@ def naive_skew_huffman():
    Splitting a leaf of cost $c$ creates two child leaves with costs $c + 1$ (bit `'0'`) and $c + 4$ (bit `'1'`).
    - The number of leaves increases by $+1$.
    - The total cost changes by:
-     $$\Delta C = (c + 1) + (c + 4) - c = c + 5$$
+
+$$
+\Delta C = (c + 1) + (c + 4) - c = c + 5
+$$
+
 2. **Greedy Minimum-Cost Splitting:**
    To minimize the total cost increase, we must always greedily split the leaf with the smallest available cost $c$.
 3. **Bulk Frequency Grouping:**
@@ -93,7 +103,10 @@ def solve(n: int = 10**9) -> int:
     return total_cost
 ```
 Evaluating for $N = 10^9$:
-$$C(10^9) = \mathbf{64\,564\,225\,042}$$
+
+$$
+C(10^9) = \mathbf{64\,564\,225\,042}
+$$
 
 ---
 
@@ -110,7 +123,10 @@ $$C(10^9) = \mathbf{64\,564\,225\,042}$$
 
 ### Example 2: Target Evaluation for $N = 10^9$
 - Bulk greedy expansion over 1 billion leaves:
-  $$C(10^9) = \mathbf{64\,564\,225\,042}$$
+
+$$
+C(10^9) = \mathbf{64\,564\,225\,042}
+$$
 
 ---
 

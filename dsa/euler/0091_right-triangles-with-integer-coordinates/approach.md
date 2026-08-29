@@ -8,7 +8,10 @@ The coordinates satisfy $0 \le x_1, y_1, x_2, y_2 \le N$.
 For $N = 2$, there are exactly fourteen ($14$) right-angled triangles that can be formed.
 
 The objective is to find the number of **right-angled triangles $\triangle OPQ$** that can be formed for $N = 50$:
-$$N_{\text{right}} = \left| \left\{ \{P, Q\} \subset ([0, N] \times [0, N]) \setminus \{O\} \;\middle|\; P \neq Q \land \triangle OPQ \text{ has a right angle} \right\} \right|$$
+
+$$
+N_{\text{right}} = \left| \left\{ \{P, Q\} \subset ([0, N] \times [0, N]) \setminus \{O\} \;\middle|\; P \neq Q \land \triangle OPQ \text{ has a right angle} \right\} \right|
+$$
 
 ---
 
@@ -54,11 +57,22 @@ def naive_right_triangles(n):
 For each point $P(x_1, y_1) \in [1, N]^2$:
 1. $g = \gcd(x_1, y_1), \, \Delta x = y_1 / g, \, \Delta y = x_1 / g$.
 2. **Direction 1 (Down-Right):** $(x_1 + k \Delta x, y_1 - k \Delta y) \in [0, N]^2$:
-   $$k_1 = \min\left( \left\lfloor \frac{N - x_1}{\Delta x} \right\rfloor, \, \left\lfloor \frac{y_1}{\Delta y} \right\rfloor \right)$$
+
+$$
+k_1 = \min\left( \left\lfloor \frac{N - x_1}{\Delta x} \right\rfloor, \, \left\lfloor \frac{y_1}{\Delta y} \right\rfloor \right)
+$$
+
 3. **Direction 2 (Up-Left):** $(x_1 - k \Delta x, y_1 + k \Delta y) \in [0, N]^2$:
-   $$k_2 = \min\left( \left\lfloor \frac{x_1}{\Delta x} \right\rfloor, \, \left\lfloor \frac{N - y_1}{\Delta y} \right\rfloor \right)$$
+
+$$
+k_2 = \min\left( \left\lfloor \frac{x_1}{\Delta x} \right\rfloor, \, \left\lfloor \frac{N - y_1}{\Delta y} \right\rfloor \right)
+$$
+
 4. Total right-angled triangles:
-   $$N_{\text{right}} = 3N^2 + \sum_{x_1=1}^N \sum_{y_1=1}^N (k_1 + k_2)$$
+
+$$
+N_{\text{right}} = 3N^2 + \sum_{x_1=1}^N \sum_{y_1=1}^N (k_1 + k_2)
+$$
 
 ---
 
@@ -78,7 +92,10 @@ For each point $P(x_1, y_1) \in [1, N]^2$:
 
 ### Example 2: Target Evaluation for $N = 50$
 - Summing all 3 cases up to $N = 50$:
-  $$N_{\text{right}} = \mathbf{14\,234}$$
+
+$$
+N_{\text{right}} = \mathbf{14\,234}
+$$
 
 ---
 

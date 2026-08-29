@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A range of integers $[A, A + L - 1]$ is a *divisible range* if there exists a bijection $\pi: \{1, \dots, L\} \to [A, A + L - 1]$ such that:
-$$\pi(n) \equiv 0 \pmod n \quad \text{for all } 1 \le n \le L$$
+
+$$
+\pi(n) \equiv 0 \pmod n \quad \text{for all } 1 \le n \le L
+$$
+
 Given:
 - For $L = 4$, the first four ranges are $[1..4], [2..5], [3..6], [6..9]$.
 

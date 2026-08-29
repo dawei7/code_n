@@ -7,7 +7,10 @@ Consider the consecutive primes $p_1 = 19$ and $p_2 = 23$. It can be verified th
 In fact, with the exception of $p_1 = 3$ and $p_2 = 5$, for every pair of consecutive primes, $p_2 > p_1$, there exist values of $n$ for which the last digits are formed by $p_1$ and $n$ is divisible by $p_2$. Let $S$ be the smallest of these values of $n$.
 
 The objective is to find **$\sum S$ for every pair of consecutive primes to the limit $5 \le p_1 \le 1\,000\,000$**:
-$$S_{\text{total}} = \sum_{5 \le p_1 \le 10^6} S(p_1, p_2)$$
+
+$$
+S_{\text{total}} = \sum_{5 \le p_1 \le 10^6} S(p_1, p_2)
+$$
 
 ---
 
@@ -24,13 +27,28 @@ def naive_prime_pair_connection():
 ### Linear Congruence & Modular Inverse
 1. Let $m = 10^d$ be the smallest power of 10 strictly greater than $p_1$ ($m > p_1$).
 2. The number $S(p_1, p_2)$ must end in $p_1$, so:
-   $$S = k \cdot m + p_1 \quad \text{for some } k \in \mathbb{N}_0$$
+
+$$
+S = k \cdot m + p_1 \quad \text{for some } k \in \mathbb{N}_0
+$$
+
 3. $S$ must also be divisible by $p_2$:
-   $$k \cdot m + p_1 \equiv 0 \pmod{p_2} \iff k \cdot m \equiv -p_1 \pmod{p_2}$$
+
+$$
+k \cdot m + p_1 \equiv 0 \pmod{p_2} \iff k \cdot m \equiv -p_1 \pmod{p_2}
+$$
+
 4. Since $p_2 \ge 7$ is prime and $\gcd(m, p_2) = 1$, $m$ has a unique modular inverse $m^{-1} \pmod{p_2}$.
 5. The minimal non-negative integer $k$ is:
-   $$k = \left( (-p_1) \cdot m^{-1} \right) \bmod p_2$$
-   $$S(p_1, p_2) = k \cdot m + p_1$$
+
+$$
+k = \left( (-p_1) \cdot m^{-1} \right) \bmod p_2
+$$
+
+$$
+S(p_1, p_2) = k \cdot m + p_1
+$$
+
 6. Using `pow(m, -1, p2)`, $S(p_1, p_2)$ is calculated in $\mathcal{O}(\log p_2)$ time per pair, solving all $78\,498$ pairs in $\approx 0.20$ seconds.
 
 ---
@@ -80,7 +98,10 @@ def naive_prime_pair_connection():
 
 ### Example 2: Target Evaluation for $5 \le p_1 \le 1\,000\,000$
 - Summing $S(p_1, p_2)$ across all $78\,498$ pairs:
-  $$S_{\text{total}} = \mathbf{18\,613\,429\,182\,271\,810}$$
+
+$$
+S_{\text{total}} = \mathbf{18\,613\,429\,182\,271\,810}
+$$
 
 ---
 

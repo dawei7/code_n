@@ -11,7 +11,10 @@ We are given:
 - $H(20) = 966$
 
 We seek to evaluate:
-$$\sum_{n=3}^{12345} H(n)$$
+
+$$
+\sum_{n=3}^{12345} H(n)
+$$
 
 ---
 
@@ -31,9 +34,16 @@ An equilateral triangle of side $n = 12345$ contains $\approx 7.6 \times 10^7$ v
    Inside an equilateral triangle of side $3k$, there are exactly $k$ regular hexagons, parameterized by rotation steps $(a, b)$ with $a + b = k$ and $a \ge 1$.
 3. **Sub-Triangle Lattice Placements**:
    Inside an equilateral triangle of side $n$, the number of sub-triangles of side $3k$ is the triangular number:
-   $$\frac{(n - 3k + 1)(n - 3k + 2)}{2}$$
+
+$$
+\frac{(n - 3k + 1)(n - 3k + 2)}{2}
+$$
+
    Thus:
-   $$H(n) = \sum_{k=1}^{\lfloor n/3 \rfloor} k \cdot \frac{(n - 3k + 1)(n - 3k + 2)}{2}$$
+
+$$
+H(n) = \sum_{k=1}^{\lfloor n/3 \rfloor} k \cdot \frac{(n - 3k + 1)(n - 3k + 2)}{2}
+$$
 
 ---
 
@@ -41,12 +51,23 @@ An equilateral triangle of side $n = 12345$ contains $\approx 7.6 \times 10^7$ v
 
 ### Hockey-Stick Identity Summation ($O(L/3)$)
 1. **Summation Swap**:
-   $$\sum_{n=3}^L H(n) = \sum_{k=1}^{\lfloor L/3 \rfloor} k \sum_{n=3k}^L \frac{(n - 3k + 1)(n - 3k + 2)}{2}$$
+
+$$
+\sum_{n=3}^L H(n) = \sum_{k=1}^{\lfloor L/3 \rfloor} k \sum_{n=3k}^L \frac{(n - 3k + 1)(n - 3k + 2)}{2}
+$$
+
 2. **Tetrahedral Reduction**:
    Let $m = n - 3k$. By the hockey-stick identity:
-   $$\sum_{m=0}^{L - 3k} \binom{m + 2}{2} = \binom{L - 3k + 3}{3} = \frac{(L - 3k + 1)(L - 3k + 2)(L - 3k + 3)}{6}$$
+
+$$
+\sum_{m=0}^{L - 3k} \binom{m + 2}{2} = \binom{L - 3k + 3}{3} = \frac{(L - 3k + 1)(L - 3k + 2)(L - 3k + 3)}{6}
+$$
+
 3. **Closed Form Sum**:
-   $$\sum_{n=3}^L H(n) = \sum_{k=1}^{\lfloor L/3 \rfloor} k \cdot \frac{(L - 3k + 1)(L - 3k + 2)(L - 3k + 3)}{6}$$
+
+$$
+\sum_{n=3}^L H(n) = \sum_{k=1}^{\lfloor L/3 \rfloor} k \cdot \frac{(L - 3k + 1)(L - 3k + 2)(L - 3k + 3)}{6}
+$$
 
 This evaluates the complete sum for $L = 12345$ in **$4115$ arithmetic operations (< 1 millisecond)**!
 

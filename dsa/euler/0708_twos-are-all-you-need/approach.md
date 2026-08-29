@@ -3,17 +3,27 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a positive integer $n$ with prime factorization $n = \prod_{i=1}^k p_i^{e_i}$, let:
-$$f(n) = 2^{\sum_{i=1}^k e_i} = 2^{\Omega(n)}$$
+
+$$
+f(n) = 2^{\sum_{i=1}^k e_i} = 2^{\Omega(n)}
+$$
+
 where $\Omega(n)$ is the total number of prime factors of $n$ with multiplicity ($f(1) = 1$).
 
 Define:
-$$S(N) = \sum_{n=1}^N f(n)$$
+
+$$
+S(N) = \sum_{n=1}^N f(n)
+$$
 
 We are given:
 - $S(10^8) = 9613563919$
 
 We seek to evaluate:
-$$S(10^{14})$$
+
+$$
+S(10^{14})
+$$
 
 ---
 
@@ -28,11 +38,19 @@ Factoring each number up to $10^{14}$ requires $> 10^{14}$ operations, which is 
 
 ### Dirichlet Convolution Decomposition $f = d * h$
 1. **Dirichlet Generating Function**:
-   $$F(s) = \sum_{n=1}^\infty \frac{f(n)}{n^s} = \prod_p \frac{1}{1 - 2 p^{-s}}$$
+
+$$
+F(s) = \sum_{n=1}^\infty \frac{f(n)}{n^s} = \prod_p \frac{1}{1 - 2 p^{-s}}
+$$
+
 2. **Comparison with Divisor Function $d(n) = \tau(n)$**:
    The divisor function has Dirichlet series $D(s) = \zeta(s)^2 = \prod_p (1 - p^{-s})^{-2}$.
    Consider the quotient:
-   $$H(s) = \frac{F(s)}{D(s)} = \prod_p \frac{(1 - p^{-s})^2}{1 - 2 p^{-s}} = \prod_p \left( 1 + \frac{p^{-2s}}{1 - 2 p^{-s}} \right)$$
+
+$$
+H(s) = \frac{F(s)}{D(s)} = \prod_p \frac{(1 - p^{-s})^2}{1 - 2 p^{-s}} = \prod_p \left( 1 + \frac{p^{-2s}}{1 - 2 p^{-s}} \right)
+$$
+
 3. **Sparsity of $h(n)$ (Powerful Numbers)**:
    Expanding at prime powers:
    - $h(p) = 0$ for all primes $p$.
@@ -45,7 +63,13 @@ Factoring each number up to $10^{14}$ requires $> 10^{14}$ operations, which is 
 
 ### Powerful Number DFS with Divisor Hyperbola Sum
 1. **Dirichlet Identity**:
-   $$S(N) = \sum_{n=1}^N (d * h)(n) = \sum_{\substack{k \le N \\ k \text{ is powerful}}} h(k) \cdot D\left(\left\lfloor \frac{N}{k} \right\rfloor\right)$$
+
+$$
+\begin{aligned}
+S(N) = \sum_{n=1}^N (d * h)(n) = \sum_{\substack{k \le N \\ k \text{ is powerful}}} h(k) \cdot D\left(\left\lfloor \frac{N}{k} \right\rfloor\right)
+\end{aligned}
+$$
+
    where $D(x) = \sum_{m=1}^{\lfloor x \rfloor} \tau(m) = 2 \sum_{a=1}^{\lfloor \sqrt{x} \rfloor} \lfloor x/a \rfloor - \lfloor \sqrt{x} \rfloor^2$.
 2. **Recursive DFS Generation**:
    There are only $O(\sqrt{N}) \approx 2 \times 10^7$ powerful numbers up to $10^{14}$.

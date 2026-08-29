@@ -4,13 +4,22 @@
 
 Let $\mathcal{D}_3 = \{ x \in \mathbb{N} \mid 100 \le x \le 999 \}$ denote the set of 3-digit natural numbers.
 Define the product set of 3-digit numbers by:
-$$\mathcal{P}_3 = \{ a \cdot b \mid a, b \in \mathcal{D}_3 \}$$
+
+$$
+\mathcal{P}_3 = \{ a \cdot b \mid a, b \in \mathcal{D}_3 \}
+$$
 
 An integer $P \in \mathcal{P}_3$ is defined as **palindromic** in base 10 if its decimal representation string $\mathbf{s} = d_{k-1} d_{k-2} \dots d_0$ satisfies reflection symmetry:
-$$\forall i \in \{0, \dots, k-1\}, \quad d_i = d_{k-1-i}$$
+
+$$
+\forall i \in \{0, \dots, k-1\}, \quad d_i = d_{k-1-i}
+$$
 
 The objective is to compute the maximum palindromic product:
-$$P_{\text{max}} = \max \{ P \in \mathcal{P}_3 \mid P \text{ is palindromic} \}$$
+
+$$
+P_{\text{max}} = \max \{ P \in \mathcal{P}_3 \mid P \text{ is palindromic} \}
+$$
 
 ---
 
@@ -39,9 +48,16 @@ def naive_largest_palindrome():
 ## 3. Core Intuition & Mathematical Structure
 
 Every 6-digit decimal palindrome $P = \overline{x y z z y x}$ can be expanded in powers of 10:
-$$P = 100\,000x + 10\,000y + 1\,000z + 100z + 10y + x = 100\,001x + 10\,010y + 1\,100z$$
+
+$$
+P = 100\,000x + 10\,000y + 1\,000z + 100z + 10y + x = 100\,001x + 10\,010y + 1\,100z
+$$
+
 Factoring out $11$:
-$$P = 11 \cdot (9091x + 910y + 100z)$$
+
+$$
+P = 11 \cdot (9091x + 910y + 100z)
+$$
 
 ### Factorization & Algebraic Properties
 
@@ -58,16 +74,28 @@ $$P = 11 \cdot (9091x + 910y + 100z)$$
 
 ### A. Modulo 11 Divisibility Rule
 By Euclid's Lemma, because $11$ is a prime number:
-$$11 \mid (a \cdot b) \iff (11 \mid a) \lor (11 \mid b)$$
+
+$$
+11 \mid (a \cdot b) \iff (11 \mid a) \lor (11 \mid b)
+$$
+
 Thus, at least one of the two 3-digit factors must be a multiple of 11.
 
 ### B. Pruning Bounds
 By iterating $a$ downwards from $999$ to $100$ and $b$ downwards from $a$ to $100$:
 1. If $a \cdot 999 \le P_{\text{max}}$, then $\forall a' \le a$ and $\forall b' \le 999$:
-   $$a' \cdot b' \le a \cdot 999 \le P_{\text{max}}$$
+
+$$
+a' \cdot b' \le a \cdot 999 \le P_{\text{max}}
+$$
+
    Hence, no larger product can possibly exist, allowing immediate outer loop termination.
 2. For fixed $a$, if $a \cdot b \le P_{\text{max}}$, then $\forall b' \le b$:
-   $$a \cdot b' \le a \cdot b \le P_{\text{max}}$$
+
+$$
+a \cdot b' \le a \cdot b \le P_{\text{max}}
+$$
+
    allowing immediate inner loop termination.
 
 ---
@@ -83,7 +111,11 @@ By iterating $a$ downwards from $999$ to $100$ and $b$ downwards from $a$ to $10
 ### Example 2: 3-Digit Numbers ($N = 3$)
 - Search begins at $a = 999, b = 999$.
 - Discovers palindrome:
-  $$913 \times 993 = \mathbf{906\,609}$$
+
+$$
+913 \times 993 = \mathbf{906\,609}
+$$
+
   - $906609$ has decimal string `"906609"` which equals its reverse `"906609"`.
 - Subsequent candidate rows quickly terminate via $a \cdot 999 \le 906609$ (for $a \le 907$).
 - Maximum Palindromic Product: $P_{\text{max}} = \mathbf{906\,609}$.

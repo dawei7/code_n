@@ -13,7 +13,10 @@ We are given:
 - $c(100, 40) \equiv 986699437 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$c(10^7, 4 \times 10^6) \pmod{10^9 + 7}$$
+
+$$
+c(10^7, 4 \times 10^6) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -29,15 +32,31 @@ Expanding high-order derivatives or naive polynomial products of degree $10^7$ r
 ### Conditional Binomial Expectations & Eulerian Numbers
 1. **Geometric Number of Rounds**:
    Let $R$ be the number of Tails Alice tosses before her first Head ($R \sim \operatorname{Geom}(1-p)$):
-   $$P(R = r) = p^r (1 - p) \quad (r \ge 0)$$
+
+$$
+P(R = r) = p^r (1 - p) \quad (r \ge 0)
+$$
+
 2. **Independent Conditional Heads**:
    Given $R = r$, each friend's head count $H_i \sim \operatorname{Binomial}(r, 1-p)$.
    Since friends are independent:
-   $$\mathbb{E}[H_1 \dots H_n \mid R = r] = \prod_{i=1}^n \mathbb{E}[H_i \mid R = r] = (r(1 - p))^n = r^n (1 - p)^n$$
+
+$$
+\mathbb{E}[H_1 \dots H_n \mid R = r] = \prod_{i=1}^n \mathbb{E}[H_i \mid R = r] = (r(1 - p))^n = r^n (1 - p)^n
+$$
+
 3. **Eulerian Generating Function**:
-   $$e(n, p) = \sum_{r=0}^\infty p^r (1 - p) \cdot r^n (1 - p)^n = (1 - p)^{n+1} \sum_{r=0}^\infty r^n p^r$$
+
+$$
+e(n, p) = \sum_{r=0}^\infty p^r (1 - p) \cdot r^n (1 - p)^n = (1 - p)^{n+1} \sum_{r=0}^\infty r^n p^r
+$$
+
    By Worpitzky's identity and the Eulerian polynomial generating function:
-   $$\sum_{r=0}^\infty r^n p^r = \frac{\sum_{k=1}^n A(n, k) p^k}{(1 - p)^{n+1}} \implies e(n, p) = \sum_{k=1}^n A(n, k) p^k$$
+
+$$
+\sum_{r=0}^\infty r^n p^r = \frac{\sum_{k=1}^n A(n, k) p^k}{(1 - p)^{n+1}} \implies e(n, p) = \sum_{k=1}^n A(n, k) p^k
+$$
+
    Hence, $c(n, k) = A(n, k)$ is exactly the **Eulerian number**!
 
 ---
@@ -46,7 +65,11 @@ Expanding high-order derivatives or naive polynomial products of degree $10^7$ r
 
 ### Explicit Single-Sum Eulerian Number Formula ($O(k)$)
 1. **Explicit Identity**:
-   $$A(n, k) = \sum_{j=0}^k (-1)^j \binom{n+1}{j} (k - j)^n \pmod{10^9 + 7}$$
+
+$$
+A(n, k) = \sum_{j=0}^k (-1)^j \binom{n+1}{j} (k - j)^n \pmod{10^9 + 7}
+$$
+
 2. **Linear Modular Inverse Array**:
    Precompute modular inverses $\operatorname{inv}[1 \dots k+1]$ in $O(k)$ time using $\operatorname{inv}[i] = (M - \lfloor M/i \rfloor) \cdot \operatorname{inv}[M \bmod i] \pmod M$.
 3. **Iterative Binomial Update**:

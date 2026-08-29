@@ -19,7 +19,10 @@ We are given:
 - $f(13, 144, 233) \equiv 907081451 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$\sum_{i=4}^{40} f(i, F_{i-1}, F_i) \bmod 1\,000\,000\,007$$
+
+$$
+\sum_{i=4}^{40} f(i, F_{i-1}, F_i) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -36,13 +39,20 @@ For $i = 40$, $F_{39} \approx 6.3 \times 10^7$ and $F_{40} \approx 1.02 \times 1
 1. **Cycle Structure on Grid Product**:
    Let $\sigma \in D_a$ have cycle type with $c_a(r)$ cycles of length $r$, and $\tau \in D_b$ have cycle type with $c_b(s)$ cycles of length $s$.
    The product permutation $\sigma \times \tau$ acts on the $a \times b$ grid with total number of cycles:
-   $$c(\sigma \times \tau) = \sum_{r, s} c_a(r) c_b(s) \gcd(r, s)$$
+
+$$
+c(\sigma \times \tau) = \sum_{r, s} c_a(r) c_b(s) \gcd(r, s)
+$$
+
 2. **Dihedral Group Cycle Types**:
    - Rotations: For each divisor $L \mid n$, there are $\phi(L)$ elements with $n/L$ cycles of length $L$.
    - Reflections: 1 fixed point if $n$ is odd, and 2 fixed points / 0 fixed points if $n$ is even.
 3. **Surjection Inclusion-Exclusion for Exactly $m$ Colours**:
    For a permutation with $c$ cycles, the number of colourings using exactly $m$ colours is the number of surjective assignments:
-   $$\operatorname{surj}(c, m) = \sum_{k=0}^m (-1)^k \binom{m}{k} (m - k)^c$$
+
+$$
+\operatorname{surj}(c, m) = \sum_{k=0}^m (-1)^k \binom{m}{k} (m - k)^c
+$$
 
 ---
 
@@ -53,7 +63,10 @@ For $i = 40$, $F_{39} \approx 6.3 \times 10^7$ and $F_{40} \approx 1.02 \times 1
    The number of distinct cycle types in $D_a$ is at most $d(a) + 2 \le 150$.
    The product has at most $(d(a) + 2)(d(b) + 2) \le 2 \times 10^4$ pairs.
 2. **Burnside's Lemma**:
-   $$f(m, a, b) = \frac{1}{4 a b} \sum_{(\mathcal{T}_a, \mathcal{T}_b)} \operatorname{mult}(\mathcal{T}_a) \operatorname{mult}(\mathcal{T}_b) \operatorname{surj}(c(\mathcal{T}_a \times \mathcal{T}_b), m) \pmod{10^9 + 7}$$
+
+$$
+f(m, a, b) = \frac{1}{4 a b} \sum_{(\mathcal{T}_a, \mathcal{T}_b)} \operatorname{mult}(\mathcal{T}_a) \operatorname{mult}(\mathcal{T}_b) \operatorname{surj}(c(\mathcal{T}_a \times \mathcal{T}_b), m) \pmod{10^9 + 7}
+$$
 
 This evaluates the complete sum for all $i \in [4, 40]$ in **$\approx 0.14$ seconds**!
 

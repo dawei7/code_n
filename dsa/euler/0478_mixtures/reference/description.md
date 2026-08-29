@@ -6,8 +6,9 @@ For the purposes of this problem, we cannot separate the individual components f
 
 For example, say we have three mixtures with ratios $(3 : 0 : 2)$, $(3: 6 : 11)$ and $(3 : 3 : 4)$. By mixing $10$ units of the first, $20$ units of the second and $30$ units of the third, we get a new mixture with ratio $(6 : 5 : 9)$, since:
 
-$(10 \cdot \tfrac 3 5$ + $20 \cdot \tfrac 3 {20} + 30 \cdot \tfrac 3 {10} : 10 \cdot \tfrac 0 5 + 20 \cdot \tfrac 6 {20} + 30 \cdot \tfrac 3 {10} : 10 \cdot \tfrac 2 5 + 20 \cdot \tfrac {11} {20} + 30 \cdot \tfrac 4 {10})
-= (18 : 15 : 27) = (6 : 5 : 9)$
+$$
+\left(10 \cdot \tfrac{3}{5} + 20 \cdot \tfrac{3}{20} + 30 \cdot \tfrac{3}{10} : 10 \cdot \tfrac{0}{5} + 20 \cdot \tfrac{6}{20} + 30 \cdot \tfrac{3}{10} : 10 \cdot \tfrac{2}{5} + 20 \cdot \tfrac{11}{20} + 30 \cdot \tfrac{4}{10}\right) = (18 : 15 : 27) = (6 : 5 : 9)
+$$
 
 However, with the same three mixtures, it is impossible to form the ratio $(3 : 2 : 1)$, since the amount of B is always less than the amount of C.
 
@@ -24,8 +25,8 @@ $$
 \end{aligned}
 $$
 
-Let $E(n)$ be the number of subsets of $M(n)$ which can produce the mixture with ratio $(1 : 1 : 1)$, i.e., the mixture with equal parts A, B and C.
+Let $E(n)$ be the number of subsets of $M(n)$ which can produce the mixture $(1 : 1 : 1)$, i.e., the mixture with equal parts A, B and C.
 
-We can verify that $E(1) = 103$, $E(2) = 520447$, $E(10) \bmod 11^8 = 82608406$ and $E(500) \bmod 11^8 = 13801403$.
+We can verify that $E(1) = 103$, $E(2) = 520447$, $E(10) \equiv 82608406 \pmod{1\,000\,000\,007}$ and $E(500) \equiv 13801403 \pmod{1\,000\,000\,007}$.
 
-Find $E(10\,000\,000) \bmod 11^8$.
+Find $E(10\,000\,000) \bmod 1\,000\,000\,007$.

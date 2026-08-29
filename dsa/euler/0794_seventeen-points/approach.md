@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For each $n \ge 1$, a sequence of points $(x_1, \dots, x_n)$ in $[0, 1)$ is constructed such that for every step $m \in \{1, \dots, n\}$, each of the $m$ sub-intervals:
-$$\left[\frac{k-1}{m}, \frac{k}{m}\right), \quad k \in \{1, \dots, m\}$$
+
+$$
+\left[\frac{k-1}{m}, \frac{k}{m}\right), \quad k \in \{1, \dots, m\}
+$$
+
 contains exactly one point from $\{x_1, \dots, x_m\}$.
 $F(n)$ is the minimum possible sum $x_1 + \dots + x_n$.
 It is known that such a construction is impossible for $n \ge 18$.
@@ -12,7 +16,10 @@ We are given:
 - $F(4) = 1.5$ (achieved by $(0, 0.75, 0.5, 0.25)$)
 
 We seek to evaluate:
-$$F(17) \text{ rounded to 12 decimal places}$$
+
+$$
+F(17) \text{ rounded to 12 decimal places}
+$$
 
 ---
 
@@ -31,7 +38,11 @@ Solving continuous linear programs over unconstrained point positions across all
    Thus, a valid choice sequence corresponds bijectively to the permutation insertion order of the new point $x_m$ into the existing sorted array!
 2. **Greedy Lower-Bound Optimality**:
    For any fixed permutation insertion history, each point $x_i$ accumulates lower bounds $L_i$ and upper bounds $U_i$ from all steps $m \in [i, n]$:
-   $$x_i \in [L_i, U_i) = \bigcap_{m=i}^n \left[ \frac{\operatorname{rank}_m(i) - 1}{m}, \frac{\operatorname{rank}_m(i)}{m} \right)$$
+
+$$
+x_i \in [L_i, U_i) = \bigcap_{m=i}^n \left[ \frac{\operatorname{rank}_m(i) - 1}{m}, \frac{\operatorname{rank}_m(i)}{m} \right)
+$$
+
    To minimize the sum $\sum x_i$, we greedily choose $x_i = L_i$.
    A branch is feasible if and only if $L_i < U_i$ for all $i$.
 

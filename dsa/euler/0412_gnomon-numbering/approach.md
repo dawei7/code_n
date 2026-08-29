@@ -13,7 +13,10 @@ We are given:
 - $\text{LC}(10, 5) \equiv 61\,251\,715 \pmod{76543217}$
 
 We seek to evaluate:
-$$\text{LC}(10000, 5000) \pmod{76543217}$$
+
+$$
+\text{LC}(10000, 5000) \pmod{76543217}
+$$
 
 ---
 
@@ -29,7 +32,11 @@ The total number of cells is $N = 10000^2 - 5000^2 = 75\,000\,000$. Backtracking
 ### The Frame-Robinson-Thrall Hook Length Formula
 The grid $L(m, n)$ is a skew Young diagram with row lengths $(\underbrace{m-n, \dots, m-n}_{n \text{ times}}, \underbrace{m, \dots, m}_{m-n \text{ times}})$.
 By the Hook Length Formula for shifted/staircase Young diagrams:
-$$\text{LC}(m, n) = \frac{N!}{\prod_{c \in L(m, n)} h(c)}$$
+
+$$
+\text{LC}(m, n) = \frac{N!}{\prod_{c \in L(m, n)} h(c)}
+$$
+
 where $h(c)$ is the hook length of cell $c$.
 
 ---
@@ -38,7 +45,10 @@ where $h(c)$ is the hook length of cell $c$.
 
 ### Factorial Product Reduction
 The hook lengths in the $m \times m$ grid with an $n \times n$ missing corner factor into structured products:
-$$\prod_{c \in L(m, n)} h(c) = \frac{\prod_{i=1}^{m-1} i! \cdot \prod_{j=m+n}^{2m-1} j!}{\prod_{a=1}^{n-1} a! \cdot \prod_{b=1}^{m-n-1} b! \cdot \prod_{t=0}^{m-n-1} \frac{(2n+t)!}{(n+t)!}}$$
+
+$$
+\prod_{c \in L(m, n)} h(c) = \frac{\prod_{i=1}^{m-1} i! \cdot \prod_{j=m+n}^{2m-1} j!}{\prod_{a=1}^{n-1} a! \cdot \prod_{b=1}^{m-n-1} b! \cdot \prod_{t=0}^{m-n-1} \frac{(2n+t)!}{(n+t)!}}
+$$
 
 1. All hook length factorial products are evaluated in $O(m)$ operations using precomputed factorials up to $2m$.
 2. The numerator $(m^2 - n^2)! = 75\,000\,000! \pmod{76543217}$ is computed in a single $O(N)$ linear pass.

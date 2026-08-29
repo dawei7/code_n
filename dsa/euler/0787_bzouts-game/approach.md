@@ -4,7 +4,11 @@
 
 Two players take alternating turns on two piles of sizes $a, b > 0$ with $\gcd(a, b) = 1$.
 A move removes $c \ge 0$ stones from the first pile and $d \ge 0$ stones from the second pile such that:
-$$ad - bc = \pm 1$$
+
+$$
+ad - bc = \pm 1
+$$
+
 The player who first empties a pile wins.
 $H(N)$ is the number of winning positions $(a, b)$ with $\gcd(a, b) = 1, a > 0, b > 0$, and $a + b \le N$.
 
@@ -13,7 +17,10 @@ We are given:
 - $H(100) = 2043$
 
 We seek to evaluate:
-$$H(10^9)$$
+
+$$
+H(10^9)
+$$
 
 ---
 
@@ -37,7 +44,11 @@ Building the game state DAG over all coprime pairs $(a, b)$ with $a + b \le 10^9
    Therefore, the total coprime pairs in $a + b \le N$ partition into:
    - $(a \text{ odd}, b \text{ odd})$: Losing positions,
    - $(a \text{ even}, b \text{ odd})$ and $(a \text{ odd}, b \text{ even})$: Winning positions.
-   $$H(N) = \Phi(N) - \Phi_{\text{odd-odd}}(N)$$
+
+$$
+H(N) = \Phi(N) - \Phi_{\text{odd-odd}}(N)
+$$
+
    where $\Phi(N) = \sum_{a+b \le N, \gcd(a, b)=1} 1 = \sum_{s=2}^N \varphi(s)$.
 
 ---
@@ -46,7 +57,11 @@ Building the game state DAG over all coprime pairs $(a, b)$ with $a + b \le 10^9
 
 ### Sublinear Mertens & Totient Summatory Sieve
 1. **Euler Totient Summatory Function $\Phi(N)$**:
-   $$\Phi(N) = \sum_{k=1}^N \mu(k) \frac{\lfloor N/k \rfloor (\lfloor N/k \rfloor + 1)}{2} - 1$$
+
+$$
+\Phi(N) = \sum_{k=1}^N \mu(k) \frac{\lfloor N/k \rfloor (\lfloor N/k \rfloor + 1)}{2} - 1
+$$
+
 2. **Odd-Odd Coprime Sieve**:
    Losing positions $\Phi_{\text{odd-odd}}(N)$ are evaluated via parity-filtered Mobius hyperbola summation.
 3. **Execution Performance**:

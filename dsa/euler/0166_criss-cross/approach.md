@@ -4,22 +4,31 @@
 
 A $4 \times 4$ grid is filled with the digits $d_{r, c} \in \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$ ($1 \le r, c \le 4$).
 The grid is valid if each of the four rows, each of the four columns, and both diagonals have the **same sum $S$**:
-$$\begin{pmatrix}
+
+$$
+\begin{pmatrix}
 a & b & c & d \\
 e & f & g & h \\
 i & j & k & l \\
 m & n & o & p
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 The $10$ linear constraint equations are:
-$$\begin{matrix}
+
+$$
+\begin{matrix}
 \text{Rows:} & a+b+c+d = S, & e+f+g+h = S, & i+j+k+l = S, & m+n+o+p = S \\
 \text{Cols:} & a+e+i+m = S, & b+f+j+n = S, & c+g+k+o = S, & d+h+l+p = S \\
 \text{Diags:} & a+f+k+p = S, & d+g+j+m = S
-\end{matrix}$$
+\end{matrix}
+$$
 
 The objective is to find the **total number of ways to fill the $4 \times 4$ grid with digits $0 \dots 9$ such that all rows, columns, and main diagonals have the same sum**:
-$$N_{\text{grids}} = \text{total valid configurations}$$
+
+$$
+N_{\text{grids}} = \text{total valid configurations}
+$$
 
 ---
 
@@ -40,12 +49,16 @@ def naive_criss_cross():
    - Row 2: $(e, f, g, h)$ with sum $S$.
    - Digit $i$ from Row 3.
    The remaining **$7$ variables are uniquely determined** by simple linear equations in $\mathcal{O}(1)$ time:
-   $$\begin{matrix}
+
+$$
+\begin{matrix}
    m = S - a - e - i & j = a + e + i - d - g \\
    p = e + i - d & l = f + g - i \\
    n = S - b - f - j & k = S - a - f - p \\
    o = S - c - g - k
-   \end{matrix}$$
+\end{matrix}
+$$
+
 2. **Early Range Bounds:**
    Each derived variable must satisfy $0 \le x \le 9$. If any derived variable violates this range, the branch is pruned immediately.
 3. Pre-grouping the $10\,000$ digit quadruples by their sum $S \in [0, 36]$ allows instant iteration over valid rows, completing in $\approx 0.20$ seconds.
@@ -95,7 +108,10 @@ def naive_criss_cross():
 
 ### Example 2: Target Total Count across All 37 Sums
 - Summing over all $S \in [0, 36]$:
-  $$N_{\text{grids}} = \mathbf{7\,130\,034}$$
+
+$$
+N_{\text{grids}} = \mathbf{7\,130\,034}
+$$
 
 ---
 

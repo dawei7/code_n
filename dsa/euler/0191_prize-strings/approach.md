@@ -11,10 +11,16 @@ During an $n$-day period a trinary string is formed for each child consisting of
 - `A`s (absent)
 
 For an $n = 4$ day period, there are $81$ possible strings, and exactly $43$ of these strings are prize-winning:
-$$N_{\text{prize}}(4) = 43$$
+
+$$
+N_{\text{prize}}(4) = 43
+$$
 
 The objective is to find the **number of prize-winning attendance strings that exist over a 30-day period ($n = 30$)**:
-$$N_{\text{prize}}(30) = \text{number of valid prize-winning strings}$$
+
+$$
+N_{\text{prize}}(30) = \text{number of valid prize-winning strings}
+$$
 
 ---
 
@@ -82,7 +88,10 @@ def solve(days: int = 30) -> int:
     return sum(dp[lates][a] for lates in range(2) for a in range(3))
 ```
 Evaluating for $D = 30$:
-$$N_{\text{prize}}(30) = \mathbf{1\,918\,080\,160}$$
+
+$$
+N_{\text{prize}}(30) = \mathbf{1\,918\,080\,160}
+$$
 
 ---
 
@@ -98,7 +107,10 @@ $$N_{\text{prize}}(30) = \mathbf{1\,918\,080\,160}$$
 
 ### Example 2: Target Evaluation for $D = 30$
 - Summing all 6 states after 30 days:
-  $$N_{\text{prize}}(30) = \mathbf{1\,918\,080\,160}$$
+
+$$
+N_{\text{prize}}(30) = \mathbf{1\,918\,080\,160}
+$$
 
 ---
 

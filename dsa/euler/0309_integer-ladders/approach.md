@@ -5,7 +5,11 @@
 In a narrow street of width $w$ between two vertical walls, two ladders of integer lengths $x$ and $y$ lean against opposite walls and cross at a point at integer height $h$ above the ground.
 Let $a = \sqrt{x^2 - w^2}$ and $b = \sqrt{y^2 - w^2}$ be the heights where the ladders touch the walls.
 By the crossed ladders theorem:
-$$\frac{1}{a} + \frac{1}{b} = \frac{1}{h}$$
+
+$$
+\frac{1}{a} + \frac{1}{b} = \frac{1}{h}
+$$
+
 We seek the number of integer quadruplets $(x, y, h, w)$ such that $0 < x < y < 1\,000\,000$ with $a, b, h, w$ all positive integers.
 
 ---
@@ -23,7 +27,11 @@ A naive approach iterates over all triples $(x, y, w)$ with $1 \le w < x < y < 1
 
 ### Common-Leg Pythagorean Triangles
 Notice that $(w, a, x)$ and $(w, b, y)$ are two right-angled triangles sharing the common leg $w$:
-$$w^2 + a^2 = x^2, \quad w^2 + b^2 = y^2$$
+
+$$
+w^2 + a^2 = x^2, \quad w^2 + b^2 = y^2
+$$
+
 Every primitive Pythagorean triple $(u^2 - v^2, 2uv, u^2 + v^2)$ scaled by factor $k$ yields:
 - One leg $L_1 = k(u^2 - v^2)$
 - One leg $L_2 = 2kuv$
@@ -38,12 +46,23 @@ By grouping all generated Pythagorean legs by their common width $w$, we obtain 
 ### Harmonic Mean Divisibility Test
 For each street width $w$ with associated height list $A_w$:
 For each pair of heights $(a, b) \in A_w$ with $a < b$:
-$$h = \frac{ab}{a + b}$$
+
+$$
+h = \frac{ab}{a + b}
+$$
 
 $h$ is an integer if and only if:
-$$(a + b) \mid ab$$
+
+$$
+(a + b) \mid ab
+$$
+
 Because $\gcd(a, a + b) = \gcd(a, b)$:
-$$\frac{ab}{a + b} \in \mathbb{Z} \iff (a + b) \mid \gcd(a, b)^2$$
+
+$$
+\frac{ab}{a + b} \in \mathbb{Z} \iff (a + b) \mid \gcd(a, b)^2
+$$
+
 Testing $(a \cdot b) \bmod (a + b) == 0$ for all pairs in $A_w$ counts all valid integer ladder configurations in under $0.7$ seconds!
 
 ---

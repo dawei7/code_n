@@ -14,13 +14,19 @@ A move is denoted by the uppercase initial of the direction in which a tile is s
 - `D` (Down, ASCII $68$)
 
 The **checksum** of any move sequence $m_1, m_2, \dots, m_n$ is computed via the polynomial rolling hash:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 \text{checksum}_0 &= 0 \\
 \text{checksum}_k &= (\text{checksum}_{k-1} \times 243 + m_k) \bmod 100\,000\,007
-\end{aligned}$$
+\end{aligned}
+$$
 
 For example, starting from configuration (S), the sequence `LULUR` reaches configuration (E) with checksum:
-$$\text{checksum}(\text{LULUR}) = 19\,761\,398$$
+
+$$
+\text{checksum}(\text{LULUR}) = 19\,761\,398
+$$
 
 Starting from configuration (S), find all shortest ways to reach configuration (T).
 What is the sum of all checksums for the paths having the **minimal length**?
@@ -47,7 +53,11 @@ def naive_sliders_search():
 2. **Layered BFS & Shortest Path Checksum DP:**
    We perform a layered Breadth-First Search from (S) to (T).
    The optimal path has minimal length $L = 33$ moves:
-   $$\text{Sequence} = \text{`LLURRDLLLURRDLUURULDLURDRRULDDRD'}$$
+
+$$
+\text{Sequence} = \text{`LLURRDLLLURRDLUURULDLURDRRULDDRD'}
+$$
+
 3. **Checksum Evaluation:**
    Evaluating the rolling hash modulo $100\,000\,007$ produces the exact total $96356848$.
 
@@ -83,7 +93,10 @@ def solve() -> int:
 ```
 
 Evaluating for the minimal length path:
-$$\text{Checksum Sum} = \mathbf{96\,356\,848}$$
+
+$$
+\text{Checksum Sum} = \mathbf{96\,356\,848}
+$$
 
 ---
 
@@ -99,9 +112,16 @@ $$\text{Checksum Sum} = \mathbf{96\,356\,848}$$
 
 ### Example 2: Target Evaluation for Configuration (T)
 - Minimal length path sequence (33 moves):
-  $$\text{`LLURRDLLLURRDLUURULDLURDRRULDDRD'}$$
+
+$$
+\text{`LLURRDLLLURRDLUURULDLURDRRULDDRD'}
+$$
+
 - Checksum:
-  $$\text{Checksum} = \mathbf{96\,356\,848} \quad (\checkmark)$$
+
+$$
+\text{Checksum} = \mathbf{96\,356\,848} \quad (\checkmark)
+$$
 
 ---
 

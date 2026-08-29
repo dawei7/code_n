@@ -12,7 +12,10 @@ We are given:
 - $g(8) = 23462347 \implies g(7) + g(8) = 23853163$
 
 We seek to evaluate:
-$$(g(7^7) + g(8^8)) \bmod 1\,000\,000\,007$$
+
+$$
+(g(7^7) + g(8^8)) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -27,7 +30,11 @@ For $n = 8^8 \approx 1.68 \times 10^7$, explicit graph enumeration is impossible
 
 ### Burnside's Lemma & Generating Function Recurrences
 1. **$D_4$ Symmetry Orbit Decomposition**:
-   $$g(n) = \frac{1}{8} \left( f(n) + 2 f_{\text{rot90}}(n) + f_{\text{rot180}}(n) + 2 f_{\text{axis}}(n) + 2 f_{\text{diag}}(n) \right) \pmod{10^9+7}$$
+
+$$
+g(n) = \frac{1}{8} \left( f(n) + 2 f_{\text{rot90}}(n) + f_{\text{rot180}}(n) + 2 f_{\text{axis}}(n) + 2 f_{\text{diag}}(n) \right) \pmod{10^9+7}
+$$
+
 2. **Component Exponential Generating Functions**:
    - **Total count $f(n)$**: $f(n) = n! h_n$ with $h_{k+1} = k h_k + \frac{k}{2} h_{k-1}$.
    - **Diagonal reflection $f_{\text{diag}}(n)$**: $A_{k+1} = 2k A_k - k(k-2) A_{k-1} - \frac{k(k-1)(k-2)}{2} A_{k-3}$.

@@ -12,7 +12,10 @@ We are given:
 - $S(10000) = 2024258331114$
 
 We seek the last $9$ digits of:
-$$\sum_{k=2}^{1234567890123} S(F_k) \pmod{10^9}$$
+
+$$
+\sum_{k=2}^{1234567890123} S(F_k) \pmod{10^9}
+$$
 
 ---
 
@@ -27,7 +30,11 @@ $F_{1234567890123}$ has over $2.5 \times 10^{11}$ decimal digits. Direct polynom
 
 ### Integer-Valued Polynomial Basis & Modulo 24 Periodicity
 By the theory of integer-valued polynomials, $\gcd_{n \in \mathbb{Z}} P(n) = \gcd(\Delta P(0), \Delta^2 P(0), \Delta^3 P(0), \Delta^4 P(0))$:
-$$M(a, b, c) = \gcd(1 + a + b + c, 14 + 6a + 2b, 36 + 6a, 24)$$
+
+$$
+M(a, b, c) = \gcd(1 + a + b + c, 14 + 6a + 2b, 36 + 6a, 24)
+$$
+
 Thus $M(a, b, c)$ always divides $24$ and depends only on $(a, b, c) \pmod{24}$.
 
 Furthermore:
@@ -40,7 +47,10 @@ Furthermore:
 
 ### Subsequence Power Sums via 14x14 Matrix Exponentiation
 For each fixed residue $s \in [0, 23]$, the Fibonacci subsequence $F_{s + 24t}$ satisfies a second-order linear recurrence with matrix:
-$$\begin{pmatrix} F_{s+24(t+1)+1} \\ F_{s+24(t+1)} \end{pmatrix} = \begin{pmatrix} F_{25} & F_{24} \\ F_{24} & F_{23} \end{pmatrix} \begin{pmatrix} F_{s+24t+1} \\ F_{s+24t} \end{pmatrix}$$
+
+$$
+\begin{pmatrix} F_{s+24(t+1)+1} \\ F_{s+24(t+1)} \end{pmatrix} = \begin{pmatrix} F_{25} & F_{24} \\ F_{24} & F_{23} \end{pmatrix} \begin{pmatrix} F_{s+24t+1} \\ F_{s+24t} \end{pmatrix}
+$$
 
 1. We construct a **$10 \times 10$ monomial matrix** tracking all powers and cross-products $\{1, x, y, x^2, xy, y^2, x^3, x^2y, xy^2, y^3\}$.
 2. We augment this to a **$14 \times 14$ block matrix** to accumulate prefix sums of $y^0, y^1, y^2, y^3$ across $n_{\text{terms}}$ steps.

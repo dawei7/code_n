@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A lattice point $(x, y)$ is **inadmissible** if $x, y, x+y$ are all positive perfect squares:
-$$x = u^2, \quad y = v^2, \quad x + y = u^2 + v^2 = w^2$$
+
+$$
+x = u^2, \quad y = v^2, \quad x + y = u^2 + v^2 = w^2
+$$
+
 which corresponds to Pythagorean triples $(u, v, w)$ with $u^2, v^2 \le n$.
 
 A grid path from $(0, 0)$ to $(n, n)$ using only unit north and east steps is **admissible** if it avoids all inadmissible points.
@@ -15,7 +19,10 @@ We are given:
 - $P(1000) \equiv 341\,920\,854 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$P(10\,000\,000) \pmod{10^9 + 7}$$
+
+$$
+P(10\,000\,000) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -31,7 +38,10 @@ A standard $N \times N$ DP table for $N = 10^7$ requires $10^{14}$ state transit
 ### Sparse Obstacle Inclusion-Exclusion
 The number of inadmissible points in $[0, 10^7] \times [0, 10^7]$ is tiny ($K = 7850$ points).
 The number of unconstrained paths between any two points $A(x_1, y_1)$ and $B(x_2, y_2)$ is given by the binomial coefficient:
-$$\text{paths}(A, B) = \binom{(x_2 - x_1) + (y_2 - y_1)}{x_2 - x_1}$$
+
+$$
+\text{paths}(A, B) = \binom{(x_2 - x_1) + (y_2 - y_1)}{x_2 - x_1}
+$$
 
 ---
 
@@ -40,7 +50,10 @@ $$\text{paths}(A, B) = \binom{(x_2 - x_1) + (y_2 - y_1)}{x_2 - x_1}$$
 ### Topological Obstacle DP
 Sorting the $K$ obstacle points topologically by $x + y$ and appending $(n, n)$ as the $(K+1)$-th point:
 Let $dp[i]$ be the number of paths from $(0, 0)$ to obstacle $i$ that do not touch any earlier obstacle:
-$$dp[i] = \text{paths}((0, 0), \text{pt}_i) - \sum_{j < i, \text{pt}_j \le \text{pt}_i} dp[j] \cdot \text{paths}(\text{pt}_j, \text{pt}_i) \pmod{10^9 + 7}$$
+
+$$
+dp[i] = \text{paths}((0, 0), \text{pt}_i) - \sum_{j < i, \text{pt}_j \le \text{pt}_i} dp[j] \cdot \text{paths}(\text{pt}_j, \text{pt}_i) \pmod{10^9 + 7}
+$$
 
 1. **Pythagorean Generation**: Generate all primitive and scaled triples with $u, v \le \sqrt{10^7} \approx 3162$.
 2. **Factorial Precomputation**: Factorials and modular inverses up to $2 \times 10^7$ allow $O(1)$ path queries.

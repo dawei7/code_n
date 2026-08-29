@@ -10,7 +10,10 @@ We are given:
 - $A(4, 20) = 1060870$
 
 We seek to evaluate:
-$$A(10^8, 10^{16}) \bmod 1\,000\,000\,007$$
+
+$$
+A(10^8, 10^{16}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -26,7 +29,11 @@ For $n = 10^{16}$, there are $2^{2 \times 10^{16}}$ possible binary matrices, ma
 ### Window Invariance & Periodicity of Column Sums
 1. **Periodic Column Sums**:
    Let $c_j \in \{0, 1, 2\}$ be the sum of column $j$. The invariant that every $2 \times k$ window has sum $k$ implies:
-   $$c_{j+k} = c_j \quad \text{for all } j$$
+
+$$
+c_{j+k} = c_j \quad \text{for all } j
+$$
+
    Hence the column sums are strictly periodic with period $k$.
 2. **Column Multiplicities & Parity Balance**:
    Let $a, b, c$ denote the number of columns in the period $k$ with sum $2, 0, 1$ respectively.
@@ -37,7 +44,10 @@ For $n = 10^{16}$, there are $2^{2 \times 10^{16}}$ possible binary matrices, ma
    - Columns with sum 0 or 2 each have only 1 valid assignment across all $n/k$ blocks: $(0, 0)^T$ or $(1, 1)^T$.
    - Columns with sum 1 have $2$ choices per block, giving $2^{n/k}$ independent configurations across the $n/k$ blocks.
 4. **Closed Form Summation**:
-   $$A(k, n) = \sum_{a=0}^{\lfloor k/2 \rfloor} \frac{k!}{(a!)^2 (k - 2a)!} \left( 2^{n/k} \right)^{k - 2a} \pmod{10^9+7}$$
+
+$$
+A(k, n) = \sum_{a=0}^{\lfloor k/2 \rfloor} \frac{k!}{(a!)^2 (k - 2a)!} \left( 2^{n/k} \right)^{k - 2a} \pmod{10^9+7}
+$$
 
 ---
 
@@ -46,8 +56,15 @@ For $n = 10^{16}$, there are $2^{2 \times 10^{16}}$ possible binary matrices, ma
 ### $O(k)$ First-Order Term Ratio Recurrence
 1. **Ratio Formulation**:
    Let $P = 2^{n/k} \bmod (10^9+7)$ and $T_a = \frac{k!}{(a!)^2 (k - 2a)!} P^{k - 2a}$.
-   $$T_0 = P^k \pmod{\text{MOD}}$$
-   $$\frac{T_{a+1}}{T_a} = \frac{(k - 2a)(k - 2a - 1)}{(a + 1)^2 P^2} \pmod{\text{MOD}}$$
+
+$$
+T_0 = P^k \pmod{\text{MOD}}
+$$
+
+$$
+\frac{T_{a+1}}{T_a} = \frac{(k - 2a)(k - 2a - 1)}{(a + 1)^2 P^2} \pmod{\text{MOD}}
+$$
+
 2. **Execution Performance**:
    For $k = 10^8$, precomputing linear modular inverses allows all $5 \times 10^7$ terms to be evaluated in **$\approx 2.31$ seconds** in compiled C!
 

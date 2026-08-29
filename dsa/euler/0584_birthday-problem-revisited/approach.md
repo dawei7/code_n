@@ -10,7 +10,10 @@ We are given:
 - Joka ($N = 100, K = 3, D = 7$): $\mathbb{E}[T] = 8.48967364$
 
 We seek to evaluate:
-$$\text{Earth } (N = 365, K = 4, D = 7) \text{ rounded to 8 decimal places}$$
+
+$$
+\text{Earth } (N = 365, K = 4, D = 7) \text{ rounded to 8 decimal places}
+$$
 
 ---
 
@@ -26,11 +29,19 @@ The number of valid non-matching occupancy configurations on a 365-day circle ex
 ### Continuous Poissonization & Gauss-Laguerre Quadrature
 1. **Survival Probability Representation**:
    Let $p_n$ be the probability that no $K$-collision in a $W$-day window has occurred after $n$ people.
-   $$\mathbb{E}[T] = \sum_{n=0}^\infty p_n$$
+
+$$
+\mathbb{E}[T] = \sum_{n=0}^\infty p_n
+$$
+
 2. **Poisson Exponential Generating Function**:
    Define $G(t) = \sum_{n=0}^\infty p_n \frac{t^n}{n!}$.
    By the Laplace transform / Euler gamma integral:
-   $$\mathbb{E}[T] = \int_0^\infty e^{-t} G(t) \, dt$$
+
+$$
+\mathbb{E}[T] = \int_0^\infty e^{-t} G(t) \, dt
+$$
+
 3. **Circular Window Transfer Matrix**:
    In a rate-$t$ Poisson process, each day independently receives Poisson($t/N$) people.
    A local state tracks the birthday counts of the last $W - 1$ days.

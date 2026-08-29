@@ -5,7 +5,11 @@
 For $n \ge 1$, the $n$-th **weak Goodstein sequence** $\{g_1, g_2, \dots\}$ is defined as:
 1. $g_1 = n$
 2. For $k > 1$, write $g_{k-1}$ in base $k$, reinterpret the digits in base $k+1$, and subtract $1$:
-   $$g_k = \text{base}_{k+1}(g_{k-1}) - 1$$
+
+$$
+g_k = \text{base}_{k+1}(g_{k-1}) - 1
+$$
+
 The sequence terminates when $g_k = 0$.
 Let $G(n)$ be the number of non-zero elements in the sequence.
 
@@ -16,7 +20,10 @@ We are given:
 - $\sum_{n=1}^7 G(n) = 2517$
 
 We seek the last $9$ digits of:
-$$\sum_{n=1}^{15} G(n) \pmod{10^9}$$
+
+$$
+\sum_{n=1}^{15} G(n) \pmod{10^9}
+$$
 
 ---
 
@@ -32,7 +39,11 @@ For $n = 8$, the sequence length $G(8) = H_{\omega^3}(2) - 2$ exceeds $2^{2^{2^{
 ### The Hardy Hierarchy & Ordinal Arithmetic
 Let $a(n)$ be the final base when the sequence terminates (so $G(n) = a(n) - 2$).
 By mapping the binary representation of $n = \sum b_i 2^i$ to the ordinal $\alpha(n) = \sum b_i \omega^i$, the termination base is given by the Hardy function:
-$$a(n) = H_{\alpha(n)}(2)$$
+
+$$
+a(n) = H_{\alpha(n)}(2)
+$$
+
 - $H_k(x) = x + k$
 - $H_\omega(x) = 2x + 1$
 - $H_{\omega^2}(x) = (x + 1) 2^{x+1} - 1$
@@ -47,7 +58,11 @@ To evaluate $f^{(m)}(x) \pmod{10^9}$ where $10^9 = 2^9 \times 5^9$:
 1. **2-Adic Component**: For $2^9$, after the first iteration $x \ge 9$, the factor $2^{x+1} \equiv 0 \pmod{2^9}$, so $f(x) \equiv -1 \pmod{512}$ in $O(1)$ steps.
 2. **5-Adic Component**: By Euler's Totient Theorem, $2^{x+1} \pmod{5^k}$ depends on $(x+1) \pmod{\phi(5^k)}$.
    We build a **totient chain** of moduli:
-   $$M_0 = 5^9 \to M_1 = \phi(5^9) \to M_2 = \phi(M_1) \to \dots \to 1$$
+
+$$
+M_0 = 5^9 \to M_1 = \phi(5^9) \to M_2 = \phi(M_1) \to \dots \to 1
+$$
+
    At each of the $m$ iterations, residues across the chain are updated simultaneously via modular exponentiation.
 3. **Reconstruction**: Chinese Remainder Theorem combines the $2^9$ and $5^9$ residues to yield $a(n) \pmod{10^9}$.
 

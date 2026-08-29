@@ -4,9 +4,17 @@
 
 For an integer $n \ge 2$, let $p(n)$ be the smallest prime factor of $n$, and let $\alpha(n) = v_{p(n)}(n)$ be its $p$-adic valuation.
 For a positive integer $K$, define:
-$$f_K(n) = \frac{\alpha(n) - 1}{p(n)^K}, \quad \overline{f_K} = \lim_{N \to \infty} \frac{1}{N} \sum_{n=2}^N f_K(n)$$
+
+$$
+f_K(n) = \frac{\alpha(n) - 1}{p(n)^K}, \quad \overline{f_K} = \lim_{N \to \infty} \frac{1}{N} \sum_{n=2}^N f_K(n)
+$$
+
 We seek to evaluate:
-$$\sum_{K=1}^\infty \overline{f_K}$$
+
+$$
+\sum_{K=1}^\infty \overline{f_K}
+$$
+
 rounded to 12 decimal places.
 
 We are given:
@@ -30,16 +38,35 @@ Averaging over $N$ integers requires $N \gg 10^{20}$ to achieve 12 decimal digit
    - $n$ is not divisible by $p_i^{a+1}$,
    - $n$ is not divisible by any prime $q < p_i$.
    By Mertens' sieve formula, the natural density is:
-   $$\mathbb{P}(p(n) = p_i, \alpha(n) = a) = \prod_{q < p_i} \left(1 - \frac{1}{q}\right) \cdot \frac{1}{p_i^a} \left(1 - \frac{1}{p_i}\right)$$
+
+$$
+\mathbb{P}(p(n) = p_i, \alpha(n) = a) = \prod_{q < p_i} \left(1 - \frac{1}{q}\right) \cdot \frac{1}{p_i^a} \left(1 - \frac{1}{p_i}\right)
+$$
+
 2. **Inner Geometric Series over Exponent $a$**:
-   $$\sum_{a=1}^\infty (a - 1) x^a = \frac{x^2}{(1 - x)^2} \implies \left(1 - \frac{1}{p_i}\right) \sum_{a=1}^\infty \frac{a - 1}{p_i^a} = \frac{1}{p_i(p_i - 1)}$$
+
+$$
+\sum_{a=1}^\infty (a - 1) x^a = \frac{x^2}{(1 - x)^2} \implies \left(1 - \frac{1}{p_i}\right) \sum_{a=1}^\infty \frac{a - 1}{p_i^a} = \frac{1}{p_i(p_i - 1)}
+$$
+
    Hence:
-   $$\overline{f_K} = \sum_{p} \frac{1}{p^{K+1}(p - 1)} \prod_{q < p} \left(1 - \frac{1}{q}\right)$$
+
+$$
+\overline{f_K} = \sum_{p} \frac{1}{p^{K+1}(p - 1)} \prod_{q < p} \left(1 - \frac{1}{q}\right)
+$$
+
 3. **Infinite Sum over $K$**:
    Summing over all $K \ge 1$:
-   $$\sum_{K=1}^\infty \frac{1}{p^{K+1}} = \frac{1}{p(p - 1)}$$
+
+$$
+\sum_{K=1}^\infty \frac{1}{p^{K+1}} = \frac{1}{p(p - 1)}
+$$
+
    which yields the closed-form prime series:
-   $$\sum_{K=1}^\infty \overline{f_K} = \sum_{p} \frac{1}{p(p - 1)^2} \prod_{q < p} \left(1 - \frac{1}{q}\right)$$
+
+$$
+\sum_{K=1}^\infty \overline{f_K} = \sum_{p} \frac{1}{p(p - 1)^2} \prod_{q < p} \left(1 - \frac{1}{q}\right)
+$$
 
 ---
 

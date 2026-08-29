@@ -10,7 +10,10 @@ A standard Su Doku puzzle involves a $9 \times 9$ grid divided into nine $3 \tim
 The file `sudoku.txt` contains fifty ($50$) different 9x9 Su Doku puzzles.
 
 The objective is to solve all 50 puzzles and find the **sum of the 3-digit numbers** found in the top left of each solution grid ($M^*_{0,0} M^*_{0,1} M^*_{0,2}$):
-$$S_{\text{top3}} = \sum_{k=1}^{50} \left( 100 \cdot M^{*(k)}_{0,0} + 10 \cdot M^{*(k)}_{0,1} + M^{*(k)}_{0,2} \right)$$
+
+$$
+S_{\text{top3}} = \sum_{k=1}^{50} \left( 100 \cdot M^{*(k)}_{0,0} + 10 \cdot M^{*(k)}_{0,1} + M^{*(k)}_{0,2} \right)
+$$
 
 ---
 
@@ -70,7 +73,10 @@ def naive_sudoku_solve(grid):
 
 ### Example 2: Target Sum across all 50 Puzzles
 - Solving all 50 puzzles from `sudoku.txt`:
-  $$S_{\text{top3}} = \mathbf{24\,702}$$
+
+$$
+S_{\text{top3}} = \mathbf{24\,702}
+$$
 
 ---
 

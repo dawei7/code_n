@@ -12,7 +12,10 @@ We are given:
 - $f(20) \equiv 742296999 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$f(10^8) \bmod 1\,000\,000\,007$$
+
+$$
+f(10^8) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,10 +31,18 @@ Simulating the $n \times n$ triangular prefix sum table for $n = 10^8$ requires 
 ### Linearity & Catalan Ballot Triangle Coefficients
 1. **Linear Superposition**:
    Because each operation is linear, the final single element is an exact linear combination of the initial inputs:
-   $$f(n) = \sum_{k=1}^n c_{n, k} L_k$$
+
+$$
+f(n) = \sum_{k=1}^n c_{n, k} L_k
+$$
+
 2. **Catalan Ballot Number Closed Form**:
    The process of dropping the first element and taking prefix sums corresponds bijectively to subdiagonal lattice paths (Dyck paths / ballot numbers):
-   $$c_{n, k} = \frac{k - 1}{n - 1} \binom{2n - k - 2}{n - 2} \quad (2 \le k \le n)$$
+
+$$
+c_{n, k} = \frac{k - 1}{n - 1} \binom{2n - k - 2}{n - 2} \quad (2 \le k \le n)
+$$
+
    with $c_{n, 1} = 0$.
 
 ---
@@ -41,10 +52,18 @@ Simulating the $n \times n$ triangular prefix sum table for $n = 10^8$ requires 
 ### Linear $O(n)$ Convolution Loop
 1. **Index Reversal**:
    Substituting $j = n - k$ ($j = 0, 1, \dots, n - 2$):
-   $$c_{n, n - j} = \frac{n - j - 1}{n - 1} \binom{n + j - 2}{j}$$
+
+$$
+c_{n, n - j} = \frac{n - j - 1}{n - 1} \binom{n + j - 2}{j}
+$$
+
 2. **First-Order Binomial Recurrence**:
    Let $B_j = \binom{n + j - 2}{j}$. Then:
-   $$B_0 = 1, \quad B_{j+1} = B_j \cdot \frac{n + j - 1}{j + 1} \pmod{10^9+7}$$
+
+$$
+B_0 = 1, \quad B_{j+1} = B_j \cdot \frac{n + j - 1}{j + 1} \pmod{10^9+7}
+$$
+
    Every coefficient is updated in $O(1)$ arithmetic operations!
 3. **Execution Performance**:
    For $n = 10^8$, a single linear loop evaluates $f(10^8) \bmod (10^9+7)$ in **$\approx 3.85$ seconds** in compiled C!

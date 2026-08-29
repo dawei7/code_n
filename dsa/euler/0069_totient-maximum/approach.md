@@ -8,7 +8,10 @@ For example, for $n \le 10$:
 - $n = 6 \implies \phi(6) = 2 \implies \frac{n}{\phi(n)} = \frac{6}{2} = 3$ (maximum for $n \le 10$).
 
 The objective is to find the value of $n \le 1\,000\,000$ for which $\frac{n}{\phi(n)}$ is maximized:
-$$n_{\text{max}} = \operatorname*{arg\,max}_{2 \le n \le 1000000} \frac{n}{\phi(n)}$$
+
+$$
+n_{\text{max}} = \operatorname*{arg\,max}_{2 \le n \le 1000000} \frac{n}{\phi(n)}
+$$
 
 ---
 
@@ -24,13 +27,24 @@ def naive_totient_max():
 
 ### Analytical Inversion via Euler's Product Formula
 By Euler's totient product formula:
-$$\phi(n) = n \prod_{p \mid n} \left( 1 - \frac{1}{p} \right) = n \prod_{p \mid n} \frac{p - 1}{p}$$
+
+$$
+\phi(n) = n \prod_{p \mid n} \left( 1 - \frac{1}{p} \right) = n \prod_{p \mid n} \frac{p - 1}{p}
+$$
+
 Inverting both sides:
-$$\frac{n}{\phi(n)} = \prod_{p \mid n} \frac{p}{p - 1}$$
+
+$$
+\frac{n}{\phi(n)} = \prod_{p \mid n} \frac{p}{p - 1}
+$$
 
 1. Each prime factor $p$ contributes a factor $\frac{p}{p - 1} > 1$.
 2. Smaller primes contribute strictly larger multipliers:
-   $$\frac{2}{1} = 2.0 > \frac{3}{2} = 1.5 > \frac{5}{4} = 1.25 > \frac{7}{6} \approx 1.167 > \dots$$
+
+$$
+\frac{2}{1} = 2.0 > \frac{3}{2} = 1.5 > \frac{5}{4} = 1.25 > \frac{7}{6} \approx 1.167 > \dots
+$$
+
 3. Therefore, to maximize $\frac{n}{\phi(n)}$ under the constraint $n \le 1\,000\,000$, $n$ MUST be the product of the smallest consecutive primes (a **primorial number** $p_k\#$).
 
 ---
@@ -75,7 +89,10 @@ $$\frac{n}{\phi(n)} = \prod_{p \mid n} \frac{p}{p - 1}$$
 - $n = 2 \times 3 \times 5 \times 7 \times 11 \times 13 \times 17 = \mathbf{510\,510}$.
 - Next prime is $19 \implies 510510 \times 19 = 9699690 > 10^6$.
 - Maximum Ratio Integer:
-  $$n_{\text{max}} = \mathbf{510\,510}$$
+
+$$
+n_{\text{max}} = \mathbf{510\,510}
+$$
 
 ---
 

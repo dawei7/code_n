@@ -24,7 +24,10 @@ For $N = 10^{14}$, inverting $10^{14}$ transition matrices of size $2n \times 2n
 ### Characteristic Roots & Logarithmic Partial Sum
 1. **Markov Difference Recurrence**:
    The distance between cars follows a 3-step random walk with characteristic equation:
-   $$x^3 - \frac{1}{3}x^2 - \frac{1}{3}x - \frac{1}{3} = 0$$
+
+$$
+x^3 - \frac{1}{3}x^2 - \frac{1}{3}x - \frac{1}{3} = 0
+$$
 
 2. **Rapid Convergence of $S(n)$**:
    As $n \to \infty$, $S(n)$ decomposes into a stationary term $c_0 / n$ plus exponentially decaying roots $\lambda_2^n, \lambda_3^n$.

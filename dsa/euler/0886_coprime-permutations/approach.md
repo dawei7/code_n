@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A *coprime permutation* of $\{2, 3, \dots, n\}$ is a permutation $(x_1, x_2, \dots, x_{n-1})$ such that:
-$$\gcd(x_i, x_{i+1}) = 1 \quad \text{for all } 1 \le i \le n-2$$
+
+$$
+\gcd(x_i, x_{i+1}) = 1 \quad \text{for all } 1 \le i \le n-2
+$$
 
 $P(n)$ is the number of coprime permutations.
 Given:

@@ -9,7 +9,11 @@ We are given:
 - $F_7(11) = 268\,357\,683$.
 
 We seek to evaluate:
-$$\sum_{x=0}^{100} F_{10^{15}}(x) \pmod{15!}$$
+
+$$
+\sum_{x=0}^{100} F_{10^{15}}(x) \pmod{15!}
+$$
+
 where $15! = 1\,307\,674\,368\,000$.
 
 ---
@@ -25,9 +29,16 @@ For $n = 10^{15}$, summing $10^{15}$ terms for each $x \in [0, 100]$ would requi
 
 ### Linear Recurrence State Transition Matrix
 Notice that the weighted Fibonacci terms $f_i x^i$ satisfy the linear recurrence:
-$$f_{k+2} x^{k+2} = x (f_{k+1} x^{k+1}) + x^2 (f_k x^k)$$
+
+$$
+f_{k+2} x^{k+2} = x (f_{k+1} x^{k+1}) + x^2 (f_k x^k)
+$$
+
 Augmenting the state vector to include the running prefix sum $F_k(x) = \sum_{i=0}^k f_i x^i$:
-$$\begin{pmatrix} F_{k+1}(x) \\ f_{k+2} x^{k+2} \\ f_{k+1} x^{k+1} \end{pmatrix} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & x & x^2 \\ 0 & 1 & 0 \end{pmatrix} \begin{pmatrix} F_k(x) \\ f_{k+1} x^{k+1} \\ f_k x^k \end{pmatrix}$$
+
+$$
+\begin{pmatrix} F_{k+1}(x) \\ f_{k+2} x^{k+2} \\ f_{k+1} x^{k+1} \end{pmatrix} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & x & x^2 \\ 0 & 1 & 0 \end{pmatrix} \begin{pmatrix} F_k(x) \\ f_{k+1} x^{k+1} \\ f_k x^k \end{pmatrix}
+$$
 
 ---
 
@@ -36,7 +47,10 @@ $$\begin{pmatrix} F_{k+1}(x) \\ f_{k+2} x^{k+2} \\ f_{k+1} x^{k+1} \end{pmatrix}
 ### Fast Binary Exponentiation on $3 \times 3$ Matrices
 Let $M(x) = \begin{pmatrix} 1 & 1 & 0 \\ 0 & x & x^2 \\ 0 & 1 & 0 \end{pmatrix}$.
 Starting from initial state $v_0 = \begin{pmatrix} F_0(x) \\ f_1 x^1 \\ f_0 x^0 \end{pmatrix} = \begin{pmatrix} 0 \\ x \\ 0 \end{pmatrix}$:
-$$v_n = M(x)^n v_0 \implies F_n(x) = \left(M(x)^n\right)_{0, 1} \cdot x \pmod{15!}$$
+
+$$
+v_n = M(x)^n v_0 \implies F_n(x) = \left(M(x)^n\right)_{0, 1} \cdot x \pmod{15!}
+$$
 
 For each $x \in [0, 100]$, computing $M(x)^{10^{15}} \bmod 15!$ requires $\approx 50$ matrix multiplications.
 Across all $x \in [0, 100]$, the total runtime is **0.01 seconds**!

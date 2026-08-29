@@ -4,10 +4,16 @@
 
 Let $f(N)$ be the number of integer lattice points $(x, y) \in \mathbb{Z}^2$ on the circle passing through $(0, 0)$, $(N, 0)$, $(0, N)$, and $(N, N)$.
 The circle has center $(N/2, N/2)$ and radius $R = N/\sqrt{2}$, with equation:
-$$\left(x - \frac{N}{2}\right)^2 + \left(y - \frac{N}{2}\right)^2 = \frac{N^2}{2} \iff (2x - N)^2 + (2y - N)^2 = 2N^2$$
+
+$$
+\left(x - \frac{N}{2}\right)^2 + \left(y - \frac{N}{2}\right)^2 = \frac{N^2}{2} \iff (2x - N)^2 + (2y - N)^2 = 2N^2
+$$
 
 Setting $u = 2x - N$ and $v = 2y - N$, lattice points correspond to integer solutions of:
-$$u^2 + v^2 = 2N^2$$
+
+$$
+u^2 + v^2 = 2N^2
+$$
 
 It is given that $f(10\,000) = 36$.
 Find the **sum of all positive integers $N \le 10^{11}$ such that $f(N) = 420$**.
@@ -27,12 +33,24 @@ def naive_lattice_points():
 ### Analytical Core Decomposition via Sum of Two Squares
 1. **Sum of Two Squares Divisor Formula:**
    By Jacobi's two-square theorem, the number of integer representations $r_2(M)$ is:
-   $$r_2(M) = 4 (d_1(M) - d_3(M))$$
+
+$$
+r_2(M) = 4 (d_1(M) - d_3(M))
+$$
+
    For $M = 2N^2$, any prime factor $2$ or $q \equiv 3 \pmod 4$ has exponent $2b$ in $N^2$, contributing a constant multiplier.
    The number of lattice points is strictly determined by prime factors $p_i \equiv 1 \pmod 4$:
-   $$f(N) = 4 \prod_{p_i \equiv 1 \pmod 4} (2a_i + 1)$$
+
+$$
+f(N) = 4 \prod_{p_i \equiv 1 \pmod 4} (2a_i + 1)
+$$
+
 2. **Factoring $420$:**
-   $$4 \prod_{p_i \equiv 1 \pmod 4} (2a_i + 1) = 420 \implies \prod (2a_i + 1) = 105 = 3 \times 5 \times 7$$
+
+$$
+4 \prod_{p_i \equiv 1 \pmod 4} (2a_i + 1) = 420 \implies \prod (2a_i + 1) = 105 = 3 \times 5 \times 7
+$$
+
 3. **Valid Exponent Shapes $\le 10^{11}$:**
    The only feasible partitions of $105$ into odd integers $> 1$ with core $\le 10^{11}$ are:
    - Pattern 1: $p_1^{10} p_2^2$ (factors $21 \times 5$)
@@ -74,7 +92,10 @@ def solve(limit: int = 10**11) -> int:
 ```
 
 Evaluating for $\text{limit} = 10^{11}$:
-$$\text{Sum} = \mathbf{271\,204\,031\,455\,541\,309}$$
+
+$$
+\text{Sum} = \mathbf{271\,204\,031\,455\,541\,309}
+$$
 
 ---
 
@@ -92,7 +113,10 @@ $$\text{Sum} = \mathbf{271\,204\,031\,455\,541\,309}$$
 
 ### Example 3: Target Evaluation for $N \le 10^{11}$
 - Summing $N = \text{core} \times m$ across all patterns:
-  $$\text{Total Sum} = \mathbf{271\,204\,031\,455\,541\,309}$$
+
+$$
+\text{Total Sum} = \mathbf{271\,204\,031\,455\,541\,309}
+$$
 
 ---
 

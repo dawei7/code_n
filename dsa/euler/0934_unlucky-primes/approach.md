@@ -26,7 +26,10 @@ Find $U(10^{17})$.
 ### Chinese Remainder Theorem & Residue Densities
 For each prime $p_i$, the allowable residue set is $E_i = \{ r \in [0, p_i - 1] : r \equiv 0 \pmod 7 \}$ with size $|E_i| = 1 + \lfloor \frac{p_i - 1}{7} \rfloor$.
 The density of integers satisfying $u(n) \ge p_k$ is:
-$$\mathbb{P}(u(n) \ge p_k) = \prod_{i=1}^{k-1} \frac{|E_i|}{p_i}$$
+
+$$
+\mathbb{P}(u(n) \ge p_k) = \prod_{i=1}^{k-1} \frac{|E_i|}{p_i}
+$$
 
 ---
 
@@ -34,7 +37,11 @@ $$\mathbb{P}(u(n) \ge p_k) = \prod_{i=1}^{k-1} \frac{|E_i|}{p_i}$$
 
 ### Difference Summation over Exponentially Decaying Tails
 Rewriting the sum in telescoping differences:
-$$U(N) = 2N + \sum_{k=2}^\infty (p_k - p_{k-1}) \cdot \text{count}(n \le N : u(n) \ge p_k)$$
+
+$$
+U(N) = 2N + \sum_{k=2}^\infty (p_k - p_{k-1}) \cdot \text{count}(n \le N : u(n) \ge p_k)
+$$
+
 Because $\prod \frac{|E_i|}{p_i}$ decays exponentially fast, only primes $p_k \le 100$ contribute non-zero counts for $N = 10^{17}$.
 Evaluating the exact mixed-radix CRT tree computes $U(10^{17}) = \mathbf{292137809490441370}$ in **under 0.05s** in 100% pure Python.
 

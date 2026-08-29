@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n \in \mathbb{N}$ with decimal representation $n = \sum_{i=0}^{k-1} d_i 10^i$, define the digit factorial sum function:
-$$f(n) = \sum_{i=0}^{k-1} (d_i)!$$
+
+$$
+f(n) = \sum_{i=0}^{k-1} (d_i)!
+$$
 
 Starting with an initial integer $n_0$, we generate the sequence $n_{k+1} = f(n_k)$.
 Because $f(n)$ maps into a bounded finite range ($f(n) \le 7 \times 9! = 2\,540\,160$), every sequence eventually enters a repeating cycle.
@@ -16,7 +19,10 @@ Examples:
 - $69 \to 363600 \to 1454 \to 169 \to 363601 \to (\text{cycle repeats at } 1454)$ (length 5)
 
 The objective is to find how many chains with a starting item strictly below one million ($1\,000\,000$) contain **exactly 60 non-repeating terms**:
-$$N_{\text{chains}} = \sum_{n=1}^{999999} \mathbb{I}\left( L(n) = 60 \right)$$
+
+$$
+N_{\text{chains}} = \sum_{n=1}^{999999} \mathbb{I}\left( L(n) = 60 \right)
+$$
 
 ---
 
@@ -55,7 +61,11 @@ def naive_chain_length(n):
 For a starting number $n$:
 1. Trace path $P = [n_0, n_1, \dots]$ until hitting a term $c$ where either:
    - **$c \in \text{memo}$:** The tail path elements before $c$ inherit lengths:
-     $$\text{memo}[P[-i]] = \text{memo}[c] + i$$
+
+$$
+\text{memo}[P[-i]] = \text{memo}[c] + i
+$$
+
    - **$c \in P$ (New cycle detected):**
      - Find cycle start index $j = P.\text{index}(c)$ and cycle length $\ell = |P| - j$.
      - For all elements in the cycle ($k \ge j$): $\text{memo}[P[k]] = \ell$.
@@ -77,7 +87,10 @@ For a starting number $n$:
 
 ### Example 2: Target 60-Term Chains ($n < 1\,000\,000$)
 - Evaluating all starting integers below $10^6$:
-  $$N_{\text{chains}} = \mathbf{402}$$
+
+$$
+N_{\text{chains}} = \mathbf{402}
+$$
 
 ---
 

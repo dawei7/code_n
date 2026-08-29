@@ -11,7 +11,10 @@ We are given:
 - $HL(4) = H(12) = 44$
 
 We seek to evaluate:
-$$HL(50000) \pmod{10^9}$$
+
+$$
+HL(50000) \pmod{10^9}
+$$
 
 ---
 
@@ -27,7 +30,11 @@ An inclusion-exclusion sum over $2^{5133}$ subsets of primes is beyond astronomi
 
 ### Prime Exponent Symmetry & Grouping
 1. **Inclusion-Exclusion Divisor Formula**:
-   $$H(n) = \sum_{A \subseteq \mathbb{P}(n)} (-1)^{|A|} 2^{\sigma(A)}$$
+
+$$
+H(n) = \sum_{A \subseteq \mathbb{P}(n)} (-1)^{|A|} 2^{\sigma(A)}
+$$
+
    where $\sigma(A) = \prod_{p \in A} e_p \prod_{p \notin A} (e_p + 1)$.
 2. **Exponent Partition of $L(50000)$**:
    - For $p > \sqrt{50000} \approx 223$, $e_p = 1$, giving $r = 5085$ primes with exponent 1 ($e_p + 1 = 2$).
@@ -44,7 +51,11 @@ An inclusion-exclusion sum over $2^{5133}$ subsets of primes is beyond astronomi
 ### Exponent Grouping DP & Repeated Squaring ($O(r + |\mathcal{D}|)$)
 1. **Exponent-1 Binomial Summation**:
    For $r$ primes with $e_p = 1$:
-   $$F_r(x) = \sum_{k=0}^r (-1)^{r-k} \binom{r}{k} 2^{x \cdot 2^k} \pmod{5^9}$$
+
+$$
+F_r(x) = \sum_{k=0}^r (-1)^{r-k} \binom{r}{k} 2^{x \cdot 2^k} \pmod{5^9}
+$$
+
    The powers $2^{x \cdot 2^k}$ are generated in $O(r)$ steps by repeated squaring $p_{k+1} = p_k^2 \pmod{5^9}$.
 2. **DP over Large-Exponent Groups**:
    Convolve the distribution of $(x \bmod \varphi(5^9), \text{weight} \bmod 5^9)$ over the 48 primes with $e_p \ge 2$.

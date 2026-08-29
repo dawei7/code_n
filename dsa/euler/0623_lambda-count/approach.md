@@ -15,7 +15,10 @@ We are given:
 - $\Lambda(6) = 1, \Lambda(9) = 2, \Lambda(15) = 20, \Lambda(35) = 3166438$
 
 We seek to evaluate:
-$$\Lambda(2000) \pmod{10^9 + 7}$$
+
+$$
+\Lambda(2000) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -36,9 +39,16 @@ Generating all lambda trees up to length 2000 involves combinatorial trees whose
 3. **Transition Dynamics**:
    - **Variables ($n = 1$)**: $dp[1][k] = k$ (each of the $k$ scope variables can be chosen).
    - **Abstraction ($n \ge 6$)**: $(\lambda x. M)$ introduces 1 new variable to $M$, costing 5 symbols:
-     $$dp[n][k] \mathrel{+}= dp[n - 5][k + 1]$$
+
+$$
+dp[n][k] \mathrel{+}= dp[n - 5][k + 1]
+$$
+
    - **Application ($n \ge 4$)**: $(M N)$ splits $n - 2$ symbols between $M$ and $N$ with the same $k$ variables:
-     $$dp[n][k] \mathrel{+}= \sum_{j=1}^{n - 3} dp[j][k] \times dp[n - 2 - j][k]$$
+
+$$
+dp[n][k] \mathrel{+}= \sum_{j=1}^{n - 3} dp[j][k] \times dp[n - 2 - j][k]
+$$
 
 ---
 
@@ -49,7 +59,10 @@ Generating all lambda trees up to length 2000 involves combinatorial trees whose
    Because each abstraction costs at least 5 symbols, the maximum depth for $N = 2000$ is $k \le \lfloor 2000/5 \rfloor = 400$.
 2. **Cumulative Summation**:
    Closed terms correspond to $k = 0$ free variables:
-   $$\Lambda(N) = \sum_{n=1}^N dp[n][0] \pmod{10^9 + 7}$$
+
+$$
+\Lambda(N) = \sum_{n=1}^N dp[n][0] \pmod{10^9 + 7}
+$$
 
 This evaluates $\Lambda(2000) \pmod{10^9 + 7}$ in **$\approx 0.91$ seconds**!
 

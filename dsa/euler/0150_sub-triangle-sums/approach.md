@@ -5,25 +5,39 @@
 In a triangular array of positive and negative integers, we wish to find a sub-triangle such that the sum of the numbers it contains is the smallest possible.
 
 In the following example, it can be easily verified that the marked sub-triangle has a sum of $-42$:
-$$\begin{matrix}
+
+$$
+\begin{matrix}
  & & & & & 15 & & & & & \\
  & & & & -14 & & -7 & & & & \\
  & & & 20 & & -13 & & -5 & & & \\
  & & -3 & & 8 & & 23 & & -26 & & \\
  & 1 & & -4 & & -5 & & -18 & & 5 & \\
 -16 & & 31 & & 2 & & 9 & & 28 & & 3
-\end{matrix}$$
+\end{matrix}
+$$
 
 A triangular array with one thousand ($1000$) rows ($500\,500$ elements) is generated using a pseudo-random number generator (a **Linear Congruential Generator**):
 - $t = 0$.
 - For each $k = 1 \dots 500\,500$:
-  $$t \leftarrow (615949 t + 797807) \bmod 2^{20}$$
-  $$s_k = t - 2^{19} \in [-524288, 524287]$$
+
+$$
+t \leftarrow (615949 t + 797807) \bmod 2^{20}
+$$
+
+$$
+s_k = t - 2^{19} \in [-524288, 524287]
+$$
 
 The triangular array is filled row by row.
 
 The objective is to find the **smallest sub-triangle sum in the $1000$-row triangular array**:
-$$S_{\text{min}} = \min_{\substack{0 \le r < 1000 \\ 0 \le c \le r \\ 1 \le h \le 1000-r}} \sum_{d=0}^{h-1} \sum_{i=0}^d T_{r+d, c+i}$$
+
+$$
+\begin{aligned}
+S_{\text{min}} = \min_{\substack{0 \le r < 1000 \\ 0 \le c \le r \\ 1 \le h \le 1000-r}} \sum_{d=0}^{h-1} \sum_{i=0}^d T_{r+d, c+i}
+\end{aligned}
+$$
 
 ---
 
@@ -40,12 +54,24 @@ def naive_subtriangle_sums():
 ### 1D Row Prefix Sums & Incremental Depth Expansion
 1. **1D Row Prefix Sum Arrays:**
    Precompute prefix sums for each row $r$:
-   $$\text{pref}[r][c] = \sum_{j=0}^{c-1} T_{r, j}$$
+
+$$
+\text{pref}[r][c] = \sum_{j=0}^{c-1} T_{r, j}
+$$
+
    The sum of any contiguous segment of row $r$ from column $c$ to $c + d$ is evaluated in $\mathcal{O}(1)$ time:
-   $$\text{segment\_sum} = \text{pref}[r][c + d + 1] - \text{pref}[r][c]$$
+
+$$
+\text{segment\_sum} = \text{pref}[r][c + d + 1] - \text{pref}[r][c]
+$$
+
 2. **Incremental Height DP:**
    For any top vertex $(r, c)$, as we expand the sub-triangle height depth-by-depth ($d = 0, 1, 2, \dots$):
-   $$\text{curr\_sum}_{d} = \text{curr\_sum}_{d-1} + \left( \text{pref}[r + d][c + d + 1] - \text{pref}[r + d][c] \right)$$
+
+$$
+\text{curr\_sum}_{d} = \text{curr\_sum}_{d-1} + \left( \text{pref}[r + d][c + d + 1] - \text{pref}[r + d][c] \right)
+$$
+
 3. Each sub-triangle addition takes exactly **$\mathcal{O}(1)$ operations**, reducing total complexity to $\approx 1.67 \times 10^8$ additions in $\approx 4.5$ seconds.
 
 ---
@@ -68,9 +94,17 @@ def naive_subtriangle_sums():
 
 ### Incremental Prefix Search Pipeline
 1. Generate $500\,500$ pseudo-random values $s_k$ using LCG:
-   $$t \leftarrow (615949 t + 797807) \bmod 2^{20}, \quad s_k = t - 2^{19}$$
+
+$$
+t \leftarrow (615949 t + 797807) \bmod 2^{20}, \quad s_k = t - 2^{19}
+$$
+
 2. Populate row prefix sum array `row_pref`:
-   $$\text{row\_pref}[r][c + 1] = \text{row\_pref}[r][c] + s_{\text{idx}}$$
+
+$$
+\text{row\_pref}[r][c + 1] = \text{row\_pref}[r][c] + s_{\text{idx}}
+$$
+
 3. Set `min_sum = 0`.
 4. For $r = 0 \dots 999$:
    - For $c = 0 \dots r$:
@@ -102,7 +136,10 @@ def naive_subtriangle_sums():
 
 ### Example 2: Target Evaluation for 1000-Row LCG Triangle
 - Running full search over all $1.67 \times 10^8$ sub-triangles:
-  $$S_{\text{min}} = \mathbf{-271\,248\,680}$$
+
+$$
+S_{\text{min}} = \mathbf{-271\,248\,680}
+$$
 
 ---
 

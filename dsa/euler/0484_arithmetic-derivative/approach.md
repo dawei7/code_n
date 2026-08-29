@@ -6,7 +6,10 @@ The arithmetic derivative is defined by $p' = 1$ for primes $p$ and $(ab)' = a'b
 For $n = \prod p_i^{a_i}$, $n' = n \sum \frac{a_i}{p_i}$.
 Let $g(n) = \gcd(n, n')$.
 We seek to evaluate:
-$$S(N) = \sum_{1 < k \le 5 \times 10^{15}} g(k)$$
+
+$$
+S(N) = \sum_{1 < k \le 5 \times 10^{15}} g(k)
+$$
 
 ---
 
@@ -24,7 +27,11 @@ Iterating up to $N = 5 \times 10^{15}$ and factoring each integer individually r
    $\gcd(ab, (ab)') = \gcd(a, a') \gcd(b, b')$ for $\gcd(a, b) = 1$. Thus $g(n)$ is a completely multiplicative function.
 2. **Prime Power Evaluation**:
    For prime power $p^a$:
-   $$g(p^a) = \gcd(p^a, a p^{a-1}) = \begin{cases} p^{a-1} & \text{if } p \nmid a \\ p^a & \text{if } p \mid a \end{cases}$$
+
+$$
+g(p^a) = \gcd(p^a, a p^{a-1}) = \begin{cases} p^{a-1} & \text{if } p \nmid a \\ p^a & \text{if } p \mid a \end{cases}
+$$
+
    In particular, $g(p) = 1$ for all primes $p$!
 
 ---
@@ -35,12 +42,25 @@ Iterating up to $N = 5 \times 10^{15}$ and factoring each integer individually r
 1. **Dirichlet Convolution with 1**:
    Let $g = 1 * h$, so $h = g * \mu$.
    Then for prime powers:
-   $$h(p) = g(p) - 1 = 0$$
-   $$h(p^a) = g(p^a) - g(p^{a-1}) \quad (\text{for } a \ge 2)$$
+
+$$
+h(p) = g(p) - 1 = 0
+$$
+
+$$
+h(p^a) = g(p^a) - g(p^{a-1}) \quad (\text{for } a \ge 2)
+$$
+
 2. **Powerful Number Support**:
    Because $h(p) = 0$ on all primes, $h(d) \ne 0$ ONLY when $d$ is a **powerful number** (every prime factor appears with exponent $\ge 2$).
 3. **Hyperbola Summation**:
-   $$\sum_{k=1}^N g(k) = \sum_{k=1}^N (1 * h)(k) = \sum_{\substack{d \le N \\ d \text{ powerful}}} h(d) \left\lfloor \frac{N}{d} \right\rfloor$$
+
+$$
+\begin{aligned}
+\sum_{k=1}^N g(k) = \sum_{k=1}^N (1 * h)(k) = \sum_{\substack{d \le N \\ d \text{ powerful}}} h(d) \left\lfloor \frac{N}{d} \right\rfloor
+\end{aligned}
+$$
+
    Since there are only $O(\sqrt{N}) \approx 7 \times 10^7$ powerful numbers up to $5 \times 10^{15}$, an optimized depth-first search computes the exact sum in $18.93$ seconds!
 
 This evaluates $N = 5 \times 10^{15}$ in **18.93 seconds**!

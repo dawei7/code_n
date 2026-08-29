@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The smallest number expressible as the sum of a prime square, prime cube, and prime fourth power is $28$:
-$$28 = 2^2 + 2^3 + 2^4 = 4 + 8 + 16$$
+
+$$
+28 = 2^2 + 2^3 + 2^4 = 4 + 8 + 16
+$$
 
 Below fifty ($50$), there are exactly four numbers that can be expressed in this form:
 - $28 = 2^2 + 2^3 + 2^4$
@@ -12,10 +15,16 @@ Below fifty ($50$), there are exactly four numbers that can be expressed in this
 - $47 = 2^2 + 3^3 + 2^4$
 
 Let $\mathcal{S}$ denote the set of numbers below $N = 50\,000\,000$ expressible as:
-$$n = p_1^2 + p_2^3 + p_3^4 \quad \text{where } p_1, p_2, p_3 \in \mathbb{P}$$
+
+$$
+n = p_1^2 + p_2^3 + p_3^4 \quad \text{where } p_1, p_2, p_3 \in \mathbb{P}
+$$
 
 The objective is to find the **total number of distinct integers** below $50\,000\,000$ that can be expressed in this form:
-$$N_{\text{expressible}} = |\mathcal{S}|$$
+
+$$
+N_{\text{expressible}} = |\mathcal{S}|
+$$
 
 ---
 
@@ -80,7 +89,10 @@ def naive_prime_power_triples(limit):
 
 ### Example 2: Target Evaluation for $N = 50\,000\,000$
 - Summing all unique integers:
-  $$N_{\text{expressible}} = \mathbf{1\,097\,343}$$
+
+$$
+N_{\text{expressible}} = \mathbf{1\,097\,343}
+$$
 
 ---
 

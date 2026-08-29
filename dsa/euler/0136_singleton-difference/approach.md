@@ -4,13 +4,20 @@
 
 The positive integers, $x, y,$ and $z$, are consecutive terms of an arithmetic progression.
 Given that $n$ is a positive integer, the equation:
-$$x^2 - y^2 - z^2 = n$$
+
+$$
+x^2 - y^2 - z^2 = n
+$$
+
 has exactly one solution for certain values of $n$. For example, $n = 20$ has only the solution $13^2 - 10^2 - 7^2 = 20$.
 
 In fact there are twenty-five ($25$) values of $n$ below one-hundred ($100$) for which the equation has a unique solution.
 
 The objective is to find **how many values of $n$ less than fifty million ($50\,000\,000$) have exactly one solution**:
-$$N_1 = \left| \left\{ n < 50\,000\,000 \;\middle|\; N_{\text{sol}}(n) = 1 \right\} \right|$$
+
+$$
+N_1 = \left| \left\{ n < 50\,000\,000 \;\middle|\; N_{\text{sol}}(n) = 1 \right\} \right|
+$$
 
 ---
 
@@ -77,7 +84,10 @@ def naive_singleton_difference():
 
 ### Example 2: Target Evaluation for $n < 50\,000\,000$
 - Counting across all prime forms below $50\,000\,000$:
-  $$N_1 = \mathbf{2\,544\,559}$$
+
+$$
+N_1 = \mathbf{2\,544\,559}
+$$
 
 ---
 

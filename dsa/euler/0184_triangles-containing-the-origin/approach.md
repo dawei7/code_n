@@ -3,18 +3,34 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the set $I_r$ of points $(x, y)$ with integer coordinates in the interior of the circle with radius $r$, centered at the origin, i.e. $x^2 + y^2 < r^2$, excluding the origin $(0, 0)$:
-$$I_r = \left\{ (x, y) \in \mathbb{Z}^2 \;\middle|\; 0 < x^2 + y^2 < r^2 \right\}$$
+
+$$
+I_r = \left\{ (x, y) \in \mathbb{Z}^2 \;\middle|\; 0 < x^2 + y^2 < r^2 \right\}
+$$
 
 For a radius of $2$, $I_2$ contains the $12$ points:
-$$(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)$$
+
+$$
+(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)
+$$
+
 Number of triangles with all three vertices in $I_2$ containing the origin in their strict interior:
-$$N_{\text{triangles}}(2) = 8$$
+
+$$
+N_{\text{triangles}}(2) = 8
+$$
 
 For a radius of $3$:
-$$N_{\text{triangles}}(3) = 360$$
+
+$$
+N_{\text{triangles}}(3) = 360
+$$
 
 The objective is to find **$N_{\text{triangles}}(105)$, the number of triangles with vertices in $I_{105}$ containing the origin in their strict interior**:
-$$N_{\text{triangles}}(105) = \text{number of origin-enclosing triangles}$$
+
+$$
+N_{\text{triangles}}(105) = \text{number of origin-enclosing triangles}
+$$
 
 ---
 
@@ -36,7 +52,11 @@ def naive_origin_triangles():
    Three ray directions at polar angles $\theta_1 < \theta_2 < \theta_3$ contain $(0, 0)$ in the strict interior of $\triangle P_1 P_2 P_3$ iff:
    - No two rays are collinear ($\theta_j - \theta_i \neq \pi$).
    - The third ray lies strictly in the opposite wedge:
-     $$\theta_1 + \pi < \theta_3 < \theta_2 + \pi$$
+
+$$
+\theta_1 + \pi < \theta_3 < \theta_2 + \pi
+$$
+
 3. **Prefix Sum Polar Sweep:**
    Sort rays by angle $\theta \in [0, 2\pi)$. Replicating the array 3 times allows circular angle calculations modulo $2\pi$.
    Precomputing 1D and 2D prefix sums of ray counts $c_i$ evaluates all valid ray triples in $\mathcal{O}(m)$ operations ($\approx 0.15$ seconds).
@@ -60,12 +80,23 @@ def naive_origin_triangles():
 
 ### Angular Wedge Summation Formula
 For fixed rays $i$ and $j$ ($0 < \theta_j - \theta_i < \pi$), the valid range for ray $k$ is:
-$$\theta_k \in (\theta_i + \pi, \theta_j + \pi)$$
+
+$$
+\theta_k \in (\theta_i + \pi, \theta_j + \pi)
+$$
+
 The number of valid choices for vertex 3 is $\sum_{\theta_k \in (\theta_i + \pi, \theta_j + \pi)} c_k$.
 Using 2D prefix sums:
-$$\text{Total} = \frac{1}{3} \sum_{i=1}^m c_i \sum_{j : \theta_i < \theta_j < \theta_i + \pi} c_j \left( \operatorname{pref}(k_{\text{end}}[j]) - \operatorname{pref}(k_{\text{start}}[i]) \right)$$
+
+$$
+\text{Total} = \frac{1}{3} \sum_{i=1}^m c_i \sum_{j : \theta_i < \theta_j < \theta_i + \pi} c_j \left( \operatorname{pref}(k_{\text{end}}[j]) - \operatorname{pref}(k_{\text{start}}[i]) \right)
+$$
+
 Evaluating for $r = 105$:
-$$N_{\text{triangles}}(105) = \mathbf{1\,727\,669\,280\,612}$$
+
+$$
+N_{\text{triangles}}(105) = \mathbf{1\,727\,669\,280\,612}
+$$
 
 ---
 
@@ -83,7 +114,10 @@ $$N_{\text{triangles}}(105) = \mathbf{1\,727\,669\,280\,612}$$
 
 ### Example 3: Target Evaluation for $r = 105$
 - Sweep across all $17\,294$ rays:
-  $$N_{\text{triangles}}(105) = \mathbf{1\,727\,669\,280\,612}$$
+
+$$
+N_{\text{triangles}}(105) = \mathbf{1\,727\,669\,280\,612}
+$$
 
 ---
 

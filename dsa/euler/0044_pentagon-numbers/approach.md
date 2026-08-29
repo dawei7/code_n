@@ -3,15 +3,28 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The $n$-th pentagonal number is defined by the quadratic formula:
-$$P_n = \frac{n(3n - 1)}{2} \quad \text{for } n \in \mathbb{N}$$
+
+$$
+P_n = \frac{n(3n - 1)}{2} \quad \text{for } n \in \mathbb{N}
+$$
 
 The sequence of pentagonal numbers begins:
-$$\{P_n\}_{n=1}^{\infty} = \{1, 5, 12, 22, 35, 51, 70, 92, 117, 145, \dots\}$$
+
+$$
+\{P_n\}_{n=1}^{\infty} = \{1, 5, 12, 22, 35, 51, 70, 92, 117, 145, \dots\}
+$$
 
 The objective is to find a pair of pentagonal numbers $(P_j, P_k)$ with $j < k$ such that both their sum and difference are pentagonal numbers:
-$$P_k + P_j \in \{P_n\} \quad \land \quad P_k - P_j \in \{P_n\}$$
+
+$$
+P_k + P_j \in \{P_n\} \quad \land \quad P_k - P_j \in \{P_n\}
+$$
+
 and their difference $D = P_k - P_j$ is minimized:
-$$D_{\text{min}} = \min \{ P_k - P_j \mid P_k + P_j \in \{P_n\}, \, P_k - P_j \in \{P_n\} \}$$
+
+$$
+D_{\text{min}} = \min \{ P_k - P_j \mid P_k + P_j \in \{P_n\}, \, P_k - P_j \in \{P_n\} \}
+$$
 
 ---
 
@@ -29,7 +42,11 @@ def naive_is_pentagonal(x):
 
 ### Algebraic Discriminant Test
 1. Solving $\frac{n(3n - 1)}{2} = x$ for $n$:
-   $$3n^2 - n - 2x = 0 \implies n = \frac{1 + \sqrt{1 + 24x}}{6}$$
+
+$$
+3n^2 - n - 2x = 0 \implies n = \frac{1 + \sqrt{1 + 24x}}{6}
+$$
+
 2. An integer $x$ is pentagonal if and only if **$1 + 24x$ is a perfect square** and **$\sqrt{1 + 24x} \equiv 5 \pmod 6$** (or equivalently $(1 + \sqrt{1 + 24x}) \equiv 0 \pmod 6$).
 3. Testing with `math.isqrt(1 + 24*x)` evaluates pentagonality in $\mathcal{O}(1)$ time.
 
@@ -67,15 +84,26 @@ Because $P_k - P_j$ increases as $k - j$ widens, scanning $k = 1, 2, 3, \dots$ a
 - $P_k = P_{2167} = \frac{2167 \times (3 \times 2167 - 1)}{2} = \mathbf{7\,042\,750}$
 - $P_j = P_{1020} = \frac{1020 \times (3 \times 1020 - 1)}{2} = \mathbf{1\,560\,090}$
 - **Difference:**
-  $$D = P_k - P_j = 7\,042\,750 - 1\,560\,090 = \mathbf{5\,482\,660}$$
+
+$$
+D = P_k - P_j = 7\,042\,750 - 1\,560\,090 = \mathbf{5\,482\,660}
+$$
+
   - $1 + 24(5482660) = 131\,583\,841 = 11\,471^2$.
   - $11\,471 \equiv 5 \pmod 6 \implies n = (1 + 11471)/6 = 1912 \implies D = P_{1912} \in \{P_n\} \checkmark$
 - **Sum:**
-  $$S = P_k + P_j = 7\,042\,750 + 1\,560\,090 = \mathbf{8\,602\,840}$$
+
+$$
+S = P_k + P_j = 7\,042\,750 + 1\,560\,090 = \mathbf{8\,602\,840}
+$$
+
   - $1 + 24(8602840) = 206\,468\,161 = 14\,369^2$.
   - $14\,369 \equiv 5 \pmod 6 \implies n = (1 + 14369)/6 = 2395 \implies S = P_{2395} \in \{P_n\} \checkmark$
 - Minimal Difference:
-  $$D_{\text{min}} = \mathbf{5\,482\,660}$$
+
+$$
+D_{\text{min}} = \mathbf{5\,482\,660}
+$$
 
 ---
 

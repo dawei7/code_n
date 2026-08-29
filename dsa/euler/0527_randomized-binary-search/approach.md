@@ -11,7 +11,10 @@ We are given:
 - $R(6) \approx 2.71666667$
 
 We seek to evaluate:
-$$R(10^{10}) - B(10^{10}) \text{ rounded to 8 decimal places}$$
+
+$$
+R(10^{10}) - B(10^{10}) \text{ rounded to 8 decimal places}
+$$
 
 ---
 
@@ -28,14 +31,22 @@ Computing $R(n)$ via direct dynamic programming requires $O(n^2)$ operations, an
 1. **Random BST Isomorphism**:
    The execution of randomized binary search on $[1, n]$ is equivalent to searching in a random binary search tree constructed from a uniform random permutation of $n$ elements.
 2. **Exact Harmonic Closed Form for $R(n)$**:
-   $$\begin{aligned}
+
+$$
+\begin{aligned}
    R(n) &= 1 + \frac{2}{n^2} \sum_{k=1}^{n-1} k R(k) \\
    &= 2 \left( 1 + \frac{1}{n} \right) H_n - 3
-   \end{aligned}$$
+\end{aligned}
+$$
+
    where $H_n = \sum_{k=1}^n \frac{1}{k}$ is the $n$-th Harmonic number.
 3. **Logarithmic Tree Depth for $B(n)$**:
    The deterministic binary search tree has height $\lceil \log_2(n+1) \rceil$. Its total depth sum satisfies:
-   $$S(n) = n + S(\lfloor(n-1)/2\rfloor) + S(\lceil(n-1)/2\rceil)$$
+
+$$
+S(n) = n + S(\lfloor(n-1)/2\rfloor) + S(\lceil(n-1)/2\rceil)
+$$
+
    which can be evaluated in $O(\log n)$ recursive steps via memoization.
 
 ---
@@ -44,7 +55,11 @@ Computing $R(n)$ via direct dynamic programming requires $O(n^2)$ operations, an
 
 ### Euler-Maclaurin Asymptotic Expansion for $H_{10^{10}}$
 1. **Asymptotic Series**:
-   $$H_n = \ln n + \gamma + \frac{1}{2n} - \frac{1}{12n^2} + \frac{1}{120n^4} + O(n^{-6})$$
+
+$$
+H_n = \ln n + \gamma + \frac{1}{2n} - \frac{1}{12n^2} + \frac{1}{120n^4} + O(n^{-6})
+$$
+
    where $\gamma = 0.577215664901532860606512...$ is the Euler-Mascheroni constant.
 2. **Error Bound**:
    For $n = 10^{10}$, the remainder term is $< 10^{-60}$, yielding $> 50$ digits of absolute precision.

@@ -7,12 +7,18 @@ For two positive integers $a$ and $b$, the **Ulam sequence** $U(a, b)$ is define
 - For $k > 2$, $U_k$ is the smallest integer greater than $U_{k-1}$ that can be written as the sum of two distinct earlier terms in **exactly one way**.
 
 For example, for $U(1, 2)$, the terms are:
-$$1, 2, 3, 4, 6, 8, 11, 13, 16, 18, 26, 28, 36, 38, 47, 48, 53, 57, 62, 69, \dots$$
+
+$$
+1, 2, 3, 4, 6, 8, 11, 13, 16, 18, 26, 28, 36, 38, 47, 48, 53, 57, 62, 69, \dots
+$$
 
 We consider the 9 Ulam sequences $U(2, 2n+1)$ for $2 \le n \le 10$, which corresponds to odd second term $v \in \{5, 7, 9, 11, 13, 15, 17, 19, 21\}$.
 
 The objective is to find the **sum of the $10^{11}$-th terms of these 9 Ulam sequences**:
-$$S_{\text{Ulam}} = \sum_{n=2}^{10} U(2, 2n+1)_{10^{11}}$$
+
+$$
+S_{\text{Ulam}} = \sum_{n=2}^{10} U(2, 2n+1)_{10^{11}}
+$$
 
 ---
 
@@ -65,14 +71,32 @@ def naive_ulam_sequence():
 1. Compute initial terms until $E$ is reached.
 2. Initialize bit array $B$ of size $e = E/2$ indicating which odd numbers $1, 3, \dots, E-1$ are in the sequence.
 3. Detect cycle using state shift machine:
-   $$\text{bit}_{\text{new}} = b_{\text{prev}} \oplus \text{state}_{\text{oldest}}$$
-   $$\text{state} \leftarrow (\text{state} \gg 1) \mid (\text{bit}_{\text{new}} \ll (e - 1))$$
+
+$$
+\text{bit}_{\text{new}} = b_{\text{prev}} \oplus \text{state}_{\text{oldest}}
+$$
+
+$$
+\text{state} \leftarrow (\text{state} \gg 1) \mid (\text{bit}_{\text{new}} \ll (e - 1))
+$$
+
 4. Compute quotient and remainder for remaining steps $k_{\text{rem}} = 10^{11} - \text{prefix}$:
-   $$q = \lfloor k_{\text{rem}} / P_{\text{terms}} \rfloor, \quad r = k_{\text{rem}} \bmod P_{\text{terms}}$$
+
+$$
+q = \lfloor k_{\text{rem}} / P_{\text{terms}} \rfloor, \quad r = k_{\text{rem}} \bmod P_{\text{terms}}
+$$
+
 5. The $10^{11}$-th term is:
-   $$U(2, v)_{10^{11}} = (2 m_r + 1) + q \cdot P_{\text{sum}}$$
+
+$$
+U(2, v)_{10^{11}} = (2 m_r + 1) + q \cdot P_{\text{sum}}
+$$
+
 6. Summing across all $n \in [2, 10]$:
-   $$S_{\text{Ulam}} = \mathbf{3\,916\,160\,068\,885}$$
+
+$$
+S_{\text{Ulam}} = \mathbf{3\,916\,160\,068\,885}
+$$
 
 ---
 
@@ -80,13 +104,20 @@ def naive_ulam_sequence():
 
 ### Example 1: Sample for $U(2, 5)$ Sequence
 - Terms of $U(2, 5)$:
-  $$2, 5, 7, 9, 11, 13, 15, \dots$$
+
+$$
+2, 5, 7, 9, 11, 13, 15, \dots
+$$
+
 - Second even term occurs at $E = 126$.
 - Past $E = 126$, all subsequent numbers are odd and differences repeat periodically!
 
 ### Example 2: Target Evaluation at $k = 10^{11}$
 - Summing the $10^{11}$-th terms of all 9 sequences:
-  $$S_{\text{Ulam}} = \mathbf{3\,916\,160\,068\,885}$$
+
+$$
+S_{\text{Ulam}} = \mathbf{3\,916\,160\,068\,885}
+$$
 
 ---
 

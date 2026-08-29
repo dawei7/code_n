@@ -11,7 +11,10 @@ We are given:
 - $F(2, 3) = 16, F(2, 100) \equiv 429\,619\,151 \pmod{10^9}$
 
 We seek the last $9$ digits of:
-$$F(10, 10^{12}) \pmod{10^9}$$
+
+$$
+F(10, 10^{12}) \pmod{10^9}
+$$
 
 ---
 
@@ -45,7 +48,11 @@ We define two $231 \times 231$ transition matrices:
 2. Matrix $B$: transitions where $a_{\text{new}} = 0$ (square is missed).
 
 To track paths with at most $1$ miss across $N = 10^{12} - 1$ steps:
-$$\begin{pmatrix} R_A & R_B \\ 0 & R_A \end{pmatrix} = \begin{pmatrix} A & B \\ 0 & A \end{pmatrix}^N$$
+
+$$
+\begin{pmatrix} R_A & R_B \\ 0 & R_A \end{pmatrix} = \begin{pmatrix} A & B \\ 0 & A \end{pmatrix}^N
+$$
+
 where $R_A = A^N$ and $R_B = \sum_{i=0}^{N-1} A^i B A^{N-1-i}$.
 Binary matrix exponentiation over this $2 \times 2$ block system evaluates $N = 10^{12}$ in $O(231^3 \log N)$ operations!
 

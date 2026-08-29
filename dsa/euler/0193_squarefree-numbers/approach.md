@@ -8,7 +8,10 @@ For example:
 - $4 = 2^2, 8 = 2^2 \times 2, 9 = 3^2$ are not squarefree.
 
 The objective is to find the **number of squarefree numbers less than $2^{50}$ ($1\,125\,899\,906\,842\,624$)**:
-$$Q(2^{50}) = \left| \left\{ n \in \mathbb{N} \;\middle|\; n < 2^{50} \land \forall p \in \mathbb{P}, p^2 \nmid n \right\} \right|$$
+
+$$
+Q(2^{50}) = \left| \left\{ n \in \mathbb{N} \;\middle|\; n < 2^{50} \land \forall p \in \mathbb{P}, p^2 \nmid n \right\} \right|
+$$
 
 ---
 
@@ -25,7 +28,11 @@ def naive_squarefree():
 ### Möbius Inversion & Hyperbola Sublinear Grouping
 1. **Inclusion-Exclusion via Möbius Function $\mu(d)$:**
    By the Principle of Inclusion-Exclusion, the number of squarefree integers up to $N = 2^{50} - 1$ is:
-   $$Q(N) = \sum_{d=1}^{\lfloor \sqrt{N} \rfloor} \mu(d) \left\lfloor \frac{N}{d^2} \right\rfloor$$
+
+$$
+Q(N) = \sum_{d=1}^{\lfloor \sqrt{N} \rfloor} \mu(d) \left\lfloor \frac{N}{d^2} \right\rfloor
+$$
+
 2. **Sublinear Grouping Decomposition:**
    Direct evaluation requires $\sqrt{N} = 2^{25} = 33\,554\,431$ iterations.
    Splitting the summation at a threshold cutoff $x = 1\,500\,000$:
@@ -34,7 +41,11 @@ def naive_squarefree():
      For a given $k$, $d \in (\lfloor \sqrt{N/(k+1)} \rfloor, \lfloor \sqrt{N/k} \rfloor]$.
      Summing $\mu(d)$ over this interval gives $M(\lfloor \sqrt{N/k} \rfloor) - M(\lfloor \sqrt{N/(k+1)} \rfloor)$ where $M(u) = \sum_{i=1}^u \mu(i)$ is the Mertens function.
    - Telescoping across all $k$ yields:
-     $$\sum_{k=1}^{k_{\text{max}}} \left( M\left( \left\lfloor \sqrt{N/k} \right\rfloor \right) - M(x) \right)$$
+
+$$
+\sum_{k=1}^{k_{\text{max}}} \left( M\left( \left\lfloor \sqrt{N/k} \right\rfloor \right) - M(x) \right)
+$$
+
 3. **Mertens Function via Dirichlet Hyperbola:**
    $M(u)$ is precomputed up to $K = 2\,500\,000$ via linear sieve in $\approx 0.3$s, and evaluated for $u > K$ using memoized Dirichlet hyperbola identity.
 4. Total execution completes in $\approx 0.60$ seconds.
@@ -57,9 +68,16 @@ def naive_squarefree():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Sublinear Squarefree Formula
-$$Q(N) = \sum_{d=1}^x \mu(d) \left\lfloor \frac{N}{d^2} \right\rfloor + \sum_{k=1}^{\lfloor N / (x+1)^2 \rfloor} \left( M\left( \left\lfloor \sqrt{N/k} \right\rfloor \right) - M(x) \right)$$
+
+$$
+Q(N) = \sum_{d=1}^x \mu(d) \left\lfloor \frac{N}{d^2} \right\rfloor + \sum_{k=1}^{\lfloor N / (x+1)^2 \rfloor} \left( M\left( \left\lfloor \sqrt{N/k} \right\rfloor \right) - M(x) \right)
+$$
+
 Evaluating for $N = 2^{50} - 1$:
-$$Q(2^{50}) = \mathbf{684\,465\,067\,343\,069}$$
+
+$$
+Q(2^{50}) = \mathbf{684\,465\,067\,343\,069}
+$$
 
 ---
 
@@ -74,7 +92,10 @@ $$Q(2^{50}) = \mathbf{684\,465\,067\,343\,069}$$
 
 ### Example 2: Target Evaluation for $n < 2^{50}$
 - Sublinear hyperbola evaluation:
-  $$Q(2^{50}) = \mathbf{684\,465\,067\,343\,069}$$
+
+$$
+Q(2^{50}) = \mathbf{684\,465\,067\,343\,069}
+$$
 
 ---
 

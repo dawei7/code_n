@@ -25,7 +25,10 @@ Evaluating all arbitrary parenthesizations and operators over $6$ numbers per pr
 
 2. **Subset Merging Transition**:
    For each bitmask $M$, the set of reachable values $DP[M]$ is formed by combining $v_1 \in DP[S]$ and $v_2 \in DP[M \setminus S]$ for all sub-masks $S \subset M$:
-   $$DP[M] = \bigcup_{S \subset M} \{v_1 \circ v_2 \mid v_1 \in DP[S], v_2 \in DP[M \setminus S], \circ \in \{+,-,\times,\div\}\}$$
+
+$$
+DP[M] = \bigcup_{S \subset M} \{v_1 \circ v_2 \mid v_1 \in DP[S], v_2 \in DP[M \setminus S], \circ \in \{+,-,\times,\div\}\}
+$$
 
 3. **Sub-second Weighted Summation**:
    Evaluating all 200 Countdown problems computes $\sum_{n=1}^{200} 3^n s_n \pmod{1005075251}$ in $\mathcal{O}(200 \cdot 3^6)$ time ($\approx 0.8$ seconds).

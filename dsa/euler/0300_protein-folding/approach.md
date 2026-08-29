@@ -28,7 +28,10 @@ Notice that the set of possible self-avoiding foldings is **independent of the s
 - For each folding $F$, its set of non-chain adjacent contacts is fixed:
   Represent the set of contact pairs as a bitmask over the $\binom{15}{2} = 105$ possible pairs $(i, j)$ ($|i - j| > 1$).
 - For any string $s$, the number of $H-H$ contacts in folding $F$ is simply:
-  $$\text{Contacts}(s, F) = \sum_{(i, j) \in \text{Edges}(F)} [s[i] == H \text{ and } s[j] == H]$$
+
+$$
+\text{Contacts}(s, F) = \sum_{(i, j) \in \text{Edges}(F)} [s[i] == H \text{ and } s[j] == H]
+$$
 
 ---
 

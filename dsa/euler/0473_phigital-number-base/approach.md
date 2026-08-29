@@ -4,14 +4,21 @@
 
 Let $\varphi = \frac{1+\sqrt{5}}{2}$ be the golden ratio.
 Every positive integer $n$ can be uniquely expressed in canonical phigital base:
-$$n = \sum_{k \in \mathbb{Z}} b_k \varphi^k, \quad b_k \in \{0, 1\}, \quad b_k b_{k+1} = 0$$
+
+$$
+n = \sum_{k \in \mathbb{Z}} b_k \varphi^k, \quad b_k \in \{0, 1\}, \quad b_k b_{k+1} = 0
+$$
+
 A representation is **palindromic** if $b_k = b_{-k}$ for all $k \ge 1$.
 
 We are given:
 - The sum of palindromic integers $\le 1000$ is $4345$.
 
 We seek to evaluate:
-$$\sum_{n \le 10^{10}, \, n \text{ is palindromic}} n$$
+
+$$
+\sum_{n \le 10^{10}, \, n \text{ is palindromic}} n
+$$
 
 ---
 
@@ -27,7 +34,11 @@ Testing all non-consecutive binary sequences of length $\approx 2 \log_\varphi(1
 ### Parity Invariance & Fibonacci Algebraic Elimination
 1. **Symmetric Exponent Pairs**:
    For a palindromic representation:
-   $$n = b_0 + \sum_{k=1}^M b_k (\varphi^k + \varphi^{-k})$$
+
+$$
+n = b_0 + \sum_{k=1}^M b_k (\varphi^k + \varphi^{-k})
+$$
+
 2. **Algebraic Form of $\varphi^k + \varphi^{-k}$**:
    - For even $k$: $\varphi^k + \varphi^{-k} = L_k$ (Lucas numbers, purely rational integers).
    - For odd $k$: $\varphi^k + \varphi^{-k} = \sqrt{5} F_k$ (irrational terms).

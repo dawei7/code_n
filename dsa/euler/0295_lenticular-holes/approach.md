@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A **lenticular hole** is the open convex intersection of the interior of two disks:
-$$D(O_1, r_1) \cap D(O_2, r_2)$$
+
+$$
+D(O_1, r_1) \cap D(O_2, r_2)
+$$
+
 such that:
 1. The centers $O_1, O_2 \in \mathbb{Z}^2$ are integer lattice points.
 2. The radii $r_1, r_2 \in \mathbb{R}^+$ are positive reals with $r_1 \le r_2 \le N$.
@@ -48,7 +52,13 @@ Let the two boundary intersection points be $P$ and $Q$.
    - Group the generated radii into a list of compatible radius intervals.
 2. For each radius $r$, maintain a bitset of compatible chords.
 3. Count unordered pairs $(r_1, r_2)$ with $r_1 \le r_2 \le N$ such that $r_1$ and $r_2$ share at least one valid chord bit:
-   $$\text{HasCommonChord}(r_1, r_2) = (B(r_1) \ \ \& \ \ B(r_2)) \ne 0$$
+
+$$
+\begin{aligned}
+\text{HasCommonChord}(r_1, r_2) = (B(r_1) \ \ \& \ \ B(r_2)) \ne 0
+\end{aligned}
+$$
+
 4. Fast 64-bit integer bitset operations evaluate $L(100\,000)$ in under $4.5$ seconds in pure Python!
 
 ---

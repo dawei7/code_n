@@ -18,7 +18,10 @@ We are given:
 - $f(10\,000) = 8824$
 
 We seek to evaluate:
-$$f(3\,000\,000)$$
+
+$$
+f(3\,000\,000)
+$$
 
 ---
 
@@ -34,8 +37,15 @@ Evaluating $l(x, y)$ for all $x \le 3 \times 10^6$ and $y < x$ requires $O(n^2)$
 ### Parallel Active-Set Propagation & Singleton Fast-Path
 1. **Set-Valued Forward Evolution**:
    Instead of testing each $y$ independently, track the set $A_z$ of active non-terminal values produced by all $y < x$:
-   $$A_x = \{2, \dots, x-1\}$$
-   $$A_{z+1} = \{a^2 \bmod z \mid a \in A_z\} \setminus \{0, 1\}$$
+
+$$
+A_x = \{2, \dots, x-1\}
+$$
+
+$$
+A_{z+1} = \{a^2 \bmod z \mid a \in A_z\} \setminus \{0, 1\}
+$$
+
    The length $g(x)$ is the number of steps until $A_z = \emptyset$.
 2. **Symmetry & Rapid Contraction**:
    Since $(x - y)^2 \equiv y^2 \pmod x$, testing $y \in [2, \lfloor x/2 \rfloor]$ generates $A_{x+1}$ directly.
@@ -43,7 +53,10 @@ Evaluating $l(x, y)$ for all $x \le 3 \times 10^6$ and $y < x$ requires $O(n^2)$
    Once $|A_z| = 1$, we follow that single scalar forward directly in $O(1)$ per step.
 3. **Branch-and-Bound Upper Bound**:
    Dropping the first $r - x$ terms of any sequence starting at $x$ yields a valid sequence starting at $r$:
-   $$g(x) \le g(r) + (r - x) \implies \max_{l \le x \le r} g(x) \le g(r) + (r - l)$$
+
+$$
+g(x) \le g(r) + (r - x) \implies \max_{l \le x \le r} g(x) \le g(r) + (r - l)
+$$
 
 ---
 

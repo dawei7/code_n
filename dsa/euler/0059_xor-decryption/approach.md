@@ -7,10 +7,16 @@ Let $\mathbf{C} = (c_0, c_1, \dots, c_{L-1})$ be the encrypted sequence of $L = 
 The encryption key $\mathbf{K} = (k_0, k_1, k_2)$ consists of three lowercase English letters ($k_j \in [97, 122]$ representing ASCII `'a'` through `'z'`).
 
 Decryption is performed by cyclical bitwise XOR operations:
-$$p_i = c_i \oplus k_{i \bmod 3} \quad \text{for } 0 \le i < L$$
+
+$$
+p_i = c_i \oplus k_{i \bmod 3} \quad \text{for } 0 \le i < L
+$$
 
 The objective is to find the unique key that decrypts the message into readable English text and compute the sum of the ASCII values of the decrypted characters:
-$$S_{\text{ASCII}} = \sum_{i=0}^{L-1} p_i^*$$
+
+$$
+S_{\text{ASCII}} = \sum_{i=0}^{L-1} p_i^*
+$$
 
 ---
 
@@ -21,7 +27,11 @@ A manual approach computes frequency histograms for $i \equiv 0, 1, 2 \pmod 3$ a
 
 ### Total Key Space Exhaustion
 1. The total key space consists of only:
-   $$|\mathcal{K}| = 26^3 = 17\,576 \text{ keys}$$
+
+$$
+|\mathcal{K}| = 26^3 = 17\,576 \text{ keys}
+$$
+
 2. For each key, decrypting $1201$ bytes and scanning for English stop words (`" the "`, `" of "`, `" and "`) takes $\mathcal{O}(L)$ operations.
 3. Checking all $17\,576$ keys takes $\approx 0.03$ seconds, completely automating decryption without heuristic manual inspection.
 
@@ -67,7 +77,10 @@ A manual approach computes frequency histograms for $i \equiv 0, 1, 2 \pmod 3$ a
   - $p_3 = 2 \oplus 103 = 101 = \text{'e'}$
   - Plaintext begins: `"(The Gospel of John, done into English..."`
 - Sum of ASCII values across all $1201$ characters:
-  $$S_{\text{ASCII}} = \mathbf{129\,448}$$
+
+$$
+S_{\text{ASCII}} = \mathbf{129\,448}
+$$
 
 ---
 

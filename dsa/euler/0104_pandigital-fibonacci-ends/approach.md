@@ -3,12 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The Fibonacci sequence is defined by the recurrence relation:
-$$F_n = F_{n-1} + F_{n-2}, \quad \text{where } F_1 = 1 \text{ and } F_2 = 1$$
+
+$$
+F_n = F_{n-1} + F_{n-2}, \quad \text{where } F_1 = 1 \text{ and } F_2 = 1
+$$
 
 It turns out that $F_{541}$, which contains 113 digits, is the first Fibonacci number for which the last nine digits are $1-9$ pandigital (contain all digits 1 through 9, but not necessarily in order). And $F_{2749}$, which contains 575 digits, is the first Fibonacci number for which the first nine digits are $1-9$ pandigital.
 
 The objective is to find the index $k$ of the **first Fibonacci number for which both the first nine digits AND the last nine digits are $1-9$ pandigital**:
-$$k^* = \min \left\{ k \in \mathbb{N} \;\middle|\; \text{is\_pandigital}(T_9(F_k)) \land \text{is\_pandigital}(H_9(F_k)) \right\}$$
+
+$$
+k^* = \min \left\{ k \in \mathbb{N} \;\middle|\; \text{is\_pandigital}(T_9(F_k)) \land \text{is\_pandigital}(H_9(F_k)) \right\}
+$$
 
 ---
 
@@ -30,7 +36,11 @@ def naive_pandigital_fibonacci():
 2. **Leading 9 Digits (Binet's Logarithmic Formula):**
    - By Binet's formula, $F_k \approx \frac{\phi^k}{\sqrt{5}}$ where $\phi = \frac{1 + \sqrt{5}}{2}$.
    - Taking $\log_{10}$:
-     $$\log_{10} F_k \approx k \log_{10} \phi - \log_{10} \sqrt{5}$$
+
+$$
+\log_{10} F_k \approx k \log_{10} \phi - \log_{10} \sqrt{5}
+$$
+
    - The fractional part $r = \log_{10} F_k \bmod 1.0$ directly yields the top 9 digits as $\lfloor 10^{r + 8} \rfloor$ in $\mathcal{O}(1)$ time without BigInt arithmetic!
 3. Testing the head only when the tail passes evaluates all $330\,000$ terms in $\approx 0.25$ seconds.
 
@@ -53,14 +63,26 @@ def naive_pandigital_fibonacci():
 
 ### Dual Screening Execution Pipeline
 1. Precalculate constants:
-   $$c_1 = \log_{10}\left( \frac{1 + \sqrt{5}}{2} \right), \quad c_2 = \log_{10}(\sqrt{5})$$
+
+$$
+c_1 = \log_{10}\left( \frac{1 + \sqrt{5}}{2} \right), \quad c_2 = \log_{10}(\sqrt{5})
+$$
+
 2. Loop $k = 3, 4, 5, \dots$ with $(a, b) \leftarrow (b, (a + b) \bmod 10^9)$:
    - Check if $\text{format}(b, \text{"09d"})$ is $1-9$ pandigital.
    - If True:
      - Compute fractional exponent:
-       $$r = (k \cdot c_1 - c_2) \bmod 1.0$$
+
+$$
+r = (k \cdot c_1 - c_2) \bmod 1.0
+$$
+
      - Extract leading 9 digits:
-       $$H_9 = \operatorname{str}(\lfloor 10^{r + 8} \rfloor)$$
+
+$$
+H_9 = \operatorname{str}(\lfloor 10^{r + 8} \rfloor)
+$$
+
      - If $H_9$ is $1-9$ pandigital: return $k$.
 
 ---
@@ -76,7 +98,10 @@ def naive_pandigital_fibonacci():
   - Last 9 digits $\bmod 10^9$: `461825397` (sorted = `123456789`) $\checkmark$.
   - Fractional log exponent $r \approx 0.994555 \implies \lfloor 10^{r+8} \rfloor = 987541236$ (sorted = `123456789`) $\checkmark$.
 - Smallest index with both ends pandigital:
-  $$k^* = \mathbf{329\,468}$$
+
+$$
+k^* = \mathbf{329\,468}
+$$
 
 ---
 

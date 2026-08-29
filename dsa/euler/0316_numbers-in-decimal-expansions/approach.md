@@ -27,7 +27,11 @@ A naive approach constructs the Aho-Corasick / KMP prefix automaton transition m
 By John Conway's algorithm / martingale stopping theorem on string pattern waiting times:
 For an alphabet of size $B = 10$ and pattern $S = s_1 s_2 \dots s_L$:
 The expected waiting time until string $S$ first appears is given in closed form by:
-$$\mathbb{E}[k] = \sum_{j=1}^L \delta(j) \cdot 10^j - (L - 1)$$
+
+$$
+\mathbb{E}[k] = \sum_{j=1}^L \delta(j) \cdot 10^j - (L - 1)
+$$
+
 where $\delta(j) = 1$ if the prefix of length $j$ of $S$ equals the suffix of length $j$ of $S$ (i.e. $S$ has a border of length $j$), and $0$ otherwise.
 
 ---

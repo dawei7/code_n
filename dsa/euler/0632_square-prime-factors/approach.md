@@ -9,7 +9,10 @@ We are given:
 - Values of $C_k(N)$ for $N \le 10^8$ matching the table.
 
 We seek to evaluate:
-$$\prod_{k, C_k(10^{16}) > 0} C_k(10^{16}) \pmod{10^9 + 7}$$
+
+$$
+\prod_{k, C_k(10^{16}) > 0} C_k(10^{16}) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -27,13 +30,24 @@ Factoring each of the $10^{16}$ integers is impossible.
    Every integer $x \le N$ decomposes uniquely as $x = d^2 s$, where $s$ is squarefree and $d = \prod p_i^{\lfloor e_i / 2 \rfloor}$.
    The number of square prime factors of $x$ is precisely $\omega(d)$, the number of distinct prime factors of $d$.
 2. **Convolution Inversion**:
-   $$C_k(N) = \sum_{d \le \sqrt{N}, \omega(d) = k} Q\left(\left\lfloor \frac{N}{d^2} \right\rfloor\right) = \sum_{d \le \sqrt{N}, \omega(d) = k} \sum_{j \le \sqrt{N/d^2}} \mu(j) \left\lfloor \frac{N}{(d j)^2} \right\rfloor$$
+
+$$
+C_k(N) = \sum_{d \le \sqrt{N}, \omega(d) = k} Q\left(\left\lfloor \frac{N}{d^2} \right\rfloor\right) = \sum_{d \le \sqrt{N}, \omega(d) = k} \sum_{j \le \sqrt{N/d^2}} \mu(j) \left\lfloor \frac{N}{(d j)^2} \right\rfloor
+$$
+
    Setting $m = d j \le \sqrt{N} = 10^8$:
-   $$C_k(N) = \sum_{m \le \sqrt{N}} \left\lfloor \frac{N}{m^2} \right\rfloor \sum_{j \mid m, \mu(j) \neq 0} \mu(j) [\omega(m/j) = k]$$
+
+$$
+C_k(N) = \sum_{m \le \sqrt{N}} \left\lfloor \frac{N}{m^2} \right\rfloor \sum_{j \mid m, \mu(j) \neq 0} \mu(j) [\omega(m/j) = k]
+$$
+
 3. **Binomial Inversion on Squarefree $m$**:
    When $m$ is not squarefree, the inner sum vanishes identically ($0$).
    When $m$ is squarefree with $r = \omega(m)$ distinct prime factors:
-   $$\sum_{j \mid m} \mu(j) [\omega(m/j) = k] = (-1)^{r - k} \binom{r}{k}$$
+
+$$
+\sum_{j \mid m} \mu(j) [\omega(m/j) = k] = (-1)^{r - k} \binom{r}{k}
+$$
 
 ---
 
@@ -42,9 +56,17 @@ Factoring each of the $10^{16}$ integers is impossible.
 ### Binomial Reduction over Squarefree Strata ($O(\sqrt{N})$)
 1. **Stratified Sums $S_r$**:
    For each $r \ge 0$, define:
-   $$S_r = \sum_{m \le \sqrt{N}, \mu^2(m) = 1, \omega(m) = r} \left\lfloor \frac{N}{m^2} \right\rfloor$$
+
+$$
+S_r = \sum_{m \le \sqrt{N}, \mu^2(m) = 1, \omega(m) = r} \left\lfloor \frac{N}{m^2} \right\rfloor
+$$
+
 2. **Exact Expression for $C_k(N)$**:
-   $$C_k(N) = \sum_{r = k}^{\max r} (-1)^{r - k} \binom{r}{k} S_r$$
+
+$$
+C_k(N) = \sum_{r = k}^{\max r} (-1)^{r - k} \binom{r}{k} S_r
+$$
+
 3. **Linear Sieve**:
    A single linear sieve up to $\sqrt{N} = 10^8$ classifies every $m \le 10^8$ by squarefreeness and $\omega(m)$ in $O(\sqrt{N})$ time.
 

@@ -91,7 +91,11 @@ function starterForLanguage(detail: ChallengeDetail, language: SupportedLanguage
 }
 
 
+import { ThemeId, getTheme, applyThemeToDocument } from '../lib/themes';
+
 export interface AppState {
+  themeId: ThemeId;
+  setThemeId: (id: ThemeId) => void;
   theme: 'light' | 'dark';
   toggleTheme: () => void;
 
@@ -230,13 +234,31 @@ export interface AppState {
 export const applyingRemoteRef = { current: false };
 
 
-export const useAppStore = create<AppState>((set, get) => ({
-  theme: (localStorage.getItem('coden-theme') as 'dark' | 'light') || 'dark',
-  toggleTheme: () => set((state) => {
-    const next = state.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('coden-theme', next);
-    return { theme: next };
-  }),
+export const useAppStore = create<AppState>((set, get) => {
+  const initialThemeId = (localStorage.getItem('coden-theme-id') as ThemeId) || 'obsidian-emerald';
+  const initialTheme = getTheme(initialThemeId);
+  if (typeof document !== 'undefined') {
+    applyThemeToDocument(initialTheme);
+  }
+
+  return {
+    themeId: initialThemeId,
+    theme: initialTheme.mode,
+    setThemeId: (id: ThemeId) => {
+      const selected = getTheme(id);
+      localStorage.setItem('coden-theme-id', id);
+      localStorage.setItem('coden-theme', selected.mode);
+      applyThemeToDocument(selected);
+      set({ themeId: id, theme: selected.mode });
+    },
+    toggleTheme: () => set((state) => {
+      const nextThemeId: ThemeId = state.theme === 'dark' ? 'nordic-frost' : 'obsidian-emerald';
+      const selected = getTheme(nextThemeId);
+      localStorage.setItem('coden-theme-id', nextThemeId);
+      localStorage.setItem('coden-theme', selected.mode);
+      applyThemeToDocument(selected);
+      return { themeId: nextThemeId, theme: selected.mode };
+    }),
 
   appMode: (localStorage.getItem('coden-app-mode') as 'coden' | 'euler') || 'coden',
   setAppMode: (mode) => {
@@ -956,4 +978,5 @@ export const useAppStore = create<AppState>((set, get) => ({
       return { success: false, message: e instanceof Error ? e.message : 'Unknown verification error' };
     }
   },
-}));
+  };
+});

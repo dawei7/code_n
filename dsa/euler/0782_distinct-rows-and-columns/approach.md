@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The complexity of an $n \times n$ binary matrix $M$ is the number of distinct row and column patterns:
-$$\operatorname{comp}(M) = |\operatorname{Rows}(M) \cup \operatorname{Cols}(M)|$$
+
+$$
+\operatorname{comp}(M) = |\operatorname{Rows}(M) \cup \operatorname{Cols}(M)|
+$$
+
 For $0 \le k \le n^2$, let $c(n, k)$ be the minimum complexity among all $n \times n$ binary matrices with exactly $k$ ones.
 We define:
-$$C(n) = \sum_{k=0}^{n^2} c(n, k)$$
+
+$$
+C(n) = \sum_{k=0}^{n^2} c(n, k)
+$$
 
 We are given:
 - $C(2) = 8$
@@ -15,7 +22,10 @@ We are given:
 - $C(20) = 1150$
 
 We seek to evaluate:
-$$C(10^4)$$
+
+$$
+C(10^4)
+$$
 
 ---
 

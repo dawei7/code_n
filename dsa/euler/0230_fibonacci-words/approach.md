@@ -3,14 +3,21 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For any two strings of digits $A$ and $B$, define the sequence of **Fibonacci words** by:
-$$W_1 = A, \quad W_2 = B, \quad W_k = W_{k-2} + W_{k-1} \quad (k \ge 3)$$
+
+$$
+W_1 = A, \quad W_2 = B, \quad W_k = W_{k-2} + W_{k-1} \quad (k \ge 3)
+$$
+
 where $+$ denotes string concatenation.
 
 Let $A$ be the first $100$ digits after the decimal point in the constant $\pi$, and $B$ be the first $100$ digits after the decimal point in the constant $e$.
 Let $D_{A,B}(p)$ denote the $p^{\text{th}}$ digit in the infinite concatenated Fibonacci word limit $W_\infty$.
 
 Find:
-$$\sum_{n=0}^{17} 10^n \times D_{A,B}\left((127 + 19n) \times 7^n\right)$$
+
+$$
+\sum_{n=0}^{17} 10^n \times D_{A,B}\left((127 + 19n) \times 7^n\right)
+$$
 
 ---
 
@@ -28,7 +35,11 @@ def naive_fibonacci_words():
 ### Divide-and-Conquer Logarithmic Descent
 1. **Length Sequence:**
    Lengths of Fibonacci words satisfy the standard recurrence:
-   $$|W_1| = 100, \quad |W_2| = 100, \quad |W_k| = |W_{k-2}| + |W_{k-1}|$$
+
+$$
+|W_1| = 100, \quad |W_2| = 100, \quad |W_k| = |W_{k-2}| + |W_{k-1}|
+$$
+
    Lengths exceed $10^{18}$ within $k \le 90$.
 2. **Recursive Digit Lookup:**
    To retrieve the $p^{\text{th}}$ digit of $W_k$ ($1 \le p \le |W_k|$):
@@ -73,7 +84,10 @@ def solve(max_n: int = 17) -> int:
 ```
 
 Evaluating for $\text{max\_n} = 17$:
-$$\sum_{n=0}^{17} 10^n D_{A,B}(p_n) = \mathbf{850\,481\,152\,593\,119\,296}$$
+
+$$
+\sum_{n=0}^{17} 10^n D_{A,B}(p_n) = \mathbf{850\,481\,152\,593\,119\,296}
+$$
 
 ---
 
@@ -87,7 +101,10 @@ $$\sum_{n=0}^{17} 10^n D_{A,B}(p_n) = \mathbf{850\,481\,152\,593\,119\,296}$$
 
 ### Example 2: Target Evaluation for $n \in [0, 17]$
 - Evaluating digits across all 18 positions:
-  $$\text{Value} = \mathbf{850\,481\,152\,593\,119\,296}$$
+
+$$
+\text{Value} = \mathbf{850\,481\,152\,593\,119\,296}
+$$
 
 ---
 

@@ -5,16 +5,28 @@
 Let $p \in \mathbb{P}$ with $p > 7$ and decimal representation $p = d_{k-1} d_{k-2} \dots d_0$.
 
 Define the left-truncation set $\mathcal{T}_L(p)$ and right-truncation set $\mathcal{T}_R(p)$:
-$$\mathcal{T}_L(p) = \left\{ \sum_{j=0}^{i-1} d_j 10^j \;\middle|\; i \in \{1, 2, \dots, k\} \right\}$$
 
-$$\mathcal{T}_R(p) = \left\{ \sum_{j=0}^{i-1} d_{k-i+j} 10^j \;\middle|\; i \in \{1, 2, \dots, k\} \right\}$$
+$$
+\mathcal{T}_L(p) = \left\{ \sum_{j=0}^{i-1} d_j 10^j \;\middle|\; i \in \{1, 2, \dots, k\} \right\}
+$$
+
+$$
+\mathcal{T}_R(p) = \left\{ \sum_{j=0}^{i-1} d_{k-i+j} 10^j \;\middle|\; i \in \{1, 2, \dots, k\} \right\}
+$$
 
 A prime $p > 7$ is defined as a **truncatable prime** if all its left and right truncations are themselves prime numbers:
-$$\mathcal{T}_L(p) \subseteq \mathbb{P} \quad \land \quad \mathcal{T}_R(p) \subseteq \mathbb{P}$$
+
+$$
+\mathcal{T}_L(p) \subseteq \mathbb{P} \quad \land \quad \mathcal{T}_R(p) \subseteq \mathbb{P}
+$$
+
 *(Note: Single digit primes $2, 3, 5, 7$ are explicitly excluded).*
 
 The objective is to compute the sum of the only eleven truncatable primes:
-$$S = \sum_{p \in \mathcal{P}_{\text{trunc}}} p$$
+
+$$
+S = \sum_{p \in \mathcal{P}_{\text{trunc}}} p
+$$
 
 ---
 
@@ -83,7 +95,10 @@ def naive_truncatable_primes():
 - All 8 sub-terms are prime $\implies 3797$ is truncatable! $\checkmark$
 
 ### Example 2: Target Evaluation (All 11 Primes)
-$$S = 23 + 37 + 53 + 73 + 313 + 317 + 373 + 797 + 3137 + 3797 + 73939 = \mathbf{748\,317}$$
+
+$$
+S = 23 + 37 + 53 + 73 + 313 + 317 + 373 + 797 + 3137 + 3797 + 73939 = \mathbf{748\,317}
+$$
 
 ---
 

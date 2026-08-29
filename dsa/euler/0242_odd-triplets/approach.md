@@ -8,7 +8,10 @@ When $n$, $k$, and $f(n, k)$ are **all odd integers**, the triplet $[n, k, f(n, 
 For example:
 - $f(5, 3) = 4$ (subsets $\{1,2,4\}, \{1,3,5\}, \{2,3,4\}, \{2,4,5\}$) — not an odd-triplet since $f(5, 3)$ is even.
 - For $n \le 10$, there are exactly $5$ odd-triplets:
-  $$[1,1,1], \quad [5,1,3], \quad [5,5,1], \quad [9,1,5], \quad [9,9,1]$$
+
+$$
+[1,1,1], \quad [5,1,3], \quad [5,5,1], \quad [9,1,5], \quad [9,9,1]
+$$
 
 Find the total number of odd-triplets with **$n \le 10^{12}$**.
 
@@ -31,12 +34,20 @@ def naive_odd_triplets(limit):
    Let $n = 4m + 1$ and $k = 2j + 1$.
 2. **Bitwise Submask Characterization:**
    $f(4m + 1, 2j + 1)$ is odd **if and only if** $j$ is a bitwise submask of $m$:
-   $$j \subseteq m \iff (j \text{ AND } m) = j$$
+
+$$
+j \subseteq m \iff (j \text{ AND } m) = j
+$$
+
 3. **Popcount Multiplicity:**
    For a given $m$, the number of submasks $j \in [0, 2m]$ with $j \subseteq m$ is precisely $2^{\operatorname{popcount}(m)}$.
 4. **Logarithmic Digit DP:**
    We need the sum:
-   $$S(M) = \sum_{m=0}^M 2^{\operatorname{popcount}(m)}, \quad M = \left\lfloor \frac{10^{12} - 1}{4} \right\rfloor$$
+
+$$
+S(M) = \sum_{m=0}^M 2^{\operatorname{popcount}(m)}, \quad M = \left\lfloor \frac{10^{12} - 1}{4} \right\rfloor
+$$
+
    In binary, each unset bit at depth $d$ allows $2^d$ numbers whose bits can be $0$ (weight 1) or $1$ (weight 2), giving a branching factor of $1 + 2 = 3$.
    This evaluates in $\mathcal{O}(\log_2 M) \approx 40$ steps in $< 0.0001$ seconds.
 
@@ -54,7 +65,9 @@ def naive_odd_triplets(limit):
 | **$3$** | $13$ | `11` | $2$ | $\{0, 1, 2, 3\}$ | $2^2 = \mathbf{4}$ | $9$ |
 | **$4$** | $17$ | `100` | $1$ | $\{0, 4\}$ | $2^1 = \mathbf{2}$ | $11$ |
 
-$$\text{For } n \le 10 \implies M = \lfloor (10-1)/4 \rfloor = 2 \implies \text{Total} = 1 + 2 + 2 = \mathbf{5} \quad (\checkmark)$$
+$$
+\text{For } n \le 10 \implies M = \lfloor (10-1)/4 \rfloor = 2 \implies \text{Total} = 1 + 2 + 2 = \mathbf{5} \quad (\checkmark)
+$$
 
 ---
 
@@ -80,7 +93,10 @@ def solve(limit: int = 10**12) -> int:
 ```
 
 Evaluating for $\text{limit} = 10^{12}$:
-$$\text{Total Odd-Triplets} = \mathbf{997\,104\,142\,249\,036\,713}$$
+
+$$
+\text{Total Odd-Triplets} = \mathbf{997\,104\,142\,249\,036\,713}
+$$
 
 ---
 
@@ -98,7 +114,10 @@ $$\text{Total Odd-Triplets} = \mathbf{997\,104\,142\,249\,036\,713}$$
 - $M = 249\,999\,999\,999$.
 - Binary length: $38$ bits.
 - Fast digit DP evaluates sum of $2^{\operatorname{popcount}(m)}$:
-  $$\text{Total} = \mathbf{997\,104\,142\,249\,036\,713}$$
+
+$$
+\text{Total} = \mathbf{997\,104\,142\,249\,036\,713}
+$$
 
 ---
 

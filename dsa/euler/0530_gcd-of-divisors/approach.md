@@ -10,7 +10,10 @@ We are given:
 - $F(1000) = 12776$
 
 We seek to evaluate:
-$$F(10^{15})$$
+
+$$
+F(10^{15})
+$$
 
 ---
 
@@ -28,10 +31,17 @@ For $k = 10^{15}$, iterating over all $n \le 10^{15}$ is completely impossible.
    Let $n = a \cdot b$. Then $d = a, n/d = b$, so $f(n) = \sum_{a b = n} \gcd(a, b)$.
    Setting $g = \gcd(a, b)$, we have $a = g u, b = g v$ with $\gcd(u, v) = 1$, so $n = g^2 u v$.
 2. **Dirichlet Convolution Equivalence**:
-   $$f(n) = \sum_{k^2 \mid n} \varphi(k) \tau\left( \frac{n}{k^2} \right)$$
+
+$$
+f(n) = \sum_{k^2 \mid n} \varphi(k) \tau\left( \frac{n}{k^2} \right)
+$$
+
    where $\tau(m)$ is the divisor-counting function ($d(m)$) and $\varphi(k)$ is Euler's totient function.
    In Dirichlet convolution notation:
-   $$f = \tau * b, \quad \text{where } b(m) = \begin{cases} \varphi(k) & \text{if } m = k^2 \\ 0 & \text{otherwise} \end{cases}$$
+
+$$
+f = \tau * b, \quad \text{where } b(m) = \begin{cases} \varphi(k) & \text{if } m = k^2 \\ 0 & \text{otherwise} \end{cases}
+$$
 
 ---
 
@@ -39,10 +49,18 @@ For $k = 10^{15}$, iterating over all $n \le 10^{15}$ is completely impossible.
 
 ### Dirichlet Hyperbola Method ($O(N^{1/2})$)
 1. **Double Summation Formulation**:
-   $$F(N) = \sum_{n=1}^N f(n) = \sum_{i \cdot j \le N} \tau(i) b(j)$$
+
+$$
+F(N) = \sum_{n=1}^N f(n) = \sum_{i \cdot j \le N} \tau(i) b(j)
+$$
+
 2. **Dirichlet Hyperbola Splitting**:
    Choosing threshold $K = \lfloor \sqrt{N} \rfloor$ and $L = \lfloor N / K \rfloor$:
-   $$F(N) = \sum_{i=1}^K \tau(i) B\left( \left\lfloor \frac{N}{i} \right\rfloor \right) + \sum_{j=1}^L b(j) T\left( \left\lfloor \frac{N}{j} \right\rfloor \right) - T(K) B(L)$$
+
+$$
+F(N) = \sum_{i=1}^K \tau(i) B\left( \left\lfloor \frac{N}{i} \right\rfloor \right) + \sum_{j=1}^L b(j) T\left( \left\lfloor \frac{N}{j} \right\rfloor \right) - T(K) B(L)
+$$
+
    where:
    - $T(x) = \sum_{i \le x} \tau(i) = D(x)$ is the Dirichlet divisor summatory function ($2 \sum_{u \le \sqrt{x}} \lfloor x/u \rfloor - \lfloor \sqrt{x} \rfloor^2$).
    - $B(x) = \sum_{j \le x} b(j) = \sum_{k \le \sqrt{x}} \varphi(k) = \Phi(\lfloor \sqrt{x} \rfloor)$ is the totient summatory function.

@@ -11,7 +11,10 @@ It is possible to tile a row measuring five ($5$) units in length in exactly fif
 Unlike Problem 116, colors MAY be freely mixed within the same row!
 
 The objective is to find **how many different ways a row measuring fifty ($50$) units in length can be tiled**:
-$$N_{\text{ways}} = a_{50}$$
+
+$$
+N_{\text{ways}} = a_{50}
+$$
 
 ---
 
@@ -33,7 +36,11 @@ def naive_mixed_tiles(n):
    - Green tile (length 3): contributes $a_{i-3}$ ways (if $i \ge 3$).
    - Blue tile (length 4): contributes $a_{i-4}$ ways (if $i \ge 4$).
 3. **4th-Order Linear Recurrence (Tetranacci-like):**
-   $$a_i = a_{i-1} + a_{i-2} + a_{i-3} + a_{i-4} \quad \text{for } i \ge 4$$
+
+$$
+a_i = a_{i-1} + a_{i-2} + a_{i-3} + a_{i-4} \quad \text{for } i \ge 4
+$$
+
    with base cases $a_0 = 1, a_1 = 1, a_2 = 2, a_3 = 4$.
 4. For $n = 50$, the DP table evaluates in $\mathcal{O}(n)$ time ($\approx 0.0000$ seconds).
 
@@ -59,7 +66,11 @@ def naive_mixed_tiles(n):
 ### Linear Recurrence Pipeline
 1. Allocate array `dp = [0] * (n + 1)` with `dp[0] = 1`.
 2. For $i = 1 \dots 50$:
-   $$a_i = a_{i-1} + \mathbb{I}(i \ge 2)a_{i-2} + \mathbb{I}(i \ge 3)a_{i-3} + \mathbb{I}(i \ge 4)a_{i-4}$$
+
+$$
+a_i = a_{i-1} + \mathbb{I}(i \ge 2)a_{i-2} + \mathbb{I}(i \ge 3)a_{i-3} + \mathbb{I}(i \ge 4)a_{i-4}
+$$
+
 3. Return `dp[50]`.
 
 ---
@@ -69,12 +80,19 @@ def naive_mixed_tiles(n):
 ### Example 1: Trace for $n = 5$
 - $a_0 = 1, a_1 = 1, a_2 = 2, a_3 = 4, a_4 = 8$.
 - At $i = 5$:
-  $$a_5 = a_4 + a_3 + a_2 + a_1 = 8 + 4 + 2 + 1 = \mathbf{15}$$
+
+$$
+a_5 = a_4 + a_3 + a_2 + a_1 = 8 + 4 + 2 + 1 = \mathbf{15}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $n = 50$
 - Advancing DP to $i = 50$:
-  $$a_{50} = \mathbf{100\,808\,458\,816\,927}$$
+
+$$
+a_{50} = \mathbf{100\,808\,458\,816\,927}
+$$
 
 ---
 

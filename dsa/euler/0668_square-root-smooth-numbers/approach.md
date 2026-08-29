@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $n$ is square root smooth if all of its prime factors are strictly less than $\sqrt{n}$:
-$$\operatorname{gpf}(n) < \sqrt{n} \quad (\text{with } 1 \text{ included})$$
+
+$$
+\operatorname{gpf}(n) < \sqrt{n} \quad (\text{with } 1 \text{ included})
+$$
 
 We are given:
 - There are $29$ square root smooth numbers not exceeding $100$.
@@ -26,14 +29,25 @@ Sieving and computing $\operatorname{gpf}(n)$ for all $10^{10}$ integers require
 1. **Complementary Formulation**:
    An integer $n > 1$ is non-smooth if and only if it has a prime factor $p \ge \sqrt{n}$.
    Since $n$ cannot have two distinct prime factors $\ge \sqrt{n}$, every non-smooth integer can be factored uniquely as:
-   $$n = k \cdot p \quad \text{where } p \text{ is prime and } p \ge k$$
+
+$$
+n = k \cdot p \quad \text{where } p \text{ is prime and } p \ge k
+$$
+
 2. **Summing Over All Multipliers $k$**:
    Since $k \le p$ and $k p \le N$, we have $k^2 \le k p \le N \implies k \le \lfloor\sqrt{N}\rfloor$.
    For each $k \in [1, \lfloor\sqrt{N}\rfloor]$, the prime $p$ must satisfy:
-   $$k \le p \le \lfloor N / k \rfloor$$
+
+$$
+k \le p \le \lfloor N / k \rfloor
+$$
+
    The number of such primes is precisely $\pi(\lfloor N/k \rfloor) - \pi(k - 1)$.
 3. **Exact Counting Formula**:
-   $$\text{SmoothCount}(N) = N - \sum_{k=1}^{\lfloor\sqrt{N}\rfloor} \left( \pi(\lfloor N/k \rfloor) - \pi(k - 1) \right)$$
+
+$$
+\text{SmoothCount}(N) = N - \sum_{k=1}^{\lfloor\sqrt{N}\rfloor} \left( \pi(\lfloor N/k \rfloor) - \pi(k - 1) \right)
+$$
 
 ---
 
@@ -44,7 +58,11 @@ Sieving and computing $\operatorname{gpf}(n)$ for all $10^{10}$ integers require
    Compute $\pi(v)$ for all $2\lfloor\sqrt{N}\rfloor$ values $v \in \{\lfloor N/i \rfloor : 1 \le i \le \lfloor\sqrt{N}\rfloor\} \cup \{1, \dots, \lfloor\sqrt{N}\rfloor\}$.
 2. **State Transition**:
    For each prime $p \le \lfloor\sqrt{N}\rfloor$:
-   $$S(v) \gets S(v) - (S(\lfloor v/p \rfloor) - S(p - 1))$$
+
+$$
+S(v) \gets S(v) - (S(\lfloor v/p \rfloor) - S(p - 1))
+$$
+
 3. **Sublinear Complexity**:
    For $N = 10^{10}$, $\lfloor\sqrt{N}\rfloor = 10^5$.
    Total arithmetic operations: $O(N^{3/4}) \approx 3 \times 10^7$ cycles.

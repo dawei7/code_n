@@ -27,7 +27,11 @@ A naive approach simulates thousands of game runs:
 
 ### Canonical State Isomorphism & Exact Markov Chain
 A state in the game is defined by:
-$$(\text{Larry's memory list (ordered by recency)}, \text{Robin's memory list (ordered by FIFO entry)}, \text{score difference } S_L - S_R)$$
+
+$$
+(\text{Larry's memory list (ordered by recency)}, \text{Robin's memory list (ordered by FIFO entry)}, \text{score difference } S_L - S_R)
+$$
+
 - Because numbers $1 \dots 10$ are drawn uniformly at random, the specific identities of the numbers do not matter—only their relative positions and mutual intersection!
 - Renaming the numbers in canonical order of appearance $\{0, 1, 2, \dots, k-1\}$ reduces the state space of pairs of 5-element memories to **fewer than 4000 canonical equivalence classes**!
 
@@ -45,7 +49,11 @@ $$(\text{Larry's memory list (ordered by recency)}, \text{Robin's memory list (o
        - Form next canonical state $(L_{\text{next}}, R_{\text{next}}, \Delta + \text{score}_L - \text{score}_R)$.
        - Accumulate $P(d) \times \text{prob}$ into `new_dp`.
 3. After 50 turns, compute the expected absolute difference:
-   $$\mathbb{E}[|S_L - S_R|] = \sum_{(L, R, \Delta)} |\Delta| \cdot P(L, R, \Delta)$$
+
+$$
+\mathbb{E}[|S_L - S_R|] = \sum_{(L, R, \Delta)} |\Delta| \cdot P(L, R, \Delta)
+$$
+
 4. Propagating the 50 levels evaluates in under $3.5$ seconds in pure Python!
 
 ---

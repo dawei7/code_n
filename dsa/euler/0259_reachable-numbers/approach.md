@@ -32,7 +32,11 @@ Use interval dynamic programming with exact rational fractions $(p, q)$ ($\gcd(p
 - Recursive Transition ($i < j$):
   For each split point $k \in [i, j - 1]$:
   For each fraction $a \in S(i, k)$ and $b \in S(k + 1, j)$:
-  $$a + b, \quad a - b, \quad a \times b, \quad a / b \text{ (if } b \ne 0\text{)}$$
+
+$$
+a + b, \quad a - b, \quad a \times b, \quad a / b \text{ (if } b \ne 0\text{)}
+$$
+
   are in $S(i, j)$.
 
 ---
@@ -47,7 +51,11 @@ Use interval dynamic programming with exact rational fractions $(p, q)$ ($\gcd(p
    - Incrementally compute $S(i, j)$ for all $1 \le i \le j \le 9$.
 3. At the final segment $S(1, 9)$:
    Filter all fractions $(p, q) \in S(1, 9)$ such that:
-   $$q = 1 \quad \text{and} \quad p > 0$$
+
+$$
+q = 1 \quad \text{and} \quad p > 0
+$$
+
 4. Sum all distinct positive integers $p \in S(1, 9)$.
 5. Total execution completes in under $1.5$ seconds in pure Python.
 

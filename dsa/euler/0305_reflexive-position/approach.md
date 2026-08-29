@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $S$ be the infinite string formed by concatenating all positive integers:
-$$S = \text{"123456789101112131415161718192021..."}$$
+
+$$
+S = \text{"123456789101112131415161718192021..."}
+$$
+
 Let $f(n)$ be the starting position (1-indexed) of the $n$-th occurrence of $n$ as a substring in $S$.
 We are given sample values:
 - $f(1) = 1$
@@ -41,7 +45,11 @@ For each candidate offset and split, we generate candidate numbers $X$ that cont
 ### Analytical Digit Indexing & Minimal Candidate Ranking
 1. Given an integer $X$ and an offset within $X$:
    The exact starting index in $S$ of integer $X$ is:
-   $$\text{Pos}(X) = 1 + \sum_{d=1}^{L-1} d \cdot 9 \cdot 10^{d-1} + L \cdot (X - 10^{L-1})$$
+
+$$
+\text{Pos}(X) = 1 + \sum_{d=1}^{L-1} d \cdot 9 \cdot 10^{d-1} + L \cdot (X - 10^{L-1})
+$$
+
    where $L = \text{length}(X)$.
 2. For each split $(A, B)$ of the string $n$:
    - If $n$ spans within a single number $X = \dots n \dots$:

@@ -8,7 +8,10 @@ Each vertical line has a single uniform direction (Up or Down, $2^W$ choices).
 For each of the $2^{H+W}$ directed graphs $\mathcal{G}$, let $S(\mathcal{G})$ be the number of strongly connected components (SCCs).
 
 Define:
-$$C(H, W) = \sum_{\mathcal{G}} S(\mathcal{G})$$
+
+$$
+C(H, W) = \sum_{\mathcal{G}} S(\mathcal{G})
+$$
 
 We are given:
 - $C(3, 3) = 408$
@@ -16,7 +19,10 @@ We are given:
 - $C(10, 20) \equiv 988971143 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$C(10000, 20000) \bmod 1\,000\,000\,007$$
+
+$$
+C(10000, 20000) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -41,7 +47,11 @@ For $H = 10000, W = 20000$, the number of orientations is $2^{30000} \approx 10^
 
 ### Closed-Form Polynomial Formula
 1. **Formula Assembly**:
-   $$C(H, W) = 9 \cdot 2^{H+W} + 2 H W (2^H + 2^W + 1) - 8(W 2^H + H 2^W) - 10(2^H + 2^W) + 10(H + W + 1)$$
+
+$$
+C(H, W) = 9 \cdot 2^{H+W} + 2 H W (2^H + 2^W + 1) - 8(W 2^H + H 2^W) - 10(2^H + 2^W) + 10(H + W + 1)
+$$
+
 2. **Modular Exponentiation**:
    Evaluating $2^H \bmod \text{MOD}$ and $2^W \bmod \text{MOD}$ requires only $O(\log H + \log W)$ multiplications.
 3. **Execution Time**:

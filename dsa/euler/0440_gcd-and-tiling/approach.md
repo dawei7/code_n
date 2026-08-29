@@ -13,7 +13,10 @@ We are given:
 - $S(4) \equiv 670616280 \pmod{987\,898\,789}$
 
 We seek to evaluate:
-$$S(2000) \pmod{987\,898\,789}$$
+
+$$
+S(2000) \pmod{987\,898\,789}
+$$
 
 ---
 
@@ -28,12 +31,22 @@ For $L = 2000$, $c^a$ can be as large as $2000^{2000} \approx 10^{6602}$. Comput
 
 ### Lucas Sequences & Strong Divisibility
 $T(n) = U_{n+1}$ is a shifted Lucas sequence of the first kind $U_n(P=10, Q=-1)$, which obeys the **strong divisibility property**:
-$$\gcd(U_m, U_n) = U_{\gcd(m, n)}$$
+
+$$
+\gcd(U_m, U_n) = U_{\gcd(m, n)}
+$$
+
 Therefore:
-$$\gcd(T(c^a), T(c^b)) = \gcd(U_{c^a+1}, U_{c^b+1}) = U_{\gcd(c^a+1, c^b+1)}$$
+
+$$
+\gcd(T(c^a), T(c^b)) = \gcd(U_{c^a+1}, U_{c^b+1}) = U_{\gcd(c^a+1, c^b+1)}
+$$
 
 By polynomial / integer GCD analysis:
-$$\gcd(c^a+1, c^b+1) = \begin{cases} c^g + 1 & \text{if } a/g \text{ and } b/g \text{ are both odd, where } g = \gcd(a, b) \\ 2 & \text{if } a/g \text{ or } b/g \text{ is even and } c \text{ is odd} \\ 1 & \text{if } a/g \text{ or } b/g \text{ is even and } c \text{ is even} \end{cases}$$
+
+$$
+\gcd(c^a+1, c^b+1) = \begin{cases} c^g + 1 & \text{if } a/g \text{ and } b/g \text{ are both odd, where } g = \gcd(a, b) \\ 2 & \text{if } a/g \text{ or } b/g \text{ is even and } c \text{ is odd} \\ 1 & \text{if } a/g \text{ or } b/g \text{ is even and } c \text{ is even} \end{cases}
+$$
 
 ---
 
@@ -43,7 +56,11 @@ $$\gcd(c^a+1, c^b+1) = \begin{cases} c^g + 1 & \text{if } a/g \text{ and } b/g \
 1. **Odd-GCD Pair Counting**:
    Let $N(g)$ be the number of pairs $(a, b) \in [1, L]^2$ with $\gcd(a, b) = g$ such that both $a/g$ and $b/g$ are odd.
    Using Möbius inversion:
-   $$N(g) = f(\lfloor L/g \rfloor), \quad \text{where } f(n) = \sum_{d \text{ odd} \le n} \mu(d) \left( \left\lfloor \frac{n/d+1}{2} \right\rfloor \right)^2$$
+
+$$
+N(g) = f(\lfloor L/g \rfloor), \quad \text{where } f(n) = \sum_{d \text{ odd} \le n} \mu(d) \left( \left\lfloor \frac{n/d+1}{2} \right\rfloor \right)^2
+$$
+
 2. **Matrix Doubling Engine**:
    For each fixed base $c$, the state $(U_{c^g}, U_{c^g+1})$ transitions to $(U_{c^{g+1}}, U_{c^{g+1}+1})$ by applying exponent $c$.
    Representing the transition as a 2D matrix state $(U_n, U_{n+1})$ and performing binary exponentiation allows computing all $g \in [1, L]$ in $O(L \log c)$ time.

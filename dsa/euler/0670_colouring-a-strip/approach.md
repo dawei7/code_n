@@ -16,7 +16,10 @@ We are given:
 - $F(100) \equiv 53275818 \pmod{1\,000\,004\,321}$
 
 We seek to evaluate:
-$$F(10^{16}) \bmod 1\,000\,004\,321$$
+
+$$
+F(10^{16}) \bmod 1\,000\,004\,321
+$$
 
 ---
 
@@ -40,7 +43,11 @@ For $n = 10^{16}$, enumerating tilings or evaluating $O(n)$ steps is impossible 
      - $\text{val} \in \{0, 1, 2, 3, \text{NONE}\}$: color of the incoming tile or color of the immediately preceding tile on the left.
 2. **Four-Corner Rule Invariant**:
    A column step $(s \to s')$ is valid if and only if:
-   $$\neg(v_{\text{prev}} = 0 \land v_{\text{cur}} = 0 \land \text{in}_T = 0 \land \text{in}_B = 0)$$
+
+$$
+\neg(v_{\text{prev}} = 0 \land v_{\text{cur}} = 0 \land \text{in}_T = 0 \land \text{in}_B = 0)
+$$
+
 3. **Finite State Graph**:
    Breadth-first search from the initial empty boundary state $(1, 0, 0, \text{NONE}, 0, 0, \text{NONE})$ discovers a closed, strongly connected component of only $\approx 100$ reachable boundary states!
 

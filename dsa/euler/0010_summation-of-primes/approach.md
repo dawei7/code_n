@@ -5,7 +5,11 @@
 Let $\mathbb{P}_{<N} = \{ p \in \mathbb{P} \mid p < N \}$ denote the set of prime numbers strictly less than an upper bound $N \in \mathbb{N}$ ($N = 2\,000\,000$).
 
 The objective is to compute the sum of all primes in $\mathbb{P}_{<N}$:
-$$S(N) = \sum_{p \in \mathbb{P}_{<N}} p = \sum_{k=2}^{N-1} k \cdot \mathbb{I}(k \in \mathbb{P})$$
+
+$$
+S(N) = \sum_{p \in \mathbb{P}_{<N}} p = \sum_{k=2}^{N-1} k \cdot \mathbb{I}(k \in \mathbb{P})
+$$
+
 where $\mathbb{I}(k \in \mathbb{P}) \in \{0, 1\}$ is the indicator function for primality.
 
 ---
@@ -52,12 +56,19 @@ We only need to sieve multiples of primes $p \le 1414$. Every uncancelled number
 Allocating a dense `bytearray` of size $N = 2\,000\,000$ takes only $2$ MB of memory.
 For each prime $i \le 1414$:
 1. Mark all multiples starting at $i^2$:
-   $$j \in \{i^2, i^2 + i, i^2 + 2i, \dots, N-1\}$$
+
+$$
+j \in \{i^2, i^2 + i, i^2 + 2i, \dots, N-1\}
+$$
+
 2. In Python, slice assignment `is_prime[i*i:limit:i] = bytearray([0]) * count` runs in underlying C loops.
 
 ### B. Summation via Enumeration
 After sieving up to $\sqrt{N}$, sum all indices $i$ where $\text{is\_prime}[i] == 1$:
-$$S(N) = \sum_{i=2}^{N-1} i \cdot \text{is\_prime}[i]$$
+
+$$
+S(N) = \sum_{i=2}^{N-1} i \cdot \text{is\_prime}[i]
+$$
 
 ---
 
@@ -76,7 +87,10 @@ $$S(N) = \sum_{i=2}^{N-1} i \cdot \text{is\_prime}[i]$$
 - Sieve executed up to $N = 2\,000\,000$.
 - Identifies all $148\,933$ primes.
 - Accumulated sum:
-  $$S(2\,000\,000) = \mathbf{142\,913\,828\,922}$$
+
+$$
+S(2\,000\,000) = \mathbf{142\,913\,828\,922}
+$$
 
 ---
 

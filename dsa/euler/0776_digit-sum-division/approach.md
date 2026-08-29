@@ -4,7 +4,11 @@
 
 For a positive integer $n$, let $d(n)$ denote the sum of its base-10 digits.
 We seek to evaluate:
-$$F(N) = \sum_{n=1}^N \frac{n}{d(n)}$$
+
+$$
+F(N) = \sum_{n=1}^N \frac{n}{d(n)}
+$$
+
 for $N = 1234567890123456789$, expressed in scientific notation rounded to 12 decimal places after the point: `x.xxxxxxxxxxxxeXX`.
 
 We are given:
@@ -27,7 +31,13 @@ Iterating from $n = 1$ to $N \approx 1.23 \times 10^{18}$ requires $10^{18}$ ari
 1. **Rearranging the Sum**:
    Notice that for $N < 10^{19}$, the digit sum $S = d(n)$ can only take integer values in the narrow range $S \in [1, 9 \times 19] = [1, 171]$.
    We can rewrite $F(N)$ by grouping numbers by their exact digit sum:
-   $$F(N) = \sum_{S=1}^{171} \frac{1}{S} \sum_{\substack{1 \le n \le N \\ d(n) = S}} n = \sum_{S=1}^{171} \frac{\Sigma(N, S)}{S}$$
+
+$$
+\begin{aligned}
+F(N) = \sum_{S=1}^{171} \frac{1}{S} \sum_{\substack{1 \le n \le N \\ d(n) = S}} n = \sum_{S=1}^{171} \frac{\Sigma(N, S)}{S}
+\end{aligned}
+$$
+
    where $\Sigma(N, S) = \sum_{n \le N, d(n)=S} n$.
 2. **Joint Digit DP**:
    We compute $\Sigma(N, S)$ for all $S$ simultaneously using a 2D digit dynamic programming state:

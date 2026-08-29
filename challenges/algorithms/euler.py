@@ -25,7 +25,23 @@ def _build_euler_spec_from_dict(meta: dict[str, Any]) -> AlgorithmSpec:
     url = str(meta.get("url") or f"https://projecteuler.net/problem={frontend_id}")
 
     description = f"Project Euler Problem {frontend_id}: {title}"
-    source = "def solve() -> int:\n    \"\"\"Find the solution for this Project Euler problem.\"\"\"\n    pass\n"
+    slug = str(meta.get("slug") or f"problem-{frontend_id}")
+    try:
+        prefix = f"{int(frontend_id):04d}_{slug}"
+        pkg_dir = EULER_ROOT / prefix
+    except Exception:
+        pkg_dir = None
+
+    ret_type = "int"
+    if pkg_dir and (pkg_dir / "template.py").is_file():
+        try:
+            t_text = (pkg_dir / "template.py").read_text(encoding="utf-8")
+            if "-> str:" in t_text:
+                ret_type = "str"
+        except Exception:
+            pass
+
+    source = f"def solve() -> {ret_type}:\n    pass\n"
 
     params = ["n"]
     input_docs = {"n": "Target upper bound or parameter."}

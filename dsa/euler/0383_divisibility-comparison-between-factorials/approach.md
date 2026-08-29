@@ -4,14 +4,20 @@
 
 Let $f_5(n) = v_5(n)$ be the $5$-adic valuation of $n$ (the exponent of the highest power of $5$ dividing $n$).
 We define:
-$$T_5(N) = \left| \{ 1 \le i \le N : f_5((2i - 1)!) < 2 f_5(i!) \} \right|$$
+
+$$
+T_5(N) = \left| \{ 1 \le i \le N : f_5((2i - 1)!) < 2 f_5(i!) \} \right|
+$$
 
 We are given:
 - $T_5(10^3) = 68$
 - $T_5(10^9) = 2\,408\,210$
 
 We seek to evaluate:
-$$T_5(10^{18})$$
+
+$$
+T_5(10^{18})
+$$
 
 ---
 
@@ -27,9 +33,17 @@ However, evaluating this for all $i \le 10^{18}$ requires $10^{18}$ operations, 
 
 ### Legendre Formula & Digit Sum Inequality
 Applying Legendre's formula to the valuation inequality:
-$$\frac{(2i - 1) - S_5(2i - 1)}{4} < 2 \frac{i - S_5(i)}{4} = \frac{2i - 2 S_5(i)}{4}$$
+
+$$
+\frac{(2i - 1) - S_5(2i - 1)}{4} < 2 \frac{i - S_5(i)}{4} = \frac{2i - 2 S_5(i)}{4}
+$$
+
 Simplifying terms:
-$$-1 - S_5(2i - 1) < -2 S_5(i) \iff S_5(2i - 1) \ge 2 S_5(i)$$
+
+$$
+-1 - S_5(2i - 1) < -2 S_5(i) \iff S_5(2i - 1) \ge 2 S_5(i)
+$$
+
 where $S_5(m)$ is the sum of digits of $m$ represented in base $5$.
 
 ---

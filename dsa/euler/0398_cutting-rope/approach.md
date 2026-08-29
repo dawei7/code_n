@@ -12,7 +12,11 @@ We are given:
 - $E(8, 3) = 16/7$
 
 We seek to evaluate:
-$$E(10^7, 100)$$
+
+$$
+E(10^7, 100)
+$$
+
 rounded to $5$ decimal places.
 
 ---
@@ -29,7 +33,10 @@ Monte Carlo simulation or explicit state enumeration is completely infeasible.
 
 ### Tail Sum Formula for Integer Expectation
 By the discrete tail sum formula for non-negative integer random variables:
-$$\mathbb{E}[X_{(2)}] = \sum_{k=1}^{\lfloor n/m \rfloor + 1} P(X_{(2)} \ge k)$$
+
+$$
+\mathbb{E}[X_{(2)}] = \sum_{k=1}^{\lfloor n/m \rfloor + 1} P(X_{(2)} \ge k)
+$$
 
 The event $X_{(2)} \ge k$ means that **at most one** segment has length $< k$:
 1. **Case A (All $x_i \ge k$)**: $X_{(1)} \ge k$.
@@ -42,17 +49,35 @@ The event $X_{(2)} \ge k$ means that **at most one** segment has length $< k$:
 ### Hockey-Stick Combinatorial Identity
 1. **Case A Count**:
    Substituting $y_i = x_i - (k - 1) \ge 1$:
-   $$C_A = \binom{n - m(k-1) - 1}{m - 1}$$
+
+$$
+C_A = \binom{n - m(k-1) - 1}{m - 1}
+$$
+
 2. **Case B Count**:
    Choosing which segment has length $j \in [1, k-1]$ and distributing the remainder:
-   $$C_B = m \sum_{j=1}^{k-1} \binom{n - j - (m-1)(k-1) - 1}{m - 2}$$
+
+$$
+C_B = m \sum_{j=1}^{k-1} \binom{n - j - (m-1)(k-1) - 1}{m - 2}
+$$
+
    Applying the **Hockey-Stick Identity** $\sum_{j=1}^{K} \binom{M - j}{r - 1} = \binom{M}{r} - \binom{M - K}{r}$:
-   $$C_B = m \left[ \binom{n - (m-1)(k-1) - 1}{m - 1} - \binom{n - m(k-1) - 1}{m - 1} \right]$$
+
+$$
+C_B = m \left[ \binom{n - (m-1)(k-1) - 1}{m - 1} - \binom{n - m(k-1) - 1}{m - 1} \right]
+$$
+
 3. **Combined Favorable Count**:
-   $$N(X_{(2)} \ge k) = C_A + C_B = m \binom{n - (m-1)(k-1) - 1}{m - 1} - (m - 1) \binom{n - m(k-1) - 1}{m - 1}$$
+
+$$
+N(X_{(2)} \ge k) = C_A + C_B = m \binom{n - (m-1)(k-1) - 1}{m - 1} - (m - 1) \binom{n - m(k-1) - 1}{m - 1}
+$$
 
 Dividing by the total number of compositions $\binom{n-1}{m-1}$:
-$$P(X_{(2)} \ge k) = m \frac{\binom{n - (m-1)(k-1) - 1}{m - 1}}{\binom{n - 1}{m - 1}} - (m - 1) \frac{\binom{n - m(k-1) - 1}{m - 1}}{\binom{n - 1}{m - 1}}$$
+
+$$
+P(X_{(2)} \ge k) = m \frac{\binom{n - (m-1)(k-1) - 1}{m - 1}}{\binom{n - 1}{m - 1}} - (m - 1) \frac{\binom{n - m(k-1) - 1}{m - 1}}{\binom{n - 1}{m - 1}}
+$$
 
 The binomial ratios are evaluated in logarithmic space with $O(m)$ arithmetic operations per $k$.
 For $n = 10^7, m = 100$, the sum terminates at $k \le \frac{10^7}{99} \approx 101\,010$, evaluating in **0.54 seconds**!

@@ -32,7 +32,10 @@ At any step, having revealed binary suffix $s$:
 - The optimal decision is to guess $\arg\max(c_0, c_1)$, succeeding for $\max(c_0, c_1)$ primes.
 
 Summing over all primes and all suffix tree nodes $s$:
-$$E(N) = \frac{1}{\pi(N)} \sum_{s \in \text{Trie}} \max(c_0(s), c_1(s))$$
+
+$$
+E(N) = \frac{1}{\pi(N)} \sum_{s \in \text{Trie}} \max(c_0(s), c_1(s))
+$$
 
 ---
 

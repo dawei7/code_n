@@ -3,12 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Given is the recursively defined sequence:
-$$u_0 = -1$$
 
-$$u_{n+1} = f(u_n) = \lfloor 2^{30.403243784 - u_n^2} \rfloor \cdot 10^{-9}$$
+$$
+u_0 = -1
+$$
+
+$$
+u_{n+1} = f(u_n) = \lfloor 2^{30.403243784 - u_n^2} \rfloor \cdot 10^{-9}
+$$
 
 The objective is to find the value of **$u_n + u_{n+1}$ for $n = 10^{12}$**, formatted to $9$ decimal places:
-$$S = u_{10^{12}} + u_{10^{12}+1}$$
+
+$$
+S = u_{10^{12}} + u_{10^{12}+1}
+$$
 
 ---
 
@@ -28,12 +36,23 @@ def naive_sequence_simulation():
    The derivative $|g'(x)| < 1$ near the attractor, making $g(x)$ a strict contraction mapping.
 2. **Exponential Convergence to Period-2 Limit Cycle:**
    By the Banach Fixed-Point Theorem, $u_n$ oscillates between two fixed limit values $u_A$ and $u_B$:
-   $$u_A = f(u_B) \approx 0.681175878$$
-   $$u_B = f(u_A) \approx 1.029461839$$
+
+$$
+u_A = f(u_B) \approx 0.681175878
+$$
+
+$$
+u_B = f(u_A) \approx 1.029461839
+$$
+
    The sequence settles into this 2-cycle within fewer than $500$ iterations.
 3. **Asymptotic Invariance for Large $n$:**
    For any $n \ge 1000$ (including $n = 10^{12}$):
-   $$u_n + u_{n+1} = u_A + u_B \approx 1.710637717$$
+
+$$
+u_n + u_{n+1} = u_A + u_B \approx 1.710637717
+$$
+
    Evaluating $1000$ steps completes in $\approx 0.0001$ seconds.
 
 ---
@@ -70,7 +89,10 @@ def solve(n: int = 10**12) -> str:
     return f"{ans:.9f}"
 ```
 Evaluating for $n = 10^{12}$:
-$$S = \mathbf{"1.710637717"}$$
+
+$$
+S = \mathbf{"1.710637717"}
+$$
 
 ---
 
@@ -86,7 +108,10 @@ $$S = \mathbf{"1.710637717"}$$
 
 ### Example 2: Target String Output
 - Formatted to 9 decimal places:
-  $$S = \mathbf{"1.710637717"}$$
+
+$$
+S = \mathbf{"1.710637717"}
+$$
 
 ---
 

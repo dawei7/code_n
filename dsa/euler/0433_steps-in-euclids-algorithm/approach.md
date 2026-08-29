@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $E(x_0, y_0)$ be the number of division steps in Euclid's algorithm to compute $\gcd(x_0, y_0)$:
-$$x_n = y_{n-1}, \quad y_n = x_{n-1} \bmod y_{n-1}$$
+
+$$
+x_n = y_{n-1}, \quad y_n = x_{n-1} \bmod y_{n-1}
+$$
 
 $E(x_0, y_0)$ is the smallest $n$ such that $y_n = 0$.
 
@@ -16,7 +19,10 @@ We are given:
 - $S(100) = 39\,826$
 
 We seek to evaluate:
-$$S(5\,000\,000)$$
+
+$$
+S(5\,000\,000)
+$$
 
 ---
 
@@ -31,7 +37,11 @@ For $N = 5 \times 10^6$, there are $N^2 = 2.5 \times 10^{13}$ pairs $(x, y)$. Si
 
 ### Symmetry & Stern-Brocot Tree Representation
 Using symmetry $E(x, y) = 1 + E(y, x)$ for $x < y$:
-$$S(N) = N + \binom{N}{2} + 2 \sum_{1 \le y < x \le N} E(x, y)$$
+
+$$
+S(N) = N + \binom{N}{2} + 2 \sum_{1 \le y < x \le N} E(x, y)
+$$
+
 Every coprime pair $(u, v)$ with $\gcd(u, v) = 1$ corresponds to a unique node in the Stern-Brocot tree.
 The number of Euclidean division steps $E(u, v)$ is precisely the depth of the rational $u/v$ in the tree plus 1!
 
@@ -46,7 +56,11 @@ The number of Euclidean division steps $E(u, v)$ is precisely the depth of the r
 2. **Divisor Multiplicity Aggregation**:
    For any pair $(x, y)$ with $\gcd(x, y) = g$, $E(x, y) = E(x/g, y/g)$.
    Summing across all multiples gives:
-   $$\sum_{1 \le y < x \le N} E(x, y) = \sum_{i=2}^N \left\lfloor \frac{N}{i} \right\rfloor cnt[i]$$
+
+$$
+\sum_{1 \le y < x \le N} E(x, y) = \sum_{i=2}^N \left\lfloor \frac{N}{i} \right\rfloor cnt[i]
+$$
+
 3. **Large Scale Branch Aggregation**:
    The Farey tree depth distribution aggregates along quotient branch weights, dynamically computing $S(5 \times 10^6)$ in **0.0001 seconds**!
 

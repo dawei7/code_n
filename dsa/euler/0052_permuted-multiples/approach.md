@@ -6,7 +6,10 @@ Let $x \in \mathbb{N}$ denote a positive integer with decimal representation $\o
 Let $\operatorname{sig}(x) = \operatorname{sort\_digits}(x)$ denote the sorted tuple of its decimal digits.
 
 The objective is to find the smallest positive integer $x$ such that the multiples $2x, 3x, 4x, 5x, 6x$ all contain the exact same digits as $x$:
-$$x_{\text{min}} = \min \{ x \in \mathbb{N} \mid \operatorname{sig}(2x) = \operatorname{sig}(3x) = \operatorname{sig}(4x) = \operatorname{sig}(5x) = \operatorname{sig}(6x) = \operatorname{sig}(x) \}$$
+
+$$
+x_{\text{min}} = \min \{ x \in \mathbb{N} \mid \operatorname{sig}(2x) = \operatorname{sig}(3x) = \operatorname{sig}(4x) = \operatorname{sig}(5x) = \operatorname{sig}(6x) = \operatorname{sig}(x) \}
+$$
 
 ---
 
@@ -22,10 +25,17 @@ def naive_permuted_multiples():
 
 ### Leading Digit & Length Preservation Bound
 1. For $6x$ to have the exact same number of digits as $x$:
-   $$6x < 10^{L(x)} \implies x < \frac{10^{L(x)}}{6} \approx 1.666\dots \times 10^{L(x)-1}$$
+
+$$
+6x < 10^{L(x)} \implies x < \frac{10^{L(x)}}{6} \approx 1.666\dots \times 10^{L(x)-1}
+$$
+
 2. **Theorem:** The leading digit of $x$ MUST be **1**.
    Furthermore, for any digit length $d$, $x$ must lie strictly in the range:
-   $$x \in [10^{d-1}, \lfloor 10^d / 6 \rfloor]$$
+
+$$
+x \in [10^{d-1}, \lfloor 10^d / 6 \rfloor]
+$$
 
 ---
 
@@ -54,7 +64,11 @@ Multiplying $142857$ by $1, 2, 3, 4, 5, 6$ produces cyclic shifts of the exact s
 1. Increment $x = 1, 2, 3, \dots$.
 2. Compute $\operatorname{sig}(x) = \operatorname{sorted}(\operatorname{str}(x))$.
 3. Verify sequentially for $k = 2, 3, 4, 5, 6$:
-   $$\operatorname{sorted}(\operatorname{str}(k \cdot x)) == \operatorname{sig}(x)$$
+
+$$
+\operatorname{sorted}(\operatorname{str}(k \cdot x)) == \operatorname{sig}(x)
+$$
+
 4. The first positive integer meeting all 5 conditions is $x = 142\,857$.
 5. Search terminates in $\approx 0.05$ seconds.
 
@@ -76,7 +90,10 @@ Multiplying $142857$ by $1, 2, 3, 4, 5, 6$ produces cyclic shifts of the exact s
 - $142857 \times 6 = 857142$
 - All 6 multiples contain the exact same 6 digits $\{1, 2, 4, 5, 7, 8\}$.
 - Smallest Integer:
-  $$x_{\text{min}} = \mathbf{142\,857}$$
+
+$$
+x_{\text{min}} = \mathbf{142\,857}
+$$
 
 ---
 

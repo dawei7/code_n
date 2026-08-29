@@ -14,7 +14,10 @@ Examples from problem description:
 The file `sets.txt` contains one hundred ($100$) candidate sets ranging from $7$ to $12$ elements.
 
 The objective is to identify all valid special sum sets and find the **sum of their set sums $S(A)$**:
-$$S_{\text{total}} = \sum_{A \in \mathcal{F}, \, A \text{ is special sum set}} S(A)$$
+
+$$
+S_{\text{total}} = \sum_{A \in \mathcal{F}, \, A \text{ is special sum set}} S(A)
+$$
 
 ---
 
@@ -30,7 +33,11 @@ def naive_test_special_sum_sets():
 
 ### Property 2 Early Pruning & Subset Sum Hashing
 1. **Property 2 Fast Verification:** For a sorted array $a_1 < a_2 < \dots < a_n$, Property 2 holds for ALL subset pairs if and only if the sum of the $k+1$ smallest elements exceeds the sum of the $k$ largest elements for all $1 \le k \le \lfloor n/2 \rfloor$:
-   $$\sum_{i=1}^{k+1} a_i > \sum_{i=n-k+1}^n a_i \quad \forall k \in [1, \lfloor n/2 \rfloor]$$
+
+$$
+\sum_{i=1}^{k+1} a_i > \sum_{i=n-k+1}^n a_i \quad \forall k \in [1, \lfloor n/2 \rfloor]
+$$
+
    This check takes $\mathcal{O}(n)$ time and instantly eliminates invalid sets before any subset combinations are generated!
 2. **Property 1 Fast Verification:** Compute the $2^n - 1$ non-empty subset sums. If all subset sums are strictly distinct, then no two disjoint subsets can have identical sums.
 3. This reduces operations to $100 \times 2^{12} \approx 4 \times 10^5$, executing in $\approx 0.05$ seconds.
@@ -56,7 +63,11 @@ def naive_test_special_sum_sets():
 2. For each set $A = (a_1, \dots, a_n)$:
    - Sort $a$.
    - **Gate 2 (Property 2):** For $k = 1 \dots \lfloor n/2 \rfloor$:
-     $$\text{If } \sum_{i=1}^{k+1} a_i \le \sum_{i=n-k+1}^n a_i \implies \text{Reject set.}$$
+
+$$
+\text{If } \sum_{i=1}^{k+1} a_i \le \sum_{i=n-k+1}^n a_i \implies \text{Reject set.}
+$$
+
    - **Gate 3 (Property 1):** Allocate empty hash set $U$.
      - For $r = 1 \dots n$:
        - For $B \in \binom{A}{r}$:
@@ -82,7 +93,10 @@ def naive_test_special_sum_sets():
 
 ### Example 2: Target Evaluation for all 100 Sets
 - Processing all candidate sets from `sets.txt`:
-  $$S_{\text{total}} = \mathbf{73\,702}$$
+
+$$
+S_{\text{total}} = \mathbf{73\,702}
+$$
 
 ---
 

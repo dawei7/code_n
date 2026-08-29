@@ -4,7 +4,11 @@
 
 Let $d(p, n, 0) = n^{-1} \bmod p$ for prime $p$ and $1 \le n < p$.
 For $k \ge 1$, define the $k$-th iterated prefix sum:
-$$d(p, n, k) = \sum_{i=1}^n d(p, i, k-1)$$
+
+$$
+d(p, n, k) = \sum_{i=1}^n d(p, i, k-1)
+$$
+
 Define $D(a, b, k) = \sum_{a \le p < a + b, \; p \text{ prime}} (d(p, p-1, k) \bmod p)$.
 
 We are given:
@@ -13,7 +17,10 @@ We are given:
 - $D(10^6, 10^3, 10^3) = 38162302$
 
 We seek to evaluate:
-$$D(10^9, 10^5, 10^5)$$
+
+$$
+D(10^9, 10^5, 10^5)
+$$
 
 ---
 
@@ -29,10 +36,17 @@ Computing $k = 10^5$ prefix sums over arrays of length $p \approx 10^9$ for thou
 ### Combinatorial Binomial Representation of Iterated Sums
 1. **$k$-th Iterated Sum Formula**:
    The $k$-th partial sum of a sequence $x_i$ evaluated at index $n = p - 1$ is given by:
-   $$d(p, p-1, k) = \sum_{i=1}^{p-1} \binom{p - 1 - i + k - 1}{k - 1} i^{-1} \pmod p$$
+
+$$
+d(p, p-1, k) = \sum_{i=1}^{p-1} \binom{p - 1 - i + k - 1}{k - 1} i^{-1} \pmod p
+$$
+
 2. **Modular Simplification Modulo $p$**:
    Since $p \equiv 0 \pmod p$, the upper binomial index simplifies to:
-   $$\binom{p + k - 2 - i}{k - 1} \equiv \binom{k - 2 - i}{k - 1} \pmod p$$
+
+$$
+\binom{p + k - 2 - i}{k - 1} \equiv \binom{k - 2 - i}{k - 1} \pmod p
+$$
 
 ---
 
@@ -41,15 +55,30 @@ Computing $k = 10^5$ prefix sums over arrays of length $p \approx 10^9$ for thou
 ### Closed-Form Collapse via Upper Negation
 1. **Upper Negation Identity**:
    Using $\binom{-x}{m} = (-1)^m \binom{x + m - 1}{m}$:
-   $$\binom{k - 2 - i}{k - 1} = \binom{-(i - k + 2)}{k - 1} = (-1)^{k-1} \binom{i}{k - 1} = (-1)^{k-1} \frac{i(i-1)\cdots(i-k+2)}{(k-1)!}$$
+
+$$
+\binom{k - 2 - i}{k - 1} = \binom{-(i - k + 2)}{k - 1} = (-1)^{k-1} \binom{i}{k - 1} = (-1)^{k-1} \frac{i(i-1)\cdots(i-k+2)}{(k-1)!}
+$$
+
 2. **Cancellation with $i^{-1}$**:
    Multiplying by $i^{-1}$ in $\mathbb{F}_p$:
-   $$i^{-1} \binom{p + k - 2 - i}{k - 1} \equiv (-1)^{k-1} \frac{(i-1)(i-2)\cdots(i-k+2)}{(k-1)!} = (-1)^{k-1} \frac{1}{k - 1} \binom{i - 1}{k - 2} \pmod p$$
+
+$$
+i^{-1} \binom{p + k - 2 - i}{k - 1} \equiv (-1)^{k-1} \frac{(i-1)(i-2)\cdots(i-k+2)}{(k-1)!} = (-1)^{k-1} \frac{1}{k - 1} \binom{i - 1}{k - 2} \pmod p
+$$
+
 3. **Hockey-Stick Identity Summation**:
    Summing over $i = 1 \dots p - 1$:
-   $$\sum_{i=1}^{p-1} \binom{i - 1}{k - 2} = \binom{p - 1}{k - 1} \equiv \binom{-1}{k - 1} = (-1)^{k-1} \pmod p$$
+
+$$
+\sum_{i=1}^{p-1} \binom{i - 1}{k - 2} = \binom{p - 1}{k - 1} \equiv \binom{-1}{k - 1} = (-1)^{k-1} \pmod p
+$$
+
 4. **Final Miracle Identity**:
-   $$d(p, p-1, k) \equiv (-1)^{k-1} \cdot \frac{1}{k - 1} \cdot (-1)^{k-1} \equiv (k - 1)^{-1} \pmod p$$
+
+$$
+d(p, p-1, k) \equiv (-1)^{k-1} \cdot \frac{1}{k - 1} \cdot (-1)^{k-1} \equiv (k - 1)^{-1} \pmod p
+$$
 
 Thus, for each prime $p$, the entire $k$-th iterated sum evaluated at $p-1$ is simply **$(k - 1)^{-1} \bmod p$**!
 

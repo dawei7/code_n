@@ -12,7 +12,10 @@ We are given:
 - $B(1000) = 45790$
 
 We seek to evaluate:
-$$B(10^9)$$
+
+$$
+B(10^9)
+$$
 
 ---
 
@@ -36,7 +39,12 @@ Simulating all trajectories up to $N = 10^9$ reflections requires exploring $> 1
    - Total reflection count $18x + 10y \le N$ (or symmetric reflection branches).
 3. **Mertens Mobius Inversion**:
    The coprimality constraint $\gcd(x, y) = 1$ and corner exclusion $3 \nmid y$ is handled by Mobius inversion over squarefree divisors not divisible by 3:
-   $$B(N) = \sum_{\substack{k \ge 1 \\ 3 \nmid k}} \mu(k) \cdot \operatorname{RawCount}\left( \left\lfloor \frac{N}{k} \right\rfloor \right)$$
+
+$$
+\begin{aligned}
+B(N) = \sum_{\substack{k \ge 1 \\ 3 \nmid k}} \mu(k) \cdot \operatorname{RawCount}\left( \left\lfloor \frac{N}{k} \right\rfloor \right)
+\end{aligned}
+$$
 
 ---
 

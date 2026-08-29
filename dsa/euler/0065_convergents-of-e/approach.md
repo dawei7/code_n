@@ -3,15 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Euler's number $e \approx 2.718281828\dots$ has the infinite continued fraction expansion:
-$$e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, \dots, 1, 1, 2k, \dots]$$
+
+$$
+e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, \dots, 1, 1, 2k, \dots]
+$$
 
 The sequence of coefficients $a_i$ for $i \ge 0$ follows the tri-periodic pattern:
-$$a_0 = 2, \quad a_i = \begin{cases} \frac{2(i+1)}{3} & \text{if } i \equiv 2 \pmod 3 \\ 1 & \text{otherwise} \end{cases}$$
+
+$$
+a_0 = 2, \quad a_i = \begin{cases} \frac{2(i+1)}{3} & \text{if } i \equiv 2 \pmod 3 \\ 1 & \text{otherwise} \end{cases}
+$$
 
 Let $\frac{p_k}{q_k}$ denote the $k$-th convergent fraction of $e$.
 
 The objective is to find the sum of the digits in the numerator of the 100th convergent of $e$:
-$$S = \sum_{c \in \operatorname{str}(p_{100})} \operatorname{int}(c)$$
+
+$$
+S = \sum_{c \in \operatorname{str}(p_{100})} \operatorname{int}(c)
+$$
 
 ---
 
@@ -27,9 +36,16 @@ def naive_convergents_e():
 
 ### Pure Numerator Linear Recurrence
 By fundamental continued fraction theory:
-$$p_k = a_{k-1} \cdot p_{k-1} + p_{k-2} \quad \text{for } k \ge 2$$
+
+$$
+p_k = a_{k-1} \cdot p_{k-1} + p_{k-2} \quad \text{for } k \ge 2
+$$
+
 with base terms:
-$$p_0 = 1, \quad p_1 = a_0 = 2, \quad p_2 = a_1 p_1 + p_0 = 1(2) + 1 = 3$$
+
+$$
+p_0 = 1, \quad p_1 = a_0 = 2, \quad p_2 = a_1 p_1 + p_0 = 1(2) + 1 = 3
+$$
 
 Because the numerator sequence is decoupled from denominators, $p_{100}$ evaluates in exactly 100 BigInt additions in $\approx 0.0001$ seconds!
 
@@ -60,7 +76,11 @@ Because the numerator sequence is decoupled from denominators, $p_{100}$ evaluat
 1. Generate the coefficient list $a = [2, 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, \dots]$ up to index $99$.
 2. Initialize $n_0 = a[0] = 2$, $n_1 = a[0] a[1] + 1 = 3$.
 3. For $i = 2 \dots 99$:
-   $$n_0, n_1 = n_1, \, a[i] \cdot n_1 + n_0$$
+
+$$
+n_0, n_1 = n_1, \, a[i] \cdot n_1 + n_0
+$$
+
 4. Compute $S = \sum_{c \in \operatorname{str}(n_1)} \operatorname{int}(c)$.
 
 ---
@@ -73,9 +93,16 @@ Because the numerator sequence is decoupled from denominators, $p_{100}$ evaluat
 
 ### Example 2: Target 100th Convergent ($k = 100$)
 - 100th Numerator $p_{100}$ (58 digits):
-  $$p_{100} = 696352443787877494079812234710015186936495618193738823038453$$
+
+$$
+p_{100} = 696352443787877494079812234710015186936495618193738823038453
+$$
+
 - Sum of all 58 decimal digits:
-  $$S = 6 + 9 + 6 + 3 + 5 + 2 + \dots + 5 + 3 = \mathbf{272}$$
+
+$$
+S = 6 + 9 + 6 + 3 + 5 + 2 + \dots + 5 + 3 = \mathbf{272}
+$$
 
 ---
 

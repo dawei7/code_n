@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Given an $N \times N$ integer matrix $M$, we define the **Matrix Sum** as the maximum possible sum of $N$ selected entries such that no two selected elements share the same row or column:
-$$\text{MatrixSum}(M) = \max_{\pi \in S_N} \sum_{i=0}^{N-1} M[i, \pi(i)]$$
+
+$$
+\text{MatrixSum}(M) = \max_{\pi \in S_N} \sum_{i=0}^{N-1} M[i, \pi(i)]
+$$
+
 where $\pi$ ranges over all permutations of $\{0, 1, \dots, N-1\}$.
 For the provided $15 \times 15$ matrix, find the maximum Matrix Sum.
 Sample value for the $5 \times 5$ submatrix equals $3315$.
@@ -33,7 +37,11 @@ The problem is equivalent to the **Assignment Problem** / maximum weight biparti
 ### Bitmask Dynamic Programming
 Let $\text{mask} \in [0, 2^N - 1]$ be a bitmask representing the subset of columns assigned to the first $r = \text{popcount}(\text{mask})$ rows.
 Define $dp[\text{mask}]$ as the maximum sum achievable for the first $r$ rows using column subset $\text{mask}$:
-$$dp[\text{mask}] = \max_{c \in \text{mask}} \Big( dp[\text{mask} \setminus \{c\}] + M[r - 1, c] \Big)$$
+
+$$
+dp[\text{mask}] = \max_{c \in \text{mask}} \Big( dp[\text{mask} \setminus \{c\}] + M[r - 1, c] \Big)
+$$
+
 1. Base case: $dp[0] = 0$.
 2. State space size: $2^{15} = 32\,768$ states.
 3. Transitions per state: $\text{popcount}(\text{mask}) \le 15$.

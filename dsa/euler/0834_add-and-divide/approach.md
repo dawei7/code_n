@@ -4,7 +4,11 @@
 
 For a starting integer $n$, define the sequence $a_0 = n$ and $a_m = a_{m-1} + (n + m)$ for $m \ge 1$.
 Explicitly:
-$$a_m = n + \sum_{i=1}^m (n + i) = \frac{(m + 1)(2n + m)}{2}$$
+
+$$
+a_m = n + \sum_{i=1}^m (n + i) = \frac{(m + 1)(2n + m)}{2}
+$$
+
 Let $S(n) = \{m \ge 1 : (n + m) \mid a_m\}$.
 Let $T(n) = \sum_{m \in S(n)} m$, and $U(N) = \sum_{n=3}^N T(n)$.
 Given:
@@ -29,9 +33,17 @@ Find $U(1234567)$.
 ### Algebraic Divisibility Reduction
 Let $X = n + m$, so $m = X - n \ge 1 \implies X \ge n + 1$.
 Rewriting $2a_m$:
-$$2a_m = (X - n + 1)(X + n) = X^2 + X - n(n - 1) = X(X + 1) - n(n - 1)$$
+
+$$
+2a_m = (X - n + 1)(X + n) = X^2 + X - n(n - 1) = X(X + 1) - n(n - 1)
+$$
+
 The condition $X \mid a_m \iff 2X \mid 2a_m$ gives:
-$$X(X + 1) - n(n - 1) \equiv 0 \pmod{2X} \iff n(n - 1) = X(X + 1 - 2k)$$
+
+$$
+X(X + 1) - n(n - 1) \equiv 0 \pmod{2X} \iff n(n - 1) = X(X + 1 - 2k)
+$$
+
 for some integer $k$.
 
 Let $A = X$ and $B = X + 1 - 2k$.

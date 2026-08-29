@@ -3,12 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $t_n$ be Tribonacci numbers modulo $10^7$:
-$$t_0 = t_1 = 0, \quad t_2 = 1, \quad t_n = (t_{n-1} + t_{n-2} + t_{n-3}) \bmod 10^7$$
+
+$$
+t_0 = t_1 = 0, \quad t_2 = 1, \quad t_n = (t_{n-1} + t_{n-2} + t_{n-3}) \bmod 10^7
+$$
+
 For each $n \ge 1$, vectors $V_n, W_n \in \mathbb{Z}^3$ are defined by:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 V_n &= (r_{12n-11} - r_{12n-10}, \; r_{12n-9} + r_{12n-8}, \; r_{12n-7} \cdot r_{12n-6}) \\
 W_n &= (r_{12n-5} - r_{12n-4}, \; r_{12n-3} + r_{12n-2}, \; r_{12n-1} \cdot r_{12n})
-\end{aligned}$$
+\end{aligned}
+$$
+
 Let $S(n) = \min_{(k, l) \ne (0, 0)} \|k V_n + l W_n\|_1$.
 
 We are given:
@@ -16,7 +24,10 @@ We are given:
 - $\sum_{n=1}^{10} S(n) = 130762273722$
 
 We seek to evaluate:
-$$\sum_{n=1}^{20\,000\,000} S(n)$$
+
+$$
+\sum_{n=1}^{20\,000\,000} S(n)
+$$
 
 ---
 
@@ -42,7 +53,11 @@ Searching over coefficients $(k, l) \in \mathbb{Z}^2$ for $2 \times 10^7$ differ
 ### Streaming Residue Pipeline & Direct Euclidean Steepest Descent
 1. **On-the-Fly Tribonacci Streaming**:
    Since residues $r_n$ are generated sequentially, maintaining 3 consecutive integer states with modular subtraction replaces division/modulo completely:
-   $$t_{n} = t_{n-1} + t_{n-2} + t_{n-3} \pmod{10^7}$$
+
+$$
+t_{n} = t_{n-1} + t_{n-2} + t_{n-3} \pmod{10^7}
+$$
+
 2. **Optimal L1 Integer Minimization**:
    For vectors $A = (a_1, a_2, a_3)$ and $B = (b_1, b_2, b_3)$:
    Testing candidate multipliers $q \in \{\lfloor b_i / a_i \rfloor, \lfloor b_i / a_i \rfloor + 1\}$ across non-zero coordinates $a_1, a_2, a_3$ finds the global integer minimizer $m$ in $O(1)$ arithmetic operations.

@@ -4,15 +4,26 @@
 
 As we know, a **Gaussian integer** is a complex number $z = x + iy$ where $x, y \in \mathbb{Z}$.
 Given an integer $n \in \mathbb{N}$, a Gaussian integer $z$ is a divisor of $n$ if $\frac{n}{z}$ is also a Gaussian integer:
-$$\frac{n}{x + iy} = \frac{n(x - iy)}{x^2 + y^2} = \frac{nx}{x^2+y^2} - i \frac{ny}{x^2+y^2} \in \mathbb{Z}[i]$$
+
+$$
+\frac{n}{x + iy} = \frac{n(x - iy)}{x^2 + y^2} = \frac{nx}{x^2+y^2} - i \frac{ny}{x^2+y^2} \in \mathbb{Z}[i]
+$$
+
 which requires $x^2 + y^2 \mid nx$ and $x^2 + y^2 \mid ny$.
 
 For example, for $n = 5$, the divisors of $5$ with positive real part are:
-$$1, \quad 5, \quad 1+2i, \quad 1-2i, \quad 2+i, \quad 2-i$$
+
+$$
+1, \quad 5, \quad 1+2i, \quad 1-2i, \quad 2+i, \quad 2-i
+$$
+
 The sum of the real parts of all Gaussian divisors for $n = 5$ is $s(5) = 1 + 5 + 1 + 1 + 2 + 2 + \dots = 12$ (or $35$ when summing all $s(n)$ for $1 \le n \le 5$).
 
 The objective is to find the **sum of the real parts of all Gaussian integer divisors for all $1 \le n \le 10^8$**:
-$$S_{\text{Gaussian}} = \sum_{n=1}^{10^8} s(n)$$
+
+$$
+S_{\text{Gaussian}} = \sum_{n=1}^{10^8} s(n)
+$$
 
 ---
 
@@ -30,16 +41,28 @@ def naive_gaussian_integers():
 1. **Real Integer Divisors:**
    Every positive integer $d \mid n$ is a Gaussian divisor with real part $d$.
    Across all $1 \le n \le N$, real divisors contribute:
-   $$S_{\text{real}} = \sum_{n=1}^N \sigma_1(n) = \sum_{g=1}^N g \left\lfloor \frac{N}{g} \right\rfloor = H(N)$$
+
+$$
+S_{\text{real}} = \sum_{n=1}^N \sigma_1(n) = \sum_{g=1}^N g \left\lfloor \frac{N}{g} \right\rfloor = H(N)
+$$
+
    which can be evaluated in $\mathcal{O}(\sqrt{N})$ using the **Dirichlet Hyperbola Method**.
 2. **Complex Gaussian Divisors:**
    For coprime integers $A \ge 1, B \ge 1$ with $\gcd(A, B) = 1$, let the primitive norm be:
-   $$\text{norm} = A^2 + B^2$$
+
+$$
+\text{norm} = A^2 + B^2
+$$
+
    - The conjugate pair $(A + Bi, A - Bi)$ has real part sum $2A$.
    - Symmetrically, if $A \neq B$, the pair $(B + Ai, B - Ai)$ has real part sum $2B$.
    - Together they contribute $F = 2(A + B)$ (or $2A$ if $A = B$).
    - Across all multiples, their total contribution is:
-     $$F \cdot H\left( \left\lfloor \frac{N}{A^2 + B^2} \right\rfloor \right)$$
+
+$$
+F \cdot H\left( \left\lfloor \frac{N}{A^2 + B^2} \right\rfloor \right)
+$$
+
 3. Summing across all coprime pairs $(A, B)$ with $A^2 + B^2 \le 10^8$ evaluates the complete sum in $\approx 0.20$ seconds.
 
 ---
@@ -63,7 +86,11 @@ def naive_gaussian_integers():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Dirichlet Hyperbola Block Function
-$$H(M) = \sum_{g=1}^M g \left\lfloor \frac{M}{g} \right\rfloor$$
+
+$$
+H(M) = \sum_{g=1}^M g \left\lfloor \frac{M}{g} \right\rfloor
+$$
+
 Using quotient block jumps $k = \lfloor M/l \rfloor$, $H(M)$ is computed in $\mathcal{O}(\sqrt{M})$ time.
 
 ### Master Algorithm
@@ -90,7 +117,10 @@ Using quotient block jumps $k = \lfloor M/l \rfloor$, $H(M)$ is computed in $\ma
 
 ### Example 2: Target Evaluation for $N = 10^8$
 - Evaluating across all primitive Gaussian norms $\le 10^8$:
-  $$S_{\text{Gaussian}} = \mathbf{1\,797\,474\,386\,470\,305}$$
+
+$$
+S_{\text{Gaussian}} = \mathbf{1\,797\,474\,386\,470\,305}
+$$
 
 ---
 

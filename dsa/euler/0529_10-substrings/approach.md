@@ -11,7 +11,10 @@ We are given:
 - $T(5) = 3492$
 
 We seek to evaluate:
-$$T(10^{18}) \bmod 1\,000\,000\,007$$
+
+$$
+T(10^{18}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -35,7 +38,11 @@ For $n = 10^{18}$, digit dynamic programming requires $10^{18}$ sequential trans
 3. **Binomial Transform for Zeros**:
    Since digit $0$ has sum contribution $0$, inserting zeros into a zero-free friendly string preserves friendliness.
    The total friendly numbers of length $n$ is given by the binomial convolution:
-   $$T(n) = \sum_{k=0}^n \binom{n}{k} E(k)$$
+
+$$
+T(n) = \sum_{k=0}^n \binom{n}{k} E(k)
+$$
+
    where $E(k)$ is the count of valid zero-free friendly strings of length $k$.
 
 ---
@@ -46,7 +53,11 @@ For $n = 10^{18}$, digit dynamic programming requires $10^{18}$ sequential trans
 1. **Recurrence Discovery via Berlekamp-Massey**:
    Generate $2S + 5$ terms of $E(k)$ from the DFA ($S \approx 200$ states).
    The Berlekamp–Massey algorithm extracts the minimal linear recurrence of degree $L \le S$:
-   $$E(k) = \sum_{i=1}^L c_i E(k - i)$$
+
+$$
+E(k) = \sum_{i=1}^L c_i E(k - i)
+$$
+
 2. **Generating Function Translation**:
    The binomial transform $T(n) = \sum_{k=0}^n \binom{n}{k} E(k)$ is equivalent to evaluating the operator $(1 + x)^n$ in the quotient polynomial ring $\mathbb{Z}_M[x] / \langle C(x) \rangle$, where $C(x)$ is the characteristic polynomial of the recurrence.
 3. **Big-Integer Packed Polynomial Multiplication ($O(L \log L \log n)$)**:

@@ -25,7 +25,11 @@ For $n = 1000$, the state space consists of all integer partitions of $1000$, co
 
 2. **Harmonic Spectral Summation**:
    The expected steps $E(n)$ scales linearly with $2n$ minus logarithmic harmonic corrections:
-   $$E(n) = \sum_{k=1}^{n-1} \frac{1}{1 - \lambda_k}$$
+
+$$
+E(n) = \sum_{k=1}^{n-1} \frac{1}{1 - \lambda_k}
+$$
+
    where $\lambda_k$ are the non-zero transition eigenvalues.
 
 3. **Sub-second Linear Evaluation**:

@@ -23,7 +23,11 @@ Find $T(10^6) = \sum_{n=1}^{10^6} M(n)$.
 
 ### Two-Layer Dynamic Programming
 Because multiplication binds tighter than addition without parentheses, any valid expression is a **sum of product terms**:
-$$\sum_{i=1}^k \prod_{j=1}^{m_i} d_{i,j}$$
+
+$$
+\sum_{i=1}^k \prod_{j=1}^{m_i} d_{i,j}
+$$
+
 This induces a natural two-stage DP architecture:
 1. **Multiplication DP**: Compute the minimum cost $P(n)$ to express $n$ purely as a product of digit literals.
 2. **Addition DP**: Compute $M(n)$ by combining product atoms through addition.
@@ -35,7 +39,11 @@ This induces a natural two-stage DP architecture:
 ### Active Product Atom Sieve
 1. **Product Sieve**:
    For each $a \in [2, N]$ and $b \in [2, \lfloor N/a \rfloor]$:
-   $$P(a \cdot b) = \min(P(a \cdot b), P(a) + 2 + P(b))$$
+
+$$
+P(a \cdot b) = \min(P(a \cdot b), P(a) + 2 + P(b))
+$$
+
 2. **Atom Filtering & Linear Addition Propagation**:
    An additive step $M(a + b) \le M(a) + 2 + P(b)$ is only optimal when $b$ is an irreducible product atom with $P(b) \le 18$.
    Sorting active atoms by cost and running forward DP updates computes all $M(n)$ up to $10^6$ in **5.47 seconds**.

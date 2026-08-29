@@ -4,7 +4,11 @@
 
 On an $N \times N$ board of disks (each with a black side and a white side), a flip at coordinate $(r, c)$ flips all $2N - 1$ disks sharing its row $r$ or column $c$.
 The initial configuration $C_N$ has a black disk at $(x, y)$ if and only if:
-$$(N - 1)^2 \le x^2 + y^2 < N^2$$
+
+$$
+(N - 1)^2 \le x^2 + y^2 < N^2
+$$
+
 and white otherwise ($0 \le x, y < N$).
 $T(N)$ is the minimal number of turns to transform all disks to white, or $0$ if configuration $C_N$ is unsolvable.
 We are given sample values:
@@ -33,10 +37,18 @@ The state space contains $2^{N^2}$ configurations, rendering graph traversal imp
 ### Linear Algebra over $\mathbb{F}_2$
 Let $x_{i, j} \in \{0, 1\}$ indicate whether cell $(i, j)$ is flipped.
 The net flip condition for cell $(i, j)$ is:
-$$R_i \oplus C_j \oplus x_{i, j} \equiv A_{i, j} \pmod 2 \iff x_{i, j} \equiv R_i \oplus C_j \oplus A_{i, j} \pmod 2$$
+
+$$
+R_i \oplus C_j \oplus x_{i, j} \equiv A_{i, j} \pmod 2 \iff x_{i, j} \equiv R_i \oplus C_j \oplus A_{i, j} \pmod 2
+$$
+
 where $R_i = \sum_c x_{i, c} \bmod 2$ and $C_j = \sum_r x_{r, j} \bmod 2$.
 Summing across row $i$ gives:
-$$R_i \equiv (N \bmod 2) R_i \oplus S \oplus a_i \pmod 2 \iff (N - 1) R_i \equiv S \oplus a_i \pmod 2$$
+
+$$
+R_i \equiv (N \bmod 2) R_i \oplus S \oplus a_i \pmod 2 \iff (N - 1) R_i \equiv S \oplus a_i \pmod 2
+$$
+
 where $a_i = \sum_c A_{i, c} \bmod 2$ and $S = \sum_r R_r \bmod 2$.
 
 ### Parity Bifurcation:
@@ -48,7 +60,11 @@ where $a_i = \sum_c A_{i, c} \bmod 2$ and $S = \sum_r R_r \bmod 2$.
 2. **Even $N$ ($N \equiv 0 \pmod 2$):**
    $R_i \equiv S \oplus a_i \pmod 2$ has a unique solution with $S \equiv \sum a_i \pmod 2$.
    By symmetry $C_j = R_j$, the total flip count is:
-   $$T(N) = \sum_{i, j} (R_i \oplus R_j \oplus A_{i, j}) = 2 c_0 c_1 + \text{Black}_{\text{same}} - \text{Black}_{\text{diff}}$$
+
+$$
+T(N) = \sum_{i, j} (R_i \oplus R_j \oplus A_{i, j}) = 2 c_0 c_1 + \text{Black}_{\text{same}} - \text{Black}_{\text{diff}}
+$$
+
    where $c_0, c_1$ are the frequencies of $0$ and $1$ in $R$.
 
 ---
@@ -57,7 +73,11 @@ where $a_i = \sum_c A_{i, c} \bmod 2$ and $S = \sum_r R_r \bmod 2$.
 
 ### Two-Pointer Monotonic Annulus Tracking
 For each row $x$, the black cells occupy $y \in [y_{\min}(x), y_{\max}(x)]$ where:
-$$y_{\min}(x) = \lceil \sqrt{\max(0, (N-1)^2 - x^2)} \rceil, \quad y_{\max}(x) = \lfloor \sqrt{N^2 - 1 - x^2} \rfloor$$
+
+$$
+y_{\min}(x) = \lceil \sqrt{\max(0, (N-1)^2 - x^2)} \rceil, \quad y_{\max}(x) = \lfloor \sqrt{N^2 - 1 - x^2} \rfloor
+$$
+
 As $x$ increases from $0$ to $N - 1$, both $y_{\min}(x)$ and $y_{\max}(x)$ decrease monotonically.
 A two-pointer walk traces all row intervals in $\mathcal{O}(N)$ total operations.
 Using a prefix sum array `pref_R` over the binary vector $R$, the count of matching and differing black cells in row $x$ evaluates in $\mathcal{O}(1)$ time.

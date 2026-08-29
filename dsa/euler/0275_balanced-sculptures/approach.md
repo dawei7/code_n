@@ -6,7 +6,11 @@ A **balanced sculpture of order $n$** is a connected polyomino consisting of $n 
 1. One special block (the **plinth**) centered at $(0, 0)$.
 2. $n$ additional blocks centered at integer coordinates $(x, y)$ with $y \ge 0$.
 3. All blocks have unit mass, so the $x$-center of mass of the sculpture (including the plinth) lies on the vertical line $x = 0$:
-   $$\sum_{i=1}^n x_i + 0 = 0 \iff \sum_{i=1}^n x_i = 0$$
+
+$$
+\sum_{i=1}^n x_i + 0 = 0 \iff \sum_{i=1}^n x_i = 0
+$$
+
 4. The polyomino must be connected, and the plinth must touch the sculpture (or be part of it).
 Find the number of distinct balanced sculptures of order $n = 18$ (rotations/reflections along the $y$-axis are counted as distinct unless identical).
 

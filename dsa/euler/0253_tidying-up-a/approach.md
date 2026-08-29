@@ -28,7 +28,10 @@ Instead of tracking which specific pieces have been placed, observe that the bou
   - Splits a gap into two smaller gaps of lengths $a$ and $b$ ($a + b = \text{length} - 1$);
   - Fills a single-piece gap completely.
 - A state is fully defined by:
-  $$(\text{tuple of sorted unplaced gap lengths}, \text{current number of segments}, \text{max segments seen so far})$$
+
+$$
+(\text{tuple of sorted unplaced gap lengths}, \text{current number of segments}, \text{max segments seen so far})
+$$
 
 ---
 

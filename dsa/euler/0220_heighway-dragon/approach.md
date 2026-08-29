@@ -39,7 +39,11 @@ def naive_heighway_dragon():
    - Each level $k$ block $A_k$ and $B_k$ contains exactly $2^k - 1$ forward steps $'F'$.
 2. **Precomputed Full-Block Displacements:**
    For $k \in [0, 50]$, precompute the full 2D displacement vector $(dx, dy)$ and net orientation rotation $r \in \{0, 1, 2, 3\}$ in $\mathcal{O}(k)$ time:
-   $$(dx_k, dy_k, r_k) = \operatorname{FullBlock}(A_k)$$
+
+$$
+(dx_k, dy_k, r_k) = \operatorname{FullBlock}(A_k)
+$$
+
 3. **Logarithmic Path Navigation:**
    To simulate remaining steps $S \le 10^{12}$:
    - If $S \ge 2^k - 1$: Add the precomputed full-block displacement $(dx_k, dy_k)$ rotated by current heading $d$ in $\mathcal{O}(1)$ time.
@@ -82,7 +86,10 @@ def solve(order: int = 50, steps: int = 10**12) -> str:
     return f"{ans_x},{ans_y}"
 ```
 Evaluating for $\text{order} = 50, \text{steps} = 10^{12}$:
-$$(x, y) = \mathbf{"139776,963904"}$$
+
+$$
+(x, y) = \mathbf{"139776,963904"}
+$$
 
 ---
 
@@ -91,13 +98,20 @@ $$(x, y) = \mathbf{"139776,963904"}$$
 ### Example 1: Sample Verification for $D_{10}$ at $500$ Steps
 - Total order: $10$. Target steps: $500$.
 - Binary divide-and-conquer navigation:
-  $$(x, y) = \mathbf{"18,16"}$$
+
+$$
+(x, y) = \mathbf{"18,16"}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $D_{50}$ at $10^{12}$ Steps
 - Total order: $50$. Target steps: $10^{12}$.
 - Binary path decomposition across 50 depth levels:
-  $$(x, y) = \mathbf{"139776,963904"}$$
+
+$$
+(x, y) = \mathbf{"139776,963904"}
+$$
 
 ---
 

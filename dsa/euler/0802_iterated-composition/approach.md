@@ -3,11 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $f: \mathbb{R}^2 \to \mathbb{R}^2$ be defined by:
-$$f(x, y) = (x^2 - x - y^2, 2xy - y + \pi)$$
+
+$$
+f(x, y) = (x^2 - x - y^2, 2xy - y + \pi)
+$$
+
 A point $(x, y)$ has period $n$ if $n$ is the smallest positive integer such that $f^{(n)}(x, y) = (x, y)$.
 Let $P(n)$ denote the sum of $x$-coordinates of all points having period not exceeding $n$.
 We seek to evaluate:
-$$P(10^7) \bmod 1\,020\,340\,567$$
+
+$$
+P(10^7) \bmod 1\,020\,340\,567
+$$
 
 We are given:
 - $P(1) = 2$
@@ -28,15 +35,27 @@ For period $n$, solving the system $f^{(n)}(x, y) = (x, y)$ corresponds to a deg
 ### Complex Polynomial Dynamics & Exact Trace Invariants
 1. **Complex Embedding**:
    Setting $z = x + iy$, the map is represented as:
-   $$F(z) = z^2 - z + i\pi$$
+
+$$
+F(z) = z^2 - z + i\pi
+$$
+
 2. **Trace of Fixed Points**:
    Let $A(d)$ denote the sum of $x$-coordinates of all points whose period divides $d$.
    By algebraic properties of the cyclotomic iterated polynomials:
-   $$A(1) = 2, \quad \text{and} \quad A(d) = 2^{d-1} \quad (\forall d \ge 2)$$
+
+$$
+A(1) = 2, \quad \text{and} \quad A(d) = 2^{d-1} \quad (\forall d \ge 2)
+$$
+
    Remarkably, the transcendental constant $\pi$ drops out entirely from the sum of real coordinates!
 3. **Möbius Inversion & Floor-Division Sieve**:
    Let $S(d)$ be the sum for exact period $d$. Then $A(n) = \sum_{d \mid n} S(d)$, which by Möbius inversion gives:
-   $$P(n) = \sum_{d \le n} S(d) = \sum_{d \le n} A(d) M\left(\left\lfloor \frac{n}{d} \right\rfloor\right)$$
+
+$$
+P(n) = \sum_{d \le n} S(d) = \sum_{d \le n} A(d) M\left(\left\lfloor \frac{n}{d} \right\rfloor\right)
+$$
+
    where $M(t) = \sum_{m \le t} \mu(m)$ is the Mertens function.
 
 ---
@@ -48,7 +67,11 @@ For period $n$, solving the system $f^{(n)}(x, y) = (x, y)$ corresponds to a deg
    We compute $M(t)$ for the $2\sqrt{n}$ distinct values of $t = \lfloor n/k \rfloor$ using a single linear sieve up to $N = 10^7$.
 2. **Hyperbolic Interval Summation**:
    For each interval $[l, r]$ where $\lfloor n/d \rfloor = q$, the sum of $A(d)$ is given by:
-   $$\sum_{d=l}^r A(d) \equiv 2^r - 2^{l-1} \pmod{1\,020\,340\,567}$$
+
+$$
+\sum_{d=l}^r A(d) \equiv 2^r - 2^{l-1} \pmod{1\,020\,340\,567}
+$$
+
 3. **Execution Performance**:
    The entire calculation evaluates in **$\approx 2.30$ seconds** in pure Python!
 

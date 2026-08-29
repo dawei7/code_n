@@ -35,6 +35,8 @@ def compose_documented_starter(
     The package's ``template.*`` remains the exact canonical interface on disk.
     This function creates the writable editor starter shown to the learner.
     """
+    if spec.id.startswith("euler_") or getattr(spec, "dataset", "") == "euler" or getattr(spec, "category", "") == "euler_math":
+        return template_source.strip() + "\n"
 
     language_id = normalize_language(language)
     description, examples = _canonical_learning_sections(spec.id)

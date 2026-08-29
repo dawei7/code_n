@@ -12,7 +12,10 @@ We are given:
 - $g(1.7) = 10$
 
 We seek to evaluate:
-$$g(1.9999)$$
+
+$$
+g(1.9999)
+$$
 
 ---
 
@@ -29,18 +32,36 @@ Building an explicit $N \times N$ backward induction dynamic programming table f
 1. **Minimax Value Recurrence**:
    Let $V(t, g)$ be the guaranteed multiplier with $t$ TAKEs and $g$ GIVEs remaining.
    To make B indifferent between TAKE and GIVE:
-   $$(1 - f) V(t - 1, g) = (1 + f) V(t, g - 1)$$
-   $$V(t, g) = \frac{2 V(t - 1, g) V(t, g - 1)}{V(t - 1, g) + V(t, g - 1)}$$
+
+$$
+(1 - f) V(t - 1, g) = (1 + f) V(t, g - 1)
+$$
+
+$$
+V(t, g) = \frac{2 V(t - 1, g) V(t, g - 1)}{V(t - 1, g) + V(t, g - 1)}
+$$
+
 2. **Harmonic Inversion**:
    Let $W(t, g) = 1 / V(t, g)$. Then:
-   $$W(t, g) = \frac{W(t - 1, g) + W(t, g - 1)}{2}$$
+
+$$
+W(t, g) = \frac{W(t - 1, g) + W(t, g - 1)}{2}
+$$
+
    with boundary conditions $W(0, g) = 2^{-g}$ and $W(t, 0) = 1$.
 3. **Exact Analytical Closed Form**:
    Solving the linear Pascal-like binomial difference equation yields:
-   $$V(n, n) = \frac{2}{1 + p_n} \quad \text{where } p_n = \frac{\binom{2n}{n}}{4^n}$$
+
+$$
+V(n, n) = \frac{2}{1 + p_n} \quad \text{where } p_n = \frac{\binom{2n}{n}}{4^n}
+$$
+
 4. **Threshold Inversion**:
    The condition $V(n, n) \ge X$ is equivalent to:
-   $$p_n \le \frac{2 - X}{X}$$
+
+$$
+p_n \le \frac{2 - X}{X}
+$$
 
 ---
 
@@ -48,10 +69,18 @@ Building an explicit $N \times N$ backward induction dynamic programming table f
 
 ### Sub-millisecond Asymptotic Root Inversion
 1. **High-Order Stirling Expansion**:
-   $$\ln p_n = -\frac{1}{2} \ln(\pi n) - \frac{1}{8n} + \frac{1}{192n^3} - \frac{1}{640n^5} + O(n^{-7})$$
+
+$$
+\ln p_n = -\frac{1}{2} \ln(\pi n) - \frac{1}{8n} + \frac{1}{192n^3} - \frac{1}{640n^5} + O(n^{-7})
+$$
+
 2. **Initial Root Approximation**:
    For $X = 1.9999 = 19999 / 10000$:
-   $$r = \frac{2 - X}{X} = \frac{1}{19999} \implies n_{\text{est}} \approx \frac{1}{\pi r^2} \approx \frac{19999^2}{\pi} \approx 127\,311\,223$$
+
+$$
+r = \frac{2 - X}{X} = \frac{1}{19999} \implies n_{\text{est}} \approx \frac{1}{\pi r^2} \approx \frac{19999^2}{\pi} \approx 127\,311\,223
+$$
+
 3. **Local Newton / Boundary Refinement**:
    Testing in log-space around $n_{\text{est}}$ identifies the exact minimal integer $n$ in $O(1)$ operations.
 4. **Execution Performance**:

@@ -11,7 +11,10 @@ We are given:
 - For $n = 4$: $Q(4, 0) = 1, Q(4, 4) = 2, Q(4, 1) = 7, Q(4, 7) = 19$.
 
 We seek to evaluate:
-$$R(12^{12})$$
+
+$$
+R(12^{12})
+$$
 
 ---
 
@@ -30,7 +33,10 @@ For $k = 12^{12} \approx 8.9 \times 10^{12}$, permutations have length $n \ge 45
 2. **Binary Bit Mapping**:
    Every power-of-two cost $2^b$ added to $F(P)$ corresponds to setting an insertion position $j = b + 1$.
    The binary representation of $k = 12^{12}$ has 10 set bits:
-   $$\{24, 28, 29, 30, 31, 32, 33, 35, 36, 43\}$$
+
+$$
+\{24, 28, 29, 30, 31, 32, 33, 35, 36, 43\}
+$$
 
 ---
 
@@ -43,7 +49,11 @@ For $k = 12^{12} \approx 8.9 \times 10^{12}$, permutations have length $n \ge 45
    For the remaining elements, the sequence of insertion positions $pos(v)$ is chosen to clear each required bit of $k$ while keeping smaller elements as early as possible in the permutation.
 3. **Factorial Radix Conversion ($O(n^2)$)**:
    Once the minimal permutation $P$ is constructed, its exact 1-based lexicographical index $I_n(P)$ is computed via the Lehmer code (factorial radix representation):
-   $$I_n(P) = 1 + \sum_{i=1}^n c_i (n - i)!$$
+
+$$
+I_n(P) = 1 + \sum_{i=1}^n c_i (n - i)!
+$$
+
    where $c_i$ is the number of remaining elements smaller than $P[i]$.
 
 This evaluates $R(12^{12})$ in **$0.0001$ seconds**!

@@ -29,7 +29,11 @@ def naive_tangents():
    - Center: $C = \frac{M + G}{2} = (3000, 1500)$.
 2. **Tangent Angle $\theta = \angle RPS$:**
    In centered coordinates $(X, Y) = (x - 3000, y - 1500)$, the angle between tangents satisfies:
-   $$\tan^2 \theta = \frac{4 (b^2 X^2 + a^2 Y^2 - a^2 b^2)}{(X^2 + Y^2 - (a^2 + b^2))^2}$$
+
+$$
+\tan^2 \theta = \frac{4 (b^2 X^2 + a^2 Y^2 - a^2 b^2)}{(X^2 + Y^2 - (a^2 + b^2))^2}
+$$
+
 3. **Region Partitioning for $\theta > 45^\circ \iff \tan \theta > 1$:**
    - **Director (Orthoptic) Circle:** $X^2 + Y^2 \le a^2 + b^2 \implies \theta \ge 90^\circ > 45^\circ$.
    - **Outer Annular Band:** $X^2 + Y^2 > a^2 + b^2$, where $\tan^2 \theta > 1 \iff 4(b^2 X^2 + a^2 Y^2 - a^2 b^2) > (X^2 + Y^2 - (a^2 + b^2))^2$.
@@ -74,7 +78,10 @@ def solve(
 ```
 
 Evaluating for the problem ellipse parameters:
-$$\text{Total Valid Lattice Points} = \mathbf{810\,834\,388}$$
+
+$$
+\text{Total Valid Lattice Points} = \mathbf{810\,834\,388}
+$$
 
 ---
 
@@ -90,7 +97,10 @@ $$\text{Total Valid Lattice Points} = \mathbf{810\,834\,388}$$
 
 ### Example 2: Target Evaluation
 - Summing over all $4$ quadrants:
-  $$\text{Total Lattice Points} = \mathbf{810\,834\,388}$$
+
+$$
+\text{Total Lattice Points} = \mathbf{810\,834\,388}
+$$
 
 ---
 

@@ -3,12 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $x \in \mathbb{N}$ and an integer tuple $(1, 2, \dots, n)$ with $n > 1$, define the concatenated product string:
-$$\mathbf{P}(x, n) = \operatorname{str}(x \cdot 1) \mathbin{\Vert} \operatorname{str}(x \cdot 2) \mathbin{\Vert} \dots \mathbin{\Vert} \operatorname{str}(x \cdot n)$$
+
+$$
+\mathbf{P}(x, n) = \operatorname{str}(x \cdot 1) \mathbin{\Vert} \operatorname{str}(x \cdot 2) \mathbin{\Vert} \dots \mathbin{\Vert} \operatorname{str}(x \cdot n)
+$$
 
 We say $\mathbf{P}(x, n)$ is a **1 to 9 pandigital 9-digit number** if $|\mathbf{P}(x, n)| = 9$ and it contains each digit $1, 2, \dots, 9$ exactly once.
 
 The objective is to find the largest 1 to 9 pandigital 9-digit number formed this way:
-$$P_{\text{max}} = \max \{ \operatorname{int}(\mathbf{P}(x, n)) \mid x \in \mathbb{N}, \, n > 1, \, \mathbf{P}(x, n) \text{ is 1..9 pandigital} \}$$
+
+$$
+P_{\text{max}} = \max \{ \operatorname{int}(\mathbf{P}(x, n)) \mid x \in \mathbb{N}, \, n > 1, \, \mathbf{P}(x, n) \text{ is 1..9 pandigital} \}
+$$
 
 ---
 
@@ -79,7 +85,10 @@ def naive_pandigital_multiples():
 - Concatenation: $\mathbf{s} = \text{"932718654"}$.
 - Digits set: $\{1, 2, 3, 4, 5, 6, 7, 8, 9\}$ (all 9 digits unique).
 - Global Maximum:
-  $$P_{\text{max}} = \mathbf{932\,718\,654}$$
+
+$$
+P_{\text{max}} = \mathbf{932\,718\,654}
+$$
 
 ---
 

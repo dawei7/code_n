@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The topography of a mountainous region is given by the elevation function:
-$$h(x, y) = \left(5000 - \frac{x^2 + y^2 + xy}{200} + \frac{25(x + y)}{2}\right) \exp\left(-\left|\frac{x^2 + y^2}{1000000} - \frac{3(x + y)}{1000} + \frac{7}{10}\right|\right)$$
+
+$$
+h(x, y) = \left(5000 - \frac{x^2 + y^2 + xy}{200} + \frac{25(x + y)}{2}\right) \exp\left(-\left|\frac{x^2 + y^2}{1000000} - \frac{3(x + y)}{1000} + \frac{7}{10}\right|\right)
+$$
+
 An aircraft flies from $A(200, 200)$ to $B(1400, 1400)$ inside the region $[0, 1600] \times [0, 1600]$.
 - **Phase 1:** Find the minimum maximum altitude $h_{\max}$ required for a continuous path from $A$ to $B$.
 - **Phase 2:** Find the shortest path length from $A$ to $B$ that never exceeds elevation $h_{\max}$.

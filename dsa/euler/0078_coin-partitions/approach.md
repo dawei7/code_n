@@ -14,7 +14,10 @@ For example, $p(5) = 7$:
 - $1 + 1 + 1 + 1 + 1$
 
 The objective is to find the **least value of $n$** for which $p(n)$ is divisible by **one million ($1\,000\,000$)**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; p(n) \equiv 0 \pmod{10^6} \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; p(n) \equiv 0 \pmod{10^6} \right\}
+$$
 
 ---
 
@@ -30,7 +33,11 @@ def naive_coin_partitions(limit):
 
 ### Euler's Pentagonal Number Theorem
 By Euler's pentagonal number theorem, the partition function satisfies the fast recurrence:
-$$p(n) = \sum_{k \neq 0} (-1)^{k-1} p\left( n - g_k \right)$$
+
+$$
+p(n) = \sum_{k \neq 0} (-1)^{k-1} p\left( n - g_k \right)
+$$
+
 where $g_k = \frac{k(3k - 1)}{2}$ for $k = 1, -1, 2, -2, 3, -3, \dots$ are the generalized pentagonal numbers.
 
 1. For any $n$, there are only $\mathcal{O}(\sqrt{n})$ terms with $g_k \le n$.
@@ -62,7 +69,11 @@ where $g_k = \frac{k(3k - 1)}{2}$ for $k = 1, -1, 2, -2, 3, -3, \dots$ are the g
 1. Initialize $p = [1]$ (since $p(0) = 1$).
 2. For $n = 1, 2, 3, \dots$:
    - Compute:
-     $$p(n) = \sum_{k=1}^{\infty} (-1)^{k-1} \left( p\left(n - \frac{k(3k-1)}{2}\right) + p\left(n - \frac{k(3k+1)}{2}\right) \right) \pmod{10^6}$$
+
+$$
+p(n) = \sum_{k=1}^{\infty} (-1)^{k-1} \left( p\left(n - \frac{k(3k-1)}{2}\right) + p\left(n - \frac{k(3k+1)}{2}\right) \right) \pmod{10^6}
+$$
+
    - If $p(n) \equiv 0 \pmod{10^6}$, return $n$.
    - Append $p(n)$ to list $p$.
 
@@ -80,9 +91,16 @@ where $g_k = \frac{k(3k - 1)}{2}$ for $k = 1, -1, 2, -2, 3, -3, \dots$ are the g
 
 ### Example 2: Target Zero-Modulus Search ($p(n) \equiv 0 \pmod{10^6}$)
 - The recurrence advances up to $n = 55\,374$:
-  $$p(55374) \equiv \mathbf{0} \pmod{1\,000\,000}$$
+
+$$
+p(55374) \equiv \mathbf{0} \pmod{1\,000\,000}
+$$
+
 - Smallest integer:
-  $$n_{\text{min}} = \mathbf{55\,374}$$
+
+$$
+n_{\text{min}} = \mathbf{55\,374}
+$$
 
 ---
 

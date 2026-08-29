@@ -3,11 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For positive integer $n$, let:
-$$(1 + \sqrt{7})^n = \alpha(n) + \beta(n)\sqrt{7}$$
+
+$$
+(1 + \sqrt{7})^n = \alpha(n) + \beta(n)\sqrt{7}
+$$
 
 $g(x)$ is the smallest positive integer $n$ such that $\alpha(n) \equiv 1 \pmod x$ and $\beta(n) \equiv 0 \pmod x$ (or 0 if no such $n$ exists).
 Define:
-$$G(N) = \sum_{x=2}^N g(x)$$
+
+$$
+G(N) = \sum_{x=2}^N g(x)
+$$
 
 We are given:
 - $g(3) = 0, g(5) = 12$
@@ -15,7 +21,10 @@ We are given:
 - $G(10^3) = 13131583$
 
 We seek to evaluate:
-$$G(10^6)$$
+
+$$
+G(10^6)
+$$
 
 ---
 
@@ -35,7 +44,11 @@ Sequential exponentiation for each $x \le 10^6$ requires checking up to $x^2$ po
    If $\gcd(x, 6) > 1$, then $g(x) = 0$.
 2. **Chinese Remainder Theorem**:
    For coprime factorization $x = \prod p_i^{e_i}$, the multiplicative order combines via the least common multiple:
-   $$g(x) = \operatorname{lcm}(g(p_1^{e_1}), g(p_2^{e_2}), \dots)$$
+
+$$
+g(x) = \operatorname{lcm}(g(p_1^{e_1}), g(p_2^{e_2}), \dots)
+$$
+
 3. **Prime Orders $g(p)$**:
    - If $\left(\frac{7}{p}\right) = 1$ (7 is a quadratic residue mod $p$): $g(p) \mid (p - 1)$.
    - If $\left(\frac{7}{p}\right) = -1$ (7 is a quadratic non-residue mod $p$): $g(p) \mid (p^2 - 1)$.
@@ -51,7 +64,11 @@ Sequential exponentiation for each $x \le 10^6$ requires checking up to $x^2$ po
    Compute $g(p^e)$ for all prime powers $p^e \le N$ using fast binary exponentiation in $\mathbb{Z}[\sqrt{7}]/(p^e)$.
 2. **Linear Sieve Propagation**:
    Using the smallest prime factor $\text{spf}[n]$, factor $n = p^e \cdot m$ where $\gcd(p, m) = 1$, and compute:
-   $$g(n) = \operatorname{lcm}(g(m), g(p^e))$$
+
+$$
+g(n) = \operatorname{lcm}(g(m), g(p^e))
+$$
+
 3. **Execution Performance**:
    For $N = 10^6$, evaluating all composite orders takes **$\approx 0.42$ seconds** in compiled C!
 

@@ -3,14 +3,23 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $C(r)$ be the sphere of radius $r$ centered at the origin $O(0, 0, 0)$ in three-dimensional space $\mathbb{R}^3$:
-$$x^2 + y^2 + z^2 = r^2$$
+
+$$
+x^2 + y^2 + z^2 = r^2
+$$
 
 Let $I(r)$ be the set of all integer lattice points $(x, y, z) \in \mathbb{Z}^3$ on the surface of $C(r)$.
 The Manhattan distance from any point $(x, y, z) \in I(r)$ to the origin $O$ is:
-$$d_1((x, y, z), O) = |x| + |y| + |z|$$
+
+$$
+d_1((x, y, z), O) = |x| + |y| + |z|
+$$
 
 We define $S(r)$ as the sum of the Manhattan distances of all points in $I(r)$ to the origin:
-$$S(r) = \sum_{(x, y, z) \in I(r)} (|x| + |y| + |z|)$$
+
+$$
+S(r) = \sum_{(x, y, z) \in I(r)} (|x| + |y| + |z|)
+$$
 
 For example, $S(45) = 34518$.
 We seek to evaluate $S(10^{10})$.
@@ -32,13 +41,28 @@ For any radius $r = 2 \cdot r_0$:
 Modulo $4$, integer squares satisfy $x^2 \equiv 0 \text{ or } 1 \pmod 4$.
 For $x^2 + y^2 + z^2 = (2 r_0)^2 \equiv 0 \pmod 4$, the only possible modular sum of three squares is $0 + 0 + 0 \equiv 0 \pmod 4$, which forces $x, y, z$ to all be **even integers**.
 Dividing by $2$:
-$$(x/2)^2 + (y/2)^2 + (z/2)^2 = r_0^2$$
+
+$$
+(x/2)^2 + (y/2)^2 + (z/2)^2 = r_0^2
+$$
+
 This establishes an exact bijection between $I(2 r_0)$ and $I(r_0)$:
-$$(x, y, z) \in I(2 r_0) \iff (x/2, y/2, z/2) \in I(r_0)$$
+
+$$
+(x, y, z) \in I(2 r_0) \iff (x/2, y/2, z/2) \in I(r_0)
+$$
+
 Consequently:
-$$S(2 r_0) = 2 \cdot S(r_0)$$
+
+$$
+S(2 r_0) = 2 \cdot S(r_0)
+$$
+
 For $r = 10^{10} = 2^{10} \times 5^{10}$:
-$$S(10^{10}) = 2^{10} \times S(5^{10}) = 1024 \times S(5^{10})$$
+
+$$
+S(10^{10}) = 2^{10} \times S(5^{10}) = 1024 \times S(5^{10})
+$$
 
 ---
 
@@ -48,11 +72,17 @@ $$S(10^{10}) = 2^{10} \times S(5^{10}) = 1024 \times S(5^{10})$$
 Every integer point on the sphere $x^2 + y^2 + z^2 = (5^n)^2$ corresponds to the action of the Hurwitz quaternion ring $\mathbb{H}(\mathbb{Z})$ of norm $5^n$.
 The prime $5$ splits into $24$ Hurwitz prime quaternions. Under the adjoint action $v \mapsto w \cdot v \cdot \bar{w} / N(w)$, these generate $6$ elementary integer rotation matrices in $\mathrm{SO}(3, \mathbb{Z}[1/5])$ (scaling by $5$):
 
-$$\mathbf{A}_{x, +} = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 3 & -4 \\ 0 & 4 & 3 \end{pmatrix}, \quad \mathbf{A}_{x, -} = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 3 & 4 \\ 0 & -4 & 3 \end{pmatrix}$$
+$$
+\mathbf{A}_{x, +} = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 3 & -4 \\ 0 & 4 & 3 \end{pmatrix}, \quad \mathbf{A}_{x, -} = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 3 & 4 \\ 0 & -4 & 3 \end{pmatrix}
+$$
 
-$$\mathbf{A}_{y, +} = \begin{pmatrix} 3 & 0 & 4 \\ 0 & 5 & 0 \\ -4 & 0 & 3 \end{pmatrix}, \quad \mathbf{A}_{y, -} = \begin{pmatrix} 3 & 0 & -4 \\ 0 & 5 & 0 \\ 4 & 0 & 3 \end{pmatrix}$$
+$$
+\mathbf{A}_{y, +} = \begin{pmatrix} 3 & 0 & 4 \\ 0 & 5 & 0 \\ -4 & 0 & 3 \end{pmatrix}, \quad \mathbf{A}_{y, -} = \begin{pmatrix} 3 & 0 & -4 \\ 0 & 5 & 0 \\ 4 & 0 & 3 \end{pmatrix}
+$$
 
-$$\mathbf{A}_{z, +} = \begin{pmatrix} 3 & -4 & 0 \\ 4 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}, \quad \mathbf{A}_{z, -} = \begin{pmatrix} 3 & 4 & 0 \\ -4 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}$$
+$$
+\mathbf{A}_{z, +} = \begin{pmatrix} 3 & -4 & 0 \\ 4 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}, \quad \mathbf{A}_{z, -} = \begin{pmatrix} 3 & 4 & 0 \\ -4 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}
+$$
 
 Starting from the unit pole vector $\mathbf{v}_0 = (1, 0, 0)^T$, applying these $6$ transformations for $n = 10$ steps directly generates every integer point $\mathbf{v} \in I(5^{10})$ as a 5-regular tree without backtracking!
 

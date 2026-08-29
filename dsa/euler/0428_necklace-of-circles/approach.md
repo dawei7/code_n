@@ -13,7 +13,10 @@ We are given:
 - $T(3000) = 438\,106$
 
 We seek to evaluate:
-$$T(1\,000\,000\,000)$$
+
+$$
+T(1\,000\,000\,000)
+$$
 
 ---
 
@@ -28,7 +31,10 @@ Iterating over all positive integers $b \le 10^9$ and testing integer divisors o
 
 ### Steiner's Porism & Factorization Criterion
 By **Steiner's Porism**, an annular circle chain of length $k \ge 3$ exists between $C_{\text{in}}$ and $C_{\text{out}}$ if and only if:
-$$\frac{a c}{b (a + b + c)} = \tan^2\left(\frac{\pi}{2k}\right)$$
+
+$$
+\frac{a c}{b (a + b + c)} = \tan^2\left(\frac{\pi}{2k}\right)
+$$
 
 For $a, b, c \in \mathbb{Z}^+$, $\tan^2(\frac{\pi}{2k})$ must be rational!
 The only integer values $k \ge 3$ with $\tan^2(\frac{\pi}{2k}) \in \mathbb{Q}$ are:
@@ -43,7 +49,13 @@ The only integer values $k \ge 3$ with $\tan^2(\frac{\pi}{2k}) \in \mathbb{Q}$ a
 
 ### Multiplicative Summatory Functions & Min_25 Sieve
 Counting integer pairs $(a, c)$ for each valid $k$ expresses $T(n)$ in terms of two summatory functions over $m \le x$ with $\gcd(m, 6) = 1$:
-$$F(x) = \sum_{\substack{m \le x \\ \gcd(m, 6)=1}} \tau(m^2), \quad G(x) = \sum_{\substack{m \le x \\ \gcd(m, 6)=1}} \chi(m) S(m^2)$$
+
+$$
+\begin{aligned}
+F(x) = \sum_{\substack{m \le x \\ \gcd(m, 6)=1}} \tau(m^2), \quad G(x) = \sum_{\substack{m \le x \\ \gcd(m, 6)=1}} \chi(m) S(m^2)
+\end{aligned}
+$$
+
 where $\chi$ is the non-trivial Dirichlet character modulo $3$, and $S(m^2) = \sum_{d \mid m^2} \chi(d)$.
 
 1. **Prime Block Tables**:

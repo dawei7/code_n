@@ -4,7 +4,11 @@
 
 Let $f_n(k) = e^{k/n} - 1$ for all non-negative integers $k \ge 0$.
 We seek non-negative integers $a, b, c, d$ that minimize the absolute error:
-$$|f_n(a) + f_n(b) + f_n(c) + f_n(d) - \pi|$$
+
+$$
+|f_n(a) + f_n(b) + f_n(c) + f_n(d) - \pi|
+$$
+
 Define $g(n) = a^2 + b^2 + c^2 + d^2$.
 
 We are given:
@@ -12,7 +16,10 @@ We are given:
 - $g(200) = 6^2 + 75^2 + 89^2 + 226^2 = 64\,658$
 
 We seek to evaluate:
-$$g(10000)$$
+
+$$
+g(10000)
+$$
 
 ---
 
@@ -27,7 +34,11 @@ For $n = 10000$, $k_{\max} \approx \lfloor n \ln(\pi + 1) \rfloor \approx 14\,21
 
 ### Meet-in-the-Middle 4-SUM Reduction
 We split the 4-variable problem into two independent 2-variable sums:
-$$(f_n(a) + f_n(b)) + (f_n(c) + f_n(d)) \approx \pi$$
+
+$$
+(f_n(a) + f_n(b)) + (f_n(c) + f_n(d)) \approx \pi
+$$
+
 1. Generate all pairs $(a, b)$ with $0 \le a \le b \le k_{\max}$ such that $f_n(a) + f_n(b) \le \pi$.
 2. Sort the array of 2-sums $S_2$.
 3. Use a two-pointer sliding window over $S_2$ from left and right to locate the pair of 2-sums whose total is closest to $\pi$.

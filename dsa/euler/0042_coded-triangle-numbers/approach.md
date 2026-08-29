@@ -3,17 +3,26 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The $n$-th triangular number is given by:
-$$T_n = \frac{n(n + 1)}{2} \quad \text{for } n \in \mathbb{N}$$
+
+$$
+T_n = \frac{n(n + 1)}{2} \quad \text{for } n \in \mathbb{N}
+$$
 
 Let $\mathcal{W} = \{W_1, W_2, \dots, W_M\}$ denote the dataset of $M = 1786$ words in `words.txt`.
 
 For any word $W$, its alphabetical value $V(W)$ is the sum of the positions of its letters in the alphabet:
-$$V(W) = \sum_{i=1}^{|W|} (\operatorname{ord}(W[i]) - 64) \quad \text{where } \text{A} = 1, \dots, \text{Z} = 26$$
+
+$$
+V(W) = \sum_{i=1}^{|W|} (\operatorname{ord}(W[i]) - 64) \quad \text{where } \text{A} = 1, \dots, \text{Z} = 26
+$$
 
 A word $W$ is defined as a **triangle word** if its numerical value $V(W)$ is a triangular number ($V(W) = T_n$ for some $n \in \mathbb{N}$).
 
 The objective is to compute the number of triangle words in `words.txt`:
-$$N_{\text{tri}} = \sum_{W \in \mathcal{W}} \mathbb{I}\left( \exists n \in \mathbb{N} : \frac{n(n+1)}{2} = V(W) \right)$$
+
+$$
+N_{\text{tri}} = \sum_{W \in \mathcal{W}} \mathbb{I}\left( \exists n \in \mathbb{N} : \frac{n(n+1)}{2} = V(W) \right)
+$$
 
 ---
 
@@ -31,7 +40,11 @@ def naive_is_triangle(v):
 
 ### Algebraic Discriminant Test
 1. Solving $\frac{n(n+1)}{2} = v$ for positive integer $n$:
-   $$n^2 + n - 2v = 0 \implies n = \frac{-1 + \sqrt{1 + 8v}}{2}$$
+
+$$
+n^2 + n - 2v = 0 \implies n = \frac{-1 + \sqrt{1 + 8v}}{2}
+$$
+
 2. An integer $v$ is a triangular number if and only if **$1 + 8v$ is a perfect square**.
 3. Testing with `math.isqrt(1 + 8*v)` runs in exact $\mathcal{O}(1)$ time.
 
@@ -75,7 +88,10 @@ def naive_is_triangle(v):
 
 ### Example 2: Target Evaluation for `words.txt` ($M = 1786$)
 - Scanning all 1786 words in the file:
-  $$N_{\text{tri}} = \mathbf{162}$$
+
+$$
+N_{\text{tri}} = \mathbf{162}
+$$
 
 ---
 

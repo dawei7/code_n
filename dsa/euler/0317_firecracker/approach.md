@@ -22,15 +22,35 @@ A naive approach discretizes 3D space into voxel cells and traces thousands of p
 
 ### The Paraboloid of Safety (Bounding Envelope)
 For projectiles launched from $(0, 0, h)$ with speed $v$ at angle $\theta$ to the horizontal:
-$$r(t) = (v \cos \theta) t, \quad z(t) = h + (v \sin \theta) t - \frac{1}{2} g t^2$$
+
+$$
+r(t) = (v \cos \theta) t, \quad z(t) = h + (v \sin \theta) t - \frac{1}{2} g t^2
+$$
+
 Eliminating $t = \frac{r}{v \cos \theta}$:
-$$z = h + r \tan \theta - \frac{g r^2}{2 v^2} (1 + \tan^2 \theta)$$
+
+$$
+z = h + r \tan \theta - \frac{g r^2}{2 v^2} (1 + \tan^2 \theta)
+$$
+
 This is a quadratic in $T = \tan \theta$:
-$$-\frac{g r^2}{2 v^2} T^2 + r T + \left( h - z - \frac{g r^2}{2 v^2} \right) = 0$$
+
+$$
+-\frac{g r^2}{2 v^2} T^2 + r T + \left( h - z - \frac{g r^2}{2 v^2} \right) = 0
+$$
+
 The envelope (bounding boundary) occurs when the discriminant $\Delta = 0$:
-$$r^2 - 4 \left( -\frac{g r^2}{2 v^2} \right) \left( h - z - \frac{g r^2}{2 v^2} \right) = 0 \iff 1 + \frac{2g}{v^2} \left( h - z - \frac{g r^2}{2 v^2} \right) = 0$$
+
+$$
+r^2 - 4 \left( -\frac{g r^2}{2 v^2} \right) \left( h - z - \frac{g r^2}{2 v^2} \right) = 0 \iff 1 + \frac{2g}{v^2} \left( h - z - \frac{g r^2}{2 v^2} \right) = 0
+$$
+
 Solving for $z(r)$:
-$$\mathbf{z = h + \frac{v^2}{2g} - \frac{g r^2}{2 v^2}}$$
+
+$$
+\mathbf{z = h + \frac{v^2}{2g} - \frac{g r^2}{2 v^2}}
+$$
+
 This envelope is a **solid of revolution (circular paraboloid)** with apex at height $H = h + \frac{v^2}{2g}$ and base radius at $z = 0$ of $R = \frac{v}{g} \sqrt{v^2 + 2gh}$.
 
 ---
@@ -39,9 +59,16 @@ This envelope is a **solid of revolution (circular paraboloid)** with apex at he
 
 ### Exact Volume of a Circular Paraboloid
 The volume bounded by the paraboloid $z = H - c r^2$ from the ground $z = 0$ to its apex $z = H$ is given by the integral of circular cross-sections:
-$$V = \int_0^H \pi r^2(z) \, dz = \int_0^H \pi \frac{H - z}{c} \, dz = \frac{\pi}{2c} H^2$$
+
+$$
+V = \int_0^H \pi r^2(z) \, dz = \int_0^H \pi \frac{H - z}{c} \, dz = \frac{\pi}{2c} H^2
+$$
+
 Substituting $c = \frac{g}{2 v^2}$ and $H = h + \frac{v^2}{2g}$:
-$$\mathbf{V = \frac{\pi v^2}{g} \left( h + \frac{v^2}{2g} \right)^2}$$
+
+$$
+\mathbf{V = \frac{\pi v^2}{g} \left( h + \frac{v^2}{2g} \right)^2}
+$$
 
 ---
 

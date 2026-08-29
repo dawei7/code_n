@@ -10,7 +10,10 @@ We are given:
 - $M(7) = 719102$
 
 We seek to evaluate:
-$$M(137)$$
+
+$$
+M(137)
+$$
 
 ---
 
@@ -26,7 +29,13 @@ Harmonic numbers grow with huge denominators: $H_n$ for $n \sim 10^{15}$ has mil
 ### $p$-Adic Valuation & Digit Tree Representation
 1. **$p$-Adic Expansion of Harmonic Numbers**:
    For $n$ in base $p$, $n = \sum_{i=0}^k d_i p^i$, the harmonic sum decomposes into unit inverses and sub-harmonic numbers:
-   $$H_n = \sum_{\substack{1 \le k \le n \\ p \nmid k}} \frac{1}{k} + \frac{1}{p} H_{\lfloor n/p \rfloor}$$
+
+$$
+\begin{aligned}
+H_n = \sum_{\substack{1 \le k \le n \\ p \nmid k}} \frac{1}{k} + \frac{1}{p} H_{\lfloor n/p \rfloor}
+\end{aligned}
+$$
+
 2. **$p$-Adic Zero Condition**:
    $v_p(H_n) \ge 0$ holds if and only if the base-$p$ prefixes form an admissible path in a $p$-adic digit tree where higher-order valuation obstructions cancel.
 
@@ -39,7 +48,11 @@ Harmonic numbers grow with huge denominators: $H_n$ for $n \sim 10^{15}$ has mil
    Compute $S_m(q) = \sum_{i=0}^{q-1} i^m \pmod{p^s}$ recursively in base $p$ to avoid divisions.
 2. **Unit Inverse Sum $U(N) \pmod{p^s}$**:
    Using the $p$-adic geometric series:
-   $$\frac{1}{i p + j} = \sum_{m=0}^{s-1} (-1)^m i^m p^m j^{-(m+1)} \pmod{p^s}$$
+
+$$
+\frac{1}{i p + j} = \sum_{m=0}^{s-1} (-1)^m i^m p^m j^{-(m+1)} \pmod{p^s}
+$$
+
 3. **Level-by-Level Tree Lifting**:
    Starting with $A_1 = \{ m \in [1, p-1] : H_m \equiv 0 \pmod p \}$, each node $q \in A_e$ lifts to $q p + a \in A_{e+1}$ by matching the next $p$-adic digit of $V_e(q)$.
    For $p = 137$, the tree naturally terminates at depth $e = 8$.

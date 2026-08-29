@@ -43,13 +43,23 @@ With $q$ questions, Jack can test at most $2^{q-1}$ beans on a single plate:
 ### Exact Exception Recurrence
 Let $d = 2^q - S$ be the deficit from the power of 2.
 The number of exception triples $F_q(2^q - d)$ satisfies the exact recurrence:
-$$F_q(2^q - d) = \text{BaseExceptions}(q, 2^q - d) + 3 \cdot F_{q-1}(2^{q-1} - d)$$
+
+$$
+F_q(2^q - d) = \text{BaseExceptions}(q, 2^q - d) + 3 \cdot F_{q-1}(2^{q-1} - d)
+$$
 
 where the base failure condition $\min(a+b, b+c, c+a) > 2^{q-1}$ yields a closed-form quadratic polynomial:
-$$\text{BaseExceptions}(q, 2^q - d) = \begin{cases} (2k + 3)(k + 1) = 2k^2 + 5k + 3 & \text{if } k = 2^{q-2} - 2 - d \ge 0 \\ 0 & \text{otherwise} \end{cases}$$
+
+$$
+\text{BaseExceptions}(q, 2^q - d) = \begin{cases} (2k + 3)(k + 1) = 2k^2 + 5k + 3 & \text{if } k = 2^{q-2} - 2 - d \ge 0 \\ 0 & \text{otherwise} \end{cases}
+$$
 
 ### Decomposition of $H(N)$
-$$H(N) = \sum_{q=1}^{q_{\max}} \left[ q \sum_{S=S_{\text{start}}}^{S_{\text{end}}} \binom{S+2}{2} + \sum_{d=d_{\min}}^{d_{\max}} F_q(2^q - d) \right] \pmod{10^9 + 7}$$
+
+$$
+H(N) = \sum_{q=1}^{q_{\max}} \left[ q \sum_{S=S_{\text{start}}}^{S_{\text{end}}} \binom{S+2}{2} + \sum_{d=d_{\min}}^{d_{\max}} F_q(2^q - d) \right] \pmod{10^9 + 7}
+$$
+
 - The main term $\sum \binom{S+2}{2}$ is a cubic polynomial in $S$, summed in $\mathcal{O}(1)$ per binary interval.
 - The exception term $\sum F_q(2^q - d)$ unrolls recursively to sum $\mathcal{O}(q)$ quadratic polynomial segments.
 

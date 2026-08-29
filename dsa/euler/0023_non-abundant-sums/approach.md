@@ -9,13 +9,22 @@ A positive integer $n \in \mathbb{N}$ is defined as:
 where $d(n) = \sigma_1(n) - n$ is the sum of proper divisors of $n$.
 
 Let $\mathcal{A}$ denote the set of all abundant numbers:
-$$\mathcal{A} = \{ a \in \mathbb{N} \mid d(a) > a \}$$
+
+$$
+\mathcal{A} = \{ a \in \mathbb{N} \mid d(a) > a \}
+$$
+
 The smallest abundant number is $12$ ($d(12) = 1+2+3+4+6 = 16 > 12$), so the smallest sum of two abundant numbers is $12 + 12 = 24$.
 
 By mathematical analysis, every integer strictly greater than $28\,123$ can be expressed as the sum of two abundant numbers.
 
 The objective is to compute the sum of all positive integers $\le 28\,123$ that **cannot** be written as the sum of two abundant numbers:
-$$S = \sum_{\substack{1 \le k \le 28123 \\ k \notin \{a_i + a_j \mid a_i, a_j \in \mathcal{A}\}}} k$$
+
+$$
+\begin{aligned}
+S = \sum_{\substack{1 \le k \le 28123 \\ k \notin \{a_i + a_j \mid a_i, a_j \in \mathcal{A}\}}} k
+\end{aligned}
+$$
 
 ---
 
@@ -78,11 +87,17 @@ There are exactly $6965$ abundant numbers $\le 28\,123$.
 - Smallest sum of two abundant numbers: $12 + 12 = \mathbf{24}$.
 - All positive integers $\le 23$ cannot be written as the sum of two abundant numbers.
 - Sum of integers $1 \dots 23$:
-  $$\sum_{k=1}^{23} k = \frac{23 \times 24}{2} = 276$$
+
+$$
+\sum_{k=1}^{23} k = \frac{23 \times 24}{2} = 276
+$$
 
 ### Example 2: Target Evaluation Under $28\,123$
 - Evaluating all non-abundant sums up to $28\,123$:
-  $$S = \mathbf{4\,179\,871}$$
+
+$$
+S = \mathbf{4\,179\,871}
+$$
 
 ---
 

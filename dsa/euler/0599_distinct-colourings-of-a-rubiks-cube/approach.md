@@ -10,7 +10,10 @@ We are given:
 - $N(2) = 183$
 
 We seek to evaluate:
-$$N(10)$$
+
+$$
+N(10)
+$$
 
 ---
 
@@ -28,7 +31,11 @@ Explicitly generating and tracking all 88 million group elements on $10^{24}$ st
 1. **Move Group Action**:
    The puzzle group is isomorphic to the alternating subgroup of corner twists in the wreath product $S_8 \wr \mathbb{Z}_3$, constrained by total twist $\sum t_i \equiv 0 \pmod 3$.
 2. **Burnside's Lemma**:
-   $$N(n) = \frac{1}{|G|} \sum_{g \in G} n^{c(g)}$$
+
+$$
+N(n) = \frac{1}{|G|} \sum_{g \in G} n^{c(g)}
+$$
+
    where $c(g)$ is the number of disjoint cycles induced on the 24 stickers.
 3. **Sticker Cycle Formula**:
    For a permutation with $m$ corner cycles:

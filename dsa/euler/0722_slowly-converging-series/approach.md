@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $k \ge 0$ and $0 < q < 1$, define the generating function of the divisor sum $\sigma_k(n)$:
-$$E_k(q) = \sum_{n=1}^\infty \sigma_k(n) q^n = \sum_{d=1}^\infty \frac{d^k q^d}{1 - q^d}$$
+
+$$
+E_k(q) = \sum_{n=1}^\infty \sigma_k(n) q^n = \sum_{d=1}^\infty \frac{d^k q^d}{1 - q^d}
+$$
 
 We are given:
 - $E_1(1 - 2^{-4}) \approx 3.872155809243\text{e}2$
@@ -11,7 +14,11 @@ We are given:
 - $E_7(1 - 2^{-15}) \approx 6.725803486744\text{e}39$
 
 We seek to evaluate:
-$$E_{15}(1 - 2^{-25})$$
+
+$$
+E_{15}(1 - 2^{-25})
+$$
+
 in scientific notation rounded to 12 digits after the decimal point.
 
 ---
@@ -30,12 +37,23 @@ For $q = 1 - 2^{-25}$, terms decrease at rate $q^n \approx (1 - 3 \times 10^{-8}
    Let $q = e^{-t}$ where $t = -\ln(1 - 2^{-25}) = \sum_{i=1}^\infty \frac{2^{-25i}}{i}$.
 2. **Modular Transformation of $E_k(e^{-t})$**:
    By the Poisson summation formula and modular properties of Eisenstein series of weight $k + 1 = 16$:
-   $$E_k(e^{-t}) = \frac{k! \zeta(k + 1)}{t^{k + 1}} - \frac{B_{k + 1}}{2(k + 1)} + \frac{(2\pi)^{k + 1}}{t^{k + 1}} E_k(e^{-4\pi^2 / t})$$
+
+$$
+E_k(e^{-t}) = \frac{k! \zeta(k + 1)}{t^{k + 1}} - \frac{B_{k + 1}}{2(k + 1)} + \frac{(2\pi)^{k + 1}}{t^{k + 1}} E_k(e^{-4\pi^2 / t})
+$$
+
 3. **Exponentially Vanishing Dual Series**:
    Since $t \approx 2^{-25} \approx 2.98 \times 10^{-8}$, the dual parameter is:
-   $$\frac{4\pi^2}{t} \approx 1.32 \times 10^9 \implies e^{-4\pi^2 / t} \approx e^{-1.32 \times 10^9} \approx 10^{-5.7 \times 10^8}$$
+
+$$
+\frac{4\pi^2}{t} \approx 1.32 \times 10^9 \implies e^{-4\pi^2 / t} \approx e^{-1.32 \times 10^9} \approx 10^{-5.7 \times 10^8}
+$$
+
    Thus, the main term gives exact agreement to millions of digits:
-   $$E_{15}(1 - 2^{-25}) = \frac{15! \zeta(16)}{t^{16}} + O(1)$$
+
+$$
+E_{15}(1 - 2^{-25}) = \frac{15! \zeta(16)}{t^{16}} + O(1)
+$$
 
 ---
 

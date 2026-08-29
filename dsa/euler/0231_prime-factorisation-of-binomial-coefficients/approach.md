@@ -3,14 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 The binomial coefficient $\binom{10}{3} = 120$ has prime factorization:
-$$120 = 2^3 \times 3 \times 5 = 2 \times 2 \times 2 \times 3 \times 5$$
+
+$$
+120 = 2^3 \times 3 \times 5 = 2 \times 2 \times 2 \times 3 \times 5
+$$
+
 The sum of these prime factors (with multiplicity) is $2 + 2 + 2 + 3 + 5 = 14$.
 
 Find the **sum of the terms in the prime factorisation of $\binom{20\,000\,000}{15\,000\,000}$**.
 
 Let $C(n, k) = \prod_{p \le n} p^{e_p(n, k)}$.
 We seek:
-$$S = \sum_{p \le n} p \cdot e_p(n, k)$$
+
+$$
+S = \sum_{p \le n} p \cdot e_p(n, k)
+$$
+
 where $n = 20\,000\,000, k = 15\,000\,000$.
 
 ---
@@ -29,10 +37,18 @@ def naive_binomial_factorization():
 ### Legendre's Formula for Prime Multiplicity in Factorials
 1. **$p$-Adic Valuation of Factorials:**
    By Legendre's formula, the exponent of prime $p$ dividing $n!$ is:
-   $$v_p(n!) = \sum_{j=1}^{\lfloor \log_p n \rfloor} \left\lfloor \frac{n}{p^j} \right\rfloor$$
+
+$$
+v_p(n!) = \sum_{j=1}^{\lfloor \log_p n \rfloor} \left\lfloor \frac{n}{p^j} \right\rfloor
+$$
+
 2. **Multiplicity in Binomial Coefficient:**
    Because $\binom{n}{k} = \frac{n!}{k!(n-k)!}$, the exponent $e_p$ of prime $p$ is given in $\mathcal{O}(\log_p n)$ time by:
-   $$e_p\left(\binom{n}{k}\right) = v_p(n!) - v_p(k!) - v_p((n-k)!)$$
+
+$$
+e_p\left(\binom{n}{k}\right) = v_p(n!) - v_p(k!) - v_p((n-k)!)
+$$
+
 3. **Linear Sieve & Summation:**
    Sieving all primes $p \le 20\,000\,000$ and accumulating $p \cdot e_p$ evaluates the exact sum in $\approx 0.73$ seconds.
 
@@ -49,7 +65,9 @@ def naive_binomial_factorization():
 | **$5$** | $\lfloor 10/5 \rfloor = 2$ | $0$ | $1$ | $2 - 0 - 1 = \mathbf{1}$ | $5 \times 1 = \mathbf{5}$ |
 | **$7$** | $\lfloor 10/7 \rfloor = 1$ | $0$ | $1$ | $1 - 0 - 1 = \mathbf{0}$ | $7 \times 0 = \mathbf{0}$ |
 
-$$\text{Sum for } \binom{10}{3} = 6 + 3 + 5 = \mathbf{14} \quad (\checkmark)$$
+$$
+\text{Sum for } \binom{10}{3} = 6 + 3 + 5 = \mathbf{14} \quad (\checkmark)
+$$
 
 ---
 
@@ -70,7 +88,10 @@ def solve(n: int = 20000000, k: int = 15000000) -> int:
 ```
 
 Evaluating for $n = 20\,000\,000, k = 15\,000\,000$:
-$$S = \mathbf{7\,526\,965\,179\,680}$$
+
+$$
+S = \mathbf{7\,526\,965\,179\,680}
+$$
 
 ---
 
@@ -85,7 +106,10 @@ $$S = \mathbf{7\,526\,965\,179\,680}$$
 
 ### Example 2: Target Evaluation for $\binom{20\,000\,000}{15\,000\,000}$
 - Sieving all primes up to $20\,000\,000$ ($\pi(20\,000\,000) = 1\,270\,607$ primes):
-  $$S = \mathbf{7\,526\,965\,179\,680}$$
+
+$$
+S = \mathbf{7\,526\,965\,179\,680}
+$$
 
 ---
 

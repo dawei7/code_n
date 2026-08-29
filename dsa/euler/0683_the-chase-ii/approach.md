@@ -19,7 +19,11 @@ We are given:
 - $G(50) \approx 2.82491788 \times 10^6$
 
 We seek to evaluate:
-$$G(500)$$
+
+$$
+G(500)
+$$
+
 in scientific notation rounded to 9 significant digits.
 
 ---
@@ -36,7 +40,11 @@ Simulating millions of rounds with $500$ players cannot achieve the 9 significan
 ### Linearity of Expectation & 1D Absorbing Markov Chain on $\mathbb{Z}_m$
 1. **Linearity of Expectation Across Rounds**:
    Since the final winner collects all elimination penalties from all $n - 1$ rounds:
-   $$G(n) = \sum_{m=2}^n E[s^2 \mid m \text{ players}]$$
+
+$$
+G(n) = \sum_{m=2}^n E[s^2 \mid m \text{ players}]
+$$
+
 2. **Relative Distance Random Walk**:
    Let $d \in \{0, 1, \dots, m-1\}$ be the clockwise distance between the two dice.
    At each step, the relative displacement $\Delta = \Delta_2 - \Delta_1 \pmod m$ has distribution:
@@ -46,12 +54,23 @@ Simulating millions of rounds with $500$ players cannot achieve the 9 significan
 3. **First and Second Moment Recurrences**:
    For transient states $d \in \{1, \dots, m-1\}$:
    - First moment $e_1(d) = E[s \mid d]$:
-     $$(I - P) e_1 = \mathbf{1}$$
+
+$$
+(I - P) e_1 = \mathbf{1}
+$$
+
    - Second moment $e_2(d) = E[s^2 \mid d] = E[(1 + s')^2 \mid d] = 1 + 2 E[s' \mid d] + E[s'^2 \mid d]$:
-     $$(I - P) e_2 = 2 e_1 - \mathbf{1}$$
+
+$$
+(I - P) e_2 = 2 e_1 - \mathbf{1}
+$$
+
 4. **Initial Distance Averaging**:
    Since initial positions are uniform i.i.d., $d = 0$ with probability $1/m$, and $d \in \{1, \dots, m-1\}$ with probability $1/m$:
-   $$E[s^2 \mid m] = \frac{1}{m} \sum_{d=1}^{m-1} e_2(d)$$
+
+$$
+E[s^2 \mid m] = \frac{1}{m} \sum_{d=1}^{m-1} e_2(d)
+$$
 
 ---
 

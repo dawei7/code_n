@@ -3,14 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For a prime $p \ge 5$, define:
-$$S(p) = \left( \sum_{k=1}^5 (p-k)! \right) \bmod p$$
+
+$$
+S(p) = \left( \sum_{k=1}^5 (p-k)! \right) \bmod p
+$$
 
 We are given:
 - $S(7) = (6! + 5! + 4! + 3! + 2!) \bmod 7 = 872 \bmod 7 = 4$
 - $\sum_{5 \le p < 100} S(p) = 480$
 
 We seek to evaluate:
-$$\sum_{5 \le p < 10^8} S(p)$$
+
+$$
+\sum_{5 \le p < 10^8} S(p)
+$$
 
 ---
 
@@ -39,13 +45,23 @@ Working backwards by dividing by successive modular units:
 
 ### Closed-Form Linear Residue Formula
 Summing all five terms modulo $p$:
-$$S(p) \equiv (-1) + (1) + \left(-\frac{1}{2}\right) + \left(\frac{1}{6}\right) + \left(-\frac{1}{24}\right) \pmod p$$
+
+$$
+S(p) \equiv (-1) + (1) + \left(-\frac{1}{2}\right) + \left(\frac{1}{6}\right) + \left(-\frac{1}{24}\right) \pmod p
+$$
+
 Notice the first two terms cancel: $(-1) + (1) = 0$.
-$$S(p) \equiv -\frac{1}{2} + \frac{1}{6} - \frac{1}{24} = \frac{-12 + 4 - 1}{24} = -\frac{9}{24} = -\frac{3}{8} \pmod p$$
+
+$$
+S(p) \equiv -\frac{1}{2} + \frac{1}{6} - \frac{1}{24} = \frac{-12 + 4 - 1}{24} = -\frac{9}{24} = -\frac{3}{8} \pmod p
+$$
 
 Since $p$ is an odd prime $> 3$, $p \bmod 8 \in \{1, 3, 5, 7\}$.
 We can express $(-3/8) \bmod p$ in exact positive integer form in $O(1)$:
-$$S(p) = \begin{cases} \frac{3(p-1)}{8} & \text{if } p \equiv 1 \pmod 8 \\ \frac{p-3}{8} & \text{if } p \equiv 3 \pmod 8 \\ \frac{7p-3}{8} & \text{if } p \equiv 5 \pmod 8 \\ \frac{5p-3}{8} & \text{if } p \equiv 7 \pmod 8 \end{cases}$$
+
+$$
+S(p) = \begin{cases} \frac{3(p-1)}{8} & \text{if } p \equiv 1 \pmod 8 \\ \frac{p-3}{8} & \text{if } p \equiv 3 \pmod 8 \\ \frac{7p-3}{8} & \text{if } p \equiv 5 \pmod 8 \\ \frac{5p-3}{8} & \text{if } p \equiv 7 \pmod 8 \end{cases}
+$$
 
 Every prime's term is computed in exactly **one integer division**!
 

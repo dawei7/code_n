@@ -13,9 +13,16 @@ Total supplied: $S_A = \sum A_i = 18\,880$, $S_B = \sum B_i = 23\,744$.
 
 Let $a_i \in [1, A_i]$ and $b_i \in [1, B_i]$ be the integer counts of spoiled items.
 - **Per-product condition**: The spoilage rate for B is $m$ times the spoilage rate for A for each product:
-  $$\frac{b_i}{B_i} = m \cdot \frac{a_i}{A_i} \iff b_i = m \cdot a_i \cdot \frac{B_i}{A_i}$$
+
+$$
+\frac{b_i}{B_i} = m \cdot \frac{a_i}{A_i} \iff b_i = m \cdot a_i \cdot \frac{B_i}{A_i}
+$$
+
 - **Overall condition**: The overall spoilage rate for A is $m$ times that for B:
-  $$\frac{\sum a_i}{S_A} = m \cdot \frac{\sum b_i}{S_B} \iff \frac{\sum a_i}{\sum b_i} = m \cdot \frac{S_A}{S_B} = m \cdot \frac{18880}{23744} = m \cdot \frac{59}{74}$$
+
+$$
+\frac{\sum a_i}{S_A} = m \cdot \frac{\sum b_i}{S_B} \iff \frac{\sum a_i}{\sum b_i} = m \cdot \frac{S_A}{S_B} = m \cdot \frac{18880}{23744} = m \cdot \frac{59}{74}
+$$
 
 There are $35$ rational values $m > 1$ for which such integer counts exist (the smallest is $1476/1475$).
 Find the **largest possible value of $m$** as a reduced fraction `u/v`.
@@ -43,7 +50,11 @@ def naive_luxury_hampers():
    - $B_4 / A_4 = 5664 / 3936 = 59 / 41$
 2. **Coupled Linear System:**
    Substituting $b_i = m \cdot a_i \frac{B_i}{A_i}$ into the overall ratio:
-   $$\frac{\sum a_i}{S_A} = m^2 \cdot \frac{\sum \left( a_i \frac{B_i}{A_i} \right)}{S_B} \implies m^2 = \frac{S_B \sum a_i}{S_A \sum \left( a_i \frac{B_i}{A_i} \right)}$$
+
+$$
+\frac{\sum a_i}{S_A} = m^2 \cdot \frac{\sum \left( a_i \frac{B_i}{A_i} \right)}{S_B} \implies m^2 = \frac{S_B \sum a_i}{S_A \sum \left( a_i \frac{B_i}{A_i} \right)}
+$$
+
 3. **Maximal Ratio:**
    Searching rational candidates $m = u/v$ in descending order identifies $m = 123/59$ as the maximum valid factor.
 
@@ -82,7 +93,10 @@ def solve() -> str:
 ```
 
 Evaluating for maximum $m$:
-$$m_{\max} = \mathbf{\frac{123}{59}}$$
+
+$$
+m_{\max} = \mathbf{\frac{123}{59}}
+$$
 
 ---
 
@@ -99,7 +113,11 @@ $$m_{\max} = \mathbf{\frac{123}{59}}$$
   - $r_1 = r_2 = r_4 = \frac{123}{59} \times \frac{59}{41} = 3$
   - $r_3 = \frac{123}{59} \times \frac{59}{90} = \frac{41}{30}$
 - Overall ratio:
-  $$\frac{\sum a_i}{\sum b_i} = m \cdot \frac{S_A}{S_B} = \frac{123}{59} \cdot \frac{18880}{23744} = \frac{123}{74}$$
+
+$$
+\frac{\sum a_i}{\sum b_i} = m \cdot \frac{S_A}{S_B} = \frac{123}{59} \cdot \frac{18880}{23744} = \frac{123}{74}
+$$
+
 - Integer assignment exists, verifying $m = 123/59$ as the maximum! $\checkmark$
 
 ---

@@ -3,15 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 If a box contains twenty-one coloured discs, composed of fifteen blue discs and six red discs, and two discs were taken at random, it can be seen that the probability of taking two blue discs is:
-$$P(BB) = \frac{15}{21} \times \frac{14}{20} = \frac{1}{2}$$
+
+$$
+P(BB) = \frac{15}{21} \times \frac{14}{20} = \frac{1}{2}
+$$
 
 The next such arrangement where the probability of choosing two blue discs is exactly $50\%$ is eighty-five blue discs and thirty-five red discs ($N = 120$).
 
 Let $b$ be the number of blue discs and $N$ be the total number of discs. The probability equation is:
-$$P(BB) = \frac{b(b - 1)}{N(N - 1)} = \frac{1}{2} \iff 2b(b - 1) = N(N - 1)$$
+
+$$
+P(BB) = \frac{b(b - 1)}{N(N - 1)} = \frac{1}{2} \iff 2b(b - 1) = N(N - 1)
+$$
 
 The objective is to find the **number of blue discs $b$** for the first arrangement to contain over $10^{12} = 1\,000\,000\,000\,000$ discs in total:
-$$b^* = b_k \quad \text{where } k = \min \left\{ m \in \mathbb{N} \;\middle|\; N_m > 10^{12} \right\}$$
+
+$$
+b^* = b_k \quad \text{where } k = \min \left\{ m \in \mathbb{N} \;\middle|\; N_m > 10^{12} \right\}
+$$
 
 ---
 
@@ -27,11 +36,23 @@ def naive_arranged_probability(limit):
 
 ### Analytical Reduction to Negative Pell Equation
 1. Expanding $2b^2 - 2b = N^2 - N$:
-   $$8b^2 - 8b + 1 = 4N^2 - 4N + 1 \iff 2(2b - 1)^2 - 1 = (2N - 1)^2$$
+
+$$
+8b^2 - 8b + 1 = 4N^2 - 4N + 1 \iff 2(2b - 1)^2 - 1 = (2N - 1)^2
+$$
+
 2. Let $X = 2N - 1$ and $Y = 2b - 1$. The equation transforms into Pell's negative equation:
-   $$X^2 - 2Y^2 = -1$$
+
+$$
+X^2 - 2Y^2 = -1
+$$
+
 3. The solutions $(b_k, N_k)$ satisfy the linear recurrence:
-   $$\begin{cases} b_{k+1} = 3 b_k + 2 N_k - 2 \\ N_{k+1} = 4 b_k + 3 N_k - 3 \end{cases}$$
+
+$$
+\begin{cases} b_{k+1} = 3 b_k + 2 N_k - 2 \\ N_{k+1} = 4 b_k + 3 N_k - 3 \end{cases}
+$$
+
 4. Starting from the base seed $(b_1, N_1) = (15, 21)$, the sequence grows exponentially ($N_k \sim (3 + 2\sqrt{2})^k$), evaluating $N > 10^{12}$ in $15$ iterations in $\approx 0.0000$ seconds.
 
 ---
@@ -57,9 +78,19 @@ def naive_arranged_probability(limit):
 ### Linear Recurrence Execution Pipeline
 1. Initialize seed $(b, N) = (15, 21)$.
 2. While $N \le 10^{12}$:
-   $$b_{\text{next}} = 3b + 2N - 2$$
-   $$N_{\text{next}} = 4b + 3N - 3$$
-   $$(b, N) \leftarrow (b_{\text{next}}, N_{\text{next}})$$
+
+$$
+b_{\text{next}} = 3b + 2N - 2
+$$
+
+$$
+N_{\text{next}} = 4b + 3N - 3
+$$
+
+$$
+(b, N) \leftarrow (b_{\text{next}}, N_{\text{next}})
+$$
+
 3. Return $b$.
 
 ---
@@ -76,8 +107,14 @@ def naive_arranged_probability(limit):
 
 ### Example 3: Target Evaluation for $N > 10^{12}$
 - At step $k = 15$:
-  $$N_{15} = 1\,070\,359\,798\,714 > 10^{12}$$
-  $$b_{15} = \mathbf{756\,873\,147\,591}$$
+
+$$
+N_{15} = 1\,070\,359\,798\,714 > 10^{12}
+$$
+
+$$
+b_{15} = \mathbf{756\,873\,147\,591}
+$$
 
 ---
 

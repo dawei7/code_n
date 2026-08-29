@@ -14,7 +14,10 @@ We are given:
 - $S(10) \equiv 32287064 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$S(10\,000) \bmod 1\,000\,000\,007$$
+
+$$
+S(10\,000) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -31,10 +34,18 @@ For $n = 10^4$, $n^3 = 10^{12}$ and $n^4 = 10^{16}$. Generating $10^{16}$ number
 1. **Deficit Duality**:
    For a number of length $L$ with digit sum $s$, each digit $d_i \in [0, 9]$ has deficit $x_i = 9 - d_i \in [0, 9]$.
    The total deficit is:
-   $$\text{deficit} = 9L - s = \sum_{i=1}^L x_i$$
+
+$$
+\text{deficit} = 9L - s = \sum_{i=1}^L x_i
+$$
+
 2. **Counting Deficit Sequences via Generating Functions**:
    The number of non-negative integer sequences $(x_1, \dots, x_L)$ with $x_i \le 9$ summing to $D$ is given by inclusion-exclusion on upper bounds:
-   $$[z^D] (1 + z + \dots + z^9)^L = \sum_{j=0}^{\lfloor D/10 \rfloor} (-1)^j \binom{L}{j} \binom{D - 10j + L - 1}{L - 1}$$
+
+$$
+[z^D] (1 + z + \dots + z^9)^L = \sum_{j=0}^{\lfloor D/10 \rfloor} (-1)^j \binom{L}{j} \binom{D - 10j + L - 1}{L - 1}
+$$
+
 3. **Length Determination**:
    Find the minimal length $L \ge \lceil s/9 \rceil$ such that the cumulative count of valid numbers of length $\le L$ reaches $m$.
 
@@ -48,7 +59,11 @@ For $n = 10^4$, $n^3 = 10^{12}$ and $n^4 = 10^{16}$. Generating $10^{16}$ number
 2. **Run-Length Acceleration for Repeating $9$'s**:
    When the remaining rank $k$ falls in the suffix block consisting of long runs of leading $9$'s (deficit $0$), binary search for the minimal suffix length $t$ holding the remaining deficit.
    Append the $L - t$ trailing $9$'s in $O(\log(L - t))$ via modular geometric summation:
-   $$\underbrace{99\dots9}_{c \text{ times}} \equiv 10^c - 1 \pmod{10^9+7}$$
+
+$$
+\underbrace{99\dots9}_{c \text{ times}} \equiv 10^c - 1 \pmod{10^9+7}
+$$
+
 3. **Linear Accumulation**:
    For $k = 10^4$, evaluating $10^4$ unrankings takes **$\approx 0.76$ seconds** in pure Python!
 

@@ -13,7 +13,10 @@ We are given:
 - $M(9, 3) = 450304$
 
 We seek to evaluate:
-$$M(10\,000\,019, 100) \bmod 1\,000\,000\,000$$
+
+$$
+M(10\,000\,019, 100) \bmod 1\,000\,000\,000
+$$
 
 ---
 
@@ -31,11 +34,18 @@ An $n \times n$ board with $n = 10000019$ and $c = 100$ has $(n^2)^c \approx 10^
    A coin at position $(r, c)$ is the impartial sum of two 1D games with Grundy value $G(r, c) = G_{1D}(r) \oplus G_{1D}(c)$.
 2. **1D Periodicity**:
    The 1D game with moves $\{2, 3, 5, 7\}$ has a period of length 9:
-   $$G_{1D} = [0, 0, 1, 1, 2, 2, 3, 3, 4, 0, 0, 1, 1, \dots]$$
+
+$$
+G_{1D} = [0, 0, 1, 1, 2, 2, 3, 3, 4, 0, 0, 1, 1, \dots]
+$$
+
    Grundy values only take values in $\{0, 1, 2, 3, 4\}$, so 2D Grundy values $g_1 \oplus g_2 \in \{0, 1, \dots, 7\}$.
 3. **P-Positions**:
    A configuration of $c$ coins is a losing P-position if and only if:
-   $$\bigoplus_{i=1}^c G(r_i, c_i) = 0$$
+
+$$
+\bigoplus_{i=1}^c G(r_i, c_i) = 0
+$$
 
 ---
 
@@ -47,11 +57,24 @@ An $n \times n$ board with $n = 10000019$ and $c = 100$ has $(n^2)^c \approx 10^
    Construct the 2D distribution $C[v] = \sum_{g_1 \oplus g_2 = v} cnt[g_1] cnt[g_2]$ for $v \in \{0, \dots, 7\}$.
 2. **XOR Convolution via FWHT**:
    The distribution of the XOR sum of $c$ coins is the $c$-th power of $C$ under XOR convolution.
-   $$\widehat{C} = \text{FWHT}(C)$$
-   $$\widehat{P}[i] = (\widehat{C}[i])^c$$
-   $$P_0 = \frac{1}{8} \sum_{i=0}^7 (\widehat{C}[i])^c$$
+
+$$
+\widehat{C} = \text{FWHT}(C)
+$$
+
+$$
+\widehat{P}[i] = (\widehat{C}[i])^c
+$$
+
+$$
+P_0 = \frac{1}{8} \sum_{i=0}^7 (\widehat{C}[i])^c
+$$
+
 3. **Winning Count**:
-   $$M(n, c) = (n^2)^c - P_0 \pmod{10^9}$$
+
+$$
+M(n, c) = (n^2)^c - P_0 \pmod{10^9}
+$$
 
 This evaluates $M(10000019, 100) \bmod 10^9$ in **$\approx 0.00$ seconds**!
 

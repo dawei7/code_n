@@ -6,7 +6,11 @@ In an impartial game of Nim played with $n$ piles:
 1. Every pile is non-empty with size $< 2^n$.
 2. All $n$ pile sizes are pairwise distinct.
 A position is winning if and only if the bitwise XOR sum of the pile sizes is non-zero:
-$$\bigoplus_{i=1}^n x_i \ne 0 \quad \text{where } 1 \le x_i < 2^n \text{ and } x_i \text{ distinct}$$
+
+$$
+\bigoplus_{i=1}^n x_i \ne 0 \quad \text{where } 1 \le x_i < 2^n \text{ and } x_i \text{ distinct}
+$$
+
 Let $W(n)$ be the number of winning ordered sequences $(x_1, \dots, x_n)$.
 
 We are given:
@@ -15,7 +19,10 @@ We are given:
 - $W(100) \equiv 384\,777\,056 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$W(10\,000\,000) \pmod{10^9 + 7}$$
+
+$$
+W(10\,000\,000) \pmod{10^9 + 7}
+$$
 
 ---
 
@@ -30,7 +37,11 @@ Computing XOR convolutions over the vector space $\mathbb{F}_2^n$ of dimension $
 
 ### Group Algebra Characters & Walsh-Hadamard Transform
 Let $q = 2^n$. The total number of ordered permutations of $n$ distinct non-zero elements is the falling factorial:
-$$P(q - 1, n) = \prod_{i=1}^n (q - i)$$
+
+$$
+P(q - 1, n) = \prod_{i=1}^n (q - i)
+$$
+
 By Fourier analysis on the elementary abelian 2-group $\mathbb{Z}_2^n$, the number of zero-sum sequences of length $n$ decomposes into characters. All non-trivial characters are isomorphic under $\text{Aut}(\mathbb{Z}_2^n) \cong \text{GL}(n, 2)$, leading to a single scalar eigenspace.
 
 ---
@@ -39,9 +50,16 @@ By Fourier analysis on the elementary abelian 2-group $\mathbb{Z}_2^n$, the numb
 
 ### Closed-Form Character Sum Reduction
 The number of losing (zero-sum) sequences $L(n)$ simplifies to:
-$$L(n) = \frac{n!}{q} \left[ \binom{q - 1}{n} + (q - 1) E_n \right] \pmod{10^9 + 7}$$
+
+$$
+L(n) = \frac{n!}{q} \left[ \binom{q - 1}{n} + (q - 1) E_n \right] \pmod{10^9 + 7}
+$$
+
 where:
-$$E_n = (-1)^n \sum_{r=0}^{\lfloor n/2 \rfloor} (-1)^r \binom{q/2}{r}$$
+
+$$
+E_n = (-1)^n \sum_{r=0}^{\lfloor n/2 \rfloor} (-1)^r \binom{q/2}{r}
+$$
 
 1. The terms $\binom{q/2}{r}$ for $r = 0, \dots, \lfloor n/2 \rfloor$ are generated incrementally in $O(1)$ per term using a linear sieve for modular inverses $1/r \pmod{10^9 + 7}$.
 2. $W(n) = P(q - 1, n) - L(n) \pmod{10^9 + 7}$.

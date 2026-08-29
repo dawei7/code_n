@@ -3,16 +3,28 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A pair of integers $(p, q)$ with $p < q$ is reciprocal if there exists an integer $r \in [1, p-1]$ such that:
-$$p r \equiv 1 \pmod q \quad \text{and} \quad q r \equiv 1 \pmod p$$
+
+$$
+p r \equiv 1 \pmod q \quad \text{and} \quad q r \equiv 1 \pmod p
+$$
+
 We define $F(N)$ as the sum of $p + q$ over all reciprocal pairs $(p, q)$ with $p \le N$:
-$$F(N) = \sum_{\substack{(p, q) \text{ reciprocal} \\ p \le N}} (p + q)$$
+
+$$
+\begin{aligned}
+F(N) = \sum_{\substack{(p, q) \text{ reciprocal} \\ p \le N}} (p + q)
+\end{aligned}
+$$
 
 We are given:
 - $F(5) = 59$ (from $(3, 5), (4, 11), (5, 7), (5, 19)$)
 - $F(100) = 697317$
 
 We seek to evaluate:
-$$F(2 \cdot 10^6)$$
+
+$$
+F(2 \cdot 10^6)
+$$
 
 ---
 
@@ -29,14 +41,29 @@ Testing modular inverses for all pairs $1 \le p < q \le N^2$ requires $O(N^3)$ o
 1. **Linear Representation**:
    Let $p = r + k$ and $q = r + l$ for positive integers $k, l$.
    The condition $p r \equiv 1 \pmod q$ implies:
-   $$q \mid (p r - 1) = (r + k)r - 1 = (r^2 - 1) + kr$$
+
+$$
+q \mid (p r - 1) = (r + k)r - 1 = (r^2 - 1) + kr
+$$
+
    Substituting $r \equiv -l \pmod q$ yields:
-   $$(r^2 - 1) - kl \equiv 0 \pmod q$$
+
+$$
+(r^2 - 1) - kl \equiv 0 \pmod q
+$$
+
    Since $1 \le k < r < q$ and $l < q$, the only solution over positive integers is the exact equality:
-   $$kl = r^2 - 1 = (r - 1)(r + 1)$$
+
+$$
+kl = r^2 - 1 = (r - 1)(r + 1)
+$$
+
 2. **One-to-One Correspondence**:
    For every $r \ge 2$, every factor $k \mid (r^2 - 1)$ with $1 \le k \le \min(r - 1, N - r)$ uniquely defines a valid reciprocal pair $(r + k, r + (r^2-1)/k)$, contributing:
-   $$p + q = 2r + k + \frac{r^2 - 1}{k}$$
+
+$$
+p + q = 2r + k + \frac{r^2 - 1}{k}
+$$
 
 ---
 

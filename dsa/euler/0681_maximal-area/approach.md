@@ -4,7 +4,11 @@
 
 For positive integers $a \le b \le c \le d$, let $M(a, b, c, d)$ be the maximal area of a quadrilateral with these edge lengths.
 By Brahmagupta's formula, the maximal area is attained uniquely when the quadrilateral is cyclic:
-$$M(a, b, c, d) = \sqrt{(s - a)(s - b)(s - c)(s - d)}$$
+
+$$
+M(a, b, c, d) = \sqrt{(s - a)(s - b)(s - c)(s - d)}
+$$
+
 where semi-perimeter $s = \frac{a + b + c + d}{2}$.
 
 Let $SP(n)$ be the sum of the perimeters $a + b + c + d$ over all integer choices $a \le b \le c \le d$ for which $M(a, b, c, d)$ is an integer with $1 \le M \le n$.
@@ -14,7 +18,10 @@ We are given:
 - $SP(100) = 23238$
 
 We seek to evaluate:
-$$SP(1\,000\,000)$$
+
+$$
+SP(1\,000\,000)
+$$
 
 ---
 
@@ -49,7 +56,11 @@ Iterating over $a \le b \le c \le d \le 10^6$ requires $O(n^4) \approx 10^{24}$ 
 ### Bounded Quadratic Divisor Sieve & Binary Search Pruning
 1. **Quadratic Lower Bound on $V$**:
    From $U = R / V$ (where $R = k^2 / (T W)$) and the condition $U < V + S$ (where $S = W + T$):
-   $$\frac{R}{V} < V + S \iff V^2 + S V - R > 0 \implies V \ge \left\lfloor \frac{\sqrt{S^2 + 4R} - S}{2} \right\rfloor + 1$$
+
+$$
+\frac{R}{V} < V + S \iff V^2 + S V - R > 0 \implies V \ge \left\lfloor \frac{\sqrt{S^2 + 4R} - S}{2} \right\rfloor + 1
+$$
+
 2. **Binary Search over Precomputed Divisors**:
    For each pair $(T, W)$, divisors of $k^2$ in the narrow valid range $[V_{\min}, V_{\max}]$ are located via binary search.
 3. **Linear Smallest Prime Factor (SPF) Sieve**:

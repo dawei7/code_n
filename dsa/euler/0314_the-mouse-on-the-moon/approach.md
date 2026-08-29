@@ -6,7 +6,11 @@ In a $250 \times 250$ grid square $[-250, 250] \times [-250, 250]$:
 A convex polygon has vertices on integer lattice points and is enclosed within the square.
 The polygon must be symmetric with respect to both coordinate axes ($x = 0$ and $y = 0$) and the diagonals ($y = x$ and $y = -x$).
 We seek to maximize the **isoperimetric efficiency ratio**:
-$$\text{Ratio} = \frac{\text{Area}}{\text{Perimeter}}$$
+
+$$
+\text{Ratio} = \frac{\text{Area}}{\text{Perimeter}}
+$$
+
 Find the maximum efficiency ratio rounded to $8$ decimal places behind the decimal point.
 
 ---
@@ -24,7 +28,11 @@ A naive approach enumerates all subsets of the $(501)^2 = 251\,001$ lattice poin
 
 ### Dihedral Symmetry $D_8$ & Octant Reduction
 Due to 8-fold dihedral symmetry $D_8$, the entire polygon is completely determined by its vertices in the first octant:
-$$0 \le y \le x \le 250$$
+
+$$
+0 \le y \le x \le 250
+$$
+
 Arranging the vertices in clockwise order from $(250, 0)$ to $(R, R)$:
 - Each edge from $(x_1, y_1)$ to $(x_2, y_2)$ contributes:
   - $\Delta \text{Area} = x_1 y_2 - x_2 y_1$ (Shoelace formula)
@@ -36,11 +44,19 @@ Arranging the vertices in clockwise order from $(250, 0)$ to $(R, R)$:
 
 ### Dinkelbach's Fractional Programming & Convex DAG
 To maximize $\frac{\text{Area}}{\text{Perimeter}} \ge \lambda$:
-$$\text{Area} - \lambda \cdot \text{Perimeter} \ge 0$$
+
+$$
+\text{Area} - \lambda \cdot \text{Perimeter} \ge 0
+$$
+
 Using Dinkelbach's algorithm:
 1. Choose an initial parameter $\lambda_0$.
 2. In each iteration, find the path in the octant lattice DAG that maximizes the linearized objective:
-   $$\max \sum_{\text{edges } e} \Big( \text{Area}(e) - \lambda \cdot \text{Perimeter}(e) \Big)$$
+
+$$
+\max \sum_{\text{edges } e} \Big( \text{Area}(e) - \lambda \cdot \text{Perimeter}(e) \Big)
+$$
+
    using dynamic programming over the ordered lattice points $(x, y)$.
 3. Update $\lambda \leftarrow \frac{\text{Area}^*}{\text{Perimeter}^*}$.
 4. Dinkelbach's algorithm converges quadratically to $10^{-12}$ precision in fewer than $6$ iterations!
@@ -53,7 +69,10 @@ Using Dinkelbach's algorithm:
 - Circle radius $R = 5 \implies \text{Ratio} \approx R/2 = 2.5$.
 - Discrete lattice polygon maximizes around $2.49\dots$.
 - For $R = 250$:
-  $$\text{Optimal Ratio} \approx \mathbf{132.52756426}$$
+
+$$
+\text{Optimal Ratio} \approx \mathbf{132.52756426}
+$$
 
 ---
 

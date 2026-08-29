@@ -24,10 +24,16 @@ Find $M(7000, p(7000))$.
 ### Deficit Minimization Formulation
 Because $p(t)$ is strictly increasing in $t$, setting $a_i = k - 1$ for all $i$ achieves the absolute maximum score $n \cdot p(k - 1)$ with sum $n(k - 1)$.
 The deficit required to make the sum divisible by $k$ is:
-$$R = (n(k - 1)) \bmod k$$
+
+$$
+R = (n(k - 1)) \bmod k
+$$
 
 Reducing an element from $k - 1$ to $k - 1 - d$ contributes $d$ towards the deficit reduction with score penalty:
-$$\text{Loss}(d) = p(k - 1) - p(k - 1 - d)$$
+
+$$
+\text{Loss}(d) = p(k - 1) - p(k - 1 - d)
+$$
 
 ---
 
@@ -41,7 +47,10 @@ The problem reduces to finding the minimum total penalty to achieve sum $\equiv 
 - Solved via **Dijkstra's shortest path algorithm** in $\mathcal{O}(k \log k)$ time ($< 0.02\text{ s}$).
 
 The maximal score is:
-$$M(k, n) = n \cdot p(k - 1) - \text{Dist}(R)$$
+
+$$
+M(k, n) = n \cdot p(k - 1) - \text{Dist}(R)
+$$
 
 ---
 

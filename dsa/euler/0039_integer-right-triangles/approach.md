@@ -5,10 +5,16 @@
 Let $p \in \mathbb{N}$ denote the perimeter of a right-angled triangle with integer side lengths $\{a, b, c\}$ ($p \le 1000$).
 
 Define the solution set of integer right triangles:
-$$\mathcal{T}(p) = \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; a < b < c, \quad a^2 + b^2 = c^2, \quad a + b + c = p \right\}$$
+
+$$
+\mathcal{T}(p) = \left\{ (a, b, c) \in \mathbb{N}^3 \;\middle|\; a < b < c, \quad a^2 + b^2 = c^2, \quad a + b + c = p \right\}
+$$
 
 The objective is to find the value of $p \le 1000$ for which the number of solutions $|\mathcal{T}(p)|$ is maximized:
-$$p_{\text{max}} = \operatorname*{arg\,max}_{2 \le p \le 1000} |\mathcal{T}(p)|$$
+
+$$
+p_{\text{max}} = \operatorname*{arg\,max}_{2 \le p \le 1000} |\mathcal{T}(p)|
+$$
 
 ---
 
@@ -26,8 +32,15 @@ def naive_integer_right_triangles():
 1. **Even Perimeter Theorem**: For any integer right triangle $a^2 + b^2 = c^2$, if $a, b$ are both even $\implies p$ is even. If one is odd and one is even $\implies c$ is odd $\implies p$ is even. (Both odd cannot form a square). Thus, **$p$ must always be even** ($p \equiv 0 \pmod 2$).
 2. **Elimination of $b$ and $c$**:
    Substituting $c = p - a - b$ into $a^2 + b^2 = c^2$:
-   $$a^2 + b^2 = (p - a - b)^2 = p^2 + a^2 + b^2 - 2pa - 2pb + 2ab$$
-   $$2b(p - a) = p^2 - 2pa \implies b = \frac{p^2 - 2pa}{2(p - a)}$$
+
+$$
+a^2 + b^2 = (p - a - b)^2 = p^2 + a^2 + b^2 - 2pa - 2pb + 2ab
+$$
+
+$$
+2b(p - a) = p^2 - 2pa \implies b = \frac{p^2 - 2pa}{2(p - a)}
+$$
+
    An integer solution exists if and only if $(p^2 - 2pa)$ is divisible by $2(p - a)$.
 
 ---
@@ -72,7 +85,10 @@ For each even perimeter $p \in [2, 1000]$ (with step $2$):
 
 ### Example 2: Target Maximum for $p \le 1000$
 - Maximum occurs at $p = 840$ with $8$ distinct right triangles:
-  $$p_{\text{max}} = \mathbf{840}$$
+
+$$
+p_{\text{max}} = \mathbf{840}
+$$
 
 ---
 

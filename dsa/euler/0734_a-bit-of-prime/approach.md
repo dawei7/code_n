@@ -12,7 +12,10 @@ We are given:
 - $T(1000, 10) \equiv 2071632 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$T(10^6, 999983) \bmod 1\,000\,000\,007$$
+
+$$
+T(10^6, 999983) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,14 +31,30 @@ For $n = 10^6$, $\pi(n) = 78498$ primes. The number of $k$-tuples for $k = 99998
 ### Fast Zeta Transform (SOS DP) over the Bitwise-OR Semiring
 1. **Bitwise-OR Convolution**:
    The $k$-fold bitwise-OR convolution of the prime indicator vector $A$:
-   $$C = \underbrace{A \ast_{\text{OR}} A \ast_{\text{OR}} \dots \ast_{\text{OR}} A}_{k \text{ times}}$$
+
+$$
+C = \underbrace{A \ast_{\text{OR}} A \ast_{\text{OR}} \dots \ast_{\text{OR}} A}_{k \text{ times}}
+$$
+
 2. **Fast Zeta Transform (FZT)**:
    Under the subset sum transform (Zeta transform):
-   $$\hat{A}[m] = \sum_{s \subseteq m} A[s] = \text{number of primes } p \le n \text{ such that } p \subseteq m$$
+
+$$
+\hat{A}[m] = \sum_{s \subseteq m} A[s] = \text{number of primes } p \le n \text{ such that } p \subseteq m
+$$
+
    In the transformed domain, convolution becomes point-wise multiplication:
-   $$\hat{C}[m] = (\hat{A}[m])^k \bmod \text{MOD}$$
+
+$$
+\hat{C}[m] = (\hat{A}[m])^k \bmod \text{MOD}
+$$
+
 3. **Inverse Zeta Transform (Mobius Inversion)**:
-   $$C[m] = \sum_{s \subseteq m} (-1)^{|m \setminus s|} \hat{C}[s] \pmod{\text{MOD}}$$
+
+$$
+C[m] = \sum_{s \subseteq m} (-1)^{|m \setminus s|} \hat{C}[s] \pmod{\text{MOD}}
+$$
+
    Both forward and inverse transforms run in $O(B \cdot 2^B)$ time using Sum Over Subsets (SOS) dynamic programming where $B = \lceil \log_2 n \rceil = 20$.
 
 ---

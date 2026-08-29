@@ -6,11 +6,18 @@ Let $G \in \mathbb{N}_0^{R \times C}$ be a 2-dimensional grid matrix of dimensio
 Let $G[r][c]$ denote the cell value at row $r \in [0, R-1]$ and column $c \in [0, C-1]$.
 
 For a contiguous sequence of length $K = 4$, define the set of four forward directional displacement vectors:
-$$\mathcal{V} = \{ (0, 1), (1, 0), (1, 1), (1, -1) \}$$
+
+$$
+\mathcal{V} = \{ (0, 1), (1, 0), (1, 1), (1, -1) \}
+$$
+
 representing Horizontal (East), Vertical (South), Main Diagonal (South-East), and Anti-Diagonal (South-West).
 
 The objective is to compute the maximum product of $K = 4$ adjacent numbers along any straight line:
-$$P_{\text{max}} = \max_{(r, c)} \, \max_{(dr, dc) \in \mathcal{V}} \prod_{i=0}^3 G[r + i \cdot dr][c + i \cdot dc]$$
+
+$$
+P_{\text{max}} = \max_{(r, c)} \, \max_{(dr, dc) \in \mathcal{V}} \prod_{i=0}^3 G[r + i \cdot dr][c + i \cdot dc]
+$$
 
 ---
 
@@ -66,11 +73,14 @@ Evaluating all $1258$ product windows runs in under $0.0003$ seconds in Python.
 Within the $20 \times 20$ grid, the maximum product occurs along the anti-diagonal (South-West) starting at cell $(r=6, c=15)$ or diagonal:
 - Sequence values: $87, 97, 94, 89$.
 - Calculation:
-  $$\begin{aligned}
+
+$$
+\begin{aligned}
   87 \times 97 &= 8\,439 \\
   8\,439 \times 94 &= 793\,266 \\
   793\,266 \times 89 &= \mathbf{70\,600\,674}
-  \end{aligned}$$
+\end{aligned}
+$$
 
 No horizontal, vertical, or main diagonal sequence produces a product greater than $70\,600\,674$.
 Maximum Product: $P_{\text{max}} = \mathbf{70\,600\,674}$.

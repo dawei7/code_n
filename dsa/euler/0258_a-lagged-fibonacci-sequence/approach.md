@@ -23,12 +23,23 @@ A naive approach simulates the recurrence step-by-step up to $k = 10^{18}$:
 
 ### Polynomial Modulo Polynomial Exponentiation (Fiduccia's Algorithm)
 The characteristic polynomial of the linear recurrence is:
-$$P(x) = x^{2000} - x - 1$$
+
+$$
+P(x) = x^{2000} - x - 1
+$$
+
 By the Cayley-Hamilton theorem and Fiduccia's algorithm:
 - To evaluate $g_k$, we compute the polynomial power:
-  $$x^k \bmod P(x) = \sum_{j=0}^{1999} c_j x^j \pmod{P(x)}$$
+
+$$
+x^k \bmod P(x) = \sum_{j=0}^{1999} c_j x^j \pmod{P(x)}
+$$
+
 - Then $g_k$ is the dot product of the coefficient vector $(c_0, c_1, \dots, c_{1999})$ with the initial terms $(g_0, \dots, g_{1999}) = (1, 1, \dots, 1)$:
-  $$\mathbf{g_k = \sum_{j=0}^{1999} c_j \pmod{20092010}}$$
+
+$$
+\mathbf{g_k = \sum_{j=0}^{1999} c_j \pmod{20092010}}
+$$
 
 ---
 
@@ -37,9 +48,17 @@ By the Cayley-Hamilton theorem and Fiduccia's algorithm:
 ### Fast Polynomial Multiplication & Sparse Reduction
 1. In each step of binary exponentiation, we compute $A(x) \times B(x)$ of degree $< 4000$.
 2. To reduce degree $d \ge 2000$ modulo $P(x) = x^{2000} - x - 1$:
-   $$x^{2000} \equiv x + 1 \pmod{P(x)}$$
+
+$$
+x^{2000} \equiv x + 1 \pmod{P(x)}
+$$
+
    For any term $c_m x^m$ with $m \ge 2000$:
-   $$c_m x^m \equiv c_m x^{m - 2000 + 1} + c_m x^{m - 2000} \pmod{P(x)}$$
+
+$$
+c_m x^m \equiv c_m x^{m - 2000 + 1} + c_m x^{m - 2000} \pmod{P(x)}
+$$
+
    This sparse reduction takes $\mathcal{O}(d)$ linear operations!
 3. Computing polynomial products of degree 2000 using Karatsuba / fast quadratic convolution with sparse reduction computes $x^{10^{18}} \bmod P(x)$ in $\mathcal{O}(d^2 \log k)$ operations, running in under $0.6$ seconds in pure Python!
 

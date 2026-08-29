@@ -12,7 +12,10 @@ For example:
 - $N(2, 2, 3) = 20\,736$
 
 The objective is to find the **last $8$ digits of $N(25, 75, 1984)$**:
-$$N_{\text{last8}} = N(25, 75, 1984) \bmod 10^8$$
+
+$$
+N_{\text{last8}} = N(25, 75, 1984) \bmod 10^8
+$$
 
 ---
 
@@ -37,11 +40,23 @@ def naive_graph_colorings():
    - Eigenspace $2$: multiplicity $m_2 = \frac{c(c-3)}{2}$
 3. **Exact Closed-Form Eigenvalues:**
    - **For Unit $A$:**
-     $$\lambda_{0, A} = (c - 2)^3, \quad \lambda_{1, A} = (c - 2)^2, \quad \lambda_{2, A} = (c - 2)(c - 3)$$
+
+$$
+\lambda_{0, A} = (c - 2)^3, \quad \lambda_{1, A} = (c - 2)^2, \quad \lambda_{2, A} = (c - 2)(c - 3)
+$$
+
    - **For Unit $B$:**
-     $$\lambda_{0, B} = (c - 1)(c^2 + 6c - 8), \quad \lambda_{1, B} = (c - 2)(c + 9), \quad \lambda_{2, B} = (c - 2)(c - 4)$$
+
+$$
+\lambda_{0, B} = (c - 1)(c^2 + 6c - 8), \quad \lambda_{1, B} = (c - 2)(c + 9), \quad \lambda_{2, B} = (c - 2)(c - 4)
+$$
+
 4. The total number of valid colorings is:
-   $$N(a, b, c) \equiv \binom{a+b}{a} \sum_{i=0}^2 m_i \cdot \lambda_{i, A}^a \cdot \lambda_{i, B}^b \pmod{10^8}$$
+
+$$
+N(a, b, c) \equiv \binom{a+b}{a} \sum_{i=0}^2 m_i \cdot \lambda_{i, A}^a \cdot \lambda_{i, B}^b \pmod{10^8}
+$$
+
    Evaluating this modular formula runs in $\approx 0.0001$ seconds.
 
 ---
@@ -61,9 +76,16 @@ def naive_graph_colorings():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Modular Power Formula
-$$N(a, b, c) \equiv \binom{a+b}{a} \left( \lambda_{0,A}^a \lambda_{0,B}^b + (2c-3)\lambda_{1,A}^a \lambda_{1,B}^b + \frac{c(c-3)}{2}\lambda_{2,A}^a \lambda_{2,B}^b \right) \pmod{10^8}$$
+
+$$
+N(a, b, c) \equiv \binom{a+b}{a} \left( \lambda_{0,A}^a \lambda_{0,B}^b + (2c-3)\lambda_{1,A}^a \lambda_{1,B}^b + \frac{c(c-3)}{2}\lambda_{2,A}^a \lambda_{2,B}^b \right) \pmod{10^8}
+$$
+
 Evaluating for $a = 25, b = 75, c = 1984$:
-$$N_{\text{last8}} = \mathbf{61\,190\,912}$$
+
+$$
+N_{\text{last8}} = \mathbf{61\,190\,912}
+$$
 
 ---
 

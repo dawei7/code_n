@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider the Frobenius equation:
-$$17^p a + 19^p b + 23^p c = n \quad (a, b, c, p \in \mathbb{Z}^+)$$
+
+$$
+17^p a + 19^p b + 23^p c = n \quad (a, b, c, p \in \mathbb{Z}^+)
+$$
+
 A positive integer $n$ is **unreachable** if no positive integer solution $(a, b, c)$ exists.
 
 Let $G(p)$ be the sum of all unreachable positive integers for a given $p$.
@@ -13,7 +17,10 @@ We are given:
 - $G(2) = 60258000$
 
 We seek to evaluate:
-$$G(6) \bmod 1\,000\,000\,007$$
+
+$$
+G(6) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -41,7 +48,10 @@ The Frobenius limit is $\sim A B \approx 10^{15}$. A naive DP boolean table is c
    - Count of integers: $k_r = \frac{d[r] - r}{A}$.
    - Sum of integers: $\sigma_r = k_r r + A \frac{k_r(k_r - 1)}{2}$.
 4. **Total Unreachable Sum**:
-   $$G(p) = \frac{S(S - 1)}{2} + \sum_{r=0}^{A-1} \sigma_r + S \sum_{r=0}^{A-1} k_r$$
+
+$$
+G(p) = \frac{S(S - 1)}{2} + \sum_{r=0}^{A-1} \sigma_r + S \sum_{r=0}^{A-1} k_r
+$$
 
 ---
 

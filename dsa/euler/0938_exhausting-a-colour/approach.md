@@ -29,7 +29,11 @@ Find $P(24690, 12345)$ rounded to 10 decimal places.
 
 ### Conditioned Absorbing Markov Chain
 Eliminating the $(B, B)$ self-loop yields exact transition probabilities:
-$$P(R, B) = \frac{R-1}{R-1+2B} P(R-2, B) + \frac{2B}{R-1+2B} P(R, B-1)$$
+
+$$
+P(R, B) = \frac{R-1}{R-1+2B} P(R-2, B) + \frac{2B}{R-1+2B} P(R, B-1)
+$$
+
 Boundary conditions:
 - $P(0, B) = 1.0$ for all $B \ge 1$.
 - $P(R, 0) = 0.0$ for all $R \ge 1$.

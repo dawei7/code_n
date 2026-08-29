@@ -3,12 +3,15 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Consider numbers $n \in \mathbb{N}$ that can be represented as the sum of a square and a positive multiple of a square in four different ways, where $a_k, b_k \ge 1$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 n &= a_1^2 + 1 \times b_1^2 \\
 n &= a_2^2 + 2 \times b_2^2 \\
 n &= a_3^2 + 3 \times b_3^2 \\
 n &= a_7^2 + 7 \times b_7^2
-\end{aligned}$$
+\end{aligned}
+$$
 
 For example, $65$ is the smallest number having the first three representations, but not the fourth ($65 = 1^2 + 8^2 = 7^2 + 2\times 2^2 = 1^2 + 3\times 4^2$).
 The smallest number that has all four representations is $n = 1934442 = 49^2 + 1389^2 = 296^2 + 2\times 961^2 = 237^2 + 3\times 791^2 = 425^2 + 7\times 501^2$.
@@ -83,7 +86,10 @@ def solve(limit: int = 2000000000) -> int:
     return total_count
 ```
 Evaluating for $\text{limit} = 2\,000\,000\,000$:
-$$\text{Total Count} = \mathbf{11\,325\,263}$$
+
+$$
+\text{Total Count} = \mathbf{11\,325\,263}
+$$
 
 ---
 
@@ -98,7 +104,10 @@ $$\text{Total Count} = \mathbf{11\,325\,263}$$
 
 ### Example 2: Target Evaluation for $N = 2 \times 10^9$
 - Summing across 100 blocks of $20\,000\,000$:
-  $$\text{Total Count} = \mathbf{11\,325\,263}$$
+
+$$
+\text{Total Count} = \mathbf{11\,325\,263}
+$$
 
 ---
 

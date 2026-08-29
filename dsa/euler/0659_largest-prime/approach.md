@@ -5,7 +5,10 @@
 Let $A_n = n^2 + k^2$ for integers $n \ge 1$.
 Let $P(k)$ be the largest prime dividing any two consecutive terms $A_n$ and $A_{n+1}$.
 We seek to evaluate:
-$$\sum_{k=1}^{10\,000\,000} P(k) \bmod 10^{18} \quad \text{(the last 18 digits)}$$
+
+$$
+\sum_{k=1}^{10\,000\,000} P(k) \bmod 10^{18} \quad \text{(the last 18 digits)}
+$$
 
 ---
 
@@ -21,14 +24,25 @@ For each $k$, scanning terms $n^2 + k^2$ and computing $\gcd(n^2 + k^2, (n+1)^2 
 ### Algebraic Characterization $4k^2 + 1 \equiv 0 \pmod p$
 1. **Consecutive Divisibility Constraint**:
    If a prime $p$ divides both $n^2 + k^2$ and $(n + 1)^2 + k^2$:
-   $$p \mid ((n + 1)^2 + k^2 - (n^2 + k^2)) = 2n + 1 \implies 2n \equiv -1 \pmod p$$
+
+$$
+p \mid ((n + 1)^2 + k^2 - (n^2 + k^2)) = 2n + 1 \implies 2n \equiv -1 \pmod p
+$$
+
 2. **Elimination of $n$**:
    Multiply $n^2 + k^2 \equiv 0 \pmod p$ by $4$:
-   $$4n^2 + 4k^2 = (2n)^2 + 4k^2 \equiv (-1)^2 + 4k^2 = 4k^2 + 1 \equiv 0 \pmod p$$
+
+$$
+4n^2 + 4k^2 = (2n)^2 + 4k^2 \equiv (-1)^2 + 4k^2 = 4k^2 + 1 \equiv 0 \pmod p
+$$
+
 3. **Exact Equivalence**:
    A prime $p$ divides two consecutive terms of $n^2 + k^2$ if and only if $p \mid (4k^2 + 1)$.
    Therefore, $P(k)$ is simply the **greatest prime factor of $4k^2 + 1$**:
-   $$P(k) = \operatorname{gpf}(4k^2 + 1)$$
+
+$$
+P(k) = \operatorname{gpf}(4k^2 + 1)
+$$
 
 ---
 

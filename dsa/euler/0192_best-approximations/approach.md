@@ -3,13 +3,21 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $x$ be a real number. A **best rational approximation** to $x$ with denominator bound $D$ is a rational number $\frac{p}{q}$ (in reduced form) with $1 \le q \le D$ such that for any other rational number $\frac{r}{s}$ with $1 \le s \le D$:
-$$\left| x - \frac{p}{q} \right| \le \left| x - \frac{r}{s} \right|$$
+
+$$
+\left| x - \frac{p}{q} \right| \le \left| x - \frac{r}{s} \right|
+$$
 
 For example, the best approximation to $\sqrt{13}$ with denominator bound $20$ is $\frac{18}{5}$, so $q(13, 20) = 5$.
 With denominator bound $30$, the best approximation to $\sqrt{13}$ is $\frac{101}{28}$, so $q(13, 30) = 28$.
 
 The objective is to find the **sum of the denominators $q(n, 10^{12})$ of the best approximations to $\sqrt{n}$ for all non-square integers $n \le 100\,000$ with denominator bound $D = 10^{12}$**:
-$$S_{\text{approx}} = \sum_{\substack{n=2 \\ n \neq k^2}}^{100\,000} q(n, 10^{12})$$
+
+$$
+\begin{aligned}
+S_{\text{approx}} = \sum_{\substack{n=2 \\ n \neq k^2}}^{100\,000} q(n, 10^{12})
+\end{aligned}
+$$
 
 ---
 
@@ -32,7 +40,11 @@ def naive_best_approximations():
    The sequence of denominators $q_k$ grows at least as fast as Fibonacci numbers, reaching $10^{12}$ in at most $\approx 40$ steps ($\mathcal{O}(\log D)$).
 3. **100% Exact Integer Comparison via Midpoint:**
    To decide whether $\frac{p_{\text{curr}}}{q_{\text{curr}}}$ or $\frac{p_{\text{semi}}}{q_{\text{semi}}}$ is closer to $\sqrt{n}$, we compare their midpoint $M = \frac{p_{\text{curr}} q_{\text{semi}} + p_{\text{semi}} q_{\text{curr}}}{2 q_{\text{curr}} q_{\text{semi}}}$ with $\sqrt{n}$:
-   $$M^2 \lessgtr n \iff (p_{\text{curr}} q_{\text{semi}} + p_{\text{semi}} q_{\text{curr}})^2 \lessgtr 4n (q_{\text{curr}} q_{\text{semi}})^2$$
+
+$$
+M^2 \lessgtr n \iff (p_{\text{curr}} q_{\text{semi}} + p_{\text{semi}} q_{\text{curr}})^2 \lessgtr 4n (q_{\text{curr}} q_{\text{semi}})^2
+$$
+
    This eliminates all floating-point and Decimal operations, running in $\approx 0.35$ seconds total!
 
 ---
@@ -63,7 +75,10 @@ The midpoint is $M = \frac{p_1 q_2 + p_2 q_1}{2 q_1 q_2}$.
   $\sqrt{n}$ is closer to the lower fraction $x_1 \implies \text{best\_q} = q_1$.
 
 Summing over all non-squares $n \le 100\,000$:
-$$S_{\text{approx}} = \mathbf{57\,060\,635\,927\,998\,347}$$
+
+$$
+S_{\text{approx}} = \mathbf{57\,060\,635\,927\,998\,347}
+$$
 
 ---
 
@@ -86,7 +101,10 @@ $$S_{\text{approx}} = \mathbf{57\,060\,635\,927\,998\,347}$$
 
 ### Example 3: Target Evaluation for $n \le 100\,000, D = 10^{12}$
 - Evaluating across all non-squares:
-  $$S_{\text{approx}} = \mathbf{57\,060\,635\,927\,998\,347}$$
+
+$$
+S_{\text{approx}} = \mathbf{57\,060\,635\,927\,998\,347}
+$$
 
 ---
 

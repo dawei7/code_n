@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Four points with positive integer coordinates are given on the Cartesian axes:
-$$A(a, 0), \quad B(b, 0), \quad C(0, a), \quad D(0, d), \qquad 0 < a < b, \quad 0 < a < d$$
+
+$$
+A(a, 0), \quad B(b, 0), \quad C(0, a), \quad D(0, d), \qquad 0 < a < b, \quad 0 < a < d
+$$
+
 A point $P(x, y)$ in the first quadrant is chosen such that the three triangles $\triangle ABP$, $\triangle CDP$, and $\triangle BDP$ are **all similar to each other**.
 Let $T(N)$ be the number of triplets $(a, b, d)$ with $a + b + d < N$ for which such a point $P$ exists with $b \le d$.
 We are given sample values:
@@ -31,11 +35,18 @@ The existence of such a point $P$ requires the configuration to satisfy one of t
 1. **Case 1 ($b = d$):**
    The points $B(b, 0)$ and $D(0, b)$ lie symmetrically on the axes.
    The similarity condition simplifies to:
-   $$2 a^2 + (b - a)^2 = c^2 \iff 2 a^2 = (c - b + a)(c + b - a)$$
+
+$$
+2 a^2 + (b - a)^2 = c^2 \iff 2 a^2 = (c - b + a)(c + b - a)
+$$
+
    which parameterizes as primitive Pythagorean / Pell-like equations $u^2 - 2v^2 = \pm 1$.
 2. **Case 2 ($b \ne d$):**
    Similar Diophantine reduction with $b$ and $d$ parameterized by coprime integers $(u, v)$ with:
-   $$a = u v, \quad b = u^2, \quad d = 2v^2$$
+
+$$
+a = u v, \quad b = u^2, \quad d = 2v^2
+$$
 
 ---
 

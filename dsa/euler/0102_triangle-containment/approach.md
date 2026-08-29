@@ -11,7 +11,10 @@ Examples from problem description:
 The file `triangles.txt` contains coordinates for one thousand ($1000$) triangles.
 
 The objective is to find the **number of triangles** for which the interior contains the origin:
-$$N_{\text{origin}} = \sum_{k=1}^{1000} \mathbb{I}\left( O(0,0) \in \text{Int}(\triangle A_k B_k C_k) \right)$$
+
+$$
+N_{\text{origin}} = \sum_{k=1}^{1000} \mathbb{I}\left( O(0,0) \in \text{Int}(\triangle A_k B_k C_k) \right)
+$$
 
 ---
 
@@ -27,9 +30,17 @@ def naive_contains_origin(A, B, C):
 
 ### Exact 2D Vector Cross Product Orientations
 1. The 2D cross product of vectors $\vec{OA}$ and $\vec{OB}$ is:
-   $$\vec{OA} \times \vec{OB} = x_A y_B - y_A x_B$$
+
+$$
+\vec{OA} \times \vec{OB} = x_A y_B - y_A x_B
+$$
+
 2. The origin $O(0,0)$ lies strictly inside $\triangle ABC$ if and only if $O$ lies on the same relative side of all 3 directed edges ($AB, BC, CA$):
-   $$\operatorname{sign}(x_A y_B - y_A x_B) = \operatorname{sign}(x_B y_C - y_B x_C) = \operatorname{sign}(x_C y_A - y_C x_A) \neq 0$$
+
+$$
+\operatorname{sign}(x_A y_B - y_A x_B) = \operatorname{sign}(x_B y_C - y_B x_C) = \operatorname{sign}(x_C y_A - y_C x_A) \neq 0
+$$
+
 3. This involves only 6 integer multiplications and 3 subtractions per triangle with $100\%$ exact integer arithmetic, evaluating all 1000 triangles in $\approx 0.001$ seconds.
 
 ---
@@ -52,11 +63,25 @@ def naive_contains_origin(A, B, C):
 ### Containment Pipeline
 1. Parse each line $(x_A, y_A, x_B, y_B, x_C, y_C)$ from `triangles.txt`.
 2. Compute:
-   $$c_1 = x_A y_B - y_A x_B$$
-   $$c_2 = x_B y_C - y_B x_C$$
-   $$c_3 = x_C y_A - y_C x_A$$
+
+$$
+c_1 = x_A y_B - y_A x_B
+$$
+
+$$
+c_2 = x_B y_C - y_B x_C
+$$
+
+$$
+c_3 = x_C y_A - y_C x_A
+$$
+
 3. Triangle contains $O(0,0)$ iff:
-   $$(c_1 > 0 \land c_2 > 0 \land c_3 > 0) \lor (c_1 < 0 \land c_2 < 0 \land c_3 < 0)$$
+
+$$
+(c_1 > 0 \land c_2 > 0 \land c_3 > 0) \lor (c_1 < 0 \land c_2 < 0 \land c_3 < 0)
+$$
+
 4. Increment counter `origin_count += 1` on match.
 5. Return `origin_count`.
 
@@ -80,7 +105,10 @@ def naive_contains_origin(A, B, C):
 
 ### Example 3: Target Evaluation across 1000 Triangles
 - Evaluating all 1000 triangles in `triangles.txt`:
-  $$N_{\text{origin}} = \mathbf{228}$$
+
+$$
+N_{\text{origin}} = \mathbf{228}
+$$
 
 ---
 

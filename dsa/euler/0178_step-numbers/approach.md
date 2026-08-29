@@ -8,7 +8,10 @@ It has the property that each digit is either $1$ higher or $1$ lower than the p
 A number is called **pandigital** if it contains every decimal digit from $0$ to $9$ at least once.
 
 The objective is to find the **total number of pandigital step numbers less than $10^{40}$ (i.e. having between $10$ and $40$ digits)**:
-$$N_{\text{step}} = \sum_{L=10}^{40} \left| \left\{ (d_1, \dots, d_L) \in \{0..9\}^L \;\middle|\; d_1 \neq 0 \land \forall i, |d_{i+1}-d_i|=1 \land \bigcup_{i=1}^L \{d_i\} = \{0..9\} \right\} \right|$$
+
+$$
+N_{\text{step}} = \sum_{L=10}^{40} \left| \left\{ (d_1, \dots, d_L) \in \{0..9\}^L \;\middle|\; d_1 \neq 0 \land \forall i, |d_{i+1}-d_i|=1 \land \bigcup_{i=1}^L \{d_i\} = \{0..9\} \right\} \right|
+$$
 
 ---
 
@@ -30,7 +33,13 @@ def naive_step_numbers():
 2. **State Space Compression:**
    There are only $10 \times 2^{10} = 10\,240$ possible states $(d, \mathbf{m})$ at each length $L$.
 3. **DP Transitions from Length $L$ to $L+1$:**
-   $$\text{new\_dp}[(d_{\text{next}}, \mathbf{m} \mid (1 \ll d_{\text{next}}))] = \sum_{\substack{d \\ |d_{\text{next}} - d| = 1}} \text{dp}[(d, \mathbf{m})]$$
+
+$$
+\begin{aligned}
+\text{new\_dp}[(d_{\text{next}}, \mathbf{m} \mid (1 \ll d_{\text{next}}))] = \sum_{\substack{d \\ |d_{\text{next}} - d| = 1}} \text{dp}[(d, \mathbf{m})]
+\end{aligned}
+$$
+
 4. **Pandigital Accumulation:**
    At each length $L \in [10, 40]$, we sum all state counts with full bitmask $\mathbf{m} = (1 \ll 10) - 1 = 1023$.
 5. The DP completes in $\approx 0.05$ seconds.
@@ -77,7 +86,10 @@ def solve(max_len: int = 40) -> int:
     return total_pandigital
 ```
 Evaluating for $L \le 40$:
-$$N_{\text{step}} = \mathbf{5\,104\,618\,619\,216\,952\,796}$$
+
+$$
+N_{\text{step}} = \mathbf{5\,104\,618\,619\,216\,952\,796}
+$$
 
 ---
 
@@ -85,13 +97,20 @@ $$N_{\text{step}} = \mathbf{5\,104\,618\,619\,216\,952\,796}$$
 
 ### Example 1: Minimal Pandigital Step Number
 - The shortest possible pandigital step number has length $10$:
-  $$9876543210$$
+
+$$
+9876543210
+$$
+
   which starts at $9$ and steps down to $0$, visiting all 10 digits.
 - Total 10-digit pandigital step numbers: $1$.
 
 ### Example 2: Target Total Count for All Lengths $10 \le L \le 40$
 - Summing over all lengths up to 40:
-  $$N_{\text{step}} = \mathbf{5\,104\,618\,619\,216\,952\,796}$$
+
+$$
+N_{\text{step}} = \mathbf{5\,104\,618\,619\,216\,952\,796}
+$$
 
 ---
 

@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For prime $p$ and $n < p$, $R(p, n)$ is the multiplicative order of $p$ modulo $n!$:
-$$p^r \equiv 1 \pmod{n!}$$
+
+$$
+p^r \equiv 1 \pmod{n!}
+$$
+
 Given:
 - $R(7, 4) = 2$
 - $R(10^9 + 7, 12) = 17280$
@@ -23,9 +27,16 @@ Find $R(10^9 + 7, 10^7) \bmod (10^9 + 7)$.
 
 ### Prime-Power Factorization & Chinese Remainder Theorem
 By the Chinese Remainder Theorem:
-$$R(p, n) = \text{lcm}_{q \le n} \text{ord}_{q^{v_q(n!)}}(p)$$
+
+$$
+R(p, n) = \text{lcm}_{q \le n} \text{ord}_{q^{v_q(n!)}}(p)
+$$
+
 By the Lifting The Exponent (LTE) lemma:
-$$\text{ord}_{q^k}(p) = \text{ord}_q(p) \cdot q^{\max(0, k - v_q(p^{\text{ord}_q(p)} - 1))}$$
+
+$$
+\text{ord}_{q^k}(p) = \text{ord}_q(p) \cdot q^{\max(0, k - v_q(p^{\text{ord}_q(p)} - 1))}
+$$
 
 ---
 

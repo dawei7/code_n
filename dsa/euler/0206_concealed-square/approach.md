@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Find the unique positive integer $x \in \mathbb{N}$ whose square has the decimal form:
-$$x^2 = 1\_2\_3\_4\_5\_6\_7\_8\_9\_0$$
+
+$$
+x^2 = 1\_2\_3\_4\_5\_6\_7\_8\_9\_0
+$$
+
 where each wildcard `_` represents a single decimal digit.
 
 The number $x^2$ has $19$ digits, with fixed alternating digits at odd indices.
@@ -25,10 +29,18 @@ def naive_concealed_square():
    Since $x^2$ ends in $0$, $x^2 \equiv 0 \pmod{10}$, which requires $x \equiv 0 \pmod{10}$.
    Thus $x = 10y$, and $x^2 = 100 y^2$ ends in $00$.
    Dividing by $100$:
-   $$y^2 = 1\_2\_3\_4\_5\_6\_7\_8\_9$$
+
+$$
+y^2 = 1\_2\_3\_4\_5\_6\_7\_8\_9
+$$
+
 2. **Last Digit Modulo 10:**
    Since $y^2$ ends in $9$:
-   $$y \equiv 3 \pmod{10} \quad \text{or} \quad y \equiv 7 \pmod{10}$$
+
+$$
+y \equiv 3 \pmod{10} \quad \text{or} \quad y \equiv 7 \pmod{10}
+$$
+
 3. **Square Root Range Bounds:**
    - $\min y = \lfloor \sqrt{10203040506070809} \rfloor = 101\,010\,101$.
    - $\max y = \lfloor \sqrt{19293949596979899} \rfloor = 138\,902\,662$.
@@ -81,7 +93,10 @@ def solve() -> int:
     return 0
 ```
 Evaluating yields:
-$$x = \mathbf{1\,389\,019\,170}$$
+
+$$
+x = \mathbf{1\,389\,019\,170}
+$$
 
 ---
 

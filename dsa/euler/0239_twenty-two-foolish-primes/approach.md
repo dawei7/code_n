@@ -30,9 +30,17 @@ def naive_monte_carlo_primes():
    The remaining $22$ prime disks must all be displaced from their natural positions among the $97$ available slots.
    Let $A_i$ be the event that the $i$-th remaining prime disk is at its natural position ($i = 1 \dots 22$).
    By the Principle of Inclusion-Exclusion:
-   $$N_{\text{deranged}} = \sum_{m=0}^{22} (-1)^m \binom{22}{m} (97 - m)!$$
+
+$$
+N_{\text{deranged}} = \sum_{m=0}^{22} (-1)^m \binom{22}{m} (97 - m)!
+$$
+
 3. **Exact Probability Ratio:**
-   $$\text{Prob} = \frac{\binom{25}{3} \sum_{m=0}^{22} (-1)^m \binom{22}{m} (97 - m)!}{100!}$$
+
+$$
+\text{Prob} = \frac{\binom{25}{3} \sum_{m=0}^{22} (-1)^m \binom{22}{m} (97 - m)!}{100!}
+$$
+
    Evaluating with 50-digit `Decimal` arithmetic gives the exact 12-decimal value in $< 0.001$ seconds.
 
 ---
@@ -71,7 +79,10 @@ def solve(total_disks: int = 100, num_primes: int = 25, foolish: int = 22) -> st
 ```
 
 Evaluating for $100$ disks:
-$$\text{Probability} = \mathbf{0.001887854841}$$
+
+$$
+\text{Probability} = \mathbf{0.001887854841}
+$$
 
 ---
 
@@ -82,10 +93,17 @@ $$\text{Probability} = \mathbf{0.001887854841}$$
 
 ### Example 2: Normalization by $100!$
 - Dividing by $100! = 100 \times 99 \times 98 \times 97!$:
-  $$\frac{97!}{100!} = \frac{1}{100 \times 99 \times 98} = \frac{1}{970\,200}$$
+
+$$
+\frac{97!}{100!} = \frac{1}{100 \times 99 \times 98} = \frac{1}{970\,200}
+$$
+
 - $\frac{2300}{970\,200} = \frac{23}{9702} \approx 0.002370645$.
 - Multiplied by the derangement alternating series $\sum_{m=0}^{22} \frac{(-1)^m \binom{22}{m}}{97 \times 96 \dots (98-m)} \approx 0.796345$:
-  $$\text{Prob} = \mathbf{0.001887854841} \quad (\checkmark)$$
+
+$$
+\text{Prob} = \mathbf{0.001887854841} \quad (\checkmark)
+$$
 
 ---
 

@@ -26,7 +26,10 @@ The search space of 7-tuples $(a_1, \dots, a_7) \in \mathbb{Z}^7$ is infinite. N
 
 ### Infinitesimal Sign Alternation & Forward Differences
 The root condition $x_i \in [i, i+1)$ means the polynomial $P(x)$ must alternate signs at the boundaries $k - \varepsilon$ for infinitesimal $\varepsilon > 0$:
-$$(-1)^{n+1-k} P(k - \varepsilon) > 0 \quad \text{for all } k \in \{1, 2, \dots, n+1\}$$
+
+$$
+(-1)^{n+1-k} P(k - \varepsilon) > 0 \quad \text{for all } k \in \{1, 2, \dots, n+1\}
+$$
 
 By taking higher-order forward differences $\Delta^{n-k} P(x)$, the higher-degree coefficients are eliminated!
 After $n-k$ difference operations, the inequality isolates coefficient $a_k$ as a linear inequality whose right-hand side is a polynomial in $\varepsilon$.

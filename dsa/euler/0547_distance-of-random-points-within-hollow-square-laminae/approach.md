@@ -11,7 +11,10 @@ We are given:
 - $S(4) \approx 19.6564$
 
 We seek to evaluate:
-$$S(40) \text{ rounded to 4 decimal places}$$
+
+$$
+S(40) \text{ rounded to 4 decimal places}
+$$
 
 ---
 
@@ -28,11 +31,18 @@ For $n = 40$, there are thousands of distinct laminae. Approximating 4D integral
 1. **Geometric Distance Integral**:
    Let $I(R_1, R_2) = \iint_{R_1 \times R_2} \|P - Q\| \, dP dQ$.
    For lamina $L = S \setminus R$ with area $A = n^2 - w h$:
-   $$E[D] = \frac{1}{A^2} \left( I(S, S) - 2 I(S, R) + I(R, R) \right)$$
+
+$$
+E[D] = \frac{1}{A^2} \left( I(S, S) - 2 I(S, R) + I(R, R) \right)
+$$
+
 2. **Convolution of Difference Distributions**:
    Let $\Delta x = x_1 - x_2$ and $\Delta y = y_1 - y_2$. The difference distribution between two intervals $[0, W]$ and $[a, a + w]$ is a piecewise linear trapezoid $m t + c$.
    Thus:
-   $$I(S, R) = \sum_{\text{segs}} \iint \sqrt{u^2 + v^2} (m_x u + c_x)(m_y v + c_y) \, du dv$$
+
+$$
+I(S, R) = \sum_{\text{segs}} \iint \sqrt{u^2 + v^2} (m_x u + c_x)(m_y v + c_y) \, du dv
+$$
 
 ---
 

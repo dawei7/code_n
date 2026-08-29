@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 We consider the asymmetric Diophantine equation:
-$$16x^2 + y^4 = z^2 \iff (z - 4x)(z + 4x) = y^4$$
+
+$$
+16x^2 + y^4 = z^2 \iff (z - 4x)(z + 4x) = y^4
+$$
+
 where $x, y, z$ are positive integers with $\gcd(x, y, z) = 1$ and $1 \le x, y, z \le N$.
 We define:
-$$S(N) = \sum_{(x, y, z)} (x + y + z)$$
+
+$$
+S(N) = \sum_{(x, y, z)} (x + y + z)
+$$
 
 We are given:
 - $S(10^2) = 81$ (2 solutions: $(3, 4, 20)$ and $(10, 3, 41)$)
@@ -14,7 +21,10 @@ We are given:
 - $S(10^7) \equiv 248876211 \pmod{10^9}$
 
 We seek to evaluate:
-$$S(10^{16}) \bmod 10^9$$
+
+$$
+S(10^{16}) \bmod 10^9
+$$
 
 ---
 
@@ -34,7 +44,11 @@ Testing triples $(x, y, z)$ up to $N = 10^{16}$ requires $10^{48}$ trials, which
    Since $\gcd(x, y, z) = 1$, the common factor $G$ can only be a power of 2.
 2. **Family A ($y$ odd)**:
    $z - 4x = p^4$ and $z + 4x = q^4$ with odd coprime integers $p < q$.
-   $$x = \frac{q^4 - p^4}{8}, \quad y = pq, \quad z = \frac{p^4 + q^4}{2}$$
+
+$$
+x = \frac{q^4 - p^4}{8}, \quad y = pq, \quad z = \frac{p^4 + q^4}{2}
+$$
+
 3. **Family B ($y$ even)**:
    $\min(v_2(z - 4x), v_2(z + 4x)) = 3$, and the other factor is $2^{4k+1}$ for $k \ge 1$:
    - **Case $B_{\text{high}}$**: $z - 4x = 8p^4, z + 4x = 2^{4k+1}q^4 \implies x = 2^{4k-2}q^4 - p^4, y = 2^{k+1}pq, z = 4p^4 + 2^{4k}q^4$.
@@ -47,7 +61,13 @@ Testing triples $(x, y, z)$ up to $N = 10^{16}$ requires $10^{48}$ trials, which
 ### Sub-second Mobius Odd Moment Range Summation
 1. **Coprime Range Moments**:
    For fixed $q$, summing over odd $p \in [p_{\min}, p_{\max}]$ with $\gcd(p, q) = 1$ is evaluated in $O(2^{\omega(q)})$ operations using Mobius inclusion-exclusion:
-   $$\sum_{\substack{p \in [lo, hi] \\ p \text{ odd}, \gcd(p, q) = 1}} p^r = \sum_{d \mid q, d \text{ odd}} \mu(d) d^r \sum_{\substack{m \in [lo/d, hi/d] \\ m \text{ odd}}} m^r$$
+
+$$
+\begin{aligned}
+\sum_{\substack{p \in [lo, hi] \\ p \text{ odd}, \gcd(p, q) = 1}} p^r = \sum_{d \mid q, d \text{ odd}} \mu(d) d^r \sum_{\substack{m \in [lo/d, hi/d] \\ m \text{ odd}}} m^r
+\end{aligned}
+$$
+
    where the inner odd power sums $\sum m, \sum m^4$ are evaluated via closed-form Bernoulli polynomials in $O(1)$!
 2. **Execution Performance**:
    For $N = 10^{16}$, $q_{\max} \le (2N)^{1/4} \approx 11\,892$. The total runtime is **$\approx 0.10$ seconds** in pure Python!

@@ -10,7 +10,10 @@ We are given:
 - $F(3 \times 10^6) = 2014$
 
 We seek to evaluate:
-$$F(9 \times 10^{18})$$
+
+$$
+F(9 \times 10^{18})
+$$
 
 ---
 
@@ -41,11 +44,19 @@ Iterating over all pairs $(a, b)$ yields over $10^{15}$ candidates, which cannot
 ### Sublinear Dual-Term Analytic Formula ($O(N^{1/3})$)
 1. **Term 1 Evaluation**:
    For each squarefree $b \ge 2$ with $b^3 \le N/4$:
-   $$\text{Term 1} = \sum_{b \ge 2, \mu^2(b) = 1} \left( \left\lfloor \sqrt{\frac{N}{b^3}} \right\rfloor - 1 \right)$$
+
+$$
+\text{Term 1} = \sum_{b \ge 2, \mu^2(b) = 1} \left( \left\lfloor \sqrt{\frac{N}{b^3}} \right\rfloor - 1 \right)
+$$
+
 2. **Term 2 Evaluation (Squares $A^2 \le N$)**:
    $A \le K = \lfloor \sqrt{N} \rfloor = 3 \times 10^9$.
    $A$ is of the form $a c^3$ ($a \ge 2, c \ge 2$) if and only if $A$ is not cubefree and $A$ is not $p^3$ for any prime $p \le K^{1/3}$.
-   $$\text{Term 2} = K - \text{cubefree}(K) - \pi(\lfloor K^{1/3} \rfloor)$$
+
+$$
+\text{Term 2} = K - \text{cubefree}(K) - \pi(\lfloor K^{1/3} \rfloor)
+$$
+
    where $\text{cubefree}(K) = \sum_{j=1}^{\lfloor K^{1/3} \rfloor} \mu(j) \lfloor K / j^3 \rfloor$.
 
 This evaluates $F(9 \times 10^{18})$ in **$\approx 0.44$ seconds** in pure Python!

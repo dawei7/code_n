@@ -3,11 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $\omega(n)$ denote the prime omega function, which counts the number of distinct prime factors of an integer $n \in \mathbb{N}$:
-$$\omega(n) = \sum_{\substack{p \mid n \\ p \in \mathbb{P}}} 1 = |\mathcal{P}(n)|$$
+
+$$
+\begin{aligned}
+\omega(n) = \sum_{\substack{p \mid n \\ p \in \mathbb{P}}} 1 = |\mathcal{P}(n)|
+\end{aligned}
+$$
+
 where $\mathcal{P}(n)$ is the set of prime divisors of $n$.
 
 The objective is to find the first of four consecutive integers to each have four distinct prime factors:
-$$x_{\text{min}} = \min \{ x \in \mathbb{N} \mid \omega(x) = \omega(x + 1) = \omega(x + 2) = \omega(x + 3) = 4 \}$$
+
+$$
+x_{\text{min}} = \min \{ x \in \mathbb{N} \mid \omega(x) = \omega(x + 1) = \omega(x + 2) = \omega(x + 3) = 4 \}
+$$
 
 ---
 
@@ -46,7 +55,11 @@ def naive_distinct_prime_factors():
 2. For each $i \in [2, L-1]$:
    - If $\mathbf{\omega}[i] == 0$ ($i$ is prime):
      - For all multiples $j \in \{i, 2i, 3i, \dots < L\}$:
-       $$\mathbf{\omega}[j] \leftarrow \mathbf{\omega}[j] + 1$$
+
+$$
+\mathbf{\omega}[j] \leftarrow \mathbf{\omega}[j] + 1
+$$
+
 3. Scan indices $x \in [2, L-4]$ with a sliding counter:
    - If $\mathbf{\omega}[x] == 4$, increment `count`.
    - When `count == 4`, the first number of the 4-consecutive run is $x - 3$.
@@ -67,7 +80,10 @@ The first 4 consecutive integers with $\omega(n) = 4$ start at $x = \mathbf{134\
 4. $134\,046 = 2 \times 3^2 \times 11 \times 677 \implies \omega = \mathbf{4}$
 
 Starting Term:
-$$x_{\text{min}} = \mathbf{134\,043}$$
+
+$$
+x_{\text{min}} = \mathbf{134\,043}
+$$
 
 ---
 

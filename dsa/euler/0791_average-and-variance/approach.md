@@ -4,7 +4,10 @@
 
 For four positive integers $1 \le a \le b \le c \le d \le n$, their mean is $\bar{x} = \frac{a+b+c+d}{4}$ and their sample variance is $V = \frac{1}{4} \sum_{i=1}^4 (x_i - \bar{x})^2$.
 The condition $\bar{x} = 2V$ is equivalent to:
-$$2(a+b+c+d) = \sum_{i=1}^4 (4x_i - (a+b+c+d))^2$$
+
+$$
+2(a+b+c+d) = \sum_{i=1}^4 (4x_i - (a+b+c+d))^2
+$$
 
 $S(n)$ is the sum of $a + b + c + d$ over all such quadruples with $d \le n$.
 
@@ -13,7 +16,10 @@ We are given:
 - $S(10^3) = 37048340$
 
 We seek to evaluate:
-$$S(10^8) \bmod 433494437$$
+
+$$
+S(10^8) \bmod 433494437
+$$
 
 ---
 
@@ -29,13 +35,25 @@ Iterating through all quadruples $(a, b, c, d)$ with $d \le 10^8$ involves $\bin
 ### Hadamard Basis Diagonalization
 1. **Change of Basis**:
    Under the orthogonal Hadamard rotation:
-   $$\begin{pmatrix} m \\ u \\ v \\ w \end{pmatrix} = \frac{1}{2} \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & -1 & -1 \\ 1 & -1 & 1 & -1 \\ 1 & -1 & -1 & 1 \end{pmatrix} \begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix}$$
+
+$$
+\begin{pmatrix} m \\ u \\ v \\ w \end{pmatrix} = \frac{1}{2} \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & -1 & -1 \\ 1 & -1 & 1 & -1 \\ 1 & -1 & -1 & 1 \end{pmatrix} \begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix}
+$$
+
    the Diophantine condition $\bar{x} = 2V$ diagonalizes into:
-   $$m = u^2 + v^2 + w^2$$
+
+$$
+m = u^2 + v^2 + w^2
+$$
+
 2. **Reconstruction & Ordering**:
    Original coordinates $(a, b, c, d)$ are linear combinations of $(m, u, v, w)$ divided by 2.
    The ordering $1 \le a \le b \le c \le d \le n$ translates to simple sign and magnitude constraints:
-   $$0 \le -u \le -v \le |w| \le U \le \sqrt{2n}$$
+
+$$
+0 \le -u \le -v \le |w| \le U \le \sqrt{2n}
+$$
+
    with $d = \frac{m - u - v + w}{2} \le n$.
 
 ---

@@ -32,7 +32,11 @@ Each step branches in 2 directions. For paths of length $\approx 90$, $2^{90} \a
    An odd-length path has $2t + 1$ states (hence $2t$ operations). For $b = 2a$, any equality condition requires exactly $t$ steps of $r$ and $t$ steps of $s$.
 2. **Reverse Linear Algebra**:
    Working backwards from $(v, v)$ using inverses $R(x, y) = (x - 1, y/2)$ and $S(x, y) = (x/2, y - 1)$, the equality reaching $(a, 2a) = (45, 90)$ collapses to:
-   $$\sum_{p \in \text{pos}} 2^p = \sum_{j=0}^{t-1} 2^{P_j}$$
+
+$$
+\sum_{p \in \text{pos}} 2^p = \sum_{j=0}^{t-1} 2^{P_j}
+$$
+
    where $\text{pos}$ is a multiset of $s = t - 45$ early $r$-step columns, and $P_j$ is the prefix count $|\{p \in \text{pos} : p \le j\}|$.
 
 ---

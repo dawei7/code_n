@@ -14,7 +14,10 @@ We are given:
 - $S(1000) = 268271$
 
 We seek to evaluate:
-$$S(10^{18}) \bmod 987\,654\,321$$
+
+$$
+S(10^{18}) \bmod 987\,654\,321
+$$
 
 ---
 
@@ -31,11 +34,18 @@ Simulating the elimination process for each $k \le 10^{18}$ requires $> 10^{18}$
 1. **Directional Inversion Symmetry**:
    Let $L(n)$ be the survivor when starting left-to-right, and $R(n)$ when starting right-to-left.
    By symmetry across the range:
-   $$L(n) + R(n) = n + 1 \implies R(n) = n + 1 - L(n)$$
+
+$$
+L(n) + R(n) = n + 1 \implies R(n) = n + 1 - L(n)
+$$
+
 2. **Single Pass Reduction**:
    After eliminating odd positions left-to-right, the remaining numbers are $2, 4, \dots, 2\lfloor n/2 \rfloor$.
    Dividing by 2 gives list $(1, 2, \dots, \lfloor n/2 \rfloor)$ with next pass moving right-to-left:
-   $$P(n) = L(n) = 2 R(\lfloor n/2 \rfloor) = 2\left( \lfloor n/2 \rfloor + 1 - P(\lfloor n/2 \rfloor) \right)$$
+
+$$
+P(n) = L(n) = 2 R(\lfloor n/2 \rfloor) = 2\left( \lfloor n/2 \rfloor + 1 - P(\lfloor n/2 \rfloor) \right)
+$$
 
 ---
 
@@ -43,19 +53,38 @@ Simulating the elimination process for each $k \le 10^{18}$ requires $> 10^{18}$
 
 ### Exact Base-4 Block Recurrence in $O(\log n)$
 Unrolling two steps of the recurrence gives algebraic relations on residues modulo 4:
-$$P(4m) = 4P(m) - 2$$
 
-$$P(4m + 1) = 4P(m) - 2$$
+$$
+P(4m) = 4P(m) - 2
+$$
 
-$$P(4m + 2) = 4P(m)$$
+$$
+P(4m + 1) = 4P(m) - 2
+$$
 
-$$P(4m + 3) = 4P(m)$$
+$$
+P(4m + 2) = 4P(m)
+$$
+
+$$
+P(4m + 3) = 4P(m)
+$$
+
 Summing over a full block of 4 elements:
-$$\sum_{r=0}^3 P(4m + r) = 16 P(m) - 4$$
-Thus, the summatory function satisfies:
-$$S(4m + \text{rem}) = S(3) + \sum_{k=1}^{m-1} (16 P(k) - 4) + \sum_{r=0}^{\text{rem}} P(4m + r)$$
 
-$$S(n) = 5 + 16 S(m - 1) - 4(m - 1) + \text{PartialBlock}(m, \text{rem})$$
+$$
+\sum_{r=0}^3 P(4m + r) = 16 P(m) - 4
+$$
+
+Thus, the summatory function satisfies:
+
+$$
+S(4m + \text{rem}) = S(3) + \sum_{k=1}^{m-1} (16 P(k) - 4) + \sum_{r=0}^{\text{rem}} P(4m + r)
+$$
+
+$$
+S(n) = 5 + 16 S(m - 1) - 4(m - 1) + \text{PartialBlock}(m, \text{rem})
+$$
 
 This evaluates $S(10^{18})$ in **$< 0.001$ seconds**!
 

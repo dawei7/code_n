@@ -16,7 +16,10 @@ We are given:
 - $F_6(101) \equiv 75309980 \pmod{1\,000\,004\,321}$
 
 We seek to evaluate:
-$$F_{10}(10\,004\,003\,002\,001) \bmod 1\,000\,004\,321$$
+
+$$
+F_{10}(10\,004\,003\,002\,001) \bmod 1\,000\,004\,321
+$$
 
 ---
 
@@ -50,7 +53,11 @@ With $k = 10$ colors, tracking all explicit color assignments across boundary sl
 2. **Cycle Symmetry Normalization**:
    Marking one of the $n$ column cuts introduces a factor of $n$.
    By cyclic symmetry, the total unmarked loop count is:
-   $$F_k(n) = n^{-1} \left( k \cdot [\text{Mat}_{\text{same}}^n]_{0, 0} + k(k - 1) \sum_{s \in \mathcal{S}_{\text{diff}}} [\text{Mat}_{\text{diff}}^n]_{s, s} \right) \pmod{1\,000\,004\,321}$$
+
+$$
+F_k(n) = n^{-1} \left( k \cdot [\text{Mat}_{\text{same}}^n]_{0, 0} + k(k - 1) \sum_{s \in \mathcal{S}_{\text{diff}}} [\text{Mat}_{\text{diff}}^n]_{s, s} \right) \pmod{1\,000\,004\,321}
+$$
+
 3. **Binary Exponentiation**:
    With matrix size $\le 45$, exponentiating to $n \approx 10^{13}$ requires only $\approx 44$ matrix multiplications.
 

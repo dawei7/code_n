@@ -13,7 +13,10 @@ We are given:
 - $E(100, 10) \approx 51.893$
 
 We seek to evaluate:
-$$E(10^{10}, 4000) \text{ rounded to 2 decimal places}$$
+
+$$
+E(10^{10}, 4000) \text{ rounded to 2 decimal places}
+$$
 
 ---
 
@@ -29,11 +32,22 @@ For $N = 10^{10}$ and $M = 4000$, keeping track of disk states or summing $10^{1
 ### Linearity of Expectation & Parity Analysis
 Let $p_i$ be the probability that disk $i \in \{1, \dots, N\}$ is flipped during a single turn.
 Disk $i$ is flipped if and only if neither $A, B < i$ nor $A, B > i$:
-$$p_i = 1 - \frac{(i-1)^2 + (N-i)^2}{N^2}$$
+
+$$
+p_i = 1 - \frac{(i-1)^2 + (N-i)^2}{N^2}
+$$
+
 The probability that disk $i$ is white after $M$ turns equals the probability of an even number of flips:
-$$P(\text{white}) = \frac{1 + (1 - 2p_i)^M}{2}$$
+
+$$
+P(\text{white}) = \frac{1 + (1 - 2p_i)^M}{2}
+$$
+
 By Linearity of Expectation:
-$$E(N, M) = \sum_{i=1}^N \frac{1 + (1 - 2p_i)^M}{2} = \frac{N}{2} + \frac{1}{2} \sum_{i=1}^N (1 - 2p_i)^M$$
+
+$$
+E(N, M) = \sum_{i=1}^N \frac{1 + (1 - 2p_i)^M}{2} = \frac{N}{2} + \frac{1}{2} \sum_{i=1}^N (1 - 2p_i)^M
+$$
 
 ---
 
@@ -42,9 +56,16 @@ $$E(N, M) = \sum_{i=1}^N \frac{1 + (1 - 2p_i)^M}{2} = \frac{N}{2} + \frac{1}{2} 
 ### Euler-Maclaurin Asymptotic Integral Expansion
 For large $N$, $(1 - 2p_i)$ samples the smooth function $f(x) = (x^2 - c)^M$ at midpoints of $[-1, 1]$ where $c = \frac{2N-1}{N^2}$.
 Expanding the integral $\int_{-1}^1 (x^2 - c)^M \, dx$ in powers of the tiny parameter $c = O(1/N)$:
-$$\sum_{i=1}^N (1 - 2p_i)^M = \frac{N}{2M+1} - \frac{N M c}{2M-1} + O\left(\frac{M^2}{N}\right)$$
+
+$$
+\sum_{i=1}^N (1 - 2p_i)^M = \frac{N}{2M+1} - \frac{N M c}{2M-1} + O\left(\frac{M^2}{N}\right)
+$$
+
 Substituting $c = \frac{2N-1}{N^2}$:
-$$E(N, M) = \frac{N}{2} + \frac{N}{2(2M+1)} - \frac{M(2N-1)}{2N(2M-1)}$$
+
+$$
+E(N, M) = \frac{N}{2} + \frac{N}{2(2M+1)} - \frac{M(2N-1)}{2N(2M-1)}
+$$
 
 For $N = 10^{10}$ and $M = 4000$, the truncation error is $O(M^2/N) \approx 1.6 \times 10^{-3}$, which is orders of magnitude smaller than the $0.01$ rounding threshold!
 

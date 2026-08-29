@@ -37,10 +37,18 @@ The $3 \times 3$ grid cross-section is invariant under the 8-element dihedral gr
 By the Cayley-Hamilton theorem, any $37 \times 37$ matrix satisfies its characteristic polynomial $P(x) = \det(x I - M) = 0$ of degree $d \le 37$.
 1. Compute the characteristic polynomial $P(x) = x^d - \sum_{i=0}^{d-1} c_i x^i \pmod q$.
 2. To evaluate $M^{10^k}$, we compute the polynomial remainder:
-   $$x^{10^k} \pmod{P(x)} \pmod q$$
+
+$$
+x^{10^k} \pmod{P(x)} \pmod q
+$$
+
    using fast polynomial multiplication and division modulo $P(x)$ in $\mathcal{O}(d^2 \log(10^k))$ time.
 3. Once $x^{10^k} \equiv \sum_{i=0}^{d-1} a_i x^i \pmod{P(x)}$, the scalar trace is:
-   $$f(10^k) \equiv \sum_{i=0}^{d-1} a_i f(i) \pmod q$$
+
+$$
+f(10^k) \equiv \sum_{i=0}^{d-1} a_i f(i) \pmod q
+$$
+
 4. Furthermore, by the Fermat-Euler theorem on the recurrence period, the sequence $f(10^k) \bmod q$ is periodic with period dividing $q^d - 1$, allowing summation of the $10^8$ terms in under a second.
 
 ---

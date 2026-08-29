@@ -1,3 +1,3 @@
 ## Function Contract
 
-- `solve() -> int`
+- solve() -> str

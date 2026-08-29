@@ -4,13 +4,22 @@
 
 A spider, $S$, sits at one corner of a cuboid room, measuring $6 \times 5 \times 3$, and a fly, $F$, sits at the opposite corner.
 By travelling on the surfaces of the room the shortest "straight-line" distance is $10$ (which is an integer):
-$$d = \sqrt{6^2 + (5 + 3)^2} = \sqrt{36 + 64} = \sqrt{100} = 10$$
+
+$$
+d = \sqrt{6^2 + (5 + 3)^2} = \sqrt{36 + 64} = \sqrt{100} = 10
+$$
 
 For general cuboids with dimensions $1 \le c \le b \le a \le M$, unfolding the faces to form a 2D plane gives the shortest surface distance:
-$$d(a, b, c) = \sqrt{a^2 + (b + c)^2}$$
+
+$$
+d(a, b, c) = \sqrt{a^2 + (b + c)^2}
+$$
 
 The objective is to find the **least value of $M$** such that the number of integer-distance cuboid solutions exceeds **one million ($1\,000\,000$)**:
-$$M_{\text{min}} = \min \left\{ M \in \mathbb{N} \;\middle|\; N(M) > 1\,000\,000 \right\}$$
+
+$$
+M_{\text{min}} = \min \left\{ M \in \mathbb{N} \;\middle|\; N(M) > 1\,000\,000 \right\}
+$$
 
 ---
 
@@ -28,7 +37,11 @@ def naive_cuboid_route(limit):
 1. Let $s = b + c$, where $2 \le s \le 2a$.
 2. The distance condition becomes $a^2 + s^2 = k^2$ (a single Pythagorean check per pair $(a, s)$).
 3. For each valid $s$, the number of integer pairs $(b, c)$ satisfying $1 \le c \le b \le a$ and $b + c = s$ is given in $\mathcal{O}(1)$ time by:
-   $$f(a, s) = \begin{cases} \lfloor s / 2 \rfloor & \text{if } s \le a \\ a - \lfloor (s - 1) / 2 \rfloor & \text{if } a < s \le 2a \end{cases}$$
+
+$$
+f(a, s) = \begin{cases} \lfloor s / 2 \rfloor & \text{if } s \le a \\ a - \lfloor (s - 1) / 2 \rfloor & \text{if } a < s \le 2a \end{cases}
+$$
+
 4. This drops total operations from $\mathcal{O}(M^3)$ to $\mathcal{O}(M^2)$, evaluating in $\approx 0.60$ seconds.
 
 ---
@@ -62,14 +75,21 @@ def naive_cuboid_route(limit):
 
 ### Example 1: Trace for $M = 100$
 - Summing valid cuboids for $a \le 100$:
-  $$N(100) = \mathbf{2060}$$
+
+$$
+N(100) = \mathbf{2060}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target One Million Search
 - At $a = 1817 \implies N(1817) = 999\,717 \le 10^6$.
 - At $a = 1818 \implies N(1818) = \mathbf{1\,000\,457} > 1\,000\,000$.
 - Least value of $M$:
-  $$M_{\text{min}} = \mathbf{1818}$$
+
+$$
+M_{\text{min}} = \mathbf{1818}
+$$
 
 ---
 

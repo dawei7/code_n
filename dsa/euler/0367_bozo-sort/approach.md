@@ -15,7 +15,11 @@ For $N = 4$, the average expected number of shuffles is $27.5$.
 
 ### Full State-Space Markov Chain on $S_N$
 The permutation group $S_{11}$ contains:
-$$11! = 39\,916\,800 \text{ states}$$
+
+$$
+11! = 39\,916\,800 \text{ states}
+$$
+
 Constructing or inverting a $39.9\text{M} \times 39.9\text{M}$ transition matrix requires $> 10^{15}$ operations and hundreds of terabytes of memory.
 
 ---
@@ -27,7 +31,11 @@ The random 3-element shuffle operation is invariant under relabeling of elements
 Therefore, the transition probability between two permutations $\pi$ and $\sigma$ depends only on their **cycle types** (conjugacy classes in $S_{11}$).
 
 The number of cycle types of $S_{11}$ is the partition number $p(11)$:
-$$p(11) = 56 \text{ states}$$
+
+$$
+p(11) = 56 \text{ states}
+$$
+
 This collapses the $39.9\text{M}$-state Markov chain into an exact **$56$-state lumped Markov chain**!
 
 ---
@@ -36,9 +44,14 @@ This collapses the $39.9\text{M}$-state Markov chain into an exact **$56$-state 
 
 ### Linear System for Expected Hitting Times
 Let $\lambda$ be an integer partition of $N$. Let $E[\lambda]$ be the expected number of steps to reach $(1^{11})$ starting from any permutation of cycle type $\lambda$:
-$$E[(1^{11})] = 0$$
 
-$$E[\lambda] = 1 + \sum_{\mu \vdash N} P(\lambda \to \mu) E[\mu] \quad (\lambda \ne 1^{11})$$
+$$
+E[(1^{11})] = 0
+$$
+
+$$
+E[\lambda] = 1 + \sum_{\mu \vdash N} P(\lambda \to \mu) E[\mu] \quad (\lambda \ne 1^{11})
+$$
 
 To compute the transition probabilities $P(\lambda \to \mu)$:
 For each partition $\lambda$:
@@ -50,7 +63,11 @@ Solving the $56 \times 56$ linear system $(\mathbf{I} - \mathbf{P}) \mathbf{E} =
 
 ### Uniform Expectation
 The average expected steps over all $N!$ permutations is:
-$$\mathbb{E}[\text{steps}] = \frac{1}{N!} \sum_{\lambda \vdash N} |\mathcal{C}_\lambda| \cdot E[\lambda]$$
+
+$$
+\mathbb{E}[\text{steps}] = \frac{1}{N!} \sum_{\lambda \vdash N} |\mathcal{C}_\lambda| \cdot E[\lambda]
+$$
+
 where $|\mathcal{C}_\lambda| = \frac{N!}{\prod_{i=1}^N i^{k_i} k_i!}$ is the size of the conjugacy class.
 
 ---
@@ -65,7 +82,10 @@ Partitions: $(1^4), (2, 1^2), (2^2), (3, 1), (4)$.
 - $E[(3, 1)] = 28.5$
 - $E[(4)] = 30$
 Weighted average:
-$$\frac{1 \cdot 0 + 6 \cdot 27 + 3 \cdot 30 + 8 \cdot 28.5 + 6 \cdot 30}{24} = \frac{660}{24} = 27.5 \quad (\checkmark)$$
+
+$$
+\frac{1 \cdot 0 + 6 \cdot 27 + 3 \cdot 30 + 8 \cdot 28.5 + 6 \cdot 30}{24} = \frac{660}{24} = 27.5 \quad (\checkmark)
+$$
 
 ---
 

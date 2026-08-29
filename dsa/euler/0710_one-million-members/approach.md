@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A palindromic composition (palindromic partition) of $n$ is a tuple $(a_1, a_2, \dots, a_k)$ of positive integers such that:
-$$a_1 + a_2 + \dots + a_k = n \quad \text{and} \quad a_i = a_{k - i + 1} \text{ for all } i$$
+
+$$
+a_1 + a_2 + \dots + a_k = n \quad \text{and} \quad a_i = a_{k - i + 1} \text{ for all } i
+$$
 
 A **twopal** is a palindromic composition having at least one element with a value of $2$.
 Let $t(n)$ be the number of twopals whose elements sum to $n$.
@@ -14,7 +17,10 @@ We are given:
 - $t(42) = 1999923$
 
 We seek to evaluate:
-$$\text{The least integer } n > 42 \text{ such that } t(n) \equiv 0 \pmod{1\,000\,000}$$
+
+$$
+\text{The least integer } n > 42 \text{ such that } t(n) \equiv 0 \pmod{1\,000\,000}
+$$
 
 ---
 
@@ -35,9 +41,17 @@ $P(n) = 2^{\lfloor n/2 \rfloor}$ grows exponentially. For $n \approx 10^6$, $2^{
 3. **Linear Recurrence for Non-2 Compositions**:
    Let $c(m)$ be the number of standard compositions of $m$ using elements $\mathbb{Z}^+ \setminus \{2\}$.
    Its generating function is:
-   $$C(x) = \frac{1}{1 - \sum_{k \ge 1, k \ne 2} x^k} = \frac{1 - x}{1 - 2x + x^2 - x^3}$$
+
+$$
+C(x) = \frac{1}{1 - \sum_{k \ge 1, k \ne 2} x^k} = \frac{1 - x}{1 - 2x + x^2 - x^3}
+$$
+
    Thus, $c(m)$ satisfies the 3rd-order linear recurrence:
-   $$c(m) = 2 c(m-1) - c(m-2) + c(m-3)$$
+
+$$
+c(m) = 2 c(m-1) - c(m-2) + c(m-3)
+$$
+
 4. **Palindromic Assembly**:
    Let $S_c(m) = \sum_{j=0}^m c(j)$ be the prefix sum of $c$.
    - **Even $n = 2m$**: $N(2m) = c(m) + S_c(m - 2)$

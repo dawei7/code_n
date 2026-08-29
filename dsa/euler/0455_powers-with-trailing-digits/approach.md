@@ -3,10 +3,17 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n \ge 2$, let $f(n)$ be the largest integer $0 < x < 10^9$ such that:
-$$n^x \equiv x \pmod{10^9}$$
+
+$$
+n^x \equiv x \pmod{10^9}
+$$
+
 or $0$ if no such integer exists.
 We seek to evaluate:
-$$\sum_{n=2}^{10^6} f(n)$$
+
+$$
+\sum_{n=2}^{10^6} f(n)
+$$
 
 We are given:
 - $f(4) = 411\,728\,896$
@@ -28,7 +35,11 @@ Scanning $x \in [1, 10^9)$ for each $n \le 10^6$ requires $10^{15}$ modular expo
 ### $10$-Adic Contractive Fixed-Point Iteration
 1. If $n \equiv 0 \pmod{10}$, then $n^x \equiv 0 \pmod{10^9}$ for $x \ge 9$, so $x = 0$ and $f(n) = 0$.
 2. For $n \not\equiv 0 \pmod{10}$, the iterated exponent map:
-   $$x_{k+1} = n^{x_k} \bmod 10^9$$
+
+$$
+x_{k+1} = n^{x_k} \bmod 10^9
+$$
+
    forms a contractive dynamical system in the ring of 10-adic integers $\mathbb{Z}_{10}$.
 3. Starting from $x_0 = n$, the sequence stabilizes at the unique non-trivial attractor in fewer than $20$ iterations.
 

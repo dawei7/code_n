@@ -13,7 +13,10 @@ We are given:
 - $S(10000) = 48$
 
 We seek to evaluate:
-$$\sum_{k=1}^{30} S(k^5)$$
+
+$$
+\sum_{k=1}^{30} S(k^5)
+$$
 
 ---
 

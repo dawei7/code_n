@@ -3,12 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 There are several ways to write the number $\frac{1}{2}$ as a sum of inverse squares using distinct integers:
-$$\frac{1}{2} = \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \frac{1}{5^2} + \frac{1}{7^2} + \frac{1}{12^2} + \frac{1}{15^2} + \frac{1}{20^2} + \frac{1}{28^2} + \frac{1}{35^2}$$
+
+$$
+\frac{1}{2} = \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \frac{1}{5^2} + \frac{1}{7^2} + \frac{1}{12^2} + \frac{1}{15^2} + \frac{1}{20^2} + \frac{1}{28^2} + \frac{1}{35^2}
+$$
 
 In fact, only using integers between $2$ and $45$ inclusive, there are exactly three ($3$) ways to write $\frac{1}{2}$ as the sum of inverse squares of distinct integers.
 
 The objective is to find **how many ways there are to write $\frac{1}{2}$ as the sum of inverse squares of distinct integers between $2$ and $80$ inclusive**:
-$$N_{\text{ways}} = \left| \left\{ S \subseteq \{2, 3, \dots, 80\} \;\middle|\; \sum_{k \in S} \frac{1}{k^2} = \frac{1}{2} \right\} \right|$$
+
+$$
+N_{\text{ways}} = \left| \left\{ S \subseteq \{2, 3, \dots, 80\} \;\middle|\; \sum_{k \in S} \frac{1}{k^2} = \frac{1}{2} \right\} \right|
+$$
 
 ---
 
@@ -25,7 +31,11 @@ def naive_inverse_squares():
 ### $p$-Adic Valuation Pruning & Meet-in-the-Middle Partitioning
 1. **$p$-Adic Valuation Theorem:**
    For any prime $p \ge 5$, the sum of fractions $\sum_{k \in S} \frac{1}{k^2}$ can have a denominator coprime to $p$ (specifically, denominator $2$) if and only if the subset of multiples of $p$ chosen satisfies:
-   $$\sum_{m \in S, p \mid m} \left(\frac{p}{m}\right)^2 \equiv 0 \pmod p$$
+
+$$
+\sum_{m \in S, p \mid m} \left(\frac{p}{m}\right)^2 \equiv 0 \pmod p
+$$
+
 2. **Bad Prime Elimination:**
    - Any prime $p > 40$ has at most one multiple $\le 80$, so it can never cancel out $\implies$ eliminated.
    - For primes $p \in \{19, 23, 29, 31, 37, 41\}$, exhaustive testing shows that **no non-empty subset** of multiples sums to a multiple of $p$. Thus all multiples of these 15 primes are eliminated!
@@ -74,12 +84,19 @@ def naive_inverse_squares():
 
 ### Example 1: Sample for $N = 45$ (3 Ways)
 - Summing square reciprocals up to 45 yields exactly:
-  $$N_{\text{ways}}(45) = \mathbf{3}$$
+
+$$
+N_{\text{ways}}(45) = \mathbf{3}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $N = 80$
 - Summing valid representations across all combinations:
-  $$N_{\text{ways}}(80) = \mathbf{301}$$
+
+$$
+N_{\text{ways}}(80) = \mathbf{301}
+$$
 
 ---
 

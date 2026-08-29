@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $T(r)$ be the number of lattice points $(x, y, z, t) \in \mathbb{Z}^4$ inside the 4-dimensional hyperball:
-$$x^2 + y^2 + z^2 + t^2 \le r^2$$
+
+$$
+x^2 + y^2 + z^2 + t^2 \le r^2
+$$
 
 We are given:
 - $T(2) = 89$
@@ -12,7 +15,10 @@ We are given:
 - $T(10^4) = 49348022079085897$
 
 We seek to evaluate:
-$$T(10^8) \pmod{1000000007}$$
+
+$$
+T(10^8) \pmod{1000000007}
+$$
 
 ---
 
@@ -28,10 +34,22 @@ For $r = 10^8$, iterating over $(x, y, z, t)$ with $x^2 + y^2 + z^2 + t^2 \le 10
 ### Jacobi's Four-Square Theorem & Divisor Function Reduction
 1. **Representations by 4 Squares**:
    By Jacobi's four-square identity:
-   $$r_4(n) = 8 \sum_{\substack{d | n \\ 4 \nmid d}} d = 8 \left( \sigma_1(n) - 4 \sigma_1(n/4) \right)$$
+
+$$
+\begin{aligned}
+r_4(n) = 8 \sum_{\substack{d | n \\ 4 \nmid d}} d = 8 \left( \sigma_1(n) - 4 \sigma_1(n/4) \right)
+\end{aligned}
+$$
+
 2. **Summing over the Hyperball**:
    With $N = r^2$:
-   $$T(r) = 1 + \sum_{n=1}^N r_4(n) = 1 + 8 \sum_{\substack{d \le N \\ 4 \nmid d}} d \left\lfloor \frac{N}{d} \right\rfloor = 1 + 8 \left( S(N) - 4 S(\lfloor N/4 \rfloor) \right)$$
+
+$$
+\begin{aligned}
+T(r) = 1 + \sum_{n=1}^N r_4(n) = 1 + 8 \sum_{\substack{d \le N \\ 4 \nmid d}} d \left\lfloor \frac{N}{d} \right\rfloor = 1 + 8 \left( S(N) - 4 S(\lfloor N/4 \rfloor) \right)
+\end{aligned}
+$$
+
    where $S(N) = \sum_{d=1}^N d \lfloor N/d \rfloor$.
 
 ---

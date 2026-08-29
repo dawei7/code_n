@@ -3,9 +3,15 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define the sequences:
-$$S(k) = (p_k)^k \pmod{10007}$$
 
-$$S_2(k) = S(k) + S\left(\lfloor k/10000 \rfloor + 1\right)$$
+$$
+S(k) = (p_k)^k \pmod{10007}
+$$
+
+$$
+S_2(k) = S(k) + S\left(\lfloor k/10000 \rfloor + 1\right)
+$$
+
 where $p_k$ is the $k$-th prime number.
 Let $M(i, j)$ be the median of $S_2(i), \dots, S_2(j)$.
 Let $F(n, k) = \sum_{i=1}^{n-k+1} M(i, i+k-1)$.
@@ -17,7 +23,10 @@ We are given:
 - $F(10^5, 10^4) = 675348207.5$
 
 We seek to evaluate:
-$$F(10^7, 10^5)$$
+
+$$
+F(10^7, 10^5)
+$$
 
 ---
 

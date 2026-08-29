@@ -29,7 +29,10 @@ Find $S(5 \times 10^4) \bmod 999676999$.
 
 ### Generating Functions for Weighted Partitions
 The generating function $F(x) = \sum_{n=0}^\infty G(n) x^n$ with $G(0) = 1$ decomposes as an Euler product:
-$$F(x) = \prod_{k=1}^\infty \left( \sum_{m=0}^\infty (D(k) x^k)^m \right) = \prod_{k=1}^\infty \frac{1}{1 - D(k) x^k}$$
+
+$$
+F(x) = \prod_{k=1}^\infty \left( \sum_{m=0}^\infty (D(k) x^k)^m \right) = \prod_{k=1}^\infty \frac{1}{1 - D(k) x^k}
+$$
 
 ---
 
@@ -37,14 +40,28 @@ $$F(x) = \prod_{k=1}^\infty \left( \sum_{m=0}^\infty (D(k) x^k)^m \right) = \pro
 
 ### Logarithmic Derivative Recurrence
 Taking the logarithmic derivative of $F(x)$:
-$$\ln F(x) = \sum_{k=1}^\infty -\ln(1 - D(k) x^k) = \sum_{k=1}^\infty \sum_{j=1}^\infty \frac{D(k)^j}{j} x^{k j}$$
+
+$$
+\ln F(x) = \sum_{k=1}^\infty -\ln(1 - D(k) x^k) = \sum_{k=1}^\infty \sum_{j=1}^\infty \frac{D(k)^j}{j} x^{k j}
+$$
+
 Multiplying by $x \frac{d}{dx}$:
-$$A(x) = x \frac{F'(x)}{F(x)} = \sum_{k=1}^\infty \sum_{j=1}^\infty k D(k)^j x^{k j} = \sum_{m=1}^\infty c_m x^m$$
+
+$$
+A(x) = x \frac{F'(x)}{F(x)} = \sum_{k=1}^\infty \sum_{j=1}^\infty k D(k)^j x^{k j} = \sum_{m=1}^\infty c_m x^m
+$$
+
 where:
-$$c_m = \sum_{k \mid m} k \cdot D(k)^{m/k} \pmod M$$
+
+$$
+c_m = \sum_{k \mid m} k \cdot D(k)^{m/k} \pmod M
+$$
 
 Since $x F'(x) = A(x) F(x)$, equating coefficients of $x^n$ gives the linear recurrence:
-$$n G(n) = \sum_{m=1}^n c_m G(n - m) \implies G(n) = \frac{1}{n} \sum_{m=1}^n c_m G(n - m) \pmod M$$
+
+$$
+n G(n) = \sum_{m=1}^n c_m G(n - m) \implies G(n) = \frac{1}{n} \sum_{m=1}^n c_m G(n - m) \pmod M
+$$
 
 ### Execution Stages:
 1. **$D(n)$ Sieve**: Compute $D(n) = D(p) \cdot \frac{n}{p} + p \cdot D\left(\frac{n}{p}\right)$ using a linear SPF sieve in $\mathcal{O}(N)$ time.

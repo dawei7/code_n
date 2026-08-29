@@ -3,14 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an integer $n > 1$, an affine function $f(x) \equiv a x + b \pmod n$ ($0 < a < n, 0 \le b < n$) is a **retraction** if:
-$$f(f(x)) \equiv f(x) \pmod n \quad \text{for all } 0 \le x < n$$
+
+$$
+f(f(x)) \equiv f(x) \pmod n \quad \text{for all } 0 \le x < n
+$$
+
 Let $R(n)$ be the number of retractions modulo $n$.
 
 We are given:
-$$\sum_{k=1}^{99\,999} R\left(\binom{100\,000}{k}\right) \equiv 628\,701\,600 \pmod{1\,000\,000\,007}$$
+
+$$
+\sum_{k=1}^{99\,999} R\left(\binom{100\,000}{k}\right) \equiv 628\,701\,600 \pmod{1\,000\,000\,007}
+$$
 
 We seek to evaluate:
-$$\sum_{k=1}^{9\,999\,999} R\left(\binom{10\,000\,000}{k}\right) \pmod{1\,000\,000\,007}$$
+
+$$
+\sum_{k=1}^{9\,999\,999} R\left(\binom{10\,000\,000}{k}\right) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -27,7 +37,10 @@ $\binom{10^7}{k}$ has up to millions of digits. Factoring $10^7$ astronomical in
 1. $f(f(x)) \equiv f(x) \pmod n \iff a^2 \equiv a \pmod n$ and $a b \equiv 0 \pmod n$.
 2. For each idempotent $a \bmod n$, the number of valid $b$ values is $\gcd(a, n)$.
 3. Across all non-zero idempotents $a$, the sum of $\gcd(a, n)$ equals the **sum of unitary divisors** $\sigma^*(n)$ minus the $a=0$ term ($n$):
-$$R(n) = \sigma^*(n) - n = \prod_{p^e \parallel n} (1 + p^e) - n$$
+
+$$
+R(n) = \sigma^*(n) - n = \prod_{p^e \parallel n} (1 + p^e) - n
+$$
 
 ---
 
@@ -35,7 +48,11 @@ $$R(n) = \sigma^*(n) - n = \prod_{p^e \parallel n} (1 + p^e) - n$$
 
 ### Incremental Binomial Factorization & Multiplicative Updates
 1. **Recurrence Relation**:
-   $$\binom{N}{k} = \binom{N}{k-1} \cdot \frac{N - k + 1}{k}$$
+
+$$
+\binom{N}{k} = \binom{N}{k-1} \cdot \frac{N - k + 1}{k}
+$$
+
 2. **Dynamic Multiplicative Factorization**:
    As $k$ increases from $1$ to $\lfloor N/2 \rfloor$:
    - Multiply the running prime exponents by factors of $N - k + 1$.

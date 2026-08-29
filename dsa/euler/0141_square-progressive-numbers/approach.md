@@ -11,7 +11,10 @@ We will call such numbers, $n$, **progressive**.
 Some progressive numbers, such as $9$ and $10404 = 102^2$, happen also to be **perfect squares**. The sum of all progressive perfect squares below one hundred thousand ($100\,000$) is $124\,657$.
 
 The objective is to find the **sum of all progressive perfect squares below one trillion ($10^{12}$)**:
-$$S_{\text{total}} = \sum \left\{ n < 10^{12} \;\middle|\; n = m^2 \land \exists (d, q, r) \text{ forming a GP s.t. } n = dq + r \text{ with } 0 < r < d \right\}$$
+
+$$
+S_{\text{total}} = \sum \left\{ n < 10^{12} \;\middle|\; n = m^2 \land \exists (d, q, r) \text{ forming a GP s.t. } n = dq + r \text{ with } 0 < r < d \right\}
+$$
 
 ---
 
@@ -28,14 +31,30 @@ def naive_progressive_squares():
 ### Inverted Geometric Progression Parameterization
 1. Order the three positive terms as $r < q < d$ (since $r < d$ is mandatory for remainders).
 2. Let the irreducible common ratio of the geometric sequence be:
-   $$\text{ratio} = \frac{a}{b} > 1 \quad \text{with } \gcd(a, b) = 1 \text{ and } a > b \ge 1$$
+
+$$
+\text{ratio} = \frac{a}{b} > 1 \quad \text{with } \gcd(a, b) = 1 \text{ and } a > b \ge 1
+$$
+
 3. For some positive scaling integer $c \ge 1$:
-   $$r = c b^2, \quad q = c a b, \quad d = c a^2$$
+
+$$
+r = c b^2, \quad q = c a b, \quad d = c a^2
+$$
+
 4. Substituting into the Euclidean division formula $n = dq + r$:
-   $$n = (c a^2)(c a b) + c b^2 = c^2 a^3 b + c b^2$$
+
+$$
+n = (c a^2)(c a b) + c b^2 = c^2 a^3 b + c b^2
+$$
+
 5. **Search Bounds:**
    Since $n < 10^{12}$ and $n > a^3 b \ge a^3$, we have:
-   $$a \le \lfloor (10^{12})^{1/3} \rfloor = 10\,000$$
+
+$$
+a \le \lfloor (10^{12})^{1/3} \rfloor = 10\,000
+$$
+
 6. We iterate $a \in [2, 10000]$, coprime $b \in [1, a-1]$, and $c \ge 1$, testing whether $n$ is a perfect square. This checks fewer than $5 \times 10^5$ candidates in $\approx 0.05$ seconds.
 
 ---
@@ -81,12 +100,19 @@ def naive_progressive_squares():
 
 ### Example 2: Sample for $n < 100\,000$
 - Summing progressive squares below $100\,000$:
-  $$S = \mathbf{124\,657}$$
+
+$$
+S = \mathbf{124\,657}
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 3: Target Evaluation for $n < 10^{12}$
 - Summing all progressive perfect squares below $10^{12}$:
-  $$S_{\text{total}} = \mathbf{878\,422\,814\,160}$$
+
+$$
+S_{\text{total}} = \mathbf{878\,422\,814\,160}
+$$
 
 ---
 

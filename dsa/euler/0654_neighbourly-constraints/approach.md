@@ -12,7 +12,10 @@ We are given:
 - $T(10^2, 10) \equiv 782136797 \pmod{10^9 + 7}$
 
 We seek to evaluate:
-$$T(5000, 10^{12}) \bmod 1\,000\,000\,007$$
+
+$$
+T(5000, 10^{12}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -28,10 +31,17 @@ The adjacency matrix $A$ has dimension $K = n - 1 = 4999$. Standard matrix multi
 ### Prefix Sum Recurrence & Minimal Linear Recurrence
 1. **Dynamic Programming State**:
    Let $dp_t(x)$ be the number of valid sequences of length $t$ ending with integer $x \in [1, n - 1]$.
-   $$dp_{t+1}(x) = \sum_{y=1}^{n - x} dp_t(y) = \text{prefix}_t(n - x)$$
+
+$$
+dp_{t+1}(x) = \sum_{y=1}^{n - x} dp_t(y) = \text{prefix}_t(n - x)
+$$
+
 2. **Rational Generating Function**:
    Because the state space is a finite graph of dimension $K = 4999$, the scalar sequence $s_m = T(n, m)$ satisfies a linear recurrence with constant coefficients of degree $L \le \lceil K/2 \rceil \approx 2500$:
-   $$\sum_{m=1}^\infty T(n, m) x^{m-1} = \frac{P(x)}{Q(x)}$$
+
+$$
+\sum_{m=1}^\infty T(n, m) x^{m-1} = \frac{P(x)}{Q(x)}
+$$
 
 ---
 
@@ -44,7 +54,10 @@ The adjacency matrix $A$ has dimension $K = n - 1 = 4999$. Standard matrix multi
    Run Berlekamp-Massey on the generated sequence modulo $10^9 + 7$ to determine the minimal recurrence polynomial $Q(x)$ of degree $L \approx 2500$.
 3. **Bostan-Mori Divide-and-Conquer Extraction**:
    Extract $[x^{m-1}] \frac{P(x)}{Q(x)}$ via Bostan-Mori in $O(L \log L \log m)$ using split complex FFT modular convolutions:
-   $$\frac{P(x)}{Q(x)} = \frac{P(x) Q(-x)}{Q(x) Q(-x)} = \frac{U_{\text{even}}(x^2) + x U_{\text{odd}}(x^2)}{V(x^2)}$$
+
+$$
+\frac{P(x)}{Q(x)} = \frac{P(x) Q(-x)}{Q(x) Q(-x)} = \frac{U_{\text{even}}(x^2) + x U_{\text{odd}}(x^2)}{V(x^2)}
+$$
 
 This evaluates $T(5000, 10^{12}) \bmod 10^9 + 7$ in **$\approx 14.88$ seconds** in pure Python!
 

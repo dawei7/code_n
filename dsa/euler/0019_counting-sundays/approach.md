@@ -5,7 +5,11 @@
 Let $D(y, m) \in \{0, 1, \dots, 6\}$ denote the day-of-week residue modulo 7 for the 1st day of month $m \in \{1, \dots, 12\}$ in year $y \in \{1901, \dots, 2000\}$, indexed as $0 = \text{Monday}, 1 = \text{Tuesday}, \dots, 6 = \text{Sunday}$.
 
 The objective is to compute the total number of Sundays falling on the 1st of the month during the entire 20th century ($1901$ to $2000$ inclusive):
-$$N_{\text{Sundays}} = \sum_{y=1901}^{2000} \sum_{m=1}^{12} \mathbb{I}\left( D(y, m) \equiv 6 \pmod 7 \right)$$
+
+$$
+N_{\text{Sundays}} = \sum_{y=1901}^{2000} \sum_{m=1}^{12} \mathbb{I}\left( D(y, m) \equiv 6 \pmod 7 \right)
+$$
+
 where $\mathbb{I}(P) \in \{0, 1\}$ is the truth indicator function.
 
 ---
@@ -30,7 +34,11 @@ def naive_counting_sundays():
 
 ### Gregorian Leap Year Congruence
 A year $y$ is a leap year iff:
-$$\operatorname{is\_leap}(y) = (y \equiv 0 \pmod 4) \land (y \not\equiv 0 \pmod{100} \lor y \equiv 0 \pmod{400})$$
+
+$$
+\operatorname{is\_leap}(y) = (y \equiv 0 \pmod 4) \land (y \not\equiv 0 \pmod{100} \lor y \equiv 0 \pmod{400})
+$$
+
 Thus, 1900 was a standard year ($365$ days), while 2000 was a leap year ($366$ days).
 
 ### Month Duration & Modulo 7 Shift Table
@@ -67,7 +75,10 @@ Thus, 1900 was a standard year ($365$ days), while 2000 was a leap year ($366$ d
   - Add 31 days $\to 60 + 31 = 91 \equiv 0$ (Monday).
 - **1 Sep 1901**: First 1st-of-month Sunday of the century encountered.
 - Continuing across all 1200 months yields:
-  $$N_{\text{Sundays}} = \mathbf{171}$$
+
+$$
+N_{\text{Sundays}} = \mathbf{171}
+$$
 
 ---
 

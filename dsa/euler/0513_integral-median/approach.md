@@ -4,7 +4,11 @@
 
 Let $a \le b \le c$ be the integer side lengths of triangle $ABC$.
 By Apollonius' theorem, the length of median $m_c$ from $C$ to the midpoint of $c = AB$ satisfies:
-$$2a^2 + 2b^2 = c^2 + (2m_c)^2$$
+
+$$
+2a^2 + 2b^2 = c^2 + (2m_c)^2
+$$
+
 Let $m = 2m_c$ be an even integer.
 Let $F(n)$ be the number of valid integer triangles with $c \le n$ and $m_c \in \mathbb{Z}^+$.
 
@@ -13,7 +17,10 @@ We are given:
 - $F(50) = 165$
 
 We seek to evaluate:
-$$F(100\,000)$$
+
+$$
+F(100\,000)
+$$
 
 ---
 
@@ -29,7 +36,11 @@ Checking all triples $(a, b, c)$ with $1 \le a \le b \le c \le 100\,000$ require
 ### Sum of Two Squares Parametrization
 1. **Sum of Squares Form**:
    Substituting $u = b + a$ and $v = b - a$:
-   $$u^2 + v^2 = c^2 + m^2$$
+
+$$
+u^2 + v^2 = c^2 + m^2
+$$
+
    where $u > c$, $0 \le v \le c$, and $u \equiv v \pmod 2$.
 2. **Primitive Integer Solutions**:
    The representations $u^2 + v^2 = c^2 + m^2$ correspond to factoring $c + mi$ in the Gaussian integer ring $\mathbb{Z}[i]$.
@@ -46,7 +57,10 @@ Checking all triples $(a, b, c)$ with $1 \le a \le b \le c \le 100\,000$ require
    Restricting to specific $(x, y)$ residue parities yields exact counts of $(a, b, c)$ with integer sides.
 3. **Odd Scaling Inversion**:
    Since scaling $c, m_c$ by an odd integer preserves the parity structure:
-   $$F(n) = \text{PrimitiveCount}(n) - \sum_{k \ge 3, k \text{ odd}} F(\lfloor n/k \rfloor)$$
+
+$$
+F(n) = \text{PrimitiveCount}(n) - \sum_{k \ge 3, k \text{ odd}} F(\lfloor n/k \rfloor)
+$$
 
 This evaluates $N = 100\,000$ in **$0.82$ seconds**!
 

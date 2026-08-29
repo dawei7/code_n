@@ -3,10 +3,14 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 $a_1 = 1$, and for $n \ge 1$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 a_{2n} &= 2a_n \\
 a_{2n+1} &= a_n - 3a_{n+1}
-\end{aligned}$$
+\end{aligned}
+$$
+
 Define $S(N) = \sum_{n=1}^N a_n$.
 Given:
 - $S(10) = -13$.
@@ -26,9 +30,16 @@ Find $S(10^{12})$.
 
 ### Pairwise Telescoping Sum
 Adding adjacent even and odd terms:
-$$a_{2k} + a_{2k+1} = 2a_k + (a_k - 3a_{k+1}) = 3(a_k - a_{k+1})$$
+
+$$
+a_{2k} + a_{2k+1} = 2a_k + (a_k - 3a_{k+1}) = 3(a_k - a_{k+1})
+$$
+
 Summing over $k \in [1, m]$ creates a clean telescoping sum:
-$$\sum_{k=1}^m (a_{2k} + a_{2k+1}) = 3(a_1 - a_{m+1}) = 3(1 - a_{m+1})$$
+
+$$
+\sum_{k=1}^m (a_{2k} + a_{2k+1}) = 3(a_1 - a_{m+1}) = 3(1 - a_{m+1})
+$$
 
 ---
 
@@ -37,9 +48,16 @@ $$\sum_{k=1}^m (a_{2k} + a_{2k+1}) = 3(a_1 - a_{m+1}) = 3(1 - a_{m+1})$$
 ### Exact Closed-Form Invariant
 For any integer $N$:
 - If $N = 2m$:
-  $$S(2m) = 4 - a_m$$
+
+$$
+S(2m) = 4 - a_m
+$$
+
 - If $N = 2m + 1$:
-  $$S(2m + 1) = 4 - 3a_{m+1}$$
+
+$$
+S(2m + 1) = 4 - 3a_{m+1}
+$$
 
 Evaluating $a_{5 \cdot 10^{11}}$ via memoized divide-and-conquer in logarithmic depth $\mathcal{O}(\log N)$ computes $S(10^{12}) = \mathbf{-6999033352333308}$ in **under 0.001s** in 100% pure Python.
 

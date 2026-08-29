@@ -3,13 +3,19 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Define:
-$$G(N) = \sum_{j=1}^N \sum_{i=1}^j \gcd(i, j)$$
+
+$$
+G(N) = \sum_{j=1}^N \sum_{i=1}^j \gcd(i, j)
+$$
 
 We are given:
 - $G(10) = 122$
 
 We seek to evaluate:
-$$G(10^{11}) \pmod{998244353}$$
+
+$$
+G(10^{11}) \pmod{998244353}
+$$
 
 ---
 
@@ -24,9 +30,17 @@ Iterating over all $1 \le i \le j \le 10^{11}$ involves $\approx \frac{10^{22}}{
 
 ### Totient Function Dirichlet Inversion
 1. **Identity**:
-   $$\gcd(i, j) = \sum_{d \mid \gcd(i, j)} \phi(d)$$
+
+$$
+\gcd(i, j) = \sum_{d \mid \gcd(i, j)} \phi(d)
+$$
+
 2. **Double Sum Transformation**:
-   $$G(N) = \sum_{j=1}^N \sum_{i=1}^j \sum_{d \mid i, d \mid j} \phi(d) = \sum_{d=1}^N \phi(d) \sum_{k=1}^{\lfloor N/d \rfloor} k = \sum_{d=1}^N \phi(d) T\left(\left\lfloor \frac{N}{d} \right\rfloor\right)$$
+
+$$
+G(N) = \sum_{j=1}^N \sum_{i=1}^j \sum_{d \mid i, d \mid j} \phi(d) = \sum_{d=1}^N \phi(d) \sum_{k=1}^{\lfloor N/d \rfloor} k = \sum_{d=1}^N \phi(d) T\left(\left\lfloor \frac{N}{d} \right\rfloor\right)
+$$
+
    where $T(m) = \frac{m(m+1)}{2}$.
 
 ---
@@ -36,12 +50,19 @@ Iterating over all $1 \le i \le j \le 10^{11}$ involves $\approx \frac{10^{22}}{
 ### Sublinear Du Sieve / Hyperbolic Partitioning ($O(N^{2/3})$)
 1. **Summatory Totient Function $\Phi(x) = \sum_{k=1}^x \phi(k)$**:
    Using $\sum_{d \mid n} \phi(d) = n$, summing over $n \le x$ gives:
-   $$\Phi(x) = \frac{x(x+1)}{2} - \sum_{k=2}^x \Phi\left(\left\lfloor \frac{x}{k} \right\rfloor\right)$$
+
+$$
+\Phi(x) = \frac{x(x+1)}{2} - \sum_{k=2}^x \Phi\left(\left\lfloor \frac{x}{k} \right\rfloor\right)
+$$
+
 2. **Threshold Precomputation**:
    Precompute $\Phi(x)$ for all $x \le B = 2 \times 10^7 \approx N^{2/3}$ using a linear sieve in $O(B)$ time.
 3. **Hyperbolic Quotient Blocks**:
    Group terms by equal quotients $q = \lfloor N/d \rfloor$:
-   $$G(N) = \sum_{\text{blocks } [l, r]} (\Phi(r) - \Phi(l - 1)) \cdot T(q)$$
+
+$$
+G(N) = \sum_{\text{blocks } [l, r]} (\Phi(r) - \Phi(l - 1)) \cdot T(q)
+$$
 
 This evaluates $G(10^{11}) \pmod{998244353}$ in **$\approx 20.8$ seconds** in pure Python!
 

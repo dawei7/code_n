@@ -3,12 +3,22 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A positive integer $A$ is an **Alexandrian integer** if there exist non-zero integers $p, q, r$ such that:
-$$A = p \cdot q \cdot r \quad \text{and} \quad \frac{1}{A} = \frac{1}{p} + \frac{1}{q} + \frac{1}{r}$$
+
+$$
+A = p \cdot q \cdot r \quad \text{and} \quad \frac{1}{A} = \frac{1}{p} + \frac{1}{q} + \frac{1}{r}
+$$
 
 For example:
-$$630 = (-5) \times (-7) \times 18 \quad \text{and} \quad \frac{1}{630} = \frac{1}{-5} + \frac{1}{-7} + \frac{1}{18}$$
+
+$$
+630 = (-5) \times (-7) \times 18 \quad \text{and} \quad \frac{1}{630} = \frac{1}{-5} + \frac{1}{-7} + \frac{1}{18}
+$$
+
 The first $6$ Alexandrian integers are:
-$$6, 42, 120, 156, 420, 630$$
+
+$$
+6, 42, 120, 156, 420, 630
+$$
 
 Find the **$150\,000^{\text{th}}$ Alexandrian integer**, $A_{150000}$, when arranged in strictly ascending order.
 
@@ -27,12 +37,24 @@ def naive_alexandrian():
 ### Divisor Pair Parametrization & Polynomial Sieve Factorization
 1. **Parametric Reduction to Divisor Pairs:**
    Multiplying $\frac{1}{pqr} = \frac{1}{p} + \frac{1}{q} + \frac{1}{r}$ by $pqr$ yields:
-   $$1 = pq + qr + rp$$
+
+$$
+1 = pq + qr + rp
+$$
+
    Without loss of generality, substituting one negative variable (say $p \to -p$) gives:
-   $$(q - p)(r - p) = p^2 + 1$$
+
+$$
+(q - p)(r - p) = p^2 + 1
+$$
+
    Let $d_1, d_2$ be any positive divisor pair of $p^2 + 1$ such that $d_1 \cdot d_2 = p^2 + 1$ with $1 \le d_1 \le p$.
    Then:
-   $$A = p(p + d_1)(p + d_2)$$
+
+$$
+A = p(p + d_1)(p + d_2)
+$$
+
 2. **Polynomial Sieve of $p^2 + 1$:**
    Every prime factor $q > 2$ of $p^2 + 1$ must satisfy $q \equiv 1 \pmod 4$.
    Using modular square roots $r^2 \equiv -1 \pmod q$, we factorize $p^2 + 1$ for all $p \le 80\,000$ in $\mathcal{O}(P_{\max} \log \log P_{\max})$ time.
@@ -77,7 +99,10 @@ def solve(target_index: int = 150000) -> int:
     return unique_alex[target_index - 1]
 ```
 Evaluating for $\text{target\_index} = 150000$:
-$$A_{150000} = \mathbf{1\,884\,161\,251\,122\,450}$$
+
+$$
+A_{150000} = \mathbf{1\,884\,161\,251\,122\,450}
+$$
 
 ---
 
@@ -95,7 +120,10 @@ $$A_{150000} = \mathbf{1\,884\,161\,251\,122\,450}$$
 
 ### Example 2: Target Evaluation for $A_{150000}$
 - Sieve factorizing all $p \le 80\,000$:
-  $$A_{150000} = \mathbf{1\,884\,161\,251\,122\,450}$$
+
+$$
+A_{150000} = \mathbf{1\,884\,161\,251\,122\,450}
+$$
 
 ---
 

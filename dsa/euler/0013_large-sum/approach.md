@@ -5,10 +5,16 @@
 Let $\{A_1, A_2, \dots, A_N\} \subset \mathbb{N}$ denote a collection of $N = 100$ large natural numbers, each with $L = 50$ decimal digits ($10^{49} \le A_i < 10^{50}$).
 
 We compute the exact total summation:
-$$S = \sum_{i=1}^N A_i$$
+
+$$
+S = \sum_{i=1}^N A_i
+$$
 
 The objective is to compute the first $10$ most significant digits of $S$:
-$$D_{10}(S) = \left\lfloor \frac{S}{10^{\lfloor \log_{10} S \rfloor - 9}} \right\rfloor$$
+
+$$
+D_{10}(S) = \left\lfloor \frac{S}{10^{\lfloor \log_{10} S \rfloor - 9}} \right\rfloor
+$$
 
 ---
 
@@ -30,7 +36,11 @@ def naive_truncated_sum(numbers):
 ## 3. Core Intuition & Mathematical Structure
 
 Because $10^{49} \le A_i < 10^{50}$ for all $i \in [1, 100]$:
-$$100 \times 10^{49} \le S < 100 \times 10^{50} \implies 10^{51} \le S < 10^{52}$$
+
+$$
+100 \times 10^{49} \le S < 100 \times 10^{50} \implies 10^{51} \le S < 10^{52}
+$$
+
 The exact sum $S$ is strictly a $52$-digit integer.
 
 ### BigNum Summation Parameters
@@ -48,7 +58,11 @@ The exact sum $S$ is strictly a $52$-digit integer.
 
 ### Leading Digit Extraction
 For a 52-digit exact integer $S$, the first 10 digits are extracted via integer division:
-$$D_{10}(S) = \left\lfloor \frac{S}{10^{52 - 10}} \right\rfloor = \left\lfloor \frac{S}{10^{42}} \right\rfloor$$
+
+$$
+D_{10}(S) = \left\lfloor \frac{S}{10^{52 - 10}} \right\rfloor = \left\lfloor \frac{S}{10^{42}} \right\rfloor
+$$
+
 or equivalently by parsing the first 10 characters of the base-10 string representation `str(S)[:10]`.
 
 ---
@@ -58,10 +72,17 @@ or equivalently by parsing the first 10 characters of the base-10 string represe
 ### Exact Summation Trace
 1. Parsing all 100 50-digit numbers into arbitrary-precision integers.
 2. Summing all 100 numbers:
-   $$S = \mathbf{5537376230}390876637301260352330157010197050141140984$$
+
+$$
+S = \mathbf{5537376230}390876637301260352330157010197050141140984
+$$
+
 3. Total digit count: $52$ digits.
 4. Extracting the first 10 characters:
-   $$D_{10}(S) = \mathbf{5\,537\,376\,230}$$
+
+$$
+D_{10}(S) = \mathbf{5\,537\,376\,230}
+$$
 
 ---
 

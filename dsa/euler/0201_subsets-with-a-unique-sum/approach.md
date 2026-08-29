@@ -6,13 +6,19 @@ For any set $A$ of numbers, let $\operatorname{sum}(A)$ be the sum of the elemen
 Consider the set $B = \{1, 3, 6, 8, 10, 11\}$. There are $20$ subsets of $B$ containing $3$ elements.
 Their sums include non-unique values (like $20$ from $\{1, 8, 11\}$ and $\{3, 6, 11\}$), while some sums are unique (like $16$ from $\{1, 6, 9\}$ or $\{1, 6, 9\}$? no, $\{1, 6, 9\} \not\subset B$).
 The sum of all unique sums of $3$-element subsets of $B$ is:
-$$\operatorname{sum}(U(B, 3)) = 156$$
+
+$$
+\operatorname{sum}(U(B, 3)) = 156
+$$
 
 Now consider the $100$-element set $S = \{1^2, 2^2, 3^2, \dots, 100^2\}$.
 There are $\binom{100}{50} \approx 1.008 \times 10^{29}$ subsets of size $50$.
 
 The objective is to find the **sum of all unique sums of $50$-element subsets of $S$**:
-$$\operatorname{sum}(U(S, 50)) = \sum \left\{ s \in \mathbb{N} \;\middle|\; \left| \left\{ T \subset S : |T| = 50 \land \sum_{x \in T} x = s \right\} \right| = 1 \right\}$$
+
+$$
+\operatorname{sum}(U(S, 50)) = \sum \left\{ s \in \mathbb{N} \;\middle|\; \left| \left\{ T \subset S : |T| = 50 \land \sum_{x \in T} x = s \right\} \right| = 1 \right\}
+$$
 
 ---
 
@@ -90,7 +96,10 @@ def solve(n: int = 100, k: int = 50) -> int:
     return ans
 ```
 Evaluating for $n = 100, k = 50$:
-$$\operatorname{sum}(U(S, 50)) = \mathbf{115\,039\,000}$$
+
+$$
+\operatorname{sum}(U(S, 50)) = \mathbf{115\,039\,000}
+$$
 
 ---
 
@@ -107,7 +116,10 @@ $$\operatorname{sum}(U(S, 50)) = \mathbf{115\,039\,000}$$
 
 ### Example 2: Target Evaluation for $S = \{1^2, \dots, 100^2\}$ with $k = 50$
 - Summing all bit positions in $\text{ones}[50]$:
-  $$\operatorname{sum}(U(S, 50)) = \mathbf{115\,039\,000}$$
+
+$$
+\operatorname{sum}(U(S, 50)) = \mathbf{115\,039\,000}
+$$
 
 ---
 

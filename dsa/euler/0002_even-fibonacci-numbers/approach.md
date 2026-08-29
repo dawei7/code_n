@@ -3,13 +3,25 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let the Fibonacci sequence $(F_n)_{n \ge 1}$ be defined by the initial conditions and recurrence:
-$$F_1 = 1, \quad F_2 = 2, \quad F_n = F_{n-1} + F_{n-2} \quad \text{for } n \ge 3$$
+
+$$
+F_1 = 1, \quad F_2 = 2, \quad F_n = F_{n-1} + F_{n-2} \quad \text{for } n \ge 3
+$$
 
 Define the set of even-valued Fibonacci terms not exceeding an upper bound $N \in \mathbb{N}$:
-$$\mathcal{E}_N = \{ F_k \mid k \in \mathbb{N}, \, F_k \le N, \, 2 \mid F_k \}$$
+
+$$
+\mathcal{E}_N = \{ F_k \mid k \in \mathbb{N}, \, F_k \le N, \, 2 \mid F_k \}
+$$
 
 The objective is to compute the sum of all elements in $\mathcal{E}_N$:
-$$S(N) = \sum_{x \in \mathcal{E}_N} x = \sum_{\substack{k \ge 1 \\ F_k \le N}} F_k \cdot \mathbb{I}(2 \mid F_k)$$
+
+$$
+\begin{aligned}
+S(N) = \sum_{x \in \mathcal{E}_N} x = \sum_{\substack{k \ge 1 \\ F_k \le N}} F_k \cdot \mathbb{I}(2 \mid F_k)
+\end{aligned}
+$$
+
 where $\mathbb{I}(P) \in \{0, 1\}$ is the indicator function of proposition $P$.
 
 We must evaluate $S(4\,000\,000)$.
@@ -33,7 +45,11 @@ def naive_S(limit):
 
 ### Computational Inefficiencies
 1. **Redundant Parity Computations**: The parity of Fibonacci numbers follows a strict period of 3:
-   $$\text{Odd}, \text{Even}, \text{Odd}, \text{Odd}, \text{Even}, \text{Odd}, \dots$$
+
+$$
+\text{Odd}, \text{Even}, \text{Odd}, \text{Odd}, \text{Even}, \text{Odd}, \dots
+$$
+
 2. **Unnecessary Branching**: Testing modulo on every element wastes two-thirds of all loop cycles on odd numbers.
 
 ---
@@ -41,7 +57,11 @@ def naive_S(limit):
 ## 3. Core Intuition & Mathematical Structure
 
 Because every third Fibonacci term is even, we can define the pure subsequence of even terms:
-$$E_n = F_{3n-1} \quad (\text{or } F_{3n} \text{ under } F_1=1, F_2=1 \text{ indexing})$$
+
+$$
+E_n = F_{3n-1} \quad (\text{or } F_{3n} \text{ under } F_1=1, F_2=1 \text{ indexing})
+$$
+
 Specifically: $E_1 = 2, E_2 = 8, E_3 = 34, E_4 = 144, \dots$
 
 ### Fibonacci Parity & Subsequence Table
@@ -66,15 +86,22 @@ Specifically: $E_1 = 2, E_2 = 8, E_3 = 34, E_4 = 144, \dots$
 
 ### Direct Recurrence for Even Terms
 Let $E_n$ denote the $n$-th even Fibonacci term. Expanding $F_{3n}$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 F_{3n} &= F_{3n-1} + F_{3n-2} \\
 &= (F_{3n-2} + F_{3n-3}) + F_{3n-2} = 2F_{3n-2} + F_{3n-3} \\
 &= 2(F_{3n-3} + F_{3n-4}) + F_{3n-3} = 3F_{3n-3} + 2F_{3n-4} \\
 &= 3F_{3n-3} + 2(F_{3n-3} - F_{3n-6}) = 4F_{3n-3} + F_{3n-6}
-\end{aligned}$$
+\end{aligned}
+$$
 
 Translating to $E_n$:
-$$\boxed{E_n = 4E_{n-1} + E_{n-2} \quad \text{for } n \ge 3}$$
+
+$$
+\boxed{E_n = 4E_{n-1} + E_{n-2} \quad \text{for } n \ge 3}
+$$
+
 with base conditions $E_1 = 2, E_2 = 8$.
 
 ---

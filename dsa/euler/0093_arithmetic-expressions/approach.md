@@ -16,7 +16,10 @@ Let $\mathcal{D} = \{a, b, c, d\} \subset \{1, 2, \dots, 9\}$ with $a < b < c < 
 Let $n(\mathcal{D})$ be the maximum integer such that all integers $\{1, 2, \dots, n(\mathcal{D})\}$ can be formed.
 
 The objective is to find the **set of 4 distinct digits** for which the longest set of consecutive positive integers $1$ to $n$ can be obtained:
-$$\mathcal{D}^* = \operatorname*{arg\,max}_{1 \le a < b < c < d \le 9} n(\{a, b, c, d\})$$
+
+$$
+\mathcal{D}^* = \operatorname*{arg\,max}_{1 \le a < b < c < d \le 9} n(\{a, b, c, d\})
+$$
 
 ---
 
@@ -33,9 +36,17 @@ def naive_eval(a, b, c, d):
 ### Exact Rational Arithmetic & Catalan Parenthesization Trees
 1. By using `fractions.Fraction`, every intermediate expression is evaluated with $100\%$ exact rational precision.
 2. For 4 operands, the number of distinct binary bracketings is given by the 3rd Catalan number:
-   $$C_3 = \frac{1}{4} \binom{6}{3} = \frac{20}{4} = 5 \text{ binary tree structures}$$
+
+$$
+C_3 = \frac{1}{4} \binom{6}{3} = \frac{20}{4} = 5 \text{ binary tree structures}
+$$
+
 3. For each of the $\binom{9}{4} = 126$ digit combinations, there are $4! = 24$ permutations, $4^3 = 64$ operator choices, and $5$ tree bracketings:
-   $$126 \times 24 \times 64 \times 5 = 967\,680 \text{ evaluations}$$
+
+$$
+126 \times 24 \times 64 \times 5 = 967\,680 \text{ evaluations}
+$$
+
 4. All $967\,680$ expressions evaluate in $\approx 0.50$ seconds.
 
 ---
@@ -78,7 +89,10 @@ def naive_eval(a, b, c, d):
   - Missing integer: $52$.
 - Longest consecutive sequence: $n = \mathbf{51}$.
 - Formatted Digit String:
-  $$\mathbf{s} = \mathbf{1258}$$
+
+$$
+\mathbf{s} = \mathbf{1258}
+$$
 
 ---
 

@@ -29,15 +29,26 @@ def naive_monte_carlo_race():
    Let $Q(i, j)$ be Player 2's win probability when it is **Player 1's turn** with scores $(i, j)$.
 2. **Turn Transitions:**
    - On Player 1's turn at $(i, j)$:
-     $$Q(i, j) = \frac{1}{2} P(i, j) + \frac{1}{2} P(i+1, j)$$
+
+$$
+Q(i, j) = \frac{1}{2} P(i, j) + \frac{1}{2} P(i+1, j)
+$$
+
      where $P(i+1, j) = 0$ if $i+1 \ge N$.
    - On Player 2's turn at $(i, j)$ choosing $T \ge 1$:
      Success probability is $2^{-T}$ with reward state $j + 2^{T-1}$.
-     $$P_T(i, j) = 2^{-T} S_T(i, j) + (1 - 2^{-T}) Q(i, j)$$
+
+$$
+P_T(i, j) = 2^{-T} S_T(i, j) + (1 - 2^{-T}) Q(i, j)
+$$
+
      where $S_T(i, j) = 1$ if $j + 2^{T-1} \ge N$, else $Q(i, j + 2^{T-1})$.
 3. **Resolving Self-Loops:**
    Substituting $Q(i, j) = \frac{1}{2} P(i, j) + \frac{1}{2} P(i+1, j)$ and solving for $P(i, j)$:
-   $$P(i, j) = \max_{T \ge 1} \frac{2 S_T(i, j) + (2^T - 1) P(i+1, j)}{2^T + 1}$$
+
+$$
+P(i, j) = \max_{T \ge 1} \frac{2 S_T(i, j) + (2^T - 1) P(i+1, j)}{2^T + 1}
+$$
 
 ---
 
@@ -81,7 +92,10 @@ def solve(target_score: int = 100) -> str:
 ```
 
 Evaluating for $N = 100$:
-$$\text{Winning Probability } Q(0, 0) = \mathbf{0.83648556}$$
+
+$$
+\text{Winning Probability } Q(0, 0) = \mathbf{0.83648556}
+$$
 
 ---
 
@@ -95,7 +109,10 @@ $$\text{Winning Probability } Q(0, 0) = \mathbf{0.83648556}$$
 
 ### Example 2: Target Evaluation for $N = 100$
 - Starting at $(0, 0)$ with Player 1 tossing first:
-  $$Q(0, 0) = \mathbf{0.83648556}$$
+
+$$
+Q(0, 0) = \mathbf{0.83648556}
+$$
 
 ---
 

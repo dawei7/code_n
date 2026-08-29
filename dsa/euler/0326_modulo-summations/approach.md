@@ -7,7 +7,11 @@ Let $a_n$ be a sequence defined by:
 - $a_n = \left( \sum_{k=1}^{n-1} k \cdot a_k \right) \bmod n$ for $n > 1$
 
 Let $f(N, M)$ be the number of pairs $(p, q)$ with $1 \le p \le q \le N$ such that:
-$$\left( \sum_{i=p}^q a_i \right) \bmod M = 0$$
+
+$$
+\left( \sum_{i=p}^q a_i \right) \bmod M = 0
+$$
+
 We are given sample values:
 - $f(10, 10) = 4$
 - $f(10^4, 10^3) = 97\,158$
@@ -29,7 +33,11 @@ A naive approach computes prefix sums $P_n = \sum_{i=1}^n a_i \bmod M$ and compa
 
 ### Prefix Sum Transformation & $6M$ Periodicity Theorem
 The subarray sum condition is equivalent to:
-$$\sum_{i=p}^q a_i \equiv 0 \pmod M \iff P_q \equiv P_{p-1} \pmod M$$
+
+$$
+\sum_{i=p}^q a_i \equiv 0 \pmod M \iff P_q \equiv P_{p-1} \pmod M
+$$
+
 Analyzing the sequence $a_n$:
 Let $S_n = \sum_{k=1}^n k a_k$.
 Then $a_n = S_{n-1} \bmod n$, which implies $S_n = S_{n-1} + n a_n \equiv 0 \pmod n$.
@@ -50,9 +58,17 @@ For each residue $v \in [0, M - 1]$:
 Let $C_1(v)$ be the frequency of $v$ in a single full period $n \in [0, L - 1]$.
 Let $C_2(v)$ be the frequency of $v$ in the remainder interval $n \in [0, R - 1]$.
 The total frequency of residue $v$ in the full range $n \in [0, N]$ is:
-$$\text{count}(v) = Q \cdot C_1(v) + C_2(v)$$
+
+$$
+\text{count}(v) = Q \cdot C_1(v) + C_2(v)
+$$
+
 By the handshake collision lemma, the number of pairs $(p, q)$ with $P_q \equiv P_{p-1} \pmod M$ is:
-$$\mathbf{f(N, M) = \sum_{v=0}^{M-1} \frac{\text{count}(v)(\text{count}(v) - 1)}{2}}$$
+
+$$
+\mathbf{f(N, M) = \sum_{v=0}^{M-1} \frac{\text{count}(v)(\text{count}(v) - 1)}{2}}
+$$
+
 Evaluating this requires simulating only a single period $L = 6M = 6 \times 10^6$ steps!
 
 ---

@@ -3,13 +3,20 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 What is the length of the shortest cylindrical pipe of internal radius $R = 50\text{ mm}$ that can contain $21$ balls of radii:
-$$30\text{ mm}, 31\text{ mm}, 32\text{ mm}, \dots, 50\text{ mm}?$$
+
+$$
+30\text{ mm}, 31\text{ mm}, 32\text{ mm}, \dots, 50\text{ mm}?
+$$
 
 Give your answer in **micrometres** ($1\text{ mm} = 1000 \ \mu\text{m}$) rounded to the nearest integer.
 
 Let the ordered sequence of radii along the pipe be $r_1, r_2, \dots, r_N$ ($N = 21$).
 The total length of the pipe in millimetres is:
-$$L = r_1 + \sum_{i=1}^{N-1} \Delta z(r_i, r_{i+1}) + r_N$$
+
+$$
+L = r_1 + \sum_{i=1}^{N-1} \Delta z(r_i, r_{i+1}) + r_N
+$$
+
 where $\Delta z(r_1, r_2)$ is the axial center-to-center distance along the cylinder axis.
 
 ---
@@ -30,14 +37,26 @@ def naive_sphere_packing():
    - Distance between sphere centers in 3D: $r_1 + r_2$.
    - Distance between sphere centers in the radial plane $(x, y)$: $(R - r_1) + (R - r_2) = 2R - r_1 - r_2$.
    - Axial distance along the cylinder axis $z$:
-     $$\Delta z(r_1, r_2) = \sqrt{(r_1 + r_2)^2 - (2R - r_1 - r_2)^2} = \sqrt{4R(r_1 + r_2) - 4R^2} = \sqrt{200(r_1 + r_2 - 50)}$$
+
+$$
+\Delta z(r_1, r_2) = \sqrt{(r_1 + r_2)^2 - (2R - r_1 - r_2)^2} = \sqrt{4R(r_1 + r_2) - 4R^2} = \sqrt{200(r_1 + r_2 - 50)}
+$$
+
 2. **Concavity of the Cost Function:**
    The function $f(s) = \sqrt{s}$ has negative second derivative:
-   $$f''(s) = -\frac{1}{4 s^{3/2}} < 0$$
+
+$$
+f''(s) = -\frac{1}{4 s^{3/2}} < 0
+$$
+
    For any concave pairwise metric on sorted elements:
    The optimal linear path places the **largest elements at opposite ends** and interleaves descending elements towards the minimum element in the center!
 3. **Canonical Bitonic Arrangement:**
-   $$\text{Order} = [50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49]$$
+
+$$
+\text{Order} = [50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49]
+$$
+
 4. This closed-form ordering evaluates the exact global minimum in $\mathcal{O}(N)$ time ($\approx 0.00001$ seconds).
 
 ---
@@ -61,14 +80,24 @@ def naive_sphere_packing():
 ## 4. Rigorous Mathematical Breakthrough & Derivations
 
 ### Master Bitonic Length Formula
-$$\text{Order} = \text{radii}[::-2] + \text{radii}[1::2]$$
 
-$$L = \text{Order}[0] + \sum_{i=1}^{N-1} \sqrt{200(\text{Order}[i] + \text{Order}[i+1] - 50)} + \text{Order}[-1]$$
+$$
+\text{Order} = \text{radii}[::-2] + \text{radii}[1::2]
+$$
+
+$$
+L = \text{Order}[0] + \sum_{i=1}^{N-1} \sqrt{200(\text{Order}[i] + \text{Order}[i+1] - 50)} + \text{Order}[-1]
+$$
 
 Evaluating for $N = 21$ spheres of radii $30 \dots 50$:
-$$L \approx 1590.932822\text{ mm}$$
 
-$$L_{\mu\text{m}} = \operatorname{round}(1590.932822 \times 1000) = \mathbf{1\,590\,933}$$
+$$
+L \approx 1590.932822\text{ mm}
+$$
+
+$$
+L_{\mu\text{m}} = \operatorname{round}(1590.932822 \times 1000) = \mathbf{1\,590\,933}
+$$
 
 ---
 
@@ -79,9 +108,16 @@ $$L_{\mu\text{m}} = \operatorname{round}(1590.932822 \times 1000) = \mathbf{1\,5
 - Sum of 20 intermediate $\Delta z$ transitions: $\approx 1491.9328\text{ mm}$.
 - End cap at bottom: $r_{21} = 49\text{ mm}$.
 - Total length:
-  $$L = 50 + 1491.9328 + 49 = 1590.9328\text{ mm}$$
+
+$$
+L = 50 + 1491.9328 + 49 = 1590.9328\text{ mm}
+$$
+
 - In micrometres:
-  $$1590.9328 \times 1000 = 1590932.8 \implies \mathbf{1\,590\,933} \ \mu\text{m}$$
+
+$$
+1590.9328 \times 1000 = 1590932.8 \implies \mathbf{1\,590\,933} \ \mu\text{m}
+$$
 
 ---
 

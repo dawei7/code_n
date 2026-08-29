@@ -3,14 +3,24 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 For an initial positive integer $n_0 \in \mathbb{N}$, the reverse-and-add algorithm generates a sequence $\{n_k\}_{k=0}^{\infty}$ via:
-$$n_{k+1} = n_k + \operatorname{rev}(n_k)$$
+
+$$
+n_{k+1} = n_k + \operatorname{rev}(n_k)
+$$
+
 where $\operatorname{rev}(m)$ is the integer formed by reversing the decimal digits of $m$.
 
 A number $n$ is defined as a **Lychrel number candidate** if it does not produce a palindrome within 50 iterations:
-$$\forall k \in \{1, 2, \dots, 49\}, \quad n_k \neq \operatorname{rev}(n_k)$$
+
+$$
+\forall k \in \{1, 2, \dots, 49\}, \quad n_k \neq \operatorname{rev}(n_k)
+$$
 
 The objective is to find the total count of Lychrel numbers strictly below $10\,000$:
-$$N_{\text{Lychrel}} = \sum_{n=1}^{9999} \mathbb{I}\left( n \text{ is a Lychrel candidate} \right)$$
+
+$$
+N_{\text{Lychrel}} = \sum_{n=1}^{9999} \mathbb{I}\left( n \text{ is a Lychrel candidate} \right)
+$$
 
 ---
 
@@ -66,7 +76,10 @@ def naive_is_lychrel(n):
 
 ### Example 2: Target Evaluation for $1 \le n < 10\,000$
 - Testing all 9999 integers up to $49$ additions:
-  $$N_{\text{Lychrel}} = \mathbf{249}$$
+
+$$
+N_{\text{Lychrel}} = \mathbf{249}
+$$
 
 ---
 

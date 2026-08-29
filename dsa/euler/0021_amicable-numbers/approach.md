@@ -3,15 +3,28 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $d(n)$ denote the sum of the proper divisors of $n$ (divisors strictly less than $n$):
-$$d(n) = \sum_{\substack{k \mid n \\ 1 \le k < n}} k = \sigma_1(n) - n$$
+
+$$
+\begin{aligned}
+d(n) = \sum_{\substack{k \mid n \\ 1 \le k < n}} k = \sigma_1(n) - n
+\end{aligned}
+$$
+
 where $\sigma_1(n)$ is the sum of all positive divisors of $n$.
 
 Two distinct positive integers $a, b \in \mathbb{N}$ form an **amicable pair** $(a, b)$ if:
-$$d(a) = b \quad \land \quad d(b) = a \quad \text{with } a \neq b$$
+
+$$
+d(a) = b \quad \land \quad d(b) = a \quad \text{with } a \neq b
+$$
+
 Each number in an amicable pair is called an **amicable number**.
 
 The objective is to compute the sum of all amicable numbers strictly less than $10\,000$:
-$$S(10\,000) = \sum_{a=2}^{9999} a \cdot \mathbb{I}\left( d(a) \neq a \land d(a) < 10\,000 \land d(d(a)) = a \right)$$
+
+$$
+S(10\,000) = \sum_{a=2}^{9999} a \cdot \mathbb{I}\left( d(a) \neq a \land d(a) < 10\,000 \land d(d(a)) = a \right)
+$$
 
 ---
 
@@ -34,10 +47,16 @@ def naive_proper_sum(n):
 
 Instead of factoring each number $n$, we turn the operation inside out:
 For each potential divisor $i \in [1, N-1]$, we add $i$ to all of its strictly larger multiples:
-$$j \in \{2i, 3i, 4i, \dots < N\}$$
+
+$$
+j \in \{2i, 3i, 4i, \dots < N\}
+$$
 
 By the harmonic series identity:
-$$\sum_{i=1}^N \frac{N}{i} = N \sum_{i=1}^N \frac{1}{i} = \mathcal{O}(N \ln N)$$
+
+$$
+\sum_{i=1}^N \frac{N}{i} = N \sum_{i=1}^N \frac{1}{i} = \mathcal{O}(N \ln N)
+$$
 
 ### Amicable Pairs Under $10\,000$
 
@@ -56,7 +75,11 @@ $$\sum_{i=1}^N \frac{N}{i} = N \sum_{i=1}^N \frac{1}{i} = \mathcal{O}(N \ln N)$$
 ### Harmonic Divisor Sieve
 1. Allocate an array $D$ of size $N = 10\,000$ initialized with $0$.
 2. For each $i = 1 \dots N-1$:
-   $$D[j] \leftarrow D[j] + i \quad \text{for } j \in \{2i, 3i, \dots, N-1\}$$
+
+$$
+D[j] \leftarrow D[j] + i \quad \text{for } j \in \{2i, 3i, \dots, N-1\}
+$$
+
 3. After completing the sieve, each $D[a]$ contains the exact sum of proper divisors $d(a)$.
 4. For each $a \in [2, N-1]$, let $b = D[a]$. If $b \neq a$, $b < N$, and $D[b] == a$, then $a$ is an amicable number.
 
@@ -71,7 +94,10 @@ $$\sum_{i=1}^N \frac{N}{i} = N \sum_{i=1}^N \frac{1}{i} = \mathcal{O}(N \ln N)$$
 
 ### Example 2: Target Evaluation Under $10\,000$
 Summing all elements in the 5 amicable pairs under $10\,000$:
-$$S(10\,000) = (220 + 284) + (1184 + 1210) + (2620 + 2924) + (5020 + 5564) + (6232 + 6368) = \mathbf{31\,626}$$
+
+$$
+S(10\,000) = (220 + 284) + (1184 + 1210) + (2620 + 2924) + (5020 + 5564) + (6232 + 6368) = \mathbf{31\,626}
+$$
 
 ---
 

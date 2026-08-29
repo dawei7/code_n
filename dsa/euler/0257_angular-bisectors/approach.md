@@ -24,12 +24,23 @@ A naive approach iterates over all side triples $(a, b, c)$ with $a + b + c \le 
 ### Area Ratio Formula via Barycentric Coordinates
 Using barycentric coordinates and the angle bisector theorem:
 The area of the interior triangle $\triangle EFG$ divided by $\text{Area}(\triangle ABC)$ simplifies to:
-$$\frac{\text{Area}(\triangle EFG)}{\text{Area}(\triangle ABC)} = \frac{2 a b c}{(a + b)(b + c)(c + a)}$$
+
+$$
+\frac{\text{Area}(\triangle EFG)}{\text{Area}(\triangle ABC)} = \frac{2 a b c}{(a + b)(b + c)(c + a)}
+$$
+
 The inverse ratio is:
-$$R = \frac{(a + b)(b + c)(c + a)}{2 a b c}$$
+
+$$
+R = \frac{(a + b)(b + c)(c + a)}{2 a b c}
+$$
+
 For $R$ to be an integer:
 Since $a \le b \le c$, the ratio $R$ is constrained to small integer values:
-$$R \in \{1, 2, 3, 4\}$$
+
+$$
+R \in \{1, 2, 3, 4\}
+$$
 
 ---
 
@@ -40,7 +51,11 @@ Analyzing the Diophantine conditions $(a + b)(b + c)(c + a) = 2 R a b c$:
 - $R = 1$: Degenerate ($a = 0$).
 - $R = 2$: Equilateral triangles $a = b = c$.
 - $R = 3$: Corresponds to $a, b, c$ parameterized by coprime integers $(u, v)$ with $v < u < 2v$:
-  $$(a, b, c) = k \cdot (u^2 - uv + v^2, \dots)$$
+
+$$
+(a, b, c) = k \cdot (u^2 - uv + v^2, \dots)
+$$
+
 - $R = 4$: Similar quadratic parameterization in $(u, v)$.
 By iterating over coprime pairs $(u, v)$ up to $\sqrt{10^8} = 10\,000$ and counting multiples $k$ up to perimeter $10^8$, we count all valid triangles in under $0.5$ seconds!
 

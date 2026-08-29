@@ -15,10 +15,16 @@ The binomial coefficients $\binom{n}{k}$ can be arranged in triangular form, Pas
 An integer $x$ is called **squarefree** if no square of a prime divides $x$ ($p^2 \nmid x$ for all primes $p$).
 For the first $8$ rows ($n = 0 \dots 7$), the distinct numbers are $\{1, 2, 3, 4, 5, 6, 7, 10, 15, 20, 21, 35\}$, of which $\{4, 20\}$ are divisible by $2^2 = 4$.
 The sum of the remaining distinct squarefree numbers is:
-$$\operatorname{sum} = 1 + 2 + 3 + 5 + 6 + 7 + 10 + 15 + 21 + 35 = \mathbf{105}$$
+
+$$
+\operatorname{sum} = 1 + 2 + 3 + 5 + 6 + 7 + 10 + 15 + 21 + 35 = \mathbf{105}
+$$
 
 The objective is to find the **sum of distinct squarefree numbers in the first $51$ rows ($n = 0 \dots 50$) of Pascal's triangle**:
-$$S_{51} = \sum \left\{ x \in \bigcup_{n=0}^{50} \left\{\binom{n}{k} : 0 \le k \le n\right\} \;\middle|\; \forall p \in \mathbb{P}, p^2 \nmid x \right\}$$
+
+$$
+S_{51} = \sum \left\{ x \in \bigcup_{n=0}^{50} \left\{\binom{n}{k} : 0 \le k \le n\right\} \;\middle|\; \forall p \in \mathbb{P}, p^2 \nmid x \right\}
+$$
 
 ---
 
@@ -36,7 +42,11 @@ def naive_squarefree_binomial():
 1. **Prime Factor Bounding:**
    By Kummer's theorem / Legendre's formula, any prime $p$ dividing $\binom{n}{k}$ with $n \le 50$ must satisfy $p \le n \le 50$.
    Therefore, an element $\binom{n}{k}$ is squarefree iff:
-   $$p^2 \nmid \binom{n}{k} \quad \text{for all } p \in \{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47\}$$
+
+$$
+p^2 \nmid \binom{n}{k} \quad \text{for all } p \in \{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47\}
+$$
+
 2. **Deduplication:**
    Collect all $\binom{n}{k}$ for $0 \le k \le n \le 50$ into a Python `set`.
    There are only $1326$ total coefficients, collapsing to a few hundred distinct values.
@@ -76,7 +86,10 @@ def solve(rows: int = 51) -> int:
     )
 ```
 Evaluating for $\text{rows} = 51$:
-$$S_{51} = \mathbf{34\,029\,210\,557\,338}$$
+
+$$
+S_{51} = \mathbf{34\,029\,210\,557\,338}
+$$
 
 ---
 
@@ -92,7 +105,10 @@ $$S_{51} = \mathbf{34\,029\,210\,557\,338}$$
 
 ### Example 2: Target Evaluation for $51$ Rows ($n = 0 \dots 50$)
 - Sum of distinct squarefree values:
-  $$S_{51} = \mathbf{34\,029\,210\,557\,338}$$
+
+$$
+S_{51} = \mathbf{34\,029\,210\,557\,338}
+$$
 
 ---
 

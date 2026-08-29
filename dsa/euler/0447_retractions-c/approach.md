@@ -4,13 +4,19 @@
 
 Let $R(n)$ be the number of retractions modulo $n$.
 Define:
-$$F(N) = \sum_{n=2}^N R(n)$$
+
+$$
+F(N) = \sum_{n=2}^N R(n)
+$$
 
 We are given:
 - $F(10^7) \equiv 638\,042\,271 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$F(10^{14}) \pmod{1\,000\,000\,007}$$
+
+$$
+F(10^{14}) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -25,13 +31,25 @@ Summing over $N = 10^{14}$ individual integers requires factoring $10^{14}$ numb
 
 ### Unitary Divisors & Dirichlet Square Convolution
 From Problem 445:
-$$R(n) = \sigma^*(n) - n$$
+
+$$
+R(n) = \sigma^*(n) - n
+$$
+
 where $\sigma^*(n) = \sum_{d \parallel n} d = \sum_{d \mid n, \gcd(d, n/d)=1} d$.
 
 Using the Möbius coprimality identity $[\gcd(d, n/d)=1] = \sum_{k \mid \gcd(d, n/d)} \mu(k)$:
-$$\sigma^*(n) = \sum_{k^2 \mid n} k \mu(k) \sigma_1(n/k^2)$$
+
+$$
+\sigma^*(n) = \sum_{k^2 \mid n} k \mu(k) \sigma_1(n/k^2)
+$$
+
 Summing over all $n \le N$:
-$$U(N) = \sum_{n=1}^N \sigma^*(n) = \sum_{k=1}^{\lfloor \sqrt{N} \rfloor} k \mu(k) H\left(\left\lfloor \frac{N}{k^2} \right\rfloor\right)$$
+
+$$
+U(N) = \sum_{n=1}^N \sigma^*(n) = \sum_{k=1}^{\lfloor \sqrt{N} \rfloor} k \mu(k) H\left(\left\lfloor \frac{N}{k^2} \right\rfloor\right)
+$$
+
 where $H(x) = \sum_{m=1}^x \sigma_1(m) = \sum_{t=1}^x t \lfloor x/t \rfloor$.
 
 ---

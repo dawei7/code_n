@@ -11,7 +11,10 @@ We are given:
 - $C(50) = 8154671, S(50) = 29948928129$
 
 We seek to evaluate:
-$$S(5000) \bmod 10^9$$
+
+$$
+S(5000) \bmod 10^9
+$$
 
 ---
 
@@ -32,7 +35,11 @@ Searching all 8-tuples of points in $[0, n]^3$ involves $(n+1)^{24} \approx 5001
    To avoid overcounting equivalent orientations under the chiral octahedral group $O \cong S_4$, we enumerate "primary quaternions" satisfying $a + b + c + d \equiv 1 \pmod 4$ and $\gcd(a, b, c, d) = 1$.
 3. **Ehrhart Polynomial for Cube Lattice Points**:
    For a cube scaled by integer factor $t$, the number of integer points on/inside the parallelepiped is given by its Ehrhart polynomial:
-   $$L(t) = 1 + G_1 t + m G_1 t^2 + m^3 t^3$$
+
+$$
+L(t) = 1 + G_1 t + m G_1 t^2 + m^3 t^3
+$$
+
    where $G_1 = \gcd(\mathbf{u}) + \gcd(\mathbf{v}) + \gcd(\mathbf{w})$.
 
 ---
@@ -43,10 +50,18 @@ Searching all 8-tuples of points in $[0, n]^3$ involves $(n+1)^{24} \approx 5001
 1. **Bounding Box Spans**:
    Along each axis, the span is $s_x = |u_0| + |v_0| + |w_0|$, $s_y = |u_1| + |v_1| + |w_1|$, $s_z = |u_2| + |v_2| + |w_2|$.
    The number of translation positions in $[0, n]^3$ for scale $t$ is:
-   $$T(t) = (n + 1 - s_x t)(n + 1 - s_y t)(n + 1 - s_z t) = t_0 + t_1 t + t_2 t^2 + t_3 t^3$$
+
+$$
+T(t) = (n + 1 - s_x t)(n + 1 - s_y t)(n + 1 - s_z t) = t_0 + t_1 t + t_2 t^2 + t_3 t^3
+$$
+
 2. **Degree-6 Polynomial Convolution**:
    The total contribution across all scale factors $t \in [1, T_{\max}]$ is:
-   $$\sum_{t=1}^{T_{\max}} T(t) L(t) = \sum_{k=0}^6 D_k \sum_{t=1}^{T_{\max}} t^k$$
+
+$$
+\sum_{t=1}^{T_{\max}} T(t) L(t) = \sum_{k=0}^6 D_k \sum_{t=1}^{T_{\max}} t^k
+$$
+
    where the inner power sums $\sum_{t=1}^{T} t^k$ are precomputed in $O(n)$ time.
 
 This evaluates $S(5000) \bmod 10^9$ in **$\approx 9.3$ seconds** in pure Python!

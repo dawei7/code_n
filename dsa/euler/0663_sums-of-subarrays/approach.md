@@ -4,10 +4,17 @@
 
 Let $t_k$ be the tribonacci sequence defined by $t_0 = 0, t_1 = 0, t_2 = 1$ and $t_k = t_{k-1} + t_{k-2} + t_{k-3}$ for $k \ge 3$.
 An array $A_n$ of length $n$ (initialized to zero) is modified at step $i \ge 1$ by adding:
-$$\Delta = 2(t_{2i-1} \bmod n) - n + 1 \quad \text{to } A_n[t_{2i-2} \bmod n]$$
+
+$$
+\Delta = 2(t_{2i-1} \bmod n) - n + 1 \quad \text{to } A_n[t_{2i-2} \bmod n]
+$$
+
 Let $M_n(i) = \max_{0 \le p \le q < n} \sum_{j=p}^q A_n[j]$ be the maximum contiguous subarray sum after step $i$.
 Define:
-$$S(n, l) = \sum_{i=1}^l M_n(i)$$
+
+$$
+S(n, l) = \sum_{i=1}^l M_n(i)
+$$
 
 We are given:
 - $S(5, 6) = 32$
@@ -16,7 +23,10 @@ We are given:
 - $S(107, 1000) = 1618572$
 
 We seek to evaluate:
-$$S(10\,000\,003, 10\,200\,000) - S(10\,000\,003, 10\,000\,000) = \sum_{i=10\,000\,001}^{10\,200\,000} M_n(i)$$
+
+$$
+S(10\,000\,003, 10\,200\,000) - S(10\,000\,003, 10\,000\,000) = \sum_{i=10\,000\,001}^{10\,200\,000} M_n(i)
+$$
 
 ---
 
@@ -41,10 +51,22 @@ Maintaining a segment tree over $n = 10^7$ elements from step $1$ to $10^7$ requ
    - `suff`: maximum suffix sum in the block
    - `best`: maximum contiguous subarray sum inside the block
 3. **Associative Monoid Node Merging**:
-   $$\text{total}(P) = \text{total}(L) + \text{total}(R)$$
-   $$\text{pref}(P) = \max(\text{pref}(L), \text{total}(L) + \text{pref}(R))$$
-   $$\text{suff}(P) = \max(\text{suff}(R), \text{total}(R) + \text{suff}(L))$$
-   $$\text{best}(P) = \max(\text{best}(L), \text{best}(R), \text{suff}(L) + \text{pref}(R))$$
+
+$$
+\text{total}(P) = \text{total}(L) + \text{total}(R)
+$$
+
+$$
+\text{pref}(P) = \max(\text{pref}(L), \text{total}(L) + \text{pref}(R))
+$$
+
+$$
+\text{suff}(P) = \max(\text{suff}(R), \text{total}(R) + \text{suff}(L))
+$$
+
+$$
+\text{best}(P) = \max(\text{best}(L), \text{best}(R), \text{suff}(L) + \text{pref}(R))
+$$
 
 ---
 

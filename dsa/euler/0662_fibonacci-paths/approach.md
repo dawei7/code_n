@@ -4,7 +4,11 @@
 
 Alice walks on a 2D integer lattice from $(0, 0)$ to $(W, H)$.
 In each step from $(a, b)$ to $(a + x, b + y)$ with $x \ge 0, y \ge 0, (x, y) \ne (0, 0)$, the Euclidean distance:
-$$\sqrt{x^2 + y^2} = F_k$$
+
+$$
+\sqrt{x^2 + y^2} = F_k
+$$
+
 must be a Fibonacci number $F_k \in \{1, 2, 3, 5, 8, 13, \dots\}$.
 Let $F(W, H)$ be the total number of valid lattice paths from $(0, 0)$ to $(W, H)$.
 
@@ -13,7 +17,10 @@ We are given:
 - $F(10, 10) = 215846462$
 
 We seek to evaluate:
-$$F(10\,000, 10\,000) \bmod 1\,000\,000\,007$$
+
+$$
+F(10\,000, 10\,000) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -34,7 +41,10 @@ The number of valid lattice paths to $(10000, 10000)$ is astronomical ($\gg 10^{
    For each Fibonacci number $F_k$, all integer solutions to $x^2 + y^2 = F_k^2$ with $x, y \ge 0$ yield at most a few integer pairs.
    Across all 20 Fibonacci numbers, there are only **88 distinct step vectors** $(x, y)$!
 3. **2D Markov Transition**:
-   $$dp[w, h] = \sum_{(x, y) \in \mathcal{S}} dp[w - x, h - y] \pmod{10^9 + 7}$$
+
+$$
+dp[w, h] = \sum_{(x, y) \in \mathcal{S}} dp[w - x, h - y] \pmod{10^9 + 7}
+$$
 
 ---
 

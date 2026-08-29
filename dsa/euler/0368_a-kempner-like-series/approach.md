@@ -4,7 +4,10 @@
 
 Let $\mathcal{K}$ be the set of positive integers whose decimal representations contain no $3$ or more consecutive identical digits (i.e. omitting $000, 111, 222, \dots, 999$).
 We consider the modified harmonic series:
-$$S = \sum_{n \in \mathcal{K}} \frac{1}{n}$$
+
+$$
+S = \sum_{n \in \mathcal{K}} \frac{1}{n}
+$$
 
 We are tasked with computing the value to which this series converges, rounded to $10$ digits after the decimal point.
 
@@ -31,9 +34,17 @@ When appending a digit $d$:
 ### Taylor Expansion of Infinite Extensions
 For any prefix $u$ of length $L_0$ in state $s$, any valid extension of length $m \ge 1$ is of the form $n = u \cdot 10^m + v$.
 Expanding in powers of $\frac{v}{u \cdot 10^m} < \frac{1}{u} \le 10^{-L_0 + 1}$:
-$$\frac{1}{u \cdot 10^m + v} = \sum_{k=0}^K \frac{(-1)^k}{u^{k+1}} \frac{v^k}{10^{m(k+1)}}$$
+
+$$
+\frac{1}{u \cdot 10^m + v} = \sum_{k=0}^K \frac{(-1)^k}{u^{k+1}} \frac{v^k}{10^{m(k+1)}}
+$$
+
 Summing over all lengths $m \ge 1$ and all valid suffixes $v$:
-$$\sum_{m=1}^\infty \sum_{v} \frac{1}{u \cdot 10^m + v} \approx \sum_{k=0}^K \frac{(-1)^k}{u^{k+1}} Z_k(s)$$
+
+$$
+\sum_{m=1}^\infty \sum_{v} \frac{1}{u \cdot 10^m + v} \approx \sum_{k=0}^K \frac{(-1)^k}{u^{k+1}} Z_k(s)
+$$
+
 where $Z_k(s) = \sum_{m=1}^\infty \sum_{v \in \mathcal{K}_m(s)} \frac{v^k}{10^{m(k+1)}}$ is the **discounted moment resolvent**.
 
 ---
@@ -43,7 +54,10 @@ where $Z_k(s) = \sum_{m=1}^\infty \sum_{v \in \mathcal{K}_m(s)} \frac{v^k}{10^{m
 ### Linear System for Moment Resolvents $Z_k(s)$
 Writing $w = \frac{v}{10^m}$, appending digit $d$ gives $w = \frac{d + w'}{10}$ where $w' = \frac{v'}{10^{m-1}}$.
 This leads to the closed-form recurrence for $Z_k(s)$:
-$$Z_k(s) - \frac{1}{10^{k+1}} \sum_{d \text{ valid}} Z_k(\text{next}(s, d)) = \sum_{d \text{ valid}} \left[ \frac{d^k}{10^{k+1}} + \frac{1}{10^{k+1}} \sum_{j=0}^{k-1} \binom{k}{j} d^{k-j} Z_j(\text{next}(s, d)) \right]$$
+
+$$
+Z_k(s) - \frac{1}{10^{k+1}} \sum_{d \text{ valid}} Z_k(\text{next}(s, d)) = \sum_{d \text{ valid}} \left[ \frac{d^k}{10^{k+1}} + \frac{1}{10^{k+1}} \sum_{j=0}^{k-1} \binom{k}{j} d^{k-j} Z_j(\text{next}(s, d)) \right]
+$$
 
 For each order $k = 0, 1, \dots, 10$:
 - The matrix $(\mathbf{I} - \frac{1}{10^{k+1}} \mathbf{T})$ is a $20 \times 20$ diagonally dominant matrix.

@@ -12,7 +12,10 @@ We are given:
 - $f(11) = 481\,496\,895\,121$
 
 We seek to evaluate:
-$$f(7\,500\,000) \pmod{1\,000\,000\,009}$$
+
+$$
+f(7\,500\,000) \pmod{1\,000\,000\,009}
+$$
 
 ---
 
@@ -27,9 +30,16 @@ For $n = 7\,500\,000$, there are $n^n \approx (7.5 \times 10^6)^{7.5 \times 10^6
 
 ### Complementary Counting & Generating Function
 By the identity $\sum L(S) = \sum_{k=1}^n (n^n - A_k)$ where $A_k$ is the number of sequences with maximum run length $< k$:
-$$f(n) = n^{n+1} - \sum_{k=1}^n A_k$$
+
+$$
+f(n) = n^{n+1} - \sum_{k=1}^n A_k
+$$
+
 The generating function for sequences over an alphabet of size $n$ with no run of length $\ge k$ is:
-$$G(x) = \frac{1 - x^k}{1 - n x + (n-1) x^k}$$
+
+$$
+G(x) = \frac{1 - x^k}{1 - n x + (n-1) x^k}
+$$
 
 ---
 
@@ -38,12 +48,19 @@ $$G(x) = \frac{1 - x^k}{1 - n x + (n-1) x^k}$$
 ### Binomial Expansion of Rational Function
 Let $h_N(k) = [x^N] \frac{1}{1 - n x + (n-1) x^k}$.
 Expanding the denominator as a geometric series in $(n x - (n-1)x^k)$:
-$$h_N(k) = \sum_{t=0}^{\lfloor N/k \rfloor} n^{N - tk} (1 - n)^t \binom{N - tk + t}{t}$$
+
+$$
+h_N(k) = \sum_{t=0}^{\lfloor N/k \rfloor} n^{N - tk} (1 - n)^t \binom{N - tk + t}{t}
+$$
+
 Then $A_k = h_n(k) - h_{n-k}(k)$.
 
 Summing over all $k \in [2, n]$:
 The total number of terms evaluated is:
-$$\sum_{k=2}^n \left\lfloor \frac{n}{k} \right\rfloor = O(n \log n)$$
+
+$$
+\sum_{k=2}^n \left\lfloor \frac{n}{k} \right\rfloor = O(n \log n)
+$$
 
 By precomputing $n^m / m!$ and $(1-n)^t / t!$, each inner term evaluates in $O(1)$ arithmetic operations!
 

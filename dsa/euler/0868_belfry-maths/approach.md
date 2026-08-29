@@ -35,10 +35,17 @@ The bell-ringing procedure is isomorphic to the classic **Steinhaus–Johnson–
 Let $p$ be the 0-indexed position of the largest element $n$ in the permutation $\pi$.
 Let $I_{n-1}$ be the rank of the sub-permutation $\pi \setminus \{n\}$.
 The number of steps $k$ taken by element $n$ within its current sweep is:
-$$k = \begin{cases} (n - 1) - p & \text{if } I_{n-1} \equiv 0 \pmod 2 \\ p & \text{if } I_{n-1} \equiv 1 \pmod 2 \end{cases}$$
+
+$$
+k = \begin{cases} (n - 1) - p & \text{if } I_{n-1} \equiv 0 \pmod 2 \\ p & \text{if } I_{n-1} \equiv 1 \pmod 2 \end{cases}
+$$
 
 The total 0-indexed rank of $\pi$ is:
-$$I_n = n \cdot I_{n-1} + k$$
+
+$$
+I_n = n \cdot I_{n-1} + k
+$$
+
 with base case $I_1 = 0$.
 
 Because the initial permutation has rank 0, the number of swaps to reach the target is precisely $I_n$.

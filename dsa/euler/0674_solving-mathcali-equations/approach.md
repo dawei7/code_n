@@ -31,7 +31,11 @@ Direct algebraic expansion yields high-degree polynomial Diophantine equations w
    Let $s = x + y$. Then $\mathcal{I}(x, y) = s^2 + s + 1 + 2y$.
    Since $0 \le y \le s$, the intervals $[s^2 + s + 1, (s + 1)^2 + (s + 1) + 1)$ are disjoint for distinct sum levels $s$, and within a sum level $s$, $2y$ strictly determines $y$ (and hence $x = s - y$).
    Therefore:
-   $$\mathcal{I}(x_1, y_1) = \mathcal{I}(x_2, y_2) \iff x_1 = x_2 \land y_1 = y_2$$
+
+$$
+\mathcal{I}(x_1, y_1) = \mathcal{I}(x_2, y_2) \iff x_1 = x_2 \land y_1 = y_2
+$$
+
 2. **First-Order Unification Equivalence**:
    Because $\mathcal{I}$ is an injective constructor on $\mathbb{N}_0^2$, the Diophantine equation $e_1 = e_2$ is isomorphic to syntactical first-order unification over the free binary term algebra!
 3. **Monotonicity & Minimal Assignment**:

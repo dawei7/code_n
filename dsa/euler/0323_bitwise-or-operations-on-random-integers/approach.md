@@ -28,7 +28,10 @@ Because each bit evolves independently across operations:
 - For a single bit, the probability that it remains $0$ after $n$ independent OR operations is $\left(\frac{1}{2}\right)^n$.
 - Thus, the probability that a single bit has become $1$ after $n$ operations is $1 - 2^{-n}$.
 - For all 32 bits to be $1$ after $n$ operations:
-  $$\mathbb{P}(N \le n) = \left( 1 - 2^{-n} \right)^{32}$$
+
+$$
+\mathbb{P}(N \le n) = \left( 1 - 2^{-n} \right)^{32}
+$$
 
 ---
 
@@ -36,7 +39,10 @@ Because each bit evolves independently across operations:
 
 ### Tail-Sum Formula for Non-Negative Integer Random Variables
 By the tail-sum formula for discrete expectations:
-$$\mathbb{E}[N] = \sum_{n=0}^{\infty} \mathbb{P}(N > n) = \sum_{n=0}^{\infty} \left( 1 - \mathbb{P}(N \le n) \right) = \sum_{n=0}^{\infty} \left( 1 - (1 - 2^{-n})^{32} \right)$$
+
+$$
+\mathbb{E}[N] = \sum_{n=0}^{\infty} \mathbb{P}(N > n) = \sum_{n=0}^{\infty} \left( 1 - \mathbb{P}(N \le n) \right) = \sum_{n=0}^{\infty} \left( 1 - (1 - 2^{-n})^{32} \right)
+$$
 
 ### Geometric Convergence & Truncation:
 Since $1 - (1 - 2^{-n})^{32} \approx 32 \cdot 2^{-n}$ decays exponentially, evaluating the series up to $n = 100$ guarantees an error $< 10^{-28}$, which is well beyond the required 10 decimal places.
@@ -50,7 +56,10 @@ Since $1 - (1 - 2^{-n})^{32} \approx 32 \cdot 2^{-n}$ decays exponentially, eval
 2. $n = 1$: $1 - (1 - 0.5)^{32} = 1 - 2^{-32} \approx 0.999999999767$.
 3. $n = 2$: $1 - (3/4)^{32} \approx 0.999899$.
 4. Summing terms $n = 0 \dots 100$ yields:
-   $$\mathbb{E}[N] \approx \mathbf{6.3551758451}$$
+
+$$
+\mathbb{E}[N] \approx \mathbf{6.3551758451}
+$$
 
 ---
 

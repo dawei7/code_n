@@ -12,7 +12,10 @@ We are given:
 - $F(10^6) = 112168$
 
 We seek to evaluate:
-$$F(10^{12})$$
+
+$$
+F(10^{12})
+$$
 
 ---
 
@@ -42,7 +45,11 @@ For $N = 10^{12}$, an array of size $10^{12}$ requires 1 Terabyte of RAM, and th
 ### Character Prime Sieve for Primes $p \equiv 1 \pmod 4$ ($O(N^{3/4})$)
 1. **Dirichlet Character Sieve**:
    Using the Dirichlet character $\chi_4(n) = \begin{cases} 1 & n \equiv 1 \pmod 4 \\ -1 & n \equiv 3 \pmod 4 \\ 0 & \text{otherwise} \end{cases}$, we compute:
-   $$\pi_1(x) = \frac{\pi(x) - 1 + \sum_{p \le x} \chi_4(p)}{2}$$
+
+$$
+\pi_1(x) = \frac{\pi(x) - 1 + \sum_{p \le x} \chi_4(p)}{2}
+$$
+
    simultaneously for all key values $x = \lfloor N / i \rfloor$ using sublinear Lucy-style sieve dynamics.
 2. **Fast Query Aggregation**:
    Iterate over all odd $u \le \sqrt{N} = 10^6$. For each $u$, factor $u$ using a smallest-prime-factor sieve, determine the parity condition, and query $\pi_1(\lfloor N / (2^k u^2) \rfloor)$ in $O(1)$.

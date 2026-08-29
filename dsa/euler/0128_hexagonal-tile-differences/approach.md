@@ -13,7 +13,10 @@ For any tile $n$, let $PD(n)$ be the number of its six adjacent neighbors for wh
 - The 10th tile in sequence for which $PD(n) = 3$ is $271$.
 
 The objective is to find the **$2000$-th tile in sequence for which $PD(n) = 3$**:
-$$n_{2000} = \operatorname{sorted}(\{ n \ge 1 \mid PD(n) = 3 \})[1999]$$
+
+$$
+n_{2000} = \operatorname{sorted}(\{ n \ge 1 \mid PD(n) = 3 \})[1999]
+$$
 
 ---
 
@@ -84,7 +87,10 @@ def naive_hexagonal_tiles():
 
 ### Example 3: Target Evaluation for 2000th Tile
 - At $r = 67\,607$, End Tile:
-  $$E_{67607} = 3(67607)^2 + 3(67607) + 1 = \mathbf{14\,516\,824\,220}$$
+
+$$
+E_{67607} = 3(67607)^2 + 3(67607) + 1 = \mathbf{14\,516\,824\,220}
+$$
 
 ---
 

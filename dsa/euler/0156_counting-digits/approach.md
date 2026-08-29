@@ -3,7 +3,10 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Starting from $1$, let $f(n, d)$ denote the total number of times the digit $d \in \{1, 2, \dots, 9\}$ is written down in decimal when writing all numbers from $1$ up to $n$:
-$$f(n, d) = \sum_{k=1}^n \operatorname{count}_d(k)$$
+
+$$
+f(n, d) = \sum_{k=1}^n \operatorname{count}_d(k)
+$$
 
 For $d = 1$, we notice that:
 - $f(1, 1) = 1$
@@ -13,7 +16,10 @@ For $d = 1$, we notice that:
 Let $s(d)$ be the sum of all solutions for which $f(n, d) = n$ with $n \le 10^{11}$.
 
 The objective is to find **the sum of all $s(d)$ for all digits $d \in \{1, 2, \dots, 9\}$**:
-$$S_{\text{digits}} = \sum_{d=1}^9 s(d)$$
+
+$$
+S_{\text{digits}} = \sum_{d=1}^9 s(d)
+$$
 
 ---
 
@@ -73,7 +79,10 @@ def search_solutions(d, low, high):
 ```
 
 ### Master Summation
-$$S_{\text{digits}} = \sum_{d=1}^9 \text{search\_solutions}(d, 0, 10^{11}) = \mathbf{212\,951\,215\,826}$$
+
+$$
+S_{\text{digits}} = \sum_{d=1}^9 \text{search\_solutions}(d, 0, 10^{11}) = \mathbf{212\,951\,215\,826}
+$$
 
 ---
 
@@ -86,7 +95,10 @@ $$S_{\text{digits}} = \sum_{d=1}^9 \text{search\_solutions}(d, 0, 10^{11}) = \ma
 
 ### Example 2: Target Evaluation for $d \in [1, 9]$ Up To $10^{11}$
 - Summing all fixed points across all 9 digits:
-  $$S_{\text{digits}} = \mathbf{212\,951\,215\,826}$$
+
+$$
+S_{\text{digits}} = \mathbf{212\,951\,215\,826}
+$$
 
 ---
 

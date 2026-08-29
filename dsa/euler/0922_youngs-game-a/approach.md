@@ -25,7 +25,11 @@ Find $R(8, 64) \bmod (10^9 + 7)$.
 ### Combinatorial Game Theory & Conway Values
 Each $(a, b, k)$-staircase decomposes into an exact dyadic rational / surreal game value $v(a, b, k) = \{ \mathcal{L} \mid \mathcal{R} \}$.
 For a disjoint sum of $m$ independent games, the game value of the sum is the real sum:
-$$V = \sum_{i=1}^m v(a_i, b_i, k_i)$$
+
+$$
+V = \sum_{i=1}^m v(a_i, b_i, k_i)
+$$
+
 Right wins moving first if and only if $V > 0$ or $(V = 0 \text{ with winning first-move status})$.
 
 ---

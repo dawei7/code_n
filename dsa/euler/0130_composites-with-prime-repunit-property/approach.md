@@ -10,7 +10,10 @@ For any prime $p > 5$, Fermat's Little Theorem guarantees that $R(p - 1)$ is div
 However, there are rare **composite values** for which this is also true; the first five examples are $91, 259, 451, 481,$ and $703$.
 
 The objective is to find the **sum of the first twenty-five ($25$) composite values of $n$ for which $\gcd(n, 10) = 1$ and $(n - 1)$ is divisible by $A(n)$**:
-$$S_{\text{comp}} = \sum_{i=1}^{25} n_i$$
+
+$$
+S_{\text{comp}} = \sum_{i=1}^{25} n_i
+$$
 
 ---
 
@@ -26,7 +29,11 @@ def naive_composite_repunit():
 
 ### Fast Modular Remainder Recurrence & Primality Filter
 1. For any integer $n$, $A(n)$ is computed via the modular recurrence:
-   $$R(1) \equiv 1 \pmod n, \quad R(k+1) \equiv (10 R(k) + 1) \pmod n$$
+
+$$
+R(1) \equiv 1 \pmod n, \quad R(k+1) \equiv (10 R(k) + 1) \pmod n
+$$
+
 2. We iterate candidate integers $n = 6, 7, 8, \dots$:
    - Check if $\gcd(n, 10) = 1$.
    - Check if $n$ is composite (`not is_prime(n)`).
@@ -77,9 +84,16 @@ def naive_composite_repunit():
 
 ### Example 2: Target Evaluation for Sum of First 25 Composites
 - First 25 qualifying composites:
-  $$91, 259, 451, 481, 703, 1729, 2821, 3577, 4369, 4961, 5671, 6601, 7081, 7471, \dots, 14701$$
+
+$$
+91, 259, 451, 481, 703, 1729, 2821, 3577, 4369, 4961, 5671, 6601, 7081, 7471, \dots, 14701
+$$
+
 - Total Sum:
-  $$S_{\text{comp}} = \mathbf{149\,257}$$
+
+$$
+S_{\text{comp}} = \mathbf{149\,257}
+$$
 
 ---
 

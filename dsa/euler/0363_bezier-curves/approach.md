@@ -3,18 +3,33 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A cubic Bézier curve $B(t) = (x(t), y(t))$ for $t \in [0, 1]$ is defined by the four control points:
-$$P_0 = (1, 0), \quad P_1 = (1, v), \quad P_2 = (v, 1), \quad P_3 = (0, 1)$$
+
+$$
+P_0 = (1, 0), \quad P_1 = (1, v), \quad P_2 = (v, 1), \quad P_3 = (0, 1)
+$$
 
 The explicit Bernstein polynomial parameterization is:
-$$B(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 + 3(1-t) t^2 P_2 + t^3 P_3$$
-Separating coordinates:
-$$x(t) = (1-t)^3 + 3(1-t)^2 t + 3v(1-t) t^2$$
 
-$$y(t) = 3v(1-t)^2 t + 3(1-t) t^2 + t^3 = x(1-t)$$
+$$
+B(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 + 3(1-t) t^2 P_2 + t^3 P_3
+$$
+
+Separating coordinates:
+
+$$
+x(t) = (1-t)^3 + 3(1-t)^2 t + 3v(1-t) t^2
+$$
+
+$$
+y(t) = 3v(1-t)^2 t + 3(1-t) t^2 + t^3 = x(1-t)
+$$
 
 The parameter $v > 0$ is uniquely determined by setting the area enclosed by $O P_0$, $O P_3$, and the curve equal to the area of the quarter circle $\frac{\pi}{4}$.
 We are tasked with finding the percentage difference between the curve length $L$ and the quarter circle arc length $\frac{\pi}{2}$:
-$$\text{Difference} = 100 \times \frac{L - \frac{\pi}{2}}{\frac{\pi}{2}} \pmod{\text{10 decimal places}}$$
+
+$$
+\text{Difference} = 100 \times \frac{L - \frac{\pi}{2}}{\frac{\pi}{2}} \pmod{\text{10 decimal places}}
+$$
 
 ---
 
@@ -31,17 +46,38 @@ Because $L - \frac{\pi}{2} \approx 5.8 \times 10^{-7}$, subtracting two numbers 
 
 ### Closed-Form Quadratic Area Integral
 Using Green's Theorem, the area enclosed by the curve and coordinate axes is:
-$$\text{Area}(v) = \int_0^1 y(t) (-x'(t)) \, dt$$
-Expanding the polynomials:
-$$x'(t) = 3t[(2 - 3v)t + 2v - 2]$$
 
-$$y(t) = 3vt(1-t)^2 + 3t^2(1-t) + t^3$$
+$$
+\text{Area}(v) = \int_0^1 y(t) (-x'(t)) \, dt
+$$
+
+Expanding the polynomials:
+
+$$
+x'(t) = 3t[(2 - 3v)t + 2v - 2]
+$$
+
+$$
+y(t) = 3vt(1-t)^2 + 3t^2(1-t) + t^3
+$$
+
 Integrating analytically yields the exact quadratic:
-$$\text{Area}(v) = \frac{10 + 12v - 3v^2}{20}$$
+
+$$
+\text{Area}(v) = \frac{10 + 12v - 3v^2}{20}
+$$
+
 Equating $\text{Area}(v) = \frac{\pi}{4}$:
-$$3v^2 - 12v + (5\pi - 10) = 0$$
+
+$$
+3v^2 - 12v + (5\pi - 10) = 0
+$$
+
 Since $v \in (0, 1)$, the exact root is:
-$$v = 2 - \sqrt{\frac{22 - 5\pi}{3}}$$
+
+$$
+v = 2 - \sqrt{\frac{22 - 5\pi}{3}}
+$$
 
 ---
 
@@ -49,9 +85,17 @@ $$v = 2 - \sqrt{\frac{22 - 5\pi}{3}}$$
 
 ### Arbitrary-Precision Arc Length via Gauss-Legendre Quadrature
 The arc length integral is:
-$$L = \int_0^1 \sqrt{(x'(t))^2 + (y'(t))^2} \, dt$$
+
+$$
+L = \int_0^1 \sqrt{(x'(t))^2 + (y'(t))^2} \, dt
+$$
+
 Because the integrand $f(t) = \sqrt{(x'(t))^2 + (y'(t))^2}$ is smooth on $[0, 1]$, $n$-point Gauss-Legendre quadrature converges exponentially:
-$$L = \frac{1}{2} \sum_{i=1}^n w_i f\left(\frac{x_i + 1}{2}\right) + \mathcal{O}(e^{-c n})$$
+
+$$
+L = \frac{1}{2} \sum_{i=1}^n w_i f\left(\frac{x_i + 1}{2}\right) + \mathcal{O}(e^{-c n})
+$$
+
 For $n = 64$, the quadrature error is $< 10^{-50}$, delivering exact 50-digit precision in $O(n)$ function evaluations without any step-size tuning.
 
 ---
@@ -64,7 +108,10 @@ For $n = 64$, the quadrature error is $< 10^{-50}$, delivering exact 50-digit pr
 3. Compute 64 Gauss-Legendre nodes $x_i$ and weights $w_i$ via Newton-Raphson iteration on Legendre polynomials.
 4. Evaluate quadrature sum: $L \approx 1.57079691127392508310\dots$
 5. Calculate percentage error:
-   $$100 \times \frac{L - \pi/2}{\pi/2} = 0.000037209090605\dots \implies 0.0000372091 \quad (\checkmark)$$
+
+$$
+100 \times \frac{L - \pi/2}{\pi/2} = 0.000037209090605\dots \implies 0.0000372091 \quad (\checkmark)
+$$
 
 ---
 

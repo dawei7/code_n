@@ -6,7 +6,10 @@ A positive integer is $p$-smooth if all its prime factors are $\le p$.
 Let $T(n) = \frac{n(n+1)}{2}$ be the $n$-th triangular number.
 
 We seek to evaluate:
-$$\text{The sum of all indices } n \text{ such that } T(n) \text{ is 47-smooth}$$
+
+$$
+\text{The sum of all indices } n \text{ such that } T(n) \text{ is 47-smooth}
+$$
 
 ---
 
@@ -26,7 +29,10 @@ Since $n$ can be arbitrarily large, checking individual integers $n = 1, 2, 3, \
    For any finite set of primes $S$, there are only finitely many pairs of consecutive integers $(n, n+1)$ that are both $S$-smooth.
 3. **Exact Upper Bound (OEIS A117581)**:
    For $S = \{2, 3, 5, \dots, 47\}$ (the first 15 primes), the maximum integer in any consecutive pair of 47-smooth numbers is rigorously known to be:
-   $$N_{\max} = 1109496723126$$
+
+$$
+N_{\max} = 1109496723126
+$$
 
 ---
 

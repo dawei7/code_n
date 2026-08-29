@@ -4,11 +4,15 @@
 
 Let $b(n)$ be the largest power of 2 dividing $n$ (i.e. $b(n) = n \ \& \ (-n)$).
 Define the recurrence $A(n)$:
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 A(0) &= 1 \\
 A(2n) &= 3A(n) + 5A(2n - b(n)) \quad (n > 0) \\
 A(2n+1) &= A(n)
-\end{aligned}$$
+\end{aligned}
+$$
+
 Let $H(t, r) = A\big((2^t + 1)^r\big)$.
 We are given $H(3, 2) = A(81) = 636056$.
 We seek to evaluate $H(10^{14}+31, 62) \bmod 1\,000\,062\,031$.
@@ -29,14 +33,26 @@ The argument $(2^{10^{14}+31} + 1)^{62}$ has over $6.2 \times 10^{15}$ bits. Dir
    Let the binary representation of $n$ be scanned from Most Significant Bit (MSB) to Least Significant Bit (LSB).
    - A bit `1` transitions the state of active prefixes.
    - A bit `0` following $k$ active set bits applies a multiplicative factor $v_k$, where:
-     $$v_0 = 1, \quad v_{k+1} = 5v_k + 3$$
+
+$$
+v_0 = 1, \quad v_{k+1} = 5v_k + 3
+$$
+
 2. **Disjoint Binomial Shift Blocks**:
-   $$(2^t + 1)^r = \sum_{k=0}^r \binom{r}{k} 2^{kt}$$
+
+$$
+(2^t + 1)^r = \sum_{k=0}^r \binom{r}{k} 2^{kt}
+$$
+
    Since $t = 10^{14} + 31$ far exceeds the maximum bit-length of $\binom{62}{k} \le \binom{62}{31} < 2^{60}$, each binomial coefficient $\binom{62}{k}$ produces a disjoint block of 1-bits shifted by $k \cdot t$.
 3. **Closed-Form Gap Modular Exponentiation**:
    Between any two consecutive set bits at binary indices $p_{i} > p_{i+1}$, there is a run of zeros of length $\text{gap} = p_i - p_{i+1} - 1$.
    The contribution to $A(n)$ is simply:
-   $$v_{i+1}^{\text{gap}} \bmod M$$
+
+$$
+v_{i+1}^{\text{gap}} \bmod M
+$$
+
    computed in $O(\log \text{gap})$ via modular exponentiation!
 
 ---

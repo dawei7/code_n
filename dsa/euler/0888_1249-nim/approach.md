@@ -27,12 +27,19 @@ Find $S(12491249, 1249) \bmod 912491249$.
 
 ### Sprague-Grundy Values & Fast Walsh-Hadamard Transform (FWHT)
 The Grundy value of a pile of size $n$ satisfies:
-$$G(n) = \text{mex}\left( \{G(n-1), G(n-2), G(n-4), G(n-9)\} \cup \{G(a) \oplus G(b) : a + b = n\} \right)$$
+
+$$
+G(n) = \text{mex}\left( \{G(n-1), G(n-2), G(n-4), G(n-9)\} \cup \{G(a) \oplus G(b) : a + b = n\} \right)
+$$
+
 Because $G(n) \in \{0, 1, \dots, 15\}$, the game space is isomorphic to the group ring $\mathbb{Z}[\mathbb{Z}_2^4]$.
 
 Let $c_g$ be the count of integers in $\{1, \dots, N\}$ with Grundy value $g$.
 The multiset partition generating function over $\mathbb{Z}_2^4$ is:
-$$\prod_{n=1}^N \frac{1}{1 - t \cdot x^{G(n)}} = \prod_{g=0}^{15} (1 - t \cdot x^g)^{-c_g}$$
+
+$$
+\prod_{n=1}^N \frac{1}{1 - t \cdot x^{G(n)}} = \prod_{g=0}^{15} (1 - t \cdot x^g)^{-c_g}
+$$
 
 ---
 
@@ -40,14 +47,24 @@ $$\prod_{n=1}^N \frac{1}{1 - t \cdot x^{G(n)}} = \prod_{g=0}^{15} (1 - t \cdot x
 
 ### Character Projection & Exact Coefficient Extraction
 Applying the 16 characters $\chi \in \mathbb{Z}_2^4$:
-$$\widehat{F}_\chi(t) = (1 - t)^{-A(\chi)} (1 + t)^{-B(\chi)}$$
+
+$$
+\widehat{F}_\chi(t) = (1 - t)^{-A(\chi)} (1 + t)^{-B(\chi)}
+$$
+
 where $A(\chi) = \sum_{g \cdot \chi \equiv 0} c_g$ and $B(\chi) = \sum_{g \cdot \chi \equiv 1} c_g$.
 
 The $m$-th Taylor coefficient is:
-$$[t^m] \widehat{F}_\chi(t) = \sum_{k=0}^m \binom{A(\chi) + k - 1}{k} (-1)^{m - k} \binom{B(\chi) + (m - k) - 1}{m - k}$$
+
+$$
+[t^m] \widehat{F}_\chi(t) = \sum_{k=0}^m \binom{A(\chi) + k - 1}{k} (-1)^{m - k} \binom{B(\chi) + (m - k) - 1}{m - k}
+$$
 
 By inverse FWHT:
-$$S(N, m) = \frac{1}{16} \sum_{\chi \in \mathbb{Z}_2^4} [t^m] \widehat{F}_\chi(t) \pmod{912491249}$$
+
+$$
+S(N, m) = \frac{1}{16} \sum_{\chi \in \mathbb{Z}_2^4} [t^m] \widehat{F}_\chi(t) \pmod{912491249}
+$$
 
 ---
 

@@ -25,7 +25,11 @@ Find $D(123, 1234567)$.
 
 ### Sprague-Grundy Function on 4-Partitions
 The nim-value $G(w, h)$ satisfies:
-$$G(w, h) = \text{mex} \{ G(x, y) \oplus G(w-x, y) \oplus G(x, h-y) \oplus G(w-x, h-y) \}$$
+
+$$
+G(w, h) = \text{mex} \{ G(x, y) \oplus G(w-x, y) \oplus G(x, h-y) \oplus G(w-x, h-y) \}
+$$
+
 A move $(x, y)$ is winning if and only if the XOR sum is $0$.
 
 ---

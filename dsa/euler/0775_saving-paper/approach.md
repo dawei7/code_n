@@ -6,9 +6,16 @@ $n$ unit cubes of size $1 \times 1 \times 1$ are wrapped together in a void-free
 Wrapping them individually requires $6n$ paper.
 Let $s(n)$ be the minimum surface area of a connected polycube composed of $n$ cubes.
 The paper saved is:
-$$g(n) = 6n - s(n)$$
+
+$$
+g(n) = 6n - s(n)
+$$
+
 We define:
-$$G(N) = \sum_{n=1}^N g(n) = 3N(N+1) - \sum_{n=1}^N s(n)$$
+
+$$
+G(N) = \sum_{n=1}^N g(n) = 3N(N+1) - \sum_{n=1}^N s(n)
+$$
 
 We are given:
 - $g(10) = 30, g(18) = 66$
@@ -16,7 +23,10 @@ We are given:
 - $G(10^6) \equiv 951640919 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$G(10^{16}) \bmod 1\,000\,000\,007$$
+
+$$
+G(10^{16}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -36,9 +46,17 @@ Generating minimum-surface polycubes for each of the $10^{16}$ values of $n$ req
 2. **Spiral Step Function**:
    Within each 2D face layer of size $m$, new cubes are added along a discrete spiral.
    A cube increases the face perimeter only at turn vertices $j \ge 2$ where $\lfloor j^2 / 4 \rfloor + 1 \le m$, which occurs:
-   $$c(m) = \max(0, \lfloor \sqrt{4m - 1} \rfloor - 1) \text{ times}$$
+
+$$
+c(m) = \max(0, \lfloor \sqrt{4m - 1} \rfloor - 1) \text{ times}
+$$
+
 3. **Exact Surface Formula**:
-   $$s(n) = 6k^2 + b_v + 2(c(p_z) + c(q_z) + c(r_z))$$
+
+$$
+s(n) = 6k^2 + b_v + 2(c(p_z) + c(q_z) + c(r_z))
+$$
+
    where $b_v \in \{4, 8, 12\}$ marks initial layer additions and $p_z, q_z, r_z$ are the cubes filled in the three orthogonal faces.
 
 ---
@@ -48,7 +66,11 @@ Generating minimum-surface polycubes for each of the $10^{16}$ values of $n$ req
 ### Closed-Form Prefix Summation
 1. **$O(1)$ Turn Prefix Integration**:
    The inner sum $F(t) = \sum_{m=1}^t c(m)$ has an exact closed-form based on triangular and square intervals:
-   $$F(t) = \frac{(a-1)a(8a-1)}{6} + \text{partial intervals}$$
+
+$$
+F(t) = \frac{(a-1)a(8a-1)}{6} + \text{partial intervals}
+$$
+
    where $a = \lfloor \sqrt{t} \rfloor$.
 2. **Block-by-Block Integration**:
    Iterating $k$ from $1$ to $k_{\max} = \lfloor (10^{16})^{1/3} \rfloor \approx 215\,443$ aggregates the sum $\sum s(n)$ in $O(N^{1/3})$ operations.

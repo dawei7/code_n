@@ -3,11 +3,18 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 By the Fundamental Theorem of Arithmetic, every integer $N > 1$ admits a unique prime factorization:
-$$N = \prod_{i=1}^k p_i^{e_i} = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$$
+
+$$
+N = \prod_{i=1}^k p_i^{e_i} = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}
+$$
+
 where $p_1 < p_2 < \dots < p_k$ are distinct prime numbers ($p_i \in \mathbb{P}$) and $e_i \ge 1$.
 
 The objective is to compute the largest prime factor of $N$:
-$$P_{\text{max}}(N) = \max \{ p \in \mathbb{P} \mid p \mid N \} = p_k$$
+
+$$
+P_{\text{max}}(N) = \max \{ p \in \mathbb{P} \mid p \mid N \} = p_k
+$$
 
 We must evaluate $P_{\text{max}}(600\,851\,475\,143)$.
 
@@ -58,7 +65,11 @@ If $M$ is composite, it must have at least one prime factor $p \le \sqrt{M}$.
 
 ### B. In-Place Division & Automatic Primality
 By dividing out all occurrences of $d$ via:
-$$M \leftarrow \frac{M}{d^{v_d(M)}}$$
+
+$$
+M \leftarrow \frac{M}{d^{v_d(M)}}
+$$
+
 1. No composite multiple of $d$ can ever divide the reduced $M$.
 2. The next divisor discovered is strictly prime.
 3. The upper bound threshold $d \le \sqrt{M}$ shrinks dynamically, enabling super-fast termination.

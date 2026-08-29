@@ -7,7 +7,10 @@ Comparing two numbers written in index form like $2^{11}$ and $3^7$ is not diffi
 The file `base_exp.txt` contains one thousand ($1000$) lines with a base/exponent pair on each line.
 
 The objective is to find the **1-indexed line number** with the greatest numerical value:
-$$k^* = \operatorname*{arg\,max}_{1 \le k \le 1000} \left( b_k^{e_k} \right)$$
+
+$$
+k^* = \operatorname*{arg\,max}_{1 \le k \le 1000} \left( b_k^{e_k} \right)
+$$
 
 ---
 
@@ -25,7 +28,11 @@ def naive_largest_exponential():
 ### Logarithmic Monotonicity Transformation
 1. The natural logarithm $\ln(x)$ is strictly monotonically increasing for $x > 0$.
 2. For any two exponential terms $b_1^{e_1}$ and $b_2^{e_2}$:
-   $$b_1^{e_1} > b_2^{e_2} \iff \ln\left( b_1^{e_1} \right) > \ln\left( b_2^{e_2} \right) \iff e_1 \ln(b_1) > e_2 \ln(b_2)$$
+
+$$
+b_1^{e_1} > b_2^{e_2} \iff \ln\left( b_1^{e_1} \right) > \ln\left( b_2^{e_2} \right) \iff e_1 \ln(b_1) > e_2 \ln(b_2)
+$$
+
 3. Instead of multiplying 3-million-digit BigInts, we simply compute the scalar product $e \ln(b)$ in $\mathcal{O}(1)$ time per line, completing all 1000 comparisons in $\approx 0.001$ seconds.
 
 ---
@@ -51,7 +58,11 @@ def naive_largest_exponential():
 3. For index $i \in [1, 1000]$:
    - Compute $v_i = e_i \times \ln(b_i)$.
    - If $v_i > \text{max\_val}$:
-     $$\text{max\_val} = v_i, \quad \text{best\_line} = i$$
+
+$$
+\text{max\_val} = v_i, \quad \text{best\_line} = i
+$$
+
 4. Return `best_line`.
 
 ---
@@ -68,7 +79,10 @@ def naive_largest_exponential():
   - Line 709 contains $(b, e) = (895447, 504922) \implies 504922 \ln(895447) \approx 6\,920\,500+$.
   - Line 709 yields the global maximum value!
 - Optimal line number:
-  $$k^* = \mathbf{709}$$
+
+$$
+k^* = \mathbf{709}
+$$
 
 ---
 

@@ -16,7 +16,10 @@ We are given:
 - $\sum_{n=1}^{20} M(n)^3 = 8150$.
 
 We seek to evaluate:
-$$\sum_{n=1}^{1000} M(n)^3$$
+
+$$
+\sum_{n=1}^{1000} M(n)^3
+$$
 
 ---
 
@@ -31,7 +34,11 @@ Because $S$ grows indefinitely and games can last many turns, a standard minimax
 
 ### Recursive Dyadic Structure of Popcount
 The binary popcount sequence has the standard block structure:
-$$\operatorname{popcount}(2^k + i) = \operatorname{popcount}(i) + 1 \quad (0 \le i < 2^k)$$
+
+$$
+\operatorname{popcount}(2^k + i) = \operatorname{popcount}(i) + 1 \quad (0 \le i < 2^k)
+$$
+
 This allows modeling the game state transitions as functional transforms over a finite state space $\{0, 1, \dots, n\}$.
 
 ---
@@ -42,10 +49,18 @@ This allows modeling the game state transitions as functional transforms over a 
 We represent the cumulative backward game scan as a mapping $f: \{0, \dots, n\} \to \{0, \dots, n\}$.
 1. **Base Mappings ($k = 0$)**:
    For offset $\text{off} \in [0, K]$:
-   $$f_{\text{off}}(s) = \begin{cases} s + \text{off} & \text{if } s + \text{off} \le n \\ 0 & \text{otherwise} \end{cases}$$
+
+$$
+f_{\text{off}}(s) = \begin{cases} s + \text{off} & \text{if } s + \text{off} \le n \\ 0 & \text{otherwise} \end{cases}
+$$
+
 2. **Dyadic Function Composition**:
    At level $k$, the combined transform of a block of length $2^k$ is formed by composing the lower and upper halves:
-   $$f_{k, \text{off}} = f_{k-1, \text{off}} \circ f_{k-1, \text{off} + 1}$$
+
+$$
+f_{k, \text{off}} = f_{k-1, \text{off}} \circ f_{k-1, \text{off} + 1}
+$$
+
 3. **Early Constant Saturation**:
    Because the overflow-reset mechanic contracts the image of $f$, the mapping $f_{k, 0}$ rapidly collapses to a **constant function** $f(s) \equiv c$ within $k \le 40$ levels for all $n \le 1000$.
    The resulting constant $c$ gives the exact value of $M(n)$!

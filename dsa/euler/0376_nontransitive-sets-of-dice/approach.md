@@ -5,7 +5,10 @@
 Three 6-sided dice $A, B, C$ have face values in $\{1, \dots, N\}$.
 When rolling two dice $X$ and $Y$, let $W(X, Y)$ be the number of outcomes $(x, y) \in X \times Y$ such that $x > y$.
 Die $X$ beats $Y$ ($X \succ Y$) if and only if:
-$$W(X, Y) > W(Y, X) \iff W(X, Y) \ge 19$$
+
+$$
+W(X, Y) > W(Y, X) \iff W(X, Y) \ge 19
+$$
 
 A set of three dice $\{A, B, C\}$ is **nontransitive** if $A \succ B \succ C \succ A$ (or $A \prec B \prec C \prec A$).
 Sets differing only by order of faces on a die or by permutations of the dice $\{A, B, C\}$ are considered identical.
@@ -13,7 +16,10 @@ We are given:
 - For $N = 7$, there are $9\,780$ such sets.
 
 We seek the number of nontransitive dice sets for:
-$$N = 30$$
+
+$$
+N = 30
+$$
 
 ---
 
@@ -21,7 +27,11 @@ $$N = 30$$
 
 ### Direct Combination Enumeration
 The number of distinct 6-sided dice with faces in $\{1 \dots N\}$ is:
-$$\binom{N + 6 - 1}{6} = \binom{35}{6} = 1\,623\,160$$
+
+$$
+\binom{N + 6 - 1}{6} = \binom{35}{6} = 1\,623\,160
+$$
+
 Iterating over all unordered sets of 3 dice requires $\binom{1.62 \times 10^6}{3} \approx 7.1 \times 10^{17}$ triplets, which is completely intractable.
 
 ---
@@ -31,7 +41,10 @@ Iterating over all unordered sets of 3 dice requires $\binom{1.62 \times 10^6}{3
 ### Sweepline Dynamic Programming over Face Values
 Instead of picking full dice, we process the available face values $v = 1, 2, \dots, N$ in increasing order.
 At each step $v$, we choose how many faces of each die have value $v$:
-$$(d_A, d_B, d_C) \in [0, 6 - a_{\text{used}}] \times [0, 6 - b_{\text{used}}] \times [0, 6 - c_{\text{used}}]$$
+
+$$
+(d_A, d_B, d_C) \in [0, 6 - a_{\text{used}}] \times [0, 6 - b_{\text{used}}] \times [0, 6 - c_{\text{used}}]
+$$
 
 When $d_B$ faces of value $v$ are added to die $B$, they strictly beat all $a_{\text{used}}$ faces previously assigned to die $A$ (since earlier faces had values $< v$).
 Thus, the win count $W(B, A)$ increases by $d_B \cdot a_{\text{used}}$!
@@ -43,7 +56,11 @@ Similarly, $W(C, B)$ increases by $d_C \cdot b_{\text{used}}$, and $W(A, C)$ inc
 
 ### State Space & Win-Count Clamping
 A DP state is compactly packed as:
-$$\text{state} = (a_{\text{used}}, b_{\text{used}}, c_{\text{used}}, W_{BA}, W_{CB}, W_{AC})$$
+
+$$
+\text{state} = (a_{\text{used}}, b_{\text{used}}, c_{\text{used}}, W_{BA}, W_{CB}, W_{AC})
+$$
+
 - $a_{\text{used}}, b_{\text{used}}, c_{\text{used}} \in \{0, 1, \dots, 6\}$ ($7^3 = 343$ configurations).
 - $W_{BA}, W_{CB}, W_{AC} \in \{0, 1, \dots, 19\}$ clamped at $19$ (since any score $\ge 19$ secures a win).
 - Total state space is at most $343 \times 20^3 \approx 2.74 \times 10^6$, but unreachable states reduce the active frontier to $< 1.5 \times 10^5$ states per layer!

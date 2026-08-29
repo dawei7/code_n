@@ -5,11 +5,18 @@
 Consider the set of all reduced proper fractions $\frac{n}{d}$ where $n < d \le 1\,000\,000$ and $\gcd(n, d) = 1$, ordered by increasing size (the Farey sequence $\mathcal{F}_{1000000}$).
 
 For $d \le 8$, listing the fractions in order:
-$$\frac{1}{8}, \frac{1}{7}, \frac{1}{6}, \frac{1}{5}, \frac{1}{4}, \frac{2}{7}, \frac{1}{3}, \frac{3}{8}, \frac{2}{5}, \mathbf{\frac{3}{7}}, \frac{1}{2}, \frac{4}{7}, \frac{3}{5}, \frac{5}{8}, \frac{2}{3}, \frac{5}{7}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}, \frac{6}{7}, \frac{7}{8}$$
+
+$$
+\frac{1}{8}, \frac{1}{7}, \frac{1}{6}, \frac{1}{5}, \frac{1}{4}, \frac{2}{7}, \frac{1}{3}, \frac{3}{8}, \frac{2}{5}, \mathbf{\frac{3}{7}}, \frac{1}{2}, \frac{4}{7}, \frac{3}{5}, \frac{5}{8}, \frac{2}{3}, \frac{5}{7}, \frac{3}{4}, \frac{4}{5}, \frac{5}{6}, \frac{6}{7}, \frac{7}{8}
+$$
+
 The fraction immediately to the left of $\frac{3}{7}$ is $\frac{2}{5}$ (numerator is $2$).
 
 The objective is to find the numerator of the fraction immediately to the left of $\frac{3}{7}$ for all denominators $d \le 1\,000\,000$:
-$$n^* = \operatorname{num}\left( \max \left\{ \frac{n}{d} \in \mathbb{Q} \;\middle|\; 1 \le n < d \le 10^6, \, \gcd(n, d) = 1, \, \frac{n}{d} < \frac{3}{7} \right\} \right)$$
+
+$$
+n^* = \operatorname{num}\left( \max \left\{ \frac{n}{d} \in \mathbb{Q} \;\middle|\; 1 \le n < d \le 10^6, \, \gcd(n, d) = 1, \, \frac{n}{d} < \frac{3}{7} \right\} \right)
+$$
 
 ---
 
@@ -25,13 +32,28 @@ def naive_ordered_fractions():
 
 ### The Mediant & Farey Neighbor Theorem
 1. In any Farey sequence, if $\frac{a}{b} < \frac{c}{d}$ are consecutive adjacent neighbors, they satisfy the cross-multiplication determinant equation:
-   $$b c - a d = 1$$
+
+$$
+b c - a d = 1
+$$
+
 2. For $\frac{c}{d} = \frac{3}{7}$:
-   $$3b - 7a = 1 \implies 3b \equiv 1 \pmod 7 \implies b \equiv 5 \pmod 7$$
+
+$$
+3b - 7a = 1 \implies 3b \equiv 1 \pmod 7 \implies b \equiv 5 \pmod 7
+$$
+
 3. To make $\frac{a}{b}$ as close to $\frac{3}{7}$ as possible, we choose the maximum possible denominator $b \le 1\,000\,000$ satisfying $b \equiv 5 \pmod 7$:
-   $$d^* = 999\,997$$
+
+$$
+d^* = 999\,997
+$$
+
 4. The numerator is:
-   $$n^* = \frac{3 d^* - 1}{7} = \frac{3(999997) - 1}{7} = \mathbf{428\,570}$$
+
+$$
+n^* = \frac{3 d^* - 1}{7} = \frac{3(999997) - 1}{7} = \mathbf{428\,570}
+$$
 
 ---
 
@@ -52,12 +74,24 @@ def naive_ordered_fractions():
 
 ### $\mathcal{O}(1)$ Closed-Form Derivation
 1. For any denominator $d$, the strictly largest numerator $n$ satisfying $\frac{n}{d} < \frac{3}{7}$ is:
-   $$n(d) = \left\lfloor \frac{3d - 1}{7} \right\rfloor$$
+
+$$
+n(d) = \left\lfloor \frac{3d - 1}{7} \right\rfloor
+$$
+
 2. The difference to $\frac{3}{7}$ is:
-   $$\frac{3}{7} - \frac{n(d)}{d} = \frac{3d - 7 n(d)}{7d} = \frac{(3d \bmod 7)}{7d}$$
+
+$$
+\frac{3}{7} - \frac{n(d)}{d} = \frac{3d - 7 n(d)}{7d} = \frac{(3d \bmod 7)}{7d}
+$$
+
 3. This difference is minimized when $(3d \bmod 7) = 1$ (i.e. $d \equiv 5 \pmod 7$) and $d$ is maximized ($d = 999\,997$).
 4. Cross-multiplication confirms:
-   $$3(999997) - 7(428570) = 2\,999\,991 - 2\,999\,990 = 1$$
+
+$$
+3(999997) - 7(428570) = 2\,999\,991 - 2\,999\,990 = 1
+$$
+
 5. Thus, $\gcd(428570, 999997) = 1$ automatically!
 
 ---
@@ -73,7 +107,10 @@ def naive_ordered_fractions():
 - $1\,000\,000 \bmod 7 = 1$.
 - To get residue $5 \pmod 7$: subtract $3 \implies d^* = 999\,997$.
 - Numerator:
-  $$n^* = \frac{3(999997) - 1}{7} = \frac{2999990}{7} = \mathbf{428\,570}$$
+
+$$
+n^* = \frac{3(999997) - 1}{7} = \frac{2999990}{7} = \mathbf{428\,570}
+$$
 
 ---
 

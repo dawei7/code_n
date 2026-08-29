@@ -11,7 +11,10 @@ We are given:
 - $T(100) \approx 9157.64707$
 
 We seek to evaluate:
-$$T(10^7) \text{ rounded to the nearest integer}$$
+
+$$
+T(10^7) \text{ rounded to the nearest integer}
+$$
 
 ---
 
@@ -27,10 +30,21 @@ The disc of radius $r = 10^7$ contains $\pi r^2 \approx 3.14 \times 10^{14}$ lat
 ### Pick's Theorem & Unimodular Lattices
 1. **Area Invariance via Pick's Theorem**:
    An empty lattice triangle has $I = 0$ and $B = 3$, so its area is strictly:
-   $$\text{Area}(\triangle ABC) = 0 + \frac{3}{2} - 1 = \frac{1}{2}$$
+
+$$
+\text{Area}(\triangle ABC) = 0 + \frac{3}{2} - 1 = \frac{1}{2}
+$$
+
 2. **Circumradius Formula**:
-   $$R = \frac{a b c}{4 \cdot \text{Area}} = \frac{a b c}{2}$$
-   $$T(r)^2 = \frac{R^2}{r^2} = \frac{s_1 s_2 s_3}{4 r^2}$$
+
+$$
+R = \frac{a b c}{4 \cdot \text{Area}} = \frac{a b c}{2}
+$$
+
+$$
+T(r)^2 = \frac{R^2}{r^2} = \frac{s_1 s_2 s_3}{4 r^2}
+$$
+
    where $s_1, s_2, s_3$ are the squared side lengths of the triangle.
 3. **Maximizing Perimeter & Near-Diameter Base**:
    To maximize perimeter with area $1/2$, two vertices $A, B$ must form a near-diameter primitive vector $\mathbf{u} = B - A$ ($\gcd(u_x, u_y) = 1$) with length $|\mathbf{u}| \approx 2r$, and $C$ must satisfy $|\det(\mathbf{u}, C - A)| = 1$.

@@ -3,15 +3,25 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $a_k, b_k, c_k$ be the three roots of:
-$$\frac{1}{x} = \left(\frac{k}{x}\right)^2 (k + x^2) - kx$$
+
+$$
+\frac{1}{x} = \left(\frac{k}{x}\right)^2 (k + x^2) - kx
+$$
+
 Define:
-$$S(n) = \sum_{p=1}^n \sum_{k=1}^n (a_k + b_k)^p (b_k + c_k)^p (c_k + a_k)^p$$
+
+$$
+S(n) = \sum_{p=1}^n \sum_{k=1}^n (a_k + b_k)^p (b_k + c_k)^p (c_k + a_k)^p
+$$
 
 We are given:
 - $S(4) = 51160$
 
 We seek to evaluate:
-$$S(10^6) \pmod{1\,000\,000\,007}$$
+
+$$
+S(10^6) \pmod{1\,000\,000\,007}
+$$
 
 ---
 
@@ -27,15 +37,26 @@ Numerically extracting complex roots of a cubic equation and summing $n^2 = 10^{
 ### Vieta's Symmetric Polynomial Reduction
 1. **Polynomial Normalization**:
    Multiplying by $x^2$ and dividing by $k$:
-   $$x^3 - k x^2 + \frac{1}{k} x - k^2 = 0$$
+
+$$
+x^3 - k x^2 + \frac{1}{k} x - k^2 = 0
+$$
+
    By Vieta's formulas:
    - $e_1 = a_k + b_k + c_k = k$
    - $e_2 = a_k b_k + b_k c_k + c_k a_k = \frac{1}{k}$
    - $e_3 = a_k b_k c_k = k^2$
 2. **Symmetric Product Identity**:
-   $$(a_k + b_k)(b_k + c_k)(c_k + a_k) = (e_1 - c_k)(e_1 - a_k)(e_1 - b_k) = e_1 e_2 - e_3$$
+
+$$
+(a_k + b_k)(b_k + c_k)(c_k + a_k) = (e_1 - c_k)(e_1 - a_k)(e_1 - b_k) = e_1 e_2 - e_3
+$$
+
    Substituting Vieta's elementary symmetric polynomials:
-   $$T_k = k \cdot \frac{1}{k} - k^2 = 1 - k^2$$
+
+$$
+T_k = k \cdot \frac{1}{k} - k^2 = 1 - k^2
+$$
 
 ---
 
@@ -46,7 +67,11 @@ Numerically extracting complex roots of a cubic equation and summing $n^2 = 10^{
    For each $k$, the base $T_k = 1 - k^2$ is an exact integer.
    When $k = 1$, $T_1 = 0 \implies \sum_{p=1}^n 0^p = 0$.
    For $k \ge 2$, $T_k \ne 1$, so the inner sum over $p = 1 \dots n$ is a standard geometric series:
-   $$\sum_{p=1}^n T_k^p = T_k \frac{T_k^n - 1}{T_k - 1} \pmod M$$
+
+$$
+\sum_{p=1}^n T_k^p = T_k \frac{T_k^n - 1}{T_k - 1} \pmod M
+$$
+
 2. **Single Modular Loop**:
    The entire double summation collapses into a single loop over $k \in [2, n]$, evaluating modular exponentiation $\text{pow}(T_k, n, M)$ in $O(\log n)$ per term.
 

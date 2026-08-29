@@ -4,9 +4,16 @@
 
 By replacing part of an integer with identical digits, we generate a family of numbers.
 For example, replacing the 1st digit of $*3$ generates a 6-prime family:
-$$\{13, 23, 43, 53, 73, 83\}$$
+
+$$
+\{13, 23, 43, 53, 73, 83\}
+$$
+
 Replacing the 3rd and 4th digits of $56**3$ generates a 7-prime family:
-$$\{56003, 56113, 56333, 56443, 56663, 56773, 56993\}$$
+
+$$
+\{56003, 56113, 56333, 56443, 56663, 56773, 56993\}
+$$
 
 The objective is to find the smallest prime number which, by replacing part of the number with the same digit, forms an **8-prime value family**.
 
@@ -25,7 +32,10 @@ def naive_prime_digit_replacements():
 ### The Modulo 3 Replacement Count Theorem
 Let $m$ identical digits be replaced by a new digit $d \in \{0, 1, \dots, 9\}$.
 The change in the sum of the digits is:
-$$\Delta S \equiv m \cdot (d - d_{\text{orig}}) \pmod 3$$
+
+$$
+\Delta S \equiv m \cdot (d - d_{\text{orig}}) \pmod 3
+$$
 
 1. **If $m = 1$ or $m = 2$:** As $d$ ranges over $\{0, 1, \dots, 9\}$, $m \cdot d \bmod 3$ assumes residues $0, 1, 2$ with equal distribution. Exactly 3 of the 10 substitutions will be divisible by 3 (composite). The maximum possible prime family size is $10 - 3 = 7 < 8$.
 2. **If $m = 3$:** $3 \cdot (d - d_{\text{orig}}) \equiv 0 \pmod 3$ for all $d$. The divisibility by 3 is invariant across all 10 substitutions, allowing up to 8, 9, or 10 primes!
@@ -86,7 +96,10 @@ $$\Delta S \equiv m \cdot (d - d_{\text{orig}}) \pmod 3$$
   9. $d = 9 \implies \mathbf{929393} \in \mathbb{P}$
 - Exactly 8 primes generated!
 - Smallest Prime in Family:
-  $$p_{\text{min}} = \mathbf{121\,313}$$
+
+$$
+p_{\text{min}} = \mathbf{121\,313}
+$$
 
 ---
 

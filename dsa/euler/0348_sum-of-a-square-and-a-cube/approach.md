@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 We consider positive integers $P$ that are **palindromes** in base 10 and can be expressed as the sum of a square and a cube:
-$$P = x^2 + y^3 \quad (x > 1, y > 1, x, y \in \mathbb{Z}^+)$$
+
+$$
+P = x^2 + y^3 \quad (x > 1, y > 1, x, y \in \mathbb{Z}^+)
+$$
+
 in **exactly 4 different ways** (distinct pairs $(x, y)$).
 We are given that $5\,229\,225$ is one such number with 4 representations:
 - $2285^2 + 20^3$

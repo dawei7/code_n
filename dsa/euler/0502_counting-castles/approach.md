@@ -17,7 +17,10 @@ We are given:
 - $F(100, 100) \equiv 841913936 \pmod{10^9+7}$
 
 We seek to evaluate:
-$$(F(10^{12}, 100) + F(10000, 10000) + F(100, 10^{12})) \bmod 1\,000\,000\,007$$
+
+$$
+(F(10^{12}, 100) + F(10000, 10000) + F(100, 10^{12})) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -34,10 +37,18 @@ Tracking block intervals row-by-row on grids of size $10^{12} \times 100$ or $10
 1. **Generating Function Hierarchy**:
    Let $C_h(x, y)$ be the generating function where $[x^w y^k]$ counts castles of width $w$, height $\le h$, and $k$ blocks.
    The rational generating function takes the form:
-   $$C_h(x, y) = \frac{P_h(x, y)}{Q_h(x, y)}$$
+
+$$
+C_h(x, y) = \frac{P_h(x, y)}{Q_h(x, y)}
+$$
+
 2. **Transfer Matrix Step**:
    The transition from height $h-1$ to height $h$ satisfies the 2D linear recurrence:
-   $$\begin{pmatrix} P_h(x) \\ Q_h(x) \end{pmatrix} = \begin{pmatrix} y(1+x) & yx \\ -x & 1-x \end{pmatrix} \begin{pmatrix} P_{h-1}(x) \\ Q_{h-1}(x) \end{pmatrix}$$
+
+$$
+\begin{pmatrix} P_h(x) \\ Q_h(x) \end{pmatrix} = \begin{pmatrix} y(1+x) & yx \\ -x & 1-x \end{pmatrix} \begin{pmatrix} P_{h-1}(x) \\ Q_{h-1}(x) \end{pmatrix}
+$$
+
 3. **Parity Projection**:
    Even block count is extracted by $E_{\le}(w, h) = \frac{1}{2} ([x^w] C_h(x, 1) + [x^w] C_h(x, -1))$.
    Exact height $h$ is $F(w, h) = E_{\le}(w, h) - E_{\le}(w, h - 1)$.

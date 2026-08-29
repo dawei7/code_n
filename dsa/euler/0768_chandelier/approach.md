@@ -4,7 +4,10 @@
 
 A circular ring contains $n$ evenly spaced candleholders.
 $f(n, m)$ is the number of ways to arrange $m$ identical candles in distinct sockets such that the center of mass is at the origin:
-$$\sum_{j=1}^m \zeta_n^{k_j} = 0 \quad \text{where } \zeta_n = e^{2\pi i / n} \text{ and } 0 \le k_1 < \dots < k_m < n$$
+
+$$
+\sum_{j=1}^m \zeta_n^{k_j} = 0 \quad \text{where } \zeta_n = e^{2\pi i / n} \text{ and } 0 \le k_1 < \dots < k_m < n
+$$
 
 We are given:
 - $f(4, 2) = 2$
@@ -12,7 +15,10 @@ We are given:
 - $f(36, 6) = 876$
 
 We seek to evaluate:
-$$f(360, 20)$$
+
+$$
+f(360, 20)
+$$
 
 ---
 
@@ -38,7 +44,10 @@ Choosing $20$ sockets out of $360$ has $\binom{360}{20} \approx 4.5 \times 10^{3
    Since 3 columns share the same difference $\Delta$, their contribution is $(P_\Delta(x))^3$.
    Summing over all $\Delta$ gives the block polynomial $S(x) = \sum_\Delta (P_\Delta(x))^3$.
 4. **Total Configuration Count**:
-   $$f(360, 20) = [x^{20}] S(x)^{12}$$
+
+$$
+f(360, 20) = [x^{20}] S(x)^{12}
+$$
 
 ---
 

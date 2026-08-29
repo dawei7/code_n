@@ -3,16 +3,26 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Let $f(n)$ be the number of $6$-tuples $(x_1, \dots, x_6) \in \{0, \dots, n - 1\}^6$ such that:
-$$\gcd\left(\sum_{i=1}^6 x_i^2, n^2\right) = 1$$
+
+$$
+\gcd\left(\sum_{i=1}^6 x_i^2, n^2\right) = 1
+$$
+
 Define:
-$$G(n) = \sum_{k=1}^n \frac{f(k)}{k^2 \varphi(k)}$$
+
+$$
+G(n) = \sum_{k=1}^n \frac{f(k)}{k^2 \varphi(k)}
+$$
 
 We are given:
 - $G(10) = 3053$
 - $G(10^5) \equiv 157612967 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$G(10^{12}) \bmod 1\,000\,000\,007$$
+
+$$
+G(10^{12}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -32,7 +42,11 @@ For $n = 10^{12}$, evaluating $n^6 = 10^{72}$ tuples or iterating through $10^{1
    Counting solutions to $\sum_{i=1}^6 x_i^2 \equiv 0 \pmod p$ via Gauss sums:
    - For $p = 2$: $g(2^e) = 2^{3e}$.
    - For odd primes $p$:
-     $$g(p^e) = p^{3e} - \chi_4(p) p^{3e - 3}$$
+
+$$
+g(p^e) = p^{3e} - \chi_4(p) p^{3e - 3}
+$$
+
      where $\chi_4$ is the non-principal Dirichlet character modulo 4 ($\chi_4(p) = +1$ if $p \equiv 1 \pmod 4$, $-1$ if $p \equiv 3 \pmod 4$).
 3. **Prime Summatory Base Function**:
    On primes, $g(p) = p^3 - \chi_4(p)$.
@@ -48,7 +62,11 @@ For $n = 10^{12}$, evaluating $n^6 = 10^{72}$ tuples or iterating through $10^{1
    - Sieve $\sum_{p \le x} \chi_4(p)$ starting from the period-4 partial sums of $\chi_4$.
 2. **Min_25 Search $S(n, j)$**:
    Recursively compute composite contributions:
-   $$S(n, j) = G_{\text{prime}}(n) - G_{\text{prime}}(p_{j-1}) + \sum_{k \ge j} \sum_{e \ge 1} g(p_k^e) \left( S(n / p_k^e, k + 1) - [e = 1] \right)$$
+
+$$
+S(n, j) = G_{\text{prime}}(n) - G_{\text{prime}}(p_{j-1}) + \sum_{k \ge j} \sum_{e \ge 1} g(p_k^e) \left( S(n / p_k^e, k + 1) - [e = 1] \right)
+$$
+
 3. **Execution Time**:
    For $N = 10^{12}$, $\sqrt{N} = 10^6$.
    The complete Min_25 sieve executes in **$\approx 2.94$ seconds** in compiled C!

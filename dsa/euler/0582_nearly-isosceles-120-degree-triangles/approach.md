@@ -10,7 +10,10 @@ We are given:
 - $T(10^8) = 1245$
 
 We seek to evaluate:
-$$T(10^{100})$$
+
+$$
+T(10^{100})
+$$
 
 ---
 
@@ -27,10 +30,18 @@ The bound $n = 10^{100}$ has 101 decimal digits, making any linear iteration ove
 1. **Algebraic Form**:
    By the Law of Cosines, $c^2 = a^2 + ab + b^2$.
    Let $k = b - a \in [1, 100]$. Then $b = a + k$:
-   $$c^2 = 3a^2 + 3ak + k^2 \implies (2c)^2 - 3(2a + k)^2 = k^2$$
+
+$$
+c^2 = 3a^2 + 3ak + k^2 \implies (2c)^2 - 3(2a + k)^2 = k^2
+$$
+
 2. **Pell Transformation**:
    Let $X = 2c$ and $Y = 2a + k$. The equation becomes:
-   $$X^2 - 3Y^2 = k^2$$
+
+$$
+X^2 - 3Y^2 = k^2
+$$
+
    with parity constraints: $X \equiv 0 \pmod 2$ and $Y \equiv k \pmod 2$.
 3. **Fundamental Units & Orbits**:
    - For even $k$: The fundamental unit $2 + \sqrt{3}$ preserves parity.

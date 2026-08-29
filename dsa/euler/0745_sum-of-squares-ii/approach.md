@@ -4,14 +4,20 @@
 
 For positive integer $n$, let $g(n)$ be the maximum perfect square dividing $n$.
 Define:
-$$S(N) = \sum_{n=1}^N g(n)$$
+
+$$
+S(N) = \sum_{n=1}^N g(n)
+$$
 
 We are given:
 - $S(10) = 24$
 - $S(100) = 767$
 
 We seek to evaluate:
-$$S(10^{14}) \bmod 1\,000\,000\,007$$
+
+$$
+S(10^{14}) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -29,11 +35,19 @@ Finding the largest square factor for each $n \le 10^{14}$ sequentially requires
    Every integer $n$ can be uniquely factored as $n = d^2 \cdot k$, where $k$ is squarefree ($\mu(k)^2 = 1$).
    Thus $g(n) = d^2$.
 2. **Double Summation Interchange**:
-   $$S(N) = \sum_{d=1}^{\lfloor \sqrt{N} \rfloor} d^2 Q\left(\left\lfloor \frac{N}{d^2}\right\rfloor\right)$$
+
+$$
+S(N) = \sum_{d=1}^{\lfloor \sqrt{N} \rfloor} d^2 Q\left(\left\lfloor \frac{N}{d^2}\right\rfloor\right)
+$$
+
    where $Q(x) = \sum_{m=1}^{\lfloor \sqrt{x} \rfloor} \mu(m) \lfloor x / m^2 \rfloor$ counts squarefree integers $\le x$.
 3. **Jordan Totient Function $J_2(k)$**:
    Substituting $k = dm$ and interchanging sums yields:
-   $$S(N) = \sum_{k=1}^{\lfloor \sqrt{N} \rfloor} \left\lfloor \frac{N}{k^2} \right\rfloor \sum_{d \mid k} d^2 \mu(k / d) = \sum_{k=1}^{\lfloor \sqrt{N} \rfloor} J_2(k) \left\lfloor \frac{N}{k^2} \right\rfloor$$
+
+$$
+S(N) = \sum_{k=1}^{\lfloor \sqrt{N} \rfloor} \left\lfloor \frac{N}{k^2} \right\rfloor \sum_{d \mid k} d^2 \mu(k / d) = \sum_{k=1}^{\lfloor \sqrt{N} \rfloor} J_2(k) \left\lfloor \frac{N}{k^2} \right\rfloor
+$$
+
    where $J_2(k) = k^2 \prod_{p \mid k} \left(1 - \frac{1}{p^2}\right)$ is Jordan's second totient function.
 
 ---

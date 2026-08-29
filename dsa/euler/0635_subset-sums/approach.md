@@ -12,7 +12,10 @@ We are given:
 - $S_3(100) \equiv 855618282 \pmod{10^9 + 9}$
 
 We seek to evaluate:
-$$(S_2(10^8) + S_3(10^8)) \pmod{1\,000\,000\,009}$$
+
+$$
+(S_2(10^8) + S_3(10^8)) \pmod{1\,000\,000\,009}
+$$
 
 ---
 
@@ -28,12 +31,20 @@ For each prime $p \le 10^8$, counting subsets via modular DP takes $O(q p^2)$, w
 ### Roots of Unity Filter & Binomial Closed Form
 1. **Generating Function Filter**:
    Let $\zeta = e^{2\pi i / p}$. Filtering subsets summing to $0 \pmod p$ via roots of unity:
-   $$A_q(p) = \frac{1}{p} \sum_{k=0}^{p-1} [x^p] \prod_{j=1}^{q p} (1 + x \zeta^{j k})$$
+
+$$
+A_q(p) = \frac{1}{p} \sum_{k=0}^{p-1} [x^p] \prod_{j=1}^{q p} (1 + x \zeta^{j k})
+$$
+
 2. **Product Factorization for Odd Primes $p \ge 3$**:
    - For $k = 0$: $[x^p] (1+x)^{q p} = \binom{q p}{p}$.
    - For $1 \le k \le p-1$: $\prod_{j=1}^{q p} (1 + x \zeta^{j k}) = (1 + x^p)^q \implies [x^p] (1 + x^p)^q = q$.
 3. **Closed Form for Odd Primes**:
-   $$A_2(p) = \frac{\binom{2p}{p} + 2(p - 1)}{p}, \quad A_3(p) = \frac{\binom{3p}{p} + 3(p - 1)}{p}$$
+
+$$
+A_2(p) = \frac{\binom{2p}{p} + 2(p - 1)}{p}, \quad A_3(p) = \frac{\binom{3p}{p} + 3(p - 1)}{p}
+$$
+
    For the even prime $p = 2$: $A_2(2) = 2, A_3(2) = 6$.
 
 ---
@@ -43,8 +54,15 @@ For each prime $p \le 10^8$, counting subsets via modular DP takes $O(q p^2)$, w
 ### Streaming Binomial Step Recurrence ($O(L)$)
 1. **Direct Ratio Recurrences**:
    Along the sequence of odd integers $n = 2i + 1$:
-   $$\binom{2(n+2)}{n+2} = \binom{2n}{n} \cdot \frac{2(2n+1)(2n+3)}{\frac{n+1}{2}(n+2)}$$
-   $$\binom{3(n+2)}{n+2} = \binom{3n}{n} \cdot \frac{9(3n+1)(3n+2)(3n+4)(3n+5)}{2(n+1)(n+2)(2n+1)(2n+3)}$$
+
+$$
+\binom{2(n+2)}{n+2} = \binom{2n}{n} \cdot \frac{2(2n+1)(2n+3)}{\frac{n+1}{2}(n+2)}
+$$
+
+$$
+\binom{3(n+2)}{n+2} = \binom{3n}{n} \cdot \frac{9(3n+1)(3n+2)(3n+4)(3n+5)}{2(n+1)(n+2)(2n+1)(2n+3)}
+$$
+
 2. **Batch Modular Inversion**:
    Precompute inverses of consecutive odd integers in $O(L)$ using Montgomery's prefix-product batch inversion in blocks of $10^6$.
 3. **Stream Accumulator**:

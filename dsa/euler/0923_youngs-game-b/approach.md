@@ -25,7 +25,10 @@ Find $S(8, 64) \bmod (10^9 + 7)$.
 ### Short-Step Partizan Games & Surreal Values
 Under unit-step moves, each $(a, b, k)$-staircase represents an independent partizan game with exact Conway value $v(a, b, k)$.
 For a disjoint sum of $m$ games, the overall game value is the additive sum:
-$$V = \sum_{i=1}^m v(a_i, b_i, k_i)$$
+
+$$
+V = \sum_{i=1}^m v(a_i, b_i, k_i)
+$$
 
 ---
 

@@ -10,14 +10,20 @@ In the game of "Lights Out" on a $w \times h$ rectangular grid:
 Let $F(w, h)$ denote the number of solvable starting configurations on a $w \times h$ grid.
 Let $(f_n)_{n \ge 1}$ be the standard Fibonacci sequence ($f_1 = f_2 = 1, f_3 = 2, \dots$).
 Define:
-$$S(w, n) = \sum_{k=1}^n F(w, f_k)$$
+
+$$
+S(w, n) = \sum_{k=1}^n F(w, f_k)
+$$
 
 We are given:
 - $F(1, 2) = 2, F(3, 3) = 512, F(4, 4) = 4096, F(7, 11) \equiv 270016253 \pmod{1\,000\,000\,007}$
 - $S(3, 3) = 32, S(4, 5) = 1052960, S(5, 7) \equiv 346547294 \pmod{1\,000\,000\,007}$
 
 We seek to evaluate:
-$$S(199, 199) \bmod 1\,000\,000\,007$$
+
+$$
+S(199, 199) \bmod 1\,000\,000\,007
+$$
 
 ---
 
@@ -34,14 +40,21 @@ $f_{199}$ is an astronomical integer ($> 10^{41}$). Creating a grid of size $199
 1. **Solvable Space Dimension**:
    The grid adjacency operator is a symmetric linear map $A_{w, h}: \mathbb{F}_2^{wh} \to \mathbb{F}_2^{wh}$.
    The number of solvable states is:
-   $$F(w, h) = 2^{\text{rank}(A_{w, h})} = 2^{wh - \text{nullity}(A_{w, h})}$$
+
+$$
+F(w, h) = 2^{\text{rank}(A_{w, h})} = 2^{wh - \text{nullity}(A_{w, h})}
+$$
+
 2. **Kronecker Sum Structure**:
    $A_{w, h} = I_w \otimes T_h + T_w \otimes I_h$ where $T_n$ is the $n \times n$ tridiagonal matrix with $1$s on the main and adjacent diagonals.
 3. **Polynomial GCD Theorem (Hunziker et al.)**:
    Let $P_w(x) = \det(x I - T_w) \in \mathbb{F}_2[x]$ be the characteristic polynomial of $T_w$.
    Let $F_m(x) \in \mathbb{F}_2[x]$ be the Fibonacci polynomial defined by $F_0 = 0, F_1 = 1, F_{m+1} = x F_m + F_{m-1}$.
    Then the nullity of the grid operator is given by:
-   $$\text{nullity}(A_{w, h}) = \deg\left( \gcd(P_w(x), F_{h+1}(x)) \right) \quad \text{over } \mathbb{F}_2[x]$$
+
+$$
+\text{nullity}(A_{w, h}) = \deg\left( \gcd(P_w(x), F_{h+1}(x)) \right) \quad \text{over } \mathbb{F}_2[x]
+$$
 
 ---
 
@@ -52,8 +65,15 @@ $f_{199}$ is an astronomical integer ($> 10^{41}$). Creating a grid of size $199
    Evaluate $P_w(x)$ in $O(w)$ operations via the 3-term recurrence $D_{n} = (x + 1) D_{n-1} + D_{n-2} \pmod 2$.
 2. **Fast-Doubling Fibonacci Polynomial Modulo $P_w(x)$**:
    In characteristic 2, the Frobenius map gives $(A + B)^2 = A^2 + B^2$:
-   $$F_{2k}(x) = x \cdot F_k(x)^2 \pmod{P_w(x)}$$
-   $$F_{2k+1}(x) = F_k(x)^2 + F_{k+1}(x)^2 \pmod{P_w(x)}$$
+
+$$
+F_{2k}(x) = x \cdot F_k(x)^2 \pmod{P_w(x)}
+$$
+
+$$
+F_{2k+1}(x) = F_k(x)^2 + F_{k+1}(x)^2 \pmod{P_w(x)}
+$$
+
    Squaring a polynomial in $\mathbb{F}_2[x]$ is a single bit-dilation ($x^i \mapsto x^{2i}$), making modular reduction lightning-fast!
 3. **Evaluation for Large Fibonacci Numbers**:
    Computing $F_{f_k + 1}(x) \bmod P_w(x)$ takes $O(w \log f_k)$ bitwise operations!

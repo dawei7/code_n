@@ -11,7 +11,10 @@ We are given:
 - $F(10^7) = 277\,674$
 
 We seek to evaluate:
-$$F(10^{19}) = \sum_{d=1}^{19} \text{count\_one\_child}(d)$$
+
+$$
+F(10^{19}) = \sum_{d=1}^{19} \text{count\_one\_child}(d)
+$$
 
 ---
 
@@ -27,7 +30,11 @@ Scanning all numbers up to $10^{19}$ requires evaluating $10^{19}$ candidates, w
 ### Prefix Modular Duality & Suffix Residue Transition
 A substring $S[i..j]$ is divisible by $d$ if and only if $P_j - P_{i-1} \cdot 10^{j-i+1} \equiv 0 \pmod d$ where $P_k$ is the numerical prefix value.
 When $\gcd(d, 10) = 1$:
-$$P_j \equiv P_{i-1} \cdot 10^{j-i+1} \pmod d \iff P_j \cdot 10^{-j} \equiv P_{i-1} \cdot 10^{-(i-1)} \pmod d$$
+
+$$
+P_j \equiv P_{i-1} \cdot 10^{j-i+1} \pmod d \iff P_j \cdot 10^{-j} \equiv P_{i-1} \cdot 10^{-(i-1)} \pmod d
+$$
+
 Defining transformed prefix residues $R_k = P_k \cdot 10^{-k} \bmod d$, a substring $S[i..j]$ is divisible by $d$ if and only if $R_j = R_{i-1}$ (a duplicate residue in the prefix sequence)!
 
 ---

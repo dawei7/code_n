@@ -3,7 +3,11 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 A quadrilateral $ABCD$ inscribed in a circle of radius $r$ centered at the origin is **pythagorean** if its side lengths satisfy:
-$$a^2 + b^2 + c^2 + d^2 = 8 r^2$$
+
+$$
+a^2 + b^2 + c^2 + d^2 = 8 r^2
+$$
+
 A pythagorean quadrilateral is a **pythagorean lattice grid quadrilateral** if its four vertices $A, B, C, D$ are distinct lattice points $(x_i, y_i) \in \mathbb{Z}^2$ with $x_i^2 + y_i^2 = r^2$.
 
 Let $f(r)$ be the number of such quadrilaterals with circumradius $r$.
@@ -15,7 +19,10 @@ We are given:
 - $S(1105) = S(5 \cdot 13 \cdot 17) = 5535$
 
 We seek to evaluate:
-$$S(1411033124176203125) = S(5^6 \cdot 13^3 \cdot 17^2 \cdot 29 \cdot 37 \cdot 41 \cdot 53 \cdot 61)$$
+
+$$
+S(1411033124176203125) = S(5^6 \cdot 13^3 \cdot 17^2 \cdot 29 \cdot 37 \cdot 41 \cdot 53 \cdot 61)
+$$
 
 ---
 
@@ -31,11 +38,18 @@ $r^2 = n = 1.41 \times 10^{18}$ has thousands of lattice points on the circle. C
 ### Vector Dot Product Equivalence & Cyclic Angular Geometry
 1. **Geometric Identity**:
    Expanding $|A - B|^2 + |B - C|^2 + |C - D|^2 + |D - A|^2 = 8r^2$:
-   $$8r^2 - 2(A + C) \cdot (B + D) = 8r^2 \iff (A + C) \cdot (B + D) = 0$$
+
+$$
+8r^2 - 2(A + C) \cdot (B + D) = 8r^2 \iff (A + C) \cdot (B + D) = 0
+$$
+
    This holds iff the midpoints of the diagonals are orthogonal vectors.
 2. **Multiplicative Invariant under Prime Factorization**:
    For $n = \prod_{i=1}^k p_i^{e_i}$ with $p_i \equiv 1 \pmod 4$, the divisor sum $S(n)$ decomposes into a linear combination of 5 multiplicative polynomial basis functions $A_1 \dots A_5$:
-   $$S(n) = 7 \prod_{i=1}^k A_1(e_i) - 14 \prod_{i=1}^k A_2(e_i) - 4 \prod_{i=1}^k A_3(e_i) + 8 \prod_{i=1}^k A_4(e_i) + 4 \prod_{i=1}^k A_5(e_i)$$
+
+$$
+S(n) = 7 \prod_{i=1}^k A_1(e_i) - 14 \prod_{i=1}^k A_2(e_i) - 4 \prod_{i=1}^k A_3(e_i) + 8 \prod_{i=1}^k A_4(e_i) + 4 \prod_{i=1}^k A_5(e_i)
+$$
 
 ---
 

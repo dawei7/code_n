@@ -5,12 +5,18 @@
 A number consisting entirely of ones is called a **repunit**. We shall define $R(k)$ to be a repunit of length $k$; for example, $R(6) = 111\,111$.
 
 Given that $n$ is a positive integer and $\gcd(n, 10) = 1$, it can be shown that there always exists a value, $k$, for which $R(k)$ is divisible by $n$, and let $A(n)$ be the least such value of $k$; for example:
-$$A(7) = 6 \quad \text{and} \quad A(41) = 5$$
+
+$$
+A(7) = 6 \quad \text{and} \quad A(41) = 5
+$$
 
 The least value of $n$ for which $A(n)$ first exceeds ten is $17$.
 
 The objective is to find the **least value of $n$ for which $A(n)$ first exceeds one million ($1\,000\,000$)**:
-$$n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; \gcd(n, 10) = 1 \land A(n) > 1\,000\,000 \right\}$$
+
+$$
+n_{\text{min}} = \min \left\{ n \in \mathbb{N} \;\middle|\; \gcd(n, 10) = 1 \land A(n) > 1\,000\,000 \right\}
+$$
 
 ---
 
@@ -28,12 +34,20 @@ def naive_repunit_divisibility():
 1. **Pigeonhole Principle Bound:**
    When generating the sequence of remainders $R(1), R(2), \dots \bmod n$, there are only $n$ possible non-zero remainder states.
    Therefore, the remainder must repeat or hit $0$ in at most $n$ steps:
-   $$A(n) \le n \quad \text{for all } n \text{ with } \gcd(n, 10) = 1$$
+
+$$
+A(n) \le n \quad \text{for all } n \text{ with } \gcd(n, 10) = 1
+$$
+
 2. **Immediate Lower Bound:**
    If $n \le 1\,000\,000$, then $A(n) \le n \le 1\,000\,000$.
    Hence, $A(n) > 1\,000\,000$ is **strictly impossible for all $n \le 1\,000\,000$**!
 3. We can initialize our search directly at:
-   $$n = 1\,000\,001$$
+
+$$
+n = 1\,000\,001
+$$
+
    evaluating only a few candidates and completing in $\approx 0.05$ seconds.
 
 ---
@@ -59,8 +73,15 @@ def naive_repunit_divisibility():
 
 ### Modular Remainder Recurrence
 1. The repunit relation satisfies:
-   $$R(1) = 1 \pmod n$$
-   $$R(k+1) = (10 \cdot R(k) + 1) \pmod n$$
+
+$$
+R(1) = 1 \pmod n
+$$
+
+$$
+R(k+1) = (10 \cdot R(k) + 1) \pmod n
+$$
+
 2. `a_n(n)` loop:
    - `rem = 1, k = 1`
    - While `rem != 0`:
@@ -90,7 +111,10 @@ def naive_repunit_divisibility():
   - $\dots$
   - At $n = 1\,000\,023$: $A(1000023) = \mathbf{1\,000\,023} > 1\,000\,000$.
 - Least integer:
-  $$n_{\text{min}} = \mathbf{1\,000\,023}$$
+
+$$
+n_{\text{min}} = \mathbf{1\,000\,023}
+$$
 
 ---
 

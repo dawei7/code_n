@@ -3,9 +3,16 @@
 ## 1. Problem Essence & Formal Mathematical Formulation
 
 Create an infinite pseudo-random sequence using the **Blum Blum Shub (BBS)** generator:
-$$s_0 = 14\,025\,256, \quad s_{n+1} = s_n^2 \bmod 20\,300\,713$$
+
+$$
+s_0 = 14\,025\,256, \quad s_{n+1} = s_n^2 \bmod 20\,300\,713
+$$
+
 Concatenating the decimal digits of $s_0, s_1, s_2, \dots$ forms the infinite digit string $w$:
-$$w = 1402525674101495847003805364\dots$$
+
+$$
+w = 1402525674101495847003805364\dots
+$$
 
 For any positive integer $k$, let $p(k)$ be the **earliest 1-based start position** of a substring of $w$ whose digits sum to $k$ (or $0$ if no such substring exists).
 
@@ -35,10 +42,17 @@ def naive_string_tour(k_max):
    The concatenated digit string $W$ has length $L = 18\,886\,117$ digits and total period digit sum $S_{\text{period}} = 80\,846\,691$.
 2. **Circular String Periodicity of Substring Sums:**
    Appending a full period $W$ adds $S_{\text{period}}$ to the substring sum without changing the start position:
-   $$p(k + S_{\text{period}}) = p(k)$$
+
+$$
+p(k + S_{\text{period}}) = p(k)
+$$
+
 3. **Multiplier Aggregation:**
    For each residue $r \in [1, S_{\text{period}}]$, the number of times $k \equiv r \pmod{S_{\text{period}}}$ occurs in $[1, \text{limit}]$ is $\lfloor (\text{limit} - r) / S_{\text{period}} \rfloor + 1$.
-   $$\text{Total Sum} = \sum_{r=1}^{S_{\text{period}}} p(r) \left( \left\lfloor \frac{\text{limit} - r}{S_{\text{period}}} \right\rfloor + 1 \right)$$
+
+$$
+\text{Total Sum} = \sum_{r=1}^{S_{\text{period}}} p(r) \left( \left\lfloor \frac{\text{limit} - r}{S_{\text{period}}} \right\rfloor + 1 \right)
+$$
 
 ---
 
@@ -79,7 +93,10 @@ def solve(limit: int = 2 * 10**15) -> int:
 ```
 
 Evaluating for $\text{limit} = 2 \times 10^{15}$:
-$$\text{Total Sum} = \mathbf{9\,922\,545\,104\,535\,661}$$
+
+$$
+\text{Total Sum} = \mathbf{9\,922\,545\,104\,535\,661}
+$$
 
 ---
 
@@ -87,13 +104,20 @@ $$\text{Total Sum} = \mathbf{9\,922\,545\,104\,535\,661}$$
 
 ### Example 1: Sample Verification for $\text{limit} = 1000$
 - Summing $p(k)$ for $k \in [1, 1000]$ gives:
-  $$\sum_{k=1}^{1000} p(k) = \mathbf{4742} \quad (\checkmark)$$
+
+$$
+\sum_{k=1}^{1000} p(k) = \mathbf{4742} \quad (\checkmark)
+$$
+
 - Matches problem statement sample! $\checkmark$
 
 ### Example 2: Target Evaluation for $K = 2 \times 10^{15}$
 - Quotient: $Q = \lfloor 2 \times 10^{15} / 80846691 \rfloor = 24\,738\,179$.
 - Summing periodic repetitions across $S_{\text{period}} = 80\,846\,691$:
-  $$\text{Total Sum} = \mathbf{9\,922\,545\,104\,535\,661}$$
+
+$$
+\text{Total Sum} = \mathbf{9\,922\,545\,104\,535\,661}
+$$
 
 ---
 
