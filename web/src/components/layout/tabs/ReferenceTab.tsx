@@ -179,20 +179,21 @@ export function ReferenceTab() {
       {detail && <ChallengeHeaderBar detail={detail} challengeId={challengeId ?? ''} />}
 
       {/* Main Documentation Body */}
-      <article className="prose prose-sm max-w-none text-coden-text
+      <article className="prose prose-base max-w-none text-coden-text text-[15px] leading-relaxed
                           prose-headings:text-coden-text prose-headings:tracking-tight
-                          prose-h2:text-lg prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-coden-border prose-h2:pb-2
-                          prose-h3:text-base prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2
-                          prose-p:leading-7 prose-p:my-3.5 prose-p:text-coden-text
-                          prose-li:my-1 prose-li:text-coden-text
+                          prose-h1:text-2xl prose-h1:font-extrabold prose-h1:mt-0 prose-h1:mb-4
+                          prose-h2:text-xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3
+                          prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-6 prose-h3:mb-2
+                          prose-h4:text-base prose-h4:font-semibold prose-h4:mt-4 prose-h4:mb-2
+                          prose-p:text-[15px] prose-p:leading-7 prose-p:my-3.5 prose-p:text-coden-text
+                          prose-li:text-[15px] prose-li:leading-7 prose-li:my-1 prose-li:text-coden-text
                           prose-strong:text-coden-text prose-strong:font-semibold
                           prose-em:text-coden-text
                           prose-hr:border-coden-border prose-hr:my-6
-                          prose-blockquote:text-coden-text prose-blockquote:border-coden-accent prose-blockquote:bg-coden-surface-elevated/40 prose-blockquote:rounded-r-lg prose-blockquote:py-1 prose-blockquote:px-4
                           prose-a:text-coden-accent prose-a:font-medium hover:prose-a:underline
                           prose-code:text-coden-accent prose-code:font-mono
                           prose-code:before:content-none prose-code:after:content-none
-                          prose-table:my-4 prose-th:text-left">
+                          prose-pre:my-4 prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:border prose-pre:border-coden-border prose-pre:bg-coden-surface-elevated prose-pre:text-coden-text">
         <ReactMarkdown
           remarkPlugins={[remarkGfm, remarkMath]}
           rehypePlugins={[rehypeRaw, rehypeKatex]}
