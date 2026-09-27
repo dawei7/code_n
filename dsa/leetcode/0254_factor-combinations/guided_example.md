@@ -142,6 +142,22 @@ Output: [[2, 6], [2, 2, 3], [3, 4]]
 | 1 | 4 | 3 | `[3]` | Empty ($3 > 2$) | **`[3, 4]`** | Backtrack to depth 0 |
 | **End** | - | - | `[]` | - | **`[[2, 6], [2, 2, 3], [3, 4]]`** | Completed |
 
+### A Seven-Call Trace Where the Two Bounds Interact ($n = 32$)
+
+For $n = 12$ every call still has a non-empty trial range, so it never becomes clear what happens when the lower bound $\text{start}$ overtakes the square-root cap. The power-of-two instance separates the two bounds: the top call has two divisors to explore, and three later calls have no trial factors at all.
+
+| Visit | Call state $(\text{rem}, \text{start}, \text{path})$ | Emitted combination | Divisors found in $[\text{start}, \lfloor\sqrt{\text{rem}}\rfloor]$ | Trial factors rejected | Depth |
+|:---:|:---|:---|:---|:---|:---:|
+| 1 | $(32, 2, [\,])$ | none: the path is empty, so $[32]$ is correctly suppressed | $2$ and $4$ | $3$ and $5$ do not divide; $6$ exceeds $\lfloor\sqrt{32}\rfloor = 5$ | 0 |
+| 2 | $(16, 2, [2])$ | `[2, 16]` | $2$ and $4$ | $3$ does not divide | 1 |
+| 3 | $(8, 2, [2, 2])$ | `[2, 2, 8]` | $2$ | $3$ exceeds $\lfloor\sqrt{8}\rfloor = 2$ | 2 |
+| 4 | $(4, 2, [2, 2, 2])$ | `[2, 2, 2, 4]` | $2$ | $3$ exceeds $\lfloor\sqrt{4}\rfloor = 2$ | 3 |
+| 5 | $(2, 2, [2, 2, 2, 2])$ | `[2, 2, 2, 2, 2]` | none: the range $[2, 1]$ is empty because $\lfloor\sqrt{2}\rfloor = 1$ is below $\text{start}$ | every candidate is excluded by the cap | 4 |
+| 6 | $(4, 4, [2, 4])$ | `[2, 4, 4]` | none: the range $[4, 2]$ is empty because $\lfloor\sqrt{4}\rfloor = 2$ is below $\text{start} = 4$ | every candidate is excluded by the lower bound | 2 |
+| 7 | $(8, 4, [4])$ | `[4, 8]` | none: the range $[4, 2]$ is empty for the same reason | every candidate is excluded by the lower bound | 1 |
+
+The seven visits emit exactly the six required combinations, in the order `[2, 16]`, `[2, 2, 8]`, `[2, 2, 2, 4]`, `[2, 2, 2, 2, 2]`, `[2, 4, 4]`, `[4, 8]`. Visits 5, 6 and 7 are the interesting ones: a call stops exploring for two different reasons, either because the remainder has become too small to contain a factor (visit 5) or because the non-decreasing lower bound has caught up with the cap (visits 6 and 7), and in both cases the remainder itself is still emitted as the final factor. Note also that visit 4 doubles the factor $2$ rather than advancing to $3$, which is what allows the four-fold repetition in visit 5 to exist at all.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -158,9 +174,38 @@ Output: [[2, 6], [2, 2, 3], [3, 4]]
 - **Square-Root Bound Equality ($f \times f \le \text{rem}$):** The loop must include the square root ($f \le \lfloor \sqrt{\text{rem}} \rfloor$). For square numbers like $16$, testing $f = 4$ generates $[4, 4]$. Using strict inequality ($f < \sqrt{\text{rem}}$) misses symmetric pairs!
 - **Allowing Factor Repetition ($f$ vs $f + 1$):** When recursing, the new `start` bound must be $f$, not $f + 1$, allowing prime powers like $[2, 2, 2]$ to be generated.
 
+### Boundary instances and the shape of the trial range
+
+Every row is a separate input, and the third column reports the complete result so the effect of the square-root cap can be seen directly.
+
+| Instance | Top-level trial range $[\text{start}, \lfloor\sqrt{n}\rfloor]$ | Complete result | Which boundary it fixes |
+|:---|:---|:---|:---|
+| $n = 1$ | $[2, 1]$, empty | `[]` | no factor $\ge 2$ exists at all, so the loop never starts and the empty path never emits |
+| $n = 2$ | $[2, 1]$, empty | `[]` | the smallest prime must not emit the forbidden single factor $[2]$ |
+| $n = 4$ | $[2, 2]$ | `[[2, 2]]` | equality at the cap is required: $2 \times 2$ is the only split |
+| $n = 16$ | $[2, 4]$ | `[[2, 8], [2, 2, 4], [2, 2, 2, 2], [4, 4]]` | equality at $f = 4$ produces $[4, 4]$, and repetition produces the length-four chain |
+| $n = 49$ | $[2, 7]$ | `[[7, 7]]` | an odd perfect square emits its equal pair, so the cap is not an even-number artefact |
+| $n = 37$ | $[2, 6]$ | `[]` | the full scan of $2, 3, 4, 5, 6$ finds no divisor, so a prime above the small range also returns empty |
+| $n = 30$ | $[2, 5]$ | `[[2, 15], [2, 3, 5], [3, 10], [5, 6]]` | distinct primes combine at two different lengths, and $f = 4$ is tested and rejected |
+
+The $n = 16$ and $n = 49$ rows together show why the cap is inclusive: dropping equality would lose $[4, 4]$ and $[7, 7]$, and those are the only outputs for $n = 49$. The $n = 1$ and $n = 2$ rows show the same range collapsing from the other side, where $\lfloor\sqrt{n}\rfloor$ falls below $\text{start} = 2$.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(\sqrt{n} + K \cdot L)$, where $K$ is the number of factor combinations and $L \le \log_2 n$ is the maximum combination length. The recursion tree branches only at actual divisors of $n$, and trial division at each state checks at most $\sqrt{\text{rem}}$ candidates.
 - **Auxiliary Space Complexity:** $O(\log n)$ auxiliary stack memory. Since each factor is $\ge 2$, the maximum recursion depth is bounded by $\log_2 n$.
+
+### Cost of the alternatives
+
+The counts below are the exact totals for the two worked instances, so the deduplication saving is measurable rather than asymptotic.
+
+| Strategy | Mechanism | Work on $n = 12$ | Work on $n = 32$ | Cost or failure mode |
+|:---|:---|:---|:---|:---|
+| Ordered permutation search with a deduplication set | generate every ordering of every factor multiset, then canonicalise and discard repeats | $7$ ordered sequences collapse to $3$ multisets | $15$ ordered sequences collapse to $6$ multisets | correct only after deduplication, and it does $2.3$ to $2.5$ times the generation work here; the waste grows with the number of repeated factors |
+| Non-decreasing search with a square-root cap (the method used) | one canonical order, trial factors capped at $\lfloor\sqrt{\text{rem}}\rfloor$ | $3$ emissions from $4$ calls in total: the top call plus three descents | $6$ emissions from $7$ calls | each multiset is generated exactly once, so no deduplication structure is needed |
+| Precompute every divisor of $n$, then recurse over that list | build the divisor list once, then treat the same problem as a combination search over it | divisor list $[2, 3, 4, 6]$ | divisor list $[2, 4, 8, 16]$ | removes the modulo tests, but stores the divisor list and still needs the non-decreasing rule to avoid duplicates |
+| Explicit stack instead of recursion | push and pop call frames manually | same $3$ emissions in the same order | same $6$ emissions in the same order | identical results with no call-stack depth, at the price of managing $\text{rem}$, $\text{start}$ and the path by hand |
+
+The recursion depth stays small in both instances: the deepest call for $n = 32$ is visit 5 at depth $4$, comfortably inside the $\log_2 32 = 5$ bound, which is why the recursive formulation is not a practical risk and the explicit stack is only a stylistic alternative.

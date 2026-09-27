@@ -165,6 +165,22 @@ Final Paths: ["1->2->5", "1->3"]
 | **5** | Enter DFS | 3 | `["1", "3"]` | **Yes (Leaf)** | **`"1->3"`** | Backtrack to Node 1 |
 | **6** | Backtrack | 1 | `[]` | - | - | **Terminates** |
 
+### A Two-Leaf Trace With Unequal Depths and a Missing Child ($\text{root} = [-1, 2, 3, 4, \text{null}, \text{null}, 5]$)
+
+The primary instance has only one missing child to reason about, at node $2$. This tree places a missing child on both sides and puts its two leaves at different depths, which is what makes the guard on the null visit visible.
+
+| Step | Node entered | `path` after appending | Leaf test result | Emitted string | Child calls issued | `path` after unwinding |
+|:---:|:---:|:---:|:---|:---|:---|:---:|
+| 1 | $-1$ (root) | `["-1"]` | not a leaf: both children exist | - | left call to $2$, then right call to $3$ | `[]` |
+| 2 | $2$ | `["-1", "2"]` | not a leaf: the left child $4$ exists even though the right child is null | - | left call to $4$, then a null call for the missing right child | `["-1"]` |
+| 3 | $4$ | `["-1", "2", "4"]` | **leaf**: both children are null | **`"-1->2->4"`** | none: the leaf branch issues no child call at all | `["-1", "2"]` |
+| 4 | null (missing right child of $2$) | nothing is appended | not evaluated: the guard returns before any leaf test | - | none | `["-1", "2"]`, unchanged |
+| 5 | $3$ | `["-1", "3"]` | not a leaf: the right child $5$ exists even though the left child is null | - | a null call for the missing left child, then a right call to $5$ | `["-1"]` |
+| 6 | null (missing left child of $3$) | nothing is appended | not evaluated: the guard returns immediately | - | none | `["-1", "3"]`, unchanged |
+| 7 | $5$ | `["-1", "3", "5"]` | **leaf**: both children are null | **`"-1->3->5"`** | none | `["-1", "3"]` |
+
+Two facts stand out. First, the two leaves sit at depths $3$ and $3$ from the root but at different depths *within* their own subtrees, and the emission order follows the descent order rather than the depth, so `"-1->2->4"` is recorded before `"-1->3->5"`. Second, steps 4 and 6 show why the null visit must be handled before anything else: it appends nothing, emits nothing, and returns the path exactly as it found it, so the two null calls in this tree cost two returns and never produce a spurious entry such as `"-1->2"` or `"-1->3"`. The negative root value also shows that the string form keeps its sign, because each value is rendered independently and then joined.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -181,9 +197,39 @@ Final Paths: ["1->2->5", "1->3"]
 - **Half-Leaf Confusion:** A node with one child (like node 2, which has a right child but no left child) is **not a leaf**. Emitting a path at node 2 (`"1->2"`) would be invalid because node 2 has an outgoing branch.
 - **Path Copy Overhead:** Appending to a shared mutable list and popping takes $O(1)$ amortized time per step. In contrast, concatenating strings at every level (`path + "->" + str(node.val)`) creates a new string at each step, consuming $O(H^2)$ memory per branch.
 
+### Boundary instances and the exact leaf test
+
+Each row is a separate tree, and the middle columns report what the traversal finds and emits, so the leaf rule is pinned down by example rather than by restatement.
+
+| Instance | Nodes | Leaves found | Complete result | Boundary it pins down |
+|:---|:---:|:---:|:---|:---|
+| `root = []` | 0 | none | `[]` | the guard returns on the very first call, so nothing is appended and nothing is emitted |
+| `root = [1]` | 1 | 1 (the root itself) | `["1"]` | the root can be a leaf, and a single-value path contains no arrow at all |
+| `root = [1, 2, 3]` | 3 | 2 (nodes $2$ and $3$) | `["1->2", "1->3"]` | the root is not a leaf merely because its children are |
+| `root = [1, 2, null, 3]` | 3 | 1 (node $3$) | `["1->2->3"]` | node $2$ has a null left child yet is not a leaf, so the half-leaf trap must be avoided |
+| `root = [1, 2, null, 3, null, 4]` | 4 | 1 (node $4$) | `["1->2->3->4"]` | a chain of one-child nodes produces exactly one path of length $H = 4$ |
+| `root = [1, 2, 3, null, 5]` | 4 | 2 (nodes $5$ and $3$) | `["1->2->5", "1->3"]` | a node with only a right child ($2$) is a corridor, not a terminus |
+| `root = [-1, 2, 3, 4, null, null, 5]` | 5 | 2 (nodes $4$ and $5$) | `["-1->2->4", "-1->3->5"]` | negative values keep their sign, and leaves at different depths are all reported |
+
+The fourth and fifth rows are the ones that separate the correct rule from the plausible wrong one: checking only `node.left is None` would stop at node $2$ in both trees and emit a path that is not root-to-leaf at all.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \cdot H)$, where $N$ is the number of nodes and $H$ is the tree height. DFS visits each node once ($O(N)$). When reaching a leaf, joining the path string takes $O(H)$ time. With $L$ leaves ($L \le N$), total string formatting time is $O(L \cdot H) = O(N \cdot H)$ in the worst case (or $O(N \log N)$ for balanced trees).
 - **Auxiliary Space Complexity:** $O(H)$ auxiliary memory for the recursion call stack and `path` array, where $H \le N$ is the maximum depth of the tree.
+
+### Cost of the alternatives on the primary instance
+
+The counts below are exact for `root = [1, 2, 3, null, 5]`, which has four nodes, two leaves, and heights $3$ and $2$ on its two branches.
+
+| Strategy | Mechanism | Work on this instance | Cost or failure mode |
+|:---|:---|:---|:---|
+| Mutable path list with pop-back backtracking (the method used) | one shared list is appended on entry and popped on exit | 4 appends, 4 pops, and 2 joins copying $5 + 3 = 8$ characters | $O(N)$ non-formatting work and $O(H)$ memory; the shared list must be restored on every exit or later paths inherit stale prefixes |
+| Immutable string concatenation at every level | each node builds a fresh string from its parent's string | the same 4 visits, but the strings built are `"1"`, `"1->2"`, `"1->2->5"`, `"1->3"`, copying $1 + 3 + 5 + 3 = 12$ characters | $O(H^2)$ copying per branch, so a deep chain rebuilds a nearly identical prefix at every level |
+| Parent map plus backward reconstruction | record each node's parent once, then walk from every leaf back to the root | 4 map entries plus 2 backward walks of length $3$ and $2$ | $O(N)$ extra memory for the map and a reversal step for every leaf; the path is assembled after the fact instead of during the descent |
+| Iterative stack of `(node, path copy)` pairs | push frames that each own a private path copy | 4 frames pushed in total, each with its own list, and up to $3$ alive along the deepest branch | removes recursion but multiplies memory: $O(N \cdot H)$ in the worst case instead of $O(H)$ |
+| Breadth-first queue of `(node, partial string)` pairs | level order, carrying a partial path with each queued node | up to $2$ pairs queued at once, each with its own partial string | the queue holds $O(N)$ partial paths, each of length $O(H)$, and the level order loses the natural root-to-leaf ordering of the output |
+
+The first row is the only one that keeps both a single shared buffer and the natural descent order, and it is also the reason the recursion is paired with a pop: without that pop the buffer would accumulate one prefix per branch and every later path would be wrong, not merely slower.

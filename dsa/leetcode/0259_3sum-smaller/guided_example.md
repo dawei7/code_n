@@ -156,6 +156,26 @@ Final Count: 2
 | 1 | 0 | 2 (1) | 3 (3) | $(0, 1, 3)$ | 4 | No ($4 \ge 2$) | 0 ($R \leftarrow 2$) | 2 |
 | **End** | - | - | - | - | - | - | - | **$\mathbf{2}$ (Final Answer)** |
 
+### Why the Block Count Is Exact
+
+The single block addition at $i = 0$, $L = 1$, $R = 3$ claims two qualifying
+triplets in one operation. Expanding that block element by element shows that
+the shortcut is not an approximation: the sorted order makes each interior
+third index valid for the same reason as the right endpoint.
+
+| Fixed $i$ | Left $L$ (value) | Right $R$ (value) | Third indices in the block | Sum for each interior $k$ | Block size $R - L$ | Running total |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 0 | 1 (0) | 3 (3) | $k = 2, 3$ | $k = 2$: $-2 + 0 + 1 = -1 < 2$; $k = 3$: $-2 + 0 + 3 = 1 < 2$ | 2 | 2 |
+| 0 | 2 (1) | 3 (3) | none: $S \ge \text{target}$ | $k = 3$ alone gives $-2 + 1 + 3 = 2$, which is not $< 2$ | 0 | 2 |
+| 1 | 2 (1) | 3 (3) | none: $S \ge \text{target}$ | $0 + 1 + 3 = 4$, far above the bound | 0 | 2 |
+
+Row one is the whole method in miniature: the right endpoint passes the test, so
+every index strictly between $L$ and $R$ passes it too, and the count $R - L$
+enumerates the block without touching the interior elements. Row two shows the
+other half of the search: once the smallest available third index (here $k = 3$,
+which is $R$ itself) already meets the bound, no larger $k$ can help, so the
+right pointer must retreat instead.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -171,6 +191,47 @@ Final Count: 2
 - **Strict Inequality Trap ($<$ vs $\le$):** If the sum equals `target` (e.g. $-2 + 1 + 3 = 2 == 2$), it does **not** count. The comparison must strictly be $S < \text{target}$. An equality condition ($S \le \text{target}$) would falsely add invalid triplets.
 - **Enumerating Elements Individually:** Looping through $k$ from $L+1$ to $R$ one-by-one degrades the algorithm back to $O(N^3)$. The formula `count += R - L` counts all valid third indices in $O(1)$ time.
 - **Handling Multiplicities / Duplicates:** Unlike LeetCode 15 (3Sum), which requires unique value triplets, this problem counts **index triplets**. Duplicate values are distinct choices and must be included; skipping duplicate elements is a bug here.
+
+### Multiplicity Check on an All-Equal Instance
+
+A second instance makes the index-versus-value distinction measurable. Take
+$\text{nums} = [0, 0, 0, 0, 0]$ with $\text{target} = 1$, where every index
+triple sums to $0$ and therefore every one of the $\binom{5}{3} = 10$ triples
+qualifies. Counting by value would report a single triplet; counting by index
+must report ten, and the block additions have to sum to exactly that.
+
+| Fixed $i$ | Pointer walk inside this $i$ | Additions from blocks | Subtotal for this $i$ | Running total |
+|:---:|:---|:---:|:---:|:---:|
+| 0 | $(L = 1, R = 4) \to +3$; $(L = 2, R = 4) \to +2$; $(L = 3, R = 4) \to +1$ | $3 + 2 + 1$ | 6 | 6 |
+| 1 | $(L = 2, R = 4) \to +2$; $(L = 3, R = 4) \to +1$ | $2 + 1$ | 3 | 9 |
+| 2 | $(L = 3, R = 4) \to +1$ | $1$ | 1 | **10** |
+
+The outer loop stops at $i = 2$ because a first index needs two larger indices
+after it, and the three subtotals $6 + 3 + 1$ reproduce
+$\binom{5}{3} = \frac{5 \cdot 4 \cdot 3}{3 \cdot 2 \cdot 1} = 10$. Each block
+addition is triggered by the left pointer advancing, so the walk never revisits
+a pair $(i, L)$ and never counts an index triple twice.
+
+### Boundary Map of Strictness and Length
+
+Every row below is an authored case for this problem. The fourth column records
+what the same two-pointer sweep would return if the comparison were relaxed to
+$S \le \text{target}$, which is the cheapest way to break the solution.
+
+| Instance | Edge condition | Correct count | Count under a relaxed $S \le \text{target}$ | What makes the strict count correct |
+|:---|:---|:---:|:---:|:---|
+| `[]`, target 0 | No elements | 0 | 0 | The outer loop spans $n - 2$ values, so an empty array never enters the sweep |
+| `[-100, 100]`, target 0 | Fewer than three indices | 0 | 0 | Three distinct indices are impossible, and no block can be added before $L < R$ fails |
+| `[-1, 1, 2, 2]`, target 3 | Equality at the bound plus a repeated value | 2 | 3 | The value triple $(-1, 2, 2)$ sums to exactly 3 and is excluded; the two index triples valued $(-1, 1, 2)$ are both kept |
+| `[-100, -100, -100, 100]`, target -100 | Minimum target boundary | 1 | 4 | Choosing the $100$ makes the sum exactly $-100$; only the all-$(-100)$ triple is strictly smaller |
+| `[-100, 0, 100, 100]`, target 100 | Maximum value against a mid target | 2 | 3 | The triple $(-100, 100, 100)$ sits exactly on 100, and only the two triples containing $0$ fall below it |
+| `[0, 0, 0, 0, 0]`, target 1 | Five equal values | 10 | 10 | Equality never arises here, so strictness is not the hazard; multiplicity is |
+| `[-5, -4, -3, -2]`, target 100 | Target above every sum | 4 | 4 | The very first pair $(L, R)$ already qualifies, so one block of size 2 plus one more pair records all $\binom{4}{3} = 4$ triples |
+
+Rows three through five differ only in whether a sum lands exactly on the
+bound, and each one shifts the relaxed count upward by one or more. That is the
+signature of an inclusive comparison: it silently inflates the answer exactly at
+the boundary, never in the interior.
 
 ---
 

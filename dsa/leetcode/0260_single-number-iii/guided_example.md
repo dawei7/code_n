@@ -169,6 +169,28 @@ Result: [3, 5]
 | **5** | $101_2$ | 0 | **Group 2** | 3 | $0 \oplus 5 = \mathbf{5}$ |
 | **Output** | - | - | - | **3** | **5** |
 
+### Instance Table Across the Case Set
+
+The same three-quantity pipeline — total XOR, lowest set bit, partition — runs
+unchanged on every authored instance, but the mask it selects is data-dependent.
+Comparing the rows shows that the step which "chooses a bit" is not a fixed
+constant.
+
+| Instance | `xor_all` | Binary of `xor_all` | `diff` | Partition of each singleton | Output |
+|:---|:---:|:---:|:---:|:---|:---:|
+| `[1, 2, 1, 3, 2, 5]` | 6 | $110_2$ | 2 | $3$ has bit 1 set (Group 1); $5$ has it clear (Group 2) | `[3, 5]` |
+| `[-1, 0]` | -1 | `0xFFFFFFFF` | 1 | $-1$ has bit 0 set (Group 1); $0$ has it clear (Group 2) | `[-1, 0]` |
+| `[0, 1]` | 1 | $1_2$ | 1 | $1$ has bit 0 set (Group 1); $0$ has it clear (Group 2) | `[1, 0]` |
+| `[-4, 7, 6, -4, 8, 6]` | 15 | $1111_2$ | 1 | $7$ is the only odd value, so Group 1 contains just $7$; $8$ is recovered as `xor_all ^ a` | `[7, 8]` |
+
+Two contrasts are worth reading off this table. In row two, `xor_all` has every
+one of its 32 bits set, yet the mask is the single value $1$: the identity
+`xor_all & -xor_all` ignores every higher bit, so the width of the total XOR
+never matters. In row four the chosen bit is the parity bit, and the negative
+duplicate $-4$ lands in Group 2 alongside $6$ and $8$ because two's-complement
+$-4$ ends in a zero bit; a sign test would have placed it in the wrong partition,
+while the mask test places it correctly.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -182,8 +204,22 @@ Result: [3, 5]
 ## 6. Traps This Instance Exposes
 
 - **Integer Overflow in Two's Complement ($-\text{xor\_all}$):** In languages like C/C++ or Java with fixed 32-bit signed integers, if $\text{xor\_all} = -2^{31}$ (`INT_MIN`), computing $-\text{xor\_all}$ causes undefined signed integer overflow. Casting to an unsigned integer (`(unsigned int)xor_all`) before negation prevents overflow bugs.
-- **Operator Precedence Trap:** In Python and C++, bitwise AND (`&`) has lower precedence than equality comparison (`!=` or `==`). Writing `if x & diff != 0` is parsed as `if x & (diff != 0)`! Parentheses are mandatory: `if (x & diff) != 0:`.
+- **Operator Precedence Trap in Fixed-Width Languages:** In C, C++, and Java, bitwise AND (`&`) binds *looser* than the equality comparisons (`!=`, `==`), so `if x & diff != 0` is parsed there as `if x & (diff != 0)` — that is, `x & 1`. On this instance the corrupted test would partition by parity and report `[6, 0]` instead of `[3, 5]`, a wrong answer with no error. Python binds `&` tighter than `!=`, so the same text happens to mean `(x & diff) != 0`; parenthesising the mask test is free and keeps the two languages identical.
 - **Assuming Fixed Bit Index:** Rather than looping through bits $0 \dots 31$ with shift operations, the identity `diff = x & -x` extracts the lowest set bit in a single CPU instruction ($O(1)$).
+
+### Boundary and Hazard Map for the Mask Step
+
+The mask computation is a single expression, but its correctness rests on the
+contract and on two's-complement semantics. Each boundary below was evaluated
+with the same method the lesson traces.
+
+| Boundary | Condition | What `xor_all` and `diff` become | Outcome of the method | Why it matters |
+|:---|:---|:---|:---:|:---|
+| Exactly two singletons, as guaranteed | $a \ne b$ | `diff` has at least one set bit | correct pair | The guarantee is load-bearing: with $a = b$ the total XOR is $0$, `diff` is $0$, no element passes the mask test, and the method would report `[0, 0]` |
+| The singletons differ only at the top bit | `nums = [0, -2147483648]` | `xor_all = -2147483648`, `diff = 2147483648` | `[-2147483648, 0]` | Python's unbounded integers negate this exactly; a signed 32-bit `-xor_all` is precisely the overflow hazard, so fixed-width languages need the unsigned cast |
+| Every bit of the total XOR is set | `nums = [-1, 0]` | `xor_all = -1`, `diff = 1` | `[-1, 0]` | A total XOR of $-1$ looks extreme but its lowest set bit is bit 0, so the mask step is safe |
+| A duplicate pair sits near the mask bit | any pair $(v, v)$ | both copies see the same `x & diff` result | contributes $v \oplus v = 0$ | A pair can never be split across partitions, which is the reason the second pass needs no visited set or map |
+| A singleton equals $0$ | `nums = [0, 1]` | `xor_all = 1`, `diff = 1` | `[1, 0]` | $0$ always lies in Group 2 and adds nothing there, so the partner must be recovered as `xor_all ^ a` rather than read off the group |
 
 ---
 
@@ -191,3 +227,23 @@ Result: [3, 5]
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of elements in `nums`. Pass 1 reads all $N$ elements to compute `xor_all`. Pass 2 reads all $N$ elements to compute the partitioned XOR sum $a$. Total runtime is $2N = O(N)$ linear time.
 - **Auxiliary Space Complexity:** $O(1)$ auxiliary space. Only scalar variables (`xor_all`, `diff`, `a`, `b`) are stored.
+
+### Alternatives and Their Costs
+
+The linear bound alone does not distinguish these strategies, because three of
+them are linear. The separating axis is auxiliary memory and whether the input
+may be reordered.
+
+| Strategy | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Hash-map frequency count | Tally every value, then keep the two values whose count is exactly one | $O(N)$ expected | $O(N)$ | Conceptually simplest, but breaks the constant-space requirement outright |
+| Sort and scan neighbours | Sort, then read off the two positions whose neighbours differ | $O(N \log N)$ | $O(1)$ beyond the sort itself | Reorders the input unless it is copied, and loses the linear bound |
+| XOR partition, one accumulator | Second pass keeps only the Group 1 XOR, then recovers the partner as `xor_all ^ a` | $O(N)$ | $O(1)$ | Reuses the total XOR instead of a second accumulator; still needs the exactly-two-singletons guarantee |
+| XOR partition, two accumulators | Keep a running XOR per partition and report both at the end | $O(N)$ | $O(1)$ | Same bounds and one fewer algebraic step, at the cost of one more live scalar and a second branch target |
+| Scan bits $0 \dots 31$ for the mask | Test each bit position of `xor_all` in turn until a set bit is found | $O(N + 32)$, still $O(N)$ | $O(1)$ | Correct, but up to 32 extra iterations replace the single `xor_all & -xor_all` identity |
+
+The chosen method is the one-accumulator XOR partition: two linear passes over
+the array, four scalar variables, and no dependence on the value range beyond
+the fixed 32-bit representation. Its discriminating power comes entirely from
+the guarantee that the two outstanding values are different, which is the single
+hypothesis every row above relies on.

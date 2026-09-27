@@ -85,7 +85,7 @@ with the convention that indices stay inside $[0, n-1]$; for $n = 3$ all three e
 | `[31,25,72,79,74,65]` | 14, 43, 47 | drop the two smallest, 25 and 31 | 14 |
 | `[1,2,3,100,101]` | 98, 98, 2 | drop the two largest, 100 and 101 | 2 |
 | `[1,100,101,102,1000]` | 899, 2, 100 | drop 1 and 1000, one at each end | 2 |
-| `[1,50,75,100]` | 25, 25, 49 | drop 100 and 75 | 25 |
+| `[1,50,75,100]` | 25, 25, 49 | drop 1 and 100, or drop 1 and 50 | 25 |
 | `[5,5,5,5,5]` | 0, 0, 0 | values are already equal | 0 |
 | `[1,1,2,10,10]` | 8, 9, 1 | drop both copies of 10 | 1 |
 | `[1,999999998,999999999,1000000000]` | 1, 1, 999999997 | drop either extreme pair | 1 |
@@ -107,7 +107,7 @@ Rows three, five and eight show that each of the three plans can be the unique w
 
 Let $n = \texttt{nums.length}$.
 
-- **Time** $O(n\log n)$: the comparisons that determine the answer need the second smallest and the third smallest values from each end, which sorting provides in $O(n\log n)$; afterwards the three candidate differences are evaluated in $O(1)$. Selecting the required order statistics without sorting would still require linear selection per rank, and sorting once is the simplest route; no asymptotically cheaper comparison-based method is needed for the stated bounds.
+- **Time** $O(n\log n)$: the comparisons that determine the answer need the three smallest and the three largest values, which sorting provides in $O(n\log n)$; afterwards the three candidate differences are evaluated in $O(1)$. Selecting the required order statistics without sorting would still require linear selection per rank, and sorting once is the simplest route; no asymptotically cheaper comparison-based method is needed for the stated bounds.
 - **Auxiliary space** $O(n)$ for the sorted copy of the array, or $O(\log n)$ stack space if the input is sorted in place. The algorithm keeps only three candidate differences and the sorted order itself; it builds no table of pairs and never enumerates the $\binom{n}{2}$ possible change positions.
 
 The final three-way minimum uses the sorted array's first three and last three entries, so a single ordering pass is the only super-constant work performed.

@@ -48,6 +48,44 @@ FORBIDDEN_CODE_PATTERNS = [
     (re.compile(r"```sql"), "```sql fence"),
 ]
 
+# Constructs that every structural counter above accepts but a renderer rejects.
+# Each one has already shipped to a corpus file and been caught only by the
+# slower render gates (`web/scripts/test-math-docs.mjs`, `npm run test:mermaid`),
+# which authors do not run per package. Checking them here means the failure
+# surfaces in the audit the author already runs after every write.
+KATEX_HOSTILE = [
+    (re.compile(r"\^\\\*"), r"^\* is an undefined control sequence; write ^{*}"),
+    (re.compile(r"\\leftouterjoin"), r"\leftouterjoin is undefined; use \ltimes or \bowtie"),
+    (re.compile(r"\\text\{[^}]*\\\|[^}]*\}"), r"\| inside \text{} is invalid; use \textbar"),
+]
+
+MERMAID_FENCE = re.compile(r"```mermaid\n(.*?)```", re.DOTALL)
+# A true edge label is the text between pipes immediately after an arrow, as in
+# `A -->|label| B`. Only that position is checked: a quoted *node* label such as
+# C{"Is |arr[i] - arr[j]| ..."} legitimately contains pipes and brackets, and
+# flagging it was a false positive in this check's first draft.
+UNQUOTED_LABEL_BRACKET = re.compile(r"(?:-->|-\.->|==>)\|([^\"|\n]*[\[\]][^\"|\n]*)\|")
+
+
+def render_risks(content: str) -> list[str]:
+    """Return render-blocking constructs that the counters cannot see."""
+    risks: list[str] = []
+
+    for pat, message in KATEX_HOSTILE:
+        if pat.search(content):
+            risks.append(message)
+
+    for diagram in MERMAID_FENCE.findall(content):
+        if "accTitle:" not in diagram:
+            risks.append("Mermaid diagram without accTitle")
+        if "accDescr:" not in diagram:
+            risks.append("Mermaid diagram without accDescr")
+        bad_label = UNQUOTED_LABEL_BRACKET.search(diagram)
+        if bad_label:
+            risks.append(f'Mermaid edge label with unquoted bracket: {bad_label.group(0).strip()}')
+
+    return risks
+
 
 def count_tables(content: str) -> int:
     """Count real GitHub-Flavored Markdown tables in a guide.
@@ -81,6 +119,7 @@ def audit() -> int:
     boilerplate_violations = []
     code_leaks = []
     missing_sections = []
+    render_failures = []
 
     target_filter = sys.argv[1:]
     for pkg in sorted(leetcode_dir.iterdir()):
@@ -117,6 +156,10 @@ def audit() -> int:
             if pat.search(content):
                 code_leaks.append((pkg.name, label))
                 break
+
+        risks = render_risks(content)
+        if risks:
+            render_failures.append((pkg.name, risks[0]))
 
         if "## 1." not in content:
             missing_sections.append((pkg.name, "Missing '## 1.' section"))
@@ -162,6 +205,7 @@ def audit() -> int:
     print(f"Boilerplate Violations: {len(boilerplate_violations)}")
     print(f"Code Leak Violations: {len(code_leaks)}")
     print(f"Structural Section Failures: {len(missing_sections)}")
+    print(f"Render Risk Violations: {len(render_failures)}")
     print("=" * 60)
 
     total_errors = (
@@ -171,6 +215,7 @@ def audit() -> int:
         + len(boilerplate_violations)
         + len(code_leaks)
         + len(missing_sections)
+        + len(render_failures)
     )
 
     if total_errors > 0:
@@ -181,6 +226,8 @@ def audit() -> int:
             print(f"Sample boilerplate violations: {boilerplate_violations[:5]}")
         if code_leaks[:5]:
             print(f"Sample code leaks: {code_leaks[:5]}")
+        if render_failures[:5]:
+            print(f"Sample render risks: {render_failures[:5]}")
         return 1
     else:
         print("AUDIT PASSED: 100% of packages have valid, code-free, authentic Guided Examples!")

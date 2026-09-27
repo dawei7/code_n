@@ -1,129 +1,104 @@
 # Guided Example: Prime In Diagonal
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance, and the two conditions it separates
 
-- **Input:** `{"nums": [[1, 2, 3], [5, 6, 7], [9, 10, 11]]}`
-- **Required output:** `11`
+Take the square matrix
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+| row `i` | `nums[i][0]` | `nums[i][1]` | `nums[i][2]` |
+|---|---|---|---|
+| 0 | 4 | 97 | 8 |
+| 1 | 89 | 9 | 83 |
+| 2 | 6 | 79 | 13 |
 
----
+Nine entries are stored, and the largest prime written anywhere in this matrix is $97$. The required answer is nevertheless $13$. The four large primes $97$, $89$, $83$ and $79$ sit off both diagonals, so they are invisible to the question, while $13$ sits on a diagonal and is prime. This instance therefore pulls apart two conditions that are easy to conflate: *being prime* and *lying on a diagonal*. A value can enter the answer only when both hold at once, and the answer is the largest such value, or $0$ if no diagonal entry is prime.
 
-## 1. Instance & Teaching Goal
+The matrix is square, $n = 3$, and every entry satisfies $1 \le \text{nums}[i][j] \le 4 \times 10^{6}$ with $1 \le n \le 300$. The $1$ lower bound matters later: no legal entry is $0$, so $0$ is available as an unambiguous "nothing found" marker.
 
-You are given a 0-indexed two-dimensional integer array `nums`.
+## 2. Which cells count as diagonal cells
 
-The objective is to compute `11` from `{"nums": [[1, 2, 3], [5, 6, 7], [9, 10, 11]]}` while avoiding redundant calculations and unnecessary overhead.
+The statement defines a value as diagonal when it appears at `nums[i][i]` for some `i`, or at `nums[i][n - 1 - i]` for some `i`. Those two index rules are exactly the primary diagonal (top-left to bottom-right) and the anti-diagonal (top-right to bottom-left), so the eligible set is the *union* of two families of $n$ coordinates each:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+$$
+\mathcal{D} = \{\, (i,\, i) : 0 \le i < n \,\} \;\cup\; \{\, (i,\, n - 1 - i) : 0 \le i < n \,\}.
+$$
 
----
+For $n = 3$ the two families contain one shared coordinate, $(1, 1)$, because the matrix size is odd:
 
-## 2. Conceptual Foundation & Invariants
+| `i` | primary coordinate `(i, i)` | its value | anti-diagonal coordinate `(i, n-1-i)` | its value |
+|---|---|---|---|---|
+| 0 | `(0, 0)` | 4 | `(0, 2)` | 8 |
+| 1 | `(1, 1)` | 9 | `(1, 1)` | 9 |
+| 2 | `(2, 2)` | 13 | `(2, 0)` | 6 |
 
-We maintain the core conceptual parameters and state variables:
+The union therefore holds only five distinct cells even though the two families together list six coordinates. Odd $n$ always yields the shared centre; even $n$ gives two disjoint diagonals. The deduplication is automatic once the running maximum is used, because $\max(a, a) = a$: encountering the centre twice cannot inflate or corrupt the result. Off-diagonal entries such as $97$ at `(0, 1)` are never enumerated at all, which is precisely why the answer is smaller than the largest prime in the matrix.
 
-| State Parameter | Role & Purpose | Initial State |
+## 3. Deciding primality by trial division
+
+An integer is prime when it exceeds $1$ and has no positive divisors other than $1$ and itself. To test a candidate $x$ it is enough to look for a divisor $d$ with $2 \le d \le \lfloor \sqrt{x} \rfloor$: if $x = a \cdot b$ with $a \le b$, then $a \le \sqrt{x}$, so every composite number has a factor inside that range. Because entries are capped at $4 \times 10^{6}$, no candidate needs more than $1999$ divisor probes.
+
+| value | $\lfloor \sqrt{x} \rfloor$ | divisors probed | witness or conclusion | prime? |
+|---|---|---|---|---|
+| 4 | 2 | 2 | $4 = 2 \times 2$ | no |
+| 8 | 2 | 2 | $8 = 2 \times 4$ | no |
+| 6 | 2 | 2 | $6 = 2 \times 3$ | no |
+| 9 | 3 | 2, 3 | $9 = 3 \times 3$ | no |
+| 13 | 3 | 2, 3 | no divisor found | yes |
+| 1 | — | none | $1$ is not greater than $1$ | no |
+
+Two rows carry the load. The value $1$ must be rejected before any division, since it has no divisor strictly between $1$ and itself yet is still not prime. The value $9$ shows why the probe range must be *inclusive* of $\lfloor \sqrt{x} \rfloor$: stopping at $2$ would find no divisor and wrongly accept $9$.
+
+## 4. The sweep, step by step
+
+Walk $i$ from $0$ to $n - 1$. At each $i$, examine the primary coordinate `(i, i)` and then the anti-diagonal coordinate `(i, n-1-i)`, testing each value for primality and folding the primes into one accumulator that starts at $0$.
+
+| step | coordinate | value | prime? | accumulator after the step |
+|---|---|---|---|---|
+| 1 | `(0, 0)` | 4 | no | 0 |
+| 2 | `(0, 2)` | 8 | no | 0 |
+| 3 | `(1, 1)` | 9 | no | 0 |
+| 4 | `(1, 1)` | 9 (revisited centre) | no | 0 |
+| 5 | `(2, 2)` | 13 | yes | 13 |
+| 6 | `(2, 0)` | 6 | no | 13 |
+
+Every probe before step 5 returns "not prime", so the accumulator stays at the sentinel $0$ for the first four steps; the centre is visited twice and both visits agree, which costs one redundant primality test but changes nothing. Step 5 supplies the only prime and lifts the accumulator to $13$; step 6 adds no prime and leaves it alone. The six steps have exhausted $\mathcal{D}$, so the accumulator is the answer: $13$.
+
+## 5. Invariant: why the running maximum is exact
+
+Let $\mathcal{D}_k$ be the first $k$ coordinates examined by the sweep, in the order shown above, and let $P_k$ be the set of values in $\mathcal{D}_k$ that are prime.
+
+**Invariant.** After step $k$, the accumulator equals $\max P_k$ when $P_k \neq \emptyset$, and equals $0$ when $P_k = \emptyset$.
+
+*Base.* At $k = 0$ no coordinate has been examined, $P_0 = \emptyset$, and the accumulator holds $0$ — the invariant holds by initialization.
+
+*Step.* Suppose the invariant holds after step $k$, and step $k+1$ examines a coordinate whose value is $v$. If $v$ is composite or equals $1$, then $P_{k+1} = P_k$; the accumulator is left unchanged and still equals $\max P_{k+1}$ (or $0$ when that set is empty). If $v$ is prime, then $P_{k+1} = P_k \cup \{v\}$, and replacing the accumulator with $\max(\text{accumulator}, v)$ yields exactly $\max P_{k+1}$: the new value either dominates the whole previous set or is dominated by it.
+
+Two consequences make this a genuine correctness argument rather than bookkeeping.
+
+- **Soundness.** A value is written into the accumulator only after a divisor search has proved it prime, and only while visiting a coordinate of $\mathcal{D}$. So the final accumulator is either $0$ (no prime exists in $\mathcal{D}$) or a prime that really lies on a diagonal; it is never an off-diagonal value such as $97$ and never a composite such as $9$.
+- **Completeness.** The two index rules generate all of $\mathcal{D}$, and the sweep runs over every $i$ in $[0, n)$. Hence no diagonal coordinate is skipped, and no prime on a diagonal can be missed.
+
+Combining both directions, the final accumulator is exactly the largest prime on at least one diagonal, and it is $0$ precisely when no such prime exists — the two behaviours the statement requires.
+
+## 6. Traps this instance exposes
+
+| trap | what it looks like here | correct handling |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Confusing "largest prime in the matrix" with "largest prime on a diagonal" | $97$ is prime and is the biggest entry, but it is off both diagonals; the answer is $13$ | Restrict candidates to $\mathcal{D}$ *before* comparing magnitudes |
+| Treating $1$ as prime | A diagonal of all $1$s must yield $0$, and entries of $1$ appear in the official samples | Reject any value $\le 1$ before probing divisors |
+| Stopping the divisor search below $\lfloor \sqrt{x} \rfloor$ | $9$ is composite with its smallest factor equal to $\lfloor \sqrt{9} \rfloor = 3$ | Probe divisors up to and including $\lfloor \sqrt{x} \rfloor$ |
+| Assuming the centre is only tested once | With odd $n$ the same cell arrives from both index rules; skipping the second visit by symmetry would need extra branching | Let the running maximum absorb the duplicate |
+| Using a "not found" marker that is a legal entry | A sentinel of $1$ or $2$ would collide with real diagonal values | Use $0$, which the constraint $1 \le \text{nums}[i][j]$ excludes from the input |
+| Degenerate $n = 1$ | A single cell is both diagonals simultaneously, so it is examined twice | The same duplicate-absorption applies; a lone prime returns itself |
+| Even $n$ | The diagonals share no coordinate, so exactly $2n$ cells are examined | The sweep is unchanged; only the duplicate disappears |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 7. Complexity
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Only two cells per row can matter
-
-For an $n\times n$ matrix, row $i$ contributes these diagonal positions:
+**Time.** The sweep visits $2n$ coordinates, and each visited value costs one trial-division test whose probe count is at most $\lfloor \sqrt{V} \rfloor - 1$, where $V$ is the largest permitted entry. With $V = 4 \times 10^{6}$ that is at most $1999$ probes. The total is therefore
 
 $$
-(i,i)
-\quad\text{and}\quad
-(i,n-i-1).
+O\!\left(n \sqrt{V}\right) \;=\; O\!\left(2n \cdot \lfloor \sqrt{V} \rfloor\right),
 $$
 
-Every main-diagonal cell appears as `row[i]`, and every anti-diagonal cell appears as `row[n - i - 1]`. Scanning the rows once therefore visits every candidate without examining the remaining $n^2-2n$ off-diagonal cells.
+which for the stated limits is at most $600 \times 1999 \approx 1.2 \times 10^{6}$ integer remainder operations. The duplicate centre in odd matrices only doubles one already-counted term, so it does not change the bound.
 
-The answer begins at zero. Whenever a visited candidate is prime, `max` keeps the larger of it and the best prime already seen. If no prime is ever found, zero remains, exactly as required.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [[1, 2, 3], [5, 6, 7], [9, 10, 11]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: What the primality helper must prove
-
-An integer $x$ is prime only if $x\ge2$. The explicit `x < 2` check rejects one and any smaller value before trial division.
-
-For $x\ge2$, the helper tests every integer divisor from two through $\lfloor\sqrt{x}\rfloor$. The expression
-
-`all(x % i for i in range(2, int(sqrt(x)) + 1))`
-
-is true exactly when every tested remainder is nonzero. A zero remainder means `i` divides $x$, so `all` stops and returns false.
-
-For $x=2$ or $x=3$, the range is empty. Python's `all` of an empty iterable is true, correctly classifying both as prime after the lower-bound check.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Why checking through the square root is enough
-
-If $x$ is composite, then $x=ab$ for integers $a,b>1$. Both factors cannot exceed $\sqrt{x}$, because then their product would exceed $x$. Therefore, at least one factor is at most $\sqrt{x}$.
-
-So if no integer from two through $\lfloor\sqrt{x}\rfloor$ divides $x$, no nontrivial factor pair exists and $x$ is prime. Testing larger possible divisors would duplicate information: every larger factor would be paired with a smaller one already checked.
-
-The upper endpoint includes the square root. This matters for perfect squares such as 49; divisor seven must be tested to reject the number.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `11` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [[1, 2, 3], [5, 6, 7], [9, 10, 11]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `11` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Skip non-improving candidates:** Test primality only when a diagonal value exceeds `ans`; smaller values cannot change the maximum.
-- **Sieve of Eratosthenes:** Precompute primality through the largest candidate. This can help with many repeated tests but may allocate millions of booleans.
-- **Test only odd divisors:** Handle two separately, then check three, five, and so on to halve trial work while preserving $O(\sqrt M)$ complexity.
-- **Scan the whole matrix:** This wastes $O(n^2)$ cell visits and may incorrectly include an off-diagonal prime if the diagonal restriction is forgotten.
-- **Value one:** It is not prime and is rejected by `x < 2`.
-- **Value two:** The divisor range is empty, so it is correctly accepted.
-- **Perfect square:** Inclusive square-root testing finds its root divisor.
-- **Odd-size center:** The same cell is tested twice but cannot change the final maximum incorrectly.
-- **No diagonal prime:** The initialized zero is returned.
-- **Off-diagonal larger prime:** It is irrelevant and must never influence the result.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n\sqrt M)$. Let $n$ be the matrix dimension and let $M$ be the largest diagonal value tested. There are $2n$ helper calls, with one duplicate call at the center when $n$ is odd.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** The method stores one accumulator and two loop counters, independent of $n$ and of the entry magnitudes: $O(1)$ extra space. The matrix itself is read in place and never copied. A sieve of Eratosthenes over the whole value range would trade this for $O(V)$ memory and precomputation that is wasted whenever the sweep only touches $2n$ values, which is why per-value trial division is the better fit for these limits.

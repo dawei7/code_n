@@ -102,6 +102,23 @@ $$
 
 Tournament finished. Sole remaining survivor: $\text{cand} = \mathbf{1}$.
 
+#### Eligibility Frontier After Each Query
+
+The tournament is easier to audit when the candidate is tracked together with
+the set of people who are still *possible* celebrities. Every probe evicts
+exactly one person, so after query $k$ that frontier holds $n - k$ labels, and
+the identity of the survivor never depends on the order in which the queries
+were asked.
+
+| Query # | Probe | Read | Evicted from eligibility | Why the eviction is forced | Eligible set after |
+|:---:|:---|:---:|:---:|:---|:---|
+| 0 (no probe yet) | — | — | — | No relationship information has been gathered | $\{0, 1, 2\}$ |
+| 1 | $\text{knows}(0, 1)$ | $\text{True}$ | Person 0 | A celebrity has outdegree $0$, so knowing anyone excludes them | $\{1, 2\}$ |
+| 2 | $\text{knows}(1, 2)$ | $\text{False}$ | Person 2 | A celebrity has indegree $n - 1$; person 1 does not know person 2, so 2 fails it | $\{1\}$ |
+
+The frontier shrinks by exactly one entry per probe, which is what makes $n - 1$
+probes sufficient to isolate a single candidate.
+
 ---
 
 ### Phase 2: Verification Pass on $\text{cand} = 1$
@@ -150,10 +167,32 @@ Result: 1
 | **Conclusion** | - | - | All conditions satisfied | **$\mathbf{1}$ (Celebrity)** |
 
 ### Contrast: When No Celebrity Exists (Cycle $[0 \to 2 \to 1 \to 0]$)
-1. Elimination pass leaves a survivor (e.g. person 1).
-2. Verification pass tests $\text{knows}(1, 0) \implies \text{True}$.
-3. Candidate 1 knows person 0!
-4. Fails immediately and returns $\mathbf{-1}$.
+1. The elimination pass evicts person 1 ($\text{knows}(0, 1) == \text{False}$) and then person 0 ($\text{knows}(0, 2) == \text{True}$), so the survivor is person 2.
+2. Verification against $i = 0$ passes both directions: $\text{knows}(2, 0) == \text{False}$ and $\text{knows}(0, 2) == \text{True}$.
+3. Verification against $i = 1$ fails at the **outgoing** probe: $\text{knows}(2, 1) == \text{True}$, so the survivor does know someone after all.
+4. The pass therefore returns $\mathbf{-1}$ without ever reaching the incoming probe $\text{knows}(1, 2)$.
+
+### Boundary Census Across the Visited Instances
+
+The same two-phase procedure produces all four outcomes below. Read the fourth
+column as the single probe that decides the verdict: a pass means verification
+completed, and any other entry names the first probe that contradicted one of the
+two celebrity conditions.
+
+| Instance | $n$ | Survivor after elimination | Decisive probe from Phase 2 | Probe value | Returned |
+|:---|:---:|:---:|:---|:---:|:---:|
+| Celebrity in the middle | 3 | Person 1 | none: all $2(n - 1) = 4$ probes pass | — | $1$ |
+| Cycle $0 \to 2 \to 1 \to 0$ | 3 | Person 2 | $\text{knows}(2, 1)$ (outgoing) | $\text{True}$ | $-1$ |
+| Minimal pair, celebrity last | 2 | Person 1 | none: both probes pass | — | $1$ |
+| Minimal pair, mutual acquaintance | 2 | Person 1 | $\text{knows}(1, 0)$ (outgoing) | $\text{True}$ | $-1$ |
+| Minimal pair, mutual strangers | 2 | Person 0 | $\text{knows}(1, 0)$ (incoming) | $\text{False}$ | $-1$ |
+| Maximum party, everyone knows everyone | 100 | Person 99 | $\text{knows}(99, 0)$ (outgoing) | $\text{True}$ | $-1$ |
+
+Two rows deserve emphasis. The mutual-stranger pair is the only shape where the
+first survivor fails the *incoming* condition, because each person is unknown to
+the other; and at $n = 2$ the elimination pass spends its single probe and the
+verification pass spends exactly two, so the smallest legal party already uses
+the full $3n - 3 = 3$ budget.
 
 ---
 
@@ -173,6 +212,15 @@ Thus, a true celebrity can **never be eliminated**. The survivor must be $C$.
 - **Skipping Verification (Phase 2):** Returning the elimination survivor directly fails whenever no celebrity exists. The tournament guarantees only that everyone else is disqualified, not that the survivor is valid.
 - **Self-Query Trap:** Querying $\text{knows}(i, i)$ provides no information because people know themselves. The loops must strictly test $i \ne \text{cand}$.
 - **API Call Budget:** Total calls in Phase 1 is $N - 1$. Total calls in Phase 2 is at most $2(N - 1)$. Total queries $\le 3N - 3$, satisfying the minimum call constraint.
+
+### Alternative Strategies and What Each One Costs
+
+| Strategy | Query pattern | Query bound | Probes at $n = 100$ | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---:|:---|
+| Tournament then verify (this lesson) | One probe per challenger, then two probes per opponent of the survivor | $3n - 3$ | $\le 297$ | $O(1)$ | None beyond the constant: the elimination probe count is fixed at $n - 1$ and cannot be reduced |
+| Exhaustive tally | Ask every ordered pair once and count indegree and outdegree per person | $n(n - 1)$ | $9900$ | $O(n)$ | Correct but $O(n^2)$ probes; it blows the $3n$ call budget and learns nothing the tournament misses |
+| Stack pairing | Push every label, repeatedly pop two, keep the one that survives the pair, push it back | $3n - 3$ | $\le 297$ | $O(n)$ | Same probe count, but the stack holds up to $n$ labels, so it trades the constant-space guarantee for no benefit |
+| Two-pointer convergence | Start at persons $0$ and $n - 1$; advance the left index when $\text{knows}(\text{left}, \text{right})$ is $\text{True}$, otherwise retreat the right index | $3n - 3$ | $\le 297$ | $O(1)$ | Equally cheap, but each step discards an endpoint on faith; skipping either verification direction silently accepts the cycle instance |
 
 ---
 

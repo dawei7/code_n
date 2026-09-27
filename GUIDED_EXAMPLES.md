@@ -149,6 +149,20 @@ git diff --check
 template filler, and no leaked solution source. Pass one or more package-name
 substrings to scope it to a single lesson.
 
+Its `Render Risk Violations` counter covers the constructs that satisfy every
+other counter but fail in the reader, so that an author finds them in the audit
+they already run rather than in the slower render gates below. Three of them have
+reached corpus files: a star superscript written `^\*`, which KaTeX rejects as an
+undefined control sequence and which must be written `^{*}`; `\leftouterjoin`,
+which KaTeX does not define; and `\|` inside `\text{...}`, which must be
+`\textbar`. Every `mermaid` block is also required to carry `accTitle:` and
+`accDescr:`, and an edge label of the form `-->|label|` may not contain an
+unquoted `[` or `]`, because Mermaid fails to parse the whole diagram rather than
+that one label. A quoted node label such as `C{"Is |arr[i] - arr[j]| small?"}` is
+not an edge label and is accepted. `tests/test_guided_example_render_risks.py`
+pins both directions of each check, including the valid constructs an
+over-strict version would reject.
+
 `tools/audit_guided_tables.py` checks that every table actually renders: each
 table's delimiter row and body rows must declare the same number of cells as its
 header. A literal `|` inside a cell is always a cell boundary, even inside a code

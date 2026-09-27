@@ -1,141 +1,130 @@
 # Guided Example: Sum of Distances
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the required output
 
-- **Input:** `{"nums": [1, 3, 1, 1, 2]}`
-- **Required output:** `[5, 0, 3, 4, 0]`
+Take `nums = [1, 3, 1, 1, 2]`, whose length is $n = 5$. For each index $i$, the answer asks for the total distance to every *other* index holding the same value:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$
+\text{arr}[i] = \sum_{\substack{0 \le j < n \\ \text{nums}[j] = \text{nums}[i]}} \lvert i - j \rvert ,
+$$
 
----
+where the term $j = i$ contributes $\lvert i - i \rvert = 0$ and may be included harmlessly, or excluded by the condition $j \neq i$. When index $i$ has no partner with the same value, the sum is empty and $\text{arr}[i] = 0$.
 
-## 1. Instance & Teaching Goal
+| `i` | 0 | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|
+| `nums[i]` | 1 | 3 | 1 | 1 | 2 |
+| required `arr[i]` | 5 | 0 | 3 | 4 | 0 |
 
-You are given a **0-indexed** integer array `nums`. There exists an array `arr` of length `nums.length`, where $\text{arr}[i]$ is the sum of $|i - j|$ over all `j` such that $\text{nums}[j] = \text{nums}[i]$ and $j \neq i$. If there is no such `j`, set $\text{arr}[i]$ to be `0`.
+The three occurrences of the value $1$ at indices $0$, $2$ and $3$ interact with each other and with nothing else; the values $3$ and $2$ occur once each and therefore produce zeros. The whole difficulty is concentrated in the group $\{0, 2, 3\}$, which is exactly why this instance is representative.
 
-The objective is to compute `[5, 0, 3, 4, 0]` from `{"nums": [1, 3, 1, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. Grouping equal values into sorted index lists
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The sum for index $i$ never mentions a value different from `nums[i]`, so the array decomposes into independent groups that can be solved one at a time. Scan once from left to right and append each index to the bucket of its value; because the scan is in increasing order, every bucket is already sorted.
 
----
+| value | member indices $p_0 < p_1 < \dots < p_{m-1}$ | group size $m$ | sum of indices | the bucket's answer slots |
+|---|---|---|---|---|
+| 1 | 0, 2, 3 | 3 | 5 | `arr[0]`, `arr[2]`, `arr[3]` |
+| 3 | 1 | 1 | 1 | `arr[1]` |
+| 2 | 4 | 1 | 4 | `arr[4]` |
 
-## 2. Conceptual Foundation & Invariants
+A group of size $m$ costs $O(m)$ work if the distance sum for each of its members can be advanced from the previous member instead of recomputed from scratch. Since $\sum m = n$, the grouping pass and all group work together are linear.
 
-We maintain the core conceptual parameters and state variables:
+## 3. Splitting a distance sum into a left part and a right part
 
-| State Parameter | Role & Purpose | Initial State |
+Fix a group of sorted indices $p_0 < p_1 < \dots < p_{m-1}$ and stand at its $k$-th member, $p_k$. Every other member lies strictly to the left or strictly to the right, so the sum splits into two non-negative halves:
+
+$$
+L_k = \sum_{t < k} (p_k - p_t), \qquad R_k = \sum_{t > k} (p_t - p_k), \qquad \text{arr}[p_k] = L_k + R_k .
+$$
+
+The first member has an empty left side, and $R_0$ can be computed in closed form from the group's index total:
+
+$$
+R_0 = \sum_{t=1}^{m-1} (p_t - p_0) = \left(\sum_{t=0}^{m-1} p_t\right) - m\,p_0 .
+$$
+
+| value | $\sum p_t$ | $m$ | $p_0$ | $L_0$ | $R_0 = \sum p_t - m\,p_0$ | $\text{arr}[p_0]$ |
+|---|---|---|---|---|---|---|
+| 1 | 5 | 3 | 0 | 0 | $5 - 3 \cdot 0 = 5$ | 5 |
+| 3 | 1 | 1 | 1 | 0 | $1 - 1 \cdot 1 = 0$ | 0 |
+| 2 | 4 | 1 | 4 | 0 | $4 - 1 \cdot 4 = 0$ | 0 |
+
+The singleton rows show a pleasant edge behaviour: for $m = 1$ the formula gives $R_0 = p_0 - p_0 = 0$, so a lonely value needs no special branch at all.
+
+## 4. Advancing from one member to the next
+
+Moving the viewpoint from $p_k$ to $p_{k+1}$ changes both halves. Let $\delta = p_{k+1} - p_k > 0$ be the gap.
+
+- Every one of the $k+1$ members at or before position $k$ becomes exactly $\delta$ farther away, so $L$ grows by $(k+1)\delta$.
+- The member at $p_{k+1}$ leaves the right side, and each of the $m - k - 1$ members after it becomes exactly $\delta$ closer, so $R$ shrinks by $(m - k - 1)\delta$.
+
+Keeping $L$ and $R$ as running totals therefore costs one addition and one subtraction per member:
+
+| move | $\delta = p_{k+1} - p_k$ | $L$ before | $\Delta L = (k+1)\delta$ | $L$ after | $R$ before | $\Delta R = (m-k-1)\delta$ | $R$ after |
+|---|---|---|---|---|---|---|---|
+| $k = 0 \to 1$ | $2 - 0 = 2$ | 0 | $1 \cdot 2 = 2$ | 2 | 5 | $2 \cdot 2 = 4$ | 1 |
+| $k = 1 \to 2$ | $3 - 2 = 1$ | 2 | $2 \cdot 1 = 2$ | 4 | 1 | $1 \cdot 1 = 1$ | 0 |
+
+## 5. Invariant and correctness of the running halves
+
+**Invariant.** Immediately before the answer for $p_k$ is read off, the two running totals satisfy
+
+$$
+L = L_k = \sum_{t<k}(p_k - p_t), \qquad R = R_k = \sum_{t>k}(p_t - p_k),
+$$
+
+so the stored value $L + R$ equals $\text{arr}[p_k]$ exactly.
+
+*Base.* At $k = 0$ the left total is genuinely empty, $L = 0 = L_0$, and the closed form $R = \sum_t p_t - m\,p_0$ equals $\sum_{t>0}(p_t - p_0) = R_0$ because each of the $m$ terms contributes $p_0$ once. Both halves match the definition.
+
+*Step.* Assume the invariant holds at $k$ and the sweep advances to $p_{k+1}$ with gap $\delta$. Then
+
+$$
+L_{k+1} = \sum_{t \le k}\big((p_k + \delta) - p_t\big) = \sum_{t<k}(p_k - p_t) + \delta = L_k + (k+1)\delta,
+$$
+
+because the $k$ terms with $t < k$ each gain $\delta$ and the single term $t = k$ equals $\delta$; and
+
+$$
+R_{k+1} = \!\!\sum_{t > k+1}\!\!\big(p_t - (p_k + \delta)\big) = \Big(\sum_{t>k}(p_t - p_k)\Big) - \delta - (m - k - 2)\delta = R_k - (m - k - 1)\delta .
+$$
+
+The two update rules in the table above are therefore not heuristics; they are the definition of $L$ and $R$ rewritten for the next member.
+
+*Termination.* The sweep visits $k = 0, 1, \dots, m-1$, so every member of every group receives a value, and the invariant supplies the exact sum at each visit. Members with no partner belong to a group of size one, whose single visit stores $L + R = 0$, matching the required "no such $j$" behaviour. No index is written twice, because each index belongs to exactly one value bucket.
+
+## 6. Executing the group $\{0, 2, 3\}$ step by step
+
+The group has $m = 3$, indices $p = (0, 2, 3)$, index total $5$, initial $L_0 = 0$ and $R_0 = 5 - 3\cdot 0 = 5$.
+
+| probe $k$ | $p_k$ | members to the left | $L_k$ | members to the right | $R_k$ | stored $\text{arr}[p_k] = L_k + R_k$ |
+|---|---|---|---|---|---|---|
+| 0 | 0 | none | 0 | $\{2, 3\}$ | $(2-0) + (3-0) = 5$ | 5 |
+| 1 | 2 | $\{0\}$ | $2 - 0 = 2$ | $\{3\}$ | $3 - 2 = 1$ | 3 |
+| 2 | 3 | $\{0, 2\}$ | $(3-0) + (3-2) = 4$ | none | 0 | 4 |
+
+These are precisely the required values at indices $0$, $2$ and $3$, so together with `arr[1] = 0` and `arr[4] = 0` from the singleton groups the final result is `[5, 0, 3, 4, 0]`. Note how the two halves trade magnitude: $L$ climbs $0 \to 2 \to 4$ while $R$ falls $5 \to 1 \to 0$, and their sum $5 \to 3 \to 4$ is *not* monotone. The answer for a group is unimodal in position — smallest at the centre member — which is a good sanity check on any trace.
+
+## 7. Traps this instance exposes
+
+| trap | what it looks like here | correct handling |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Recomputing each sum with a nested scan | Group $\{0,2,3\}$ would rescan the whole array three times, and with $n = 10^{5}$ that is $10^{10}$ pair evaluations | Group once, then advance $L$ and $R$ incrementally |
+| Treating the sum as symmetric | $\text{arr}[0] = 5$ but $\text{arr}[2] = 3$ and $\text{arr}[3] = 4$: equal values do not imply equal answers | The value is symmetric only up to the direction from which the group is scanned |
+| Forgetting the empty-partner case | Values $3$ and $2$ occur once each and must give $0$, not a sentinel or an error | Singleton groups come out of the same formula as $0$ |
+| Assuming equal values are contiguous | Groups can interleave arbitrarily, and indices inside a bucket stay sorted only because of the left-to-right scan | Never index a group by array order; index it by its sorted member list |
+| Assuming a group's answers are consecutive positions | The bucket $\{0,2,3\}$ writes to scattered slots | Write back at the original indices |
+| Width of the sum | With $n = 10^{5}$ and one group holding every index, the centre sum reaches roughly $2 \cdot (1 + 2 + \dots + 5 \cdot 10^{4}) \approx 2.5 \times 10^{9}$, beyond a 32-bit integer | Use a 64-bit or arbitrary-precision accumulator |
+| Single-element input | With `nums = [5]` the array has no pair at all | The result is `[0]`; nothing in the method is undefined |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 8. Complexity
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Only equal values interact
-
-For index $i$, the answer sums distances only to indices $j$ satisfying `nums[j] == nums[i]`. Indices holding different values never contribute to one another.
-
-The dictionary `d` groups indices by value. Scanning `nums` from left to right appends each index to its value's list, so every group is automatically sorted:
+**Time.** One linear scan builds the buckets, costing $O(n)$ expected time under hashing. Inside a group of size $m$, the closed-form start costs $O(m)$ for the index total, and each of the $m - 1$ transitions costs constant work, so the group costs $O(m)$; summing over groups gives $O(n)$. The whole method is therefore
 
 $$
-a_0<a_1<\cdots<a_{m-1}.
+O(n)
 $$
 
-The groups are independent. Once the solution can compute all distance sums for one sorted list, it can repeat that work for every value and write results into the corresponding original positions.
+expected time, against $O(n^{2})$ for the direct double loop that evaluates every same-valued pair separately. With $n \le 10^{5}$ the linear bound is the difference between roughly $10^{5}$ and $10^{10}$ basic operations.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [1, 3, 1, 1, 2]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Split every absolute distance by side
-
-At group position $i$, all earlier indices are smaller than $a_i$, while all later indices are larger. Therefore,
-
-$$
-\sum_{j=0}^{m-1}|a_i-a_j|
-=
-\sum_{j<i}(a_i-a_j)
-+
-\sum_{j>i}(a_j-a_i).
-$$
-
-Call the first quantity `left` and the second `right`. The distance to $a_i$ itself is zero and need not be handled separately.
-
-A direct computation for each $i$ would repeat most of the same subtractions and take $O(m^2)$ for one large group. The exact solution instead maintains how `left` and `right` change when moving from one group index to the next.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Initialize at the first occurrence
-
-At $a_0$, there are no earlier positions, so `left = 0`.
-
-Every other occurrence lies to the right. Its total distance from $a_0$ is
-
-$$
-\sum_{j=0}^{m-1}(a_j-a_0)
-=
-\sum_{j=0}^{m-1}a_j-ma_0.
-$$
-
-The code computes this as
-
-`right = sum(idx) - len(idx) * idx[0]`.
-
-Including $j=0$ is harmless because its term is zero. Thus `left + right` is already the complete answer for the first index.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[5, 0, 3, 4, 0]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 3, 1, 1, 2]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[5, 0, 3, 4, 0]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Prefix sums per group:** Store cumulative index sums and calculate left and right formulas independently for each occurrence. This is also $O(n)$ but uses an additional prefix structure or variables.
-- **Two global passes:** Maintain count and index-sum maps left-to-right, then right-to-left, adding each side's contribution directly to the answer.
-- **Pairwise comparison:** Comparing every equal-value pair and adding its distance to both endpoints can take $O(n^2)$ when all values match.
-- **Singleton group:** Both side contributions are zero, so the answer is zero.
-- **All values distinct:** Every group is a singleton and the entire output is zeroes.
-- **All values equal:** One group contains all indices; the recurrence still processes it in linear time.
-- **Adjacent equal occurrences:** A gap of one is handled by the same weighted update.
-- **Widely separated occurrences:** The actual gap scales both contribution changes correctly.
-- **Large input values:** They are dictionary keys only; distances depend on indices, not value magnitude.
-- **Input preservation:** Grouping reads `nums` without sorting or modifying it.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n=|\texttt{nums}|$. Group construction visits every index once, taking expected $O(n)$ time with hash-map operations.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** The index buckets store exactly $n$ integers in total, one per array position, and the output array holds $n$ entries, so the extra storage is $O(n)$. Group sizes and index totals are scalars updated during the scan and add no asymptotic cost.

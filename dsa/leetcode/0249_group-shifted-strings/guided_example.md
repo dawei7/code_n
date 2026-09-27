@@ -27,10 +27,19 @@ Notice the structural shifts:
 - `"abc"` $\to$ `"bcd"` $\to \dots \to$ `"xyz"`: each adjacent letter increases by $+1 \pmod{26}$.
 - `"az"` $\to$ `"ba"`: from $'a'$ to $'z'$ is $+25 \equiv -1 \pmod{26}$. Shifting both letters right yields $'b'$ and $'a'$, which also has step $-1 \equiv 25 \pmod{26}$.
 - `"a"` and `"z"`: single characters can shift into any single character.
-- `"acef"`: steps are $+2, +3, +1 \pmod{26}$.
+- `"acef"`: steps are $+2, +2, +1 \pmod{26}$ (from `'a'` to `'c'`, then `'c'` to `'e'`, then `'e'` to `'f'`).
 
 Comparing every pair of strings takes $O(N^2 \cdot L)$ time.
 Instead, we compute a **canonical invariant hash key** for each string that is identical for all members of the same shift family, partitioning strings into a hash table in a single $O(L)$ pass.
+
+### Candidate Methods Compared
+
+| Method | What it compares | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Pairwise shift test | For each pair of equal length, derive the shift from the first characters and verify every position | $O(N^2 \cdot L)$ | $O(1)$ beyond the input | Correct and simple, but quadratic in the number of strings; with the maximum input size it re-checks the same relation millions of times |
+| Order-insensitive fingerprints | Sort the letters of each string and compare the sorted forms | $O(N \cdot L \log L)$ | $O(L)$ per string | Wrong model entirely: sorting ignores positional structure, so `"abc"` and `"bca"` collide even though only the first can be shifted into `"bcd"` |
+| Adjacent cyclic differences (Method B) | Hash the tuple of consecutive steps modulo $26$ | $O(L)$ | $O(L)$ for the key of every string | Correct and it never rewrites characters, but the key must stay a tuple or a delimited string; flattening `(1, 2)` and `(12)` into the same characters would merge unrelated shapes |
+| Base-`'a'` normalization (Method A, chosen) | Rewrite each string so its first character becomes `'a'`, then hash the rewritten string | $O(L)$ | $O(L)$ for the keys plus the grouped output | One pass per string, key length equals word length so different lengths can never collide, and the wraparound is handled by a single modulo operation |
 
 ---
 
@@ -57,7 +66,7 @@ $$
 - For single-character strings (`"a"`, `"z"`): $\text{key} = ()$.
 - For `"abc"`, `"bcd"`, `"xyz"`: $\text{key} = (1, 1)$.
 - For `"az"`, `"ba"`: $\text{key} = (25,)$.
-- For `"acef"`: $\text{key} = (2, 3, 1)$.
+- For `"acef"`: $\text{key} = (2, 2, 1)$.
 
 > **Invariant.** Two strings $s_1$ and $s_2$ belong to the same shifting sequence if and only if their normalized forms (or difference tuples) are identical.
 
@@ -159,6 +168,23 @@ Result: [["abc", "bcd", "xyz"], ["acef"], ["az", "ba"], ["a", "z"]]
 | `"a"` | `'a'` | 0 | `"a"` | `["a"]` |
 | `"z"` | `'z'` | 25 | `"a"` | `["a", "z"]` |
 
+### Both Canonical Keys Side by Side
+
+The two keys are computed by different routes, so it is worth seeing them agree on every member of the sample. Letter indices use the convention `'a'` $= 0$ and `'z'` $= 25$:
+
+| Word | Letter indices | Cyclic steps modulo $26$ | Method B key | Method A key | Family |
+|:---|:---|:---|:---:|:---:|:---:|
+| `"abc"` | $0, 1, 2$ | $1, 1$ | $(1, 1)$ | `"abc"` | $G_1$ |
+| `"bcd"` | $1, 2, 3$ | $1, 1$ | $(1, 1)$ | `"abc"` | $G_1$ |
+| `"xyz"` | $23, 24, 25$ | $1, 1$ | $(1, 1)$ | `"abc"` | $G_1$ |
+| `"acef"` | $0, 2, 4, 5$ | $2, 2, 1$ | $(2, 2, 1)$ | `"acef"` | $G_2$ |
+| `"az"` | $0, 25$ | $25$ | $(25)$ | `"az"` | $G_3$ |
+| `"ba"` | $1, 0$ | $25$ | $(25)$ | `"az"` | $G_3$ |
+| `"a"` | $0$ | none, a single letter has no step | `()` | `"a"` | $G_4$ |
+| `"z"` | $25$ | none | `()` | `"a"` | $G_4$ |
+
+The families are $G_1 = \{\text{"abc"}, \text{"bcd"}, \text{"xyz"}\}$, $G_2 = \{\text{"acef"}\}$, $G_3 = \{\text{"az"}, \text{"ba"}\}$ and $G_4 = \{\text{"a"}, \text{"z"}\}$. Reading down either key column gives exactly the same partition: rows that share a step tuple share a normalized string, and vice versa. The wraparound is visible as the single step $25$ shared by `"az"` and `"ba"`, which is the same cyclic distance $(\text{'a'} - \text{'b'}) \bmod 26$ that Method A realises by rewriting `'a'` as `'z'`. The empty tuple is a genuine key rather than a special case, which is exactly why `"a"` and `"z"` — offsets $0$ and $25$ — still meet in $G_4$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -179,6 +205,18 @@ The offset shifts cancel out completely, proving the normalized strings are iden
 - **Modulo with Negative Numbers in C++ vs Python:** In Python, `-1 % 26 = 25` natively. In C/C++, `-1 % 26 = -1`. In C++, one must write `(diff + 26) % 26` to guarantee a non-negative modulo index.
 - **Length Invariance:** Two strings with different lengths cannot belong to the same shift sequence. Normalizing base-'a' naturally preserves string length (e.g. `"a"` has length 1, `"aa"` has length 2), preventing accidental collisions.
 - **Tuples vs Strings as Keys:** When using adjacent differences, using a Python `tuple` of differences or a delimited string (e.g. `"1#2"`) is required. Storing as raw digits (e.g. `"12"`) could cause ambiguity between difference 1 followed by 2, versus a single difference of 12! Base-'a' normalized strings completely bypass delimiter issues.
+
+### Boundary Behaviour of the Grouping
+
+| Boundary scenario | Concrete input | Required result | Why the key produces it |
+|:---|:---|:---|:---|
+| Smallest possible input | `["a"]` | `[["a"]]` | One insertion yields one family; the empty step tuple is a valid key, so no separate branch is needed for a lone string |
+| Wraparound in both directions | `["az", "ba", "yx", "ab", "za"]` | `[["az", "ba", "yx"], ["ab", "za"]]` | Leftward steps of $25$ group `"az"`, `"ba"` and `"yx"` together, while `"ab"` and `"za"` share the rightward step $1$; the modulo keeps both directions non-negative |
+| Length separates identical shapes | `["a", "aa", "b", "bb", "abc", "bcd"]` | `[["a", "b"], ["aa", "bb"], ["abc", "bcd"]]` | `"a"` and `"b"` share the empty tuple, `"aa"` and `"bb"` share the step $(0)$, and the three families stay apart because tuples of different lengths are never equal |
+| Constant letters versus reversing steps | `["aaa", "bbb", "ccc", "aba", "bcb", "yzy"]` | `[["aaa", "bbb", "ccc"], ["aba", "bcb", "yzy"]]` | The flat shape has steps $(0, 0)$ while the second shape has steps $(1, 25)$; non-uniform steps are perfectly legal, and the $25$ is the wrap from `'a'` back to the previous letter |
+| Duplicate entries | `["abc", "abc", "bcd", "acef", "acef"]` | `[["abc", "abc", "bcd"], ["acef", "acef"]]` | Grouping collects occurrences, not distinct values, so repeated inputs are reported with their multiplicity rather than deduplicated |
+| Maximum number of strings | $200$ single-character strings | one family containing all $200$ | Every single-character string has the same empty signature, so the entire input collapses into one equivalence class no matter which letters appear |
+| Maximum string length | two $50$-character strings of one repeated letter, plus a $50$-character alphabet cycle and its one-step shift | two families of two | The repeated-letter pair shares the all-zero step tuple, and the cycle pair agrees at all $49$ positions, including the step that wraps from `'z'` back to `'a'` |
 
 ---
 

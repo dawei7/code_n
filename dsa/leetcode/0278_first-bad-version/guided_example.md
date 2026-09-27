@@ -125,6 +125,32 @@ Total API calls: **2**.
 
 ---
 
+### Mirror Trace: When the True Branch Fires Repeatedly
+
+The worked instance above reaches `isBadVersion(M) == False` once and
+`isBadVersion(M) == True` once, so it never shows what happens when the boundary
+sits near the low end. Take $n = 10$ with $\text{bad} = 2$: the first three
+midpoints all land on bad versions, so the right bound absorbs the work and the
+*left* pointer moves only on the final probe. Both branches must therefore keep
+the interval valid; neither branch is the rare case.
+
+| Step | Interval before $[L, R]$ | Midpoint $M$ | `isBadVersion(M)` | Half rejected by the answer | Interval after $[L, R]$ | Versions still alive |
+|:---:|:---:|:---:|:---:|:---|:---:|:---:|
+| 1 | $[1, 10]$ | $5$ | $\text{True}$ | $[6, 10]$: all bad, but each is later than $M$ | $[1, 5]$ | 5 |
+| 2 | $[1, 5]$ | $3$ | $\text{True}$ | $[4, 5]$: both strictly later than $M$ | $[1, 3]$ | 3 |
+| 3 | $[1, 3]$ | $2$ | $\text{True}$ | $[3, 3]$: strictly later than $M$ | $[1, 2]$ | 2 |
+| 4 | $[1, 2]$ | $1$ | $\text{False}$ | $[1, 1]$: version 1 is good, so it cannot be the first bad one | $[2, 2]$ | 1 |
+| End | $[2, 2]$ | — | — | $L == R$ convergence, no further probe needed | $[2, 2]$ | **answer $2$** |
+
+Reading the last two rows together shows why the two update rules are not
+symmetric. A $\text{True}$ answer keeps $M$ inside the interval because $M$ is
+itself a legitimate answer, so the right bound becomes $M$ rather than $M - 1$.
+A $\text{False}$ answer proves $M$ is good, so the left bound may safely jump
+past it to $M + 1$. Here the interval shrinks $10 \to 5 \to 3 \to 2 \to 1$ in
+four probes, which is exactly the halving the complexity analysis predicts.
+
+---
+
 ## 4. Complete Execution Trace
 
 ```text
@@ -151,6 +177,28 @@ Result: 4
 | **2** | $[4, 5]$ | 4 | $\text{isBadVersion}(4)$ | **True** (Bad) | **$[4, 4]$** |
 | **End** | $[4, 4]$ | - | - | $L == R$ Convergence | **$\mathbf{4}$ (First Bad Version)** |
 
+### Boundary Census: Where the Probe Count Peaks
+
+The instance above is deliberately mild. The table below records the probe count
+for every interesting shape of the input, including the two extremes of the
+$2^{31} - 1$ ceiling. Every row was obtained by running the same two rules, so
+the counts are facts about the method rather than estimates.
+
+| Instance | $n$ | $\text{bad}$ | Probes used | Final interval reached | Returned | Why this row matters |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|
+| Only version is bad | 1 | 1 | 0 | $[1, 1]$ initially | 1 | The loop body never runs: $L = R = 1$ before any probe, so the answer is known without asking |
+| Bad at the far end | 5 | 5 | 2 | $[5, 5]$ | 5 | Both probes return $\text{False}$; only $L$ ever moves, and the last good version is one below the answer |
+| Bad in the middle | 5 | 4 | 2 | $[4, 4]$ | 4 | The traced instance: one $\text{False}$ then one $\text{True}$ |
+| Boundary near the low end | 10 | 2 | 4 | $[2, 2]$ | 2 | Three $\text{True}$ answers in a row, exercising the halving on the right bound |
+| Boundary at the far end | 100 | 100 | 6 | $[100, 100]$ | 100 | Every probe is $\text{False}$, so the search behaves like a plain halving climb |
+| 32-bit ceiling, answer last | $2^{31} - 1$ | $2^{31} - 1$ | 30 | $[2^{31} - 1, 2^{31} - 1]$ | 2147483647 | Midpoint arithmetic reaches $L + R > 2^{31} - 1$, which is where $(L + R) // 2$ overflows |
+| 32-bit ceiling, answer first | $2^{31} - 1$ | 1 | 31 | $[1, 1]$ | 1 | The true worst case: $\lceil \log_2 n \rceil = 31$ probes, and the very first sum $L + R = 2^{31}$ already exceeds the signed 32-bit maximum |
+
+Two conclusions follow. The worst case is *not* the largest $\text{bad}$: moving
+the boundary to 1 costs one extra probe because every answer is $\text{True}$ and
+the interval must be halved from the top down. And no row exceeds 31 probes, so a
+hard call limit of $3n$ or even 31 is met with room to spare.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -169,6 +217,20 @@ The algorithm cannot loop infinitely and must terminate at $L == R$.
 - **Integer Overflow in Midpoint:** Writing `(L + R) // 2` causes integer overflow in C++, Java, and other languages when $L + R > 2^{31} - 1$. The formula `L + (R - L) // 2` guarantees intermediate values never exceed $n$.
 - **Setting $R = M - 1$ on True:** If $M$ is itself the first bad version, setting $R = M - 1$ would eliminate the correct answer from the search range! Because $M$ could be the answer, you must set $R = M$.
 - **Termination Loop Condition:** Using `while L <= R` with `R = M` creates an infinite loop when $L == R$. Using `while L < R` ensures clean termination when $L == R$.
+
+### Strategy Comparison on the $n = 10, \text{bad} = 2$ Instance
+
+Each row below is a complete, self-contained way to attack the problem. Only the
+second one survives all three hazards at once: the call budget, the discarded
+answer, and termination.
+
+| Strategy | Probes on this instance | Result it returns | Auxiliary space | Failure mode |
+|:---|:---:|:---:|:---:|:---|
+| Linear scan from version 1 | 2 | 2 | $O(1)$ | Correct here only because the boundary is early; with $\text{bad} = n$ it needs $n$ probes, and $n$ can reach $2^{31} - 1$ |
+| Bisection with $R \leftarrow M$ on $\text{True}$ (this lesson) | 4 | 2 | $O(1)$ | None: $\lceil \log_2 n \rceil \le 31$ probes, the answer is never discarded, and $L < R$ guarantees progress |
+| Bisection with $R \leftarrow M - 1$ on $\text{True}$ | 2 | **1** | $O(1)$ | Wrong answer: the probe at $M = 2$ is $\text{True}$, yet $R$ becomes 1, so the interval collapses to $[1, 1]$ and the real boundary 2 is gone |
+| Bisection with loop condition $L \le R$ and $R \leftarrow M$ | never terminates | — | $O(1)$ | Infinite loop: once $L == R$ the probe repeats the same midpoint and re-assigns the same bound forever |
+| Ternary split (two interior probes per level) | 6 | 2 | $O(1)$ | No benefit: a boolean predicate carries one bit per probe, so one probe per halving is already optimal and the second probe per level only adds calls |
 
 ---
 
