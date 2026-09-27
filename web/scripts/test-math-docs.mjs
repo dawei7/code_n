@@ -55,9 +55,16 @@ if (args.length > 0) {
       markdownFiles.push(...fallbackFound);
       continue;
     }
+    // Like the Python auditors, accept a package prefix such as `2515`, which is
+    // the convenient way to name a package whose full slug is long.
+    const prefixMatches = await collectByPrefix(arg);
+    if (prefixMatches !== null) {
+      markdownFiles.push(...prefixMatches);
+      continue;
+    }
     console.error(
       `No Markdown file or directory found for '${arg}'.\n` +
-      `Tried '${resolved}' and '${fallback}'.\n` +
+      `Tried '${resolved}', '${fallback}', and package names starting with it.\n` +
       `Paths are resolved against the corpus root (${corpusRoot}), so pass a ` +
       `package name such as '0001_two-sum' or an absolute path.`,
     );
@@ -104,6 +111,19 @@ if (spanCount === 0) {
   console.log(
     `Validated ${spanCount} math spans across ${markdownFiles.length} Markdown files.`,
   );
+}
+
+async function collectByPrefix(prefix) {
+  const entries = await readdir(corpusRoot, { withFileTypes: true });
+  const matches = entries
+    .filter((entry) => entry.isDirectory() && entry.name.startsWith(prefix))
+    .map((entry) => path.join(corpusRoot, entry.name));
+  if (matches.length === 0) return null;
+  const files = [];
+  for (const match of matches) {
+    files.push(...await collectTargets(match) ?? []);
+  }
+  return files;
 }
 
 async function collectTargets(candidate) {
