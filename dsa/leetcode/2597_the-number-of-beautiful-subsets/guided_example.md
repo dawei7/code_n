@@ -90,7 +90,7 @@ One residue class, final value $f_3 = 5$, so the answer is $5 - 1 = 4$, agreeing
 |:---|:---|:---|:---|
 | Include/exclude recursion with a membership guard | branch on each index, reject a value whose $\pm k$ partner is chosen | $O(2^n)$ time, $O(n)$ auxiliary space | Direct and exact; the intended route for $n \le 18$, but exponential |
 | Residue-class block recurrence | group by `value mod k`, count independent sets per chain, multiply | $O(n \log n)$ time, $O(n)$ space | Polynomial and exact; needs the structural observation of this section |
-| Enumerate all $2^n$ bitmasks and test each subset | test every pair inside a mask | $O(2^n \cdot n)$ | Simple to write, but repeats work the guard prunes away |
+| Enumerate all $2^n$ bitmasks and test each subset | test every pair inside a mask | $O(2^n \cdot n^2)$ | Simple to write, but repeats work the guard prunes away |
 | Deduplicate values before counting | treat equal values as one choice | — | Wrong: subsets are distinguished by index, so equal values are separate choices |
 
 ## 7. Traps and boundary instances
@@ -105,7 +105,7 @@ One residue class, final value $f_3 = 5$, so the answer is $5 - 1 = 4$, agreeing
 | `nums = [2,4,8,16,32]`, `k = 1000` | 31 | When $k$ exceeds every gap there is no conflict at all, and all $2^5 - 1$ subsets are beautiful |
 | `nums = [1,3,5,2,4]`, `k = 2` | 14 | Two residue classes count independently and their totals multiply |
 
-Three further traps deserve naming. First, the condition is a difference of exactly $k$, not "at most $k$" and not "a multiple of $k$": with $k = 2$ the pair 2 and 6 differs by 4 and is perfectly legal. Second, the guard must test both `v - k` and `v + k`; testing only one direction misses every conflict in which the larger value is chosen first, which is how the pair {4, 6} would slip in. Third, a value already chosen twice never conflicts with itself, so the guard must count occurrences rather than merely recording presence — with `k = 1` and two chosen copies of 1, the values `1 - 1 = 0` and `1 + 1 = 2` are absent and a third copy of 1 is still a legal addition.
+Three further traps deserve naming. First, the condition is a difference of exactly $k$, not "at most $k$" and not "a multiple of $k$": with $k = 2$ the pair 2 and 6 differs by 4 and is perfectly legal. Second, the guard must test both `v - k` and `v + k`; testing only `v + k` misses every conflict in which the smaller value is chosen first, which is how the pair {4, 6} would slip in. Third, a value already chosen twice never conflicts with itself, so the guard must count occurrences rather than merely recording presence — with `k = 1` and two chosen copies of 1, the values `1 - 1 = 0` and `1 + 1 = 2` are absent and a third copy of 1 is still a legal addition.
 
 ## 8. Time and auxiliary space complexity
 

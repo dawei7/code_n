@@ -8,8 +8,8 @@ maximize the sum of their labels. This lesson follows
 
 $$numOnes = 2,\qquad numZeros = 1,\qquad numNegOnes = 4,\qquad k = 5 .$$
 
-The bag therefore holds five items labelled `1`, one item labelled `0`, and four
-items labelled `-1`, for ten items in total, so drawing exactly five of them is
+The bag therefore holds two items labelled `1`, one item labelled `0`, and four
+items labelled `-1`, for seven items in total, so drawing exactly five of them is
 possible.
 
 | label | count available | value contributed per item |

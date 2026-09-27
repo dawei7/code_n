@@ -1,132 +1,122 @@
 # Guided Example: Find the Width of Columns of a Grid
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The grid, the question, and the measurement that matters
 
-- **Input:** `{"grid": [[1], [22], [333]]}`
-- **Required output:** `[3]`
+The input is a **0-indexed** integer matrix `grid` with $m$ rows and $n$ columns whose entries may be negative. Every entry carries a purely typographic quantity: the number of characters its decimal representation occupies. The statement fixes that measurement exactly. An integer whose magnitude needs $len$ digits measures $len$ when it is non-negative and $len + 1$ when it is negative, because the minus sign is itself a character. The width of a column is the largest such measurement among that column's $m$ entries, and the required output is an array of length $n$ holding the width of every column.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+One structural observation decides the entire method: an entry in column $c$ can never influence the width of a different column $c' \ne c$. The problem therefore splits into $n$ independent one-dimensional maximizations, and each one is answered by a single sweep down its own column. Nothing needs to be sorted, and nothing needs to be remembered beyond one running best per column.
 
----
+## 2. The representative input
 
-## 1. Instance & Teaching Goal
+Official Example 2 supplies a $3 \times 3$ grid that mixes signs and lets each column be won in a different row, so a single lucky guess about "the longest entry" cannot produce the whole answer.
 
-You are given a **0-indexed** `m x n` integer matrix `grid`. The width of a column is the maximum **length **of its integers.
-
-The objective is to compute `[3]` from `{"grid": [[1], [22], [333]]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Width is the length of the decimal text
-
-The problem's length rule is exactly what Python's ordinary string conversion produces for valid integers:
-
-- `str(333)` is `"333"`, length three;
-- `str(-15)` is `"-15"`, length three because the minus sign counts;
-- `str(0)` is `"0"`, length one.
-
-Therefore, there is no need to count digits with logarithms or add a special sign adjustment. `len(str(x))` directly computes the required width contribution of cell value $x$.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Row index $r$ | column 0 | column 1 | column 2 |
 |---|---|---|---|
-| Input Slice | `{"grid": [[1], [22], [333]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| 0 | `-15` | `1` | `3` |
+| 1 | `15` | `7` | `12` |
+| 2 | `5` | `6` | `-2` |
 
----
+The required output is `[3, 1, 2]`. The point of the lesson is to derive that array from the measurement rule rather than to assert it, so the columns are measured one cell at a time below.
 
-### Step 2: Transpose rows into columns lazily
+## 3. The length function that the statement defines
 
-The matrix is stored as a list of rows, but the answer is defined column by column.
+Two quantities compose the measurement. Let $L(x)$ be the number of digits needed by the magnitude of $x$, and let $W(x)$ be the number of characters in the printed form of $x$:
 
-`zip(*grid)` conceptually transposes the matrix for iteration:
+$$
+L(x) =
+\begin{cases}
+\lfloor \log_{10} \lvert x \rvert \rfloor + 1, & \lvert x \rvert \ge 1, \\
+1, & x = 0,
+\end{cases}
+\qquad
+W(x) = L(x) + \begin{cases} 1, & x < 0, \\ 0, & x \ge 0. \end{cases}
+$$
 
-- `*grid` passes each row as one positional iterable to `zip`;
-- the first produced tuple contains every row's column-zero value;
-- the second contains every row's column-one value;
-- this continues for all columns.
+The separate case for `0` is not cosmetic: the decimal representation of zero really is the single character `0`, while $\log_{10} 0$ has no real value, so the logarithm formula simply does not apply there. With $W$ in hand the requested array is a column-wise maximum:
 
-For a rectangular $m\times n$ grid, exactly $n$ tuples are produced, each with $m$ integers.
+$$
+\text{ans}[c] = \max_{0 \le r < m} W(\text{grid}[r][c]), \qquad 0 \le c < n .
+$$
 
-Python's `zip` iterator is lazy. It creates one column tuple at a time rather than building a complete second matrix.
+Written as a recurrence over the rows, with $b_r(c)$ denoting the best width seen in column $c$ after the first $r$ rows have been examined:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+$$
+b_0(c) = -\infty, \qquad b_{r+1}(c) = \max\bigl(b_r(c),\; W(\text{grid}[r][c])\bigr), \qquad \text{ans}[c] = b_m(c).
+$$
+
+Every one of the nine entries of the representative grid, decomposed into those two components:
+
+| Entry | Sign class | Magnitude digits $L$ | Sign cost | Width $W$ |
+|---|---|---|---|---|
+| `-15` | negative | 2 | 1 | 3 |
+| `1` | non-negative | 1 | 0 | 1 |
+| `3` | non-negative | 1 | 0 | 1 |
+| `15` | non-negative | 2 | 0 | 2 |
+| `7` | non-negative | 1 | 0 | 1 |
+| `12` | non-negative | 2 | 0 | 2 |
+| `5` | non-negative | 1 | 0 | 1 |
+| `6` | non-negative | 1 | 0 | 1 |
+| `-2` | negative | 1 | 1 | 2 |
+
+## 4. The sweep, row by row
+
+The accumulator starts at $-\infty$ for each column, meaning "no candidate measured yet". Each row contributes one candidate per column, and a candidate is kept only when it beats the value already held.
+
+| Stage | Entries just measured | Column 0 best | Column 1 best | Column 2 best |
+|---|---|---|---|---|
+| before row 0 | none | $-\infty$ | $-\infty$ | $-\infty$ |
+| after row 0 | `-15`, `1`, `3` | 3, from `-15` | 1, from `1` | 1, from `3` |
+| after row 1 | `15`, `7`, `12` | 3 (unchanged) | 1 (unchanged, `7` ties) | 2, from `12` |
+| after row 2 | `5`, `6`, `-2` | 3 (unchanged) | 1 (unchanged, `6` ties) | 2 (unchanged, `-2` ties) |
+
+Three details in that table are worth naming.
+
+- Row 1 contains the numerically largest entry of column 0, namely `15`, yet column 0's best stays at 3. The width of `15` is 2, so the larger number is the *smaller* measurement. This is the decisive trap of the problem.
+- Column 1 never changes after its first candidate. All three of its entries have width 1, and a maximum that has already been attained cannot be raised by later ties.
+- Column 2 is won twice over: `12` establishes width 2 at row 1, and `-2` merely reproduces width 2 at row 2. The output asks for the width, not for the identity of the winner, so the tie is harmless — but it shows that the winning entry is not unique and must never be reported.
+
+The per-column verdict, with the width of every entry listed in row order:
+
+| Column $c$ | Entry widths, rows 0 to 2 | Largest width | Entries attaining it |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| 0 | 3, 2, 1 | 3 | `-15` (row 0) |
+| 1 | 1, 1, 1 | 1 | `1`, `7`, `6` (all rows) |
+| 2 | 1, 2, 2 | 2 | `12` (row 1), `-2` (row 2) |
 
----
+Concatenating the three largest widths in column order gives `[3, 1, 2]`, which matches the expected output of the official example.
 
-### Step 3: Compute one maximum per column
+## 5. Invariant and Correctness of the single pass
 
-For each tuple `col`, the generator expression:
+The invariant maintained by the sweep is stated over row prefixes, not over whole columns, and that is exactly what makes one pass legitimate.
 
-`len(str(x)) for x in col`
+> **Invariant $I(r)$.** After the first $r$ rows have been consumed, the accumulator of every column $c$ satisfies $b_r(c) = \max\{\, W(\text{grid}[r'][c]) : 0 \le r' < r \,\}$, that maximum being $-\infty$ when $r = 0$.
 
-produces the decimal representation length of every value in that column.
+*Base case.* $I(0)$ asserts that the accumulators equal the maximum over an empty index set. The empty maximum is $-\infty$, which is exactly the initialization, so $I(0)$ holds.
 
-`max(...)` retains the greatest length. Because every column contains $m\ge1$ values, the maximum is always defined.
+*Inductive step.* Assume $I(r)$. Row $r$ contributes the single new candidate $W(\text{grid}[r][c])$ to column $c$, and the recurrence sets $b_{r+1}(c) = \max\bigl(b_r(c), W(\text{grid}[r][c])\bigr)$. Substituting the hypothesis turns that expression into the maximum over rows $0$ through $r$, which is precisely $I(r+1)$.
 
-The outer list comprehension collects these maxima in the order `zip` produces columns, which is increasing column index. Hence output position $j$ corresponds exactly to grid column $j$.
+*Termination.* At $r = m$ the invariant reads $b_m(c) = \max_{0 \le r' < m} W(\text{grid}[r'][c])$, and the right-hand side is the definition of $\text{ans}[c]$.
 
-| Parameter | State Before Finalization | Action | Final Value |
+Soundness and completeness follow from the two halves of that identity. Every value ever stored is either $-\infty$ or the measurement of an entry that genuinely lies in the column, so the reported width is realized by a real entry and can never overstate the column. Conversely, the induction covers every row index $0 \le r' < m$ of every column, so no entry whose width exceeds the reported one can be skipped, and the answer can never understate the column. Exactness is therefore a consequence of the invariant rather than of any particular traversal order.
+
+Two properties of the maximum make the traversal shape irrelevant. Maximum is commutative, so the columns may be visited in any order and even interleaved; and it is idempotent, so revisiting an entry changes nothing. The only reason to touch each entry exactly once is cost, which is the subject of the final section.
+
+## 6. Traps this instance exposes
+
+| Situation | Tempting shortcut | Why it fails | Correct treatment |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3]` |
+| A negative entry with fewer magnitude digits than the column's numeric maximum | Take the numeric maximum of the column, then measure it | Column 0's numeric maximum is `15`, whose width is 2, but `-15` has width 3 and is the column's true width | Compare widths themselves, never the raw numeric values |
+| An entry equal to `0` | Apply $\lfloor \log_{10} \lvert x \rvert \rfloor + 1$ uniformly | $\log_{10} 0$ is undefined, and a "zero digits" result would be nonsense | Count `0` as the single character it prints as |
+| An entry at the lower bound of the value range | Assume $10^{9}$ is the longest possible entry | The statement guarantees $-10^{9} \le \text{grid}[r][c] \le 10^{9}$, so `-1000000000` occupies 11 characters while `1000000000` occupies 10 | Count magnitude digits first, then add one for a negative sign |
+| Several entries sharing the largest width, as in column 1 | Report "the" longest entry, or invent a tie-break | The output contains widths only, so a tie is already resolved by the value itself | Return the width; tie-breaking has no observable effect |
+| A column won in a different row than its neighbour | Assume one global winning row for the whole grid | Column 0 is won at row 0, while column 2 is first won at row 1 | Track one independent running best per column |
 
----
+The first two rows of that table separate a correct solution from a plausible-looking wrong one. The negative-sign rule also explains why a column's widths cannot be inferred from a sorted list of its values: within one sign class, larger magnitude means weakly more digits, but the sign class shifts the entire measurement by one, so a small negative can out-measure a large positive.
 
-## 4. Complete Execution Trace
+## 7. Time and auxiliary space complexity
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[1], [22], [333]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3]` | Verified |
+Let $V = \max_{r,c} \lvert \text{grid}[r][c] \rvert$ be the largest magnitude appearing in the grid.
 
----
+**Time.** The sweep touches each of the $m n$ entries exactly once, and the work per entry is the cost of producing its measurement $W$, which requires materializing the decimal representation of a number of magnitude at most $V$. That costs $\Theta(\log_{10} V)$ character operations, so the running time is $O(m n \log_{10} V)$. Under the stated bound $-10^{9} \le \text{grid}[r][c] \le 10^{9}$ every entry occupies at most 11 characters, which makes the bound $O(m n)$ with a small constant. The sweep is linear in the number of cells and never sorts a column, which would cost $O(n m \log m)$ for no benefit.
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Nested row/column loops:** Maintain an $n$-entry maximum array while scanning rows, avoiding the temporary column tuple and retaining $O(n)$ space.
-- **Logarithmic digit counting:** Works with special cases but is more error-prone for zero, signs, and numeric boundaries.
-- **Build an explicit transpose:** Correct but wastes $O(mn)$ extra space.
-- **Negative value:** Its minus sign contributes one to width.
-- **Zero:** Its representation has width one.
-- **Positive power of ten:** String length naturally captures the new digit.
-- **One-row grid:** Each column width is simply that row's value length.
-- **One-column grid:** The single result is the maximum across all rows.
-- **Jagged rows:** `zip` would truncate, but the rectangular contract excludes them.
-- **Input preservation:** Conversion and iteration are read only.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(mn)$. Every one of the $mn$ cells is converted to a short decimal string and measured. With integer magnitude bounded by $10^9$, each conversion is constant-bounded work, so total time is $O(mn)$.
-- **Auxiliary Space Complexity:** $O(n+m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** The output array holds one integer per column, so $O(n)$ is both necessary and sufficient. Beyond it, the method needs one accumulator per column — already present in that array — and one transient decimal representation of at most 11 characters, which is $O(1)$ under the value bound. The tables earlier in this lesson stored the width of every entry for clarity; a real computation never has to, because the maximum of a set can be folded while the set is streamed.

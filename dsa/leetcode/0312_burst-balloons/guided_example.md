@@ -11,7 +11,7 @@ We trace the step-by-step reverse interval dynamic programming recurrence, paddi
   - Total maximum coins: $15 + 120 + 24 + 8 = \mathbf{167}$
 - **Single Balloon Base Case:** $\text{nums} = [5] \implies 1 \times 5 \times 1 = 5$
 - **Two Balloons Sequence:** $\text{nums} = [1, 5] \implies 1 \times 1 \times 5 + 1 \times 5 \times 1 = 5 + 5 = 10$
-- **Zero Value Balloons:** Elements can be positive integers; boundary padding $1$ prevents zero collapse
+- **Zero Value Balloons:** Values may equal $0$, so a burst can collect nothing; the virtual boundary $1$ still supplies a multiplier, and `nums = [0, 1, 0]` answers $1$
 
 This instance demonstrates reverse thinking in dynamic programming, mathematically proves why selecting the *last* balloon burst in an open interval $(i, j)$ decouples subproblems $(i, k)$ and $(k, j)$ with known static boundary neighbors ($arr[i]$ and $arr[j]$), contrasts $O(N^3)$ interval DP against $O(N!)$ brute-force permutations, and achieves $O(N^2)$ table space.
 
@@ -65,6 +65,17 @@ Let $f[i][j]$ denote the maximum coins obtainable from bursting all balloons in 
   f[i][j] = \max_{i < k < j} \Big( f[i][k] + f[k][j] + arr[i] \times arr[k] \times arr[j] \Big)
   $$
 - Target: $f[0][N + 1]$ (bursting all balloons between virtual bounds $0$ and $N + 1$).
+
+Every degenerate interval the recurrence meets has a forced value, which is why the base case is stated as $f[i][j] = 0$ for $j \le i + 1$ rather than special-cased later:
+
+| Situation | Interval shape | Value | Coins actually realized | Why the value cannot be improved |
+|:---|:---|:---:|:---|:---|
+| No balloon between the boundaries | $j = i + 1$ | $f[i][j] = 0$ | $0$ | No candidate $k$ exists in an empty open interval |
+| Exactly one balloon between the boundaries | $j = i + 2$ | $arr[i] \cdot arr[i+1] \cdot arr[i+2]$ | $1 \times 3 \times 1 = 3$ for $(0, 2)$ | The lone candidate is both first and last, so its neighbours are already $arr[i]$ and $arr[j]$ |
+| One input balloon, `nums = [5]` | $f[0][2]$ | $5$ | $1 \times 5 \times 1$ | Both neighbours are virtual boundary balloons |
+| Two input balloons, `nums = [7, 1]` | $f[0][3]$ | $14$ | $7 \times 1 \times 1 + 1 \times 7 \times 1$ | Bursting $1$ first leaves $7$ between two virtual ones; the reverse order collects only $8$ |
+| Two input balloons, `nums = [10, 2]` | $f[0][3]$ | $30$ | $10 \times 2 \times 1 + 1 \times 10 \times 1$ | Removing the smaller value first keeps the larger one available as a multiplier |
+| A zero inside the array, `nums = [0, 1, 0]` | $f[0][3]$ | $1$ | $1 \times 0 \times 1 + 1 \times 0 \times 1 + 1 \times 1 \times 1$ | Both zeros collect nothing whenever they are burst, so only the position of the $1$ matters |
 
 > **Invariant.** In open interval $(i, j)$, selecting balloon $k$ to burst last leaves $arr[i]$ and $arr[j]$ as its guaranteed immediate left and right neighbors, decoupling the interval into subproblems $f[i][k]$ and $f[k][j]$.
 
@@ -175,6 +186,17 @@ Result: 167
 | $(0, 4)$ | 4 | $k = 1$ | 0 | 135 | $1 \times 3 \times 8 = 24$ | 159 | **159** |
 | **$(0, 5)$** | **5** | **$k = 4$** | **159** | **0** | **$1 \times 8 \times 1 = 8$** | **167** | **$\mathbf{167}$** |
 
+The winning choices along that table name an explicit bursting order. Read backwards from the target: $f[0][5] = 167$ takes $k = 4$, so $8$ is burst last of all; its left subproblem $f[0][4] = 159$ takes $k = 1$, so $3$ is the last balloon inside $(0, 4)$; $f[1][4] = 135$ takes $k = 3$, so $5$ is the last inside $(1, 4)$; and $f[1][3] = 15$ has only $k = 2$, the balloon $1$. Reversing that nest of "last" choices gives the forward schedule:
+
+| Step | Balloons standing before the burst | Burst | Left neighbour | Right neighbour | Coins collected | Running total |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|
+| 1 | $[3, 1, 5, 8]$ | $1$ (original index $1$) | $3$ | $5$ | $3 \times 1 \times 5 = 15$ | $15$ |
+| 2 | $[3, 5, 8]$ | $5$ | $3$ | $8$ | $3 \times 5 \times 8 = 120$ | $135$ |
+| 3 | $[3, 8]$ | $3$ | virtual $1$ | $8$ | $1 \times 3 \times 8 = 24$ | $159$ |
+| 4 | $[8]$ | $8$ | virtual $1$ | virtual $1$ | $1 \times 8 \times 1 = 8$ | $\mathbf{167}$ |
+
+Step 3 is the evidence that deleted balloons really do change later payoffs: $3$ has no live balloon to its left any more, so it is scored against the virtual boundary $1$ and collects $24$ instead of the $3 \times 1 \times 5 = 15$ it would have collected as the very first burst. Bursting $3$ first is therefore not merely a different order but a strictly worse one: it collects $15$ immediately and caps the whole instance at $59$, against $167$ for the schedule above.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -187,9 +209,18 @@ Result: 167
 
 ## 6. Traps This Instance Exposes
 
-- **Greedy Bursting Lowest Values First:** Greedily popping the smallest balloon does not guarantee the optimum. In this instance, bursting $1$ first yields optimal results, but on `[3, 5, 8]`, popping $5$ before $3$ and $8$ yields $120$ coins, whereas popping $3$ first would yield only $24$.
+- **Greedy Bursting Lowest Values First:** Greedily popping the smallest balloon does not guarantee the optimum. Here the greedy run happens to open with the optimal move, bursting $1$ for $15$, yet it then bursts $3$ for only $1 \times 3 \times 5 = 15$ and finishes at $78$ instead of $167$. On the sub-array `[3, 5, 8]` the same rule is worse still: it bursts $3$ first, capping that array at $63$, whereas bursting $5$ first collects $3 \times 5 \times 8 = 120$ and leads to its optimum $152$.
 - **Thinking Forward Instead of Backward:** Trying to decide the *first* balloon to burst causes future neighbors to depend on the deletion, coupling subproblems and preventing dynamic programming. Selecting the *last* balloon guarantees static boundary neighbors.
 - **Topological Evaluation Order:** Subproblems must be computed in order of increasing interval length $L = j - i$, or equivalently by iterating $i$ downwards from $N - 1$ to $0$ and $j$ upwards from $i + 2$ to $N + 1$.
+
+The candidate strategies differ in exactly one decision — which balloon to commit to first — and in whether that commitment leaves independent subproblems behind:
+
+| Approach | Mechanism | Work on this instance | Time | Outcome |
+|:---|:---|:---|:---:|:---|
+| Try every bursting permutation | Score each of the $N!$ orders and keep the best | $4! = 24$ orders scored, best $167$ | $O(N!)$ | Exact but hopeless at $N = 300$, and it re-scores identical remaining arrays reached by different orders |
+| Greedy: burst the smallest value first | Repeatedly remove the current minimum | Opens with the optimal move $1$ but totals only $78$ | $O(N^2)$ with a linear minimum scan | Fails in general: on `[3, 5, 8]` it commits to $3$ and stops at $63$ against the optimum $152$ |
+| Recurse on the first burst | Split at the balloon removed first and recurse on the two sides | Bursting $3$ first caps the instance at $59$ | Exponential | The sides are not independent: each side's inner boundary is whichever balloon happens to survive next |
+| Interval DP on the last burst | Fix $k$ as the last balloon of $(i, j)$, then solve $(i, k)$ and $(k, j)$ | $O(N^2)$ intervals, each scanning $O(N)$ candidates | $O(N^3)$ | Exact: $arr[i]$ and $arr[j]$ stay alive, so the two sides never share a boundary and their optima add |
 
 ---
 
