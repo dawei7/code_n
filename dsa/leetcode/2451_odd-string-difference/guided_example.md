@@ -1,130 +1,102 @@
 # Guided Example: Odd String Difference
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Instance We Will Trace
 
-- **Input:** `{"words": ["adc", "wzy", "abc"]}`
+We work through one input from beginning to end:
+
+- **Input:** `words = ["adc", "wzy", "abc"]`
 - **Required output:** `"abc"`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Every word has the same length, all words but one share a common *difference integer array*, and we must return the word whose array is the odd one out. This instance is worth tracing because the two majority words, `"adc"` and `"wzy"`, share no letter at all, yet they must be recognized as identical in the only sense the problem cares about. A method that compares letters, or that treats the alphabet position of a letter as meaningful, is refuted here even though it would survive simpler inputs.
 
----
+## 2. Difference Arrays: What Actually Identifies a Word
 
-## 1. Instance & Teaching Goal
+Fix the alphabet positions $\pi(\texttt{'a'}) = 0$, $\pi(\texttt{'b'}) = 1$, $\dots$, $\pi(\texttt{'z'}) = 25$. For a word $w$ of length $m$, its **difference integer array** has length $m-1$ and is defined componentwise by
 
-You are given an array of equal-length strings `words`. Assume that the length of each string is `n`.
+$$
+D(w)[j] = \pi(w[j+1]) - \pi(w[j]), \qquad 0 \le j \le m-2 .
+$$
 
-The objective is to compute `"abc"` from `{"words": ["adc", "wzy", "abc"]}` while avoiding redundant calculations and unnecessary overhead.
+The subtraction is directed, so a descending step contributes a negative component. Applying the definition to our three words:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+| word $w$ | positions $\pi(w[0]), \pi(w[1]), \pi(w[2])$ | adjacent subtractions | difference array $D(w)$ |
+|---|---|---|---|
+| `"adc"` | $0,\; 3,\; 2$ | $3-0,\; 2-3$ | $(3,\; -1)$ |
+| `"wzy"` | $22,\; 25,\; 24$ | $25-22,\; 24-25$ | $(3,\; -1)$ |
+| `"abc"` | $0,\; 1,\; 2$ | $1-0,\; 2-1$ | $(1,\; 1)$ |
 
----
+The table exposes the structural fact the whole exercise rests on: `"adc"` and `"wzy"` are **alphabet translations** of each other. Adding the constant $22$ to each position of `"adc"` produces `"wzy"`, and because a constant shifts both terms of every subtraction, it cancels:
 
-## 2. Conceptual Foundation & Invariants
+$$
+\bigl(\pi(w[j+1]) + \delta\bigr) - \bigl(\pi(w[j]) + \delta\bigr) = \pi(w[j+1]) - \pi(w[j]).
+$$
 
-We maintain the core conceptual parameters and state variables:
+Hence $D$ is invariant under uniform translation of a word, provided the translated letters remain inside the alphabet. The letters themselves are therefore *not* the identity of a word in this problem; the difference array is. Only the differences of the positions carry information, and the absolute position of the first letter carries none.
 
-| State Parameter | Role & Purpose | Initial State |
+## 3. The State: A Partition of Words by Signature
+
+The quantity we maintain is a partition of the words seen so far, keyed by the difference array used as a *signature*. Concretely, the state is a mapping from a signature to the list of words that produced it. A signature must be usable as a lookup key, so it is held as an immutable ordered sequence of integers whose equality is decided component by component; two signatures are the same key exactly when they agree in every one of their $m-1$ positions.
+
+The processing rule is uniform and needs no case analysis: read a word, compute its difference array, and append the word to the list stored under that signature.
+
+| step | word read | signature produced | state after the insertion |
+|---|---|---|---|
+| 1 | `"adc"` | $(3, -1)$ | $\{(3,-1) \mapsto [\texttt{"adc"}]\}$ |
+| 2 | `"wzy"` | $(3, -1)$ | $\{(3,-1) \mapsto [\texttt{"adc"}, \texttt{"wzy"}]\}$ |
+| 3 | `"abc"` | $(1, 1)$ | $\{(3,-1) \mapsto [\texttt{"adc"}, \texttt{"wzy"}],\ (1,1) \mapsto [\texttt{"abc"}]\}$ |
+
+Reading off the finished partition:
+
+| signature | member words | class size | role in this instance |
+|---|---|---|---|
+| $(3, -1)$ | `"adc"`, `"wzy"` | $2$ | the shared (majority) array |
+| $(1, 1)$ | `"abc"` | $1$ | the singleton class, and the answer |
+
+The output step is now mechanical: among the classes, find the one holding exactly one word and return that word. Here the singleton holds `"abc"`, which agrees with the authored expected output for this input.
+
+## 4. Why the Singleton Class Must Be the Odd Word
+
+**Partition invariant.** After the first $t$ words have been read, the mapping's classes are exactly the equivalence classes of the first $t$ words under the relation "has the same difference array", and every one of those $t$ words occurs in exactly one list.
+
+*Proof by induction on $t$.* For $t = 0$ the mapping is empty and the claim is vacuous. Assume it holds after $t-1$ words. When the $t$-th word arrives, its stored signature is computed by the same subtraction rule that defines $D$, so it is a key that genuinely represents $D(w_t)$, not an approximation. Appending $w_t$ to that key's list puts it in the class of words with signature $D(w_t)$ and in no other class, and touching no other list leaves every earlier word's membership unchanged. The classes are therefore still disjoint and still cover all $t$ words.
+
+Because equal signatures mean equal difference arrays and distinct keys mean a disagreement in at least one component, no two different arrays are ever merged. A hash collision cannot corrupt the answer: a collision only forces a full component comparison, which distinguishes two different arrays.
+
+**Existence and uniqueness.** The statement guarantees that all words share one difference array except one. So among $p$ words there are exactly two distinct signatures: one carried by a single word, and one carried by the remaining $p-1$ words. Since $p \ge 3$, the majority class has at least two members and is never confused with the singleton. The scanning rule therefore finds exactly one candidate — it cannot find none, and it cannot find two — so the word it returns is precisely the unique word whose difference array differs from all the others. This gives both soundness (the returned word really is odd) and completeness (no other word can be odd).
+
+## 5. Boundaries and Traps This Problem Sets
+
+| situation | concrete instance | outcome and the trap it exposes |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Shortest words, $m = 2$ | `["ab", "bc", "ac"]` | Signatures are $(1), (1), (2)$; the singleton is `"ac"`. A one-component signature still partitions correctly, so no special case for $m = 2$ is needed. |
+| Negative differences | `["cba", "abc", "dcb", "edc"]` | `"cba"`, `"dcb"`, `"edc"` all give $(-1,-1)$; `"abc"` gives $(1,1)$. Replacing differences by absolute values would fuse descending and ascending patterns and destroy the answer. |
+| Translation invariance | `"adc"` versus `"wzy"` | Different letters, identical difference array. Comparing letter values instead of differences rejects a valid majority word. |
+| Outlier in the first position | `["ace", "abc", "bcd"]` | `"ace"` gives $(2,2)$ while `"abc"` and `"bcd"` both give $(1,1)$, so the majority signature is not known until the second word is read. Any shortcut that assumes the first word is the majority is wrong here. |
+| Repeated majority word | `["aaa", "bob", "ccc", "ddd"]` | $(0,0)$ has three members and `"bob"` alone gives $(13,-13)$. Duplicate *text* is irrelevant; membership is decided by signature. |
+| Reference example `"acb"` | `"acb"` | Differences $(2, -1)$ demonstrate that a signature is not necessarily sorted or non-negative. |
+| Several odd words | not permitted by the statement | The selection rule must rely on the guarantee. If two singleton classes existed the answer would be ambiguous, and the guarantee is what makes "the class of size one" well defined. |
+| Equal-length guarantee | any input | Every signature has arity $m-1$, so component-by-component comparison always aligns like with like. Unequal lengths would need padding or a different relation. |
+| Longest words, $m = 20$ | 20-letter words | Signatures have $19$ components; only the constant factor changes, not the method. |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 6. Alternative Methods and Their Trade-offs
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Represent each word by changes between neighbors
-
-The absolute letters of a word do not matter directly. Its signature is the sequence of differences between consecutive alphabet positions. For a word `s`, the exact code uses
-
-`tuple(ord(b) - ord(a) for a, b in pairwise(s))`.
-
-`pairwise(s)` yields adjacent character pairs. Python's `ord` converts each lowercase letter to its character code; subtracting adjacent codes gives the same difference as subtracting zero-based alphabet positions because the common offset cancels.
-
-The tuple is immutable and hashable, so it can serve as a dictionary key. Words obtained from one another by shifting every letter by the same amount have the same difference tuple, as long as the actual strings remain lowercase words.
-
-For `"acb"`, adjacent pairs are a–c and c–b, producing differences 2 and -1. Negative differences are preserved because letter order can move backward.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| method | time | auxiliary space | trade-off |
 |---|---|---|---|
-| Input Slice | `{"words": ["adc", "wzy", "abc"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Group words by their complete signature
-
-The dictionary `d` maps each difference tuple to a list of words having that tuple. For every input word, the code computes the tuple and appends the word to its group.
-
-The problem guarantees exactly one word has a different difference array while all other words share one common array. Since there are at least three words, the common group has at least two members and the odd group has exactly one.
-
-The return expression scans `d.values()` and finds the first list `ss` whose length is one, returning `ss[0]`. Under the guarantee, exactly one such group exists.
-
-This differs from the manifest summary, which says the repeated vector is inferred from the first three words and then one mismatch scan is performed. The protected source groups every word in a hash table instead. Both are linear in the total characters, but their storage differs.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Trace the first example
-
-For `["adc","wzy","abc"]`:
-
-- `"adc"` gives differences `(3,-1)`.
-- `"wzy"` also gives `(3,-1)`.
-- `"abc"` gives `(1,1)`.
-
-The dictionary contains one list of length two and one list of length one. The singleton list contains `"abc"`, which is returned.
-
-For `["aaa","bob","ccc","ddd"]`, the constant-letter words all produce `(0,0)`. `"bob"` produces `(13,-13)` and occupies the singleton group.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `"abc"` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["adc", "wzy", "abc"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `"abc"` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Infer from the first three signatures:** At least two of the first three must belong to the common group. Determine the repeated signature, then scan for the word that differs. This matches the manifest and uses $O(m)$ auxiliary space.
-- **Count signatures only:** Map each tuple to a frequency, then perform a second pass to find the word whose tuple has count one. This avoids storing word lists but recomputes or stores signatures.
-- **Normalize words by their first character:** Transform every character relative to the first. This is related, but consecutive differences match the statement directly and avoid modular-wrap assumptions.
-- **Negative differences:** They are meaningful and must not be replaced by absolute values.
-- **Equal-length guarantee:** Every signature has the same length $m-1$, so tuple equality compares corresponding transitions naturally.
-- **Minimum three words:** It ensures the non-odd signature appears at least twice and can be distinguished from the singleton.
-- **Repeated word text:** If repeated normal words occur, they simply append to the common group; identity is based on signature.
-- **Two distinct signatures:** The guarantee rules out several unrelated singleton groups, so `next` always finds exactly the intended one.
-- **String length two:** Each signature has one difference value, and the same grouping logic applies.
-- **Library availability:** `pairwise` must be available from the runtime's iterator utilities; an explicit index loop is an equivalent fallback.
-- **Metadata mismatch:** The exact source groups all words and uses $O(p+m)$ storage rather than inferring a common signature with only $O(m)$ extra space.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
+| Signature mapping (the approach derived above) | $O(pm)$ | $O(p + m)$ here | One uniform pass, no case analysis; needs an immutable multi-component key. |
+| Infer the shared signature from the first three words, then find the word that disagrees | $O(pm)$ | $O(m)$ | Uses the pigeonhole fact that two of three words share the majority signature, so storage for the shared key is small; but it must handle the case where one of the first three *is* the outlier, which adds branching. |
+| Translate every word to its first letter (store $\pi(w[j]) - \pi(w[0])$) | $O(pm)$ | $O(p + m)$ | This is the prefix sum of the difference array, so it induces the same partition; it is a re-encoding, not a different algorithm, and it makes the translation invariance explicit. |
+| Normalize each word modulo the alphabet size | $O(pm)$ | $O(p + m)$ | Modular normalization survives wrapping letters, but the problem's differences are ordinary integers, so wrapping would merge patterns the statement keeps distinct. |
+| Compare every pair of words componentwise | $O(p^2 m)$ | $O(m)$ | Correct but quadratic; it also has to decide which word of a disagreeing pair is the odd one, using a third word as a reference. |
+| Sort the words by signature and group equal neighbours | $O(pm \log p)$ | $O(p)$ | Sorting costs more than needed; the guarantee bounds the number of classes at two, so no ordering information is required. |
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** $O(p m)$. Let $p$ be the number of words and $m$ their common length. Computing one signature visits $m-1$ adjacent pairs, so all signature construction takes $O(pm)$ time. Hashing a newly constructed length-$m-1$ tuple also takes $O(m)$ and is part of the same total bound. Scanning the at most two guaranteed groups at the end is negligible.
-- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Let $p$ be the number of words and $m$ their common length, so each difference array has $m-1$ components.
+
+- **Signature construction.** Reading one word touches its $m$ letters and performs $m-1$ subtractions, so one signature costs $O(m)$. Over all words this is $O(pm)$.
+- **Key hashing and insertion.** Building the hash of an $(m-1)$-component signature reads all components, which is again $O(m)$ per word, hence $O(pm)$ in total. Expected constant-time lookup follows from the hashing, with a full component comparison only on a collision.
+- **Selecting the answer.** The statement permits at most two distinct signatures, so the final scan inspects at most two classes and returns a single stored word: $O(1)$.
+
+Combining, the expected running time is $\Theta(pm)$.
+
+For space, the mapping is the only state that grows. Its key set contains at most two signatures under the guarantee, each of length $m-1$, which is $O(m)$; the word lists across all classes together hold exactly $p$ references to words already present in the input, which is $O(p)$. Signature construction itself needs only $O(m)$ transient storage for the signature currently being built. Auxiliary space is therefore $O(p + m)$ — not $O(pm)$ as it would be if every signature were distinct. With $p \le 100$ and $m \le 20$ the whole computation is far below any practical limit, but the derivation shows exactly which quantity dominates each term.
