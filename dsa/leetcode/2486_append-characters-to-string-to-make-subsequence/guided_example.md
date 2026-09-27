@@ -1,121 +1,180 @@
 # Guided Example: Append Characters to String to Make Subsequence
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Reading the Problem as a Repair Budget
 
-- **Input:** `{"s": "coaching", "t": "coding"}`
-- **Required output:** `4`
+Two lowercase strings are given: a source `s` and a target `t`. Characters may only be
+**appended to the right end of `s`**; nothing already inside `s` may be deleted, reordered, or
+edited. The request is for the minimum number of appended characters that makes `t` a
+**subsequence** of the resulting string.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The freedom is smaller than it first appears. Three properties fix the shape of every solution:
 
----
+1. Appended characters land strictly after every character of `s`, in a single block.
+2. Nothing that `s` already contributes can be moved, so the contribution of `s` to a
+   subsequence match is constrained by its own left-to-right order.
+3. Because the appended block sits at the extreme right, whatever `s` supplies must be consumed
+   **before** the appended block begins.
 
-## 1. Instance & Teaching Goal
+Property 3 is the decisive one. Subsequence matching is order-preserving, so the characters that
+`s` provides must be matched to an initial segment of `t` that lies entirely to the left of every
+character taken from the appended block. There is no way for `s` to supply `t`'s middle while the
+append block supplies `t`'s beginning. Consequently the problem collapses to a single question:
 
-You are given two strings `s` and `t` consisting of only lowercase English letters.
+> How long is the longest prefix of `t` that is already a subsequence of `s`?
 
-The objective is to compute `4` from `{"s": "coaching", "t": "coding"}` while avoiding redundant calculations and unnecessary overhead.
+Call that length $k$. Then $t[0 .. k-1]$ is already realizable inside `s`, and the remaining
+suffix $t[k ..]$ must be produced by appending, costing exactly $\lvert t \rvert - k$ new
+characters. No cheaper repair exists, because the first $k+1$ characters cannot all be found in
+`s` in order, so at least one of them must be appended — and appending a later character without
+its predecessors would not preserve the required order.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Why the Matched Part Must Be a Prefix
 
----
+Let the final string be $s + u$, where $u$ is the appended block. Suppose $t$ is a subsequence of
+$s + u$. Split the witnessing embedding of $t$ at the boundary: the characters mapped into the
+copy of $s$ form $t[0 .. k-1]$, and the characters mapped into $u$ form $t[k ..]$. This split is
+forced, because positions inside $s$ all precede positions inside $u$ and the embedding is strictly
+increasing in the original string.
 
-## 2. Conceptual Foundation & Invariants
+So exactly one prefix of `t` can be charged to `s`. That also explains why "count the characters
+of `t` that appear anywhere in `s`" is not the answer: a character may be present in `s` and still
+be unusable, either because it appears before the characters that must precede it in `t`, or
+because `s` does not contain enough copies of it.
 
-We maintain the core conceptual parameters and state variables:
+## 3. The Decisive Instance: `s = "coaching"`, `t = "coding"`
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+This is the official medium instance (expected answer `4`). Indexing `t` from $0$:
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+| Position in `t` | 0 | 1 | 2 | 3 | 4 | 5 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Character | `c` | `o` | `d` | `i` | `n` | `g` |
 
----
+Scanning `s` left to right, a single cursor $j$ records how much of `t` has been matched so far.
+The cursor only ever moves forward, and it advances only when the current character of `s` equals
+the character of `t` the cursor currently points at.
 
-## 3. Step-by-Step Worked Execution
+| Step $i$ | `s[i]` | Cursor $j$ before | `t[j]` | Match | Cursor $j$ after | Matched prefix |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `c` | 0 | `c` | yes | 1 | `c` |
+| 1 | `o` | 1 | `o` | yes | 2 | `co` |
+| 2 | `a` | 2 | `d` | no | 2 | `co` |
+| 3 | `c` | 2 | `d` | no | 2 | `co` |
+| 4 | `h` | 2 | `d` | no | 2 | `co` |
+| 5 | `i` | 2 | `d` | no | 2 | `co` |
+| 6 | `n` | 2 | `d` | no | 2 | `co` |
+| 7 | `g` | 2 | `d` | no | 2 | `co` |
 
-### Step 1: Only a prefix of the target can be matched before appending
+The scan ends with $j = 2$: the matched prefix is `co`, so $k = 2$ and the answer is
+$\lvert t \rvert - k = 6 - 2 = 4$. The repair is to append `ding`, producing `coachingding`, in
+which `t` is embedded as `co` + `aching` + `ding`.
 
-Characters may be appended only after the existing string `s`. Suppose some prefix of `t` can already be selected as a subsequence of `s`. Any remaining target characters can then be appended in their original order, producing a complete subsequence equal to `t`.
+Note how three characters that visibly exist in `s` were wasted. The second `c` at index 3 and the
+`i`, `n`, `g` at indices 5–7 are all letters of `coding`, yet none can be used: after the cursor
+reached 2 it demanded `d`, and `d` never appears in `s` at all. Once the cursor stalls, every later
+character of `s` is compared against the same stalled demand, and no amount of remaining input can
+unstick it.
 
-The key is to make that matched prefix as long as possible. If the longest prefix of `t` that fits inside `s` has length `j`, then exactly the suffix `t[j:]` remains. Its length is `len(t)-j`, which is the returned answer.
+## 4. The Trap Instance: `s = "abcdef"`, `t = "fed"`
 
-It would not help to match a target segment that skips an earlier target character. A subsequence equal to `t` must produce target characters from left to right. Before target position `j` can be matched, every earlier target position must already have been matched.
+A counting argument gives the wrong answer here and exposes exactly what the cursor protects
+against. Every letter of `fed` — `f`, `e`, and `d` — occurs in `abcdef`, so a multiset comparison
+would suggest that nothing needs appending. Order says otherwise.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"s": "coaching", "t": "coding"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Step $i$ | `s[i]` | Cursor $j$ before | `t[j]` | Match | Cursor $j$ after |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | `a` | 0 | `f` | no | 0 |
+| 1 | `b` | 0 | `f` | no | 0 |
+| 2 | `c` | 0 | `f` | no | 0 |
+| 3 | `d` | 0 | `f` | no | 0 |
+| 4 | `e` | 0 | `f` | no | 0 |
+| 5 | `f` | 0 | `f` | yes | 1 |
 
----
+Only `f` is consumed, and the scan is then exhausted with $j = 1$. The answer is
+$3 - 1 = 2$: append `ed`. The `d` and `e` sitting earlier in `s` are unreachable because the
+cursor needed `f` first, and `f` is the last character of `s`. This is precisely the failure mode
+of any method that ignores position.
 
-### Step 2: Greedily match the next required character
+## 5. Invariant and Why the Greedy Scan Is Optimal
 
-The variable `j` is the index of the next unmatched character in `t`. It begins at zero, meaning no target characters are matched.
+**Invariant.** Immediately before examining `s[i]`, the cursor value $j$ equals the maximum length
+of a prefix of `t` that is a subsequence of `s[0 .. i-1]`.
 
-The loop reads each character `c` of `s` from left to right. If `j<n` and `c==t[j]`, that source character is used to match the next required target character and `j` advances. Otherwise, `c` is skipped.
+The invariant is established vacuously for $i = 0$, where the scanned region is empty and $j = 0$.
+For the inductive step, the prefix of length $j$ remains realizable inside `s[0 .. i-1]`, so it
+remains realizable inside `s[0 .. i]`, and the only candidate for a longer prefix is length $j+1$.
+That length is realizable exactly when $t[j]$ occurs somewhere in `s[0 .. i]` after the position
+used for $t[j-1]$. The scan has already consumed every earlier character of `s` while the cursor
+sat at $j$, so no earlier occurrence of $t[j]$ was skipped; therefore $t[j]$ is reachable for the
+first time precisely when `s[i] = t[j]`. Advancing the cursor on that equality is thus not merely
+safe — it is required to keep $j$ maximal.
 
-The guard `j<n` is important. Once all of `t` has been matched, `j` equals `n`, and indexing `t[j]` would be outside the string. The loop can safely keep scanning `s` because the guard prevents that access and `j` remains `n`.
+**Leftmost matching is optimal.** Suppose some other embedding of a prefix of `t` into `s` chose a
+strictly later occurrence for some character than the greedy scan does. Exchanging that choice for
+the earlier one can only free up more of `s` to the right, so it cannot destroy any completion. By
+induction on the prefix length, the greedy cursor is pointwise no larger than the cursor of any
+other valid embedding at every index of `s`. Since the final answer depends only on $k$, the
+monotonicity of this comparison transfers directly: greedy attains the maximum $k$, hence the
+minimum $\lvert t \rvert - k$.
 
-For `s="coaching"` and `t="coding"`, the scan matches `c` and then `o`. The next required target character is `d`, which does not appear later in `s`, so `j=2` at the end. The unmatched suffix is `"ding"`, whose length is four.
+**Termination and exactness.** The scan visits each character of `s` once and halts. The appended
+block `t[k ..]`, taken as a whole, is a subsequence of the repaired string by construction, so the
+answer is feasible. No smaller count is feasible, since any repair needs all of `t[k ..]` plus at
+least one more character (the first unmatchable character at index $k$), for a total of at least
+$\lvert t \rvert - k$. Feasibility and the lower bound coincide, so the computed value is the
+optimum.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+## 6. Boundary Analysis
 
----
+Each row is an authored case whose expected value matches the lesson's rule
+$\lvert t \rvert - k$ exactly.
 
-### Step 3: Why taking the earliest match is optimal
+| Instance | `s` | `t` | $k$ (matched prefix) | Appended suffix | Expected | Why it is a boundary |
+|:---|:---|:---|:---:|:---|:---:|:---|
+| Already done | `abcde` | `a` | 1 | empty | 0 | `t` has length 1 and its single character opens `s`; the repair budget is empty. |
+| No overlap at all | `z` | `abcde` | 0 | `abcde` | 5 | The cursor never advances, so every character of `t` must be appended. |
+| Single-character source | `c` | `coding` | 1 | `oding` | 5 | `s` contributes one character, and only because it is the very first demand. |
+| Repeated source, wrong letters | `ccc` | `coding` | 1 | `oding` | 5 | Extra copies of `c` are useless: the cursor has already moved past `c`. |
+| Repeated target prefix | `aaaa` | `aaab` | 3 | `b` | 1 | `s` exhausts exactly as the cursor reaches the one character `s` cannot supply. |
+| Order inversion | `abcdef` | `fed` | 1 | `ed` | 2 | All letters exist in `s`; only positional order decides the answer. |
+| Interleaved but complete | `axbyc` | `abc` | 3 | empty | 0 | Gaps in `s` are harmless as long as the demanded order survives. |
+| Identical strings | `abc` | `abc` | 3 | empty | 0 | The degenerate best case: $k = \lvert t \rvert$ and no append is needed. |
 
-When the current source character equals the next required target character, using it can never make a later match harder. Choosing the earliest possible position for a target character leaves every later source position available for subsequent target characters.
+The last two rows matter because they show the method does not require adjacency — only order. The
+subsequence relation tolerates arbitrary deletions from `s`; it never tolerates a swap.
 
-This can be formalized inductively. After scanning any prefix of `s`, `j` equals the greatest number of initial target characters that can be formed from that source prefix. Initially both lengths are zero. When a new source character arrives, any subsequence either ignores it or uses it as the next character after a previously achievable target prefix. If it equals `t[j]`, extending the current longest prefix increases the optimum by one. If it does not, no longer target prefix can use it as its next required character, so the optimum stays unchanged.
+## 7. Alternatives and What They Cost
 
-Therefore, after the complete scan, no method can match a longer prefix of `t` inside the original `s`.
+| Approach | Idea | Verdict |
+|:---|:---|:---|
+| Greedy leftmost cursor | Walk `s` once and advance a cursor into `t` on equality. | Correct and optimal; a single pass, constant auxiliary state. |
+| Multiset intersection | Count letters common to `s` and `t` up to multiplicity. | Wrong: ignores order entirely, as `s = "abcdef"`, `t = "fed"` shows. |
+| Longest common subsequence | Compute the full LCS of `s` and `t`, then subtract. | Wasteful and subtly wrong: the LCS need not be a prefix of `t`, so its length is not $k$. |
+| Suffix-anchored matching | Try to place an interior part of `t` inside `s`. | Structurally impossible while appends are confined to the end of `s`. |
+| Binary search over $k$ | Test each candidate prefix length with a fresh two-pointer check. | Correct but strictly more work: a linear scan already yields the maximal prefix in one pass. |
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+The LCS row is the instructive rejection. For `s = "coaching"`, `t = "coding"`, the LCS is `cong`
+with length 4, which would suggest a budget of $6 - 4 = 2$ — but `cong` is not a prefix of `coding`,
+and the true prefix match is only `co`. Only a prefix-shaped match is purchasable with a
+suffix-only append.
 
----
+## 8. Complexity Derivation
 
-## 4. Complete Execution Trace
+Let $m = \lvert s \rvert$ and $n = \lvert t \rvert$.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"s": "coaching", "t": "coding"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+**Time.** The scan examines each character of `s` exactly once, performing one comparison and at
+most one cursor increment per character. Cursor increments total at most $n$ across the whole run,
+because the cursor is bounded by $n$ and never decreases. The total work is therefore
+$O(m + n)$, which the stated constraint $m, n \le 10^{5}$ handles comfortably in one pass. When
+$n = 0$ the loop still performs $m$ comparisons but appends nothing, and when $m = 0$ the answer is
+immediately $n$; both are covered by the same bound without special-casing.
 
----
+**Auxiliary space.** The method stores only the cursor $j$ and the two string lengths — a constant
+number of integer values regardless of input size — so the auxiliary space is $O(1)$. No
+intermediate string, table, or index structure proportional to the input is required; the appended
+suffix is never materialized, only its length $\lvert t \rvert - k$ is returned. The input strings
+themselves are read-only and are not counted as auxiliary space.
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit two-pointer loop:** Maintain indices into both strings with a `while` loop. It has the same greedy invariant and complexity but requires manually advancing the source index.
-- **Next-occurrence lookup:** Preprocess positions of letters and binary-search successive matches. That is useful for many target queries against one fixed `s`, but unnecessary for one query.
-- **Dynamic programming:** A general subsequence DP uses far more time or space than needed because only the longest matched target prefix matters.
-- **`t` already a subsequence:** `j` reaches `n` and the answer is zero.
-- **No first-character match:** `j` remains zero, so all of `t` must be appended.
-- **Repeated letters:** Each source position can be used once; advancing only one target position per match handles duplicates correctly.
-- **Noncontiguous match:** Skipped source characters are allowed because the requirement is subsequence, not substring.
-- **Order mismatch:** Having all target letters in `s` is insufficient if they do not occur in target order.
-- **Completed target early:** The `j<n` guard prevents an out-of-range target access during the rest of the source scan.
-- **Append-only restriction:** New characters cannot be inserted between existing positions, which is why the unmatched portion must be a suffix of `t`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(p)$. Let $p=\lvert s\rvert$ and $q=\lvert t\rvert$. The loop visits every character of `s` once and performs constant work. Reading `len(t)` and computing the difference are constant-time operations in Python. The exact runtime is therefore $O(p)$, which is also within the manifest's looser $O(p+q)$ bound because $O(p)\subseteq O(p+q)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Answer recomputation.** The final step is the subtraction $\lvert t \rvert - k$ on two integers
+bounded by $10^{5}$, a constant-time operation. Nothing in the method depends on the alphabet
+beyond equality testing of single characters, so the bound holds unchanged for lowercase English
+letters or any larger alphabet.
