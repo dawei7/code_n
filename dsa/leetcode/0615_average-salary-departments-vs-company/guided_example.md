@@ -1,221 +1,225 @@
 # Guided Example: Average Salary: Departments VS Company
 
-We trace the step-by-step monthly date truncation (`YYYY-MM`), company-wide monthly average salary windowing ($\text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date)$), departmental monthly average salary windowing ($\text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date, department\_id)$), relative benchmark comparison (`higher`, `lower`, `same`), deduplicated month-department projection, and comparative payroll reporting on representative corporate compensation datasets:
+This lesson works through one compensation ledger and answers a single question
+for every department in every reporting period: is that department's average
+salary above, below, or exactly level with the average salary the whole company
+paid in the same period? The instance used is the canonical two-month ledger, and
+it is chosen because February and March together produce all three answer
+categories, so the comparison rule is exercised completely rather than only in
+its "greater than" form.
 
-- **Input:**
-  - `Salary` table:
-    | `id` | `employee_id` | `amount` | `pay_date` |
-    |:---:|:---:|:---:|:---:|
-    | $1$ | $1$ | $9000$ | `2017-03-31` |
-    | $2$ | $2$ | $6000$ | `2017-03-31` |
-    | $3$ | $3$ | $10000$ | `2017-03-31` |
-    | $4$ | $1$ | $7000$ | `2017-02-28` |
-    | $5$ | $2$ | $6000$ | `2017-02-28` |
-  - `Employee` table:
-    | `employee_id` | `department_id` |
-    |:---:|:---:|
-    | $1$ | $1$ |
-    | $2$ | $2$ |
-    | $3$ | $2$ |
-- **Required output:**
-  | `pay_month` | `department_id` | `comparison` |
-  |:---:|:---:|:---:|
-  | `2017-03` | $1$ | `higher` |
-  | `2017-03` | $2$ | `lower` |
-  | `2017-02` | $1$ | `higher` |
-  | `2017-02` | $2$ | `lower` |
-  - Business benchmark definitions:
-    - **`higher`:** The department's average monthly salary is strictly greater than the entire company's average monthly salary for that month.
-    - **`lower`:** The department's average monthly salary is strictly less than the entire company's average monthly salary.
-    - **`same`:** The department's average monthly salary equals the company's average monthly salary.
-- **Dual Partitioning Window Formulation:**
-  - Joining `Salary` and `Employee` provides `(amount, pay_date, department_id)` for every paycheck.
-  - To compare a department against the entire company within the same month, we compute two concurrent window functions:
-    1. **Company Monthly Average:**
-       $$
-       \mu_{company} = \text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date)
-       $$
-    2. **Department Monthly Average:**
-       $$
-       \mu_{dept} = \text{AVG}(amount) \text{ OVER (PARTITION BY } pay\_date, department\_id)
-       $$
-  - Then, `CASE` compares $\mu_{dept}$ against $\mu_{company}$.
-- **Step-by-Step Worked Execution Trace:**
-  - **Month 1: `2017-03` (`pay_date = '2017-03-31'`):**
-    - Paychecks recorded:
-      - Emp 1 (Dept 1): $\$9000$
-      - Emp 2 (Dept 2): $\$6000$
-      - Emp 3 (Dept 2): $\$10000$
-    - **Company Average:**
-      $$
-      \mu_{company} = \frac{9000 + 6000 + 10000}{3} = \frac{25000}{3} \approx 8333.33
-      $$
-    - **Department 1 Average:**
-      - Only Emp 1:
-        $$
-        \mu_{dept1} = \frac{9000}{1} = 9000.00
-        $$
-      - Compare: $9000.00 > 8333.33 \implies \mathbf{\text{"higher"}}$
-    - **Department 2 Average:**
-      - Emp 2 and Emp 3:
-        $$
-        \mu_{dept2} = \frac{6000 + 10000}{2} = \frac{16000}{2} = 8000.00
-        $$
-      - Compare: $8000.00 < 8333.33 \implies \mathbf{\text{"lower"}}$
-  - **Month 2: `2017-02` (`pay_date = '2017-02-28'`):**
-    - Paychecks recorded:
-      - Emp 1 (Dept 1): $\$7000$
-      - Emp 2 (Dept 2): $\$6000$
-    - **Company Average:**
-      $$
-      \mu_{company} = \frac{7000 + 6000}{2} = \frac{13000}{2} = 6500.00
-      $$
-    - **Department 1 Average:**
-      - Emp 1:
-        $$
-        \mu_{dept1} = 7000.00
-        $$
-      - Compare: $7000.00 > 6500.00 \implies \mathbf{\text{"higher"}}$
-    - **Department 2 Average:**
-      - Emp 2:
-        $$
-        \mu_{dept2} = 6000.00
-        $$
-      - Compare: $6000.00 < 6500.00 \implies \mathbf{\text{"lower"}}$
-  - **Step 3: Deduplicate with `SELECT DISTINCT`:**
-    - Since window functions produce a value per row, multiple employees in the same department share identical $(\mu_{dept}, \mu_{company})$ values.
-    - Applying `SELECT DISTINCT pay_month, department_id, comparison` produces exactly one row per `(month, department)` pair.
-- **Equal Benchmark Instance (`same`):**
-  - If a company has only one department, or if all departments have identical averages, $\mu_{dept} = \mu_{company} \implies \mathbf{\text{"same"}}$.
-- **Multiple Employees with Identical Salaries:**
-  - Means remain exact and are handled with standard floating/decimal comparison.
+The payroll relation `Salary` records one dated payment per employee, and the
+`Employee` relation supplies the department that owns each employee.
 
-This instance demonstrates multi-level hierarchical aggregation using partitioned SQL window functions, mathematically proves why dual-granularity partitions evaluate departmental benchmarks against global baselines in a single pass, and derives $O(N \log N)$ execution time and $O(N)$ space bounds.
+| `id` | `employee_id` | `amount` | `pay_date` |
+|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $9000$ | `2017-03-31` |
+| $2$ | $2$ | $6000$ | `2017-03-31` |
+| $3$ | $3$ | $10000$ | `2017-03-31` |
+| $4$ | $1$ | $7000$ | `2017-02-28` |
+| $5$ | $2$ | $6000$ | `2017-02-28` |
+| $6$ | $3$ | $8000$ | `2017-02-28` |
+
+| `employee_id` | `department_id` |
+|:---:|:---:|
+| $1$ | $1$ |
+| $2$ | $2$ |
+| $3$ | $2$ |
+
+The required relation has three attributes — the reporting month written as
+`YYYY-MM`, the department, and the verdict word — and it must contain exactly one
+row per pair of month and department that actually paid somebody.
+
+| `pay_month` | `department_id` | `comparison` |
+|:---:|:---:|:---:|
+| `2017-02` | $1$ | `same` |
+| `2017-02` | $2$ | `same` |
+| `2017-03` | $1$ | `higher` |
+| `2017-03` | $2$ | `lower` |
 
 ---
 
-## 1. Instance & Teaching Goal
+## 1. Normalizing the Period Attribute
 
-Given `Salary` and `Employee` tables:
-For every month and every department, compare the **department's average salary** against the **company's average salary**:
-- Output `'higher'` if dept avg > company avg.
-- Output `'lower'` if dept avg < company avg.
-- Output `'same'` if dept avg = company avg.
+The `pay_date` column is a calendar day, but the question asks about a month.
+Two payments inside the same month that land on different days are the same
+reporting period for this problem, so the comparison key is the month prefix,
+not the day. Writing the month as `YYYY-MM` fixes the granularity once and for
+all; sorting the raw `pay_date` values would instead split March into 31
+separate benchmarking groups, each holding only the payments that happened to
+fall on that day.
 
-```text
-March 2017:
-  Company Avg = (9000 + 6000 + 10000) / 3 = 8333.33
-  Dept 1 Avg  = 9000 (Higher than company)
-  Dept 2 Avg  = (6000 + 10000) / 2 = 8000 (Lower than company)
+A second granularity decision is equally important. One employee can appear
+several times in one month, and two different months can reuse the same
+`employee_id`. The reporting unit is therefore a *pair*: the month together with
+the department. Neither attribute alone identifies a row of the answer.
 
-February 2017:
-  Company Avg = (7000 + 6000) / 2 = 6500
-  Dept 1 Avg  = 7000 (Higher than company)
-  Dept 2 Avg  = 6000 (Lower than company)
-```
+| Period key | Payments in the period | Departments represented |
+|:---:|:---:|:---:|
+| `2017-02` | `id` $4$, $5$, $6$ | $1$ and $2$ |
+| `2017-03` | `id` $1$, $2$, $3$ | $1$ and $2$ |
 
-### The Invariant of Dual-Grain Windowing
-- Instead of grouping by month in a subquery, grouping by `(month, department)` in another subquery, and joining them:
-- SQL window functions allow computing both averages **simultaneously in one single scan**:
-  - `AVG(amount) OVER (PARTITION BY pay_date)` (company level).
-  - `AVG(amount) OVER (PARTITION BY pay_date, department_id)` (department level).
+The department of each payment is not stored in `Salary`; it is owned by
+`Employee` and reached through the shared employee identity. Attaching that
+attribute turns every payment row into the triple
+$(\text{period}, \text{department}, \text{amount})$ and makes it possible to
+aggregate the same money at two different grains.
 
----
+## 2. Two Aggregates at Two Grains over One Money Stream
 
-## 2. Conceptual Foundation & Invariants
+The decisive observation is that the company benchmark and the department
+benchmark are both averages of the *same* payment amounts in the *same* period.
+They differ only in how the payments are bucketed:
 
-### 1. The Window Query:
-```sql
-WITH t AS (
-    SELECT
-        TO_CHAR(pay_date, 'YYYY-MM') AS pay_month,
-        department_id,
-        AVG(amount) OVER (PARTITION BY pay_date) AS company_avg,
-        AVG(amount) OVER (PARTITION BY pay_date, department_id) AS dept_avg
-    FROM Salary AS s
-    JOIN Employee AS e ON s.employee_id = e.employee_id
-)
-SELECT DISTINCT
-    pay_month,
-    department_id,
-    CASE
-        WHEN dept_avg > company_avg THEN 'higher'
-        WHEN dept_avg < company_avg THEN 'lower'
-        ELSE 'same'
-    END AS comparison
-FROM t;
-```
+- the company bucket contains every payment in the period, so its county
+  $n^{co}_{p}$ is the number of payments made that month;
+- the department bucket contains only payments whose employee belongs to the
+  department, with count $n^{dep}_{p}$.
 
-### 2. Output Deduplication:
-- Because the CTE contains one row per salary payment, a department with 10 employees will produce 10 identical comparison rows.
-- `SELECT DISTINCT` flattens these into a single tuple per `(pay_month, department_id)`.
+Because both aggregates read one row of the joined ledger, they can be produced
+side by side in a single pass. Partitioning the window by the period alone gives
+the first value; partitioning by the period together with the department gives
+the second. No pre-aggregated helper relation has to be built for either one,
+and no join is needed to place the two values on the same row.
 
-> **Convex Combination Invariant.** The global company average is a convex combination of departmental averages weighted by department headcount $\mu_{comp} = \sum \frac{n_i}{N} \mu_i$; therefore, at least one department must be $\ge \mu_{comp}$ and at least one must be $\le \mu_{comp}$.
+| Aggregate | Bucket definition | Symbol | March value | February value |
+|:---|:---|:---:|:---:|:---:|
+| Company monthly mean | every payment in the period | $\mu^{co}_{p}$ | $25000/3$ | $21000/3$ |
+| Department monthly mean | payments of one department in the period | $\mu^{dep}_{p}$ | — | — |
 
----
+The department values remain to be filled in per department, which is where the
+one-row-per-payment structure of the joined ledger becomes visible.
 
-## 3. Step-by-Step Worked Execution
+## 3. Row-by-Row Evaluation on the Joined Ledger
 
-We trace the sample data:
+Each payment carries the department of its employee. Two payments in March
+belong to employee $2$ and employee $3$, and both of those employees sit in
+department $2$; employee $1$, who is alone in department $1$, is paid once in
+each month. The table below records, for every payment row, the two averages it
+would carry and the verdict its comparison produces.
 
----
+| Payment `id` | Period | Dept | `amount` | Company mean $\mu^{co}_{p}$ | Department mean $\mu^{dep}_{p}$ | Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $1$ | `2017-03` | $1$ | $9000$ | $25000/3 \approx 8333.33$ | $9000$ | `higher` |
+| $2$ | `2017-03` | $2$ | $6000$ | $25000/3 \approx 8333.33$ | $16000/2 = 8000$ | `lower` |
+| $3$ | `2017-03` | $2$ | $10000$ | $25000/3 \approx 8333.33$ | $16000/2 = 8000$ | `lower` |
+| $4$ | `2017-02` | $1$ | $7000$ | $21000/3 = 7000$ | $7000$ | `same` |
+| $5$ | `2017-02` | $2$ | $6000$ | $21000/3 = 7000$ | $21000/3 = 7000$ | `same` |
+| $6$ | `2017-02` | $2$ | $8000$ | $21000/3 = 7000$ | $21000/3 = 7000$ | `same` |
 
-### Step 1: Compute Window Means
-- Row 1 (March, Dept 1, $9000$): $company\_avg = 8333.33, \; dept\_avg = 9000$.
-- Row 2 (March, Dept 2, $6000$): $company\_avg = 8333.33, \; dept\_avg = 8000$.
-- Row 3 (March, Dept 2, $10000$): $company\_avg = 8333.33, \; dept\_avg = 8000$.
-- Row 4 (Feb, Dept 1, $7000$): $company\_avg = 6500, \; dept\_avg = 7000$.
-- Row 5 (Feb, Dept 2, $6000$): $company\_avg = 6500, \; dept\_avg = 6000$.
+Three facts fall out of this trace.
 
----
+First, the mean values are evaluated as exact rational quantities. March's
+company mean is the fraction $25000/3$, not the rounded decimal $8333.33$, and
+the verdict is decided on the exact fraction. No pair of values in this instance
+sits close enough to a rounding boundary to change an answer, but the comparison
+rule itself must be treated as exact.
 
-### Step 2: Evaluate `CASE` Comparison
-- March, Dept 1: $9000 > 8333.33 \implies$ `'higher'`.
-- March, Dept 2: $8000 < 8333.33 \implies$ `'lower'`.
-- Feb, Dept 1: $7000 > 6500 \implies$ `'higher'`.
-- Feb, Dept 2: $6000 < 6500 \implies$ `'lower'`.
+Second, a value that repeats across rows carries no extra information. In
+February every department happens to equal the company, and department $2$'s
+value appears twice because two employees drew a paycheck that month. The answer
+still needs only one row for `(2017-02, 2)`.
 
----
+Third, the verdict is not a property of a payment; it is a property of the
+month-department pair. Reducing the six evaluated rows to distinct pairs is
+therefore part of forming the answer, not an optional cleanup.
 
-### Step 3: Emit Distinct Records
-Four unique tuples returned as requested.
+| Evaluated rows | Distinct month-department pairs | Output rows |
+|:---:|:---:|:---:|
+| $6$ | $4$ | $4$ |
 
----
+## 4. The Convexity Invariant Behind the Verdict
 
-## 4. Complete Execution Trace
+The correctness of the three-word comparison rests on one invariant of the
+aggregation: inside a fixed period, the company mean is a convex combination of
+the department means, weighted by the number of payments each department
+contributed. A mean is a convex combination of its own parts, and the company
+bucket is nothing more than the union of the department buckets, so the invariant
+holds for every period regardless of how the headcounts are distributed.
 
-| `pay_month` | `department_id` | Dept Avg $\mu_{dept}$ | Company Avg $\mu_{comp}$ | Relation | Output `comparison` |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| `2017-03` | $1$ | $9000.00$ | $8333.33$ | $\mu_{dept} > \mu_{comp}$ | **`higher`** |
-| `2017-03` | $2$ | $8000.00$ | $8333.33$ | $\mu_{dept} < \mu_{comp}$ | **`lower`** |
-| `2017-02` | $1$ | $7000.00$ | $6500.00$ | $\mu_{dept} > \mu_{comp}$ | **`higher`** |
-| `2017-02` | $2$ | $6000.00$ | $6500.00$ | $\mu_{dept} < \mu_{comp}$ | **`lower`** |
+Let $D$ be the set of departments that paid somebody in period $p$, let
+$n_{d}$ be the number of payments department $d$ contributed, and let $N = \sum_{d \in D} n_{d}$.
+Then
 
----
+$$
+\mu^{co}_{p}
+= \frac{1}{N}\sum_{d \in D}\sum_{k=1}^{n_{d}} a_{d,k}
+= \sum_{d \in D} \frac{n_{d}}{N}\,\mu^{dep}_{d},
+\qquad \sum_{d \in D} \frac{n_{d}}{N} = 1 .
+$$
 
-## 5. Boundary Cases & Failure Modes
+Every weight $n_{d}/N$ is strictly positive and the weights sum to one, so the
+company mean cannot lie strictly outside the range of the department means.
+That immediately gives a soundness guarantee for the three-way verdict: if a
+department's mean is strictly larger than the company mean it must be
+`higher`, if strictly smaller it must be `lower`, and equality is the only
+remaining case, reported as `same`. No fourth category is needed, and the three
+words partition the possibilities with no overlap.
 
-- **Single Department in Company:** Dept avg equals company avg $\implies$ `'same'`.
-- **Month with Single Employee:** Dept avg equals company avg $\implies$ `'same'`.
-- **Identical Averages Across All Departments:** Evaluates to `'same'`.
-- **Date Formatting:** Truncated to `'YYYY-MM'` format (e.g. `'2017-03'`).
+The convexity also bounds how many departments can sit on one side. At least one
+department must reach or exceed the company mean and at least one must fall at or
+below it; a period in which every department were strictly below the company
+mean would require weights summing to less than one, which is impossible. In
+February that bound is tight with two departments: with $n_{1} = 1$ and
+$n_{2} = 2$ the weights are $1/3$ and $2/3$, and both departments equal the
+company mean of $7000$, so the combination collapses to a single point.
 
----
+Finally, the reduction to distinct pairs preserves every answer. Two payments of
+the same department in the same period receive the same company mean, because
+the company mean depends only on the period, and the same department mean,
+because the department mean depends only on the pair. Identical evaluated rows
+therefore reduce to one tuple without merging anything that should have stayed
+separate.
 
-## 6. Traps & Common Anti-Patterns
+## 5. The Traps This Instance Exposes
 
-- **Comparing `pay_date` Directly Instead of Month:** If payments occur on different days in the same month (e.g. 2017-03-15 and 2017-03-31), partitioning by `pay_date` fragments the month. Always partition by the truncated month (`YYYY-MM`).
-- **Forgetting `DISTINCT`:** Without `DISTINCT`, departments with multiple employees output duplicate rows.
-- **Subquery Sprawl:** Writing three separate `GROUP BY` subqueries and joining them is error-prone and slow; window functions accomplish this cleanly in one step.
+One trap is specific to this ledger and is the reason the instance is worth
+tracing in full. In February, department $2$ contributes three payments that sum
+to $21000$, exactly as much as the whole company, so the department verdict is
+`same` rather than `lower`. Had the February payment of $8000$ by employee $3$
+been left out of the ledger, the company mean would have fallen to $6500$ and
+both departments would have been misreported as `higher` and `lower`. The
+comparison is against every payment in the period, so the company bucket must
+never be built from a partial scan.
 
----
+The remaining traps are structural.
 
-## 7. Complexity Derivation
+| Trap | Why it gives a wrong relation |
+|:---|:---|
+| Comparing against a mean of department means | The unweighted mean $(9000+8000)/2 = 8500$ for March is larger than the true company mean $25000/3$, so department $2$ would be scored `lower` against a benchmark the company never actually paid. The company benchmark must weight departments by their payment counts. |
+| Partitioning by `pay_date` instead of the month | Payments on different days of one month land in different buckets, so each bucket holds only part of the month and the benchmark drifts. |
+| Grouping only by department | Department $1$ is paid in both months, so a department-only key would merge `2017-02` and `2017-03` into one row and lose a required output row. |
+| Emitting one row per payment | Department $2$ produced two evaluated rows in March; the required relation holds one tuple per month-department pair. |
+| Building the company mean from a pre-aggregated department table | Joining two separately aggregated relations multiplies rows when a department has several employees, so the distinct reduction is needed for a different reason and the benchmark can drift from the true payment-weighted mean. |
 
-- **Time Complexity:**
-  - Joining `Salary` and `Employee`: $\mathcal{O}(N)$ where $N$ is payment count.
-  - Sorting and evaluating window partitions: $\mathcal{O}(N \log N)$.
-  - Sifting distinct month-department pairs: $\mathcal{O}(N)$.
-  - Total Time: $\mathcal{O}(N \log N)$. Completes in $< 10$ ms.
-- **Auxiliary Space Complexity:**
-  - $\mathcal{O}(N)$ space for window buffer frames.
+## 6. Complexity Derivation
+
+Let $S$ be the number of rows in `Salary` and $E$ the number of rows in
+`Employee`. Attaching departments to payments is an equijoin on the shared
+employee identity. With a hash table or a primary-key index on the smaller
+relation each payment is matched in expected constant time, so the join
+contributes $O(S + E)$ expected work; a comparison-based merge join would cost
+$O\big((S+E)\log(S+E)\big)$ instead.
+
+Partitioning the joined ledger for the two window aggregates requires the rows
+to be grouped by the period, and by the period together with the department, in
+one access pattern. A sort-based plan orders the $S$ joined rows and costs
+$O(S \log S)$; a hash-partitioned plan costs $O(S)$ expected. Forming the verdict
+is one constant-time comparison per joined row, and reducing the evaluated rows
+to distinct pairs costs $O(S)$ with hashing or $O(S \log S)$ with sorting.
+
+| Stage | Expected cost | Sort-based cost |
+|:---|:---:|:---:|
+| Join `Salary` to `Employee` on the employee identity | $O(S + E)$ | $O\big((S+E)\log(S+E)\big)$ |
+| Partition by period, and by period plus department | $O(S)$ | $O(S \log S)$ |
+| Evaluate the three-way verdict per row | $O(S)$ | $O(S)$ |
+| Reduce to distinct month-department pairs | $O(S)$ | $O(S \log S)$ |
+
+The engine-independent bound is therefore $O\big((S+E)\log(S+E)\big)$ time: the
+sort-based column dominates, and $S \le S + E$ keeps the other stages inside it.
+
+Auxiliary space is $O(S + E)$. The joined relation, the window partition state,
+and the hashed or sorted set used for the distinct reduction each hold at most a
+constant number of values per joined row or per employee, so the working data
+stays linear in the input. The output itself contains at most one row per
+represented month-department pair, which is bounded by $S$.
