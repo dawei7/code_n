@@ -133,6 +133,21 @@ String exhausted. The maximum contiguous valid length found is $4$.
 | 4 | `')'` | Pop $3$ | `[0]` | No | $4 - 0 = 4$ | **4** |
 | 5 | `')'` | Pop $0$; push $5$ | `[5]` | Boundary reset | - | 4 |
 
+### The Same Instance Under the Dynamic-Programming Model
+
+The index stack is not the only way to read this string. Let $g(i)$ be the length of the longest valid substring that ends exactly at index $i$, with $g(i) = 0$ for every $i < 0$ and for every index holding `'('`. A closer at $i$ either completes a pair opened at $i - 1$, giving $g(i) = g(i - 2) + 2$, or closes an opener standing immediately before a run of length $g(i - 1)$; that opener sits at index $i - g(i - 1) - 1$, and if it holds `'('` the run grows to $g(i) = g(i - 1) + 2 + g(i - g(i - 1) - 2)$.
+
+| Index $i$ | $s[i]$ | Case Applied | Dependency Evaluated | $g(i)$ | Reading |
+|:---:|:---:|:---|:---|:---:|:---|
+| 0 | `')'` | closer with no preceding pair | candidate opener index $0 - g(-1) - 1 = -1$ falls outside the string | 0 | The first closer is unmatched, so no valid substring ends here. |
+| 1 | `'('` | opener | none | 0 | An opener never terminates a valid substring, so the state stays 0. |
+| 2 | `')'` | pair opened at $i - 1$ | $g(2) = g(0) + 2 = 0 + 2$ | 2 | Indices 1 and 2 form `"()"`, the first measurable component. |
+| 3 | `'('` | opener | none | 0 | Opens the component that will close at index 4. |
+| 4 | `')'` | pair opened at $i - 1$ | $g(4) = g(2) + 2 = 2 + 2$ | 4 | The adjacent pair extends the run that ended at index 2, merging `"()"` and `"()"` into `"()()"`. |
+| 5 | `')'` | closer after a closer | candidate opener index $5 - g(4) - 1 = 0$ holds `')'`, not `'('` | 0 | The run of length 4 cannot be extended, and index 0 is not an opener, so nothing valid ends at index 5. |
+
+$\max_i g(i) = 4$, the same answer the stack produced. The models agree because each measurement is anchored on the most recent unmatched opener: the stack stores that index directly, while the recurrence recovers it from the length of the run that just ended. The recurrence keeps one integer per index, whereas the stack keeps at most one entry per unmatched opener; neither changes the $O(N)$ time bound.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -148,6 +163,17 @@ String exhausted. The maximum contiguous valid length found is $4$.
 - **Missing Initial Sentinel:** Without initializing the stack with $-1$, an input like $\text{"()"}$ would pop $0$ and leave the stack empty, failing to compute the valid length of 2.
 - **Unmatched Closing Delimiters:** When a `')'` appears with no preceding `'('`, it permanently divides the string into disjoint components. Resetting the base index to the current `')'` index prevents valid lengths from erroneously spanning across this invalid delimiter.
 - **Unclosed Opening Delimiters:** For an input like $\text{"(()"}$, index 0 (`'('`) remains on the stack. When index 2 (`')'`) pops index 1, the top of the stack is 0. The length is computed as $2 - 0 = 2$, correctly excluding the leading unclosed `'('`.
+
+### Boundary Instances and the Stack Reading That Decides Them
+
+| Boundary Scenario | Concrete Input | Expected | Stack Reading |
+|:---|:---|:---:|:---|
+| Empty string | $s = \text{""}$ | 0 | No index is pushed or popped, so no span is measured and the maximum stays 0. |
+| Only openers | $s = \text{"(((((("}$ | 0 | Six indices are pushed and none is popped, so no length is ever computed. |
+| Only closers | $s = \text{"))))))"}$ | 0 | Every closer pops the current boundary and then installs itself as the new one, so the span $i - \text{stk}[-1]$ never exceeds 0. |
+| A whole region followed by unmatched openers | $s = \text{"(()())(()"}$ | 6 | The stack returns to the sentinel while closing index 5, so that run measures $5 - (-1) = 6$; the trailing openers then keep the final `")"` confined to the span $8 - 6 = 2$. |
+| Two regions split by an unmatched opener | $s = \text{"()(()"}$ | 2 | The opener at index 2 stays on the stack; the run closing at index 4 therefore measures $4 - 2 = 2$, and the earlier run measured $1 - (-1) = 2$. |
+| Invalid prefix before a nested region | $s = \text{"())((()))"}$ | 6 | The closer at index 2 empties the stack and installs boundary 2; the nested region closing at index 8 then measures $8 - 2 = 6$. |
 
 ---
 

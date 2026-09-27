@@ -93,6 +93,26 @@ We iterate $i$ from $0$ up to $N - M$:
 | 3 | `"tcode"` | `"leeto"` | Offset 0 (`'t'` $\ne$ `'l'`) | Mismatch | End of valid range reached |
 | Terminal | - | - | - | Exhausted | **Return $-1$** |
 
+### Window Evaluation Table for an Overlap-Heavy Instance
+
+The next instance has the shape that makes a rescan expensive: two candidates match a long prefix of the pattern and still fail on the last character. With $\text{haystack} = \text{"aaaaab"}$ and $\text{needle} = \text{"aaab"}$, $N = 6$ and $M = 4$, so the legal starts are $i \in [0, 2]$.
+
+| Candidate $i$ | Window Slice $\text{haystack}[i \dots i+M-1]$ | Matched Prefix Length | First Mismatch Offset | Comparison at the Mismatch | Comparisons Spent | Result |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | `"aaaa"` | 3 | 3 | `'a'` $\ne$ `'b'` | 4 | Mismatch; advance to $i = 1$ |
+| 1 | `"aaaa"` | 3 | 3 | `'a'` $\ne$ `'b'` | 4 | Mismatch; advance to $i = 2$ |
+| 2 | `"aaab"` | 4 | - | all four positions equal | 4 | Full match; **return $2$** |
+
+Twelve character comparisons were spent on only three candidate starts, and the first three characters of every window were compared again from scratch. Nothing in the rescan reuses the three characters that already matched at the previous start.
+
+### Why the Rescan Cannot Exploit a Shared Prefix
+
+| Approach | Mechanism | Comparisons on the traced instances | Time Bound | Trade-off or Failure Mode |
+|:---|:---|:---|:---|:---|
+| Fixed-window rescan (used above) | Restart the comparison at every candidate start | $\text{"sadbutsad"}$ vs $\text{"sad"}$: 3 comparisons for the window at $i = 0$; $\text{"aaaaab"}$ vs $\text{"aaab"}$: 12 comparisons across three windows | $O((N - M + 1) \cdot M)$, that is $O(N \cdot M)$ in the worst case | Quadratic on inputs such as a long run of one repeated letter followed by a final mismatch, because the shared prefix is re-compared at every start. |
+| Border-based scan | Precompute the longest proper border of each prefix of $\text{needle}$, then resume from that border after a mismatch instead of from a new start | Reuses the already-matched characters, so no position of $\text{haystack}$ is compared more than a constant number of times | $O(N + M)$ | Needs an $O(M)$ border table and more intricate bookkeeping: after a mismatch the failure link, not the candidate start, decides the next comparison. |
+| Library substring search | Delegate to the language's tuned `find`-style search | Not observable; the implementation decides the comparison order | Typically $O(N + M)$ with implementation-dependent constants | Returns the same first index while hiding the very fallback reasoning this exercise teaches, so it is a correctness shortcut rather than a lesson. |
+
 ---
 
 ## 5. Algorithmic Correctness

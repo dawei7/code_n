@@ -131,9 +131,30 @@ The prefix $\text{nums}[0 \dots 4]$ is $[0, 1, 3, 0, 4]$.
 - **Values Past $k$:** The problem statement explicitly allows elements past index $k$ to contain arbitrary remaining values. There is no need to clear or zero out indices $\ge k$.
 - **Array Containing Only Target Value:** If $\text{nums} = [2, 2, 2]$, the condition $\text{nums}[i] \ne 2$ is never met. The writer pointer never increments, correctly returning $k = 0$.
 
+### Boundary Cases the Same Rule Already Covers
+
+No boundary input needs a special branch: each row below is an authored case for this package, and $k$ follows from the single comparison `nums[i] != val`.
+
+| Boundary Scenario | Concrete Input | Returned $k$ | Final Prefix $\text{nums}[0 \dots k-1]$ | Why the rule produces it |
+|:---|:---|:---:|:---|:---|
+| Empty array | `nums = [], val = 100` | 0 | `[]` | The reader never enters the loop, so the writer pointer is never advanced. |
+| Every element is the target | `nums = [50, 50, 50, 50, 50], val = 50` | 0 | `[]` | All five comparisons fail, so $k$ stays at 0 and no value is ever written. |
+| Target absent | `nums = [0, 0, 25, 50, 50], val = 51` | 5 | `[0, 0, 25, 50, 50]` | Every retained element lands at `nums[k]` with `k == i`, so each write is a self-assignment and the array is unchanged. |
+| Target at both ends (first official example) | `nums = [3, 2, 2, 3], val = 3` | 2 | `[2, 2]` | Indices 0 and 3 are skipped; the two interior `2`s are written at indices 0 and 1. |
+| Duplicates keep their multiplicity | `nums = [1, 2, 1, 2, 1], val = 2` | 3 | `[1, 1, 1]` | The three `1`s are written consecutively while both `2`s are skipped, so the retained multiset is preserved exactly. |
+| Maximum-length input | 100 values: $0 \dots 50$ followed by $0 \dots 48$, `val = 25` | 98 | the same 100 values with both copies of 25 removed | Exactly two entries equal 25, so $100 - 2 = 98$ retained values are written into the prefix. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N = |\text{nums}|$. The reader pointer visits each of the $N$ elements exactly once, performing constant-time comparisons and assignments.
 - **Auxiliary Space Complexity:** $O(1)$. In-place updates require only two scalar index variables ($i$ and $k$).
+
+### Method Comparison on This Instance
+
+| Method | Mechanism | Work on $[0, 1, 2, 2, 3, 0, 4, 2]$ with $\text{val} = 2$ | Asymptotic Cost | Failure Mode |
+|:---|:---|:---|:---|:---|
+| Repeated search-and-shift | Locate the next target, then shift every following element one slot left | The three searches that find a target cost 12 comparisons and the shifts cost 9 element moves, splitting as $5 + 4 + 0$; the pass that proves no target remains costs 5 more comparisons | $\Theta(N^2)$ worst case, $O(1)$ auxiliary space | Degrades quadratically when targets cluster near the front, because each removal pays for the whole surviving suffix. |
+| Two-pointer compaction (used above) | Reader $i$ scans once; writer $k$ copies only retained values | 8 comparisons and 5 writes, with $k \le i$ at every step | $O(N)$ time, $O(1)$ auxiliary space | None for this contract, but note that it preserves the retained values in their original relative order rather than choosing any other legal order. |
+| Filter into a fresh buffer, then copy back | Collect retained values in a new array and overwrite the original prefix | 8 comparisons, 5 buffer writes, then 5 copy-back writes | $O(N)$ time, $O(N)$ auxiliary space | Correct for the judge but breaks the intended in-place discipline; the extra buffer grows with the input. |

@@ -123,6 +123,18 @@ Final emitted matches: $[0, 9]$.
 | 5 | $[9, 12]$ | `"bar"` | 1 | 1 | 2 | Full match; contract $L \leftarrow 12$ | **Index 9** |
 | 6 | $[12, 15]$ | `"man"` | 0 | 0 | 0 | Invalid token; reset $L \leftarrow 18$ | - |
 
+### Residue-Class Coverage Table for All Three Offsets
+
+Every candidate start $i$ lies in exactly one residue class modulo $W = 3$, and a start is a match only if both of its aligned tokens are dictionary words. The legal starts here are $i \in [0, N - L] = [0, 12]$.
+
+| Offset $r$ | Candidate Starts $i \equiv r \pmod 3$, $i \le 12$ | Tokens at Each Aligned Start | Tokens Present in $\text{words}$ | Matches Emitted |
+|:---:|:---|:---|:---|:---|
+| 0 | 0, 3, 6, 9, 12 | `"bar"`, `"foo"`, `"the"`, `"foo"`, `"bar"` | `"bar"` and `"foo"` only | $0$ and $9$ |
+| 1 | 1, 4, 7, 10 | `"arf"`, `"oot"`, `"hef"`, `"oob"` | none | none |
+| 2 | 2, 5, 8, 11 | `"rfo"`, `"oth"`, `"efo"`, `"oba"` | none | none |
+
+The offset-0 row explains why the matches are exactly $0$ and $9$: start $3$ opens on the valid token `"foo"` but is followed by `"the"`, start $6$ begins on `"the"`, and start $12$ is followed by `"man"`. Both aligned tokens of a candidate must belong to $\text{words}$, so one valid token is never enough. The other two residue classes contribute nothing, yet each still has to be scanned, because the residue class of a valid start is not known in advance.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -138,6 +150,17 @@ Final emitted matches: $[0, 9]$.
 - **Overlapping Offset Classes:** Evaluating only offset 0 misses valid concatenations starting at non-multiples of $W$ (e.g. at index 1 or 2). Iterating across all $W$ distinct offsets guarantees complete coverage.
 - **Handling Duplicate Words in Dictionary:** If $\text{words} = [\text{"word"}, \text{"good"}, \text{"best"}, \text{"word"}]$, the word $\text{"word"}$ has count 2. Using boolean sets fails; a full frequency counter mapping is required.
 - **Excess Word Contraction:** When an existing word appears too many times ($\text{current\_counts}[w] > \text{target\_counts}[w]$), the left pointer $L$ must advance until the redundant copy is expelled from the window, rather than resetting $L$ entirely.
+
+### Boundary Instances and the Window Rule That Resolves Them
+
+| Boundary Scenario | Concrete Input | Expected | Window Rule That Decides It |
+|:---|:---|:---|:---|
+| Concatenation cannot fit | $s = \text{"abc"}$, $\text{words} = [\text{"ab"}, \text{"cd"}]$ | `[]` | $L = 2 + 2 = 4 > N = 3$, so no start index $i \in [0, N - L]$ exists and the search range is empty. |
+| Single word matching at unaligned offsets | $s = \text{"aaaa"}$, $\text{words} = [\text{"aa"}]$ | `[0, 1, 2]` | With $M = 1$ a match needs only one token, so every legal start belongs to a match; the starts fall in both residue classes and each is emitted by its own track. |
+| Identical required words | $s = \text{"aaaaaa"}$, $\text{words} = [\text{"aa"}, \text{"aa"}]$ | `[0, 1, 2]` | The target count of `"aa"` is 2, so a window is valid exactly when it holds two copies; the window length is $M \cdot W = 4$ and starts $3$ and beyond would need index $\ge 7$. |
+| Excess duplicate must shrink the window | $s = \text{"wordgoodgoodgoodbestword"}$, $\text{words} = [\text{"word"}, \text{"good"}, \text{"best"}, \text{"good"}]$ | `[8]` | The dictionary holds `"good"` twice, so the third consecutive `"good"` makes $\text{current\_counts}[\text{"good"}] = 3 > 2$ and forces $L$ forward until only two copies remain, which is why the sole match begins at $8$. |
+| Foreign tokens reset the track | $s = \text{"barxxfoobar"}$, $\text{words} = [\text{"foo"}, \text{"bar"}]$ | `[5]` | The token `"xxf"` at index $3$ is not in $\text{words}$, so that track clears its window state and jumps past it; the match comes from the offset-$2$ track, where `"foo"` at index $5$ is followed by `"bar"` at index $8$, giving the clean run `"foobar"`. |
+| Wrong multiplicity everywhere | $s = \text{"wordgoodgoodgoodbestword"}$, $\text{words} = [\text{"word"}, \text{"good"}, \text{"best"}, \text{"word"}]$ | `[]` | Here `"word"` must appear twice inside one window of length $M \cdot W = 16$. The text supplies `"word"` at indices $0$ and $20$, and no window of length $16$ can contain both, so no window holds the required multiset. |
 
 ---
 
