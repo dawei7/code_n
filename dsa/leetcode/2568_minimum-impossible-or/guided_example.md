@@ -103,7 +103,7 @@ Soundness of the stopping rule and completeness of the reachable prefix therefor
 
 ## 9. Time and auxiliary space
 
-Let $n = \texttt{nums.length}$ and let $W = 30$ be the largest exponent that a legal element can reach.
+Let $n = \texttt{nums.length}$ and let $W = 30$ be the smallest exponent with $2^W > 10^{9}$, the first exponent no legal element can reach.
 
 - **Time** $O(n)$ expected: one pass inserts the $n$ values into a hash set, and then at most $W + 1 = 31$ membership probes locate the first absent power. Since $W$ is a constant fixed by the element bound, the whole procedure is a linear scan with a constant-size tail.
 - **Auxiliary space** $O(n)$ for the set of distinct values. A hash set is not strictly necessary: a boolean array indexed by exponent, filled during a single scan that tests whether an element is a power of two within range, uses $O(W) = O(1)$ additional space while keeping the same linear time.

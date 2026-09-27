@@ -130,6 +130,34 @@ Final n == 1 -> Return True
 - Residual: $n = 7 \ne 1$.
 - **Returns `false`!**
 
+### Exponent Table: One Row per Input
+
+Every input is decided by the same three numbers the loops produce — the
+exponents $a, b, c$ and the residual $R$ in $n = 2^a \cdot 3^b \cdot 5^c \cdot R$.
+Writing them out for several inputs shows that the verdict depends on $R$ alone,
+never on which allowed primes happened to appear.
+
+| $n$ | $a$ (exponent of 2) | $b$ (exponent of 3) | $c$ (exponent of 5) | Residual $R$ | Reconstruction of $n$ | Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---|:---:|
+| 6 | 1 | 1 | 0 | 1 | $2^1 \cdot 3^1 = 6$ | `true` |
+| 30 | 1 | 1 | 1 | 1 | $2 \cdot 3 \cdot 5 = 30$ | `true` |
+| 60 | 2 | 1 | 1 | 1 | $2^2 \cdot 3 \cdot 5 = 60$ | `true` |
+| 45 | 0 | 2 | 1 | 1 | $3^2 \cdot 5 = 45$ | `true` |
+| 1 | 0 | 0 | 0 | 1 | the empty product, with no prime factor at all | `true` |
+| 14 | 1 | 0 | 0 | 7 | $2 \cdot 7 = 14$ | `false` |
+| 98 | 1 | 0 | 0 | 49 | $2 \cdot 7^2 = 98$ | `false` |
+| 210 | 1 | 1 | 1 | 7 | $2 \cdot 3 \cdot 5 \cdot 7 = 210$ | `false` |
+| 2147483647 | 0 | 0 | 0 | 2147483647 | no allowed prime divides it, so nothing is stripped | `false` |
+
+Three rows carry the teaching load. Row four shows an input with $a = 0$: a
+number with no factor of 2 at all still passes, because the loops are permitted
+to run zero times. Row seven ends with the composite residual $49$, proving the
+terminal test is the equality $R = 1$ and not a primality check — a residual that
+is composite fails for the same reason a prime one does. Row eight keeps allowed
+and disallowed factors together ($210 = 2 \cdot 3 \cdot 5 \cdot 7$); stripping
+removes exactly the allowed part and leaves $7$ untouched, which is what makes
+the residual a faithful witness of everything the loops could not remove.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -146,9 +174,45 @@ Final n == 1 -> Return True
 - **Negative Numbers:** $-6 = -1 \times 2 \times 3$. Mathematically, $-1$ is a unit, not an ugly prime. The problem explicitly defines ugly numbers as **positive** integers.
 - **Trial Division by All Primes:** Running trial division through all primes up to $\sqrt{n}$ costs $O(\sqrt{n})$ time. Since only 2, 3, and 5 are allowed, dividing strictly by $\{2, 3, 5\}$ requires at most $\log_2 n$ operations.
 
+### Boundary Map of the Guard and the Terminal Test
+
+Each row below isolates one boundary value and states what the guard contributes
+versus what the arithmetic alone would do. The negative rows are the interesting
+ones: the arithmetic happens to return `false` for them too, but only by
+accident, so the guard is doing definitional work rather than arithmetic work.
+
+| Input | Does $n \ge 1$ hold? | Stripping behavior | Terminal residual | Verdict | What the boundary teaches |
+|:---:|:---:|:---|:---:|:---:|:---|
+| 0 | No | A loop on 0 never advances, since $0 \bmod 2 = 0$ and $0 // 2 = 0$ | Never reached | `false` | Here the guard is a termination proof: without it the method does not halt at all |
+| -6 | No | $-6 \bmod 2 = 0$, so stripping would run and end at residual $-1$ | Never reached (guard) | `false` | $-1$ is a unit, not a prime factor; ugly numbers live in $\mathbb{Z}^{+}$, so the guard encodes the definition |
+| -14 | No | The same halving chain would end at residual $-7$ | Never reached (guard) | `false` | Dividing a negative by allowed primes keeps it negative, so no negative input can ever reduce to 1 |
+| 1 | Yes | All three loops are skipped because no prime divides 1 | $R = 1$ | `true` | The empty product is the base case, and $1 = 2^0 3^0 5^0$ |
+| $2^{30} = 1073741824$ | Yes | 30 successive divisions by 2, the largest count any legal 32-bit input can force | $R = 1$ | `true` | The work bound is real and reached: no input in range needs a 31st division |
+| $2^{31} - 1 = 2147483647$ | Yes | No loop body executes at all | $R = 2147483647$ | `false` | An odd non-multiple of 3 or 5 leaves the entire input as residual |
+| $49 = 7^2$ | Yes | No loop body executes at all | $R = 49$ | `false` | The terminal test is $R = 1$; a composite residual is rejected exactly like a prime one |
+| $98 = 2 \cdot 7^2$ | Yes | One division by 2 | $R = 49$ | `false` | Removing the allowed factor exposes the disallowed part without altering it |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(\log n)$, where $n$ is the input integer. Each successful division by 2, 3, or 5 reduces $n$ by at least half ($n \leftarrow \lfloor n/2 \rfloor$). The maximum number of divisions is bounded by $\log_2 n \le 31$ operations for any 32-bit integer, executing in nanoseconds.
 - **Auxiliary Space Complexity:** $O(1)$ auxiliary space. Only loop variables are stored.
+
+### Alternatives and Their Costs
+
+The problem asks a membership question about one integer, and the alternatives
+differ mainly in how much more than that they compute.
+
+| Strategy | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Strip the three allowed primes | Divide out every factor of 2, 3, and 5, then test whether the residual is 1 | $O(\log n)$ | $O(1)$ | The direct method; it still needs the non-positive guard to terminate on $n = 0$ |
+| Recursive stripping | Accept when $n = 1$, otherwise recurse on $n // p$ for any allowed prime $p$ dividing $n$ | $O(\log n)$ | $O(\log n)$ call stack | Same verdicts, but up to 30 nested frames replace three loops |
+| Enumerate all ugly numbers up to $n$ | Build the closure of $\{1\}$ under multiplication by 2, 3, and 5 and test membership | $O(u \log u)$ where $u$ is how many ugly numbers lie in range | $O(u)$ | There are 1691 ugly numbers below $2^{31}$, so this answers a far harder question than asked |
+| Full trial division up to $\sqrt{n}$ | Test every candidate divisor from 2 upward | $O(\sqrt{n})$ | $O(1)$ | About 46340 candidate divisors at the 32-bit limit replace at most 30 divisions |
+| Sieve of smallest prime factors | Precompute a factor table for every integer up to $n$ | $O(n \log \log n)$ | $O(n)$ | Infeasible near $2^{31}$ and again solves a much larger problem |
+
+The chosen method is the first row. It exploits the constraint that the allowed
+prime set has only three elements: each division by 2, 3, or 5 shrinks the value
+by at least a factor of 2, so at most $\log_2 n$ divisions occur, and the
+residual test turns a factorization question into a single equality.

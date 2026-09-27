@@ -1,133 +1,127 @@
 # Guided Example: Check if Object Instance of Class
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the exact question
 
-- **Input:** `{"fixture": {"value": "date-instance", "target": "Date"}}`
-- **Required output:** `true`
+The task is to decide whether a *value* is an instance of a *class*, where the statement deliberately defines instancehood by capability rather than by construction: a value counts as an instance of a class when it has access to that class's methods. Nothing is guaranteed about the inputs — either argument may be `undefined`, a primitive, a function, or an object.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The instance traced below is the inheritance case, whose required outcome is `true`:
 
----
+| role | entity in this instance |
+|---|---|
+| value under test | an object created by the class named `Dog` |
+| class asked about | the class named `Animal` |
+| relationship | the class `Dog` is declared to extend the class `Animal` |
+| required outcome | `true` |
 
-## 1. Instance & Teaching Goal
+Reaching that outcome requires an accurate model of *how* a value gets access to methods, because the obvious tool — the language's `instanceof` operator — gives the wrong answer for primitives and throws for non-callable targets. The lesson therefore derives the decision procedure from the runtime's own object model.
 
-Write a function that checks if a given value is an instance of a given class or superclass. For this problem, an object is considered an instance of a given class if that object has access to that class's methods.
+## 2. The object model that decides the question
 
-The objective is to compute `true` from `{"fixture": {"value": "date-instance", "target": "Date"}}` while avoiding redundant calculations and unnecessary overhead.
+Every ordinary object in the runtime carries one internal link to another object, its prototype, and that link is either another object or `null`. Property and method lookup follows the link repeatedly until the name is found or `null` is reached. A class declaration creates a prototype object, and every object constructed by that class receives it as the immediate prototype link. When one class extends another, the constructor's own prototype object is additionally linked to the superclass's prototype object, which is what makes inherited methods visible.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Those facts are the whole answer to "does this value have access to that class's methods":
 
----
+$$
+\text{value is an instance of } C \iff C\text{'s prototype object occurs somewhere in value's prototype chain.}
+$$
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| entity | its prototype link | why it matters here |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| object created by `Dog` | `Dog.prototype` | first link searched; it is not the target in this instance |
+| `Dog.prototype` | `Animal.prototype` | the `extends` clause installs this link, so inherited methods are reachable |
+| `Animal.prototype` | `Object.prototype` | the chain continues past the target, which is why stopping early matters |
+| `Object.prototype` | `null` | the chain is finite and terminates; the search must also terminate |
+| `null` | nothing | no lookup can succeed, so no value below this point has methods |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The comparison must be *identity* of prototype objects. Two different classes can share a name, a class can be anonymous, and a subclass's instances carry a different immediate prototype than the superclass's instances; only object identity distinguishes them reliably.
 
----
+## 3. Two guards that must run before the walk
 
-## 3. Step-by-Step Worked Execution
+The search is over prototype links, so it needs a value that has a chain and a target that has a prototype object. Both conditions can fail.
 
-### Step 1: Use JavaScript's actual inheritance mechanism
-
-JavaScript inheritance is based on prototype links. An object has access to methods placed on a constructor's `prototype` when that exact prototype object occurs somewhere in the object's prototype chain.
-
-Therefore, checking whether `obj` is an instance of `classFunction` reduces to:
-
-1. obtain the prototype chain appropriate for `obj`;
-2. obtain `classFunction.prototype` as the target;
-3. walk upward until the target is found or the chain ends.
-
-This directly implements the problem's definition in terms of access to class methods and naturally handles subclasses.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| value | class asked about | pre-flight finding | outcome |
 |---|---|---|---|
-| Input Slice | `{"fixture": {"value": "date-instance", "target": "Date"}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `null` | `Object` | a null value has no prototype chain at all | `false` |
+| `undefined` | any class | same reason | `false` |
+| a plain object | `undefined` | the target is not a function, so it has no prototype object to look for | `false` |
+| a plain object | an arrow function | it is a function but owns no prototype object, so no chain link can ever equal the target | `false` |
+| the number `5` | `Number` | both checks pass; the walk proceeds after boxing | decide by the walk |
 
----
+The `null` guard is not cosmetic. Boxing `null` produces a brand-new empty object whose chain reaches `Object.prototype`, so a search that skipped the guard would report `true` for a null value asked about `Object` — a value with no methods at all would be credited with all of them. The same trap exists for `undefined`. The function guard matters because a non-function target has no `prototype` object; comparing chain links against an absent target can never succeed, and doing so must be a definite `false` rather than an error.
 
-### Step 2: Reject invalid inputs before reflection
+## 4. Boxing normalizes primitives before the walk
 
-The first condition is:
+Primitives are not objects and have no prototype link of their own, yet the statement insists that the primitive `5` is an instance of `Number` because it "accesses the Number methods" such as the formatting method used to print fixed decimals. The reconciliation is a temporary wrapper object: converting a primitive to an object yields a wrapper whose immediate prototype is the primitive's own prototype object.
 
-`obj == null || typeof classFunction !== "function"`.
+| value under test | wrapper created for the walk | chain searched | link matching `Number.prototype` | outcome |
+|---|---|---|---|---|
+| `5` | number wrapper | `Number.prototype`, `Object.prototype`, `null` | first link | `true` |
+| a symbol | symbol wrapper | `Symbol.prototype`, `Object.prototype`, `null` | first link | `true` |
+| `null` | none — rejected by the guard | not searched | — | `false` |
+| an already-boxed object | the object itself | its own chain | depends on its chain | decided normally |
 
-The intentionally loose comparison `obj == null` is true for both `null` and `undefined` and false for ordinary values. Neither null nor undefined can be boxed into an object that exposes a useful class prototype for this contract, so the function returns false.
+Converting an object to an object is the identity operation, so one uniform walk handles both primitives and objects. This single step is precisely where the required semantics part company with `instanceof`, whose internal instance-of operation never boxes and therefore reports `false` for every primitive.
 
-The second check ensures the proposed class is callable as a JavaScript function or class value. Without it, accessing its prototype as a class target would not represent a meaningful instance relationship. Inputs such as numbers, strings, objects, or undefined in the class position return false instead of causing misleading behavior.
+## 5. Executing the walk on the traced instance
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+The value's chain is `Dog.prototype` → `Animal.prototype` → `Object.prototype` → `null`, and the target is `Animal.prototype`. The walk starts at the first link and ascends one link per iteration, comparing identity each time.
+
+| step | current chain link | identical to `Animal.prototype`? | action taken |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| 1 | `Dog.prototype` | no | ascend to its prototype |
+| 2 | `Animal.prototype` | yes | stop and report `true` |
+| — | `Object.prototype` | never reached | the early exit skips these links entirely |
+| — | `null` | never reached | termination point not needed once a match is found |
 
----
+The answer is `true` after two comparisons. Note what the trace proves about the search order: the match was found on the *second* link, so a procedure that only inspected the immediate prototype would have answered `false` incorrectly. The instance also demonstrates why the walk must not stop at the first link, and why it must not rely on the value's own constructor property, which for this instance names `Dog` rather than the requested `Animal`.
 
-### Step 3: Box primitive values
+A companion trace shows the opposite extreme — the constructor asked about itself:
 
-Ordinary `instanceof` reports `5 instanceof Number` as false because five is a primitive rather than a `Number` object. The problem deliberately wants true because JavaScript lets the primitive access `Number.prototype` methods through temporary boxing.
+| step | value | current chain link | identical to `Date.prototype`? | action |
+|---|---|---|---|---|
+| 1 | the `Date` constructor | `Function.prototype` | no | ascend |
+| 2 | the `Date` constructor | `Object.prototype` | no | ascend |
+| 3 | the `Date` constructor | `null` | no | chain exhausted, report `false` |
 
-`Object(obj)` performs this boxing:
+The required outcome is `false`: a constructor is a function object, it is not constructed by itself, and none of its chain links is the prototype object it hands out to its own instances.
 
-- a number becomes a temporary Number wrapper;
-- a string becomes a String wrapper;
-- a Boolean becomes a Boolean wrapper;
-- a symbol or bigint receives its corresponding wrapper;
-- an existing object is returned as an object.
+## 6. Invariant and correctness
 
-Then `Object.getPrototypeOf(Object(obj))` obtains the first prototype in the relevant chain. For numeric five, that first prototype is `Number.prototype`, so the requested relationship can be found.
+Let $p_0, p_1, \dots, p_{k-1}, \dots$ be the chain of the boxed value, terminating at $p_{L} = \texttt{null}$, and let $T$ be the target's prototype object.
 
-The code handles null and undefined before `Object(obj)` because their special coercion behavior should not be interpreted as boxing them into valid instances.
+**Invariant.** At the start of iteration $k$, the cursor holds $p_k$, and the search has already compared $T$ against exactly $p_0, \dots, p_{k-1}$ without a match, so none of those links equals $T$.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+*Base.* Before the first iteration the cursor holds $p_0$ and no comparison has been made, so the claim is vacuous.
 
----
+*Step.* If the cursor equals $T$, the procedure returns `true`; by the definition in section 2 the target's prototype object occurs in the chain, so the value does have access to that class's methods. If it differs, the only remaining way to reach the target is further up, and the cursor advances to $p_{k+1}$, preserving the invariant with one more satisfied comparison.
 
-## 4. Complete Execution Trace
+*Termination and completeness.* Every iteration moves the cursor strictly upward, and the runtime refuses to install a prototype link that would close a cycle, so the chain is finite and the cursor reaches `null` after at most $L$ iterations. At that point the invariant says the target was compared against every link in the chain and matched none, so no method of the class is reachable — the answer `false` is sound, not merely a default. Conversely, if the target occurs anywhere in the chain, the invariant guarantees the walk reaches and recognises it before terminating. Together the two directions make the returned boolean exactly the statement's condition, for primitives, objects, functions and inherited classes alike.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"fixture": {"value": "date-instance", "target": "Date"}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+The guards of section 3 preserve the same equivalence: a `null` or `undefined` value has an empty chain by definition, and a target without a prototype object has no methods to grant, so both cases correctly fall outside the definition rather than being special exceptions to it.
 
----
+## 7. Traps this instance exposes
 
-## 5. Algorithmic Correctness
+| trap | concrete symptom | correct handling |
+|---|---|---|
+| Delegating to the language's `instanceof` operator | the primitive `5` asked about `Number` must be `true`, while `instanceof` reports `false` for every primitive | Box the value first, then compare prototype objects |
+| Letting the operator's own errors escape | asking with a non-callable target such as `undefined` throws an error under `instanceof`, but the contract requires `false` | Reject non-function targets before searching |
+| Boxing before guarding for `null` | a null value asked about `Object` would become an empty object and be reported `true` | Test for `null` and `undefined` first |
+| Comparing names or constructor properties | two unrelated classes may share a name, classes may be anonymous, and a subclass instance's constructor property names the subclass | Compare the prototype objects themselves by identity |
+| Stopping at the immediate prototype | this instance's match is one link further up; an immediate-prototype check returns `false` | Walk the whole chain until the match or `null` |
+| Assuming every object inherits from `Object` | an object created with a null prototype has an empty chain and must be `false` for `Object` | Treat the chain itself as the authority |
+| Confusing an object with its class | the traced constructor asked about itself must be `false` | Only prototype links, never constructors, are compared |
+| Assuming the target is one link deep | the requested class may be many links up a deep hierarchy | Cost is proportional to chain depth, so a loop is required; recursion adds stack depth for no benefit |
+| Cross-realm classes | an object from another realm does not carry this realm's `Object.prototype` in its chain, so identity correctly fails | Accept the realm-local answer; there is no global name registry to consult |
+| Circular chains | a manually installed prototype link that closes a loop would make the walk non-terminating | The runtime rejects the creation of such a cycle, so the chain is always acyclic and ends at `null` |
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+## 8. Complexity
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+**Time.** The walk performs at most one identity comparison and one prototype read per link, so the cost is
 
----
+$$
+O(d),
+$$
 
-## 6. Traps This Instance Exposes
+where $d$ is the number of links from the boxed value up to `null`: the inheritance depth of the value's class plus the built-in links that end at `Object.prototype`. The two guards and the boxing step are constant-time, and the early exit on a match can only shorten the walk. In the traced instance $d = 3$ and the answer is produced after two comparisons; in a 64-level hierarchy the loop runs at most 64 times with no stack growth. The language's own `instanceof` operator has the same asymptotic cost but the wrong semantics for primitives and an exception path for invalid targets, so matching the contract costs nothing asymptotically.
 
-- **Native `instanceof`:** Concise for objects, but it rejects primitives such as five against `Number` and therefore does not meet this contract.
-- **Compare `constructor` properties:** A constructor property can be overwritten or inherited and does not reliably prove prototype-chain membership.
-- **Recursive prototype walk:** Correct but uses $O(h)$ call-stack space without improving clarity.
-- **`null` and `undefined` object input:** Both return false before boxing.
-- **Non-function class input:** It returns false rather than attempting an invalid class relationship.
-- **Primitive number, string, or Boolean:** `Object(obj)` exposes the wrapper prototype required by the problem.
-- **Subclass instance:** Walking the complete chain finds superclass prototypes.
-- **Constructor passed as object:** A constructor function follows `Function.prototype`, not its own instance prototype.
-- **Null-prototype object:** Its chain ends immediately and returns false.
-- **Prototype identity:** Structurally similar prototype objects are not interchangeable; strict identity is required.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(h)$. Let $h$ be the number of prototype links from the boxed object to null. The loop examines at most $h$ prototypes, so time complexity is $O(h)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** One cursor holds the current link and one variable holds the target prototype: $O(1)$ extra space, independent of chain depth. The chain itself belongs to the input and is never copied or materialized as a list, which is why deep hierarchies are handled without allocating per level.

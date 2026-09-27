@@ -127,6 +127,31 @@ $$
 
 ---
 
+### Contrast Trace: A Fully Descending Array
+
+The traced instance repairs two different parities once each, which can hide the
+fact that a violation at index $i$ always leaves the *previous* pair repaired. A
+strictly descending array makes that preservation visible, because every repair
+lands on an even index and each new value is placed below the peak that was
+already settled.
+
+| Step $i$ | Parity | Elements Compared | Status | Action | Array After Step | Relation at $i - 1$ After the Step |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | Even | $6 \le 5$ | Violated | Swap | `[5, 6, 4, 3, 2, 1]` | No earlier pair exists |
+| 1 | Odd | $6 \ge 4$ | Satisfied | None | `[5, 6, 4, 3, 2, 1]` | $5 \le 6$ still holds |
+| 2 | Even | $4 \le 3$ | Violated | Swap | `[5, 6, 3, 4, 2, 1]` | $6 \ge 3$ still holds: the promoted value $4$ leaves index 1 unchanged |
+| 3 | Odd | $4 \ge 2$ | Satisfied | None | `[5, 6, 3, 4, 2, 1]` | $3 \le 4$ still holds |
+| 4 | Even | $2 \le 1$ | Violated | Swap | `[5, 6, 3, 4, 1, 2]` | $4 \ge 1$ still holds |
+| End | — | — | — | — | `[5, 6, 3, 4, 1, 2]` | Full sequence $5 \le 6 \ge 3 \le 4 \ge 1 \le 2$ |
+
+Every repair moved the *smaller* of the two values into the even index, which is
+exactly the shape a valley must have, and the value it displaced into the odd
+index was necessarily at least as large as the settled peak to its left. That is
+the inductive preservation argument in concrete numbers: three swaps, no
+backtracking, and each completed prefix stays valid forever.
+
+---
+
 ## 4. Complete Execution Trace
 
 ```text
@@ -150,6 +175,29 @@ Result: [3, 5, 1, 6, 2, 4]
 | 4 | Even | $\text{nums}[4] \le \text{nums}[5]$ | $2 \le 4$ | Satisfied | None | `[3, 5, 1, 6, 2, 4]` |
 | **End** | - | - | - | - | - | **`[3, 5, 1, 6, 2, 4]` (Wiggled)** |
 
+### Boundary Census Across Input Shapes
+
+The single pass is uniform, but the number and parity of its repairs depend on
+the input's shape. Sorted indices below follow the same convention as the trace
+table: a position $i$ means the pair $(\text{nums}[i], \text{nums}[i + 1])$.
+
+| Input | Length | Indices repaired | Swaps | Result | What this shape proves |
+|:---|:---:|:---:|:---:|:---|:---|
+| `[7]` | 1 | none | 0 | `[7]` | With no pair to inspect the loop body never runs; the array is trivially wiggled |
+| `[10000, 0]` | 2 | $0$ | 1 | `[0, 10000]` | The shortest real repair: an even index holding the larger value must be swapped |
+| `[7, 7, 7, 7, 7]` | 5 | none | 0 | `[7, 7, 7, 7, 7]` | Equal neighbors satisfy both $\le$ and $\ge$, so duplicates alone never force a swap |
+| `[1, 5, 2, 6]` | 4 | none | 0 | `[1, 5, 2, 6]` | An input that is already wiggled costs one comparison per pair and zero writes |
+| `[3, 5, 2, 1, 6, 4]` | 6 | $2, 3$ | 2 | `[3, 5, 1, 6, 2, 4]` | Repairs at both parities, which is why preservation must be argued for each of them |
+| `[6, 5, 4, 3, 2, 1]` | 6 | $0, 2, 4$ | 3 | `[5, 6, 3, 4, 1, 2]` | Every even index violates, so the pass performs one repair per pair |
+| `[1, 2, 3, 4, 5, 6]` | 6 | $1, 3$ | 2 | `[1, 3, 2, 5, 4, 6]` | The mirror image: only the odd indices violate, and the first pair is already correct |
+| `[2, 1, 1, 2, 2, 1]` | 6 | $0, 4$ | 2 | `[1, 2, 1, 2, 1, 2]` | Index 3 is left alone because $2 \ge 2$ holds with equality, so non-strict comparison saves a swap |
+| `[10000, 0, 10000, 0, 10000, 0, 10000]` | 7 | $0, 2, 4$ | 3 | `[0, 10000, 0, 10000, 0, 10000, 10000]` | Odd length: the last pair is settled by the odd-index rule, and the final two equal values need no repair |
+
+Notice that the swap count follows the *order* of the input rather than its
+length: the descending and alternating arrays need one repair per pair, while an
+already wiggled array needs none. The pass never revisits an index, which is
+precisely why the total work stays linear even in the worst shapes above.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -165,6 +213,19 @@ Result: [3, 5, 1, 6, 2, 4]
 - **Sorting Overhead ($O(N \log N)$):** Sorting the entire array and then interweaving elements takes $O(N \log N)$ time. The single-pass greedy swap method runs in strictly $O(N)$ time.
 - **Strict Inequalities vs Non-Strict:** Wiggle Sort I uses $\le$ and $\ge$, which makes the greedy local swap algorithm complete and universally applicable. In contrast, Wiggle Sort II (LeetCode 324) requires strict inequalities ($<$ and $>$) and permits duplicates, necessitating virtual index mapping around the median.
 - **Off-by-One Loop Boundary:** The loop must iterate up to index $N - 2$ (so the comparison `nums[i + 1]` stays within bounds).
+
+### Strategy Comparison on `[3, 5, 2, 1, 6, 4]`
+
+All four rows below produce a legal wiggle ordering except the third, which is the
+tempting simplification that fails. Comparing them on one instance keeps the
+tradeoff concrete rather than asymptotic.
+
+| Strategy | Mechanism | Result on this instance | Time | Auxiliary space | Outcome |
+|:---|:---|:---|:---:|:---:|:---|
+| Parity-aware adjacent swap (this lesson) | Inspect each adjacent pair once and swap only when that pair's required parity relation is violated | `[3, 5, 1, 6, 2, 4]` | $O(N)$ | $O(1)$ | Correct in a single pass with no extra storage |
+| Sort, then exchange each odd-even pair | Sort ascending, then swap positions $1 \leftrightarrow 2$, $3 \leftrightarrow 4$, and so on | `[1, 3, 2, 5, 4, 6]` | $O(N \log N)$ | $O(N)$ | Correct but pays a full sort for an ordering that needs no global order |
+| Swap whenever an adjacent descent appears | Ignore parity and swap any pair with $\text{nums}[i] > \text{nums}[i + 1]$ | `[3, 2, 1, 5, 4, 6]` | $O(N)$ | $O(1)$ | Wrong: the first swap puts $2$ before $3$ and breaks the already-settled pair $3 \le 5$, and the pass never returns to fix it |
+| Counting-sort buckets by value | Exploit $0 \le \text{nums}[i] \le 10^{4}$: tally each value, then re-emit valleys and peaks from the tally | valid ordering | $O(N + V)$ with $V = 10^{4} + 1$ | $O(V)$ | Correct and linear, but $O(V)$ memory is worse than $O(1)$ when $N$ is small, so it only pays off for very large arrays |
 
 ---
 
