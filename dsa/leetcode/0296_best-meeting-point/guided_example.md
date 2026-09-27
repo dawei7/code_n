@@ -157,9 +157,9 @@ Total Distance = 2 + 4 = 6
 
 | Friend Index | Home Coordinates $(r_i, c_i)$ | Vertical Dist to $X^* = 0$ | Horizontal Dist to $Y^* = 2$ | Total Manhattan Distance |
 |:---:|:---:|:---:|:---:|:---:|
-| 1 | $(0, 0)$ | $|0 - 0| = 0$ | $|0 - 2| = 2$ | $0 + 2 = 2$ |
-| 2 | $(0, 4)$ | $|0 - 0| = 0$ | $|4 - 2| = 2$ | $0 + 2 = 2$ |
-| 3 | $(2, 2)$ | $|2 - 0| = 2$ | $|2 - 2| = 0$ | $2 + 0 = 2$ |
+| 1 | $(0, 0)$ | $\lvert 0 - 0 \rvert = 0$ | $\lvert 0 - 2 \rvert = 2$ | $0 + 2 = 2$ |
+| 2 | $(0, 4)$ | $\lvert 0 - 0 \rvert = 0$ | $\lvert 4 - 2 \rvert = 2$ | $0 + 2 = 2$ |
+| 3 | $(2, 2)$ | $\lvert 2 - 0 \rvert = 2$ | $\lvert 2 - 2 \rvert = 0$ | $2 + 0 = 2$ |
 | **Total** | - | **$D_{\text{row}} = 2$** | **$D_{\text{col}} = 4$** | **$D_{\text{total}} = \mathbf{6}$** |
 
 ---

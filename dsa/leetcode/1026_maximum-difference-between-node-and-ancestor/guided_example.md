@@ -184,7 +184,7 @@ All nodes visited. Final maximum difference: $ans = \mathbf{7}$.
 
 ## 4. Ancestral Path Extremes Trace Table
 
-| Node $u$ | Value $u.val$ | Ancestral Path | Inherited $(mi, mx)$ | Evaluated $|mi - u.val|$ | Evaluated $|mx - u.val|$ | Updated $ans$ | Next $(mi, mx)$ |
+| Node $u$ | Value $u.val$ | Ancestral Path | Inherited $(mi, mx)$ | Evaluated $\lvert mi - u.val \rvert$ | Evaluated $\lvert mx - u.val \rvert$ | Updated $ans$ | Next $(mi, mx)$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **Root** | $8$ | Root | $(8, 8)$ | $0$ | $0$ | $0$ | $(8, 8)$ |
 | **Node 3** | $3$ | $8 \to 3$ | $(8, 8)$ | $5$ | $5$ | **$5$** | $(3, 8)$ |
@@ -213,7 +213,7 @@ All nodes visited. Final maximum difference: $ans = \mathbf{7}$.
 | Scenario | Input Pattern | Behavior | Trapped Risk |
 |---|---|---|---|
 | Sibling Extreme Separation | Node with 0 and sibling with 100 | Sibling values never enter the same path envelope; valid ancestor differences only. | Confusing tree diameter with ancestor difference. |
-| Two-Node Tree | `root = [1, 2]` | Child $2$ compares against root $1$; returns $|1 - 2| = 1$. | Base case edge failures. |
+| Two-Node Tree | `root = [1, 2]` | Child $2$ compares against root $1$; returns $\lvert 1 - 2 \rvert = 1$. | Base case edge failures. |
 | All Equal Values | `root = [5, 5, 5]` | All differences evaluate to $0$; returns $0$. | Negative or uninitialized difference. |
 | Deep Skewed Tree | $N = 5000$ nodes in a line | Runs in $\mathcal{O}(N)$ using scalar registers without stack overflow. | $\mathcal{O}(N^2)$ memory copying lists. |
 

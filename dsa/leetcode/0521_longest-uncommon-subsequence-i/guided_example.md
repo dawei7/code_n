@@ -129,7 +129,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| String $a$ | String $b$ | $a == b$? | $|a|$ | $|b|$ | Action Taken | Result |
+| String $a$ | String $b$ | $a == b$? | $\lvert a \rvert$ | $\lvert b \rvert$ | Action Taken | Result |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `"aba"` | `"cdc"` | False | $3$ | $3$ | $\max(3, 3)$ | **$3$** |
 | `"aaa"` | `"bbb"` | False | $3$ | $3$ | $\max(3, 3)$ | **$3$** |

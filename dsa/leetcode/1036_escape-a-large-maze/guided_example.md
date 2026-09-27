@@ -188,7 +188,7 @@ Short-circuit evaluation: `dfs(source, target)` is $\mathbf{False} \implies$ ret
 
 | Scenario | Input Pattern | Behavior | Trapped Risk |
 |---|---|---|---|
-| Zero Blockers | $blocked = []$ | $m = 0$; first step has $|vis| = 1 > 0$; immediately returns `True`. | Attempting to traverse the $10^{12}$ grid. |
+| Zero Blockers | $blocked = []$ | $m = 0$; first step has $\lvert vis \rvert = 1 > 0$; immediately returns `True`. | Attempting to traverse the $10^{12}$ grid. |
 | Single Blocker | $B = 1$ | $m = 0$; single obstacle cannot trap any cell; returns `True`. | Overestimating search bounds. |
 | One-Way Escape | Source is open, Target is trapped | Source DFS returns True; Target DFS returns False; correctly returns `False`. | Only checking search from source. |
 | Endpoints Immediately Adjacent | Distance is 1 | Search directly finds target on first neighbor check; returns `True`. | Redundant search past target. |

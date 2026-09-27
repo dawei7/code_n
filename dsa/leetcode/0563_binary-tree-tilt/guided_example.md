@@ -186,7 +186,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Node Visited | Node Value | Left Sum $l$ | Right Sum $r$ | Local Tilt $|l - r|$ | Running Total Tilt $ans$ | Returned Subtree Sum |
+| Node Visited | Node Value | Left Sum $l$ | Right Sum $r$ | Local Tilt $\lvert l - r \rvert$ | Running Total Tilt $ans$ | Returned Subtree Sum |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Node 3 | $3$ | $0$ | $0$ | $0$ | $0$ | $3$ |
 | Node 5 | $5$ | $0$ | $0$ | $0$ | $0$ | $5$ |

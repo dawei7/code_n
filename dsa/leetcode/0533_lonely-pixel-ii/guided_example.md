@@ -178,12 +178,12 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Column $j$ | Rows Containing `'B'` ($g[j]$) | Column Count $|g[j]|$ | First Row Count $rows[i_1]$ | Rows Identical? | Valid Column? | Contribution to $ans$ |
+| Column $j$ | Rows Containing `'B'` ($g[j]$) | Column Count $\lvert g[j] \rvert$ | First Row Count $rows[i_1]$ | Rows Identical? | Valid Column? | Contribution to $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **$1$** | $[0, 1, 2]$ | $3$ | $3$ | **Yes** | **Yes** | $+3$ (Total: 3) |
-| $2$ | $[3]$ | $1$ | $2$ | — | No ($|g| \ne 3$) | $0$ |
+| $2$ | $[3]$ | $1$ | $2$ | — | No ($\lvert g \rvert \ne 3$) | $0$ |
 | **$3$** | $[0, 1, 2]$ | $3$ | $3$ | **Yes** | **Yes** | $+3$ (Total: 6) |
-| $4$ | $[0, 1, 2, 3]$ | $4$ | $3$ | No ($rows[3] \ne rows[0]$) | No ($|g| \ne 3$) | $0$ |
+| $4$ | $[0, 1, 2, 3]$ | $4$ | $3$ | No ($rows[3] \ne rows[0]$) | No ($\lvert g \rvert \ne 3$) | $0$ |
 | **Final** | — | — | — | — | — | **Result: $6$** |
 
 ---

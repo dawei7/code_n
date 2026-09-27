@@ -142,7 +142,7 @@ Result: 3
 | 1 | `"makes"` | $\text{is\_same}$ shift | -1 | 1 | - | $\infty$ |
 | 2 | `"perfect"` | None | -1 | 1 | - | $\infty$ |
 | 3 | `"coding"` | None | -1 | 1 | - | $\infty$ |
-| **4** | **`"makes"`** | **$\text{is\_same}$ shift** | **1** | **4** | **$|1 - 4| = 3$** | **$\mathbf{3}$ (Final Answer)** |
+| **4** | **`"makes"`** | **$\text{is\_same}$ shift** | **1** | **4** | **$\lvert 1 - 4 \rvert = 3$** | **$\mathbf{3}$ (Final Answer)** |
 
 ---
 

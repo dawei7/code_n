@@ -157,7 +157,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Candidate $s$ (Index $i$) | Tested Against Other Strings $t$ | $check(s, t)$ Result | Is $s$ Uncommon? | Length $|s|$ | Running $ans$ |
+| Candidate $s$ (Index $i$) | Tested Against Other Strings $t$ | $check(s, t)$ Result | Is $s$ Uncommon? | Length $\lvert s \rvert$ | Running $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | **`"aba"` ($0$)** | `"cdc"`, `"eae"` | All `False` | **Yes** | $3$ | **$3$** |
 | **`"cdc"` ($1$)** | `"aba"`, `"eae"` | All `False` | **Yes** | $3$ | **$3$** |

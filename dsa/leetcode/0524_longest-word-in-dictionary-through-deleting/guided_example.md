@@ -165,7 +165,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Word $t$ | Is Subsequence of $s$? | Word Length $|t|$ | Current Best $ans$ | Update Condition Satisfied? | New Best $ans$ |
+| Word $t$ | Is Subsequence of $s$? | Word Length $\lvert t \rvert$ | Current Best $ans$ | Update Condition Satisfied? | New Best $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | **`"ale"`** | **True** | $3$ | `""` (Length 0) | Yes ($3 > 0$) | `"ale"` |
 | **`"apple"`** | **True** | $5$ | `"ale"` (Length 3) | Yes ($5 > 3$) | **`"apple"`** |

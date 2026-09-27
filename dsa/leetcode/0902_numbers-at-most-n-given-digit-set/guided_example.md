@@ -121,7 +121,7 @@ We trace $n = 100$ ($K = 3$, $S = \text{"100"}$) with $D = 4$:
 
 ### Phase 2: Equal Length ($L = 3$, target prefix $S = \text{"100"}$)
 
-| Index $i$ | Target Char $S[i]$ | Digits in Set $c < S[i]$ | Count Added ($|\{c < S[i]\}| \times D^{K-1-i}$) | Exact Match $S[i] \in \text{digits}$? | Action / State Transition |
+| Index $i$ | Target Char $S[i]$ | Digits in Set $c < S[i]$ | Count Added ($\lvert \{c < S[i]\} \rvert \times D^{K-1-i}$) | Exact Match $S[i] \in \text{digits}$? | Action / State Transition |
 |:---:|:---:|:---:|:---:|:---:|:---|
 | **0** | `'1'` | None ($c < 1$ is empty) | $0 \times 4^2 = 0$ | Yes (`'1'` is in set) | Prefix matches `'1'`. Advance to index $1$. |
 | **1** | `'0'` | None ($c < 0$ is empty) | $0 \times 4^1 = 0$ | **No** (`'0'` not in digits!) | Prefix broken. **Halt Phase 2.** |

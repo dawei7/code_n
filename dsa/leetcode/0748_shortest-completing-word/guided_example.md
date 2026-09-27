@@ -167,7 +167,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Word $w$ | Length $|w|$ | Pruned by Length? | 's' Count | 'p' Count | 't' Count | Valid? | Best Word $ans$ |
+| Word $w$ | Length $\lvert w \rvert$ | Pruned by Length? | 's' Count | 'p' Count | 't' Count | Valid? | Best Word $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | `"step"` | $4$ | No | $1 < 2$ (Fail) | $1$ | $1$ | No | None |
 | **`"steps"`** | **$5$** | **No** | **$2 \ge 2$** | **$1 \ge 1$** | **$1 \ge 1$** | **Yes** | **`"steps"`** |

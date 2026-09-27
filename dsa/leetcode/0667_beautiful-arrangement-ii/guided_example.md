@@ -173,8 +173,8 @@ We trace $n = 3, k = 2$:
 | Position Placed | Pointer Used | Value Chosen | Array State After | Adjacent Difference Created | Distinct Differences So Far |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | $0$ | Left ($l$) | $1$ | `[1]` | None (First element) | $\emptyset$ |
-| $1$ | Right ($r$) | $3$ | `[1, 3]` | $|1 - 3| = \mathbf{2}$ | $\{2\}$ |
-| **$2$** | **Residual Right ($r$)** | **$2$** | **`[1, 3, 2]`** | **$|3 - 2| = \mathbf{1}$** | **`{1, 2}` (Size 2)** |
+| $1$ | Right ($r$) | $3$ | `[1, 3]` | $\lvert 1 - 3 \rvert = \mathbf{2}$ | $\{2\}$ |
+| **$2$** | **Residual Right ($r$)** | **$2$** | **`[1, 3, 2]`** | **$\lvert 3 - 2 \rvert = \mathbf{1}$** | **`{1, 2}` (Size 2)** |
 
 ---
 

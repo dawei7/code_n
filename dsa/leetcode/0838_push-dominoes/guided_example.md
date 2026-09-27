@@ -205,7 +205,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Queue Step | Domino $i$ | Forces Received | $|force[i]|$ | Final State $ans[i]$ | Propagation Action |
+| Queue Step | Domino $i$ | Forces Received | $\lvert force[i] \rvert$ | Final State $ans[i]$ | Propagation Action |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | $t = 0$ | $0$ | $[\text{'R'}]$ | $1$ | `'R'` | None (1 occupied) |
 | $t = 0$ | $1$ | $[\text{'R'}]$ | $1$ | `'R'` | Pushes 2 at $t = 1$ with `'R'` |

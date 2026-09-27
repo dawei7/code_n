@@ -152,7 +152,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Step | Worker $(q, w)$ | Ratio $r = w/q$ | Running $tot$ | Max-Heap State $H$ | Team Size $|H|$ | Group Cost $r \times tot$ | Running Minimum $ans$ | Action After Evaluation |
+| Step | Worker $(q, w)$ | Ratio $r = w/q$ | Running $tot$ | Max-Heap State $H$ | Team Size $\lvert H \rvert$ | Group Cost $r \times tot$ | Running Minimum $ans$ | Action After Evaluation |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
 | $1$ | $(20, 50)$ | $2.5$ | $20$ | $[20]$ | $1$ | — | $\infty$ | Await more workers |
 | $2$ | $(5, 30)$ | $6.0$ | $25$ | $[20, 5]$ | $2$ | $6.0 \times 25 = 150.0$ | $150.0$ | Pop max $20$, $tot \to 5$ |

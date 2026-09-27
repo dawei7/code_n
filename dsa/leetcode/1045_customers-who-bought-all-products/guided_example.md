@@ -186,7 +186,7 @@ Resulting rows: `[[1], [3]]`.
 
 ## 4. Customer Group Aggregation Trace Table
 
-| Customer ID | Transaction Keys | Distinct Products Set $P_c$ | $\text{COUNT(DISTINCT)}$ | Catalog Size $|Product|$ | Filter Condition Met? | Emitted Output |
+| Customer ID | Transaction Keys | Distinct Products Set $P_c$ | $\text{COUNT(DISTINCT)}$ | Catalog Size $\lvert Product \rvert$ | Filter Condition Met? | Emitted Output |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **$1$** | $[5, 6]$ | $\{5, 6\}$ | **$2$** | **$2$** | $2 == 2$ (**Yes**) | **Included ($1$)** |
 | **$2$** | $[6]$ | $\{6\}$ | **$1$** | **$2$** | $1 == 2$ (No) | Discarded |

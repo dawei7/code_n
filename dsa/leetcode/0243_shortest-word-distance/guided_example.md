@@ -130,13 +130,13 @@ i = 4 ("makes"):    idx1 = 4, idx2 = 3  -> dist = |4 - 3| = 1 -> min_dist = 1
 Result: 1
 ```
 
-| Index $i$ | Word $w$ | Target Match | Latest $\text{idx}_1$ (`"makes"`) | Latest $\text{idx}_2$ (`"coding"`) | Candidate $|\text{idx}_1 - \text{idx}_2|$ | Best $\text{min\_dist}$ |
+| Index $i$ | Word $w$ | Target Match | Latest $\text{idx}_1$ (`"makes"`) | Latest $\text{idx}_2$ (`"coding"`) | Candidate $\lvert \text{idx}_1 - \text{idx}_2 \rvert$ | Best $\text{min\_dist}$ |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|
 | 0 | `"practice"` | None | -1 | -1 | - | $\infty$ |
 | 1 | `"makes"` | $\text{word1}$ | **1** | -1 | - | $\infty$ |
 | 2 | `"perfect"` | None | 1 | -1 | - | $\infty$ |
-| **3** | **`"coding"`** | **$\text{word2}$** | **1** | **3** | **$|1 - 3| = 2$** | **2** |
-| **4** | **`"makes"`** | **$\text{word1}$** | **4** | **3** | **$|4 - 3| = 1$** | **$\mathbf{1}$ (Global Min)** |
+| **3** | **`"coding"`** | **$\text{word2}$** | **1** | **3** | **$\lvert 1 - 3 \rvert = 2$** | **2** |
+| **4** | **`"makes"`** | **$\text{word1}$** | **4** | **3** | **$\lvert 4 - 3 \rvert = 1$** | **$\mathbf{1}$ (Global Min)** |
 
 ---
 

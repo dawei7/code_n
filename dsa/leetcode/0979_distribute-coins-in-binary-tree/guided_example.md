@@ -160,7 +160,7 @@ $$
 |:---:|:---:|:---:|:---:|:---:|:---:|:---|
 | **$N_1$ (Left)** | $0$ | $0$ | $0$ | $0$ | $\mathbf{-1}$ | Needs 1 coin from parent |
 | **$N_2$ (Right)**| $0$ | $0$ | $0$ | $0$ | $\mathbf{-1}$ | Needs 1 coin from parent |
-| **$N_0$ (Root)** | $3$ | $-1$ | $-1$ | $|-1| + |-1| = \mathbf{2}$ | $\mathbf{0}$ | Conserves global coin count |
+| **$N_0$ (Root)** | $3$ | $-1$ | $-1$ | $\lvert -1 \rvert + \lvert -1 \rvert = \mathbf{2}$ | $\mathbf{0}$ | Conserves global coin count |
 
 ---
 
@@ -179,7 +179,7 @@ $$
 | Scenario | Input Pattern | Behavior | Trapped Risk |
 |---|---|---|---|
 | Single Node | `root = [1]` | Children are null; $0 + (1 - 1) = 0 \implies ans = 0$. | Unnecessary move counting. |
-| Surplus at Deep Leaf | `[0, 0, null, 4]` | Surplus propagates up the branch; each step adds $|+3| = 3$. | Forgetting multi-hop transfer costs. |
+| Surplus at Deep Leaf | `[0, 0, null, 4]` | Surplus propagates up the branch; each step adds $\lvert +3 \rvert = 3$. | Forgetting multi-hop transfer costs. |
 | Already Balanced Tree | `[1, 1, 1]` | All net balances are $0 \implies ans = 0$. | Spurious non-zero moves. |
 | Skewed Chain | Vertical line | Balances propagate linearly along chain; correctly sums absolute flows. | Stack overflow or missing parent edge. |
 

@@ -157,7 +157,7 @@ Visit 3: dist = |3 - 3.714286| = 0.714286 > 0.285714 -> closest remains 4
 Final Result: 4
 ```
 
-| Step | Current Node | Node Value | Distance to Target ($|\text{val} - 3.714286|$) | New Best? | Best Value ($\text{closest}$) | Next Direction |
+| Step | Current Node | Node Value | Distance to Target ($\lvert \text{val} - 3.714286 \rvert$) | New Best? | Best Value ($\text{closest}$) | Next Direction |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---|
 | **1** | Root | 4 | $0.285714$ | **Yes** | **4** | Left ($3.714286 < 4$) |
 | 2 | Left | 2 | $1.714286$ | No | 4 | Right ($3.714286 > 2$) |

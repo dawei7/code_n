@@ -141,7 +141,7 @@ Disappeared numbers: **`[5, 6]`**.
 
 ## 4. Complete Execution Trace
 
-| Scanned Element | Target Index $|x| - 1$ | Target Value Before | Target Value After | State Meaning Encoded |
+| Scanned Element | Target Index $\lvert x \rvert - 1$ | Target Value Before | Target Value After | State Meaning Encoded |
 |:---:|:---:|:---:|:---:|:---|
 | $4$ | $3$ | $7$ | **$-7$** | Number 4 observed |
 | $3$ | $2$ | $2$ | **$-2$** | Number 3 observed |

@@ -177,7 +177,7 @@ We trace the sample data:
 
 ## 4. Complete Execution Trace
 
-| Point $P_1$ | Point $P_2$ | Point $P_3$ | Displacement $\vec{u}, \vec{v}$ | Determinant $|u_x v_y - u_y v_x|$ | Triangle Area | Running Max $ans$ |
+| Point $P_1$ | Point $P_2$ | Point $P_3$ | Displacement $\vec{u}, \vec{v}$ | Determinant $\lvert u_x v_y - u_y v_x \rvert$ | Triangle Area | Running Max $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | $(0, 0)$ | $(0, 1)$ | $(1, 0)$ | $(0, 1), (1, 0)$ | $1$ | $0.5$ | $0.5$ |
 | $(0, 0)$ | $(0, 1)$ | $(0, 2)$ | $(0, 1), (0, 2)$ | $0$ | $0.0$ | $0.5$ |

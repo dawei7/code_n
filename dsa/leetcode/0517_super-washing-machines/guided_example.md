@@ -177,7 +177,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Machine Index $i$ | Initial Dresses | Net Surplus $x = val - k$ | Prefix Flow $s$ | Boundary Cut $|s|$ | Output Bottleneck $x$ | Running Max $ans$ |
+| Machine Index $i$ | Initial Dresses | Net Surplus $x = val - k$ | Prefix Flow $s$ | Boundary Cut $\lvert s \rvert$ | Output Bottleneck $x$ | Running Max $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **$0$** | $1$ | $-1$ | $-1$ | $1$ | $-1$ | $1$ |
 | **$1$** | $0$ | $-2$ | $-3$ | **$3$** | $-2$ | **$3$** |
@@ -185,7 +185,7 @@ $$
 | **Result** | — | — | — | — | — | **$3$** |
 
 ### Trace on Center Surplus Input $[0, 3, 0]$ ($k = 1$):
-| Machine Index $i$ | Initial Dresses | Net Surplus $x$ | Prefix Flow $s$ | Boundary Cut $|s|$ | Output Bottleneck $x$ | Running Max $ans$ |
+| Machine Index $i$ | Initial Dresses | Net Surplus $x$ | Prefix Flow $s$ | Boundary Cut $\lvert s \rvert$ | Output Bottleneck $x$ | Running Max $ans$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **$0$** | $0$ | $-1$ | $-1$ | $1$ | $-1$ | $1$ |
 | **$1$** | $3$ | $+2$ | $+1$ | $1$ | **$2$** | **$2$** |

@@ -172,7 +172,7 @@ Yes: `len(q) == 0` evaluates to **`true`**.
 
 ## 4. Complete Execution Trace
 
-| Iteration | Initial Queue $Q$ | Queue Size $|Q|$ | Dequeued Node $u$ | Neighbors Updated | New In-Degrees | Enqueued Nodes | Final Queue State |
+| Iteration | Initial Queue $Q$ | Queue Size $\lvert Q \rvert$ | Dequeued Node $u$ | Neighbors Updated | New In-Degrees | Enqueued Nodes | Final Queue State |
 |:---:|:---:|:---:|:---:|:---|:---|:---:|:---:|
 | **Init** | $[1]$ | $1$ | — | — | $\{1:0, 2:1, 3:2\}$ | — | $[1]$ |
 | **1** | $[1]$ | **$1$ (Unique)** | $1$ | $2, 3$ | $indeg[2]: 1 \to 0$<br>$indeg[3]: 2 \to 1$ | $2$ | $[2]$ |

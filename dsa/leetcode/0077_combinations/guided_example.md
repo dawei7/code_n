@@ -94,7 +94,7 @@ Search complete. Emitted combinations: $[[1, 2], [1, 3], [1, 4], [2, 3], [2, 4],
 
 ## 4. Complete Execution Trace
 
-| DFS Step | Action Taken | Candidate $i$ | Resulting Path | Condition Check ($|\text{path}| == 2$) | Emitted Output |
+| DFS Step | Action Taken | Candidate $i$ | Resulting Path | Condition Check ($\lvert \text{path} \rvert == 2$) | Emitted Output |
 |:---:|:---|:---:|:---:|:---:|:---:|
 | 1 | Push | 1 | `[1]` | False | - |
 | 2 | Push | 2 | `[1, 2]` | **True (Base Case)** | **`[1, 2]`** |

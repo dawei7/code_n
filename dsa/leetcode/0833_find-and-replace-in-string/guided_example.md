@@ -203,9 +203,9 @@ $$
 
 | Cursor Index $i$ | Dispatch Tag $d[i]$ | Matched Source | Target Appended | Cursor Increment | Next Cursor Position |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| $0$ | $0$ | `"a"` | `"eee"` | $+1$ ($|\text{"a"}|$) | $1$ |
+| $0$ | $0$ | `"a"` | `"eee"` | $+1$ ($\lvert \text{"a"} \rvert$) | $1$ |
 | $1$ | $-1$ | None | `"b"` (Original) | $+1$ | $2$ |
-| **$2$** | **$1$** | **`"cd"`** | **`"ffff"`** | **$+2$ ($|\text{"cd"}|$)** | **`4` (End)** |
+| **$2$** | **$1$** | **`"cd"`** | **`"ffff"`** | **$+2$ ($\lvert \text{"cd"} \rvert$)** | **`4` (End)** |
 | **Final** | — | — | — | — | **`"eeebffff"`** |
 
 ---

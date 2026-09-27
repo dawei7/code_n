@@ -154,7 +154,7 @@ Loop completes without shortages $\implies$ return $\mathbf{true}$.
 
 ## 4. Absolute-Value Sorting Trace Table
 
-| Processed Key $x$ | Absolute Value $|x|$ | Current $freq[x]$ | Required Double $2x$ | Available $freq[2x]$ | Check $freq[2x] \ge freq[x]$ | Updated $freq[2x]$ | Status |
+| Processed Key $x$ | Absolute Value $\lvert x \rvert$ | Current $freq[x]$ | Required Double $2x$ | Available $freq[2x]$ | Check $freq[2x] \ge freq[x]$ | Updated $freq[2x]$ | Status |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
 | **$-2$** | $2$ | $1$ | $-4$ | $1$ | $1 \ge 1$ (Pass) | $0$ | Paired $(-2, -4)$ |
 | **$2$** | $2$ | $1$ | $4$ | $1$ | $1 \ge 1$ (Pass) | $0$ | Paired $(2, 4)$ |
@@ -179,7 +179,7 @@ Loop completes without shortages $\implies$ return $\mathbf{true}$.
 |---|---|---|---|
 | Odd Zeroes | `[0, 0, 0, 1]` | `freq[0] & 1 == 1`; returns `false` before sorting. | Infinite loop or missed zero pairing. |
 | Zeroes Only | `[0, 0]` | Even zero count; returns `true`. | Special-casing zero unnecessarily. |
-| Negative Doubling | `[-6, -3]` | $|-3| = 3 < |-6| = 6 \implies -3$ correctly claims $-6$. | Looking for $-1.5$ or sorting numerically. |
+| Negative Doubling | `[-6, -3]` | $\lvert -3 \rvert = 3 < \lvert -6 \rvert = 6 \implies -3$ correctly claims $-6$. | Looking for $-1.5$ or sorting numerically. |
 | Geometric Chains | `[1, 2, 4, 8]` | $1$ pairs with $2$, $4$ pairs with $8$; returns `true`. | Falsely pairing $(2, 4)$ and leaving $1, 8$ stranded. |
 
 ---

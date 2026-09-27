@@ -106,8 +106,8 @@ We scan the array $\text{strs} = [\text{"flower"}, \text{"flow"}, \text{"flight"
 | Edge Scenario | Input Sample | Failure Mechanism | Output |
 |:---|:---|:---|:---:|
 | Disjoint first character | `["dog", "racecar", "car"]` | Mismatch at column $i = 0$ (`'d'` vs `'r'`) | `""` |
-| Empty string present | `["", "b", "c"]` | Length boundary at $i = 0$ ($0 = |\text{strs}[0]|$) | `""` |
-| One string is a prefix of another | `["ab", "a"]` | Length boundary at $i = 1$ ($1 = |\text{strs}[1]|$) | `"a"` |
+| Empty string present | `["", "b", "c"]` | Length boundary at $i = 0$ ($0 = \lvert \text{strs}[0] \rvert$) | `""` |
+| One string is a prefix of another | `["ab", "a"]` | Length boundary at $i = 1$ ($1 = \lvert \text{strs}[1] \rvert$) | `"a"` |
 | Single string input | `["alone"]` | Outer loop exhausts all columns without checks | `"alone"` |
 
 ---

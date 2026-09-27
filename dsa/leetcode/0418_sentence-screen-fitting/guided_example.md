@@ -162,9 +162,9 @@ $$
 | Row | Start Cursor | Add $cols = 6$ | Target Char $s[cur \pmod 8]$ | Boundary Rollback Needed? | Final $cur$ | Row Content Displayed | Cumulative Words |
 |:---:|:---:|:---:|:---:|:---|:---:|:---|:---:|
 | **Init** | — | — | — | — | $0$ | — | $0$ |
-| **0** | $0$ | $6$ | $s[6] = \text{'e'}$ | No ($s[5] == \text{' '}$) | **$6$** | `|a| |b|c|d| |` | `"a bcd"` |
-| **1** | $6$ | $12$ | $s[4] = \text{'d'}$ | **Yes (rolls back $12 \to 10$)** | **$10$** | `|e| |a| | | |` | `"e a"` (Sentence 1 completed!) |
-| **2** | $10$ | $16$ | $s[0] = \text{'a'}$ | No ($s[7] == \text{' '}$) | **$16$** | `|b|c|d| |e| |` | `"bcd e"` (Sentence 2 completed!) |
+| **0** | $0$ | $6$ | $s[6] = \text{'e'}$ | No ($s[5] == \text{' '}$) | **$6$** | `\|a\| \|b\|c\|d\| \|` | `"a bcd"` |
+| **1** | $6$ | $12$ | $s[4] = \text{'d'}$ | **Yes (rolls back $12 \to 10$)** | **$10$** | `\|e\| \|a\| \| \| \|` | `"e a"` (Sentence 1 completed!) |
+| **2** | $10$ | $16$ | $s[0] = \text{'a'}$ | No ($s[7] == \text{' '}$) | **$16$** | `\|b\|c\|d\| \|e\| \|` | `"bcd e"` (Sentence 2 completed!) |
 | **Done**| — | — | — | — | **$16$** | — | **Result: $16 \mathbin{//} 8 = \mathbf{2}$** |
 
 ---

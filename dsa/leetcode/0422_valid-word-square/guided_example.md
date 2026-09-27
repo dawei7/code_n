@@ -137,7 +137,7 @@ Return **`true`**.
 
 ## 4. Complete Execution Trace
 
-| Coordinate $(i, j)$ | Char $words[i][j]$ | Transposed Row $j$ Valid? ($j < m$) | Transposed Col $i$ Valid? ($i < |words[j]|$) | Transposed Char $words[j][i]$ | Symmetry Match? |
+| Coordinate $(i, j)$ | Char $words[i][j]$ | Transposed Row $j$ Valid? ($j < m$) | Transposed Col $i$ Valid? ($i < \lvert words[j] \rvert$) | Transposed Char $words[j][i]$ | Symmetry Match? |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | $(0, 0)$ | `'a'` | Yes ($0 < 4$) | Yes ($0 < 4$) | `'a'` | **True** |
 | $(0, 1)$ | `'b'` | Yes ($1 < 4$) | Yes ($0 < 4$) | `'b'` | **True** |

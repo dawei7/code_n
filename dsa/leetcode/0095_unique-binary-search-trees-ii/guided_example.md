@@ -133,7 +133,7 @@ Tree 1:        Tree 2:        Tree 3:        Tree 4:        Tree 5:
        3          2                             2          1
 ```
 
-| Root $i$ | Left Range | Left Subtrees Count | Right Range | Right Subtrees Count | Cartesian Pairs ($|L| \times |R|$) | Tree Root Representations |
+| Root $i$ | Left Range | Left Subtrees Count | Right Range | Right Subtrees Count | Cartesian Pairs ($\lvert L \rvert \times \lvert R \rvert$) | Tree Root Representations |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---|
 | 1 | $[1, 0]$ ($\emptyset$) | 1 (`[None]`) | $[2, 3]$ | 2 | $1 \times 2 = 2$ | `[1, null, 2, null, 3]`, `[1, null, 3, 2]` |
 | 2 | $[1, 1]$ ($\{1\}$) | 1 (`[Node(1)]`) | $[3, 3]$ ($\{3\}$) | 1 (`[Node(3)]`) | $1 \times 1 = 1$ | `[2, 1, 3]` |

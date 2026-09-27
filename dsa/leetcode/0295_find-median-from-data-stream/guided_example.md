@@ -171,7 +171,7 @@ Stream: [1, 2, 3, 4, 5]
 Results: [1.0, 1.5, 2.0, 2.5, 3.0]
 ```
 
-| Step | `num` Added | Action Taken | `maxq` (Lower Half) | `minq` (Upper Half) | Heap Sizes $(|\text{maxq}|, |\text{minq}|)$ | Computed Median |
+| Step | `num` Added | Action Taken | `maxq` (Lower Half) | `minq` (Upper Half) | Heap Sizes $(\lvert \text{maxq} \rvert, \lvert \text{minq} \rvert)$ | Computed Median |
 |:---:|:---:|:---|:---:|:---:|:---:|:---:|
 | 1 | 1 | Push to `minq` | `[]` | `[1]` | $(0, 1)$ | **1.0** |
 | 2 | 2 | Push to `minq`, rebalance to `maxq` | `[-1]` | `[2]` | $(1, 1)$ | **1.5** |

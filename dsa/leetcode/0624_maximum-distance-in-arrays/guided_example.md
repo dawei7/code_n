@@ -180,11 +180,11 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Array Index $i$ | Endpoints $[first, last]$ | $|first - mx|$ | $|last - mi|$ | Candidate Max | Running $ans$ | Prefix $mi$ After | Prefix $mx$ After |
+| Array Index $i$ | Endpoints $[first, last]$ | $\lvert first - mx \rvert$ | $\lvert last - mi \rvert$ | Candidate Max | Running $ans$ | Prefix $mi$ After | Prefix $mx$ After |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | $0$ | $[1, 3]$ | (Init) | (Init) | — | $0$ | $1$ | $3$ |
-| $1$ | $[4, 5]$ | $|4 - 3| = 1$ | $|5 - 1| = 4$ | $4$ | **$4$** | $1$ | $5$ |
-| $2$ | $[1, 3]$ | $|1 - 5| = 4$ | $|3 - 1| = 2$ | $4$ | **`4`** | $1$ | $5$ |
+| $1$ | $[4, 5]$ | $\lvert 4 - 3 \rvert = 1$ | $\lvert 5 - 1 \rvert = 4$ | $4$ | **$4$** | $1$ | $5$ |
+| $2$ | $[1, 3]$ | $\lvert 1 - 5 \rvert = 4$ | $\lvert 3 - 1 \rvert = 2$ | $4$ | **`4`** | $1$ | $5$ |
 | **Final** | — | — | — | — | **`4`** | — | — |
 
 ---

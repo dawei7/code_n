@@ -166,7 +166,7 @@ Result: `true`.
 
 ## 4. Stack Reduction State Trace Table
 
-| Step $i$ | Incoming Char $c$ | Stack Before Check | Suffix Inspected $t[-3:]$ | Action Taken | Stack After Action | Stack Length $|t|$ |
+| Step $i$ | Incoming Char $c$ | Stack Before Check | Suffix Inspected $t[-3:]$ | Action Taken | Stack After Action | Stack Length $\lvert t \rvert$ |
 |:---:|:---:|:---|:---:|:---:|:---|:---:|
 | **$0$** | `'a'` | `['a']` | — | None | `['a']` | $1$ |
 | **$1$** | `'a'` | `['a', 'a']` | — | None | `['a', 'a']` | $2$ |

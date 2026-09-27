@@ -111,14 +111,14 @@ The root is balanced if and only if $\text{checkHeight}(\text{root}) \ne -1$.
       Node 4   Node 4
 ```
 
-| Traversal Step | Node Inspected | Left Subtree Height $L$ | Right Subtree Height $R$ | Height Difference $|L - R|$ | Balanced? | Returned Value |
+| Traversal Step | Node Inspected | Left Subtree Height $L$ | Right Subtree Height $R$ | Height Difference $\lvert L - R \rvert$ | Balanced? | Returned Value |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 1 | Node 4 | 0 | 0 | 0 | Yes | 1 |
 | 2 | Left Node 3 | 1 (Node 4) | 1 (Node 4) | 0 | Yes | 2 |
 | 3 | Right Node 3 | 0 | 0 | 0 | Yes | 1 |
 | 4 | Left Node 2 | 2 (Node 3) | 1 (Node 3) | 1 | Yes | 3 |
 | 5 | Right Node 2 | 0 | 0 | 0 | Yes | 1 |
-| **6** | **Root 1** | **3 (Left Node 2)** | **1 (Right Node 2)** | **$|3 - 1| = 2$** | **No ($> 1$)** | **$-1$ (Error)** |
+| **6** | **Root 1** | **3 (Left Node 2)** | **1 (Right Node 2)** | **$\lvert 3 - 1 \rvert = 2$** | **No ($> 1$)** | **$-1$ (Error)** |
 | Exit | Root Return | - | - | - | - | **False** |
 
 ---

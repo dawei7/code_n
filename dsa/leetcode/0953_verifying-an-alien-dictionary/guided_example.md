@@ -135,8 +135,8 @@ $'w': 0, \; 'o': 1, \; 'r': 2, \; 'l': 3, \; 'd': 4, \; 'a': 5, \dots$
 |:---:|:---|:---|:---:|:---:|:---:|:---:|:---|
 | Sample 1 | `"hello"` | `"leetcode"` | $0$ | `'h'` (Rank 0) | `'l'` (Rank 1) | $0 < 1$ (Valid) | Accept Pair $\to$ **`true`** |
 | Sample 2 | `"word"` | `"world"` | $3$ | `'d'` (Rank 4) | `'l'` (Rank 3) | $4 > 3$ (**Invalid**) | Reject $\to$ **`false`** |
-| Sample 3 | `"apple"` | `"app"` | None (Prefix) | End of $W_2$ | — | $|W_1| > |W_2|$ (**Invalid**) | Reject $\to$ **`false`** |
-| Trial 3 | `"app"` | `"apple"` | None (Prefix) | End of $W_1$ | — | $|W_1| < |W_2|$ (Valid) | Accept Pair $\to$ **`true`** |
+| Sample 3 | `"apple"` | `"app"` | None (Prefix) | End of $W_2$ | — | $\lvert W_1 \rvert > \lvert W_2 \rvert$ (**Invalid**) | Reject $\to$ **`false`** |
+| Trial 3 | `"app"` | `"apple"` | None (Prefix) | End of $W_1$ | — | $\lvert W_1 \rvert < \lvert W_2 \rvert$ (Valid) | Accept Pair $\to$ **`true`** |
 
 ---
 
@@ -156,8 +156,8 @@ $'w': 0, \; 'o': 1, \; 'r': 2, \; 'l': 3, \; 'd': 4, \; 'a': 5, \dots$
 |---|---|---|---|
 | Single Word | `words = ["alone"]` | $N = 1 \implies$ loop over pairs does not run; returns `true`. | Loop bounds error on length 1. |
 | Equal Words | `["same", "same"]` | All characters match, lengths equal; returns `true`. | Enforcing strict inequality ($<$). |
-| Shorter Prefix First | `["app", "apple"]` | $|W_1| \le |W_2|$; returns `true`. | Falsely rejecting prefix matches. |
-| Longer Prefix First | `["apple", "app"]` | $|W_1| > |W_2|$; returns `false`. | Overlooking prefix length violation. |
+| Shorter Prefix First | `["app", "apple"]` | $\lvert W_1 \rvert \le \lvert W_2 \rvert$; returns `true`. | Falsely rejecting prefix matches. |
+| Longer Prefix First | `["apple", "app"]` | $\lvert W_1 \rvert > \lvert W_2 \rvert$; returns `false`. | Overlooking prefix length violation. |
 
 ---
 

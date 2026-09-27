@@ -171,7 +171,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| DFS Step | Current Room $i$ | Keys Found in Room | Unvisited Keys Enqueued | Cumulative Visited Set $vis$ | $|vis|$ |
+| DFS Step | Current Room $i$ | Keys Found in Room | Unvisited Keys Enqueued | Cumulative Visited Set $vis$ | $\lvert vis \rvert$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | Initial | $0$ | $[1, 3]$ | $1, 3$ | $\{0\}$ | $1$ |
 | Step 1 | $1$ | $[3, 0, 1]$ | $3$ | $\{0, 1\}$ | $2$ |

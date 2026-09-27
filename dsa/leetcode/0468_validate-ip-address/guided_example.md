@@ -135,8 +135,8 @@ Return **`"IPv4"`**.
 | `"2001:0db8:...:7334"` | IPv6 | 8 parts | All lengths in $[1, 4]$, valid hex | **`"IPv6"`** |
 | `"256.256.256.256"` | IPv4 | 4 parts | $256 > 255$ fails range | **`"Neither"`** |
 | `"192.168.01.1"` | IPv4 | 4 parts | `"01"` has illegal leading zero | **`"Neither"`** |
-| `"2001:0db8::85a3"` | IPv6 | 3 parts (`::` splits to empty) | $|ss| = 3 \ne 8$ | **`"Neither"`** |
-| `"1.1.1.1."` | IPv4 | 5 parts (trailing dot) | $|ss| = 5 \ne 4$ | **`"Neither"`** |
+| `"2001:0db8::85a3"` | IPv6 | 3 parts (`::` splits to empty) | $\lvert ss \rvert = 3 \ne 8$ | **`"Neither"`** |
+| `"1.1.1.1."` | IPv4 | 5 parts (trailing dot) | $\lvert ss \rvert = 5 \ne 4$ | **`"Neither"`** |
 
 ---
 

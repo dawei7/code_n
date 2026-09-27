@@ -190,7 +190,7 @@ After `heapify(h)`: $h[0] = -8$.
 
 ## 4. Priority Queue Smash Trace Table
 
-| Turn $t$ | Heap Size $|h|$ | Heaviest $y$ | Second Heaviest $x$ | Collision Result | Value Pushed to Heap | New Heap Elements |
+| Turn $t$ | Heap Size $\lvert h \rvert$ | Heaviest $y$ | Second Heaviest $x$ | Collision Result | Value Pushed to Heap | New Heap Elements |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | $1$ | $6$ | $8$ | $7$ | $8 - 7 = 1$ | $-1$ | $\{4, 2, 1, 1, 1\}$ |
 | $2$ | $5$ | $4$ | $2$ | $4 - 2 = 2$ | $-2$ | $\{2, 1, 1, 1\}$ |

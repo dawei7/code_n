@@ -139,7 +139,7 @@ R=3: [L=0..2, R=3] "eceb" -> 3 distinct! L moves to 2 -> "eb" len=2, max=3
 R=4: [L=2..3, R=4] "eba"  -> 3 distinct! L moves to 3 -> "ba" len=2, max=3
 ```
 
-| $R$ | Character $s[R]$ | Map Before Shrink | Condition ($|\text{counts}| > 2$) | $L$ Advance Steps | Map After Shrink | Window $[L, R]$ | Window Length | Cumulative $\text{max\_len}$ |
+| $R$ | Character $s[R]$ | Map Before Shrink | Condition ($\lvert \text{counts} \rvert > 2$) | $L$ Advance Steps | Map After Shrink | Window $[L, R]$ | Window Length | Cumulative $\text{max\_len}$ |
 |:---:|:---:|:---|:---:|:---:|:---|:---:|:---:|:---:|
 | 0 | `'e'` | `{'e': 1}` | $1 \le 2$ (No) | None ($L=0$) | `{'e': 1}` | $[0, 0]$ (`"e"`) | 1 | 1 |
 | 1 | `'c'` | `{'e': 1, 'c': 1}` | $2 \le 2$ (No) | None ($L=0$) | `{'e': 1, 'c': 1}` | $[0, 1]$ (`"ec"`) | 2 | 2 |

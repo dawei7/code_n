@@ -171,7 +171,7 @@ Recorded indices: **`[0, 6]`**.
 
 ## 4. Complete Execution Trace
 
-| Right $i$ | Added Char | Active Window Substring | Window Multiset $cnt_2$ | Target Match? | Window Start $i - |p| + 1$ | Removed Char |
+| Right $i$ | Added Char | Active Window Substring | Window Multiset $cnt_2$ | Target Match? | Window Start $i - \lvert p \rvert + 1$ | Removed Char |
 |:---:|:---:|:---:|:---|:---:|:---:|:---:|
 | **$2$** | `'a'` | `"cba"` | $\{a: 1, b: 1, c: 1\}$ | **Yes** | **$0$ Recorded** | `'c'` |
 | **$3$** | `'e'` | `"bae"` | $\{a: 1, b: 1, e: 1\}$ | No | — | `'b'` |

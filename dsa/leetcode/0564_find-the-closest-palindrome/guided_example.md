@@ -169,7 +169,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Candidate $t$ | Origin / Class | Absolute Difference $|t - 123|$ | Current Best $ans$ |
+| Candidate $t$ | Origin / Class | Absolute Difference $\lvert t - 123 \rvert$ | Current Best $ans$ |
 |:---:|:---:|:---:|:---:|
 | $99$ | Boundary $10^{l-1}-1$ | $24$ | $99$ |
 | $111$ | Mirror $(left - 1)$ | $12$ | $111$ |

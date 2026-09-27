@@ -154,7 +154,7 @@ Final unique count: $|ans| = 6$. At every index $i$, $|S_i| = i + 1 \le 30$.
 | Single Element | $arr = [0]$ | $S_0 = \{0\}, ans = \{0\}$. Returns $1$. | Handling $0$ correctly in bitwise operations. |
 | All Identical Elements | $arr = [7, 7, 7, 7]$ | $7 \mid 7 = 7$. $S_i = \{7\}$ for all $i$. $ans = \{7\}$. Returns $1$. | Avoid generating $N(N+1)/2$ duplicates. |
 | Zeroes Interspersed | $arr = [1, 0, 2]$ | $x \mid 0 = x$. Zeroes pass prior values through without setting new bits. | Zero values causing infinite set growth or missed values. |
-| Max Elements ($10^9$) | Values with 30 bits | $|S_i| \le 30$ guaranteed; runtime never exceeds $30 \cdot 50{,}000$ operations. | Exceeding time limits due to excessive set sizes. |
+| Max Elements ($10^9$) | Values with 30 bits | $\lvert S_i \rvert \le 30$ guaranteed; runtime never exceeds $30 \cdot 50{,}000$ operations. | Exceeding time limits due to excessive set sizes. |
 
 ---
 

@@ -199,7 +199,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Word $w$ | Letters Processed | Morse Concatenation $T(w)$ | Already in Set? | Set Size $|S|$ |
+| Word $w$ | Letters Processed | Morse Concatenation $T(w)$ | Already in Set? | Set Size $\lvert S \rvert$ |
 |:---:|:---:|:---:|:---:|:---:|
 | `"gin"` | `'g'`, `'i'`, `'n'` | `"--...-."` | No (New) | $1$ |
 | `"zen"` | `'z'`, `'e'`, `'n'` | `"--...-."` | Yes (Collision) | $1$ |

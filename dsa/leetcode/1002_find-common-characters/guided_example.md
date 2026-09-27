@@ -174,7 +174,7 @@ Final returned list: `["e", "l", "l"]`.
 | Single Word | `words = ["abc"]` | No loop iterations; returns `["a", "b", "c"]`. | Out-of-bounds error on word iteration. |
 | Completely Disjoint Words | `words = ["ab", "cd"]` | All counts fall to $0$; returns `[]`. | Emitting characters with count 0. |
 | Unequal Duplicate Frequencies | `["aaa", "aa", "aaaa"]` | Minimum is $2$; correctly emits two `'a'`s. | Truncating duplicates to 1 copy via set. |
-| Long Words, Small Alphabet | Words up to length $100$ | Memory bounded by $|\Sigma| = 26$; runs in $< 0.001\text{ s}$. | Memory overhead from string duplications. |
+| Long Words, Small Alphabet | Words up to length $100$ | Memory bounded by $\lvert \Sigma \rvert = 26$; runs in $< 0.001\text{ s}$. | Memory overhead from string duplications. |
 
 ---
 

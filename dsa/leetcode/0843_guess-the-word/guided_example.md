@@ -203,7 +203,7 @@ We trace the sample data:
 
 ## 4. Complete Execution Trace
 
-| Round | Guess Submitted | Master Score | Filtering Condition | Candidates Remaining | Size $|\mathcal{C}|$ |
+| Round | Guess Submitted | Master Score | Filtering Condition | Candidates Remaining | Size $\lvert \mathcal{C} \rvert$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | Round $1$ | `"abcczz"` | $4$ | $matches(\text{"abcczz"}, c) == 4$ | `["acckzz"]` | $1$ |
 | **Round $2$** | **`"acckzz"`** | **`6`** | **Found!** | **`["acckzz"]`** | **`1`** |

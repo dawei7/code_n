@@ -153,7 +153,7 @@ Evaluate `dfs(0, 0)`:
 | **$0$** | $1$ | $0$ | Add to Taller | $0 + 1 = 1$ | $0$ | $0$ |
 | **$1$** | $2$ | $1$ | Add to Taller | $1 + 2 = 3$ | $0$ | $0$ |
 | **$2$** | $3$ | $3$ | Add to Taller | $3 + 3 = 6$ | $0$ | $0$ |
-| **$3$** | $6$ | $6$ | Add to Shorter | $|6 - 6| = 0$ | $\min(6, 6) = \mathbf{6}$ | $+6$ |
+| **$3$** | $6$ | $6$ | Add to Shorter | $\lvert 6 - 6 \rvert = 0$ | $\min(6, 6) = \mathbf{6}$ | $+6$ |
 | **$4$ (End)** | — | $0$ | Terminal Check | $0$ | — | Base $0$ |
 
 Total Height of Shorter Support: $0 + 0 + 0 + 6 + 0 = \mathbf{6}$.

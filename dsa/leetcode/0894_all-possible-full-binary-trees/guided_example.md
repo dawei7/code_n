@@ -181,7 +181,7 @@ $$
 
 ## 4. Complete Execution Trace
 
-| Partition $(i, j)$ | Left Subtree Count $|\text{dfs}(i)|$ | Right Subtree Count $|\text{dfs}(j)|$ | Product $(|\text{dfs}(i)| \times |\text{dfs}(j)|)$ | Resulting Topologies | Running Total |
+| Partition $(i, j)$ | Left Subtree Count $\lvert \text{dfs}(i) \rvert$ | Right Subtree Count $\lvert \text{dfs}(j) \rvert$ | Product $(\lvert \text{dfs}(i) \rvert \times \lvert \text{dfs}(j) \rvert)$ | Resulting Topologies | Running Total |
 |:---:|:---:|:---:|:---:|:---|:---:|
 | $(1, 5)$ | $1$ ($T_1$) | $2$ ($T_{5A}, T_{5B}$) | $1 \times 2 = 2$ | Left leaf, Right deep (2 forms) | $2$ |
 | $(3, 3)$ | $1$ ($T_3$) | $1$ ($T_3$) | $1 \times 1 = 1$ | Perfectly symmetric balanced tree | $3$ |

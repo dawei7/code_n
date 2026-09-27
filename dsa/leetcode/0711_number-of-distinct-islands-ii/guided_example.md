@@ -215,7 +215,7 @@ We trace the sample data:
 
 ## 4. Complete Execution Trace
 
-| Island Found | Original Cells | Symmetry Action Applied | Sorted & Origin-Shifted | Canonical Signature Chosen | Set Size $|s|$ |
+| Island Found | Original Cells | Symmetry Action Applied | Sorted & Origin-Shifted | Canonical Signature Chosen | Set Size $\lvert s \rvert$ |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | Island 1 | $(0, 0), (0, 1), (1, 0)$ | Identity $(+x, +y)$ | `[(0, 0), (0, 1), (1, 0)]` | `((0, 0), (0, 1), (1, 0))` | $1$ |
 | Island 2 | $(2, 4), (3, 3), (3, 4)$ | Half-turn $(-x, -y)$ | `[(0, 0), (0, 1), (1, 0)]` | `((0, 0), (0, 1), (1, 0))` | $1$ |
