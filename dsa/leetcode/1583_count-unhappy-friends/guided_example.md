@@ -81,7 +81,7 @@ flowchart TD
     InvertRanks --> InitAns["Set ans = 0"]
     InitAns --> LoopFriends[Iterate friend x from 0 to N - 1]
     LoopFriends --> GetPartner["y = partner[x], y_rank = rank[x][y]"]
-    GetPartner --> CandidateLoop[Iterate candidates u with rank[x][u] < y_rank]
+    GetPartner --> CandidateLoop["Iterate candidates u with rank[x][u] < y_rank"]
     CandidateLoop --> CheckMutual{"rank[u][x] < rank[u][partner[u]]?"}
     CheckMutual -- Yes --> Unhappy["ans += 1; break candidate loop (x is unhappy)"]
     CheckMutual -- No --> NextCand[Test next candidate u]

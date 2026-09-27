@@ -61,7 +61,7 @@ In any undirected graph, a cycle exists if and only if a depth-first or breadth-
 flowchart TD
     accTitle: Grid Cycle Detection Pipeline
     accDescr: Flowchart illustrating monochromatic DFS traversal with parent tracking and back-edge cycle detection.
-    Start([Scan Grid Cells]) --> UnvisitedCheck{vis[r][c] == False?}
+    Start([Scan Grid Cells]) --> UnvisitedCheck{"vis[r][c] == False?"}
     UnvisitedCheck -- No --> NextCell[Move to next grid cell]
     UnvisitedCheck -- Yes --> InitDFS["Mark vis[r][c] = True, Push (r, c, -1, -1)"]
     InitDFS --> StackLoop{Stack Empty?}

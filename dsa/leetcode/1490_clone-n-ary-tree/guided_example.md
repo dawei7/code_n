@@ -72,7 +72,7 @@ flowchart TD
     accDescr: Flowchart illustrating post-order DFS traversal and bottom-up child list assembly.
     Start([Call cloneTree with node u]) --> CheckNull{Is u null?}
     CheckNull -- Yes --> ReturnNull([Return null])
-    CheckNull -- No --> InitList[Initialize empty list: cloned_children = []]
+    CheckNull -- No --> InitList["Initialize empty list: cloned_children = []"]
     InitList --> ChildLoop{More children in u.children?}
     ChildLoop -- Yes --> Recurse[child_clone = cloneTree child]
     Recurse --> Append[Append child_clone to cloned_children]

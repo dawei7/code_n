@@ -76,7 +76,7 @@ flowchart TD
         LoopJ --> LoopU[For each node u: P u j = P P u j-1 j-1]
         LoopU --> LoopJ
     end
-    subgraph Query Execution: getKthAncestor node, k
+    subgraph "Query Execution: getKthAncestor node, k"
         QStart([Input: node, k]) --> BitLoop[Inspect active bits of k from high to low]
         BitLoop --> CheckBit{Is bit j set in k?}
         CheckBit -- Yes --> Jump[node = P node j]

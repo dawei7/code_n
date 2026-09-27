@@ -51,7 +51,7 @@ flowchart TD
     accTitle: Longest Word with All Prefixes Trie
     accDescr: Trie structure showing valid prefix paths from root 'a' down to 'apple' and 'apply', with 'banana' disconnected due to missing root 'b'.
     Root["Trie Root (empty)"] --> A["'a' (Valid, is_end=true)"]
-    Root -.x B["'b' (Missing! 'banana' pruned)"]
+    Root -.-x B["'b' (Missing! 'banana' pruned)"]
     A --> P1["'ap' (Valid, is_end=true)"]
     P1 --> P2["'app' (Valid, is_end=true)"]
     P2 --> L["'appl' (Valid, is_end=true)"]

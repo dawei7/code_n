@@ -67,7 +67,7 @@ flowchart TD
     C -->|Yes| END["Return best_prob[end_node] (0.0 if unreachable)"]
     C -->|No| D["Pop (curr_prob, u) with largest probability"]
     D --> E{"curr_prob < best_prob[u] ?"}
-    E -->|Yes (Stale)| C
+    E -->|"Yes (Stale)"| C
     E -->|No| F{"Is u == end_node ?"}
     F -->|Yes| G["Early Exit: Return curr_prob"]
     F -->|No| H["Iterate neighbors v with edge probability p"]

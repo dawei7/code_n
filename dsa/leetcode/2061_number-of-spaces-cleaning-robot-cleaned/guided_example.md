@@ -38,8 +38,8 @@ flowchart TD
             O10["(1, 0) Obstacle"] ~~~ O11["(1, 1) Obstacle"] ~~~ C12["(1, 2) Cleaned"]
         end
         subgraph Row2["Row 2"]
-            direction LR
-            C20["(2, 0) Cleaned"] <-- C21["(2, 1) Cleaned"] <-- C22["(2, 2) Cleaned"]
+            direction RL
+            C22["(2, 2) Cleaned"] --> C21["(2, 1) Cleaned"] --> C20["(2, 0) Cleaned"]
         end
         C02 --> C12 --> C22
     end

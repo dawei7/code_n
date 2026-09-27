@@ -78,9 +78,9 @@ flowchart TD
     CheckGoal -- Yes --> ReturnT([Return t semesters])
     CheckGoal -- No --> FindEligible[Compute eligible mask nxt from prerequisites]
     FindEligible --> CountCheck{Is bit_count nxt <= k?}
-    CountCheck -- Yes --> TakeAll[Next state = cur | nxt; Enqueue t + 1]
+    CountCheck -- Yes --> TakeAll["Next state = cur | nxt; Enqueue t + 1"]
     CountCheck -- No --> BranchK[Enumerate all size-k submasks of nxt]
-    BranchK --> EnqueueSub[For each submask: Enqueue cur | submask, t + 1]
+    BranchK --> EnqueueSub["For each submask: Enqueue cur | submask, t + 1"]
     TakeAll --> Dequeue
     EnqueueSub --> Dequeue
 ```

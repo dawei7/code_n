@@ -81,7 +81,7 @@ flowchart TD
     G -->|No| I["Replace p with q in parent[p].children"]
     H --> J["Append p to q.children"]
     I --> J
-    E -->|No (Case 2/3)| K["Remove p from parent[p].children"]
+    E -->|"No (Case 2/3)"| K["Remove p from parent[p].children"]
     K --> L["Append p to q.children"]
     J --> M["Return root"]
     L --> M

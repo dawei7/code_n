@@ -70,8 +70,8 @@ flowchart LR
         MID["mid: Middle elements (size = m - 2k, Sum = S)"]
         HI["hi: Largest k elements (size = k)"]
     end
-    LO <=-=>|"Boundary Balance"| MID
-    MID <=-=>|"Boundary Balance"| HI
+    LO <-->|"Boundary Balance"| MID
+    MID <-->|"Boundary Balance"| HI
     MID --> Query["Query: floor(S / (m - 2k)) in O(1)"]
 ```
 

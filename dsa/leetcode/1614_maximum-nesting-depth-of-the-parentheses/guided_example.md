@@ -63,8 +63,8 @@ flowchart TD
     accTitle: Parentheses Depth Scanner
     accDescr: Sequential character evaluation updating active depth counter and peak tracker.
     Char["Read Character c"] --> Type{"Character Type?"}
-    Type -->|'('| Inc["d += 1; ans = max(ans, d)"]
-    Type -->|')'| Dec["d -= 1"]
+    Type -->|"'('"| Inc["d += 1; ans = max(ans, d)"]
+    Type -->|"')'"| Dec["d -= 1"]
     Type -->|Other| Skip["Ignore character"]
     Inc --> Next{"More characters?"}
     Dec --> Next

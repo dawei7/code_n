@@ -65,7 +65,7 @@ flowchart TD
     CheckRegistry -- No --> DirectAssign[Assign name directly: result i = names i]
     DirectAssign --> RecordNew[Set D names i = 1]
     CheckRegistry -- Yes --> LookupK[Retrieve cached k = D names i]
-    LookupK --> ProbeCandidate[Form candidate = names i + '(' + k + ')']
+    LookupK --> ProbeCandidate["Form candidate = names i + '(' + k + ')'"]
     ProbeCandidate --> CheckCandidate{Is candidate in registry D?}
     CheckCandidate -- Yes --> AdvanceK[k = k + 1]
     AdvanceK --> ProbeCandidate
