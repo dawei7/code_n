@@ -41,7 +41,7 @@ The teaching goal is to understand **left outer joins and conditional aggregatio
 
 > **Relational Left-Join Rate Preservation Theorem.**
 > 1. *Universe Preservation via Left Join:* Let $\mathcal{U}$ be the set of all signed-up users in `Signups`. An inner join $\text{Signups} \bowtie \text{Confirmations}$ retains only users $\mathcal{U}_{\text{active}} \subseteq \mathcal{U}$ who generated at least one confirmation request. To retain all registered users $\mathcal{U}$, we compute the Left Outer Join:
->    $$\mathcal{T} = \text{Signups} \leftouterjoin_{\text{Signups.user\_id} = \text{Confirmations.user\_id}} \text{Confirmations}$$
+>    $$\mathcal{T} = \text{Signups} \ltimes_{\text{Signups.user\_id} = \text{Confirmations.user\_id}} \text{Confirmations}$$
 >    For any user $u \in \mathcal{U} \setminus \mathcal{U}_{\text{active}}$, $\mathcal{T}$ preserves a single row with null attributes for `Confirmations.action`.
 > 2. *Conditional Indicator Projection:* Define the binary confirmation indicator $\mathbb{I}_{\text{conf}}$ for each joined tuple $t \in \mathcal{T}$:
 >    $$\mathbb{I}_{\text{conf}}(t) = \begin{cases} 1 & \text{if } t.\text{action} = \text{'confirmed'} \\ 0 & \text{otherwise} \end{cases}$$

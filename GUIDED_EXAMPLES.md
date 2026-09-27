@@ -137,6 +137,8 @@ source markers. Run:
 .\.venv\Scripts\python.exe -m pytest server\tests\test_guided_examples.py -q
 .\.venv\Scripts\python.exe tools\audit_guided_examples.py
 .\.venv\Scripts\python.exe tools\audit_guided_tables.py
+npm.cmd run test:math --prefix web
+npm.cmd run test:mermaid --prefix web
 npm.cmd run typecheck --prefix web
 npm.cmd run build --prefix web
 git diff --check
@@ -155,3 +157,9 @@ span or inside mathematics, so absolute value and cardinality must be written
 code span as `` `\|` ``, and a pipe inside `\text{...}` as `\textbar`. A table
 whose delimiter row disagrees with its header is not recognised as a table at
 all, so this check runs before the body-row comparison.
+
+`npm.cmd run test:math --prefix web` renders every math span in every Guided
+Example with the app's own KaTeX build and fails on any span that does not parse,
+which is what an undefined control sequence or an unbalanced group looks like in
+the reader. It accepts package names to scope the run, and `--all-docs` widens it
+to every Markdown file in the corpus.
