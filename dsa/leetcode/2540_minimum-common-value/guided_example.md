@@ -51,12 +51,12 @@ maintained by comparing the two frontier values and discarding the smaller one:
 flowchart TD
     accTitle: One iteration of the two-frontier scan
     accDescr: The two frontier values are compared; equality returns the value, and a strict inequality advances the pointer of the smaller side because that value cannot occur in the other array.
-    A["compare nums1[i] with nums2[j]"] -->|equal| B["return nums1[i] as the minimum common value"]
-    A -->|nums1[i] smaller| C["advance i: that value is absent from nums2"]
-    A -->|nums2[j] smaller| D["advance j: that value is absent from nums1"]
+    A["compare nums1[i] with nums2[j]"] -->|"equal"| B["return nums1[i] as the minimum common value"]
+    A -->|"nums1[i] smaller"| C["advance i: that value is absent from nums2"]
+    A -->|"nums2[j] smaller"| D["advance j: that value is absent from nums1"]
     C --> E["repeat while both pointers are in range"]
     D --> E
-    E -->|a pointer leaves its array| F["return -1: no common value exists"]
+    E -->|"a pointer leaves its array"| F["return -1: no common value exists"]
 ```
 
 ## 3. Executing the scan on `nums1 = [1,2,3,6]`, `nums2 = [2,3,4,5]`
@@ -114,14 +114,14 @@ Two claims together prove correctness.
 returned integer occurs in both.
 
 **No smaller common value is skipped.** Suppose $x$ is the smallest common value,
-let $i^\*$ be its first occurrence in `nums1` and $j^\*$ its first occurrence in
-`nums2`. All elements of `nums1` before $i^\*$ are strictly less than $x$, and
-likewise for `nums2` before $j^\*$. While `i` is at most $i^\*$ and `j` at most
-$j^\*$, both frontier values are at most $x$, so an advancement of `i` can only
+let $i^{*}$ be its first occurrence in `nums1` and $j^{*}$ its first occurrence in
+`nums2`. All elements of `nums1` before $i^{*}$ are strictly less than $x$, and
+likewise for `nums2` before $j^{*}$. While `i` is at most $i^{*}$ and `j` at most
+$j^{*}$, both frontier values are at most $x$, so an advancement of `i` can only
 happen when `nums1[i] < nums2[j] <= x`, which means `nums1[i] < x`, and an
 advancement of `j` happens only when `nums2[j] < nums1[i] <= x`, which means
 `nums2[j] < x`. Neither pointer can jump past its target occurrence, and the only
-way the scan stops early is the equality at $(i^\*, j^\*)$, which returns exactly
+way the scan stops early is the equality at $(i^{*}, j^{*})$, which returns exactly
 $x$. If no common value exists, then every comparison eliminates a value and the
 shorter array must be exhausted, so the `-1` branch is reached rather than an
 infinite scan.

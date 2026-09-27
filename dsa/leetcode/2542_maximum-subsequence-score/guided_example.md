@@ -15,11 +15,11 @@ coupling with an exhaustive case split.
 
 ## 2. Anchoring on the Index That Supplies the Minimum
 
-Let $I^\*$ be an optimal selection and let $m = \min_{i \in I^\*} \text{nums2}[i]$. Some chosen
+Let $I^{*}$ be an optimal selection and let $m = \min_{i \in I^{*}} \text{nums2}[i]$. Some chosen
 index attains that minimum; call it the **anchor** $p$, so $\text{nums2}[p] = m$. Two facts follow
 immediately from the definition of the minimum.
 
-- Every other chosen index $i \in I^\* \setminus \{p\}$ satisfies $\text{nums2}[i] \ge m$.
+- Every other chosen index $i \in I^{*} \setminus \{p\}$ satisfies $\text{nums2}[i] \ge m$.
 - The multiplier of the whole selection is exactly $m$, no matter how large those other
   `nums2` values are.
 

@@ -53,6 +53,8 @@ Inducting on $n - i$ therefore gives $f(0) =$ the minimum possible cost. One str
 
 ```mermaid
 flowchart LR
+  accTitle: Recurrence structure of the suffix minimum cost
+  accDescr: A suffix starting at i is split into a first piece ending at j, whose impurity is paid immediately, and a recursive suffix starting at j plus one, which bottoms out at zero cost once the suffix is empty.
   A["suffix starting at i"] --> B["pick first piece end j"]
   B --> C["pay imp of the piece"]
   C --> D["recurse on suffix j+1"]
